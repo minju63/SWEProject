@@ -31,7 +31,7 @@ API_URL = "https://www.youthcenter.go.kr/go/ythip/getPlcy"
 KST = ZoneInfo("Asia/Seoul")
 TODAY = datetime.now(KST).date()
 USER_AGENT = (
-    "BusanYouthPolicyResearchBot/1.0 "
+    "BusanYouthPolicyResearchBot/1.1 "
     "(academic project; official-public-data collection; contact: local-project)"
 )
 REQUEST_TIMEOUT = 25
@@ -178,6 +178,8 @@ OFFICIAL_DOMAINS = {
     "lll.saha.go.kr",
     "busanjin.go.kr",
     "www.busanjin.go.kr",
+    "busanjinsf.kr",
+    "www.busanjinsf.kr",
 }
 
 
@@ -292,7 +294,7 @@ POLICY_SEEDS: list[PolicySeed] = [
         name="(재)부산진구장학회 대학생 장학금",
         api_queries=["부산진구장학회", "부산진구 장학금", "부산진구 대학생 장학금"],
         # 시행기관 공식 개별 공고 URL을 찾지 못한 경우 API의 refUrlAddr를 우선 사용.
-        official_url="https://www.busanjin.go.kr/",
+        official_url="https://www.busanjinsf.kr/",
         expected_scope="부산진구",
         subclass="장학금",
         tags=["부산진구", "대학생", "장학금"],
@@ -433,8 +435,15 @@ def stable_id(policy_name: str, source_url: str, api_no: str = "") -> str:
     return f"WEB-{digest}"
 
 
+
 def blank_row() -> dict[str, str]:
-    return {c: EMPTY_UNKNOWN for c in OUTPUT_COLUMNS}
+    """
+    기본값은 '확인필요'로 두되, 내부 메모성 컬럼인 비고는 빈 문자열로 시작한다.
+    비고까지 '확인필요'로 초기화하면 정상 수집 행에도 '확인필요 | ...'가 남는 문제가 생긴다.
+    """
+    row = {c: EMPTY_UNKNOWN for c in OUTPUT_COLUMNS}
+    row["비고"] = ""
+    return row
 
 
 # -----------------------------------------------------------------------------
@@ -934,10 +943,21 @@ def fetch_document(session: requests.Session, url: str) -> dict[str, Any]:
 
 
 KNOWN_LABELS = [
-    "사업명", "정책명", "지원대상", "대상자", "가입대상", "신청자격", "지원내용", "사업내용",
-    "신청기간", "모집기간", "접수기간", "사업기간", "운영기간", "신청방법", "지원방법",
-    "제출서류", "구비서류", "지원금액", "지원규모", "지원조건", "소득기준", "소득조건",
-    "제외대상", "지원제외", "문의", "문의처", "담당부서", "담당자", "신청안내", "사업개요",
+    "사업명", "정책명",
+    "지원대상", "지원 대상", "대상자", "지원자격", "지원 자격", "신청자격", "신청 자격",
+    "가입대상", "가입 대상", "신청대상", "신청 대상", "자격요건", "자격 요건",
+    "지원내용", "지원 내용", "사업내용", "사업 내용", "지원혜택", "지원 혜택",
+    "신청기간", "신청 기간", "모집기간", "모집 기간", "접수기간", "접수 기간",
+    "신청일정", "신청 일정", "사업기간", "사업 기간", "운영기간", "운영 기간",
+    "신청방법", "신청 방법", "접수방법", "접수 방법", "신청절차", "신청 절차",
+    "제출서류", "제출 서류", "구비서류", "구비 서류",
+    "지원금액", "지원 금액", "지원규모", "지원 규모", "장학금액", "장학 금액",
+    "지원조건", "지원 조건", "소득기준", "소득 기준", "소득조건", "소득 조건",
+    "소득요건", "소득 요건", "학자금 지원구간",
+    "제외대상", "제외 대상", "지원제외", "지원 제외", "참여제한", "참여 제한",
+    "문의", "문의처", "담당부서", "담당 부서", "담당자",
+    "신청안내", "신청 안내", "사업개요", "사업 개요",
+    "등록일", "게시일", "작성일",
 ]
 
 
@@ -1040,17 +1060,33 @@ def extract_residency_months(text: str) -> str:
     return ""
 
 
-def infer_scope(zip_cd: str, eligibility_text: str, expected_scope: str | None) -> tuple[str, str, str]:
-    codes = re.findall(r"\b\d{5}\b", zip_cd or "")
-    # 좁은 지역 우선
-    if "26230" in codes:
-        return REGION_CODE_MAP["26230"]
-    if "26380" in codes:
-        return REGION_CODE_MAP["26380"]
-    if any(c.startswith("26") for c in codes):
-        return "부산", "부산광역시", ""
 
+def infer_scope(zip_cd: str, eligibility_text: str, expected_scope: str | None) -> tuple[str, str, str]:
+    """
+    정책의 실제 신청범위를 보수적으로 정규화한다.
+
+    핵심 수정:
+    - 전국 정책의 zipCd 목록 안에 부산진구 코드(26230)가 포함되어 있다는 이유만으로
+      부산진구 정책으로 축소하지 않는다.
+    - 여러 지역 코드가 함께 있으면 '전국/광역 단위' 가능성을 먼저 본다.
+    - 현재 수집 대상 seed의 expected_scope는 이미 공식 자료를 바탕으로 조사대상으로
+      지정한 값이므로, API 후보가 지역검증을 통과한 뒤에는 그 범위를 우선한다.
+    """
+    codes = list(dict.fromkeys(re.findall(r"\b\d{5}\b", zip_cd or "")))
     t = clean_text(eligibility_text)
+
+    # seed에서 이미 검증한 조사범위를 우선한다.
+    if expected_scope == "전국":
+        return "전국", "전국", ""
+    if expected_scope == "부산":
+        return "부산", "부산광역시", ""
+    if expected_scope == "부산진구":
+        return "부산진구", "부산광역시", "부산진구"
+    if expected_scope == "사하구":
+        return "사하구", "부산광역시", "사하구"
+
+    # expected_scope가 없는 일반 수집용 fallback.
+    # 텍스트의 명시적 지역조건을 먼저 본다.
     if "부산진구" in t:
         return "부산진구", "부산광역시", "부산진구"
     if "사하구" in t:
@@ -1058,10 +1094,20 @@ def infer_scope(zip_cd: str, eligibility_text: str, expected_scope: str | None) 
     if "부산광역시" in t or "부산시" in t or "부산 소재" in t or "부산지역" in t:
         return "부산", "부산광역시", ""
 
-    # seed는 검증용 조사대상으로만 사용. API/원문이 지역조건을 직접 주지 않으면 비고에 기대값을 남기고,
-    # 실제 신청범위는 전국 정책 seed인 경우에만 전국으로 확정한다.
-    if expected_scope == "전국":
-        return "전국", "전국", ""
+    if codes:
+        # 여러 광역권 코드가 함께 있으면 전국 정책으로 판단.
+        sido_prefixes = {c[:2] for c in codes}
+        if len(sido_prefixes) >= 3 or len(codes) >= 10:
+            return "전국", "전국", ""
+
+        # 부산권 코드만 있는 경우
+        if all(c.startswith("26") for c in codes):
+            if set(codes) == {"26230"}:
+                return REGION_CODE_MAP["26230"]
+            if set(codes) == {"26380"}:
+                return REGION_CODE_MAP["26380"]
+            return "부산", "부산광역시", ""
+
     return EMPTY_UNKNOWN, EMPTY_UNKNOWN, EMPTY_UNKNOWN
 
 
@@ -1155,33 +1201,178 @@ def extract_phone(text: str) -> str:
     return ", ".join(uniq[:5])
 
 
-def parse_crawl(doc: dict[str, Any]) -> dict[str, str]:
+
+def extract_date_context(text: str, keywords: list[str], max_chunks: int = 5) -> str:
+    """
+    '신청', '접수', '모집' 같은 키워드와 날짜가 함께 있는 문장을 보수적으로 추출한다.
+    generic HTML에서 라벨이 분리되어 있는 경우의 fallback 용도다.
+    """
+    chunks = re.split(r"[\n。]|(?<=[.!?])\s+", clean_text(text))
+    selected: list[str] = []
+    for chunk in chunks:
+        c = clean_text(chunk)
+        if not c:
+            continue
+        if any(k in c for k in keywords) and re.search(r"20\d{2}|\d{1,2}\s*[./월]\s*\d{1,2}", c):
+            selected.append(c)
+            if len(selected) >= max_chunks:
+                break
+    return as_joined(selected, sep=" / ")
+
+
+def extract_posted_date(text: str) -> str:
+    """등록일/게시일/작성일 주변에서 날짜를 찾되 없으면 추정하지 않는다."""
+    lines = text_lines(text)
+    for i, line in enumerate(lines):
+        if any(label in line for label in ["등록일", "게시일", "작성일", "공고일"]):
+            candidate = line
+            if i + 1 < len(lines):
+                candidate += " " + lines[i + 1]
+            d = normalize_date_string(candidate)
+            if d:
+                return d
+    return ""
+
+
+def parse_kosaf_document(doc: dict[str, Any]) -> dict[str, str]:
+    """
+    한국장학재단 페이지 보완 파서.
+    사이트 구조상 '지원대상:' 같은 단순 라벨로 노출되지 않는 경우가 있어
+    전체 텍스트에서 한국장학재단 특유의 키워드 주변 문장을 추가로 추출한다.
+    값을 추정하지 않고 원문에 실제로 나타난 문장만 사용한다.
+    """
+    base = parse_crawl_generic(doc)
+    text = doc.get("text", "")
+
+    if not base.get("지원대상_원문"):
+        base["지원대상_원문"] = extract_sentence_by_keywords(
+            text,
+            ["지원대상", "지원자격", "국내 대학", "재학생", "학부생", "대학원생"],
+            max_sentences=6,
+        )
+
+    if not base.get("소득조건"):
+        base["소득조건"] = extract_sentence_by_keywords(
+            text,
+            ["학자금 지원구간", "소득구간", "기초생활수급자", "차상위"],
+            max_sentences=5,
+        )
+
+    if not base.get("지원내용"):
+        base["지원내용"] = extract_sentence_by_keywords(
+            text,
+            ["지원금액", "등록금", "생활비", "장학금", "대출한도"],
+            max_sentences=6,
+        )
+
+    if not base.get("지원금액"):
+        base["지원금액"] = extract_money(base.get("지원내용", "") or text)
+
+    if not base.get("신청시작일") or not base.get("신청마감일"):
+        ctx = extract_date_context(text, ["신청", "접수"], max_chunks=6)
+        start, end = parse_date_range(ctx)
+        if start and not base.get("신청시작일"):
+            base["신청시작일"] = start
+        if end and not base.get("신청마감일"):
+            base["신청마감일"] = end
+
+    return base
+
+
+def parse_crawl_generic(doc: dict[str, Any]) -> dict[str, str]:
     text = doc.get("text", "")
     anchors = doc.get("anchors", [])
 
-    target = extract_labeled_section(text, ["지원대상", "대상자", "가입대상", "신청자격"], max_follow=12)
-    support = extract_labeled_section(text, ["지원내용", "사업내용", "근로장려금"], max_follow=12)
-    app_period = extract_labeled_section(text, ["신청기간", "모집기간", "접수기간"], max_follow=5)
-    biz_period = extract_labeled_section(text, ["사업기간", "운영기간"], max_follow=5)
-    method = extract_labeled_section(text, ["신청방법", "접수방법"], max_follow=6)
-    income = extract_labeled_section(text, ["소득조건", "소득기준"], max_follow=8)
-    exclude = extract_labeled_section(text, ["제외대상", "지원제외", "참여제한"], max_follow=8)
-    amount_section = extract_labeled_section(text, ["지원금액", "지원규모", "장학금", "근로장려금"], max_follow=8)
-    department = extract_labeled_section(text, ["담당부서"], max_follow=2)
-    contact_section = extract_labeled_section(text, ["문의처", "문의", "담당자"], max_follow=3)
-    docs = extract_labeled_section(text, ["제출서류", "구비서류"], max_follow=10)
+    target = extract_labeled_section(
+        text,
+        ["지원대상", "지원 대상", "대상자", "가입대상", "가입 대상",
+         "신청자격", "신청 자격", "지원자격", "지원 자격",
+         "신청대상", "신청 대상", "자격요건", "자격 요건"],
+        max_follow=14,
+    )
+    support = extract_labeled_section(
+        text,
+        ["지원내용", "지원 내용", "사업내용", "사업 내용", "지원혜택", "지원 혜택"],
+        max_follow=14,
+    )
+    app_period = extract_labeled_section(
+        text,
+        ["신청기간", "신청 기간", "모집기간", "모집 기간",
+         "접수기간", "접수 기간", "신청일정", "신청 일정"],
+        max_follow=7,
+    )
+    biz_period = extract_labeled_section(
+        text,
+        ["사업기간", "사업 기간", "운영기간", "운영 기간", "추진일정", "추진 일정"],
+        max_follow=7,
+    )
+    method = extract_labeled_section(
+        text,
+        ["신청방법", "신청 방법", "접수방법", "접수 방법", "신청절차", "신청 절차"],
+        max_follow=8,
+    )
+    income = extract_labeled_section(
+        text,
+        ["소득조건", "소득 조건", "소득기준", "소득 기준",
+         "소득요건", "소득 요건", "학자금 지원구간"],
+        max_follow=10,
+    )
+    exclude = extract_labeled_section(
+        text,
+        ["제외대상", "제외 대상", "지원제외", "지원 제외", "참여제한", "참여 제한"],
+        max_follow=10,
+    )
+    amount_section = extract_labeled_section(
+        text,
+        ["지원금액", "지원 금액", "지원규모", "지원 규모",
+         "장학금", "장학금액", "장학 금액", "근로장려금"],
+        max_follow=10,
+    )
+    department = extract_labeled_section(text, ["담당부서", "담당 부서"], max_follow=3)
+    contact_section = extract_labeled_section(text, ["문의처", "문의", "담당자"], max_follow=4)
+    docs = extract_labeled_section(text, ["제출서류", "제출 서류", "구비서류", "구비 서류"], max_follow=12)
+
+    # 라벨을 못 찾았을 때 원문 문장 기반 fallback.
+    if not target:
+        target = extract_sentence_by_keywords(
+            text,
+            ["지원대상", "지원자격", "신청자격", "가입대상", "재학생", "대학생", "청년"],
+            max_sentences=6,
+        )
+
+    if not support:
+        support = extract_sentence_by_keywords(
+            text,
+            ["지원내용", "지원금액", "장학금", "지원금", "정부기여금", "이자 지원"],
+            max_sentences=6,
+        )
+
+    if not app_period:
+        app_period = extract_date_context(text, ["신청", "접수", "모집"], max_chunks=5)
+
+    if not income:
+        income = extract_sentence_by_keywords(
+            target or text,
+            ["소득", "중위소득", "건강보험료", "학자금 지원구간", "연매출", "총급여"],
+            max_sentences=5,
+        )
 
     app_start, app_end = parse_date_range(app_period)
     biz_start, biz_end = parse_date_range(biz_period)
     age_min, age_max, age_raw = extract_age(target or text)
 
-    residency = extract_sentence_by_keywords(target or text, ["거주", "주민등록", "주소", "소재 대학", "소재 대학교"], max_sentences=5)
+    residency = extract_sentence_by_keywords(
+        target or text,
+        ["거주", "주민등록", "주소", "소재 대학", "소재 대학교", "소재 대학원"],
+        max_sentences=5,
+    )
     school = infer_school(target)
     employment = infer_employment(target)
-    if not income:
-        income = extract_sentence_by_keywords(target or text, ["소득", "중위소득", "건강보험료", "학자금 지원구간", "연매출", "총급여"], max_sentences=5)
 
-    always = "예" if any(k in app_period for k in ["상시", "연중", "수시"]) else ("아니오" if app_start or app_end else "확인필요")
+    always = (
+        "예" if any(k in app_period for k in ["상시", "연중", "수시"])
+        else ("아니오" if app_start or app_end else "확인필요")
+    )
     app_url = extract_apply_url(anchors, doc.get("url", ""))
     phone = extract_phone(contact_section or text)
 
@@ -1211,13 +1402,26 @@ def parse_crawl(doc: dict[str, Any]) -> dict[str, str]:
         "문의처": first_nonempty(contact_section, phone, default=""),
         "기관 담당부서": department,
         "원문URL": doc.get("url", ""),
-        "게시일": "",  # generic HTML에서 '게시일'을 안전하게 구분하기 어려우므로 추정하지 않음
+        "게시일": extract_posted_date(text),
     }
+
+
+
+def parse_crawl(doc: dict[str, Any]) -> dict[str, str]:
+    """
+    도메인별 파서 dispatcher.
+    한국장학재단은 전용 보완 파서를 사용하고, 나머지는 generic 파서를 사용한다.
+    """
+    host = urlparse(doc.get("url", "")).netloc.lower()
+    if "kosaf.go.kr" in host:
+        return parse_kosaf_document(doc)
+    return parse_crawl_generic(doc)
 
 
 # -----------------------------------------------------------------------------
 # API -> CSV 매핑
 # -----------------------------------------------------------------------------
+
 def api_to_partial(api: dict[str, Any], seed: PolicySeed) -> dict[str, str]:
     eligibility = as_joined([
         api.get("addAplyQlfcCndCn"),
@@ -1225,31 +1429,60 @@ def api_to_partial(api: dict[str, Any], seed: PolicySeed) -> dict[str, str]:
         api.get("plcySprtCn"),
     ], sep=" / ")
 
-    min_age = clean_text(api.get("sprtTrgtMinAge"))
-    max_age = clean_text(api.get("sprtTrgtMaxAge"))
-    age_raw = ""
-    if min_age or max_age:
-        age_raw = f"지원대상 최소연령={min_age or '미표기'}, 최대연령={max_age or '미표기'}"
+    # 연령 제한 여부를 먼저 본다.
+    age_limit_flag = clean_text(api.get("sprtTrgtAgeLmtYn")).upper()
+    raw_min_age = clean_text(api.get("sprtTrgtMinAge"))
+    raw_max_age = clean_text(api.get("sprtTrgtMaxAge"))
 
-    income = as_joined([
-        f"소득조건구분코드={clean_text(api.get('earnCndSeCd'))}" if api.get("earnCndSeCd") else "",
-        f"소득최소금액={clean_text(api.get('earnMinAmt'))}" if api.get("earnMinAmt") else "",
-        f"소득최대금액={clean_text(api.get('earnMaxAmt'))}" if api.get("earnMaxAmt") else "",
-        api.get("earnEtcCn"),
-    ])
+    # 0/0은 실제 0세 정책이 아니라 미설정 기본값으로 내려오는 경우가 있어 그대로 쓰지 않는다.
+    min_age = "" if raw_min_age in {"", "0", "00"} else raw_min_age
+    max_age = "" if raw_max_age in {"", "0", "00"} else raw_max_age
+
+    if age_limit_flag in {"N", "NO", "0", "없음", "제한없음"}:
+        min_age = NO_LIMIT
+        max_age = NO_LIMIT
+        age_raw = "연령제한 없음"
+    elif min_age or max_age:
+        age_raw = f"지원대상 최소연령={min_age or '미표기'}, 최대연령={max_age or '미표기'}"
+    else:
+        age_raw = ""
+
+    # 소득금액 0은 실제 0원 조건으로 단정하지 않는다.
+    earn_code = clean_text(api.get("earnCndSeCd"))
+    earn_min = clean_text(api.get("earnMinAmt"))
+    earn_max = clean_text(api.get("earnMaxAmt"))
+    earn_etc = clean_text(api.get("earnEtcCn"))
+
+    income_parts = []
+    if earn_code:
+        income_parts.append(f"소득조건구분코드={earn_code}")
+    if earn_min not in {"", "0", "00"}:
+        income_parts.append(f"소득최소금액={earn_min}")
+    if earn_max not in {"", "0", "00"}:
+        income_parts.append(f"소득최대금액={earn_max}")
+    if earn_etc:
+        income_parts.append(earn_etc)
+    income = as_joined(income_parts)
 
     app_raw = clean_text(api.get("aplyYmd"))
     app_start, app_end = parse_date_range(app_raw)
     biz_start = normalize_date_string(clean_text(api.get("bizPrdBgngYmd")))
     biz_end = normalize_date_string(clean_text(api.get("bizPrdEndYmd")))
 
-    always = "예" if any(k in app_raw for k in ["상시", "연중", "수시"]) else ("아니오" if app_start or app_end else "확인필요")
+    always = (
+        "예" if any(k in app_raw for k in ["상시", "연중", "수시"])
+        else ("아니오" if app_start or app_end else "확인필요")
+    )
     scope, sido, sigungu = infer_scope(clean_text(api.get("zipCd")), eligibility, seed.expected_scope)
 
     job_text = infer_employment(eligibility)
     school_text = infer_school(eligibility)
     special = infer_special_target(eligibility)
-    residence = extract_sentence_by_keywords(eligibility, ["거주", "주민등록", "주소", "소재 대학", "소재 대학교"], max_sentences=5)
+    residence = extract_sentence_by_keywords(
+        eligibility,
+        ["거주", "주민등록", "주소", "소재 대학", "소재 대학교", "소재 대학원"],
+        max_sentences=5,
+    )
 
     raw_codes = {
         "zipCd": api.get("zipCd"),
@@ -1259,6 +1492,7 @@ def api_to_partial(api: dict[str, Any], seed: PolicySeed) -> dict[str, str]:
         "sBizCd": api.get("sBizCd"),
         "mrgSttsCd": api.get("mrgSttsCd"),
         "aplyPrdSeCd": api.get("aplyPrdSeCd"),
+        "sprtTrgtAgeLmtYn": api.get("sprtTrgtAgeLmtYn"),
     }
     raw_codes = {k: clean_text(v) for k, v in raw_codes.items() if clean_text(v)}
 
@@ -1284,7 +1518,10 @@ def api_to_partial(api: dict[str, Any], seed: PolicySeed) -> dict[str, str]:
         "소득조건": income,
         "특화대상": special,
         "제외대상": clean_text(api.get("ptcpPrpTrgtCn")),
-        "기타조건": as_joined([api.get("etcMttrCn"), f"원시코드={json.dumps(raw_codes, ensure_ascii=False)}" if raw_codes else ""]),
+        "기타조건": as_joined([
+            api.get("etcMttrCn"),
+            f"원시코드={json.dumps(raw_codes, ensure_ascii=False)}" if raw_codes else "",
+        ]),
         "신청시작일": app_start,
         "신청마감일": app_end,
         "운영시작일": biz_start,
@@ -1293,6 +1530,7 @@ def api_to_partial(api: dict[str, Any], seed: PolicySeed) -> dict[str, str]:
         "신청방법": clean_text(api.get("plcyAplyMthdCn")),
         "신청URL": clean_text(api.get("aplyUrlAddr")),
         "원문URL": first_nonempty(api.get("refUrlAddr1"), api.get("refUrlAddr2"), default=""),
+        "게시일": normalize_date_string(clean_text(api.get("frstRegDt"))),
         "요약": clean_text(api.get("plcyExplnCn")),
     }
 
@@ -1309,7 +1547,52 @@ def merge_fill(row: dict[str, str], data: dict[str, str], overwrite: bool = Fals
             row[k] = v
 
 
-def finalize_row(row: dict[str, str], seed: PolicySeed, api_obj: dict[str, Any] | None, match_score: float, method: list[str]) -> dict[str, str]:
+
+OFFICIAL_DYNAMIC_FIELDS = {
+    "신청시작일", "신청마감일", "운영시작일", "운영종료일",
+    "상시모집", "신청방법", "신청URL", "문의처", "기관 담당부서",
+    "원문URL", "게시일",
+}
+
+
+def merge_official_crawl(
+    row: dict[str, str],
+    parsed: dict[str, str],
+    *,
+    prefer_dynamic: bool,
+) -> None:
+    """
+    공식 원문 크롤링 결과 병합.
+
+    - API에 없는 값은 일반적으로 채운다.
+    - 신청기간/신청방법/원문URL 등 변동 가능성이 큰 값은
+      curated official_url에서 읽은 경우 최신 공식 원문을 우선한다.
+    - 지원대상/금액 등은 generic 파서 오탐 가능성이 있으므로 기존 API 값이 있으면
+      무조건 덮어쓰지 않는다.
+    """
+    for k, v in parsed.items():
+        if k not in row:
+            continue
+        v = clean_text(v)
+        if not v or v == EMPTY_UNKNOWN:
+            continue
+
+        if row[k] in {"", EMPTY_UNKNOWN}:
+            row[k] = v
+            continue
+
+        if prefer_dynamic and k in OFFICIAL_DYNAMIC_FIELDS:
+            row[k] = v
+
+
+
+def finalize_row(
+    row: dict[str, str],
+    seed: PolicySeed,
+    api_obj: dict[str, Any] | None,
+    match_score: float,
+    method: list[str],
+) -> dict[str, str]:
     # 고정 메타데이터
     row["데이터유형"] = "정책_혜택"
     row["대분류"] = "장학·금융"
@@ -1326,8 +1609,12 @@ def finalize_row(row: dict[str, str], seed: PolicySeed, api_obj: dict[str, Any] 
     if row["대상유형"] in {"", EMPTY_UNKNOWN} and seed.target_hint:
         row["대상유형"] = seed.target_hint
 
-    # 원문으로 범위를 다시 확인. 전국 seed는 범위가 명백한 중앙사업일 때만 seed 보완.
-    scope_text = as_joined([row.get("지원대상_원문"), row.get("거주조건_원문"), row.get("학력·재학조건")])
+    # 조사대상 seed의 범위를 우선하되 infer_scope를 통해 통일 포맷으로 변환한다.
+    scope_text = as_joined([
+        row.get("지원대상_원문"),
+        row.get("거주조건_원문"),
+        row.get("학력·재학조건"),
+    ])
     s, sido, sigungu = infer_scope(
         clean_text(api_obj.get("zipCd")) if api_obj else "",
         scope_text,
@@ -1335,16 +1622,16 @@ def finalize_row(row: dict[str, str], seed: PolicySeed, api_obj: dict[str, Any] 
     )
     if s != EMPTY_UNKNOWN:
         row["신청범위"], row["대상시도"], row["대상시군구"] = s, sido, sigungu
-    elif seed.expected_scope and row["신청범위"] in {"", EMPTY_UNKNOWN}:
-        # 전국 외 지역은 추정하지 않고 확인필요 유지
-        if seed.expected_scope == "전국":
-            row["신청범위"], row["대상시도"], row["대상시군구"] = "전국", "전국", ""
 
     if seed.apply_url and row["신청URL"] in {"", EMPTY_UNKNOWN}:
         row["신청URL"] = seed.apply_url
 
     if seed.official_url and row["원문URL"] in {"", EMPTY_UNKNOWN}:
         row["원문URL"] = seed.official_url
+
+    # 범위가 전국/부산 광역단위면 특정 시군구 제한은 없음.
+    if row["신청범위"] in {"전국", "부산"} and row["대상시군구"] in {"", EMPTY_UNKNOWN}:
+        row["대상시군구"] = NO_LIMIT
 
     # 상태 계산
     row["진행상태"] = calc_status(
@@ -1361,26 +1648,33 @@ def finalize_row(row: dict[str, str], seed: PolicySeed, api_obj: dict[str, Any] 
         notes.append(f"온통청년API 매칭점수={match_score:.2f}")
     else:
         notes.append("온통청년API에서 신뢰 가능한 동일 정책 미확인")
+
     if seed.expected_scope and row["신청범위"] == EMPTY_UNKNOWN:
         notes.append(f"조사대상 기대범위={seed.expected_scope}; 원문/API에서 재검증 필요")
+
     if row["원문URL"] != EMPTY_UNKNOWN and not is_official_url(row["원문URL"]):
         notes.append("원문URL이 허용된 공식 도메인 목록 밖임: 시행기관 원문 재확인 필요")
+
     row["비고"] = as_joined([row.get("비고"), *notes]) or EMPTY_UNKNOWN
 
-    # 입력규칙: 빈 칸은 확인필요로 통일하되, 대상시군구는 전국/부산 광역 단위에서 공란이 의미 있음
+    # 빈 칸은 확인필요로 통일.
+    # 단, 대상시군구가 전국/부산이면 이미 '제한없음'으로 정규화되어 있다.
     for col in OUTPUT_COLUMNS:
         if row[col] == "":
-            if col == "대상시군구" and row.get("신청범위") in {"전국", "부산"}:
-                row[col] = NO_LIMIT
-            else:
-                row[col] = EMPTY_UNKNOWN
+            row[col] = EMPTY_UNKNOWN
+
     return row
 
 
 # -----------------------------------------------------------------------------
 # 수집 파이프라인
 # -----------------------------------------------------------------------------
-def collect_one(seed: PolicySeed, api: YouthPolicyAPI | None, session: requests.Session) -> tuple[dict[str, str], dict[str, Any]]:
+
+def collect_one(
+    seed: PolicySeed,
+    api: YouthPolicyAPI | None,
+    session: requests.Session,
+) -> tuple[dict[str, str], dict[str, Any]]:
     row = blank_row()
     method: list[str] = []
     api_obj: dict[str, Any] | None = None
@@ -1399,42 +1693,47 @@ def collect_one(seed: PolicySeed, api: YouthPolicyAPI | None, session: requests.
         except Exception as e:
             errors.append(f"API 오류: {e}")
 
-    # 2) 공식 원문 URL 결정: API refUrl > seed official_url
-    crawl_urls: list[str] = []
+    # 2) 공식 원문 URL 결정
+    # 사용자 조사 원칙(공식기관 원문 > 온통청년)에 맞춰 seed의 curated 공식 URL을 먼저 본다.
+    crawl_urls: list[tuple[str, bool]] = []
+
+    if seed.official_url and is_official_url(seed.official_url):
+        crawl_urls.append((seed.official_url, True))
+
     if api_obj:
         for k in ("refUrlAddr1", "refUrlAddr2"):
             u = clean_text(api_obj.get(k))
-            if (
-                u
-                and is_official_url(u)
-                and url_region_compatible(u, seed.expected_scope)
-                and u not in crawl_urls
-            ):
-                crawl_urls.append(u)
-            elif u and is_official_url(u) and not url_region_compatible(u, seed.expected_scope):
+            if not u or not is_official_url(u):
+                continue
+            if not url_region_compatible(u, seed.expected_scope):
                 errors.append(f"API 참고URL 지역불일치로 제외: {u}")
-    if seed.official_url and is_official_url(seed.official_url) and seed.official_url not in crawl_urls:
-        crawl_urls.append(seed.official_url)
+                continue
+            if all(existing != u for existing, _ in crawl_urls):
+                crawl_urls.append((u, False))
 
-    # 3) 공식 사이트 크롤링: API에서 누락될 수 있는 신청기간/원문조건/담당부서 등을 보완
+    # 3) 공식 사이트 크롤링
     crawled_docs = []
-    for url in crawl_urls[:2]:  # 정책당 최대 2개 공식 원문만 확인해 과도한 요청 방지
+    for url, is_primary_official in crawl_urls[:2]:
         try:
             doc = fetch_document(session, url)
             parsed = parse_crawl(doc)
-            # 공식 원문에서 명시적으로 잡힌 값은 API의 요약 필드보다 우선할 수 있음
-            merge_fill(row, parsed, overwrite=False)
+            merge_official_crawl(
+                row,
+                parsed,
+                prefer_dynamic=is_primary_official,
+            )
             crawled_docs.append(doc)
             if "크롤링" not in method:
                 method.append("크롤링")
         except Exception as e:
             errors.append(f"크롤링 오류 {url}: {e}")
 
-    # seed 적용 URL은 fallback
+    # seed 신청 URL은 fallback
     if seed.apply_url and row["신청URL"] in {"", EMPTY_UNKNOWN}:
         row["신청URL"] = seed.apply_url
 
     row = finalize_row(row, seed, api_obj, match_score, method)
+
     if errors:
         row["비고"] = as_joined([row["비고"], *errors])
 
