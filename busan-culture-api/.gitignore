@@ -1,0 +1,8 @@
+# API키
+.env
+
+#패키지폴더
+node_modules/
+
+#수집한 데이터
+data/
