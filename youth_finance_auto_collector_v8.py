@@ -31,7 +31,7 @@ API_URL = "https://www.youthcenter.go.kr/go/ythip/getPlcy"
 KST = ZoneInfo("Asia/Seoul")
 TODAY = datetime.now(KST).date()
 USER_AGENT = (
-    "BusanYouthPolicyResearchBot/1.7 "
+    "BusanYouthPolicyResearchBot/1.8.2 "
     "(academic project; official-public-data collection; contact: local-project)"
 )
 REQUEST_TIMEOUT = 25
@@ -109,9 +109,9 @@ OUTPUT_COLUMNS = [
     "팀 조사담당자",
     "신청범위",
     "대상유형",
-    "청년대상구분",
     "대상시도",
     "대상시군구",
+    "청년대상구분",
     "시행기관",
     "운영기관",
     "기관 담당부서",
@@ -165,8 +165,8 @@ REGION_CODE_MAP = {
 # 기존처럼 12개 정책명을 고정 검색하지 않고, 아래 장학·금융 키워드로
 # 온통청년 청년정책API의 후보를 폭넓게 수집한 뒤 지역/내용을 다시 검증한다.
 DISCOVERY_NAME_TERMS = [
-    "장학", "학자금", "대출", "이자지원", "저축", "적금", "통장",
-    "자산형성", "금융", "신용회복", "등록금", "융자", "보증", "장려금",
+    "장학", "장학금", "학자금", "등록금", "대출", "융자", "이자지원",
+    "저축", "적금", "통장", "자산형성", "금융", "신용회복", "보증", "장려금",
 ]
 DISCOVERY_KEYWORD_TERMS = [
     "장학금", "학자금", "자산형성", "금융", "저축", "대출",
@@ -221,6 +221,83 @@ OFFICIAL_DOMAINS = {
     "www.busanjin.go.kr",
     "busanjinsf.kr",
     "www.busanjinsf.kr",
+}
+
+# API refUrl이 FAQ/마이페이지처럼 정책 원문이 아닌 곳을 가리키는 것으로 실제 확인된 경우,
+# 현재 공식 정책 상세 페이지를 명시적으로 사용한다.
+VERIFIED_OFFICIAL_SOURCE_OVERRIDES = {
+    "청년 자산형성 지원(청년도약계좌)": "https://www.kinfa.or.kr/financialProduct/youthLeapAccount.do",
+    "청년도약계좌": "https://www.kinfa.or.kr/financialProduct/youthLeapAccount.do",
+    "복권기금 꿈사다리 장학사업": "https://www.kosaf.go.kr/ko/notice.do?mode=view&naviParam=DN%2C08%2C01%2C00&seqNo=20721",
+    "청년 전월세 대출보증": "https://hf.go.kr/ko/sub02/sub02_01_04.do",
+    "청년주택드림청약통장": "https://www.molit.go.kr/2024dreamaccount/main.jsp",
+}
+
+# 자동 API 값보다 현재 공식 페이지의 구체적 안내를 우선해야 하는 일부 정책.
+# 범용 추론으로 퍼뜨리지 않고 실제 공식 근거를 확인한 정책만 allowlist 방식으로 보정한다.
+VERIFIED_POLICY_FIELD_OVERRIDES: dict[str, dict[str, str]] = {
+    "청년 전월세 대출보증": {
+        "신청URL": EMPTY_UNKNOWN,
+        "원문URL": "https://hf.go.kr/ko/sub02/sub02_01_04.do",
+    },
+    "복권기금 꿈사다리 장학사업": {
+        # 온통청년 상담 URL은 장학금 신청 페이지가 아니므로 제거.
+        "신청URL": EMPTY_UNKNOWN,
+        "원문URL": "https://www.kosaf.go.kr/ko/notice.do?mode=view&naviParam=DN%2C08%2C01%2C00&seqNo=20721",
+    },
+    "생활안정자금 융자사업": {
+        # 기존 personalInfoHist URL은 신청내역/마이페이지 성격이므로 실제 신청URL로 사용하지 않는다.
+        "신청URL": EMPTY_UNKNOWN,
+    },
+    "청년전용 보증부 월세대출": {
+        "연령조건_원문": "만 19세~34세",
+        "최소연령": "19",
+        "최대연령": "34",
+        "신청URL": "https://enhuf.molit.go.kr/",
+        "원문URL": "https://nhuf.molit.go.kr/FP/FP05/FP0502/FP05020701.jsp",
+    },
+    "청년전용 저리대출상품 운영": {
+        # 실제 지원내용이 청년전용 버팀목전세자금과 일치하며 공식 FAQ의 연령요건을 적용.
+        "연령조건_원문": "만 19세~34세",
+        "최소연령": "19",
+        "최대연령": "34",
+        "신청URL": "https://enhuf.molit.go.kr/",
+        "원문URL": "https://nhuf.molit.go.kr/FP/FP05/FP0502/FP05020301.jsp",
+    },
+    "청년주택드림청약통장": {
+        "연령조건_원문": "만 19세~34세",
+        "최소연령": "19",
+        "최대연령": "34",
+        "지원금액": "최대 연 4.5% 우대금리 / 이자소득 비과세 / 연 납입액 최대 300만원의 40% 소득공제",
+        # 가입은 취급은행에서 진행되므로 특정 상품 상세페이지를 신청URL로 오인하지 않는다.
+        "신청URL": EMPTY_UNKNOWN,
+        "원문URL": "https://www.molit.go.kr/2024dreamaccount/main.jsp",
+    },
+    "부산 전세보증금 반환보증 보증료 지원": {
+        "연령조건_원문": "청년(18~39세) 및 청년 외 신청 가능",
+        "최소연령": EMPTY_UNKNOWN,
+        "최대연령": EMPTY_UNKNOWN,
+        "청년대상구분": "청년포함",
+        "지원금액": "최대 40만원",
+        "원문URL": "https://www.busan.go.kr/depart/reguarantee",
+    },
+    "부산 학자금 대출이자 지원": {
+        "지원내용": "한국장학재단 학자금대출의 2025년 7월~2026년 6월까지 발생이자(1년분) 지원 / 발생이자 금액만큼 대출계좌별 원리금에서 상환(차감) 처리",
+        "지원금액": "한국장학재단 학자금대출의 2025.7~2026.6 발생이자 지원",
+        "신청시작일": "2026-07-06",
+        "신청마감일": "2026-08-28",
+        "신청URL": "https://young.busan.go.kr/index.nm?menuCd=49",
+        "원문URL": "https://young.busan.go.kr/index.nm?menuCd=49",
+    },
+    "부산 청년 임차보증금 대출 및 대출이자 지원(머물자리론)": {
+        "연령조건_원문": "만 19세~39세",
+        "최소연령": "19",
+        "최대연령": "39",
+        "소득조건": "본인 연소득 6,000만원 이하 / 부부합산 연소득 1억원 이하",
+        "지원내용": "임차보증금 최대 1억원 이내(임차보증금의 90% 범위) 대출 / 부산시 이자지원: 소득기준에 따라 2.0~3.0% 지원",
+        "신청URL": "https://young.busan.go.kr/index.nm?menuCd=0",
+        "원문URL": "https://young.busan.go.kr/index.nm?menuCd=0",
+    },
 }
 
 
@@ -505,7 +582,6 @@ CURATED_FALLBACKS: dict[str, dict[str, Any]] = {
             "신청마감일": "2026-10-16",
             "상시모집": "아니오",
             "신청방법": "취급 금융기관 앱·웹에서 신청",
-            "신청URL": "취급 금융기관별 앱·웹",
         },
         "source_note": "검증표: 금융위원회 청년미래적금 2차 모집 안내",
     },
@@ -578,7 +654,6 @@ CURATED_FALLBACKS: dict[str, dict[str, Any]] = {
             "지원금액": "정액 공식자료 미표기 / 연간 학업보조비를 원칙으로 하며 수익·이사회 결정에 따라 지급",
             "연령조건_원문": "공식자료에 별도 연령조건 미표기",
             "신청방법": "온라인 신청 없음 — 복지정책과장·동장 등 추천·서류 제출 방식",
-            "신청URL": "온라인 신청 없음",
             "기타조건": "매년 장학금 지급 기준일 35일 전까지 추천·신청(일정조정 가능); 정확한 당해연도 시작·마감일은 별도 공고 확인 필요",
         },
         "source_note": "검증표: 사하구장학회 공식 시행세칙",
@@ -599,7 +674,6 @@ CURATED_FALLBACKS: dict[str, dict[str, Any]] = {
             "신청마감일": "2026-01-16",
             "상시모집": "아니오",
             "신청방법": "온라인 신청 없음 — 부산진구장학회 사무국 방문접수",
-            "신청URL": "온라인 신청 없음",
         },
         "source_note": "검증표 보조 게시본: https://ribs.inu.ac.kr/bbs/inu/2006/417138/artclView.do",
     },
@@ -623,35 +697,43 @@ def apply_curated_fallback(
       - 표 자체가 '공식자료 미표기'라고 한 경우에는 그 사실을 설명하는
         원문형 텍스트 필드만 채우며, 숫자형 정규화 값은 추정하지 않는다.
     """
-    item = CURATED_FALLBACKS.get(seed.name, {})
+    curated_key = resolve_curated_key(seed.name, seed.expected_scope)
+    item = CURATED_FALLBACKS.get(curated_key or "", {})
     fields = item.get("fields", {})
     filled: list[str] = []
 
-    # API의 연령제한 없음 값과 공식 검증표의 연령정보가 충돌하는 경우에는
-    # 검증표의 명시적 연령정보/미표기 판정을 우선한다.
-    # 예: 청년미래적금 API가 N으로 내려와도 공식 대상은 만 19~34세,
-    #     국가장학금Ⅰ유형은 공식자료상 별도 연령조건 미표기로 정리되어 있음.
+    # 기존 12개 수동 검증 정책의 연령정보는 API의 일반화된 연령값보다 우선한다.
+    # 같은 정책이 API에서 별칭으로 발견돼도 resolve_curated_key()로 검증표와 연결한다.
     curated_age_raw = clean_text(fields.get("연령조건_원문"))
-    current_age_raw = clean_text(row.get("연령조건_원문"))
-    api_says_no_age_limit = (
-        row.get("최소연령") == NO_LIMIT
-        or row.get("최대연령") == NO_LIMIT
-        or "연령제한 없음" in current_age_raw
-        or "연령 제한 없음" in current_age_raw
-    )
-    if curated_age_raw and api_says_no_age_limit:
+    if curated_age_raw:
+        before = (
+            clean_text(row.get("연령조건_원문")),
+            clean_text(row.get("최소연령")),
+            clean_text(row.get("최대연령")),
+        )
         row["연령조건_원문"] = curated_age_raw
-        if "연령조건_원문" not in filled:
-            filled.append("연령조건_원문")
 
         curated_min = clean_text(fields.get("최소연령"))
         curated_max = clean_text(fields.get("최대연령"))
-        row["최소연령"] = curated_min if curated_min else EMPTY_UNKNOWN
-        row["최대연령"] = curated_max if curated_max else EMPTY_UNKNOWN
-        if curated_min and "최소연령" not in filled:
-            filled.append("최소연령")
-        if curated_max and "최대연령" not in filled:
-            filled.append("최대연령")
+
+        # 숫자 정규화값이 검증표에 직접 없으면 검증된 원문에서 보수적으로 파싱한다.
+        parsed_min, parsed_max, _ = extract_age(curated_age_raw)
+        if any(k in curated_age_raw for k in ["미표기", "별도 연령조건"]):
+            row["최소연령"] = EMPTY_UNKNOWN
+            row["최대연령"] = EMPTY_UNKNOWN
+        else:
+            row["최소연령"] = curated_min or parsed_min or EMPTY_UNKNOWN
+            row["최대연령"] = curated_max or parsed_max or EMPTY_UNKNOWN
+
+        after = (
+            clean_text(row.get("연령조건_원문")),
+            clean_text(row.get("최소연령")),
+            clean_text(row.get("최대연령")),
+        )
+        if after != before:
+            for col in ["연령조건_원문", "최소연령", "최대연령"]:
+                if col not in filled:
+                    filled.append(col)
 
     # 1) 정책별 검증표 필드 보완
     for key, value in fields.items():
@@ -669,7 +751,7 @@ def apply_curated_fallback(
 
     # 3) 국가 장학·학자금 사업은 한국장학재단을 운영기관 fallback으로만 사용한다.
     #    API/크롤링에서 운영기관이 이미 확인된 경우에는 덮어쓰지 않는다.
-    operating_agency = clean_text(CURATED_OPERATING_AGENCY.get(seed.name))
+    operating_agency = clean_text(CURATED_OPERATING_AGENCY.get(curated_key or seed.name))
     if operating_agency and row.get("운영기관") in {"", EMPTY_UNKNOWN}:
         row["운영기관"] = operating_agency
         if "운영기관" not in filled:
@@ -701,6 +783,85 @@ def norm_name(s: str) -> str:
     return s
 
 
+def verified_official_source_for(policy_name: str) -> str:
+    n = norm_name(policy_name)
+    for name, url in VERIFIED_OFFICIAL_SOURCE_OVERRIDES.items():
+        if norm_name(name) == n:
+            return url
+    return ""
+
+
+# 수동 검증 12개 정책은 API 별칭으로 발견되어도 같은 검증표를 사용한다.
+CURATED_NAME_ALIASES: dict[str, str] = {
+    norm_name("취업후상환학자금_등록금"): "취업 후 상환 학자금대출",
+    norm_name("취업후상환학자금_생활비"): "취업 후 상환 학자금대출",
+    norm_name("부산 지역인재 장학금 지원"): "부산지역인재 장학금",
+    norm_name("부산지역인재 장학금 및 취업장려금"): "부산지역인재 장학금",
+    norm_name("부산 대학생 학자금 대출이자 지원"): "부산광역시 대학(원)생 학자금대출 이자지원",
+    norm_name("부산 학자금 대출이자 지원"): "부산광역시 대학(원)생 학자금대출 이자지원",
+    norm_name("학자금 대출이자 지원"): "부산광역시 대학(원)생 학자금대출 이자지원",
+    norm_name("부산 청년 자산형성 지원(부산청년 기쁨두배통장)"): "부산청년 기쁨두배통장",
+}
+
+
+def resolve_curated_key(policy_name: str, expected_scope: str | None = None) -> str | None:
+    n = norm_name(policy_name)
+    if not n:
+        return None
+
+    # 검증표 키 자체와 정확히 일치
+    for key in CURATED_FALLBACKS:
+        if norm_name(key) == n:
+            return key
+
+    # 실제 실행에서 관찰된 API/공식사이트 별칭
+    alias_target = CURATED_NAME_ALIASES.get(n)
+    if alias_target:
+        # 일반명 '학자금 대출이자 지원'은 부산 범위에서만 부산 검증표에 연결한다.
+        if n == norm_name("학자금 대출이자 지원") and expected_scope not in {None, "부산"}:
+            return None
+        return alias_target
+
+    # supplemental seed의 별칭/검색어와 정확히 일치하되 지역범위까지 맞을 때만 연결
+    for seed in SUPPLEMENTAL_POLICY_SEEDS:
+        if expected_scope and seed.expected_scope and expected_scope != seed.expected_scope:
+            continue
+        names = [seed.name, *seed.aliases, *seed.api_queries]
+        if any(norm_name(x) == n for x in names if clean_text(x)):
+            return seed.name if seed.name in CURATED_FALLBACKS else None
+
+    return None
+
+
+def reapply_curated_age_fields(row: dict[str, str]) -> None:
+    """
+    중복 병합 뒤 다른 API 행의 '연령제한 없음'이 다시 들어오는 것을 막기 위해,
+    수동 검증 정책의 연령 원문/정규화값을 마지막에 한 번 더 적용한다.
+    """
+    curated_key = resolve_curated_key(
+        clean_text(row.get("정책명")),
+        clean_text(row.get("신청범위")) or None,
+    )
+    if not curated_key:
+        return
+    fields = CURATED_FALLBACKS.get(curated_key, {}).get("fields", {})
+    age_raw = clean_text(fields.get("연령조건_원문"))
+    if not age_raw:
+        return
+
+    row["연령조건_원문"] = age_raw
+    if any(k in age_raw for k in ["미표기", "별도 연령조건"]):
+        row["최소연령"] = EMPTY_UNKNOWN
+        row["최대연령"] = EMPTY_UNKNOWN
+        return
+
+    curated_min = clean_text(fields.get("최소연령"))
+    curated_max = clean_text(fields.get("최대연령"))
+    parsed_min, parsed_max, _ = extract_age(age_raw)
+    row["최소연령"] = curated_min or parsed_min or EMPTY_UNKNOWN
+    row["최대연령"] = curated_max or parsed_max or EMPTY_UNKNOWN
+
+
 def first_nonempty(*values: Any, default: str = EMPTY_UNKNOWN) -> str:
     for v in values:
         t = clean_text(v)
@@ -716,6 +877,138 @@ def as_joined(values: Iterable[Any], sep: str = " | ") -> str:
         if t and t not in out:
             out.append(t)
     return sep.join(out)
+
+
+# URL/기관명 정규화 -----------------------------------------------------------
+DOMAIN_LIKE_RE = re.compile(
+    r"^(?:www\.)?[a-z0-9.-]+\.[a-z]{2,}(?::\d+)?(?:/[^\s]*)?$",
+    re.I,
+)
+NON_APPLICATION_HOST_TOKENS = {
+    "youtube.com", "www.youtube.com", "youtu.be",
+    "instagram.com", "www.instagram.com", "facebook.com", "www.facebook.com",
+    "blog.naver.com", "cafe.naver.com",
+}
+
+
+def normalize_web_url(value: Any) -> str:
+    """실제 웹 URL만 반환한다. scheme 없는 도메인은 https://를 보완한다."""
+    s = clean_text(value)
+    if not s or s in {EMPTY_UNKNOWN, NO_LIMIT}:
+        return ""
+    # URL 칸에 설명문이 들어간 경우 URL로 취급하지 않는다.
+    if any(tok in s for tok in [
+        "온라인 신청 없음", "앱·웹", "앱/웹", "홈페이지에서 신청", "방문접수", "방문 접수",
+    ]):
+        return ""
+    s = s.strip().strip("<>[](){}\"'")
+    if s.startswith("//"):
+        s = "https:" + s
+    elif DOMAIN_LIKE_RE.fullmatch(s):
+        s = "https://" + s
+    elif not re.match(r"^https?://", s, re.I):
+        return ""
+    try:
+        p = urlparse(s)
+    except Exception:
+        return ""
+    if p.scheme.lower() not in {"http", "https"} or not p.netloc:
+        return ""
+    return s
+
+
+NON_APPLICATION_PATH_TOKENS = {
+    "filedown", "download", "/qna", "/faq", "myapplycheck",
+    "customerdeclarecenter", "customerdeclare", "complaint", "reportcenter",
+    "personalinfohist",
+}
+
+NON_SOURCE_PATH_TOKENS = {
+    "myapplycheck", "/mypage", "/qna", "/faq", "oftendonequestion",
+    "customerdeclarecenter", "customerdeclare",
+}
+
+
+def normalize_apply_url(value: Any) -> str:
+    """
+    신청URL에는 실제 신청 경로로 볼 수 있는 웹주소만 남긴다.
+
+    첨부파일 다운로드, Q&A/FAQ, 신청내역 확인, 고객신고센터처럼
+    '신청'과 무관한 페이지는 URL 형식이 정상이어도 신청URL로 쓰지 않는다.
+    """
+    u = normalize_web_url(value)
+    if not u:
+        return ""
+    parsed = urlparse(u)
+    host = parsed.netloc.lower().split(":")[0]
+    if host in NON_APPLICATION_HOST_TOKENS:
+        return ""
+
+    route = f"{parsed.path}?{parsed.query}".lower()
+    if any(tok in route for tok in NON_APPLICATION_PATH_TOKENS):
+        return ""
+
+    # 첨부파일 식별 파라미터도 신청페이지가 아니라 다운로드 링크로 본다.
+    if any(tok in route for tok in ["atchfileid=", "filesn=", "file_seq=", "fileid="]):
+        return ""
+    return u
+
+
+def normalize_source_url(value: Any) -> str:
+    """원문URL은 정책 상세·공고 페이지 성격의 공식 URL만 허용한다."""
+    u = normalize_web_url(value)
+    if not u:
+        return ""
+    parsed = urlparse(u)
+    route = f"{parsed.path}?{parsed.query}".lower()
+    if any(tok in route for tok in NON_SOURCE_PATH_TOKENS):
+        return ""
+    return u
+
+
+def first_valid_source_url(*values: Any) -> str:
+    """refUrlAddr1이 부적합하면 refUrlAddr2까지 순서대로 확인한다."""
+    for value in values:
+        u = normalize_source_url(value)
+        if u and is_official_url(u):
+            return u
+    return ""
+
+
+def first_valid_apply_url(*values: Any) -> str:
+    """여러 신청 URL 후보 중 실제 신청 경로로 볼 수 있는 첫 URL을 반환한다."""
+    for value in values:
+        u = normalize_apply_url(value)
+        if u:
+            return u
+    return ""
+
+
+AGENCY_NOISE_TOKENS = [
+    "지원절차", "온라인 신청", "온라인신청", "신청하기", "바로가기", "상세보기",
+    "지원내용", "지원대상", "사업내용", "공지사항", "메뉴", "홈페이지",
+]
+
+
+def clean_agency_name(value: Any) -> str:
+    """기관명에 붙은 메뉴/내비게이션 잡음을 제거하되 실제 복수 기관명은 보존한다."""
+    s = clean_text(value)
+    if not s or s in {EMPTY_UNKNOWN, NO_LIMIT}:
+        return ""
+    s = re.sub(r"^(?:시행기관|주관기관|주최기관|추진기관|운영기관|수행기관|담당기관)\s*[:：-]\s*", "", s)
+    parts = [clean_text(x) for x in re.split(r"\s*(?:\||/|▶|>)\s*", s) if clean_text(x)]
+    kept: list[str] = []
+    for part in parts:
+        if any(tok in part for tok in AGENCY_NOISE_TOKENS):
+            continue
+        if re.match(r"^https?://", part, re.I):
+            continue
+        # 기관명 칸에 설명문 전체가 들어간 경우 보수적으로 버린다.
+        if len(part) > 80 and not re.search(r"(부|청|공사|공단|재단|진흥원|센터|위원회|협회|은행|기금|장학회|광역시|구청)$", part):
+            continue
+        if part not in kept:
+            kept.append(part)
+    return " / ".join(kept[:3])
 
 
 def normalize_date_string(s: str) -> str:
@@ -921,14 +1214,18 @@ def candidate_region_check(cand: dict[str, Any], expected_scope: str | None) -> 
 
     if expected_scope == "전국":
         # 전국 사업인데 특정 지자체만을 대상으로 하는 후보는 피한다.
-        # 여러 지역 코드가 대량으로 있는 경우는 전국성 데이터일 수 있어 보류한다.
         if "전국" in blob or "대한민국" in blob or "전 국민" in blob:
             return 1, "전국 대상 문구 확인"
-        if len(codes) == 1:
-            return -1, f"단일 지역 zipCd가 명시됨: {zip_raw}"
+        if codes:
+            code_set = set(codes)
+            prefixes = {c[:2] for c in codes if c != "00000"}
+            if "00000" in code_set or len(prefixes) >= 3:
+                return 1, f"다수 시도/전국 zipCd 확인: {summarize_zip_codes(zip_raw)}"
+            if len(prefixes) == 1:
+                return -1, f"특정 시도 내부 zipCd만 명시됨: {summarize_zip_codes(zip_raw)}"
+            if len(prefixes) == 2:
+                return -1, f"일부 시도 복합범위로 전국 아님: {summarize_zip_codes(zip_raw)}"
         if other_regions or has_busan:
-            # 중앙사업의 지역 안내 페이지를 잘못 집는 것을 방지하기 위해
-            # 특정 지역 표기가 있는 후보는 전국 seed에서 제외한다.
             regions = other_regions + (["부산"] if has_busan else [])
             return -1, f"특정 지역 사업/안내로 판단: {', '.join(regions)}"
         return 0, "전국 여부 직접 근거 미확인"
@@ -971,6 +1268,7 @@ class YouthPolicyAPI:
     def __init__(self, api_key: str, session: requests.Session):
         self.api_key = api_key
         self.session = session
+        self.discovery_exclusions: list[dict[str, Any]] = []
 
     def _request(self, params: dict[str, Any]) -> Any:
         """
@@ -1117,6 +1415,7 @@ class YouthPolicyAPI:
         """
         candidates: dict[str, dict[str, Any]] = {}
         matched_terms: dict[str, set[str]] = {}
+        self.discovery_exclusions = []
 
         searches = [
             *(('plcyNm', term) for term in DISCOVERY_NAME_TERMS),
@@ -1142,6 +1441,19 @@ class YouthPolicyAPI:
 
         discovered: list[dict[str, Any]] = []
         for key, cand in candidates.items():
+            exclusion_reason = policy_exclusion_reason(cand)
+            if exclusion_reason:
+                self.discovery_exclusions.append({
+                    "seed": clean_text(cand.get("plcyNm")),
+                    "api_query_used": ", ".join(sorted(matched_terms.get(key, set()))),
+                    "api_match_score": -1.0,
+                    "api_plcyNo": clean_text(cand.get("plcyNo")),
+                    "api_plcyNm": clean_text(cand.get("plcyNm")),
+                    "api_match_note": "내용검증 제외",
+                    "crawl_urls": [], "curated_fields": [], "errors": [], "method": ["API"],
+                    "excluded": True, "exclude_reason": exclusion_reason,
+                })
+                continue
             if not is_finance_scholarship_candidate(cand):
                 continue
 
@@ -1155,11 +1467,34 @@ class YouthPolicyAPI:
                 except Exception as e:
                     print(f"[API 상세 경고] {clean_text(cand.get('plcyNm'))}: {e}")
 
+            exclusion_reason = policy_exclusion_reason(detailed)
+            if exclusion_reason:
+                self.discovery_exclusions.append({
+                    "seed": clean_text(detailed.get("plcyNm")),
+                    "api_query_used": ", ".join(sorted(matched_terms.get(key, set()))),
+                    "api_match_score": -1.0,
+                    "api_plcyNo": clean_text(detailed.get("plcyNo")),
+                    "api_plcyNm": clean_text(detailed.get("plcyNm")),
+                    "api_match_note": "상세 내용검증 제외",
+                    "crawl_urls": [], "curated_fields": [], "errors": [], "method": ["API"],
+                    "excluded": True, "exclude_reason": exclusion_reason,
+                })
+                continue
             if not is_finance_scholarship_candidate(detailed):
                 continue
 
             scope, _, _, region_reason = classify_api_target_region(detailed)
             if scope not in TARGET_SCOPES:
+                self.discovery_exclusions.append({
+                    "seed": clean_text(detailed.get("plcyNm")),
+                    "api_query_used": ", ".join(sorted(matched_terms.get(key, set()))),
+                    "api_match_score": -1.0,
+                    "api_plcyNo": clean_text(detailed.get("plcyNo")),
+                    "api_plcyNm": clean_text(detailed.get("plcyNm")),
+                    "api_match_note": region_reason,
+                    "crawl_urls": [], "curated_fields": [], "errors": [], "method": ["API"],
+                    "excluded": True, "exclude_reason": "수집 대상 지역 아님/지역 근거 부족",
+                })
                 continue
 
             detailed = dict(detailed)
@@ -1533,25 +1868,85 @@ def extract_money(text: str) -> str:
 
 
 def extract_age(text: str) -> tuple[str, str, str]:
+    """
+    연령 표현을 보수적으로 파싱한다.
+
+    지원 예:
+    - 만 18세~39세
+    - 만18~34세
+    - 18~39세
+    - 만 19세 이상 만 39세 이하
+    - 만 55세 이하
+    - 학부 만 35세 / 대학원 만 40세
+    """
     s = clean_text(text)
     if not s:
         return "", "", ""
-    patterns = [
-        r"만\s*(\d{1,2})\s*세\s*(?:이상|부터)?\s*[~～\-–—]\s*만?\s*(\d{1,2})\s*세",
-        r"(\d{1,2})\s*세\s*(?:이상|부터)?\s*[~～\-–—]\s*(\d{1,2})\s*세",
-        r"만\s*(\d{1,2})\s*세\s*이상.*?만\s*(\d{1,2})\s*세\s*이하",
+
+    # 1) '만 19세 이상 만 39세 이하' 형태를 우선 처리
+    m = re.search(
+        r"만?\s*(\d{1,2})\s*세?\s*이상.{0,30}?만?\s*(\d{1,2})\s*세?\s*이하",
+        s,
+    )
+    if m:
+        return m.group(1), m.group(2), clean_text(m.group(0))
+
+    # 2) 범위형. 첫 숫자 뒤 '세'가 생략된 '만18~34세'도 허용한다.
+    range_patterns = [
+        r"만\s*(\d{1,2})\s*(?:세)?\s*(?:이상|부터)?\s*[~～\-–—]\s*만?\s*(\d{1,2})\s*세",
+        r"(?<!\d)(\d{1,2})\s*(?:세)?\s*(?:이상|부터)?\s*[~～\-–—]\s*(\d{1,2})\s*세",
     ]
-    for p in patterns:
+    for p in range_patterns:
         m = re.search(p, s)
         if m:
             return m.group(1), m.group(2), clean_text(m.group(0))
 
-    # 단일 최대/최소 조건
-    min_m = re.search(r"만?\s*(\d{1,2})\s*세\s*이상", s)
-    max_m = re.search(r"만?\s*(\d{1,2})\s*세\s*(?:이하|미만)", s)
-    if min_m or max_m:
-        raw = as_joined([min_m.group(0) if min_m else "", max_m.group(0) if max_m else ""])
-        return min_m.group(1) if min_m else "", max_m.group(1) if max_m else "", raw
+    # 3) 단일 최소/최대 조건. 여러 '이하'가 있으면 가장 넓은 상한을 보존한다.
+    min_vals = [int(x) for x in re.findall(r"만?\s*(\d{1,2})\s*세?\s*이상", s)]
+    max_vals = [int(x) for x in re.findall(r"만?\s*(\d{1,2})\s*세?\s*(?:이하|미만)", s)]
+    min_vals = [x for x in min_vals if 0 < x < 100]
+    max_vals = [x for x in max_vals if 0 < x < 100]
+    if min_vals or max_vals:
+        lo = min(min_vals) if min_vals else None
+        hi = max(max_vals) if max_vals else None
+        raw_parts = []
+        if lo is not None:
+            raw_parts.append(f"만 {lo}세 이상")
+        if hi is not None:
+            raw_parts.append(f"만 {hi}세 이하")
+        return str(lo) if lo is not None else "", str(hi) if hi is not None else "", " / ".join(raw_parts)
+
+    # 4) '학부 만35세 / 대학원 만40세'처럼 집단별 상한만 나열된 형태.
+    if any(label in s for label in ["학부", "대학원", "대학생", "대학원생"]):
+        vals = [int(x) for x in re.findall(r"만\s*(\d{1,2})\s*세", s)]
+        vals = [x for x in vals if 0 < x < 100]
+        if vals:
+            return "", str(max(vals)), s
+
+    return "", "", ""
+
+
+def extract_explicit_youth_age(text: str) -> tuple[str, str, str]:
+    """
+    '청년'과 같은 문맥에 실제 연령표현이 같이 있는 경우만 추출한다.
+    전체 지원내용의 다른 하위조건(예: 만25세 미만 단독세대주)을
+    정책 전체 연령조건으로 오인하지 않기 위한 보수적 보완 파서.
+    """
+    t = clean_text(text)
+    if not t:
+        return "", "", ""
+
+    chunks = [
+        clean_text(x)
+        for x in re.split(r"[\n。]|(?<=[.!?])\s+|\s*/\s*", t)
+        if clean_text(x)
+    ]
+    for chunk in chunks:
+        if "청년" not in chunk:
+            continue
+        lo, hi, raw = extract_age(chunk)
+        if lo or hi:
+            return lo, hi, raw
     return "", "", ""
 
 
@@ -1606,15 +2001,20 @@ def infer_scope(zip_cd: str, eligibility_text: str, expected_scope: str | None) 
         return "부산", "부산광역시", ""
 
     if codes:
-        prefixes = {c[:2] for c in codes}
-        if len(prefixes) >= 3 or len(codes) >= 10:
+        code_set = set(codes)
+        prefixes = {c[:2] for c in codes if c != "00000"}
+        if "00000" in code_set:
             return "전국", "전국", ""
-        if all(c.startswith("26") for c in codes):
-            if set(codes) == {"26230"}:
+        if prefixes == {"26"}:
+            if code_set == {"26230"}:
                 return REGION_CODE_MAP["26230"]
-            if set(codes) == {"26380"}:
+            if code_set == {"26380"}:
                 return REGION_CODE_MAP["26380"]
+            # 부산 16개 구·군처럼 코드가 많아도 부산광역시 범위다.
             return "부산", "부산광역시", ""
+        # 전국 판정은 '코드 개수'가 아니라 실제 여러 시·도 prefix가 확인될 때만 한다.
+        if len(prefixes) >= 3:
+            return "전국", "전국", ""
 
     return EMPTY_UNKNOWN, EMPTY_UNKNOWN, EMPTY_UNKNOWN
 
@@ -1641,6 +2041,14 @@ def classify_youth_target(row: dict[str, str]) -> str:
     raw = clean_text(row.get("연령조건_원문"))
     min_age = _as_age_number(row.get("최소연령"))
     max_age = _as_age_number(row.get("최대연령"))
+
+    # 정규화 칸이 비어 있어도 공식 원문에서 파싱 가능한 경우에는 그 값으로 판정한다.
+    if raw and (min_age is None or max_age is None):
+        parsed_min, parsed_max, _ = extract_age(raw)
+        if min_age is None:
+            min_age = _as_age_number(parsed_min)
+        if max_age is None:
+            max_age = _as_age_number(parsed_max)
 
     if (
         row.get("최소연령") == NO_LIMIT
@@ -1838,6 +2246,80 @@ def classify_api_target_region(cand: dict[str, Any]) -> tuple[str, str, str, str
     return "", "", "", "지역 근거 부족"
 
 
+EDUCATION_ONLY_TOKENS = [
+    "금융교육", "금융 교육", "금융강좌", "금융 강좌", "금융스쿨",
+    "토크콘서트", "재무설계 온라인", "교육봉사단",
+]
+PLANNING_RESEARCH_TOKENS = [
+    "연구용역", "정책 연구", "방안 연구", "연계방안 검토", "연계 방안 검토",
+    "연계 강화 방안", "사업 연계방안", "타당성 조사", "정책 연계 강화",
+]
+EXPLICIT_BUSINESS_ONLY_TOKENS = [
+    "사업주 지원", "사업주지원", "사용자 지원",
+]
+
+
+def _candidate_title_body(cand: dict[str, Any] | dict[str, str]) -> tuple[str, str, str]:
+    title = clean_text(cand.get("plcyNm") or cand.get("정책명"))
+    target = as_joined([
+        cand.get("addAplyQlfcCndCn"), cand.get("지원대상_원문"), cand.get("대상유형")
+    ], sep=" ")
+    body = as_joined([
+        cand.get("plcyExplnCn"), cand.get("plcySprtCn"), cand.get("지원내용"),
+        cand.get("요약"), cand.get("제외대상"), target,
+    ], sep=" ")
+    return title, target, body
+
+
+def has_direct_person_benefit(text: str) -> bool:
+    """기업 지원과 청년 개인 지급이 섞인 사업에서 개인 혜택이 실제 있는지 확인한다."""
+    t = clean_text(text)
+    if not t:
+        return False
+    patterns = [
+        r"(?:청년|근로자|학생|대학생|대학원생|개인|본인).{0,45}?(?:에게|대상).{0,35}?(?:지급|지원|장학금|대출|융자|이자|기여금|인센티브)",
+        r"(?:청년|근로자|학생|대학생|대학원생).{0,30}?(?:최대\s*)?[\d,]+\s*만?\s*원.{0,20}?(?:지급|지원)",
+        r"(?:본인|개인).{0,25}?(?:부담|이자|보증료).{0,25}?(?:감면|지원)",
+        r"1인당\s*(?:최대\s*)?[\d,]+\s*만?\s*원.{0,20}?(?:지급|지원)",
+        r"(?:지급|지원).{0,25}?1인당\s*(?:최대\s*)?[\d,]+\s*만?\s*원",
+    ]
+    return any(re.search(p, t) for p in patterns)
+
+
+def policy_exclusion_reason(cand: dict[str, Any] | dict[str, str]) -> str:
+    """장학·금융 검색어에 걸렸지만 실제 직접 혜택 정책이 아닌 경우 제외 사유를 반환한다."""
+    title, target, body = _candidate_title_body(cand)
+    all_text = as_joined([title, body], sep=" ")
+
+    if any(tok in title for tok in EDUCATION_ONLY_TOKENS):
+        return "금융교육/강좌 등 비금전성 콘텐츠"
+
+    # 연구·검토·연계방안 자체가 정책인 경우. '이공계 연구생활장려금'처럼
+    # 연구자가 직접 금전 지원을 받는 정책은 이 규칙에 걸리지 않는다.
+    if any(tok in all_text for tok in PLANNING_RESEARCH_TOKENS):
+        if not has_direct_person_benefit(body):
+            return "연구·검토·연계방안 성격으로 직접 신청 가능한 혜택 아님"
+
+    if any(tok in title for tok in EXPLICIT_BUSINESS_ONLY_TOKENS):
+        # 제목 자체가 '사업주 지원'으로 명시된 경우에는 혼합 문구가 있어도 제외한다.
+        return "사업주 전용 지원"
+
+    # 청년 '기업' 자체에 대한 보증/융자만 제공하는 정책은 개인 혜택 데이터에서 제외한다.
+    business_finance_title = re.search(
+        r"(?:청년|유망청년)?\s*(?:창업)?기업.{0,12}(?:보증|융자|대출)", title
+    )
+    if business_finance_title and not has_direct_person_benefit(body):
+        return "기업·창업기업 전용 금융지원"
+
+    # 지원대상 원문이 기업/사업주만을 가리키고 개인 지급 근거가 없는 경우도 제외한다.
+    if target and re.search(r"(?:지원대상|대상)?\s*(?:기업|사업주|사업장)", target):
+        person_words = ["청년", "학생", "대학생", "대학원생", "근로자", "개인", "본인"]
+        if not any(w in target for w in person_words) and not has_direct_person_benefit(body):
+            return "기업·사업주만 지원대상"
+
+    return ""
+
+
 def is_finance_scholarship_candidate(cand: dict[str, Any]) -> bool:
     title = clean_text(cand.get("plcyNm"))
     category = as_joined([
@@ -1847,9 +2329,10 @@ def is_finance_scholarship_candidate(cand: dict[str, Any]) -> bool:
         cand.get("plcyExplnCn"), cand.get("plcySprtCn"), cand.get("addAplyQlfcCndCn")
     ], sep=" ")
 
-    # '금융교육/강좌/토크콘서트'처럼 금전·장학 혜택이 아닌 정보·교육성 정책은
-    # 제목에 '금융'이 있다는 이유만으로 포함하지 않는다.
-    education_only_tokens = ["금융교육", "금융 교육", "금융강좌", "금융 강좌", "금융스쿨", "토크콘서트", "재무설계 온라인", "교육봉사단"]
+    # 검색어에 걸렸더라도 교육·연구검토·사업주/기업 전용이면 먼저 제외한다.
+    if policy_exclusion_reason(cand):
+        return False
+
     monetary_evidence = [
         "장학", "학자금", "등록금", "대출", "융자", "이자지원", "이자 지원",
         "저축", "적금", "통장", "자산형성", "정부기여", "신용회복", "채무",
@@ -1857,9 +2340,6 @@ def is_finance_scholarship_candidate(cand: dict[str, Any]) -> bool:
     ]
     # 제목 자체가 금융교육/강좌/재무설계 영상 등 교육 콘텐츠라면 제외한다.
     # 본문에 '학자금', '주택자금' 같은 단어가 교육 주제로 등장해도 금전 혜택 정책은 아니다.
-    if any(k in title for k in education_only_tokens):
-        return False
-
     strong_title_keywords = [
         "장학", "학자금", "등록금", "학비", "대출", "융자", "이자",
         "저축", "적금", "통장", "자산형성", "신용회복", "채무",
@@ -2032,7 +2512,8 @@ def infer_activity_region(text: str) -> str:
 def extract_apply_url(anchors: list[tuple[str, str]], source_url: str) -> str:
     scored: list[tuple[int, str]] = []
     for label, href in anchors:
-        if not href.startswith("http"):
+        href = normalize_apply_url(href)
+        if not href:
             continue
         score = 0
         if "신청" in label:
@@ -2348,6 +2829,26 @@ def discover_relevant_links(doc: dict[str, Any], seed: PolicySeed, max_links: in
 # -----------------------------------------------------------------------------
 # API -> CSV 매핑
 # -----------------------------------------------------------------------------
+def normalize_income_condition(value: Any) -> str:
+    """
+    소득조건 원문을 보수적으로 정규화한다.
+
+    '해당없음'을 빈 값이라는 이유로 임의 생성하지 않는다.
+    다만 API 원문이 '(청년)해당없음'처럼 청년의 소득조건 부재를
+    명시한 경우에만 그 부분을 '(청년)소득조건 제한없음'으로 바꾼다.
+    기업 기준 등 다른 조건은 그대로 보존한다.
+    """
+    s = clean_text(value)
+    if not s:
+        return ""
+    s = re.sub(
+        r"\(\s*청년\s*\)\s*해당\s*없음",
+        "(청년)소득조건 제한없음",
+        s,
+    )
+    return s
+
+
 def api_to_partial(api: dict[str, Any], seed: PolicySeed) -> dict[str, str]:
     eligibility = as_joined([
         api.get("addAplyQlfcCndCn"),
@@ -2375,7 +2876,7 @@ def api_to_partial(api: dict[str, Any], seed: PolicySeed) -> dict[str, str]:
     earn_code = clean_text(api.get("earnCndSeCd"))
     earn_min = clean_text(api.get("earnMinAmt"))
     earn_max = clean_text(api.get("earnMaxAmt"))
-    earn_etc = clean_text(api.get("earnEtcCn"))
+    earn_etc = normalize_income_condition(api.get("earnEtcCn"))
     income_parts: list[str] = []
     if earn_code:
         income_parts.append(f"소득조건구분코드={earn_code}")
@@ -2427,7 +2928,7 @@ def api_to_partial(api: dict[str, Any], seed: PolicySeed) -> dict[str, str]:
         "대상시군구": sigungu,
         # 시행기관은 API 값으로 채우지 않는다. 공식 원문 크롤링에서 실제로 확인될 때만 입력한다.
         "시행기관": "",
-        "운영기관": clean_text(api.get("operInstCdNm")),
+        "운영기관": clean_agency_name(api.get("operInstCdNm")),
         "지원내용": clean_text(api.get("plcySprtCn")),
         "지원금액": extract_money(clean_text(api.get("plcySprtCn"))),
         "지원대상_원문": clean_text(api.get("addAplyQlfcCndCn")),
@@ -2452,8 +2953,8 @@ def api_to_partial(api: dict[str, Any], seed: PolicySeed) -> dict[str, str]:
         "운영종료일": biz_end,
         "상시모집": always,
         "신청방법": clean_text(api.get("plcyAplyMthdCn")),
-        "신청URL": clean_text(api.get("aplyUrlAddr")),
-        "원문URL": first_nonempty(api.get("refUrlAddr1"), api.get("refUrlAddr2"), default=""),
+        "신청URL": first_valid_apply_url(api.get("aplyUrlAddr")),
+        "원문URL": first_valid_source_url(api.get("refUrlAddr1"), api.get("refUrlAddr2")),
         "게시일": normalize_date_string(clean_text(api.get("frstRegDt"))),
         "요약": clean_text(api.get("plcyExplnCn")),
     }
@@ -2502,9 +3003,82 @@ def merge_official_crawl(
         if row[k] in {"", EMPTY_UNKNOWN}:
             row[k] = v
             continue
+
+        # API가 '연령제한 없음'으로 일반화했더라도 공식 원문에 실제 연령이
+        # 명시되어 있으면 공식 원문을 우선한다.
+        if k in {"연령조건_원문", "최소연령", "최대연령"}:
+            parsed_has_age = bool(
+                clean_text(parsed.get("최소연령"))
+                or clean_text(parsed.get("최대연령"))
+                or extract_age(clean_text(parsed.get("연령조건_원문")))[:2] != ("", "")
+            )
+            current_is_generic = (
+                row.get("최소연령") in {"", EMPTY_UNKNOWN, NO_LIMIT}
+                or row.get("최대연령") in {"", EMPTY_UNKNOWN, NO_LIMIT}
+                or clean_text(row.get("연령조건_원문")) in {"", EMPTY_UNKNOWN, "연령제한 없음", "연령 제한 없음"}
+            )
+            if parsed_has_age and current_is_generic:
+                row[k] = v
+                continue
+
         if prefer_dynamic and k in OFFICIAL_DYNAMIC_FIELDS:
             row[k] = v
 
+
+
+def apply_verified_policy_field_overrides(row: dict[str, str]) -> None:
+    """
+    현재 공식 출처로 직접 확인한 정책별 보정값을 마지막 단계에서 적용한다.
+
+    일반 규칙으로 추정하지 않고 VERIFIED_POLICY_FIELD_OVERRIDES에 등록된 정책만 처리한다.
+    중복 병합 후 오래된 API 행의 값이 다시 들어오는 경우도 막기 위해 dedupe 이후에도 재호출한다.
+    """
+    n = norm_name(clean_text(row.get("정책명")))
+    fields: dict[str, str] | None = None
+    for policy_name, values in VERIFIED_POLICY_FIELD_OVERRIDES.items():
+        if norm_name(policy_name) == n:
+            fields = values
+            break
+    if not fields:
+        return
+
+    changed: list[str] = []
+    for key, value in fields.items():
+        if key not in row:
+            continue
+        value = clean_text(value)
+        if clean_text(row.get(key)) != value:
+            row[key] = value
+            changed.append(key)
+
+    # URL은 override 적용 후에도 동일한 정규화 규칙을 거친다.
+    if "신청URL" in fields:
+        if row.get("신청URL") != EMPTY_UNKNOWN:
+            row["신청URL"] = normalize_apply_url(row.get("신청URL")) or EMPTY_UNKNOWN
+    if "원문URL" in fields:
+        if row.get("원문URL") != EMPTY_UNKNOWN:
+            source = normalize_source_url(row.get("원문URL"))
+            row["원문URL"] = source if source and is_official_url(source) else EMPTY_UNKNOWN
+
+    explicit_youth = clean_text(fields.get("청년대상구분"))
+    if explicit_youth in {"청년전용", "청년포함", "연령조건미표기"}:
+        row["청년대상구분"] = explicit_youth
+    else:
+        row["청년대상구분"] = classify_youth_target(row)
+
+    # 날짜를 보정한 정책은 실행시점 기준 진행상태도 다시 계산한다.
+    if any(k in fields for k in ["신청시작일", "신청마감일", "상시모집"]):
+        row["진행상태"] = calc_status(
+            "" if row.get("신청시작일") in {"", EMPTY_UNKNOWN} else clean_text(row.get("신청시작일")),
+            "" if row.get("신청마감일") in {"", EMPTY_UNKNOWN} else clean_text(row.get("신청마감일")),
+            clean_text(row.get("상시모집")),
+        )
+
+    if changed:
+        row["비고"] = as_joined([
+            row.get("비고"),
+            f"공식출처 검증값 보정필드={', '.join(changed)}",
+        ])
 
 
 def finalize_row(
@@ -2528,8 +3102,61 @@ def finalize_row(
     if row["대상유형"] in {"", EMPTY_UNKNOWN} and seed.target_hint:
         row["대상유형"] = seed.target_hint
 
+    # 병합 이후 파생값을 한 번 더 보완한다.
+    # 지원내용에 명시적 금액이 있는데 지원금액만 비어 있으면 그 금액만 추출한다.
+    if row.get("지원금액") in {"", EMPTY_UNKNOWN}:
+        amount = extract_money(clean_text(row.get("지원내용")))
+        if amount:
+            row["지원금액"] = amount
+
+    # 수동 검증 12개 정책은 검증된 연령 원문을 그대로 사용한다.
+    # 그 외 정책은 '청년'과 같은 문맥에 명시적 연령이 있을 때만
+    # API의 '연령제한 없음/확인필요'을 보완한다.
+    curated_key = resolve_curated_key(seed.name, seed.expected_scope)
+    has_curated_age = bool(
+        curated_key
+        and clean_text(CURATED_FALLBACKS.get(curated_key, {}).get("fields", {}).get("연령조건_원문"))
+    )
+    current_age_raw = clean_text(row.get("연령조건_원문"))
+    if not has_curated_age and (
+        current_age_raw in {"", EMPTY_UNKNOWN, "연령제한 없음", "연령 제한 없음"}
+        or row.get("최소연령") in {"", EMPTY_UNKNOWN, NO_LIMIT}
+        or row.get("최대연령") in {"", EMPTY_UNKNOWN, NO_LIMIT}
+    ):
+        youth_age_text = as_joined([
+            row.get("지원대상_원문"),
+            row.get("지원내용"),
+            row.get("요약"),
+        ], sep=" / ")
+        age_min, age_max, age_raw = extract_explicit_youth_age(youth_age_text)
+        if age_min or age_max:
+            row["연령조건_원문"] = age_raw or current_age_raw
+            row["최소연령"] = age_min or EMPTY_UNKNOWN
+            row["최대연령"] = age_max or EMPTY_UNKNOWN
+
+    # 기관명과 URL은 마지막 병합 이후 한 번 더 정제한다.
+    row["시행기관"] = clean_agency_name(row.get("시행기관")) or EMPTY_UNKNOWN
+    row["운영기관"] = clean_agency_name(row.get("운영기관")) or EMPTY_UNKNOWN
+    row["소득조건"] = normalize_income_condition(row.get("소득조건")) or EMPTY_UNKNOWN
+    row["신청URL"] = normalize_apply_url(row.get("신청URL")) or EMPTY_UNKNOWN
+    normalized_source = normalize_source_url(row.get("원문URL"))
+    row["원문URL"] = normalized_source if normalized_source and is_official_url(normalized_source) else EMPTY_UNKNOWN
+
+    # 크롤링이 잘못 집은 파일/Q&A URL이 제거된 뒤에는 검증표의 신청URL을 다시 살린다.
+    if row["신청URL"] == EMPTY_UNKNOWN and curated_key:
+        curated_apply = normalize_apply_url(
+            CURATED_FALLBACKS.get(curated_key, {}).get("fields", {}).get("신청URL")
+        )
+        if curated_apply:
+            row["신청URL"] = curated_apply
+
+    # 현재 공식 출처로 직접 검증된 정책별 보정값을 마지막 병합 이후 우선 적용한다.
+    apply_verified_policy_field_overrides(row)
+
     # 최종 연령값/원문을 기준으로 세 가지 값만 사용한다.
-    row["청년대상구분"] = classify_youth_target(row)
+    # 정책별 보정에서 청년대상구분을 명시한 경우(예: 청년 외도 신청 가능한 보증료 지원)는 유지한다.
+    if row.get("청년대상구분") not in {"청년전용", "청년포함", "연령조건미표기"}:
+        row["청년대상구분"] = classify_youth_target(row)
 
     scope_text = as_joined([
         row.get("지원대상_원문"),
@@ -2545,9 +3172,18 @@ def finalize_row(
         row["신청범위"], row["대상시도"], row["대상시군구"] = s, sido, sigungu
 
     if seed.apply_url and row["신청URL"] in {"", EMPTY_UNKNOWN}:
-        row["신청URL"] = seed.apply_url
+        seed_apply = normalize_apply_url(seed.apply_url)
+        if seed_apply:
+            row["신청URL"] = seed_apply
     if seed.official_url and row["원문URL"] in {"", EMPTY_UNKNOWN}:
-        row["원문URL"] = seed.official_url
+        seed_source = normalize_source_url(seed.official_url)
+        if seed_source and is_official_url(seed_source):
+            row["원문URL"] = seed_source
+
+    # fallback/seed가 채운 URL도 동일한 규칙으로 다시 검증한다.
+    row["신청URL"] = normalize_apply_url(row.get("신청URL")) or EMPTY_UNKNOWN
+    source2 = normalize_source_url(row.get("원문URL"))
+    row["원문URL"] = source2 if source2 and is_official_url(source2) else EMPTY_UNKNOWN
 
     # 신청범위가 전국/부산으로 확정된 경우 '특정 시군구 제한 없음'은 범위 정의상 확정 가능하다.
     # 그 외 필드는 정보가 없다고 제한없음/해당없음으로 바꾸지 않는다.
@@ -2612,12 +3248,13 @@ def collect_one(
 
     # 2) 공식 원문 우선. API 참고URL은 보완용.
     crawl_queue: list[tuple[str, bool]] = []
-    if seed.official_url and is_official_url(seed.official_url):
-        crawl_queue.append((seed.official_url, True))
+    primary_url = normalize_web_url(seed.official_url)
+    if primary_url and is_official_url(primary_url):
+        crawl_queue.append((primary_url, True))
 
     if api_obj:
         for k in ("refUrlAddr1", "refUrlAddr2"):
-            u = clean_text(api_obj.get(k))
+            u = normalize_web_url(api_obj.get(k))
             if not u or not is_official_url(u):
                 continue
             if not url_region_compatible(u, seed.expected_scope):
@@ -2682,6 +3319,7 @@ def collect_one(
         "curated_fields": curated_fields,
         "errors": errors,
         "method": method,
+        "excluded": False, "exclude_reason": "",
     }
     return row, debug
 
@@ -2694,12 +3332,10 @@ def make_dynamic_seed(api_obj: dict[str, Any]) -> PolicySeed | None:
     name = clean_text(api_obj.get("plcyNm"))
     if not name:
         return None
-    official_url = first_nonempty(
-        api_obj.get("refUrlAddr1"), api_obj.get("refUrlAddr2"), default=""
-    )
-    if official_url and not is_official_url(official_url):
-        official_url = None
-    apply_url = clean_text(api_obj.get("aplyUrlAddr")) or None
+    official_url = verified_official_source_for(name) or first_valid_source_url(
+        api_obj.get("refUrlAddr1"), api_obj.get("refUrlAddr2")
+    ) or None
+    apply_url = first_valid_apply_url(api_obj.get("aplyUrlAddr")) or None
     tags = [
         clean_text(x) for x in re.split(r"[,|]", clean_text(api_obj.get("plcyKywdNm")))
         if clean_text(x)
@@ -2734,13 +3370,14 @@ def collect_discovered_api_policy(
     row["신청범위"], row["대상시도"], row["대상시군구"] = scope, sido, sigungu
 
     crawl_queue: list[str] = []
-    for value in [
-        api_obj.get("refUrlAddr1"), api_obj.get("refUrlAddr2"), seed.official_url,
-        api_obj.get("aplyUrlAddr"),
-    ]:
-        u = clean_text(value)
-        if u.startswith("http") and is_official_url(u) and u not in crawl_queue:
+    for value in [api_obj.get("refUrlAddr1"), api_obj.get("refUrlAddr2"), seed.official_url]:
+        u = normalize_source_url(value)
+        if u and is_official_url(u) and u not in crawl_queue:
             crawl_queue.append(u)
+
+    apply_doc_url = normalize_apply_url(api_obj.get("aplyUrlAddr"))
+    if apply_doc_url and is_official_url(apply_doc_url) and apply_doc_url not in crawl_queue:
+        crawl_queue.append(apply_doc_url)
 
     crawled_docs: list[dict[str, Any]] = []
     for url in crawl_queue[:3]:
@@ -2783,6 +3420,7 @@ def collect_discovered_api_policy(
         "curated_fields": curated_fields,
         "errors": errors,
         "method": method,
+        "excluded": False, "exclude_reason": "",
     }
     return row, debug
 
@@ -2904,13 +3542,20 @@ def collect_local_index_policy(
         "seed": seed.name, "api_query_used": "", "api_match_score": 0.0,
         "api_plcyNo": "", "api_plcyNm": "", "api_match_note": "지역 공식 인덱스 자동발견",
         "crawl_urls": [doc.get("url")], "curated_fields": curated_fields,
-        "errors": errors, "method": method,
+        "errors": errors, "method": method, "excluded": False, "exclude_reason": "",
     }
 
 
 # 관찰된 API/공식 인덱스 중복 명칭을 보수적으로 같은 정책으로 묶는다.
 # 일반적인 '지원' 접미사를 무조건 제거하지 않고, 실제 확인된 별칭만 명시한다.
 CANONICAL_POLICY_ALIASES: dict[str, str] = {
+    # 국토교통부 동일 사업의 전국 안내/부산 시행 행은 부산 이용자용 지역행 하나로 통합
+    norm_name("전세보증금반환보증 보증료 지원"): norm_name("전세보증금반환보증 보증료 지원"),
+    norm_name("전세보증금반환보증 보증료 지원(전국)"): norm_name("전세보증금반환보증 보증료 지원"),
+    norm_name("부산 전세보증금 반환보증 보증료 지원"): norm_name("전세보증금반환보증 보증료 지원"),
+
+    # 같은 청년미래적금 상품의 세제지원 안내 레코드는 본 사업과 하나로 통합
+    norm_name("청년미래적금 세제 지원"): norm_name("청년미래적금"),
     norm_name("고교 취업연계 장려금 지원"): norm_name("고교 취업연계 장려금"),
     norm_name("미소금융 청년 미래이음 대출"): norm_name("청년 미래이음 대출"),
     norm_name("유망청년창업기업 보증 지원"): norm_name("유망청년창업기업 보증"),
@@ -3029,15 +3674,27 @@ def _merge_duplicate_group(group: list[dict[str, str]]) -> dict[str, str]:
             if cur in {"", EMPTY_UNKNOWN} and val not in {"", EMPTY_UNKNOWN}:
                 merged[col] = val
 
+    # 다른 중복행의 API 일반값이 수동 검증 연령값을 되살려 덮지 않도록 마지막에 재적용.
+    reapply_curated_age_fields(merged)
+
+    # 다른 중복행에서 연령/기간 필드가 보완된 경우 파생값도 다시 계산한다.
+    merged["청년대상구분"] = classify_youth_target(merged)
+    merged["진행상태"] = calc_status(
+        "" if merged.get("신청시작일") in {"", EMPTY_UNKNOWN} else clean_text(merged.get("신청시작일")),
+        "" if merged.get("신청마감일") in {"", EMPTY_UNKNOWN} else clean_text(merged.get("신청마감일")),
+        clean_text(merged.get("상시모집")),
+    )
+
     names = []
     for r in group:
         n = clean_text(r.get("정책명"))
         if n and n not in names:
             names.append(n)
-    if len(names) > 1:
+    if len(group) > 1:
+        name_note = f" ({' / '.join(names)})" if names else ""
         merged["비고"] = as_joined([
             merged.get("비고"),
-            f"중복후보 통합={len(group)}건 ({' / '.join(names)})",
+            f"중복후보 통합={len(group)}건{name_note}",
         ])
     return merged
 
@@ -3049,11 +3706,7 @@ def final_region_sanity(row: dict[str, str]) -> bool:
     - 전국으로 판정됐더라도 정책명/기관/공식URL에 특정 타 시·도가 명시되면 제외
     """
     title = clean_text(row.get("정책명"))
-    education_only_tokens = [
-        "금융교육", "금융 교육", "금융강좌", "금융 강좌",
-        "금융스쿨", "토크콘서트", "재무설계 온라인", "교육봉사단",
-    ]
-    if any(k in title for k in education_only_tokens):
+    if policy_exclusion_reason(row):
         return False
 
     if row.get("신청범위") != "전국":
@@ -3067,6 +3720,119 @@ def final_region_sanity(row: dict[str, str]) -> bool:
         if any(k.lower() in strong for k in kws):
             return False
     return True
+
+
+def suppress_hope_ladder_umbrella(rows: list[dict[str, str]]) -> list[dict[str, str]]:
+    """
+    희망사다리 Ⅰ·Ⅱ유형 개별행이 모두 존재하면,
+    두 유형을 한 행에 합쳐 놓은 상위 요약행은 중복으로 제거한다.
+    개별 유형의 자격·지원조건이 다르므로 Ⅰ/Ⅱ유형 행을 각각 유지한다.
+    """
+    n1_tokens = [
+        norm_name("희망사다리장학금 1유형"),
+        norm_name("희망사다리장학금 1유형(중소기업 취업연계)"),
+        norm_name("중소기업 취업연계 장학금(희망사다리Ⅰ유형)"),
+    ]
+    n2_tokens = [
+        norm_name("희망사다리장학금 2유형"),
+        norm_name("희망사다리장학금 2유형(고졸 후학습자)"),
+        norm_name("고졸 후학습자 장학금(희망사다리Ⅱ유형)"),
+    ]
+    umbrella = norm_name("희망사다리 장학사업(Ⅰ,Ⅱ유형)")
+
+    def matches_any(name: str, tokens: list[str]) -> bool:
+        n = norm_name(name)
+        return any(tok and (tok in n or n in tok) for tok in tokens)
+
+    has1 = any(matches_any(r.get("정책명", ""), n1_tokens) for r in rows)
+    has2 = any(matches_any(r.get("정책명", ""), n2_tokens) for r in rows)
+    if not (has1 and has2):
+        return rows
+
+    removed_names: list[str] = []
+    kept: list[dict[str, str]] = []
+    for r in rows:
+        if norm_name(r.get("정책명", "")) == umbrella:
+            removed_names.append(clean_text(r.get("정책명")))
+            continue
+        kept.append(r)
+
+    if removed_names:
+        # 로그에서 어떤 행이 제거됐는지 추적할 수 있도록 Ⅰ유형 대표행에 메모한다.
+        for r in kept:
+            if matches_any(r.get("정책명", ""), n1_tokens):
+                r["비고"] = as_joined([
+                    r.get("비고"),
+                    f"상위중복행 제거={' / '.join(removed_names)}; Ⅰ·Ⅱ유형 개별행 유지",
+                ])
+                break
+    return kept
+
+
+CROSS_SCOPE_PREFER_LOCAL_CANONICAL = {
+    norm_name("전세보증금반환보증 보증료 지원"),
+}
+
+
+def merge_verified_cross_scope_duplicates(rows: list[dict[str, str]]) -> list[dict[str, str]]:
+    """
+    공식 근거로 동일 사업임을 확인한 일부 전국/지역 행만 교차지역 통합한다.
+    일반 정책에는 적용하지 않고 allowlist에 있는 사업에만 적용한다.
+
+    부산 청년 서비스이므로 동일 사업의 전국행과 부산행이 함께 있으면
+    부산의 신청방법·담당기관 정보가 더 구체적인 부산행을 대표로 유지한다.
+    """
+    grouped: dict[str, list[dict[str, str]]] = {}
+    passthrough: list[dict[str, str]] = []
+
+    for r in rows:
+        cname = canonical_policy_name(r)
+        if cname in CROSS_SCOPE_PREFER_LOCAL_CANONICAL:
+            grouped.setdefault(cname, []).append(r)
+        else:
+            passthrough.append(r)
+
+    out = passthrough[:]
+    for cname, group in grouped.items():
+        scopes = {clean_text(r.get("신청범위")) for r in group}
+        if len(group) > 1 and "전국" in scopes and "부산" in scopes:
+            local_rows = [r for r in group if r.get("신청범위") == "부산"]
+            national_rows = [r for r in group if r.get("신청범위") == "전국"]
+            local = sorted(local_rows, key=_row_quality, reverse=True)[0]
+            merged = dict(local)
+
+            # 부산 공식 안내는 정부24 온라인 신청을 안내하므로,
+            # 전국행에 있는 정부24 서비스 상세 URL이 있으면 신청URL로 사용한다.
+            gov_apply = ""
+            for candidate in group:
+                u = normalize_apply_url(candidate.get("신청URL"))
+                if u and urlparse(u).netloc.lower().endswith("gov.kr"):
+                    gov_apply = u
+                    break
+            if gov_apply:
+                merged["신청URL"] = gov_apply
+
+            # 부산행의 빈 필드만 전국행에서 보완하되 지역/정책명/원문URL은 부산행을 유지.
+            protected = {"정책명", "신청범위", "대상시도", "대상시군구", "신청URL", "원문URL"}
+            for other in sorted(national_rows, key=_row_quality, reverse=True):
+                for col in OUTPUT_COLUMNS:
+                    if col in protected:
+                        continue
+                    cur = clean_text(merged.get(col))
+                    val = clean_text(other.get(col))
+                    if cur in {"", EMPTY_UNKNOWN} and val not in {"", EMPTY_UNKNOWN}:
+                        merged[col] = val
+
+            removed_names = [clean_text(r.get("정책명")) for r in national_rows if clean_text(r.get("정책명"))]
+            merged["비고"] = as_joined([
+                merged.get("비고"),
+                f"전국·부산 동일사업 통합; 부산 시행행 유지; 통합된 전국행={' / '.join(removed_names)}",
+            ])
+            merged["청년대상구분"] = classify_youth_target(merged)
+            out.append(merged)
+        else:
+            out.extend(group)
+    return out
 
 
 def dedupe_rows(rows: list[dict[str, str]]) -> list[dict[str, str]]:
@@ -3129,7 +3895,52 @@ def dedupe_rows(rows: list[dict[str, str]]) -> list[dict[str, str]]:
         else:
             final_out.extend(group)
 
+    final_out = suppress_hope_ladder_umbrella(final_out)
+    final_out = merge_verified_cross_scope_duplicates(final_out)
+
+    # 중복 병합 과정에서 오래된 API 값이 대표행에 다시 들어오는 것을 방지한다.
+    for row in final_out:
+        reapply_curated_age_fields(row)
+        apply_verified_policy_field_overrides(row)
+        n = norm_name(clean_text(row.get("정책명")))
+        has_explicit_youth_override = any(
+            norm_name(name) == n and "청년대상구분" in values
+            for name, values in VERIFIED_POLICY_FIELD_OVERRIDES.items()
+        )
+        if not has_explicit_youth_override:
+            row["청년대상구분"] = classify_youth_target(row)
     return final_out
+
+def build_dedupe_log_map(rows: list[dict[str, str]]) -> dict[str, str]:
+    """최종 대표행 비고에서 중복 통합 정보를 읽어 수집로그용 상태를 만든다."""
+    out: dict[str, str] = {}
+    for r in rows:
+        note = clean_text(r.get("비고"))
+        if "중복후보 통합=" not in note:
+            continue
+        representative = clean_text(r.get("정책명"))
+        for m in re.finditer(r"중복후보 통합=(\d+)건(?: \(([^)]*)\))?", note):
+            count = m.group(1)
+            names = [clean_text(x) for x in (m.group(2) or "").split(" / ") if clean_text(x)]
+            if representative and representative not in names:
+                names.append(representative)
+            for name in names:
+                if norm_name(name) == norm_name(representative):
+                    out[norm_name(name)] = f"대표행 유지({count}건 통합)"
+                else:
+                    out[norm_name(name)] = f"중복 통합 → {representative}"
+
+        m = re.search(r"상위중복행 제거=([^;]+);", note)
+        if m:
+            for removed in [clean_text(x) for x in m.group(1).split(" / ") if clean_text(x)]:
+                out[norm_name(removed)] = "중복 상위행 제거 → 희망사다리 Ⅰ·Ⅱ유형 개별행 유지"
+
+        m = re.search(r"통합된 전국행=([^|]+)", note)
+        if m:
+            for removed in [clean_text(x) for x in m.group(1).split(" / ") if clean_text(x)]:
+                out[norm_name(removed)] = f"전국·부산 동일사업 통합 → {representative}"
+    return out
+
 
 def write_csv(path: Path, rows: list[dict[str, Any]], fieldnames: list[str]) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
@@ -3217,7 +4028,7 @@ def sources_from(rows: list[dict[str, str]]) -> list[dict[str, str]]:
 def main() -> None:
     load_dotenv()
     parser = argparse.ArgumentParser(
-        description="부산 청년 AI 생활·혜택 안내 서비스 - 장학·금융 자동 탐색 수집기 v10"
+        description="부산 청년 AI 생활·혜택 안내 서비스 - 장학·금융 자동 탐색 수집기 v11.3"
     )
     parser.add_argument("--out-dir", default="output", help="CSV 출력 폴더 (기본: output)")
     parser.add_argument("--no-api", action="store_true", help="온통청년 API 없이 공식사이트 크롤링만 수행")
@@ -3260,6 +4071,7 @@ def main() -> None:
     # 1) 온통청년 청년정책API 자동 탐색
     if api:
         discovered = api.discover_finance_policies(max_pages=max(1, args.max_pages))
+        logs.extend(api.discovery_exclusions)
         print(f"\n[자동탐색] 목표 지역 장학·금융 API 후보: {len(discovered)}건")
         for idx, api_obj in enumerate(discovered, 1):
             scope, _, _, _ = classify_api_target_region(api_obj)
@@ -3305,6 +4117,7 @@ def main() -> None:
         existing.add(norm_name(seed.name))
 
     results = dedupe_rows(results)
+    dedupe_log_map = build_dedupe_log_map(results)
     if args.region:
         results = [r for r in results if r.get("신청범위") == args.region]
 
@@ -3340,15 +4153,30 @@ def main() -> None:
                 ),
                 "API정책번호": x.get("api_plcyNo", ""),
                 "API정책명": x.get("api_plcyNm", ""),
-                "API매칭검증": x.get("api_match_note", ""),
+                "지역판정": x.get("api_match_note", ""),
                 "크롤링URL": " | ".join(x.get("crawl_urls", [])),
+                "크롤링오류": " | ".join(
+                    e for e in x.get("errors", []) if "크롤링" in str(e) or "robots" in str(e).lower()
+                ),
                 "검증값보완필드": ", ".join(x.get("curated_fields", [])),
+                "중복제거여부": dedupe_log_map.get(
+                    norm_name(x.get("api_plcyNm") or x.get("seed", "")),
+                    "제외" if x.get("excluded") else "유지",
+                ),
+                "제외여부": "예" if x.get("excluded") else "아니오",
+                "제외사유": x.get("exclude_reason", ""),
                 "수집방식": "+".join(x.get("method", [])),
-                "오류": " | ".join(x.get("errors", [])),
+                "기타오류": " | ".join(
+                    e for e in x.get("errors", []) if "크롤링" not in str(e) and "robots" not in str(e).lower()
+                ),
             }
             for x in logs
         ],
-        ["정책명", "API검색어", "API매칭점수", "API정책번호", "API정책명", "API매칭검증", "크롤링URL", "검증값보완필드", "수집방식", "오류"],
+        [
+            "정책명", "API검색어", "API매칭점수", "API정책번호", "API정책명", "지역판정",
+            "크롤링URL", "크롤링오류", "검증값보완필드", "중복제거여부",
+            "제외여부", "제외사유", "수집방식", "기타오류",
+        ],
     )
 
     # 과제 보고서용 집계
