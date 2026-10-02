@@ -1,0 +1,1762 @@
+<script type="text/javascript">
+	$(document).ajaxSend(function (e, xhr) {
+		var token  = $("meta[name='_csrf']").attr("content");
+	    var header = $("meta[name='_csrf_header']").attr("content");
+
+	    if (token && header) {
+	        xhr.setRequestHeader(header, token);
+	    }
+	  });
+</script>
+
+<script type="text/javascript">
+	$(function () {
+	    var csrfParam = $("meta[name='_csrf_parameter']").attr("content");
+	    var csrfToken = $("meta[name='_csrf']").attr("content");
+
+	    if (!csrfParam || !csrfToken) return;
+
+	    $("form").each(function () {
+	        // 이미 있으면 패스
+	        if ($(this).find("input[name='" + csrfParam + "']").length === 0) {
+	            $("<input>")
+	                .attr("type", "hidden")
+	                .attr("name", csrfParam)
+	                .val(csrfToken)
+	                .appendTo($(this));
+	        }
+	    });
+	});
+</script><!DOCTYPE html>
+<html lang="ko">
+	<head>
+		<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-R3BHJGCTGX"></script>
+<script>
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+	gtag('config', 'G-R3BHJGCTGX');
+</script>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="Title" content="청년e끌림(경북청년포털)" />
+		<meta name="Subject" content="청년e끌림(경북청년포털)" />
+		<meta name="description" content="청년e끌림(경북청년포털), 청년이 머무는 행복한 경북, 경북 청년애(愛)꿈" />
+		<meta name="keywords" content="청년e끌림(경북청년포털), 청년이끌림 경북청년, 청년정책, 경북정책, 청년프로그램, 청년프리랜서, 청년마을" />
+		<meta name="Publisher" content="Timecoms" />
+		<meta property="og:type" content="website">
+		<meta property="og:image" content="https://gbyouth.go.kr/resources/templates/front/assets/images/og.png">
+		<meta property="og:title" id="ogtitle" content="청년e끌림(경북청년포털)">
+		<meta property="og:description" content="청년e끌림(경북청년포털), 청년이 머무는 행복한 경북, 경북 청년애(愛)꿈">
+		<meta name="format-detection" content="telephone=no" />
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<meta name="apple-mobile-web-app-title" content="Timecoms" />
+		<meta name="_csrf_parameter" content="_csrf" /><meta name="_csrf_header" content="X-CSRF-TOKEN" /><meta name="_csrf" content="67bccfc2-496c-4ecd-ad41-f8a1a038d708" /><title>청년e끌림(경북청년포털)</title>
+
+		<!--Icon-->
+		<link rel="shortcut icon" href="/resources/templates/front/assets/images/favicon.ico">
+			<!--CSS-->
+		<link type="text/css" rel="stylesheet" href="/resources/css/jquery-ui.css" />
+		<link type="text/css" rel="stylesheet" href="/resources/editor/summernote.css" />
+		<link type="text/css" rel="stylesheet" href="/resources/videojs/videojs.css" />
+		<link type="text/css" rel="stylesheet" href="/resources/css/board.css" />
+		<link type="text/css" rel="stylesheet" href="/resources/templates/front/assets/css/reset.css">
+	    <link type="text/css" rel="stylesheet" href="/resources/templates/front/assets/css/slick.css">
+	    <link type="text/css" rel="stylesheet" href="/resources/templates/front/assets/css/layout.css?202610030017">
+    	<link type="text/css" rel="stylesheet" href="/resources/templates/front/assets/css/main.css?202610030017">
+    	<link type="text/css" rel="stylesheet" href="/resources/templates/front/assets/css/common.css?202610030017">
+
+		<!--Script-->
+		<script src="/resources/js/time/jquery-1.12.4.min.js"></script>
+		<script src="/resources/js/time/common.js"></script>
+		<script src="/resources/js/common.js"></script>
+		<script src="/resources/js/time/jquery-ui.min.js"></script>
+		<script src="/resources/js/time/slick.min.js"></script>
+		<script src="/resources/js/jquery.form.min.js"></script>
+		<script src="/resources/js/fileupload.js"></script>
+		<script src="/resources/js/numToKorean.js"></script>
+		<script src="/resources/js/clipboard.min.js"></script>
+		<script src="/resources/videojs/videojs.js"></script>
+		<script src="/resources/videojs/videojs-ie8.js"></script>
+		<script src="/resources/videojs/videojs-flash.min.js"></script>
+		<script src="/resources/js/snsshare.js"></script>
+		<script src="/resources/js/time/qrcode.js"></script>
+		<script src="/resources/templates/front/assets/js/slick.js"></script>
+	    <script src="/resources/templates/front/assets/js/common.js?202610030017"></script>
+	    <script src="/resources/templates/front/assets/js/fullpage.js"></script>
+	    <script>
+			$(function(){
+		        // 풀페이지
+		            fullpage.initFullpage($("#fullpageWrap"));
+
+				});
+	 	</script>
+	</head>
+
+	<body>
+		<!-- TODO: [2024-04-03] 개인정보동의 팝업  퍼블리싱  -->
+		<!-- 팝업 시작 -->
+		<script language="Javascript">
+			$(function() {
+				$('.info_pop .close_all, .info_pop .link_group .close').click(function(){
+					$('.info_pop').addClass('hidden');
+					$.ajax({
+					    type: 'post',
+					    url: "/dctms/insertAction.json",
+					    success: function(data) {
+					    	if(!data.success) {
+					    		alert("IP 등록에 실패하였습니다.");
+					    	}
+					    },
+					    error: function(xhr,status,error){
+					    	alert("code:"+request.status+"\r\n"+"message:"+request.responseText+"\r\n"+"error:"+error);
+					    }
+					});
+				});
+				
+
+				var cookiedata = document.cookie;
+				if(cookiedata.indexOf("vpop1=done") < 0 ) {
+					$('#pop-doc').removeClass('hidden');
+				} else {
+					$('#pop-doc').addClass('hidden');
+				}
+				$('#pop-doc .close_all').click(function(){
+					setCookie('vpop1', 'done', 1);
+					$('#pop-doc').addClass('hidden');
+				});
+			});
+
+			function smsRecUpdate() {
+				$('.info_pop').addClass('hidden');
+				$.ajax({
+				    type: 'post',
+				    url: "/member/smsRecUpdate.json",
+				    success: function(data) {
+				    	if(data.success) {
+				    		alert("수신 동의 처리 되었습니다.\n※수신 동의 여부는 마이페이지에서 확인하실 수 있습니다.")
+				    	} else {
+				    		alert("수신 동의 처리 중 오류가 발생했습니다.");
+				    	}
+				    },
+				    error: function(xhr,status,error){
+				    	alert("code:"+request.status+"\r\n"+"message:"+request.responseText+"\r\n"+"error:"+error);
+				    }
+				});
+			}
+		</script>
+		<div class="admin_pop info_pop">
+		  <div class="close top">
+		    <button type="button" class="close" onclick="$('.info_pop').hide();">닫기 X</button>
+		  </div>
+		  <div class="bot">
+		    <img src="/resources/templates/front/assets/images/pop_info_img.png" alt="">
+		    <p class="tit">지금 놓치고 있는 정보가 있어요!</p>
+		    <p class="txt">선택한 관심지역과 관심분야에 대한 <br> 정책이 올라오면 정보를 받아보시겠어요?</p>
+		    <div class="link_group">
+
+		        <a href="/login/web/login.tc?protocol=http">네 받아볼래요</a>
+			      	<button type="button" class="bg_gray close">괜찮아요</button>
+		    </div>
+		  </div>
+		</div>
+		<div id="skipnavi" class="skipnavi">
+			<a href="#fullpageWrap">본문 바로가기</a>
+			<a href="#gnb">주메뉴 바로가기</a>
+			<a href="#fnb">푸터 바로가기</a>
+		</div>
+	    <!-- 헤더 -->
+	    <div class="cover"></div>
+	    <header>
+	        <div class="wrap">
+	            <div class="top">
+	                <div class="inner">
+	                	<a href="/page/2483/5104.tc" class="top_info"><img src="/resources/templates/front/assets/images/top_info3_01.png" alt="청년e끌림 소개"></a>
+	                    <div class="noti">
+	                        <p class="pointer" onclick="location.href='/board/list.tc?mn=2465&mngNo=1&pageNo=5042'">공지사항</p>
+	                        <div class="slide">
+	                        	<div>
+		                                <a href="/board/detail.tc?mn=2465&mngNo=1&pageSeq=5042&boardNo=1823"><img src="/resources/templates/front/assets/images/noti.png" alt="">2026년 구미시 꿈이음 청춘카페지원사업 참여후기</a>
+		                            </div>
+								<div>
+		                                <a href="/board/detail.tc?mn=2465&mngNo=1&pageSeq=5042&boardNo=1822"><img src="/resources/templates/front/assets/images/noti.png" alt="">2026년 구미시 꿈이음청춘카페지원사업 참여후기</a>
+		                            </div>
+								<div>
+		                                <a href="/board/detail.tc?mn=2465&mngNo=1&pageSeq=5042&boardNo=1821"><img src="/resources/templates/front/assets/images/noti.png" alt="">「2026년 경북 청년정책참여단」9월 개별미션 제출</a>
+		                            </div>
+								<div>
+		                                <a href="/board/detail.tc?mn=2465&mngNo=1&pageSeq=5042&boardNo=1820"><img src="/resources/templates/front/assets/images/noti.png" alt="">2026년 꿈이음청춘카페참여후기</a>
+		                            </div>
+								<div>
+		                                <a href="/board/detail.tc?mn=2465&mngNo=1&pageSeq=5042&boardNo=1819"><img src="/resources/templates/front/assets/images/noti.png" alt="">2026년 구미시 꿈이음 청춘카페 지원사업 참여후기</a>
+		                            </div>
+								</div>
+	                    </div>
+	                    <ul>
+	                    	<li>
+	                            <a href="https://gb.go.kr/Main/page.do?mnu_uid=6786&BD_CODE=bbs_gongji" title="" target="_blank">경상북도소식</a>
+	                        </li>
+	                    </ul>
+	                </div>
+	            </div>
+	            <div class="inner fclear">
+	                <div class="mid">
+	                    <div class="ranking">
+	                        <div class="slide" id="keywordRank1">
+	                        </div>
+	                        <button type="button">
+	                            <img src="/resources/templates/front/assets/images/ranking.png" alt="실시간 검색어 펼쳐보기">
+	                            <img src="/resources/templates/front/assets/images/ranking_o.png" alt="실시간 검색어 펼쳐보기" class="over">
+	                        </button>
+	                        <div class="list">
+	                            <h1>실시간 검색어</h1>
+	                            <div id="keywordRank2">
+	                            </div>
+	                        </div>
+	                    </div>
+	                    <div class="weather">
+	                        <img id="weatherImg" src="" alt="">
+	                        <p id="weatherTxt"><em></em></p>
+	                        <a href="https://www.weather.go.kr/w/index.do" title="새창열림" target="_blank" class=""><img src="/resources/templates/front/assets/images/weather_link.png" alt=""></a>
+	                    </div>
+	                    <h1 class="logo">
+		                    <a href="/"><img src="/resources/templates/front/assets/images/logo22.png" alt="GYEONGSANGBUK-DO YOUTH 경북청년포털"></a>
+	                    </h1>
+	                    <div class="right">
+	                        <!-- 로그인시 on 추가 -->
+	                        <div class="login ">
+	                           	<span>OFF</span><a href="/login/web/login.tc?mn=2441&pageNo=5070" title="로그인" target="_self" class="">로그인</a>
+	                            	</div>
+	                        <a href="/login/web/terms.tc?mn=2442&pageNo=5071" title="새창열림" class="">회원가입</a>
+                            	<a href="javascript:;" onclick="popupOpen()" class="sitemap"><span class="hidden">팝업</span></a>
+	                        <button type="button" class="search"><span class="hidden">검색</span></button>
+	                        <div class="search_wrap">
+	                            <button type="button" class="close">닫기 X</button>
+	                            <div class="area">
+	                                <div class="top">
+	                                    <form id="rsaForm" action="/search/front/Search.jsp" target="_blank">
+	                                    	<img src="/resources/templates/front/assets/images/search_wrap.png" alt="">
+		                                    <input type="text" name="qt" title="검색" id="qt" placeholder="필요한 정보를 검색해보세요.">
+		                                    <button>검색</button>
+	                        			</form>
+	                                </div>
+	                                <ul>
+	                                    <li id="recKeyword">
+	                                        <h1>추천 검색어</h1>
+	                                    </li>
+	                                    <li>
+	                                        <h1>일간 인기 검색어</h1>
+	                                        <div id="dailyKeyword">
+	                                        </div>
+	                                    </li>
+                           	            <li>
+	                                        <h1>정책 추천 <em class="color_blue">검색어</em></h1>
+	                                        <a href="/policy/list.tc?mn=2379&pageNo=5069&searchPolicyNm=월세">#월세</a>
+	                                       	<a href="/policy/list.tc?mn=2379&pageNo=5069&searchPolicyNm=청년애꿈">#청년애꿈</a>
+	                                       	<a href="/policy/list.tc?mn=2379&pageNo=5069&searchPolicyNm=학업장려금">#학업장려금</a>
+	                                       	<a href="/policy/list.tc?mn=2379&pageNo=5069&searchPolicyNm=전세">#전세</a>
+	                                       	</li>
+	                                </ul>
+	                                <div class="bot">
+	                                    <!-- <button type="button">최근검색어 전체삭제</button> -->
+	                                    <button type="button" class="close">닫기 X</button>
+	                                </div>
+	                            </div>
+	                        </div>
+	                    </div>
+	                </div>
+	            </div>
+	            <div class="menu_wrap" id="gnb">
+	                <div class="inner">
+	                    <ul class="menu">
+	                    	<li class="depth1 current" onclick="$('.menu li.depth1').removeClass('current'); $(this).addClass('current');">
+			                            <a href="#n" title="새창열림">청년알림<span>
+					                            (정책)</span>
+			                            </a>
+			                            <ul>
+			                            	<li class="depth2">
+														<a href="/page/link.tc?mn=2378&amp;pageNo=5002" target='_self' title="비전 바로가기">
+															<span>비전</span>
+														</a>
+													</li>
+												<li class="depth2">
+														<a href="/page/link.tc?mn=2476&amp;pageNo=5109" target='_self' title="경북청년 현황 바로가기">
+															<span>경북청년 현황</span>
+														</a>
+													</li>
+												<li class="depth2">
+														<a href="/page/link.tc?mn=2379&amp;pageNo=5069" target='_self' title="경북청년정책 바로가기">
+															<span>경북청년정책</span>
+														</a>
+													</li>
+												<li class="depth2">
+														<a href="/page/link.tc?mn=2381&amp;pageNo=5072" target='_self' title="전국청년정책 바로가기">
+															<span>전국청년정책</span>
+														</a>
+													</li>
+												<li class="depth2">
+														<a href="/page/link.tc?mn=2477&amp;pageNo=5101" target='_self' title="청년정책조정위원회 바로가기">
+															<span>청년정책조정위원회</span>
+														</a>
+													</li>
+												<li class="depth2">
+														<a href="/page/link.tc?mn=2447&amp;pageNo=5027" target='_self' title="청년프로그램 안내 바로가기">
+															<span>청년프로그램 안내</span>
+														</a>
+													</li>
+												<li class="depth2">
+														<a href="/page/link.tc?mn=2384&amp;pageNo=5008" target='_self' title="법령(조례) 바로가기">
+															<span>법령(조례)</span>
+														</a>
+													</li>
+												<li class="depth2">
+														<a href="/page/link.tc?mn=2487&amp;pageNo=5113" target='_self' title="E-BOOK 바로가기">
+															<span>E-BOOK</span>
+														</a>
+													</li>
+												<li class="depth2">
+														<a href="/page/link.tc?mn=2413&amp;pageNo=5100" target='_self' title="청년참고자료(용역) 바로가기">
+															<span>청년참고자료(용역)</span>
+														</a>
+													</li>
+												</ul>
+			                        </li>
+								<li class="depth1 " onclick="$('.menu li.depth1').removeClass('current'); $(this).addClass('current');">
+			                            <a href="#n" title="새창열림">청년열림<span>
+					                            (참여)</span>
+			                            </a>
+			                            <ul>
+			                            	<li class="depth2">
+														<a href="/page/link.tc?mn=2478&amp;pageNo=5122" target='_self' title="청년정책참여단 바로가기">
+															<span>청년정책참여단</span>
+														</a>
+													</li>
+												<li class="depth2">
+														<a href="/page/link.tc?mn=2385&amp;pageNo=5106" target='_self' title="청년인재등록서비스(청년이 주인공) 바로가기">
+															<span>청년인재등록서비스(청년이 주인공)</span>
+														</a>
+													</li>
+												<li class="depth2">
+														<a href="/page/link.tc?mn=2479&amp;pageNo=5121" target='_self' title="영롱(Young-long)한 제안 바로가기">
+															<span>영롱(Young-long)한 제안</span>
+														</a>
+													</li>
+												<li class="depth2">
+														<a href="/page/link.tc?mn=2465&amp;pageNo=5042" target='_self' title="청년와글와글게시판 바로가기">
+															<span>청년와글와글게시판</span>
+														</a>
+													</li>
+												</ul>
+			                        </li>
+								<li class="depth1 " onclick="$('.menu li.depth1').removeClass('current'); $(this).addClass('current');">
+			                            <a href="#n" title="새창열림">청년어울림<span>
+					                            (공동체)</span>
+			                            </a>
+			                            <ul>
+			                            	<li class="depth2">
+														<a href="/page/link.tc?mn=2395&amp;pageNo=5022" target='_self' title="청년기업 소개 바로가기">
+															<span>청년기업 소개</span>
+														</a>
+													</li>
+												<li class="depth2">
+														<a href="/page/link.tc?mn=2414&amp;pageNo=5023" target='_self' title="청년프리랜서 소개 바로가기">
+															<span>청년프리랜서 소개</span>
+														</a>
+													</li>
+												<li class="depth2">
+														<a href="/page/link.tc?mn=2480&amp;pageNo=5108" target='_self' title="청년마을 소개 바로가기">
+															<span>청년마을 소개</span>
+														</a>
+													</li>
+												</ul>
+			                        </li>
+								<li class="depth1 " onclick="$('.menu li.depth1').removeClass('current'); $(this).addClass('current');">
+			                            <a href="#n" title="새창열림">청년끌림<span>
+					                            (응원)</span>
+			                            </a>
+			                            <ul>
+			                            	<li class="depth2">
+														<a href="/page/link.tc?mn=2388&amp;pageNo=5013" target='_self' title="청년공간 바로가기">
+															<span>청년공간</span>
+														</a>
+													</li>
+												<li class="depth2">
+														<a href="/page/link.tc?mn=2418&amp;pageNo=5025" target='_self' title="청년정책홍보 바로가기">
+															<span>청년정책홍보</span>
+														</a>
+													</li>
+												<li class="depth2">
+														<a href="/page/link.tc?mn=2484&amp;pageNo=5110" target='_self' title="이벤트 게시판 바로가기">
+															<span>이벤트 게시판</span>
+														</a>
+													</li>
+												</ul>
+			                        </li>
+								<li class="depth1 " onclick="$('.menu li.depth1').removeClass('current'); $(this).addClass('current');">
+			                            <a href="#n" title="새창열림">마이페이지<span>
+					                            </span>
+			                            </a>
+			                            <ul>
+			                            	<li class="depth2">
+														<a href="/page/link.tc?mn=2441&amp;pageNo=5070" target='_self' title="로그인 바로가기">
+															<span>로그인</span>
+														</a>
+													</li>
+												<li class="depth2">
+														<a href="/page/link.tc?mn=2442&amp;pageNo=5071" target='_self' title="회원가입 바로가기">
+															<span>회원가입</span>
+														</a>
+													</li>
+												<li class="depth2">
+														<a href="/page/link.tc?mn=2462&amp;pageNo=5088" target='_self' title="아이디 찾기 바로가기">
+															<span>아이디 찾기</span>
+														</a>
+													</li>
+												<li class="depth2">
+														<a href="/page/link.tc?mn=2463&amp;pageNo=5089" target='_self' title="비밀번호 찾기 바로가기">
+															<span>비밀번호 찾기</span>
+														</a>
+													</li>
+												<li class="depth2">
+														<a href="/page/link.tc?mn=2404&amp;pageNo=5128" target='_self' title="개인정보처리방침 바로가기">
+															<span>개인정보처리방침</span>
+														</a>
+													</li>
+												</ul>
+			                        </li>
+								</ul>
+	                    <div class="right">
+	                        <button type="button" class="mo_open">
+	                            <span></span>
+	                            <span></span>
+	                            <span></span>
+	                        </button>
+	                        <button type="button" class="mo_close">
+	                            <span></span>
+	                            <span></span>
+	                            <span></span>
+	                        </button>
+	                    </div>
+	                </div>
+	            </div>
+	        </div>
+	    </header>
+	    <!-- 헤더 -->
+	    <!-- 메인내용 -->
+	    <main>
+	    	<script type="text/javascript">
+	$(document).ajaxSend(function (e, xhr) {
+		var token  = $("meta[name='_csrf']").attr("content");
+	    var header = $("meta[name='_csrf_header']").attr("content");
+
+	    if (token && header) {
+	        xhr.setRequestHeader(header, token);
+	    }
+	  });
+</script>
+
+<script type="text/javascript">
+	$(function () {
+	    var csrfParam = $("meta[name='_csrf_parameter']").attr("content");
+	    var csrfToken = $("meta[name='_csrf']").attr("content");
+
+	    if (!csrfParam || !csrfToken) return;
+
+	    $("form").each(function () {
+	        // 이미 있으면 패스
+	        if ($(this).find("input[name='" + csrfParam + "']").length === 0) {
+	            $("<input>")
+	                .attr("type", "hidden")
+	                .attr("name", csrfParam)
+	                .val(csrfToken)
+	                .appendTo($(this));
+	        }
+	    });
+	});
+</script><script src="/resources/templates/front/assets/js/action_modal.js?v1.1" charset="utf-8"></script>
+
+<div id="page_navi">
+    <a href="javascript:fullpage.moveFullPage('1')" class="active page_a" title="선택됨">
+        <div class="circle"></div>
+        <span>청년알림</span>
+    </a>
+    <a href="javascript:fullpage.moveFullPage('2')" class="page_a">
+        <div class="circle"></div>
+        <span>맞춤검색</span>
+    </a>
+    <a href="javascript:fullpage.moveFullPage('3')" class="page_a">
+        <div class="circle"></div>
+        <span>청년어울림</span>
+    </a>
+    <a href="javascript:fullpage.moveFullPage('4')" class="page_a" >
+        <div class="circle"></div>
+        <span>청년끌림</span>
+    </a>
+    <a href="javascript:fullpage.moveFullPage('1')">
+        <img src="/resources/templates/front/assets/images/main/top.png" alt="상단으로">
+    </a>
+</div>
+
+<div class="fullpageWrap" id="fullpageWrap">
+    <div class="main1 fullpage page">
+        <div class="inner">
+			<div class="visual_wrap">
+				<div class="visual">
+					<div class="btn">
+                        <div>
+                            <span>01</span>
+                            <div class="progress" role="progressbar" aria-valuemin="0" aria-valuemax="100"></div>
+                            <em></em>
+                        </div>
+                        <button type="button" class="prev"><img src="/resources/templates/front/assets/images/main/prev_ic_w.svg" alt="메인배너 이전"></button>
+                        <button class="btn-pause pause" type="button" style="display: inline-block;"><img src="/resources/templates/front/assets/images/main/stop_ic_w.svg" alt="메인배너 멈춤"></button>
+                        <button class="btn-pause play" type="button" style="display: none;"><img src="/resources/templates/front/assets/images/main/play_ic_w.svg" alt="메인배너 재생"></button>
+                        <button type="button" class="next"><img src="/resources/templates/front/assets/images/main/next_ic_w.svg" alt="메인배너 다음"></button>
+                    </div><!-- \\btn -->
+					<div class="img_slide">
+						<div>
+									<a href="https://gbyouth.go.kr/policy/list.tc?mn=2379&pageNo=5069" target="_blank" title="새창열림"><img src="/jfile/readFile.tc?fileId=JF00000093289&fileSeq=1" alt="2026 경북 청년에게 든든한 혜택 경북청년애꿈수당"/></a>
+								</div>
+							<div>
+									<a href="https://www.work24.go.kr/cm/c/f/1100/selecSystInfo.do?currentPageNo=1&recordCountPerPage=10&systId=SI00000318&systClId=SC00000117" target="_blank" title="새창열림"><img src="/jfile/readFile.tc?fileId=JF00000022671&fileSeq=1" alt="청년일자리도약장려금"/></a>
+								</div>
+							<div>
+									<a href="https://gbyouth.co.kr/board/detail.tc?mn=2465&viewType=sub&mngNo=1&pageIndex=1&boardNm=NOTICE&boardNo=246&boardCategory=&pageNo=5042&preview=&previewTempl=&searchCondition=0&searchKeyword=" target="_blank" title="새창열림"><img src="/jfile/readFile.tc?fileId=JF00000058383&fileSeq=1" alt="전세보증금반환보증 보증료 지원 배너"/></a>
+								</div>
+							<div>
+									<a href="https://gbyouth.co.kr/policy/list.tc?mn=2379&pageNo=5069&searchPolicyNm=%EC%B2%AD%EB%85%84%EC%84%B1%EC%9E%A5%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8" target="_blank" title="새창열림"><img src="/jfile/readFile.tc?fileId=JF00000109089&fileSeq=1" alt="청년성장 프로젝트"/></a>
+								</div>
+							</div><!-- \\img_slide -->
+				</div><!-- \\visual -->
+				<div class="cont_right_wrap">
+					<div class="search_wrap">
+						<a href="/policy/list.tc?mn=2379&pageNo=5069&searchAplyPeriod=1&listViewYn=Y" class="ask">현재 <em>65</em>건 <br>신청가능해요</a>
+						<div class="search">
+							<h1>청년의, 청년에 의한, 청년을 위한</h1>
+							<div class="wrap">
+								<form action="/policy/list.tc">
+									<input type="hidden" name="mn" value="2379">
+									<input type="hidden" name="pageNo" value="5069">
+									<input type="text" title="청년정책검색" name="searchPolicyNm" placeholder="청년정책을 검색해보세요.">
+									<button type="submit"><img src="/resources/templates/front/assets/images/main/search_ic.svg" alt="검색"></button>
+								</form>
+							</div>
+							<div class="word">
+								<p>추천검색어</p>
+								<div>
+									<a href="/policy/list.tc?mn=2379&pageNo=5069&searchPolicyNm=월세"><em class="color_blue">#</em> 월세</a>
+									<a href="/policy/list.tc?mn=2379&pageNo=5069&searchPolicyNm=청년애꿈"><em class="color_blue">#</em> 청년애꿈</a>
+									<a href="/policy/list.tc?mn=2379&pageNo=5069&searchPolicyNm=학업장려금"><em class="color_blue">#</em> 학업장려금</a>
+									<a href="/policy/list.tc?mn=2379&pageNo=5069&searchPolicyNm=전세"><em class="color_blue">#</em> 전세</a>
+									</div>
+							</div><!-- \\word -->
+						</div><!-- \\search -->
+					</div><!-- \\search_wrap -->
+					<div class="board_box">
+						<div class="top_wrap">
+							<h1>💡&nbsp;지원사업</h1>
+							<span class="txt">&nbsp;&nbsp;「청년행복 뉴딜프로젝트」 프로그램 운영</span>
+						</div>
+						<ul class="list">
+							<li>
+				                        <a href="/program/list.tc?mn=2447&pageNo=5027&eduNo=57">
+			                        		2026 로컬브릿지 지원사업 「 액티브 원정대 」</a>
+				                    </li>
+			                    <li>
+				                        <a href="/program/list.tc?mn=2447&pageNo=5027&eduNo=52">
+			                        		2026년 6월 소셜 다이닝 프로그램</a>
+				                    </li>
+			                    <!-- <li><a href="">Y-STAR 프로젝트</a></li>
+							<li><a href="">Y-STAR 프로젝트</a></li> -->
+						</ul>
+						<a href="/program/list.tc?mn=2447&pageNo=5027" class="bt">경북청년을 위한<br/>청년프로그램 더 알아보기</a>
+					</div><!-- \\board_box -->
+				</div><!--  \\cont_right_wrap  -->
+			</div><!-- \\visual_wrap -->
+
+            <!-- <div>
+                <div class="search">
+                    <h1>청년의, 청년에 의한, 청년을 위한</h1>
+                    <div class="wrap">
+                        <span>SEARCH</span>
+                        <form action="/policy/list.tc">
+                        	<input type="hidden" name="mn" value="2379">
+                        	<input type="hidden" name="pageNo" value="5069">
+            	                        <input type="text" title="청년정책검색" name="searchPolicyNm" placeholder="청년정책을 검색해보세요.">
+            	                        <button type="submit"><img src="/resources/templates/front/assets/images/main/search.png" alt="검색"></button>
+                        </form>
+                    </div>
+                    <div class="word">
+                        <p>추천검색어</p>
+                        <div>
+                        	<a href="/policy/list.tc?mn=2379&pageNo=5069&searchPolicyNm=월세"><em class="color_blue">#</em> 월세</a>
+                          	<a href="/policy/list.tc?mn=2379&pageNo=5069&searchPolicyNm=청년애꿈"><em class="color_blue">#</em> 청년애꿈</a>
+                          	<a href="/policy/list.tc?mn=2379&pageNo=5069&searchPolicyNm=학업장려금"><em class="color_blue">#</em> 학업장려금</a>
+                          	<a href="/policy/list.tc?mn=2379&pageNo=5069&searchPolicyNm=전세"><em class="color_blue">#</em> 전세</a>
+                          	</div>
+                    </div>
+                </div>
+                <a href="/policy/list.tc?mn=2379&pageNo=5069&searchAplyPeriod=1&listViewYn=Y" class="ask">현재 <em>65</em>건 <br>신청가능해요</a>
+            </div>
+            <div class="visual">
+                <div class="text">
+                    <img src="/resources/templates/front/assets/images/main/visual_left4.png" alt="경북이 쏜다! 청년들이 원하는 꿀 정보! 싹~~다 모았어~">
+                    <div class="btn">
+                        <div>
+                            <span>01</span>
+                            <div class="progress" role="progressbar" aria-valuemin="0" aria-valuemax="100"></div>
+                            <em></em>
+                        </div>
+                        <button type="button" class="prev"><img src="/resources/templates/front/assets/images/main/prev.png" alt="메인배너 이전"></button>
+                        <button class="btn-pause pause" type="button" style="display: inline-block;"><img src="/resources/templates/front/assets/images/main/stop.png" alt="메인배너 멈춤"></button>
+                        <button class="btn-pause play" type="button" style="display: none;"><img src="/resources/templates/front/assets/images/main/play.png" alt="메인배너 재생"></button>
+                        <button type="button" class="next"><img src="/resources/templates/front/assets/images/main/next.png" alt="메인배너 다음"></button>
+                    </div>
+                </div>
+                <div class="img_slide">
+                	<div>
+            		                		<a href="https://gbyouth.go.kr/policy/list.tc?mn=2379&pageNo=5069" target="_blank" title="새창열림"><img src="/jfile/readFile.tc?fileId=JF00000093289&fileSeq=1" alt="2026 경북 청년에게 든든한 혜택 경북청년애꿈수당"/></a>
+            		                	</div>
+            		                <div>
+            		                		<a href="https://www.work24.go.kr/cm/c/f/1100/selecSystInfo.do?currentPageNo=1&recordCountPerPage=10&systId=SI00000318&systClId=SC00000117" target="_blank" title="새창열림"><img src="/jfile/readFile.tc?fileId=JF00000022671&fileSeq=1" alt="청년일자리도약장려금"/></a>
+            		                	</div>
+            		                <div>
+            		                		<a href="https://gbyouth.co.kr/board/detail.tc?mn=2465&viewType=sub&mngNo=1&pageIndex=1&boardNm=NOTICE&boardNo=246&boardCategory=&pageNo=5042&preview=&previewTempl=&searchCondition=0&searchKeyword=" target="_blank" title="새창열림"><img src="/jfile/readFile.tc?fileId=JF00000058383&fileSeq=1" alt="전세보증금반환보증 보증료 지원 배너"/></a>
+            		                	</div>
+            		                <div>
+            		                		<a href="https://gbyouth.co.kr/policy/list.tc?mn=2379&pageNo=5069&searchPolicyNm=%EC%B2%AD%EB%85%84%EC%84%B1%EC%9E%A5%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8" target="_blank" title="새창열림"><img src="/jfile/readFile.tc?fileId=JF00000109089&fileSeq=1" alt="청년성장 프로젝트"/></a>
+            		                	</div>
+            		                </div>
+            </div> -->
+
+			<div class="board_wrap">
+				<div class="board_box" id="box1">
+					<!-- <div class="top_wrap">
+						<h1>📋&nbsp;청년정책</h1>
+						<a href="/policy/list.tc?mn=2379" class="more_bt">자세히보기</a>
+					</div>
+					<ul class="list">
+						<li><a href="">2025년 청춘상회: 으뜸 창작창업가 육성 프로그램 참여자 모집</a></li>
+						<li><a href="">2025년 청춘상회: 으뜸 창작창업가 육성 프로그램 참여자 모집</a></li>
+						<li><a href="">2025년 청춘상회: 으뜸 창작창업가 육성 프로그램 참여자 모집</a></li>
+					</ul> -->
+				</div><!-- \\board_box -->
+				
+				<div class="board_box" id="box2">
+					<div class="top_wrap">
+						<h1>📢&nbsp;공지사항</h1>
+						<a href="/board/list.tc?mn=2465&mngNo=1" class="more_bt">자세히보기</a>
+					</div>
+					<ul class="list">
+						<li><a href="/board/detail.tc?mn=2465&mngNo=1&pageSeq=5042&boardNo=1823">2026년 구미시 꿈이음 청춘카페지원사업 참여후기</a></li>
+								<!-- <li><a href="">경북 일생활 균형지원센터 워라밸 서포터즈 모집</a> <span class="date">2025.03.13</span></li>
+								<li><a href="">경북 일생활 균형지원센터 워라밸 서포터즈 모집</a> <span class="date">2025.03.13</span></li>
+								<li><a href="">경북 일생활 균형지원센터 워라밸 서포터즈 모집</a> <span class="date">2025.03.13</span></li> -->
+							<li><a href="/board/detail.tc?mn=2465&mngNo=1&pageSeq=5042&boardNo=1822">2026년 구미시 꿈이음청춘카페지원사업 참여후기</a></li>
+								<!-- <li><a href="">경북 일생활 균형지원센터 워라밸 서포터즈 모집</a> <span class="date">2025.03.13</span></li>
+								<li><a href="">경북 일생활 균형지원센터 워라밸 서포터즈 모집</a> <span class="date">2025.03.13</span></li>
+								<li><a href="">경북 일생활 균형지원센터 워라밸 서포터즈 모집</a> <span class="date">2025.03.13</span></li> -->
+							<li><a href="/board/detail.tc?mn=2465&mngNo=1&pageSeq=5042&boardNo=1821">「2026년 경북 청년정책참여단」9월 개별미션 제출</a></li>
+								<!-- <li><a href="">경북 일생활 균형지원센터 워라밸 서포터즈 모집</a> <span class="date">2025.03.13</span></li>
+								<li><a href="">경북 일생활 균형지원센터 워라밸 서포터즈 모집</a> <span class="date">2025.03.13</span></li>
+								<li><a href="">경북 일생활 균형지원센터 워라밸 서포터즈 모집</a> <span class="date">2025.03.13</span></li> -->
+							</ul>
+				</div><!-- \\board_box -->
+			</div><!-- \\board_wrap -->
+        </div>
+        <a href="javascript:fullpage.moveFullPage('2')" class="page_n"><img src="/resources/templates/front/assets/images/main/mouse.png" alt=""> 나에게 맞는 정책 <img src="/resources/templates/front/assets/images/main/down.png" alt=""></a>
+    </div>
+    <div class="main2 fullpage page">
+        <div class="bg">
+            <div class="inner">
+                <div class="left">
+                    <div>
+                        <h1>나의<img src="/resources/templates/front/assets/images/main/main2_tit2.png" alt="맞춤형"> <em></em><span class="color_blue">정책</span></h1>
+                        <ul class="com_tab fclear">
+                            <li id="tab1" class="active"><button type="button" title="선택됨">경북청년정책</button></li>
+                            <li id="tab2"><button type="button">중앙정부 및 전국 청년정책</button></li>
+                        </ul>
+                        <div class="tabpanel_wrap">
+                            <div id="tab1_panel" class="tabpanel active">
+                            	<h1 class="hidden">경북청년정책</h1>
+                            	<form id="searchPolicyForm" method="get" action="/policy/list.tc">
+                            		<input type="hidden" name="mn" value="2379"/>
+                            		<input type="hidden" name="mn" value="5069"/>
+	                                <select name="rgnSe" title="지역 선택">
+	                                	<option value="">지역 선택</option>
+	                                	<option value="PLA0010001">경상북도</option>
+										<option value="PLA0020001">포항시</option>
+										<option value="PLA0020002">경주시</option>
+										<option value="PLA0020003">김천시</option>
+										<option value="PLA0020004">안동시</option>
+										<option value="PLA0020005">구미시</option>
+										<option value="PLA0020006">영주시</option>
+										<option value="PLA0020007">영천시</option>
+										<option value="PLA0020008">상주시</option>
+										<option value="PLA0020009">문경시</option>
+										<option value="PLA0020010">경산시</option>
+										<option value="PLA0020012">의성군</option>
+										<option value="PLA0020013">청송군</option>
+										<option value="PLA0020014">영양군</option>
+										<option value="PLA0020015">영덕군</option>
+										<option value="PLA0020016">청도군</option>
+										<option value="PLA0020017">고령군</option>
+										<option value="PLA0020018">성주군</option>
+										<option value="PLA0020019">칠곡군</option>
+										<option value="PLA0020020">예천군</option>
+										<option value="PLA0020021">봉화군</option>
+										<option value="PLA0020022">울진군</option>
+										<option value="PLA0020023">울릉군</option>
+										</select>
+	                                <h2>카테고리별</h2>
+	                                <ul id="policyTypeList">
+	                                	<li>
+		                                        <div class="checkbox1">
+											        <input type="checkbox" name="policyType" id="type1" value="YTH0040009">
+											        <label for="type1">
+														<img src="/resources/templates/front/assets/images/main/gj_icon_YTH0040009.png" alt="">
+														<span>일자리 (창업)</span>
+													</label>
+												</div>
+		                                    </li>
+		                                    <li>
+		                                        <div class="checkbox1">
+											        <input type="checkbox" name="policyType" id="type2" value="YTH0040010">
+											        <label for="type2">
+														<img src="/resources/templates/front/assets/images/main/gj_icon_YTH0040010.png" alt="">
+														<span>일자리 (취업)</span>
+													</label>
+												</div>
+		                                    </li>
+		                                    <li>
+		                                        <div class="checkbox1">
+											        <input type="checkbox" name="policyType" id="type3" value="YTH0040001">
+											        <label for="type3">
+														<img src="/resources/templates/front/assets/images/main/gj_icon_YTH0040001.png" alt="">
+														<span>건강</span>
+													</label>
+												</div>
+		                                    </li>
+		                                    <li>
+		                                        <div class="checkbox1">
+											        <input type="checkbox" name="policyType" id="type4" value="YTH0040002">
+											        <label for="type4">
+														<img src="/resources/templates/front/assets/images/main/gj_icon_YTH0040002.png" alt="">
+														<span>교육</span>
+													</label>
+												</div>
+		                                    </li>
+		                                    <li>
+		                                        <div class="checkbox1">
+											        <input type="checkbox" name="policyType" id="type5" value="YTH0040003">
+											        <label for="type5">
+														<img src="/resources/templates/front/assets/images/main/gj_icon_YTH0040003.png" alt="">
+														<span>금융</span>
+													</label>
+												</div>
+		                                    </li>
+		                                    <li>
+			                                        <button type="button" onclick="selectAllPolicyType();">
+			                                            <span>분야<br>전체선택</span>
+			                                        </button>
+			                                    </li>
+		                                    <li>
+		                                        <div class="checkbox1">
+											        <input type="checkbox" name="policyType" id="type6" value="YTH0040004">
+											        <label for="type6">
+														<img src="/resources/templates/front/assets/images/main/gj_icon_YTH0040004.png" alt="">
+														<span>문화</span>
+													</label>
+												</div>
+		                                    </li>
+		                                    <li>
+		                                        <div class="checkbox1">
+											        <input type="checkbox" name="policyType" id="type7" value="YTH0040005">
+											        <label for="type7">
+														<img src="/resources/templates/front/assets/images/main/gj_icon_YTH0040005.png" alt="">
+														<span>복지</span>
+													</label>
+												</div>
+		                                    </li>
+		                                    <li>
+		                                        <div class="checkbox1">
+											        <input type="checkbox" name="policyType" id="type8" value="YTH0040006">
+											        <label for="type8">
+														<img src="/resources/templates/front/assets/images/main/gj_icon_YTH0040006.png" alt="">
+														<span>주거비 지원</span>
+													</label>
+												</div>
+		                                    </li>
+		                                    <li>
+		                                        <div class="checkbox1">
+											        <input type="checkbox" name="policyType" id="type9" value="YTH0040007">
+											        <label for="type9">
+														<img src="/resources/templates/front/assets/images/main/gj_icon_YTH0040007.png" alt="">
+														<span>주택공급</span>
+													</label>
+												</div>
+		                                    </li>
+		                                    <li>
+		                                        <div class="checkbox1">
+											        <input type="checkbox" name="policyType" id="type10" value="YTH0040008">
+											        <label for="type10">
+														<img src="/resources/templates/front/assets/images/main/gj_icon_YTH0040008.png" alt="">
+														<span>참여</span>
+													</label>
+												</div>
+		                                    </li>
+		                                    <li>
+	                                        <button type="submit">
+	                                            <span>정책<br>찾기</span>
+	                                        </button>
+	                                    </li>
+	                                </ul>
+	                                <script>
+                                    	// 경북청년정책 분야 전체 선택
+                                    	function selectAllPolicyType() {
+                                    		if( $("[name=policyType]").length != $("[name=policyType]:checked").length ) {
+                                    			$("[name=policyType]").prop("checked", true);
+                                    		} else {
+                                    			$("[name=policyType]").prop("checked", false);
+                                    		}
+                                    	}
+                                    </script>
+								</form>
+                            </div>
+                            <div id="tab2_panel" class="tabpanel">
+                            <h1 class="hidden">중앙정부 및 전국 청년정책</h1>
+                                <form action="/policy/ycList.tc" method="get">
+	                                <select name="srchPlcyTp" id="" title="정책유형 선택">
+	                                	<option value="">정책유형 선택</option>
+	                                    <option value="004001">취업지원</option>
+	                                    <option value="004002">창업지원</option>
+	                                    <option value="004003">주거·금융</option>
+	                                    <option value="004004">생활·복지</option>
+	                                    <option value="004005">정책참여</option>
+	                                    <option value="004006">코로나19</option>
+	                                </select>
+	                                <h2>카테고리별</h2>
+                                	<input type="hidden" name="mn" value="2381"/>
+                            		<input type="hidden" name="mn" value="5072"/>
+	                                <ul>
+	                                	<li><div class="checkbox1"><input type="checkbox" id="rgnSe_0" name="rgnSe" value="003002001" /><label for="rgnSe_0">서울</label></div></li>
+	                                	<li><div class="checkbox1"><input type="checkbox" id="rgnSe_1" name="rgnSe" value="003002008" /><label for="rgnSe_1">경기</label></div></li>
+						             	<li><div class="checkbox1"><input type="checkbox" id="rgnSe_2" name="rgnSe" value="003002004" /><label for="rgnSe_2">인천</label></div></li>
+						             	<li><div class="checkbox1"><input type="checkbox" id="rgnSe_3" name="rgnSe" value="003002002" /><label for="rgnSe_3">부산 </label></div></li>
+						             	<li><div class="checkbox1"><input type="checkbox" id="rgnSe_4" name="rgnSe" value="003002003" /><label for="rgnSe_4">대구</label></div></li>
+						             	<li><div class="checkbox1"><input type="checkbox" id="rgnSe_5" name="rgnSe" value="003002005" /><label for="rgnSe_5">광주</label></div></li>
+						             	<li><div class="checkbox1"><input type="checkbox" id="rgnSe_6" name="rgnSe" value="003002006" /><label for="rgnSe_6">대전</label></div></li>
+						             	<li><div class="checkbox1"><input type="checkbox" id="rgnSe_7" name="rgnSe" value="003002007" /><label for="rgnSe_7">울산</label></div></li>
+						             	<li><div class="checkbox1"><input type="checkbox" id="rgnSe_8" name="rgnSe" value="003002017" /><label for="rgnSe_8">세종</label></div></li>
+						             	<li><div class="checkbox1"><input type="checkbox" id="rgnSe_9" name="rgnSe" value="003002009" /><label for="rgnSe_9">강원</label></div></li>
+						             	<li><div class="checkbox1"><input type="checkbox" id="rgnSe_10" name="rgnSe" value="003002010" /><label for="rgnSe_10">충북</label></div></li>
+						             	<li><div class="checkbox1"><input type="checkbox" id="rgnSe_11" name="rgnSe" value="003002011" /><label for="rgnSe_11">충남</label></div></li>
+						             	<li><div class="checkbox1"><input type="checkbox" id="rgnSe_12" name="rgnSe" value="003002012" /><label for="rgnSe_12">전북</label></div></li>
+						             	<li><div class="checkbox1"><input type="checkbox" id="rgnSe_13" name="rgnSe" value="003002013" /><label for="rgnSe_13">전남</label></div></li>
+						             	<li><div class="checkbox1"><input type="checkbox" id="rgnSe_14" name="rgnSe" value="003002014" /><label for="rgnSe_14">경북</label></div></li>
+						             	<li><div class="checkbox1"><input type="checkbox" id="rgnSe_15" name="rgnSe" value="003002015" /><label for="rgnSe_15">경남</label></div></li>
+						             	<li><div class="checkbox1"><input type="checkbox" id="rgnSe_16" name="rgnSe" value="003002016" /><label for="rgnSe_16">제주</label></div></li>
+						             	<!-- <li>
+							             	<div class="checkbox1">
+										        <input type="checkbox" name="" id="agree1_1">
+		        								<label for="agree1_1">중앙<br>부처</label>
+											</div>
+										</li>
+										<li>
+											<div class="checkbox1">
+										        <input type="checkbox" name="" id="agree1_1">
+		        								<label for="agree1_1">경기</label>
+											</div>
+										</li>
+										<li>
+											<div class="checkbox1">
+										        <input type="checkbox" name="" id="agree1_1">
+		        								<label for="agree1_1">인천</label>
+											</div>
+										</li>
+										<li>
+											<div class="checkbox1">
+										        <input type="checkbox" name="" id="agree1_1">
+		        								<label for="agree1_1">부산</label>
+											</div>
+										</li>
+										<li>
+											<div class="checkbox1">
+										        <input type="checkbox" name="" id="agree1_1">
+		        								<label for="agree1_1">대구</label>
+											</div>
+										</li>
+										<li>
+											<div class="checkbox1">
+										        <input type="checkbox" name="" id="agree1_1">
+		        								<label for="agree1_1">광주</label>
+											</div>
+										</li>
+										<li>
+											<div class="checkbox1">
+										        <input type="checkbox" name="" id="agree1_1">
+		        								<label for="agree1_1">대전</label>
+											</div>
+										</li>
+										<li>
+											<div class="checkbox1">
+										        <input type="checkbox" name="" id="agree1_1">
+		        								<label for="agree1_1">울산</label>
+											</div>
+										</li>
+										<li><button type="button">서울 외<br>지역천체</button></li>
+										<li>
+											<div class="checkbox1">
+										        <input type="checkbox" name="" id="agree1_1">
+		        								<label for="agree1_1">강원</label>
+											</div>
+										</li>
+										<li>
+											<div class="checkbox1">
+										        <input type="checkbox" name="" id="agree1_1">
+		        								<label for="agree1_1">충북</label>
+											</div>
+										</li>
+										<li>
+											<div class="checkbox1">
+										        <input type="checkbox" name="" id="agree1_1">
+		        								<label for="agree1_1">충남</label>
+											</div>
+										</li>
+										<li>
+											<div class="checkbox1">
+										        <input type="checkbox" name="" id="agree1_1">
+		        								<label for="agree1_1">전북</label>
+											</div>
+										</li>
+										<li>
+											<div class="checkbox1">
+										        <input type="checkbox" name="" id="agree1_1">
+		        								<label for="agree1_1">전남</label>
+											</div>
+										</li>
+										<li>
+											<div class="checkbox1">
+										        <input type="checkbox" name="" id="agree1_1">
+		        								<label for="agree1_1">경북</label>
+											</div>
+										</li>
+										<li>
+											<div class="checkbox1">
+										        <input type="checkbox" name="" id="agree1_1">
+		        								<label for="agree1_1">경남</label>
+											</div>
+										</li>
+										<li>
+											<div class="checkbox1">
+										        <input type="checkbox" name="" id="agree1_1">
+		        								<label for="agree1_1">제주</label>
+											</div>
+										</li> -->
+	                                    <li><button type="submit">정책<br>찾기</button></li>
+	                                </ul>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="right">
+                	<h1>청년 <span>공간<em>(PLACE)</em></span></h1>
+					<p><em class="w1024n">지도를 클릭하시면,</em> 지역별 청년공간을 자세히 볼 수 있습니다.</p>
+                    <div class="map_area">
+                        <ul class="map_img">
+                        	<li class="active"><img src="/resources/templates/front/assets/images/main/main2_map.png?v1" alt=""></li>
+							<li><img src="/resources/templates/front/assets/images/main/main2_map01.png?v1" alt=""></li>
+							<li><img src="/resources/templates/front/assets/images/main/main2_map02.png?v1" alt=""></li>
+							<li><img src="/resources/templates/front/assets/images/main/main2_map03.png?v1" alt=""></li>
+							<li><img src="/resources/templates/front/assets/images/main/main2_map04.png?v1" alt=""></li>
+							<li><img src="/resources/templates/front/assets/images/main/main2_map05.png?v1" alt=""></li>
+							<li><img src="/resources/templates/front/assets/images/main/main2_map06.png?v1" alt=""></li>
+							<li><img src="/resources/templates/front/assets/images/main/main2_map07.png?v1" alt=""></li>
+							<li><img src="/resources/templates/front/assets/images/main/main2_map08.png?v1" alt=""></li>
+							<li><img src="/resources/templates/front/assets/images/main/main2_map09.png?v1" alt=""></li>
+							<li><img src="/resources/templates/front/assets/images/main/main2_map10.png?v1" alt=""></li>
+							<li><img src="/resources/templates/front/assets/images/main/main2_map11.png?v1" alt=""></li>
+							<li><img src="/resources/templates/front/assets/images/main/main2_map12.png?v1" alt=""></li>
+							<li><img src="/resources/templates/front/assets/images/main/main2_map13.png?v1" alt=""></li>
+							<li><img src="/resources/templates/front/assets/images/main/main2_map14.png?v1" alt=""></li>
+							<li><img src="/resources/templates/front/assets/images/main/main2_map15.png?v1" alt=""></li>
+							<li><img src="/resources/templates/front/assets/images/main/main2_map16.png?v1" alt=""></li>
+							<li><img src="/resources/templates/front/assets/images/main/main2_map18.png?v1" alt=""></li>
+							<li><img src="/resources/templates/front/assets/images/main/main2_map19.png?v1" alt=""></li>
+							<li><img src="/resources/templates/front/assets/images/main/main2_map20.png?v1" alt=""></li>
+							<li><img src="/resources/templates/front/assets/images/main/main2_map21.png?v1" alt=""></li>
+							<li><img src="/resources/templates/front/assets/images/main/main2_map22.png?v1" alt=""></li>
+							<li><img src="/resources/templates/front/assets/images/main/main2_map23.png?v1" alt=""></li>
+                        </ul>
+                        <ul class="map_txt">
+                        	<li><a href="/space/list.tc?pageNo=5013&mn=2388&">전체</a></li>
+                        	<li><a href="/space/list.tc?pageNo=5013&mn=2388&srchRgnCd=PLA0020022">울진</a></li>
+                        	<li><a href="/space/list.tc?pageNo=5013&mn=2388&srchRgnCd=PLA0020021">봉화</a></li>
+                        	<li><a href="/space/list.tc?pageNo=5013&mn=2388&srchRgnCd=PLA0020006">영주</a></li>
+                        	<li><a href="/space/list.tc?pageNo=5013&mn=2388&srchRgnCd=PLA0020009">문경</a></li>
+                        	<li><a href="/space/list.tc?pageNo=5013&mn=2388&srchRgnCd=PLA0020020">예천</a></li>
+                        	<li><a href="/space/list.tc?pageNo=5013&mn=2388&srchRgnCd=PLA0020008">상주</a></li>
+                        	<li><a href="/space/list.tc?pageNo=5013&mn=2388&srchRgnCd=PLA0020014">영양</a></li>
+                        	<li><a href="/space/list.tc?pageNo=5013&mn=2388&srchRgnCd=PLA0020004">안동</a></li>
+                        	<li><a href="/space/list.tc?pageNo=5013&mn=2388&srchRgnCd=PLA0020012">의성</a></li>
+                        	<li><a href="/space/list.tc?pageNo=5013&mn=2388&srchRgnCd=PLA0020015">영덕</a></li>
+                        	<li><a href="/space/list.tc?pageNo=5013&mn=2388&srchRgnCd=PLA0020013">청송</a></li>
+                        	<li><a href="/space/list.tc?pageNo=5013&mn=2388&srchRgnCd=PLA0020003">김천</a></li>
+                        	<li><a href="/space/list.tc?pageNo=5013&mn=2388&srchRgnCd=PLA0020005">구미</a></li>
+                        	<li><a href="/space/list.tc?pageNo=5013&mn=2388&srchRgnCd=PLA0020018">성주</a></li>
+                        	<li><a href="/space/list.tc?pageNo=5013&mn=2388&srchRgnCd=PLA0020017">고령</a></li>
+                        	<li><a href="/space/list.tc?pageNo=5013&mn=2388&srchRgnCd=PLA0020019">칠곡</a></li>
+
+                        	<li><a href="/space/list.tc?pageNo=5013&mn=2388&srchRgnCd=PLA0020007">영천</a></li>
+                        	<li><a href="/space/list.tc?pageNo=5013&mn=2388&srchRgnCd=PLA0020010">경산</a></li>
+                        	<li><a href="/space/list.tc?pageNo=5013&mn=2388&srchRgnCd=PLA0020016">청도</a></li>
+                        	<li><a href="/space/list.tc?pageNo=5013&mn=2388&srchRgnCd=PLA0020001">포항</a></li>
+                        	<li><a href="/space/list.tc?pageNo=5013&mn=2388&srchRgnCd=PLA0020002">경주</a></li>
+                        	<li>
+                        		<a href="/space/list.tc?pageNo=5013&mn=2388&srchRgnCd=PLA0020023">울릉</a>
+                        		<a href="/space/list.tc?pageNo=5013&mn=2388&srchRgnCd=PLA0020023">독도</a>
+                        	</li>
+                        </ul>
+                    </div>
+                    <div class="box">
+                    	전체 청년공간
+                    	<p><span>54</span>개</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <a href="javascript:fullpage.moveFullPage('3')" class="page_n"><img src="/resources/templates/front/assets/images/main/mouse.png" alt=""> 청년기업 STORY <img src="/resources/templates/front/assets/images/main/down.png" alt=""></a>
+    </div>
+    <div class="main3 fullpage page">
+        <div class="inner">
+            <div class="left">
+                <h1>청년기업<a href="/ent/list.tc?mn=2395&pageNo=5022" class=""><img src="/resources/templates/front/assets/images/main/more3.png" alt=""></a></h1>
+                <div class="slide pager">
+                	<div>
+	                        <a href="/ent/list.tc?pageNo=5022&mn=2414&entNo=143">
+	                            <img class="thumb" alt="" src="/jfile/readFile.tc?scale=70&fileId=JF00000008878&fileSeq=1"onerror="this.onerror=null; this.src='/resources/templates/front/assets/images/empty_list.jpg';"/>
+				                	<h1>(주)천국박스</h1>
+	                            <div>
+	                                <p>경북 안동시 대안로 98-10 (옥야동) 2호</p>
+	                            </div>
+	                        </a>
+	                    </div>
+                	<div>
+	                        <a href="/ent/list.tc?pageNo=5022&mn=2414&entNo=139">
+	                            <img class="thumb" alt="" src="/jfile/readFile.tc?scale=70&fileId=JF00000005353&fileSeq=1"onerror="this.onerror=null; this.src='/resources/templates/front/assets/images/empty_list.jpg';"/>
+				                	<h1>나아(Na-A)</h1>
+	                            <div>
+	                                <p>경북 경산시 경청로222길 86 (백천동, 중소기업진흥공단 대구경북연수원) </p>
+	                            </div>
+	                        </a>
+	                    </div>
+                	<div>
+	                        <a href="/ent/list.tc?pageNo=5022&mn=2414&entNo=138">
+	                            <img class="thumb" alt="" src="/jfile/readFile.tc?scale=70&fileId=JF00000005004&fileSeq=1"onerror="this.onerror=null; this.src='/resources/templates/front/assets/images/empty_list.jpg';"/>
+				                	<h1>(주)스마트크리에이터</h1>
+	                            <div>
+	                                <p>경북 경산시 대학로 316 (조영동, 벤처창업관) 영남대학교 2층 202호</p>
+	                            </div>
+	                        </a>
+	                    </div>
+                	<div>
+	                        <a href="/ent/list.tc?pageNo=5022&mn=2414&entNo=135">
+	                            <img class="thumb" alt="" src="/jfile/readFile.tc?scale=70&fileId=JF00000003263&fileSeq=1"onerror="this.onerror=null; this.src='/resources/templates/front/assets/images/empty_list.jpg';"/>
+				                	<h1>숨,명상&amp;힐링센터</h1>
+	                            <div>
+	                                <p>경북 울진군 울진읍 울진중앙로 41-8 (읍내리) 1층</p>
+	                            </div>
+	                        </a>
+	                    </div>
+                	<div>
+	                        <a href="/ent/list.tc?pageNo=5022&mn=2414&entNo=134">
+	                            <img class="thumb" alt="" src="/jfile/readFile.tc?scale=70&fileId=JF00000003131&fileSeq=1"onerror="this.onerror=null; this.src='/resources/templates/front/assets/images/empty_list.jpg';"/>
+				                	<h1>가온길헤어</h1>
+	                            <div>
+	                                <p>경북 포항시 남구 상도남로 35 (상도동) 가온길헤어</p>
+	                            </div>
+	                        </a>
+	                    </div>
+                	<div>
+	                        <a href="/ent/list.tc?pageNo=5022&mn=2414&entNo=133">
+	                            <img class="thumb" alt="" src="/jfile/readFile.tc?scale=70&fileId=JF00000003097&fileSeq=1"onerror="this.onerror=null; this.src='/resources/templates/front/assets/images/empty_list.jpg';"/>
+				                	<h1>주식회사그린플래닛랩</h1>
+	                            <div>
+	                                <p>경북 문경시 호서로 175 (흥덕동, 흥덕 천년나무) 101-1002호</p>
+	                            </div>
+	                        </a>
+	                    </div>
+                	<div>
+	                        <a href="/ent/list.tc?pageNo=5022&mn=2414&entNo=130">
+	                            <img class="thumb" alt="" src="/jfile/readFile.tc?scale=70&fileId=JF00000002944&fileSeq=1"onerror="this.onerror=null; this.src='/resources/templates/front/assets/images/empty_list.jpg';"/>
+				                	<h1>스테이청춘</h1>
+	                            <div>
+	                                <p>경북 청송군 청송읍 금월로 272 (월막리) 1층 스테이청춘</p>
+	                            </div>
+	                        </a>
+	                    </div>
+                	<div>
+	                        <a href="/ent/list.tc?pageNo=5022&mn=2414&entNo=129">
+	                            <img class="thumb" alt="" src="/jfile/readFile.tc?scale=70&fileId=JF00000002803&fileSeq=1"onerror="this.onerror=null; this.src='/resources/templates/front/assets/images/empty_list.jpg';"/>
+				                	<h1>(주)맹그라미</h1>
+	                            <div>
+	                                <p>경북 안동시 경북대로 427 (옥동, 대신빌딩) 202호</p>
+	                            </div>
+	                        </a>
+	                    </div>
+                	<div>
+	                        <a href="/ent/list.tc?pageNo=5022&mn=2414&entNo=128">
+	                            <img class="thumb" alt="" src="/jfile/readFile.tc?scale=70&fileId=JF00000002761&fileSeq=1"onerror="this.onerror=null; this.src='/resources/templates/front/assets/images/empty_list.jpg';"/>
+				                	<h1>디자인문</h1>
+	                            <div>
+	                                <p>경북 영천시 중앙동3길 10 (문외동) 3층</p>
+	                            </div>
+	                        </a>
+	                    </div>
+                	<div>
+	                        <a href="/ent/list.tc?pageNo=5022&mn=2414&entNo=123">
+	                            <img class="thumb" alt="" src="/jfile/readFile.tc?scale=70&fileId=JF00000002703&fileSeq=1"onerror="this.onerror=null; this.src='/resources/templates/front/assets/images/empty_list.jpg';"/>
+				                	<h1>주식회사 안동온사람들</h1>
+	                            <div>
+	                                <p>경북 안동시 경동로 1375 (송천동, 안동대학교) 안동대학교 지역산학협력관 408호</p>
+	                            </div>
+	                        </a>
+	                    </div>
+                	<div>
+	                        <a href="/ent/list.tc?pageNo=5022&mn=2414&entNo=121">
+	                            <img class="thumb" alt="" src="/jfile/readFile.tc?scale=70&fileId=JF00000002606&fileSeq=1"onerror="this.onerror=null; this.src='/resources/templates/front/assets/images/empty_list.jpg';"/>
+				                	<h1>노란열매농업회사법인주식회사</h1>
+	                            <div>
+	                                <p>경북 성주군 벽진면 벽봉로 89 (수촌리) 노란열매</p>
+	                            </div>
+	                        </a>
+	                    </div>
+                	<div>
+	                        <a href="/ent/list.tc?pageNo=5022&mn=2414&entNo=120">
+	                            <img class="thumb" alt="" src="/jfile/readFile.tc?scale=70&fileId=JF00000002815&fileSeq=1"onerror="this.onerror=null; this.src='/resources/templates/front/assets/images/empty_list.jpg';"/>
+				                	<h1>(주)메이드인피플</h1>
+	                            <div>
+	                                <p>경북 의성군 안계면 소보안계로 1912 (용기리) 워케이션하우스 논밭에</p>
+	                            </div>
+	                        </a>
+	                    </div>
+                	</div>
+                <div class="search">
+                	<form method="get" action="/ent/list.tc">
+                		<input type="hidden" name="mn" value="2395"/>
+                		<input type="hidden" name="pageNo" value="5022"/>
+	                    <div class="wrap">
+	                       	<input type="text" title="청년기업 검색" name="srchEntNm" placeholder="청년기업 검색">
+	                       	<button type="submit" onclick="searchEntList($(this));">검색</button>
+	                    </div>
+                    	<a href="/ent/info.tc?pageNo=5022&mn=2395">청년기업 등록</a>
+	                </form>
+                </div>
+                </div>
+
+            <div class="right">
+                <h1>청년프리랜서<a href="/frlc/list.tc?mn=2414&pageNo=5023" class=""><img src="/resources/templates/front/assets/images/main/more3.png" alt=""></a></h1>
+                <div class="slide pager">
+                	<div>
+	                        <a href="/frlc/list.tc?pageNo=5023&mn=2414&frlcNo=46">
+	                            <img class="thumb" alt="" src="/jfile/readFile.tc?scale=70&fileId=JF00000117870&fileSeq=1"onerror="this.onerror=null; this.src='/resources/templates/front/assets/images/empty_list.jpg';"/>
+				                	<h1>지금 내 집은 나를 회복 시키고 있나요? | 공간과 일상을 바꾸는 체험형 워크숍</h1>
+	                            <div>
+	                                <p>교육 구성 및 진행 조건에 따라 최종 금액 협의 후 진행합니다</p>
+	                            </div>
+	                        </a>
+	                    </div>
+                	<div>
+	                        <a href="/frlc/list.tc?pageNo=5023&mn=2414&frlcNo=45">
+	                            <img class="thumb" alt="" src="/jfile/readFile.tc?scale=70&fileId=JF00000112519&fileSeq=1"onerror="this.onerror=null; this.src='/resources/templates/front/assets/images/empty_list.jpg';"/>
+				                	<h1>초록의 위로를 전하는 조화소품/테라리움</h1>
+	                            <div>
+	                                <p>30000~70000</p>
+	                            </div>
+	                        </a>
+	                    </div>
+                	<div>
+	                        <a href="/frlc/list.tc?pageNo=5023&mn=2414&frlcNo=44">
+	                            <img class="thumb" alt="" src="/jfile/readFile.tc?scale=70&fileId=JF00000090729&fileSeq=1"onerror="this.onerror=null; this.src='/resources/templates/front/assets/images/empty_list.jpg';"/>
+				                	<h1>전문 개발 가능합니다. #홈페이지 #앱스토어 #업무프로그램 #기업용시스템</h1>
+	                            <div>
+	                                <p>500,000원 ~ 협의가능</p>
+	                            </div>
+	                        </a>
+	                    </div>
+                	<div>
+	                        <a href="/frlc/list.tc?pageNo=5023&mn=2414&frlcNo=43">
+	                            <img class="thumb" alt="" src="/jfile/readFile.tc?scale=70&fileId=JF00000076544&fileSeq=1"onerror="this.onerror=null; this.src='/resources/templates/front/assets/images/empty_list.jpg';"/>
+				                	<h1>어치브(인디밴드)</h1>
+	                            <div>
+	                                <p>0원~</p>
+	                            </div>
+	                        </a>
+	                    </div>
+                	<div>
+	                        <a href="/frlc/list.tc?pageNo=5023&mn=2414&frlcNo=42">
+	                            <img class="thumb" alt="" src="/jfile/readFile.tc?scale=70&fileId=JF00000075260&fileSeq=1"onerror="this.onerror=null; this.src='/resources/templates/front/assets/images/empty_list.jpg';"/>
+				                	<h1>싱어송라이터 변동주 입니다</h1>
+	                            <div>
+	                                <p>협의필요</p>
+	                            </div>
+	                        </a>
+	                    </div>
+                	<div>
+	                        <a href="/frlc/list.tc?pageNo=5023&mn=2414&frlcNo=41">
+	                            <img class="thumb" alt="" src="/jfile/readFile.tc?scale=70&fileId=JF00000075054&fileSeq=1"onerror="this.onerror=null; this.src='/resources/templates/front/assets/images/empty_list.jpg';"/>
+				                	<h1>홍보영상 제작</h1>
+	                            <div>
+	                                <p>100,000~</p>
+	                            </div>
+	                        </a>
+	                    </div>
+                	<div>
+	                        <a href="/frlc/list.tc?pageNo=5023&mn=2414&frlcNo=40">
+	                            <img class="thumb" alt="" src="/jfile/readFile.tc?scale=70&fileId=JF00000065798&fileSeq=1"onerror="this.onerror=null; this.src='/resources/templates/front/assets/images/empty_list.jpg';"/>
+				                	<h1>색채심리</h1>
+	                            <div>
+	                                <p>협의</p>
+	                            </div>
+	                        </a>
+	                    </div>
+                	<div>
+	                        <a href="/frlc/list.tc?pageNo=5023&mn=2414&frlcNo=39">
+	                            <img class="thumb" alt="" src="/jfile/readFile.tc?scale=70&fileId=JF00000058415&fileSeq=1"onerror="this.onerror=null; this.src='/resources/templates/front/assets/images/empty_list.jpg';"/>
+				                	<h1>운을 부르는 나만의 부적 키링 만들기</h1>
+	                            <div>
+	                                <p>30,000원~50,000</p>
+	                            </div>
+	                        </a>
+	                    </div>
+                	</div>
+                <div class="search">
+                	<form method="get" action="/frlc/list.tc">
+                		<input type="hidden" name="mn" value="2414"/>
+                		<input type="hidden" name="pageNo" value="5023"/>
+	                    <div class="wrap">
+	                       	<input type="text" title="청년프리랜서 검색" name="srchRprsTtl" placeholder="청년프리랜서 검색">
+	                       	<button type="submit" onclick="searchFrlcList($(this));">검색</button>
+	                    </div>
+                    	<a href="/frlc/info.tc?pageNo=5023&mn=2414" class="">프리랜서 등록</a>
+	                </form>
+                </div>
+            </div>
+        </div>
+
+        <a href="javascript:fullpage.moveFullPage('4')" class="page_n"><img src="/resources/templates/front/assets/images/main/mouse.png" alt=""> 홍보영상 <img src="/resources/templates/front/assets/images/main/down.png" alt=""></a>
+    </div>
+    <div class="main4 fullpage page">
+        <div class="inner">
+            <div class="left">
+                <span>모든 청년들이 함께 소통하고 미래를 만들어가는</span>
+                <h1>청년 참여 <em>공간</em><span>!</span> </h1>
+                <div>
+	                <h1><em>청년인재</em> 등록서비스</h1>
+	                <p>청년인재등록 서비스는 도내 청년의 참여를 확대하고 <br>청년활동을 지원하기 위한 시스템입니다.</p>
+	                <img src="/resources/templates/front/assets/images/main/gj_txt.png" alt="">
+	                <a href="/page/2385/5106.tc">등록하기</a>
+                </div>
+                <!-- <ul class="slide pager">
+                    <li>
+                        <a href="#">
+                            <span>08.01</span>
+                            <p>청년구직활동 끝나고 바로? 취업성공패키지 참여가능한가요?</p>
+                        </a>
+                        <a href="#">
+                            <span>08.16</span>
+                            <p>면접정장을 무료로 어느 기한까지 빌려주시나요?</p>
+                        </a>
+                        <a href="#">
+                            <span>09.24</span>
+                            <p>청년고용사업에는 어떠한 것들이 있나요?</p>
+                        </a>
+                        <a href="#">
+                            <span>09.25</span>
+                            <p>청년 복지 포인트는 어디서 어떻게 적립이 가능한가요?</p>
+                        </a>
+                        <a href="#">
+                            <span>09.27</span>
+                            <p>경북의 일자리 지원사업을 모아서 보여주세요~</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <span>08.01</span>
+                            <p>청년구직활동 끝나고 바로? 취업성공패키지 참여가능한가요?</p>
+                        </a>
+                        <a href="#">
+                            <span>08.16</span>
+                            <p>면접정장을 무료로 어느 기한까지 빌려주시나요?</p>
+                        </a>
+                        <a href="#">
+                            <span>09.24</span>
+                            <p>청년고용사업에는 어떠한 것들이 있나요?</p>
+                        </a>
+                        <a href="#">
+                            <span>09.25</span>
+                            <p>청년 복지 포인트는 어디서 어떻게 적립이 가능한가요?</p>
+                        </a>
+                        <a href="#">
+                            <span>09.27</span>
+                            <p>경북의 일자리 지원사업을 모아서 보여주세요~</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <span>08.01</span>
+                            <p>청년구직활동 끝나고 바로? 취업성공패키지 참여가능한가요?</p>
+                        </a>
+                        <a href="#">
+                            <span>08.16</span>
+                            <p>면접정장을 무료로 어느 기한까지 빌려주시나요?</p>
+                        </a>
+                        <a href="#">
+                            <span>09.24</span>
+                            <p>청년고용사업에는 어떠한 것들이 있나요?</p>
+                        </a>
+                        <a href="#">
+                            <span>09.25</span>
+                            <p>청년 복지 포인트는 어디서 어떻게 적립이 가능한가요?</p>
+                        </a>
+                        <a href="#">
+                            <span>09.27</span>
+                            <p>경북의 일자리 지원사업을 모아서 보여주세요~</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <span>08.01</span>
+                            <p>청년구직활동 끝나고 바로? 취업성공패키지 참여가능한가요?</p>
+                        </a>
+                        <a href="#">
+                            <span>08.16</span>
+                            <p>면접정장을 무료로 어느 기한까지 빌려주시나요?</p>
+                        </a>
+                        <a href="#">
+                            <span>09.24</span>
+                            <p>청년고용사업에는 어떠한 것들이 있나요?</p>
+                        </a>
+                        <a href="#">
+                            <span>09.25</span>
+                            <p>청년 복지 포인트는 어디서 어떻게 적립이 가능한가요?</p>
+                        </a>
+                        <a href="#">
+                            <span>09.27</span>
+                            <p>경북의 일자리 지원사업을 모아서 보여주세요~</p>
+                        </a>
+                    </li>
+                </ul> -->
+            </div>
+            <div class="right">
+                <div class="sns">
+                    <a href="https://www.instagram.com/gbyouth2772" title="새창열림" target="_blank" class=""><img src="/resources/templates/front/assets/images/main/insta.png" alt="인스타그램"></a>
+                    <a href="https://www.facebook.com/gbyouth054" title="새창열림" target="_blank" class=""><img src="/resources/templates/front/assets/images/main/facebook.png" alt="페이스북"></a>
+                    <a href="https://blog.naver.com/gbyouth2772" title="새창열림" target="_blank" class=""><img src="/resources/templates/front/assets/images/main/blog.png" alt="네이버블로그"></a>
+                    <a href="http://pf.kakao.com/_pxixnxfxj" title="새창열림" target="_blank" class=""><img src="/resources/templates/front/assets/images/main/channel.png" alt="카카오채널"></a>
+                    <a href="https://www.youtube.com/@gbyouth2772" title="새창열림" target="_blank" class=""><img src="/resources/templates/front/assets/images/main/youtube.png" alt="유튜브"></a>
+                </div>
+                <div class="btn">
+                    <div>
+                        <span>01</span>
+                        <div class="progress" role="progressbar" aria-valuemin="0" aria-valuemax="100"></div>
+                        <em></em>
+                    </div>
+                    <button type="button" class="prev"><img src="/resources/templates/front/assets/images/main/prev.png" alt="이전"></button>
+                    <button class="btn-pause pause" type="button" style="display: inline-block;"><img src="/resources/templates/front/assets/images/main/stop.png" alt="멈춤"></button>
+                    <button class="btn-pause play" type="button" style="display: none;"><img src="/resources/templates/front/assets/images/main/play.png" alt="재생"></button>
+                    <button type="button" class="next"><img src="/resources/templates/front/assets/images/main/next.png" alt="다음"></button>
+                </div>
+                <div class="slide">
+                	<div class="pointer"
+                			
+			                		onclick="javascript:location.href='/board/detail.tc?mn=2418&mngNo=2&pageNo=5025&boardNo=1703';"
+                				
+                			>
+	                        <div class="img">
+	                        	<img src="https://gbyouth.go.kr:1443/rest/stream/ce2b87cc-3260-497e-955b-4a1be2fe7621/thumbnail;size=380*234" alt="">
+	                        </div>
+	                        <div class="top">
+	                            <p>
+	                            	복지</p>
+	                            <div class="hits">
+	                                <img src="/resources/templates/front/assets/images/main/star_g.png" alt="">
+	                                <span>조회수 <em>110</em>회</span>
+	                            </div>
+	                        </div>
+	                        <a href="#" title="새창열림" target="_blank" class="bot">
+	                            <div>
+	                                <h1>경북 청년애꿈수당-영특한크루(경북청년정책 서포터즈)</h1>
+	                                <p>관리자</p>
+	                            </div>
+	                        </a>
+	                    </div>
+                	<div class="pointer"
+                			
+			                		onclick="javascript:location.href='/board/detail.tc?mn=2418&mngNo=2&pageNo=5025&boardNo=1702';"
+                				
+                			>
+	                        <div class="img">
+	                        	<img src="https://gbyouth.go.kr:1443/rest/stream/cb610607-0b44-468f-a567-880927289f55/thumbnail;size=380*234" alt="">
+	                        </div>
+	                        <div class="top">
+	                            <p>
+	                            	복지</p>
+	                            <div class="hits">
+	                                <img src="/resources/templates/front/assets/images/main/star_g.png" alt="">
+	                                <span>조회수 <em>59</em>회</span>
+	                            </div>
+	                        </div>
+	                        <a href="#" title="새창열림" target="_blank" class="bot">
+	                            <div>
+	                                <h1>천원의 아침밥-영특한크루(경북청년정책 서포터즈)</h1>
+	                                <p>관리자</p>
+	                            </div>
+	                        </a>
+	                    </div>
+                	<div class="pointer"
+                			
+			                		onclick="javascript:location.href='/board/detail.tc?mn=2418&mngNo=2&pageNo=5025&boardNo=1701';"
+                				
+                			>
+	                        <div class="img">
+	                        	<img src="https://gbyouth.go.kr:1443/rest/stream/d6fa8a3e-c64c-4cd4-a4ee-68d1d78ceb9a/thumbnail;size=380*234" alt="">
+	                        </div>
+	                        <div class="top">
+	                            <p>
+	                            	참여</p>
+	                            <div class="hits">
+	                                <img src="/resources/templates/front/assets/images/main/star_g.png" alt="">
+	                                <span>조회수 <em>118</em>회</span>
+	                            </div>
+	                        </div>
+	                        <a href="#" title="새창열림" target="_blank" class="bot">
+	                            <div>
+	                                <h1>상주시 꿈이음 청춘카페-영특한크루(경북청년정책 서포터즈)</h1>
+	                                <p>관리자</p>
+	                            </div>
+	                        </a>
+	                    </div>
+                	<div class="pointer"
+                			
+			                		onclick="javascript:location.href='/board/detail.tc?mn=2418&mngNo=2&pageNo=5025&boardNo=1700';"
+                				
+                			>
+	                        <div class="img">
+	                        	<img src="https://gbyouth.go.kr:1443/rest/stream/f5151801-b53d-4cb3-be0b-f43d27a44bab/thumbnail;size=380*234" alt="">
+	                        </div>
+	                        <div class="top">
+	                            <p>
+	                            	참여</p>
+	                            <div class="hits">
+	                                <img src="/resources/templates/front/assets/images/main/star_g.png" alt="">
+	                                <span>조회수 <em>110</em>회</span>
+	                            </div>
+	                        </div>
+	                        <a href="#" title="새창열림" target="_blank" class="bot">
+	                            <div>
+	                                <h1>경산 꿈이음 청춘카페-영특한크루(경북청년정책 서포터즈)</h1>
+	                                <p>관리자</p>
+	                            </div>
+	                        </a>
+	                    </div>
+                	<div class="pointer"
+                			
+			                		onclick="javascript:location.href='/board/detail.tc?mn=2418&mngNo=2&pageNo=5025&boardNo=1667';"
+                				
+                			>
+	                        <div class="img">
+	                        	<img src="https://gbyouth.go.kr:1443/rest/stream/41c0a902-04a6-48ab-8cfa-289521d8f64e/thumbnail;size=380*234" alt="">
+	                        </div>
+	                        <div class="top">
+	                            <p>
+	                            	참여</p>
+	                            <div class="hits">
+	                                <img src="/resources/templates/front/assets/images/main/star_g.png" alt="">
+	                                <span>조회수 <em>45</em>회</span>
+	                            </div>
+	                        </div>
+	                        <a href="#" title="새창열림" target="_blank" class="bot">
+	                            <div>
+	                                <h1>2026 경북 청년정책참여단 하계 워크숍 현장-3</h1>
+	                                <p>관리자</p>
+	                            </div>
+	                        </a>
+	                    </div>
+                	</div>
+            </div>
+        </div>
+        <a href="javascript:fullpage.moveFullPage('1')" class="page_n"><img src="/resources/templates/front/assets/images/main/mouse.png" alt=""> 상단으로 <img src="/resources/templates/front/assets/images/main/down.png" alt=""></a>
+    </div>
+</div>
+<script>
+	var wa_index = 0;
+
+	$(function() {
+		// 팝업
+		
+	})
+
+	//오늘하루 팝업을 열지않음
+	function notTodayPopup(obj) {
+		var seq = obj.attr("data-seq");
+		setCookie("POPUP_"+seq,"HIDE",1,"","gbyouth.go.kr");
+		obj.parents(".layer_popup").hide();
+	}
+	
+	/* function fnModalPopup(no, e) {
+		if(e == undefined || (e.target.tagName != "LABEL" && e.target.tagName != "INPUT")) {
+			var url = '/policy/detail.modal';
+			var params = {
+				"templateRoot": "/resources/templates/front",
+				"no":no
+			};
+			console.log('url', url);
+			console.log('params', params);
+			//console.log('e.target.parentNode', e.target.parentNode);
+			showActionModal('detailModal',url,params,0,0,0,0,'Y');
+			
+			//$(".youth_list6").removeClass("active")
+			e.target.parentNode.parentNode.classList.add('active');
+		}
+		
+		wa_index = $(e.target.parentNode).index();
+		setTimeout(function(){
+	      	$(".youth_pop .wrap").focus();
+		},200)
+	} */
+			
+	
+	$.ajax({
+		type: "POST",
+		url: "/policy/list.json",
+		data: $("#form1").serializeArray(),
+		success: function(data){
+			var obj = $("#box1");
+			var html = "";
+			
+			var resultList = data.resultList;
+			html += '	<div class="top_wrap">';
+			html += '		<h1>📋&nbsp;청년정책</h1>';
+			html += '		<a href="/policy/list.tc?mn=2379&pageNo=5069" class="more_bt">자세히보기</a>';
+			html += '	</div>';
+			
+			if(resultList.length > 0) {
+				html += '	<ul class="list">';
+			}
+			for (var i = 0; i < 3; i++) {
+				var result = resultList[i];
+				html += '		<li>';
+				html += '			<a href="/policy/list.tc?mn=2379&pageNo=5069&no='+result.no+'">'+result.policyNm+'</a>';		
+				html += '		</li>';
+			}
+			html += '	</ul>';
+				
+			obj.html(html);
+		},
+		error: function(request, status, error){
+			alert("경북 청년정책 조회 중 에러 발생");
+			console.log("code:"+request.status+"\r\n"+"message:"+request.responseText+"\r\n"+"error:"+error);
+		},
+		complete: function(){
+		}
+	});
+			
+			
+</script>
+<div class="portal">
+	            <div class="inner">
+	                <div class="left">
+	                    <p>경상북도 관련포털</p>
+	                    <div class="btn">
+	                        <button type="button" class="prev"><img src="/resources/templates/front/assets/images/sub/prev.png" alt="이전"></button>
+	                        <button class="btn-pause pause" type="button" style="display: inline-block;"><img src="/resources/templates/front/assets/images/sub/stop.png" alt="멈춤"></button>
+	                        <button class="btn-pause play" type="button" style="display: none;"><img src="/resources/templates/front/assets/images/sub/play.png" alt="재생"></button>
+	                        <button type="button" class="next"><img src="/resources/templates/front/assets/images/sub/next.png" alt="다음"></button>
+	                    </div>
+	                </div>
+	                <div class="right">
+	                	<div>
+		                        <a href="https://www.gb.go.kr" title="새창열림" target="_blank" class="">
+		                            <p>경상북도청</p>
+		                            <span>바로가기</span>
+		                        </a>
+		                    </div>
+						<div>
+		                        <a href="https://gbyfarmer.kr/pages/index.htm" title="새창열림" target="_blank" class="">
+		                            <p>경북청년농부포털</p>
+		                            <span>바로가기</span>
+		                        </a>
+		                    </div>
+						<div>
+		                        <a href="http://yc.bestplan.kr/" title="새창열림" target="_blank" class="">
+		                            <p>청년발전소</p>
+		                            <span>바로가기</span>
+		                        </a>
+		                    </div>
+						<div>
+		                        <a href="https://gbwork.kr/" title="새창열림" target="_blank" class="">
+		                            <p>경북일자리종합센터</p>
+		                            <span>바로가기</span>
+		                        </a>
+		                    </div>
+						<div>
+		                        <a href="https://ccei.creativekorea.or.kr/gyeongbuk/" title="새창열림" target="_blank" class="">
+		                            <p>경북창조경제혁신센터</p>
+		                            <span>바로가기</span>
+		                        </a>
+		                    </div>
+						</div>
+	            </div>
+            </div>
+	    </main>
+	    <!-- 메인내용 -->
+	    <!-- 풋터 -->
+	    <footer id="fnb">
+	        <div class="top">
+	            <div class="inner">
+	                <a href="/page/link.tc?mn=2404&pageNo=5128" class="" >개인정보처리방침</a>
+	                <!-- <a href="#" class="" title="저작권 정책">저작권정책</a> -->
+	                <a href="https://gb.go.kr/Main/page.do?mnu_uid=6869&LARGE_CODE=720&MEDIUM_CODE=60&SMALL_CODE=40&SMALL_CODE2=60&" title="새창열림" target="_blank" class="">찾아오시는길</a>
+	                <a href="/openapi/guide.tc?mn=2454&pageNo=5081" class="">OPEN API 안내</a>
+	                <a href="/empAply/insert.tc?mn=2450&pageNo=5078" class="">관리자 신청</a>
+	                <!-- <select name="" id="" title="패밀리사이트">
+	                    <option value="">패밀리사이트</option>
+	                </select> -->
+	            </div>
+	        </div>
+	        <div class="inner">
+	            <img src="/resources/templates/front/assets/images/logo22.png" alt="경북청년포털 청년e끌림">
+	            <div class="bot">
+	                <span><em>주소</em>36759 경상북도 안동시 풍천면 도청대로 455</span>
+	                <span><em>대표전화(홈페이지문의만)</em>054-880-2756</span>
+	                <p>* 기타 사업문의는 시군담당자에게 문의<br>ⓒ 2022 Korea Productivity of Gyeongsangbuk-do. All Right Reserved.</p>
+	            </div>
+	            <!-- <div class="right">
+	                <span>홈페이지 연락가능시간</span>
+	                <p>평일 09:00 ~ 18:00(주말, 공휴일 제외)</p>
+	                <p>점심시간 : 12:00 ~ 13:00</p>
+	            </div> -->
+	        </div>
+	    </footer>
+	    <!-- 풋터 -->
+	</body>
+	<script>
+		//날씨 정보 받아오기 JSON
+		$.ajax({
+			type: "POST",
+			url: "/common/weather/info.json",
+			success:function(data){
+				var date = data.date;
+				var weatherCode = data.weatherCode;
+				var weatherNm = data.weatherNm;
+				var t1h = data.t1h;
+				var rn1 = data.rn1;
+				var pm10ValueCode = data.pm10ValueCode;
+				var pm10ValueNm = data.pm10ValueNm;
+				var weatherImg = "/resources/templates/front/assets/images/weather0"+weatherCode+".png";
+				//console.log("data?",data);
+
+				//$("#weatherDate").html(date);
+				$("#weatherImg").attr("src",weatherImg);
+				$("#weatherImg").attr("alt",weatherNm);
+				$("#weatherTxt").html("<em>"+t1h.split('.')[0]+"℃</em>미세먼지 "+pm10ValueNm);
+
+
+			},
+			error: function(request, status, error){
+				//alert("code:"+request.status+"\r\n"+"message:"+request.responseText+"\r\n"+"error:"+error) ;
+			},
+			complete: function(){
+			}
+		});
+
+		//실시간 인기검색어
+		$.ajax({
+			type: "POST",
+			url: "/search/front/new_real.jsp",
+			dataType: "xml",
+			async: false,
+			success:function(data){
+				if(data != null) {
+					var html1 = "";
+					var html2 = "";
+					var cnt = 1;
+					$(data).find("list").find("rank").each(function() {
+						html1 += '<div><a href="/search/front/Search.jsp?qt='+$(this).text().replace(/^w\|/, "")+'" target="search"><em>'+ cnt +'</em>'+$(this).text().replace(/^w\|/, "")+'</a></div>';
+						html2 += '<a href="/search/front/Search.jsp?qt='+$(this).text().replace(/^w\|/, "")+'" target="search"><em>'+ cnt++ +'</em>'+$(this).text().replace(/^w\|/, "")+'</a>';
+					});
+					$("#keywordRank1").html(html1);
+					$("#keywordRank2").html(html2);
+
+				}
+			},
+			error: function(request, status, error){
+				//alert("code:"+request.status+"\r\n"+"message:"+request.responseText+"\r\n"+"error:"+error);
+				console.log("실시간 인기검색어 조회 오류");
+			},
+			complete: function(){
+			}
+		});
+
+		//추천검색어
+		$.ajax({
+			type: "POST",
+			url: "/search/front/recommendWord_api.jsp",
+			dataType: "xml",
+			success:function(data){
+				if(data != null) {
+					var html = "<h1>추천 검색어</h1>";
+
+					$(data).find("list").find("rank").each(function() {
+						html += '<div><a href="/search/front/Search.jsp?qt='+$(this).text()+'" target="search">'+$(this).text()+'</a></div>';
+					});
+					$("#recKeyword").html(html);
+
+				}
+			},
+			error: function(request, status, error){
+				//alert("code:"+request.status+"\r\n"+"message:"+request.responseText+"\r\n"+"error:"+error);
+				console.log("추천검색어 조회 오류");
+			},
+			complete: function(){
+			}
+		});
+
+		//일간 인기 검색어
+		$.ajax({
+			type: "POST",
+			url: "/search/front/new_day.jsp",
+			dataType: "xml",
+			success:function(data){
+				if(data != null) {
+					var html = "";
+					var cnt = 1;
+					$(data).find("list").find("rank").each(function() {
+						html += '<div><a href="/search/front/Search.jsp?qt='+$(this).text()+'" target="search"><em>'+ cnt++ +'</em>'+$(this).text()+'</a></div>';
+					});
+					$("#dailyKeyword").html(html);
+
+				}
+			},
+			error: function(request, status, error){
+				//alert("code:"+request.status+"\r\n"+"message:"+request.responseText+"\r\n"+"error:"+error);
+				console.log("일간 인기 검색어 조회 오류");
+			},
+			complete: function(){
+			}
+		});
+
+		function popupOpen() {
+			if($('#pop-doc').length < 1) {
+				alert("현재 등록된 팝업이 없습니다.");
+			}else {
+				$('#pop-doc').removeClass('hidden');
+			}
+		}
+	</script>
+</html>

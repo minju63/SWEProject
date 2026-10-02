@@ -6,9 +6,9 @@
     "status": 200,
     "finalURL": "https://young.busan.go.kr/policySupport/view.nm?bizSid=SUP0000003776&menuCd=13",
     "bytes": 87671,
-    "sha256": "b7b1ad29f87b3977148ce6494eaab9bdfb29a7287f795aaaf154ac89d136382b",
-    "file": "20260914005400213410_manual.html",
-    "textFile": "20260914005400213410_manual.txt",
+    "sha256": "3cb5eb93d261733c58837153eb9249e3455370376853aa2ed719de846e7efaf5",
+    "file": "20260914005400213410_manual_7c8e290c45.html",
+    "textFile": "20260914005400213410_manual_7c8e290c45.txt",
     "title": "청년지원사업 상세정보 : 부산청년플랫폼",
     "links": [],
     "errorPage": false
@@ -20,9 +20,9 @@
     "status": 200,
     "finalURL": "https://www.hwasun.go.kr/board.do?M=030100000000&S=S08&act=view&b_code=0000000292&cg_code=&list_no=221&nPage=2",
     "bytes": 28798,
-    "sha256": "60061cbf0ffc7b5aa05fc9993d1840af04ae5e481cef05937b0168cfc9acc2ac",
-    "file": "20260908005400213383_manual.html",
-    "textFile": "20260908005400213383_manual.txt",
+    "sha256": "af27cd3dd0a725796cae02122ff17a08c4e8ec3e81508d673529d48913d9484e",
+    "file": "20260908005400213383_manual_7145e68340.html",
+    "textFile": "20260908005400213383_manual_7145e68340.txt",
     "title": "화순군 청년센터 청춘들락",
     "links": [
       {
@@ -65,9 +65,9 @@
     "status": 200,
     "finalURL": "https://www.incheon.go.kr/IC010101/view?cntPerPage=50&curPage=4&nttNo=2045767&srchKey=srchSj&srchSiteRealmCode=&srchWord=",
     "bytes": 221197,
-    "sha256": "4672db9c4dd0ce74af10de35a99bf017d20535cccc8afe438b179b1ca3e35903",
-    "file": "20260406005400212507_manual.html",
-    "textFile": "20260406005400212507_manual.txt",
+    "sha256": "082ebf400ec975fa42c61ad0993e1d00ca8c7e3bb423ab7855d4bf74c8621547",
+    "file": "20260406005400212507_manual_c628496199.html",
+    "textFile": "20260406005400212507_manual_c628496199.txt",
     "title": "2026년 천원주택(매입임대주택) 예비입주자 모집 공고",
     "links": [
       {
@@ -115,6 +115,830 @@
         "title": "맞춤형 시정정보"
       }
     ],
+    "errorPage": false
+  },
+  {
+    "plcyNo": "20260928005400213618",
+    "URL": "https://note.gwgs.go.kr/board/notice/view.php?ntt_id=B000000080674Ip0mP8m",
+    "확인일": "2026-10-02",
+    "status": 200,
+    "finalURL": "https://note.gwgs.go.kr/board/notice/view.php?ntt_id=B000000080674Ip0mP8m",
+    "bytes": 9488,
+    "sha256": "14ab1a8d1150118c93aa61a6206f3efc74e9106087b66ebd8556f37971361cb7",
+    "file": "20260928005400213618_manual_40ac496788.html",
+    "textFile": "20260928005400213618_manual_40ac496788.txt",
+    "title": "고성군청",
+    "links": [],
+    "errorPage": false
+  },
+  {
+    "plcyNo": "20260928005400213594",
+    "URL": "https://apply.bmc.busan.kr/smw/smw113010/selectPbancDetailView.do?pbancNo=105&pbanckndcd=01",
+    "확인일": "2026-10-02",
+    "status": 200,
+    "finalURL": "https://apply.bmc.busan.kr/smw/smw113010/selectPbancDetailView.do?pbancNo=105&pbanckndcd=01",
+    "bytes": 198801,
+    "sha256": "3ac797e84da10270a9365466cf71d58f073754c1913283632695493804613463",
+    "file": "20260928005400213594_manual_e136924c3f.html",
+    "textFile": "20260928005400213594_manual_e136924c3f.txt",
+    "title": "BMC청약센터",
+    "links": [
+      {
+        "URL": "https://apply.bmc.busan.kr/smw/smw113010/selectPbancDetailView.do?pbancNo=105&pbanckndcd=01#",
+        "title": "청약공고"
+      },
+      {
+        "URL": "https://apply.bmc.busan.kr/smw/smw113010/selectFileDown.do;BMCW_JSESSIONID=D294754DD5EC1E6D7BC3576BE6A9E9E8.JVMAPPLYCENTER23?pbancNo=105&atchFileSn=71074&atchFileDtlSn=6&mode=1",
+        "title": "2026 행복주택 예비입주자 모집 정정공고문(2026-173).pdf\r\n (39811 Byte)"
+      },
+      {
+        "URL": "https://apply.bmc.busan.kr/smw/smw113010/preview.do;BMCW_JSESSIONID=D294754DD5EC1E6D7BC3576BE6A9E9E8.JVMAPPLYCENTER23?key=6d26c98e-8faf-4f2b-a408-d7f5f234d8ca.pdf&atchFileSn=71074&atchFileDtlSn=6&orgnlFileNm=2026%20%ED%96%89%EB%B3%B5%EC%A3%BC%ED%83%9D%20%EC%98%88%EB%B9%84%EC%9E%85%EC%A3%BC%EC%9E%90%20%EB%AA%A8%EC%A7%91%20%EC%A0%95%EC%A0%95%EA%B3%B5%EA%B3%A0%EB%AC%B8(2026-173)",
+        "title": "바로보기"
+      },
+      {
+        "URL": "https://apply.bmc.busan.kr/smw/smw113010/selectFileDown.do;BMCW_JSESSIONID=D294754DD5EC1E6D7BC3576BE6A9E9E8.JVMAPPLYCENTER23?pbancNo=105&atchFileSn=71074&atchFileDtlSn=8&mode=1",
+        "title": "(정정)2026년 행복주택 예비입주자 모집 공고문.pdf\r\n (10520249 Byte)"
+      },
+      {
+        "URL": "https://apply.bmc.busan.kr/smw/smw113010/preview.do;BMCW_JSESSIONID=D294754DD5EC1E6D7BC3576BE6A9E9E8.JVMAPPLYCENTER23?key=5ee0a7a6-2a76-4339-a45f-3d0592598467.pdf&atchFileSn=71074&atchFileDtlSn=8&orgnlFileNm=(%EC%A0%95%EC%A0%95)2026%EB%85%84%20%ED%96%89%EB%B3%B5%EC%A3%BC%ED%83%9D%20%EC%98%88%EB%B9%84%EC%9E%85%EC%A3%BC%EC%9E%90%20%EB%AA%A8%EC%A7%91%20%EA%B3%B5%EA%B3%A0%EB%AC%B8",
+        "title": "바로보기"
+      },
+      {
+        "URL": "https://apply.bmc.busan.kr/smw/smw113010/selectFileDown.do;BMCW_JSESSIONID=D294754DD5EC1E6D7BC3576BE6A9E9E8.JVMAPPLYCENTER23?pbancNo=105&atchFileSn=71074&atchFileDtlSn=9&mode=1",
+        "title": "(정정)2026년 행복주택 예비입주자 모집 공고문.hwp\r\n (346112 Byte)"
+      },
+      {
+        "URL": "https://apply.bmc.busan.kr/smw/smw113010/preview.do;BMCW_JSESSIONID=D294754DD5EC1E6D7BC3576BE6A9E9E8.JVMAPPLYCENTER23?key=7aeaf1ad-9fb8-4bd0-b546-07ad943bd37c.hwp&atchFileSn=71074&atchFileDtlSn=9&orgnlFileNm=(%EC%A0%95%EC%A0%95)2026%EB%85%84%20%ED%96%89%EB%B3%B5%EC%A3%BC%ED%83%9D%20%EC%98%88%EB%B9%84%EC%9E%85%EC%A3%BC%EC%9E%90%20%EB%AA%A8%EC%A7%91%20%EA%B3%B5%EA%B3%A0%EB%AC%B8",
+        "title": "바로보기"
+      },
+      {
+        "URL": "https://apply.bmc.busan.kr/smw/smw113010/selectFileDown.do;BMCW_JSESSIONID=D294754DD5EC1E6D7BC3576BE6A9E9E8.JVMAPPLYCENTER23?pbancNo=105&atchFileSn=71074&atchFileDtlSn=10&mode=1",
+        "title": "2026 행복주택 예비입주자 모집 정정공고문(2026-173).hwp\r\n (37888 Byte)"
+      },
+      {
+        "URL": "https://apply.bmc.busan.kr/smw/smw113010/preview.do;BMCW_JSESSIONID=D294754DD5EC1E6D7BC3576BE6A9E9E8.JVMAPPLYCENTER23?key=983b21c1-0815-41ce-ae3a-cfda3e5427d1.hwp&atchFileSn=71074&atchFileDtlSn=10&orgnlFileNm=2026%20%ED%96%89%EB%B3%B5%EC%A3%BC%ED%83%9D%20%EC%98%88%EB%B9%84%EC%9E%85%EC%A3%BC%EC%9E%90%20%EB%AA%A8%EC%A7%91%20%EC%A0%95%EC%A0%95%EA%B3%B5%EA%B3%A0%EB%AC%B8(2026-173)",
+        "title": "바로보기"
+      },
+      {
+        "URL": "https://apply.bmc.busan.kr/smw/smw113010/selectFileDown.do;BMCW_JSESSIONID=D294754DD5EC1E6D7BC3576BE6A9E9E8.JVMAPPLYCENTER23?pbancNo=105&atchFileSn=71074&atchFileDtlSn=6&mode=1",
+        "title": "2026 행복주택 예비입주자 모집 정정공고문(2026-173).pdf\r\n (39811 Byte)"
+      },
+      {
+        "URL": "https://apply.bmc.busan.kr/smw/smw113010/preview.do;BMCW_JSESSIONID=D294754DD5EC1E6D7BC3576BE6A9E9E8.JVMAPPLYCENTER23?key=6d26c98e-8faf-4f2b-a408-d7f5f234d8ca.pdf&atchFileSn=71074&atchFileDtlSn=6&orgnlFileNm=2026%20%ED%96%89%EB%B3%B5%EC%A3%BC%ED%83%9D%20%EC%98%88%EB%B9%84%EC%9E%85%EC%A3%BC%EC%9E%90%20%EB%AA%A8%EC%A7%91%20%EC%A0%95%EC%A0%95%EA%B3%B5%EA%B3%A0%EB%AC%B8(2026-173)",
+        "title": "바로보기"
+      },
+      {
+        "URL": "https://apply.bmc.busan.kr/smw/smw113010/selectFileDown.do;BMCW_JSESSIONID=D294754DD5EC1E6D7BC3576BE6A9E9E8.JVMAPPLYCENTER23?pbancNo=105&atchFileSn=71074&atchFileDtlSn=8&mode=1",
+        "title": "(정정)2026년 행복주택 예비입주자 모집 공고문.pdf\r\n (10520249 Byte)"
+      },
+      {
+        "URL": "https://apply.bmc.busan.kr/smw/smw113010/preview.do;BMCW_JSESSIONID=D294754DD5EC1E6D7BC3576BE6A9E9E8.JVMAPPLYCENTER23?key=5ee0a7a6-2a76-4339-a45f-3d0592598467.pdf&atchFileSn=71074&atchFileDtlSn=8&orgnlFileNm=(%EC%A0%95%EC%A0%95)2026%EB%85%84%20%ED%96%89%EB%B3%B5%EC%A3%BC%ED%83%9D%20%EC%98%88%EB%B9%84%EC%9E%85%EC%A3%BC%EC%9E%90%20%EB%AA%A8%EC%A7%91%20%EA%B3%B5%EA%B3%A0%EB%AC%B8",
+        "title": "바로보기"
+      },
+      {
+        "URL": "https://apply.bmc.busan.kr/smw/smw113010/selectFileDown.do;BMCW_JSESSIONID=D294754DD5EC1E6D7BC3576BE6A9E9E8.JVMAPPLYCENTER23?pbancNo=105&atchFileSn=71074&atchFileDtlSn=9&mode=1",
+        "title": "(정정)2026년 행복주택 예비입주자 모집 공고문.hwp\r\n (346112 Byte)"
+      },
+      {
+        "URL": "https://apply.bmc.busan.kr/smw/smw113010/preview.do;BMCW_JSESSIONID=D294754DD5EC1E6D7BC3576BE6A9E9E8.JVMAPPLYCENTER23?key=7aeaf1ad-9fb8-4bd0-b546-07ad943bd37c.hwp&atchFileSn=71074&atchFileDtlSn=9&orgnlFileNm=(%EC%A0%95%EC%A0%95)2026%EB%85%84%20%ED%96%89%EB%B3%B5%EC%A3%BC%ED%83%9D%20%EC%98%88%EB%B9%84%EC%9E%85%EC%A3%BC%EC%9E%90%20%EB%AA%A8%EC%A7%91%20%EA%B3%B5%EA%B3%A0%EB%AC%B8",
+        "title": "바로보기"
+      },
+      {
+        "URL": "https://apply.bmc.busan.kr/smw/smw113010/selectFileDown.do;BMCW_JSESSIONID=D294754DD5EC1E6D7BC3576BE6A9E9E8.JVMAPPLYCENTER23?pbancNo=105&atchFileSn=71074&atchFileDtlSn=10&mode=1",
+        "title": "2026 행복주택 예비입주자 모집 정정공고문(2026-173).hwp\r\n (37888 Byte)"
+      },
+      {
+        "URL": "https://apply.bmc.busan.kr/smw/smw113010/preview.do;BMCW_JSESSIONID=D294754DD5EC1E6D7BC3576BE6A9E9E8.JVMAPPLYCENTER23?key=983b21c1-0815-41ce-ae3a-cfda3e5427d1.hwp&atchFileSn=71074&atchFileDtlSn=10&orgnlFileNm=2026%20%ED%96%89%EB%B3%B5%EC%A3%BC%ED%83%9D%20%EC%98%88%EB%B9%84%EC%9E%85%EC%A3%BC%EC%9E%90%20%EB%AA%A8%EC%A7%91%20%EC%A0%95%EC%A0%95%EA%B3%B5%EA%B3%A0%EB%AC%B8(2026-173)",
+        "title": "바로보기"
+      }
+    ],
+    "errorPage": false
+  },
+  {
+    "plcyNo": "20260928005400213594",
+    "URL": "https://apply.bmc.busan.kr/smw/smw113010/selectFileDown.do?atchFileDtlSn=6&atchFileSn=71074&mode=1&pbancNo=105",
+    "확인일": "2026-10-02",
+    "status": 200,
+    "finalURL": "https://apply.bmc.busan.kr/smw/smw113010/selectFileDown.do?atchFileDtlSn=6&atchFileSn=71074&mode=1&pbancNo=105",
+    "bytes": 39811,
+    "sha256": "ea63c2b5f925b6b7e330176cefb5b0d732700f312f02218aa2f37126764952ab",
+    "file": "20260928005400213594_manual_25f7fb50d2.pdf"
+  },
+  {
+    "plcyNo": "20260928005400213594",
+    "URL": "https://apply.bmc.busan.kr/smw/smw113010/selectFileDown.do?atchFileDtlSn=8&atchFileSn=71074&mode=1&pbancNo=105",
+    "확인일": "2026-10-02",
+    "status": 200,
+    "finalURL": "https://apply.bmc.busan.kr/smw/smw113010/selectFileDown.do?atchFileDtlSn=8&atchFileSn=71074&mode=1&pbancNo=105",
+    "bytes": 10520249,
+    "sha256": "96f47196cab0bee6afb17d139f74a94d06c96a86f5552513253db278ffe2a549",
+    "file": "20260928005400213594_manual_585b9ca037.pdf"
+  },
+  {
+    "plcyNo": "20260429005400212903",
+    "URL": "https://www.busan.go.kr/nbgosi/view?gosiGbn=A&sno=78417",
+    "확인일": "2026-10-02",
+    "status": 200,
+    "finalURL": "https://www.busan.go.kr/nbgosi/view?gosiGbn=A&sno=78417",
+    "bytes": 106767,
+    "sha256": "989b3a4dcd29373ad11e67631ed9a678390e15ab90d5ea152b6ffb4181308687",
+    "file": "20260429005400212903_manual_049d1fddf8.html",
+    "textFile": "20260429005400212903_manual_049d1fddf8.txt",
+    "title": "부산소식 : 공고 : 고시공고\r\n\t: 부산광역시",
+    "links": [
+      {
+        "URL": "https://www.busan.go.kr/nbincruit",
+        "title": "공고"
+      },
+      {
+        "URL": "https://www.busan.go.kr/minwon/occation",
+        "title": "행사/모집 신청"
+      },
+      {
+        "URL": "https://www.busan.go.kr/nbincruit",
+        "title": "공고"
+      },
+      {
+        "URL": "https://www.busan.go.kr/nbincruit",
+        "title": "채용공고"
+      },
+      {
+        "URL": "https://www.busan.go.kr/depart/jobexam01",
+        "title": "공무원 시험공고"
+      },
+      {
+        "URL": "https://www.busan.go.kr/nbbid",
+        "title": "입찰공고"
+      },
+      {
+        "URL": "http://www.busan.go.kr/news/gosiboard?articlNo=2",
+        "title": "부산시보 고시공고"
+      },
+      {
+        "URL": "https://www.busan.go.kr/nbgosi",
+        "title": "고시공고"
+      },
+      {
+        "URL": "https://www.busan.go.kr/nbtomb",
+        "title": "분묘개장공고"
+      },
+      {
+        "URL": "https://www.busan.go.kr/notify",
+        "title": "공고"
+      },
+      {
+        "URL": "https://www.busan.go.kr/nbgosi",
+        "title": "고시공고"
+      },
+      {
+        "URL": "https://www.busan.go.kr/nbincruit",
+        "title": "공고"
+      },
+      {
+        "URL": "https://www.busan.go.kr/nbincruit",
+        "title": "채용공고"
+      },
+      {
+        "URL": "https://www.busan.go.kr/depart/jobexam01",
+        "title": "공무원 시험공고"
+      },
+      {
+        "URL": "https://www.busan.go.kr/nbbid",
+        "title": "입찰공고"
+      },
+      {
+        "URL": "http://www.busan.go.kr/news/gosiboard?articlNo=2",
+        "title": "부산시보 고시공고"
+      },
+      {
+        "URL": "https://www.busan.go.kr/nbgosi",
+        "title": "고시공고"
+      },
+      {
+        "URL": "https://www.busan.go.kr/nbtomb",
+        "title": "분묘개장공고"
+      },
+      {
+        "URL": "https://www.busan.go.kr/news/gosiboard?articlNo=2",
+        "title": "☞ 부산시보(고시공고) 바로가기"
+      },
+      {
+        "URL": "https://www.busan.go.kr/nbgosi/download?fileId=F26061610445540112&seq=0",
+        "title": "★(공고문) 부산광역시 럭키7하우스 지원사업(2026년 매입임대주택) 지원 대상자 모집 정정 공고.hwpx (용량 : 281 KB)"
+      },
+      {
+        "URL": "https://www.busan.go.kr/nbgosi/download?fileId=F26061610445540112&seq=0",
+        "title": "다운로드"
+      },
+      {
+        "URL": "https://www.busan.go.kr/viewdn",
+        "title": "뷰어다운로드"
+      }
+    ],
+    "errorPage": false
+  },
+  {
+    "plcyNo": "20250106005400210052",
+    "URL": "https://www.gokseong.go.kr/board/GosiList.do?menuNo=102001003000&pageIndex=1",
+    "확인일": "2026-10-02",
+    "error": "TypeError: fetch failed"
+  },
+  {
+    "plcyNo": "20260421005400212799",
+    "URL": "https://www.jeju.go.kr/lifecycle/policy/list.htm?act=view&seq=95",
+    "확인일": "2026-10-02",
+    "status": 200,
+    "finalURL": "https://www.jeju.go.kr/lifecycle/policy/list.htm?act=view&seq=95",
+    "bytes": 31722,
+    "sha256": "dc89db1b1476628a64d3d8cb2999e5ca27abfd9be0f925b35932460771087ba3",
+    "file": "20260421005400212799_manual_c2ffae4619.html",
+    "textFile": "20260421005400212799_manual_c2ffae4619.txt",
+    "title": "정책목록 - 생애주기별 인구정책",
+    "links": [],
+    "errorPage": false
+  },
+  {
+    "plcyNo": "20260413005400212694",
+    "URL": "https://www.ulsan.go.kr/s/ulsanyouth/contents.ulsan?mId=008001001002000000",
+    "확인일": "2026-10-02",
+    "status": 200,
+    "finalURL": "https://www.ulsan.go.kr/s/ulsanyouth/contents.ulsan?mId=008001001002000000",
+    "bytes": 496521,
+    "sha256": "f034b3ceee236800fafaebafbfb69023efc8189b486de0d7808a18fc07b1ff01",
+    "file": "20260413005400212694_manual_e52b7db678.html",
+    "textFile": "20260413005400212694_manual_e52b7db678.txt",
+    "title": "울산청년정책플랫폼 U-PAGE &gt; 청년정책정보 &gt; 청년정책 &gt; 엑셀다운로드",
+    "links": [],
+    "errorPage": false
+  },
+  {
+    "plcyNo": "20250106005400210052",
+    "URL": "https://www.gokseong.go.kr/board/GosiList.do?menuNo=102001003000&pageIndex=1",
+    "확인일": "2026-10-02",
+    "error": "TypeError: fetch failed"
+  },
+  {
+    "plcyNo": "20260318005400212189",
+    "URL": "https://gwangyang.go.kr/boardDownload.es?bid=0001&list_no=208933&seq=1",
+    "확인일": "2026-10-02",
+    "error": "TypeError: fetch failed"
+  },
+  {
+    "plcyNo": "20260928005400213593",
+    "URL": "https://apply.bmc.busan.kr/smw/smw113020/selectPbancRentHouseList.do",
+    "확인일": "2026-10-02",
+    "error": "TypeError: fetch failed"
+  },
+  {
+    "plcyNo": "20250106005400210052",
+    "URL": "https://www.gokseong.go.kr/board/GosiList.do?menuNo=102001003000&pageIndex=1",
+    "확인일": "2026-10-02",
+    "error": "TypeError: fetch failed"
+  },
+  {
+    "plcyNo": "20260318005400212189",
+    "URL": "https://gwangyang.go.kr/boardDownload.es?bid=0001&list_no=208933&seq=1",
+    "확인일": "2026-10-02",
+    "status": 200,
+    "finalURL": "https://gwangyang.go.kr/boardDownload.es?bid=0001&list_no=208933&seq=1",
+    "bytes": 129536,
+    "sha256": "c204e2e61ff99ebb3c634f8b1d1bf8f1591e6210cd4678040fcbf9f97d0efefa",
+    "file": "20260318005400212189_manual_c7255d9cf0.html",
+    "textFile": "20260318005400212189_manual_c7255d9cf0.txt",
+    "title": "",
+    "links": [],
+    "errorPage": false
+  },
+  {
+    "plcyNo": "20260928005400213593",
+    "URL": "https://apply.bmc.busan.kr/smw/smw113020/selectPbancRentHouseList.do",
+    "확인일": "2026-10-02",
+    "status": 200,
+    "finalURL": "https://apply.bmc.busan.kr/smw/smw113020/selectPbancRentHouseList.do",
+    "bytes": 94252,
+    "sha256": "4de57715605d0cb2dac6db8fadd5af74ac6359a83c8da1474c022e62d0786f1d",
+    "file": "20260928005400213593_manual_934fa4adc5.html",
+    "textFile": "20260928005400213593_manual_934fa4adc5.txt",
+    "title": "BMC청약센터",
+    "links": [
+      {
+        "URL": "https://apply.bmc.busan.kr/smw/smw113020/selectPbancRentHouseList.do#",
+        "title": "청약공고"
+      },
+      {
+        "URL": "https://apply.bmc.busan.kr/smw/smw113020/selectPbancRentHouseList.do#a",
+        "title": "2026년 신혼·신생아 매입임대주택Ⅱ (예비)입주자 모집공고"
+      },
+      {
+        "URL": "https://apply.bmc.busan.kr/smw/smw113020/selectPbancRentHouseList.do#a",
+        "title": "2026년 장기미임대 매입임대주택 (예비)입주자 모집공고"
+      },
+      {
+        "URL": "https://apply.bmc.busan.kr/smw/smw113020/selectPbancRentHouseList.do#a",
+        "title": "2026년 1차 청년 매입임대주택 (예비)입주자 모집공고"
+      },
+      {
+        "URL": "https://apply.bmc.busan.kr/smw/smw113020/selectPbancRentHouseList.do#a",
+        "title": "2025년 2차 청년 매입임대주택 (예비)입주자 모집공고"
+      },
+      {
+        "URL": "https://apply.bmc.busan.kr/smw/smw113020/selectPbancRentHouseList.do#a",
+        "title": "2025년 2차 청년 매입임대주택 (예비)입주자 모집공고(2·3순위)"
+      },
+      {
+        "URL": "https://apply.bmc.busan.kr/smw/smw113020/selectPbancRentHouseList.do#a",
+        "title": "2025년 1차 청년 매입임대주택 (예비)입주자 모집공고(2·3순위)"
+      },
+      {
+        "URL": "https://apply.bmc.busan.kr/smw/smw113020/selectPbancRentHouseList.do#a",
+        "title": "2025년 1차 청년 매입임대주택 (예비)입주자 모집공고"
+      },
+      {
+        "URL": "https://apply.bmc.busan.kr/smw/smw113020/selectPbancRentHouseList.do#a",
+        "title": "2024년 2차 청년 매입임대주택 (예비)입주자 모집공고(2·3순위)"
+      },
+      {
+        "URL": "https://apply.bmc.busan.kr/smw/smw113020/selectPbancRentHouseList.do#a",
+        "title": "2024년 2차 청년 매입임대주택 (예비)입주자 모집공고"
+      },
+      {
+        "URL": "https://apply.bmc.busan.kr/smw/smw113020/selectPbancRentHouseList.do#a",
+        "title": "2024년 1차 청년 매입임대주택 입주자 모집공고(2,3순위)"
+      },
+      {
+        "URL": "https://apply.bmc.busan.kr/smw/smw113020/selectPbancRentHouseList.do#a",
+        "title": "2026년 신혼·신생아 매입임대주택Ⅱ (예비)입주자 모집공고"
+      },
+      {
+        "URL": "https://apply.bmc.busan.kr/smw/smw113020/selectPbancRentHouseList.do#a",
+        "title": "2026년 장기미임대 매입임대주택 (예비)입주자 모집공고"
+      },
+      {
+        "URL": "https://apply.bmc.busan.kr/smw/smw113020/selectPbancRentHouseList.do#a",
+        "title": "2026년 1차 청년 매입임대주택 (예비)입주자 모집공고"
+      },
+      {
+        "URL": "https://apply.bmc.busan.kr/smw/smw113020/selectPbancRentHouseList.do#a",
+        "title": "2025년 2차 청년 매입임대주택 (예비)입주자 모집공고"
+      },
+      {
+        "URL": "https://apply.bmc.busan.kr/smw/smw113020/selectPbancRentHouseList.do#a",
+        "title": "2025년 2차 청년 매입임대주택 (예비)입주자 모집공고(2·3순위)"
+      },
+      {
+        "URL": "https://apply.bmc.busan.kr/smw/smw113020/selectPbancRentHouseList.do#a",
+        "title": "2025년 1차 청년 매입임대주택 (예비)입주자 모집공고(2·3순위)"
+      },
+      {
+        "URL": "https://apply.bmc.busan.kr/smw/smw113020/selectPbancRentHouseList.do#a",
+        "title": "2025년 1차 청년 매입임대주택 (예비)입주자 모집공고"
+      },
+      {
+        "URL": "https://apply.bmc.busan.kr/smw/smw113020/selectPbancRentHouseList.do#a",
+        "title": "2024년 2차 청년 매입임대주택 (예비)입주자 모집공고(2·3순위)"
+      },
+      {
+        "URL": "https://apply.bmc.busan.kr/smw/smw113020/selectPbancRentHouseList.do#a",
+        "title": "2024년 2차 청년 매입임대주택 (예비)입주자 모집공고"
+      },
+      {
+        "URL": "https://apply.bmc.busan.kr/smw/smw113020/selectPbancRentHouseList.do#a",
+        "title": "2024년 1차 청년 매입임대주택 입주자 모집공고(2,3순위)"
+      }
+    ],
+    "errorPage": false
+  },
+  {
+    "plcyNo": "20250106005400210052",
+    "URL": "https://www.gokseong.go.kr/board/GosiList.do?menuNo=102001003000&pageIndex=1",
+    "확인일": "2026-10-02",
+    "error": "TypeError: fetch failed"
+  },
+  {
+    "plcyNo": "20260410005400212667",
+    "URL": "https://www.ubpi.or.kr/sub/?mcode=0403010000&no=3552",
+    "확인일": "2026-10-02",
+    "status": 200,
+    "finalURL": "https://www.ubpi.or.kr/sub/?mcode=0403010000&no=3552",
+    "bytes": 30849,
+    "sha256": "dd31b7188e358116dd1833cb0c09ea5c4c4261defe4b6f3c2d19718facd7b8a1",
+    "file": "20260410005400212667_manual_64dc724689.html",
+    "textFile": "20260410005400212667_manual_64dc724689.txt",
+    "title": "공지사항 &lt; 정보마당 &lt; 울산경제일자리진흥원",
+    "links": [
+      {
+        "URL": "https://www.ubpi.or.kr/_Inc/download.php?gb=supportdata&f_idx=56561",
+        "title": "2026년 울산 청년 웰스테이 추가모집 수정 공고(10월).hwp (Size : 311 Kbyte / Down : 28)"
+      },
+      {
+        "URL": "https://www.ubpi.or.kr/_Inc/download.php?gb=supportdata&f_idx=56562",
+        "title": "업종코드-표준산업분류 연계표(1001).xlsx (Size : 331 Kbyte / Down : 14)"
+      },
+      {
+        "URL": "https://www.ubpi.or.kr/sub/?mcode=0403010000&no=3553&page=1",
+        "title": "이전글울주 꿈꾸는 청년대장간 입주기업 연장심사 선정결과 공고"
+      },
+      {
+        "URL": "https://www.ubpi.or.kr/sub/?mcode=0403010000&no=3551&page=1",
+        "title": "다음글2026년 울산 창업 U-시리즈 3차 추가 모집 선정 결과 공고"
+      }
+    ],
+    "errorPage": false
+  },
+  {
+    "plcyNo": "20250106005400210052",
+    "URL": "https://www.gokseong.go.kr/board/GosiList.do?menuNo=102001003000&pageIndex=1",
+    "확인일": "2026-10-02",
+    "error": "TypeError: fetch failed"
+  },
+  {
+    "plcyNo": "20260410005400212667",
+    "URL": "https://www.ubpi.or.kr/_Inc/download.php?gb=supportdata&f_idx=56561",
+    "확인일": "2026-10-02",
+    "status": 200,
+    "finalURL": "https://www.ubpi.or.kr/_Inc/download.php?gb=supportdata&f_idx=56561",
+    "bytes": 311296,
+    "sha256": "331768f2ab45455667a0eaf64112674ce94cefcb9322143e126b93207e6f58ca",
+    "file": "20260410005400212667_manual_01bb01e7af.html",
+    "textFile": "20260410005400212667_manual_01bb01e7af.txt",
+    "title": "",
+    "links": [],
+    "errorPage": false
+  },
+  {
+    "plcyNo": "20250106005400210052",
+    "URL": "https://www.gokseong.go.kr/board/GosiList.do?menuNo=102001003000&pageIndex=1",
+    "확인일": "2026-10-02",
+    "error": "TypeError: fetch failed"
+  },
+  {
+    "plcyNo": "20251117005400211898",
+    "URL": "https://www.hadong.go.kr/media/00008/00009.web?amode=view&idx=37812641&gcode=1001",
+    "확인일": "2026-10-02",
+    "status": 200,
+    "finalURL": "https://www.hadong.go.kr/media/00008/00009.web?amode=view&idx=37812641&gcode=1001",
+    "bytes": 94070,
+    "sha256": "e88035aac10944cd842e1b40bf28367c2217d4d6d618a1e633ebf6c8767262b6",
+    "file": "20251117005400211898_manual_d9b2b86808.html",
+    "textFile": "20251117005400211898_manual_d9b2b86808.txt",
+    "title": "새소식 | 하동군청",
+    "links": [
+      {
+        "URL": "https://www.hadong.go.kr/media/00012.web",
+        "title": "공고고시"
+      },
+      {
+        "URL": "https://www.hadong.go.kr/media/04790.web",
+        "title": "민간위탁공고"
+      },
+      {
+        "URL": "https://www.hadong.go.kr/04606/05442.web",
+        "title": "모집신청접수"
+      },
+      {
+        "URL": "https://www.hadong.go.kr/opendata/00097.web",
+        "title": "행정정보공개"
+      },
+      {
+        "URL": "https://www.hadong.go.kr/specialty/00219/00461.web",
+        "title": "대기측정정보"
+      },
+      {
+        "URL": "https://www.hadong.go.kr/media/00012.web",
+        "title": "공고고시"
+      },
+      {
+        "URL": "https://www.hadong.go.kr/media/04790.web",
+        "title": "민간위탁공고"
+      },
+      {
+        "URL": "https://www.hadong.go.kr/board/download.do?gcode=1001&name=2026%EB%85%84%ED%95%98%EB%8F%99%ED%98%95%EC%B2%AD%EB%85%84%EC%A3%BC%EA%B1%B0%EB%B9%84%EC%A7%80%EC%9B%90%EC%82%AC%EC%97%85%EA%B3%B5%EA%B3%A0%EB%AC%B82.pdf",
+        "title": "2026년하동형청년주거비지원사업공고문2.pdf(224573 Bytes)"
+      },
+      {
+        "URL": "https://www.hadong.go.kr/board/download.do?gcode=1001&name=2026%EB%85%84%ED%95%98%EB%8F%99%ED%98%95%EC%B2%AD%EB%85%84%EC%A3%BC%EA%B1%B0%EB%B9%84%EC%A7%80%EC%9B%90%EC%82%AC%EC%97%85%EC%8B%A0%EC%B2%AD%EC%84%9C%28%EC%84%9C%EC%8B%9D%291.hwp",
+        "title": "2026년하동형청년주거비지원사업신청서(서식)1.hwp(82944 Bytes)"
+      },
+      {
+        "URL": "https://www.hadong.go.kr/board/download.do?gcode=1001&name=%EC%B9%B4%EB%93%9C%EB%89%B4%EC%8A%A4%283%EB%B6%84%EA%B8%B0%29.png",
+        "title": "카드뉴스(3분기).png(764172 Bytes)"
+      },
+      {
+        "URL": "https://www.hadong.go.kr/_res/portal/data/pdf/data20170726.pdf",
+        "title": "휴대용 가스레인지 안전사용 요령"
+      }
+    ],
+    "errorPage": false
+  },
+  {
+    "plcyNo": "20260331005400212362",
+    "URL": "https://www.goryeong.go.kr/front/viewFile.do?IDX_FI=194226&BRD_ID=1023",
+    "확인일": "2026-10-02",
+    "status": 200,
+    "finalURL": "https://www.goryeong.go.kr/doc/index.jsp?storedFileName=6271b5626a6e4fe08ee9cb220f8935f9.pdf",
+    "bytes": 745,
+    "sha256": "82b7fbdfbb1dd448522b122ccf781bc750448605c6adb8380286c3917b2019bc",
+    "file": "20260331005400212362_manual_0bb2b1b5d7.html",
+    "textFile": "20260331005400212362_manual_0bb2b1b5d7.txt",
+    "title": "페이지 이동 합니다",
+    "links": [],
+    "errorPage": false
+  },
+  {
+    "plcyNo": "20250106005400210052",
+    "URL": "https://www.gokseong.go.kr/board/GosiList.do?menuNo=102001003000&pageIndex=1",
+    "확인일": "2026-10-02",
+    "error": "TypeError: fetch failed"
+  },
+  {
+    "plcyNo": "20251117005400211898",
+    "URL": "https://www.hadong.go.kr/board/download.do?gcode=1001&name=2026%EB%85%84%ED%95%98%EB%8F%99%ED%98%95%EC%B2%AD%EB%85%84%EC%A3%BC%EA%B1%B0%EB%B9%84%EC%A7%80%EC%9B%90%EC%82%AC%EC%97%85%EA%B3%B5%EA%B3%A0%EB%AC%B82.pdf",
+    "확인일": "2026-10-02",
+    "status": 200,
+    "finalURL": "https://www.hadong.go.kr/board/download.do?gcode=1001&name=2026%EB%85%84%ED%95%98%EB%8F%99%ED%98%95%EC%B2%AD%EB%85%84%EC%A3%BC%EA%B1%B0%EB%B9%84%EC%A7%80%EC%9B%90%EC%82%AC%EC%97%85%EA%B3%B5%EA%B3%A0%EB%AC%B82.pdf",
+    "bytes": 224573,
+    "sha256": "1e7277f0df74237499732f7cad421384be81d9ddd841d6fdc386ad035ee72c19",
+    "file": "20251117005400211898_manual_d08c8a5583.pdf"
+  },
+  {
+    "plcyNo": "20260331005400212362",
+    "URL": "https://www.goryeong.go.kr/doc/document.html?fn=6271b5626a6e4fe08ee9cb220f8935f9.pdf&rs=2026101",
+    "확인일": "2026-10-02",
+    "status": 200,
+    "finalURL": "https://www.goryeong.go.kr/doc/document.html?fn=6271b5626a6e4fe08ee9cb220f8935f9.pdf&rs=2026101",
+    "bytes": 3584,
+    "sha256": "55d95c1a053e840d993c89dcc0a8d2efa75b1ce06a8216266c5c53522866a6be",
+    "file": "20260331005400212362_manual_11f054317f.html",
+    "textFile": "20260331005400212362_manual_11f054317f.txt",
+    "title": "문서뷰어",
+    "links": [],
+    "errorPage": false
+  },
+  {
+    "plcyNo": "20250106005400210052",
+    "URL": "https://www.gokseong.go.kr/board/GosiList.do?menuNo=102001003000&pageIndex=1",
+    "확인일": "2026-10-03",
+    "error": "TypeError: fetch failed"
+  },
+  {
+    "plcyNo": "20260430005400212958",
+    "URL": "https://www.busan.go.kr/nbgosi/view?gosiGbn=A&sno=75546",
+    "확인일": "2026-10-03",
+    "status": 200,
+    "finalURL": "https://www.busan.go.kr/nbgosi/view?gosiGbn=A&sno=75546",
+    "bytes": 107453,
+    "sha256": "230a14798c1adfc8dd3ccd32c3e4ad934ba9a0da5e7e93472d0524471f09c8d3",
+    "file": "20260430005400212958_manual_f3d615b3cd.html",
+    "textFile": "20260430005400212958_manual_f3d615b3cd.txt",
+    "title": "부산소식 : 공고 : 고시공고\r\n\t: 부산광역시",
+    "links": [
+      {
+        "URL": "https://www.busan.go.kr/nbincruit",
+        "title": "공고"
+      },
+      {
+        "URL": "https://www.busan.go.kr/minwon/occation",
+        "title": "행사/모집 신청"
+      },
+      {
+        "URL": "https://www.busan.go.kr/nbincruit",
+        "title": "공고"
+      },
+      {
+        "URL": "https://www.busan.go.kr/nbincruit",
+        "title": "채용공고"
+      },
+      {
+        "URL": "https://www.busan.go.kr/depart/jobexam01",
+        "title": "공무원 시험공고"
+      },
+      {
+        "URL": "https://www.busan.go.kr/nbbid",
+        "title": "입찰공고"
+      },
+      {
+        "URL": "http://www.busan.go.kr/news/gosiboard?articlNo=2",
+        "title": "부산시보 고시공고"
+      },
+      {
+        "URL": "https://www.busan.go.kr/nbgosi",
+        "title": "고시공고"
+      },
+      {
+        "URL": "https://www.busan.go.kr/nbtomb",
+        "title": "분묘개장공고"
+      },
+      {
+        "URL": "https://www.busan.go.kr/notify",
+        "title": "공고"
+      },
+      {
+        "URL": "https://www.busan.go.kr/nbgosi",
+        "title": "고시공고"
+      },
+      {
+        "URL": "https://www.busan.go.kr/nbincruit",
+        "title": "공고"
+      },
+      {
+        "URL": "https://www.busan.go.kr/nbincruit",
+        "title": "채용공고"
+      },
+      {
+        "URL": "https://www.busan.go.kr/depart/jobexam01",
+        "title": "공무원 시험공고"
+      },
+      {
+        "URL": "https://www.busan.go.kr/nbbid",
+        "title": "입찰공고"
+      },
+      {
+        "URL": "http://www.busan.go.kr/news/gosiboard?articlNo=2",
+        "title": "부산시보 고시공고"
+      },
+      {
+        "URL": "https://www.busan.go.kr/nbgosi",
+        "title": "고시공고"
+      },
+      {
+        "URL": "https://www.busan.go.kr/nbtomb",
+        "title": "분묘개장공고"
+      },
+      {
+        "URL": "https://www.busan.go.kr/news/gosiboard?articlNo=2",
+        "title": "☞ 부산시보(고시공고) 바로가기"
+      },
+      {
+        "URL": "https://www.busan.go.kr/nbgosi/download?fileId=F25123010281453428&seq=0",
+        "title": "사업 공고문 및 지원신청 서식 각 1부.hwp (용량 : 134 KB)"
+      },
+      {
+        "URL": "https://www.busan.go.kr/viewdn",
+        "title": "뷰어다운로드"
+      }
+    ],
+    "errorPage": false
+  },
+  {
+    "plcyNo": "20260922005400113506",
+    "URL": "https://www.myhome.go.kr/hws/portal/sch/selectRsdtRcritNtcDetailView.do?pblancId=19956",
+    "확인일": "2026-10-03",
+    "status": 200,
+    "finalURL": "https://www.myhome.go.kr/hws/portal/sch/selectRsdtRcritNtcDetailView.do?pblancId=19956",
+    "bytes": 168580,
+    "sha256": "754bb7028122b59ca775bb37d28bdc0c3fd75644b01afa9098aba40cea2fbe74",
+    "file": "20260922005400113506_manual_49e039bbba.html",
+    "textFile": "20260922005400113506_manual_49e039bbba.txt",
+    "title": "마이홈포털",
+    "links": [
+      {
+        "URL": "https://www.myhome.go.kr/hws/portal/sch/selectRsdtRcritNtcView.do",
+        "title": "입주자 모집공고"
+      },
+      {
+        "URL": "https://www.myhome.go.kr/hws/portal/sch/selectLttotHouseView.do",
+        "title": "입주자 모집공고"
+      },
+      {
+        "URL": "https://www.myhome.go.kr/hws/portal/sch/selectRsdtRcritNtcView.do",
+        "title": "입주자 모집공고"
+      },
+      {
+        "URL": "https://www.myhome.go.kr/hws/portal/sch/selectLttotHouseView.do",
+        "title": "입주자 모집공고"
+      },
+      {
+        "URL": "https://www.myhome.go.kr/hws/portal/sch/selectRsdtRcritNtcView.do",
+        "title": "입주자 모집공고"
+      },
+      {
+        "URL": "https://www.myhome.go.kr/hws/portal/sch/selectLttotHouseView.do",
+        "title": "입주자 모집공고"
+      },
+      {
+        "URL": "https://www.myhome.go.kr/hws/portal/sch/selectRsdtRcritNtcView.do",
+        "title": "모집공고"
+      }
+    ],
+    "errorPage": false
+  },
+  {
+    "plcyNo": "20250106005400210052",
+    "URL": "https://www.gokseong.go.kr/board/GosiList.do?menuNo=102001003000&pageIndex=1",
+    "확인일": "2026-10-03",
+    "error": "TypeError: fetch failed"
+  },
+  {
+    "plcyNo": "20260430005400212958",
+    "URL": "https://www.busan.go.kr/nbgosi/download?fileId=F25123010281453428&seq=0",
+    "확인일": "2026-10-03",
+    "status": 200,
+    "finalURL": "https://www.busan.go.kr/nbgosi/download?fileId=F25123010281453428&seq=0",
+    "bytes": 137728,
+    "sha256": "c2289cfad3d7d4151e1f79c21421d186bb572baeecffc78dba2c6eceabd69511",
+    "file": "20260430005400212958_manual_4c439c827f.html",
+    "textFile": "20260430005400212958_manual_4c439c827f.txt",
+    "title": "",
+    "links": [],
+    "errorPage": false
+  },
+  {
+    "plcyNo": "20250106005400210052",
+    "URL": "https://www.gokseong.go.kr/board/GosiList.do?menuNo=102001003000&pageIndex=1",
+    "확인일": "2026-10-03",
+    "error": "TypeError: fetch failed"
+  },
+  {
+    "plcyNo": "20260922005400113506",
+    "URL": "https://www.myhome.go.kr/hws/com/fms/cvplFileDownload.do?atchFileId=19d425a8dc012&fileSn=1",
+    "확인일": "2026-10-03",
+    "status": 200,
+    "finalURL": "https://www.myhome.go.kr/hws/com/fms/cvplFileDownload.do?atchFileId=19d425a8dc012&fileSn=1",
+    "bytes": 580697,
+    "sha256": "2b001483c70c1baef76042863abfcba21752cb4ce1f01868d279d27bffa5b8c9",
+    "file": "20260922005400113506_manual_ec3d8f6ff3.pdf"
+  },
+  {
+    "plcyNo": "20250106005400210052",
+    "URL": "https://www.gokseong.go.kr/board/GosiList.do?menuNo=102001003000&pageIndex=1",
+    "확인일": "2026-10-03",
+    "error": "TypeError: fetch failed"
+  },
+  {
+    "plcyNo": "20250115005400210266",
+    "URL": "https://eminwon.busanjin.go.kr/emwp/gov/mogaha/ntis/web/ofr/action/OfrAction.do?Key=B_Subject&context=NTIS&countYn=Y&epcCheck=Y&homepage_pbs_yn=Y&homepagetype=home&initValue=Y&jndinm=OfrNotAncmtEJB&list_gubun=A&method=selectOfrNotAncmt&methodnm=selectOfrNotAncmtRegst&not_ancmt_mgt_no=51073&not_ancmt_se_code=01%2C04&ofr_pageSize=10&subCheck=Y",
+    "확인일": "2026-10-03",
+    "status": 200,
+    "finalURL": "https://eminwon.busanjin.go.kr/emwp/gov/mogaha/ntis/web/ofr/action/OfrAction.do?Key=B_Subject&context=NTIS&countYn=Y&epcCheck=Y&homepage_pbs_yn=Y&homepagetype=home&initValue=Y&jndinm=OfrNotAncmtEJB&list_gubun=A&method=selectOfrNotAncmt&methodnm=selectOfrNotAncmtRegst&not_ancmt_mgt_no=51073&not_ancmt_se_code=01%2C04&ofr_pageSize=10&subCheck=Y",
+    "bytes": 9434,
+    "sha256": "338d15718ff1509f3949da87441b19ac02ece863dfe4fffe56e97d847a6fbdfa",
+    "file": "20250115005400210266_manual_efc0a9dcb5.html",
+    "textFile": "20250115005400210266_manual_efc0a9dcb5.txt",
+    "title": "고시공고",
+    "links": [],
+    "errorPage": false
+  },
+  {
+    "plcyNo": "20250103005400210047",
+    "URL": "https://www.seosan.go.kr/welfare/contents.do?key=8879",
+    "확인일": "2026-10-03",
+    "status": 200,
+    "finalURL": "https://www.seosan.go.kr/welfare/contents.do?key=8879",
+    "bytes": 103215,
+    "sha256": "10612492c8b4aa1564e044bed0e6afc8da0ccf0342a667405f4b22991f724648",
+    "file": "20250103005400210047_manual_70d8b66f9f.html",
+    "textFile": "20250103005400210047_manual_70d8b66f9f.txt",
+    "title": "임신·출산·육아지원사업(종합) - 복지넷",
+    "links": [
+      {
+        "URL": "https://www.seosan.go.kr/www/sub.do?key=2237",
+        "title": "뷰어다운로드"
+      }
+    ],
+    "errorPage": false
+  },
+  {
+    "plcyNo": "20250512005400210809",
+    "URL": "https://sokcho.go.kr/bo/holic/article?hlmSn=1&sn=7",
+    "확인일": "2026-10-03",
+    "error": "TypeError: fetch failed"
+  },
+  {
+    "plcyNo": "20250106005400210052",
+    "URL": "https://www.gokseong.go.kr/youth/board/list.do?bbsId=BBS_000000000000722&menuNo=103001000000&searchCategory1=&searchCategory2=&searchCategory3=",
+    "확인일": "2026-10-03",
+    "error": "TypeError: fetch failed"
+  },
+  {
+    "plcyNo": "20250106005400210052",
+    "URL": "https://www.gokseong.go.kr/board/GosiList.do?menuNo=102001003000&pageIndex=1",
+    "확인일": "2026-10-03",
+    "error": "TypeError: fetch failed"
+  },
+  {
+    "plcyNo": "20250512005400210809",
+    "URL": "https://sokcho.go.kr/bo/holic/article?hlmSn=1&sn=7",
+    "확인일": "2026-10-03",
+    "error": "TypeError: fetch failed"
+  },
+  {
+    "plcyNo": "20250106005400210052",
+    "URL": "https://www.gokseong.go.kr/youth/board/list.do?bbsId=BBS_000000000000722&menuNo=103001000000&searchCategory1=&searchCategory2=&searchCategory3=",
+    "확인일": "2026-10-03",
+    "error": "TypeError: fetch failed"
+  },
+  {
+    "plcyNo": "20250115005400210266",
+    "URL": "https://eminwon.busanjin.go.kr/emwp/jsp/ofr/FileDown.jsp?user_file_nm=%EB%B6%80%EC%82%B0%EC%A7%84%EA%B5%AC+%EC%B2%AD%EB%85%84+%EC%A0%84%EC%9B%94%EC%84%B8+%EC%A4%91%EA%B0%9C%EC%88%98%EC%88%98%EB%A3%8C+%ED%99%95%EB%8C%80%EC%A7%80%EC%9B%90+%EA%B3%B5%EA%B3%A0%EB%AC%B8.hwp&sys_file_nm=%EB%B6%80%EC%82%B0%EC%A7%84%EA%B5%AC+%EC%B2%AD%EB%85%84+%EC%A0%84%EC%9B%94%EC%84%B8+%EC%A4%91%EA%B0%9C%EC%88%98%EC%88%98%EB%A3%8C+%ED%99%95%EB%8C%80%EC%A7%80%EC%9B%90+%EA%B3%B5%EA%B3%A0%EB%AC%B8_ofr_ofr_cZLhwPfQknmdsAFA_20260106174322416_1.hwp&file_path=%2Fntishome%2Ffile%2Fupload%2Fofr%2Fofr%2F20260106",
+    "확인일": "2026-10-03",
+    "status": 200,
+    "finalURL": "https://eminwon.busanjin.go.kr/emwp/jsp/ofr/FileDown.jsp?user_file_nm=%EB%B6%80%EC%82%B0%EC%A7%84%EA%B5%AC+%EC%B2%AD%EB%85%84+%EC%A0%84%EC%9B%94%EC%84%B8+%EC%A4%91%EA%B0%9C%EC%88%98%EC%88%98%EB%A3%8C+%ED%99%95%EB%8C%80%EC%A7%80%EC%9B%90+%EA%B3%B5%EA%B3%A0%EB%AC%B8.hwp&sys_file_nm=%EB%B6%80%EC%82%B0%EC%A7%84%EA%B5%AC+%EC%B2%AD%EB%85%84+%EC%A0%84%EC%9B%94%EC%84%B8+%EC%A4%91%EA%B0%9C%EC%88%98%EC%88%98%EB%A3%8C+%ED%99%95%EB%8C%80%EC%A7%80%EC%9B%90+%EA%B3%B5%EA%B3%A0%EB%AC%B8_ofr_ofr_cZLhwPfQknmdsAFA_20260106174322416_1.hwp&file_path=%2Fntishome%2Ffile%2Fupload%2Fofr%2Fofr%2F20260106",
+    "bytes": 76288,
+    "sha256": "222afeeb2c8066f3f5d78ceb9b96c7b4b745e905734bd7993256e856531c5cc6",
+    "file": "20250115005400210266_manual_e64aa73043.html",
+    "textFile": "20250115005400210266_manual_e64aa73043.txt",
+    "title": "",
+    "links": [],
     "errorPage": false
   }
 ]

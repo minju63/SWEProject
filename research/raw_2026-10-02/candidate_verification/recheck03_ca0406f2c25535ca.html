@@ -1,0 +1,3573 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1" />
+
+	<!-- 브라우저 캐싱 문제로 인한 추가 -->
+    <!-- 브라우저 캐싱 문제로 인한 추가 -->
+
+	<!-- <link rel="stylesheet" href="/css/style.css" /> -->
+    <link rel="stylesheet" href="/css/style.css;jsessionid=Zlq11LlSJcmy88HCNxVlfKiZ14MD2Y1ga78RcddKrQTRUxbJTMQMj4aisnENM4n1.reserveWAS1_servlet_engine11?dt=2026100300" />
+
+<script type="text/javascript" src="/jquery/js/jquery-1.11.3.min.js"></script>
+<script type="text/javascript" src="/js/IncContentUtil.js"></script>
+
+
+<!-- 카카오톡 공유 헤더 -->
+<script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
+
+<title>마이홈포털</title>
+
+
+	<!-- 챗봇 style -->
+    <style>
+	    .chatbot-link {
+	      position:fixed;
+	      right:23px;
+	      bottom:35px;
+	      width:70px;
+	      height: 70px;
+	      border-radius: 50%;
+	      background-color: #afd132;
+	      padding:15px;
+	      box-sizing: border-box;
+	    }
+	    
+	    .chatbot-link img {
+	      width:100%;
+	      display: inline-block;
+	    }
+	    
+	    .chatbot-link .ai {
+	      position: absolute;
+	      top: 8px;
+	      right: 0px;
+	      background-color: #186bca;
+	      padding: 2px 10px;
+	      border-radius: 5em;
+	      font-size: 9px;
+	      font-weight: bold;
+	      color:#fff;
+	    }
+	    
+	    .quick-menu .call-info {
+	    	margin-bottom : 20px;
+	    }
+	    
+	    .quick-menu .call-info .btn-chatbot::before {
+	    	background-image: none;
+	    }
+	    
+	    .quick-menu .call-info .btn-chatbot {
+	    	background-color: transparent;
+	    	margin-top : 0;
+	    }
+	    
+	    .quick-menu .call-info .btn-chatbot span {
+	    	top: 30px;
+	    }
+	    
+	    .mo-quick-menu .btn-m-chatbot {
+	    	/* 
+			background-color: #afd132 !important; 
+			border: none !important;
+			 */
+		}
+	    
+	    .mo-quick-menu .menu-list .list button.btn-m-chatbot::before {
+	    	width: 2.5rem;
+	    }
+	    
+    </style>
+    <!-- 챗봇 style -->
+
+
+<script type="text/javascript">
+
+var gPathName = $(location).attr("pathname");
+var gMenuId = "";
+var gMenuNm = "";
+var gMenuLevel = "";
+var gUpperMenuId = "";
+var gBuffer1Value = "";
+var gBuffer2Value = "";
+var gBuffer3Value = "";
+var gHideAt = "";
+var gMenuList = new Array();
+var gdeptMenuList = new Array();
+var nowZoom = 1.0;
+var gSiteMapCookie = "on";
+var gStsfdgAt = "";
+var gHideAt = "";
+	/* 메뉴리스트 생성 */
+	var gStr = '';
+	gMenuList.push("MENU000001" + "|" + "" + "|"
+			+ "" + "|" + "0" + "|"
+			+ "HOME" + "|" + "" + "|"
+			+ "" + "|" + "N" + "|"
+			+ "" + "|" + "N");
+	gStr += '';
+	gMenuList.push("MENU000124" + "|" + "/hws/portal/cont/selectOpenPublicDataView.do" + "|"
+			+ "MENU000001" + "|" + "1" + "|"
+			+ "공공데이터 개방" + "|" + "" + "|"
+			+ "" + "|" + "N" + "|"
+			+ "publicData" + "|" + "Y");
+	gStr += '';
+	gMenuList.push("MENU000125" + "|" + "/hws/portal/main/loginUsrView.do" + "|"
+			+ "MENU000001" + "|" + "1" + "|"
+			+ "로그인" + "|" + "" + "|"
+			+ "" + "|" + "N" + "|"
+			+ "login" + "|" + "Y");
+	gStr += '';
+	gMenuList.push("MENU000126" + "|" + "/hws/portal/main/selectMemberShipView.do" + "|"
+			+ "MENU000001" + "|" + "1" + "|"
+			+ "회원가입" + "|" + "" + "|"
+			+ "" + "|" + "N" + "|"
+			+ "login" + "|" + "Y");
+	gStr += '';
+	gMenuList.push("MENU000127" + "|" + "/hws/portal/main/selectSchIdView.do" + "|"
+			+ "MENU000001" + "|" + "1" + "|"
+			+ "아이디 찾기" + "|" + "" + "|"
+			+ "" + "|" + "N" + "|"
+			+ "login" + "|" + "Y");
+	gStr += '';
+	gMenuList.push("MENU000128" + "|" + "/hws/portal/main/selectSchPwdView.do" + "|"
+			+ "MENU000001" + "|" + "1" + "|"
+			+ "비밀번호 찾기" + "|" + "" + "|"
+			+ "" + "|" + "N" + "|"
+			+ "login" + "|" + "Y");
+	gStr += '';
+	gMenuList.push("MENU000129" + "|" + "/hws/portal/main/MemberShipMove.do" + "|"
+			+ "MENU000001" + "|" + "1" + "|"
+			+ "회원가입" + "|" + "" + "|"
+			+ "" + "|" + "N" + "|"
+			+ "login" + "|" + "Y");
+	gStr += '';
+	gMenuList.push("MENU000142" + "|" + "/hws/portal/main/actionLogin.do" + "|"
+			+ "MENU000001" + "|" + "1" + "|"
+			+ "로그인" + "|" + "" + "|"
+			+ "" + "|" + "N" + "|"
+			+ "login" + "|" + "Y");
+	gStr += '';
+	gMenuList.push("MENU000143" + "|" + "/hws/portal/usr/selectMyInfoView.do" + "|"
+			+ "MENU000001" + "|" + "1" + "|"
+			+ "마이페이지" + "|" + "" + "|"
+			+ "" + "|" + "N" + "|"
+			+ "mypage" + "|" + "Y");
+	gStr += '';
+	gMenuList.push("MENU000116" + "|" + "/hws/portal/usr/selectMyInfoView.do" + "|"
+			+ "MENU000143" + "|" + "2" + "|"
+			+ "나의 정보" + "|" + "" + "|"
+			+ "" + "|" + "N" + "|"
+			+ "mypage" + "|" + "Y");
+	gStr += '';
+	gMenuList.push("MENU000130" + "|" + "/hws/portal/usr/selectUserInfoView.do" + "|"
+			+ "MENU000143" + "|" + "2" + "|"
+			+ "회원정보 수정" + "|" + "" + "|"
+			+ "" + "|" + "N" + "|"
+			+ "mypage" + "|" + "Y");
+	gStr += '';
+	gMenuList.push("MENU000117" + "|" + "/hws/portal/usr/selectPasswordConfirmView.do" + "|"
+			+ "MENU000130" + "|" + "3" + "|"
+			+ "회원정보 수정" + "|" + "Hdetail" + "|"
+			+ "" + "|" + "N" + "|"
+			+ "mypage" + "|" + "Y");
+	gStr += '';
+	gMenuList.push("MENU000118" + "|" + "/hws/portal/usr/selectUserInfoView.do" + "|"
+			+ "MENU000130" + "|" + "3" + "|"
+			+ "회원정보 수정" + "|" + "" + "|"
+			+ "" + "|" + "N" + "|"
+			+ "mypage" + "|" + "Y");
+	gStr += '';
+	gMenuList.push("MENU000119" + "|" + "/hws/portal/usr/deleteUserInfoView.do" + "|"
+			+ "MENU000130" + "|" + "3" + "|"
+			+ "회원탈퇴" + "|" + "Hdetail" + "|"
+			+ "" + "|" + "N" + "|"
+			+ "mypage" + "|" + "Y");
+	gStr += '';
+	gMenuList.push("MENU000120" + "|" + "/hws/portal/usr/selectUserInterestAreasView.do" + "|"
+			+ "MENU000130" + "|" + "3" + "|"
+			+ "나의 관심지역" + "|" + "" + "|"
+			+ "" + "|" + "N" + "|"
+			+ "mypage" + "|" + "Y");
+	gStr += '';
+	gMenuList.push("MENU000131" + "|" + "/hws/portal/usr/selectMyIntrstCntr.do" + "|"
+			+ "MENU000143" + "|" + "2" + "|"
+			+ "나의 관심정보" + "|" + "" + "|"
+			+ "" + "|" + "N" + "|"
+			+ "mypage" + "|" + "Y");
+	gStr += '';
+	gMenuList.push("MENU000145" + "|" + "/hws/portal/usr/selectMyIntrstCntr.do" + "|"
+			+ "MENU000131" + "|" + "3" + "|"
+			+ "임대주택 입주자 모집공고" + "|" + "" + "|"
+			+ "" + "|" + "N" + "|"
+			+ "mypage" + "|" + "Y");
+	gStr += '';
+	gMenuList.push("MENU000153" + "|" + "/hws/portal/usr/selectMyIntrstHouse.do" + "|"
+			+ "MENU000131" + "|" + "3" + "|"
+			+ "전국 임대주택" + "|" + "" + "|"
+			+ "" + "|" + "N" + "|"
+			+ "mypage" + "|" + "Y");
+	gStr += '';
+	gMenuList.push("MENU000146" + "|" + "/hws/portal/usr/selectMyIntrstWait.do" + "|"
+			+ "MENU000131" + "|" + "3" + "|"
+			+ "예비입주자 대기현황" + "|" + "" + "|"
+			+ "" + "|" + "N" + "|"
+			+ "mypage" + "|" + "Y");
+	gStr += '';
+	gMenuList.push("MENU000147" + "|" + "/hws/portal/usr/selectMyIntrstLttotCntr.do" + "|"
+			+ "MENU000131" + "|" + "3" + "|"
+			+ "공공분양주택 입주자 모집공고" + "|" + "" + "|"
+			+ "" + "|" + "N" + "|"
+			+ "mypage" + "|" + "Y");
+	gStr += '';
+	gMenuList.push("MENU000148" + "|" + "/hws/portal/usr/selectMyIntrstContCmty.do" + "|"
+			+ "MENU000131" + "|" + "3" + "|"
+			+ "관심 주거정보" + "|" + "" + "|"
+			+ "" + "|" + "N" + "|"
+			+ "mypage" + "|" + "Y");
+	gStr += '';
+	gMenuList.push("MENU000149" + "|" + "/hws/portal/usr/userManageRsdtRcritNtcView.do" + "|"
+			+ "MENU000143" + "|" + "2" + "|"
+			+ "나의 맞춤정보" + "|" + "" + "|"
+			+ "" + "|" + "N" + "|"
+			+ "mypage" + "|" + "Y");
+	gStr += '';
+	gMenuList.push("MENU000150" + "|" + "/hws/portal/usr/userManageRsdtRcritNtcView.do" + "|"
+			+ "MENU000149" + "|" + "3" + "|"
+			+ "공공주택" + "|" + "" + "|"
+			+ "" + "|" + "N" + "|"
+			+ "mypage" + "|" + "Y");
+	gStr += '';
+	gMenuList.push("MENU000162" + "|" + "/hws/portal/usr/userManageRsdtRcritNtcView.do" + "|"
+			+ "MENU000150" + "|" + "4" + "|"
+			+ "임대주택 입주자 모집공고" + "|" + "" + "|"
+			+ "" + "|" + "N" + "|"
+			+ "mypage" + "|" + "Y");
+	gStr += '';
+	gMenuList.push("MENU000160" + "|" + "/hws/portal/usr/userManageRentalHouseInfoListView.do" + "|"
+			+ "MENU000150" + "|" + "4" + "|"
+			+ "전국 임대주택" + "|" + "" + "|"
+			+ "" + "|" + "N" + "|"
+			+ "mypage" + "|" + "Y");
+	gStr += '';
+	gMenuList.push("MENU000161" + "|" + "/hws/portal/usr/userManageLttotHouseView.do" + "|"
+			+ "MENU000150" + "|" + "4" + "|"
+			+ "공공분양주택 입주자 모집공고" + "|" + "" + "|"
+			+ "" + "|" + "N" + "|"
+			+ "mypage" + "|" + "Y");
+	gStr += '';
+	gMenuList.push("MENU000151" + "|" + "/hws/portal/usr/userManageDiagnosisResult.do" + "|"
+			+ "MENU000149" + "|" + "3" + "|"
+			+ "자가진단" + "|" + "" + "|"
+			+ "" + "|" + "N" + "|"
+			+ "mypage" + "|" + "Y");
+	gStr += '';
+	gMenuList.push("MENU000152" + "|" + "/hws/portal/usr/userManageMnvPosblHouseMap.do" + "|"
+			+ "MENU000149" + "|" + "3" + "|"
+			+ "주거복지 지도찾기" + "|" + "" + "|"
+			+ "" + "|" + "N" + "|"
+			+ "mypage" + "|" + "Y");
+	gStr += '';
+	gMenuList.push("MENU000154" + "|" + "/hws/portal/main/selectPrivateInfoView.do" + "|"
+			+ "MENU000001" + "|" + "1" + "|"
+			+ "이용안내" + "|" + "" + "|"
+			+ "" + "|" + "N" + "|"
+			+ "footer" + "|" + "Y");
+	gStr += '';
+	gMenuList.push("MENU000132" + "|" + "/hws/portal/main/selectPrivateInfoView.do" + "|"
+			+ "MENU000154" + "|" + "2" + "|"
+			+ "개인정보처리방침" + "|" + "" + "|"
+			+ "" + "|" + "N" + "|"
+			+ "footer" + "|" + "Y");
+	gStr += '';
+	gMenuList.push("MENU000133" + "|" + "/hws/portal/main/selectUtilizationView.do" + "|"
+			+ "MENU000154" + "|" + "2" + "|"
+			+ "홈페이지 이용약관" + "|" + "" + "|"
+			+ "" + "|" + "N" + "|"
+			+ "footer" + "|" + "Y");
+	gStr += '';
+	gMenuList.push("MENU000134" + "|" + "/hws/portal/main/selectRefuseCollectionView.do" + "|"
+			+ "MENU000154" + "|" + "2" + "|"
+			+ "이메일 무단수집 거부" + "|" + "" + "|"
+			+ "" + "|" + "N" + "|"
+			+ "footer" + "|" + "Y");
+	gStr += '';
+	gMenuList.push("MENU000155" + "|" + "/hws/portal/main/selectSimpleSrchDataView.do" + "|"
+			+ "MENU000001" + "|" + "1" + "|"
+			+ "지역별 주거복지 검색" + "|" + "" + "|"
+			+ "" + "|" + "N" + "|"
+			+ "simplesrch" + "|" + "Y");
+	gStr += '';
+	gMenuList.push("MENU000156" + "|" + "/hws/portal/main/selectSimpleSrchDataView.do" + "|"
+			+ "MENU000155" + "|" + "2" + "|"
+			+ "검색결과" + "|" + "" + "|"
+			+ "" + "|" + "N" + "|"
+			+ "simplesrch" + "|" + "Y");
+	gStr += '';
+	gMenuList.push("MENU000158" + "|" + "/hws/portal/mlrd/vote/selectVoteListView.do" + "|"
+			+ "MENU000001" + "|" + "1" + "|"
+			+ "온라인 투표" + "|" + "" + "|"
+			+ "" + "|" + "N" + "|"
+			+ "online" + "|" + "Y");
+	gStr += '';
+	gMenuList.push("MENU000159" + "|" + "/hws/portal/mlrd/qes/selectQestnarListView.do" + "|"
+			+ "MENU000001" + "|" + "1" + "|"
+			+ "온라인 설문조사" + "|" + "" + "|"
+			+ "" + "|" + "N" + "|"
+			+ "online" + "|" + "Y");
+	gStr += '';
+	gMenuList.push("MENU000002" + "|" + "/hws/portal/cont/selectWelfareHousingView.do" + "|"
+			+ "MENU000001" + "|" + "1" + "|"
+			+ "주거복지서비스" + "|" + "msub" + "|"
+			+ "1" + "|" + "N" + "|"
+			+ "welfare" + "|" + "N");
+	gStr += '';
+	gMenuList.push("MENU000006" + "|" + "/hws/portal/cont/selectWelfareHousingView.do" + "|"
+			+ "MENU000002" + "|" + "2" + "|"
+			+ "주거복지서비스안내" + "|" + "h" + "|"
+			+ "" + "|" + "N" + "|"
+			+ "welfare" + "|" + "N");
+	gStr += '';
+	gMenuList.push("MENU000007" + "|" + "/hws/portal/cont/selectContRentalHouseView.do" + "|"
+			+ "MENU000002" + "|" + "2" + "|"
+			+ "주거복지제도" + "|" + "" + "|"
+			+ "" + "|" + "N" + "|"
+			+ "welfare" + "|" + "N");
+	gStr += '';
+	gMenuList.push("MENU000015" + "|" + "/hws/portal/cont/selectContRentalHouseView.do" + "|"
+			+ "MENU000007" + "|" + "3" + "|"
+			+ "주택공급" + "|" + "" + "|"
+			+ "" + "|" + "N" + "|"
+			+ "welfare" + "|" + "N");
+	gStr += '';
+	gMenuList.push("MENU000037" + "|" + "/hws/portal/cont/selectContRentalHouseView.do" + "|"
+			+ "MENU000015" + "|" + "4" + "|"
+			+ "임대주택" + "|" + "" + "|"
+			+ "" + "|" + "N" + "|"
+			+ "welfare" + "|" + "N");
+	gStr += '';
+	gMenuList.push("MENU000045" + "|" + "/hws/portal/cont/selectContRentalHouseView.do" + "|"
+			+ "MENU000037" + "|" + "5" + "|"
+			+ "임대주택소개" + "|" + "" + "|"
+			+ "" + "|" + "N" + "|"
+			+ "welfare" + "|" + "N");
+	gStr += '';
+	gMenuList.push("MENU000046" + "|" + "/hws/portal/cont/selectSupInfoView.do" + "|"
+			+ "MENU000037" + "|" + "5" + "|"
+			+ "공급기관" + "|" + "" + "|"
+			+ "" + "|" + "N" + "|"
+			+ "welfare" + "|" + "N");
+	gStr += '';
+	gMenuList.push("MENU000038" + "|" + "/hws/portal/cont/selectIntegratedPubRentalHouseView.do" + "|"
+			+ "MENU000015" + "|" + "4" + "|"
+			+ "유형별 임대주택안내" + "|" + "" + "|"
+			+ "" + "|" + "N" + "|"
+			+ "welfare" + "|" + "N");
+	gStr += '';
+	gMenuList.push("MENU000047" + "|" + "/hws/portal/cont/selectIntegratedPubRentalHouseView.do" + "|"
+			+ "MENU000038" + "|" + "5" + "|"
+			+ "통합공공임대주택" + "|" + "" + "|"
+			+ "" + "|" + "N" + "|"
+			+ "welfare" + "|" + "N");
+	gStr += '';
+	gMenuList.push("MENU000052" + "|" + "/hws/portal/cont/selectBuyRentalHouseView.do" + "|"
+			+ "MENU000038" + "|" + "5" + "|"
+			+ "매입임대주택" + "|" + "" + "|"
+			+ "" + "|" + "N" + "|"
+			+ "welfare" + "|" + "N");
+	gStr += '';
+	gMenuList.push("MENU000053" + "|" + "/hws/portal/cont/selectCharterRentalHouseView.do" + "|"
+			+ "MENU000038" + "|" + "5" + "|"
+			+ "전세임대주택" + "|" + "" + "|"
+			+ "" + "|" + "N" + "|"
+			+ "welfare" + "|" + "N");
+	gStr += '';
+	gMenuList.push("MENU000054" + "|" + "/hws/portal/cont/selectHappyHouseView.do" + "|"
+			+ "MENU000038" + "|" + "5" + "|"
+			+ "행복주택" + "|" + "" + "|"
+			+ "" + "|" + "N" + "|"
+			+ "welfare" + "|" + "N");
+	gStr += '';
+	gMenuList.push("MENU000049" + "|" + "/hws/portal/cont/selectNationalRentalHouseView.do" + "|"
+			+ "MENU000038" + "|" + "5" + "|"
+			+ "국민임대주택" + "|" + "" + "|"
+			+ "" + "|" + "N" + "|"
+			+ "welfare" + "|" + "N");
+	gStr += '';
+	gMenuList.push("MENU000048" + "|" + "/hws/portal/cont/selectPermanentRHView.do" + "|"
+			+ "MENU000038" + "|" + "5" + "|"
+			+ "영구임대주택" + "|" + "" + "|"
+			+ "" + "|" + "N" + "|"
+			+ "welfare" + "|" + "N");
+	gStr += '';
+	gMenuList.push("MENU000050" + "|" + "/hws/portal/cont/selectlongTermLeaseHouseView.do" + "|"
+			+ "MENU000038" + "|" + "5" + "|"
+			+ "장기전세주택" + "|" + "" + "|"
+			+ "" + "|" + "N" + "|"
+			+ "welfare" + "|" + "N");
+	gStr += '';
+	gMenuList.push("MENU000051" + "|" + "/hws/portal/cont/selectPubRentalHouseView.do" + "|"
+			+ "MENU000038" + "|" + "5" + "|"
+			+ "5년·10년·50년 공공임대주택" + "|" + "" + "|"
+			+ "" + "|" + "N" + "|"
+			+ "welfare" + "|" + "N");
+	gStr += '';
+	gMenuList.push("MENU000055" + "|" + "/hws/portal/cont/selectResidentialWelfareHousingView.do" + "|"
+			+ "MENU000038" + "|" + "5" + "|"
+			+ "주거복지동주택" + "|" + "" + "|"
+			+ "" + "|" + "N" + "|"
+			+ "welfare" + "|" + "N");
+	gStr += '';
+	gMenuList.push("MENU000056" + "|" + "/hws/portal/cont/selectPubDormitoryView.do" + "|"
+			+ "MENU000038" + "|" + "5" + "|"
+			+ "공공기숙사" + "|" + "" + "|"
+			+ "" + "|" + "N" + "|"
+			+ "welfare" + "|" + "N");
+	gStr += '';
+	gMenuList.push("MENU000039" + "|" + "/hws/portal/cont/selectPubSalesHousView.do" + "|"
+			+ "MENU000015" + "|" + "4" + "|"
+			+ "공공분양" + "|" + "" + "|"
+			+ "" + "|" + "N" + "|"
+			+ "welfare" + "|" + "N");
+	gStr += '';
+	gMenuList.push("MENU000057" + "|" + "/hws/portal/cont/selectPubSalesHousView.do" + "|"
+			+ "MENU000039" + "|" + "5" + "|"
+			+ "공공분양주택소개" + "|" + "" + "|"
+			+ "" + "|" + "N" + "|"
+			+ "welfare" + "|" + "N");
+	gStr += '';
+	gMenuList.push("MENU000058" + "|" + "/hws/portal/cont/selectResaleRestrictionView.do" + "|"
+			+ "MENU000039" + "|" + "5" + "|"
+			+ "전매제한 및 기타" + "|" + "" + "|"
+			+ "" + "|" + "N" + "|"
+			+ "welfare" + "|" + "N");
+	gStr += '';
+	gMenuList.push("MENU000059" + "|" + "/hws/portal/cont/selectSupplyInstitutionView.do" + "|"
+			+ "MENU000039" + "|" + "5" + "|"
+			+ "공급기관" + "|" + "" + "|"
+			+ "" + "|" + "N" + "|"
+			+ "welfare" + "|" + "N");
+	gStr += '';
+	gMenuList.push("MENU000040" + "|" + "/hws/portal/cont/selectNewlywedHopeTownView.do" + "|"
+			+ "MENU000015" + "|" + "4" + "|"
+			+ "유형별 공공분양안내" + "|" + "" + "|"
+			+ "" + "|" + "N" + "|"
+			+ "welfare" + "|" + "N");
+	gStr += '';
+	gMenuList.push("MENU000061" + "|" + "/hws/portal/cont/selectNewlywedHopeTownView.do" + "|"
+			+ "MENU000040" + "|" + "5" + "|"
+			+ "신혼희망타운" + "|" + "" + "|"
+			+ "" + "|" + "N" + "|"
+			+ "welfare" + "|" + "N");
+	gStr += '';
+	gMenuList.push("MENU000062" + "|" + "/hws/portal/cont/selectNHTQualificationView.do" + "|"
+			+ "MENU000040" + "|" + "5" + "|"
+			+ "공공분양주택" + "|" + "" + "|"
+			+ "" + "|" + "N" + "|"
+			+ "welfare" + "|" + "N");
+	gStr += '';
+	gMenuList.push("MENU000163" + "|" + "/hws/portal/cont/selectNewHomeShareTypeView.do" + "|"
+			+ "MENU000040" + "|" + "5" + "|"
+			+ "이익공유형 분양주택" + "|" + "" + "|"
+			+ "" + "|" + "N" + "|"
+			+ "welfare" + "|" + "N");
+	gStr += '';
+	gMenuList.push("MENU000164" + "|" + "/hws/portal/cont/selectNewHomeChoiceTypeView.do" + "|"
+			+ "MENU000040" + "|" + "5" + "|"
+			+ "6년 분양전환 공공임대주택" + "|" + "" + "|"
+			+ "" + "|" + "N" + "|"
+			+ "welfare" + "|" + "N");
+	gStr += '';
+	gMenuList.push("MENU000016" + "|" + "/hws/portal/cont/selectHousingFinanceView.do" + "|"
+			+ "MENU000007" + "|" + "3" + "|"
+			+ "금융지원" + "|" + "" + "|"
+			+ "" + "|" + "N" + "|"
+			+ "welfare" + "|" + "N");
+	gStr += '';
+	gMenuList.push("MENU000041" + "|" + "/hws/portal/cont/selectHousingFinanceView.do" + "|"
+			+ "MENU000016" + "|" + "4" + "|"
+			+ "주택금융" + "|" + "" + "|"
+			+ "" + "|" + "N" + "|"
+			+ "welfare" + "|" + "N");
+	gStr += '';
+	gMenuList.push("MENU000063" + "|" + "/hws/portal/cont/selectHousingFinanceView.do" + "|"
+			+ "MENU000041" + "|" + "5" + "|"
+			+ "주택금융소개" + "|" + "" + "|"
+			+ "" + "|" + "N" + "|"
+			+ "welfare" + "|" + "N");
+	gStr += '';
+	gMenuList.push("MENU000064" + "|" + "/hws/portal/cont/selectGuaranteeCorporationView.do" + "|"
+			+ "MENU000041" + "|" + "5" + "|"
+			+ "주택도시보증공사" + "|" + "" + "|"
+			+ "" + "|" + "N" + "|"
+			+ "welfare" + "|" + "N");
+	gStr += '';
+	gMenuList.push("MENU000065" + "|" + "/hws/portal/cont/selectFinanceCorporationView.do" + "|"
+			+ "MENU000041" + "|" + "5" + "|"
+			+ "한국주택금융공사" + "|" + "" + "|"
+			+ "" + "|" + "N" + "|"
+			+ "welfare" + "|" + "N");
+	gStr += '';
+	gMenuList.push("MENU000042" + "|" + "/hws/portal/cont/selectSteppingStoneLoanView.do" + "|"
+			+ "MENU000016" + "|" + "4" + "|"
+			+ "관련상품안내" + "|" + "" + "|"
+			+ "" + "|" + "N" + "|"
+			+ "welfare" + "|" + "N");
+	gStr += '';
+	gMenuList.push("MENU000066" + "|" + "/hws/portal/cont/selectSteppingStoneLoanView.do" + "|"
+			+ "MENU000042" + "|" + "5" + "|"
+			+ "내집마련디딤돌대출" + "|" + "" + "|"
+			+ "" + "|" + "N" + "|"
+			+ "welfare" + "|" + "N");
+	gStr += '';
+	gMenuList.push("MENU000165" + "|" + "/hws/portal/cont/selectBabySpecialCaseStepStoneLoneView.do" + "|"
+			+ "MENU000042" + "|" + "5" + "|"
+			+ "신생아 특례 디딤돌대출" + "|" + "" + "|"
+			+ "" + "|" + "N" + "|"
+			+ "welfare" + "|" + "N");
+	gStr += '';
+	gMenuList.push("MENU000067" + "|" + "/hws/portal/cont/selectSharingMortgageView.do" + "|"
+			+ "MENU000042" + "|" + "5" + "|"
+			+ "수익공유형모기지" + "|" + "" + "|"
+			+ "" + "|" + "N" + "|"
+			+ "welfare" + "|" + "N");
+	gStr += '';
+	gMenuList.push("MENU000068" + "|" + "/hws/portal/cont/selectLossSharingMortgageView.do" + "|"
+			+ "MENU000042" + "|" + "5" + "|"
+			+ "손익공유형모기지" + "|" + "" + "|"
+			+ "" + "|" + "N" + "|"
+			+ "welfare" + "|" + "N");
+	gStr += '';
+	gMenuList.push("MENU000069" + "|" + "/hws/portal/cont/selectFundsPurchaseOfficetelView.do" + "|"
+			+ "MENU000042" + "|" + "5" + "|"
+			+ "오피스텔구입자금" + "|" + "" + "|"
+			+ "" + "|" + "N" + "|"
+			+ "welfare" + "|" + "N");
+	gStr += '';
+	gMenuList.push("MENU000070" + "|" + "/hws/portal/cont/selectSpecializedNestingView.do" + "|"
+			+ "MENU000042" + "|" + "5" + "|"
+			+ "보금자리론" + "|" + "" + "|"
+			+ "" + "|" + "N" + "|"
+			+ "welfare" + "|" + "N");
+	gStr += '';
+	gMenuList.push("MENU000071" + "|" + "/hws/portal/cont/selectSupLeaseLoanView.do" + "|"
+			+ "MENU000042" + "|" + "5" + "|"
+			+ "버팀목전세대출" + "|" + "" + "|"
+			+ "" + "|" + "N" + "|"
+			+ "welfare" + "|" + "N");
+	gStr += '';
+	gMenuList.push("MENU000166" + "|" + "/hws/portal/cont/selectBabySpecialCaseCrutchLoneView.do" + "|"
+			+ "MENU000042" + "|" + "5" + "|"
+			+ "신생아 특례 버팀목 대출" + "|" + "" + "|"
+			+ "" + "|" + "N" + "|"
+			+ "welfare" + "|" + "N");
+	gStr += '';
+	gMenuList.push("MENU000072" + "|" + "/hws/portal/cont/selectResidentialMonthlyRentLoanView.do" + "|"
+			+ "MENU000042" + "|" + "5" + "|"
+			+ "주거안정월세대출" + "|" + "" + "|"
+			+ "" + "|" + "N" + "|"
+			+ "welfare" + "|" + "N");
+	gStr += '';
+	gMenuList.push("MENU000073" + "|" + "/hws/portal/cont/selectHousingPensionView.do" + "|"
+			+ "MENU000042" + "|" + "5" + "|"
+			+ "주택연금" + "|" + "" + "|"
+			+ "" + "|" + "N" + "|"
+			+ "welfare" + "|" + "N");
+	gStr += '';
+	gMenuList.push("MENU000140" + "|" + "/hws/portal/cont/selectSupAbnormalResidentialView.do" + "|"
+			+ "MENU000042" + "|" + "5" + "|"
+			+ "주거취약계층 이주지원 버팀목전세자금" + "|" + "" + "|"
+			+ "" + "|" + "N" + "|"
+			+ "welfare" + "|" + "N");
+	gStr += '';
+	gMenuList.push("MENU000100" + "|" + "#" + "|"
+			+ "MENU000016" + "|" + "4" + "|"
+			+ "" + "|" + "hide" + "|"
+			+ "" + "|" + "N" + "|"
+			+ "" + "|" + "N");
+	gStr += '';
+	gMenuList.push("MENU000101" + "|" + "#" + "|"
+			+ "MENU000016" + "|" + "4" + "|"
+			+ "" + "|" + "hide" + "|"
+			+ "" + "|" + "N" + "|"
+			+ "" + "|" + "N");
+	gStr += '';
+	gMenuList.push("MENU000017" + "|" + "/hws/portal/cont/selectHousingBenefitView.do" + "|"
+			+ "MENU000007" + "|" + "3" + "|"
+			+ "주거비지원" + "|" + "" + "|"
+			+ "" + "|" + "N" + "|"
+			+ "welfare" + "|" + "N");
+	gStr += '';
+	gMenuList.push("MENU000043" + "|" + "/hws/portal/cont/selectHousingBenefitView.do" + "|"
+			+ "MENU000017" + "|" + "4" + "|"
+			+ "주거급여" + "|" + "" + "|"
+			+ "" + "|" + "N" + "|"
+			+ "welfare" + "|" + "N");
+	gStr += '';
+	gMenuList.push("MENU000074" + "|" + "/hws/portal/cont/selectHousingBenefitView.do" + "|"
+			+ "MENU000043" + "|" + "5" + "|"
+			+ "주거급여소개" + "|" + "" + "|"
+			+ "" + "|" + "N" + "|"
+			+ "welfare" + "|" + "N");
+	gStr += '';
+	gMenuList.push("MENU000075" + "|" + "/hws/portal/cont/selectHousingBenefitManagementView.do" + "|"
+			+ "MENU000043" + "|" + "5" + "|"
+			+ "주거급여관리" + "|" + "" + "|"
+			+ "" + "|" + "N" + "|"
+			+ "welfare" + "|" + "N");
+	gStr += '';
+	gMenuList.push("MENU000076" + "|" + "/hws/portal/cont/selectFraudulentSupplyReportView.do" + "|"
+			+ "MENU000043" + "|" + "5" + "|"
+			+ "부정수급" + "|" + "" + "|"
+			+ "" + "|" + "N" + "|"
+			+ "welfare" + "|" + "N");
+	gStr += '';
+	gMenuList.push("MENU000077" + "|" + "/hws/portal/cont/selectRentalHouseholdSupView.do" + "|"
+			+ "MENU000043" + "|" + "5" + "|"
+			+ "임차가구지원" + "|" + "" + "|"
+			+ "" + "|" + "N" + "|"
+			+ "welfare" + "|" + "N");
+	gStr += '';
+	gMenuList.push("MENU000078" + "|" + "/hws/portal/cont/selectSupSelfHouseholdsView.do" + "|"
+			+ "MENU000043" + "|" + "5" + "|"
+			+ "자가가구지원" + "|" + "" + "|"
+			+ "" + "|" + "N" + "|"
+			+ "welfare" + "|" + "N");
+	gStr += '';
+	gMenuList.push("MENU000044" + "|" + "/hws/portal/cont/selectHousinghSurveyView.do" + "|"
+			+ "MENU000017" + "|" + "4" + "|"
+			+ "주택조사" + "|" + "" + "|"
+			+ "" + "|" + "N" + "|"
+			+ "welfare" + "|" + "N");
+	gStr += '';
+	gMenuList.push("MENU000079" + "|" + "/hws/portal/cont/selectHousinghSurveyView.do" + "|"
+			+ "MENU000044" + "|" + "5" + "|"
+			+ "주택조사소개" + "|" + "" + "|"
+			+ "" + "|" + "N" + "|"
+			+ "welfare" + "|" + "N");
+	gStr += '';
+	gMenuList.push("MENU000080" + "|" + "/hws/portal/cont/selectHousingSurveyInquiryView.do" + "|"
+			+ "MENU000044" + "|" + "5" + "|"
+			+ "주택조사문의" + "|" + "" + "|"
+			+ "" + "|" + "N" + "|"
+			+ "welfare" + "|" + "N");
+	gStr += '';
+	gMenuList.push("MENU000102" + "|" + "#" + "|"
+			+ "MENU000017" + "|" + "4" + "|"
+			+ "" + "|" + "hide" + "|"
+			+ "" + "|" + "N" + "|"
+			+ "" + "|" + "N");
+	gStr += '';
+	gMenuList.push("MENU000103" + "|" + "#" + "|"
+			+ "MENU000017" + "|" + "4" + "|"
+			+ "" + "|" + "hide" + "|"
+			+ "" + "|" + "N" + "|"
+			+ "" + "|" + "N");
+	gStr += '';
+	gMenuList.push("MENU000018" + "|" + "/hws/portal/cont/selectEmergencyHousingSupView.do" + "|"
+			+ "MENU000007" + "|" + "3" + "|"
+			+ "기타지원" + "|" + "custom" + "|"
+			+ "" + "|" + "N" + "|"
+			+ "welfare" + "|" + "N");
+	gStr += '';
+	gMenuList.push("MENU000104" + "|" + "#" + "|"
+			+ "MENU000018" + "|" + "4" + "|"
+			+ "" + "|" + "hide" + "|"
+			+ "" + "|" + "N" + "|"
+			+ "" + "|" + "N");
+	gStr += '';
+	gMenuList.push("MENU000135" + "|" + "/hws/portal/cont/selectEmergencyHousingSupView.do" + "|"
+			+ "MENU000018" + "|" + "4" + "|"
+			+ "기타지원" + "|" + "custom" + "|"
+			+ "" + "|" + "N" + "|"
+			+ "welfare" + "|" + "N");
+	gStr += '';
+	gMenuList.push("MENU000081" + "|" + "/hws/portal/cont/selectEmergencyHousingSupView.do" + "|"
+			+ "MENU000135" + "|" + "5" + "|"
+			+ "긴급주거지원" + "|" + "up" + "|"
+			+ "" + "|" + "N" + "|"
+			+ "welfare" + "|" + "N");
+	gStr += '';
+	gMenuList.push("MENU000082" + "|" + "/hws/portal/cont/selectHousingSupVulnerableGroupsView.do" + "|"
+			+ "MENU000135" + "|" + "5" + "|"
+			+ "주거취약계층 주거지원" + "|" + "up" + "|"
+			+ "" + "|" + "N" + "|"
+			+ "welfare" + "|" + "N");
+	gStr += '';
+	gMenuList.push("MENU000141" + "|" + "/hws/portal/cont/selectSupResidentsAbnormalView.do" + "|"
+			+ "MENU000135" + "|" + "5" + "|"
+			+ "주거취약계층 이사비 지원" + "|" + "up" + "|"
+			+ "" + "|" + "N" + "|"
+			+ "welfare" + "|" + "N");
+	gStr += '';
+	gMenuList.push("MENU000019" + "|" + "/hws/portal/bbs/selectBoardFAQListView.do" + "|"
+			+ "MENU000007" + "|" + "3" + "|"
+			+ "자주묻는질문" + "|" + "custom" + "|"
+			+ "" + "|" + "N" + "|"
+			+ "welfare" + "|" + "N");
+	gStr += '';
+	gMenuList.push("MENU000008" + "|" + "/hws/portal/cont/selectResidentialWorkerSystemView.do" + "|"
+			+ "MENU000002" + "|" + "2" + "|"
+			+ "주거복지사" + "|" + "" + "|"
+			+ "" + "|" + "N" + "|"
+			+ "welfare" + "|" + "N");
+	gStr += '';
+	gMenuList.push("MENU000020" + "|" + "/hws/portal/cont/selectResidentialWorkerSystemView.do" + "|"
+			+ "MENU000008" + "|" + "3" + "|"
+			+ "주거복지사 제도소개" + "|" + "custom" + "|"
+			+ "" + "|" + "N" + "|"
+			+ "welfare" + "|" + "N");
+	gStr += '';
+	gMenuList.push("MENU000021" + "|" + "/hws/portal/cont/selectResidentialWorkerQualificationView.do" + "|"
+			+ "MENU000008" + "|" + "3" + "|"
+			+ "주거복지사 자격검정" + "|" + "custom" + "|"
+			+ "" + "|" + "N" + "|"
+			+ "welfare" + "|" + "N");
+	gStr += '';
+	gMenuList.push("MENU000009" + "|" + "/hws/portal/cont/selectMyHomeCenterView.do" + "|"
+			+ "MENU000002" + "|" + "2" + "|"
+			+ "주거복지기관찾기" + "|" + "" + "|"
+			+ "" + "|" + "N" + "|"
+			+ "welfare" + "|" + "N");
+	gStr += '';
+	gMenuList.push("MENU000022" + "|" + "/hws/portal/cont/selectMyHomeCenterView.do" + "|"
+			+ "MENU000009" + "|" + "3" + "|"
+			+ "함께하는 주거복지" + "|" + "custom" + "|"
+			+ "" + "|" + "N" + "|"
+			+ "welfare" + "|" + "N");
+	gStr += '';
+	gMenuList.push("MENU000105" + "|" + "#" + "|"
+			+ "MENU000022" + "|" + "4" + "|"
+			+ "" + "|" + "hide" + "|"
+			+ "" + "|" + "N" + "|"
+			+ "" + "|" + "N");
+	gStr += '';
+	gMenuList.push("MENU000136" + "|" + "/hws/portal/cont/selectMyHomeCenterView.do" + "|"
+			+ "MENU000022" + "|" + "4" + "|"
+			+ "함께하는 주거복지" + "|" + "custom" + "|"
+			+ "" + "|" + "N" + "|"
+			+ "welfare" + "|" + "N");
+	gStr += '';
+	gMenuList.push("MENU000083" + "|" + "/hws/portal/cont/selectMyHomeCenterView.do" + "|"
+			+ "MENU000136" + "|" + "5" + "|"
+			+ "마이홈센터" + "|" + "up" + "|"
+			+ "" + "|" + "N" + "|"
+			+ "welfare" + "|" + "N");
+	gStr += '';
+	gMenuList.push("MENU000084" + "|" + "/hws/portal/cont/selectMigrantSupCenter119View.do" + "|"
+			+ "MENU000136" + "|" + "5" + "|"
+			+ "이주지원119센터" + "|" + "up" + "|"
+			+ "" + "|" + "N" + "|"
+			+ "welfare" + "|" + "N");
+	gStr += '';
+	gMenuList.push("MENU000085" + "|" + "/hws/portal/cont/selectResidentialWelfareCenterView.do" + "|"
+			+ "MENU000136" + "|" + "5" + "|"
+			+ "주거복지센터" + "|" + "up" + "|"
+			+ "" + "|" + "N" + "|"
+			+ "welfare" + "|" + "N");
+	gStr += '';
+	gMenuList.push("MENU000023" + "|" + "/hws/portal/cont/selectAdministrativeWelfareCenter.do" + "|"
+			+ "MENU000009" + "|" + "3" + "|"
+			+ "행정복지센터" + "|" + "custom" + "|"
+			+ "" + "|" + "N" + "|"
+			+ "welfare" + "|" + "N");
+	gStr += '';
+	gMenuList.push("MENU000004" + "|" + "/hws/portal/sch/selectRsdtRcritNtcView.do" + "|"
+			+ "MENU000001" + "|" + "1" + "|"
+			+ "공공주택찾기" + "|" + "msub" + "|"
+			+ "2" + "|" + "N" + "|"
+			+ "srchPublic" + "|" + "N");
+	gStr += '';
+	gMenuList.push("MENU000010" + "|" + "/hws/portal/sch/selectRsdtRcritNtcView.do" + "|"
+			+ "MENU000004" + "|" + "2" + "|"
+			+ "임대주택" + "|" + "" + "|"
+			+ "" + "|" + "N" + "|"
+			+ "srchPublic" + "|" + "N");
+	gStr += '';
+	gMenuList.push("MENU000024" + "|" + "/hws/portal/sch/selectRsdtRcritNtcView.do" + "|"
+			+ "MENU000010" + "|" + "3" + "|"
+			+ "입주자 모집공고" + "|" + "custom2" + "|"
+			+ "" + "|" + "N" + "|"
+			+ "srchPublic" + "|" + "N");
+	gStr += '';
+	gMenuList.push("MENU000109" + "|" + "/hws/portal/sch/selectRsdtRcritNtcDetailView.do" + "|"
+			+ "MENU000010" + "|" + "3" + "|"
+			+ "입주자 모집공고" + "|" + "custom2" + "|"
+			+ "" + "|" + "N" + "|"
+			+ "srchPublic" + "|" + "Y");
+	gStr += '';
+	gMenuList.push("MENU000110" + "|" + "/hws/portal/sch/selectRentalHouseInfoDetail.do" + "|"
+			+ "MENU000010" + "|" + "3" + "|"
+			+ "전국 임대주택" + "|" + "custom2" + "|"
+			+ "" + "|" + "N" + "|"
+			+ "srchPublic" + "|" + "Y");
+	gStr += '';
+	gMenuList.push("MENU000111" + "|" + "/hws/portal/sch/selectMoveWaitStsDetail.do" + "|"
+			+ "MENU000010" + "|" + "3" + "|"
+			+ "예비입주자 대기현황" + "|" + "custom2" + "|"
+			+ "" + "|" + "N" + "|"
+			+ "srchPublic" + "|" + "Y");
+	gStr += '';
+	gMenuList.push("MENU000025" + "|" + "/hws/portal/sch/selectRentalHouseInfoListView.do" + "|"
+			+ "MENU000010" + "|" + "3" + "|"
+			+ "전국 임대주택" + "|" + "custom2" + "|"
+			+ "" + "|" + "N" + "|"
+			+ "srchPublic" + "|" + "N");
+	gStr += '';
+	gMenuList.push("MENU000026" + "|" + "/hws/portal/sch/selectMoveWaitStsListView.do" + "|"
+			+ "MENU000010" + "|" + "3" + "|"
+			+ "예비입주자 대기현황" + "|" + "custom2" + "|"
+			+ "" + "|" + "N" + "|"
+			+ "srchPublic" + "|" + "N");
+	gStr += '';
+	gMenuList.push("MENU000011" + "|" + "/hws/portal/sch/selectLttotHouseView.do" + "|"
+			+ "MENU000004" + "|" + "2" + "|"
+			+ "공공분양주택" + "|" + "tag1" + "|"
+			+ "" + "|" + "N" + "|"
+			+ "srchPublic" + "|" + "N");
+	gStr += '';
+	gMenuList.push("MENU000027" + "|" + "/hws/portal/sch/selectLttotHouseView.do" + "|"
+			+ "MENU000011" + "|" + "3" + "|"
+			+ "입주자 모집공고" + "|" + "" + "|"
+			+ "" + "|" + "N" + "|"
+			+ "srchPublic" + "|" + "N");
+	gStr += '';
+	gMenuList.push("MENU000112" + "|" + "/hws/portal/sch/selectLttotHouseDetailView.do" + "|"
+			+ "MENU000011" + "|" + "3" + "|"
+			+ "입주자 모집공고" + "|" + "" + "|"
+			+ "" + "|" + "N" + "|"
+			+ "srchPublic" + "|" + "Y");
+	gStr += '';
+	gMenuList.push("MENU000121" + "|" + "/hws/portal/dgn/selectSelfDiagnosisIntroView2.do" + "|"
+			+ "MENU000001" + "|" + "1" + "|"
+			+ "자가진단" + "|" + "" + "|"
+			+ "" + "|" + "N" + "|"
+			+ "selfDiagnosis" + "|" + "Y");
+	gStr += '';
+	gMenuList.push("MENU000122" + "|" + "/hws/portal/dgn/selectSelfDiagnosisView.do" + "|"
+			+ "MENU000001" + "|" + "1" + "|"
+			+ "자가진단" + "|" + "" + "|"
+			+ "" + "|" + "N" + "|"
+			+ "selfDiagnosis" + "|" + "Y");
+	gStr += '';
+	gMenuList.push("MENU000123" + "|" + "/hws/portal/dgn/selectSelfDiagnosisResultView.do" + "|"
+			+ "MENU000001" + "|" + "1" + "|"
+			+ "자가진단" + "|" + "" + "|"
+			+ "" + "|" + "N" + "|"
+			+ "selfDiagnosis" + "|" + "Y");
+	gStr += '';
+	gMenuList.push("MENU000005" + "|" + "/hws/portal/main/selectMyHomeInfoView.do" + "|"
+			+ "MENU000001" + "|" + "1" + "|"
+			+ "정보마당" + "|" + "msub" + "|"
+			+ "3" + "|" + "N" + "|"
+			+ "myhomeInfo" + "|" + "N");
+	gStr += '';
+	gMenuList.push("MENU000012" + "|" + "/hws/portal/main/selectMyHomeInfoView.do" + "|"
+			+ "MENU000005" + "|" + "2" + "|"
+			+ "마이홈이란?" + "|" + "h" + "|"
+			+ "" + "|" + "N" + "|"
+			+ "myhomeInfo" + "|" + "N");
+	gStr += '';
+	gMenuList.push("MENU000013" + "|" + "/hws/portal/bbs/selectBoardNoticeListView.do" + "|"
+			+ "MENU000005" + "|" + "2" + "|"
+			+ "마이홈소식" + "|" + "" + "|"
+			+ "" + "|" + "N" + "|"
+			+ "myhomeInfo" + "|" + "N");
+	gStr += '';
+	gMenuList.push("MENU000028" + "|" + "/hws/portal/bbs/selectBoardNoticeListView.do" + "|"
+			+ "MENU000013" + "|" + "3" + "|"
+			+ "공지사항" + "|" + "custom2" + "|"
+			+ "" + "|" + "N" + "|"
+			+ "myhomeInfo" + "|" + "N");
+	gStr += '';
+	gMenuList.push("MENU000113" + "|" + "/hws/portal/bbs/selectBoardNoticeDetailView.do" + "|"
+			+ "MENU000013" + "|" + "3" + "|"
+			+ "공지사항" + "|" + "" + "|"
+			+ "" + "|" + "N" + "|"
+			+ "myhomeInfo" + "|" + "Y");
+	gStr += '';
+	gMenuList.push("MENU000114" + "|" + "/hws/portal/bbs/selectBoardPressDetailView.do" + "|"
+			+ "MENU000013" + "|" + "3" + "|"
+			+ "보도자료" + "|" + "" + "|"
+			+ "" + "|" + "N" + "|"
+			+ "myhomeInfo" + "|" + "Y");
+	gStr += '';
+	gMenuList.push("MENU000115" + "|" + "/hws/portal/bbs/selectBoardHappyNewsDetailView.do" + "|"
+			+ "MENU000013" + "|" + "3" + "|"
+			+ "LH소식" + "|" + "" + "|"
+			+ "" + "|" + "N" + "|"
+			+ "myhomeInfo" + "|" + "Y");
+	gStr += '';
+	gMenuList.push("MENU000029" + "|" + "/hws/portal/bbs/selectBoardPressListView.do" + "|"
+			+ "MENU000013" + "|" + "3" + "|"
+			+ "보도자료" + "|" + "custom2" + "|"
+			+ "" + "|" + "N" + "|"
+			+ "myhomeInfo" + "|" + "N");
+	gStr += '';
+	gMenuList.push("MENU000030" + "|" + "/hws/portal/bbs/selectHappyNewsListView.do" + "|"
+			+ "MENU000013" + "|" + "3" + "|"
+			+ "LH소식" + "|" + "custom2" + "|"
+			+ "" + "|" + "N" + "|"
+			+ "myhomeInfo" + "|" + "N");
+	gStr += '';
+	gMenuList.push("MENU000014" + "|" + "/hws/portal/cont/selectHouseTypeGuide.do" + "|"
+			+ "MENU000005" + "|" + "2" + "|"
+			+ "부동산정보" + "|" + "tag2" + "|"
+			+ "" + "|" + "N" + "|"
+			+ "myhomeInfo" + "|" + "N");
+	gStr += '';
+	gMenuList.push("MENU000031" + "|" + "/hws/portal/cont/selectHouseTypeGuide.do" + "|"
+			+ "MENU000014" + "|" + "3" + "|"
+			+ "주택유형소개" + "|" + "custom3" + "|"
+			+ "cus1" + "|" + "N" + "|"
+			+ "myhomeInfo" + "|" + "N");
+	gStr += '';
+	gMenuList.push("MENU000032" + "|" + "/hws/portal/cont/selectHouseTransMonthlyRentView.do" + "|"
+			+ "MENU000014" + "|" + "3" + "|"
+			+ "전/월세 거래" + "|" + "custom3" + "|"
+			+ "cus1" + "|" + "N" + "|"
+			+ "myhomeInfo" + "|" + "N");
+	gStr += '';
+	gMenuList.push("MENU000033" + "|" + "/hws/portal/cont/selectHouseSalesProcedureGuideView.do" + "|"
+			+ "MENU000014" + "|" + "3" + "|"
+			+ "주택구입 거래" + "|" + "custom3" + "|"
+			+ "cus2" + "|" + "N" + "|"
+			+ "myhomeInfo" + "|" + "N");
+	gStr += '';
+	gMenuList.push("MENU000106" + "|" + "#" + "|"
+			+ "MENU000033" + "|" + "4" + "|"
+			+ "" + "|" + "hide" + "|"
+			+ "" + "|" + "N" + "|"
+			+ "" + "|" + "N");
+	gStr += '';
+	gMenuList.push("MENU000137" + "|" + "/hws/portal/cont/selectHouseSalesProcedureGuideView.do" + "|"
+			+ "MENU000033" + "|" + "4" + "|"
+			+ "주택구입 거래" + "|" + "" + "|"
+			+ "" + "|" + "N" + "|"
+			+ "myhomeInfo" + "|" + "N");
+	gStr += '';
+	gMenuList.push("MENU000086" + "|" + "/hws/portal/cont/selectHouseSalesProcedureGuideView.do" + "|"
+			+ "MENU000137" + "|" + "5" + "|"
+			+ "매매 계약 절차 안내" + "|" + "up" + "|"
+			+ "" + "|" + "N" + "|"
+			+ "myhomeInfo" + "|" + "N");
+	gStr += '';
+	gMenuList.push("MENU000087" + "|" + "/hws/portal/cont/selectHouseSalesAfterGuideView.do" + "|"
+			+ "MENU000137" + "|" + "5" + "|"
+			+ "매매 이후 절차 안내 (소유권 이전 등기)" + "|" + "up" + "|"
+			+ "" + "|" + "N" + "|"
+			+ "myhomeInfo" + "|" + "N");
+	gStr += '';
+	gMenuList.push("MENU000034" + "|" + "/hws/portal/cont/selectHouseBrokerageFeeView.do" + "|"
+			+ "MENU000014" + "|" + "3" + "|"
+			+ "중개수수료" + "|" + "custom3" + "|"
+			+ "cus2" + "|" + "N" + "|"
+			+ "myhomeInfo" + "|" + "N");
+	gStr += '';
+	gMenuList.push("MENU000035" + "|" + "/hws/portal/cont/selectHouseLsTrubl.do" + "|"
+			+ "MENU000014" + "|" + "3" + "|"
+			+ "주택임대차 분쟁" + "|" + "custom3" + "|"
+			+ "cus3" + "|" + "N" + "|"
+			+ "myhomeInfo" + "|" + "N");
+	gStr += '';
+	gMenuList.push("MENU000107" + "|" + "#" + "|"
+			+ "MENU000035" + "|" + "4" + "|"
+			+ "" + "|" + "hide" + "|"
+			+ "" + "|" + "N" + "|"
+			+ "" + "|" + "N");
+	gStr += '';
+	gMenuList.push("MENU000138" + "|" + "/hws/portal/cont/selectHouseLsTrubl.do" + "|"
+			+ "MENU000035" + "|" + "4" + "|"
+			+ "주택임대차 분쟁" + "|" + "" + "|"
+			+ "" + "|" + "N" + "|"
+			+ "myhomeInfo" + "|" + "N");
+	gStr += '';
+	gMenuList.push("MENU000090" + "|" + "/hws/portal/cont/selectHouseLsTrubl.do" + "|"
+			+ "MENU000138" + "|" + "5" + "|"
+			+ "위원회안내" + "|" + "up" + "|"
+			+ "" + "|" + "N" + "|"
+			+ "myhomeInfo" + "|" + "N");
+	gStr += '';
+	gMenuList.push("MENU000091" + "|" + "/hws/portal/cont/selectHouseCompositionDelAdjMatters.do" + "|"
+			+ "MENU000138" + "|" + "5" + "|"
+			+ "구성 및 심의·조정 사항" + "|" + "up" + "|"
+			+ "" + "|" + "N" + "|"
+			+ "myhomeInfo" + "|" + "N");
+	gStr += '';
+	gMenuList.push("MENU000092" + "|" + "/hws/portal/cont/selectHouseAdjustmentCost.do" + "|"
+			+ "MENU000138" + "|" + "5" + "|"
+			+ "조정비용" + "|" + "up" + "|"
+			+ "" + "|" + "N" + "|"
+			+ "myhomeInfo" + "|" + "N");
+	gStr += '';
+	gMenuList.push("MENU000093" + "|" + "/hws/portal/cont/selectHouseMediationProcedures.do" + "|"
+			+ "MENU000138" + "|" + "5" + "|"
+			+ "조정절차 및 기타" + "|" + "up" + "|"
+			+ "" + "|" + "N" + "|"
+			+ "myhomeInfo" + "|" + "N");
+	gStr += '';
+	gMenuList.push("MENU000094" + "|" + "/hws/portal/cont/selectHouseFormat.do" + "|"
+			+ "MENU000138" + "|" + "5" + "|"
+			+ "서식" + "|" + "up" + "|"
+			+ "" + "|" + "N" + "|"
+			+ "myhomeInfo" + "|" + "N");
+	gStr += '';
+	gMenuList.push("MENU000036" + "|" + "/hws/portal/cont/selectAphusManagetrubl.do" + "|"
+			+ "MENU000014" + "|" + "3" + "|"
+			+ "공동주택관리 분쟁" + "|" + "custom3" + "|"
+			+ "cus3" + "|" + "N" + "|"
+			+ "myhomeInfo" + "|" + "N");
+	gStr += '';
+	gMenuList.push("MENU000108" + "|" + "#" + "|"
+			+ "MENU000036" + "|" + "4" + "|"
+			+ "" + "|" + "hide" + "|"
+			+ "" + "|" + "N" + "|"
+			+ "" + "|" + "N");
+	gStr += '';
+	gMenuList.push("MENU000139" + "|" + "/hws/portal/cont/selectAphusManagetrubl.do" + "|"
+			+ "MENU000036" + "|" + "4" + "|"
+			+ "공동주택관리 분쟁" + "|" + "" + "|"
+			+ "" + "|" + "N" + "|"
+			+ "myhomeInfo" + "|" + "N");
+	gStr += '';
+	gMenuList.push("MENU000095" + "|" + "/hws/portal/cont/selectAphusManagetrubl.do" + "|"
+			+ "MENU000139" + "|" + "5" + "|"
+			+ "위원회안내" + "|" + "up" + "|"
+			+ "" + "|" + "N" + "|"
+			+ "myhomeInfo" + "|" + "N");
+	gStr += '';
+	gMenuList.push("MENU000096" + "|" + "/hws/portal/cont/selectHouseDisputeMediationProcedure.do" + "|"
+			+ "MENU000139" + "|" + "5" + "|"
+			+ "분쟁조정절차" + "|" + "up" + "|"
+			+ "" + "|" + "N" + "|"
+			+ "myhomeInfo" + "|" + "N");
+	gStr += '';
+	gMenuList.push("MENU000097" + "|" + "/hws/portal/cont/selectHouseStandardsPrecautions.do" + "|"
+			+ "MENU000139" + "|" + "5" + "|"
+			+ "분쟁조정 신청 기준 및 유의사항" + "|" + "up" + "|"
+			+ "" + "|" + "N" + "|"
+			+ "myhomeInfo" + "|" + "N");
+	gStr += '';
+	gMenuList.push("MENU000098" + "|" + "/hws/portal/cont/selectHousePublicAdjustmentCost.do" + "|"
+			+ "MENU000139" + "|" + "5" + "|"
+			+ "조정비용 및 기타" + "|" + "up" + "|"
+			+ "" + "|" + "N" + "|"
+			+ "myhomeInfo" + "|" + "N");
+	gStr += '';
+	gMenuList.push("MENU000099" + "|" + "/hws/portal/cont/selectHouseOftenQuestion.do" + "|"
+			+ "MENU000139" + "|" + "5" + "|"
+			+ "자주묻는질문" + "|" + "up" + "|"
+			+ "" + "|" + "N" + "|"
+			+ "myhomeInfo" + "|" + "N");
+	gStr += '';
+	gMenuList.push("MENU000003" + "|" + "/hws/portal/dgn/selectSelfDiagnosisIntroView.do" + "|"
+			+ "MENU000001" + "|" + "1" + "|"
+			+ "자가진단" + "|" + "" + "|"
+			+ "" + "|" + "N" + "|"
+			+ "selfDiagnosis" + "|" + "N");
+	gStr += '';
+	/* 현재 메뉴정보 설정 */
+	var jsessionIndex = gPathName.toLowerCase().indexOf(";jsessionid");
+	if (jsessionIndex != -1) {
+		gPathName = gPathName.substring(0, jsessionIndex);
+	}
+	var menuInfo = getProgrmInfo(gPathName, gMenuList);
+	//2015-08-11 박한준
+	if (menuInfo == null || menuInfo == "") {
+		menuInfo = getProgrmInfo(gPathName + $(location).attr("search"),
+				gMenuList);
+	}
+	if (menuInfo != null && menuInfo != "") {
+		var menuInfoSplit = menuInfo.split("|");
+	}
+	gMenuId = menuInfoSplit[0];
+	gUpperMenuId = menuInfoSplit[2];
+	gMenuLevel = menuInfoSplit[3];
+	gMenuNm = menuInfoSplit[4];
+	gBuffer1Value = menuInfoSplit[5];
+	gBuffer2Value = menuInfoSplit[6];
+	gStsfdgAt = menuInfoSplit[7]; 
+	gBuffer3Value = menuInfoSplit[8];	
+	gHideAt = menuInfoSplit[9];
+
+	$(document).ready(function(){
+		fixesInfoMenuInfo();
+		$("#title").text(gMenuNm);
+		
+		/* 
+		var link = "https://www.myhome.go.kr"+$(location).attr("pathname");
+		// var link = $(location).attr("href");
+		var mlink = "https://m.myhome.go.kr"+$(location).attr("pathname");
+		
+	    Kakao.init('cc5b3941bd840b848ea4f53d78e1b827');
+	    
+	    // PC
+	    Kakao.Link.createDefaultButton({
+	      container: '#snsKt',
+	      objectType: 'feed',
+	      content: {
+	        title: '마이홈포털',
+	        imageUrl: '',
+	        link: {
+	          mobileWebUrl: mlink,
+	          webUrl: link,
+	        }
+	      }
+	    });
+	    
+	    // Mobile
+	    Kakao.Link.createDefaultButton({
+	      container: '#mSnsKt',
+	      objectType: 'feed',
+	      content: {
+	        title: '마이홈포털',
+	        imageUrl: '',
+	        link: {
+	          mobileWebUrl: mlink,
+	          webUrl: link,
+	        }
+	      }
+	    });
+	    */
+	     
+    });
+		
+	// 주거복지 지도찾기 팝업 오픈
+	function goMphMap(){
+		var url = "/hws/portal/gis/mnvPosblHouseMap.do";
+	    comPopUrlGetDialogOpenInc(url, 1280, 980, false, "주거복지 지도찾기", true);
+	}
+	
+	// 주거복지 지도찾기 팝업 오픈
+	function comPopUrlGetDialogOpenInc(url, argWidth, argHeight, mod, popName, resize) {	
+		var retWindow;
+		var isResize = "no";
+		if (mod == true) {
+			window.showModalDialog(url, self, "dialogWidth:" + argWidth + "px; dialogHeight:" +argHeight + "px statusbar:no; toolbar:no; menubar:no; addressbar:no; titlebar:no; addressbar:no");
+		} else {
+			if (resize) isResize = "yes";
+			retWindow = window.open(url, popName, "height=" +argHeight + ",width=" + argWidth + ",toolbar=no,directories=no,status=no, linemenubar=no,scrollbars=no,resizable=" + isResize);
+		}
+		
+		//창닫기시 리턴벨류
+		window.returnValue = "closeOk";
+		
+		return retWindow;
+	}
+	
+	// 관심콘텐츠 등록
+	function insertMyAtt(path){
+		
+		var userId = "";
+		var pathName = $(location).attr("pathname");
+		var jsessionIndex = pathName.toLowerCase().indexOf(";jsessionid");
+		if (jsessionIndex != -1) {
+			pathName = pathName.substring(0,jsessionIndex);
+		}
+		
+		var programUrl = pathName;
+		
+		// 로그인정보가 있는 경우에만 실행
+		// if(isEmpty(userId)){
+		if(userId == "" || userId == null || userId == undefined){
+			
+			$("#modal-login-public").addClass("is-open");
+			document.getElementById("modal-login-public").ariaHidden="false";
+	        
+		 	return;
+		}
+		
+		$("#progressbar").css("display", "flex");
+				
+		$.ajax({
+	       	type: "POST",    
+	        url: "/hws/portal/usr/insertIntrstContent.do",   
+	        data: {
+	        		programUrl : programUrl,
+	        		intrstSe : "CONT"
+	        	  },
+	        dataType: "JSON",
+	        async: false,
+	        success : function(json){            
+	        	$("#progressbar").css("display", "none");
+	        	
+	        	
+	        	if(path == "P"){ // PC 화면
+	        		
+	        		var onOffAt = $("#favorite").attr("src");
+
+		        	if (onOffAt === "/images/common/icon_star_on.svg") {
+		        		// PC 화면 Off
+	        	    	$("#favorite").attr("src", "/images/common/icon_star_off.svg");
+		        	    $("#favorite").removeClass("on");
+	        	    	// 모바일 화면 Off
+		        	    $("#mFavorite").children().removeClass("on");
+	        	    	
+		        	    fnAlertCont("안내", "관심복지정보가 삭제되었습니다.", "확인", "left", "");
+		        	} else {
+
+		        		// PC 화면 On
+	        	    	$("#favorite").attr("src", "/images/common/icon_star_on.svg");
+		        	    $("#favorite").addClass("on");
+	        	    	// 모바일 화면 On
+		        	    $("#mFavorite").children().addClass("on");
+		        		
+		        	    fnAlertCont("안내", "관심복지정보가 등록되었습니다.", "확인", "left", "");
+		        	}
+		        	
+	        	}else if(path == "M"){ // 모바일화면
+	        		
+	        		var mOnOffAt = $("#mFavorite").children().attr("class");
+	        	
+	        	    if(mOnOffAt.indexOf("icon-star on") != -1){
+	        	    	// PC 화면 Off
+	        	    	$("#favorite").attr("src", "/images/common/icon_star_off.svg");
+		        	    $("#favorite").removeClass("on");
+	        	    	// 모바일 화면 Off
+		        	    $("#mFavorite").children().removeClass("on");
+	        	    	
+	        	    	fnAlertCont("안내", "관심복지정보가 삭제되었습니다.", "확인", "left", "");
+	        	    }else{
+	        	    	// PC 화면 On
+	        	    	$("#favorite").attr("src", "/images/common/icon_star_on.svg");
+		        	    $("#favorite").addClass("on");
+	        	    	// 모바일 화면 On
+		        	    $("#mFavorite").children().addClass("on");
+	        	    	
+	        	    	fnAlertCont("안내", "관심복지정보가 등록되었습니다.", "확인", "left", "");
+	        	    }
+	        	
+	        	}
+	         	
+	        	
+	       	},
+	    	error:function(response, textStatus, errorThrown){
+	    		$("#progressbar").css("display", "none");
+	           	returnAjaxError(response, textStatus, errorThrown);
+	        }
+		});
+	}
+
+	// 관심콘텐츠 세팅
+	function setyAtt(){
+		
+		var esntlId = "";
+		
+		var pathName = $(location).attr("pathname");
+		var jsessionIndex = pathName.toLowerCase().indexOf(";jsessionid");
+		if (jsessionIndex != -1) {
+			pathName = pathName.substring(0,jsessionIndex);
+		}
+		
+		var programUrl = pathName;
+		
+		// if(!isEmpty(esntlId)){
+		if(esntlId != "" && esntlId != null && esntlId != undefined){
+		
+			$.ajax({
+		        type: "GET",    
+		        url: "/hws/portal/usr/selectUserIntrstContentYn.do",   
+		        data: {
+		        		esntlId:esntlId,
+		        		programUrl:programUrl,
+		        		intrstSe:"CONT"
+		        	  },
+		        dataType: "JSON",
+		        async: true,
+		        success : function(data) {
+		        	if(data.result > 0){
+		        		// PC 화면 On
+		        		$(".icon-star").attr("src", "/images/common/icon_star_on.svg");
+		        	    $("#favorite").addClass("on");
+		        	    
+		        	    // 모바일 화면 On
+		        	    $("#mFavorite").children().addClass("on");
+		        	    
+		        	}else{
+		        		// PC 화면 Off
+		        		$(".icon-star").attr("src", "/images/common/icon_star_off.svg");
+		        	    $("#favorite").removeClass("on");
+		        	    
+		        	 	// 모바일 화면 Off
+		        	    $("#mFavorite").children().removeClass("on");
+		        	}
+		        },
+		    	error:function(response, textStatus, errorThrown){
+		           	returnAjaxError(response, textStatus, errorThrown);
+		        }
+		    });
+		}
+		
+	}
+	
+	// 공통 모달 닫기
+	function fnClosePublicModal(modalId){
+		
+		$("#" + modalId).removeClass("is-open");
+		document.getElementById(modalId).ariaHidden="true";
+		
+	}
+	
+	
+	/**
+	 * chatbot script start
+	 */
+	 
+	// target의 경우 챗봇이 open되는 스크립트 영역에 같이 적용되어야 합니다
+	var targetCb;
+	
+	function openChatbotWindow() {
+		// 운영 챗봇 url
+		targetCb = window.open('https://chat.myhome.go.kr:18080/chat-client/prod/#/1/b6d64780-b635-4321-9a08-3139647d4fe9', 'Display', 'popup');
+	}
+
+	function receiveChatbotMessage(e) {
+		
+		if(e.data.hasOwnProperty('type')){
+			
+			let type = e.data.type;
+			
+			if(type == "loginChk"){
+				
+				// 서버에서 받아온 로그인 정보 확인
+			    var gEsntlId = '';
+			    let data;
+			    
+			    if (gEsntlId !== "") {
+			    	// 로그인한 사용자인 경우
+			    	data = {type: type, isLogin: true, esntlId: gEsntlId};
+			    }else{
+			    	// 로그인한 사용자가 아닌경우
+			    	data = {type: type, isLogin: false};
+			    }
+				
+				// url 도메인 입력.
+				targetCb.postMessage(data, 'https://chat.myhome.go.kr:18080');
+				
+			}else if(type == "login"){
+				
+				// 로그인 페이지 새창 띄우기
+				window.open('https://www.myhome.go.kr/hws/portal/main/loginUsrView.do');
+				
+			}else if(type == "interest"){
+				
+				// 관심지역 선택하기 페이지 새창 띄우기
+				window.open('https://www.myhome.go.kr/hws/portal/usr/selectUserInterestAreasView.do');
+				
+				
+			}else if(type == "self"){
+				
+				// 자가진단 진행하기 페이지 새창 띄우기
+				window.open('https://www.myhome.go.kr/hws/portal/dgn/selectSelfDiagnosisIntroView.do');	
+				
+			}
+		}
+	}
+	
+	// 챗봇이 open되는 스크립트 영역에 eventListener로 같이 적용되어야 합니다
+	window.addEventListener('message', receiveChatbotMessage, false);
+	
+	/**
+	 * chatbot script end
+	 */
+	
+	
+	// 첨부 파일다운로드
+    function fnDownPrivacyFile(atchFileId, fileSn){
+        var frmSize = $("#fileFrm");
+        
+        // Post Method를 사용하기 위한 Form태그 1개만 추가
+        if(frmSize.size() <= 0){
+            frm = document.createElement("form");
+            frm.id = "fileFrm";
+            frm.style.display = "none";
+            document.body.appendChild(frm);
+            
+            var atchFileIdInput = document.createElement('input');
+            atchFileIdInput.name = 'atchFileId';
+            var fileSnInput = document.createElement('input');
+            fileSnInput.name = 'fileSn';
+            frm.appendChild(atchFileIdInput);
+            frm.appendChild(fileSnInput);
+        }
+        
+        var url = "/hws/com/fms/cvplFileDownload.do";
+        $('input[name=atchFileId]').attr('value',atchFileId);
+        $('input[name=fileSn]').attr('value',fileSn);
+        frm.action =url;
+        frm.method="post";
+        frm.testVal = 'filePopup';
+        frm.submit();
+    }
+	 
+</script>
+</head>
+<body>
+ <!-- el :: s -->
+    <!-- main-wrapper :: 메인화면만, 나머지 서브 sub-wrapper -->
+    <div class="body-wrapper sub-wrapper">    
+      <!-- header :: s -->
+      <!-- 로그인인 경우 header에 on-login 클래스 할당 -->
+      <header class="header">    	    
+      <div class="top">
+          <div class="top-wrap sec-container">
+            <ul class="top-menu">
+              
+              <li><a href="/;jsessionid=Zlq11LlSJcmy88HCNxVlfKiZ14MD2Y1ga78RcddKrQTRUxbJTMQMj4aisnENM4n1.reserveWAS1_servlet_engine11" class="btn-link-hub">마이홈허브</a></li>
+              <li><a href="/hws/portal/main/getMgtMainYhsPage.do" target="_blank" class="btn-link-youth">청년･신혼부부 주거지원</a></li>
+              <li>
+                <span>확대/축소</span>
+                <button class="btn-zoom in" onclick="javascript:fnZoomUp();">확대</button>
+                <button class="btn-zoom out" onclick="javascript:fnZoomDown();">축소</button>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <nav class="gnbar">
+          <!-- pc-gnb :: s -->
+          <div class="gnb-wrap sec-container">
+            <!--mo-sub :: s -->
+            <div class="mo-title-wrap">
+              <button class="btn-history-back" onclick="javascript:history.back();"><i class="icon-arrowleft"></i></button>
+              <h2 class="sub-title" id="title"></h2>
+            </div>
+            <!--mo-sub :: e -->
+
+            <a href="/hws/portal/main/getMgtMainPage.do" class="logo"><img src="/images/header/img_header_logo.png" alt="myhome logo" /></a>
+
+            <!-- menu func :: s -->
+            <menu class="global-menu">
+						<li class="list depth" data-index="1"><a
+											href="/hws/portal/cont/selectWelfareHousingView.do" id="MENU000002">주거복지서비스</a></li>
+									<li class="list depth" data-index="2"><a
+											href="/hws/portal/sch/selectRsdtRcritNtcView.do" id="MENU000004">공공주택찾기</a></li>
+									<li class="list depth" data-index="3"><a
+											href="/hws/portal/main/selectMyHomeInfoView.do" id="MENU000005">정보마당</a></li>
+									<li class="list depth" data-index=""><a
+											href="/hws/portal/dgn/selectSelfDiagnosisIntroView.do" id="MENU000003">자가진단</a></li>
+									</menu>
+					<div class="depth-menu">
+						<div class="depth-menu-wrap sec-container">
+							<!-- sub1 :: s -->
+							<menu data-title="주거복지서비스" class="global-sub">
+								<li class="group"><a href="/hws/portal/cont/selectWelfareHousingView.do"
+													class="head" id="MENU000006">주거복지서비스안내</a>
+													<ul class="menu">
+														</ul></li>
+											<li class="group"><a href="/hws/portal/cont/selectContRentalHouseView.do"
+													class="head" id="MENU000007">주거복지제도</a>
+													<ul class="menu">
+														<li class="list"><a href="/hws/portal/cont/selectContRentalHouseView.do"
+																			id="MENU000015">주택공급</a></li>
+																	<li class="list"><a href="/hws/portal/cont/selectHousingFinanceView.do"
+																			id="MENU000016">금융지원</a></li>
+																	<li class="list"><a href="/hws/portal/cont/selectHousingBenefitView.do"
+																			id="MENU000017">주거비지원</a></li>
+																	<li class="list"><a href="/hws/portal/cont/selectEmergencyHousingSupView.do"
+																			id="MENU000018">기타지원</a></li>
+																	<li class="list"><a href="/hws/portal/bbs/selectBoardFAQListView.do"
+																			id="MENU000019">자주묻는질문</a></li>
+																	</ul></li>
+											<li class="group"><a href="/hws/portal/cont/selectResidentialWorkerSystemView.do"
+													class="head" id="MENU000008">주거복지사</a>
+													<ul class="menu">
+														<li class="list"><a href="/hws/portal/cont/selectResidentialWorkerSystemView.do"
+																			id="MENU000020">주거복지사 제도소개</a></li>
+																	<li class="list"><a href="/hws/portal/cont/selectResidentialWorkerQualificationView.do"
+																			id="MENU000021">주거복지사 자격검정</a></li>
+																	</ul></li>
+											<li class="group"><a href="/hws/portal/cont/selectMyHomeCenterView.do"
+													class="head" id="MENU000009">주거복지기관찾기</a>
+													<ul class="menu">
+														<li class="list"><a href="/hws/portal/cont/selectMyHomeCenterView.do"
+																			id="MENU000022">함께하는 주거복지</a></li>
+																	<li class="list"><a href="/hws/portal/cont/selectAdministrativeWelfareCenter.do"
+																			id="MENU000023">행정복지센터</a></li>
+																	</ul></li>
+											</menu>
+							<menu data-title="공공주택찾기" class="global-sub">
+								<li class="group"><a href="/hws/portal/sch/selectRsdtRcritNtcView.do"
+													class="head" id="MENU000010">임대주택</a>
+													<ul class="menu">
+														<li class="list"><a href="/hws/portal/sch/selectRsdtRcritNtcView.do"
+																			id="MENU000024">입주자 모집공고</a></li>
+																	<li class="list"><a href="/hws/portal/sch/selectRentalHouseInfoListView.do"
+																			id="MENU000025">전국 임대주택</a></li>
+																	<li class="list"><a href="/hws/portal/sch/selectMoveWaitStsListView.do"
+																			id="MENU000026">예비입주자 대기현황</a></li>
+																	</ul></li>
+											<li class="group"><a href="/hws/portal/sch/selectLttotHouseView.do"
+													class="head" id="MENU000011">공공분양주택</a>
+													<ul class="menu">
+														<li class="list"><a href="/hws/portal/sch/selectLttotHouseView.do"
+																			id="MENU000027">입주자 모집공고</a></li>
+																	</ul></li>
+											</menu>
+							<menu data-title="정보마당" class="global-sub">
+								<li class="group"><a href="/hws/portal/main/selectMyHomeInfoView.do"
+													class="head" id="MENU000012">마이홈이란?</a>
+													<ul class="menu">
+														</ul></li>
+											<li class="group"><a href="/hws/portal/bbs/selectBoardNoticeListView.do"
+													class="head" id="MENU000013">마이홈소식</a>
+													<ul class="menu">
+														<li class="list"><a href="/hws/portal/bbs/selectBoardNoticeListView.do"
+																			id="MENU000028">공지사항</a></li>
+																	<li class="list"><a href="/hws/portal/bbs/selectBoardPressListView.do"
+																			id="MENU000029">보도자료</a></li>
+																	<li class="list"><a href="/hws/portal/bbs/selectHappyNewsListView.do"
+																			id="MENU000030">LH소식</a></li>
+																	</ul></li>
+											<li class="group"><a href="/hws/portal/cont/selectHouseTypeGuide.do"
+													class="head" id="MENU000014">부동산정보</a>
+													<ul class="menu">
+														<li class="list"><a href="/hws/portal/cont/selectHouseTypeGuide.do"
+																			id="MENU000031">주택유형소개</a></li>
+																	<li class="list"><a href="/hws/portal/cont/selectHouseTransMonthlyRentView.do"
+																			id="MENU000032">전/월세 거래</a></li>
+																	<li class="list"><a href="/hws/portal/cont/selectHouseSalesProcedureGuideView.do"
+																			id="MENU000033">주택구입 거래</a></li>
+																	<li class="list"><a href="/hws/portal/cont/selectHouseBrokerageFeeView.do"
+																			id="MENU000034">중개수수료</a></li>
+																	<li class="list"><a href="/hws/portal/cont/selectHouseLsTrubl.do"
+																			id="MENU000035">주택임대차 분쟁</a></li>
+																	<li class="list"><a href="/hws/portal/cont/selectAphusManagetrubl.do"
+																			id="MENU000036">공동주택관리 분쟁</a></li>
+																	</ul></li>
+											</menu>
+						</div>
+					</div>
+            <!-- menu func :: e -->
+
+            <div class="gnb-toolbar">
+              <!-- desktop :: s -->
+              <div class="desktop-tool">
+                <button class="btn-tool optional" onclick="javascript:goMphMap();">
+                  <i class="icon-mappin"></i>
+                  <span>주거복지지도찾기</span>
+                </button>
+                <button class="btn-tool optional" onclick="location.href='/hws/portal/cont/selectOpenPublicDataView.do'">
+                  <i class="icon-data"></i>
+                  <span>공공데이터개방</span>
+                </button>
+                
+             	<button class="btn-tool btn-login" id="login" onclick="location.href='/hws/portal/main/loginUsrView.do'">
+                	<i class="icon-user"></i>
+                	<span>로그인</span>
+                </button>
+                
+	            <button class="btn-tool btn-mypage" id="myPage" onclick="location.href='/hws/portal/usr/selectMyInfoView.do'">
+	            	<i class="icon-user"></i>
+	            	<span>마이페이지</span>
+	            </button>
+                
+                <button title="button" class="btn-toggle-sitemap"></button>
+              </div>
+              <!-- desktop :: e -->
+
+              <!-- mo :: s -->
+              <div class="mobile-tool">
+                <div class="only-main">
+                  <button class="btn-m-notify new"><i class="icon-bell"></i></button>
+                  <button class="btn-m-search"><i class="icon-search"></i></button>
+                </div>
+                <div class="only-sub">
+                  <button class="btn-m-like" style="display: none;" id="mFavorite" onclick="javascript:insertMyAtt('M');"><i class="icon-star"></i></button>
+                  <!-- <button class="btn-m-share" style="display: none;" id="mShare"><i class="icon-share"></i></button> -->
+                  <div class="share-group" id="mShare">
+                    <button class="btn-m-share"><i class="icon-share"></i></button>
+                    <ul class="option-list">
+                      <!-- 
+                      <li class="link-kakao">
+                        <img src="/images/common/icon_kakao.svg" alt="kakako" />
+                        <a href="javascript:;" id="mSnsKt" target="_blank">카카오톡 공유</a>
+                      </li>
+                       -->
+                      <li class="link-clipboard">
+                        <i class="icon-link"></i>
+                        <a href="javascript:copyLink();">공유링크 복사</a>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+                <button class="btn-m-menu"><i class="icon-menu"></i></button>
+              </div>
+              <!-- mo :: e -->
+            </div>
+          </div>
+          <!-- pc-gnb :: e -->
+
+          <!-- mo-gnb :: s -->
+          <div class="mo-gnb on-login">
+            <div class="gnb-mo-header">
+              <div class="head-tool">
+                <div class="linkbar">
+                  <a href="/hws/portal/main/getMgtMainPage.do" class="btn-home">홈</a>
+                  <!-- <a href="javascript:void(0);" class="btn-alarm">알림설정</a> -->
+                </div>
+                <button type="button" class="btn-close"><i class="icon-close"></i></button>
+              </div>
+
+              <div class="user-func-bar">
+              
+                <div class="logout">
+                  <button type="button" class="btn-login" onclick="location.href='/hws/portal/main/loginUsrView.do'">
+                    <i class="icon-lock"></i>
+                    <span>로그인</span>
+                  </button>
+                  <button type="button" class="btn-join" onclick="location.href='/hws/portal/main/MemberShipMove.do'">
+                    <i class="icon-plus"></i>
+                    <span>회원가입</span>
+                  </button>
+                </div>
+                
+                <div class="login">
+                  <button type="button" class="btn-logout" onclick="location.href='/hws/portal/main/actionLogout.do'">
+                    <i class="icon-power"></i>
+                    <span>로그아웃</span>
+                  </button>
+                  <button type="button" class="btn-mypage" onclick="location.href='/hws/portal/usr/selectMyInfoView.do'">
+                    <i class="icon-user"></i>
+                    <span>마이페이지</span>
+                  </button>
+                </div>
+                
+              </div>
+              
+              <div class="etc-menu-bar">
+                <a href="/hws/portal/main/getMgtMainYhsPage.do" class="btn-etc youth">
+                  <span>청년･신혼부부주거지원</span>
+                </a>
+                <a href="javascript:goMphMap();" class="btn-etc map">
+                  <span>주거복지지도찾기</span>
+                </a>
+                <a href="/hws/portal/cont/selectOpenPublicDataView.do" class="btn-etc data">
+                  <span>공공데이터개방</span>
+                </a>
+              </div>
+
+              <div class="info-contact">
+                <div class="call-center">
+                  <p class="label">마이홈 콜센터</p>
+                  <a href="javascript:void(0);" class="call-link">1600-1004</a>
+                </div>
+                <div class="operation-time">
+                  <p class="weekday"><em>평일</em>09:00-18:00</p>
+                  <p class="lunch"><em>점심</em>12:00-13:00</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="gnb-mo-body">
+ 						<ul class="top-depth">
+							<li class="d1-list active" id="MENU000002" onclick="">주거복지서비스</li>
+											<li class="d1-list" id="MENU000004" onclick="">공공주택찾기</li>
+											<li class="d1-list" id="MENU000005" onclick="">정보마당</li>
+											<li class="d1-list" id="MENU000003" onclick="location.href='/hws/portal/dgn/selectSelfDiagnosisIntroView.do'">자가진단</li>
+										</ul>
+              			<div class="sub-depth">
+              			
+              				<!-- 주거복지서비스 -->
+ 							<div class="depth2 open" id="sub_MENU000002">
+								<div class="d2-list">
+												<h6 class="d2-head" id="MENU000006">
+													<a href="/hws/portal/cont/selectWelfareHousingView.do">주거복지서비스안내</a>
+												</h6>
+												</ul>
+											</div>
+										<div class="d2-list">
+												<h6 class="d2-head" id="MENU000007">
+													<a href="/hws/portal/cont/selectContRentalHouseView.do">주거복지제도</a>
+												</h6>
+												<ul class="depth3">
+												<li class="d3-list" id="MENU000015"><a
+																href="/hws/portal/cont/selectContRentalHouseView.do">주택공급</a></li>
+														<li class="d3-list" id="MENU000016"><a
+																href="/hws/portal/cont/selectHousingFinanceView.do">금융지원</a></li>
+														<li class="d3-list" id="MENU000017"><a
+																href="/hws/portal/cont/selectHousingBenefitView.do">주거비지원</a></li>
+														<li class="d3-list" id="MENU000018"><a
+																href="/hws/portal/cont/selectEmergencyHousingSupView.do">기타지원</a></li>
+														<li class="d3-list" id="MENU000019"><a
+																href="/hws/portal/bbs/selectBoardFAQListView.do">자주묻는질문</a></li>
+														</ul>
+											</div>
+										<div class="d2-list">
+												<h6 class="d2-head" id="MENU000008">
+													<a href="/hws/portal/cont/selectResidentialWorkerSystemView.do">주거복지사</a>
+												</h6>
+												<ul class="depth3">
+												<li class="d3-list" id="MENU000020"><a
+																href="/hws/portal/cont/selectResidentialWorkerSystemView.do">주거복지사 제도소개</a></li>
+														<li class="d3-list" id="MENU000021"><a
+																href="/hws/portal/cont/selectResidentialWorkerQualificationView.do">주거복지사 자격검정</a></li>
+														</ul>
+											</div>
+										<div class="d2-list">
+												<h6 class="d2-head" id="MENU000009">
+													<a href="/hws/portal/cont/selectMyHomeCenterView.do">주거복지기관찾기</a>
+												</h6>
+												<ul class="depth3">
+												<li class="d3-list" id="MENU000022"><a
+																href="/hws/portal/cont/selectMyHomeCenterView.do">함께하는 주거복지</a></li>
+														<li class="d3-list" id="MENU000023"><a
+																href="/hws/portal/cont/selectAdministrativeWelfareCenter.do">행정복지센터</a></li>
+														</ul>
+											</div>
+										</div>
+							<!-- 주거복지서비스 -->
+							
+							<!-- 공공주택찾기 -->
+							<div class="depth2" id="sub_MENU000004">
+								<div class="d2-list">
+												<h6 class="d2-head" id="MENU000010">
+													<a href="/hws/portal/sch/selectRsdtRcritNtcView.do">임대주택</a>
+												</h6>
+												<ul class="depth3">
+													<li class="d3-list" id="MENU000024"><a
+																	href="/hws/portal/sch/selectRsdtRcritNtcView.do">입주자 모집공고</a></li>
+															<li class="d3-list" id="MENU000025"><a
+																	href="/hws/portal/sch/selectRentalHouseInfoListView.do">전국 임대주택</a></li>
+															<li class="d3-list" id="MENU000026"><a
+																	href="/hws/portal/sch/selectMoveWaitStsListView.do">예비입주자 대기현황</a></li>
+															</ul>
+											</div>
+										<div class="d2-list">
+												<h6 class="d2-head" id="MENU000011">
+													<a href="/hws/portal/sch/selectLttotHouseView.do">공공분양주택</a>
+												</h6>
+												<ul class="depth3">
+													<li class="d3-list" id="MENU000027"><a
+																	href="/hws/portal/sch/selectLttotHouseView.do">입주자 모집공고</a></li>
+															</ul>
+											</div>
+										</div>
+							<!-- 공공주택찾기 -->
+							
+							<!-- 정보마당 -->
+							<div class="depth2" id="sub_MENU000005">
+								<div class="d2-list">
+												<h6 class="d2-head" id="MENU000012">
+													<a href="/hws/portal/main/selectMyHomeInfoView.do">마이홈이란?</a>
+												</h6>
+												</ul>
+											</div>
+											<div class="d2-list">
+												<h6 class="d2-head" id="MENU000013">
+													<a href="/hws/portal/bbs/selectBoardNoticeListView.do">마이홈소식</a>
+												</h6>
+												<ul class="depth3">
+												<li class="d3-list" id="MENU000028"><a
+																href="/hws/portal/bbs/selectBoardNoticeListView.do">공지사항</a></li>
+														<li class="d3-list" id="MENU000029"><a
+																href="/hws/portal/bbs/selectBoardPressListView.do">보도자료</a></li>
+														<li class="d3-list" id="MENU000030"><a
+																href="/hws/portal/bbs/selectHappyNewsListView.do">LH소식</a></li>
+														</ul>
+											</div>
+											<div class="d2-list">
+												<h6 class="d2-head" id="MENU000014">
+													<a href="/hws/portal/cont/selectHouseTypeGuide.do">부동산정보</a>
+												</h6>
+												<ul class="depth3">
+												<li class="d3-list" id="MENU000031"><a
+																href="/hws/portal/cont/selectHouseTypeGuide.do">주택유형소개</a></li>
+														<li class="d3-list" id="MENU000032"><a
+																href="/hws/portal/cont/selectHouseTransMonthlyRentView.do">전/월세 거래</a></li>
+														<li class="d3-list" id="MENU000033"><a
+																href="/hws/portal/cont/selectHouseSalesProcedureGuideView.do">주택구입 거래</a></li>
+														<li class="d3-list" id="MENU000034"><a
+																href="/hws/portal/cont/selectHouseBrokerageFeeView.do">중개수수료</a></li>
+														<li class="d3-list" id="MENU000035"><a
+																href="/hws/portal/cont/selectHouseLsTrubl.do">주택임대차 분쟁</a></li>
+														<li class="d3-list" id="MENU000036"><a
+																href="/hws/portal/cont/selectAphusManagetrubl.do">공동주택관리 분쟁</a></li>
+														</ul>
+											</div>
+											</div>
+							<!-- 정보마당 -->
+							
+							<!-- 자가진단 -->
+							<div class="depth2"></div>
+							<!-- 자가진단 -->
+							
+						</div>
+					</div>
+				</div>
+          <!-- mo-gnb :: e -->
+
+          <!-- sitemap :: s -->
+				<div class="sitemap">
+					<div class="sitemap-wrap">
+						<div class="head-tool">
+							<button class="btn-close">
+								<i class="icon-close"></i>
+							</button>
+						</div>
+						<div class="sitemap-body">
+							<a href="/hws/portal/cont/selectWelfareHousingView.do" id="MENU000002">
+										<h4 class="d1-title">주거복지서비스</h4></a>
+										<div class="d2-wrap">
+														<h5 class="d2-title">
+															<a href="/hws/portal/cont/selectWelfareHousingView.do" id="MENU000006">주거복지서비스안내</a>
+														</h5>
+														<li class="d3-list coustom"></li>
+														</menu>
+													</div>
+												<div class="d2-wrap">
+														<h5 class="d2-title">
+															<a href="/hws/portal/cont/selectContRentalHouseView.do" id="MENU000007">주거복지제도</a>
+														</h5>
+														<menu class="d3-menu">
+														<li class="d3-list">
+																					<h6 class="d3-title">
+																						<a href="/hws/portal/cont/selectContRentalHouseView.do"
+																							id="MENU000015">주택공급</a>
+																					</h6> <ul class="d4-menu">
+																												<li class="d4-list">
+																																	<h6 class="d4-title">
+																																		<a href="/hws/portal/cont/selectContRentalHouseView.do"
+																																			id="MENU000037">임대주택</a>
+																																	</h6>
+																																	<ul class="d5-menu">
+																																		<li class="d5-list"><a
+																																								href="/hws/portal/cont/selectContRentalHouseView.do"
+																																								id="MENU000045">임대주택소개</a></li>
+																																						<li class="d5-list"><a
+																																								href="/hws/portal/cont/selectSupInfoView.do"
+																																								id="MENU000046">공급기관</a></li>
+																																						</ul>
+																																</li>
+																															<li class="d4-list">
+																																	<h6 class="d4-title">
+																																		<a href="/hws/portal/cont/selectIntegratedPubRentalHouseView.do"
+																																			id="MENU000038">유형별 임대주택안내</a>
+																																	</h6>
+																																	<ul class="d5-menu">
+																																		<li class="d5-list"><a
+																																								href="/hws/portal/cont/selectIntegratedPubRentalHouseView.do"
+																																								id="MENU000047">통합공공임대주택</a></li>
+																																						<li class="d5-list"><a
+																																								href="/hws/portal/cont/selectBuyRentalHouseView.do"
+																																								id="MENU000052">매입임대주택</a></li>
+																																						<li class="d5-list"><a
+																																								href="/hws/portal/cont/selectCharterRentalHouseView.do"
+																																								id="MENU000053">전세임대주택</a></li>
+																																						<li class="d5-list"><a
+																																								href="/hws/portal/cont/selectHappyHouseView.do"
+																																								id="MENU000054">행복주택</a></li>
+																																						<li class="d5-list"><a
+																																								href="/hws/portal/cont/selectNationalRentalHouseView.do"
+																																								id="MENU000049">국민임대주택</a></li>
+																																						<li class="d5-list"><a
+																																								href="/hws/portal/cont/selectPermanentRHView.do"
+																																								id="MENU000048">영구임대주택</a></li>
+																																						<li class="d5-list"><a
+																																								href="/hws/portal/cont/selectlongTermLeaseHouseView.do"
+																																								id="MENU000050">장기전세주택</a></li>
+																																						<li class="d5-list"><a
+																																								href="/hws/portal/cont/selectPubRentalHouseView.do"
+																																								id="MENU000051">5년·10년·50년 공공임대주택</a></li>
+																																						<li class="d5-list"><a
+																																								href="/hws/portal/cont/selectResidentialWelfareHousingView.do"
+																																								id="MENU000055">주거복지동주택</a></li>
+																																						<li class="d5-list"><a
+																																								href="/hws/portal/cont/selectPubDormitoryView.do"
+																																								id="MENU000056">공공기숙사</a></li>
+																																						</ul>
+																																</li>
+																															<li class="d4-list">
+																																	<h6 class="d4-title">
+																																		<a href="/hws/portal/cont/selectPubSalesHousView.do"
+																																			id="MENU000039">공공분양</a>
+																																	</h6>
+																																	<ul class="d5-menu">
+																																		<li class="d5-list"><a
+																																								href="/hws/portal/cont/selectPubSalesHousView.do"
+																																								id="MENU000057">공공분양주택소개</a></li>
+																																						<li class="d5-list"><a
+																																								href="/hws/portal/cont/selectResaleRestrictionView.do"
+																																								id="MENU000058">전매제한 및 기타</a></li>
+																																						<li class="d5-list"><a
+																																								href="/hws/portal/cont/selectSupplyInstitutionView.do"
+																																								id="MENU000059">공급기관</a></li>
+																																						</ul>
+																																</li>
+																															<li class="d4-list">
+																																	<h6 class="d4-title">
+																																		<a href="/hws/portal/cont/selectNewlywedHopeTownView.do"
+																																			id="MENU000040">유형별 공공분양안내</a>
+																																	</h6>
+																																	<ul class="d5-menu">
+																																		<li class="d5-list"><a
+																																								href="/hws/portal/cont/selectNewlywedHopeTownView.do"
+																																								id="MENU000061">신혼희망타운</a></li>
+																																						<li class="d5-list"><a
+																																								href="/hws/portal/cont/selectNHTQualificationView.do"
+																																								id="MENU000062">공공분양주택</a></li>
+																																						<li class="d5-list"><a
+																																								href="/hws/portal/cont/selectNewHomeShareTypeView.do"
+																																								id="MENU000163">이익공유형 분양주택</a></li>
+																																						<li class="d5-list"><a
+																																								href="/hws/portal/cont/selectNewHomeChoiceTypeView.do"
+																																								id="MENU000164">6년 분양전환 공공임대주택</a></li>
+																																						</ul>
+																																</li>
+																															</ul>
+																										</li>
+																			<li class="d3-list">
+																					<h6 class="d3-title">
+																						<a href="/hws/portal/cont/selectHousingFinanceView.do"
+																							id="MENU000016">금융지원</a>
+																					</h6> <ul class="d4-menu">
+																												<li class="d4-list">
+																																	<h6 class="d4-title">
+																																		<a href="/hws/portal/cont/selectHousingFinanceView.do"
+																																			id="MENU000041">주택금융</a>
+																																	</h6>
+																																	<ul class="d5-menu">
+																																		<li class="d5-list"><a
+																																								href="/hws/portal/cont/selectHousingFinanceView.do"
+																																								id="MENU000063">주택금융소개</a></li>
+																																						<li class="d5-list"><a
+																																								href="/hws/portal/cont/selectGuaranteeCorporationView.do"
+																																								id="MENU000064">주택도시보증공사</a></li>
+																																						<li class="d5-list"><a
+																																								href="/hws/portal/cont/selectFinanceCorporationView.do"
+																																								id="MENU000065">한국주택금융공사</a></li>
+																																						</ul>
+																																</li>
+																															<li class="d4-list">
+																																	<h6 class="d4-title">
+																																		<a href="/hws/portal/cont/selectSteppingStoneLoanView.do"
+																																			id="MENU000042">관련상품안내</a>
+																																	</h6>
+																																	<ul class="d5-menu">
+																																		<li class="d5-list"><a
+																																								href="/hws/portal/cont/selectSteppingStoneLoanView.do"
+																																								id="MENU000066">내집마련디딤돌대출</a></li>
+																																						<li class="d5-list"><a
+																																								href="/hws/portal/cont/selectBabySpecialCaseStepStoneLoneView.do"
+																																								id="MENU000165">신생아 특례 디딤돌대출</a></li>
+																																						<li class="d5-list"><a
+																																								href="/hws/portal/cont/selectSharingMortgageView.do"
+																																								id="MENU000067">수익공유형모기지</a></li>
+																																						<li class="d5-list"><a
+																																								href="/hws/portal/cont/selectLossSharingMortgageView.do"
+																																								id="MENU000068">손익공유형모기지</a></li>
+																																						<li class="d5-list"><a
+																																								href="/hws/portal/cont/selectFundsPurchaseOfficetelView.do"
+																																								id="MENU000069">오피스텔구입자금</a></li>
+																																						<li class="d5-list"><a
+																																								href="/hws/portal/cont/selectSpecializedNestingView.do"
+																																								id="MENU000070">보금자리론</a></li>
+																																						<li class="d5-list"><a
+																																								href="/hws/portal/cont/selectSupLeaseLoanView.do"
+																																								id="MENU000071">버팀목전세대출</a></li>
+																																						<li class="d5-list"><a
+																																								href="/hws/portal/cont/selectBabySpecialCaseCrutchLoneView.do"
+																																								id="MENU000166">신생아 특례 버팀목 대출</a></li>
+																																						<li class="d5-list"><a
+																																								href="/hws/portal/cont/selectResidentialMonthlyRentLoanView.do"
+																																								id="MENU000072">주거안정월세대출</a></li>
+																																						<li class="d5-list"><a
+																																								href="/hws/portal/cont/selectHousingPensionView.do"
+																																								id="MENU000073">주택연금</a></li>
+																																						<li class="d5-list"><a
+																																								href="/hws/portal/cont/selectSupAbnormalResidentialView.do"
+																																								id="MENU000140">주거취약계층 이주지원 버팀목전세자금</a></li>
+																																						</ul>
+																																</li>
+																															<li class="d4-listDummy"></li>
+																															<li class="d4-listDummy"></li>
+																															</ul>
+																										</li>
+																			<li class="d3-list">
+																					<h6 class="d3-title">
+																						<a href="/hws/portal/cont/selectHousingBenefitView.do"
+																							id="MENU000017">주거비지원</a>
+																					</h6> <ul class="d4-menu">
+																												<li class="d4-list">
+																																	<h6 class="d4-title">
+																																		<a href="/hws/portal/cont/selectHousingBenefitView.do"
+																																			id="MENU000043">주거급여</a>
+																																	</h6>
+																																	<ul class="d5-menu">
+																																		<li class="d5-list"><a
+																																								href="/hws/portal/cont/selectHousingBenefitView.do"
+																																								id="MENU000074">주거급여소개</a></li>
+																																						<li class="d5-list"><a
+																																								href="/hws/portal/cont/selectHousingBenefitManagementView.do"
+																																								id="MENU000075">주거급여관리</a></li>
+																																						<li class="d5-list"><a
+																																								href="/hws/portal/cont/selectFraudulentSupplyReportView.do"
+																																								id="MENU000076">부정수급</a></li>
+																																						<li class="d5-list"><a
+																																								href="/hws/portal/cont/selectRentalHouseholdSupView.do"
+																																								id="MENU000077">임차가구지원</a></li>
+																																						<li class="d5-list"><a
+																																								href="/hws/portal/cont/selectSupSelfHouseholdsView.do"
+																																								id="MENU000078">자가가구지원</a></li>
+																																						</ul>
+																																</li>
+																															<li class="d4-list">
+																																	<h6 class="d4-title">
+																																		<a href="/hws/portal/cont/selectHousinghSurveyView.do"
+																																			id="MENU000044">주택조사</a>
+																																	</h6>
+																																	<ul class="d5-menu">
+																																		<li class="d5-list"><a
+																																								href="/hws/portal/cont/selectHousinghSurveyView.do"
+																																								id="MENU000079">주택조사소개</a></li>
+																																						<li class="d5-list"><a
+																																								href="/hws/portal/cont/selectHousingSurveyInquiryView.do"
+																																								id="MENU000080">주택조사문의</a></li>
+																																						</ul>
+																																</li>
+																															<li class="d4-listDummy"></li>
+																															<li class="d4-listDummy"></li>
+																															</ul>
+																										</li>
+																			<li class="d3-list coustom"><div class="col-50">
+
+																						<h6 class="d3-title">
+																							<a href="/hws/portal/cont/selectEmergencyHousingSupView.do"
+																								id="MENU000018">기타지원</a>
+																						</h6>
+																						<div class="col-33">
+																							<ul class="d4-menu">
+																								<li class="d4-list">
+																													<h6 class="d4-title">
+																														<a href="/hws/portal/cont/selectEmergencyHousingSupView.do"
+																															id="MENU000135">기타지원</a>
+																													</h6>
+																													<ul class="d5-menu">
+																														<li class="d5-list"><a
+																																				href="/hws/portal/cont/selectEmergencyHousingSupView.do"
+																																				id="MENU000081">긴급주거지원</a></li>
+																																		<li class="d5-list"><a
+																																				href="/hws/portal/cont/selectHousingSupVulnerableGroupsView.do"
+																																				id="MENU000082">주거취약계층 주거지원</a></li>
+																																		<li class="d5-list"><a
+																																				href="/hws/portal/cont/selectSupResidentsAbnormalView.do"
+																																				id="MENU000141">주거취약계층 이사비 지원</a></li>
+																																		</ul>
+																												</li>
+																											</ul>
+																						</div>
+																					</div>
+																				<div class="col-50">
+
+																						<h6 class="d3-title">
+																							<a href="/hws/portal/bbs/selectBoardFAQListView.do"
+																								id="MENU000019">자주묻는질문</a>
+																						</h6>
+																						<div class="col-33">
+																							<ul class="d4-menu">
+																								</ul>
+																						</div>
+																					</div>
+																				</li>
+														</menu>
+													</div>
+												<div class="d2-wrap">
+														<h5 class="d2-title">
+															<a href="/hws/portal/cont/selectResidentialWorkerSystemView.do" id="MENU000008">주거복지사</a>
+														</h5>
+														<menu class="d3-menu">
+														<li class="d3-list coustom"><div class="col-50">
+
+																						<h6 class="d3-title">
+																							<a href="/hws/portal/cont/selectResidentialWorkerSystemView.do"
+																								id="MENU000020">주거복지사 제도소개</a>
+																						</h6>
+																						<div class="col-33">
+																							<ul class="d4-menu">
+																								</ul>
+																						</div>
+																					</div>
+																				<div class="col-50">
+
+																						<h6 class="d3-title">
+																							<a href="/hws/portal/cont/selectResidentialWorkerQualificationView.do"
+																								id="MENU000021">주거복지사 자격검정</a>
+																						</h6>
+																						<div class="col-33">
+																							<ul class="d4-menu">
+																								</ul>
+																						</div>
+																					</div>
+																				</li>
+														</menu>
+													</div>
+												<div class="d2-wrap">
+														<h5 class="d2-title">
+															<a href="/hws/portal/cont/selectMyHomeCenterView.do" id="MENU000009">주거복지기관찾기</a>
+														</h5>
+														<menu class="d3-menu">
+														<li class="d3-list coustom"><div class="col-50">
+
+																						<h6 class="d3-title">
+																							<a href="/hws/portal/cont/selectMyHomeCenterView.do"
+																								id="MENU000022">함께하는 주거복지</a>
+																						</h6>
+																						<div class="col-33">
+																							<ul class="d4-menu">
+																								<li class="d4-list">
+																													<h6 class="d4-title">
+																														<a href="/hws/portal/cont/selectMyHomeCenterView.do"
+																															id="MENU000136">함께하는 주거복지</a>
+																													</h6>
+																													<ul class="d5-menu">
+																														<li class="d5-list"><a
+																																				href="/hws/portal/cont/selectMyHomeCenterView.do"
+																																				id="MENU000083">마이홈센터</a></li>
+																																		<li class="d5-list"><a
+																																				href="/hws/portal/cont/selectMigrantSupCenter119View.do"
+																																				id="MENU000084">이주지원119센터</a></li>
+																																		<li class="d5-list"><a
+																																				href="/hws/portal/cont/selectResidentialWelfareCenterView.do"
+																																				id="MENU000085">주거복지센터</a></li>
+																																		</ul>
+																												</li>
+																											</ul>
+																						</div>
+																					</div>
+																				<div class="col-50">
+
+																						<h6 class="d3-title">
+																							<a href="/hws/portal/cont/selectAdministrativeWelfareCenter.do"
+																								id="MENU000023">행정복지센터</a>
+																						</h6>
+																						<div class="col-33">
+																							<ul class="d4-menu">
+																								</ul>
+																						</div>
+																					</div>
+																				</li>
+														</menu>
+													</div>
+												<a href="/hws/portal/sch/selectRsdtRcritNtcView.do" id="MENU000004">
+										<h4 class="d1-title">공공주택찾기</h4></a>
+										<div class="d2-wrap">
+														<h5 class="d2-title">
+															<a href="/hws/portal/sch/selectRsdtRcritNtcView.do" id="MENU000010">임대주택</a>
+														</h5>
+														<menu class="d3-menu">
+														<li class="d3-list coustom"><div class="col-33">
+																						<h6 class="d3-title">
+																							<a href="/hws/portal/sch/selectRsdtRcritNtcView.do"
+																								id="MENU000024">입주자 모집공고</a>
+																						</h6>
+																					</div>
+																				<div class="col-33">
+																						<h6 class="d3-title">
+																							<a href="/hws/portal/sch/selectRentalHouseInfoListView.do"
+																								id="MENU000025">전국 임대주택</a>
+																						</h6>
+																					</div>
+																				<div class="col-33">
+																						<h6 class="d3-title">
+																							<a href="/hws/portal/sch/selectMoveWaitStsListView.do"
+																								id="MENU000026">예비입주자 대기현황</a>
+																						</h6>
+																					</div>
+																				</li>
+														</menu>
+													</div>
+												<div class="d2-wrap">
+														<h5 class="d2-title">
+															<a href="/hws/portal/sch/selectLttotHouseView.do" id="MENU000011">공공분양주택</a>
+														</h5>
+														<menu class="d3-menu">
+														<li class="d3-list">
+																					<h6 class="d3-title">
+																						<a href="/hws/portal/sch/selectLttotHouseView.do"
+																							id="MENU000027">입주자 모집공고</a>
+																					</h6> </li>
+																			</menu>
+													</div>
+												<a href="/hws/portal/main/selectMyHomeInfoView.do" id="MENU000005">
+										<h4 class="d1-title">정보마당</h4></a>
+										<div class="d2-wrap">
+														<h5 class="d2-title">
+															<a href="/hws/portal/main/selectMyHomeInfoView.do" id="MENU000012">마이홈이란?</a>
+														</h5>
+														<li class="d3-list coustom"></li>
+														</menu>
+													</div>
+												<div class="d2-wrap">
+														<h5 class="d2-title">
+															<a href="/hws/portal/bbs/selectBoardNoticeListView.do" id="MENU000013">마이홈소식</a>
+														</h5>
+														<menu class="d3-menu">
+														<li class="d3-list coustom"><div class="col-33">
+																						<h6 class="d3-title">
+																							<a href="/hws/portal/bbs/selectBoardNoticeListView.do"
+																								id="MENU000028">공지사항</a>
+																						</h6>
+																					</div>
+																				<div class="col-33">
+																						<h6 class="d3-title">
+																							<a href="/hws/portal/bbs/selectBoardPressListView.do"
+																								id="MENU000029">보도자료</a>
+																						</h6>
+																					</div>
+																				<div class="col-33">
+																						<h6 class="d3-title">
+																							<a href="/hws/portal/bbs/selectHappyNewsListView.do"
+																								id="MENU000030">LH소식</a>
+																						</h6>
+																					</div>
+																				</li>
+														</menu>
+													</div>
+												<div class="d2-wrap">
+														<h5 class="d2-title">
+															<a href="/hws/portal/cont/selectHouseTypeGuide.do" id="MENU000014">부동산정보</a>
+														</h5>
+														<menu class="d3-menu">
+														<li class="d3-list coustom"><div class="col-50">
+																						<h6 class="d3-title">
+																							<a href="/hws/portal/cont/selectHouseTypeGuide.do"
+																								id="MENU000031">주택유형소개</a>
+																						</h6>
+																					</div>
+																				<div class="col-50">
+																						<h6 class="d3-title">
+																							<a href="/hws/portal/cont/selectHouseTransMonthlyRentView.do"
+																								id="MENU000032">전/월세 거래</a>
+																						</h6>
+																					</div>
+																				</li>
+														<li class="d3-list coustom"><div class="col-50">
+																						<h6 class="d3-title">
+																							<a href="/hws/portal/cont/selectHouseSalesProcedureGuideView.do"
+																								id="MENU000033">주택구입 거래</a>
+																						</h6>
+																						<div class="col-33">
+																							<ul class="d4-menu">
+
+																								<li class="d4-list">
+																													<h6 class="d4-title">
+																														<a href="/hws/portal/cont/selectHouseSalesProcedureGuideView.do"
+																															id="MENU000137">주택구입 거래</a>
+																													</h6>
+																													<ul class="d5-menu">
+																														<li class="d5-list"><a
+																																					href="/hws/portal/cont/selectHouseSalesProcedureGuideView.do"
+																																					id="MENU000086">매매 계약 절차 안내</a></li>
+																																			<li class="d5-list"><a
+																																					href="/hws/portal/cont/selectHouseSalesAfterGuideView.do"
+																																					id="MENU000087">매매 이후 절차 안내 (소유권 이전 등기)</a></li>
+																																			</ul>
+																												</li>
+																											</ul>
+																						</div>
+																					</div>
+																				<div class="col-50">
+																						<h6 class="d3-title">
+																							<a href="/hws/portal/cont/selectHouseBrokerageFeeView.do"
+																								id="MENU000034">중개수수료</a>
+																						</h6>
+																						<div class="col-33">
+																							<ul class="d4-menu">
+
+																								</ul>
+																						</div>
+																					</div>
+																				</li>
+															<li class="d3-list coustom"><div class="col-50">
+																						<h6 class="d3-title">
+																							<a href="/hws/portal/cont/selectHouseLsTrubl.do"
+																								id="MENU000035">주택임대차 분쟁</a>
+																						</h6>
+																						<div class="col-33">
+																							<ul class="d4-menu">
+																								<li class="d4-list">
+																													<h6 class="d4-title">
+																														<a href="/hws/portal/cont/selectHouseLsTrubl.do"
+																															id="MENU000138">주택임대차 분쟁</a>
+																													</h6>
+																													<ul class="d5-menu">
+																														<li class="d5-list"><a
+																																				href="/hws/portal/cont/selectHouseLsTrubl.do"
+																																				id="MENU000090">위원회안내</a></li>
+																																		<li class="d5-list"><a
+																																				href="/hws/portal/cont/selectHouseCompositionDelAdjMatters.do"
+																																				id="MENU000091">구성 및 심의·조정 사항</a></li>
+																																		<li class="d5-list"><a
+																																				href="/hws/portal/cont/selectHouseAdjustmentCost.do"
+																																				id="MENU000092">조정비용</a></li>
+																																		<li class="d5-list"><a
+																																				href="/hws/portal/cont/selectHouseMediationProcedures.do"
+																																				id="MENU000093">조정절차 및 기타</a></li>
+																																		<li class="d5-list"><a
+																																				href="/hws/portal/cont/selectHouseFormat.do"
+																																				id="MENU000094">서식</a></li>
+																																		</ul>
+																												</li>
+																											</ul>
+																						</div>
+																					</div>
+																				<div class="col-50">
+																						<h6 class="d3-title">
+																							<a href="/hws/portal/cont/selectAphusManagetrubl.do"
+																								id="MENU000036">공동주택관리 분쟁</a>
+																						</h6>
+																						<div class="col-33">
+																							<ul class="d4-menu">
+																								<li class="d4-list">
+																													<h6 class="d4-title">
+																														<a href="/hws/portal/cont/selectAphusManagetrubl.do"
+																															id="MENU000139">공동주택관리 분쟁</a>
+																													</h6>
+																													<ul class="d5-menu">
+																														<li class="d5-list"><a
+																																				href="/hws/portal/cont/selectAphusManagetrubl.do"
+																																				id="MENU000095">위원회안내</a></li>
+																																		<li class="d5-list"><a
+																																				href="/hws/portal/cont/selectHouseDisputeMediationProcedure.do"
+																																				id="MENU000096">분쟁조정절차</a></li>
+																																		<li class="d5-list"><a
+																																				href="/hws/portal/cont/selectHouseStandardsPrecautions.do"
+																																				id="MENU000097">분쟁조정 신청 기준 및 유의사항</a></li>
+																																		<li class="d5-list"><a
+																																				href="/hws/portal/cont/selectHousePublicAdjustmentCost.do"
+																																				id="MENU000098">조정비용 및 기타</a></li>
+																																		<li class="d5-list"><a
+																																				href="/hws/portal/cont/selectHouseOftenQuestion.do"
+																																				id="MENU000099">자주묻는질문</a></li>
+																																		</ul>
+																												</li>
+																											</ul>
+																						</div>
+																					</div>
+																				</li>
+														</menu>
+													</div>
+												<a href="/hws/portal/dgn/selectSelfDiagnosisIntroView.do" id="MENU000003">
+										<h4 class="d1-title">자가진단</h4></a>
+										</div>
+					</div>
+				</div>
+			</nav>
+		</header>
+		
+		<main id="main">
+  		     <section>
+	          <div class="sec-container">
+	            <button type="button" class="btn btn-pop" data-micromodal-trigger="modal-2" style="display:none">기본팝업-확인</button>
+	          </div>
+	        </section>
+			<div class="subpage-container" id="contentType">
+				<nav class="snbar" id="contentsView"></nav>
+				<div class="contents-container" id="container">
+				<nav class="mo-snbar" id="moContentsView">
+				</nav>
+				<div class="sub-cont-header" id="subContentHead">
+				</div>
+				</div>
+			</div>
+			
+			<!-- 입주가이드 모달 팝업  s -->
+		   <div class="modal micromodal-slide modal-lg mo-full none-f-shadow search-public-guide" id="modalMoveinGuide" aria-hidden="true">
+		   </div>
+		   <!-- 입주가이드 모달 팝업 e -->
+		</main>
+    
+    <!-- 기본팝업1 :: s -->
+    <div class="modal micromodal-slide" id="modal-login-public" aria-hidden="true">
+      <div class="modal__overlay" tabindex="-1" data-micromodal-close>
+        <div class="modal__container" role="dialog" aria-modal="true" aria-labelledby="">
+          <div class="modal__header">
+            <h2 class="modal__title">안내</h2>
+            <button class="modal__close" aria-label="Close modal" data-micromodal-close onclick="fnClosePublicModal('modal-login-public')"></button>
+          </div>
+          <div class="modal__content">
+            <p>로그인이 필요한 서비스 입니다. 로그인 하시겠습니까?</p>
+          </div>
+          <div class="modal__footer">
+            <button class="modal__btn btn bg-gray" data-micromodal-close aria-label="Close this dialog window" id="confirmFalse" onclick="fnClosePublicModal('modal-login-public')">취소</button>
+            <button class="modal__btn btn" onclick="location.href='/hws/portal/main/loginUsrView.do'">확인</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- 기본팝업1 :: e -->
+    
+    <!-- 기본팝업2 :: s -->
+    <!-- 팝업 너비 : 'modal-lg' / 'modal-sm' 클래스 할당 -->
+    <div class="modal micromodal-slide modal-sm" id="modal-2" aria-hidden="true">
+      <div class="modal__overlay" tabindex="-1" data-micromodal-close>
+        <div class="modal__container" role="dialog" aria-modal="true" aria-labelledby="modal-2-title">
+          <div class="modal__header">
+            <h2 class="modal__title" id="modal-2-title">제목</h2>
+            <button class="modal__close" aria-label="Close modal" data-micromodal-close onclick="fnAlertCont('','','','','false')"></button>
+          </div>
+          <div class="modal__content" id="modal-2-content">
+            <p>내용</p>
+          </div>
+          <div class="modal__footer">
+            <button class="modal__btn btn" data-micromodal-close aria-label="Close this dialog window" id="alertTrue" onclick="fnAlertCont('','','','','false')">확인</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- 기본팝업2 :: e -->		
+		<!-- header :: e -->
+		<div id="container">
+		<div class="headHeight">
+			<!-- 상단고정영역 -->
+		</div>
+		<!-- 컨텐츠 -->
+		<div id="content"></div>
+		<div class="footerHeight">
+			<!-- 하단고정영역 -->
+		</div>
+	</div>
+	<!-- el :: s -->
+      <!-- footer :: s -->
+      <footer class="footer">
+        <div class="footer-wrap sec-container">
+          <div class="linkbar">
+            <div class="inside">
+              <a href="/hws/portal/main/getMgtMainPage.do"><img src="/images/footer/img_logo_gray.png" alt="myhome logo" class="logo" /></a>
+              <ul class="foot-menu-list">
+                <li class="list"><a href="/hws/portal/main/selectPrivateInfoView.do">개인정보처리방침</a></li>
+                <li class="list"><a href="javascript:fnDownPrivacyFile('FLE00029613', '0');">개인정보처리방침 EASY 버전</a></li>
+                <li class="list"><a href="/hws/portal/main/selectUtilizationView.do">홈페이지 이용약관</a></li>
+                <li class="list"><a href="/hws/portal/main/selectRefuseCollectionView.do">이메일 무단수집 거부</a></li>
+                <li class="list"><a href="https://data.molit.go.kr/systemQuality/list?system_id=S0014" target="_blank">품질오류신고 및 확인</a></li>
+              </ul>
+            </div>
+            <div class="outside">
+              <div class="input-wrap select family">
+                <select required onchange="if(this.value) window.open(this.value);">
+                  <option value="" disabled selected>패밀리 사이트</option>
+                  <option value="https://www.lh.or.kr/intro.html">한국토지주택공사(LH)</option>
+                  <option value="https://www.molit.go.kr/portal.do">국토교통부</option>
+                  <option value="https://apply.lh.or.kr/lhapply/main.do">LH 청약플러스</option>
+				  <option value="https://jeonse.lh.or.kr/jw/main.do">LH 전세임대포털</option>
+                  <option value="https://nhuf.molit.go.kr/">주택도시기금</option>
+                  <option value="https://seereal.lh.or.kr/main.do">씨:리얼(SEE:REAL)</option>
+				  <option value="https://namc.molit.go.kr/cmmn/main.do">중앙 공동주택관리 분쟁조정위원회</option>
+                  <option value="https://adrhome.reb.or.kr/adrhome/reb/main">임대차분쟁조정위원회</option>
+                  <!-- <option value="https://xn--vg1bl39d.kr/newhome/newhome_plan.do">뉴홈</option> -->
+				  <option value="https://www.renthome.go.kr/webportal/main/portalMainList.open">렌트홈</option>
+                  <option value="https://stat.molit.go.kr/portal/main/portalMain.do">국토교통 통계누리</option>
+                  <option value="https://www.jgplus.go.kr/">주거급여플러스</option>
+                </select>
+              </div>
+              <div class="input-wrap select bold relative" >
+                <select required onchange="if(this.value) window.open(this.value);">
+                  <option value="" disabled selected>유관기관 및 관련사이트</option>
+                  <option value="https://www.khug.or.kr/index.jsp">HUG 주택도시보증공사</option>
+                  <option value="https://www.hf.go.kr/ko/index.do">HF 한국주택금융공사</option>
+                  <option value="https://www.bokjiro.go.kr/ssis-tbu/index.do">복지로</option>
+                  <option value="https://csa.nps.or.kr/main.do">중앙노후준비지원센터</option>
+                  <option value="https://www.easylaw.go.kr/CSP/Main.laf">찾기쉬운 생활법령정보</option>
+                  <option value="https://kosis.kr/statisticsList/statisticsListIndex.do?parentId=I1.1&vwcd=MT_ZTITLE&menuId=M_01_01&outLink=Y&entrType=">KOSIS 국가통계포털</option>
+                  <!-- <option value="https://intra.myhome.go.kr/hws/portal/main/loginUsrView.do">주거복지센터 정책정보 공유포털</option> -->
+                </select>
+              </div>
+            </div>
+          </div>
+          <div class="infobar">
+            <div class="contact">
+              <dl class="molit">
+                <dt>국토교통부</dt>
+                <dd>(30103)세종특별자치시 도움6로 11</dd>
+              </dl>
+              <dl class="lh">
+                <dt>한국토지주택공사</dt>
+                <dd>(52852)경상남도 진주시 충의로 19</dd>
+              </dl>
+            </div>
+            <p class="copyright">Copyright MOLIT & LH All rights reserved.</p>
+            <div class="organ">
+              <img src="/images/footer/img_molit_logo.svg" alt="국토교통부 로고" />
+              <img src="/images/footer/img_lh_logo.svg" alt="한국토지주택공사 로고" />
+            </div>
+          </div>
+        </div>
+      </footer>
+      <!-- footer :: e -->
+      
+      <!-- mobile g-toolbar :: s -->
+      <div class="mo-toolbar">
+        <button class="btn-mtool btn-home" onclick="location.href='/hws/portal/main/getMgtMainPage.do'">
+          <span>홈</span>
+        </button>
+        <button class="btn-mtool btn-notice" onclick="location.href='/hws/portal/sch/selectRsdtRcritNtcView.do'">
+          <span>모집공고</span>
+        </button>
+        <button class="btn-mtool btn-diagnosis" onclick="location.href='/hws/portal/dgn/selectSelfDiagnosisIntroView.do'">
+          <span>자가진단</span>
+        </button>
+        <button class="btn-mtool btn-map" onclick="javascript:goMphMap();">
+          <span>지도찾기</span>
+        </button>
+      </div>
+      <!-- mobile g-toolbar :: e -->
+
+      <!-- aside quick :: s -->
+      <aside class="aside-quick">
+        <!-- 퀵메뉴 pc :: s -->
+        <!-- 퀵메뉴 오픈시 'open' 클래스 할당 -->
+        <div class="quick-menu open">
+          <div class="menu-cont">
+            <ul class="menu-list">
+              <li class="list jobpost"><a href="/hws/portal/sch/selectRsdtRcritNtcView.do">모집공고</a></li>
+              <li class="list diagnosis"><a href="/hws/portal/dgn/selectSelfDiagnosisIntroView.do">자가진단</a></li>
+              <li class="list map"><a href="javascript:goMphMap();">지도찾기</a></li>
+              <li class="list dictionary"><a href="javascript:fnWordDicPop();">용어사전</a></li>
+            </ul>
+            <div class="call-info">
+              <h6 class="label">마이홈콜센터</h6>
+              <p class="call">1600-1004</p>
+              <div class="btn-chatbot">
+                <span>마이홈챗봇</span>
+              </div>
+              <a href="javascript:openChatbotWindow();" class="chatbot-link">
+			    <img src="/images/main/lh_character.png" alt="ih character">
+			    <span class="ai">AI</span>
+			  </a>
+            </div>
+            <button type="button" class="btn-quick-close">
+              <i class="icon-arrow2-right"></i>
+            </button>
+          </div>
+          <button type="button" class="btn-quick-top">TOP</button>
+        </div>
+        <!-- 퀵메뉴 pc :: e -->
+
+        <!-- 퀵메뉴 mo :: s -->
+        <div class="mo-quick-menu">
+          <ul class="menu-list">
+            <li class="list optional" style="display : none;">
+              <button type="button" class="btn-m-dictionary" onclick="javascript:fnWordDicPop();">
+                <span>용어사전</span>
+              </button>
+            </li>
+            <!-- 
+            <li class="list optional">
+              <button type="button" class="btn-m-chatbot" onclick="javascript:openChatbotWindow();">
+                <span>챗봇상담</span>
+              </button>
+            </li>
+             -->
+            
+            <li class="list" style="display : none;">
+              <button type="button" class="btn-m-quickmenu"></button>
+            </li>
+            
+            <li class="list">
+              <button type="button" class="btn-m-chatbot" onclick="javascript:openChatbotWindow();">
+                <!-- <span>챗봇상담</span> -->
+              </button>
+            </li>
+            
+            <li class="list">
+              <button type="button" onclick="javascript:history.back();" class="btn-m-left"></button>
+            </li>
+            
+            <li class="list">
+              <button type="button" class="btn-m-top"></button>
+            </li>
+            
+          </ul>
+        </div>
+        <!-- 퀵메뉴 mo :: e -->
+      </aside>
+      <!-- aside quick :: e -->
+      <!-- loading progress :: s -->
+      <div class="loading-wrap" style="display: none;" id="progressbar">
+        <div class="Loader">
+          <div class="Loader-circle"></div>
+          <div class="Loader-blob"></div>
+        </div>
+        <svg xmlns="http://www.w3.org/2000/svg" version="1.1" style="display: none">
+          <defs>
+            <filter id="tooltip-filter">
+              <feGaussianBlur in="SourceGraphic" stdDeviation="9" result="blur" />
+              <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 19 -9" result="goo" />
+              <feComposite in="SourceGraphic" in2="goo" operator="atop" />
+            </filter>
+          </defs>
+        </svg>
+      </div>
+      <!-- loading progress :: e -->
+    <!-- el :: e -->
+    </div>
+    
+    <!-- naver analytics : s -->
+	<script type="text/javascript" src="https://wcs.naver.net/wcslog.js"></script> 
+	<script type="text/javascript"> if(!wcs_add) var wcs_add = {}; wcs_add["wa"] = "12af10d328fefd8"; wcs_do(); </script>
+	<!-- naver analytics : e -->
+</body>
+</html>
+<link type="text/css" rel="stylesheet" href="/jquery/css/jquery-ui.min.css" />
+<link type="text/css" rel="stylesheet" href="/css/custom/jquery-ui-custom.css" />
+
+<script type="text/javascript" src="/jquery/js/jquery-1.11.3.min.js"></script>
+<script type="text/javascript" src="/jquery/js/jquery-ui-1.11.4.custom.min.js"></script>
+<script type="text/javascript" src="/js/CommonUtil.js"></script>
+
+<script type="text/javascript">
+//<![CDATA[
+     setContainer(gMenuId, gUpperMenuId, gBuffer3Value, gMenuList, gPathName, gMenuNm, gHideAt, gMenuLevel);
+     $("#contentType").addClass("welfare-service rental-house"); //해당 페이지에 맞게 클래스 삽입
+     document.getElementById("favorite").style.display="flex"; //관심버튼 활성화
+     document.getElementById("share").style.display="flex"; //공유버튼 활성화
+     document.getElementById("print").style.display="flex"; //프린트버튼 활성화  
+     document.getElementById("mFavorite").style.display="flex"; //관심버튼 활성화 (모바일)
+	 document.getElementById("mShare").style.display="flex"; //공유버튼 활성화 (모바일)
+     
+     // 자주묻는 질문, 공지사항 페이지 이동 
+	 function fnMoveFAQ(moveSe, param){		
+		
+		if(moveSe == "FAQ"){
+			// FAQ 메뉴로 이동		
+			window.open("/hws/portal/bbs/selectBoardFAQListView.do?wlfareSe=" + param);
+		}
+		 else if(moveSe == "Notice"){
+
+			window.open("/hws/portal/bbs/selectBoardNoticeListView.do?wlfareSe=" + param);		    
+		} 
+	}
+	
+//]]>
+</script>
+</head>
+
+<body>
+	<!-- page contents :: s -->
+	<div class="contents-area" id='contentsArea'>
+		<div class="sub-global-tab">
+			<h6 class="tab-title">임대주택소개</h6>
+			<ul class="option-list">
+				<li class="list active"><a href="/hws/portal/cont/selectContRentalHouseView.do">임대주택소개</a></li>
+				<li class="list"><a	href="/hws/portal/cont/selectSupInfoView.do">공급기관</a></li>
+			</ul>
+		</div>
+	
+		<!-- 상단 용어설명 :: s -->
+		<div class="dictionary-box">
+			<div class="box-head">
+				<i class="icon-notice02"></i>
+				<h3 class="title">
+					저렴하게 거주할 집이 필요하세요?<br /> <em>다양한 임대주택을 알기 쉽게</em>안내드립니다.
+				</h3>
+			</div>
+			<div class="box-cont">
+				<div class="img-wrap">
+					<img src="/images/welfare/img_dictionary01.svg" alt="" />
+				</div>
+				<div class="btn-wrap">
+					<button type="button" class="btn-faq" onclick="fnMoveFAQ('FAQ','RH');">
+						<i class="icon-questiont-circle"></i>자주묻는질문<i class="icon-arrow2-right"></i>
+					</button>									
+					<button type="button" class="btn-faq" onclick="fnMoveFAQ('Notice','RH');">
+						<i class="icon-notice"></i>공지사항<i class="icon-arrow2-right"></i>
+					</button>
+				</div>
+				<div class="text-wrap">
+					<h2 class="title">임대주택소개</h2>
+					<p class="desc">
+						무주택 저소득 서민들에게 저렴한 비용으로<br /> 주거안정을 누릴 수 있도록<br /> 소득계층별로 다양한
+						임대주택이 공급되고 있습니다.
+					</p>
+				</div>
+			</div>
+		</div>
+		<!-- 상단 용어설명 :: e -->
+
+		<!-- 상세내용 :: s -->
+		<div class="cpnt-common-detail">
+			<!-- 임대주택의 종류 -->
+			<div class="detail-list">
+				<h4 class="list-title">임대주택의 종류</h4>
+				<!-- <thead> 없는 경우 : 'none-thead' / 모바일 스크롤시 'tb-scrollable' 클래스 할당 / tb-lg -->
+				<div class="table-wrap none-thead tb-welfare1">
+					<div class="tb-overflow">
+						<table class="table">
+							<colgroup>
+								<col />
+								<col />
+							</colgroup>
+							<thead>
+								<tr>
+									<th></th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<th rowspan="2" class="center bg-blue bold">건설임대주택</th>
+									<td>임대사업자가 임대를 목적으로 건설하여 임대한 주택으로서 정부지원 여부에 따라 공공과 민간건설
+										임대주택으로 구분</td>
+								</tr>
+								<tr>
+									<td>
+										<div class="text-wrap">
+											<p class="em">공공건설 임대주택</p>
+											<ul class="list-wrap">
+												<li class="list text-gray">국가 또는 지자체의 재정으로 건설하거나
+													건설·임대하는 주택</li>
+												<li class="list text-gray">국민주택기금의 자금을 지원받아 건설·임대하는 주택</li>
+												<li class="list text-gray">공공사업에 의하여 조성된 택지에 건설·임대하는 주택</li>
+											</ul>
+										</div>
+										<div class="text-wrap">
+											<p class="em">민간건설 임대주택</p>
+											<ul class="list-wrap">
+												<li class="list text-gray">민간이 순수한 자기자금으로 건설한 임대주택</li>
+											</ul>
+										</div>
+									</td>
+								</tr>
+								<tr>
+									<th class="center bg-blue bold">매입임대주택</th>
+									<td>임대사업자가 매매 등에 의하여 소유권을 취득하여 임대하는 주택
+										<p class="desc advice"> 임대의무기간 : 
+									 	<a href="#" onclick="javascript:fnWordDicPop('준공공임대주택'); return false;" class="dictionary help">
+											<span>준공공임대주택</span>
+											<i class="icon-question-circle-fill"></i>
+										</a> 10년, 그 밖의 매입임대 5년 
+											
+										</p>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+
+			<!-- 임대주택법상 임대주택의 차이점 -->
+			<div class="detail-list">
+				<h4 class="list-title">임대주택법상 임대주택의 차이점</h4>
+				<!-- <thead> 없는 경우 : 'none-thead' / 모바일 스크롤시 'tb-scrollable' 클래스 할당 / tb-lg -->
+				<div class="table-wrap tb-welfare2">
+					<div class="tb-overflow">
+						<table class="table">
+							<colgroup>
+								<col />
+								<col />
+								<col />
+								<col />
+							</colgroup>
+							<thead>
+								<tr>
+									<th rowspan="2">구분</th>
+									<th colspan="2">건설임대주택</th>
+									<th rowspan="2">매입임대주택</th>
+								</tr>
+								<tr>
+									<th>구분</th>
+									<th>구분</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>임대보증금 및 임대료</td>
+									<td>국토부 고시 "표준임대보증금 및 임대료" 적용
+										<p class="desc">중형공공임대주택(전용면적 85㎡초과) 및 민간건설 공공택지외 85㎡이하,
+											10년 임대주택 제외</p>
+									</td>
+									<td>제한없음</td>
+									<td>제한없음
+										<p class="desc">준공공임대주택은 최초 임대보증금 및 임대료를 시세이하로 제한</p>
+									</td>
+								</tr>
+								<tr>
+									<td>임대 의무 기간</td>
+									<td>5·10·20·30·50년</td>
+									<td>4년, 8년</td>
+									<td>5년 ~ 30년</td>
+								</tr>
+								<tr>
+									<td>임차인 자격 및 선정</td>
+									<td>
+									<a href="#" onclick="javascript:fnWordDicPop('무주택세대구성원'); return false;" class="dictionary help">
+											<span>무주택 세대구성원</span>
+											<i class="icon-question-circle-fill"></i>
+										</a>
+									</td>
+									<td>임대사업자가 결정 (제한없음)</td>
+									<td>임대사업자가 결정 (제한없음)</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+
+			<!-- 임대주택 종류별 공급주체 -->
+			<div class="detail-list">
+				<h4 class="list-title">임대주택 종류별 공급주체</h4>
+				<!-- <thead> 없는 경우 : 'none-thead' / 모바일 스크롤시 'tb-scrollable' 클래스 할당 / tb-lg -->
+				<div class="table-wrap tb-welfare3">
+					<div class="tb-overflow">
+						<table class="table">
+							<colgroup>
+								<col />
+								<col />
+								<col />
+								<col />
+								<col />
+							</colgroup>
+							<thead>
+								<tr>
+									<th>구분</th>
+									<th>유형</th>
+									<th>공급주체</th>
+									<th>임대기간</th>
+									<th>규모(전용)</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<th rowspan="9" class="bold">공공임대</th>
+									<td>통합공공임대</td>
+									<td class="center">국가, 지자체, LH, 지방공사</td>
+									<td class="center">30년</td>
+									<td class="center">85㎡이하</td>
+								</tr>
+								<tr>
+									<td rowspan="2">영구 및 50년 공공임대</td>
+									<td rowspan="2" class="center">국가, 지자체, LH, 지방공사</td>
+									<td class="center">영구</td>
+									<td class="center">40㎡ 이하</td>
+								</tr>
+								<tr>
+									<td class="center">50년</td>
+									<td class="center">40㎡ 이하</td>
+								</tr>
+								<tr>
+									<td>국민임대</td>
+									<td class="center">국가, 지자체, LH, 지방공사</td>
+									<td class="center">30년</td>
+									<td class="center">60㎡ 이하</td>
+								</tr>
+								<tr>
+									<td>장기전세</td>
+									<td class="center">국가, 지자체, LH, 지방공사</td>
+									<td class="center">20년</td>
+									<td class="center">85㎡ 이하</td>
+								</tr>
+								<tr>
+									<td>매입임대</td>
+									<td class="center">LH, 지자체</td>
+									<td class="center">20년</td>
+									<td class="center">85㎡ 이하</td>
+								</tr>
+								<tr>
+									<td>5년 · 10년 공공임대</td>
+									<td class="center">LH, 지방공사, 민간업체</td>
+									<td class="center">5년·10년</td>
+									<td class="center">85㎡ 이하</td>
+								</tr>
+								<tr>
+									<td>전세임대</td>
+									<td class="center">LH, 지자체</td>
+									<td class="center">20년</td>
+									<td class="center">85㎡ 이하</td>
+								</tr>
+								<tr>
+									<td>행복주택</td>
+									<td class="center">국가, 지자체, LH, 지방공사</td>
+									<td class="center">20년
+										<p class="desc">입주계층에 따라 거주기간 상이</p>
+									</td>
+									<td class="center">60㎡ 이하</td>
+								</tr>
+								<tr>
+									<th rowspan="2" class="bold">민간업체, 개인 등</th>
+									<td>민간업체, 개인 등</td>
+									<td class="center">민간업체, 개인 등</td>
+									<td class="center">4/8년</td>
+									<td class="center">제한없음</td>
+								</tr>
+								<tr>
+									<td>매입임대</td>
+									<td class="center">민간업체, 개인 등</td>
+									<td class="center">4/8년</td>
+									<td class="center">제한없음</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+
+			<!-- 공공임대주택 유형별 특징 -->
+			<div class="detail-list">
+				<h4 class="list-title">공공임대주택 유형별 특징</h4>
+				<!-- <thead> 없는 경우 : 'none-thead' / 모바일 스크롤시 'tb-scrollable' 클래스 할당 / tb-lg -->
+				<div class="table-wrap tb-scrollable tb-welfare4">
+					<div class="tb-overflow">
+						<table class="table">
+							<colgroup>
+								<col />
+								<col />
+								<col />
+								<col />
+								<col />
+								<col />
+								<col />
+								<col />
+							</colgroup>
+							<thead>
+								<tr>
+									<th colspan="2">구분</th>
+									<th>통합공공임대</th>
+									<th>영구임대</th>
+									<th>국민임대</th>
+									<th>장기전세</th>
+									<th>공공임대
+										<p class="desc text-gray">5년/10년/분납</p>
+									</th>
+									<th>행복주택</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<th colspan="2" class="bold">1. 임대기간</th>
+									<td class="center">30년</td>
+									<td class="center">50년</td>
+									<td class="center">30년</td>
+									<td class="center">20년</td>
+									<td class="center">5년/10년</td>
+									<td class="center">20년
+										<p class="desc">입주계층에 따라 거주기간 상이</p>
+									</td>
+								</tr>
+
+								<tr>
+									<th colspan="2" class="bold">2. 공급조건</th>
+									<td class="center">보증금+임대료
+										<p class="desc">시세 35~90%수준</p>
+									</td>
+									<td class="center">보증금+임대료
+										<p class="desc">시세 30%수준</p>
+									</td>
+									<td class="center">보증금+임대료
+										<p class="desc">시세 60~80%수준</p>
+									</td>
+									<td class="center">보증금+임대료
+										<p class="desc">시세 80%수준</p>
+									</td>
+									<td class="center">보증금+임대료
+										<p class="desc">시세 90%수준</p>
+									</td>
+									<td class="center">보증금+임대료
+										<p class="desc">시세 60~80%수준</p>
+									</td>
+								</tr>
+
+								<tr>
+									<th colspan="2" class="bold">3. 공급규모</th>
+									<td class="center">85㎡이하</td>
+									<td class="center">40㎡이하</td>
+									<td colspan="2" class="center">85㎡이하
+										<p class="desc">통상 60㎡이하</p>
+									</td>
+									<td class="center">85㎡이하</td>
+									<td class="center">60㎡이하</td>
+								</tr>
+
+								<tr>
+									<th colspan="2" class="bold">4. 공급대상</th>
+									<td class="center">무주택세대구성원/ 무주택자</td>
+									<td class="center">생계급여 또는 의료급여 수급자 등
+										<p class="desc">소득 1분위</p>
+									</td>
+									<td class="center">무주택세대구성원
+										<p class="desc">소득 2~4분위</p>
+									</td>
+									<td class="center">무주택세대구성원
+										<p class="desc">소득 3~4분위</p>
+									</td>
+									<td class="center">무주택세대구성원
+										<p class="desc">소득 3~5분위</p>
+									</td>
+									<td class="center">무주택세대구성원/ 무주택자
+										<p class="desc">소득 2~5분위</p>
+									</td>
+								</tr>
+
+								<tr>
+									<th rowspan="2" class="bold">5. 자산 기준</th>
+									<th>적용 대상</th>
+									<td class="center">모든공급유형
+										<p class="desc">단, 우선공급 중 일부 적용 제외</p>
+									</td>
+									<td class="center">모든공급유형
+										<p class="desc">단, 수급자 등 일부 대상 제외</p>
+									</td>
+									<td class="center">모든공급유형
+										<p class="desc">단, 우선공급 중 일부 적용 제외</p>
+									</td>
+									<td class="center">모든공급유형
+										<p class="desc">단, 우선공급 중 일부 적용 제외</p>
+									</td>
+									<td class="center">모든공급유형
+										<p class="desc">단,기타특별 제외</p>
+									</td>
+									<td class="center">모든공급유형</td>
+								</tr>
+
+								<tr>
+									<th>금액 기준</th>
+									<td> <!-- 통합공공임대 -->
+										<div class="text-wrap">
+											<p class="text">총자산</p>
+											<ul class="list-wrap">
+												<li class="list text-gray">34,500만원이하</li>
+											</ul>
+										</div>
+										<div class="text-wrap">
+											<p class="text">자동차</p>
+											<ul class="list-wrap">
+												<li class="list text-gray">4,542만원이하</li>
+											</ul>
+										</div>
+									</td>
+									<td> <!-- 영구임대 -->
+										<div class="text-wrap">
+											<p class="text">총자산</p>
+											<ul class="list-wrap">
+												<li class="list text-gray">24,500만원이하</li>
+											</ul>
+										</div>
+										<div class="text-wrap">
+											<p class="text">자동차</p>
+											<ul class="list-wrap">
+												<li class="list text-gray">4,542만원이하</li>
+											</ul>
+										</div>
+									</td>
+									<td> <!-- 국민임대 -->
+										<div class="text-wrap">
+											<p class="text">총자산</p>
+											<ul class="list-wrap">
+												<li class="list text-gray">34,500만원이하</li>
+											</ul>
+										</div>
+										<div class="text-wrap">
+											<p class="text">자동차</p>
+											<ul class="list-wrap">
+												<li class="list text-gray">4,542만원이하</li>
+											</ul>
+										</div>
+									</td>
+									<td> <!-- 장기전세 -->
+										<div class="text-wrap">
+											<p class="text">부동산</p>
+											<ul class="list-wrap">
+												<li class="list text-gray">21,550만원이하</li>
+											</ul>
+										</div>
+										<div class="text-wrap">
+											<p class="text">자동차</p>
+											<ul class="list-wrap">
+												<li class="list text-gray">4,542만원이하</li>
+											</ul>
+										</div>
+									</td>
+									<td> <!-- 공공임대 -->
+										<div class="text-wrap">
+											<p class="text">부동산</p>
+											<ul class="list-wrap">
+												<li class="list text-gray">21,550만원이하</li>
+											</ul>
+										</div>
+										<div class="text-wrap">
+											<p class="text">자동차</p>
+											<ul class="list-wrap">
+												<li class="list text-gray">4,542만원이하</li>
+											</ul>
+										</div>
+									</td>
+									<td> <!-- 행복주택 -->
+										<div class="text-wrap">
+											<p class="text">총자산</p>
+											<ul class="list-wrap">
+												<li class="list text-gray">34,500만원이하
+													<p class="desc">계층에 따라 자산기준 상이</p>
+												</li>
+											</ul>
+										</div>
+										<div class="text-wrap">
+											<p class="text">자동차</p>
+											<ul class="list-wrap">
+												<li class="list text-gray">4,542만원이하</li>
+											</ul>
+										</div>
+									</td>
+								</tr>
+
+								<tr>
+									<th rowspan="2" class="bold">6. 소득 기준</th>
+									<th>적용 대상</th>
+									<td class="center">모든공급유형
+										<p class="desc">단, 우선공급 중일부 적용 제외</p>
+									</td>
+									<td class="center">모든공급유형
+										<p class="desc">단, 수급자 등 일부 대상 제외</p>
+									</td>
+									<td class="center">모든공급유형
+										<p class="desc">단, 우선공급 중 일부 적용 제외</p>
+									</td>
+									<td class="center">모든공급유형
+										<p class="desc">단, 우선공급 중 일부 적용 제외</p>
+									</td>
+									<td class="center">신혼, 생애최초, 다자녀,노부모 일반
+										<p class="desc">60㎡이하</p>
+									</td>
+									<td class="center">모든공급유형
+										<p class="desc">단, 주거급여수급자 제외</p>
+									</td>
+								</tr>
+
+								<tr>
+									<th>금액 기준</th>
+									<td>
+										<div class="text-wrap">
+											<p class="text">우선공급</p>
+											<ul class="list-wrap">
+												<li class="list text-gray">기준 중위소득 100%이하</li>
+											</ul>
+										</div>
+										<div class="text-wrap">
+											<p class="text">일반공급</p>
+											<ul class="list-wrap">
+												<li class="list text-gray">기준 중위소득 150%이하</li>
+											</ul>
+										</div>
+									</td>
+									<td>
+										<div class="text-wrap">
+											<p class="text">일반</p>
+											<ul class="list-wrap">
+												<li class="list text-gray">전년도 도시근로자 가구원수별 월평균 소득 50%
+													이하</li>
+											</ul>
+										</div>
+										<div class="text-wrap">
+											<p class="text">국가유공자등, 북한이탈주민, 아동복지시설퇴소자, 장애인(1순위)</p>
+											<ul class="list-wrap">
+												<li class="list text-gray">전년도 도시근로자 가구원수별 월평균 소득 70%
+													이하</li>
+											</ul>
+										</div>
+										<div class="text-wrap">
+											<p class="text">장애인(2순위)</p>
+											<ul class="list-wrap">
+												<li class="list text-gray">전년도 도시근로자 가구원수별 월평균 소득 100%
+													이하</li>
+											</ul>
+										</div>
+									</td>
+									<td>
+										<div class="text-wrap">
+											<p class="text">60㎡이하</p>
+											<ul class="list-wrap">
+												<li class="list text-gray">전년도 도시근로자 가구원수별 월평균 소득 70%
+													이하</li>
+											</ul>
+										</div>
+										<div class="text-wrap">
+											<p class="text">60㎡ 초과</p>
+											<ul class="list-wrap">
+												<li class="list text-gray">전년도 도시근로자 가구원수별 월평균 소득 100%
+													이하</li>
+											</ul>
+										</div>
+									</td>
+									<td>
+										<div class="text-wrap">
+											<p class="text">60㎡이하</p>
+											<ul class="list-wrap">
+												<li class="list text-gray">전년도 도시근로자 가구원수별 월평균 소득 100%
+													이하</li>
+											</ul>
+										</div>
+										<div class="text-wrap">
+											<p class="text">60㎡ 초과</p>
+											<ul class="list-wrap">
+												<li class="list text-gray">전년도 도시근로자 가구원수별 월평균 소득 120%
+													이하</li>
+											</ul>
+										</div>
+									</td>
+									<td>
+										<div class="text-wrap">
+											<p class="text">60㎡이하 일반공급, 생애최초 우선공급, 신혼부부 우선공급</p>
+											<ul class="list-wrap">
+												<li class="list text-gray">기준중위소득 100% 이하</li>
+											</ul>
+										</div>
+										<div class="text-wrap">
+											<p class="text">다자녀, 노부모 특별공급</p>
+											<ul class="list-wrap">
+												<li class="list text-gray">기준중위소득 120% 이하</li>
+											</ul>
+										</div>
+										<div class="text-wrap">
+											<p class="text">신혼부부 잔여공급, 생애최초 잔여공급</p>
+											<ul class="list-wrap">
+												<li class="list text-gray">기준중위소득 130% 이하</li>
+											</ul>
+										</div>
+									</td>
+									<td>전년도 도시근로자 가구원수별 가구당 월평균 소득의 기준 중위소득 100% 이하
+										<p class="desc">단, 맞벌이 부부의 경우 120%이하, 1인 가구 20%p, 2인 가구
+											10%p</p>
+									</td>
+								</tr>
+
+								<tr>
+									<th rowspan="2" class="bold">7. 공급 유형</th>
+									<th>일반</th>
+									<td>
+										<div class="text-wrap">
+											<p class="text">일반공급</p>
+											<ul class="list-wrap">
+												<li class="list text-gray">자격 : 청년, 신혼부부(예비 포함)·한부모가족,
+													고령자, 일반</li>
+												<li class="list text-gray">선정 : 추첨으로 선정</li>
+											</ul>
+										</div>
+									</td>
+									<td>
+										<div class="text-wrap">
+											<p class="text">일반공급</p>
+											<ul class="list-wrap">
+												<li class="list text-gray">자격 : 생계급여 또는 의료 급여 수급자, 국
+													가유공자 등</li>
+												<li class="list text-gray">선정 : 지자체의 추천을 받은 자</li>
+											</ul>
+										</div>
+									</td>
+									<td colspan="2">
+										<div class="text-wrap">
+											<p class="text">일반공급</p>
+											<ul class="list-wrap">
+												<li class="list text-gray">자격 : 무주택세대구성원</li>
+												<li class="list text-gray">선정 : 순위, 자녀수, 배점 등에 따라 선정</li>
+											</ul>
+										</div>
+										<p class="desc">50㎡이하 : 지역으로 순위 구분</p>
+										<p class="desc">550㎡초과 : 주택청약종합저축으로 순위 구분</p>
+									</td>
+									<td>
+										<div class="text-wrap">
+											<p class="text">일반공급</p>
+											<ul class="list-wrap">
+												<li class="list text-gray">자격 : 해당지역 거 주 무주택세대구성원</li>
+												<li class="list text-gray">선정 : 입주자저축 (청약저축, 주택청
+													약종합저축)순위·순차</li>
+											</ul>
+										</div>
+									</td>
+									<td>
+										<div class="text-wrap">
+											<p class="text">일반공급</p>
+											<ul class="list-wrap">
+												<li class="list text-gray">자격 : 대학생, 청년, 신혼부부, 예비신혼부부,
+													한부모가족, 주거급여수급자, 고령자 등</li>
+												<li class="list text-gray">선정 : 순위 및 추첨으 로 선정</li>
+											</ul>
+										</div>
+									</td>
+								</tr>
+
+								<tr>
+									<th>
+										<a href="#" onclick="javascript:fnWordDicPop('특별(우선)공급'); return false;" class="dictionary help">
+											<span>특별·우선</span>
+											<i class="icon-question-circle-fill"></i>
+										</a>
+									</th>
+									<td>
+										<p class="desc warning">구분별 상세한 자격 및 선정방법은 입주자모집공고문을 반드시
+											확인하시기 바랍니다.</p>
+										<div class="text-wrap">
+											<p class="text">철거민 등</p>
+											<ul class="list-wrap">
+												<li class="list text-gray">자격 : 철거민 등</li>
+												<li class="list text-gray">선정 : 배점 등</li>
+											</ul>
+										</div>
+										<div class="text-wrap">
+											<p class="text">국가유공자 등</p>
+											<ul class="list-wrap">
+												<li class="list text-gray">자격 : 국가유공자, 보훈보상대상자 등</li>
+												<li class="list text-gray">선정 : 관련기관의 추천 등</li>
+											</ul>
+										</div>
+										<div class="text-wrap">
+											<p class="text">다자녀가구 등</p>
+											<ul class="list-wrap">
+												<li class="list text-gray">자격 : 다자녀가구, 만65세 이상 직계존속
+													부양자, 지원대상 한부모가족 등</li>
+												<li class="list text-gray">선정 : 배점 등</li>
+											</ul>
+										</div>
+										<div class="text-wrap">
+											<p class="text">장애인</p>
+											<ul class="list-wrap">
+												<li class="list text-gray">자격 : 장애인등록증 교부</li>
+												<li class="list text-gray">선정 : 배점 등</li>
+											</ul>
+										</div>
+										<div class="text-wrap">
+											<p class="text">기초생활 보장급여수급자 등</p>
+											<ul class="list-wrap">
+												<li class="list text-gray">자격 : 생계급여, 주거급급여, 의료급여 수급권자
+													또는 수급자</li>
+												<li class="list text-gray">선정 : 배점 등</li>
+											</ul>
+										</div>
+										<div class="text-wrap">
+											<p class="text">장기복무 제대군인, 북한 이탈주민 등</p>
+											<ul class="list-wrap">
+												<li class="list text-gray">자격 : 장기복무 제대군인, 북한이탈주민,
+													납북피해자</li>
+												<li class="list text-gray">선정 : 배점 및 관련기관의 추천 등</li>
+											</ul>
+										</div>
+										<div class="text-wrap">
+											<p class="text">비주택거주자 등</p>
+											<ul class="list-wrap">
+												<li class="list text-gray">자격 : 비닐간이공작물 거 주자 등</li>
+												<li class="list text-gray">선정 : 관련기관의 추천 등</li>
+											</ul>
+										</div>
+										<div class="text-wrap">
+											<p class="text">청년</p>
+											<ul class="list-wrap">
+												<li class="list text-gray">자격 : 만18세 이상 39세 이하 등</li>
+												<li class="list text-gray">선정 : 배점 등</li>
+											</ul>
+										</div>
+										<div class="text-wrap">
+											<p class="text">신혼부부·한부모가족</p>
+											<ul class="list-wrap">
+												<li class="list text-gray">자격 : 혼인기간 7년 이내 등</li>
+												<li class="list text-gray">선정 : 배점 등</li>
+											</ul>
+										</div>
+										<div class="text-wrap">
+											<p class="text">고령자</p>
+											<ul class="list-wrap">
+												<li class="list text-gray">자격 : 만65세 이상</li>
+												<li class="list text-gray">선정 : 배점 등</li>
+											</ul>
+										</div>
+										<div class="text-wrap">
+											<p class="text">신생아</p>
+											<ul class="list-wrap">
+												<li class="list text-gray">자격 : 만 2세 이하 자녀</li>
+												<li class="list text-gray">선정 : 배점 등</li>
+											</ul>
+										</div>
+									</td>
+									<td class="align-top">
+										<div class="text-wrap">
+											<p class="text bold">수급자 선정기준의 소득인정액 이하인 국가유공자등</p>
+										</div>
+										<div class="text-wrap">
+											<p class="text bold">귀환국군포로</p>
+										</div>
+										<div class="text-wrap">
+											<p class="text bold">수급자 신혼부부</p>
+										</div>
+									</td>
+									<td colspan="2" class="align-top">
+										<div class="text-wrap">
+											<p class="text">다자녀 가구</p>
+											<ul class="list-wrap">
+												<li class="list text-gray">자격 : 미성년 자녀 2명 이상인 자</li>
+												<li class="list text-gray">선정 : 배점기준에 따라 점수가 높은 자</li>
+											</ul>
+										</div>
+										<div class="text-wrap">
+											<p class="text">국가유공자 등</p>
+											<ul class="list-wrap">
+												<li class="list text-gray">자격 : 국가유공자</li>
+												<li class="list text-gray">선정 : 국가보훈부의 추천</li>
+											</ul>
+										</div>
+										<div class="text-wrap">
+											<p class="text">영구임대 입주자</p>
+											<ul class="list-wrap">
+												<li class="list text-gray">자격 : 영구임대 거주자</li>
+												<li class="list text-gray">선정 : 배점기준에 따라 점수가 높은 자</li>
+											</ul>
+										</div>
+										<div class="text-wrap">
+											<p class="text">비닐간이공작물 거주자</p>
+											<ul class="list-wrap">
+												<li class="list text-gray">자격 : 비닐하우스 거주자 등</li>
+												<li class="list text-gray">선정 : 배점기준에 따라 점수가 높은 자</li>
+											</ul>
+										</div>
+										<div class="text-wrap">
+											<p class="text">신혼부부</p>
+											<ul class="list-wrap">
+												<li class="list text-gray">자격 : 혼인기간 7년 이내거나 6세 이하의 자녀가
+													있는 신혼부부, 예비 신혼부부, 6세 이하의 자녀를 둔 한부모가족</li>
+												<li class="list text-gray">선정 : 혼인기간 내 자녀유무에 따른 순위, 경쟁
+													시 배점기준에 따라 점수가 높은 자</li>
+											</ul>
+										</div>
+										<div class="text-wrap">
+											<p class="text">사업지구 철거민</p>
+											<ul class="list-wrap">
+												<li class="list text-gray">자격 : 사업지구내 철거 주택 소유자 또는 세입자
+													등</li>
+												<li class="list text-gray">선정 : 사업주체, 지자체 등의 추천</li>
+											</ul>
+										</div>
+										<div class="text-wrap">
+											<p class="text">기타 공급대상</p>
+											<ul class="list-wrap">
+												<li class="list text-gray">자격 : 고령자, 노부모부양자, 장애인, 파독근로자
+													등</li>
+												<li class="list text-gray">선정 : 배점기준에 따라 점수가 높은 자</li>
+											</ul>
+										</div>
+									</td>
+									<td class="align-top">
+										<div class="text-wrap">
+											<p class="text">다자녀 특별</p>
+											<ul class="list-wrap">
+												<li class="list text-gray">자격 : 미성년 자녀 3명 이상인 자</li>
+												<li class="list text-gray">선정 : 다자녀 배점기준에따라 점수가 높은 자</li>
+											</ul>
+										</div>
+										<div class="text-wrap">
+											<p class="text">신혼부부 특별</p>
+											<ul class="list-wrap">
+												<li class="list text-gray">자격 : 혼인기간이 7년이내 이거나 6세이하의
+													자녀가 있는 신혼부부, 예비신혼부부, 6세이하의 자녀를 둔 한부모가족</li>
+												<li class="list text-gray">선정 : 우선공급 – 신혼부부 가점, 잔여공급 -
+													추첨</li>
+											</ul>
+										</div>
+										<div class="text-wrap">
+											<p class="text">생애최초 특별</p>
+											<ul class="list-wrap">
+												<li class="list text-gray">자격 : 최초로 주택을 구입하는 자</li>
+												<li class="list text-gray">선정 : 추첨</li>
+											</ul>
+										</div>
+										<div class="text-wrap">
+											<p class="text">노부모부양 특별</p>
+											<ul class="list-wrap">
+												<li class="list text-gray">자격 : 만65세이상 노부모 3년이상 부양</li>
+												<li class="list text-gray">선정 : 순위·순차</li>
+											</ul>
+										</div>
+										<div class="text-wrap">
+											<p class="text">국가유공자 특별</p>
+											<ul class="list-wrap">
+												<li class="list text-gray">자격 : 국가유공자</li>
+												<li class="list text-gray">선정 : 국가보훈처의 추천</li>
+											</ul>
+										</div>
+										<div class="text-wrap">
+											<p class="text">기타 특별</p>
+											<ul class="list-wrap">
+												<li class="list text-gray">자격 : 장애인, 철거민 등</li>
+												<li class="list text-gray">선정 : 관계기관의 추천</li>
+											</ul>
+										</div>
+									</td>
+									<td class="align-top">
+										<div class="text-wrap">
+											<p class="text">대학생(취준생 포함)</p>
+											<ul class="list-wrap">
+												<li class="list text-gray">자격 : 대학에 재학 중이거나 다음 학기에 입학
+													또는 복학 예정인 사람 등</li>
+												<li class="list text-gray">선정 : 순위, 추첨 등</li>
+											</ul>
+										</div>
+										<div class="text-wrap">
+											<p class="text">청년(사회초년생 포함)</p>
+											<ul class="list-wrap">
+												<li class="list text-gray">자격 : 19세 이상 39세 이하인 사람, 소득활동
+													합산기간 5년 이내인 사람 등</li>
+												<li class="list text-gray">선정 : 순위, 추첨 등</li>
+											</ul>
+										</div>
+										<div class="text-wrap">
+											<p class="text">신혼부부 · 한부모가족 (예비신혼부부 포함)</p>
+											<ul class="list-wrap">
+												<li class="list text-gray">자격 : 혼인 기간이 7년이내이거나 6세 이하의
+													자녀를 둔 사람</li>
+												<li class="list text-gray">선정 : 순위, 추첨 등</li>
+											</ul>
+										</div>
+										<div class="text-wrap">
+											<p class="text">고령자</p>
+											<ul class="list-wrap">
+												<li class="list text-gray">자격 : 만 65세 이상인 사람</li>
+												<li class="list text-gray">선정 : 추첨 등</li>
+											</ul>
+										</div>
+										<div class="text-wrap">
+											<p class="text">주거급여수급자</p>
+											<ul class="list-wrap">
+												<li class="list text-gray">자격 : 주거급여수급자</li>
+												<li class="list text-gray">선정 : 추첨 등</li>
+											</ul>
+										</div>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- 상세내용 :: e -->
+		<!-- 기본팝업1 :: s -->
+	 <div class="modal micromodal-slide" id="modal-login" aria-hidden="true">
+	      <div class="modal__overlay" tabindex="-1" data-micromodal-close>
+	        <div class="modal__container" role="dialog" aria-modal="true" aria-labelledby="">
+	          <div class="modal__header">
+	            <h2 class="modal__title" id="confirmTitle">제목</h2>
+	            <button class="modal__close" aria-label="Close modal" data-micromodal-close onclick="fnCloseModal('modal-login')"></button>
+	          </div>
+	          <div class="modal__content" id="confirmDetail">
+	            <p>내용</p>
+	          </div>
+	          <div class="modal__footer">
+	            <button class="modal__btn btn bg-gray" data-micromodal-close aria-label="Close this dialog window" id="confirmFalse" onclick="fnCloseModal('modal-login')">취소</button>
+	            <button class="modal__btn btn" id="confirmTrue" onclick="location.href='/hws/portal/main/loginUsrView.do'">확인</button>
+	            <button class="modal__btn btn" id="confirmTrue2" onclick="location.href='/hws/portal/usr/selectUserInterestAreasView.do'" style="display: none;">확인</button>
+	          </div>
+	        </div>
+	      </div>
+	  </div>
+	  <!-- 기본팝업1 :: e -->
+	  <!-- 기본팝업1 :: e -->
+	</div>
+	<!-- page contents :: e -->
+	<!-- import library js :: s -->
+	<script src="/libs/swiper/swiper-bundle.min.js"></script>
+	<script src="/libs/fullcalendar/index.global.min.js"></script>
+	<script src="/libs/micromodal/micromodal.min.js"></script>
+	<script src="/libs/datepicker/datepicker-full.min.js"></script>
+	
+	<!-- import library js :: e -->
+	<script defer src="/js/common.js"></script>
+	<script defer src="/js/sub_common.js"></script>
+</body>
+</html>

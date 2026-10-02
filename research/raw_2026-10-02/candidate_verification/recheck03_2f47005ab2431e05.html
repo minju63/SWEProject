@@ -1,0 +1,1269 @@
+
+
+
+
+
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<meta name="title" content="포천시 청년창업자 임차료 지원사업 - 포천청년비전센터" />
+	<meta name="keywords" content="포천시 청년센터, 프로그램, 대관안내, 청년지원사업, 자료마당 등" />
+	<meta name="description" content="포천시 청년센터" />
+	<meta name="format-detection" content="telephone=no" />
+	<meta property="og:site_name" content="포천청년비전센터" />
+	
+	<meta property="og:url" content="https://www.pocheon.go.kr/newsvision/contents.do?key=31082" />
+	<meta property="og:image" content="/site/krds/images/guide/favicon_512.png" />
+	<meta property="og:title" content="포천시 청년창업자 임차료 지원사업 - 포천청년비전센터" />
+	<meta property="og:description" content="포천시 청년센터" />
+	<meta property="og:type" content="website" />
+	<link rel="icon" type="image/png" sizes="512x512" href="/site/krds/images/guide/favicon_512.png" />
+	<link rel="icon" type="image/png" sizes="192x192" href="/site/krds/images/guide/favicon_192.png" />
+	<link rel="icon" type="image/png" sizes="32x32" href="/site/krds/images/guide/favicon_32.png" />
+	<link rel="stylesheet" href="/site/krds/css/font.css" />
+	<link rel="stylesheet" href="/site/krds/css/sub.css" />
+	<link rel="stylesheet" href="/site/newsvision/css/sub2.css" />
+	<script src="/common/js/jquery-1.12.4.HS-20200709.min.js"></script>
+	<script src="/common/js/jquery.screen.min.custom.1.0.2.js"></script>
+	<script src="/common/js/slick.min.custom.1.8.0.14.js"></script>
+	<script src="/common/js/slick.extensions.min.js"></script>
+	<script src="/common/js/program.min.js"></script>
+	<script src="/site/krds/js/common.js"></script>
+	<script src="/site/krds/js/sub.js"></script>
+	<script src="/site/krds/js/template.js"></script>
+	<script src="/site/krds/js/program.js"></script>
+	<title>포천시 청년창업자 임차료 지원사업 - 포천청년비전센터</title>
+	<meta name="decorator" content="newsvision"/>
+</head>
+<body id="sub" class="sub" data-zoom="1" data-sub-type="basic" data-mobile-lnb-slide="Y">
+
+
+<div class="accessibility">
+	<a href="#contents">본문 바로가기</a>
+</div>    <!--//accessibility-->
+<!--// 통합검색 레이어 개발 부분 시작-->
+<div class="sch_layer">    <!--// 초기에는 css로 display:none; 되어있음 -->
+	<button type="button" title="통합검색 레이어창 닫기" class="sch_layer_close start">닫기</button>    <!--//sch_layer_close start-->
+	<div class="sch_wrap">
+		<form action="/search/search.jsp" class="sch_form">    <!--//action값 꼭 넣을 것-->
+			<fieldset>
+				<legend>통합검색 레이어 검색 창</legend>
+				<div class="sch_form_inner">
+					<label for="sch_input" class="search_title">검색어를 입력해주세요</label>    <!--//search_title-->
+					<div class="input_box">
+						<input type="search" name="query" id="sch_input" class="sch_input" value="" placeholder="검색어를 입력해주세요." />    <!--//sch_input-->
+						<button type="button" title="입력된 검색어 삭제" class="sch_input_close">삭제</button>    <!--//sch_input_close-->
+						<input type="submit" class="sch_submit" value="검색하기" />    <!--//sch_submit-->
+					</div>    <!--//input_box-->
+				</div>    <!--//sch_form_inner-->
+			</fieldset>
+		</form>    <!--//sch_form-->
+		<div class="sch_desc">
+			<div class="desc_inner popular">
+				<span class="desc_title">인기검색어</span>    <!--//desc_title-->
+				<ol class="popular_list">
+					<li>
+						<span class="text">인기검색어를 불러오는 중입니다...</span>
+					</li>
+				</ol>    <!--//popular_list-->
+				<script>
+					$(document).ready(function() {
+						$.ajax({
+							type: "POST",
+							url: "/search/popword/popword.jsp",
+							dataType: "text",
+							data: { "target" : "popword", "range" : "W", "collection" : "_ALL_", "datatype" : "text" },
+							success: function(text) {
+								text = text.replace(/^\s+|\s+$/g, '');
+								if(text == "") {
+									$(".sch_desc .popular_list").html("<li><span class=\"text\">인기검색어가 없습니다.</span></li>");
+									return;
+								}
+								var xml;
+								try {
+									xml = $.parseXML(text);
+								} catch(e) {
+									$(".sch_desc .popular_list").html("<li><span class=\"text\">인기검색어가 없습니다.</span></li>");
+									return;
+								}
+								var str = "";
+								$(xml).find("Query").each(function(){
+									var id = $(this).attr("id");
+									var updown = $(this).attr("updown");
+									var count = $(this).attr("count");
+									var keyword = $(this).text();
+
+									str += "<li>";
+									str += "<span class=\"num\">" + id + "</span>";
+									str += "<a href=\"/search/search.jsp?query=" + encodeURIComponent(keyword) + "\" class=\"text\">" + keyword + "</a>";
+
+									if (updown == "U") {
+										str += "<span class=\"rank up\"><span class=\"skip\">상승</span>" + count + "</span>";
+									} else if (updown == "D") {
+										str += "<span class=\"rank down\"><span class=\"skip\">하락</span>" + count + "</span>";
+									} else if (updown == "N") {
+										str += "<span class=\"rank new\"><span class=\"skip\">신규</span></span>";
+									} else if (updown == "C" || updown == "C") {
+										str += "<span class=\"rank same\"><span class=\"skip\">동일</span></span>";
+									}
+
+									str += "</li>";
+								});
+								if(str == "") {
+									str = "<li><span class=\"text\">인기검색어가 없습니다.</span></li>";
+								}
+								$(".sch_desc .popular_list").html(str);
+							},
+							error: function() {
+								$(".sch_desc .popular_list").html("<li><span class=\"text\">인기검색어가 없습니다.</span></li>");
+							}
+						});
+					});
+				</script>
+			</div>    <!--//desc_inner popular-->
+			<div class="desc_inner recently">
+				<span class="desc_title">최근검색어</span>    <!--//desc_title-->
+				<ul class="recently_list">
+					<li>
+						<span class="text">최근검색어를 불러오는 중입니다...</span>
+					</li>
+				</ul>    <!--//recently_list-->
+				<button type="button" title="최근검색어 전체 삭제" class="recently_all_close" onclick="removeAllRecentKeywords();" style="display:none;">최근검색어 전체 삭제</button>    <!--//recently_all_close-->
+			</div>    <!--//desc_inner recently-->
+			<script>
+				function getRecentKeywords() {
+					var name = "mykeyword=";
+					var decodedCookie = decodeURIComponent(document.cookie);
+					var ca = decodedCookie.split(';');
+					for(var i = 0; i <ca.length; i++) {
+						var c = ca[i];
+						while (c.charAt(0) == ' ') c = c.substring(1);
+						if (c.indexOf(name) == 0) return c.substring(name.length, c.length);
+					}
+					return "";
+				}
+
+				function renderRecentKeywords() {
+					var myKeyword = getRecentKeywords();
+					var str = "";
+					if(myKeyword != "") {
+						var myKeywords = myKeyword.split("^%");
+						myKeywords.reverse();
+						for(var i=0; i<myKeywords.length; i++) {
+							if(myKeywords[i] == "") continue;
+							var kw = myKeywords[i];
+							str += "<li>";
+							str += "<a href=\"/search/search.jsp?query=" + encodeURIComponent(kw) + "\" class=\"text\">" + kw + "</a>";
+							str += "<button type=\"button\" title=\"검색어 삭제\" class=\"recently_close\" onclick=\"removeRecentKeyword('"+kw+"')\">" + kw + " 삭제</button>";
+							str += "</li>";
+						}
+					}
+					if(str == "") {
+						str = "<li><span class=\"text\">최근검색어가 없습니다.</span></li>";
+						$(".recently_all_close").hide();
+					} else {
+						$(".recently_all_close").show();
+					}
+					$(".sch_desc .recently_list").html(str);
+				}
+
+				function removeRecentKeyword(keyword) {
+					var myKeyword = getRecentKeywords();
+					if(myKeyword == "") return;
+					var myKeywords = myKeyword.split("^%");
+					var i = 0;
+					while (i < myKeywords.length) {
+						if (myKeywords[i] == keyword) {
+							myKeywords.splice(i, 1);
+						} else {
+							i++;
+						}
+					}
+					var d = new Date();
+					d.setTime(d.getTime() + (365*24*60*60*1000));
+					document.cookie = "mykeyword=" + myKeywords.join("^%") + ";expires="+ d.toUTCString() + ";path=/";
+					renderRecentKeywords();
+				}
+
+				function removeAllRecentKeywords() {
+					document.cookie = "mykeyword=;expires=Thu, 01 Jan 1970 00:00:00 UTC;path=/";
+					renderRecentKeywords();
+				}
+
+				$(document).ready(function() {
+					renderRecentKeywords();
+				});
+			</script>
+		</div>    <!--//sch_desc-->
+	</div>    <!--//sch_wrap-->
+	<button type="button" title="통합검색 레이어창 닫기" class="sch_layer_close end">닫기</button>    <!--//sch_layer_close end-->
+</div>    <!--//sch_layer-->
+<!--// 통합검색 레이어 개발 부분 종료-->
+<!--패밀리 사이트 시작-->
+
+
+<div class="family_popup">
+    <div class="family_dim"></div>
+    <div class="family_popup_inner">
+        <div class="family_head">
+            <strong class="family_title">포천시 주요 홈페이지를 한눈에!</strong>
+            <button type="button" class="family_close" title="닫기">닫기</button>
+        </div>
+        <div class="family_body">
+            <div class="family_col">
+                <strong class="col_title">포천시</strong>
+                <ul class="col_list">
+                    <li><a href="/www/index.do" target="_blank" title="새창" rel="noopener noreferrer">포천시청</a></li>
+                    <li><a href="https://council.pocheon.go.kr/kr/main.do"  target="_blank" title="새창" rel="noopener noreferrer">포천시청의회</a></li>
+                    <li><a href="/mayor/index.do" target="_blank" title="새창" rel="noopener noreferrer">열린시장실</a></li>
+                    <li><a href="/pbhlth/index.do" target="_blank" title="새창" rel="noopener noreferrer">보건소</a></li>
+                    <li><a href="/ktour/index.do" target="_blank" title="새창" rel="noopener noreferrer">문화관광</a></li>
+                    <li><a href="/much/index.do" target="_blank" title="새창" rel="noopener noreferrer">역사문화관</a></li>
+                    <li><a href="/agro/index.do" target="_blank" title="새창" rel="noopener noreferrer">농업기술센터</a></li>
+                    <li><a href="/basic/index.do" target="_blank" title="새창" rel="noopener noreferrer">도시재생센터</a></li>
+                    <li><a href="/newsvision/index.do" target="_blank" title="새창" rel="noopener noreferrer">포천청년비전센터</a></li>
+                    <li><a href="/media/index.do" target="_blank" title="새창" rel="noopener noreferrer">포천미디어센터</a></li>
+                    <li><a href="/global/index.do" target="_blank" title="새창" rel="noopener noreferrer">외국인주민지원센터</a></li>
+                    <li><a href="/khan/index.do" target="_blank" title="새창" rel="noopener noreferrer">한탄강지질공원센터</a></li>
+                    <li><a href="https://lib.pocheon.go.kr/intro/index.do"  target="_blank" title="새창" rel="noopener noreferrer">포천시도서관</a></li>
+                    <li><a href="/biz/index.do" target="_blank" title="새창" rel="noopener noreferrer">기업정보포털</a></li>
+                </ul>
+            </div>
+            <div class="family_col">
+                <strong class="col_title">생활정보</strong>
+                <ul class="col_list">
+                    <li><a href="/yeyak/index.do" target="_blank" title="새창" rel="noopener noreferrer">통합예약포털</a></li>
+                    <li><a href="/pyegi/index.do" target="_blank" title="새창" rel="noopener noreferrer">대형폐기물</a></li>
+                    <li><a href="/www/sub.do?key=4015" target="_blank" title="새창" rel="noopener noreferrer">주정차단속문자알림</a></li>
+                    <li><a href="/www/waterSupplyChargeForm.do?key=4077" target="_blank" title="새창" rel="noopener noreferrer">상하수도요금조회</a></li>
+                    <li><a href="https://gyeonggi.work.go.kr/pocheon/main.do" target="_blank" title="새창" rel="noopener noreferrer">일자리센터</a></li>
+                    <li><a href="https://rtms.molit.go.kr/" target="_blank" title="새창" rel="noopener noreferrer">부동산실거래가신고</a></li>
+                    <li><a href="https://kras.gg.go.kr/land_info/info/baseInfo/baseInfo.do#t05-tab" target="_blank" title="새창" rel="noopener noreferrer">공시지가</a></li>
+                    <li><a href="/www/sub.do?key=3705" target="_blank" title="새창" rel="noopener noreferrer">무료법률상담</a></li>
+                </ul>
+            </div>
+            <div class="family_col">
+                <strong class="col_title">행정정보</strong>
+                <ul class="col_list">
+                    <li><a href="/www/sub.do?key=3653" target="_blank" title="새창" rel="noopener noreferrer">재정정보공개</a></li>
+                    <li><a href="/contract/index.do" target="_blank" title="새창" rel="noopener noreferrer">계약정보공개</a></li>
+                    <li><a href="/revtes/index.do" target="_blank" title="새창" rel="noopener noreferrer">세입세출공개</a></li>
+                    <li><a href="/www/selectBbsNttList.do?bbsNo=1451&key=3565" target="_blank" title="새창" rel="noopener noreferrer">예산서</a></li>
+                    <li><a href="/www/selectTnCityNoticeWebList.do?key=3721" target="_blank" title="새창" rel="noopener noreferrer">포천시보</a></li>
+                    <li><a href=" http://27.101.127.67:8000/" target="_blank" title="새창" rel="noopener noreferrer">포천시데이터포털</a></li>
+                </ul>
+            </div>
+            <div class="family_col">
+                <strong class="col_title">행정복지센터(읍면동)</strong>
+                <ul class="col_list">
+                    <li><a href="/she/index.do" target="_blank" title="새창" rel="noopener noreferrer">소흘읍</a></li>
+                    <li><a href="/gnm/index.do" target="_blank" title="새창" rel="noopener noreferrer">군내면</a></li>
+                    <li><a href="/ncm/index.do" target="_blank" title="새창" rel="noopener noreferrer">내촌면</a></li>
+                    <li><a href="/gsm/index.do" target="_blank" title="새창" rel="noopener noreferrer">가산면</a></li>
+                    <li><a href="/sbm/index.do" target="_blank" title="새창" rel="noopener noreferrer">신북면</a></li>
+                    <li><a href="/csm/index.do" target="_blank" title="새창" rel="noopener noreferrer">창수면</a></li>
+                    <li><a href="/yjm/index.do" target="_blank" title="새창" rel="noopener noreferrer">영중면</a></li>
+                    <li><a href="/idm/index.do" target="_blank" title="새창" rel="noopener noreferrer">일동면</a></li>
+                    <li><a href="/edm/index.do" target="_blank" title="새창" rel="noopener noreferrer">이동면</a></li>
+                    <li><a href="/ybm/index.do" target="_blank" title="새창" rel="noopener noreferrer">영북면</a></li>
+                    <li><a href="/kim/index.do" target="_blank" title="새창" rel="noopener noreferrer">관인면</a></li>
+                    <li><a href="/hhm/index.do" target="_blank" title="새창" rel="noopener noreferrer">화현면</a></li>
+                    <li><a href="/pcd/index.do" target="_blank" title="새창" rel="noopener noreferrer">포천동</a></li>
+                    <li><a href="/sdd/index.do" target="_blank" title="새창" rel="noopener noreferrer">선단동</a></li>
+                </ul>
+            </div>
+            <div class="family_col">
+                <strong class="col_title">유관기관</strong>
+                <ul class="col_list">
+                    <li><a href="https://www.pcuc.kr/open_content/" target="_blank" title="새창" rel="noopener noreferrer">포천도시공사</a></li>
+                    <li><a href="https://www.pcfac.or.kr/" target="_blank" title="새창" rel="noopener noreferrer">포천시관광문화재단</a></li>
+                    <li><a href="https://www.poyouth.or.kr/home/kor/main.do" target="_blank" title="새창" rel="noopener noreferrer">포천시청소년재단</a></li>
+                    <li><a href="https://www.pcaf.or.kr/" target="_blank" title="새창" rel="noopener noreferrer">포천시농업재단</a></li>
+                    <li><a href="https://ggbpolice.go.kr/pc/mainPage.do" target="_blank" title="새창" rel="noopener noreferrer">포천경찰서</a></li>
+                    <li><a href="https://www.goepc.kr/goepc/main.do" target="_blank" title="새창" rel="noopener noreferrer">포천교육지원청</a></li>
+                    <li><a href="https://119.gg.go.kr/pocheon" target="_blank" title="새창" rel="noopener noreferrer">포천소방서</a></li>
+                    <li><a href="http://www.pcsports.or.kr/" target="_blank" title="새창" rel="noopener noreferrer">포천시체육회</a></li>
+                    <li><a href="http://www.pcsc.kr/" target="_blank" title="새창" rel="noopener noreferrer">노인복지관</a></li>
+                    <li><a href="https://www.kepco.co.kr/home/index.do" target="_blank" title="새창" rel="noopener noreferrer">한전 포천지사</a></li>
+                    <li><a href="https://pccci.korcham.net/front/user/main.do" target="_blank" title="새창" rel="noopener noreferrer">포천상공회의소</a></li>
+                    <li><a href="https://www.ekr.or.kr/" target="_blank" title="새창" rel="noopener noreferrer">한국농어촌공사</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<!--패밀리 사이트 종료-->
+<div id="wrapper">
+	<header id="header">
+		<div class="header_message"><span class="text">이 누리집은 대한민국 공식 전자정부 누리집입니다.</span></div>    <!--//header_message-->
+		<div class="header_box">
+			<div class="box_etc">
+				<ul class="etc_list">
+					<li class="etc_item">
+						<button type="button" title="패밀리사이트 열기" class="etc_btn btn_family">패밀리사이트</button>
+					</li>    <!--//etc_item-->
+					<li class="etc_item type_blank">
+						<a href="/www/index.do" class="etc_btn" target="_blank" title="새창" rel="noopener noreferrer">포천시청</a>    <!--//etc_btn-->
+					</li>    <!--//etc_item-->
+					<li class="etc_item type_blank">
+						<a href="/ktour/index.do" class="etc_btn" target="_blank" title="새창" rel="noopener noreferrer">문화관광</a>    <!--//etc_btn-->
+					</li>    <!--//etc_item-->
+					<li class="etc_item type_drop">
+						<button type="button" title="화면크기 레이어창 열기" class="etc_btn">화면크기</button>    <!--//etc_btn-->
+						<div class="drop_menu">
+							<div class="drop_in">
+								<ul class="drop_list">
+									<li><button type="button" class="xsm">작게</button></li>
+									<li><button type="button" class="sm">보통</button></li>
+									<li><button type="button" class="md">조금크게</button></li>
+									<li><button type="button" class="lg">크게</button></li>
+									<li><button type="button" class="xlg">가장크게</button></li>
+								</ul>    <!--//drop_list-->
+								<div class="drop_btn"><button type="button">초기화</button></div>    <!--//drop_btn-->
+							</div>    <!--//drop_in-->
+						</div>    <!--//drop_menu-->
+					</li>    <!--//etc_item-->
+				</ul>    <!--//etc_list-->
+			</div>    <!--//box_etc-->
+			<div class="box_inner">
+				<h1 class="logo">
+					<a href="./index.do" title="메인페이지로 이동" rel="noopener noreferrer">
+						<span class="logo_image">포천청년비전센터</span>
+						<span class="logo_text">포천청년비전센터</span>
+					</a>
+				</h1>    <!--//logo-->
+				<div class="gnb">
+					<!--//<a href="" class="btn_nav join" rel="noopener noreferrer">회원가입</a>-->    <!--//btn_nav join-->
+
+					<button type="button" title="통합검색 레이어창 열기" class="btn_nav sch"><span>통합검색</span></button>    <!--//btn_nav sch-->
+					
+					
+						
+						
+							<a href="/www/loginForm.do?key=30821&amp;url=%2Fnewsvision%2Findex.do" class="btn_nav login" rel="noopener noreferrer"><span>로그인</span></a>
+						
+					
+
+					<!--// 로그인 시에만 표출 -->
+					<!--//<a href="" class="btn_nav mypage" rel="noopener noreferrer">마이페이지</a>-->    <!--//btn_nav mypage-->
+					<a href="/newsvision/sitemap.do?key=30939" class="btn_nav sitemap" rel="noopener noreferrer"><span>사이트맵</span></a>    <!--//btn_nav sitemap-->
+					<div class="menu_show">
+						<button type="button" title="메뉴열기" class="menu_button"><span>전체메뉴</span></button>    <!--//menu_button-->
+					</div>    <!--//menu_show-->
+				</div>    <!--//gnb-->
+			</div>    <!--//box_inner-->
+		</div>    <!--//header_box-->
+		<div class="lnb">
+			<div class="box_inner">
+				<h1 class="logo">
+					<a href="./index.do" title="메인페이지로 이동" rel="noopener noreferrer">
+						<span class="logo_image">포천시청</span>
+						<span class="logo_text">포천청년비전센터</span>
+					</a>
+				</h1>    <!--//logo-->
+				<div class="gnb">
+					<!--//<a href="" class="btn_nav join" rel="noopener noreferrer">회원가입</a>-->    <!--//btn_nav join-->
+
+					<button type="button" title="통합검색 레이어창 열기" class="btn_nav sch"><span>통합검색</span></button>    <!--//btn_nav sch-->
+					
+					
+						
+						
+							<a href="/www/loginForm.do?key=30821&amp;url=%2Fnewsvision%2Findex.do" class="btn_nav login" rel="noopener noreferrer"><span>로그인</span></a>
+						
+					
+
+					<!--// 로그인 시에만 표출 -->
+					<!--//<a href="" class="btn_nav mypage" rel="noopener noreferrer">마이페이지</a>-->    <!--//btn_nav mypage-->
+					<a href="/newsvision/sitemap.do?key=30939" class="btn_nav sitemap" rel="noopener noreferrer"><span>사이트맵</span></a>    <!--//btn_nav sitemap-->
+					<div class="menu_show">
+						<button type="button" title="메뉴열기" class="menu_button"><span>전체메뉴</span></button>    <!--//menu_button-->
+					</div>    <!--//menu_show-->
+				</div>    <!--//gnb-->
+			</div>    <!--//box_inner-->
+			<div class="lnb_top_box">
+				<div class="box_etc">
+					<ul class="etc_list">
+						<li class="etc_item type_drop">
+							<button type="button" title="언어선택 레이어창 열기" class="etc_btn lang_btn">Language</button>    <!--//etc_btn-->
+							<div class="drop_menu">
+								<div class="drop_in">
+									<ul class="drop_list">
+										<li><a href="/eng/index.do" target="_blank" title="새창" rel="noopener noreferrer">English</a></li>
+										<li><a href="/chn/index.do" target="_blank" title="새창" rel="noopener noreferrer">中國語</a></li>
+										<li><a href="/jpn/index.do" target="_blank" title="새창" rel="noopener noreferrer">日本語</a></li>
+									</ul>    <!--//drop_list-->
+								</div>    <!--//drop_in-->
+							</div>    <!--//drop_menu-->
+						</li>    <!--//etc_item-->
+					</ul>    <!--//etc_list-->
+				</div>    <!--//box_etc-->
+				<div class="box_sch">
+					<div class="sch_wrap">
+						<form action="/search/search.jsp" class="sch_form">    <!--//action값 꼭 넣을 것-->
+							<fieldset>
+								<legend>통합검색 레이어 검색 창</legend>
+								<div class="sch_form_inner">
+									<label for="sch_input1" class="search_title">검색어를 입력해주세요</label>    <!--//search_title-->
+									<div class="input_box">
+										<input type="search" name="query" id="sch_input1" class="sch_input" value="" placeholder="검색어를 입력해주세요." />    <!--//sch_input-->
+										<button type="button" title="입력된 검색어 삭제" class="sch_input_close">삭제</button>    <!--//sch_input_close-->
+										<input type="submit" class="sch_submit" value="검색하기" />    <!--//sch_submit-->
+									</div>    <!--//input_box-->
+								</div>    <!--//sch_form_inner-->
+							</fieldset>
+						</form>    <!--//sch_form-->
+
+					</div>    <!--//sch_wrap-->
+				</div>    <!--//box_sch-->
+			</div>    <!--//lnb_top_box-->
+			<nav class="menu eachdown click"><!-- mouse/click 둘중 하나는 꼭 들어가야함, mouseleave:클릭일때 메뉴영역에서 마우스 빠질때 메뉴닫기 -->
+				
+
+  <h2 class="skip">메뉴</h2>
+  <div class="depth depth1">
+    <ul class="depth_list depth1_list">
+              <li class="depth_item depth1_item">
+          <a href="/newsvision/contents.do?key=47565" class="depth_text depth1_text"  rel="noopener noreferrer">
+            <span><em>청년정책</em></span>
+          </a>
+            <div class="depth depth2">
+              <ul class="depth_list depth2_list">
+                    <li class="depth_item depth2_item">
+                      <a href="/newsvision/contents.do?key=47565" class="depth_text depth2_text"  rel="noopener noreferrer"><span><em>참여권리</em></span></a>
+                        <div class="depth depth3">
+                          <ul class="depth_list depth3_list">
+                                <li class="depth_item depth3_item">
+                                  <a href="/newsvision/contents.do?key=47565" class="depth_text depth3_text"  rel="noopener noreferrer"><span><em>포천시 청년정책 서포터즈</em></span></a>
+                                </li>
+                                <li class="depth_item depth3_item">
+                                  <a href="/newsvision/contents.do?key=47566" class="depth_text depth3_text"  rel="noopener noreferrer"><span><em>포천시 청년축제</em></span></a>
+                                </li>
+                                <li class="depth_item depth3_item">
+                                  <a href="/newsvision/contents.do?key=47567" class="depth_text depth3_text"  rel="noopener noreferrer"><span><em>포천시 청년대상</em></span></a>
+                                </li>
+                          </ul>
+                        </div>
+                    </li>
+                    <li class="depth_item depth2_item">
+                      <a href="/newsvision/contents.do?key=47569" class="depth_text depth2_text"  rel="noopener noreferrer"><span><em>취업</em></span></a>
+                        <div class="depth depth3">
+                          <ul class="depth_list depth3_list">
+                                <li class="depth_item depth3_item">
+                                  <a href="/newsvision/contents.do?key=47569" class="depth_text depth3_text"  rel="noopener noreferrer"><span><em>청년 지방행정 체험</em></span></a>
+                                </li>
+                                <li class="depth_item depth3_item">
+                                  <a href="/newsvision/contents.do?key=47570" class="depth_text depth3_text"  rel="noopener noreferrer"><span><em>포천시 경기청년 사다리 프로그램</em></span></a>
+                                </li>
+                                <li class="depth_item depth3_item">
+                                  <a href="/newsvision/contents.do?key=47571" class="depth_text depth3_text"  rel="noopener noreferrer"><span><em>면접 올(ALL) 레디</em></span></a>
+                                </li>
+                                <li class="depth_item depth3_item">
+                                  <a href="/newsvision/contents.do?key=47572" class="depth_text depth3_text"  rel="noopener noreferrer"><span><em>포천 청년성장 프로젝트</em></span></a>
+                                </li>
+                                <li class="depth_item depth3_item">
+                                  <a href="/newsvision/contents.do?key=47573" class="depth_text depth3_text"  rel="noopener noreferrer"><span><em>경기청년 역량강화 기회지원사업</em></span></a>
+                                </li>
+                                <li class="depth_item depth3_item">
+                                  <a href="/newsvision/contents.do?key=47574" class="depth_text depth3_text"  rel="noopener noreferrer"><span><em>대진대 대학일자리플러스 센터</em></span></a>
+                                </li>
+                                <li class="depth_item depth3_item">
+                                  <a href="/newsvision/contents.do?key=47575" class="depth_text depth3_text"  rel="noopener noreferrer"><span><em>평생교육이용권 지원사업</em></span></a>
+                                </li>
+                                <li class="depth_item depth3_item">
+                                  <a href="/newsvision/contents.do?key=47576" class="depth_text depth3_text"  rel="noopener noreferrer"><span><em>청년 취업프로그램 운영</em></span></a>
+                                </li>
+                                <li class="depth_item depth3_item">
+                                  <a href="/newsvision/contents.do?key=47577" class="depth_text depth3_text"  rel="noopener noreferrer"><span><em>포천시 청년 농업사관학교</em></span></a>
+                                </li>
+                          </ul>
+                        </div>
+                    </li>
+                    <li class="depth_item depth2_item">
+                      <a href="/newsvision/contents.do?key=47579" class="depth_text depth2_text"  rel="noopener noreferrer"><span><em>창업</em></span></a>
+                        <div class="depth depth3">
+                          <ul class="depth_list depth3_list">
+                                <li class="depth_item depth3_item">
+                                  <a href="/newsvision/contents.do?key=47579" class="depth_text depth3_text"  rel="noopener noreferrer"><span><em>포천시 청년 취창업센터 운영</em></span></a>
+                                </li>
+                                <li class="depth_item depth3_item">
+                                  <a href="/newsvision/contents.do?key=47580" class="depth_text depth3_text"  rel="noopener noreferrer"><span><em>포천 청년창업자 임차료 지원사업</em></span></a>
+                                </li>
+                                <li class="depth_item depth3_item">
+                                  <a href="/newsvision/contents.do?key=47581" class="depth_text depth3_text"  rel="noopener noreferrer"><span><em>사회적경제 창업 지원</em></span></a>
+                                </li>
+                                <li class="depth_item depth3_item">
+                                  <a href="/newsvision/contents.do?key=47582" class="depth_text depth3_text"  rel="noopener noreferrer"><span><em>청년창업농 영농정착 지원</em></span></a>
+                                </li>
+                                <li class="depth_item depth3_item">
+                                  <a href="/newsvision/contents.do?key=47583" class="depth_text depth3_text"  rel="noopener noreferrer"><span><em>청년어촌정착 지원사업</em></span></a>
+                                </li>
+                          </ul>
+                        </div>
+                    </li>
+                    <li class="depth_item depth2_item">
+                      <a href="/newsvision/contents.do?key=47585" class="depth_text depth2_text"  rel="noopener noreferrer"><span><em>교육·문화</em></span></a>
+                        <div class="depth depth3">
+                          <ul class="depth_list depth3_list">
+                                <li class="depth_item depth3_item">
+                                  <a href="/newsvision/contents.do?key=47585" class="depth_text depth3_text"  rel="noopener noreferrer"><span><em>경기도 청년기본소득</em></span></a>
+                                </li>
+                                <li class="depth_item depth3_item">
+                                  <a href="/newsvision/contents.do?key=47586" class="depth_text depth3_text"  rel="noopener noreferrer"><span><em>청년 정신건강증진 외래치료비 지원</em></span></a>
+                                </li>
+                                <li class="depth_item depth3_item">
+                                  <a href="/newsvision/contents.do?key=47587" class="depth_text depth3_text"  rel="noopener noreferrer"><span><em>청년내일 저축계좌</em></span></a>
+                                </li>
+                                <li class="depth_item depth3_item">
+                                  <a href="/newsvision/contents.do?key=47588" class="depth_text depth3_text"  rel="noopener noreferrer"><span><em>전입대학생 및 제대군인 전입지원금</em></span></a>
+                                </li>
+                                <li class="depth_item depth3_item">
+                                  <a href="/newsvision/contents.do?key=47589" class="depth_text depth3_text"  rel="noopener noreferrer"><span><em>포천 문화예술 지원사업 포도당</em></span></a>
+                                </li>
+                                <li class="depth_item depth3_item">
+                                  <a href="/newsvision/contents.do?key=47590" class="depth_text depth3_text"  rel="noopener noreferrer"><span><em>청년 문화예술패스</em></span></a>
+                                </li>
+                          </ul>
+                        </div>
+                    </li>
+                    <li class="depth_item depth2_item">
+                      <a href="/newsvision/contents.do?key=47592" class="depth_text depth2_text"  rel="noopener noreferrer"><span><em>주거</em></span></a>
+                        <div class="depth depth3">
+                          <ul class="depth_list depth3_list">
+                                <li class="depth_item depth3_item">
+                                  <a href="/newsvision/contents.do?key=47592" class="depth_text depth3_text"  rel="noopener noreferrer"><span><em>포천시 청년월세 지원사업</em></span></a>
+                                </li>
+                                <li class="depth_item depth3_item">
+                                  <a href="/newsvision/contents.do?key=47593" class="depth_text depth3_text"  rel="noopener noreferrer"><span><em>청년 전세보증금반환보증 보증료 지원</em></span></a>
+                                </li>
+                                <li class="depth_item depth3_item">
+                                  <a href="/newsvision/contents.do?key=47594" class="depth_text depth3_text"  rel="noopener noreferrer"><span><em>신혼부부,다자녀,청년가구 전월세 보증금 대출이자지원사업</em></span></a>
+                                </li>
+                                <li class="depth_item depth3_item">
+                                  <a href="/newsvision/contents.do?key=47595" class="depth_text depth3_text"  rel="noopener noreferrer"><span><em>청년,신혼부부 공공임대주택 주거비 지원사업</em></span></a>
+                                </li>
+                                <li class="depth_item depth3_item">
+                                  <a href="/newsvision/contents.do?key=47596" class="depth_text depth3_text"  rel="noopener noreferrer"><span><em>1인가구 소량이사 차량 지원사업</em></span></a>
+                                </li>
+                                <li class="depth_item depth3_item">
+                                  <a href="/newsvision/contents.do?key=47597" class="depth_text depth3_text"  rel="noopener noreferrer"><span><em>포천학사 및 행복연합기숙사 운영</em></span></a>
+                                </li>
+                                <li class="depth_item depth3_item">
+                                  <a href="/newsvision/contents.do?key=47598" class="depth_text depth3_text"  rel="noopener noreferrer"><span><em>포천 미래세대 첫 디딤돌</em></span></a>
+                                </li>
+                          </ul>
+                        </div>
+                    </li>
+                    <li class="depth_item depth2_item">
+                      <a href="/newsvision/contents.do?key=47600" class="depth_text depth2_text"  rel="noopener noreferrer"><span><em>관련사이트</em></span></a>
+                    </li>
+              </ul>
+            </div>
+        </li>
+        <li class="depth_item depth1_item">
+          <a href="/newsvision/selectBbsNttList.do?bbsNo=1990&amp;key=47602" class="depth_text depth1_text"  rel="noopener noreferrer">
+            <span><em>청년소식</em></span>
+          </a>
+            <div class="depth depth2">
+              <ul class="depth_list depth2_list">
+                    <li class="depth_item depth2_item">
+                      <a href="/newsvision/selectBbsNttList.do?bbsNo=1990&amp;key=47602" class="depth_text depth2_text"  rel="noopener noreferrer"><span><em>공지사항</em></span></a>
+                    </li>
+                    <li class="depth_item depth2_item">
+                      <a href="/newsvision/selectBbsNttList.do?bbsNo=1991&amp;key=47603" class="depth_text depth2_text"  rel="noopener noreferrer"><span><em>자료실</em></span></a>
+                    </li>
+                    <li class="depth_item depth2_item">
+                      <a href="/newsvision/selectBbsNttList.do?bbsNo=1993&amp;key=47604" class="depth_text depth2_text"  rel="noopener noreferrer"><span><em>청년센터 갤러리</em></span></a>
+                    </li>
+                    <li class="depth_item depth2_item">
+                      <a href="/newsvision/selectBbsNttList.do?bbsNo=1995&amp;key=47605" class="depth_text depth2_text"  rel="noopener noreferrer"><span><em>Q&amp;A</em></span></a>
+                    </li>
+                    <li class="depth_item depth2_item">
+                      <a href="/newsvision/selectBbsNttList.do?bbsNo=2530&amp;key=47606" class="depth_text depth2_text"  rel="noopener noreferrer"><span><em>강사등록</em></span></a>
+                    </li>
+              </ul>
+            </div>
+        </li>
+        <li class="depth_item depth1_item">
+          <a href="/newsvision/contents.do?key=47609" class="depth_text depth1_text"  rel="noopener noreferrer">
+            <span><em>프로그램</em></span>
+          </a>
+            <div class="depth depth2">
+              <ul class="depth_list depth2_list">
+                    <li class="depth_item depth2_item">
+                      <a href="/newsvision/ggShareLctreWebListNvs.do?key=47610" class="depth_text depth2_text"  rel="noopener noreferrer"><span><em>프로그램 신청</em></span></a>
+                        <div class="depth depth3">
+                          <ul class="depth_list depth3_list">
+                                <li class="depth_item depth3_item">
+                                  <a href="/newsvision/ggShareLctreWebListNvs.do?key=47610" class="depth_text depth3_text"  rel="noopener noreferrer"><span><em>청년공간</em></span></a>
+                                </li>
+                                <li class="depth_item depth3_item">
+                                  <a href="/newsvision/contents.do?key=47611" class="depth_text depth3_text"  rel="noopener noreferrer"><span><em>음악창작소</em></span></a>
+                                </li>
+                                <li class="depth_item depth3_item">
+                                  <a href="/newsvision/contents.do?key=47612" class="depth_text depth3_text"  rel="noopener noreferrer"><span><em>미디어센터</em></span></a>
+                                </li>
+                          </ul>
+                        </div>
+                    </li>
+                    <li class="depth_item depth2_item">
+                      <a href="/newsvision/selectTnSchdulListU.do?key=47613" class="depth_text depth2_text"  rel="noopener noreferrer"><span><em>교육일정표</em></span></a>
+                    </li>
+              </ul>
+            </div>
+        </li>
+        <li class="depth_item depth1_item">
+          <a href="sub.do?key=47617" class="depth_text depth1_text"  rel="noopener noreferrer">
+            <span><em>대관,대여</em></span>
+          </a>
+            <div class="depth depth2">
+              <ul class="depth_list depth2_list">
+                    <li class="depth_item depth2_item">
+                      <a href="/newsvision/ggShareFcltyWebListNvs.do?key=47617" class="depth_text depth2_text"  rel="noopener noreferrer"><span><em>대관신청</em></span></a>
+                        <div class="depth depth3">
+                          <ul class="depth_list depth3_list">
+                                <li class="depth_item depth3_item">
+                                  <a href="/newsvision/ggShareFcltyWebListNvs.do?key=47617" class="depth_text depth3_text"  rel="noopener noreferrer"><span><em>청년공간</em></span></a>
+                                </li>
+                                <li class="depth_item depth3_item">
+                                  <a href="/newsvision/contents.do?key=47618" class="depth_text depth3_text"  rel="noopener noreferrer"><span><em>음악창작소</em></span></a>
+                                </li>
+                                <li class="depth_item depth3_item">
+                                  <a href="/media/selectBbsNttList.do?bbsNo=2050&amp;key=10026" class="depth_text depth3_text"  rel="noopener noreferrer"><span><em>미디어센터</em></span></a>
+                                </li>
+                          </ul>
+                        </div>
+                    </li>
+                    <li class="depth_item depth2_item">
+                      <a href="/newsvision/contents.do?key=47621" class="depth_text depth2_text"  rel="noopener noreferrer"><span><em>장비대여신청</em></span></a>
+                        <div class="depth depth3">
+                          <ul class="depth_list depth3_list">
+                                <li class="depth_item depth3_item">
+                                  <a href="/newsvision/contents.do?key=47621" class="depth_text depth3_text"  rel="noopener noreferrer"><span><em>신청방법</em></span></a>
+                                </li>
+                                <li class="depth_item depth3_item">
+                                  <a href="/newsvision/selectBbsNttList.do?bbsNo=2070&amp;key=47622" class="depth_text depth3_text"  rel="noopener noreferrer"><span><em>장비안내 및 신청</em></span></a>
+                                </li>
+                          </ul>
+                        </div>
+                    </li>
+              </ul>
+            </div>
+        </li>
+        <li class="depth_item depth1_item">
+          <a href="/newsvision/contents.do?key=47624" class="depth_text depth1_text"  rel="noopener noreferrer">
+            <span><em>음악창작소</em></span>
+          </a>
+            <div class="depth depth2">
+              <ul class="depth_list depth2_list">
+                    <li class="depth_item depth2_item">
+                      <a href="/newsvision/contents.do?key=47624" class="depth_text depth2_text"  rel="noopener noreferrer"><span><em>음악창작소 소개</em></span></a>
+                    </li>
+                    <li class="depth_item depth2_item">
+                      <a href="/newsvision/contents.do?key=47626" class="depth_text depth2_text"  rel="noopener noreferrer"><span><em>사업안내</em></span></a>
+                        <div class="depth depth3">
+                          <ul class="depth_list depth3_list">
+                                <li class="depth_item depth3_item">
+                                  <a href="/newsvision/contents.do?key=47626" class="depth_text depth3_text"  rel="noopener noreferrer"><span><em>지원사업 소개</em></span></a>
+                                </li>
+                                <li class="depth_item depth3_item">
+                                  <a href="/newsvision/selectWebArtistList.do?key=47627" class="depth_text depth3_text"  rel="noopener noreferrer"><span><em>아티스트 소개</em></span></a>
+                                </li>
+                                <li class="depth_item depth3_item">
+                                  <a href="/newsvision/selectWebAlbumList.do?key=47628" class="depth_text depth3_text"  rel="noopener noreferrer"><span><em>지원작품 소개</em></span></a>
+                                </li>
+                          </ul>
+                        </div>
+                    </li>
+              </ul>
+            </div>
+        </li>
+        <li class="depth_item depth1_item">
+          <a href="/newsvision/contents.do?key=47630" class="depth_text depth1_text"  rel="noopener noreferrer">
+            <span><em>미디어센터</em></span>
+          </a>
+            <div class="depth depth2">
+              <ul class="depth_list depth2_list">
+                    <li class="depth_item depth2_item">
+                      <a href="/newsvision/contents.do?key=47630" class="depth_text depth2_text"  rel="noopener noreferrer"><span><em>미디어센터 소개</em></span></a>
+                    </li>
+                    <li class="depth_item depth2_item">
+                      <a href="/newsvision/contents.do?key=47631" class="depth_text depth2_text"  rel="noopener noreferrer"><span><em>미디어체험</em></span></a>
+                    </li>
+                    <li class="depth_item depth2_item">
+                      <a href="/newsvision/contents.do?key=47632" class="depth_text depth2_text"  rel="noopener noreferrer"><span><em>영화상영</em></span></a>
+                    </li>
+                    <li class="depth_item depth2_item">
+                      <a href="/newsvision/selectBbsNttList.do?bbsNo=1952&amp;key=47634" class="depth_text depth2_text"  rel="noopener noreferrer"><span><em>커뮤니티</em></span></a>
+                        <div class="depth depth3">
+                          <ul class="depth_list depth3_list">
+                                <li class="depth_item depth3_item">
+                                  <a href="/newsvision/selectBbsNttList.do?bbsNo=1952&amp;key=47634" class="depth_text depth3_text"  rel="noopener noreferrer"><span><em>공지사항</em></span></a>
+                                </li>
+                                <li class="depth_item depth3_item">
+                                  <a href="/newsvision/selectBbsNttList.do?bbsNo=1977&amp;key=47635" class="depth_text depth3_text"  rel="noopener noreferrer"><span><em>FAQ</em></span></a>
+                                </li>
+                                <li class="depth_item depth3_item">
+                                  <a href="/newsvision/selectBbsNttList.do?bbsNo=1978&amp;key=47636" class="depth_text depth3_text"  rel="noopener noreferrer"><span><em>1:1문의</em></span></a>
+                                </li>
+                          </ul>
+                        </div>
+                    </li>
+              </ul>
+            </div>
+        </li>
+        <li class="depth_item depth1_item">
+          <a href="/newsvision/contents.do?key=47638" class="depth_text depth1_text"  rel="noopener noreferrer">
+            <span><em>포천청년비전센터</em></span>
+          </a>
+            <div class="depth depth2">
+              <ul class="depth_list depth2_list">
+                    <li class="depth_item depth2_item">
+                      <a href="/newsvision/contents.do?key=47638" class="depth_text depth2_text"  rel="noopener noreferrer"><span><em>센터소개</em></span></a>
+                    </li>
+                    <li class="depth_item depth2_item">
+                      <a href="/newsvision/contents.do?key=47639" class="depth_text depth2_text"  rel="noopener noreferrer"><span><em>시설안내</em></span></a>
+                    </li>
+                    <li class="depth_item depth2_item">
+                      <a href="/newsvision/contents.do?key=47640" class="depth_text depth2_text"  rel="noopener noreferrer"><span><em>오시는길</em></span></a>
+                    </li>
+              </ul>
+            </div>
+        </li>
+    </ul>
+  </div>
+
+
+			</nav>
+			<div class="menu_hide">
+				<button type="button" class="menu_button">메뉴 닫기</button>    <!--//menu_button-->
+			</div>    <!--//menu_hide-->
+		</div>    <!--//lnb-->
+		<div class="lnb_curtain"><button type="button">메뉴 닫기</button></div>    <!--//lnb_curtain-->
+	</header>    <!--//#header-->
+	<div id="container">
+		<div class="wrap clearfix">
+			<div class="side">
+				<div class="side_menu">
+					<nav class="menu">
+						
+
+<h2 class="skip">서브메뉴</h2>
+<div class="depth depth1">
+    <div class="depth0_text">청년 지원사업</div>
+    <ul class="depth_list depth1_list">
+        <li class="depth_item depth1_item">
+            <a href="/newsvision/contents.do?key=31075" class="depth_text depth1_text"  rel="noopener noreferrer"><span><em>참여·관리</em></span></a>
+                <div class="depth depth2">
+                    <ul class="depth_list depth2_list">
+                        <li class="depth_item depth2_item">
+                            <a href="/newsvision/contents.do?key=31075" class="depth_text depth2_text"  rel="noopener noreferrer"><span><em>포천시 청년청책 서포터즈</em></span></a>
+                        </li>
+                        <li class="depth_item depth2_item">
+                            <a href="/newsvision/contents.do?key=31076" class="depth_text depth2_text"  rel="noopener noreferrer"><span><em>포천시 청년축제</em></span></a>
+                        </li>
+                        <li class="depth_item depth2_item">
+                            <a href="/newsvision/contents.do?key=31077" class="depth_text depth2_text"  rel="noopener noreferrer"><span><em>포천시 청년대상</em></span></a>
+                        </li>
+                    </ul>
+                </div>
+        </li>
+        <li class="depth_item depth1_item">
+            <a href="/newsvision/contents.do?key=31078" class="depth_text depth1_text spy"  rel="noopener noreferrer"><span><em>일자리</em></span></a>
+                <div class="depth depth2">
+                    <ul class="depth_list depth2_list">
+                        <li class="depth_item depth2_item">
+                            <a href="/newsvision/contents.do?key=31078" class="depth_text depth2_text"  rel="noopener noreferrer"><span><em>청년 지방행정 체험</em></span></a>
+                        </li>
+                        <li class="depth_item depth2_item">
+                            <a href="/newsvision/contents.do?key=31079" class="depth_text depth2_text"  rel="noopener noreferrer"><span><em>포천시 경기청년 사다리 프로그램</em></span></a>
+                        </li>
+                        <li class="depth_item depth2_item">
+                            <a href="/newsvision/contents.do?key=31080" class="depth_text depth2_text"  rel="noopener noreferrer"><span><em>면접 올(ALL) 레디</em></span></a>
+                        </li>
+                        <li class="depth_item depth2_item">
+                            <a href="/newsvision/contents.do?key=31081" class="depth_text depth2_text"  rel="noopener noreferrer"><span><em>포천 청년성장 프로젝트</em></span></a>
+                        </li>
+                        <li class="depth_item depth2_item">
+                            <a href="/newsvision/contents.do?key=31082" class="depth_text depth2_text spy"  rel="noopener noreferrer"><span><em>포천시 청년창업자 임차료 지원사업</em></span></a>
+                        </li>
+                        <li class="depth_item depth2_item">
+                            <a href="/newsvision/contents.do?key=31083" class="depth_text depth2_text"  rel="noopener noreferrer"><span><em>포천시 청년 농업사관학교</em></span></a>
+                        </li>
+                        <li class="depth_item depth2_item">
+                            <a href="/newsvision/contents.do?key=31084" class="depth_text depth2_text"  rel="noopener noreferrer"><span><em>경기청년 역량강화 기회지원사업</em></span></a>
+                        </li>
+                        <li class="depth_item depth2_item">
+                            <a href="/newsvision/contents.do?key=31085" class="depth_text depth2_text"  rel="noopener noreferrer"><span><em>대진대 대학일자리플러스 센터</em></span></a>
+                        </li>
+                        <li class="depth_item depth2_item">
+                            <a href="/newsvision/contents.do?key=31086" class="depth_text depth2_text"  rel="noopener noreferrer"><span><em>평생교육이용권 지원사업</em></span></a>
+                        </li>
+                    </ul>
+                </div>
+        </li>
+        <li class="depth_item depth1_item">
+            <a href="/newsvision/contents.do?key=31087" class="depth_text depth1_text"  rel="noopener noreferrer"><span><em>복지·문화</em></span></a>
+                <div class="depth depth2">
+                    <ul class="depth_list depth2_list">
+                        <li class="depth_item depth2_item">
+                            <a href="/newsvision/contents.do?key=31087" class="depth_text depth2_text"  rel="noopener noreferrer"><span><em>경기도 청년기본소득</em></span></a>
+                        </li>
+                        <li class="depth_item depth2_item">
+                            <a href="/newsvision/contents.do?key=31088" class="depth_text depth2_text"  rel="noopener noreferrer"><span><em>청년 정신건강증진 외래치료비 지원</em></span></a>
+                        </li>
+                        <li class="depth_item depth2_item">
+                            <a href="/newsvision/contents.do?key=31089" class="depth_text depth2_text"  rel="noopener noreferrer"><span><em>청년내일 저축계좌</em></span></a>
+                        </li>
+                        <li class="depth_item depth2_item">
+                            <a href="/newsvision/contents.do?key=31090" class="depth_text depth2_text"  rel="noopener noreferrer"><span><em>전입대학생 및 제대군인 전입지원금</em></span></a>
+                        </li>
+                        <li class="depth_item depth2_item">
+                            <a href="/newsvision/contents.do?key=31091" class="depth_text depth2_text"  rel="noopener noreferrer"><span><em>포천 문화예술 지원사업 포도당</em></span></a>
+                        </li>
+                        <li class="depth_item depth2_item">
+                            <a href="/newsvision/contents.do?key=31092" class="depth_text depth2_text"  rel="noopener noreferrer"><span><em>청년 문화예술패스</em></span></a>
+                        </li>
+                    </ul>
+                </div>
+        </li>
+        <li class="depth_item depth1_item">
+            <a href="/newsvision/contents.do?key=31093" class="depth_text depth1_text"  rel="noopener noreferrer"><span><em>주거</em></span></a>
+                <div class="depth depth2">
+                    <ul class="depth_list depth2_list">
+                        <li class="depth_item depth2_item">
+                            <a href="/newsvision/contents.do?key=31093" class="depth_text depth2_text"  rel="noopener noreferrer"><span><em>포천시 청년월세 지원사업</em></span></a>
+                        </li>
+                        <li class="depth_item depth2_item">
+                            <a href="/newsvision/contents.do?key=31094" class="depth_text depth2_text"  rel="noopener noreferrer"><span><em>청년 전세보증금반환보증 보증료 지원</em></span></a>
+                        </li>
+                        <li class="depth_item depth2_item">
+                            <a href="/newsvision/contents.do?key=31095" class="depth_text depth2_text"  rel="noopener noreferrer"><span><em>신혼부부·다자녀·청년가구 전·월세 보증금 대출이자 지원사업</em></span></a>
+                        </li>
+                        <li class="depth_item depth2_item">
+                            <a href="/newsvision/contents.do?key=31096" class="depth_text depth2_text"  rel="noopener noreferrer"><span><em>청년·신혼부부 공공임대주택 주거비 지원사업</em></span></a>
+                        </li>
+                        <li class="depth_item depth2_item">
+                            <a href="/newsvision/contents.do?key=31097" class="depth_text depth2_text"  rel="noopener noreferrer"><span><em>1인가구 소량 이사 차량 지원사업</em></span></a>
+                        </li>
+                        <li class="depth_item depth2_item">
+                            <a href="/newsvision/contents.do?key=31098" class="depth_text depth2_text"  rel="noopener noreferrer"><span><em>포천학사 및 행복연합기숙사 운영</em></span></a>
+                        </li>
+                        <li class="depth_item depth2_item">
+                            <a href="/newsvision/contents.do?key=31099" class="depth_text depth2_text"  rel="noopener noreferrer"><span><em>포천 미래세대 첫 디딤돌</em></span></a>
+                        </li>
+                    </ul>
+                </div>
+        </li>
+    </ul>
+</div>
+
+					</nav>    <!--//menu-->
+				</div>    <!--//side_menu-->
+			</div>    <!--//side-->
+			<main id="colgroup" class="colgroup">
+				<article>
+					<header class="sub_head">
+						<div class="breadcrumb">
+							<ol class="bc_list">
+								<li class="bc_item"><a href="/newsvision/index.do" class="bc_link home" rel="noopenernoreferrer"><em>홈</em></a></li>    <!--//bc_item-->
+								
+									<li class="bc_item"><a href="/newsvision/contents.do?key=31075" class="bc_link" rel="noopenernoreferrer"><em>청년 지원사업</em></a></li>    <!--//nav-->
+								
+									<li class="bc_item"><a href="/newsvision/contents.do?key=31078" class="bc_link" rel="noopenernoreferrer"><em>일자리</em></a></li>    <!--//nav-->
+								
+									<li class="bc_item"><a href="/newsvision/contents.do?key=31082" class="bc_link" rel="noopenernoreferrer"><em>포천시 청년창업자 임차료 지원사업</em></a></li>    <!--//nav-->
+								
+							</ol>    <!--//bc_list-->
+						</div>    <!--//breadcrumb-->
+						<div class="head_box">
+							<h2 class="current_title">포천시 청년창업자 임차료 지원사업</h2>    <!--//current_title-->
+							<div class="etc_box">
+								<div class="url_etc etc_item">
+									<a href="" class="url_link etc_link" title="현재 url 복사하기" rel="noopener noreferrer">url 복사</a>    <!--//url_link etc_link-->
+								</div>    <!--//url_etc etc_item-->
+								<div class="share_etc etc_item">
+									<a href="" class="share_link etc_link" title="공유하기 리스트 열기" rel="noopener noreferrer">sns 공유하기</a>    <!--//share_link etc_link-->
+									<div class="list_layer">
+										<a href="" class="share_close" title="공유하기 리스트 닫기" rel="noopener noreferrer">리스트 닫기</a>
+										<ul class="share_list">
+											<li class="share_item facebook"><a href="" class="share_in_link" target="_blank" title="페이스북 공유하기 새창열기" rel="noopener noreferrer">페이스북</a></li>    <!--//share_item facebook-->
+											<li class="share_item blog"><a href="" class="share_in_link" target="_blank" title="블로그 공유하기 새창열기" rel="noopener noreferrer">블로그</a></li>    <!--//share_item blog-->
+
+											<li class="share_item instagram"><a href="" class="share_in_link" target="_blank" title="인스타그램 공유하기 새창열기" rel="noopener noreferrer">인스타그램</a></li>    <!--//share_item instagram-->
+											<li class="share_item twitter"><a href="" class="share_in_link" target="_blank" title="트위터(엑스) 공유하기 새창열기" rel="noopener noreferrer">트위터</a></li>    <!--//share_item twitter-->
+										</ul>    <!--//share_list-->
+									</div>    <!--//list_layer-->
+								</div>    <!--//share_etc etc_item-->
+								<div class="print_etc etc_item">
+									<a href="" class="print_link etc_link" target="_blank" title="새창 프린트" rel="noopener noreferrer" onclick="printURL();return false;">현재 페이지 프린트하기</a>    <!--//print_link etc_link-->
+								</div>    <!--//print_etc etc_item-->
+							</div>    <!--//etc_box-->
+						</div>    <!--//head_box-->
+						
+</header>    <!--//sub_head-->
+					<div id="contents" class="cts31082">
+					<div class="text_box">창업 초기 자본이 부족한 청년 창업자들의 안정적인 정착 지원</div>
+<h3>신청기간</h3>
+<p class="txt">2026년 3월</p>
+<h3>지원대상</h3>
+<p class="txt">포천시에 주민등록을 두고 있는 청년 (예비)창업자(19세~49세)</p>
+<h3>내용</h3>
+<p class="txt">사업장 임차료의 50% (월 최대 50만원, 연최대 400만원) 및 1:1 맞춤 컨설팅</p>
+<h3>신청방법</h3>
+<p class="txt">온라인 접수 - <a href="https://apply.jobaba.net" target="_blank" title="새 창 열림" class="text_btn ico_go">잡아바어플라이 통합접수시스템</a> 또는 일자리경제과 청년정책팀 방문 접수</p>
+<h3>문의</h3>
+<p class="txt">일자리경제과 청년정책팀 ☎031-538-2562</p>
+						
+					</div>    <!--//contents-->
+					
+
+	
+	
+
+
+
+				</article>
+			</main>
+		</div>    <!--//wrap-->
+	</div>    <!--//#container-->
+	<footer id="footer">
+		<div class="banner">
+			<h2 class="banner_title">관련누리집모음</h2>
+			<div class="banner_list">
+				
+					<div class="banner_item"><a href="https://pocheon.greendaero.go.kr" class="banner_anchor" target="_blank" title="새창" rel="noopener noreferrer">귀농귀촌정보</a></div>
+				
+					<div class="banner_item"><a href="http://okjeong.bestprcokr.gethompy.com/" class="banner_anchor" target="_blank" title="새창" rel="noopener noreferrer">옥정~포천 광역철도 건설공사</a></div>
+				
+					<div class="banner_item"><a href="http://council.pocheon.go.kr/" class="banner_anchor" target="_blank" title="새창" rel="noopener noreferrer">포천시의회</a></div>
+				
+					<div class="banner_item"><a href="https://ncp.clean.go.kr/cmn/secCtfcKMC.do?menuCode=acs&mapAcs=Y&insttCd=5600000" class="banner_anchor" target="_blank" title="새창" rel="noopener noreferrer">청렴포털-부패공익 신고창구</a></div>
+				
+					<div class="banner_item"><a href="https://gris.gg.go.kr/main/grisMain.do" class="banner_anchor" target="_blank" title="새창" rel="noopener noreferrer">부동산포털</a></div>
+				
+					<div class="banner_item"><a href="https://housing.gg.go.kr" class="banner_anchor" target="_blank" title="새창" rel="noopener noreferrer">경기주거복지포털</a></div>
+				
+					<div class="banner_item"><a href="https://baro.lx.or.kr/main.do" class="banner_anchor" target="_blank" title="새창" rel="noopener noreferrer">바로처리콜센터</a></div>
+				
+					<div class="banner_item"><a href="https://www.mois.go.kr/frt/sub/a03/pcadMain/screen.do" class="banner_anchor" target="_blank" title="새창" rel="noopener noreferrer">공직비리 익명신고</a></div>
+				
+					<div class="banner_item"><a href="http://www.ggbb1366.or.kr" class="banner_anchor" target="_blank" title="새창" rel="noopener noreferrer">여성긴급전화</a></div>
+				
+					<div class="banner_item"><a href="https://www.npsonair.kr/landing/survey_learn/" class="banner_anchor" target="_blank" title="새창" rel="noopener noreferrer">국민연금 바로알기</a></div>
+				
+					<div class="banner_item"><a href="https://www.consumer.go.kr/consumer/index.do" class="banner_anchor" target="_blank" title="새창" rel="noopener noreferrer">소비자24</a></div>
+				
+					<div class="banner_item"><a href="https://www.gdtp.or.kr/" class="banner_anchor" target="_blank" title="새창" rel="noopener noreferrer">경기대진테크노파크</a></div>
+				
+					<div class="banner_item"><a href="https://www.pcuc.kr/open_content/" class="banner_anchor" target="_blank" title="새창" rel="noopener noreferrer">포천도시공사</a></div>
+				
+					<div class="banner_item"><a href="https://www.liveinkorea.kr/intro.do" class="banner_anchor" target="_blank" title="새창" rel="noopener noreferrer">다누리</a></div>
+				
+					<div class="banner_item"><a href="http://car.pocheon.go.kr/agree/apply.jsp" class="banner_anchor" target="_blank" title="새창" rel="noopener noreferrer">문의 불법주정차 사전 알림 신청 서비스</a></div>
+				
+					<div class="banner_item"><a href="http://www.kgeu.org/" class="banner_anchor" target="_blank" title="새창" rel="noopener noreferrer">공무원 노동조합</a></div>
+				
+					<div class="banner_item"><a href="http://www.misopch.com/" class="banner_anchor" target="_blank" title="새창" rel="noopener noreferrer">포천가족성상담센터</a></div>
+				
+					<div class="banner_item"><a href="https://www.safetyreport.go.kr/#main" class="banner_anchor" target="_blank" title="새창" rel="noopener noreferrer">안전신문고</a></div>
+				
+					<div class="banner_item"><a href="https://www.idolbom.go.kr" class="banner_anchor" target="_blank" title="새창" rel="noopener noreferrer">아이돌봄서비스</a></div>
+				
+					<div class="banner_item"><a href="https://www.pcfac.or.kr/" class="banner_anchor" target="_blank" title="새창" rel="noopener noreferrer">포천문화관광재단</a></div>
+				
+					<div class="banner_item"><a href="https://www.pcaf.or.kr/" class="banner_anchor" target="_blank" title="새창" rel="noopener noreferrer">포천시 농업재단</a></div>
+				
+					<div class="banner_item"><a href="https://www.poyouth.or.kr/home/kor/main.do" class="banner_anchor" target="_blank" title="새창" rel="noopener noreferrer">포천시청소년재단</a></div>
+				
+					<div class="banner_item"><a href="https://www.pocheon.go.kr/media/index.do" class="banner_anchor" target="_blank" title="새창" rel="noopener noreferrer">포천미디어센터</a></div>
+				
+					<div class="banner_item"><a href="https://www.pocheon.go.kr/global/index.do" class="banner_anchor" target="_blank" title="새창" rel="noopener noreferrer">외국인주민지원센터</a></div>
+				
+					<div class="banner_item"><a href="https://pcfc.familynet.or.kr/center/index.do" class="banner_anchor" target="_blank" title="새창" rel="noopener noreferrer">포천시가족센터</a></div>
+				
+					<div class="banner_item"><a href="https://poccomm.kr/main" class="banner_anchor" target="_blank" title="새창" rel="noopener noreferrer">포천공동체지원센터</a></div>
+				
+			</div>
+			<div class="banner_control">
+				<button type="button" class="banner_prev">이전</button>
+				<button type="button" class="banner_auto">정지</button>
+				<button type="button" class="banner_next">다음</button>
+			</div>
+		</div>
+		<div class="footer_layer_wrap">
+			<div class="layer_list">
+				<div class="layer_item">
+					<button type="button" title="관련 누리집 레이어 열기" class="layer_open"><span><em>관련 누리집</em></span></button>    <!--//layer_open-->
+					<ul class="modal_list">
+						
+							<li class="modal_item"><a href="/www/selDeptEmpList.do?key=3865&amp;showSearchForm=SHOW&amp;searchCnd=all&amp;searchKrwd=%ED%99%8D%EB%B3%B4%EB%8B%B4%EB%8B%B9%EA%B4%80" class="modal_link" target="_blank" title="새창" rel="noopener noreferrer">홍보담당관</a></li>    <!--//modal_item-->
+						
+							<li class="modal_item"><a href="/www/selDeptEmpList.do?key=3865&amp;showSearchForm=SHOW&amp;searchCnd=1&amp;searchKrwd=%ED%97%88%EA%B0%80%EB%8B%B4%EB%8B%B9%EA%B4%80" class="modal_link" target="_blank" title="새창" rel="noopener noreferrer">허가담당관</a></li>    <!--//modal_item-->
+						
+							<li class="modal_item"><a href="/www/selDeptEmpList.do?key=3865&amp;showSearchForm=SHOW&amp;searchCnd=1&amp;searchKrwd=%EC%9E%90%EC%B9%98%ED%96%89%EC%A0%95%EA%B3%BC" class="modal_link" target="_blank" title="새창" rel="noopener noreferrer">자치행정과</a></li>    <!--//modal_item-->
+						
+							<li class="modal_item"><a href="/www/selDeptEmpList.do?key=3865&amp;showSearchForm=SHOW&amp;searchCnd=1&amp;searchKrwd=%EA%B8%B0%ED%9A%8D%EC%98%88%EC%82%B0%EA%B3%BC" class="modal_link" target="_blank" title="새창" rel="noopener noreferrer">기획예산과</a></li>    <!--//modal_item-->
+						
+							<li class="modal_item"><a href="/www/selDeptEmpList.do?key=3865&amp;showSearchForm=SHOW&amp;searchCnd=1&amp;searchKrwd=%EC%84%B8%EC%A0%95%EA%B3%BC" class="modal_link" target="_blank" title="새창" rel="noopener noreferrer">세정과</a></li>    <!--//modal_item-->
+						
+							<li class="modal_item"><a href="/www/selDeptEmpList.do?key=3865&amp;showSearchForm=SHOW&amp;searchCnd=1&amp;searchKrwd=%ED%9A%8C%EA%B3%84%EA%B3%BC" class="modal_link" target="_blank" title="새창" rel="noopener noreferrer">회계과</a></li>    <!--//modal_item-->
+						
+							<li class="modal_item"><a href="/www/selDeptEmpList.do?key=3865&amp;showSearchForm=SHOW&amp;searchCnd=1&amp;searchKrwd=%ED%86%A0%EC%A7%80%EC%A0%95%EB%B3%B4%EA%B3%BC" class="modal_link" target="_blank" title="새창" rel="noopener noreferrer">토지정보과</a></li>    <!--//modal_item-->
+						
+							<li class="modal_item"><a href="/www/selDeptEmpList.do?key=3865&amp;showSearchForm=SHOW&amp;searchCnd=1&amp;searchKrwd=%EB%AC%B8%ED%99%94%EC%B2%B4%EC%9C%A1%EA%B3%BC" class="modal_link" target="_blank" title="새창" rel="noopener noreferrer">문화체육과</a></li>    <!--//modal_item-->
+						
+							<li class="modal_item"><a href="/www/selDeptEmpList.do?key=3865&amp;showSearchForm=SHOW&amp;searchCnd=1&amp;searchKrwd=%EB%B3%B5%EC%A7%80%EC%A0%95%EC%B1%85%EA%B3%BC" class="modal_link" target="_blank" title="새창" rel="noopener noreferrer">복지정책과</a></li>    <!--//modal_item-->
+						
+							<li class="modal_item"><a href="/www/selDeptEmpList.do?key=3865&amp;showSearchForm=SHOW&amp;searchCnd=1&amp;searchKrwd=%EA%B0%80%EC%A1%B1%EC%97%AC%EC%84%B1%EA%B3%BC" class="modal_link" target="_blank" title="새창" rel="noopener noreferrer">가족여성과</a></li>    <!--//modal_item-->
+						
+							<li class="modal_item"><a href="/www/selDeptEmpList.do?key=3865&amp;showSearchForm=SHOW&amp;searchCnd=1&amp;searchKrwd=%EB%85%B8%EC%9D%B8%EC%9E%A5%EC%95%A0%EC%9D%B8%EA%B3%BC" class="modal_link" target="_blank" title="새창" rel="noopener noreferrer">노인장애인과</a></li>    <!--//modal_item-->
+						
+							<li class="modal_item"><a href="/www/selDeptEmpList.do?key=3865&amp;showSearchForm=SHOW&amp;searchCnd=1&amp;searchKrwd=%ED%99%98%EA%B2%BD%EC%A7%80%EB%8F%84%EA%B3%BC" class="modal_link" target="_blank" title="새창" rel="noopener noreferrer">환경지도과</a></li>    <!--//modal_item-->
+						
+							<li class="modal_item"><a href="/www/selDeptEmpList.do?key=3865&amp;showSearchForm=SHOW&amp;searchCnd=1&amp;searchKrwd=%EA%B8%B0%ED%9B%84%ED%99%98%EA%B2%BD%EA%B3%BC" class="modal_link" target="_blank" title="새창" rel="noopener noreferrer">기후환경과</a></li>    <!--//modal_item-->
+						
+							<li class="modal_item"><a href="/www/selDeptEmpList.do?key=3865&amp;showSearchForm=SHOW&amp;searchCnd=1&amp;searchKrwd=%EC%9D%BC%EC%9E%90%EB%A6%AC%EA%B2%BD%EC%A0%9C%EA%B3%BC" class="modal_link" target="_blank" title="새창" rel="noopener noreferrer">일자리경제과</a></li>    <!--//modal_item-->
+						
+							<li class="modal_item"><a href="/www/selDeptEmpList.do?key=3865&amp;showSearchForm=SHOW&amp;searchCnd=1&amp;searchKrwd=%EA%B8%B0%EC%97%85%EC%A7%80%EC%9B%90%EA%B3%BC" class="modal_link" target="_blank" title="새창" rel="noopener noreferrer">기업지원과</a></li>    <!--//modal_item-->
+						
+							<li class="modal_item"><a href="/www/selDeptEmpList.do?key=3865&amp;showSearchForm=SHOW&amp;searchCnd=1&amp;searchKrwd=%EC%8B%9C%EB%AF%BC%EC%95%88%EC%A0%84%EA%B3%BC" class="modal_link" target="_blank" title="새창" rel="noopener noreferrer">시민안전과</a></li>    <!--//modal_item-->
+						
+							<li class="modal_item"><a href="/www/selDeptEmpList.do?key=3865&amp;showSearchForm=SHOW&amp;searchCnd=1&amp;searchKrwd=%EB%8F%84%EC%8B%9C%EC%A0%95%EC%B1%85%EA%B3%BC" class="modal_link" target="_blank" title="새창" rel="noopener noreferrer">도시정책과</a></li>    <!--//modal_item-->
+						
+							<li class="modal_item"><a href="/www/selDeptEmpList.do?key=3865&amp;showSearchForm=SHOW&amp;searchCnd=1&amp;searchKrwd=%EC%A3%BC%ED%83%9D%EA%B3%BC" class="modal_link" target="_blank" title="새창" rel="noopener noreferrer">주택과</a></li>    <!--//modal_item-->
+						
+							<li class="modal_item"><a href="/www/selDeptEmpList.do?key=3865&amp;showSearchForm=SHOW&amp;searchCnd=1&amp;searchKrwd=%EA%B1%B4%EC%B6%95%EA%B3%BC" class="modal_link" target="_blank" title="새창" rel="noopener noreferrer">건축과</a></li>    <!--//modal_item-->
+						
+							<li class="modal_item"><a href="/www/selDeptEmpList.do?key=3865&amp;showSearchForm=SHOW&amp;searchCnd=1&amp;searchKrwd=%EA%B5%90%ED%86%B5%ED%96%89%EC%A0%95%EA%B3%BC" class="modal_link" target="_blank" title="새창" rel="noopener noreferrer">교통행정과</a></li>    <!--//modal_item-->
+						
+							<li class="modal_item"><a href="/www/selDeptEmpList.do?key=3865&amp;showSearchForm=SHOW&amp;searchCnd=1&amp;searchKrwd=%EC%82%B0%EB%A6%BC%EA%B3%B5%EC%9B%90%EA%B3%BC" class="modal_link" target="_blank" title="새창" rel="noopener noreferrer">산림공원과</a></li>    <!--//modal_item-->
+						
+							<li class="modal_item"><a href="/www/selDeptEmpList.do?key=3865&amp;showSearchForm=SHOW&amp;searchCnd=1&amp;searchKrwd=%EC%88%98%EB%8F%84%EA%B3%BC" class="modal_link" target="_blank" title="새창" rel="noopener noreferrer">수도과</a></li>    <!--//modal_item-->
+						
+							<li class="modal_item"><a href="/www/selDeptEmpList.do?key=3865&amp;showSearchForm=SHOW&amp;searchCnd=1&amp;searchKrwd=%EC%8B%A0%EC%84%B1%EC%9E%A5%EC%82%AC%EC%97%85%EA%B3%BC" class="modal_link" target="_blank" title="새창" rel="noopener noreferrer">신성장사업과</a></li>    <!--//modal_item-->
+						
+							<li class="modal_item"><a href="/www/selDeptEmpList.do?key=3865&amp;showSearchForm=SHOW&amp;searchCnd=1&amp;searchKrwd=%EA%B4%80%EA%B4%91%EA%B3%BC" class="modal_link" target="_blank" title="새창" rel="noopener noreferrer">관광과</a></li>    <!--//modal_item-->
+						
+							<li class="modal_item"><a href="/www/selDeptEmpList.do?key=3865&amp;showSearchForm=SHOW&amp;searchCnd=1&amp;searchKrwd=%EA%B1%B4%EA%B0%95%EC%A6%9D%EC%A7%84%EA%B3%BC" class="modal_link" target="_blank" title="새창" rel="noopener noreferrer">건강증진과</a></li>    <!--//modal_item-->
+						
+							<li class="modal_item"><a href="/www/selDeptEmpList.do?key=3865&amp;showSearchForm=SHOW&amp;searchCnd=1&amp;searchKrwd=%EB%B3%B4%EA%B1%B4%EC%A0%95%EC%B1%85%EA%B3%BC" class="modal_link" target="_blank" title="새창" rel="noopener noreferrer">보건정책과</a></li>    <!--//modal_item-->
+						
+							<li class="modal_item"><a href="/www/selDeptEmpList.do?key=3865&amp;showSearchForm=SHOW&amp;searchCnd=1&amp;searchKrwd=%EB%86%8D%EC%97%85%EC%A0%95%EC%B1%85%EA%B3%BC" class="modal_link" target="_blank" title="새창" rel="noopener noreferrer">농업정책과</a></li>    <!--//modal_item-->
+						
+							<li class="modal_item"><a href="/www/selDeptEmpList.do?key=3865&amp;showSearchForm=SHOW&amp;searchCnd=1&amp;searchKrwd=%EB%86%8D%EC%97%85%EC%A7%80%EC%9B%90%EA%B3%BC" class="modal_link" target="_blank" title="새창" rel="noopener noreferrer">농업지원과</a></li>    <!--//modal_item-->
+						
+							<li class="modal_item"><a href="/www/selDeptEmpList.do?key=3865&amp;showSearchForm=SHOW&amp;searchCnd=1&amp;searchKrwd=%EA%B8%B0%EC%88%A0%EB%B3%B4%EA%B8%89%EA%B3%BC" class="modal_link" target="_blank" title="새창" rel="noopener noreferrer">기술보급과</a></li>    <!--//modal_item-->
+						
+							<li class="modal_item"><a href="/www/selDeptEmpList.do?key=3865&amp;showSearchForm=SHOW&amp;searchCnd=1&amp;searchKrwd=%EC%B6%95%EC%82%B0%EA%B3%BC" class="modal_link" target="_blank" title="새창" rel="noopener noreferrer">축산과</a></li>    <!--//modal_item-->
+						
+							<li class="modal_item"><a href="/www/allSelDeptEmpList.do?key=3865&amp;showSearchForm=SHOW" class="modal_link" target="_blank" title="새창" rel="noopener noreferrer">부서전체보기</a></li>    <!--//modal_item-->
+						
+					</ul>    <!--//modal_list-->
+				</div>    <!--//layer_item-->
+				<div class="layer_item">
+					<button type="button" title="읍·면·동 주민센터 레이어 열기" class="layer_open"><span><em>읍·면·동 주민센터</em></span></button>    <!--//layer_open-->
+					<ul class="modal_list">
+						
+							<li class="modal_item"><a href="/she/index.do" class="modal_link" target="_blank" title="새창" rel="noopener noreferrer">소흘읍행정복지센터 031)538-4100&lt;br/&gt;(蘇屹邑,SOHEUL-EUP)&lt;br/&gt;소흘읍 호국로</a></li>    <!--//modal_item-->
+						
+							<li class="modal_item"><a href="/gnm/index.do" class="modal_link" target="_blank" title="새창" rel="noopener noreferrer">군내면사무소 031)538-4200&lt;br/&gt;(郡內面,GUNNAE-MYEON)&lt;br/&gt;군내면 청군로 3290번길</a></li>    <!--//modal_item-->
+						
+							<li class="modal_item"><a href="/ncm/index.do" class="modal_link" target="_blank" title="새창" rel="noopener noreferrer">내촌면사무소 031)538-4250&lt;br/&gt;(內村面,NAECHON-MYEON)&lt;br/&gt;내촌면 내촌로 70</a></li>    <!--//modal_item-->
+						
+							<li class="modal_item"><a href="/gsm/index.do" class="modal_link" target="_blank" title="새창" rel="noopener noreferrer">가산면행정복지센터 031)538-4300&lt;br/&gt;(加山面,GASAN-MYEON)&lt;br/&gt;가산면 선마로 223</a></li>    <!--//modal_item-->
+						
+							<li class="modal_item"><a href="/sbm/index.do" class="modal_link" target="_blank" title="새창" rel="noopener noreferrer">신북면행정복지센터 031)538-4350&lt;br/&gt;(新北面,SINBUK-MYEON)&lt;br/&gt;신북면 호국로 2065</a></li>    <!--//modal_item-->
+						
+							<li class="modal_item"><a href="/csm/index.do" class="modal_link" target="_blank" title="새창" rel="noopener noreferrer">창수면사무소 031)538-4400&lt;br/&gt;(蒼水面,CHANGSU-MYEON)&lt;br/&gt;창수면 메치골로 178</a></li>    <!--//modal_item-->
+						
+							<li class="modal_item"><a href="/yjm/index.do" class="modal_link" target="_blank" title="새창" rel="noopener noreferrer">영중면사무소 031)538-4454&lt;br/&gt;(永中面,YEONGJUNG-MYEON)&lt;br/&gt;영중면 양문로 151</a></li>    <!--//modal_item-->
+						
+							<li class="modal_item"><a href="/idm/index.do" class="modal_link" target="_blank" title="새창" rel="noopener noreferrer">일동면행정복지센터 031)538-4500&lt;br/&gt;(一東面,ILDONG-MYEON)&lt;br/&gt;일동면 화동로1099번길 30</a></li>    <!--//modal_item-->
+						
+							<li class="modal_item"><a href="/edm/index.do" class="modal_link" target="_blank" title="새창" rel="noopener noreferrer">이동면사무소 031)538-4550&lt;br/&gt;(二東面,IDONG-MYEON)&lt;br/&gt;이동면 화동로 2048</a></li>    <!--//modal_item-->
+						
+							<li class="modal_item"><a href="/ybm/index.do" class="modal_link" target="_blank" title="새창" rel="noopener noreferrer">영북면사무소 031)538-4600&lt;br/&gt;(永北面,YEONGBUK-MYEON)&lt;br/&gt;영북면 영북로 166</a></li>    <!--//modal_item-->
+						
+							<li class="modal_item"><a href="/kim/index.do" class="modal_link" target="_blank" title="새창" rel="noopener noreferrer">관인면사무소 031)538-4650&lt;br/&gt;(官仁面,GWANIN-MYEON)&lt;br/&gt;관인면 관인로 14</a></li>    <!--//modal_item-->
+						
+							<li class="modal_item"><a href="/hhm/index.do" class="modal_link" target="_blank" title="새창" rel="noopener noreferrer">화현면사무소 031)538-4700&lt;br/&gt;(花峴面,HWAHYEON-MYEON)&lt;br/&gt;화현면 달인동로1길 55</a></li>    <!--//modal_item-->
+						
+							<li class="modal_item"><a href="/pcd/index.do" class="modal_link" target="_blank" title="새창" rel="noopener noreferrer">포천동 주민센터 031)538-4750&lt;br/&gt;(抱川洞,POCHEON-DONG)&lt;br/&gt;중앙로119번길 26 (신읍동)</a></li>    <!--//modal_item-->
+						
+							<li class="modal_item"><a href="/sdd/index.do" class="modal_link" target="_blank" title="새창" rel="noopener noreferrer">선단동 주민센터 031)538-4800&lt;br/&gt;(仙壇洞,SEONDAN-DONG)&lt;br/&gt;삼육사로 2186번길 11 (선단동)</a></li>    <!--//modal_item-->
+						
+					</ul>
+				</div>    <!--//layer_item-->
+				<div class="layer_item">
+					<button type="button" title="유관기관 레이어 열기" class="layer_open"><span><em>유관기관</em></span></button>    <!--//layer_open-->
+					<ul class="modal_list">
+						
+							<li class="modal_item"><a href="http://www.ggpolice.go.kr/pc/" class="modal_link" target="_blank" title="새창" rel="noopener noreferrer">포천경찰서</a></li>    <!--//modal_item-->
+						
+							<li class="modal_item"><a href="https://www.goepc.kr/goepc/main.do" class="modal_link" target="_blank" title="새창" rel="noopener noreferrer">포천교육지원청</a></li>    <!--//modal_item-->
+						
+							<li class="modal_item"><a href="https://119.gg.go.kr/pocheon" class="modal_link" target="_blank" title="새창" rel="noopener noreferrer">포천소방서</a></li>    <!--//modal_item-->
+						
+							<li class="modal_item"><a href="http://www.koreapost.go.kr/gi/487/" class="modal_link" target="_blank" title="새창" rel="noopener noreferrer">포천우체국</a></li>    <!--//modal_item-->
+						
+							<li class="modal_item"><a href="http://pccci.korcham.net" class="modal_link" target="_blank" title="새창" rel="noopener noreferrer">포천상공회의소</a></li>    <!--//modal_item-->
+						
+							<li class="modal_item"><a href="https://pcfac.or.kr/" class="modal_link" target="_blank" title="새창" rel="noopener noreferrer">포천문화관광재단</a></li>    <!--//modal_item-->
+						
+							<li class="modal_item"><a href="https://www.medical.or.kr/pocheon/index.do" class="modal_link" target="_blank" title="새창" rel="noopener noreferrer">포천의료원</a></li>    <!--//modal_item-->
+						
+							<li class="modal_item"><a href="http://www.daejin.ac.kr" class="modal_link" target="_blank" title="새창" rel="noopener noreferrer">대진대학교</a></li>    <!--//modal_item-->
+						
+							<li class="modal_item"><a href="http://www.cha.ac.kr" class="modal_link" target="_blank" title="새창" rel="noopener noreferrer">차의과학대학교</a></li>    <!--//modal_item-->
+						
+							<li class="modal_item"><a href="http://www.kbu.ac.kr/" class="modal_link" target="_blank" title="새창" rel="noopener noreferrer">경복대학교</a></li>    <!--//modal_item-->
+						
+							<li class="modal_item"><a href="http://www.kna.go.kr" class="modal_link" target="_blank" title="새창" rel="noopener noreferrer">국립수목원</a></li>    <!--//modal_item-->
+						
+							<li class="modal_item"><a href="http://www.ekr.or.kr" class="modal_link" target="_blank" title="새창" rel="noopener noreferrer">한국농어촌공사</a></li>    <!--//modal_item-->
+						
+							<li class="modal_item"><a href="http://www.pcuc.kr" class="modal_link" target="_blank" title="새창" rel="noopener noreferrer">포천도시공사</a></li>    <!--//modal_item-->
+						
+							<li class="modal_item"><a href="http://www.nonghyup-gs.com/" class="modal_link" target="_blank" title="새창" rel="noopener noreferrer">개성인삼농협</a></li>    <!--//modal_item-->
+						
+							<li class="modal_item"><a href="http://pocheon.nfcf.or.kr/" class="modal_link" target="_blank" title="새창" rel="noopener noreferrer">포천시산림조합</a></li>    <!--//modal_item-->
+						
+							<li class="modal_item"><a href="http://www.pcsports.or.kr/" class="modal_link" target="_blank" title="새창" rel="noopener noreferrer">포천시체육회</a></li>    <!--//modal_item-->
+						
+							<li class="modal_item"><a href="http://www.pcsc.kr/" class="modal_link" target="_blank" title="새창" rel="noopener noreferrer">노인복지관</a></li>    <!--//modal_item-->
+						
+							<li class="modal_item"><a href="http://cyber.kepco.co.kr/kepco/BR/BRACPP001/main.do?boardCd=BRD_000171&amp;teamJisaCd=3420&amp;jisaNum=0&amp;jisadivn=KS3102&amp;menuCd=FN140402" class="modal_link" target="_blank" title="새창" rel="noopener noreferrer">한전 포천지사(전기요금)</a></li>    <!--//modal_item-->
+						
+							<li class="modal_item"><a href="https://poyouth.or.kr/home/kor/main.do" class="modal_link" target="_blank" title="새창" rel="noopener noreferrer">포천시 청소년재단</a></li>    <!--//modal_item-->
+						
+							<li class="modal_item"><a href="https://www.pcaf.or.kr/" class="modal_link" target="_blank" title="새창" rel="noopener noreferrer">포천시농업재단</a></li>    <!--//modal_item-->
+						
+					</ul>
+				</div>
+				<div class="layer_item">
+					<button type="button" title="경기도 시,군 레이어 열기" class="layer_open"><span><em>경기도 시,군</em></span></button>    <!--//layer_open-->
+					<ul class="modal_list">
+						
+							<li class="modal_item"><a href="https://www.gg.go.kr/" class="modal_link" target="_blank" title="새창" rel="noopener noreferrer">경기도청</a></li>    <!--//modal_item-->
+						
+							<li class="modal_item"><a href="http://www.gp.go.kr" class="modal_link" target="_blank" title="새창" rel="noopener noreferrer">가평군</a></li>    <!--//modal_item-->
+						
+							<li class="modal_item"><a href="http://www.goyang.go.kr" class="modal_link" target="_blank" title="새창" rel="noopener noreferrer">고양시</a></li>    <!--//modal_item-->
+						
+							<li class="modal_item"><a href="http://www.gccity.go.kr" class="modal_link" target="_blank" title="새창" rel="noopener noreferrer">과천시</a></li>    <!--//modal_item-->
+						
+							<li class="modal_item"><a href="http://www.gm.go.kr" class="modal_link" target="_blank" title="새창" rel="noopener noreferrer">광명시</a></li>    <!--//modal_item-->
+						
+							<li class="modal_item"><a href="http://www.gjcity.go.kr/" class="modal_link" target="_blank" title="새창" rel="noopener noreferrer">광주시</a></li>    <!--//modal_item-->
+						
+							<li class="modal_item"><a href="http://www.guri.go.kr" class="modal_link" target="_blank" title="새창" rel="noopener noreferrer">구리시</a></li>    <!--//modal_item-->
+						
+							<li class="modal_item"><a href="http://www.gunpo.go.kr" class="modal_link" target="_blank" title="새창" rel="noopener noreferrer">군포시</a></li>    <!--//modal_item-->
+						
+							<li class="modal_item"><a href="https://www.gimpo.go.kr" class="modal_link" target="_blank" title="새창" rel="noopener noreferrer">김포시</a></li>    <!--//modal_item-->
+						
+							<li class="modal_item"><a href="http://www.nyj.go.kr" class="modal_link" target="_blank" title="새창" rel="noopener noreferrer">남양주시</a></li>    <!--//modal_item-->
+						
+							<li class="modal_item"><a href="https://www.ddc.go.kr" class="modal_link" target="_blank" title="새창" rel="noopener noreferrer">동두천시</a></li>    <!--//modal_item-->
+						
+							<li class="modal_item"><a href="http://www.bucheon.go.kr" class="modal_link" target="_blank" title="새창" rel="noopener noreferrer">부천시</a></li>    <!--//modal_item-->
+						
+							<li class="modal_item"><a href="http://www.seongnam.go.kr" class="modal_link" target="_blank" title="새창" rel="noopener noreferrer">성남시</a></li>    <!--//modal_item-->
+						
+							<li class="modal_item"><a href="http://www.suwon.go.kr" class="modal_link" target="_blank" title="새창" rel="noopener noreferrer">수원시</a></li>    <!--//modal_item-->
+						
+							<li class="modal_item"><a href="http://www.siheung.go.kr" class="modal_link" target="_blank" title="새창" rel="noopener noreferrer">시흥시</a></li>    <!--//modal_item-->
+						
+							<li class="modal_item"><a href="https://www.ansan.go.kr/" class="modal_link" target="_blank" title="새창" rel="noopener noreferrer">안산시</a></li>    <!--//modal_item-->
+						
+							<li class="modal_item"><a href="http://www.anseong.go.kr" class="modal_link" target="_blank" title="새창" rel="noopener noreferrer">안성시</a></li>    <!--//modal_item-->
+						
+							<li class="modal_item"><a href="http://anyang.go.kr" class="modal_link" target="_blank" title="새창" rel="noopener noreferrer">안양시</a></li>    <!--//modal_item-->
+						
+							<li class="modal_item"><a href="http://www.yangju.go.kr" class="modal_link" target="_blank" title="새창" rel="noopener noreferrer">양주시</a></li>    <!--//modal_item-->
+						
+							<li class="modal_item"><a href="http://www.yp21.net" class="modal_link" target="_blank" title="새창" rel="noopener noreferrer">양평군</a></li>    <!--//modal_item-->
+						
+							<li class="modal_item"><a href="http://www.yeoju.gyeonggi.kr" class="modal_link" target="_blank" title="새창" rel="noopener noreferrer">여주시</a></li>    <!--//modal_item-->
+						
+							<li class="modal_item"><a href="http://www.yeoncheon.go.kr" class="modal_link" target="_blank" title="새창" rel="noopener noreferrer">연천군</a></li>    <!--//modal_item-->
+						
+							<li class="modal_item"><a href="http://www.osan.go.kr" class="modal_link" target="_blank" title="새창" rel="noopener noreferrer">오산시</a></li>    <!--//modal_item-->
+						
+							<li class="modal_item"><a href="https://www.yongin.go.kr/index.do" class="modal_link" target="_blank" title="새창" rel="noopener noreferrer">용인시</a></li>    <!--//modal_item-->
+						
+							<li class="modal_item"><a href="http://www.uiwang.go.kr" class="modal_link" target="_blank" title="새창" rel="noopener noreferrer">의왕시</a></li>    <!--//modal_item-->
+						
+							<li class="modal_item"><a href="https://www.ui4u.go.kr/main.do" class="modal_link" target="_blank" title="새창" rel="noopener noreferrer">의정부시</a></li>    <!--//modal_item-->
+						
+							<li class="modal_item"><a href="http://www.icheon.go.kr" class="modal_link" target="_blank" title="새창" rel="noopener noreferrer">이천시</a></li>    <!--//modal_item-->
+						
+							<li class="modal_item"><a href="http://www.paju.go.kr" class="modal_link" target="_blank" title="새창" rel="noopener noreferrer">파주시</a></li>    <!--//modal_item-->
+						
+							<li class="modal_item"><a href="http://www.pyeongtaek.go.kr/main.do" class="modal_link" target="_blank" title="새창" rel="noopener noreferrer">평택시</a></li>    <!--//modal_item-->
+						
+							<li class="modal_item"><a href="http://www.hanam.go.kr" class="modal_link" target="_blank" title="새창" rel="noopener noreferrer">하남시</a></li>    <!--//modal_item-->
+						
+							<li class="modal_item"><a href="http://www.hscity.go.kr/" class="modal_link" target="_blank" title="새창" rel="noopener noreferrer">화성시</a></li>    <!--//modal_item-->
+						
+					</ul>
+				</div>
+			</div>    <!--//layer_list-->
+		</div>    <!--//footer_layer_wrap-->
+		<div class="footer_box">
+			<div class="box_inner">
+				<div class="logo">
+					<a href="./index.do" title="메인페이지로 이동" rel="noopener noreferrer">포천시청</a>
+				</div>    <!--//logo-->
+				<div class="box_flex">
+					<div class="desc">
+						<address class="desc_text address">[11150] 경기도 포천시 호국로 1423, 포천청년비전센터 2층</address>    <!--//desc_text address-->
+						<span class="desc_text tel">
+                        <em class="desc_title"><b>대표전화</b> 031-538-2563~4 </em>
+                        <em>평일 09:00 ~ 18:00 (토·일·공휴일 제외)</em>
+                    </span>    <!--//desc_text tel-->
+					</div>    <!--//desc-->
+					<div class="box_etc">
+						<div class="link_list">
+							<div class="link_item"><a href="/newsvision/contents.do?key=9991" class="text_btn ico_arr">오시는길</a></div>
+						</div>
+						<ul class="sns_list">
+							<li class="sns_item instagram"><a href="https://www.instagram.com/pocheon_city" target="_blank" title="인스타그램 새창이동" rel="noopener noreferrer">포천시청 인스타그램 링크</a></li>
+							<li class="sns_item youtube"><a href="https://www.youtube.com/@newspcs" target="_blank" title="유튜브 새창이동" rel="noopener noreferrer">포천시청 유튜브 링크</a></li>
+							<li class="sns_item facebook"><a href="https://www.facebook.com/newspcs21" target="_blank" title="페이스북 새창이동" rel="noopener noreferrer">포천시청 페이스북 링크</a></li>
+							<li class="sns_item blog"><a href="https://blog.naver.com/newspcs21" target="_blank" title="블로그 새창이동" rel="noopener noreferrer">포천시청 네이버블로그 링크</a></li>
+							<li class="sns_item kakao"><a href="https://story.kakao.com/ch/pcs21" target="_blank" title="카카오스토리 새창이동" rel="noopener noreferrer">포천시청 카카오스토리 링크</a></li>
+							<li class="sns_item channel"><a href="https://pf.kakao.com/_qTAxmxb" target="_blank" title="카카오채널 새창이동" rel="noopener noreferrer">포천시청 카카오채널 링크</a></li>
+							<li class="sns_item x"><a href="https://x.com/lovepcs21" target="_blank" title="X(트위터) 새창이동" rel="noopener noreferrer">포천시청 X 링크</a></li>
+						</ul>
+					</div>
+				</div>
+			</div>    <!--//box_inner-->
+
+
+		</div>    <!--//footer_box-->
+		<div class="footer_bottom">
+			<div class="quick_box">
+				<ul class="quick_list">
+					<li class="quick_item"><a href="/newsvision/contents.do?key=9991" rel="noopener noreferrer">오시는길</a></li>    <!--//quick_item-->
+					<li class="quick_item"><a href="/www/contents.do?key=30869" rel="noopener noreferrer">개인정보처리방침</a></li>    <!--//quick_item privacy-->
+					<li class="quick_item"><a href="/www/contents.do?key=30870" rel="noopener noreferrer">저작권보호정책</a></li>    <!--//quick_item-->
+					<li class="quick_item"><a href="/www/contents.do?key=30871" rel="noopener noreferrer">뷰어다운로드</a></li>    <!--//quick_item-->
+					<li class="quick_item"><a href="/newsvision/sitemap.do?key=30939" rel="noopener noreferrer">사이트맵</a></li>    <!--//quick_item-->
+				</ul>    <!--//quick_list-->
+			</div>    <!--//quick_box-->
+			<p class="copyright">© Copyright(C) 2026 Pocheon-si. All rights reserved.</p>    <!--//copyright-->
+		</div>    <!--//footer_bottom-->
+	</footer>    <!--//#footer-->
+</div>    <!--//#wrapper-->
+</body>
+</html>

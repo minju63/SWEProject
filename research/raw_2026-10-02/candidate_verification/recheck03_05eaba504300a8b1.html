@@ -1,0 +1,816 @@
+
+
+
+<!DOCTYPE HTML>
+<html lang="ko">
+	<head>
+	    <meta charset="UTF-8" />
+	    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	    <meta name="keywords" content="충남 교통비 지원" />
+	    <meta name="description" content="충남 교통비 지원" />
+	    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, maximum-scale=1" />
+	    <meta property="og:type" content="website">
+	    <meta property="og:url" content="https://alcard.kr/">
+	    <meta property="og:title" content="충남 교통비 지원">
+	    <meta property="og:image" content="https://alcard.kr/assets/images/logo_header.svg">
+	    <meta property="og:description" content="충남 교통비 지원">
+	    <meta property="og:site_name" content="Site Name">
+	    <meta property="og:locale" content="KR">
+	    <title>충남 교통비 지원</title>
+        <script src="/assets/js/vendors/jquery.3.6.3.min.js"></script>
+	    <script src="/assets/js/vendors/swiper-bundle.8.4.7.min.js"></script>
+	    <script defer src="/assets/js/pub.min.js"></script>
+		<script src="/assets/js/utils.js"></script>
+		<link rel="stylesheet" type="text/css" href="/assets/css/vendors/swiper.8.4.3.min.css" />
+		<link rel="stylesheet" type="text/css" href="/assets/css/common.min.css" />
+	    <link rel="stylesheet" type="text/css" href="/assets/css/main.min.css" />
+	    <!-- Google tag (gtag.js) -->
+		<script async src="https://www.googletagmanager.com/gtag/js?id=G-RWJSPD84RY"></script>
+		<script>
+		  window.dataLayer = window.dataLayer || [];
+		  function gtag(){dataLayer.push(arguments);}
+		  gtag('js', new Date());
+		  gtag('config', 'G-RWJSPD84RY');
+		</script>
+        <script>
+   		    $(document).ready(function() {
+	         	var reloc = window.location.href;
+	            if(reloc.indexOf("https://") == -1){
+	            	//location.href = reloc.replace("http://", "https://");
+	           	}
+	            
+	            if(reloc.indexOf("chungnam.alcard.kr") > -1){
+	            	location.href = reloc.replace("chungnam.alcard.kr", "transport.chungnam.go.kr");
+	           	}	            
+            });
+        </script>
+		<style type="text/css">
+ 		#header[aria-expanded=true] #gnb .depth1 > li.active > a + .depth2 {   
+		    animation: sweep .2s ease-in-out forwards;
+		    height: 100%;
+		    z-index: 1;
+		}
+		#header[aria-expanded=true] #gnb .depth2 > li.active > a + .depth3 {
+		    height: 100%;
+		    z-index: 1;
+		}
+		#header[aria-expanded=true] #gnb .depth2 > li.active > a + .depth3 > li {
+		    height: 58px;
+		} 
+		</style>
+    </head>
+    <body>
+        <!-- <common-header></common-header> -->
+        <a class="content-shortcut" href="#content">본문 바로가기</a>
+        
+        	
+        		<header id="header" class="header" aria-expanded="false">
+        	
+        	
+        
+		    <div class="header-wrapper">
+		        <h1 class="header-logo">
+		            <a href="/" title="철도정기권 메인 바로가기">
+		                <img src="/assets/images/logo.svg" width="189" height="32" alt="철도정기권 로고">
+		            </a>
+		        </h1>
+		        <div class="gnb-wrap">
+		        	<nav class="gnb" id="gnb">
+					    <ol class="depth1">
+					        <li>
+					        	<a href="#">정보안내</a>
+					            <ol class="depth2" data-title="정보안내">
+					            	<li><a href="/guide/chargeBus.do">버스안내</a></li>
+					            	<li><a href="/guide/bus.do">수요응답형 버스</a></li>
+					            	<li><a href="/guide/Mbus.do">충남형 M버스</a></li>
+					            	<li><a href="/guide/chargeTaxi.do">택시요금</a></li>
+					            	<li><a href="/guide/taxi.do">공공형 택시</a></li>
+					            </ol>
+				            </li>
+				            <li>
+					            <a href="#">지원사업</a>
+					            <ol class="depth2" data-title="지원사업">
+					            	<li><a href="/intro/seniorIntro.do">노인 등 버스비 지원사업</a></li>
+					                <li>
+					                    <a href="#">어린이, 청소년 버스비 지원사업</a>
+					                    <ol class="depth3" data-title="어린이, 청소년 버스비 지원사업">
+					                    	<li><a href="/intro/new.do"><span style="color: red;">(NEW) </span> &nbsp; 지원방식 변경(필독)</a></li>
+					                    	<li><a href="/intro/intro.do">사업안내</a></li>
+		                        			<li><a href="/intro/guide.do">이용안내</a></li>
+		                        			<li><a href="/intro/bus.do">버스안내</a></li>
+					                    </ol>
+					                </li>
+					                <li>
+					                    <a href="#">수도권 철도 정기승차권 <br class="from-md" /> 교통비 지원 사업</a>
+					                    <ol class="depth3" data-title="수도권 철도 정기승차권 교통비 지원 사업">
+					                        <li><a href="/intro/seasonIntro.do">사업안내</a></li>
+					                        <li><a href="/intro/seasonGuide.do">이용안내</a></li>
+					                        <li><a href="/intro/license.do">자격확인</a></li>
+					                    </ol>
+					                </li>
+					                <li><a href="/intro/transFer.do">광역 간 대중교통 환승할인 지원사업</a></li>
+					            </ol>
+				            </li>
+					        <li>
+					            <a href="#">고객지원</a>
+					            <ol class="depth2" data-title="고객지원">
+					            	<li><a href="/customer/noticeList.do">공지사항</a></li>
+		                        	<li><a href="/customer/faqList.do">자주 묻는 질문</a></li>
+					            </ol>
+					        </li>
+					        
+					        
+	                        
+					    </ol>
+					</nav>
+		        </div>
+		        <button type="button" class="js-header-sitemap" aria-haspopup="true">
+		            <i></i>
+		            <i></i>
+		            <i></i>
+		            <span>사이트맵 보기</span>
+		        </button>
+		        <div class="header-utils">
+                    
+                       
+                       <!-- 로그오프 시작 -->
+                       <!-- <a href="../home/popup/popup05.do" data-toggle="modal" data-target="#layerPopup05" class="header-utils-01">팝업</a> -->
+                       <a href="/home/login.do" class="header-utils-02">로그인</a>
+                       <!-- <li><a href="#none" onclick="location.href='/home/login.do?returnUrl= + encodeURIComponent(location)'" class="active">로그인</a></li> -->
+                       <a href="/join/member_join_0.do" class="header-utils-03">회원가입</a>
+                       <!-- 로그오프 끝-->
+                       
+                       
+                    
+		        </div>
+		    </div>
+		</header>
+        
+         
+
+ 
+    
+	<script src="../assets/js/home/main.js"></script>
+	
+        <section id="content" class="content">
+            <main id="content" class="content">
+		        <section class="main-01">
+		        	<h2 class="sr-only">메인배너</h2>
+		            <div class="main-01-swiper">
+		                <div class="swiper-wrapper">
+	                        
+		                        <div class="swiper-slide">
+			                        <a href="https://transport.chungnam.go.kr/intro/guide.do" >
+			                            <picture>
+			                            	<!-- 충남 운영 -->
+			                                <source media="(max-width: 768px)" srcset="https://transport.chungnam.go.kr/user_upload/banner/banner_img_20260423151109368.jpg" />
+			                                <img src="https://transport.chungnam.go.kr/user_upload/banner/banner_img_20260423151109368.jpg" width="1320" height="400" alt="[충남알뜰교통카드] 온라인 발급 신청 안내" />
+			                                <!-- 충남 개발&로컬-->
+			                                
+			                            </picture>
+			                        </a>
+		                        </div>	                        
+	                        
+		                        <div class="swiper-slide">
+			                        <a href="https://transport.chungnam.go.kr/intro/seasonIntro.do" >
+			                            <picture>
+			                            	<!-- 충남 운영 -->
+			                                <source media="(max-width: 768px)" srcset="https://transport.chungnam.go.kr/user_upload/banner/banner_img_20250627111434687.png" />
+			                                <img src="https://transport.chungnam.go.kr/user_upload/banner/banner_img_20250627111434687.png" width="1320" height="400" alt="수도권 철도정기승차권 교통비 지원 수도권으로 통학하는 천안, 아산 학생에게 교통비를 지원합니다!" />
+			                                <!-- 충남 개발&로컬-->
+			                                
+			                            </picture>
+			                        </a>
+		                        </div>	                        
+	                        
+		                        <div class="swiper-slide">
+			                        <a href="https://transport.chungnam.go.kr/intro/intro.do" >
+			                            <picture>
+			                            	<!-- 충남 운영 -->
+			                                <source media="(max-width: 768px)" srcset="https://transport.chungnam.go.kr/user_upload/banner/banner_img_20260127140858143.png" />
+			                                <img src="https://transport.chungnam.go.kr/user_upload/banner/banner_img_20260127140858143.png" width="1320" height="400" alt="충남 알뜰교통카드 앱을 통해 카드를 등록해야만 교통비 지원 혜택이 적용됩니다." />
+			                                <!-- 충남 개발&로컬-->
+			                                
+			                            </picture>
+			                        </a>
+		                        </div>	                        
+	                        
+		                        <div class="swiper-slide">
+			                        <a href="https://transport.chungnam.go.kr/intro/transFer.do" >
+			                            <picture>
+			                            	<!-- 충남 운영 -->
+			                                <source media="(max-width: 768px)" srcset="https://transport.chungnam.go.kr/user_upload/banner/banner_img_20250627113022547.png" />
+			                                <img src="https://transport.chungnam.go.kr/user_upload/banner/banner_img_20250627113022547.png" width="1320" height="400" alt="충남 광역 간 대중교통 환승할인 지원사업 알뜰교통카드를 사용하여 대중교통 환승 시 기본요금 지원" />
+			                                <!-- 충남 개발&로컬-->
+			                                
+			                            </picture>
+			                        </a>
+		                        </div>	                        
+	                        
+	                        
+	                        
+	                        <!-- <div class="swiper-slide">
+		                        <a href="../intro/new.do">
+		                            <picture>
+		                                <source media="(max-width: 768px)" srcset="../assets/images/main/banner/new.png" />
+		                                <img src="../assets/images/main/banner/new.png" width="1320" height="400" alt="어린이 청소년 버스비 지원방식이 바뀝니다." />
+		                            </picture>
+		                        </a>
+	                        </div>
+	                        
+	                        <div class="swiper-slide">
+		                        <a href="../intro/seasonIntro.do">
+		                            <picture>
+		                                <source media="(max-width: 768px)" srcset="../assets/images/main/banner/seasonticket.png" />
+		                                <img src="../assets/images/main/banner/seasonticket_v1.png" width="1320" height="400" alt="수도권 철도정기승차권 교통비 지원 수도권으로 통학하는 천안, 아산 학생에게 교통비를 지원합니다!" />
+		                            </picture>
+		                        </a>
+	                        </div>
+							<div class="swiper-slide">
+		                        <a href="../intro/intro.do">
+		                            <picture>
+		                                <source media="(max-width: 768px)" srcset="../assets/images/main/banner/youthmobile.png" />
+		                                <img src="../assets/images/main/banner/youthmobile.png" width="1320" height="400" alt="어린이 청소년 교통비를 모바일 교통카드로 이용 가능합니다." />
+		                            </picture>
+		                        </a>
+	                        </div>
+	                        <div class="swiper-slide">
+		                        <a href="../intro/transFer.do">
+		                            <picture>
+		                                <source media="(max-width: 768px)" srcset="../assets/images/main/banner/chungnam.png" />
+		                                <img src="../assets/images/main/banner/chungnam.png" width="1320" height="400" alt="충남 광역 간 대중교통 환승할인 지원사업 알뜰교통카드를 사용하여 대중교통 환승 시 기본요금 지원" />
+		                            </picture>
+		                        </a>
+	                        </div> -->
+	                    </div>
+		                <div class="main-01-swiper-controls">
+		                    <div class="main-01-swiper-pagination swiper-pagination"></div>
+		                    <button type="button" class="main-01-swiper-controls-prev"></button>
+		                    <button type="button" class="main-01-swiper-controls-next"></button>
+		                    <button type="button" id="main-01-swiper-controls-pause" class="main-01-swiper-controls-pause" aria-pressed="false"></button>
+		                </div>
+		            </div>
+		        </section>
+		        <section class="main-02">
+		            <div class="main-02-01">
+		            	<h2 class="sr-only">사업소개</h2>
+		                <div class="main-02-01-01" role="tablist">
+		                    <button type="button" role="tab" id="main02Tab01" aria-controls="main02Tabpanel01"
+		                        aria-selected="true">어린이 · 청소년 <br class="from-md" />버스비 지원 사업</button>
+		                    <button type="button" role="tab" id="main02Tab02" aria-controls="main02Tabpanel02">철도 정기승차권 <br class="from-md" />교통비 지원
+		                        사업</button>
+		                </div>
+		                <div class="main-02-01-02">
+		                    <div id="main02Tabpanel01" role="tabpanel" aria-labelledby="main02Tab01">
+		                        <div>
+		                        	<h3><img src="../assets/images/logo_only_white.svg" alt="충남 로고" width="47" height="33" />어린이 · 청소년 <br class="from-md" />버스비 지원 사업</h3>
+		                            <p>충청남도 거주 어린이 · 청소년(만 6세 ~ 만 18세)의 <br />도내 시내 · 농어촌버스 요금 및 수도권 1호선/타 시도 버스 환승 요금을 지원합니다.</p>
+		                        </div>
+		                        <nav class="main-02-01-03">
+		                            <a href="/intro/intro.do"><i></i>사업안내</a>
+		                            <a href="/intro/guide.do"><i></i>이용안내</a>
+		                            <a href="/intro/bus.do"><i></i>버스안내</a>
+		                        </nav>
+		                    </div>
+		                    <div id="main02Tabpanel02" role="tabpanel" aria-labelledby="main02Tab02" hidden>
+		                        <div>
+		                        	<h3><img src="../assets/images/logo_only_white.svg" alt="충남 로고" width="47" height="33" /> 철도 정기승차권 <br class="from-md" />교통비 지원 사업</h3>
+		                            <p>충청남도 천안 · 아산에 거주하는 철도 정기승차권 이용객 중 수도권으로 통학하는 <br />학생 및 기준중위소득자의 정기승차권 금액 25%를 지원합니다.</p>
+		                        </div>
+		                        <nav class="main-02-01-03">
+			                    	<a href="/intro/seasonGuide.do"><i></i>이용안내</a>
+				                    <a href="/intro/license.do"><i></i>자격확인</a>
+				                    <a href="/usepage/seasonGrantApply.do"><i></i>교통비 신청</a>
+				                </nav>
+		                    </div>
+		                </div>
+		            </div>
+		            <div class="main-02-02">
+		            	<h2 class="sr-only">사업소개2</h2>
+		                <nav>
+		                    <a href="/guide/chargeBus.do" class="main-02-02-01"><i></i>버스안내</a>
+		                    <a href="/guide/bus.do" class="main-02-02-02"><i></i>공공형 버스</a>
+		                    <a href="/guide/Mbus.do" class="main-02-02-03"><i></i>충남형 M버스</a>
+		                    <a href="/guide/chargeTaxi.do" class="main-02-02-04"><i></i>택시요금</a>
+		                    <a href="/guide/taxi.do" class="main-02-02-05"><i></i>공공형 택시</a>
+		                </nav>
+		            </div>
+		            <div class="main-02-03">
+		                <h2>고객지원</h2>
+		                <div class="main-02-03-01">
+		                    <section class="main-02-03-01-01">
+		                        <header>
+		                            <h3>공지사항</h3>
+		                            <a class="more" href="/customer/noticeList.do">더 보기</a>
+		                        </header>
+		                        <ol>
+		                    		
+		                            <li>
+		                                <a href="/customer/noticeList.do?item=NTT00000000000000224"><span>[철도정기승차권] SRT 8월 정기승차권 환불 시 교통비 지원 신청 불가 안내</span></a>
+		                                <dl>
+		                                    <dt>작성일</dt>
+		                                    <dd>2026.09.02</dd>
+		                                </dl>
+		                            </li>
+		                            
+		                            <li>
+		                                <a href="/customer/noticeList.do?item=NTT00000000000000223"><span>[철도정기승차권] 2026년 9월 학생 대상 재검증 절차 시행 안내</span></a>
+		                                <dl>
+		                                    <dt>작성일</dt>
+		                                    <dd>2026.08.21</dd>
+		                                </dl>
+		                            </li>
+		                            
+		                            <li>
+		                                <a href="/customer/noticeList.do?item=NTT00000000000000221"><span>[철도정기승차권] 2026년 5월 기준중위소득자 대상 재검증 절차 시행</span></a>
+		                                <dl>
+		                                    <dt>작성일</dt>
+		                                    <dd>2026.05.22</dd>
+		                                </dl>
+		                            </li>
+		                            
+		                            <li>
+		                                <a href="/customer/noticeList.do?item=NTT00000000000000220"><span>[시스템 점검] 충남 교통비 지원 홈페이지 점검 안내 (4/25, 20:00~20:30)</span></a>
+		                                <dl>
+		                                    <dt>작성일</dt>
+		                                    <dd>2026.04.23</dd>
+		                                </dl>
+		                            </li>
+		                            
+		                            <li>
+		                                <a href="/customer/noticeList.do?item=NTT00000000000000218"><span>[충남알뜰교통카드] 온라인 발급 신청 안내</span></a>
+		                                <dl>
+		                                    <dt>작성일</dt>
+		                                    <dd>2026.04.14</dd>
+		                                </dl>
+		                            </li>
+		                            
+		                        </ol>
+		                    </section>
+		                    <section class="main-02-03-01-02">
+		                        <header>
+		                            <h3>자주 묻는 질문</h3>
+		                            <a class="more" href="/customer/faqList.do">더 보기</a>
+		                        </header>
+		                        <ol>
+		                        	
+		                        		<!-- <li class="new"> -->
+			                            <li>
+			                                <a href="/customer/faqList.do?item=NTT00000000000000225">
+			                                    <span class="abbr">
+			                                        <span>질문</span>
+			                                        <span>91</span>
+			                                    </span>
+			                                    <dl>
+			                                        <dt>카테고리</dt>
+			                                        <dd><span>카드</span></dd>
+			                                    </dl>
+			                                    <span>재발급 카드의 온라인 사전 신청은 어떻게 하나요?</span>
+			                                </a>
+			                            </li>
+		                            
+		                        		<!-- <li class="new"> -->
+			                            <li>
+			                                <a href="/customer/faqList.do?item=NTT00000000000000222">
+			                                    <span class="abbr">
+			                                        <span>질문</span>
+			                                        <span>90</span>
+			                                    </span>
+			                                    <dl>
+			                                        <dt>카테고리</dt>
+			                                        <dd><span>회원정보</span></dd>
+			                                    </dl>
+			                                    <span>카드 수령 행정복지센터를 선택한 후 변경할 수 있나요?</span>
+			                                </a>
+			                            </li>
+		                            
+		                        		<!-- <li class="new"> -->
+			                            <li>
+			                                <a href="/customer/faqList.do?item=NTT00000000000000219">
+			                                    <span class="abbr">
+			                                        <span>질문</span>
+			                                        <span>89</span>
+			                                    </span>
+			                                    <dl>
+			                                        <dt>카테고리</dt>
+			                                        <dd><span>카드</span></dd>
+			                                    </dl>
+			                                    <span>온라인 카드 발급 신청은 어떻게 하나요?</span>
+			                                </a>
+			                            </li>
+		                            
+		                        		<!-- <li class="new"> -->
+			                            <li>
+			                                <a href="/customer/faqList.do?item=NTT00000000000000211">
+			                                    <span class="abbr">
+			                                        <span>질문</span>
+			                                        <span>88</span>
+			                                    </span>
+			                                    <dl>
+			                                        <dt>카테고리</dt>
+			                                        <dd><span>대상여부</span></dd>
+			                                    </dl>
+			                                    <span>재검증 이후에 [갱신필요] 상태에서 서류를 첨부해 다시 신청했는데, 파일 첨부가 되지 않아요.</span>
+			                                </a>
+			                            </li>
+		                            
+		                        		<!-- <li class="new"> -->
+			                            <li>
+			                                <a href="/customer/faqList.do?item=NTT00000000000000200">
+			                                    <span class="abbr">
+			                                        <span>질문</span>
+			                                        <span>87</span>
+			                                    </span>
+			                                    <dl>
+			                                        <dt>카테고리</dt>
+			                                        <dd><span>카드</span></dd>
+			                                    </dl>
+			                                    <span>카드 분실 시 어떻게 해야 하나요?</span>
+			                                </a>
+			                            </li>
+		                            
+		                        </ol>
+		                    </section>
+		                </div>
+		                
+		            </div>
+		        </section>
+		    </main>
+        </section>
+        
+        <!-- 배너 -->
+        <form id="mainForm" method="post">
+        	<input type="hidden" id="alUserSn" value="" />
+        </form>
+        
+
+        
+        
+        
+
+
+
+<footer id="footer" class="footer">
+    <div class="footer-04">
+        <h2>배너<span>모음</span></h2>
+        <div class="footer-04-swiper">
+            <div class="swiper-wrapper">
+                
+       			
+       			<div class="swiper-slide"><a href="http://www.chungnam.go.kr" target="_blank">충남도청</a></div>
+                <div class="swiper-slide"><a href="https://www.cheonan.go.kr" target="_blank">천안시청</a></div>
+                <div class="swiper-slide"><a href="https://www.asan.go.kr" target="_blank">아산시청</a></div>
+                <div class="swiper-slide"><a href="https://www.letskorail.com" target="_blank">코레일</a></div>
+                <div class="swiper-slide"><a href="https://etk.srail.kr" target="_blank">㈜SR</a></div>
+                <div class="swiper-slide"><a href="https://www.nhis.or.kr" target="_blank">건강보험공단</a></div>
+                <div class="swiper-slide"><a href="https://www.gov.kr" target="_blank">정부24</a></div>
+                <div class="swiper-slide"><a href="https://www.lost112.go.kr/" target="_blank">LOST112</a></div>
+            </div>
+        </div>
+        <div class="footer-04-swiper-controls">
+            <button type="button" class="footer-04-swiper-controls-prev" title="이전"></button>
+            <button type="button" class="footer-04-swiper-controls-pause" title="일시정지"></button>
+            <button type="button" class="footer-04-swiper-controls-next" title="다음"></button>
+        </div>
+    </div>
+    <nav class="footer-01">
+        <ul>
+            <li><a href="/term/term4.do"><strong>개인정보 처리방침</strong></a></li>
+            <li><a href="/term/term1.do">서비스 이용약관</a></li>
+            <li><a href="/term/term2.do">개인정보 수집/이용에 관한 약관</a></li>
+            <li><a href="/term/term3.do">개인정보처리 및 위탁에 관한 안내 약관</a></li>
+        </ul>
+    </nav>
+    <div class="footer-02">
+        <div class="footer-02-01">
+            <ul class="footer-02-01-01">
+                <li class="footer-02-01-01-01"><img src="/assets/images/logo_chungnam.svg" alt="충청남도 로고"></li>
+            </ul>
+            <div class="footer-02-01-02">
+                <dl>
+                    <dt class="sr-only">우편번호</dt>
+                    <dd>32255</dd>
+                    <dt class="sr-only">주소</dt>
+                    <dd>충청남도 홍성군 홍북읍 충남대로 21 충청남도청</dd>
+                </dl>
+                <p>copyright (C) 2022 THE PROVINCE OF CHUNGCHUNGNAM-DO. All Rights Reserved.</p>
+            </div>
+        </div>
+        <div class="footer-02-02">
+            <article>
+                <h4>이용문의</h4>
+                <dl>
+                    <div class="footer-02-02-01" style="height:30px">
+                        <dt class="sr-only">문의전화</dt>
+                        <dd><a href="tel:1877-0373">1877-0373</a></dd>
+                    </div>
+                    <div class="footer-02-02-02" style="margin-top:10px">
+                        <dt>운영시간</dt>
+                        <dd>
+                            <dl>
+                                <dt>평일</dt>
+                                <dd>
+                                    <dl class="footer-02-02-02-01">
+                                        <dt class="sr-only">운영시작</dt>
+                                        <dd>9시</dd>
+                                        <dt class="sr-only">운영끝</dt>
+                                        <dd>18시</dd>
+                                    </dl>
+                                </dd>
+                            </dl>
+                        </dd>
+                    </div>
+                    <div class="footer-02-02-03">
+                        <dt>점심시간</dt>
+                        <dd>
+                            <dl class="footer-02-02-03-01">
+                                <dt class="sr-only">점심시작</dt>
+                                <dd>12시</dd>
+                                <dt class="sr-only">점심끝</dt>
+                                <dd>13시</dd>
+                            </dl>
+                        </dd>
+                        <dt>주말, 공휴일</dt>
+                        <dd>제외</dd>
+                    </div>
+                </dl>
+            </article>
+            <article>
+                <h4>앱 문의</h4>
+                <dl>
+                    <div class="footer-02-02-01" style="height:30px">
+                        <dt class="sr-only">문의전화</dt>
+                        <dd><a href="tel:1644-0006">1644-0006</a></dd>
+                    </div>
+                    <div class="footer-02-02-02" style="margin-top:10px">
+                        <dt>운영시간</dt>
+                        <dd>
+                            <dl>
+                                <dt>평일</dt>
+                                <dd>
+                                    <dl class="footer-02-02-02-01">
+                                        <dt class="sr-only">운영시작</dt>
+                                        <dd>9시</dd>
+                                        <dt class="sr-only">운영끝</dt>
+                                        <dd>18시</dd>
+                                    </dl>
+                                </dd>
+                            </dl>
+                        </dd>
+                    </div>
+                    <div class="footer-02-02-03">
+                        <dt>주말, 공휴일</dt>
+                        <dd>제외</dd>
+                    </div>
+                </dl>
+            </article>
+             <article>
+             <script>
+             
+             function confirmAndRedirect(event) {
+            	 	window.location.href = event.currentTarget.href; // 사용자가 확인한 경우 링크로 연결
+            	    /* event.preventDefault(); // 기본 링크 동작을 방지
+            	    const userConfirmed = confirm("카카오톡 상담을 위해서는 카카오톡 로그인이 필요합니다. 연결 하시겠습니까?");
+            	    if (userConfirmed) {
+            	        window.location.href = event.currentTarget.href; // 사용자가 확인한 경우 링크로 연결
+            	    } */
+            	}
+            	</script>
+             </script>
+                <h4>챗봇 상담</h4>
+                <dl>
+                    <div class="footer-02-02-01" style="height:30px">
+                        <dt class="sr-only">문의전화</dt>
+                        <!-- 슈퍼무브 -->
+						<dd><a href="https://ezlchungnam.metahub.co.kr:28443/info/?cHJvakNkPVNBQVMwMDMmY2hhbm5lbGlkPTcyMCZtYWxsSWQ9Y2FyZCZjYWxsR2I9YmVuZWZpdA==" onclick="return confirmAndRedirect(event)"><img width="30px;" src="/assets/images/ico/ezl_chatbot.png"></a></dd>
+ 
+                    </div>
+                    <div class="footer-02-02-02"  style="margin-top:10px">
+                        <dt>운영시간</dt>
+                        <dd>
+                            <dl>
+                                <dt>평일</dt>
+                                <dd>
+                                    <dl class="footer-02-02-02-01">
+                                        <dt class="sr-only">운영시작</dt>
+                                        <dd>9시</dd>
+                                        <dt class="sr-only">운영끝</dt>
+                                        <dd>18시</dd>
+                                    </dl>
+                                </dd>
+                            </dl>
+                        </dd>
+                    </div>
+                    <div class="footer-02-02-03">
+                        <dt>주말, 공휴일</dt>
+                        <dd>제외</dd>
+                    </div>
+                </dl>
+            </article>
+        </div>
+    </div>
+</footer>
+        
+    	<script src="/assets/js/main.js"></script>
+    	<script src="/assets/js/common.js"></script>
+          
+      
+      
+      
+      
+      
+      	
+
+
+
+
+<style>
+.popupzone.modal {
+    position: fixed !important;
+    top: 50% !important;
+    left: 50% !important;
+    transform: translate(-50%, -50%) !important;
+    width: auto !important;
+    height: auto !important;
+    background: transparent !important;
+    padding: 0 !important;
+}
+
+.popupzone-dialog {
+    width: 420px;
+    max-width: 90vw;
+    background: #fff;
+    border: 1px solid #d2d3d3;
+    display: flex;
+    flex-direction: column;
+}
+
+/* ===== 헤더 ===== */
+.popupzone-dialog-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.875em 1.25em;
+    border-bottom: 1px solid #d2d3d3;
+}
+
+.popupzone-dialog-header h3 {
+    font-size: 1em;
+    font-weight: 600;
+    margin: 0;
+}
+
+.popupzone-controls {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+/* 페이지네이션 */
+.popupzone-swiper-pagination {
+    font-size: 0.875em;
+    color: #999;
+}
+
+.popupzone-swiper-pagination .swiper-pagination-current {
+    color: #111;
+    font-weight: 600;
+}
+
+/* 화살표 버튼 */
+.popup-btn-prev,
+.popup-btn-next {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 4px;
+    width: 16px;
+    height: 16px;
+    position: relative;
+}
+
+.popup-btn-prev::after,
+.popup-btn-next::after {
+    content: "";
+    width: 7px;
+    height: 7px;
+    border-top: 2px solid #333;
+    border-right: 2px solid #333;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+}
+
+.popup-btn-prev::after {
+    transform: translate(-30%, -50%) rotate(-135deg);
+}
+
+.popup-btn-next::after {
+    transform: translate(-70%, -50%) rotate(45deg);
+}
+
+.popup-btn-prev:hover::after,
+.popup-btn-next:hover::after {
+    border-color: #000;
+}
+
+.popupzone-dialog-close {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 0.875em;
+}
+
+/* ===== 바디 ===== */
+.popupzone-dialog-body {
+    overflow: hidden;
+}
+
+.popupzone-swiper {
+    width: 100%;
+}
+
+.popupzone-swiper img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* ===== 푸터 ===== */
+.popupzone-dialog-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.75em 1.25em;
+    border-top: 1px solid #d2d3d3;
+    background: #f8f8f8;
+}
+
+.popupzone-nottoday,
+.popupzone-close {
+    font-size: 0.8125em;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+</style>
+
+
+
+    
+
+
+<article class="modal popupzone"
+         id="layerPopup05"
+         tabindex="0"
+         role="dialog"
+         aria-labelledby="popupzone-title"
+         hidden>
+
+    <div class="popupzone-dialog">
+
+        <!-- ===== 헤더 ===== -->
+        <header class="popupzone-dialog-header">
+            <h3 id="popupzone-title">팝업</h3>
+
+            
+
+            <button type="button"
+                    class="popupzone-dialog-close popupzone-close"
+                    data-dismiss="modal">✕</button>
+        </header>
+
+        <!-- ===== 바디 ===== -->
+        <div class="popupzone-dialog-body">
+            <div class="popupzone-swiper">
+                <div class="swiper-wrapper">
+                    
+                        <div class="swiper-slide">
+                            <a href="https://transport.chungnam.go.kr/customer/noticeList.do?item=NTT00000000000000223"
+                               >
+                                <img src="https://transport.chungnam.go.kr/user_upload/popup/popup_img_20260818152047724.png"
+                                     width="420"
+                                     height="450"
+                                     alt="[철도정기승차권] 2026년 9월 학생 대상 재검증 절차 시행" />
+                            </a>
+                        </div>
+                    
+                </div>
+            </div>
+        </div>
+
+        <!-- ===== 푸터 ===== -->
+        <footer class="popupzone-dialog-footer">
+            <button type="button" class="popupzone-nottoday">오늘 하루 열지 않기</button>
+            <button type="button" class="popupzone-close" data-dismiss="modal">닫기</button>
+        </footer>
+
+    </div>
+</article>
+      
+      
+      <!-- ie안내팝업: 항상 아래에 위치 -->
+      
+      <!-- ie안내팝업: 항상 아래에 위치 end --> 
+    </body>
+</html>

@@ -1,0 +1,1927 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>중앙청년지원센터</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <meta name="keywords"
+        content="청년, 청년정책, 청년센터, 중앙청년지원센터, 청년재단, 중앙센터, 청년정책조정위, 청조위, 국무조정실, 국조실, 취업, 창업, 지원, 복지, 문화, 마음, 프로그램, 정책, 기회" />
+    <meta name="title" property="og:title" content="중앙청년지원센터" />
+    <meta name="description" property="og:description" content="중앙청년지원센터는 청년기본법에 의거하여 지역 청년지원센터 지원 및 협력체계를 구축하고, 청년의 권익증진을 위한 사업을 개발 및 수행합니다." />
+    <meta name="image" property="og:image" content="https://nysc.or.kr/nysc/assets/images/og_thumbnail.png" />
+    <meta name="theme-color" content="#535ca8" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="중앙청년지원센터" />
+    <meta name="twitter:description"
+        content="중앙청년지원센터는 청년기본법에 의거하여 지역 청년지원센터 지원 및 협력체계를 구축하고, 청년의 권익증진을 위한 사업을 개발 및 수행합니다." />
+    <link rel='icon' href='/nysc/favicon.ico' type='image/x-icon'>
+    <link rel='stylesheet' type='text/css' media='screen' href='/nysc/assets/css/root.css'>
+    <link rel='stylesheet' type='text/css' media='screen' href='/nysc/assets/css/main.css?d=20261003'>
+    <link rel='stylesheet' type='text/css' media='screen' href='/nysc/assets/css/layout.css?d=20261003'>
+    <link rel='stylesheet' type='text/css' media='screen' href='/nysc/assets/css/layout2.css?d=20261003'>
+
+    <link rel='stylesheet' type='text/css' media='screen' href='/nysc/assets/css/index_new.css?d=20261003'>
+    
+    <script src='/nysc/assets/js/main.js?d=20261003' defer></script>
+    <script src='/nysc/assets/js/gnb.js' defer></script>
+    <script src='/nysc/assets/js/common.js' defer></script>
+</head>
+<style>
+    /* ==================== 배너 ==================== */
+    .wrapper.banner {
+        position: relative;
+        width: 1200px;
+        height: 400px;
+        margin: 0 auto;
+    }
+
+    .banner .main-wrapper {
+        width: 100%;
+        max-width: fit-content;
+        /* aspect-ratio: 1200 / 550; */
+        margin: 0 auto;
+        overflow: hidden;
+        border-radius: 10px;
+    }
+
+    .slide-wrapper {
+        display: flex;
+        width: 100%;
+        height: 100%;
+        transition: transform 0.5s ease-in-out;
+    }
+
+
+    .slide-item {
+        min-width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .slide-item a {
+        display: block;
+        width: 100%;
+        max-width: 1200px;
+        aspect-ratio: 1200 / 400;
+        margin: 0 auto;
+        overflow: hidden;
+    }
+
+    .slide-item img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    /* 컨트롤 CSS */
+    .banner-controller-wrap_maincont {
+        position: absolute;
+        bottom: 15px;
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 100;
+    }
+
+    /* 흰색 라운드 박스 */
+    .banner-controller_maincont {
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center;
+        background-color: #fff;
+        padding: 8px 18px;
+        border-radius: 50px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    }
+
+    .pagination_maincont {
+        display: flex;
+        align-items: center;
+        font-weight: bold;
+        font-size: 15px;
+        margin-right: 15px;
+        line-height: 1;
+    }
+
+    .current_maincont {
+        color: #0066cc;
+    }
+
+    .divider_maincont {
+        margin: 0 4px;
+        color: #ccc;
+    }
+
+    .total_maincont {
+        color: #888;
+    }
+
+    .controls_maincont {
+        display: flex;
+        align-items: center;
+        gap: 4px;
+    }
+
+    .controls_maincont button {
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        background: none;
+        border: none;
+        padding: 0;
+        margin: 0;
+        cursor: pointer;
+        width: 24px;
+        height: 24px;
+        font-size: 16px;
+        color: #333;
+        line-height: 1;
+    }
+
+    /* ==================== 퀵메뉴 ==================== */
+    .wrapper.quick .main-wrapper {
+        width: 100%;
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+
+    .wrapper.quick .d-grid {
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        /* 항상 5개 보이게 */
+        gap: 0.5rem;
+        justify-items: center;
+    }
+
+    /* ==================== 카드 영역 ==================== */
+    .main-card-wrapper {
+        display: flex;
+        gap: 5px;
+        flex-wrap: wrap;
+        justify-content: space-between;
+    }
+
+    .card-item {
+        width: 25%;
+        min-width: 220px;
+        max-width: 280px;
+        margin-bottom: 20px;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        overflow: hidden;
+        background: #fff;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .card-item .thumbnail {
+        width: 100%;
+        aspect-ratio: 1 / 1;
+        overflow: hidden;
+    }
+
+    .card-item .thumbnail img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    #center_area .center-card-logo {
+        object-fit: contain !important;
+    }
+
+    /* .card-item .description {
+        padding: 12px;
+    } */
+
+    /* ==================== 모바일 ==================== */
+    @media (max-width: 1024px) {
+
+        /* 배너는 동일 비율로만 줄어듦 */
+        .banner .main-wrapper {
+            width: 95%;
+            aspect-ratio: 1200 / 400;
+        }
+
+        .wrapper.banner {
+            width: 100%;
+            height: auto;
+        }
+
+        /* 퀵메뉴 5열 */
+        .wrapper.quick .d-grid {
+            grid-template-columns: repeat(5, 1fr) !important;
+            gap: 0.25rem !important;
+            /* gap을 더 줄임 */
+        }
+
+
+        /* 퀵메뉴 아이템 크기 축소 */
+        .wrapper.quick .d-grid .quick-item {
+            padding: 8px !important;
+            border-radius: 6px;
+        }
+
+        /* 퀵메뉴 내부 텍스트, 아이콘도 축소 */
+        .wrapper.quick .d-grid .quick-item {
+            width: 60px !important;
+            height: 120px !important;
+            padding: 4px !important;
+            border-radius: 4px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            box-sizing: border-box;
+        }
+
+        /* 텍스트 크기 축소 */
+        .wrapper.quick .d-grid .quick-item span,
+        .wrapper.quick .d-grid .quick-item p {
+            font-size: 13px !important;
+            line-height: 1.2;
+        }
+
+        /* 카드도 줄바꿈 허용 */
+        .main-card-wrapper {
+            display: flex;
+            flex-wrap: nowrap;
+            overflow-x: auto;
+            gap: 16px;
+            scroll-snap-type: x mandatory;
+            padding: 0 16px;
+            /* 좌우 패딩으로 가운데 맞춤 */
+            -webkit-overflow-scrolling: touch;
+        }
+
+        main .main-wrapper {
+            margin-left: auto;
+            margin-right: auto;
+            width: 95%;
+            max-width: 1200px;
+        }
+
+        .card-item {
+            max-width: 100%;
+            scroll-snap-align: center;
+        }
+
+        /* 카드 내부 이미지와 내용도 꽉 차게 */
+        .card-item .thumbnail img {
+            width: 100%;
+            height: 100%;
+        }
+
+        /* 아이콘 영역(icon-div) 크기 축소 */
+        .quick-item .icon-div {
+            width: 100%;
+            height: 40px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 2px;
+            /* 아래 여백 축소 */
+        }
+
+        /* 아이콘 */
+        .quick-item img {
+            width: 24px !important;
+            height: 24px !important;
+        }
+
+        /* 텍스트 */
+        .quick-item p {
+            font-size: 11px !important;
+            margin: 0;
+        }
+
+        body.index .header-bottom .logo {
+            display: block !important;
+            margin-top: auto !important;
+        }
+
+        .h1 {
+            font-size: 28px;
+            margin-left: 10px;
+        }
+    }
+
+    @media (max-width: 600px) {
+        .pagination_maincont {
+            font-size: 12px;
+        }
+
+        .wrapper .banner-controller_maincont {
+            padding: 2px 10px;
+        }
+
+        .controls_maincont button {
+            width: 16px;
+            height: 20px;
+            font-size: 12px;
+        }
+    }
+</style>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-HZ1S8YL1R9"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+
+    gtag('config', 'G-HZ1S8YL1R9');
+</script>
+
+
+<body>
+
+
+    <header class="header">
+    <div class="header-top-wrapper">
+        <div class="header-top">
+            <ul>
+                                    <li class="login_btn_li"><a href="/nysc/pages/login.php">로그인</a></li>
+                    <!-- <li><a href="/nysc/pages/signup.php">회원가입</a></li> -->
+                                    <!-- 검색 폼 -->
+                <div class="search_Tab_box2">
+                    <form action="/nysc/pages/search_result.php" method="get" class="search_form_tab">
+                        <input type="hidden" name="stx" value="" class="input_main_search">
+                        <input name="stx" type="text" placeholder="원하시는 검색어를 입력해주세요." class="search_main_input" >
+
+                        <button type="submit" class="search-btn-main" >
+                            <img src="/nysc/assets/images/search_icon.png" alt="search_icon" style="width: 18px;">
+                        </button>
+                    </form>
+                </div>
+                <button class="search_btn_box">
+                 <img src="/nysc/assets/images/search_icon.png" alt="search_icon" style="width: 18px;">
+                </button>
+            </ul>
+        </div>
+    </div>
+    <script>
+            const mobBtn = document.querySelector('.search_mob_btn');
+            const tabBox = document.querySelector('.search_Tab_box2');
+            const tabBox2 = document.querySelector('.search_btn_box');
+
+            tabBox2.addEventListener('click', () => {
+            tabBox.classList.toggle('active2'); 
+            });
+
+            tabBox2.addEventListener('click', () => {
+            tabBox.classList.toggle('search_box_active');
+            })
+    </script>
+
+    <div class="header-bottom">
+        <div class="logo" >
+            <a href="https://kyf.or.kr/" target="_blank">
+            <img src="/nysc/assets/logo_4.png" alt="logo" width="120" style="padding-right: 10px;" class="kyf_logo">
+            </a>
+
+            <a href="/nysc" >
+            <img src="/nysc/assets/logo_3.png" width="180" class="kyf_logo2">
+            </a>
+        </div>
+
+        <!-- ✅ 웹 GNB (1025px 이상) -->
+        <nav class="gnb">
+            <ul>
+                <li class="main-menu">
+                    <a class="main-menu-wrapper" href="/nysc/pages/about.php">센터소개</a>
+                    <div class="sub-menu">
+                        <ul>
+                            <li><a href="/nysc/pages/about.php">중앙청년지원센터</a></li>
+                            <li><a href="/nysc/pages/group.php">조직구성</a></li>
+                            <li><a href="/nysc/pages/business.php">사업안내</a></li>
+                            <li><a href="/nysc/pages/ci.php">CI·캐릭터 소개</a></li>
+                            <li><a href="/nysc/pages/location.php">오시는길</a></li>
+                        </ul>
+                    </div>
+                </li>
+                                <li class="main-menu">
+                    <a class="main-menu-wrapper" href="/nysc/pages/center1.php">전국센터</a>
+                    <div class="sub-menu">
+                        <ul>
+                            <li><a href="/nysc/pages/center1.php">전국 청년센터 안내</a></li>
+                            <li><a href="/nysc/pages/center2.php">전국 청년센터 소식</a></li>
+                            <li><a href="/nysc/pages/center4.php">전국 청년센터 채용</a></li>
+                            <li><a href="/nysc/pages/platform2.php">청년지원기관 연계망</a></li>
+                            <!-- 260623 청년센터 등록신청 메뉴 숨김 <li><a href="/nysc/pages/notice_view.php?id=31">청년센터 등록신청</a></li> -->
+                            <!-- <li><a href="javascript:showConstructingModal();">청년정책 플랫폼</a></li> -->
+                        </ul>
+                    </div>
+                </li>
+                <li class="main-menu">
+                    <a class="main-menu-wrapper" href="/nysc/pages/notice.php">커뮤니티</a>
+                    <div class="sub-menu">
+                        <ul>
+                            <li><a href="/nysc/pages/notice.php">공지사항</a></li>
+                            <li><a href="/nysc/pages/documents.php">자료실</a></li>
+                            <li><a href="/nysc/pages/documents2.php">정책연구자료</a></li>
+                            <li><a href="/nysc/pages/freeboard.php">자유게시판</a></li>
+                            <!-- <li><a href="https://maily.so/youthletter" target="_blank">Youth Letter</a></li> -->
+                        </ul>
+                    </div>
+                </li>
+                                
+                <li class="main-menu">
+                    <a class="main-menu-wrapper" href="/nysc/pages/counseling_new_main.php">종합상담</a>
+                </li>
+            </ul>
+        </nav>
+
+          <!-- ? 모바일 햄버거 메뉴 버튼 -->
+          <button class="menu-toggle" onclick="toggleMenu()"></button>
+
+<!-- ? 모바일 GNB (1024px 이하) -->
+<nav class="gnb-mobile">
+    <div class="gnb-mobile-wrapper">
+        <ul>
+            <li class="main-menu">
+                <a href="javascript:void(0);" onclick="toggleSubmenu(this)">센터소개 ▼</a>
+                <ul class="sub-menu">
+                    <li><a href="/nysc/pages/about.php">중앙청년지원센터</a></li>
+                    <li><a href="/nysc/pages/group.php">조직구성</a></li>
+                    <li><a href="/nysc/pages/business.php">사업안내</a></li>
+                    <li><a href="/nysc/pages/ci.php">CI·캐릭터 소개</a></li>
+                    <li><a href="/nysc/pages/location.php">오시는길</a></li>
+                </ul>
+            </li>
+                        <li class="main-menu">
+                <a href="javascript:void(0);" onclick="toggleSubmenu(this)">전국센터 ▼</a>
+                <ul class="sub-menu">
+                    <li><a href="/nysc/pages/center1.php">전국 청년센터 안내</a></li>
+                    <li><a href="/nysc/pages/center2.php">전국 청년센터 소식</a></li>
+                    <li><a href="/nysc/pages/center4.php">전국 청년센터 채용</a></li>
+                    <li><a href="/nysc/pages/platform2.php">청년지원기관 연계망</a></li>
+                    <!-- 260623 청년센터 등록신청 메뉴 숨김 <li><a href="/nysc/pages/notice_view.php?id=31">청년센터 등록신청</a></li> -->
+                    <!-- <li><a href="javascript:showConstructingModal();">청년정책 플랫폼</a></li> -->
+                </ul>
+            </li>
+            <li class="main-menu">
+                <a href="javascript:void(0);" onclick="toggleSubmenu(this)">커뮤니티 ▼</a>
+                <ul class="sub-menu">
+                    <li><a href="/nysc/pages/notice.php">공지사항</a></li>
+                    <li><a href="/nysc/pages/documents.php">자료실</a></li>
+                    <li><a href="/nysc/pages/documents2.php">정책연구자료</a></li>
+                    <li><a href="/nysc/pages/freeboard.php">자유게시판</a></li>
+                    <li><a href="https://maily.so/youthletter" target="_blank">Youth Letter</a></li>
+                </ul>
+            </li>
+                        
+            <!-- <li class="main-menu"><a href="/nysc/pages/certificate_button_center(publish).php" target="_blank">종사자교육</a></li> -->
+            <li class="main-menu">
+                <a href="/nysc/pages/counseling_new_main.php">종합상담</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+</div>
+</header>
+
+<style>
+    /* 기본 GNB 스타일 (웹) */
+    /* .gnb {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        background: white;
+    } */
+
+    /* ✅ 웹 GNB (1025px 이상) */
+    @media (min-width: 1025px) {
+        .menu-toggle {
+            display: none; /* PC에서는 햄버거 버튼 숨김 */
+        }
+
+        .gnb {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            background: white;
+        }
+
+        .gnb-mobile {
+            display: none !important; /* PC에서는 모바일 GNB 강제 숨김 */
+        }
+
+        .gnb ul {
+            display: flex;
+            list-style: none;
+            padding: 0;
+        }
+
+        .gnb .sub-menu {
+            display: none;
+            position: absolute;
+            background: white;
+            box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        .gnb .main-menu:hover .sub-menu {
+            display: block;
+        }
+    }
+
+    /* ✅ 모바일 GNB (1024px 이하) */
+    @media (max-width: 1024px) {
+        .gnb {
+            display: none !important; /* PC에서는 모바일 GNB 강제 숨김 */
+        }
+        .menu-toggle {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 50px;
+            height: 50px;
+            cursor: pointer;
+            position: absolute;
+            right: 20px;
+            top: 10px;
+            z-index: 1100;
+            background: transparent;
+            border: none;
+        }
+
+        .menu-toggle::before {
+            content: '\2630'; /* 유니코드 햄버거 아이콘 */
+            font-size: 30px;
+            color: black;
+        }
+        .header-bottom {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start; 
+            justify-content: flex-start; /* 상단부터 시작 */
+        }
+
+        .header-bottom .logo {
+            margin-top: auto; /* 하단으로 밀어내기 */
+        }
+        .gnb-mobile {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh; /* ✅ 전체 높이로 변경 */
+            background: white;
+            z-index: 1000;
+            overflow: hidden; /* wrapper에서만 스크롤 */
+            flex-direction: column;
+        }
+        .gnb-mobile-wrapper {
+            overflow-y: auto;
+            height: 100%; /* ✅ 전체 높이에서 스크롤 */
+            padding-bottom: 60px;
+            margin-top: 60px;
+        }
+        .gnb-mobile.active {
+            display: flex;
+        }
+
+        .menu-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 35px;
+            cursor: pointer;
+        }
+
+        .gnb-mobile ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            width: 100%;
+        }
+
+        .gnb-mobile li {
+            width: 100%;
+            position: relative;
+        }
+
+        .gnb-mobile a {
+            display: block;
+            padding: 15px;
+            font-size: 20px;
+            background: #f8f8f8;
+            width: 100%;
+            text-align: center;
+            text-decoration: none;
+            color: black;
+            cursor: pointer;
+        }
+
+        .gnb-mobile a:hover {
+            background: #e0e0e0;
+        }
+
+        .gnb-mobile .main-menu {
+            position: relative;
+            width: 100%;
+            background: #f8f8f8;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .gnb-mobile .main-menu > a {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px;
+            font-size: 20px;
+            color: black;
+            text-decoration: none;
+        }
+
+        .gnb-mobile .main-menu.active > a {
+            background: #d0d0d0;
+        }
+
+        .gnb-mobile .sub-menu {
+            display: none;
+            flex-direction: column;
+            background: white;
+            width: 100%;
+            padding: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+
+        .gnb-mobile .sub-menu a {
+            display: block;
+            padding: 12px 20px;
+            font-size: 18px;
+            color: black;
+            background: white;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .gnb-mobile .sub-menu a:hover {
+            background: #f0f0f0;
+        }
+
+        /* 하위 메뉴가 펼쳐질 때 */
+        .gnb-mobile .main-menu.active .sub-menu {
+            display: flex;
+        }
+
+
+    }
+
+</style>
+
+<script>
+    function toggleMenu() {
+        document.querySelector(".gnb-mobile").classList.toggle("active");
+    }
+
+    function toggleSubmenu(element) {
+        const parentMenu = element.closest(".main-menu");
+        const submenu = parentMenu.querySelector(".sub-menu");
+
+        // 현재 상태 확인
+        const isOpen = parentMenu.classList.contains("active");
+
+        // 모든 메뉴 닫기
+        document.querySelectorAll(".gnb-mobile .main-menu").forEach(menu => {
+            menu.classList.remove("active");
+        });
+
+        // 현재 메뉴만 열기
+        if (!isOpen) {
+            parentMenu.classList.add("active");
+        }
+    }
+
+
+
+    document.addEventListener("DOMContentLoaded", function () {
+        document.querySelectorAll(".gnb-mobile .main-menu > a").forEach(menu => {
+            menu.addEventListener("click", function (event) {
+                let parent = this.parentElement;
+                let submenu = parent.querySelector(".sub-menu");
+
+                if (submenu) {
+                    event.preventDefault();
+                    let isOpen = submenu.style.display === "block";
+                    // 모든 서브메뉴 접기
+                    document.querySelectorAll(".gnb-mobile .sub-menu").forEach(sm => sm.style.display = "none");
+                    // 현재 메뉴만 열기
+                    submenu.style.display = isOpen ? "none" : "block";
+                }
+            });
+        });
+    });
+
+
+    // 헤더 네비 스크롤 고정
+
+    window.addEventListener('scroll', function() {
+    const headerBottom = document.querySelector('.header-bottom');
+    const headerTopHeight = document.querySelector('.header-top-wrapper').offsetHeight;
+
+    if (window.scrollY > headerTopHeight) {
+        headerBottom.classList.add('is-fixed');
+    } else {
+        headerBottom.classList.remove('is-fixed');
+    }
+});
+
+</script>
+    <main style="padding-bottom: 60px;">
+        <div>
+            <!-- <div class="wrapper banner" style="height: 550px;"> -->
+            <div class="wrapper banner">
+
+                <div class="main-wrapper p-relative">
+                    <div class="slide-wrapper">
+                                                        <div class="slide-item" style="background-color: #ffffff;">
+                                    <a href="https://nysc.or.kr/nysc/pages/notice_view.php?id=270">
+                                        <img src="/nysc/assets/images/banner/6a72db53cf7da.png" style="max-width: 1200px;">
+                                    </a>
+                                </div>
+                                                                <div class="slide-item" style="background-color: #12887a;">
+                                    <a href="https://nysc.or.kr/nysc/pages/notice_view.php?id=244">
+                                        <img src="/nysc/assets/images/banner/6a34de97c09ff.png" style="max-width: 1200px;">
+                                    </a>
+                                </div>
+                                                                <div class="slide-item" style="background-color: #12887a;">
+                                    <a href="https://nysc.or.kr/nysc/pages/notice_view.php?id=241">
+                                        <img src="/nysc/assets/images/banner/6a34de9c317b6.png" style="max-width: 1200px;">
+                                    </a>
+                                </div>
+                                                    </div>
+
+                    <div class="banner-controller-wrap_maincont">
+                        <div class="banner-controller_maincont">
+                            <div class="pagination_maincont">
+                                <span class="current_maincont">1</span>
+                                <span class="divider_maincont">/</span>
+                                <span class="total_maincont">0</span>
+                            </div>
+
+                            <div class="controls_maincont">
+                                <button type="button" class="btn-prev-cntl_maincont"><img
+                                        src="/nysc/assets/images/prev_cion.png" alt="btn_img"></button>
+                                <button type="button" class="btn-play-pause_maincont"><img
+                                        src="/nysc/assets/images/stop_icon.png" alt="btn_img"></button>
+                                <button type="button" class="btn-next-cntl_maincont"><img
+                                        src="/nysc/assets/images/next_icon.png" alt="btn_img"></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+                <div class="w-100 d-flex-column" style="gap: 40px; margin-top: 40px;">
+            <div class="cont_announcement">
+                <!-- 공지 -->
+
+                <div class="notice_contents_box">
+                    <div class="notice_contents_wrap">
+                        <!-- 공지사항 -->
+                        <div class="main-wrapper d-flex-column notice_contents1" style="gap: 24px; margin-left:0">
+
+                            <div class="d-flex justify-between">
+                                <!-- <h1 >공지사항</h1> -->
+                                <h1 >공지사항</h1>
+                                <button type="button" class="btn-none"
+                                    onclick="location.href='/nysc/pages/notice.php?category=A';">더보기</button>
+                            </div>
+                            <div class="p-relative">
+                                <div class="w-100 overflow-hidden">
+                                    <div class="main-card-wrapper no_flex">
+                                                                                        <a class="main_list_card"
+                                                    href="/nysc/pages/notice_view.php?id=280">
+                                                    <span class="notification_title">공지</span>
+                                                    <p>
+                                                        2026 청년센터 종사자 방범키트 지원사업 신청(10/12~10/23)                                                    </p>
+                                                    <span class="notification_day">
+                                                        2026.09.28                                                    </span>
+                                                </a>
+                                                                                                <a class="main_list_card"
+                                                    href="/nysc/pages/notice_view.php?id=277">
+                                                    <span class="notification_title">공지</span>
+                                                    <p>
+                                                        2026년 전국 청년센터 종사자 역량강화 직급별 연수(매니저그룹) 신청 안내                                                    </p>
+                                                    <span class="notification_day">
+                                                        2026.09.10                                                    </span>
+                                                </a>
+                                                                                                <a class="main_list_card"
+                                                    href="/nysc/pages/notice_view.php?id=276">
+                                                    <span class="notification_title">공지</span>
+                                                    <p>
+                                                          2026 「찾아가는 청년센터」 교육 수행여건 수요조사 참여 안내(9/7~9/20)                                                    </p>
+                                                    <span class="notification_day">
+                                                        2026.09.08                                                    </span>
+                                                </a>
+                                                                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- 사업후기 -->
+                        <div class="main-wrapper d-flex-column notice_contents1" style="gap: 24px;">
+
+                            <div class="d-flex justify-between">
+                                <h1 >사업후기</h1>
+                                <button type="button" class="btn-none"
+                                    onclick="location.href='/nysc/pages/notice.php?category=C';">더보기</button>
+                            </div>
+                            <div class="p-relative">
+                                <div class="w-100 overflow-hidden">
+                                    <div class="main-card-wrapper no_flex">
+                                                                                        <a class="main_list_card"
+                                                    href="/nysc/pages/notice_view.php?id=281">
+                                                    <span class="notification_title">공지</span>
+                                                    <p>
+                                                         9월의 Local Pick, 「2026 지역특화 청년사업」                                                    </p>
+                                                    <span class="notification_day">
+                                                        2026.09.29                                                    </span>
+                                                </a>
+                                                                                                <a class="main_list_card"
+                                                    href="/nysc/pages/notice_view.php?id=279">
+                                                    <span class="notification_title">공지</span>
+                                                    <p>
+                                                        지역 청년을 만나는 현장에서, 함께 고민하고 답을 찾았습니다! [2026 지역특화 청년사업 중간교류회]                                                    </p>
+                                                    <span class="notification_day">
+                                                        2026.09.14                                                    </span>
+                                                </a>
+                                                                                                <a class="main_list_card"
+                                                    href="/nysc/pages/notice_view.php?id=274">
+                                                    <span class="notification_title">공지</span>
+                                                    <p>
+                                                        일과 공부 두 마리 토끼를 잡은 수석합격자의 합격 노하우는?! [합격 수기 인터뷰]                                                     </p>
+                                                    <span class="notification_day">
+                                                        2026.09.07                                                    </span>
+                                                </a>
+                                                                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+
+                </div>
+            </div>
+            <div class="wrapper apply">
+                                <div class="main-wrapper d-flex-column" style="gap: 24px;">
+                    <h1 >사업신청</h1>
+                    <div class="p-relative">
+                        <button type="button" class="btn-prev color p-absolute d-none"
+                            style="top: 135px; left: -30px; z-index: 100;"><span class="d-none">prev</span></button>
+                        <button type="button" class="btn-next color p-absolute d-none"
+                            style="top: 135px; right: -30px; z-index: 100;"><span class="d-none">next</span></button>
+                        <div class="w-100 overflow-hidden">
+                            <div class="main-card-wrapper" id="apply_area">
+                                                                        <div class="card-item">
+                                            <a href="https://forms.gle/JJTn81uanzUuJ2Vk8?pid=60">
+                                                <div class="thumbnail">
+                                                    <img
+                                                        src="/nysc/assets/images/dummy/6a9e6f8be113b.png">
+                                                </div>
+                                                <div class="description">
+                                                    <span
+                                                        class="type business_type">센터지원사업</span>
+                                                    <h4>2026 「찾아가는 청년센터」</h4>
+                                                </div>
+                                            </a>
+                                        </div>
+                                                                                <div class="card-item">
+                                            <a href="/nysc/pages/workshop_apply_manager_2026.php?pid=59">
+                                                <div class="thumbnail">
+                                                    <img
+                                                        src="/nysc/assets/images/dummy/6aa8e36e82f93.png">
+                                                </div>
+                                                <div class="description">
+                                                    <span
+                                                        class="type business_type">종사자지원사업</span>
+                                                    <h4>2026년 청년센터 종사자 역량강화 직급별 연수(매니저 그룹)</h4>
+                                                </div>
+                                            </a>
+                                        </div>
+                                                                                <div class="card-item">
+                                            <a href="/nysc/pages/offline_training.php?pid=56">
+                                                <div class="thumbnail">
+                                                    <img
+                                                        src="/nysc/assets/images/dummy/6aa24eb8d6cf9.png">
+                                                </div>
+                                                <div class="description">
+                                                    <span
+                                                        class="type business_type">종사자지원사업</span>
+                                                    <h4>2026 오프라인 양성교육 4회차</h4>
+                                                </div>
+                                            </a>
+                                        </div>
+                                                                                <div class="card-item">
+                                            <a href="https://nysc.or.kr/nysc/pages/notice_view.php?id=249?pid=51">
+                                                <div class="thumbnail">
+                                                    <img
+                                                        src="/nysc/assets/images/dummy/69d6eedb0fd76.png">
+                                                </div>
+                                                <div class="description">
+                                                    <span
+                                                        class="type business_type">센터지원사업</span>
+                                                    <h4>「2026 청년정책 종합상담」 운영 안내</h4>
+                                                </div>
+                                            </a>
+                                        </div>
+                                                                    </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="wrapper center">
+                                <div class="main-wrapper d-flex-column" style="gap: 24px;">
+                    <div class="d-flex justify-between align-center">
+                        <h1 >전국청년센터 소식</h1>
+                        <button type="button" class="btn-none"
+                            onclick="location.href='/nysc/pages/center2.php';">더보기</button> <!-- 더보기 버튼을 오른쪽에 배치 -->
+                    </div>
+                    <div class="p-relative">
+                        <button type="button" class="btn-prev color p-absolute d-none"
+                            style="top: 135px; left: -30px; z-indeax: 100;"><span class="d-none">prev</span></button>
+                        <button type="button" class="btn-next color p-absolute d-none"
+                            style="top: 135px; right: -30px; z-index: 100;"><span class="d-none">next</span></button>
+                        <div class="w-100 overflow-hidden">
+                            <div class="main-card-wrapper" id="center_area">
+                                                                        <div class="card-item employment_list em_li tidings_list">
+                                            <a href="/nysc/pages/news_view.php?id=3291">
+                                                <div class="description margin-div tidings-div">
+                                                    <div class="w-100 d-flex align-center tidings_day" style="gap: 5px;">
+                                                        <div style="display: flex;">
+                                                               <!-- <h3 class="tidings_h3">서울</h3> -->
+                                                                                                                    <span
+                                                                class="type accepted tidings_type"
+                                                                style="width:40px;">
+                                                                모집중                                                            </span>
+                                                                                                                            <span class="type tidings_type" style="width: 40px;outline: 1px solid var(--border-color);">D-16</span>
+                                                                                                                                                                            </div>
+                                                        <p class="tidings_day_date" style="">
+                                                            2026-10-02 ~ 2026-10-19                                                        </p>
+                                                        
+                                                    </div>
+                                                    <h4 class="tidings_h4">
+                                                        <img class="center-card-logo" src="/nysc/upfiles/center/logos/6a8e8b197e99c.png" alt="">                                                     서울청년센터 금천 청춘삘딩</h4>
+                                                    <p class="fs-small text-gray tidings-text">[서울청년센터금천] 성장 루틴 챌린지 참여자 모집 </p>
+                                                    
+
+                                                    <!-- 2026-04-14  업체측에서 날짜 뺴달라 요청셨습니다.-->
+
+                                        
+                                                </div>
+
+                                                <div class="thumbnail tidings_img_box"><img class="tidings_img" style="width: 100%; height: 100%; object-fit: cover; background: #fff;" src="/nysc/upfiles/news/2026/6abf888a70777.jpg"></div>
+                                            </a>
+                                        </div>
+                                                                            <div class="card-item employment_list em_li tidings_list">
+                                            <a href="/nysc/pages/news_view.php?id=3292">
+                                                <div class="description margin-div tidings-div">
+                                                    <div class="w-100 d-flex align-center tidings_day" style="gap: 5px;">
+                                                        <div style="display: flex;">
+                                                               <!-- <h3 class="tidings_h3">서울</h3> -->
+                                                                                                                    <span
+                                                                class="type accepted tidings_type"
+                                                                style="width:40px;">
+                                                                모집중                                                            </span>
+                                                                                                                            <span class="type tidings_type" style="width: 40px;outline: 1px solid var(--border-color);">D-4</span>
+                                                                                                                                                                            </div>
+                                                        <p class="tidings_day_date" style="">
+                                                            2026-10-02 ~ 2026-10-07                                                        </p>
+                                                        
+                                                    </div>
+                                                    <h4 class="tidings_h4">
+                                                        <img class="center-card-logo" src="/nysc/upfiles/center/logos/6a8e8b197e99c.png" alt="">                                                     서울청년센터 금천 청춘삘딩</h4>
+                                                    <p class="fs-small text-gray tidings-text">[서울청년센터금천] 진로 고민 워크숍 참여자 모집</p>
+                                                    
+
+                                                    <!-- 2026-04-14  업체측에서 날짜 뺴달라 요청셨습니다.-->
+
+                                        
+                                                </div>
+
+                                                <div class="thumbnail tidings_img_box"><img class="tidings_img" style="width: 100%; height: 100%; object-fit: cover; background: #fff;" src="/nysc/upfiles/news/2026/6abf896c21765.jpg"></div>
+                                            </a>
+                                        </div>
+                                                                            <div class="card-item employment_list em_li tidings_list">
+                                            <a href="/nysc/pages/news_view.php?id=3290">
+                                                <div class="description margin-div tidings-div">
+                                                    <div class="w-100 d-flex align-center tidings_day" style="gap: 5px;">
+                                                        <div style="display: flex;">
+                                                               <!-- <h3 class="tidings_h3">서울</h3> -->
+                                                                                                                    <span
+                                                                class="type accepted tidings_type"
+                                                                style="width:40px;">
+                                                                모집중                                                            </span>
+                                                                                                                            <span class="type tidings_type" style="width: 40px;outline: 1px solid var(--border-color);">D-17</span>
+                                                                                                                                                                            </div>
+                                                        <p class="tidings_day_date" style="">
+                                                            2026-09-30 ~ 2026-10-20                                                        </p>
+                                                        
+                                                    </div>
+                                                    <h4 class="tidings_h4">
+                                                        <img class="center-card-logo" src="/nysc/upfiles/center/logos/6a8fbbc1b72ec.png" alt="">                                                     관악청년청</h4>
+                                                    <p class="fs-small text-gray tidings-text">[관악청년청] 뜬구름도 발전시키면 정책이 된다「뜬구름 발전소」공모 (~10/20까지, 총 상금 250만원!)</p>
+                                                    
+
+                                                    <!-- 2026-04-14  업체측에서 날짜 뺴달라 요청셨습니다.-->
+
+                                        
+                                                </div>
+
+                                                <div class="thumbnail tidings_img_box"><img class="tidings_img" style="width: 100%; height: 100%; object-fit: cover; background: #fff;" src="/nysc/upfiles/news/2026/6abf77a6f405c.jpg"></div>
+                                            </a>
+                                        </div>
+                                                                            <div class="card-item employment_list em_li tidings_list">
+                                            <a href="/nysc/pages/news_view.php?id=3289">
+                                                <div class="description margin-div tidings-div">
+                                                    <div class="w-100 d-flex align-center tidings_day" style="gap: 5px;">
+                                                        <div style="display: flex;">
+                                                               <!-- <h3 class="tidings_h3">서울</h3> -->
+                                                                                                                    <span
+                                                                class="type accepted tidings_type"
+                                                                style="width:40px;">
+                                                                모집중                                                            </span>
+                                                                                                                            <span class="type tidings_type" style="width: 40px;outline: 1px solid var(--border-color);">D-10</span>
+                                                                                                                                                                            </div>
+                                                        <p class="tidings_day_date" style="">
+                                                            2026-09-28 ~ 2026-10-13                                                        </p>
+                                                        
+                                                    </div>
+                                                    <h4 class="tidings_h4">
+                                                        <img class="center-card-logo" src="/nysc/upfiles/center/logos/6a8fbfb3810ac.png" alt="">                                                     노원청년정책거버넌스센터</h4>
+                                                    <p class="fs-small text-gray tidings-text">[노원청년정책거버넌스센터] 10월 청년성장프로젝트 프로그램 참여자 모집(무료심리검사, 자소서/면접 클리닉)</p>
+                                                    
+
+                                                    <!-- 2026-04-14  업체측에서 날짜 뺴달라 요청셨습니다.-->
+
+                                        
+                                                </div>
+
+                                                <div class="thumbnail tidings_img_box"><img class="tidings_img" style="width: 100%; height: 100%; object-fit: cover; background: #fff;" src="/nysc/upfiles/news/2026/6abc57e45d581.jpg"></div>
+                                            </a>
+                                        </div>
+                                                                </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="banner_wrap">
+                     <a href="/nysc/pages/center1.php" >
+                        <img src="/nysc/assets/images/web_banner.png" alt="banner">
+                     </a>           
+            </div>
+            
+            <div class="wrapper center">
+                                <div class="main-wrapper d-flex-column" style="gap: 24px;">
+                    <div class="d-flex justify-between align-center">
+                        <h1 >전국청년센터 채용</h1>
+                        <button type="button" class="btn-none"
+                            onclick="location.href='/nysc/pages/center4.php';">더보기</button> <!-- 더보기 버튼을 오른쪽에 배치 -->
+                    </div>
+                    <div class="p-relative">
+                        <!-- <button type="button" class="btn-prev color p-absolute d-none"
+                            style="top: 135px; left: -30px; z-index: 100;"><span class="d-none">prev</span></button>
+                        <button type="button" class="btn-next color p-absolute "
+                            style="top: 135px; right: -30px; z-index: 100;"><span class="d-none">next</span></button> -->
+                        <div class="w-100 overflow-hidden ">
+                            <div class="main-card-wrapper employment_box" id="center_area">
+                                                                        <div class="card-item employment_list">
+                                            <a href="/nysc/pages/news_view.php?id=3285">
+                                                <!-- <div class="thumbnail"><img style="height: 100%;" src="/nysc/assets/images/dummy/dummy_1.png"></div> -->
+                                                <div class="description margin-div">
+                                                    <div class="w-100 d-flex align-center" style="gap: 5px;">
+                                                    <div style="display: flex;">
+                                                            <!-- <h3>경기</h3> -->
+                                                                                                                       <span
+                                                                class="type accepted"
+                                                                style="width:60px;">
+                                                                채용중                                                            </span>
+                                                                                                                            <span class="type" style="width: 50px;outline: 1px solid var(--border-color);">D-2</span>
+                                                                                                                                                                        </div>
+                                                      <p class="fs-small text-gray employment_day">
+                                                        2026-09-21 ~ 2026-10-05                                                    </p>
+                                                    </div>
+                                                    <h4 class="employment_title"><img class="center-card-logo" src="/nysc/upfiles/center/logos/6a7990bc06547.png" alt=""> 청년동</h4>
+                                                    <p class="fs-small text-gray">[청년동] 커뮤니티 경험 디자인팀 매니저 채용(~10.05.)</p>
+                                                  
+
+                                                 
+                                                </div>
+                                            </a>
+                                        </div>
+                                                                            <div class="card-item employment_list">
+                                            <a href="/nysc/pages/news_view.php?id=3284">
+                                                <!-- <div class="thumbnail"><img style="height: 100%;" src="/nysc/assets/images/dummy/dummy_5.png"></div> -->
+                                                <div class="description margin-div">
+                                                    <div class="w-100 d-flex align-center" style="gap: 5px;">
+                                                    <div style="display: flex;">
+                                                            <!-- <h3>서울</h3> -->
+                                                                                                                       <span
+                                                                class="type refused"
+                                                                style="width:60px;">
+                                                                채용마감                                                            </span>
+                                                                                                                                                                        </div>
+                                                      <p class="fs-small text-gray employment_day">
+                                                        2026-09-17 ~ 2026-09-30                                                    </p>
+                                                    </div>
+                                                    <h4 class="employment_title"><img class="center-card-logo" src="/nysc/upfiles/center/logos/6a8e8b197e99c.png" alt=""> 서울청년센터 금천 청춘삘딩</h4>
+                                                    <p class="fs-small text-gray">[서울청년센터 금천 청춘삘딩] 청년성장프로젝트 매니저 채용공고(~9.30.)</p>
+                                                  
+
+                                                 
+                                                </div>
+                                            </a>
+                                        </div>
+                                                                            <div class="card-item employment_list">
+                                            <a href="/nysc/pages/news_view.php?id=3266">
+                                                <!-- <div class="thumbnail"><img style="height: 100%;" src="/nysc/assets/images/dummy/dummy_2.png"></div> -->
+                                                <div class="description margin-div">
+                                                    <div class="w-100 d-flex align-center" style="gap: 5px;">
+                                                    <div style="display: flex;">
+                                                            <!-- <h3>경기</h3> -->
+                                                                                                                       <span
+                                                                class="type refused"
+                                                                style="width:60px;">
+                                                                채용마감                                                            </span>
+                                                                                                                                                                        </div>
+                                                      <p class="fs-small text-gray employment_day">
+                                                        2026-09-02 ~ 2026-09-15                                                    </p>
+                                                    </div>
+                                                    <h4 class="employment_title"><img class="center-card-logo" src="/nysc/upfiles/center/logos/6a7990bc06547.png" alt=""> 청년동</h4>
+                                                    <p class="fs-small text-gray">[청년동] 직원채용 공고(~9.15.)</p>
+                                                  
+
+                                                 
+                                                </div>
+                                            </a>
+                                        </div>
+                                                                            <div class="card-item employment_list">
+                                            <a href="/nysc/pages/news_view.php?id=3265">
+                                                <!-- <div class="thumbnail"><img style="height: 100%;" src="/nysc/assets/images/dummy/dummy_1.png"></div> -->
+                                                <div class="description margin-div">
+                                                    <div class="w-100 d-flex align-center" style="gap: 5px;">
+                                                    <div style="display: flex;">
+                                                            <!-- <h3>경기</h3> -->
+                                                                                                                       <span
+                                                                class="type refused"
+                                                                style="width:60px;">
+                                                                채용마감                                                            </span>
+                                                                                                                                                                        </div>
+                                                      <p class="fs-small text-gray employment_day">
+                                                        2026-09-04 ~ 2026-09-13                                                    </p>
+                                                    </div>
+                                                    <h4 class="employment_title"><img class="center-card-logo" src="/nysc/upfiles/center/logos/6a8fcb44b5051.png" alt=""> 청년공간 플라잉</h4>
+                                                    <p class="fs-small text-gray">[청년공간 플라잉] 직원채용 공고(~9.13.)</p>
+                                                  
+
+                                                 
+                                                </div>
+                                            </a>
+                                        </div>
+                                                                            <div class="card-item employment_list">
+                                            <a href="/nysc/pages/news_view.php?id=3261">
+                                                <!-- <div class="thumbnail"><img style="height: 100%;" src="/nysc/assets/images/dummy/dummy_2.png"></div> -->
+                                                <div class="description margin-div">
+                                                    <div class="w-100 d-flex align-center" style="gap: 5px;">
+                                                    <div style="display: flex;">
+                                                            <!-- <h3>서울</h3> -->
+                                                                                                                       <span
+                                                                class="type refused"
+                                                                style="width:60px;">
+                                                                채용마감                                                            </span>
+                                                                                                                                                                        </div>
+                                                      <p class="fs-small text-gray employment_day">
+                                                        2026-09-04 ~ 2026-09-21                                                    </p>
+                                                    </div>
+                                                    <h4 class="employment_title"><img class="center-card-logo" src="/nysc/upfiles/center/logos/6a8fc3be9c4f2.png" alt=""> 서울청년센터 마포</h4>
+                                                    <p class="fs-small text-gray">[서울청년센터 마포] 청년지원매니저 채용공고(~9.21.)</p>
+                                                  
+
+                                                 
+                                                </div>
+                                            </a>
+                                        </div>
+                                                                            <div class="card-item employment_list">
+                                            <a href="/nysc/pages/news_view.php?id=3250">
+                                                <!-- <div class="thumbnail"><img style="height: 100%;" src="/nysc/assets/images/dummy/dummy_1.png"></div> -->
+                                                <div class="description margin-div">
+                                                    <div class="w-100 d-flex align-center" style="gap: 5px;">
+                                                    <div style="display: flex;">
+                                                            <!-- <h3>서울</h3> -->
+                                                                                                                       <span
+                                                                class="type refused"
+                                                                style="width:60px;">
+                                                                채용마감                                                            </span>
+                                                                                                                                                                        </div>
+                                                      <p class="fs-small text-gray employment_day">
+                                                        2026-08-25 ~ 2026-09-06                                                    </p>
+                                                    </div>
+                                                    <h4 class="employment_title"><img class="center-card-logo" src="/nysc/upfiles/center/logos/6a8e8b197e99c.png" alt=""> 서울청년센터 금천 청춘삘딩</h4>
+                                                    <p class="fs-small text-gray">[서울청년센터 금천 청춘삘딩] 커뮤니티담당 매니저 채용(~9/6)</p>
+                                                  
+
+                                                 
+                                                </div>
+                                            </a>
+                                        </div>
+                                                                </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+
+        </div>
+    </main>
+    
+<footer class="footer">
+    
+    <!-- 상단 로고 리스트 -->
+    <div class="footer-top">
+        <ul>
+                            <li>
+                    <a href="https://www.opm.go.kr/" target="_blank" class="w-100" aria-label="국무조정실 국무총리비서실">
+                        <img src="/nysc/assets/images/footer/68afbf2e8a910.png">
+                    </a>
+                </li>
+                                <li>
+                    <a href="https://kyf.or.kr/" target="_blank" class="w-100" aria-label="청년재단">
+                        <img src="/nysc/assets/images/footer/68afd4624d17f.png">
+                    </a>
+                </li>
+                                <li>
+                    <a href="https://kyf.or.kr/user/platform.do" target="_blank" class="w-100" aria-label="청년정책 포털 및 플랫폼">
+                        <img src="/nysc/assets/images/footer/68afd729514c4.png">
+                    </a>
+                </li>
+                                <li>
+                    <a href="https://www.youthcenter.go.kr/" target="_blank" class="w-100" aria-label="온통청년">
+                        <img src="/nysc/assets/images/footer/68afd6eeaf176.png">
+                    </a>
+                </li>
+                                <li>
+                    <a href="https://www.2030db.go.kr/" target="_blank" class="w-100" aria-label="국무조정실 국무총리비서실 청년DB">
+                        <img src="/nysc/assets/images/footer/68afbeae08892.png">
+                    </a>
+                </li>
+                        </ul>
+    </div>
+    
+    <!-- 하단 정보 -->
+    <div class="footer-bottom-wrapper">
+        <div class="footer-bottom">
+            <div>
+                <!-- 이용약관 / 개인정보처리방침 링크 -->
+                <div class="footer-policy-links" style="text-align: left; margin-bottom: 10px; color:white;">
+                    <a href="/nysc/pages/privacy.php" style="margin-right: 20px; color: white; text-decoration: none;">이용약관</a>
+                    <a href="/nysc/pages/privacy2.php" style="margin-right: 20px; color: white; text-decoration: none;">개인정보처리방침</a>
+                    <a href="/nysc/pages/privacy3.php" style="margin-right: 10px; color: white; text-decoration: none;">이메일 무단수집거부</a>
+                </div>
+               
+                <div class="info">
+                    <div>
+                        <p>
+                            <span>중앙청년지원센터(운영법인 : (재)청년재단)</span>
+                            <span>서울특별시 종로구 청계천로35, 관정빌딩5층</span>
+                        </p>
+                    </div>
+                    <div>
+                        <p><span>고유번호</span><span>106-82-78078</span></p>
+                        <p><span>전화번호</span><span>070-5032-9900 ~ 10</span></p>
+                        <p><span>팩스</span><span>0507-514-2600</span></p>
+                        <p><span>메일주소</span><span>nysc@kyf.or.kr</span></p>
+                        <p><span>운영시간</span><span>월 ~ 금 09:00 ~ 18:00 / 토, 일 및 법정공휴일 휴무</span></p>
+                    </div>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>Copyright ⓒ 2023 중앙청년지원센터. All right reserved.</p>
+            </div>
+            <div class="logo" onclick="location.href='/nysc';" style="width: 20%;margin-top:20px">
+                    <img src="/nysc/assets/logo_nysc_white.png" style="height: 40px;">
+                </div>
+        </div>
+    </div>
+</footer>
+
+
+<style>
+.footer {
+    background: #fff; /* 기존 디자인 색상 유지 */
+    color: #333;
+    padding: 0px 0;
+}
+
+/* footer-top 슬라이드 영역 */
+.footer-top {
+    padding:0;
+}
+
+.footer-top ul {
+    display: flex;
+    align-items: center;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    transition: transform 0.3s;
+    position: relative;
+    width: 100%;
+    height: 70px;
+}
+
+.footer-top ul li {
+    margin-right: 30px;
+}
+
+.footer-top ul li:last-child {
+    margin-right: 0;
+}
+
+.footer-top ul li img {
+    height: auto;
+}
+
+/* footer-bottom 영역 */
+.footer-bottom-wrapper {
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    margin-top: 0px;
+    padding-top: 20px;
+}
+
+.footer-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+}
+
+.footer-bottom .logo {
+    margin-bottom: 20px;
+    cursor: pointer;
+}
+
+.footer-bottom .info {
+    font-size: 14px;
+    line-height: 1.6;
+    padding: 0 0;
+}
+
+.footer-bottom .info span {
+    display: inline-block;
+}
+
+.footer-bottom .copyright {
+    width: 100%;
+    padding-top: 10px;
+    margin-top: 15px;
+    font-size: 12px;
+    opacity: 0.7;
+}
+.footer-policy-links {
+    text-align: left;
+    /* margin-bottom: 10px; */
+    font-size: 24px;
+    color: white;
+    margin: 100px 0 0 0
+}
+
+@media screen and (max-width:1200px) {
+    .footer-bottom .footer-policy-links {
+        padding: 0 20px ;
+    }
+    .footer-bottom .info {
+        padding: 0 20px ;
+    }
+    .footer-bottom .copyright {
+        text-align: left ;
+        padding: 10px 20px ;
+    }
+    .footer-bottom .logo {
+        width: 100% !important;
+        padding: 0 20px ;
+    }
+}
+
+/* ✅ 모바일 반응형 */
+@media screen and (max-width: 1024px) {
+    .footer {
+        /* background: #000; 검은 배경 유지 */
+        color: #fff;
+        min-height: 300px; /* ✅ footer 최소 높이 설정 */
+        padding-bottom: 60px; /* ✅ 여유 공간 확보 */
+    }
+    html, body {
+        height: 100%;
+    }
+
+    main {
+        flex: 1;
+    }
+    /* 모바일 대응 */
+    .logo {
+        margin-top: 10px;
+    }
+    .footer-top {
+        padding: 0px 0;
+        background-color: transparent; /* ✅ 투명 배경 */
+     
+    }
+
+    .footer-top ul {
+        display: flex;
+        flex-wrap: nowrap;
+        justify-content: flex-start;
+        /* gap: 5px; */
+        transition: none;
+    }
+    .footer-top ul li {
+        flex-shrink: 0;
+        margin-right:0px;
+        width: calc(24% - 0%);
+    }
+   
+    .footer-bottom {
+        flex-direction: column;
+        align-items: center;
+        /* text-align: center; */
+    }
+
+    .footer-bottom .info > div {
+        margin-bottom: 10px;
+        padding:3px 0;
+    }
+
+    .footer-bottom .logo {
+        margin-bottom: 15px;
+    }
+    .footer-bottom .copyright {
+        margin-top: 20px;
+        font-size: 12px;
+        opacity: 0.7;
+        background-color: #000; /* ✅ 검정 배경 추가 */
+        color: #fff; /* ✅ 글자색 흰색으로 변경 */
+        width: 100%;
+        text-align: left ;
+        padding: 10px 20px ;
+    }
+    
+    .footer-policy-links {
+        text-align: left;
+        /* margin-bottom: 10px; */
+        font-size: 16px;
+        color: white;
+        margin: 40px 0 0 0
+    }
+    .info > div {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: flex-start;
+        gap: 1px;
+    }
+}
+</style>
+
+<script>
+   document.addEventListener('DOMContentLoaded', function () {
+    const footerWrapper = document.querySelector('.footer-top');
+    const footerUl = footerWrapper.querySelector('ul');
+    let isMobile = window.innerWidth <= 1024;
+
+    const speed = 0.5;
+    let position = 0;
+    let originalUlWidth = 0;
+    let animationFrameId;
+    let isPaused = false;
+
+    function setupMobileAnimation() {
+        originalUlWidth = footerUl.scrollWidth;
+
+        const originalItems = Array.from(footerUl.children);
+        originalItems.forEach(item => {
+            const clone = item.cloneNode(true);
+            footerUl.appendChild(clone);
+        });
+        footerUl.dataset.cloned = 'true';
+
+        footerUl.style.whiteSpace = 'nowrap';
+        footerUl.style.transition = 'none';
+
+        animationFrameId = requestAnimationFrame(animateSlide);
+    }
+
+    function animateSlide() {
+        if (isPaused) {
+            animationFrameId = requestAnimationFrame(animateSlide);
+            return;
+        }
+
+        position += speed;
+
+        if (position >= originalUlWidth) {
+            position -= originalUlWidth;
+        }
+        
+        footerUl.style.transform = `translateX(${-position}px)`;
+
+        animationFrameId = requestAnimationFrame(animateSlide);
+    }
+
+    setTimeout(() => {
+        if (isMobile) {
+            setupMobileAnimation();
+
+            footerUl.addEventListener('mouseenter', () => {
+                isPaused = true;
+                cancelAnimationFrame(animationFrameId);
+            });
+            footerUl.addEventListener('mouseleave', () => {
+                isPaused = false;
+                animationFrameId = requestAnimationFrame(animateSlide);
+            });
+        } else {
+            footerUl.style.transform = 'translateX(0)';
+            footerUl.style.justifyContent = 'center';
+            footerUl.style.flexWrap = 'wrap';
+            footerUl.style.width = '100%';
+            footerUl.style.transition = 'none';
+        }
+    }, 100);
+
+    window.addEventListener('resize', () => {
+        cancelAnimationFrame(animationFrameId);
+        position = 0;
+        isPaused = false;
+
+        if (footerUl.dataset.cloned === 'true') {
+            const originalChildrenCount = footerUl.children.length / 2;
+            while (footerUl.children.length > originalChildrenCount) {
+                footerUl.removeChild(footerUl.lastChild);
+            }
+            delete footerUl.dataset.cloned;
+        }
+        
+        const newIsMobile = window.innerWidth <= 1024;
+        
+        if (newIsMobile !== isMobile) {
+            footerUl.style.transform = 'translateX(0)';
+            footerUl.style.justifyContent = 'flex-start';
+            footerUl.style.flexWrap = 'nowrap';
+            footerUl.style.width = 'auto';
+            footerUl.style.transition = 'none';
+
+            if (newIsMobile) {
+                setupMobileAnimation();
+            } else {
+                footerUl.style.transform = 'translateX(0)';
+                footerUl.style.justifyContent = 'center';
+                footerUl.style.flexWrap = 'wrap';
+                footerUl.style.width = '100%';
+            }
+            isMobile = newIsMobile;
+        } else {
+            if (isMobile) {
+                originalUlWidth = footerUl.scrollWidth / 2;
+                animationFrameId = requestAnimationFrame(animateSlide);
+            }
+        }
+    });
+});
+</script>
+
+    <style>
+/* 모바일 대응 */
+@media (max-width: 1024px) {
+    .modal-container.popup {
+        position: fixed;
+        top: 20px !important; /* 화면 최상단 가까이 */
+        left: 50% !important;
+        transform: translateX(-50%);
+        max-width: 95vw !important;
+        max-height: 55vh !important;
+        width: 90% !important;
+        height: auto !important;
+        padding: 8px;
+        z-index: 2100;
+    }
+
+    .modal-container.popup img {
+        width: 100% !important;
+        height: auto;
+    }
+
+    .modal-container.popup .modal-content {
+        max-height: none;
+    }
+}
+</style>
+
+<script>
+    window.onload = () => {
+        let showPopup = false;
+        for (let i = 1; i <= 2; i++) {
+            let cookieName = "popupCheck" + i;
+            let popupChecked = getCookie(cookieName);
+            let targetPopup = document.getElementById('popup' + i);
+
+            if (popupChecked == "checked") {
+                targetPopup.classList.remove('active');
+            } else {
+                targetPopup.classList.add('active');
+                showPopup = true;
+            }
+        }
+        if (showPopup) {
+            let back = document.querySelector('.modal-back.popup');
+            back.classList.add('active');
+        }
+    };
+
+    // 260528: 체크박스 의존성을 없애고 isHideForADay 인자값으로 쿠키 설정 여부 판단
+    function checkPopup(index, isHideForADay = false) {
+        if (isHideForADay) {
+            var todayDate = new Date();
+            todayDate.setDate(todayDate.getDate() + 1);
+            document.cookie = "popupCheck" + index + "=checked; path=/; expires=" + todayDate.toGMTString() + ";";
+        }
+        
+        let targetPopup = document.getElementById('popup' + index);
+        targetPopup.classList.remove('active');
+
+        let activePopup = document.querySelectorAll('.modal-container.popup.active');
+        if (activePopup.length == 0) {
+            let back = document.querySelector('.modal-back.popup');
+            back.classList.remove('active');
+        }
+    }
+    
+    function getCookie(name) {
+        var cookie = document.cookie;
+        if (document.cookie != "") {
+            var cookie_array = cookie.split("; ");
+            for (var index in cookie_array) {
+                var cookie_name = cookie_array[index].split("="); // = 기준으로 나누기
+
+                if (cookie_name[0] == name) {
+                    return cookie_name[1];
+                }
+            }
+        }
+        return;
+    }
+</script>
+
+<div class="modal-back popup">
+                <div class="modal-container popup" id="popup1"
+                style="max-width: 510px; max-height: 570px; background-color: #ffffff;">
+                <div class="modal-header">
+                                        <h4>주 4.5일제 시행 안내</h4>
+                                </div>
+                <div class="modal-content" style="max-height: calc(100% - 70px);">
+                                            <a href="https://nysc.or.kr/nysc/pages/notice_view.php?id=271">
+                            <img src="/nysc/assets/images/popups/6a794ffec9212.png" style="width: 500px;">
+                        </a>
+                                    </div>
+                
+                <div class="modal-footer" style="padding: 0;">
+                    <div class="w-100 d-flex justify-between" style="height: 50px;">
+                        <button type="button" class="btn-text" style="flex: 1; background-color: #e6e6e6; color: #333; border: none; cursor: pointer;" onclick="checkPopup(1, true);">하루 동안 열지 않기</button>
+                        <button type="button" class="btn-text" style="flex: 1; background-color: #4b54a3; color: #fff; border: none; cursor: pointer;" onclick="checkPopup(1, false);">닫기</button>
+                    </div>
+                </div>
+            </div>
+                    <div class="modal-container popup" id="popup2"
+                style="max-width: 510px; max-height: 570px; background-color: #ffffff;">
+                <div class="modal-header">
+                                        <h4>청년 지역이동·정착 금융상품 안내</h4>
+                                </div>
+                <div class="modal-content" style="max-height: calc(100% - 70px);">
+                                            <a href="https://buly.kr/FLaz4cc">
+                            <img src="/nysc/assets/images/popups/6a9fc36ad290b.png" style="width: 500px;">
+                        </a>
+                                    </div>
+                
+                <div class="modal-footer" style="padding: 0;">
+                    <div class="w-100 d-flex justify-between" style="height: 50px;">
+                        <button type="button" class="btn-text" style="flex: 1; background-color: #e6e6e6; color: #333; border: none; cursor: pointer;" onclick="checkPopup(2, true);">하루 동안 열지 않기</button>
+                        <button type="button" class="btn-text" style="flex: 1; background-color: #4b54a3; color: #fff; border: none; cursor: pointer;" onclick="checkPopup(2, false);">닫기</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    <script>
+        // 배너 기능
+
+        document.addEventListener('DOMContentLoaded', function () {
+            const wrapper = document.querySelector('.wrapper.banner');
+            const slideWrapper = wrapper.querySelector('.slide-wrapper');
+            const slides = slideWrapper.querySelectorAll('.slide-item');
+
+            // _maincont 접미사가 붙은 컨트롤러 요소들
+            const currNumSpan = wrapper.querySelector('.current_maincont');
+            const totalNumSpan = wrapper.querySelector('.total_maincont');
+            const prevBtnC = wrapper.querySelector('.btn-prev-cntl_maincont');
+            const nextBtnC = wrapper.querySelector('.btn-next-cntl_maincont');
+            const playPauseBtn = wrapper.querySelector('.btn-play-pause_maincont');
+
+            let currentIndex = 0;
+            let slideInterval;
+            totalNumSpan.textContent = slides.length;
+
+            const updateSlide = (index) => {
+                const offset = -index * 100;
+                slideWrapper.style.transform = `translateX(${offset}%)`;
+                if (currNumSpan) currNumSpan.textContent = index + 1;
+            };
+
+            const showSlide = (index) => {
+                if (index < 0) currentIndex = slides.length - 1;
+                else if (index >= slides.length) currentIndex = 0;
+                else currentIndex = index;
+                updateSlide(currentIndex);
+            };
+
+            // 버튼 이벤트
+            nextBtnC.addEventListener('click', () => {
+                stopAutoSlide();
+                showSlide(currentIndex + 1);
+                if (!playPauseBtn.classList.contains('paused')) startAutoSlide();
+            });
+
+            prevBtnC.addEventListener('click', () => {
+                stopAutoSlide();
+                showSlide(currentIndex - 1);
+                if (!playPauseBtn.classList.contains('paused')) startAutoSlide();
+            });
+
+            playPauseBtn.addEventListener('click', function () {
+                this.classList.toggle('paused');
+                const imgTag = this.querySelector('img');
+                if (this.classList.contains('paused')) {
+                    // [정지 상태] -> 재생 아이콘으로 변경
+                    if (imgTag) imgTag.src = "/nysc/assets/images/play_icon.png"; // 재생 아이콘 경로 (예시)
+                    stopAutoSlide();
+                } else {
+                    // [재생 상태] -> 정지 아이콘으로 변경
+                    if (imgTag) imgTag.src = "/nysc/assets/images/stop_icon.png"; // 원래 정지 아이콘 경로
+                    startAutoSlide();
+                }
+            });
+
+            const startAutoSlide = () => {
+                if (slideInterval) clearInterval(slideInterval);
+                slideInterval = setInterval(() => showSlide(currentIndex + 1), 5000);
+            };
+
+            const stopAutoSlide = () => clearInterval(slideInterval);
+
+            updateSlide(currentIndex);
+            startAutoSlide();
+        });
+        // 배너 기능 끝
+
+        let center_wrapper = document.querySelector('.wrapper.center');
+        let center_prev = center_wrapper.querySelector('button.btn-prev');
+        let center_next = center_wrapper.querySelector('button.btn-next');
+        let center_index = 0;
+
+        center_prev.addEventListener("click", () => {
+            center_index -= 1;
+            slideArea(center_index, 'prev', center_wrapper);
+        });
+        center_next.addEventListener("click", () => {
+            center_index += 1;
+            slideArea(center_index, 'next', center_wrapper);
+        })
+
+        let apply_wrapper = document.querySelector('.wrapper.apply');
+        let apply_prev = apply_wrapper.querySelector('button.btn-prev');
+        let apply_next = apply_wrapper.querySelector('button.btn-next');
+        let apply_index = 0;
+
+        apply_prev.addEventListener("click", () => {
+            apply_index -= 1;
+            slideArea(apply_index, 'prev', apply_wrapper);
+        });
+        apply_next.addEventListener("click", () => {
+            apply_index += 1;
+            slideArea(apply_index, 'next', apply_wrapper);
+        })
+
+        function slideArea(index, direction, targetWrapper) {
+            let offset = 0;
+            if (direction == "prev") {
+                offset = -index * 102; // 아무것도 안뜨는 오류 // 수정 241015
+            } else if (direction == "next") {
+                offset = -index * 102;
+            }
+            let targetArea = targetWrapper.querySelector('.main-card-wrapper');
+            targetArea.style.transform = `translateX(${offset}%)`;
+
+            let targetPrev = targetWrapper.querySelector('button.btn-prev');
+            if (index == 0) {
+                targetPrev.classList.add('d-none');
+            } else {
+                targetPrev.classList.remove('d-none');
+            }
+        }
+
+        let instagram_wrapper = document.querySelector('.wrapper.instagram');
+        let insta_prev = instagram_wrapper.querySelector('button.btn-prev');
+        let insta_next = instagram_wrapper.querySelector('button.btn-next');
+        let instagram_area = document.getElementById('instagram_area');
+        let insta_prev_url = "";
+        let insta_next_url = "";
+        let insta_index = 0;
+
+        function getFeed(url, direction = "") {
+            if (direction == "prev") {
+                insta_index -= 1;
+                let insta_offset = -insta_index * 102;
+                instagram_area.style.transform = `translateX(${insta_offset}%)`;
+
+                if (insta_index == 0) {
+                    insta_prev.classList.add('d-none');
+                    insta_prev_url = "";
+                }
+            } else {
+                fetch(url)
+                    .then((res) => res.json())
+                    .then((result) => {
+                        let data = result['data'];
+                        let paging = result['paging'];
+
+                        data.forEach((post) => {
+                            let html = `<div class="card-item">
+                                            <a href="${post.permalink}" target="_blank">
+                                                <div class="thumbnail">
+                                                    <img src="${post.media_url}" alt="Instagram Post">
+                                                </div>
+                                                <div class="description instagram">
+                                                    <p class="fs-small text-gray">${post.caption}</p>
+                                                </div>
+                                            </a>
+                                        </div>`;
+                            instagram_area.innerHTML += html;
+                        })
+
+                        let prev = paging['previous'];
+                        let next = paging['next'];
+
+                        if (prev == null || prev == undefined || prev.length == 0) {
+                            insta_prev.classList.add('d-none');
+                            insta_prev_url = "";
+                        } else {
+                            insta_prev.classList.remove('d-none');
+                            insta_prev_url = prev;
+                        }
+
+                        insta_next_url = next;
+
+                        if (direction == "next") {
+                            insta_index += 1;
+                            let insta_offset = -insta_index * 102;
+                            instagram_area.style.transform = `translateX(${insta_offset}%)`;
+                        }
+
+                    })
+                    .catch(error => console.error(error));
+            }
+        }
+
+        insta_prev.addEventListener("click", () => {
+            getFeed("", 'prev');
+        });
+        insta_next.addEventListener("click", () => {
+            getFeed(insta_next_url, 'next');
+        })
+
+        document.addEventListener("DOMContentLoaded", function () {
+            document.querySelectorAll(".gnb-mobile .main-menu > a").forEach(menu => {
+                menu.addEventListener("click", function (event) {
+                    event.preventDefault();
+                    let parent = this.parentElement;
+                    parent.classList.toggle("active");
+                });
+            });
+        });
+
+
+    </script>
+
+</body>
+
+</html>

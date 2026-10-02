@@ -1,0 +1,898 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="title" content="경남바로서비스">
+    <meta name="keywords" content="경남바로서비스">
+    <meta name="description" content="경남바로서비스 홈페이지입니다.">
+	<meta property="og:title" content="경남바로서비스">
+	<meta property="og:description" content="경남바로서비스 홈페이지입니다.">
+	<meta property="og:image" content="/baro/css/images/common/ogimg.jpg">
+	<meta name="google-site-verification" content="Dk11Sib8rCcrTvbCKMCrOomKEJ7RJujb4mtrvugTIHo" />
+    <title>경남바로서비스</title>
+    <link rel="shortcut icon" href="/baro/css/images/common/favicon.ico" type="image/x-icon" />
+	<link rel="stylesheet" type="text/css" href="/baro/css/baro/common.css?v=2.0" media="all">
+	
+	<link rel="stylesheet" type="text/css" href="/baro/css/baro/contents.css?v=2.4" media="all">
+	<link rel="stylesheet" type="text/css" href="/baro/css/baro/contents2.css?v=2.0" media="all">
+	<link rel="stylesheet" type="text/css" href="/baro/css/baro/default.css?v=2.1" media="all">
+	<link rel="stylesheet" type="text/css" href="/baro/css/baro/guide.css?v=2.0" media="all">
+	<link rel="stylesheet" type="text/css" href="/baro/css/baro/layout.css?v=2.2" media="all">
+	<link rel="stylesheet" type="text/css" href="/baro/css/baro/main.css?v=2.0" media="all">
+	<link rel="stylesheet" type="text/css" href="/baro/css/baro/jquery-ui.css?v=1.0" media="all">
+	<link rel="stylesheet" type="text/css" href="/baro/css/baro/swiper.min.css?v=1.0" media="all">
+	<link rel="stylesheet" type="text/css" href="/baro/css/selfcheckTest.css?v=1.0" media="all">
+	<link rel="canonical" href="https://www.gyeongnam.go.kr/baro/index.es?sid=a1">
+	
+	<script type='text/javascript' src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+	<!-- <script type="text/javascript" src="/baro/js/baro/jquery-1.11.3.min.js"></script> -->
+	<script type="text/javascript" src="/baro/js/baro/jquery-ui.min.js"></script>
+	<script type="text/javascript" src="/baro/js/baro/c3.js"></script>
+	<script type="text/javascript" src="/baro/js/baro/carouFredSel.js?v=1.0"></script>
+	<script type="text/javascript" src="/baro/js/baro/common.js?v=1.1"></script>
+	<script type="text/javascript" src="/baro/js/baro/d3.js"></script>
+	<script type="text/javascript" src="/baro/js/baro/d3.v3.min.js"></script>
+	<script type="text/javascript" src="/baro/js/baro/html5shiv.js"></script>
+    <script type="text/javascript" src="/baro/js/baro/slick.js?v=1.0"></script>
+    <script type="text/javascript" src="/baro/js/baro/swiper-bundle.min.js"></script>
+    <script type="text/javascript" src="/baro/js/baro/gsap.min.js"></script>
+    <script type="text/javascript" src="/baro/js/baro/ScrollToPlugin.min.js"></script>
+    <script type="text/javascript" src="/baro/js/baro/ScrollTrigger.min.js"></script>
+
+	<script type="text/javascript" src="/baro/js/baro/lnb.js"></script>
+	<script type="text/javascript" src="/baro/js/baro/main.js?v=3.0"></script>
+	<script type="text/javascript" src="/baro/js/baro/openlayer.js"></script>
+	<script type="text/javascript" src="/baro/js/baro/respond.min.js"></script>
+	<script type="text/javascript" src="/baro/js/baro/tab.js"></script>
+
+	<script type="text/javascript" src="/baro/js/baro/calendar_main.js?v=1.0"></script>
+	
+	<script src="/baro/source/sEditorNew/js/service/HuskyEZCreator.js" charset="UTF-8"></script>
+	<script src="/baro/ease_src/js/board.js" charset="UTF-8"></script>
+
+	<!-- eDotXPress 전자점자--> 		
+    <script type="text/javascript" src="/EDotXPressHtml/js/edotxpress-html.min.js?t=20250407"></script>
+    <script type="text/javascript" src="/EDotXPressHtml/js/edotxpress-common.js?t=20250407"></script>
+    <script type="text/javascript" src="/EDotXPressHtml/js/edotxpress-config-gyeongnam.js?t=20250407"></script>
+
+	
+	<script>
+/*
+	$(function(){
+		if($(".depth1 .m5").html() == undefined){
+			$("#lnb .depth1 > li").css("padding", "0px 60px");
+		}else{
+			$("#lnb .depth1 > li").css("padding", "0px 40px");
+		}
+		$("#lnb .depth1 > li.m8").css("padding", "0");
+	});
+*/
+	</script>
+
+</head>
+<body>
+
+	<script>
+	function fn_logout(){
+		$.ajax({
+			url : 'https://www.gyeongnam.go.kr/j_spring_security_logout'
+			, async : false
+			, success : function(data){
+				location.href='/baro/logout.es?sid=a1&mid=';
+			}
+			, error : function(){
+				location.href='/baro/logout.es?sid=a1&mid=';
+			}
+		});
+	}
+	</script>
+    <div id="skipnavi">
+        <a href="#contents">본문 바로가기</a>
+    </div>
+    <!-- wrapper -->
+    
+ 	<div id="wrap" class="main">
+
+        <!-- header -->
+    <header id="header">
+		<div class="header_inner">
+			<h1 class="logo"><a href="/baro/index.es?sid=a1"><img src="/baro/css/images/common/logo.png" alt="경남 바로 서비스" ></a></h1>
+			<nav id="lnb">
+				<ul class="depth1">
+					
+					<li><a href="/baro/menu.es?mid=a10200000000" target="_self">서비스신청</a>
+					
+						<div class="depth2_wrap">
+							<ul class="depth2">
+					
+							<li>
+								<a href="/baro/menu.es?mid=a10202000000" target="_self">서비스 신청하기
+								</a>
+								
+									<div class="depth3">
+										<ul>
+								
+										</ul>
+									</div>
+								
+							</li>
+					
+							</ul>
+						</div>
+					
+					</li>
+				
+					<li><a href="/baro/menu.es?mid=a10700000000" target="_self">지원정책 안내</a>
+					
+						<div class="depth2_wrap">
+							<ul class="depth2">
+					
+							<li>
+								<a href="/baro/menu.es?mid=a10703000000" target="_self">경상남도 지원정책
+								</a>
+								
+									<div class="depth3">
+										<ul>
+								
+										</ul>
+									</div>
+								
+							</li>
+					
+							<li>
+								<a href="/baro/menu.es?mid=a10704000000" target="_self">생애주기별저출생대응<br>지원정책
+								</a>
+								
+									<div class="depth3">
+										<ul>
+								
+										</ul>
+									</div>
+								
+							</li>
+					
+							<li>
+								<a href="/baro/menu.es?mid=a10701000000" target="_self">분야별 지원정책 플랫폼
+								</a>
+								
+									<div class="depth3">
+										<ul>
+								
+										</ul>
+									</div>
+								
+							</li>
+					
+							</ul>
+						</div>
+					
+					</li>
+				
+					<li><a href="/baro/menu.es?mid=a10300000000" target="_self">이용안내</a>
+					
+						<div class="depth2_wrap">
+							<ul class="depth2">
+					
+							<li>
+								<a href="/baro/menu.es?mid=a10306000000" target="_self">경남바로서비스 소개
+								</a>
+								
+									<div class="depth3">
+										<ul>
+								
+										</ul>
+									</div>
+								
+							</li>
+					
+							<li>
+								<a href="/baro/menu.es?mid=a10301000000" target="_self">공지사항
+								</a>
+								
+									<div class="depth3">
+										<ul>
+								
+										</ul>
+									</div>
+								
+							</li>
+					
+							<li>
+								<a href="/baro/menu.es?mid=a10302000000" target="_self">FAQ
+								</a>
+								
+									<div class="depth3">
+										<ul>
+								
+										</ul>
+									</div>
+								
+							</li>
+					
+							<li>
+								<a href="/baro/menu.es?mid=a10304000000" target="_self">장애 문의
+								</a>
+								
+									<div class="depth3">
+										<ul>
+								
+										</ul>
+									</div>
+								
+							</li>
+					
+							</ul>
+						</div>
+					
+					</li>
+				
+				        
+				</ul>
+				<div class="close_area">
+					<p class="home_btn"><a href="/baro/"><img src="/baro/css/images/common/m_logo.png" alt="경남 바로 서비스" ></a></p>
+					<p class="close"></p><span class="blind">닫기</span>
+					<div class="srh_box2_mo">
+						<form action="/baro/baroSearch.es" method="get" id="totalSearchForm_mo" onsubmit="return fn_totalSearchForm_mo();">
+							<fieldset>
+								<legend>통합 검색</legend>
+								<input type="hidden" name="mid" value="a10401000000">
+								<input type="hidden" name="pageType" value="list">
+								<label for="tkeyword" class="blind">검색어 입력</label>	
+								<input type="text" class="sword" name="keyword" title="검색어를 입력하세요" placeholder="검색어를 입력하세요">
+								<a href="javascript:$('#totalSearchForm_mo').submit();" class="all_sear_btn"><img src="/baro/css/images/common/search.png" alt="검색"></a>
+							</fieldset>
+						</form>
+					</div> 
+				</div>
+				 <ul class="lnb_btn_area">
+					<li><a href="/baro/menu.es?mid=a10500000000">사이트맵</a></li>
+					
+					
+					
+						<li><a href="/baro/menu.es?mid=a10607000000">로그인</a></li>
+					
+					
+				</ul> 
+			
+			</nav>
+				<ul class="nav_btn">
+						
+						
+						
+							<li><a href="/baro/menu.es?mid=a10607000000" class="login"></a></li>
+						
+						
+						<li class="search_drop">
+							<a href="javascript:void(0);" class="srh_btn"><span class="blind">검색</span></a>
+							<div class="srh_box2">
+								<form action="/baro/baroSearch.es" method="get" id="totalSearchForm" onsubmit="return fn_totalSearchForm();">
+									<fieldset>
+										<legend>통합 검색</legend>
+										<input type="hidden" name="mid" value="a10401000000">
+										<input type="hidden" name="pageType" value="list">
+										<label for="tkeyword" class="blind">검색어 입력</label>
+										<img src="/baro/css/images/common/srh_ico.png" alt="" class="mr_10">
+										<input type="text" name="keyword" class="sword" id="tkeyword" title="검색어를 입력하세요" placeholder="검색어를 입력하세요">
+										<a href="javascript:$('#totalSearchForm').submit();" class="all_sear_btn"><img src="/baro/css/images/common/search.png" alt="검색"></a>
+									</fieldset>
+								</form>
+							</div>
+						</li>
+						<li><a href="/baro/menu.es?mid=a10500000000" class="sitemap" title="사이트맵"></a></li>
+				</ul>
+			<div id="lnb_bg">
+				<div class="lnb_img"></div>
+			</div>
+			<script>
+				$(document).ready(function() {
+
+					/*통합검색*/
+					$( '.srh_btn' ).click( function() {
+					$( '.srh_box2' ).slideToggle(200);
+					$('header').toggleClass('on')
+					});
+
+				});
+
+				function fn_totalSearchForm(){
+					if($("#totalSearchForm [name=keyword]").val() == ""){
+						alert("검색어를 입력하여주시기 바랍니다.");
+						$("#totalSearchForm [name=keyword]").focus();
+						return false;
+					}else if($("#totalSearchForm [name=keyword]").val().length < 2){
+						alert("검색어를 2자 이상 입력하여주시기 바랍니다.");
+						$("#totalSearchForm [name=keyword]").focus();
+						return false;
+					}else{
+						return true;
+					}
+				}
+
+				function fn_totalSearchForm_mo(){
+					if($("#totalSearchForm_mo [name=keyword]").val() == ""){
+						alert("검색어를 입력하여주시기 바랍니다.");
+						$("#totalSearchForm_mo [name=keyword]").focus();
+						return false;
+					}else if($("#totalSearchForm_mo [name=keyword]").val().length < 2){
+						alert("검색어를 2자 이상 입력하여주시기 바랍니다.");
+						$("#totalSearchForm_mo [name=keyword]").focus();
+						return false;
+					}else{
+						return true;
+					}
+				}
+			</script>
+
+
+		</div>
+		<div id="lnb_btn2" class="lnb_btn_mo"><span class="blind">전체메뉴 열기</span></div>
+		<div id="lnb_mask"></div>
+	</header>
+
+<script>
+function fn_menuMove(val){
+	location.href=val;
+}
+</script>
+
+
+
+        <!-- // header -->
+
+<!-- container -->
+<div id="container">         
+  <div id="contents" class="main_con1">
+            
+
+		
+
+		
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/baro/css/modalpopup.css" />
+
+<section id="modalpopup">
+	<article class="group">
+		
+		
+		
+		
+		<p class="blank" style="display:none;">등록된 팝업이 없습니다.</p>
+		
+		
+     
+    </article>
+</section>
+<script>
+	function onedayClose(arg){
+		if($("input[name='pop-chk']").is(":checked") ==true){
+			setCookie("layorClose"+arg,"Y",1);
+		}
+		$("#mpopup_"+arg).hide();
+	}
+
+	function setCookie(cname, cvalue, exdays) {
+		var d = new Date();
+		d.setTime(d.getTime() + (exdays*24*60*60*1000));
+		var expires = "expires="+d.toUTCString();
+		document.cookie = cname + "=" + cvalue + "; " + expires;
+	}
+</script>
+
+
+
+<script>
+window.onload = function () {
+	getCalendar('2026', '10', '3');    //달력 호출
+	getMonthCount('2026', '10');
+};
+
+
+
+function func_go() {
+    let myform = document.querySelector("#policyForm");
+    if(myform.requestSubmit) {
+        myform.requestSubmit();
+    } else {
+        myform.submit();
+    }
+}
+
+function func() {
+    let myform = document.querySelector("#policyForm");
+    if(myform.requestSubmit) {
+        myform.requestSubmit();
+    } else {
+        myform.submit();
+    }
+}
+
+</script>
+
+
+
+    <section class="sec sec01">
+        <div class="dv_wrap">
+            <div class="txt_wrap">
+                <span class="tit_img"><span class="blind">경남도민이 행복해지는</span></span>
+                <h2>원스톱 서비스</h2>
+                <ul>
+                    <li>모바일<span class="small_img"><span class="blind">바로</span></span></li>
+                    <li>온라인<span class="small_img"><span class="blind">바로</span></span></li>
+                    <li>한번에<span class="small_img"><span class="blind">바로</span></span></li>
+                </ul>
+            </div>
+            <div class="mslide_wrapper">
+                <div class="mslide swiper">
+                    <div class="swiper-wrapper">
+                          <div class="swiper-slide">
+                            <a href="/baro/service.es?mid=a10202000000&srh_loc=&order_by_col=&txtSearch=출산&page_no=1" class="full-img">
+                            <span class="cont">
+                                <span class="tit">출산 가정 영양꾸러미 바우처 사업</span>
+                            </span>
+                            <span class="img">
+                                <img src="/baro/css/images/main/mslide_img23.png" alt="출산 가정 영양꾸러미 바우처 사업"/>
+                            </span>
+                            </a>
+                        </div>
+                        <div class="swiper-slide">
+                            <a href="/baro/serviceView.es?service_no=577&mid=a10202000000" class="full-img">
+                                <span class="cont">
+                                    <span class="cate">경상남도</span>
+                                    <span class="tit">도내 대학 재학<br>장학생 장학금 선발</span>
+                                </span>
+                                <span class="img">
+                                    <img src="/baro/css/images/main/mslide_img25.png" alt="도내 대학 재학 장학생 장학금"/>
+                                </span>
+                            </a>
+                        </div>
+                        <div class="swiper-slide">
+                            <a href="/baro/service.es?mid=a10202000000&srh_loc=&order_by_col=&txtSearch=여행&page_no=1" class="full-img">
+                                <span class="cont">
+                                    <span class="cate">경상남도</span>
+                                    <span class="tit">경남에서<br>한 달 여행하기</span>
+                                </span>
+                                <span class="img">
+                                    <img src="/baro/css/images/main/mslide_img24.png" alt="경남에서 한 달 여행하기"/>
+                                </span>
+                            </a>
+                        </div>
+                        <div class="swiper-slide">
+                            <a href="/baro/service.es?mid=a10202000000&srh_loc=&order_by_col=&txtSearch=면접정장&page_no=1" class="full-img">
+                            <span class="cont">
+                                <span class="cate">경상남도</span>
+                                <span class="tit">2026년 청년 면접정장 무료대여 사업</span>
+                            </span>
+                            <span class="img">
+                                <img src="/baro/css/images/main/mslide_img21.png" alt="2026년 청년 면접정장 무료대여 사업"/>
+                            </span>
+                            </a>
+                        </div>
+						<div class="swiper-slide" style="background-color: #5e3a28;">
+                            <a href="/baro/service.es?mid=a10202000000&srh_loc=&order_by_col=&txtSearch=건설공사+하도급&page_no=1">
+                            <span class="cont">
+                                <span class="cate">경상남도</span>
+                                <span class="tit">건설공사 하도급대급 지급보증 수수료지원</span>
+                                <!-- <span class="date">2024-01-17 ~ 2024-12-13</span> -->
+                            </span>
+                            <span class="img">
+                                <img src="/baro/css/images/main/mslide_img12.png" alt="건설공사 하도급대급 지급보증 수수료지원"/>
+                            </span>
+                            </a>
+                        </div>
+                         <div class="swiper-slide">
+                            <a href="/baro/service.es?mid=a10202000000&srh_loc=&order_by_col=&txtSearch=주택+임차&page_no=1" class="full-img">
+                            <span class="cont">
+                                <span class="cate">경상남도</span>
+                                <span class="tit">청년주택임차보증금<br>이자 지원 사업</span>
+                            </span>
+                            <span class="img">
+                                <img src="/baro/css/images/main/mslide_img17.png" alt="청년주택임차보증금 이자 지원 사업"/>
+                            </span>
+                            </a>
+                          </div>
+                          <div class="swiper-slide" style="background-color: #e4c85a;">
+                            <a href="/baro/service.es?mid=a10202000000&srh_loc=&order_by_col=&txtSearch=전세보증&page_no=1">
+                            <span class="cont">
+                                <span class="cate">경상남도</span>
+                                <span class="tit">전세보증금 반환 보증료 지원</span>
+                            </span>
+                            <span class="img">
+                                <img src="/baro/css/images/main/mslide_img7.png" alt="전세보증금 반환 보증료 지원"/>
+                            </span>
+                            </a>
+                        </div>
+                          <div class="swiper-slide">
+                            <a href="/baro/service.es?mid=a10202000000&srh_loc=&order_by_col=&txtSearch=출산&page_no=1" class="full-img">
+                            <span class="cont">
+                                <span class="tit">출산 가정 영양꾸러미 바우처 사업</span>
+                            </span>
+                            <span class="img">
+                                <img src="/baro/css/images/main/mslide_img23.png" alt="출산 가정 영양꾸러미 바우처 사업"/>
+                            </span>
+                            </a>
+                        </div>
+                         <div class="swiper-slide">
+                        <a href="/baro/service.es?mid=a10202000000&srh_loc=&order_by_col=&txtSearch=한달+여행&page_no=1" class="full-img">
+                            <span class="cont">
+                                <span class="cate">경상남도</span>
+                                <span class="tit">경남에서<br>한 달 여행하기</span>
+                            </span>
+                            <span class="img">
+                                <img src="/baro/css/images/main/mslide_img24.png" alt="경남에서 한 달 여행하기"/>
+                            </span>
+                        </a>
+                        </div>
+                         <div class="swiper-slide">
+                            <a href="/baro/service.es?mid=a10202000000&srh_loc=&order_by_col=&txtSearch=면접정장&page_no=1" class="full-img">
+                            <span class="cont">
+                                <span class="cate">경상남도</span>
+                                <span class="tit">2026년 청년 면접정장 무료대여 사업</span>
+                            </span>
+                            <span class="img">
+                                <img src="/baro/css/images/main/mslide_img21.png" alt="2026년 청년 면접정장 무료대여 사업"/>
+                            </span>
+                            </a>
+                        </div>
+						<div class="swiper-slide" style="background-color: #5e3a28;">
+                            <a href="/baro/service.es?mid=a10202000000&srh_loc=&order_by_col=&txtSearch=건설공사+하도급&page_no=1">
+                            <span class="cont">
+                                <span class="cate">경상남도</span>
+                                <span class="tit">건설공사 하도급대급 지급보증 수수료지원</span>
+                            </span>
+                            <span class="img">
+                                <img src="/baro/css/images/main/mslide_img12.png" alt="건설공사 하도급대급 지급보증 수수료지원"/>
+                            </span>
+                            </a>
+                        </div>
+                         <div class="swiper-slide">
+                            <a href="/baro/service.es?mid=a10202000000&srh_loc=&order_by_col=&txtSearch=주택+임차&page_no=1" class="full-img">
+                            <span class="cont">
+                                <span class="cate">경상남도</span>
+                                <span class="tit">청년주택임차보증금<br>이자 지원 사업</span>
+                            </span>
+                            <span class="img">
+                                <img src="/baro/css/images/main/mslide_img17.png" alt="청년주택임차보증금 이자 지원 사업"/>
+                            </span>
+                            </a>
+                          </div>
+                          <div class="swiper-slide" style="background-color: #e4c85a;">
+                            <a href="/baro/service.es?mid=a10202000000&srh_loc=&order_by_col=&txtSearch=전세보증&page_no=1">
+                            <span class="cont">
+                                <span class="cate">경상남도</span>
+                                <span class="tit">전세보증금 반환 보증료 지원</span>
+                            </span>
+                            <span class="img">
+                                <img src="/baro/css/images/main/mslide_img7.png" alt="전세보증금 반환 보증료 지원"/>
+                            </span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="mslide_ctrl">
+                    <button type="button" class="prev_btn"><span class="blind">이전 리스트 보기</span></button>
+                    <button type="button" class="next_btn"><span class="blind">다음 리스트 보기</span></button>
+                </div>
+            </div>
+        </div>
+        <div class="mrolling_wrapper">
+            <div class="mrolling-ctrl">
+                <button class="btn-prev"><span class="blind">이전슬라이드</span></button>
+                <button class="btn-play"><span class="blind">슬라이드재생</span></button>
+                <button class="btn-stop"><span class="blind">슬라이드멈춤</span></button>
+                <button class="btn-next"><span class="blind">다음슬라이드</span></button>
+            </div>
+            <div class="mrolling swiper">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide">
+						<a href="/baro/service.es?mid=a10202000000&srh_loc=&order_by_col=&txtSearch=여행&page_no=1">
+							<span class="tit">경남에서 한 달 여행하기</span>
+							<img src="/baro/css/images/main//mrolling_icon34.png" alt="경남에서 한 달 여행하기"/>
+						</a>
+					  </div>
+                    <div class="swiper-slide">
+                            <a href="/baro/service.es?mid=a10202000000&srh_loc=&order_by_col=&txtSearch=출산&page_no=1">
+                                <span class="tit">출산 가정 영양꾸러미 바우처 사업</span>
+                                <img src="/baro/css/images/main/mrolling_icon33.png" alt="출산 가정 영양꾸러미 바우처 사업"/>
+                            </a>
+                    </div>
+                    <div class="swiper-slide">
+                            <a href="/baro/service.es?mid=a10202000000&srh_loc=&order_by_col=&txtSearch=면접정장&page_no=1">
+                                <span class="tit">2026년 청년 면접정장 무료대여 사업</span>
+                                <img src="/baro/css/images/main/mrolling_icon31.png" alt="2026년 청년 면접정장 무료대여 사업"/>
+                            </a>
+                        </div>
+					<div class="swiper-slide">
+                        <a href="/baro/service.es?mid=a10202000000&srh_loc=&order_by_col=&txtSearch=건설공사+하도급&page_no=1">
+                            <span class="tit">건설공사 하도급대급 지급보증 수수료지원</span>
+                            <img src="/baro/css/images/main/mrolling_icon12.png" alt=""/>
+                        </a>
+                    </div>
+                    <div class="swiper-slide" >
+                        <a href="/baro/service.es?mid=a10202000000&srh_loc=&order_by_col=&txtSearch=청년주택&page_no=1">
+                            <span class="tit">청년주택 임차보증금 이자지원</span>
+                            <img src="/baro/css/images/main/mrolling_icon18.png" alt=""/>
+                        </a>
+                    </div>
+					  <div class="swiper-slide">
+                        <a href="/baro/service.es?mid=a10202000000&srh_loc=&order_by_col=&txtSearch=전세보증&page_no=1">
+                            <span class="tit">전세보증금 반환 보증료 지원</span>
+                            <img src="/baro/css/images/main/mrolling_icon20.png" alt=""/>
+                        </a>
+                    </div>
+                                    <div class="swiper-slide">
+						<a href="/baro/service.es?mid=a10202000000&srh_loc=&order_by_col=&txtSearch=한달+여행&page_no=1">
+							<span class="tit">경남에서 한 달 여행하기</span>
+							<img src="/baro/css/images/main//mrolling_icon34.png" alt="경남에서 한 달 여행하기"/>
+						</a>
+					  </div>
+                    <div class="swiper-slide">
+                            <a href="/baro/service.es?mid=a10202000000&srh_loc=&order_by_col=&txtSearch=출산&page_no=1">
+                                <span class="tit">출산 가정 영양꾸러미 바우처 사업</span>
+                                <img src="/baro/css/images/main/mrolling_icon33.png" alt="출산 가정 영양꾸러미 바우처 사업"/>
+                            </a>
+                    </div>
+                    <div class="swiper-slide">
+                            <a href="/baro/service.es?mid=a10202000000&srh_loc=&order_by_col=&txtSearch=면접정장&page_no=1">
+                                <span class="tit">2026년 청년 면접정장 무료대여 사업</span>
+                                <img src="/baro/css/images/main/mrolling_icon31.png" alt="2026년 청년 면접정장 무료대여 사업"/>
+                            </a>
+                        </div>
+					<div class="swiper-slide">
+                        <a href="/baro/service.es?mid=a10202000000&srh_loc=&order_by_col=&txtSearch=건설공사+하도급&page_no=1">
+                            <span class="tit">건설공사 하도급대급 지급보증 수수료지원</span>
+                            <img src="/baro/css/images/main/mrolling_icon12.png" alt=""/>
+                        </a>
+                    </div>
+                    <div class="swiper-slide" >
+                        <a href="/baro/service.es?mid=a10202000000&srh_loc=&order_by_col=&txtSearch=청년주택&page_no=1">
+                            <span class="tit">청년주택 임차보증금 이자지원</span>
+                            <img src="/baro/css/images/main/mrolling_icon18.png" alt=""/>
+                        </a>
+                    </div>
+					  <div class="swiper-slide">
+                        <a href="/baro/service.es?mid=a10202000000&srh_loc=&order_by_col=&txtSearch=전세보증&page_no=1">
+                            <span class="tit">전세보증금 반환 보증료 지원</span>
+                            <img src="/baro/css/images/main/mrolling_icon20.png" alt=""/>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="sec sec02">
+        <div class="dv_wrap">
+            <h3 class="tit"><span>지원정책</span> 안내</h3>
+            <div class="tab_wrapper" data-tab="tab1">
+                    <ul class="tablist" role="tablist" aria-orientation="horizontal">
+                        <li><a href="#tab1" role="tab" aria-selected="true" aria-controls="tab1" class="active">경상남도 지원정책</a></li>
+                        <li><a href="#tab2" role="tab" aria-selected="false" aria-controls="tab2">분야별 플랫폼</a></li>    
+                    </ul>
+                <div class="tab-container">
+                    <div id="tab1" role="tabpanel" aria-labelledby="tab1" class="tab-content active">
+                        <div class="tslide_wrapper">
+                            <div class="tslide swiper">
+                                <div class="swiper-wrapper">
+                                </div>
+                            </div>
+                            <div class="tslide_ctrl">
+                                <button type="button" class="prev_btn"><span class="blind">이전 리스트 보기</span></button>
+                                <button type="button" class="next_btn"><span class="blind">다음 리스트 보기</span></button>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="tab2" role="tabpanel" aria-labelledby="tab2" class="tab-content" hidden="hidden">
+                        <div class="tslide_wrapper">
+                            <div class="tslide2 swiper">
+                                <div class="swiper-wrapper">
+                                </div>
+                            </div>
+                            <div class="tslide_ctrl2">
+                                <button type="button" class="prev_btn"><span class="blind">이전 리스트 보기</span></button>
+                                <button type="button" class="next_btn"><span class="blind">다음 리스트 보기</span></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="search_box">
+                    <form id="policyForm" action="/baro/policySearch.es" method="get">
+                        <fieldset>
+                            <legend>정책검색</legend>
+                            <input type="hidden" name="mid" value="a10703000000">
+                            <input type="text" name="policy_title" title="찾으시는 정책을 입력하세요." placeholder="찾으시는 정책을 입력하세요.">
+                            <a href="javascript:func();" class="search_btn" ><span class="blind">검색하기</span></a>
+                        </fieldset>
+                    </form>
+                    
+                </div>
+
+            </div>
+        </div>
+    </section>
+    <section class="sec sec03">
+		<div class="dv_wrap">	
+            
+	
+	
+	<input type="hidden" name="year" id="year" value="2026" />
+	<input type="hidden" name="month" id="month" value="10" />
+	<input type="hidden" name="date" id="date" value="3" />
+	
+			<div class="cal_wrap">
+                <h3 class="tit"><span>이달의</span>지원정책</h3>
+                <div class="cal">
+                    <div class="cal_month">
+                        <p class="this_month">2026.10</p>
+                        <div class="cal_crtl">
+                            <a href="javascript:getPrevCalendar();" class="prev_month"><span class="blind">이전달</span></a>
+                            <a href="javascript:getNextCalendar();" class="next_month"><span class="blind">다음달</span></a>    
+                        </div>
+                    </div>
+                    <div class="calendar_table">
+                        <table class="calTb">
+                            <caption class="blind">이달의 지원정책 캘린더</caption>
+                            <colgroup>
+                                <col style="width:calc(100% / 7);">
+                                <col style="width:calc(100% / 7);">
+                                <col style="width:calc(100% / 7);">
+                                <col style="width:calc(100% / 7);">
+                                <col style="width:calc(100% / 7);">
+                                <col style="width:calc(100% / 7);">
+                                <col style="width:calc(100% / 7);">
+                            </colgroup>
+                            <thead>
+                            <tr>
+                                <th scope="col" class="th_sun"><p>일</p></th>
+                                <th scope="col"><p>월</p></th>
+                                <th scope="col"><p>화</p></th>
+                                <th scope="col"><p>수</p></th>
+                                <th scope="col"><p>목</p></th>
+                                <th scope="col"><p>금</p></th>
+                                <th scope="col" class="th_sat"><p>토</p></th>
+                            </tr>
+                            </thead>
+                            <tbody id="calendar_area">
+                                
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="app_list_wrap">
+                <h3 class="tit"><span>오늘, 신청가능</span>한 지원사업</h3>
+                <div class="app_list">
+                    <!-- 건수 (31건) 누르면 서브페이지로 이동됩니다. -->
+                    <div class="app_list_top">
+                        <p>신청가능한 정책이 <span class="app_list_count c_red"></span> 있습니다.</p>
+                        
+                    </div>
+                    <ul>
+                         
+                    </ul>
+                    
+                </div>
+			</div>
+            
+            
+	
+        </div>
+        
+        <div class="b_banner">
+            <p><span class="blind">경남 도민이 행복해지는 원스톱 서비스 baro</span></p>
+            <ul>
+                <li><span>모바일<span class="blind">바로</span></span></li>
+                <li><span>온라인<span class="blind">바로</span></span></li>
+                <li><span>한번에<span class="blind">바로</span></span></li>
+            </ul>
+            <a href="https://baro.gyeongnam.go.kr/baro/menu.es?mid=a10306000000">이용안내</a>
+        </div>
+    </section>
+
+<div class="sidebar"></div>
+
+
+
+	
+	
+	
+
+
+<!-- //컨텐츠영역 -->
+			</div><!--// content -->
+			
+        </div><!--// container -->
+		<!-- footer -->
+        <footer>
+	<div class="footer-con clearfix">
+			<div class="footer_logo">
+				<img src="/baro/css/images/common/footer_logo.png" alt="경남바로서비스">
+			</div>
+			<div class="f_right">
+				<ul class="footer_Menu">
+					<li><a href="https://www.gyeongnam.go.kr/index.gyeong?menuCd=DOM_000000140002001000" target="_blank" title="새창"><span>개인정보처리방침</span></a></li>
+					<li><a href="https://www.gyeongnam.go.kr/index.gyeong?menuCd=DOM_000000140011000000" target="_blank" title="새창열림">저작권정책</a></li>
+					<li><a href="/baro/menu.es?mid=a10500000000" target="_blank" title="새창열림">사이트맵</a></li>
+				</ul>
+				<address>
+					<ul>
+						<li>경남도청(우 51154) 경상남도 창원시 의창구 중앙대로 300 <br><span class="tel">문의전화: 사업 담당부서(사업 상세화면 참조) | 시스템장애: 055-211-2681</span></li>
+					</ul>
+				 </address>
+				 <p class="copyright_txt">Copyright(C) Gyeongsangnamdo All Rights Reserved.</p>
+			 </div>
+		 </div>
+</footer>
+
+<!-- scroll top button -->
+<a href="#" class="cd-top cd-is-visible" title="위로가기">TOP</a>
+<script title="스크롤시 상단으로 가기">
+    // To Top - 페이지 상단으로
+    jQuery(document).ready(function($) {
+        var offset = 200,
+            offset_opacity = 1200,
+            scroll_top_duration = 700,
+            $back_to_top = $('.cd-top');
+
+        //hide or show the "back to top" link
+        $(window).scroll(function() {
+            ($(this).scrollTop() > offset) ? $back_to_top.addClass('cd-is-visible'): $back_to_top.removeClass('cd-is-visible cd-fade-out');
+            if ($(this).scrollTop() > offset_opacity) {
+                $back_to_top.addClass('cd-fade-out');
+            }
+        });
+
+        //smooth scroll to top
+        $back_to_top.on('click', function(event) {
+            event.preventDefault();
+            $('body,html').animate({
+                scrollTop: 0
+            }, scroll_top_duration);
+        });
+    });
+    $.ajax({ url:'/baro/logInsert.es?mid=' });		// 로그기록
+</script>
+<!-- //TOP -->
+        <!-- // footer -->
+    </div><!--// wrapper -->
+</body>
+</html>
+
+
+

@@ -1,0 +1,878 @@
+<!DOCTYPE html>
+<!--[if IE 8]> <html lang="ko" class="ie8"> <![endif]-->
+<!--[if !IE]><!-->
+<html lang="ko">
+<!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+  <meta name="naver-site-verification" content="25355ba56c5c0554a4a47aded3d635c1d9d09579" />
+  <title>일자리 지원사업정보 - 제주특별자치도 일자리지원사업통합플랫폼</title>
+  <!-- [was1]  -->
+  <link rel="shortcut icon" type="image/ico" href="/favicon.ico">
+		<meta property="og:locale" content="ko_KR">
+	<meta property="og:type" content="website">
+	<meta property="og:url" content="http://www.jeju.go.kr">
+	<meta property="og:image" content="http://www.jeju.go.kr/pub/site/jejunet/images/ogimage-jeju.png">
+	<meta property="og:site_name" content="제주특별자치도청">
+	<meta property="og:title" content="제주특별자치도">
+	<meta property="og:description" content="자연·문화·사람의 가치를 키우는 제주">
+	
+
+  <link rel="stylesheet" href="/pub/dist/css/jejunet.min.css?version=20261003001701" media="all">
+  <script src="https://kit.fontawesome.com/f290b5998a.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="/pub/site/work/dist/fontello/css/fontello.css">
+	
+  <link rel="stylesheet" href="/pub/site/work/css/layout.css?version=20261003001701" media="all">
+	
+
+	
+
+	<style>
+		.a-shop {
+			margin-top: 10px;
+			border: 1px solid #efefef;
+			position: relative;
+		}
+
+		.a-shop .reg-label {
+			position: absolute;
+			top:5px;
+			right:5px;
+			opacity: .7;
+			font-size: 12px;
+		}
+
+		.a-shop .photo,
+		.a-shop .photo .photobg {
+			width: 100%;
+			height: 150px;
+			overflow: hidden;
+		}
+
+
+		.a-shop .photo .photobg {
+			background-repeat: no-repeat;
+			-webkit-background-size: cover;
+			background-size: cover;
+			background-position: center center;
+		}
+
+		.a-shop h6,
+		.a-shop .info.addr,
+		.a-shop .info.discount {
+			overflow: hidden;
+			white-space: nowrap;
+			-ms-text-overflow: ellipsis;
+			text-overflow: ellipsis;
+		}
+
+		.a-shop h6 {
+			font-size: 16px;
+			font-weight: bold;
+		}
+
+		.a-shop .info {
+			padding: 4px;
+		}
+		@media (max-width: 991px) {
+			.iframe-responsive{overflow: hidden !important;}
+		}
+		.view-detail {
+			cursor: pointer;
+		}
+		.modal-shop-cover {
+			height: 250px;
+			background-repeat: no-repeat;
+			background-position: center center;
+			-webkit-background-size: cover;
+			background-size: contain;
+		}
+		.table-detail {
+			margin-bottom: 0;
+		}
+
+		#detailModal .title {
+			font-weight: bold;
+		}
+
+
+		.top-search-select-wrap { background:#F8F8F8; border-radius:10px; padding: 20px 40px 35px;  margin-bottom:40px;  }
+		.top-search-select-wrap .select-warp { border-bottom:1px solid #D8D8D8; padding:20px 0  15px;  }
+		.top-search-select-wrap .select-warp:after { clear:both; display:table; content:'';  }
+		.top-search-select-wrap .select-warp h3 { float:left; width:115px; font-size:18px; color:#000; font-weight:bold; margin-bottom:0px; padding-top:4px;   }
+		.top-search-select-wrap .select-warp .select-list { float:left; width:calc(100% - 115px) ; }
+		.top-search-select-wrap .select-warp .select-list .list { float:left;margin-right:30px; }
+		.top-search-select-wrap .select-warp .select-list .list  label { color:#666;  font-weight:normal; }
+		.top-search-select-wrap .select-warp .select-list .list  input[type=radio],
+		.top-search-select-wrap .select-warp .select-list .list  input[type=checkbox]  {display: none;}
+		.top-search-select-wrap .select-warp .select-list .list  input[type=radio]+label,
+		.top-search-select-wrap .select-warp .select-list .list  input[type=checkbox]+label { display: inline-block; padding-left:28px;  min-height:25px;   cursor: pointer;  background-repeat:no-repeat; background-position:left 3px;    }
+		.top-search-select-wrap .select-warp .select-list .list  input[type=radio]+label {background-image:url(/pub/site/work/images/sub_common/radio.svg);  }
+		.top-search-select-wrap .select-warp .select-list .list  input[type=checkbox]+label{ background-image:url(/pub/site/work/images/sub_common/check.svg);  }
+		.top-search-select-wrap .select-warp .select-list .list  input[type=radio]:checked+label {   background-image:url(/pub/site/work/images/sub_common/radio_on.svg);   }
+		.top-search-select-wrap .select-warp .select-list .list  input[type=checkbox]:checked+label {   background-image:url(/pub/site/work/images/sub_common/check_on.svg) ;   }
+		.top-search-select-wrap .btn-wrap {   margin-top:20px;  }
+		.top-search-select-wrap .btn-wrap * { vertical-align:middle;  }
+		.top-search-select-wrap .btn-wrap a ,
+		.top-search-select-wrap .btn-wrap button {  display:inline-block; margin:0 5px;   width:83px; padding:0px;  height:44px; line-height:42px;   border-radius:6px;  }
+		.top-search-select-wrap .btn-wrap a {     background:#fff; color:#1d1d1d; border:1px solid  #8E8E8E; }
+		.top-search-select-wrap .btn-wrap button {     background:#142D96; color:#fff;  border:1px solid  #142D96;    }
+		.paging-info {  margin-bottom:20px; color:#666;   }
+		.paging-info strong { font-weight:bold; color:#1D1D1D;  }
+		.view-list-wrap {  border-top:1px solid #1D1D1D;  margin-bottom:30px;  }
+		.view-list-wrap .list { border-bottom:1px solid #D8D8D8; }
+		.view-list-wrap .list .title { }
+		.view-list-wrap .list .title a { display:block; width:100%; padding:20px; position:relative;  color:#1D1D1D;  }
+		.view-list-wrap .list .title a .arrow {position:absolute; top:33px; right:15px;  font-size:14px; color:#1D1D1D;  }
+		.view-list-wrap .list .title a.active { background:#E8F3FF; color:#142D96;   }
+		.view-list-wrap .list .title a .arrow i {-webkit-transform: translateY(-50%);    transform: translateY(-50%) rotate(0deg); ;   -webkit-transition: transform .1s;   transition: transform .1s;     }
+		.view-list-wrap .list .title a.active .arrow i  { -webkit-transform: translateY(-50%) rotate(180deg);  transform: translateY(-50%) rotate(180deg);    }
+		.view-list-wrap .list .text-wrap {display:none;  padding:30px 20px 30px 20px; }
+		.view-list-wrap .list .text-wrap  {/* margin-bottom:20px;   */}
+		.view-list-wrap .list .text-wrap  h3  { margin-top:40px;  font-size:18px; color:#1D1D1D; font-weight:900; position:relative;  margin-bottom:10px;  }
+		.view-list-wrap .list .text-wrap  h3:first-child  {margin-top:0px; }
+		.view-list-wrap .list .text-wrap   p {color:#666; line-height:1.5;  }
+		
+
+		.view-list-wrap .list .text-wrap  table { border-collapse:collapse; border-top:2px solid #00289a;  width:100%; border-left:1px solid #d9d9d9;  font-size:14px; }
+		.view-list-wrap .list .text-wrap  table thead th { font-weight:bold; background:#e3f0ff; color:#444; text-align:center; border-bottom:1px solid #d9d9d9; border-right:1px solid #d9d9d9; padding:5px;  }
+		.view-list-wrap .list .text-wrap  table tbody th { width:auto !important; height:auto !important;   color:#444; background:#f5f5f5;  border-bottom:1px solid #d9d9d9; border-right:1px solid #d9d9d9; padding:5px;  }
+		.view-list-wrap .list .text-wrap  table tbody td {  width:auto !important; height:auto !important;   color:#444;  border-bottom:1px solid #d9d9d9; border-right:1px solid #d9d9d9; padding:5px; }
+		.view-list-wrap .list .text-wrap  ul li { padding-left:20px; background:url(/pub/site/work/images/sub_common/bull_02.png) no-repeat left 5px;  margin-bottom:5px;  }
+		.view-list-wrap .list .text-wrap  ul li ul {margin-left:-20px;  margin-top:5px; margin-bottom:8px;  }
+		.view-list-wrap .list .text-wrap  ul li ul li { padding-left:20px; background:url(/pub/site/work/images/sub_common/bull_03.png) no-repeat left 11px; margin-bottom:3px;  }
+		.view-list-wrap .list .text-wrap  .text-box { border:1px solid #92a9c8; background:#f1f7ff; padding:40px 15px; margin-bottom:35px;   }
+
+
+		@media (max-width: 991px) {
+			.top-search-select-wrap {  padding: 0 15px 15px;   margin-bottom:30px;  font-size:14px;  }
+			.top-search-select-wrap .select-warp h3 { width:100%; font-weight:bold;  font-size:16px; margin-bottom:10px; padding-top:0px;   }
+			.top-search-select-wrap .select-warp .select-list {  width:100% ; }
+			.top-search-select-wrap .select-warp .select-list .list  input[type=radio]+label,
+			.top-search-select-wrap .select-warp .select-list .list  input[type=checkbox]+label  { background-size:18px 18px;  padding-left:20px;  background-position:left 2px; }
+			.top-search-select-wrap .btn-wrap a ,
+			.top-search-select-wrap .btn-wrap button  { width:77px;  }
+			.paging-info {  margin-bottom:10px; font-size:14px;  }
+			.view-list-wrap { font-size:15px;  }
+			.view-list-wrap .list .title a  { padding:15px 10px;  }
+			.view-list-wrap .list .title a .arrow { top:26px; right:10px;  }
+			.view-list-wrap .list .text-wrap  { padding:15px;  }
+
+
+		}
+
+
+
+	</style>
+
+	<link rel="stylesheet" href="/pub/site/work/css/sub.css?version=20261003001701" media="all">
+
+
+	
+
+  <link rel="stylesheet" href="/pub/site/work/css/mobile.css?version=20261003001701" media="all">
+
+
+  <script>var _IE8 = false;</script>
+  <!--[if lt IE 9]>
+	<link rel="stylesheet" href="/pub/site/jejunet/2017/css/layout-ie8.css" media="all">
+	<script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+	<script>_IE8 = true;</script>
+  <![endif]-->
+  <script type='text/javascript' src='/pub/js/csli_tran_call.js'></script>
+  <script>
+	var _CONF = {  login: false  };
+	</script>
+</head>
+
+<body>
+    <a href="#sub-contents" class="sr-only sr-only-focusable">
+      <div class="container">본문 바로가기</div>
+  </a>
+
+  <div id="header" class="header">
+	<div class="container clearfix">
+		<div class="row">
+			<h1><a href="/jejusupport/index.htm"><img src="/pub/site/work/images/common/jeju_logo.png" alt="jeju" /> <span>제주특별자치도</span> 일자리지원 사업 통합 플랫폼</a></h1>
+			<div class="m-menu">
+				<ul class="top-util clearfix">
+										<li><a href="/tool/sso/business.jsp?returnURL=%2Fjejusupport%2Finfo%2Finfo.htm" onclick="return confirm('로그인이 필요한 기능입니다.\n지금 로그인하시겠습니까 ?');">회원등록</a></li>
+										<li><a href="/tool/sso/business.jsp?returnURL=%2Fjejusupport%2Finfo%2Finfo.htm" data-service="service_2" data-act="login">로그인</a></li>
+					<li><a href="/mypage/join.htm">회원가입</a></li>
+					<!--					<li><a href="/tool/pcc/pcc.jsp?for=work" target="_blank" title="새창" onclick="open(this.href, 'pcc', 'width=445,height=575,scrollbars=yes');return false;" >휴대폰 본인인증</a></li>-->
+				</ul><!-- top-util -->
+				<div id="gnb" class="gnb">
+					<div class="container">
+						<div class="row">
+							<h2 class="sr-only">주메뉴</h2>
+							  							    							<div class="menu menu01">
+							  							  <h3><a href="/jejusupport/info.htm" class=" active ">사업안내</a></h3>
+							  							  							  	<div class="depth-menu">
+									<ul>
+									   									  <li>
+																				<a href="/jejusupport/info/info.htm" class=" active ">일자리 지원사업정보 </a>
+																													  </li>
+									   									</ul>
+								</div><!-- depth-menu -->
+							  							</div>
+														  							<div class="menu menu02">
+							  							  <h3><a href="/jejusupport/project.htm" class="">사업신청</a></h3>
+							  							  							  	<div class="depth-menu">
+									<ul>
+									   									  <li>
+																				<a href="/jejusupport/project/youth.htm" class="">청년취업지원희망프로젝트 <i class="icon-angle-down chang-icon"></i></a>
+																														<ul>
+										    										</ul>
+																			  </li>
+									    									  <li>
+																				<a href="/jejusupport/project/midlife.htm" class="">중장년취업지원프로젝트 <i class="icon-angle-down chang-icon"></i></a>
+																														<ul>
+										    										</ul>
+																			  </li>
+									    									  <li>
+																				<a href="/jejusupport/project/house.htm" class="">청년보금자리지원 <i class="icon-angle-down chang-icon"></i></a>
+																														<ul>
+										    										</ul>
+																			  </li>
+									    									  <li>
+																				<a href="/jejusupport/project/rent.htm" class="">중장년 보금자리지원 <i class="icon-angle-down chang-icon"></i></a>
+																														<ul>
+										   																						<li><a href="/jejusupport/project/rent/info.htm" class="">사업안내</a></li>
+																					   										</ul>
+																			  </li>
+									    									  <li>
+																				<a href="/jejusupport/project/saving.htm" class="">제주 중장년 중소기업 장기재직 재형저축 <i class="icon-angle-down chang-icon"></i></a>
+																														<ul>
+										    										</ul>
+																			  </li>
+									    									  <li>
+																				<a href="/jejusupport/project/grant.htm" class="">청년재직자내일채움공제 가입장려금지원 <i class="icon-angle-down chang-icon"></i></a>
+																														<ul>
+										    										</ul>
+																			  </li>
+									    									  <li>
+																				<a href="/jejusupport/project/social.htm" class="">일자리창출기업사회보험료지원 <i class="icon-angle-down chang-icon"></i></a>
+																														<ul>
+										   																						<li><a href="/jejusupport/project/social/info.htm" class="">사업안내</a></li>
+																					   										</ul>
+																			  </li>
+									             									</ul>
+								</div><!-- depth-menu -->
+							  							</div>
+														  							<div class="menu menu03">
+							  							  <h3><a href="/jejusupport/service.htm" class="">소통지원</a></h3>
+							  							  							  	<div class="depth-menu">
+									<ul>
+									   									  <li>
+																				<a href="/jejusupport/service/FAQ.htm" class="">자주하는질문 </a>
+																													  </li>
+									    									  <li>
+																				<a href="/jejusupport/service/QNA.htm" class="">묻고답하기 </a>
+																													  </li>
+									    									  <li>
+																				<a href="/jejusupport/service/survey.htm" class="">설문조사 </a>
+																													  </li>
+									    									  <li>
+																				<a href="/jejusupport/service/papers.htm" class="">구비서류발급 </a>
+																													  </li>
+									   									</ul>
+								</div><!-- depth-menu -->
+							  							</div>
+														  							<div class="menu menu04">
+							  							  <h3><a href="/jejusupport/news.htm" class="">알림마당</a></h3>
+							  							  							  	<div class="depth-menu">
+									<ul>
+									   									  <li>
+																				<a href="/jejusupport/news/notice.htm" class="">공지사항 </a>
+																													  </li>
+									    									  <li>
+																				<a href="/jejusupport/news/data.htm" class="">자료실 </a>
+																													  </li>
+									    									  <li>
+																				<a href="/jejusupport/news/map.htm" class="">찾아오시는길 </a>
+																													  </li>
+									   									</ul>
+								</div><!-- depth-menu -->
+							  							</div>
+														         							<p class="all-menu-close"><a href="#"><i class="icon-cancel-1"><span>전체메뉴닫기</span></i></a></p>
+						</div><!-- row -->
+					</div><!-- container -->
+				</div><!-- gnb -->
+			</div><!-- m-menu -->
+			<p class="all-menu-open"><a href="#"><i class="icon-menu"><span>전체메뉴보기</span></i></a></p>
+			<p class="search-btn"><a class="search-open" href="#"><i class="icon-search"><span>검색보기</span></i></a><a class="search-close" href="#"><i class="icon-cancel-1"><span>검색닫기</span></i></a></p>
+			<div class="top-search-wrap">
+				<div class="container">
+					<div class="row">
+						<form class="clearfix" action="/search" target="_blank" title="새창" accept-charset="utf-8">
+						<input type="hidden" name="category" value="jejudo">
+						  <label for="SearchQuery" class="sr-only">검색어</label>
+						  <input type="text" id="SearchQuery" name="query"  placeholder="검색어를 입력하세요">
+						  <button type="submit" title="검색 새창열림"><i class="icon-search" title="검색"><span>검색버튼</span></i></button>
+					  </form>
+					</div><!-- row -->
+				</div><!-- container -->
+			</div><!-- top-search-wrap -->
+		</div><!-- row -->
+	</div><!-- container -->
+  </div><!-- header -->
+
+
+    
+
+<div id="sub" class="sub">
+	<div class="container">
+		<div class="row">
+			<h2 class="sr-only">서브페이지 컨텐츠</h2>
+			<div class="sub-top-contnets clearfix"   style="background-image:url(/pub/site/work/images/sub_common/top_img.png);" >
+				<div class="title-wrap">
+					<ul class="breadcrumb">
+							<li><a href="/jejusupport/index.htm">홈</a></li>
+																					<li ><a href="/jejusupport/info.htm">사업안내</a></li>
+																					<li  class="active"><a href="/jejusupport/info/info.htm">일자리 지원사업정보</a></li>
+																			</ul><!-- breadcrumb -->
+				 <h1>								일자리 지원사업정보
+							</h1>
+				</div><!-- title-wrap -->
+			</div><!-- sub-top-contnets -->
+			<div class="sub-contents clearfix">
+				<div class="right-menu">
+					<h3>사업안내</h3>
+					<ul>
+						 						<li class=" active ">
+														<a href="/jejusupport/info/info.htm" class=" active   ">일자리 지원사업정보</a>
+																				</li>
+					 					</ul>
+				</div><!-- right-menu -->
+				<div class="left-contents"> 
+					<div id="sub-contents-main" class="sub-contents-main">
+						
+						
+
+
+
+						
+														<div class="iframe-responsive">
+								<div class="module-wrapper mw-m">
+
+
+	<div class="top-search-select-wrap">
+
+		<form id="myForm" action="/jejusupport/info/info.htm" method="get">
+			<div class="select-warp">
+				<h3>수요자별</h3>
+				<div class="select-list">
+					<p class="list"><input type="radio" id="field1-all" name="field1" value=""  checked /><label for="field1-all">전체</label></p>
+										<p class="list"><input type="radio" id="field1-1" name="field1" value="사업자" /><label for="field1-1">사업자</label></p>
+										<p class="list"><input type="radio" id="field1-2" name="field1" value="취업희망자" /><label for="field1-2">취업희망자</label></p>
+										<p class="list"><input type="radio" id="field1-3" name="field1" value="재직자" /><label for="field1-3">재직자</label></p>
+									</div><!-- select-list -->
+			</div><!-- select-warp -->
+			<div class="select-warp">
+				<h3>계층별</h3>
+				<div class="select-list">
+										<p class="list"><input type="checkbox" id="field2-1" name="field2In" value="청년"  /><label for="field2-1">청년</label></p>
+										<p class="list"><input type="checkbox" id="field2-2" name="field2In" value="중장년"  /><label for="field2-2">중장년</label></p>
+										<p class="list"><input type="checkbox" id="field2-3" name="field2In" value="고령자"  /><label for="field2-3">고령자</label></p>
+										<p class="list"><input type="checkbox" id="field2-4" name="field2In" value="여성"  /><label for="field2-4">여성</label></p>
+										<p class="list"><input type="checkbox" id="field2-5" name="field2In" value="장애인"  /><label for="field2-5">장애인</label></p>
+										<p class="list"><input type="checkbox" id="field2-6" name="field2In" value="외국인"  /><label for="field2-6">외국인</label></p>
+									</div><!-- select-list -->
+			</div><!-- select-warp -->
+			<div class="select-warp">
+				<h3>정책유형별</h3>
+				<div class="select-list">
+					<p class="list"><input type="radio" id="field3-all" name="field3" value=""  checked /><label for="field3-all">전체</label></p>
+										<p class="list"><input type="radio" id="field3-1" name="field3" value="창업" /><label for="field3-1">창업</label></p>
+										<p class="list"><input type="radio" id="field3-2" name="field3" value="직업훈련" /><label for="field3-2">직업훈련</label></p>
+										<p class="list"><input type="radio" id="field3-3" name="field3" value="고용서비스" /><label for="field3-3">고용서비스</label></p>
+										<p class="list"><input type="radio" id="field3-4" name="field3" value="고용장려금" /><label for="field3-4">고용장려금</label></p>
+										<p class="list"><input type="radio" id="field3-5" name="field3" value="기타" /><label for="field3-5">기타</label></p>
+									</div><!-- select-list -->
+			</div><!-- select-warp -->
+			<p class="btn-wrap text-center"><a href="/jejusupport/info/info.htm" > 초기화</a>	<button type="submit" >검색</button></p>
+		</form>
+	</div>
+
+	<p class="paging-info"><strong>총64건</strong>의 지원사입이 있습니다.</p>
+	<div class="view-list-wrap">
+					<div class="list">
+				<p class="title"><a href="#">제주더큰내일센터<span class="arrow"><i class="fa-solid fa-angle-down"></i></span></a></p>
+				<div class="text-wrap">
+					<!--<h3>사업목적</h3>-->
+						<p><img class="img-responsive" src="/files/editor/f99ab0d4-ea17-454c-a6e0-362de8ef1c84.jpg" ></p>	
+					<!--<h2 class="sr-only">상세내용</h2> 
+						
+						
+					<h3>문의처</h3>
+						
+						 -->
+				</div><!-- text-wrap -->
+			</div><!-- list -->
+					<div class="list">
+				<p class="title"><a href="#">청년 취업지원 희망 프로젝트<span class="arrow"><i class="fa-solid fa-angle-down"></i></span></a></p>
+				<div class="text-wrap">
+					<!--<h3>사업목적</h3>-->
+						<p><img class="img-responsive" src="/files/editor/ee8335aa-e432-42cd-87ce-5b88fb064d8c.jpg" ></p>	
+					<!--<h2 class="sr-only">상세내용</h2> 
+						
+						
+					<h3>문의처</h3>
+						
+						 -->
+				</div><!-- text-wrap -->
+			</div><!-- list -->
+					<div class="list">
+				<p class="title"><a href="#">일하는 청년 보금자리 지원사업<span class="arrow"><i class="fa-solid fa-angle-down"></i></span></a></p>
+				<div class="text-wrap">
+					<!--<h3>사업목적</h3>-->
+						<p><img class="img-responsive" src="/files/editor/b4dc6836-12a9-4a6b-82d2-3e59c8936b96.jpg" ></p>	
+					<!--<h2 class="sr-only">상세내용</h2> 
+						
+						
+					<h3>문의처</h3>
+						
+						 -->
+				</div><!-- text-wrap -->
+			</div><!-- list -->
+					<div class="list">
+				<p class="title"><a href="#">제주 청년 희망사다리 재형저축<span class="arrow"><i class="fa-solid fa-angle-down"></i></span></a></p>
+				<div class="text-wrap">
+					<!--<h3>사업목적</h3>-->
+						<p><img class="img-responsive" src="/files/editor/ee284acd-3833-48c3-91bf-6a5aab5dced1.jpg" ></p>	
+					<!--<h2 class="sr-only">상세내용</h2> 
+						
+						
+					<h3>문의처</h3>
+						
+						 -->
+				</div><!-- text-wrap -->
+			</div><!-- list -->
+					<div class="list">
+				<p class="title"><a href="#">청년 일자리 도약 장려금 사업<span class="arrow"><i class="fa-solid fa-angle-down"></i></span></a></p>
+				<div class="text-wrap">
+					<!--<h3>사업목적</h3>-->
+						<p><img class="img-responsive" src="/files/editor/087a8718-1e1a-47c0-b9bf-1ca3c2f0468c.jpg" ></p>	
+					<!--<h2 class="sr-only">상세내용</h2> 
+						
+						
+					<h3>문의처</h3>
+						
+						 -->
+				</div><!-- text-wrap -->
+			</div><!-- list -->
+					<div class="list">
+				<p class="title"><a href="#">지역주도형 청년일자리사업<span class="arrow"><i class="fa-solid fa-angle-down"></i></span></a></p>
+				<div class="text-wrap">
+					<!--<h3>사업목적</h3>-->
+						<p><img class="img-responsive" src="/files/editor/81a033f2-ed38-4ebd-b3b8-de16021d0119.jpg" ></p>	
+					<!--<h2 class="sr-only">상세내용</h2> 
+						
+						
+					<h3>문의처</h3>
+						
+						 -->
+				</div><!-- text-wrap -->
+			</div><!-- list -->
+					<div class="list">
+				<p class="title"><a href="#">청년(고등학생) 우수인재 집중지도사업<span class="arrow"><i class="fa-solid fa-angle-down"></i></span></a></p>
+				<div class="text-wrap">
+					<!--<h3>사업목적</h3>-->
+						<p><img class="img-responsive" src="/files/editor/f1dab446-7516-43ce-8315-a0b629dc9395.jpg" ></p>	
+					<!--<h2 class="sr-only">상세내용</h2> 
+						
+						
+					<h3>문의처</h3>
+						
+						 -->
+				</div><!-- text-wrap -->
+			</div><!-- list -->
+					<div class="list">
+				<p class="title"><a href="#">구직자 취업역량강화 프로그램<span class="arrow"><i class="fa-solid fa-angle-down"></i></span></a></p>
+				<div class="text-wrap">
+					<!--<h3>사업목적</h3>-->
+						<p><img src="/files/editor/5e9133fc-59ed-4d88-893e-1e37e33d9462.jpg" class="img-responsive"></p>	
+					<!--<h2 class="sr-only">상세내용</h2> 
+						
+						
+					<h3>문의처</h3>
+						
+						 -->
+				</div><!-- text-wrap -->
+			</div><!-- list -->
+					<div class="list">
+				<p class="title"><a href="#">청년 일경험(기업탐방형) 프로그램 사업<span class="arrow"><i class="fa-solid fa-angle-down"></i></span></a></p>
+				<div class="text-wrap">
+					<!--<h3>사업목적</h3>-->
+						<p><img height="995" src="/files/editor/756f6603-9aab-4dd1-bc5e-1f5d3cdab8a6.jpg" width="875" ></p>	
+					<!--<h2 class="sr-only">상세내용</h2> 
+						
+						
+					<h3>문의처</h3>
+						
+						 -->
+				</div><!-- text-wrap -->
+			</div><!-- list -->
+					<div class="list">
+				<p class="title"><a href="#">대학일자리플러스센터 사업 지원<span class="arrow"><i class="fa-solid fa-angle-down"></i></span></a></p>
+				<div class="text-wrap">
+					<!--<h3>사업목적</h3>-->
+						<p><img class="img-responsive" src="/files/editor/4f57ab2c-7450-4ca2-bdbc-db742217ed16.jpg" ></p>	
+					<!--<h2 class="sr-only">상세내용</h2> 
+						
+						
+					<h3>문의처</h3>
+						
+						 -->
+				</div><!-- text-wrap -->
+			</div><!-- list -->
+					<div class="list">
+				<p class="title"><a href="#">청년동행 일자리우수기업 지원사업<span class="arrow"><i class="fa-solid fa-angle-down"></i></span></a></p>
+				<div class="text-wrap">
+					<!--<h3>사업목적</h3>-->
+						<p><img class="img-responsive" src="/files/editor/227f091f-07ae-48aa-b38c-2f4c0f259060.jpg" ></p>	
+					<!--<h2 class="sr-only">상세내용</h2> 
+						
+						
+					<h3>문의처</h3>
+						
+						 -->
+				</div><!-- text-wrap -->
+			</div><!-- list -->
+					<div class="list">
+				<p class="title"><a href="#">청년사회서비스사업단<span class="arrow"><i class="fa-solid fa-angle-down"></i></span></a></p>
+				<div class="text-wrap">
+					<!--<h3>사업목적</h3>-->
+						<p><img class="img-responsive" src="/files/editor/1a77a18e-ff9c-4e35-a3d3-5f5e812d7e6c.jpg" ></p>	
+					<!--<h2 class="sr-only">상세내용</h2> 
+						
+						
+					<h3>문의처</h3>
+						
+						 -->
+				</div><!-- text-wrap -->
+			</div><!-- list -->
+					<div class="list">
+				<p class="title"><a href="#">중장년 취업지원 프로젝트<span class="arrow"><i class="fa-solid fa-angle-down"></i></span></a></p>
+				<div class="text-wrap">
+					<!--<h3>사업목적</h3>-->
+						<p><img class="img-responsive" src="/files/editor/a1f5c4df-c69a-4af3-baa6-0a7d6f0e1051.jpg" ></p>	
+					<!--<h2 class="sr-only">상세내용</h2> 
+						
+						
+					<h3>문의처</h3>
+						
+						 -->
+				</div><!-- text-wrap -->
+			</div><!-- list -->
+					<div class="list">
+				<p class="title"><a href="#">중소기업 장기재직 재형저축<span class="arrow"><i class="fa-solid fa-angle-down"></i></span></a></p>
+				<div class="text-wrap">
+					<!--<h3>사업목적</h3>-->
+						<p><img class="img-responsive" src="/files/editor/ef9c5a14-ed90-4a79-9081-15da8d846648.jpg" ></p>	
+					<!--<h2 class="sr-only">상세내용</h2> 
+						
+						
+					<h3>문의처</h3>
+						
+						 -->
+				</div><!-- text-wrap -->
+			</div><!-- list -->
+					<div class="list">
+				<p class="title"><a href="#">중장년 노동자 보금자리 지원사업<span class="arrow"><i class="fa-solid fa-angle-down"></i></span></a></p>
+				<div class="text-wrap">
+					<!--<h3>사업목적</h3>-->
+						<p><img class="img-responsive" src="/files/editor/af64eda4-b01a-476d-a0d5-f249e1d8dc16.jpg" ></p>	
+					<!--<h2 class="sr-only">상세내용</h2> 
+						
+						
+					<h3>문의처</h3>
+						
+						 -->
+				</div><!-- text-wrap -->
+			</div><!-- list -->
+					<div class="list">
+				<p class="title"><a href="#">제주중장년내일센터<span class="arrow"><i class="fa-solid fa-angle-down"></i></span></a></p>
+				<div class="text-wrap">
+					<!--<h3>사업목적</h3>-->
+						<p><img class="img-responsive" src="/files/editor/1647cc49-e014-45b9-8a43-9a675da37e25.jpg" ></p>	
+					<!--<h2 class="sr-only">상세내용</h2> 
+						
+						
+					<h3>문의처</h3>
+						
+						 -->
+				</div><!-- text-wrap -->
+			</div><!-- list -->
+					<div class="list">
+				<p class="title"><a href="#">고령자 계속고용 장려금<span class="arrow"><i class="fa-solid fa-angle-down"></i></span></a></p>
+				<div class="text-wrap">
+					<!--<h3>사업목적</h3>-->
+						<p><img class="img-responsive" src="/files/editor/f2a74b47-b111-4fb2-a51c-65f7cf93953a.jpg" ></p>	
+					<!--<h2 class="sr-only">상세내용</h2> 
+						
+						
+					<h3>문의처</h3>
+						
+						 -->
+				</div><!-- text-wrap -->
+			</div><!-- list -->
+					<div class="list">
+				<p class="title"><a href="#">고령자 고용지원금<span class="arrow"><i class="fa-solid fa-angle-down"></i></span></a></p>
+				<div class="text-wrap">
+					<!--<h3>사업목적</h3>-->
+						<p><img class="img-responsive" src="/files/editor/331b31f8-b695-48a9-a0f9-1743e3262d59.jpg" ></p>	
+					<!--<h2 class="sr-only">상세내용</h2> 
+						
+						
+					<h3>문의처</h3>
+						
+						 -->
+				</div><!-- text-wrap -->
+			</div><!-- list -->
+					<div class="list">
+				<p class="title"><a href="#">노인 일자리 지원사업<span class="arrow"><i class="fa-solid fa-angle-down"></i></span></a></p>
+				<div class="text-wrap">
+					<!--<h3>사업목적</h3>-->
+						<p><img class="img-responsive" src="/files/editor/e3e7777f-05b9-4427-a5fb-080059a4842b.jpg" ></p>	
+					<!--<h2 class="sr-only">상세내용</h2> 
+						
+						
+					<h3>문의처</h3>
+						
+						 -->
+				</div><!-- text-wrap -->
+			</div><!-- list -->
+					<div class="list">
+				<p class="title"><a href="#">노인고용촉진장려금<span class="arrow"><i class="fa-solid fa-angle-down"></i></span></a></p>
+				<div class="text-wrap">
+					<!--<h3>사업목적</h3>-->
+						<p><img class="img-responsive" src="/files/editor/be1fd059-8aa6-4078-a975-f32e430162c8.jpg" ></p>	
+					<!--<h2 class="sr-only">상세내용</h2> 
+						
+						
+					<h3>문의처</h3>
+						
+						 -->
+				</div><!-- text-wrap -->
+			</div><!-- list -->
+			</div><!-- view-list-wrap -->
+
+	<p class="text-center">
+				<div class="paging-container">
+			<div class="text-center">
+				<ul class="pagination pagination-sm">
+																			<li class="active"><a href="#" title = "현재페이지">1</a></li>
+								    											<li><a href="/jejusupport/info/info.htm?page=2">2</a></li>
+				    			    											<li><a href="/jejusupport/info/info.htm?page=3">3</a></li>
+				    			    											<li><a href="/jejusupport/info/info.htm?page=4">4</a></li>
+				    			    			    			    </ul>
+			</div>
+		</div>
+		</p>
+
+
+
+</div>
+							</div>
+							
+							
+							
+
+<div class="clearfix"></div>
+
+
+
+<p>&nbsp;</p>
+
+
+    <div class="no-print" id="contactUs" style="margin-top:20px;">
+	 
+	<dl>
+		<dt>담당부서</dt>
+		<dd>AI혁신추진단&nbsp;AI인재양성</dd>
+		
+		<dt>연락처</dt>
+		<dd>064-710-2587</dd>
+	</dl>
+	 </div>
+
+
+<div id="pageSurvey" class="mb20 no-print">
+	<form action="/jejusupport/info/info.score" method="post" target="menuScoreForm">
+	<input type="hidden" name="menu" value="12150" >
+	<dl>
+		<dt>Q. 현재 페이지에서 제공되는 서비스에 대하여 만족하십니까?</dt>
+		<dd>
+			<fieldset>
+				<legend class="sr-only">만족도 조사</legend>
+				<ul class="list-unstyled list-inline">
+					<li>
+						<label for="emoticon5"><input type="radio" checked="checked" id="emoticon5" name="score" value="10" >매우만족</label>
+					</li>
+					<li>
+						<label for="emoticon4"><input type="radio" id="emoticon4" name="score" value="8" >만족</label>
+					</li>
+					<li>
+						<label for="emoticon3"><input type="radio" id="emoticon3" name="score" value="5" >보통</label>
+					</li>
+					<li>
+						<label for="emoticon2"><input type="radio" id="emoticon2" name="score" value="4" >불만족</label>
+					</li>
+					<li>
+						<label for="emoticon1"><input type="radio" id="emoticon1" name="score" value="2" >매우불만족</label>
+					</li>
+				</ul>
+				<div>
+					<label class="survey-title" for="survey">기타 의견을 입력해주세요.</label>
+					<input type="text" class="pull-left" maxlength="200" name="opinion" id="survey" placeholder="내용을 남겨주세요." >
+					<button type="submit" class="pull-right">평점주기</button>
+				</div>
+			</fieldset>
+		</dd>
+	</dl>
+	</form>
+</div>
+<iframe src="about:blank" title="메뉴 평가 처리 프레임" width="0" height="0" id="menuScoreForm" name="menuScoreForm" style="display:none;"></iframe>
+
+					</div><!-- sub-contents-main -->
+				</div><!-- left-contents -->
+			</div><!-- sub-contents -->
+		</div><!-- row -->
+	</div><!-- container -->
+ </div><!-- sub -->
+
+
+
+
+
+
+
+
+
+<div class="footer">
+		<div class="container">
+			<div class="row">
+				<ul class="footer-util">
+					<li><a href="/jejusupport/help/terms.htm">이용약관</a></li>
+					<li><a href="/jejusupport/help/policy.htm">개인정보처리방침</a></li>
+					<li><a href="/jejusupport/help/guide.htm">이용안내</a></li>
+				</ul><!-- footer-util -->
+				<address>
+										Copyright 2019 제주특별자치도. All rights reserved.<br />
+(63122)제주특별자치도 제주시 문연로 6(연동)대표전화:064-120 야간,공휴일 당직실 전환<br />
+6,Munyeon-ro, Jeju-si, Jeju-do, 63122, Republic of Korea Tel.82-64-120					<!-- Copyright 2019 제주특별자치도. All rights reserved.<br/>
+					(63122)제주특별자치도 제주시 문연로 6(연동)대표전화:064-120 야간,공휴일 당직실 전환<br/>
+					6,Munyeon-ro, Jeju-si, Jeju-do, 63122, Republic of Korea Tel.82-64-120 -->
+				</address>
+				<p class="info-text">(064)<strong>120</strong><br/>제주 120만덕콜센터</p>
+			</div><!-- row -->
+		</div><!-- container -->
+	</div><!-- footer -->
+
+  <div id="backtotop"><i class="icon-angle-up" title="위로"></i></div>
+  <div class="back"></div>
+
+
+
+<script src="/pub/ca/plugins/jquery/jquery-1.9.1.min.js"></script>
+<script src="/pub/ca/plugins/jquery/jquery-migrate-1.1.0.min.js"></script>
+<script src="/pub/ca/plugins/jquery-ui/ui/minified/jquery-ui.min.js"></script>
+<script src="https://chromium.googlesource.com/chromium/blink/+/master/Source/core/inspector/InjectedScriptSource.js"></script>
+<script src="/pub/dist/js/jejunet.min.js"></script>
+<script src="/pub/ca/plugins/jquery-cookie/jquery.cookie.js"></script>
+<script src="/pub/site/jejunet/2017/js/bxslider.js"></script>
+<!-- [if gte IE 9]><!--><script src="/pub/plugin/clipboard.min.js"></script><!--<![endif] -->
+<script src="/pub/site/work/js/layout.js?version=20261003001701"></script>
+
+	
+	<script>
+	
+	$(function() {
+		$('.view-list-wrap .list .title a').click(function(){
+
+			if($(this).parent().parent().find(".text-wrap").css('display') == 'none'){
+				$(this).addClass("active");
+				$(this).parent().parent().find(".text-wrap").slideDown();
+
+			}else{
+				$(this).removeClass("active");
+				$(this).parent().parent().find(".text-wrap").slideUp();
+			}
+
+			return false; 
+		});
+
+	});
+	
+</script>
+
+<script>
+$(document).ready(function () {
+	
+});
+</script>
+
+
+		<script src="/pub/site/work/js/sub.js"></script>
+	<!-- <script src="/pub/js/jquery.rwdImageMaps.min.js"></script>
+	<script>
+	$(document).ready(function(e) {
+			$('img[usemap]').rwdImageMaps();
+	});
+	</script> -->
+
+	
+
+
+
+<script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){ (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o), m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m) })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-90865413-1', 'auto');
+    ga('send', 'pageview');
+    </script>
+<script  src="//wcs.naver.net/wcslog.js"></script>
+<script>
+if(!wcs_add) var wcs_add = {};
+wcs_add["wa"] = "ce95d478ef2d2c";
+wcs_do();
+</script>
+<script src="/pub/js/makePCookie.js"></script>
+
+
+<div id="needLoginModal" class="modal modal-need-login fade" tabindex="-1" role="dialog" data-backdrop="static">
+	<div class="modal-dialog" role="document"> <!-- .modal-lg -->
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"><img src="/pub/modules/booking/closed.svg" alt="닫기"></span></button>
+				<h4 class="modal-title">로그인 안내</h4>
+			</div>
+			<div class="modal-body">
+				<p id="needLoginModalMsg" class="msg"><strong>로그인이 필요한 서비스입니다.</strong></p>
+				<p class="back-intro"><small>로그인을 원하지 않는 경우 '돌아가기' 버튼을 눌러주세요.</small></p>
+			</div>
+			<div class="modal-footer" style="text-align: left;">
+				<div class="pull-right">
+					<button type="button" class="btn btn-light" data-dismiss="modal">돌아가기</button>
+					<a href="/tool/sso/business.jsp?returnURL=%2Fjejusupport%2Finfo%2Finfo.htm" class="btn btn-primary">로그인</a>
+					<a href="https://www.jeju.go.kr/mypage/login.htm?act=nlogin&fromSite=WORK" data-act="popup" data-popup-width="785" data-popup-height="600" data-popup-scrollbars="yes" title="새창열림" class="btn btn-primary">비회원 로그인</a>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<script>
+function commonNeedLogin(msg) {
+	if(msg) {
+		$('#needLoginModalMsg').html(msg);
+	}
+	$('#needLoginModal').modal('show');
+}
+</script>
+
+<script src="/pub/js/UserScriptConf.js"></script>
+
+</body>
+</html>
