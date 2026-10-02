@@ -1,0 +1,649 @@
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<meta charset="utf-8" />
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+	<title>주거종합포털 대구안방 - 대구광역시</title>
+	<meta property="og:title" content="주거종합포털 대구안방 - 대구광역시" />
+	<link rel="shortcut icon" type="image/x-icon" href="/resources/favicon.ico" />
+	
+	<meta name="naver-site-verification" content="d1a350a465a8dfcf583ac48d3b64ef1d12fa3751" />
+	<meta name="google-site-verification" content="rjRdgzgp5EgJ5izv6YBLR8OrayIr-IHsyZLO1UrJy50" />
+
+	<meta name="format-detection" content="telephone=no" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no" />
+	<meta name="_csrf_parameter" content="_csrf" /><meta name="_csrf_header" content="X-CSRF-TOKEN" /><meta name="_csrf" content="1d2b9097-6b9c-4127-82a9-2d9217a0aaff" />
+
+	<!-- css import -->
+	<link rel="stylesheet" type="text/css" href="/resources/user/css/reset.css" />
+	<link rel="stylesheet" type="text/css" href="/resources/user/css/font.css" />
+	<link rel="stylesheet" type="text/css" href="/resources/user/css/layout.css?no=260630" />
+	<link rel="stylesheet" type="text/css" href="/resources/user/css/style.css" />
+	<link rel="stylesheet" type="text/css" href="/resources/user/css/cont.css" />
+	
+	<style>
+		.blind {position:absolute !important;width:1px !important;height:1px !important;clip:rect(0,0,0,0) !important;margin:-1px !important;overflow:hidden !important;}
+	</style>
+	
+	<!-- script import -->
+	<link rel="stylesheet" type="text/css" href="/resources/cmmn/js/ckeditor/build/content-styles.css" />
+	<link rel="stylesheet" type="text/css" href="/resources/cmmn/js/jquery-ui/jquery-ui.min.css" />
+	<link rel="stylesheet" type="text/css" href="/resources/cmmn/js/jquery-plugins/jquery.datetimepicker.min.css" />
+	<link rel="stylesheet" type="text/css" href="/resources/cmmn/js/design/customScrollbar.css" />
+	<link rel="stylesheet" type="text/css" href="/resources/cmmn/js/design/slick.css" />
+	<link rel="stylesheet" type="text/css" href="/resources/cmmn/js/design/swiper.min.css" />
+	<script type="text/javascript" src="/resources/cmmn/js/jquery/dist/jquery.min.js"></script>
+	<script type="text/javascript" src="/resources/cmmn/js/jquery-ui/jquery-ui.min.js"></script>
+	<script type="text/javascript" src="/resources/cmmn/js/jquery-plugins/jquery.mtz.monthpicker.js"></script>
+	<script type="text/javascript" src="/resources/cmmn/js/jquery-plugins/jquery.datetimepicker.full.min.js"></script>
+	<script type="text/javascript" src="/resources/cmmn/js/jquery-plugins/jquery.bpopup.js"></script>
+	<script type="text/javascript" src="/resources/cmmn/js/jquery-plugins/jQuery.print.js"></script>
+	<script type="text/javascript" src="/resources/cmmn/js/moment/min/moment.min.js"></script>
+	<script type="text/javascript" src="/resources/cmmn/js/design/customScrollbar.min.js"></script>
+	<script type="text/javascript" src="/resources/cmmn/js/design/slick.min.js"></script>
+	<script type="text/javascript" src="/resources/cmmn/js/design/swiper.min.js"></script>
+
+	<script type="text/javascript" src="/resources/cmmn/js/utils/anbangUtils.js"></script>
+	<script type="text/javascript" src="/resources/user/js/design.js"></script>
+
+	<script type="text/javascript" charset="UTF-8" src="//t1.daumcdn.net/kas/static/kp.js"></script>
+	<script type="text/javascript">
+		kakaoPixel('9108214954614082425').pageView('Visti_home');
+	</script>
+	
+	<script>
+		var header = $("meta[name='_csrf_header']").attr("content");
+		var token = $("meta[name='_csrf']").attr("content");
+		
+		$.ajaxSetup({
+			beforeSend: function(xhr) {
+				xhr.setRequestHeader(header, token);
+			},
+			dataType: "json"
+		});
+	
+		$(document).ajaxComplete(function(event,xhr,options) {
+			if(!xhr.responseJSON) {
+				if(xhr.status === 401 || xhr.status === 403) {
+					alert("로그인이 필요합니다.");
+					location.href = "/join/login.do";
+				} else if(xhr.status === 200) {
+					if(!xhr.responseText) {
+						alert("응답 내용이 없습니다. 시스템 관리자에게 문의해주세요.");
+					} else if(xhr.responseText.indexOf("<!-- PAGE_TYPE_LOGIN -->") >= 0) {
+						alert("로그인이 필요합니다.");
+						location.href = "/join/login.do";
+					} else if(xhr.responseText.indexOf("SmartXFilter") >= 0) {
+						alert("개인정보유출차단솔루션에 의해 차단되었습니다. 시스템 관리자에게 문의해주세요.");
+					} else {
+						alert("알 수 없는 응답을 수신했습니다. 시스템 관리자에게 문의해주세요.");
+					}
+				}
+			} else {
+				if(xhr.status === 429) {
+					alert("짧은 시간 내 너무 많은 요청으로 로그아웃 처리되었습니다.");
+					location.href = "/";
+				}
+			}
+		});
+		
+		if(_isIE) {
+			$(document).on("click", "a[download]", function() {
+				event.preventDefault();
+				var filename = this.getAttribute("download");
+				var xhr = new XMLHttpRequest();
+				xhr.onloadstart = function () { xhr.responseType = "blob"; };
+				xhr.onload = function () { navigator.msSaveOrOpenBlob(xhr.response, filename); };
+				xhr.open("GET", this.href, true);
+				xhr.send();
+			});
+		}
+	</script>
+	<style>
+        @media print{ body{-webkit-print-color-adjust: exact;print-color-adjust: exact;} }
+        .ck-editor__editable{min-height:300px;}
+        .file-list input[type="file"]{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);border:0;}
+        .file-list li{display:block;}
+    </style>
+</head>
+<body>
+	
+	
+		<!-- Google Tag Manager -->
+		<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+		new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+		j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+		'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+		})(window,document,'script','dataLayer','GTM-KL2RPDP');</script>
+		<!-- Google Tag Manager (noscript) -->
+		<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KL2RPDP"
+		height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+	
+
+	
+
+
+<div id="skip">
+    <a href="#content">본문 바로가기</a>
+</div>
+<header id="header" class="">
+    <div class="header_inner">
+        <!-- header 상단-->
+        <div class="header__top">
+            <h1 class="logo">
+                <a href="/">대구안방</a>
+            </h1>
+            
+                <ul class="header__util logout">
+                    <li class="util__login util__loggo">
+                        <a href="/join/login.do"><span>로그인</span></a>
+                    </li>
+                    <li class="util__join">
+                        <a href="/join/signup01.do"><span>회원가입</span></a>
+                    </li>
+                </ul>
+            
+            
+            <button class="header__mbM--open nav-open-btn" title="네비게이션 열기">
+                <span class="line line1"></span><span class="line line2"></span><span class="line line3"></span>
+            </button>
+        </div>
+
+        <!-- header 하단-->
+        <div class="header__inside">
+            <h2 class="blind">주메뉴 영역</h2>
+            <nav class="header__nav">
+                <div class="header__nav-top">
+                </div>
+                <div class="login__nav">
+                    
+                        <h3><b>로그인</b>하세요! <a href="/join/login.do" class="login__nav--logout">로그인</a></h3>
+                    
+                    
+                </div>
+                <ul>
+                    <li class="depth1 bus_box"><a href="javascript:;">주거정책 소개</a>
+                        <div class="depth2">
+                            <div class="depth2_inner">
+                                <div class="mainMd_tle">
+                                    <p>주거정책 소개</p>
+                                    <span>대구시 청년, 신혼부부 주거지원<br>당신에게 필요한 정책은 무엇인가요?</span>
+                                </div>
+                                <ul>
+								    <li>
+								        <a href="/intro/policy/dgpolicy">주거정책 소개</a> 
+								        <ul>
+								            <li><a href="/intro/policy/dgpolicy">대구형 주거지원 정책</a></li>
+								            <li><a href="/intro/policy/aptbusiness">공동주택 지원사업</a></li>
+								            <li><a href="/intro/policy/ythpackage">청년주거안정 패키지</a></li>
+								        </ul>
+								    </li>
+
+								    <li>
+								        <a href="/board/houseAgcyInfo">주거관련 기관 정보</a>
+								        
+								    </li>
+								    <li>
+								        <a href="/board/promotion">홍보자료</a>
+								        
+								    </li>
+								</ul>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="depth1 bus_box"><a href="javascript:;">부동산 상담</a>
+                        <div class="depth2">
+                            <div class="depth2_inner">
+                                <div class="mainMd_tle">
+                                    <p>부동산 상담</p>
+                                    <span>법률 , 부동산임대&middot;거래 등<br>부동산 관련정보를 확인 할 수 있습니다.</span>
+                                </div>
+                                <ul>
+                                    <li>
+                                        <a href="/intro/estate/trade">부동산 관련정보 안내</a> 
+                                        <ul>
+                                            <li><a href="/intro/estate/trade">부동산 거래</a></li>
+                                            <li><a href="/intro/estate/trouble">주택임대차 분쟁</a></li>
+                                        </ul>
+                                    </li>
+                                    <li><a href="/intro/subscr">청약 관련정보 안내</a></li>
+                                    <li><a href="/board/realPropertyFaq">자주묻는 질문(FAQ)</a></li>
+                                    <li><a href="/board/realPropertyQna">부동산 상담 게시판</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="depth1 bus_box"><a href="javascript:;">지원사업 신청</a>
+                        <div class="depth2">
+                            <div class="depth2_inner">
+                                <div class="mainMd_tle">
+                                    <p>지원사업 신청</p>
+                                    <span>월세지원, 대출이자등 다양한<br>청년주거지원 상품을 확인 할 수 있습니다.</span>
+                                </div>
+                            <ul>
+                                
+                                <li><a href="javascript:;" onclick="$(this).parent().effect('highlight', 1000)">청년전세</a>
+                                    <ul>
+                                        <li><a href="/jeonseMonthly/businessOverView.do">청년 주택 임차보증금(전월세) 대출이자 지원 사업</a></li>
+                                        
+                                        <li><a href="/hopeHousing/businessOverView.do">청년 희망주택 대출이자 지원 사업</a></li>
+                                        <li><a href="/youthBeotim/businessOverView.do">청년전용 버팀목 전세자금 대출이자 지원</a></li>
+                                    </ul>
+                                </li>
+                                <li><a href="javascript:;" onclick="$(this).parent().effect('highlight', 1000)">전세보증금 반환보증</a>
+                                    <ul>
+                                        <li><a href="/jeonseReturn/businessOverView.do">전세보증금 반환보증료 지원</a></li>
+                                    </ul>
+                                </li>
+                                <li><a href="javascript:;" onclick="$(this).parent().effect('highlight', 1000)">신혼부부전세</a>
+                                    <ul>
+                                        <li><a href="/supportNewlyweds/businessOverView.do">신혼부부 전세자금 대출이자 지원</a></li>
+                                    </ul>
+                                </li>
+                                <li><a href="javascript:;" onclick="$(this).parent().effect('highlight', 1000)">공공임대주택</a>
+                                    <ul>
+                                        <li><a href="/rentalHousing/buyHouseOverView.do">매입 임대주택</a></li>
+                                        <li><a href="/rentalHousing/jeonseHouseOverView.do">전세 임대주택</a></li>
+                                        <li><a href="/rentalHousing/buildHouseOverView.do">건설형 임대주택</a></li>
+                                        <li><a href="/rentalHousing/rentHouseOverView.do">공공임대주택 찾기</a></li>
+                                    </ul>
+                                </li>
+                                <li>
+							        <a href="/board/homeStability">자주묻는 질문(FAQ)</a>
+							        
+							    </li>
+                            </ul>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="depth1"><a href="javascript:;">알림 및 소통</a>
+                        <div class="depth2">
+                            <div class="depth2_inner">
+                                <div class="mainMd_tle">
+                                    <p>알림 및 소통</p>
+                                    <span>대구안방의 공지사항,자료실등<br>확인 할 수 있습니다.</span>
+                                </div>
+                                <ul>
+                                    <li><a href="/board/notice">공지사항</a></li>
+                                    <li><a href="/board/data">자료실</a></li>
+                                    
+                                </ul>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+        <div class="mbM_bg"></div>
+    </div>
+</header>
+
+	
+
+
+
+
+<!--container -->
+<div id="container" class="type__businfo">
+    <!--CONT -->
+    <section class="content__top">
+        <div class="content__title">
+            <div class="content__title-inner">
+                <h3>
+                    <b>청년 희망주택 대출이자 지원 사업</b>
+                    <small>청년 전세지원사업</small>
+                </h3>
+                <div class="info_text">
+                    <p>청년계층 입주자 중 <br><b class="txt-highlight02 lineani02">전세자금 대출자</b></p>
+                    <p>표준임대보증금 <br><b class="txt-highlight02 lineani02">대출이자 50%</b> 지원</p>
+                </div>
+                
+	            <a href="javascript:;" onclick="validState()" class="go_bis no-print">이자지원 신청</a>
+	            
+            </div>
+            
+            
+			
+			
+			
+			
+			
+        </div>
+    </section>
+    
+    
+    <section id="content" class="content__body">
+        <div class="cont">
+            <div class="bus_intro">
+
+                <div class="bus_acco_top">
+                    <div class="mSimg mSimg2">
+                        <span class="mSi2_1"></span>
+                        <span class="mSi2_2"></span>
+                        <span class="mSi2_3"></span>
+                        <span class="mSi2_4"></span>
+                    </div>
+                    <p>대구시가 청년층의 주거안정을 위해 <b>주거공간과 서비스를 특화</b>하여<br> 공급하는 대구형 청년희망주택의 입주자에게 <b class="txt-highlight">표준임대보증금 대출이자</b>를 지원</p>
+                </div>
+                <div class="bus_acco_tle">
+                    <h4><a href="javascript:;">지원대상</a></h4>
+                    <div class="bus_acco_cont">
+                        <ul class="ulSt ul03">
+                            <li>대구형 청년희망주택의 대학생·청년·신혼부부 등 청년계층 입주자 중 전세자금 대출자</li>
+                            <li>청년희망주택 계약자, 전세자금 대출자, 이자지원 신청자가 동일해야 함</li>
+                            <li><b>지원 가능 단지</b> : (대구도시개발공사) 송현청아람더영 / 원대청아람더영 / 인동촌청아람더영 / 상인3동청아람더영 / 안심청아람더영<br>
+								(LH) 침산행복주택 / 동인행복주택 / 죽전행복주택 </li>
+                            <li><b>※ 제외대상</b> : 주거급여수급자 또는 전세금 대출이자·월세 등 정부 및 우리 시 주거지원 받고 있는 대상자</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="bus_acco_tle">
+                    <h4><a href="javascript:;">지원내용</a></h4>
+                    <div class="bus_acco_cont">
+                        <ul class="ulSt ul03">
+                            <li>전세자금 대출자를 대상으로 표준임대보증금 범위내에서 대출이자 50% 지원
+                                <ul class="ulSt ul05">
+                                    <li>임대보증금이 표준임대보증금을 초과할 경우 표준임대보증금 부족분에 대한 지원대상 대출금액 이자 50% 지원</li>
+                                    <li>표준임대보증금, 월임대료 등은 입주자 모집공고문에서 확인</li>
+                                </ul>
+                            </li>
+                            <li>이자지원 금리는 정부의 전세자금 대출상품인 버팀목 전세자금(2.0~3.1%) 대출금리 적용
+                                <br>※ 버팀목 외 대출자는 전세자금 대출금리와 버팀목 최대금리 중 낮은 금리 적용
+                            </li>
+                            <li>
+                                <b>지급시기</b>
+                                <ul class="ulSt ul05">
+                                    <li>증빙자료 확인 후 분기별 지급(3월, 6월, 9월, 12월)</li>
+                                    <li>신청기간별 지급일</li>
+                                </ul>
+                            </li>
+                        </ul>
+                        <div class="scrX">
+                            <table class="infoTbl" style="min-width: 380px;">
+                                <caption></caption>
+                                <thead>
+                                    <tr>
+                                        <th scope="col">이자납입기간</th>
+                                        <th scope="col" style="font-weight: normal;">11/21~2/20</th>
+                                        <th scope="col" style="font-weight: normal;">2/21~5/20</th>
+                                        <th scope="col" style="font-weight: normal;">5/21~8/20</th>
+                                        <th scope="col" style="font-weight: normal;">8/21~11/20</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <th>지원신청기간</th>
+                                        <td><strong>2/21~3/10</strong></td>
+                                        <td><strong>5/21~6/10</strong></td>
+                                        <td><strong>8/21~9/10</strong></td>
+                                        <td><strong>11/21~12/10</strong></td>
+                                    </tr>
+                                    <tr>
+                                        <th>지원금 지급일</th>
+                                        <td>3/20 경</td>
+                                        <td>6/20 경</td>
+                                        <td>9/20 경</td>
+                                        <td>12/20 경</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+			<div>
+			    <p>※ 신청 지연 시 최대 6개월분 소급 지원 가능 (단, 대구시 예산 사정에 따라 불가할 수 있음)</p>
+			</div>
+                        <ul class="ulSt ul03">
+                            <li>
+                                <b>이자지원 절차</b>
+                            </li>
+                        </ul>
+                        <div class="kb-con-flowlist01 flow-step flow-step3">
+                            <ol class="num-list w25">
+                                <li class="ing">
+                                    <a class="txt-box">
+                                        <span class="num en">신청서 제출</span>
+                                        <p class="ptit">입주자</p>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="txt-box">
+                                        <span class="num en">계약정보 확인</span>
+                                        <p class="ptit">도시공사
+                                            LH, 대구시</p>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="txt-box">
+                                        <span class="num en">금융정보 확인</span>
+                                        <p class="ptit">은행</p>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="txt-box">
+                                        <span class="num en">지원금 산정</span>
+                                        <p class="ptit">대구시</p>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="txt-box">
+                                        <span class="num en">지원금 지급</span>
+                                        <p class="ptit">대구시 → 입주자</p>
+                                    </a>
+                                </li>
+                            </ol>
+                        </div>
+                        <ul class="ulSt ul03">
+                            <li><b>대출시 유의사항</b>
+                                <ul class="ulSt ul05">
+                                    <li>버팀목 외 대출 시 대출 용도는 `주택전세자금 대출`이어야 함</li>
+                                    <li>신청자가 매 분기별 월별 이자납입 확인서(해당 대출은행에서 발급)를 제출해야 분기별 지원금이 지급됩니다</li>
+                                </ul>
+                            </li>
+                        </ul>
+                        
+                        <ul class="ulSt ul03">
+						    <li><b>임대보증금 대출이자 지원금액 산정 예시</b></li>
+						</ul>
+						<div class="scrX">
+						    <table class="infoTbl" style="min-width: 700px; border-collapse: collapse; text-align: center;">
+							    <thead>
+							        <tr style="background-color: #e8f0fc;">
+							            <th>표준<br>임대보증금</th>
+							            <th>계약<br>임대보증금</th>
+							            <th>대출금액</th>
+							            <th>지원대상<br>대출금액<br>(A)</th>
+							            <th>지원<br>금리<br>(B)</th>
+							            <th>지원<br>비율<br>(C)</th>
+							            <th style="
+										    border-left: 2px solid red;
+										    border-right: 2px solid red;
+										    border-top: 2px solid red;
+										    border-bottom: 2px solid red;
+										    color: red;
+										    font-weight: bold;">
+										    대구시 월<br>
+										    이자지원액
+										</th>
+							        </tr>
+							    </thead>
+							    <tbody>
+							        <tr>
+							            <td>4,500만원</td>
+							            <td>6,500만원</td>
+							            <td>5,200만원</td>
+							            <td style="color: blue;">3,200만원</td>
+							            <td style="color: blue;">2.0%</td>
+							            <td style="color: blue;">50%</td>
+										<td rowspan="2" style="
+										    border: 2px solid red;
+										    color: red;
+										    font-weight: bold;
+										    background-color: #f5f5f5;
+										    line-height: 1.5;
+										">(A*B*C)/12
+										</td>
+							        </tr>
+							        
+							    </tbody>							    
+							</table>
+						</div>	
+						<div>
+						    <p><strong>- 월 이자지원액 = 지원대상대출금액(A) × 지원금리(B) × 지원비율(C)</strong></p>
+						    <p>※ 지원대상대출금액 = 표준임대보증금 - (계약임대보증금 - 대출금액)</p>
+						</div>
+                        
+
+                    </div>
+                </div>
+
+                <div class="bus_acco_tle">
+                    <h4><a href="javascript:;">신청서류</a></h4>
+
+                    <div class="bus_acco_cont">
+                        <ul class="ulSt ul03">
+                            <li><b>주민등록등본 (개인정보유출솔루션에 의해 차단될 시 JPG, ZIP 파일로 변환하여 첨부)</b>
+                                <ul class="ulSt ul05">
+                                    <li>주민등록등본에서 주민등록번호의 생년월일 제외 뒷자리 삭제하여 제출</li>
+                                </ul>
+                            </li>
+                            <li><b>통장사본</b> (이자지원을 받을 계좌)</li>
+                            <li><b>금융거래확인서</b> (대출용도:주택전세자금)</li>
+                            <li><b>월별 이자납입 확인서</b> (금융기관별 명칭 상이)
+                                <ul class="ulSt ul05">
+                                    <li>대출자,대출약정액,거래일,대출잔액,<b style="color: red;">월별 납입대출이자</b> 등의 내용이 나오는 은행발급 서류</li>
+                                    <li><b style="color: red;">통장 거래내역</b> 및 <b style="color: red;">인터넷 캡쳐본 제출불가</b></li>
+                                    <li>대구은행(이자납입증명서),하나은행(여신기간별 거래내역),국민은행(여신거래내역조회 또는 대출이자납입내역),<br>기업은행(대출금(이자)계산서),우리은행(여신거래내역 조회),농협(대출거래내역조회표 또는 대출원리금납입증명서),<br>신한은행(기간별 대출금 계산서 또는 대출이자납입확인서)
+                                    </li>
+                                    <li><span style="color: red; font-weight: normal;">월별 이자납입확인서는 신청 시 분기마다 갱신해야 함.</span></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+           
+            <div class="btn_wrap">
+                <a href="javascript:;" onclick="validState()" class="go_bis"><span>청년 희망주택 대출이자 지원 사업 신청하기</span></a>
+            </div>
+           
+        </div>
+    </section>
+    <!--//CONT -->
+    <!--QUICK -->
+    <div class="quick no-print">
+        <a class="go_print" href="javascript:;" onclick="print()"><img src="/resources/user/img/sub_new/quick_icon01.png" alt="인쇄하기"></a>
+        <a href="javascript:;" class="scrollTop" style="display:none;"><img src="/resources/user/img/sub_new/quick_icon02.png" alt="TOP"></a>
+    </div>
+    <!--//QUICK -->
+</div>
+<!--//container -->
+
+<script>
+	function print() {
+		var customStyle = ".bus_intro{background:#fff !important;padding:0 !important;} .bus_acco_cont{display:block !important;}";
+		$("#container").print({
+			title: "현재 페이지 인쇄",
+			globalStyles: true,
+			prepend: "<style>"+customStyle+"</style>",
+			noPrintSelector: ".no-print",
+			timeout: 2000
+		});
+	}
+</script>
+
+
+<script>
+	function validState() {
+		if(false == false){
+			alert("신청기간이 아닙니다");
+			return;
+		}else{
+			$.ajax({
+				url: "/api/usr/apply/hopeHousing/check",
+				type: "get",
+				cache: false,
+				success: function(response,status,xhr) {
+					if(response.result.info) {
+						location.href="/hopeHousing/businessAgree.do";
+					} else if(response.result.warn) {
+						var userConfirm = false;
+						if(response.result.warnMsg === "WARN_BEFORE_APPLIED") {
+							userConfirm = confirm("이전 신청 내역이 존재합니다. 신청하시겠습니까?");
+						} else {
+							alert("알 수 없는 신청확인 코드를 받았습니다.");
+						}
+						if(userConfirm) {
+							location.href="/hopeHousing/businessAgree.do";
+						}
+					} else if(response.result.error) {
+						if(response.result.errorMsg === "ERROR_APPLIABLE_DUPLICATED") {
+							alert("신청 내역에 문제가 있습니다. 관리자에게 문의해주세요.");
+						} else if(response.result.errorMsg === "ERROR_ANOTHER_APPLIED") {
+							alert("중복 불가능한 다른 사업이 이미 신청되었습니다.");
+						} else if(response.result.errorMsg === "ERROR_BEFORE_APPLIED") {
+							alert("이미 신청된 내역이 존재합니다.");
+						} else if(response.result.errorMsg === "ERROR_ALREADY_APPLYING") {
+							alert("이미 신청 중입니다.");
+						} else if(response.result.errorMsg === "ERROR_NOT_IDENTITY_VERIFICATION") {
+							alert("사업을 신청하기 위해 본인인증이 필요합니다.");
+							location.href="/join/needRenew.do";
+						} else {
+							alert("알 수 없는 신청불가 코드를 받았습니다.");
+						}
+					} else {
+						alert("알 수 없는 응답값을 받았습니다.");
+					}
+				},
+				error: function(xhr,status,err) {
+					if(xhr.status === 500) {
+						alert("내부 작업 중 오류가 발생했습니다.");
+					} else if(xhr.status === 401 || xhr.status === 403 || (xhr.status === 200 && !xhr.responseJSON)) {
+						// header 공통부 처리
+					} else {
+						alert("로딩을 실패했습니다.");
+					}
+				}
+			});
+		}
+	}
+</script>
+
+
+	
+
+<footer id="footer">
+    <div class="foot_top">
+        <div class="footer__inner">
+            <ul>
+                <li>
+                    <a href="https://www.daegu.go.kr/index.do?menu_id=00050250" target="_blank">개인정보처리방침</a>
+                </li>
+                
+                
+            </ul>
+        </div>
+    </div>
+    <div class="foot_bot">
+        <div class="footer__inner">
+            <p class="foot_adress">
+                (41542) 대구광역시 북구 연암로 40 (대구광역시청 산격청사)<br>
+                <b>대표안내전화</b>
+                (053)120
+                <b>팩스</b>
+                (053)803-2879
+            </p>
+            <p class="foot_copyright">© DAEGU METROPOLITAN CITY ALL RIGHTS RESERVED.</p>
+        </div>
+    </div>
+</footer>
+
+</body>
+</html>

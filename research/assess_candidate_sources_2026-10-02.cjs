@@ -7,6 +7,8 @@ module.exports=function(dir,p,records){
   if(r.error)detail='조회실패:'+r.error;
   else if(r.status!==200)detail='HTTP '+r.status;
   else if(r.errorPage)detail='응답200이나 오류 안내 본문';
+  else if(r.file&&fs.existsSync(path.join(dir,r.file+'.document.txt')))detail='HWP/HWPX 본문 추출 확보;제목·기관·회차·정정범위 대조 별도 필요';
+  else if(r.file&&/\.pdf$/.test(r.file)&&fs.existsSync(path.join(dir,r.file+'.txt')))detail='PDF 본문 추출 확보;제목·기관·회차·정정범위 대조 별도 필요';
   else if(!r.textFile)detail=/\.pdf$/.test(r.file||'')?'PDF 첨부:본문·동일사업 대조 별도 필요':'비HTML 첨부:본문 판독 별도 필요';
   else{
    const file=path.join(dir,r.textFile),body=fs.existsSync(file)?fs.readFileSync(file,'utf8'):'';

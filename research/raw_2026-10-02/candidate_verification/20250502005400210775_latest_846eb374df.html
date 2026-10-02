@@ -1,0 +1,2738 @@
+
+
+
+
+
+
+
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	
+
+
+
+
+
+
+
+
+<title>공고/고시 - 2026년 신혼부부 주거자금  대출이자 지원 대상자 모집 공고 상세화면 - 공고/고시 | 강원특별자치도 축산기술연구소</title>
+<meta charset="utf-8" >
+<meta http-equiv="X-UA-Compatible" content="IE=edge" >
+<meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, minimum-scale=1.0, maximum-scale=2.0, user-scalable=yes" >
+<meta name="Keywords" content="" >
+<meta name="Description" content="" >
+<meta name="Author" content="강원특별자치도 축산기술연구소" >
+<link rel="icon" href="/page/common/images/favicon.ico" type="image/x-icon">
+<meta name="format-detection" content="telephone=no" >
+<meta property="og:title" content="강원특별자치도 축산기술연구소" >
+<meta property="og:site_name" content="강원특별자치도 축산기술연구소" >
+<meta property="og:description" name="Description" content="" >
+<meta name="naver-site-verification" content="e92ed8ec45dbcb539782d2b229b15967ee04ad61" >
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+    
+        
+    
+    
+
+
+<link rel="stylesheet" href="/page/common/css/fonts.css?v=0">
+<link rel="stylesheet" href="/page/common/css/common.css?v=0">
+<link rel="stylesheet" href="/page/common/css/jquery-ui.min.css?v=0">
+
+<!-- loading bar style - add by YJ.SON :: 2021-07-08 -->
+<style>
+    .loader {
+        border: 10px solid #f3f3f3;
+        border-radius: 50%;
+        border-top: 10px solid #0e77e0;
+        border-bottom: 10px solid #0e77e0;
+        width: 50px;
+        height: 50px;
+        -webkit-animation: spin 2s linear infinite;
+        animation: spin 2s linear infinite;
+        top: 50%;
+        position: relative;
+        margin: auto;
+        z-index: 10000;
+    }
+
+    @-webkit-keyframes spin {
+        0% { -webkit-transform: rotate(0deg); }
+        100% { -webkit-transform: rotate(360deg); }
+    }
+
+    @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+    }
+
+    .loader-back {
+        display: block;
+        position: fixed;
+        top: 0;
+        background: #fff;
+        width: 100%;
+        height: 100%;
+        opacity: 0.8;
+        text-align: center;
+        vertical-align: middle;
+        z-index: 10000;
+    }
+
+    #ezview-overlay {
+        position: absolute;
+        top: 0; left: 0;
+        width: 100%; height: 100%;
+        background: rgba(255, 255, 255, 0.8);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        z-index: 9999;
+    }
+
+    .spinner {
+        width: 40px;
+        height: 40px;
+        border: 4px solid #f3f3f3;
+        border-top: 4px solid #3498db;
+        border-radius: 50%;
+        animation: spin 1s linear infinite;
+        margin-bottom: 10px;
+    }
+
+    @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+    }
+</style>
+
+	
+
+
+
+
+
+
+
+
+
+
+<script>
+	if (document.location.protocol == 'http:') {
+	   document.location.href = document.location.href.replace('http:', 'https:');
+	}
+	var url = document.URL;
+	var arraySplit = url.split("/");
+	var domain = arraySplit[2];
+	var url1 = 'www.gwd.go.kr';
+	var url2 = 'gwd.go.kr';
+	var urlgo = 'state.gwd.go.kr';
+    if(domain==url1) 
+		document.location.href = url.replace(url1, urlgo);
+	else if(domain==url2) 
+		document.location.href = url.replace(url2, urlgo);
+</script>
+
+    
+        
+    
+    
+
+<script src="/page/common/js/jquery-3.6.0.min.js?v=0"></script>
+<script src="/page/common/js/jquery-ui.min.js?v=0"></script>
+<script src="/page/common/js/puble_common.js?v=0"></script>
+<script src="/page/common/js/slick.min.js?v=0"></script>
+<script src="/page/common/js/jquery.cookie.js?v=0"></script>
+<script src="/page/common/js/common.js?v=0"></script>
+<script src="/page/common/js/util.js?v=0"></script>
+
+<script>
+    // csrf token - add by YJ.SON :: 2021-05-16
+    // var csrf_token = $("meta[name='_csrf']").attr("content");
+    // var csrf_token_header = $("meta[name='_csrf_header']").attr("content");
+
+    $(document).ready(function() {
+        // page hit
+        var pageUrl  = '/livestock/announce';
+        var pageTitle = '공고/고시';
+        if ('/livestock/announce') {
+            $.ajax({
+                type : 'POST'
+                , url  : '/egf/insertPageHit'
+                , data :{
+                    'pageUrl'  : pageUrl
+                    , 'pageTitle' : pageTitle
+                }
+                , dataType:'json'
+                // , beforeSend : function (xhr) {
+                //     // add csrf token - add by YJ.SON :: 2021-05-16
+                //     xhr.setRequestHeader(csrf_token_header, csrf_token);
+                // }
+            });
+        }
+
+
+        $(".logout").click(function () {
+            $.ajax({
+                url : "/others/sns/logout",
+                cache : false,
+                type : "POST",
+                beforeSend : function (xhr) {
+                },
+                success : function () {
+
+                },
+                error : function () {
+
+                },
+                complete : function () {
+                    location.href = "/livestock";
+                }
+            });
+        });
+    });
+
+    var initBody;
+    function beforePrint() {
+        initBody = document.body.innerHTML;
+        document.body.innerHTML = document.getElementById('content').outerHTML;
+    }
+
+    function afterPrint() {
+        document.body.innerHTML = initBody;
+    }
+
+    // print
+    function fnPrint() {
+        alert("크롬, 오페라 브라우저 사용 시 배경이 안나오는 경우, 인쇄창 컬러 항목 아래 +설정 더보기 > 배경 그래픽에 체크 후 다시 시도해주세요.");
+
+        var inbody = document.body.innerHTML; // 이전 body 영역 저장
+
+        window.onbeforeprint = beforePrint;
+        window.onafterprint = afterPrint;
+        window.print();
+    }
+
+    // sns 공유 (기능) - 2021-08-20 jylee
+    function fnShareSNS(sns){
+        // 공유하는 페이지 <title> 태그 가져오기
+        var strTitle = document.title;
+        var strURL = window.location.href;
+
+        var snsArray = new Array();
+        // encodeURIComponent() : HTML 특수개체 문자 처리방식
+        snsArray['twitter'] = "https://twitter.com/intent/tweet?text=" + encodeURIComponent(strTitle) + "&url=" + encodeURIComponent(strURL);
+        snsArray['facebook'] = "http://www.facebook.com/share.php?u=" + encodeURIComponent(strURL);
+        snsArray['kakao'] = "http://story.kakao.com/share?url=" + encodeURIComponent(strURL);
+        snsArray['naver'] = "http://share.naver.com/web/shareView.nhn?url=" + encodeURIComponent(strURL) + "&title=" + encodeURIComponent(strTitle);
+        // 새 창으로 snsArray 링크 열기
+        window.open(snsArray[sns], "SNS 공유하기 새창", "width=800, height=700, toolbar=no, menubar=no, scrollbars=no, resizable=yes");
+    }
+
+    // start loading bar - add by YJ.SON :: 2021-07-08
+    function fnStartLoading() {
+        $("body").append('<div class="loader-back"><div class="loader" id="div-main-loader"></div></div>');
+    }
+
+    // end loading bar - add by YJ.SON :: 2021-07-08
+    function fnEndLoading() {
+        $(".loader-back").remove();
+    }
+
+    // form validate with document element id
+    function fnFormValidate(_id) {
+        var error = false;
+        var forms = document.querySelectorAll("#" + _id);
+        $.each(forms[0], function(i, e) {
+            if($(this).attr("required") !== undefined && $(this).attr("placeholder") !== undefined) {
+                var value = $.trim($(this).val());
+                var placeholder = $(this).attr("placeholder");
+
+                // check field value
+                if(value == "") {
+                    fnMessagePopup(placeholder);
+                    $(this).focus();
+                    error = true;
+                    return false;
+                }
+
+                // check for number
+                if(value != "" && placeholder.indexOf("숫자") > 0) {
+                    if(!$.isNumeric($(this).val())) {
+                        fnMessagePopup("숫자만 가능합니다.");
+                        $(this).val("");
+                        $(this).focus();
+                        error = true;
+                        return false;
+                    }
+                }
+            }
+        });
+
+        return error;
+    }
+
+    function fnMessagePopup(message) {
+        alert(message);
+    }
+
+</script>
+
+
+
+
+
+
+
+
+
+
+
+	<link rel="stylesheet" href="/page/gw-subsite/css/app.css?v=공고/고시">
+	<script src="/page/gw-subsite/js/app.js?v="></script>
+	
+		
+		
+			<link rel="stylesheet" href="/page/gw-subsite/css/sub.css?v=" />
+			<script src="/page/gw-subsite/js/sub.js?v="></script>
+		
+	
+</head>
+<body>
+<div id="wrapper">
+	<ul class="skipnav">
+		<li><a href="#A-Gnb-focus">주메뉴 바로가기</a></li>
+		<li><a href="#A-Contents-focus">본문 바로가기</a></li>
+		<li><a href="#A-Ftr-focus">푸터 바로가기</a></li>
+	</ul>
+	<div class="page-wrap">
+		
+
+
+
+
+
+
+
+
+<header id="header">
+	<div class="inner">
+		<div class="top-bx">
+			<div class="link-bx">
+				<a href="/portal" rel="noopener noreferrer" target="_blank" title="새창">강원특별자치도청</a>
+			</div>
+		</div>
+		<div class="nav-bx">
+			<div class="logo-bx">
+				<h1>
+					<a href="/livestock"><img src="/page/gw-subsite/images/common/livestock_logo_c.png" alt="강원특별자치도 축산기술연구소"></a>
+				</h1>
+			</div>
+			<a href="#A-Gnb-focus" id="A-Gnb-focus" class="blind">주메뉴 시작</a>
+			<nav class="clearfix">
+				<ul class="depth-01">
+					
+						
+							
+								
+								
+							
+							
+							<li>
+								<h2>
+									<a href="/livestock/livestock/mainbusiness"
+									>
+										<span>축산기술연구소</span>
+									</a>
+								</h2>
+								<ul class="depth-02">
+									
+										
+											
+												
+											
+											
+											<li>
+												<h3>
+													<a href="/livestock/livestock/mainbusiness" 
+													>
+														<span>주요업무</span>
+													</a>
+												</h3>
+											</li>
+										
+									
+										
+											
+												
+											
+											
+											<li>
+												<h3>
+													<a href="/livestock/livestock/education" 
+													>
+														<span>축산전문 교육안내</span>
+													</a>
+												</h3>
+											</li>
+										
+									
+								</ul>
+							</li>
+						
+					
+						
+							
+								
+								
+							
+							
+							<li>
+								<h2>
+									<a href="/livestock/notice"
+									>
+										<span>알림사항</span>
+									</a>
+								</h2>
+								<ul class="depth-02">
+									
+								</ul>
+							</li>
+						
+					
+						
+							
+								
+								
+							
+							
+							<li>
+								<h2>
+									<a href="/livestock/announce"
+									>
+										<span>공고/고시</span>
+									</a>
+								</h2>
+								<ul class="depth-02">
+									
+								</ul>
+							</li>
+						
+					
+						
+							
+								
+								
+							
+							
+							<li>
+								<h2>
+									<a href="/livestock/pressrelease"
+									>
+										<span>보도자료</span>
+									</a>
+								</h2>
+								<ul class="depth-02">
+									
+								</ul>
+							</li>
+						
+					
+						
+							
+								
+								
+							
+							
+							<li>
+								<h2>
+									<a href="/livestock/introduce/greeting"
+									>
+										<span>사업소소개</span>
+									</a>
+								</h2>
+								<ul class="depth-02">
+									
+										
+											
+												
+											
+											
+											<li>
+												<h3>
+													<a href="/livestock/introduce/greeting" 
+													>
+														<span>인사말</span>
+													</a>
+												</h3>
+											</li>
+										
+									
+										
+											
+												
+											
+											
+											<li>
+												<h3>
+													<a href="/livestock/introduce/history" 
+													>
+														<span>연혁</span>
+													</a>
+												</h3>
+											</li>
+										
+									
+										
+											
+												
+											
+											
+											<li>
+												<h3>
+													<a href="/livestock/introduce/organization" 
+													>
+														<span>기구 및 정원</span>
+													</a>
+												</h3>
+											</li>
+										
+									
+										
+											
+												
+											
+											
+											<li>
+												<h3>
+													<a href="/livestock/introduce/map" 
+													>
+														<span>찾아오시는길</span>
+													</a>
+												</h3>
+											</li>
+										
+									
+								</ul>
+							</li>
+						
+					
+						
+							
+								
+								
+							
+							
+							<li>
+								<h2>
+									<a href="/livestock/staff"
+									>
+										<span>직원현황</span>
+									</a>
+								</h2>
+								<ul class="depth-02">
+									
+								</ul>
+							</li>
+						
+					
+						
+					
+				</ul>
+			</nav>
+			<div class="btn-bx">
+				<a href="#" class="sitemap">사이트맵</a>
+				<a href="#" class="mobile-menu">메뉴</a>
+			</div>
+		</div>
+	</div>
+</header>
+		<main id="sub">
+			<a href="#A-Contents-focus" id="A-Contents-focus" class="blind">본문 시작</a>
+			
+
+
+
+
+
+
+
+
+<div id="sub-visual">
+	<div class="inner">
+		<img src="/page/gwprovin/images/sub/sub_bg.jpg" class="visual-bg">
+		<div class="title-bx">
+			<h2>
+				
+			</h2>
+			<div id="breadcrumb-bx">
+				
+
+
+
+
+
+
+
+
+
+
+<a href="/livestock" class="home" title="메인">홈</a>
+
+	<div class="box">
+		<a href="javascript:;" class="open"> 
+			<em class="text">공고/고시</em>
+			
+		</a>
+		<ul>
+		
+			
+			<li >
+				<a href="/livestock/livestock/mainbusiness" 
+				
+				> 축산기술연구소 
+				
+				</a>
+			</li>
+			
+		
+			
+			<li >
+				<a href="" 
+				
+				> 알림사항 
+				
+				</a>
+			</li>
+			
+		
+			
+			<li class="active">
+				<a href="" 
+				
+				> 공고/고시 
+				
+				</a>
+			</li>
+			
+		
+			
+			<li >
+				<a href="" 
+				
+				> 보도자료 
+				
+				</a>
+			</li>
+			
+		
+			
+			<li >
+				<a href="/livestock/introduce/greeting" 
+				
+				> 사업소소개 
+				
+				</a>
+			</li>
+			
+		
+			
+			<li >
+				<a href="" 
+				
+				> 직원현황 
+				
+				</a>
+			</li>
+			
+		
+			
+		
+		</ul>
+	</div>
+
+
+
+			</div>
+		</div>
+		<div class="sns-bx">
+			<div class="share">
+				<a href="#" role="button" class="open">공유하기</a>
+				<div class="view">
+					<a href="#" class="facebook" onclick="fnShareSNS('facebook')">페이스북</a> <a href="#" class="twitter" onclick="fnShareSNS('twitter')">트위터</a> <a href="#" role="button" class="close">닫기</a>
+				</div>
+			</div>
+			<a href="#" class="print" onclick="javascript:fnPrint();"> 프린트를 출력합니다. </a>
+		</div>
+	</div>
+</div>
+<progress id="progressScroll" class="progress" value="0" max="100"></progress>
+<section id="content" class="inner">
+	<div id="side-menu">
+		
+
+
+
+
+
+
+
+<h2>공고/고시</h2>
+<ul class="depth-02">
+	
+</ul>
+	</div>
+	<div id="content-bx">
+		
+
+
+
+
+
+
+
+
+
+
+
+
+
+		<a href="#A-Contents-focus" id="A-Contents-focus" class="blind">본문 시작</a>
+		
+
+
+
+
+
+
+
+
+
+
+	
+		
+			
+				
+					
+						
+
+
+
+
+
+
+
+
+
+
+
+
+
+<form name="pageForm" method="get" action="/livestock/announce" autocomplete="off">
+	
+	<input type="hidden" name="pageIndex" value="1" />
+	<input type="hidden" name="searchKeyword" value="" />
+	<input type="hidden" name="searchCondition" value="" />
+	
+	<input type="hidden" name="articleSeq" value="270054" />
+</form>
+
+<form name="replayForm" method="post" action="/livestock/announce" autocomplete="off">
+	
+	<input type="hidden" name="mode" />
+	<input type="hidden" name="articleSeq" value="270054" />
+</form>
+
+<!-- 기본게시판 -->
+<div class="skinTb skinTb-data-resList skinTb-data-bgSbj">
+	<div class="skinTb-tr">
+		<div class="skinTb-th col2 skinTxa-center" data-hidden="mob">제목 </div>
+		<div class="skinTb-td skinTb-sbj">2026년 신혼부부 주거자금  대출이자 지원 대상자 모집 공고</div>
+	</div>
+	<div class="skinTb-tr">
+		<div class="skinTb-th col2 skinTxa-center" data-hidden="mob">작성자</div>
+		
+		<div class="skinTb-td col2 skinTb-name">
+		
+			
+				건축과
+			
+			
+		
+		</div>
+		
+		<div class="skinTb-th col2 skinTxa-center" data-hidden="mob">작성일 </div>
+		<div class="skinTb-td col2 skinTb-date">2026-06-01</div>
+		
+		<div class="skinTb-th col2 skinTxa-center" data-hidden="mob">조회수</div>
+		<div class="skinTb-td skinTb-hiddenMob" data-hidden="mob">2001</div>
+	</div>
+
+	
+
+
+
+
+
+
+
+
+
+	
+		<div class="skinTb-tr">
+			<div class="skinTb-th col2 skinTxa-center" data-hidden="mob">
+				첨부파일
+			</div>
+			<div class="skinTb-td col10">
+				
+					<div class="attachFile ">
+						<a href="/egf/bp/common/front/260685/download">
+							<span class="icoFile icoFile-data-hwpx skinMr-small" data-hidden="mob"></span> (260526)2026년 신혼부부 주거자금 대출이자 지원 대상자 모집 공고.hwpx
+						</a>
+						<span class="attachFile-txt" data-hidden="mob">
+						(다운로드: 268 | 194.8kb)
+						</span>
+						
+						
+							
+								<div class="contsBtn contsBtnSmall skinBtnBo v2">
+									<span>바로보기</span>
+									<a href="javascript:void(0);" title="새창" onclick="previewAjax('/egf/bp/common/front/260685/download');" class="contsBtn-more">
+										바로보기
+									</a>
+								</div>
+							
+						
+					</div>
+				
+			</div>
+		</div>
+		<form name="ezviewForm" id="ezviewForm" action="about:blank" method="post" autocomplete="off">
+			<input type="hidden" name="url" id="ezviewUrl" value="">
+		</form>
+	
+
+<script>
+	// file_url : 파일경로
+	// file_name: 파일명 - 파일경로에서 파일명을 추출할 수 없는 경우 파일명을 입력해주십시오.
+	// function previewAjax(file_url, file_name) {
+	// 	var apiKey = "JSCJWZTSMPNC8V40PBFDVW";
+	// 	var cc = "pgw";
+	// 	var fileUrl = encodeURIComponent(file_url);
+	// 	var fileName = encodeURIComponent(file_name);
+	// 	window.open(
+	// 			"https://viewstory.net/previewAjax.do?apikey={0}&cc={1}&url={2}&fileName={3}"
+	// 					.format(apiKey, cc, fileUrl, fileName), "a",
+	// 			"width=1200, height=1000, left=100, top=50");
+	// }
+	// function preListen(file_url, file_name) {
+	// 	var apiKey = "JSCJWZTSMPNC8V40PBFDVW";
+	// 	var cc = "pgw";
+	// 	var fileUrl = encodeURIComponent(file_url);
+	// 	var fileName = encodeURIComponent(file_name);
+	// 	window.open(
+	// 			"https://viewstory.net/voiceOverAjax.do?apikey={0}&cc={1}&url={2}&fileName={3}"
+	// 					.format(apiKey, cc, fileUrl, fileName), "a",
+	// 			"width=1200, height=1000, left=100, top=50");
+	// }
+	// String.prototype.format = function() {
+	// 	var formatted = this;
+	// 	for ( var arg in arguments) {
+	// 		formatted = formatted.replace("{" + arg + "}", arguments[arg]);
+	// 	}
+	// 	return formatted;
+	// };
+
+	// file_url : 파일 다운로드 경로
+	function previewAjax(file_url) {
+//		let fullPath = "http://20.20.20.11:8888" + file_url;
+		let fullPath = "https://state.gwd.go.kr" + file_url;
+		let eaviewUrl = window.location.origin + "/ezview/task/request?url=" + encodeURIComponent(fullPath);
+		$.ajax({
+			url: eaviewUrl,
+			dataType: "json",
+			success: function(data, textStatus, jqXHR) {
+
+				let width = 1100;
+				let height = 880;
+				let left = (screen.availWidth / 2) - (width / 2);
+				if (left < 0) left = 0;
+				let top = (screen.availHeight / 2) - (height / 2);
+				if (top < 0) top = 0;
+
+				if((data[0].message).indexOf('완료')>0 ){
+					let popup = ezviewPop(
+							fullPath,
+							'preview', // name
+							width, height, left, top, // width, height, left, top
+							'yes', 'yes' // isResizable, isScrollable
+					);
+				}
+				else {
+					let ezviewLoading = `
+							<div id="ezview-overlay">
+								<div class="spinner"></div>
+								<p>변환중</p>
+							</div>`;
+
+					$("#wrapper").append(ezviewLoading);
+					setTimeout(function (){
+						let popup = ezviewPop(
+								fullPath,
+								'preview', // name
+								width, height, left, top, // width, height, left, top
+								'yes', 'yes' // isResizable, isScrollable
+						);
+
+						$("#ezview-overlay").remove();
+					},4000);
+				}
+			}
+		});
+	}
+
+	function ezviewPop(url, name, width, height, left, top, isResizable, isScrollable, useStatus) {
+		let optArray = new Array();
+		let idx = 0;
+		if (width) optArray[idx++] = "width=" + width;
+		if (height) optArray[idx++] = "height=" + height;
+		if (left) optArray[idx++] = "left=" + left;
+		if (top) optArray[idx++] = "top=" + top;
+		if (isResizable) optArray[idx++] = "resizable=" + isResizable;
+		if (isScrollable) optArray[idx++] = "scrollbars=" + isScrollable;
+		if (useStatus) optArray[idx++] = "status=" + useStatus;
+
+		let opts = "";
+		for (idx = 0; idx < optArray.length; idx++) {
+			if (idx > 0)
+				opts += ",";
+			opts += optArray[idx];
+		}
+
+		let popWindow = window.open(window.location.origin + "/ezview/task/viewer", name, opts);
+
+		$("#ezviewUrl").val(url);
+		$("#ezviewForm").attr("target", name);
+		$("#ezviewForm").attr("action", window.location.origin + "/ezview/task/viewer");
+		$("#ezviewForm").submit();
+	}
+</script>
+
+	
+	<div class="skinTb-tr">
+		<div class="skinTb-th col2 skinTxa-center" data-hidden="mob">내용</div>
+		<div class="skinTb-td skinTb-conts">
+
+			강원특별자치도 공고 제2026 - 874호<br /><br />2026년 신혼부부 주거자금 <br />대출이자 지원 대상자 모집 공고<br /><br />  강원특별자치도에서는 신혼부부 가구의 주거비 부담 완화 및 안정된 주거여건 형성을 통한 결혼·출산 친화환경 조성을 위하여 「강원특별자치도 출산·양육 지원 조례」에 근거하여 신혼부부 주거자금 대출이자 지원사업을 다음과 같이 시행하오니, 많은 신청 바랍니다.<br /><br />2026. 6. 1.<br /><br />강원특별자치도지사
+			
+				
+					<!-- 그림파일이면  -->
+					
+					
+				
+			
+
+			
+
+		</div>
+	</div>
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+<!--// 기본게시판 -->
+
+
+
+<div class="skinBtnBo_box skinTxa-right">
+	
+	
+	<a href="#nolink" onclick="goPage(0); return false;" class="skinBtnBo skinBtnBo-data-pos">목록</a>
+</div>
+
+
+	
+
+	<div class="skinTb skinTxa-left">
+		<div class="skinTb-tr">
+			<div class="skinTb-th col2">
+				<div class="btnBoPrev">
+					<span></span>
+					이전글
+				</div>
+			</div>
+			<div class="skinTb-td">
+				
+					
+					<a href="#nolink" onclick="goPage(270095); return false;">
+					
+					
+					양양국제공항 단체관광객 무사증입국 허가제도 국내 전담여행사 모집 공고
+				</a>
+				
+				
+			</div>
+		</div>
+		<div class="skinTb-tr">
+			<div class="skinTb-th col2">
+				<div class="btnBoNext">
+					<span></span>
+					다음글
+				</div>
+			</div>
+			<div class="skinTb-td">
+				
+					
+					<a href="#nolink" onclick="goPage(270109); return false;">
+					
+					
+					온압보정계수 적용에 관한 변경고시(2026-234호)
+				</a>
+				
+				
+			</div>
+		</div>
+	</div>
+
+
+
+
+
+
+
+<br><br>
+
+
+
+
+
+
+
+
+
+
+
+	<div class="popAlert popAlert-data-passConfirm skinTxa-center" data-alert-name="passConfirm" style="display: none;" id="passConfirmContainer">
+		<div class="popAlert-inner">
+			<div class="popAlert-tit">
+				비밀번호 확인
+			</div>
+			
+			<form id="confirmFormCopy" method="post" autocomplete="off">
+				
+			</form>
+
+			<form id="confirmForm" name="confirmForm" method="post" autocomplete="off">
+				
+				<input type="hidden" name="returnUrl" value="/livestock/announce">
+				<input type="hidden" name="boardCode" value="BDAADD02" >
+				<input type="hidden" name="articleSeq" value="270054" >
+				<label for="PassWord" class="skinMb-small">글 작성 시 입력한 비밀번호를 입력해주세요.</label>
+				<input type="password" id="PassWord" name="password" class="skinIptPass col7 skinMb-small passFormEnterPress"  maxlength="10" autocomplete="off">
+			</form>
+			
+			<div>
+				<a href="#nolink" onclick="confirmFormCheck();" class="col5 skinFont-bold skinTxa-center skinBtnBo skinBtnBo-data-neg">확인</a>
+				<a href="#nolink" onclick="passConfirmContainerClose();" class="col5 skinFont-bold skinTxa-center skinBtnBo skinBtnBo-data-pos">취소</a>
+			</div>
+		</div>
+	</div>
+
+<script>
+	var userMode = '';
+	var seq = 0;
+	function showPassConfirmContainer(mode, articleSeq) {
+		var $container = $('#passConfirmContainer');
+		var style = { 'position': 'fixed'
+					, 'top' : '50%'
+					, 'left' : '50%'
+					, 'margin-top' : -$container.outerHeight() / 2 + 'px'
+					, 'margin-left' : -$container.outerWidth() / 2 + 'px'
+					, 'z-index' : 99999};
+		
+		$container.css(style).show();
+		
+		var initCss = {
+			position: 'static' 
+		}
+		$('#Sub').css(initCss);
+		$('#Ftr').css(initCss);
+		
+		userMode = mode;
+		seq = articleSeq;
+		
+	}
+	
+	function passConfirmContainerClose() {
+		var $container = $('#passConfirmContainer');
+		$container.find('input[name="password"]').val('');
+		$container.hide();
+		var initCss = {
+			position: 'relative' 
+		}
+		$('#Sub').css(initCss);
+		$('#Ftr').css(initCss);
+		
+	}
+	
+	function confirmFormCheck() {
+		var $form = $('#confirmForm');
+		
+		if (!$form.find('input[name="password"]').val()) {
+			alert('비밀번호를 입력해주세요.')
+			return;
+		}
+		
+		if (seq > 0) {
+			$form.find('input[name="articleSeq"]').val(seq);
+		}
+		
+		$.ajax({
+			cache: false,
+			type: "post",
+			url: "/egf/bp/board/article/passconfirm",
+			data: $form.serialize(),
+			dataType: "json",
+			// beforeSend : function (xhr) {
+			// 	// add csrf token - add by YJ.SON :: 2021-05-16
+			// 	xhr.setRequestHeader(csrf_token_header, csrf_token);
+			// },
+			success: function(data, textStatus, jqXHR) {
+				seq = data.articleSeq;
+				if (data.result == 'success') {
+					if (userMode == 'edit') {
+						$form.attr('action', '/livestock/announce?mode=edit').submit();
+					}
+					else if (userMode == 'delete') {
+						if (confirm("정말 지우겠습니까?")) {
+							$form.attr('action', '/egf/bp/board/article/actionDelete').submit();
+						}
+					}
+					else if (userMode == 'read') {
+						$form.find('input[name="articleSeq"]').remove();
+						$form.attr('action', '/livestock/announce?articleSeq=' + seq).submit();
+					}
+				}
+				else {
+					alert(data.msg);
+				}
+			},
+			error: function(jqXHR, textStatus, errorThrown) {
+			}
+		});
+	}
+	
+	$(function(){
+		$('.passFormEnterPress').on('keypress', function(e) {
+			var charCode = (e.which) ? e.which : e.keyCode;
+			if (charCode == 13) {
+				confirmFormCheck();
+				return false;
+			}
+		});
+	});
+</script>
+
+					
+					
+					
+					
+					
+				
+			
+			
+			
+			
+			
+		
+	
+
+
+	
+
+
+
+
+
+
+
+
+
+
+
+<!--
+-->
+
+	</div>
+</section>
+		</main>
+		
+
+<footer id="footer">
+	<div class="inner" id="A-Ftr-focus">
+		<div class="dual">
+			<h1>
+				<a href="/portal" rel="noopener noreferrer" target="_blank" title="새창"> <img src="/page/gwprovin/images/main/logo_b.png?ver=20231204" alt="강원특별자치도">
+				</a>
+			</h1>
+			<h1>
+				<a href="https://visitgw2526.kr/" target="_blank" title="새 창 열림" rel="noopener noreferrer"><img src="/page/gwprovin/images/main/logo_visitgw.png" alt="2025-2026 강원방문의 해"></a>
+			</h1>
+		</div>
+		<div class="link-bx">
+			<a href="/portal/services/privacy" rel="noopener noreferrer" target="_blank" title="새창">개인정보처리방침</a> 
+			<a href="/portal/services/videoInformation" rel="noopener noreferrer" target="_blank" title="새창">영상정보처리기기방침</a> 
+			<a href="/portal/services/copyright" rel="noopener noreferrer" target="_blank" title="새창">저작권정책</a> 
+			<a href="/portal/services/unknown" rel="noopener noreferrer" target="_blank" title="새창">정보보호서비스</a>
+		</div>
+		
+			
+				
+					
+				
+				
+				
+				
+				
+				
+			
+		
+			
+				
+				
+					
+				
+				
+				
+				
+				
+			
+		
+			
+				
+				
+				
+					
+				
+				
+				
+				
+			
+		
+			
+				
+				
+				
+				
+					
+				
+				
+				
+			
+		
+			
+				
+				
+				
+				
+				
+					
+				
+				
+			
+		
+			
+				
+				
+				
+				
+				
+				
+					
+				
+			
+		
+		<div class="site-bx">
+			<div class="family">
+				<a href="#" role="button" class="open" title="닫힘">주요 누리집</a>
+				<ul class="view v1">
+					
+					
+					
+						
+							<li>
+						
+						<a href="http://council.gangwon.kr"
+						
+							rel="noopener noreferrer" 
+							target="_blank"
+							title="새 창"
+						
+						>강원특별자치도의회</a>
+						
+						
+					
+						
+						<a href="/audit"
+						
+							rel="noopener noreferrer" 
+							target="_blank"
+							title="새 창"
+						
+						>강원특별자치도 감사위원회</a>
+						
+						
+					
+						
+						<a href="https://www.gangwon-fc.com"
+						
+							rel="noopener noreferrer" 
+							target="_blank"
+							title="새 창"
+						
+						>강원FC</a>
+						
+						
+					
+						
+						<a href="http://www.강원곳간.com"
+						
+							rel="noopener noreferrer" 
+							target="_blank"
+							title="새 창"
+						
+						>강원곳간</a>
+						
+						
+					
+						
+						<a href="http://www.gwcid.or.kr"
+						
+							rel="noopener noreferrer" 
+							target="_blank"
+							title="새 창"
+						
+						>강원 감염병관리지원단</a>
+						
+						
+					
+						
+						<a href="http://honor.gwd.go.kr/"
+						
+							rel="noopener noreferrer" 
+							target="_blank"
+							title="새 창"
+						
+						>강원특별자치도 도민감사관</a>
+						
+						
+					
+						
+						<a href="https://gwse.or.kr/"
+						
+							rel="noopener noreferrer" 
+							target="_blank"
+							title="새 창"
+						
+						>강원 사회적경제지원센터</a>
+						
+						
+					
+						
+						<a href="http://www.gwep.or.kr"
+						
+							rel="noopener noreferrer" 
+							target="_blank"
+							title="새 창"
+						
+						>강원특별자치도경제진흥원</a>
+						
+						
+					
+						
+						<a href="http://www.gdco.co.kr"
+						
+							rel="noopener noreferrer" 
+							target="_blank"
+							title="새 창"
+						
+						>강원개발공사</a>
+						
+						
+					
+						
+						<a href="http://art.gwd.go.kr"
+						
+							rel="noopener noreferrer" 
+							target="_blank"
+							title="새 창"
+						
+						>강원특별자치도립예술단</a>
+						
+						
+					
+						
+						<a href="http://www.gwpa.kr"
+						
+							rel="noopener noreferrer" 
+							target="_blank"
+							title="새 창"
+						
+						>강원특별자치도립화목원</a>
+						
+							</li>
+						
+						
+					
+						
+							<li>
+						
+						<a href="https://gangwon.ubob.com"
+						
+							rel="noopener noreferrer" 
+							target="_blank"
+							title="새 창"
+						
+						>강원 e-배움터</a>
+						
+						
+					
+						
+						<a href="http://gangwon.work.go.kr"
+						
+							rel="noopener noreferrer" 
+							target="_blank"
+							title="새 창"
+						
+						>강원 일자리센터</a>
+						
+						
+					
+						
+						<a href="http://www.gpgu.com/"
+						
+							rel="noopener noreferrer" 
+							target="_blank"
+							title="새 창"
+						
+						>강원특별자치도청공무원노동조합</a>
+						
+						
+					
+						
+						<a href="http://www.gwsports.or.kr"
+						
+							rel="noopener noreferrer" 
+							target="_blank"
+							title="새 창"
+						
+						>강원특별자치도체육회</a>
+						
+						
+					
+						
+						<a href="http://www.gwsad.or.kr"
+						
+							rel="noopener noreferrer" 
+							target="_blank"
+							title="새 창"
+						
+						>강원특별자치도장애인체육회</a>
+						
+						
+					
+						
+						<a href="http://www.gwcf.or.kr"
+						
+							rel="noopener noreferrer" 
+							target="_blank"
+							title="새 창"
+						
+						>강원문화재단</a>
+						
+						
+					
+						
+						<a href="http://kras.gwd.go.kr/land_info/info/baseInfo/baseInfo.do"
+						
+							rel="noopener noreferrer" 
+							target="_blank"
+							title="새 창"
+						
+						>강원부동산정보조회 시스템</a>
+						
+						
+					
+						
+						<a href="http://gwgc.gwd.go.kr"
+						
+							rel="noopener noreferrer" 
+							target="_blank"
+							title="새 창"
+						
+						>강원상품권</a>
+						
+						
+					
+						
+						<a href="http://www.rig.re.kr"
+						
+							rel="noopener noreferrer" 
+							target="_blank"
+							title="새 창"
+						
+						>강원연구원</a>
+						
+						
+					
+						
+						<a href="http://injae.gwd.go.kr/"
+						
+							rel="noopener noreferrer" 
+							target="_blank"
+							title="새 창"
+						
+						>강원인재원</a>
+						
+						
+					
+						
+						<a href="http://www.gwtp.or.kr/"
+						
+							rel="noopener noreferrer" 
+							target="_blank"
+							title="새 창"
+						
+						>강원테크노파크</a>
+						
+							</li>
+						
+						
+					
+						
+							<li>
+						
+						<a href="http://stat.gwd.go.kr"
+						
+							rel="noopener noreferrer" 
+							target="_blank"
+							title="새 창"
+						
+						>강원통계정보</a>
+						
+						
+					
+						
+						<a href="http://tradesupport.gwd.go.kr/"
+						
+							rel="noopener noreferrer" 
+							target="_blank"
+							title="새 창"
+						
+						>강원 수출기업서포트</a>
+						
+						
+					
+						
+						<a href="http://iutc.gwd.go.kr"
+						
+							rel="noopener noreferrer" 
+							target="_blank"
+							title="새 창"
+						
+						>국제도시훈련센터</a>
+						
+						
+					
+						
+						<a href="https://mpyc.kr"
+						
+							rel="noopener noreferrer" 
+							target="_blank"
+							title="새 창"
+						
+						>평창 대관령 음악제</a>
+						
+						
+					
+						
+						<a href="http://www.airgangwon.go.kr"
+						
+							rel="noopener noreferrer" 
+							target="_blank"
+							title="새 창"
+						
+						>대기환경정보 실시간공개</a>
+						
+						
+					
+						
+						<a href="http://www.dongtuni.com/"
+						
+							rel="noopener noreferrer" 
+							target="_blank"
+							title="새 창"
+						
+						>동트는강원</a>
+						
+						
+					
+						
+						<a href="http://cpn.provin.gangwon.kr"
+						
+							rel="noopener noreferrer" 
+							target="_blank"
+							title="새 창"
+						
+						>물가정보망</a>
+						
+						
+					
+						
+						<a href="http://www.gwvc1365.or.kr/"
+						
+							rel="noopener noreferrer" 
+							target="_blank"
+							title="새 창"
+						
+						>강원특별자치도자원봉사센터</a>
+						
+						
+					
+						
+						<a href="https://library.gwd.go.kr"
+						
+							rel="noopener noreferrer" 
+							target="_blank"
+							title="새 창"
+						
+						>통합자료실</a>
+						
+						
+					
+						
+						<a href="http://www.kric.re.kr/front/index.do"
+						
+							rel="noopener noreferrer" 
+							target="_blank"
+							title="새 창"
+						
+						>한국기후변화연구원</a>
+						
+						
+					
+						
+						<a href="http://www.kwcenter.or.kr"
+						
+							rel="noopener noreferrer" 
+							target="_blank"
+							title="새 창"
+						
+						>한국여성수련원</a>
+						
+							</li>
+						
+						
+					
+						
+							<li>
+						
+						<a href="http://www.cemp.kr"
+						
+							rel="noopener noreferrer" 
+							target="_blank"
+							title="새 창"
+						
+						>사회공헌통합관리시스템</a>
+						
+						
+					
+						
+						<a href="http://www.gwurc.or.kr"
+						
+							rel="noopener noreferrer" 
+							target="_blank"
+							title="새 창"
+						
+						>강원 도시재생포털시스템</a>
+						
+						
+					
+						
+						<a href="http://gwbr.kr/biosphere"
+						
+							rel="noopener noreferrer" 
+							target="_blank"
+							title="새 창"
+						
+						>강원생태평화생물권보전지역</a>
+						
+						
+					
+						
+						<a href="https://koreadmz.kr/geopark"
+						
+							rel="noopener noreferrer" 
+							target="_blank"
+							title="새 창"
+						
+						>강원평화지역 국가지질공원</a>
+						
+						
+					
+						
+						<a href="https://www.heritage.gangwon.kr"
+						
+							rel="noopener noreferrer" 
+							target="_blank"
+							title="새 창"
+						
+						>강원문화유산아카이브</a>
+						
+						
+					
+						
+						<a href="http://2018archives.gwd.go.kr"
+						
+							rel="noopener noreferrer" 
+							target="_blank"
+							title="새 창"
+						
+						>2018평창동계올림픽아카이브</a>
+						
+						
+					
+						
+						<a href="https://job.gwd.go.kr/gwjf"
+						
+							rel="noopener noreferrer" 
+							target="_blank"
+							title="새 창"
+						
+						>강원특별자치도일자리재단</a>
+						
+						
+					
+						
+						<a href="https://aijob.gwd.go.kr/"
+						
+							rel="noopener noreferrer" 
+							target="_blank"
+							title="새 창"
+						
+						>강원자비스</a>
+						
+						
+					
+						
+						<a href="https://kcmf.or.kr"
+						
+							rel="noopener noreferrer" 
+							target="_blank"
+							title="새 창"
+						
+						>강원시청자미디어센터</a>
+						
+						
+					
+						
+						<a href="https://gangwoninvest.gwd.go.kr/"
+						
+							rel="noopener noreferrer" 
+							target="_blank"
+							title="새 창"
+						
+						>강원특별자치도투자지원센터</a>
+						
+						
+					
+						
+						<a href="http://www.1366.or.kr/"
+						
+							rel="noopener noreferrer" 
+							target="_blank"
+							title="새 창"
+						
+						>여성긴급전화1366강원센터</a>
+						
+							</li>
+						
+						
+					
+						
+							<li>
+						
+						<a href="https://ecopark.gwd.go.kr/"
+						
+							rel="noopener noreferrer" 
+							target="_blank"
+							title="새 창"
+						
+						>강원 자연환경연구공원</a>
+						
+						
+					
+						
+						<a href="https://job.gwd.go.kr/youth"
+						
+							rel="noopener noreferrer" 
+							target="_blank"
+							title="새 창"
+						
+						>강원청년포털</a>
+						
+						
+					
+						
+						<a href="http://gangwon.1308.or.kr/"
+						
+							rel="noopener noreferrer" 
+							target="_blank"
+							title="새 창"
+						
+						>1308 강원 위기임산부 지역상담기관</a>
+						
+						
+					
+						
+						<a href="https://marineleisure.gwd.go.kr"
+						
+							rel="noopener noreferrer" 
+							target="_blank"
+							title="새 창"
+						
+						>동해안 해양레저 기상융합정보</a>
+						
+						
+					
+						
+						<a href="https://www.gicc.or.kr/"
+						
+							rel="noopener noreferrer" 
+							target="_blank"
+							title="새 창"
+						
+						>(재)강원혁신도시발전지원센터</a>
+						
+						
+					
+						
+						<a href="https://gwpetcenter.kr/"
+						
+							rel="noopener noreferrer" 
+							target="_blank"
+							title="새 창"
+						
+						>강원특별자치도 반려동물지원센터</a>
+						
+						
+					
+						
+						<a href="https://mygangwon.kr/"
+						
+							rel="noopener noreferrer" 
+							target="_blank"
+							title="새 창"
+						
+						>강원사람온</a>
+						
+						
+					
+				</ul>
+			</div>
+			<div class="family">
+				<a href="#" role="button" class="open">직속기관 및 시&middot;군</a>
+				<ul class="view v2">
+					<li><strong>직속기관</strong> 
+						
+							<a href="http://council.gangwon.kr"
+							
+								rel="noopener noreferrer" 
+								target="_blank"
+								title="새 창"
+							
+							>의회사무처</a>
+						
+							<a href="http://www.ares.gangwon.kr"
+							
+								rel="noopener noreferrer" 
+								target="_blank"
+								title="새 창"
+							
+							>농업기술원</a>
+						
+							<a href="http://edu.gwd.go.kr"
+							
+								rel="noopener noreferrer" 
+								target="_blank"
+								title="새 창"
+							
+							>공무원교육원</a>
+						
+							<a href="https://gihe.gwd.go.kr"
+							
+								rel="noopener noreferrer" 
+								target="_blank"
+								title="새 창"
+							
+							>보건환경연구원</a>
+						
+							<a href="http://gfsa.gwd.go.kr"
+							
+								rel="noopener noreferrer" 
+								target="_blank"
+								title="새 창"
+							
+							>소방학교</a>
+						
+							<a href="http://www.gw.ac.kr"
+							
+								rel="noopener noreferrer" 
+								target="_blank"
+								title="새 창"
+							
+							>도립대학교</a>
+						
+					</li>
+					<li><strong>출장소</strong> 
+						
+							<a href="https://gsfez.go.kr/"
+							
+								rel="noopener noreferrer" 
+								target="_blank"
+								title="새 창"
+							
+							>강원경제자유구역청</a>
+						
+					</li>
+					<li><strong>사업소</strong> 
+						
+							<a href="http://ecopark.gwd.go.kr"
+							
+								rel="noopener noreferrer" 
+								target="_blank"
+								title="새 창"
+							
+							>자연환경연구공원</a>
+						
+							<a href="https://gwfri.gwd.go.kr"
+							
+								rel="noopener noreferrer" 
+								target="_blank"
+								title="새 창"
+							
+							>여성가족연구원</a>
+						
+							<a href="http://www.dmzmuseum.com"
+							
+								rel="noopener noreferrer" 
+								target="_blank"
+								title="새 창"
+							
+							>DMZ박물관</a>
+						
+							<a href="/livestock"
+							
+								rel="noopener noreferrer" 
+								target="_blank"
+								title="새 창"
+							
+							>축산기술연구소</a>
+						
+							<a href="/veterinary"
+							
+								rel="noopener noreferrer" 
+								target="_blank"
+								title="새 창"
+							
+							>동물위생시험소</a>
+						
+							<a href="/forest"
+							
+								rel="noopener noreferrer" 
+								target="_blank"
+								title="새 창"
+							
+							>산림과학연구원</a>
+						
+							<a href="https://forestfire.gwd.go.kr"
+							
+								rel="noopener noreferrer" 
+								target="_blank"
+								title="새 창"
+							
+							>산불방지센터</a>
+						
+							<a href="/road"
+							
+								rel="noopener noreferrer" 
+								target="_blank"
+								title="새 창"
+							
+							>도로관리사업소</a>
+						
+					</li>
+					<li><strong>시군</strong>   
+						
+							
+								<p>
+							
+							<a href="https://www.chuncheon.go.kr"
+							
+								rel="noopener noreferrer" 
+								target="_blank"
+								title="새 창"
+							
+							>춘천시</a>
+							
+							
+						
+							
+							<a href="http://www.wonju.go.kr"
+							
+								rel="noopener noreferrer" 
+								target="_blank"
+								title="새 창"
+							
+							>원주시</a>
+							
+								</p>
+							
+							
+						
+							
+								<p>
+							
+							<a href="http://www.gangneung.go.kr"
+							
+								rel="noopener noreferrer" 
+								target="_blank"
+								title="새 창"
+							
+							>강릉시</a>
+							
+							
+						
+							
+							<a href="https://www.dh.go.kr"
+							
+								rel="noopener noreferrer" 
+								target="_blank"
+								title="새 창"
+							
+							>동해시</a>
+							
+								</p>
+							
+							
+						
+							
+								<p>
+							
+							<a href="http://www.taebaek.go.kr"
+							
+								rel="noopener noreferrer" 
+								target="_blank"
+								title="새 창"
+							
+							>태백시</a>
+							
+							
+						
+							
+							<a href="http://www.sokcho.go.kr"
+							
+								rel="noopener noreferrer" 
+								target="_blank"
+								title="새 창"
+							
+							>속초시</a>
+							
+								</p>
+							
+							
+						
+							
+								<p>
+							
+							<a href="http://www.samcheok.go.kr"
+							
+								rel="noopener noreferrer" 
+								target="_blank"
+								title="새 창"
+							
+							>삼척시</a>
+							
+							
+						
+							
+							<a href="https://www.hongcheon.go.kr"
+							
+								rel="noopener noreferrer" 
+								target="_blank"
+								title="새 창"
+							
+							>홍천군</a>
+							
+								</p>
+							
+							
+						
+							
+								<p>
+							
+							<a href="http://www.hsg.go.kr"
+							
+								rel="noopener noreferrer" 
+								target="_blank"
+								title="새 창"
+							
+							>횡성군</a>
+							
+							
+						
+							
+							<a href="http://www.yw.go.kr"
+							
+								rel="noopener noreferrer" 
+								target="_blank"
+								title="새 창"
+							
+							>영월군</a>
+							
+								</p>
+							
+							
+						
+							
+								<p>
+							
+							<a href="http://www.pc.go.kr"
+							
+								rel="noopener noreferrer" 
+								target="_blank"
+								title="새 창"
+							
+							>평창군</a>
+							
+							
+						
+							
+							<a href="http://www.jeongseon.go.kr"
+							
+								rel="noopener noreferrer" 
+								target="_blank"
+								title="새 창"
+							
+							>정선군</a>
+							
+								</p>
+							
+							
+						
+							
+								<p>
+							
+							<a href="http://www.cwg.go.kr"
+							
+								rel="noopener noreferrer" 
+								target="_blank"
+								title="새 창"
+							
+							>철원군</a>
+							
+							
+						
+							
+							<a href="http://www.ihc.go.kr"
+							
+								rel="noopener noreferrer" 
+								target="_blank"
+								title="새 창"
+							
+							>화천군</a>
+							
+								</p>
+							
+							
+						
+							
+								<p>
+							
+							<a href="http://www.yanggu.go.kr"
+							
+								rel="noopener noreferrer" 
+								target="_blank"
+								title="새 창"
+							
+							>양구군</a>
+							
+							
+						
+							
+							<a href="http://www.inje.go.kr"
+							
+								rel="noopener noreferrer" 
+								target="_blank"
+								title="새 창"
+							
+							>인제군</a>
+							
+								</p>
+							
+							
+						
+							
+								<p>
+							
+							<a href="http://www.gwgs.go.kr"
+							
+								rel="noopener noreferrer" 
+								target="_blank"
+								title="새 창"
+							
+							>고성군</a>
+							
+							
+						
+							
+							<a href="https://www.yangyang.go.kr"
+							
+								rel="noopener noreferrer" 
+								target="_blank"
+								title="새 창"
+							
+							>양양군</a>
+							
+								</p>
+							
+							
+						
+					</li>
+					<li><strong>기타</strong> 
+						
+							<a href="https://www.gaok.or.kr/"
+							
+								rel="noopener noreferrer" 
+								target="_blank"
+								title="새 창"
+							
+							>대한민국시도지사협의회</a>
+						
+							<a href="https://www.gov.kr/portal/orgInfo"
+							
+								rel="noopener noreferrer" 
+								target="_blank"
+								title="새 창"
+							
+							>정부/지자체 조직도</a>
+						
+					</li>
+				</ul>
+			</div>
+		</div>
+		<div class="info-bx">
+			<div class="address">
+				<span>대표전화 033-254-2011</span> <span>[도청사] (24266) 강원특별자치도 춘천시 중앙로 1 </span> <span>[제2청사] (25425) 강원특별자치도 강릉시 연주로 270</span> <span>© GANGWON STATE all rights reserved.</span>
+			</div>
+			<div class="logo-bx">
+				<a href="/portal/minwon/guide/callCenter" rel="noopener noreferrer" target="_blank" title="새창"> <img class="v1" src="/page/gwprovin/images/common/mark_01.png?ver=20241113" alt="강원특별자치도 콜센터 033-120(유료)"></a> 
+				
+				<a href="https://www.mois.go.kr/frt/sub/popup/p_taegugki_banner/screen.do" rel="noopener noreferrer" target="_blank" title="새창(국가상징)"> <img class="v3" src="/page/gwprovin/images/common/mark_03.png" alt="국가상징팝업"></a>
+			</div>
+		</div>
+	</div>
+</footer>
+<!--
+
+-->
+
+
+
+<a href="javascript:;" role="button" id="btn-top">top</a>
+
+<script type="application/ld+json">
+  {
+	"@context": "http://schema.org",
+	"@type": "Organization",
+	"name": "강원특별자치도",
+	"url": "https://state.gwd.go.kr",
+	"sameAs": [      
+	  "https://www.facebook.com/gwdoraeyo2",    
+	  "https://www.instagram.com/gangwon_state/",
+	  "https://www.youtube.com/@Gangwon_State",
+	  "https://x.com/happygangwon",
+	  "https://story.kakao.com/ch/banbiraeyo",
+	  "https://blog.naver.com/gwdoraeyo"
+	]
+  }
+</script>
+
+		<a href="#" id="btn-top" role="button">TOP</a>
+	</div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+		
+			
+
+
+
+
+
+
+
+
+
+
+<script>
+	function EzView() {
+		// 상태값
+		this.STATUS_WAIT = '0';
+		this.STATUS_PDFCONVERTING = '2';
+		this.STATUS_IMAGECONVERTING = '3';
+		this.STATUS_COMPLETE = '4';
+		this.STATUS_ERROR = '-1';
+
+		this.refreshTime = 3000; // 변환 체크 시간 3초
+		this.call = true; // 변환여부 체크
+		this.instance = this; // 인스턴스 참조 저장
+		this.url; // 파일 다운로드 주소
+		this.fileDate; // 파일 생성 날짜 (선택사항: yyyyMMddHHmmss 형식)
+		this.progressUrl = '/ezview/progress.do';
+		this.viewpageUrl = '{ì´ì§ë·°ì£¼ìê°ë¤ì´ê°ëë¤}/ezview.do'; // 미리보기 페이지 주소
+		this.outObj; // 결과 출력 엘리먼트
+		this.formObj; // 내부 요청용 폼 엘리먼드
+
+		this.toggleUI = 0; // 진행상태 UI반전
+
+		// 페이지 미리보기
+		this.view = function(fileDate) {
+			fileDate = fileDate || '';
+
+			var url = this.viewpageUrl + "?url=" + encodeURIComponent(this.url) + "&fileDate=" + fileDate;
+			var width = 1100;
+			var height = 880;
+			var left = (screen.availWidth / 2) - (width / 2);
+			if (left < 0) left = 0;
+			var top = (screen.availHeight / 2) - (height / 2);
+			if (top < 0) top = 0;
+
+			var popup = jf_popupWindowEx(
+					url, // url
+					'미리보기', // name
+					width, height, left, top, // width, height, left, top
+					'yes', 'yes' // isResizable, isScrollable
+			);
+		};
+
+		// 이벤트 처리
+		this.viewProc = function(responseXML) {
+			var xml = responseXML.getElementsByTagName("result");
+
+			// 접속 에러
+			if (xml[0] == null) {
+				this.error(404);
+				return;
+			}
+
+			var defaultStyle = 'margin-left: 5px;'
+					+ 'display: inline-block;'
+					+ 'width: 81px;'
+					+ 'height: 24px;'
+					+ 'border: 3px solid #c1c1c1;'
+					+ 'border-radius: 10px/50%;'
+					+ 'line-height: 18px;'
+					+ 'vertical-align: middle;'
+					+ 'padding-left: 3px;';
+			var style;
+
+			var result = xml[0].childNodes[0].nodeValue;
+
+			if (result == '4') {
+				var fileSeq = this.instance.replace('ezview_', '');
+				var url = this.url;
+				$.ajax({
+					//async: false,
+					cache: false,
+					type: "post",
+					url: '/egf/bp/ezview/insertAction',
+					data: {
+						'url' : url,
+						'fileSeq' : fileSeq
+					},
+					dataType: "json",
+					success: function(data, textStatus, jqXHR) {},
+					error: function(jqXHR, textStatus, errorThrown) {}
+				});
+			}
+
+			var out;
+			switch (result) {
+				case this.STATUS_WAIT:
+					style = defaultStyle + 'background: 95% 50% no-repeat url(/page/common/images/ico-ezview-download.png);color:#197b30;';
+					out = "<span style='" + style + "'>다운로드중</span>";
+					break;
+				case this.STATUS_PDFCONVERTING:
+				case this.STATUS_IMAGECONVERTING:
+					if (this.toggleUI == 0) {
+						this.toggleUI = 1;
+						style = defaultStyle + 'background: 95% 50% no-repeat url(/page/common/images/ico-ezview-change.png);color:#0054a6;';
+						out = "<span style='" + style + "'>변환중</span>";
+					} else {
+						this.toggleUI = 0;
+						style = defaultStyle + 'background: 95% 50% no-repeat url(/page/common/images/ico-ezview-change-b.png);color:#0054a6;font-weight:bold;';
+						out = "<span style='" + style + "'>변환중</span>";
+					}
+					break;
+				case this.STATUS_COMPLETE:
+					style = defaultStyle + 'background: 95% 50% no-repeat url(/page/common/images/ico-preview.gif);color:#000;';
+					out = "<a href=\"#\" onclick=\"";
+					if (this.fileDate == null)
+						out += "ezviewInstance.view();";
+					else
+						out += "ezviewInstance.view('" + this.fileDate + "');";
+					out += "return false;\" onkeypress=''"
+							+ "style='" + style + "'>미리보기</a>";
+
+					this.call = false;
+					break;
+				case this.STATUS_ERROR:
+					style = defaultStyle + 'background: 95% 50% no-repeat url(/page/common/images/ico-ezview-error.png);color:#ed1c24;';
+					out = "<span style='" + style + "'>변환오류</span>";
+					this.call = false;
+					break;
+			}
+
+			if (this.outObj != null && result == this.STATUS_COMPLETE)
+				this.outObj.innerHTML = out;
+		};
+
+		this.error = function(status) {
+			var defaultStyle = 'margin-left: 5px;'
+					+ 'display: inline-block;'
+					+ 'width: 81px;'
+					+ 'height: 24px;'
+					+ 'border: 3px solid #c1c1c1;'
+					+ 'border-radius: 10px/50%;'
+					+ 'line-height: 18px;'
+					+ 'vertical-align: middle;'
+					+ 'padding-left: 3px;';
+			var style = defaultStyle + 'background: 95% 50% no-repeat url(/page/common/images/ico-convert-error.png);color:#ed1c24;';
+			var out = "<span style='" + style + "'>" + status + "</span>";
+			this.call = false;
+		};
+
+		this.refresh = function() {
+			if (this.call) {
+				var param = "url=" + encodeURIComponent(this.url) + "&fileDate=" + this.fileDate;
+				jf_xmlHttpPostUserError(this.progressUrl,
+						param, // submitParameter
+						this.viewProc.bind(this), // resultFunction
+						this.error.bind(this), // errFunction
+						true // isXML
+				);
+
+				setTimeout(this.refresh.bind(this), this.refreshTime);
+			}
+		};
+	}
+
+function jf_xmlHttpPostUserError(actionUrl, submitParameter, resultFunction, errFunction, isXML) {
+	var xmlHttpRequest = false;
+
+	if (window.ActiveXObject) {
+		xmlHttpRequest = new ActiveXObject('Microsoft.XMLHTTP');
+	} else {
+		xmlHttpRequest = new XMLHttpRequest();
+		xmlHttpRequest.overrideMimeType('text/xml');
+	}
+
+	xmlHttpRequest.open('POST', actionUrl, true);
+	xmlHttpRequest.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+
+	xmlHttpRequest.onreadystatechange = function() {
+		if (xmlHttpRequest.readyState == 4) {
+			switch (xmlHttpRequest.status) {
+				case 200: // 사용자 이벤트 처리 함수 지정
+					if (isXML) {
+						resultFunction(xmlHttpRequest.responseXML);
+					} else {
+						resultFunction(xmlHttpRequest.responseText);
+					}
+					break;
+				default:
+					errFunction(xmlHttpRequest.status);
+					break;
+			}
+		}
+	};
+	xmlHttpRequest.send(submitParameter);
+}
+
+function jf_popupWindowEx(url, name, width, height, left, top, isResizable, isScrollable, useStatus) {
+	var optArray = new Array();
+	var idx = 0;
+	if (width) optArray[idx++] = "width=" + width;
+	if (height) optArray[idx++] = "height=" + height;
+	if (left) optArray[idx++] = "left=" + left;
+	if (top) optArray[idx++] = "top=" + top;
+	if (isResizable) optArray[idx++] = "resizable=" + isResizable;
+	if (isScrollable) optArray[idx++] = "scrollbars=" + isScrollable;
+	if (useStatus) optArray[idx++] = "status=" + useStatus;
+
+	var opts = "";
+	for (idx = 0; idx < optArray.length; idx++) {
+		if (idx > 0)
+			opts += ",";
+		opts += optArray[idx];
+	}
+
+	return window.open(url, name, opts);
+}
+
+function jf_popupWindowCenter(url, name, width, height, isResizable, isScrollable, useStatus) {
+	var x = (screen.availWidth / 2) - (width / 2);
+	if (x < 0) x = 0;
+	var y = (screen.availHeight / 2) - (height / 2);
+	if (y < 0) y = 0;
+	return jf_popupWindowEx(url, name, width, height, x, y, isResizable, isScrollable, useStatus);
+}
+</script>
+
+
+
+<script>
+
+//삭제플래그
+function fncDeleteFlag() {
+	var f = document.confirmForm;
+	
+	f.action = "/egf/bp/board/article/actionDelete";
+	if (confirm("정말 지우겠습니까?")) {
+		f.submit();
+	}
+}
+
+// 코멘트 등록
+function fncWriteCommentProc() {
+	
+	var varForm = document.boardArticle;
+	
+	
+	if (!recaptchaCheck()) {
+		return;
+	} 
+	
+	if (!varForm.name.value) {
+		alert('“작성자”를 입력해주세요.');
+		varForm.name.focus();
+		return;
+	}
+	
+	
+	if (!$('#comment_pass').val()) {
+		alert('“비밀번호”를 입력해주세요.');
+		$('#comment_pass').focus();
+		return;
+	}
+	
+	if (!$('#comment_pass').val().match(/^(?=.*\d)(?=.*[a-zA-Z])(?=.*[!,@,#,$,%,^,&,*,?,_,~,+,-]).{6,10}$/)) {
+		alert("영문, 숫자, 특수 문자 1자 이상 혼합하여 6~10자 이내로 등록해주세요.");
+		$('#comment_pass').focus();
+		return;
+	}
+	
+	if (!varForm.commentTextarea.value) {
+		alert('“내용”을 입력해주세요.');
+		varForm.comment_content.focus();
+		return;
+	}
+	
+	varForm.parentSeq.value = 0;
+	varForm.password.value = $('#comment_pass').val();
+	varForm.content.value = $("#commentTextarea").val();
+	varForm.action = "/egf/bp/board/comment/actionWrite";
+	if (confirm("댓글을 등록하시겠습니까?")) {
+		varForm.submit();
+	}
+}
+
+// 코멘트 삭제
+function fncDeleteCommentProc(commentSeq, index) {
+	
+	var varForm = document.boardArticle;
+	var $commentForm = $('.id-comment').eq(index);
+	var $pass = $commentForm.find(':input[name="pass"]');
+	
+	if (!$pass.val()) {
+		alert('비밀번호를 입력해주세요.');
+		$pass.focus();
+		return;
+	}
+	
+	varForm.password.value = $pass.val();
+	varForm.commentSeq.value = commentSeq;
+	varForm.action = "/egf/bp/board/comment/actionDelete";
+	if (confirm("등록한 댓글을 삭제합니다.\n정말 삭제하시겠습니까?")) {
+		varForm.submit();
+	}
+}
+
+// 댓글 폼(reply)
+function fncReplyForm(articleSeq) {
+	var varForm = document.replayForm;
+	varForm.mode.value = "reply";
+	varForm.articleSeq.value = articleSeq;
+	varForm.submit();
+}
+
+function goPage(articleSeq) {
+	var f = document.pageForm;
+	f.articleSeq.value = articleSeq;
+	f.target = '';
+	f.submit();
+}
+
+var maxCount = 500;
+function textCounter() {
+	var $content = $('#comment_content');
+	if ($content.val().length > maxCount) {
+		alert('500자 이내로 등록해 주세요');
+		$content.val($content.val().substring(0, maxCount));
+	}
+	$('#comment_content_count').text('(' + $content.val().length + ' / ' + maxCount + ')')
+}
+
+// 캡챠 체크
+function recaptchaCheck() {
+	if (typeof(grecaptcha) != 'undefined') { 
+		if (grecaptcha.getResponse() == "") { 
+			alert("자동입력방지를 인증해주세요.");
+			return false; 
+		}
+	}
+	return true;
+}
+
+function viewEzview(url) {
+	var url = '{ì´ì§ë·°ì£¼ìê°ë¤ì´ê°ëë¤}/ezview.do' + "?url=" + encodeURIComponent(url) + "&fileDate=";
+	var width = 1100;
+	var height = 880;
+	var left = (screen.availWidth / 2) - (width / 2);
+	if (left < 0) left = 0;
+	var top = (screen.availHeight / 2) - (height / 2);
+	if (top < 0) top = 0;
+	
+	var popup = pop(
+			url, // url
+			'미리보기', // name
+			width, height, left, top, // width, height, left, top
+			'yes', 'yes' // isResizable, isScrollable
+	);
+}
+
+function pop(url, name, width, height, left, top, isResizable, isScrollable, useStatus) {
+	var optArray = new Array();
+	var idx = 0;
+	if (width) optArray[idx++] = "width=" + width;
+	if (height) optArray[idx++] = "height=" + height;
+	if (left) optArray[idx++] = "left=" + left;
+	if (top) optArray[idx++] = "top=" + top;
+	if (isResizable) optArray[idx++] = "resizable=" + isResizable;
+	if (isScrollable) optArray[idx++] = "scrollbars=" + isScrollable;
+	if (useStatus) optArray[idx++] = "status=" + useStatus;
+	
+	var opts = "";
+	for (idx = 0; idx < optArray.length; idx++) {
+		if (idx > 0)
+			opts += ",";
+		opts += optArray[idx];
+	}
+	
+	return window.open(url, name, opts);
+}
+
+</script>
+		
+	
+	
+	
+	
+
+</body>
+</html>

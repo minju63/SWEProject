@@ -144,6 +144,7 @@ for(const a of audit){
  a.추천판단=f?f.추천제외여부_근거:ids.length?'연결 최종행의 조건·진행상태 확인':'자동 제외·확정 추천 불가;추가 검토 필요';
 }
 const verification=require('./apply_candidate_verification_2026-10-02.cjs')({audit,policies,rows,followups:followup.followups,raw});
+verification.최신성291재조사=require('./apply_latest_review_2026-10-02.cjs')({audit,followups:followup.followups,raw});
 const count=(rs,k)=>Object.fromEntries([...new Set(rs.map(r=>r[k]))].map(v=>[v,rs.filter(r=>r[k]===v).length]));
 const rules={기준일:date,용도:'데이터해석용 구조화 자격경로. 자동추천엔진 아님;unknown은 조건부,known_false는 제외.',지역후보:{부산진구:['전국','부산','부산진구'],사하구:['전국','부산','사하구']},경로:[
  {data_id:'HOU-002',공통:['본인무주택','미혼','1순위 수급 OR 보호한부모 OR 차상위'],OR경로:[{이름:'일반청년',연령:{최소:19,최대:39,기준:'신청일'}},{이름:'대학생',세부:'첨부정정공고확인필요'},{이름:'취업준비생',세부:'첨부정정공고확인필요'}],접수확정:false},

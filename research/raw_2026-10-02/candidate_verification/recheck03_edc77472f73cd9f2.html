@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>전세피해지원 : 분야별 통합</title>
+	<script src="/humanframe/global/assets/vendor/jquery/jquery.min.js"></script>
+		<script>
+	$(document).ready(function() {
+		var alertMsg = "삭제된 게시물 입니다.";
+		var alertMsg2 = alertMsg;
+		alertMsg2 = alertMsg2.replace("\[", "").replace("\[", "").replace("\]", "").replace("\]", "")
+		if(alertMsg2 != '검침일자의 원격지침 보다 입력지침 이 작을 수 없습니다.'){
+			alert(alertMsg);
+		}else{
+			alertMsg += '\n※ 검침일 오전 9시 지침값 보다 커야 합니다.';
+			alert(alertMsg);
+		}
+		
+				location.href = "/depart/charterdamage001/";
+			
+	});
+	</script>
+</head>
+</html>

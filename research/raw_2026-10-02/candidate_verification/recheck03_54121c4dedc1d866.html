@@ -1,0 +1,1235 @@
+
+
+
+
+
+
+
+
+
+<!doctype html>
+<html lang="ko">
+<head>
+
+
+
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta charset="utf-8">
+<meta name="keywords" content="">
+<meta name="description" lang="ko" content=""/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+<meta property="fb:app_id" content="140586622674265"/>
+<meta property="og:type" content="website"/>
+<meta property="og:url" content="http://gnews.gg.go.kr/briefing/brief_gongbo_view.do?BS_CODE=S017&number=69143" />
+<meta property="og:title" content="경기도, 올해 전세사기 피해 예방 아카데미 운영. 찾아가는 교육 진행"/>
+<meta property="og:type" content="website"/>	
+<meta property="og:image" content="https://gnews.gg.go.kr/img/new2024/common/news_bi_og.png">
+<meta property="og:description" content="경기도가 전세사기 피해 예방을 위해 도민들의 부동산 거래 능력을 키울 수..." />
+<meta property="og:site_name" content="경기도뉴스포털 "/>
+
+
+
+
+	
+	
+	
+	
+	
+	
+		
+		<link rel="canonical" href="https://gnews.gg.go.kr/briefing/brief_gongbo_view.do?BS_CODE=S017&number=69143" />
+	
+
+
+
+<title>경기도, 올해 전세사기 피해 예방 아카데미 운영. 찾아가는 교육 진행</title>  
+
+    <link type="text/css" rel="stylesheet" href="/css/new2024/layout.css" />
+    <link type="text/css" rel="stylesheet" href="/css/new2024/layout_1400.css" />
+    <link type="text/css" rel="stylesheet" href="/css/new2024/layout_780.css" />
+    <link type="text/css" rel="stylesheet" href="/css/new2024/swiper-bundle.min.css" />
+    <link rel="stylesheet" type="text/css" href="/css/new2024/front_common.css">
+    <link rel="stylesheet" type="text/css" href="/css/fileset26.css">
+
+    <script type="text/javascript" src="/js/new2024/jquery-3.7.1.min.js"></script>
+    <script type="text/javascript" src="/js/new2024/swiper-bundle.min.js"></script>
+    <script type="text/javascript" src="/js/new2024/common.js"></script>
+    <script type="text/javascript" src="/js/new2024/TweenMax.min.js"></script>
+    <script type="text/javascript" src="/js/new2024/cmmn_front_web_script.js"></script>
+
+<script src="/js/jszip.min.js" defer></script>
+<script src="/js/FileSaver.min.js" defer></script>
+    
+    <!-- NAVER Analytics -->
+	<script type="text/javascript" src="//wcs.naver.net/wcslog.js"></script>
+	<script type="text/javascript">
+		if(!wcs_add) var wcs_add = {};
+		wcs_add["wa"] = "f9482ec0cc07b0";
+		if(window.wcs) {
+		  wcs_do();
+		}
+	</script>
+	<script type="text/javascript">
+	$(document).ready(function(){
+
+		if('S017' == 's003'){
+			fnMenuSelect(1,"시군 보도자료");
+		}else if('S017' == 's026'){
+			fnMenuSelect(1,"공공기관 보도자료");
+		}else{
+			fnMenuSelect(1 ,"보도자료");	
+		}
+
+	});	
+	
+	
+	function downloadFile(url, newFileName) {
+		
+	    fetch(url)
+	        .then(response => {
+	            if (!response.ok) throw new Error('파일을 가져오는데 실패했습니다.');
+	            return response.blob(); // 파일을 Blob 데이터로 변환
+	        })
+	        .then(blob => {
+	            // 1. Blob을 가리키는 임시 URL 생성
+	            const blobUrl = window.URL.createObjectURL(blob);
+	            
+	            // 2. 가상의 a 태그 생성
+	            const link = document.createElement('a');
+	            link.href = blobUrl;
+	            
+	            // 3. 다운로드될 파일명 설정 (여기서 이름이 바뀝니다!)
+	            link.download = newFileName;
+	            
+	            // 4. 문서에 추가 후 클릭, 그리고 제거
+	            document.body.appendChild(link);
+	            link.click();
+	            document.body.removeChild(link);
+	            
+	            // 5. 메모리 해제
+	            window.URL.revokeObjectURL(blobUrl);
+	        })
+	        .catch(error => console.error('다운로드 중 오류 발생:', error));
+	}
+
+	async function forceDownload(downloadUrl,name){
+		console.log(downloadUrl);
+		console.log(name);
+		fetch(downloadUrl)
+        .then(response => {
+            if (!response.ok) throw new Error('파일을 가져오는데 실패했습니다.');
+            return response.blob(); // 파일을 Blob 데이터로 변환
+        })
+        .then(blob => {
+            // 1. Blob을 가리키는 임시 URL 생성
+            const blobUrl = window.URL.createObjectURL(blob);
+            
+            // 2. 가상의 a 태그 생성
+            const link = document.createElement('a');
+            link.href = blobUrl;
+            
+            // 3. 다운로드될 파일명 설정 (여기서 이름이 바뀝니다!)
+            link.download = name;
+            
+            // 4. 문서에 추가 후 클릭, 그리고 제거
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            
+            // 5. 메모리 해제
+            window.URL.revokeObjectURL(blobUrl);
+        })
+        .catch(error => console.error('다운로드 중 오류 발생:', error));
+	}
+	
+	async function downloadAllZip() {
+		debugger;
+	    const zip = new JSZip();
+	    const fileElements = document.querySelectorAll('.file-item');
+	    
+	    // 1. 모든 파일을 비동기적으로 가져오기 위해 Promise 배열 생성
+	    const downloadPromises = Array.from(fileElements).map(async (el) => {
+	        const fileUrl = el.getAttribute('data-url');
+	        const fileName = el.getAttribute('data-name');
+
+	        try {
+	            const response = await fetch(fileUrl);
+	            if (!response.ok) throw new Error('파일을 읽어오는데 실패했습니다.');
+	            
+	            // 파일 데이터를 binary 형태(blob)로 변환
+	            const blob = await response.blob();
+	            
+	            // ZIP 객체에 파일 추가
+	            zip.file(fileName, blob);
+	        } catch (error) {
+	            console.error(error);
+	        }
+	    });
+
+	    // 2. 모든 파일 처리가 끝날 때까지 대기
+	    await Promise.all(downloadPromises);
+
+	    // 3. ZIP 파일 생성 및 다운로드 실행
+	    zip.generateAsync({ type: "blob" }).then(function(content) {
+	        // FileSaver.js를 이용해 저장
+	        saveAs(content, "all_files.zip");
+	    });
+	}
+	</script>
+
+</head>
+
+
+<body>
+
+
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-3NQ1EQT2KN"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-3NQ1EQT2KN');
+  
+  document.addEventListener("keydown", function (event) {
+	    if (event.key === "Escape" || event.keyCode === 27) {
+	        closeMenu();
+	    }
+	});
+  
+
+	function closeMenu() {
+	    const activeMenu = document.querySelector(".gnb.active");
+	    if (activeMenu) {
+	        activeMenu.classList.remove("active");
+	    }
+	}
+</script>
+<header>
+	<a href="#contents" class="skip-to">본문 바로가기</a>
+      <!--menu-top-->
+      <div class="menu-top">
+        <!--sub-menu-->
+        <div class="sub_menu">
+          <a href="https://gg.go.kr/" class="go_ggd">경기도청 바로가기</a>
+          <dl>
+            <dd><a href="http://www.gg.go.kr/myggd" target="_blank" style="border: 1px solid #0051a4" title="새 창 열림">나의 경기도</a></dd>
+            <dd><a href="https://gg.go.kr/myggd_hot" target="_blank" style="border: 1px solid #00515A" title="새 창 열림">나의 경기도 Hot!</a></dd>
+            <dd><a href="https://gnews.gg.go.kr/media" target="_blank" style="border: 1px solid #0aa4b5" title="새 창 열림">멀티미디어자료실</a></dd>
+          </dl>
+        </div>
+        <!--sub-menu-->
+      </div>
+      <!--menu-top-->
+      <!-- [s] : PC nav -->
+      <div class="headerinnerwrap">
+        <div class="header_inner">
+          <div class="m_menu">
+            <a href="" class="menu"><span></span></a>
+          </div>
+          <h1 class="logo"><a href="/index.do"><img src="/img/new2024/common/bi.png" alt="공정, 혁신, 포용의 경기, 경기도뉴스포털"  style="width: 350px;"/></a></h1>
+          <nav class="gnb">
+          <h2 class="blind">메뉴</h2>
+          <div class="gnb_bg"></div>
+          <ul>
+            <li>
+              <a href="/briefing/brief_gongbo.do">보도자료</a>
+              <div class="gnb-2dep">
+                <ul>
+					<li><a href="/briefing/brief_gongbo.do">보도자료</a></li>
+					<li><a href="/briefing/brief_gongbo_PBOD.do?subject_Code=PBOD">사진 보도자료</a></li>
+					<li><a href="/briefing/brief_gongbo.do?subject_Code=MOBI">그래픽 보도자료</a></li>
+					<li><a href="/briefing/brief_gongbo.do?subject_Code=BO03">사실은 이렇습니다</a></li>
+					<li><a href="/briefing/brief_ggi.do">공공기관 보도자료</a></li>
+					<li><a href="/briefing/brief_sigun.do">시군 보도자료</a></li>
+                </ul>
+              </div>
+            </li>
+            <li>
+              <a href="/news/news_list.do?s_code=C401">경기뉴스룸</a>
+              <div class="gnb-2dep">
+                <ul>
+                  <li>
+                    <a href="/news/news_list.do?s_code=C401">경기뉴스광장</a>
+                    <dl>
+						<dd><a href="/news/news_list.do?s_code=C109">달라지는경기</a></dd>
+					</dl>
+					<dl>
+						<dd><a href="/news/news_list.do?s_code=C400">나를위한경기</a></dd>
+					</dl>
+					<dl>
+						<dd><a href="/news/news_list.do?s_code=C049">일상속에경기</a></dd>
+					</dl>
+					<dl>
+						<dd><a href="/news/news_list.do?s_code=C124">카드뉴스</a></dd>
+					</dl>
+                  </li>
+                  <li>
+                    <a href="/news/news_tv.do?s_code=C500">GTV도정뉴스</a>
+                    <dl>
+                      <dd><a href="/news/news_tv.do?s_code=daily">일일뉴스</a></dd>
+                    </dl>
+                    <!--<dl>
+						<dd><a href="/news/news_tv.do?s_code=C119">주간브리핑</a></dd>
+					</dl>-->
+					<dl>
+						<dd><a href="/news/news_tv.do?s_code=C071">기획영상</a></dd>
+					</dl>
+					<dl>
+						<dd><a href="/news/news_tv.do?s_code=C117">정책기자회견</a></dd>
+					</dl>
+					<dl>
+						<dd><a href="/news/news_tv.do?s_code=C045">도정열린회의&amp;기회경기포럼</a></dd>
+					</dl>
+                  </li>
+                </ul>
+              </div>
+            </li>
+            <li>
+              <a href="/news/domin_list.do">소통참여마당</a>
+              <div class="gnb-2dep">
+				<ul>
+					<li><a href="/news/domin_list.do">기회기자단</a>
+						<dl>
+							<dd>
+								<a href="/news/domin_list.do?s_code=C076">꿈나무기자단</a>
+							</dd>
+						</dl>
+						<dl>
+							<dd>
+								<a href="/news/domin_list.do?s_code=C083">청소년기자단</a>
+							</dd>
+						</dl>
+						<dl>
+							<dd>
+								<a href="/news/domin_list.do?s_code=C056">대학생기자단</a>
+							</dd>
+						</dl>
+						<dl>
+							<dd>
+								<a href="/news/domin_list.do?s_code=C094">일반기자단</a>
+							</dd>
+						</dl></li>
+					<li><a href="https://www.youtube.com/channel/UCIuDua3JS1-m9zi4CuAqBVw?sub_confirmation=1" target="_blank" title="새 창 열림">경기도청 YouTube</a>
+						<dl>
+							<dd>
+								<a href="https://www.youtube.com/@ggholics/streams" target="_blank" title="새 창 열림">주요도정 생중계</a>
+							</dd>
+						</dl>
+						<dl>
+							<dd>
+								<a href="https://www.youtube.com/playlist?list=PLJv7ALOEoaFrGONS0XHarYlkDcztQujSK" target="_blank" title="새 창 열림">경기도 이야기</a>
+							</dd>
+						</dl>
+						<dl>
+							<dd>
+								<a href="https://www.youtube.com/playlist?list=PLJv7ALOEoaFqsgFmldzE9XFYMWKtWBCqu" target="_blank" title="새 창 열림">SML경기</a>
+							</dd>
+						</dl>
+						<dl>
+							<dd>
+								<a href="https://www.youtube.com/@ggholics/shorts" target="_blank" title="새 창 열림">SHORTS</a>
+							</dd>
+						</dl></li>
+					<li><a href="/briefing/cardNewsList.do">도민여론</a></li>
+					<li><a href="/briefing/competition.do">공모전</a></li>
+				</ul>
+			</div>
+            </li>
+            <li>
+              <a href="/briefing/brief_ggcggcfopen.do">경기라이프</a>
+              <div class="gnb-2dep">
+                <ul>
+					<li><a href="http://www.gg.go.kr/myggd" target="_blank" title="새 창 열림">나의 경기도</a></li>
+					<li><a href="https://gg.go.kr/myggd_hot" target="_blank" title="새 창 열림">나의 경기도 Hot!</a></li>
+					<li><a href="/briefing/brief_ggcggcfopen.do">문화행사</a></li>
+					<li><a href="/briefing/newInfographicList.do">인포그래픽</a></li>
+					<li><a href="/news/webmz_list2.do?s_code=WZ01">공공기관 소식지</a></li>
+					<li><a href="/news/webmz_list3.do?s_code=WZ02">시군소식지</a></li>
+					<li><a href="/news/child_news_list.do?BS_CODE=S050&amp;sel=">어린이신문</a></li>
+                </ul>
+              </div>
+            </li>
+            <li>
+              <a href="/news/news_list.do?s_code=C111">의회소식</a>
+              <div class="gnb-2dep">
+                <ul>
+					<li><a href="/news/news_list.do?s_code=C111">의정소식</a></li>
+					<li><a href="/news/hot_news_list.do?BS_CODE=S046&amp;sel=BO08">의회소식지</a></li>
+                </ul>
+              </div>
+            </li>
+          </ul>
+        </nav>
+          <div class="btn_search" >
+            <a href="" id="btn_search">검색하기 열기</a>
+          </div>
+        </div>
+        
+        	
+      </div>
+      <!-- [e] : PC nav -->
+      <!-- [s] : mobile nav -->
+      <nav class="m_gnb">
+        <div class="left">
+          <ul class="gnb-1dep">
+            <li class="active">
+              <a href="/briefing/brief_gongbo.do">보도자료</a>
+              <div class="gnb-2dep">
+                <ul>
+					<li><a href="/briefing/brief_gongbo.do">보도자료</a></li>
+					<li><a href="/briefing/brief_gongbo_PBOD.do?subject_Code=PBOD">사진 보도자료</a></li>
+					<li><a href="/briefing/brief_gongbo.do?subject_Code=MOBI">그래픽 보도자료</a></li>
+					<li><a href="/briefing/brief_gongbo.do?subject_Code=BO03">사실은 이렇습니다</a></li>
+					<li><a href="/briefing/brief_ggi.do">공공기관 보도자료</a></li>
+					<li><a href="/briefing/brief_sigun.do">시군 보도자료</a></li>
+                </ul>
+              </div>
+            </li>
+            <li>
+              <a href="/news/news_list.do?s_code=C401">경기뉴스룸</a>
+              <div class="gnb-2dep">
+                <ul>
+                  <li>
+                    <a href="/news/news_list.do?s_code=C401">경기뉴스광장</a>
+                    <div class="hide">
+                    <dl>
+						<dd><a href="/news/news_list.do?s_code=C109">달라지는경기</a></dd>
+					</dl>
+					<dl>
+						<dd><a href="/news/news_list.do?s_code=C400">나를위한경기</a></dd>
+					</dl>
+					<dl>
+						<dd><a href="/news/news_list.do?s_code=C049">일상속에경기</a></dd>
+					</dl>
+					<dl>
+						<dd><a href="/news/news_list.do?s_code=C124">카드뉴스</a></dd>
+					</dl>
+                    </div>
+                  </li>
+                  <li>
+                    <a href="/news/news_tv.do?s_code=C500">GTV도정뉴스</a>
+                    <div class="hide">
+                      <dl>
+                        	<dd><a href="/news/news_tv.do?s_code=daily">일일뉴스</a></dd>
+                      </dl>
+                      <!--<dl>
+						<dd><a href="/news/news_tv.do?s_code=C119">주간브리핑</a></dd>
+					  </dl>-->
+                      <dl>
+                        	<dd><a href="/news/news_tv.do?s_code=C071">기획영상</a></dd>
+                      </dl>
+                      <dl>
+						<dd><a href="/news/news_tv.do?s_code=C117">정책기자회견</a></dd>
+					</dl>
+					<dl>
+						<dd><a href="/news/news_tv.do?s_code=C045">도정열린회의&amp;기회경기포럼</a></dd>
+					</dl>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+            </li>
+            <li>
+              <a href="/news/domin_list.do">소통참여마당</a>
+              <div class="gnb-2dep">
+                <ul>
+                  <li>
+                    <a href="/news/domin_list.do">기회기자단</a>
+                    <div class="hide">
+                    <dl>
+						<dd><a href="/news/domin_list.do?s_code=C076">꿈나무기자단</a></dd>
+					</dl>
+					<dl>
+						<dd><a href="/news/domin_list.do?s_code=C083">청소년기자단</a></dd>
+					</dl>
+					<dl>
+						<dd><a href="/news/domin_list.do?s_code=C056">대학생기자단</a></dd>
+					</dl>
+					<dl>
+						<dd><a href="/news/domin_list.do?s_code=C094">일반기자단</a></dd>
+					</dl>
+                    </div>
+                  </li>
+                  <li>
+                    <a href="https://www.youtube.com/channel/UCIuDua3JS1-m9zi4CuAqBVw?sub_confirmation=1" target="_blank" title="새 창 열림">경기도청 YouTube</a>
+                    <div class="hide">
+                     <dl>
+						<dd><a href="https://www.youtube.com/@ggholics/streams" target="_blank" title="새 창 열림">주요도정 생중계</a></dd>
+					</dl>
+					<dl>
+						<dd><a href="https://www.youtube.com/playlist?list=PLJv7ALOEoaFrGONS0XHarYlkDcztQujSK" target="_blank" title="새 창 열림">경기도 이야기</a></dd>
+					</dl>
+					<dl>
+						<dd><a href="https://www.youtube.com/playlist?list=PLJv7ALOEoaFqsgFmldzE9XFYMWKtWBCqu" target="_blank" title="새 창 열림">SML경기</a></dd>
+					</dl>
+					<dl>
+						<dd><a href="https://www.youtube.com/@ggholics/shorts" target="_blank" title="새 창 열림">SHORTS</a></dd>
+					</dl>
+                    </div>
+                  </li>
+	                <li><a href="/briefing/cardNewsList.do">도민여론</a></li>
+					<li><a href="/briefing/competition.do">공모전</a></li>
+                </ul>
+              </div>
+            </li>
+            <li>
+              <a href="/briefing/brief_ggcggcfopen.do">경기라이프</a>
+              <div class="gnb-2dep">
+                <ul>
+                  	<li><a href="http://www.gg.go.kr/myggd" target="_blank" title="새 창 열림">나의 경기도</a></li>
+                  	<li><a href="https://gg.go.kr/myggd_hot" target="_blank" title="새 창 열림">나의 경기도 Hot!</a></li>
+					<li><a href="/briefing/brief_ggcggcfopen.do">문화행사</a></li>
+					<li><a href="/briefing/newInfographicList.do">인포그래픽</a></li>
+					<li><a href="/news/webmz_list2.do?s_code=WZ01">공공기관 소식지</a></li>
+					<li><a href="/news/webmz_list3.do?s_code=WZ02">시군소식지</a></li>
+					<li><a href="/news/child_news_list.do?BS_CODE=S050&amp;sel=">어린이신문</a></li>
+                </ul>
+              </div>
+            </li>
+            <li>
+              <a href="/news/news_list.do?s_code=C111">의회소식</a>
+              <div class="gnb-2dep">
+                <ul>
+                	<li><a href="/news/news_list.do?s_code=C111">의정소식</a></li>
+					<li><a href="/news/hot_news_list.do?BS_CODE=S046&amp;sel=BO08">의회소식지</a></li>
+                </ul>
+              </div>
+            </li>
+          </ul>
+          <div class="links"><a href="https://gg.go.kr/" >경기도청</a>
+          <a href="http://www.gg.go.kr/myggd" target="_blank" title="새 창 열림">나의 경기도</a>
+          <a href="https://gg.go.kr/myggd_hot" target="_blank" title="새 창 열림">나의 경기도 Hot!</a>
+          <a href="https://gnews.gg.go.kr/media" target="_blank" title="새 창 열림">멀티미디어 자료실</a></div>
+        </div>
+      </nav>
+      <!-- [e] : mobile nav -->
+     
+
+<script type="text/javascript">
+$(document).ready(function (){
+	$('.rm_search li a').click(function(event){
+		debugger;
+		event.preventDefault();
+		$("#search_keyword").val(this.text.replace("#",""));
+	});
+
+});
+</script>
+	<nav class="search">
+      <h2 class="blind">검색팝업</h2>
+      <form name="GNBsearchForm" id="AKCFrm"  autocomplete="off" method="get" action="/search/search.do" target="_self">
+      <div class="input_area">
+        <input type="text" name="search_keyword" id="search_keyword" placeholder="검색어를 입력하세요." title="검색어를 입력하세요." onkeydown="if (event.keyCode == 13) {fn_go_total_search()};" />
+        <button onclick="fn_go_total_search();"><img src="/img/new2024/common/ico_search.png" alt="검색" /></button>
+        <ul class="rm_search">
+          <li><a href="#">#THE경기패스</a></li>
+          <li><a href="#">#공모전</a></li>
+          <li><a href="#">#아동양육비</a></li>
+          <li><a href="#">#주택가격안내</a></li>
+          <li><a href="#">#경기도뉴스레터</a></li>
+        </ul>
+      </div>
+		<input type="hidden" name="search_word" value="" />
+		<input type="hidden" name="kwd" value="" />
+		<input type="hidden" name="sort" value="d" />
+      </form>
+      
+      <svg class="blobCont">
+        <image xlink:href="/img/new2024/common/search_bg.jpg" mask="url(#mask)" width="100%" height="100%" preserveAspectRatio="xMidYMid slice" />
+        <defs>
+          <mask id="mask" x="0" y="0">
+            <g style="filter: url(#gooey)">
+              <circle class="blob" cx="10%" cy="10%" r="80" fill="white" stroke="white" />
+              <circle class="blob" cx="50%" cy="10%" r="40" fill="white" stroke="white" />
+              <circle class="blob" cx="17%" cy="15%" r="70" fill="white" stroke="white" />
+              <circle class="blob" cx="90%" cy="20%" r="120" fill="white" stroke="white" />
+              <circle class="blob" cx="30%" cy="25%" r="30" fill="white" stroke="white" />
+              <circle class="blob" cx="50%" cy="60%" r="80" fill="white" stroke="white" />
+              <circle class="blob" cx="70%" cy="90%" r="10" fill="white" stroke="white" />
+              <circle class="blob" cx="90%" cy="60%" r="90" fill="white" stroke="white" />
+              <circle class="blob" cx="30%" cy="90%" r="80" fill="white" stroke="white" />
+              <circle class="blob" cx="10%" cy="10%" r="80" fill="white" stroke="white" />
+              <circle class="blob" cx="50%" cy="10%" r="20" fill="white" stroke="white" />
+              <circle class="blob" cx="17%" cy="15%" r="70" fill="white" stroke="white" />
+              <circle class="blob" cx="40%" cy="20%" r="120" fill="white" stroke="white" />
+              <circle class="blob" cx="30%" cy="25%" r="30" fill="white" stroke="white" />
+              <circle class="blob" cx="80%" cy="60%" r="80" fill="white" stroke="white" />
+              <circle class="blob" cx="17%" cy="10%" r="100" fill="white" stroke="white" />
+              <circle class="blob" cx="40%" cy="60%" r="90" fill="white" stroke="white" />
+              <circle class="blob" cx="10%" cy="50%" r="80" fill="white" stroke="white" />
+            </g>
+          </mask>
+          <filter id="gooey" height="130%">
+            <feGaussianBlur in="SourceGraphic" stdDeviation="15" result="blur" />
+            <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 18 -7" result="goo" />
+          </filter>
+        </defs>
+      </svg>
+    </nav>
+
+</header>
+
+<form id="obj_search" name="obj_search" action="/briefing/brief_gongbo_view.do;jsessionid=6FD32E97BC25378B3B7399473BBF9BF3.ajp13?BS_CODE=S017&amp;number=69143" method="get">
+<div class="wapper-element">
+<div class="header-bar"><span></span></div>
+	<!-- header -->
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 2025년 -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	<!-- //header -->
+
+	<main>
+	
+							
+			
+			
+							
+			
+				<div class="sub-con-element brief_detail">	
+			
+			
+      
+        <div class="sub-nav">
+                <!--sub-menu-->
+          <div id="sub-menu">
+            <ul>
+              <li><a href="/" title="메인페이지 이동"></a></li>
+              <li>
+                <a href="#"><span id="menuNm">보도자료</span></a>
+                <ul>
+                  <li><a href="/briefing/brief_gongbo.do" onclick="fnMenuSelect(1);">보도자료</a></li>
+                  <li><a href="/news/news_list.do?s_code=C401" onclick="fnMenuSelect(2);">경기뉴스룸</a></li>
+                  <li><a href="/news/domin_list.do" onclick="fnMenuSelect(3);">소통참여마당</a></li>
+                  <li><a href="/briefing/brief_ggcggcfopen.do" onclick="fnMenuSelect(4);">경기라이프</a></li>
+                  <li><a href="/news/news_list.do?s_code=C111" onclick="fnMenuSelect(5);">의회소식</a></li>
+                </ul>
+              </li>
+              <li id="subMenuList"></li>
+            </ul>
+          </div>
+          <!--sub-menu-->
+        </div>
+        <div class="wrap" id="contents">
+          			
+        	
+          			<h3>경기도, 올해 전세사기 피해 예방 아카데미 운영. 찾아가는 교육 진행</h3>
+					
+					<ul>
+					
+						
+							
+								<li>○ 경기도, ‘경기 안전전세 프로젝트’의 핵심 사업인 ‘전세사기 피해 예방 아카데미’ 본격 추진</li>							
+							
+							
+						
+					
+						
+							
+								<li>○ 5개 권역별 학생부터 사회초년생 직장인, 어르신까지 ‘찾아가는 맞춤형 교육’ 전개</li>							
+							
+							
+						
+					
+						
+							
+								<li>○ 오는 2월 5일까지 아카데미 전문 교육단 지원 가능</li>							
+							
+							
+						
+					
+					</ul>
+			
+          <div class="postmenu">
+            <div class="postinfo">
+				
+					
+				
+				
+				
+				
+					<div><span>작성자</span>관리자</div>
+					<div>
+		              	
+						2026.01.29&nbsp;
+						07:01:00
+					</div>
+				
+				
+				
+      
+            </div>
+            
+
+
+
+
+
+
+
+
+<script src="https://t1.kakaocdn.net/kakao_js_sdk/2.1.0/kakao.min.js"
+  integrity="sha384-dpu02ieKC6NUeKFoGMOKz6102CLEWi9+5RQjWSV0ikYSFFd8M3Wp2reIcquJOemx" crossorigin="anonymous"></script>
+<script>
+  Kakao.init('5861c670b6c32e01846cf6de2620b99b'); // 사용하려는 앱의 JavaScript 키 입력
+  
+  function clip(){
+
+		var url = $("#url_text").val();
+		var textarea = document.createElement("textarea");
+		document.body.appendChild(textarea);
+		url = window.document.location.href;
+		textarea.value = url;
+		textarea.select();
+		document.execCommand("copy");
+		document.body.removeChild(textarea);
+		alert("URL이 복사되었습니다.")	
+	}
+  document.addEventListener('DOMContentLoaded', function () {
+	  const snsBtn = document.getElementById('sns_id'); // 글자크기 버튼
+	  const popWrap = snsBtn.nextElementSibling; // 바로 뒤의 .pop_wrap
+
+	  snsBtn.addEventListener('click', function (e) {
+	    e.preventDefault();
+
+	    // pop_wrap 토글 (열림/닫힘)
+	    const isOpen = popWrap.classList.toggle('active');
+
+	    // 텍스트 변경
+	    if (isOpen) {
+	    	snsBtn.textContent = 'SNS공유닫기';
+	    } else {
+	    	snsBtn.textContent = 'SNS공유열기';
+	    	snsBtn.removeAttr('title');
+	    }
+	  });
+	  
+	 
+	}); 
+</script>
+<ul>
+    
+	<li class="share_btn">
+	  <a href="" id="sns_id">SNS공유열기</a>
+	  <div class="pop_wrap">
+	    <div class="pop_up">
+	      <div class="title">
+	        <div>SNS공유하기</div>
+	        <a href="" class="close" title="SNS공유닫기"><img src="/img/new2024/sub/ico_close.png" alt="SNS공유닫기" /></a>
+	      </div>
+	      <div class="pop_in">
+	        <ul>
+	          <li>
+	            <a href="javascript:goArticleSNS('facebook','http://gnews.gg.go.kr/briefing/brief_gongbo_view.do?BS_CODE=S017&amp;number=69143&amp;subject_Code=null');" onclick="goArticleSNS('facebook','http://gnews.gg.go.kr/briefing/brief_gongbo_view.do?BS_CODE=S017&amp;number=69143&amp;subject_Code=null');" title="페이스북 공유 새창으로  열림">
+	              <img src="/img/new2024/sub/ico_facebook.png" alt="" />
+	              <span>페이스북</span>
+	            </a>
+	          </li>
+	          <li>
+	            <a href="javascript:goArticleSNS('twitter','http://gnews.gg.go.kr/briefing/brief_gongbo_view.do?BS_CODE=S017&amp;number=69143&amp;subject_Code=null');" onclick="goArticleSNS('twitter','http://gnews.gg.go.kr/briefing/brief_gongbo_view.do?BS_CODE=S017&amp;number=69143&amp;subject_Code=null');" title="엑스 공유 새창으로  열림">
+	              <img src="/img/new2024/sub/ico_x.png" alt="" />
+	              <span>엑스</span>
+	            </a>
+	          </li>
+	          <li>
+	            <a href="javascript:goArticleSNS('naver','http://gnews.gg.go.kr/briefing/brief_gongbo_view.do?BS_CODE=S017&amp;number=69143&amp;subject_Code=null');" onclick="goArticleSNS('naver','http://gnews.gg.go.kr/briefing/brief_gongbo_view.do?BS_CODE=S017&amp;number=69143&amp;subject_Code=null');" title="네이버 공유 새창으로  열림">
+	              <img src="/img/new2024/sub/ico_naver.png" alt="" />
+	              <span>네이버</span>
+	            </a>
+	          </li>
+	          <li>
+	            <a id="kakaotalk-sharing-btn" href="javascript:goArticleSNS('kakaolink','http://gnews.gg.go.kr/briefing/brief_gongbo_view.do?BS_CODE=S017&amp;number=69143&amp;subject_Code=null');" onclick="goArticleSNS('kakaolink','http://gnews.gg.go.kr/briefing/brief_gongbo_view.do?BS_CODE=S017&amp;number=69143&amp;subject_Code=null');" title="카카오톡 공유 새창으로  열림">
+	              <img src="/img/new2024/sub/ico_kakao.png" alt=""  />
+	              <span>카카오톡</span>
+	            </a>
+	          </li>
+	        </ul>
+	        <div class="copy">
+	          <label for="url_text" class="blind">공유 URL</label>
+	          <input type="text" id="url_text" value="http://gnews.gg.go.kr/briefing/brief_gongbo_view.do?BS_CODE=S017&amp;number=69143&amp;subject_Code=null"/ title="공유 URL" readonly>
+	          <button onclick="clip(); return false;">URL복사</button>
+	        </div>
+	      </div>
+	    </div>
+	  </div>
+	</li>
+	
+	
+	
+	
+	
+		<li title="프린터 하기" class="print_btn"><a href="javascript:window.print();" onclick="window.print();">프린트</a></li>
+	
+	
+
+</ul>
+
+          </div>
+          <div class="postbody">
+				
+			<!-- 일반 뷰 -->
+			<div class="postBody">
+				
+				
+				
+					<!-- 일반 뷰 -->
+					<div class="postBody">
+						
+						
+						<p class="0" style="margin-top: 10pt;"><span style="font-family: 돋움; font-size: 12pt;">경기도가 전세사기 피해 예방을 위해 도민들의 부동산 거래 능력을 키울 수 있는 교육프로그램인 </span><span lang="EN-US" style="font-family: 돋움;  font-size: 12pt;">&lsquo;</span><span style="font-family: 돋움; font-size: 12pt;">전세사기 피해 예방 아카데미</span><span lang="EN-US" style="font-family: 돋움;  font-size: 12pt;">&rsquo;</span><span style="font-family: 돋움; font-size: 12pt;">를 운영하기로 하고 </span><span lang="EN-US" style="font-family: 돋움;  font-size: 12pt;">5</span><span style="font-family: 돋움; font-size: 12pt;">일까지 전문 교육강사를 모집한다</span><span lang="EN-US" style="font-family: 돋움;  font-size: 12pt;">.</span></p>
+<p class="0" style="margin-top: 10pt;"><span lang="EN-US" style="font-family: 돋움;  font-size: 12pt;"><br /></span></p>
+<p class="0" style="margin-top: 10pt;"><span lang="EN-US" style="font-family: 돋움;  font-size: 12pt;">&lsquo;</span><span style="font-family: 돋움;  font-size: 12pt;">전세사기 피해 예방 아카데미</span><span lang="EN-US" style="font-family: 돋움;  font-size: 12pt;">&rsquo;</span><span style="font-family: 돋움;  font-size: 12pt;">는 부동산 계약 전 단계부터 위험을 인지</span><span style="font-family: 돋움;  font-size: 12pt;">하</span><span style="font-family: 돋움;  font-size: 12pt;">고 스스로 보호할 수 있도록 도민의 부동산 거래 능력을 향상시켜 시장</span><span style="font-family: 돋움; font-size: 12pt;">을 안정화하는데 목적이 있다</span><span lang="EN-US" style="font-family: 돋움;  font-size: 12pt;">.</span></p>
+<p class="0" style="margin-top: 10pt;"><span style="font-family: 돋움;  font-size: 12pt;"><br /></span></p>
+<p class="0" style="margin-top: 10pt;"><span style="font-family: 돋움;  font-size: 12pt;">전년도 도내 전세사기 피해 접수건은 </span><span lang="EN-US" style="font-family: 돋움;  font-size: 12pt;">2,497</span><span style="font-family: 돋움;  font-size: 12pt;">건으로 월 평균 </span><span lang="EN-US" style="font-family: 돋움;  font-size: 12pt;">200</span><span style="font-family: 돋움;  font-size: 12pt;">여 건의 전</span><span style="font-family: 돋움; font-size: 12pt;">세사기 피해가 지속적으로 발생하고 있다</span><span lang="EN-US" style="font-family: 돋움;  font-size: 12pt;">. </span><span style="font-family: 돋움; font-size: 12pt;">피해자는 대부분 </span><span lang="EN-US" style="font-family: 돋움;  font-size: 12pt;">40</span><span style="font-family: 돋움; font-size: 12pt;">세 미만의 청년층에 집중돼 있어 이에 대한 예방교육 필요성이 커지고 있다</span><span lang="EN-US" style="font-family: 돋움;  font-size: 12pt;">.</span></p>
+<p class="0" style="margin-top: 10pt;"><span style="font-family: 돋움; font-size: 12pt;"><br /></span></p>
+<p class="0" style="margin-top: 10pt;"><span style="font-family: 돋움; font-size: 12pt;">도는 아카데미 운영에 앞서 첫 번째 단계로 풍부한 실무 경험과 직업윤리</span><span lang="EN-US" style="font-family: 돋움;  font-size: 12pt;">, </span><span style="font-family: 돋움; font-size: 12pt;">강의 역량을 갖춘 현장 실무 전문가 </span><span lang="EN-US" style="font-family: 돋움;  font-size: 12pt;">20</span><span style="font-family: 돋움; font-size: 12pt;">명을 </span><span lang="EN-US" style="font-family: 돋움;  font-size: 12pt;">&lsquo;</span><span style="font-family: 돋움; font-size: 12pt;">전세사기 피해 예방 아카데미 교육단</span><span lang="EN-US" style="font-family: 돋움;  font-size: 12pt;">&rsquo;</span><span style="font-family: 돋움; font-size: 12pt;">으로 선발한다</span><span lang="EN-US" style="font-family: 돋움;  font-size: 12pt;">.</span></p>
+<p class="0" style="margin-top: 10pt;"><span style="font-family: 돋움; font-size: 12pt;"><br /></span></p>
+<p class="0" style="margin-top: 10pt;"><span style="font-family: 돋움; font-size: 12pt;">선발된 교육단은 도내 </span><span lang="EN-US" style="font-family: 돋움;  font-size: 12pt;">5</span><span style="font-family: 돋움; font-size: 12pt;">개 권역으로 나누어 배치되며</span><span lang="EN-US" style="font-family: 돋움;  font-size: 12pt;">, </span><span style="font-family: 돋움; font-size: 12pt;">학교</span><span lang="EN-US" style="font-family: 돋움;  font-size: 12pt;">, </span><span style="font-family: 돋움; font-size: 12pt;">청년공간</span><span lang="EN-US" style="font-family: 돋움;  font-size: 12pt;">, </span><span style="font-family: 돋움; font-size: 12pt;">기업 연수원</span><span lang="EN-US" style="font-family: 돋움;  font-size: 12pt;">, </span><span style="font-family: 돋움; font-size: 12pt;">공공기관 등 교육 수요가 있는 곳이면 어디든 찾아가 부동산 거래 관련 교육을 실시한다</span><span lang="EN-US" style="font-family: 돋움;  font-size: 12pt;">.</span></p>
+<p class="0" style="margin-top: 10pt;"><span style="font-family: 돋움; font-size: 12pt;"><br /></span></p>
+<p class="0" style="margin-top: 10pt;"><span style="font-family: 돋움; font-size: 12pt;">도는 교육단의 역량 강화를 별도의 교육을 진행하는 것은 물론 교육의 일</span><span style="font-family: 돋움;  font-size: 12pt;">관성을 위한 표준 교재 제작</span><span lang="EN-US" style="font-family: 돋움;  font-size: 12pt;">, </span><span style="font-family: 돋움;  font-size: 12pt;">교육 참가자들의 참여도를 높이기 위한 동영</span><span style="font-family: 돋움; font-size: 12pt;">상 등 다양한 교육 콘텐츠를 마련할 예정이다</span><span lang="EN-US" style="font-family: 돋움;  font-size: 12pt;">.</span></p>
+<p class="0" style="margin-top: 10pt;"><span style="font-family: 돋움;  font-size: 12pt;"><br /></span></p>
+<p class="0" style="margin-top: 10pt;"><span style="font-family: 돋움;  font-size: 12pt;">도는 교육 대상의 특성과 환경을 고려해 고등학생</span><span lang="EN-US" style="font-family: 돋움;  font-size: 12pt;">, </span><span style="font-family: 돋움;  font-size: 12pt;">대학생</span><span lang="EN-US" style="font-family: 돋움;  font-size: 12pt;">, </span><span style="font-family: 돋움;  font-size: 12pt;">사회초년생 등</span><span style="font-family: 돋움; font-size: 12pt;">의 청년을 비롯한 도민들을 세분화하여 맞춤형 교육을 제공할 계획이다</span><span lang="EN-US" style="font-family: 돋움;  font-size: 12pt;">.</span></p>
+<p class="0" style="margin-top: 10pt;"><span style="font-family: 돋움;  font-size: 12pt;"><br /></span></p>
+<p class="0" style="margin-top: 10pt;"><span style="font-family: 돋움;  font-size: 12pt;">오프라인 교육에 참석이 어려운 도민들의 접근성 향상을 위해 </span><span lang="EN-US" style="font-family: 돋움;  font-size: 12pt;">5</span><span style="font-family: 돋움;  font-size: 12pt;">편의 동영</span><span style="font-family: 돋움; font-size: 12pt;">상 </span><span style="font-family: 돋움;  font-size: 12pt;">교육 콘텐츠도 제작해 경기도 온라인 평생교육사이트인 지식</span><span lang="EN-US" style="font-family: 돋움;  font-size: 12pt;">(G-SEEK) </span><span style="font-family: 돋움;  font-size: 12pt;">등</span><span style="font-family: 돋움; font-size: 12pt;">에 제공해 누구나 손쉽게 접할 수 있도록 할 계획이다</span><span lang="EN-US" style="font-family: 돋움;  font-size: 12pt;">.</span></p>
+<p class="0" style="margin-top: 10pt;"><span style="font-family: 돋움; font-size: 12pt;"><br /></span></p>
+<p class="0" style="margin-top: 10pt;"><span style="font-family: 돋움; font-size: 12pt;">손임성 경기도 도시주택실장은 </span><span lang="EN-US" style="font-family: 돋움;  font-size: 12pt;">&ldquo;</span><span style="font-family: 돋움; font-size: 12pt;">전세사기 피해 예방 아카데미 운영은 전세사기 피해 예방은 물론</span><span lang="EN-US" style="font-family: 돋움;  font-size: 12pt;">, </span><span style="font-family: 돋움; font-size: 12pt;">부동산 시장 전반의 안정과 신뢰를 회복하는 전환점이 될 것</span><span lang="EN-US" style="font-family: 돋움;  font-size: 12pt;">&rdquo;</span><span style="font-family: 돋움; font-size: 12pt;">이라며 </span><span lang="EN-US" style="font-family: 돋움;  font-size: 12pt;">&ldquo;</span><span style="font-family: 돋움; font-size: 12pt;">역량 있는 전문가들의 많은 지원을 바란다</span><span lang="EN-US" style="font-family: 돋움;  font-size: 12pt;">&rdquo;</span><span style="font-family: 돋움; font-size: 12pt;">고 말했다</span><span lang="EN-US" style="font-family: 돋움;  font-size: 12pt;">.</span></p>
+<p class="0" style="margin-top: 10pt;"><span style="font-family: 돋움; font-size: 12pt;"><br /></span></p>
+<p class="0" style="margin-top: 10pt;"><span style="font-family: 돋움; font-size: 12pt;">전문 교육단 모집은 오는 </span><span lang="EN-US" style="font-family: 돋움;  font-size: 12pt;">2</span><span style="font-family: 돋움; font-size: 12pt;">월 </span><span lang="EN-US" style="font-family: 돋움;  font-size: 12pt;">5</span><span style="font-family: 돋움; font-size: 12pt;">일까지 진행되며</span><span lang="EN-US" style="font-family: 돋움;  font-size: 12pt;">, </span><span style="font-family: 돋움; font-size: 12pt;">지원 자격은 공인중개사 실무 경력 </span><span lang="EN-US" style="font-family: 돋움;  font-size: 12pt;">3</span><span style="font-family: 돋움; font-size: 12pt;">년 이상인 자로</span><span lang="EN-US" style="font-family: 돋움;  font-size: 12pt;">, </span><span style="font-family: 돋움; font-size: 12pt;">최근 </span><span lang="EN-US" style="font-family: 돋움;  font-size: 12pt;">3</span><span style="font-family: 돋움; font-size: 12pt;">년 이내 행정처분 이력이 없어야 한다</span><span lang="EN-US" style="font-family: 돋움;  font-size: 12pt;">. </span><span style="font-family: 돋움;  font-size: 12pt;">자세한 모집 요강은 경기도 홈페이지에 게시된 공고문을 참고하여 기한 내</span><span style="font-family: 돋움; font-size: 12pt;">에 이메일로 접수하면 된다</span><span lang="EN-US" style="font-family: 돋움;  font-size: 12pt;">.</span></p>
+					</div>
+				
+			
+				
+				
+				
+
+
+			</div>
+				
+			
+	            <section class="fileset26">
+			        <h3 class="fileset26-title">첨부파일</h3>
+			        <!-- [첨부파일 목록]{ -->
+			        <ul class="fileset26-list">
+				        
+						
+							
+						    
+						    
+						        
+						    
+						
+							
+							
+				            	<li class="fileset26-listitem fileset26-listitem-normal">
+									<span class="file-item" data-url="/UP_FILES/_UP_BS_FILEZ/202601/경기도， 올해 전세사기 피해 예방 아카데미 운영. 찾아가는 교육 진행.hwpx" data-name="경기도， 올해 전세사기 피해 예방 아카데미 운영. 찾아가는 교육 진행.hwpx"></span>
+					                <!-- 일반 다운로드 링크 -->
+					                <a href="javascript:void(0);" onclick="downloadFile('/UP_FILES/_UP_BS_FILEZ/202601/경기도， 올해 전세사기 피해 예방 아카데미 운영. 찾아가는 교육 진행.hwpx', '경기도， 올해 전세사기 피해 예방 아카데미 운영. 찾아가는 교육 진행.hwpx')" class="fileset26-listitem-title">경기도， 올해 전세사기 피해 예방 아카데미 운영. 찾아가는 교육 진행.hwpx</a>
+					
+					                <!-- [버튼영역]{ -->
+					                <div class="fileset26-btnwrap">
+					                    <a title="바로보기:새창으로 열림" class="fileset26-btn fileset26-btn-preview" href="javascript:void(0);" onclick="preview2026('/UP_FILES/_UP_BS_FILEZ/202601/경기도， 올해 전세사기 피해 예방 아카데미 운영. 찾아가는 교육 진행.hwpx','경기도， 올해 전세사기 피해 예방 아카데미 운영. 찾아가는 교육 진행.hwpx','XTBUZ9550AV4QBNC');">
+					                        <span class="fileset26-btn-txt">바로보기</span>
+					                        <span class="fileset26-soundonly">
+					                            경기도， 올해 전세사기 피해 예방 아카데미 운영. 찾아가는 교육 진행.hwpx
+					                        </span>
+					                    </a>
+					                    <a title="바로듣기:새창으로 열림" class="fileset26-btn fileset26-btn-prelisten"
+					                        href="javascript:void(0);" onclick="preListen2026('/UP_FILES/_UP_BS_FILEZ/202601/경기도， 올해 전세사기 피해 예방 아카데미 운영. 찾아가는 교육 진행.hwpx','경기도， 올해 전세사기 피해 예방 아카데미 운영. 찾아가는 교육 진행.hwpx','XTBUZ9550AV4QBNC');">
+					                        <span class="fileset26-btn-txt">바로듣기</span>
+					                        <span class="fileset26-soundonly">
+					                            경기도， 올해 전세사기 피해 예방 아카데미 운영. 찾아가는 교육 진행.hwpx
+					                        </span>
+					                    </a>
+					                </div><!-- }버튼영역 -->
+					            </li>
+					            
+			            
+							
+						    
+						    
+						
+							
+							
+			            
+				            
+			            
+			      
+			            <li class="fileset26-listitem fileset26-listitem-picture">
+			                <!-- [썸네일갤러리] {-->
+			                <ul class="fileset26-gallery">
+			                
+			                
+						            
+						            
+						            
+						            
+						            
+						            
+						     
+						            
+						            
+						            
+						            
+						            
+						            
+									
+							            <li class="fileset26-galleryitem">
+					                        <!-- 링크 -->
+					                        
+					                        
+					                            <!-- 썸네일 -->
+					                            <div class="fileset26-gallery-thumbwrap">
+					                            <a class="fileset26-gallery-link" href="javascript:void(0);" onclick="preview2026('/UP_FILES/_UP_BS_FILEZ/202601/경기도청 전경(1)(50).jpg','경기도청 전경(1)(50).jpg','XTBUZ9550AV4QBNC');">    <!-- 타이틀 -->
+					                            	<span class="file-item" data-url="/UP_FILES/_UP_BS_FILEZ/202601/경기도청 전경(1)(50).jpg" data-name="경기도청 전경(1)(50).jpg">
+					                            	
+					                            	
+						            				
+						            					
+						            					
+						            					
+						            					
+						            					
+						            					<img class="fileset26-gallery-thumb" src="/UP_FILES/_UP_BS_FILEZ/202601/경기도청 전경(1)(50).jpg;jsessionid=6FD32E97BC25378B3B7399473BBF9BF3.ajp13" alt="이미지설명" />
+						            					
+						            				
+					                                	
+					                                </span>
+					                             </a>
+					                            </div>
+					                        <a class="fileset26-gallery-link" href="javascript:void(0);" onclick="forceDownload('/UP_FILES/_UP_BS_FILEZ/202601/경기도청 전경(1)(50).jpg', '경기도청 전경(1)(50).jpg');">    <!-- 타이틀 -->
+					                            <span class="fileset26-listitem-title">경기도청 전경(1)(50).jpg</span>
+					                        </a>
+				                    	</li>
+						            
+						     
+			                </ul><!-- }썸네일갤러리 -->
+
+			                <!-- [버튼영역]{ -->
+			                <div class="fileset26-btnwrap">
+			                    <a title="전체 다운로드" class="fileset26-btn fileset26-btn-download" href="javascript:void(0);" onclick="downloadAllZip();" >
+			                        <span class="fileset26-btn-txt">전체 다운로드</span>
+			                    </a>
+			                </div><!-- }버튼영역 -->
+			            	</li>
+			            	
+			           
+			        </ul><!-- }첨부파일목록 -->
+			    </section><!-- }fileset26 -->
+	            
+	        
+          </div>
+          
+          
+		
+					
+				</div>
+        <div class="cc">
+          <img src="/img/new2024/sub/img_opentype01.png" alt="공공누리 공공저작물 자유이용허락(출처표시)" style="width: 180px" />
+          <p>위 기사는 "공공누리" <a href="http://www.kogl.or.kr/info/licenseType1.do" target="_blank" title="새창">제1유형:출처표시 조건</a>에 따라 이용 할 수 있습니다.</p>
+        </div>
+        <a href="javascript:Get_list_view('S017','','1','','');" class="btn_list"> 목록 </a>
+        
+      </div>
+    </main>
+    
+    
+	<!--footer-->
+	
+
+
+
+
+
+
+
+<footer>
+      <!--footer-element-->
+      <div class="footer-element">
+        <!--utility-area-->
+        <div class="utility-area">
+          <!--box-->
+          <div class="box">
+            <dl>
+              <dd><a href="https://www.gg.go.kr/pripolicy2/forward.do" class="on" target="_blank" title="개인정보처리방침-새창">개인정보처리방침</a></dd>
+              <dd><a href="/rss/gnews_guide.do">경기도뉴스포털 API 가이드</a></dd>
+              <dd><a href="/rss/gnews_rss_main.do">경기도뉴스포털 RSS 소개</a></dd>
+              <dd><a href="https://www.gg.go.kr/contents/contents.do?ciIdx=1377&amp;menuId=3187" target="_blank" title="찾아오시는길-새창">찾아오시는 길</a></dd>
+            </dl>
+          </div>
+          <!--box-->
+        </div>
+        <!--utility-area-->
+        <!--footers-->
+        <div class="footers">
+          <!--box-->
+          <div class="box">
+            <!--left-area-->
+            <div class="left-area">
+              <img src="/img/new2024/common/img-footer-logo.png" alt="경기도" />
+            </div>
+            <!--left-area-->
+            <!--center-area-->
+            <div class="center-area">
+              <dl>
+                <dt>경기도청&nbsp;</dt>
+                <dd>16508 경기도  수원시 영통구 도청로 30 (이의동)</dd>
+              </dl>
+              <dl>
+                <dt>북부청사&nbsp;</dt>
+                <dd>11780 경기도 의정부시 청사로 1 (신곡동)</dd>
+              </dl>
+              <dl>
+                <dt>경기도 콜센터&nbsp;</dt>
+                <dd>031-120&nbsp;</dd>
+              </dl>
+              <dl>
+                <dd>© GYEONGGI PROVINCE All Rights Reserved.</dd>
+              </dl>
+            </div>
+            <!--center-area-->
+            <!--right-area-->
+            <div class="right-area">
+              <img src="/img/new2024/common/ico_wa.png" width="73px" height="52px" alt="한국웹접근성인증평가원 웹 접근성 우수사이트 인증마크(WA인증마크)" />
+            </div>
+            <!--right-area-->
+          </div>
+          <!--box-->
+        </div>
+        <!--footers-->
+      </div>
+      <!--footer-element-->
+</footer>
+
+	<!-- //footer -->
+
+</div>
+<!-- // wrap -->
+
+</form>
+<script>
+     $(document).ready(function () {
+       //글자크기팝업,공유하기 팝업 서로 눌렀을때 닫히기
+        $(".postmenu ul > li > a").click(function () {
+		
+	         if (!$(this).parent().hasClass("active")) {
+        		$(".postmenu ul > li > a").each(function () {
+    				$(this).removeAttr("title");
+    				$(this).removeAttr("aria-current");  
+    			});
+	    			
+	           $(this).parent().addClass("active").siblings().removeClass("active");
+	           $(this).next(".pop_wrap").addClass("active");
+	           $(this).parent().siblings().find(".pop_wrap").removeClass("active");
+	           $(this).attr('title', '선택됨');
+	
+	         
+	         } else {
+	           $(this).parent().removeClass("active");
+	           $(this).next(".pop_wrap").removeClass("active");
+	         }
+         return false;
+       });
+
+       //공유하기 팝업 닫기
+       $(".postmenu ul > li.share_btn .close").click(function () {
+         $(this).parents(".pop_wrap").removeClass("active");
+         $(this).parents(".share_btn").removeClass("active");
+         return false;
+       });
+
+       //글자크기
+       $(".postmenu ul > li.txt_btn .pop_wrap a").click(function () {
+    	   debugger;
+         $(this).parent().addClass("active").siblings().removeClass("active");
+         var idx = $(this).parent().index();
+         $(this)
+           .parents("body")
+           .attr("class", "fs" + idx);
+         return false;
+       });
+     });
+     
+    
+</script>
+
+<form name="frmSNS" method="post">
+	<input type="hidden" name="cont" value="경기도, 올해 전세사기 피해 예방 아카데미 운영. 찾아가는 교육 진행" />
+	<input type="hidden" name="desc" value="경기도가 전세사기 피해 예방을 위해 ..." />
+	<input type="hidden" name="thum" value="" />
+	<input type="hidden" name="thum_fb" value="" />
+</form>
+
+</body>
+</html>

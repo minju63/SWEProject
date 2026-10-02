@@ -1,0 +1,5477 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ <!DOCTYPE html>
+<html lang="ko">
+<head>
+
+	<title>BMC청약센터</title>
+    <meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" >
+	<meta name="format-detection" content="telephone=no">
+	<meta name="author" content="">
+	<meta name="description" content="">
+
+	<!-- 오픈그래프 이미지의 경우 최소한 600 x 315 px은 되어야 하며, 1200 x 630 px을 권장함 -->
+	<meta property="og:image" content="">
+	<meta property="og:title" content="">
+	<meta property="og:description" content="">
+	<meta property="og:url" content="">
+	<!-- 다음의 태그는 필수는 아니지만, 포함하는 것을 추천함 -->
+	<meta property="og:image:width" content="1200">
+	<meta property="og:image:height" content="630">
+
+	<link rel="icon" type="image/ico" href="/images/common/favicon.ico;BMCW_JSESSIONID=788D02AE61778B6298596B8AEBE34757.JVMAPPLYCENTER22">
+	<link rel="stylesheet" href="/lib/swiper/css/swiper.css;BMCW_JSESSIONID=788D02AE61778B6298596B8AEBE34757.JVMAPPLYCENTER22">
+	<link rel="stylesheet" href="/lib/jquery-ui.css;BMCW_JSESSIONID=788D02AE61778B6298596B8AEBE34757.JVMAPPLYCENTER22">
+	<link rel="stylesheet" href="/css/common.css;BMCW_JSESSIONID=788D02AE61778B6298596B8AEBE34757.JVMAPPLYCENTER22">
+	<link rel="stylesheet" href="/css/main.css;BMCW_JSESSIONID=788D02AE61778B6298596B8AEBE34757.JVMAPPLYCENTER22">
+	<link rel="stylesheet" href="/css/sub.css;BMCW_JSESSIONID=788D02AE61778B6298596B8AEBE34757.JVMAPPLYCENTER22">
+	<link rel="stylesheet" href="/css/mobile.css;BMCW_JSESSIONID=788D02AE61778B6298596B8AEBE34757.JVMAPPLYCENTER22">
+	<link rel="stylesheet" href="/css/hover.css;BMCW_JSESSIONID=788D02AE61778B6298596B8AEBE34757.JVMAPPLYCENTER22">
+	<link rel="stylesheet" href="/css/bynImage.css;BMCW_JSESSIONID=788D02AE61778B6298596B8AEBE34757.JVMAPPLYCENTER22">
+
+<!-- 	<script src="../lib/jquery-1.12.4.js"></script> -->
+
+	<!-- Global site tag (gtag.js) - Google Analytics -->
+	<!-- 운영일 경우에만 -->
+	
+	<script>
+	  window.dataLayer = window.dataLayer || [];
+	  function gtag(){dataLayer.push(arguments);}
+	  gtag('js', new Date());
+
+	  gtag('config', 'UA-120963123-1');
+	  document.oncontextmenu = function(){
+		  $net.alert('청약센터에서 우클릭은 불가능합니다.', "fn_srcollPop");
+		  return false;
+	}
+
+  !function() {
+	  function detectDevTool(allow) {
+		return true;
+	    if(isNaN(+allow)) allow = 100;
+	    var start = +new Date(); 
+	    debugger;
+	    var end = +new Date(); 
+	    if(isNaN(start) || isNaN(end) || end - start > allow) {
+	      // 개발자 도구가 open 된것을 감지했을때 실행할 코드 삽입
+	      $net.alert('개발자 도구가 감지되었습니다!', "fn_srcollPop");
+	    }
+	  }
+	  if(window.attachEvent) {
+	    if (document.readyState === "complete" || document.readyState === "interactive") {
+	        detectDevTool();
+	      window.attachEvent('onresize', detectDevTool);
+	      window.attachEvent('onmousemove', detectDevTool);
+	      window.attachEvent('onfocus', detectDevTool);
+	      window.attachEvent('onblur', detectDevTool);
+	    } else {
+	        setTimeout(argument.callee, 0);
+	    }
+	  } else {
+	    window.addEventListener('load', detectDevTool);
+	    window.addEventListener('resize', detectDevTool);
+	    window.addEventListener('mousemove', detectDevTool);
+	    window.addEventListener('focus', detectDevTool);
+	    window.addEventListener('blur', detectDevTool);
+	  }
+	  
+	  if (window.addEventListener) {
+			window.addEventListener('contextmenu', function(e) { try { if (typeof e != 'undefined') { e.preventDefault(); return false; } else { return false; }} catch(e) {} } , false);
+		} else {
+			window.attachEvent('oncontextmenu', function(e) { try { if (typeof e != 'undefined') { e.preventDefault(); return false; } else { return false; }} catch(e) {} } );
+		}
+		var handlemouseEvent = function(e) {
+			try {
+				if (typeof e == 'undefined') {
+					if (window.event.button && window.event.button == "2") {
+						return false;
+					}
+				} else if ((e.which && e.which == 3) || (e.button && e.button == 2)) {
+					e.preventDefault();
+					return false;
+				} else if (e.keyCode == 123) { //F12방지
+					e.preventDefault();
+					return false;
+				}
+			} catch (e) {}
+		};
+		window.onkeydown = handlemouseEvent;
+		window.onkeyup = handlemouseEvent; 
+	}();
+	</script>
+
+	<script src="/js/plugin/jquery.3.1.1.min.js;BMCW_JSESSIONID=788D02AE61778B6298596B8AEBE34757.JVMAPPLYCENTER22"></script>
+	<!-- <script src="/js/plugin/jquery-ui.min.js;BMCW_JSESSIONID=788D02AE61778B6298596B8AEBE34757.JVMAPPLYCENTER22"></script> -->
+	<script src="/js/main/site.js;BMCW_JSESSIONID=788D02AE61778B6298596B8AEBE34757.JVMAPPLYCENTER22"></script>
+	<script src="/lib/jquery-ui.js;BMCW_JSESSIONID=788D02AE61778B6298596B8AEBE34757.JVMAPPLYCENTER22"></script>
+	<script src="/lib/swiper/js/swiper.js;BMCW_JSESSIONID=788D02AE61778B6298596B8AEBE34757.JVMAPPLYCENTER22"></script>
+	<script src="/js/ui.js;BMCW_JSESSIONID=788D02AE61778B6298596B8AEBE34757.JVMAPPLYCENTER22"></script>
+	<script src="/js/com/hom.core.js;BMCW_JSESSIONID=788D02AE61778B6298596B8AEBE34757.JVMAPPLYCENTER22"></script>
+	<script src="/js/util/hom.all.js;BMCW_JSESSIONID=788D02AE61778B6298596B8AEBE34757.JVMAPPLYCENTER22"></script>
+
+	<!-- 성능제어 Netfunnel -->
+
+
+
+	<script>
+		
+
+		
+		var strReqUri = "/WEB-INF/jsp/bmcw/smw/SMW113010M01.jsp";
+		strReqUri = strReqUri.toUpperCase();
+
+		if(window.name == "iframeDialog" && strReqUri.indexOf("login") > -1)
+		{
+			parent.document.location.href = "/login/login.do;BMCW_JSESSIONID=788D02AE61778B6298596B8AEBE34757.JVMAPPLYCENTER22";
+		}
+
+		$(function(){
+			$('head > title').text($("h2").text());
+			$('#header a').attr('tabindex','-1');
+
+// 			$('#preCorRrno').hide();
+// 			$('#midCorRrno').hide();
+// 			$('#postCorRrno').hide();
+
+			 /**
+			 * Description	: 상단 lnb_wrap setting
+			 */
+// 			$navi = $("#naviUl li").last();
+// 			var umid = $navi.data("umid");
+// 			if(umid != null) {
+// 				$navi.append($("#menu"+umid).next("ul").clone());
+// 				$navi.find('a').removeAttr('id');
+// 			}
+
+			
+// 			var strMenuId = "menu" + $("#naviUl li").eq(1).data('mid');
+// 			$('#gnb #' + strMenuId).addClass('lnb_active');
+
+			
+			
+// 			npPfsStartup(document.form, true, true, true, true, "enc", "on");
+			
+// 			if(npPfsCtrl.IsSupport()) {
+// 				npPfsStartup(document.form, true, true, true, true, "npkencrypt", "on");
+// 			} else {
+// 				alert("보안프로그램을 지원하지 않는 환경입니다.");
+// 			}
+			
+// 				// 가상운영체제 여부 확인
+// 				npPfsCtrl.isVirtualMachine(function(result){
+// 				if(result == true) {
+// 				alert("가상운영체제 또는 원격으로 접속하셨습니다.");
+// 				}
+// 			});
+
+		});
+
+	</script>
+
+
+</head>
+<body>
+
+
+
+
+
+<style>
+    @media screen and (min-width: 600px) {
+        /* line 61, scss/sub.scss */
+        .tabTable .mo.table {
+            display: none !important;
+        }
+
+        .tabTable .pc.table {
+            display: block !important;
+        }
+    }
+    
+    /*문서 미리보기를 위한 css 수정*/
+	.fileRow {
+		display:flex;
+	}
+	.file {
+		margin-right:10px;
+	}
+	.previewA {
+		letter-spacing: -.5px;
+	    list-style: none;
+	    box-sizing: border-box;
+	    background: #fff;
+	    border: 1px solid #666;
+	    min-width: 3rem;
+	    text-align: center;
+	    border-radius: 0.3rem;
+	    vertical-align: middle;
+	    transition: background-color 0.3s ease;
+	    display: inline-block;
+	    position: relative;
+	    font-size: 0.8rem;
+	    line-height: initial;
+	    color: #53709a;
+	    border-color: #53709a;
+	    padding: 0.15rem 0.4rem;
+	    margin: 0 0 0 0.25rem;
+	}
+</style>
+
+<div id="wrap" class="sub">
+	
+<nav class="pc">
+	<div class="lnb">
+		<h1>
+			<a href="\"><img src="/images/common/logo_w.png;BMCW_JSESSIONID=788D02AE61778B6298596B8AEBE34757.JVMAPPLYCENTER22" alt="부산도시공사로고"></a>
+		</h1>
+		<div class="menu">
+		 <div class="skip" style="opacity:0%;text-align:center;"> 
+		 <a href="#header" alt="본문바로가기" title="본문바로가기">본문바로가기</a> 
+		 </div> 
+			<ul class="deps01">
+				<li class="lnb01 ">
+					<a href="javascript:void(0)" class="dep1Item">청약서비스</a>
+					<ul class="deps02">
+						<li>
+							<a href="#" class="dep2Item">청약정보</a>
+							<ul class="deps03">
+								<li><a href="javascript:$net.href('/smw/smw111010/selectSplyCalendarList.do;BMCW_JSESSIONID=788D02AE61778B6298596B8AEBE34757.JVMAPPLYCENTER22');" id="menu317" class="dep3Item"><span>청약캘린더</span></a></li>
+								<li><a href="javascript:$net.href('/smw/smw112010/selectNoticeList.do;BMCW_JSESSIONID=788D02AE61778B6298596B8AEBE34757.JVMAPPLYCENTER22');" id="menu318" class="dep3Item"><span>전자팸플릿</span></a></li>
+								<li><a href="javascript:$net.href('/smw/smw113010/selectPbancRentHouseList.do;BMCW_JSESSIONID=788D02AE61778B6298596B8AEBE34757.JVMAPPLYCENTER22');" id="menu319" class="dep3Item"><span>청약공고</span></a></li>
+								<li><a href="javascript:$net.href('/smw/smw114010/selectNoticeList.do;BMCW_JSESSIONID=788D02AE61778B6298596B8AEBE34757.JVMAPPLYCENTER22');" id="menu322" class="dep3Item"><span>공지사항</span></a></li>
+								<li><a href="javascript:$net.href('/smw/smw115010/selectDataList.do;BMCW_JSESSIONID=788D02AE61778B6298596B8AEBE34757.JVMAPPLYCENTER22');" id="menu323" class="dep3Item"><span>자료실</span></a></li>
+								<li><a href="javascript:$net.href('/smw/smw116010/selectFaqList.do;BMCW_JSESSIONID=788D02AE61778B6298596B8AEBE34757.JVMAPPLYCENTER22');" id="menu324" class="dep3Item"><span>FAQ</span></a></li>
+								<li><a href="javascript:$net.href('/smw/smw117010/selectPbancList.do;BMCW_JSESSIONID=788D02AE61778B6298596B8AEBE34757.JVMAPPLYCENTER22');" id="menu325" class="dep3Item"><span>경쟁률조회</span></a></li>
+							</ul>
+						</li>
+						<li>
+							<a href="#" class="dep2Item">청약가이드</a>
+							<ul class="deps03">
+								<li><a href="javascript:$net.href('/smw/smw121010/selectHpnsSbcrtGuide.do;BMCW_JSESSIONID=788D02AE61778B6298596B8AEBE34757.JVMAPPLYCENTER22');" id="menu327" class="dep3Item"><span>청약가이드</span></a></li>
+							</ul>
+						</li>
+						<li>
+							<a href="#" class="dep2Item">온라인청약</a>
+							<ul class="deps03">
+								<li><a href="javascript:$net.href('/smw/smw131010/selectRthousSbcrtPrctBfrhndGuid.do;BMCW_JSESSIONID=788D02AE61778B6298596B8AEBE34757.JVMAPPLYCENTER22');" id="menu336" class="dep3Item"><span>청약연습</span></a></li>
+								<li><a href="javascript:$net.href('/smw/smw132010/selectSbscAplyHouse.do;BMCW_JSESSIONID=788D02AE61778B6298596B8AEBE34757.JVMAPPLYCENTER22');" id="menu339" class="dep3Item"><span>청약신청</span></a></li>
+								<li><a href="javascript:$net.href('/smw/smw133010/selectAplyDtlsList.do;BMCW_JSESSIONID=788D02AE61778B6298596B8AEBE34757.JVMAPPLYCENTER22');" id="menu342" class="dep3Item"><span>신청내역 조회</span></a></li>
+								<li><a href="javascript:$net.href('/smw/smw134010/selectPbancList.do;BMCW_JSESSIONID=788D02AE61778B6298596B8AEBE34757.JVMAPPLYCENTER22');" id="menu345" class="dep3Item"><span>서류제출대상조회/서류제출</span></a></li>
+								<li><a href="javascript:$net.href('/smw/smw135010/selectOnlnExplnTrgtList.do;BMCW_JSESSIONID=788D02AE61778B6298596B8AEBE34757.JVMAPPLYCENTER22');" id="menu348" class="dep3Item"><span>소명대상 조회/서류제출</span></a></li>
+								<li><a href="javascript:$net.href('/smw/smw136010/selectPblancWinnerList.do;BMCW_JSESSIONID=788D02AE61778B6298596B8AEBE34757.JVMAPPLYCENTER22');" id="menu350" class="dep3Item"><span>당첨결과조회</span></a></li>
+								<li><a href="javascript:$net.href('/smw/smw137010/selectRvmRegstr.do;BMCW_JSESSIONID=788D02AE61778B6298596B8AEBE34757.JVMAPPLYCENTER22');" id="menu351" class="dep3Item"><span>예비입주자서류제출</span></a></li>
+							</ul>
+						</li>
+					</ul>
+				</ul>
+			<ul class="deps01">
+				<li class="lnb02 ">
+					<a href="javascript:void(0)" class="dep1Item">계약서비스</a>
+					<ul class="deps02">
+						<li>
+							<a href="#" class="dep2Item">계약정보조회/변경</a>
+							<ul class="deps03">
+								<li><a href="javascript:$net.href('/smw/smw211010/selectContractList.do;BMCW_JSESSIONID=788D02AE61778B6298596B8AEBE34757.JVMAPPLYCENTER22');" id="menu354" class="dep3Item"><span>계약정보조회</span></a></li>
+								<li><a href="javascript:$net.href('/smw/smw212010/selectIndividualReserveList.do;BMCW_JSESSIONID=788D02AE61778B6298596B8AEBE34757.JVMAPPLYCENTER22');" id="menu436" class="dep3Item"><span>예비입주자 순위</span></a></li>
+							</ul>
+						</li>
+						<li class = "menu362Li" style="display: none;">
+							<a href="#" class="dep2Item">계약</a>
+							<ul class="deps03">
+
+								<li><a href="javascript:$net.href('/smw/smw222010/selectCancelContractList.do;BMCW_JSESSIONID=788D02AE61778B6298596B8AEBE34757.JVMAPPLYCENTER22');" id="menu362" class="dep3Item"><span>계약해지신청</span></a></li>
+							</ul>
+						</li>
+						<li>
+							<a href="#" class="dep2Item">계약갱신</a>
+							<ul class="deps03">
+								<li><a href="javascript:$net.href('/smw/smw231010/selectHouseUpdtPaprList.do;BMCW_JSESSIONID=788D02AE61778B6298596B8AEBE34757.JVMAPPLYCENTER22');" id="menu365" class="dep3Item"><span>계약갱신서류제출</span></a></li>
+								<li><a href="javascript:$net.href('/smw/smw232010/selectCtrtExplnTrgtList.do;BMCW_JSESSIONID=788D02AE61778B6298596B8AEBE34757.JVMAPPLYCENTER22');" id="menu367" class="dep3Item"><span>소명대상조회/서류제출</span></a></li>
+							</ul>
+						</li>
+						<li>
+							<a href="#" class="dep2Item">분양계약처리</a>
+							<ul class="deps03">
+								<li><a href="javascript:$net.href('/smw/smw241010/selectCtrtList.do;BMCW_JSESSIONID=788D02AE61778B6298596B8AEBE34757.JVMAPPLYCENTER22');" id="menu370" class="dep3Item"><span>분양계약처리</span></a></li>
+							</ul>
+						</li>
+						<li>
+                                                    <a href="#" class="dep2Item">자동이체 신청</a>
+                                                    <ul class="deps03">
+                                                        <li><a href="javascript:$net.href('/smw/smw251010/selectCtrtList.do;BMCW_JSESSIONID=788D02AE61778B6298596B8AEBE34757.JVMAPPLYCENTER22');" id="menu374"  class="dep3Item"><span>자동이체 신청</span></a></li>
+                                                    </ul>
+                                                </li>
+                                                <li>
+                                                    <a href="#" class="dep2Item">고지방식 변경</a>
+                                                    <ul class="deps03">
+                                                        <li><a href="javascript:$net.href('/smw/smw261010/selectCtrtList.do;BMCW_JSESSIONID=788D02AE61778B6298596B8AEBE34757.JVMAPPLYCENTER22');" id="menu377"  class="dep3Item"><span>고지방식 변경</span></a></li>
+                                                    </ul>
+                                                </li>
+		
+					</ul>
+				</ul>
+			<ul class="deps01">
+				<li class="lnb03 ">
+					<a href="javascript:void(0)" class="dep1Item">입주/퇴거 지원</a>
+					<ul class="deps02">
+						<li>
+							<a href="#" class="dep2Item">입주/퇴거</a>
+							<ul class="deps03">
+								<li><a href="javascript:$net.href('/smw/smw311010/selectNoticeList.do;BMCW_JSESSIONID=788D02AE61778B6298596B8AEBE34757.JVMAPPLYCENTER22');" id="menu380" class="dep3Item"><span>입주</span></a></li>
+								<li><a href="javascript:$net.href('/smw/smw312010/selectLvhsAplyList.do;BMCW_JSESSIONID=788D02AE61778B6298596B8AEBE34757.JVMAPPLYCENTER22');" id="menu383" class="dep3Item"><span>퇴거</span></a></li>
+								<li><a href="javascript:$net.href('/smw/smw312020/selectLvhsAplyDetails.do;BMCW_JSESSIONID=788D02AE61778B6298596B8AEBE34757.JVMAPPLYCENTER22');" id="menu433" class="dep3Item"><span>퇴거확인 내역조회</span></a></li>
+							</ul>
+						</li>
+					</ul>
+				</ul>
+			<ul class="deps01">
+				<li class="lnb04 ">
+					<a href="javascript:void(0)" class="dep1Item">고객지원</a>
+					<ul class="deps02">
+						<li>
+							<a href="#" class="dep2Item">증명서발급</a>
+							<ul class="deps03">
+								<li><a href="javascript:$net.href('/smw/smw411010/selectCtrtCrtfList.do;BMCW_JSESSIONID=788D02AE61778B6298596B8AEBE34757.JVMAPPLYCENTER22');" id="menu388" class="dep3Item"><span>증명서발급</span></a></li>
+								<li><a href="javascript:$net.href('/smw/smw412010/selectIssuCrtfView.do;BMCW_JSESSIONID=788D02AE61778B6298596B8AEBE34757.JVMAPPLYCENTER22');" id="menu398" class="dep3Item"><span>증명서진위확인</span></a></li>
+							</ul>
+						</li>
+						
+						<li>
+							<a href="#" class="dep2Item">임대주택 관리규약</a>
+							<ul class="deps03">
+								<li><a href="javascript:$net.href('/smw/smw441010/selectNoticeList.do;BMCW_JSESSIONID=788D02AE61778B6298596B8AEBE34757.JVMAPPLYCENTER22');" id="menu406" class="dep3Item"><span>임대주택 관리규약</span></a></li>
+							</ul>
+						</li>
+						<li>
+							<a href="#" class="dep2Item">관심고객등록</a>
+							<ul class="deps03">
+								<li><a href="javascript:$net.href('/smw/smw461010/selectItrstCust.do;BMCW_JSESSIONID=788D02AE61778B6298596B8AEBE34757.JVMAPPLYCENTER22');" id="menu412" class="dep3Item"><span>관심고객등록</span></a></li>
+							</ul>
+						</li>
+					</ul>
+				</ul>
+				<div class="cs">
+					<div class="login">
+				
+					
+						<a href="/smw/smw041010/LoginForm.do">로그인</a>
+					
+					
+				
+					</div>
+					<div class="csNumber">
+						<span>고객센터</span>
+						<p class="number">051-810-1200</p>
+						<p class="mt10">청약내용과 관련 문의는</p>
+						<p>공고문의 부산도시공사 담당자 연락처 참조</p>
+					</div>
+				</div>
+			</div>
+		</nav>
+<!-- moNav -->
+<div class="moNav">
+	<div class="header">
+		<h1>
+			<a href="/"><img src="/images/common/logo.png;BMCW_JSESSIONID=788D02AE61778B6298596B8AEBE34757.JVMAPPLYCENTER22" alt="부산도시공사로고"></a>
+		</h1>
+		<div class="menuBtn">
+			<a class="menu-trigger" href="#">
+				<span></span>
+				<span></span>
+				<span></span>
+			</a>
+		</div>
+	</div>
+	<nav class="mo">
+			<ul class="deps01">
+				<li>
+					<p>청약서비스</p>
+					<div class="depsIcon"></div>
+					<ul class="deps02">
+						<li>
+							<p>청약정보</p>
+							<ul class="deps03">
+								<li><a href="javascript:$net.href('/smw/smw111010/selectSplyCalendarList.do;BMCW_JSESSIONID=788D02AE61778B6298596B8AEBE34757.JVMAPPLYCENTER22');" id="menu317" class="dep3Item"><span>청약캘린더</span></a></li>
+								<li><a href="javascript:$net.href('/smw/smw112010/selectNoticeList.do;BMCW_JSESSIONID=788D02AE61778B6298596B8AEBE34757.JVMAPPLYCENTER22');" id="menu318" class="dep3Item"><span>전자팸플릿</span></a></li>
+								<li><a href="javascript:$net.href('/smw/smw113010/selectPbancRentHouseList.do;BMCW_JSESSIONID=788D02AE61778B6298596B8AEBE34757.JVMAPPLYCENTER22');" id="menu319" class="dep3Item"><span>청약공고</span></a></li>
+								<li><a href="javascript:$net.href('/smw/smw114010/selectNoticeList.do;BMCW_JSESSIONID=788D02AE61778B6298596B8AEBE34757.JVMAPPLYCENTER22');" id="menu322" class="dep3Item"><span>공지사항</span></a></li>
+								<li><a href="javascript:$net.href('/smw/smw115010/selectDataList.do;BMCW_JSESSIONID=788D02AE61778B6298596B8AEBE34757.JVMAPPLYCENTER22');" id="menu323" class="dep3Item"><span>자료실</span></a></li>
+								<li><a href="javascript:$net.href('/smw/smw116010/selectFaqList.do;BMCW_JSESSIONID=788D02AE61778B6298596B8AEBE34757.JVMAPPLYCENTER22');" id="menu324" class="dep3Item"><span>FAQ</span></a></li>
+								<li><a href="javascript:$net.href('/smw/smw117010/selectPbancList.do;BMCW_JSESSIONID=788D02AE61778B6298596B8AEBE34757.JVMAPPLYCENTER22');" id="menu325" class="dep3Item"><span>경쟁률조회</span></a></li>
+							</ul>
+						</li>
+						<li>
+							<p>청약가이드</p>
+							<ul class="deps03">
+								<li><a href="javascript:$net.href('/smw/smw121010/selectHpnsSbcrtGuide.do;BMCW_JSESSIONID=788D02AE61778B6298596B8AEBE34757.JVMAPPLYCENTER22');" id="menu327" class="dep3Item"><span>청약가이드</span></a></li>
+							</ul>
+						</li>
+						<li>
+							<p>온라인청약</p>
+							<ul class="deps03">
+								<li><a href="javascript:$net.href('/smw/smw131010/selectRthousSbcrtPrctBfrhndGuid.do;BMCW_JSESSIONID=788D02AE61778B6298596B8AEBE34757.JVMAPPLYCENTER22');" id="menu336" class="dep3Item"><span>청약연습</span></a></li>
+								<li><a href="javascript:$net.href('/smw/smw132010/selectSbscAplyHouse.do;BMCW_JSESSIONID=788D02AE61778B6298596B8AEBE34757.JVMAPPLYCENTER22');" id="menu339" class="dep3Item"><span>청약신청</span></a></li>
+								<li><a href="javascript:$net.href('/smw/smw133010/selectAplyDtlsList.do;BMCW_JSESSIONID=788D02AE61778B6298596B8AEBE34757.JVMAPPLYCENTER22');" id="menu342" class="dep3Item"><span>신청내역 조회</span></a></li>
+								<li><a href="javascript:$net.href('/smw/smw134010/selectPbancList.do;BMCW_JSESSIONID=788D02AE61778B6298596B8AEBE34757.JVMAPPLYCENTER22');" id="menu345" class="dep3Item"><span>서류제출대상조회/서류제출</span></a></li>
+								<li><a href="javascript:$net.href('/smw/smw135010/selectOnlnExplnTrgtList.do;BMCW_JSESSIONID=788D02AE61778B6298596B8AEBE34757.JVMAPPLYCENTER22');" id="menu348" class="dep3Item"><span>소명대상 조회/서류제출</span></a></li>
+								<li><a href="javascript:$net.href('/smw/smw136010/selectPblancWinnerList.do;BMCW_JSESSIONID=788D02AE61778B6298596B8AEBE34757.JVMAPPLYCENTER22');" id="menu350" class="dep3Item"><span>당첨결과조회</span></a></li>
+								<li><a href="javascript:$net.href('/smw/smw137010/selectRvmRegstr.do;BMCW_JSESSIONID=788D02AE61778B6298596B8AEBE34757.JVMAPPLYCENTER22');" id="menu351" class="dep3Item"><span>예비입주자서류제출</span></a></li>
+							</ul>
+						</li>
+					</ul>
+				</ul>
+			<ul class="deps01">
+				<li>
+					<p>계약서비스</p>
+					<div class="depsIcon"></div>
+					<ul class="deps02">
+						<li>
+							<p>계약정보조회/변경</p>
+							<ul class="deps03">
+								<li><a href="javascript:$net.href('/smw/smw211010/selectContractList.do;BMCW_JSESSIONID=788D02AE61778B6298596B8AEBE34757.JVMAPPLYCENTER22');" id="menu354" class="dep3Item"><span>계약정보조회</span></a></li>
+								<li><a href="javascript:$net.href('/smw/smw212010/selectIndividualReserveList.do;BMCW_JSESSIONID=788D02AE61778B6298596B8AEBE34757.JVMAPPLYCENTER22');" id="menu436" class="dep3Item"><span>예비입주자 순위</span></a></li>
+							</ul>
+						</li>
+						<li class = "menu362Li" style="display: none;">
+							<p>계약</p>
+							<ul class="deps03">
+
+								<li style="display: none;" class="menu362Li"><a href="javascript:$net.href('/smw/smw222010/selectCancelContractList.do;BMCW_JSESSIONID=788D02AE61778B6298596B8AEBE34757.JVMAPPLYCENTER22');" id="menu362" class="dep3Item"><span>계약해지신청</span></a></li>
+							</ul>
+						</li>
+						<li>
+							<p>계약갱신</p>
+							<ul class="deps03">
+								<li><a href="javascript:$net.href('/smw/smw231010/selectHouseUpdtPaprList.do;BMCW_JSESSIONID=788D02AE61778B6298596B8AEBE34757.JVMAPPLYCENTER22');" id="menu365" class="dep3Item"><span>계약갱신서류제출</span></a></li>
+								<li><a href="javascript:$net.href('/smw/smw232010/selectCtrtExplnTrgtList.do;BMCW_JSESSIONID=788D02AE61778B6298596B8AEBE34757.JVMAPPLYCENTER22');" id="menu367" class="dep3Item"><span>소명대상조회/서류제출</span></a></li>
+							</ul>
+						</li>
+						<li>
+							<p>분양계약처리</p>
+							<ul class="deps03">
+								<li><a href="javascript:$net.href('/smw/smw241010/selectCtrtList.do;BMCW_JSESSIONID=788D02AE61778B6298596B8AEBE34757.JVMAPPLYCENTER22');" id="menu370" class="dep3Item"><span>분양계약처리</span></a></li>
+							</ul>
+						</li>
+						<li>
+						<p>자동이체</p>
+						<ul class="deps03">
+							<li><a
+								href="javascript:$net.href('/smw/smw251010/selectCtrtList.do;BMCW_JSESSIONID=788D02AE61778B6298596B8AEBE34757.JVMAPPLYCENTER22');"
+								id="menu373" class="dep3Item"><span>자동이체 신청</span></a></li>
+						</ul>
+					</li>
+					<li>
+						<p>고지방식변경</p>
+						<ul class="deps03">
+							<li><a
+								href="javascript:$net.href('/smw/smw261010/selectCtrtList.do;BMCW_JSESSIONID=788D02AE61778B6298596B8AEBE34757.JVMAPPLYCENTER22');"
+								id="menu376" class="dep3Item"><span>임대료청구서 고>지방식 변경</span></a></li>
+						</ul>
+					</li>
+					</ul>
+				</ul>
+			<ul class="deps01">
+				<li>
+					<p>입주/퇴거 지원</p>
+					<div class="depsIcon"></div>
+					<ul class="deps02">
+						<li>
+							<p>입주/퇴거</p>
+							<ul class="deps03">
+								<li><a href="javascript:$net.href('/smw/smw311010/selectNoticeList.do;BMCW_JSESSIONID=788D02AE61778B6298596B8AEBE34757.JVMAPPLYCENTER22');" id="menu380" class="dep3Item"><span>입주</span></a></li>
+								<li><a href="javascript:$net.href('/smw/smw312010/selectLvhsAplyList.do;BMCW_JSESSIONID=788D02AE61778B6298596B8AEBE34757.JVMAPPLYCENTER22');" id="menu383" class="dep3Item"><span>퇴거</span></a></li>
+								<li><a href="javascript:$net.href('/smw/smw312020/selectLvhsAplyDetails.do;BMCW_JSESSIONID=788D02AE61778B6298596B8AEBE34757.JVMAPPLYCENTER22');" id="menu433" class="dep3Item"><span>퇴거확인 내역조회</span></a></li>
+							</ul>
+						</li>
+					</ul>
+				</ul>
+			<ul class="deps01">
+				<li>
+					<p>고객지원</p>
+					<div class="depsIcon"></div>
+					<ul class="deps02">
+						<li>
+							<p>증명서발급</p>
+							<ul class="deps03">
+								<li><a href="javascript:$net.href('/smw/smw411010/selectCtrtCrtfList.do;BMCW_JSESSIONID=788D02AE61778B6298596B8AEBE34757.JVMAPPLYCENTER22');" id="menu388" class="dep3Item"><span>증명서발급</span></a></li>
+								<li><a href="javascript:$net.href('/smw/smw412010/selectIssuCrtfView.do;BMCW_JSESSIONID=788D02AE61778B6298596B8AEBE34757.JVMAPPLYCENTER22');" id="menu398" class="dep3Item"><span>증명서진위확인</span></a></li>
+							</ul>
+						</li>
+						
+						<li>
+							<p>임대주택 관리규약</p>
+							<ul class="deps03">
+								<li><a href="javascript:$net.href('/smw/smw441010/selectNoticeList.do;BMCW_JSESSIONID=788D02AE61778B6298596B8AEBE34757.JVMAPPLYCENTER22');" id="menu406" class="dep3Item"><span>임대주택 관리규약</span></a></li>
+							</ul>
+						</li>
+						<li>
+							<p>관심고객등록</p>
+							<ul class="deps03">
+								<li><a href="javascript:$net.href('/smw/smw461010/selectItrstCust.do;BMCW_JSESSIONID=788D02AE61778B6298596B8AEBE34757.JVMAPPLYCENTER22');" id="menu412" class="dep3Item"><span>관심고객등록</span></a></li>
+							</ul>
+						</li>			
+					</ul>
+				</ul>
+				<div class="cs">
+					<div class="login">
+				
+					
+						<a href="/smw/smw041010/LoginForm.do">로그인</a>
+					
+					
+				
+					</div>
+				</div>
+			</nav>
+		</div>
+
+<script>
+
+	$(document).ready(function() {
+		// 접속기기 정보 가져오기
+		let deviceType = "";
+
+		if (navigator.userAgentData && navigator.userAgentData.mobile !== undefined) {
+			deviceType = navigator.userAgentData.mobile ? "mo" : "pc";
+		}
+		
+		// PC일경우 맞춤메뉴 css 조정
+		if(deviceType != "mo"){
+			$(".marginTopMi15").css("margin-top","-10px");
+			$(".marginTopMi15").css("padding-bottom","35px");
+		}else{
+			// mobile일 경우 줄 바꿈 
+			$(".bankReq").html("자동이체<br>신청/해제");
+		}
+
+
+		//임대유형 session 확인 없으면 임대유형 session 저장
+		var bmcLoginSession = 'null';
+		// 세션에 로그인 정보 있을때
+		if (bmcLoginSession && bmcLoginSession !== "null") {
+			// 세션에 임대유형 정보가 있는지 확인
+			var bizTypeCd = 'null';
+			if (bizTypeCd && (bizTypeCd == '06' || bizTypeCd == '07')) {
+				//임대유형이 있을때 매입임대 & 재개발임대 계약해지 메뉴 활성화
+				showHideCancelCntr(bizTypeCd,deviceType);
+			}else{
+				//임대유형이 없을때 ajax로 session에 임대유형 저장 후 메뉴 활성화/비활성화
+				bizTypeCdChk(deviceType);
+			}
+		}else{
+			if(deviceType == "mo"){
+				$(".menu362Box").css("display", "none");
+			}
+		}
+	});
+	// 접속자의 임대유형에 따른 메뉴 활성화//비활성화
+	function bizTypeCdChk(deviceType){
+		$.ajax({
+			url: "/co/coa/saveBizTypeCdSession.do",
+			type: "POST",
+			dataType: "json",
+			data:{"jsonPath" : $("#jsonPath").val()},
+			contentType: "application/json; charset=utf-8",
+			success: function (data) {
+				//console.log("세션 저장 성공." + data.bizTypeCd);
+				if (data.bizTypeCd && (data.bizTypeCd == '06' || data.bizTypeCd == '07')) {
+					//임대유형이 있을때 매입임대 & 재개발임대 계약해지 메뉴 활성화
+					$(".menu362Li").css("display", "block");
+					$(".menu362Div").css("visibility", "visible");
+				}else{
+					$(".menu362Li").css("display", "none");
+					$(".menu362Div").css("visibility", "hidden");
+					if(deviceType == "mo"){
+						$(".menu362Box").css("display", "none");
+					}
+				}
+			},
+			error: function (xhr, status, error) {
+				//console.error("세션 저장 실패:", error);
+			}
+		});
+	}
+
+	// bizTypeCd에 따른 계약해지신청 메뉴 활성화/비활성화
+	function showHideCancelCntr(bizTypeCd,deviceType) {
+		if (bizTypeCd && (bizTypeCd == '06' || bizTypeCd == '07')) {
+			//임대유형이 있을때 매입임대 & 재개발임대 계약해지 메뉴 활성화
+			$(".menu362Li").css("display", "block");
+			$(".menu362Div").css("visibility", "visible");
+		}else{
+			$(".menu362Li").css("display", "none");
+			$(".menu362Div").css("visibility", "hidden");
+			if(deviceType == "mo"){
+				$(".menu362Box").css("display", "none");
+			}
+		}
+	}
+
+
+
+</script>
+	<main>
+		
+		<!-- header -->
+		<div id="header">
+			<!-- header -->
+			<div class="header">
+				<div class="gnb">
+					<h2>청약공고</h2>
+
+					<!-- breadCrumb -->
+					<div class="breadcrumb">
+						<ul class="routeList">
+							<li class="home">
+								<a href="#">
+									<span class="hidden">홈으로 이동</span>
+								</a>
+							</li>
+							<li class="route">
+								<a href="#">청약서비스</a>
+							</li>
+							<li class="route">
+								<a href="#">청약정보</a>
+							</li>
+							<li class="route">
+								<a href="#">청약공고</a>
+							</li>
+						</ul>
+					</div>
+					<!-- //breadCrumb -->
+				</div>
+			</div>
+			<!-- //header -->
+		</div>
+		<!-- //header -->
+		<div class="content">
+			<!-- sectionWrap -->
+			<section class="sectionWrap mt0">
+				<!-- topArea -->
+				<div class="topArea">
+					<div class="titArea type02">
+						<h3 class="tit">2026년 행복주택 예비입주자 모집공고</h3>
+					</div>
+				</div>
+				<!-- //topArea -->
+				<!-- sectionGroup -->
+				<section class="sectionGroup">
+					<!-- table -->
+					<div class="table rowType pc">
+						<table>
+							<caption>입주자 모집공고 테이블로 공고상태,유형,공고일,공고문 정보들을 제공합니다.</caption>
+							<colgroup>
+								<col style="width: 240px">
+								<col style="width: 360px">
+								<col style="width: 240px">
+								<col style="width: 360px">
+							</colgroup>
+							<tbody>
+							
+								<tr>
+									<th scope="row">공고상태</th>
+									<td>접수마감</td>
+									<th scope="row">유형</th>
+									<td>행복주택</td>
+								</tr>
+							
+							<tr>
+								<th scope="row">공고일</th>
+								<td colspan="3">2026.07.20</td>
+							</tr>
+							<tr>
+								<th scope="row">공고문</th>
+								<td colspan="3">
+									<!-- fileArea -->
+									<div class="fileArea">
+																					
+											<div class="fileRow">
+												<div class="file pdf">
+													<a href="/smw/smw113010/selectFileDown.do;BMCW_JSESSIONID=788D02AE61778B6298596B8AEBE34757.JVMAPPLYCENTER22?pbancNo=105&atchFileSn=71074&atchFileDtlSn=6&mode=1">
+														2026 행복주택 예비입주자 모집 정정공고문(2026-173).pdf
+														(39811 Byte)
+													</a>
+												</div>
+												
+													<div>												
+														<a target="_blank" class="previewA" href="/smw/smw113010/preview.do;BMCW_JSESSIONID=788D02AE61778B6298596B8AEBE34757.JVMAPPLYCENTER22?key=6d26c98e-8faf-4f2b-a408-d7f5f234d8ca.pdf
+														&atchFileSn=71074&atchFileDtlSn=6
+														&orgnlFileNm=2026 행복주택 예비입주자 모집 정정공고문(2026-173)">
+													   		바로보기
+													    </a>																					
+													</div>
+												
+											</div>																																													
+																					
+											<div class="fileRow">
+												<div class="file pdf">
+													<a href="/smw/smw113010/selectFileDown.do;BMCW_JSESSIONID=788D02AE61778B6298596B8AEBE34757.JVMAPPLYCENTER22?pbancNo=105&atchFileSn=71074&atchFileDtlSn=8&mode=1">
+														(정정)2026년 행복주택 예비입주자 모집 공고문.pdf
+														(10520249 Byte)
+													</a>
+												</div>
+												
+													<div>												
+														<a target="_blank" class="previewA" href="/smw/smw113010/preview.do;BMCW_JSESSIONID=788D02AE61778B6298596B8AEBE34757.JVMAPPLYCENTER22?key=5ee0a7a6-2a76-4339-a45f-3d0592598467.pdf
+														&atchFileSn=71074&atchFileDtlSn=8
+														&orgnlFileNm=(정정)2026년 행복주택 예비입주자 모집 공고문">
+													   		바로보기
+													    </a>																					
+													</div>
+												
+											</div>																																													
+																					
+											<div class="fileRow">
+												<div class="file hwp">
+													<a href="/smw/smw113010/selectFileDown.do;BMCW_JSESSIONID=788D02AE61778B6298596B8AEBE34757.JVMAPPLYCENTER22?pbancNo=105&atchFileSn=71074&atchFileDtlSn=9&mode=1">
+														(정정)2026년 행복주택 예비입주자 모집 공고문.hwp
+														(346112 Byte)
+													</a>
+												</div>
+												
+													<div>												
+														<a target="_blank" class="previewA" href="/smw/smw113010/preview.do;BMCW_JSESSIONID=788D02AE61778B6298596B8AEBE34757.JVMAPPLYCENTER22?key=7aeaf1ad-9fb8-4bd0-b546-07ad943bd37c.hwp
+														&atchFileSn=71074&atchFileDtlSn=9
+														&orgnlFileNm=(정정)2026년 행복주택 예비입주자 모집 공고문">
+													   		바로보기
+													    </a>																					
+													</div>
+												
+											</div>																																													
+																					
+											<div class="fileRow">
+												<div class="file hwp">
+													<a href="/smw/smw113010/selectFileDown.do;BMCW_JSESSIONID=788D02AE61778B6298596B8AEBE34757.JVMAPPLYCENTER22?pbancNo=105&atchFileSn=71074&atchFileDtlSn=10&mode=1">
+														2026 행복주택 예비입주자 모집 정정공고문(2026-173).hwp
+														(37888 Byte)
+													</a>
+												</div>
+												
+													<div>												
+														<a target="_blank" class="previewA" href="/smw/smw113010/preview.do;BMCW_JSESSIONID=788D02AE61778B6298596B8AEBE34757.JVMAPPLYCENTER22?key=983b21c1-0815-41ce-ae3a-cfda3e5427d1.hwp
+														&atchFileSn=71074&atchFileDtlSn=10
+														&orgnlFileNm=2026 행복주택 예비입주자 모집 정정공고문(2026-173)">
+													   		바로보기
+													    </a>																					
+													</div>
+												
+											</div>																																													
+										
+									</div>
+								</td>								
+							</tr>
+							</tbody>
+						</table>
+					</div>
+					<!-- //table -->
+
+
+					<!-- table -->
+					<div class="table rowType init mo">
+						<table>
+							<caption></caption>
+							<colgroup class="block">
+								<col style="width: 120px">
+								<col style="width: auto">
+							</colgroup>
+							<tbody class="block type01">
+							<tr>
+								<th scope="row">공고상태</th>
+								<td class="txt-left">접수마감</td>
+							</tr>
+							<tr>
+								<th scope="row">유형</th>
+								<td class="txt-left">행복주택</td>
+							</tr>
+							<tr>
+								<th scope="row">공고일</th>
+								<td colspan="3" class="txt-left">2026.07.20</td>
+							</tr>
+							<tr>
+								<th scope="row">공고문</th>
+								<td colspan="3">
+									<div class="fileArea">
+										
+											<div class="fileRow">
+												<div class="file pdf">
+													<a href="/smw/smw113010/selectFileDown.do;BMCW_JSESSIONID=788D02AE61778B6298596B8AEBE34757.JVMAPPLYCENTER22?pbancNo=105&atchFileSn=71074&atchFileDtlSn=6&mode=1">
+														2026 행복주택 예비입주자 모집 정정공고문(2026-173).pdf
+														(39811 Byte)
+													</a>
+												</div>
+												
+													<div>												
+														<a target="_blank" class="previewA" href="/smw/smw113010/preview.do;BMCW_JSESSIONID=788D02AE61778B6298596B8AEBE34757.JVMAPPLYCENTER22?key=6d26c98e-8faf-4f2b-a408-d7f5f234d8ca.pdf
+														&atchFileSn=71074&atchFileDtlSn=6
+														&orgnlFileNm=2026 행복주택 예비입주자 모집 정정공고문(2026-173)">
+													   		바로보기
+													    </a>																					
+													</div>
+												
+											</div>									
+										
+											<div class="fileRow">
+												<div class="file pdf">
+													<a href="/smw/smw113010/selectFileDown.do;BMCW_JSESSIONID=788D02AE61778B6298596B8AEBE34757.JVMAPPLYCENTER22?pbancNo=105&atchFileSn=71074&atchFileDtlSn=8&mode=1">
+														(정정)2026년 행복주택 예비입주자 모집 공고문.pdf
+														(10520249 Byte)
+													</a>
+												</div>
+												
+													<div>												
+														<a target="_blank" class="previewA" href="/smw/smw113010/preview.do;BMCW_JSESSIONID=788D02AE61778B6298596B8AEBE34757.JVMAPPLYCENTER22?key=5ee0a7a6-2a76-4339-a45f-3d0592598467.pdf
+														&atchFileSn=71074&atchFileDtlSn=8
+														&orgnlFileNm=(정정)2026년 행복주택 예비입주자 모집 공고문">
+													   		바로보기
+													    </a>																					
+													</div>
+												
+											</div>									
+										
+											<div class="fileRow">
+												<div class="file hwp">
+													<a href="/smw/smw113010/selectFileDown.do;BMCW_JSESSIONID=788D02AE61778B6298596B8AEBE34757.JVMAPPLYCENTER22?pbancNo=105&atchFileSn=71074&atchFileDtlSn=9&mode=1">
+														(정정)2026년 행복주택 예비입주자 모집 공고문.hwp
+														(346112 Byte)
+													</a>
+												</div>
+												
+													<div>												
+														<a target="_blank" class="previewA" href="/smw/smw113010/preview.do;BMCW_JSESSIONID=788D02AE61778B6298596B8AEBE34757.JVMAPPLYCENTER22?key=7aeaf1ad-9fb8-4bd0-b546-07ad943bd37c.hwp
+														&atchFileSn=71074&atchFileDtlSn=9
+														&orgnlFileNm=(정정)2026년 행복주택 예비입주자 모집 공고문">
+													   		바로보기
+													    </a>																					
+													</div>
+												
+											</div>									
+										
+											<div class="fileRow">
+												<div class="file hwp">
+													<a href="/smw/smw113010/selectFileDown.do;BMCW_JSESSIONID=788D02AE61778B6298596B8AEBE34757.JVMAPPLYCENTER22?pbancNo=105&atchFileSn=71074&atchFileDtlSn=10&mode=1">
+														2026 행복주택 예비입주자 모집 정정공고문(2026-173).hwp
+														(37888 Byte)
+													</a>
+												</div>
+												
+													<div>												
+														<a target="_blank" class="previewA" href="/smw/smw113010/preview.do;BMCW_JSESSIONID=788D02AE61778B6298596B8AEBE34757.JVMAPPLYCENTER22?key=983b21c1-0815-41ce-ae3a-cfda3e5427d1.hwp
+														&atchFileSn=71074&atchFileDtlSn=10
+														&orgnlFileNm=2026 행복주택 예비입주자 모집 정정공고문(2026-173)">
+													   		바로보기
+													    </a>																					
+													</div>
+												
+											</div>									
+										
+									</div>
+								</td>
+							</tr>
+							</tbody>
+						</table>
+					</div>
+					<!-- //table -->
+				</section>
+				<!-- //sectionGroup -->
+				<!-- sectionGroup -->
+				<section class="sectionGroup">
+				</section>
+				<!-- //sectionGroup -->
+
+				<!-- sectionGroup -->
+				
+					<section class="sectionGroup">
+						<div class="conttitArea">
+							<h5 class="tit">공급정보</h5>
+						</div>
+						<!-- tabWrap -->
+						<div class="tabWrap type02">
+							<!-- tabNav -->
+							<div class="tabNav pbanTabNav">
+								<ul class="tabList">
+									
+										
+											
+												
+											
+											
+										
+										<li id="li1"
+											class="active pbancTab">
+											<button type="button"
+													class="btnTab" 
+													onclick="tab_move(1,'1')"
+													id='btnTab_'
+													data-param="1">
+												동래행복주택
+											</button>
+										</li>
+									
+										
+											
+											
+												
+											
+										
+										<li id="li2"
+											class=" pbancTab">
+											<button type="button"
+													class="btnTab" 
+													onclick="tab_move(2,'1')"
+													id='btnTab_'
+													data-param="2">
+												금호 센트럴베이 행복주택 일광
+											</button>
+										</li>
+									
+										
+											
+											
+												
+											
+										
+										<li id="li3"
+											class=" pbancTab">
+											<button type="button"
+													class="btnTab" 
+													onclick="tab_move(3,'1')"
+													id='btnTab_'
+													data-param="3">
+												시청앞 행복주택 2단지
+											</button>
+										</li>
+									
+										
+											
+											
+												
+											
+										
+										<li id="li4"
+											class=" pbancTab">
+											<button type="button"
+													class="btnTab" 
+													onclick="tab_move(4,'1')"
+													id='btnTab_'
+													data-param="4">
+												경동 포레스트힐 행복주택 아미
+											</button>
+										</li>
+									
+										
+											
+											
+												
+											
+										
+										<li id="li5"
+											class=" pbancTab">
+											<button type="button"
+													class="btnTab" 
+													onclick="tab_move(5,'1')"
+													id='btnTab_'
+													data-param="5">
+												금사 행복주택
+											</button>
+										</li>
+									
+										
+											
+											
+												
+											
+										
+										<li id="li6"
+											class=" pbancTab">
+											<button type="button"
+													class="btnTab" 
+													onclick="tab_move(6,'1')"
+													id='btnTab_'
+													data-param="6">
+												더 파크 이기대
+											</button>
+										</li>
+									
+								</ul>
+							</div>
+							<!-- //tabNav -->
+							<!-- tabCont -->
+							
+								<div class="tabCont tabTable" id="tab1" style="width: 100%">
+									<!-- table -->
+									<div class="table rowType type02 popupType p20 ht50 pc">
+										<table>
+											<caption>공급정보 지구명, 소재지, 전용면적, 총 세대수, 난방방식, 입주예정월을 제공합니다.</caption>
+											<colgroup>
+												<col style="width: 200px;">
+												<col style="width: 280px;">
+												<col style="width: 200px;">
+												<col style="width: 280px;">
+											</colgroup>
+											<tbody>
+											<tr height="85">
+												<th scope="row">지구명</th>
+												<td>동래행복주택</td>
+												<th scope="row">소재지</th>
+												<td>
+													부산광역시 동래구 반송로 164 
+													
+												</td>
+											</tr>
+											<tr height="71">
+												<th scope="row">전용면적<br/>(m²)</th>
+												<td>19.3078 ~ 36.6935</td>
+												<th scope="row">총 세대수</th>
+												<td>82</td>
+											</tr>
+											<tr height="71">
+												<th scope="row">난방방식</th>
+												<td>개별난방</td>
+
+												
+											</tr>
+											</tbody>
+										</table>
+									</div>
+									<!-- //table -->
+									<!-- table -->
+									<div class="table rowType popupType init mo" >
+										<table>
+											<caption>공급정보 지구명, 소재지, 전용면적, 총 세대수, 난방방식, 입주예정월을 제공합니다.</caption>
+											<colgroup class="block">
+												<col style="min-width: 80px">
+												<col style="min-width: auto">
+											</colgroup>
+											<tbody class="block">
+											<tr>
+												<th scope="row">지구명</th>
+												<td class="txt-left">동래행복주택</td>
+											</tr>
+											<tr>
+												<th scope="row">소재지</th>
+												<td class="txt-left">
+													부산광역시 동래구 반송로 164 
+													
+												</td>
+											</tr>
+											<tr>
+												<th scope="row">전용면적<br/>(m²)</th>
+												<td class="txt-left">19.3078 ~ 36.6935</td>
+											</tr>
+											<tr>
+												<th scope="row">총 세대수</th>
+												<td class="txt-left">82</td>
+											</tr>
+											<tr>
+												<th scope="row">난방방식</th>
+												<td class="txt-left">개별난방</td>
+											</tr>
+
+											
+											</tbody>
+										</table>
+									</div>
+									<!-- //table -->
+								</div>
+							
+								<div class="tabCont tabTable" id="tab2" style="width: 100%">
+									<!-- table -->
+									<div class="table rowType type02 popupType p20 ht50 pc">
+										<table>
+											<caption>공급정보 지구명, 소재지, 전용면적, 총 세대수, 난방방식, 입주예정월을 제공합니다.</caption>
+											<colgroup>
+												<col style="width: 200px;">
+												<col style="width: 280px;">
+												<col style="width: 200px;">
+												<col style="width: 280px;">
+											</colgroup>
+											<tbody>
+											<tr height="85">
+												<th scope="row">지구명</th>
+												<td>금호 센트럴베이 행복주택 일광</td>
+												<th scope="row">소재지</th>
+												<td>
+													부산광역시 기장군 일광읍 해빛1로 61 853번지
+													
+												</td>
+											</tr>
+											<tr height="71">
+												<th scope="row">전용면적<br/>(m²)</th>
+												<td>19.5932 ~ 59.8049</td>
+												<th scope="row">총 세대수</th>
+												<td>373</td>
+											</tr>
+											<tr height="71">
+												<th scope="row">난방방식</th>
+												<td>개별난방</td>
+
+												
+											</tr>
+											</tbody>
+										</table>
+									</div>
+									<!-- //table -->
+									<!-- table -->
+									<div class="table rowType popupType init mo" >
+										<table>
+											<caption>공급정보 지구명, 소재지, 전용면적, 총 세대수, 난방방식, 입주예정월을 제공합니다.</caption>
+											<colgroup class="block">
+												<col style="min-width: 80px">
+												<col style="min-width: auto">
+											</colgroup>
+											<tbody class="block">
+											<tr>
+												<th scope="row">지구명</th>
+												<td class="txt-left">금호 센트럴베이 행복주택 일광</td>
+											</tr>
+											<tr>
+												<th scope="row">소재지</th>
+												<td class="txt-left">
+													부산광역시 기장군 일광읍 해빛1로 61 853번지
+													
+												</td>
+											</tr>
+											<tr>
+												<th scope="row">전용면적<br/>(m²)</th>
+												<td class="txt-left">19.5932 ~ 59.8049</td>
+											</tr>
+											<tr>
+												<th scope="row">총 세대수</th>
+												<td class="txt-left">373</td>
+											</tr>
+											<tr>
+												<th scope="row">난방방식</th>
+												<td class="txt-left">개별난방</td>
+											</tr>
+
+											
+											</tbody>
+										</table>
+									</div>
+									<!-- //table -->
+								</div>
+							
+								<div class="tabCont tabTable" id="tab3" style="width: 100%">
+									<!-- table -->
+									<div class="table rowType type02 popupType p20 ht50 pc">
+										<table>
+											<caption>공급정보 지구명, 소재지, 전용면적, 총 세대수, 난방방식, 입주예정월을 제공합니다.</caption>
+											<colgroup>
+												<col style="width: 200px;">
+												<col style="width: 280px;">
+												<col style="width: 200px;">
+												<col style="width: 280px;">
+											</colgroup>
+											<tbody>
+											<tr height="85">
+												<th scope="row">지구명</th>
+												<td>시청앞 행복주택 2단지</td>
+												<th scope="row">소재지</th>
+												<td>
+													부산광역시 연제구 중앙대로 1038번길 40 
+													
+												</td>
+											</tr>
+											<tr height="71">
+												<th scope="row">전용면적<br/>(m²)</th>
+												<td>26.4136 ~ 44.9689</td>
+												<th scope="row">총 세대수</th>
+												<td>309</td>
+											</tr>
+											<tr height="71">
+												<th scope="row">난방방식</th>
+												<td>개별난방</td>
+
+												
+											</tr>
+											</tbody>
+										</table>
+									</div>
+									<!-- //table -->
+									<!-- table -->
+									<div class="table rowType popupType init mo" >
+										<table>
+											<caption>공급정보 지구명, 소재지, 전용면적, 총 세대수, 난방방식, 입주예정월을 제공합니다.</caption>
+											<colgroup class="block">
+												<col style="min-width: 80px">
+												<col style="min-width: auto">
+											</colgroup>
+											<tbody class="block">
+											<tr>
+												<th scope="row">지구명</th>
+												<td class="txt-left">시청앞 행복주택 2단지</td>
+											</tr>
+											<tr>
+												<th scope="row">소재지</th>
+												<td class="txt-left">
+													부산광역시 연제구 중앙대로 1038번길 40 
+													
+												</td>
+											</tr>
+											<tr>
+												<th scope="row">전용면적<br/>(m²)</th>
+												<td class="txt-left">26.4136 ~ 44.9689</td>
+											</tr>
+											<tr>
+												<th scope="row">총 세대수</th>
+												<td class="txt-left">309</td>
+											</tr>
+											<tr>
+												<th scope="row">난방방식</th>
+												<td class="txt-left">개별난방</td>
+											</tr>
+
+											
+											</tbody>
+										</table>
+									</div>
+									<!-- //table -->
+								</div>
+							
+								<div class="tabCont tabTable" id="tab4" style="width: 100%">
+									<!-- table -->
+									<div class="table rowType type02 popupType p20 ht50 pc">
+										<table>
+											<caption>공급정보 지구명, 소재지, 전용면적, 총 세대수, 난방방식, 입주예정월을 제공합니다.</caption>
+											<colgroup>
+												<col style="width: 200px;">
+												<col style="width: 280px;">
+												<col style="width: 200px;">
+												<col style="width: 280px;">
+											</colgroup>
+											<tbody>
+											<tr height="85">
+												<th scope="row">지구명</th>
+												<td>경동 포레스트힐 행복주택 아미</td>
+												<th scope="row">소재지</th>
+												<td>
+													부산광역시 서구 옥천로 173번길 29 
+													
+												</td>
+											</tr>
+											<tr height="71">
+												<th scope="row">전용면적<br/>(m²)</th>
+												<td>29.4166 ~ 59.956</td>
+												<th scope="row">총 세대수</th>
+												<td>100</td>
+											</tr>
+											<tr height="71">
+												<th scope="row">난방방식</th>
+												<td>개별난방</td>
+
+												
+											</tr>
+											</tbody>
+										</table>
+									</div>
+									<!-- //table -->
+									<!-- table -->
+									<div class="table rowType popupType init mo" >
+										<table>
+											<caption>공급정보 지구명, 소재지, 전용면적, 총 세대수, 난방방식, 입주예정월을 제공합니다.</caption>
+											<colgroup class="block">
+												<col style="min-width: 80px">
+												<col style="min-width: auto">
+											</colgroup>
+											<tbody class="block">
+											<tr>
+												<th scope="row">지구명</th>
+												<td class="txt-left">경동 포레스트힐 행복주택 아미</td>
+											</tr>
+											<tr>
+												<th scope="row">소재지</th>
+												<td class="txt-left">
+													부산광역시 서구 옥천로 173번길 29 
+													
+												</td>
+											</tr>
+											<tr>
+												<th scope="row">전용면적<br/>(m²)</th>
+												<td class="txt-left">29.4166 ~ 59.956</td>
+											</tr>
+											<tr>
+												<th scope="row">총 세대수</th>
+												<td class="txt-left">100</td>
+											</tr>
+											<tr>
+												<th scope="row">난방방식</th>
+												<td class="txt-left">개별난방</td>
+											</tr>
+
+											
+											</tbody>
+										</table>
+									</div>
+									<!-- //table -->
+								</div>
+							
+								<div class="tabCont tabTable" id="tab5" style="width: 100%">
+									<!-- table -->
+									<div class="table rowType type02 popupType p20 ht50 pc">
+										<table>
+											<caption>공급정보 지구명, 소재지, 전용면적, 총 세대수, 난방방식, 입주예정월을 제공합니다.</caption>
+											<colgroup>
+												<col style="width: 200px;">
+												<col style="width: 280px;">
+												<col style="width: 200px;">
+												<col style="width: 280px;">
+											</colgroup>
+											<tbody>
+											<tr height="85">
+												<th scope="row">지구명</th>
+												<td>금사 행복주택</td>
+												<th scope="row">소재지</th>
+												<td>
+													부산광역시 금정구 금사로 85번길 2 
+													
+												</td>
+											</tr>
+											<tr height="71">
+												<th scope="row">전용면적<br/>(m²)</th>
+												<td>36.8169 ~ 36.9848</td>
+												<th scope="row">총 세대수</th>
+												<td>6</td>
+											</tr>
+											<tr height="71">
+												<th scope="row">난방방식</th>
+												<td>개별난방</td>
+
+												
+											</tr>
+											</tbody>
+										</table>
+									</div>
+									<!-- //table -->
+									<!-- table -->
+									<div class="table rowType popupType init mo" >
+										<table>
+											<caption>공급정보 지구명, 소재지, 전용면적, 총 세대수, 난방방식, 입주예정월을 제공합니다.</caption>
+											<colgroup class="block">
+												<col style="min-width: 80px">
+												<col style="min-width: auto">
+											</colgroup>
+											<tbody class="block">
+											<tr>
+												<th scope="row">지구명</th>
+												<td class="txt-left">금사 행복주택</td>
+											</tr>
+											<tr>
+												<th scope="row">소재지</th>
+												<td class="txt-left">
+													부산광역시 금정구 금사로 85번길 2 
+													
+												</td>
+											</tr>
+											<tr>
+												<th scope="row">전용면적<br/>(m²)</th>
+												<td class="txt-left">36.8169 ~ 36.9848</td>
+											</tr>
+											<tr>
+												<th scope="row">총 세대수</th>
+												<td class="txt-left">6</td>
+											</tr>
+											<tr>
+												<th scope="row">난방방식</th>
+												<td class="txt-left">개별난방</td>
+											</tr>
+
+											
+											</tbody>
+										</table>
+									</div>
+									<!-- //table -->
+								</div>
+							
+								<div class="tabCont tabTable" id="tab6" style="width: 100%">
+									<!-- table -->
+									<div class="table rowType type02 popupType p20 ht50 pc">
+										<table>
+											<caption>공급정보 지구명, 소재지, 전용면적, 총 세대수, 난방방식, 입주예정월을 제공합니다.</caption>
+											<colgroup>
+												<col style="width: 200px;">
+												<col style="width: 280px;">
+												<col style="width: 200px;">
+												<col style="width: 280px;">
+											</colgroup>
+											<tbody>
+											<tr height="85">
+												<th scope="row">지구명</th>
+												<td>더 파크 이기대</td>
+												<th scope="row">소재지</th>
+												<td>
+													부산광역시 남구 이기대공원로 18 
+													
+												</td>
+											</tr>
+											<tr height="71">
+												<th scope="row">전용면적<br/>(m²)</th>
+												<td>26.0041 ~ 44.1405</td>
+												<th scope="row">총 세대수</th>
+												<td>22</td>
+											</tr>
+											<tr height="71">
+												<th scope="row">난방방식</th>
+												<td>개별난방</td>
+
+												
+											</tr>
+											</tbody>
+										</table>
+									</div>
+									<!-- //table -->
+									<!-- table -->
+									<div class="table rowType popupType init mo" >
+										<table>
+											<caption>공급정보 지구명, 소재지, 전용면적, 총 세대수, 난방방식, 입주예정월을 제공합니다.</caption>
+											<colgroup class="block">
+												<col style="min-width: 80px">
+												<col style="min-width: auto">
+											</colgroup>
+											<tbody class="block">
+											<tr>
+												<th scope="row">지구명</th>
+												<td class="txt-left">더 파크 이기대</td>
+											</tr>
+											<tr>
+												<th scope="row">소재지</th>
+												<td class="txt-left">
+													부산광역시 남구 이기대공원로 18 
+													
+												</td>
+											</tr>
+											<tr>
+												<th scope="row">전용면적<br/>(m²)</th>
+												<td class="txt-left">26.0041 ~ 44.1405</td>
+											</tr>
+											<tr>
+												<th scope="row">총 세대수</th>
+												<td class="txt-left">22</td>
+											</tr>
+											<tr>
+												<th scope="row">난방방식</th>
+												<td class="txt-left">개별난방</td>
+											</tr>
+
+											
+											</tbody>
+										</table>
+									</div>
+									<!-- //table -->
+								</div>
+							
+							<!-- //tabCont 사업지구별 공급정보-->
+						</div>
+						<!-- //tabWrap -->
+					</section>
+
+					<!-- //sectionGroup -->
+					<!-- sectionGroup -->
+					<!-- sectionGroup -->
+					<section class="sectionGroup">
+						<div class="conttitArea col">
+							<h5 class="tit">단지 관련 이미지 정보</h5>
+							<p class="desc">파일명을 클릭하여 이미지를 미리보거나 다운로드 버튼으로 다운로드 받을 수 있습니다.</p>
+						</div>
+						<!-- tabWrap -->
+						<div class="tabWrap type02 bd col3">
+							<!-- tabNav -->
+							<div class="tabNav pbanTabNav">
+								<ul class="tabList">
+									
+									
+										
+
+											<li id='ctlgImgLi1' class="tabCont ctlgImgLi">
+												<button type="button" value="1" class="btnTab"
+														onclick="javascript:fn_chgSn('BB164007','1162','6','1','1')">19A
+												</button>
+											</li>
+											
+										
+
+											<li id='ctlgImgLi2' class="tabCont ctlgImgLi">
+												<button type="button" value="1" class="btnTab"
+														onclick="javascript:fn_chgSn('BB164007','52241','2','1','2')">19A1
+												</button>
+											</li>
+											
+										
+
+											<li id='ctlgImgLi3' class="tabCont ctlgImgLi">
+												<button type="button" value="1" class="btnTab"
+														onclick="javascript:fn_chgSn('BB164007','52242','2','1','3')">29A
+												</button>
+											</li>
+											
+										
+
+											<li id='ctlgImgLi4' class="tabCont ctlgImgLi">
+												<button type="button" value="1" class="btnTab"
+														onclick="javascript:fn_chgSn('BB164007','52243','2','1','4')">32A
+												</button>
+											</li>
+											
+										
+
+											<li id='ctlgImgLi5' class="tabCont ctlgImgLi">
+												<button type="button" value="1" class="btnTab"
+														onclick="javascript:fn_chgSn('BB164007','52245','2','1','5')">36C
+												</button>
+											</li>
+											
+										
+									
+										
+
+											<li id='ctlgImgLi6' class="tabCont ctlgImgLi">
+												<button type="button" value="2" class="btnTab"
+														onclick="javascript:fn_chgSn('BB164008','52228','1','2','6')">19
+												</button>
+											</li>
+											
+										
+
+											<li id='ctlgImgLi7' class="tabCont ctlgImgLi">
+												<button type="button" value="2" class="btnTab"
+														onclick="javascript:fn_chgSn('BB164008','52229','1','2','7')">29A
+												</button>
+											</li>
+											
+										
+
+											<li id='ctlgImgLi8' class="tabCont ctlgImgLi">
+												<button type="button" value="2" class="btnTab"
+														onclick="javascript:fn_chgSn('BB164008','52230','1','2','8')">29B
+												</button>
+											</li>
+											
+										
+
+											<li id='ctlgImgLi9' class="tabCont ctlgImgLi">
+												<button type="button" value="2" class="btnTab"
+														onclick="javascript:fn_chgSn('BB164008','52231','1','2','9')">36
+												</button>
+											</li>
+											
+										
+
+											<li id='ctlgImgLi10' class="tabCont ctlgImgLi">
+												<button type="button" value="2" class="btnTab"
+														onclick="javascript:fn_chgSn('BB164008','52232','1','2','10')">44
+												</button>
+											</li>
+											
+										
+
+											<li id='ctlgImgLi11' class="tabCont ctlgImgLi">
+												<button type="button" value="2" class="btnTab"
+														onclick="javascript:fn_chgSn('BB164008','52233','1','2','11')">59
+												</button>
+											</li>
+											
+										
+									
+										
+
+											<li id='ctlgImgLi12' class="tabCont ctlgImgLi">
+												<button type="button" value="3" class="btnTab"
+														onclick="javascript:fn_chgSn('BB164009','73415','1','3','12')">26A/B
+												</button>
+											</li>
+											
+										
+
+											<li id='ctlgImgLi13' class="tabCont ctlgImgLi">
+												<button type="button" value="3" class="btnTab"
+														onclick="javascript:fn_chgSn('BB164009','73416','1','3','13')">26C
+												</button>
+											</li>
+											
+										
+
+											<li id='ctlgImgLi14' class="tabCont ctlgImgLi">
+												<button type="button" value="3" class="btnTab"
+														onclick="javascript:fn_chgSn('BB164009','73417','1','3','14')">26D
+												</button>
+											</li>
+											
+										
+
+											<li id='ctlgImgLi15' class="tabCont ctlgImgLi">
+												<button type="button" value="3" class="btnTab"
+														onclick="javascript:fn_chgSn('BB164009','73418','1','3','15')">26OA
+												</button>
+											</li>
+											
+										
+
+											<li id='ctlgImgLi16' class="tabCont ctlgImgLi">
+												<button type="button" value="3" class="btnTab"
+														onclick="javascript:fn_chgSn('BB164009','73419','1','3','16')">26OB
+												</button>
+											</li>
+											
+										
+
+											<li id='ctlgImgLi17' class="tabCont ctlgImgLi">
+												<button type="button" value="3" class="btnTab"
+														onclick="javascript:fn_chgSn('BB164009','73420','1','3','17')">36A
+												</button>
+											</li>
+											
+										
+
+											<li id='ctlgImgLi18' class="tabCont ctlgImgLi">
+												<button type="button" value="3" class="btnTab"
+														onclick="javascript:fn_chgSn('BB164009','73421','2','3','18')">36B
+												</button>
+											</li>
+											
+										
+
+											<li id='ctlgImgLi19' class="tabCont ctlgImgLi">
+												<button type="button" value="3" class="btnTab"
+														onclick="javascript:fn_chgSn('BB164009','73422','1','3','19')">44A
+												</button>
+											</li>
+											
+										
+
+											<li id='ctlgImgLi20' class="tabCont ctlgImgLi">
+												<button type="button" value="3" class="btnTab"
+														onclick="javascript:fn_chgSn('BB164009','73423','1','3','20')">44B
+												</button>
+											</li>
+											
+										
+									
+										
+
+											<li id='ctlgImgLi21' class="tabCont ctlgImgLi">
+												<button type="button" value="4" class="btnTab"
+														onclick="javascript:fn_chgSn('BB164010','3951','2','4','21')">29A
+												</button>
+											</li>
+											
+										
+
+											<li id='ctlgImgLi22' class="tabCont ctlgImgLi">
+												<button type="button" value="4" class="btnTab"
+														onclick="javascript:fn_chgSn('BB164010','3952','2','4','22')">36A
+												</button>
+											</li>
+											
+										
+
+											<li id='ctlgImgLi23' class="tabCont ctlgImgLi">
+												<button type="button" value="4" class="btnTab"
+														onclick="javascript:fn_chgSn('BB164010','3953','2','4','23')">36A1
+												</button>
+											</li>
+											
+										
+
+											<li id='ctlgImgLi24' class="tabCont ctlgImgLi">
+												<button type="button" value="4" class="btnTab"
+														onclick="javascript:fn_chgSn('BB164010','3954','2','4','24')">36B
+												</button>
+											</li>
+											
+										
+
+											<li id='ctlgImgLi25' class="tabCont ctlgImgLi">
+												<button type="button" value="4" class="btnTab"
+														onclick="javascript:fn_chgSn('BB164010','3957','2','4','25')">45A
+												</button>
+											</li>
+											
+										
+
+											<li id='ctlgImgLi26' class="tabCont ctlgImgLi">
+												<button type="button" value="4" class="btnTab"
+														onclick="javascript:fn_chgSn('BB164010','3958','2','4','26')">59A
+												</button>
+											</li>
+											
+										
+									
+										
+
+											<li id='ctlgImgLi27' class="tabCont ctlgImgLi">
+												<button type="button" value="5" class="btnTab"
+														onclick="javascript:fn_chgSn('BB164011','52246','1','5','27')">36A
+												</button>
+											</li>
+											
+										
+
+											<li id='ctlgImgLi28' class="tabCont ctlgImgLi">
+												<button type="button" value="5" class="btnTab"
+														onclick="javascript:fn_chgSn('BB164011','52247','1','5','28')">36B
+												</button>
+											</li>
+											
+										
+									
+										
+
+											<li id='ctlgImgLi29' class="tabCont ctlgImgLi">
+												<button type="button" value="6" class="btnTab"
+														onclick="javascript:fn_chgSn('BB164012','52234','1','6','29')">26A
+												</button>
+											</li>
+											
+										
+
+											<li id='ctlgImgLi30' class="tabCont ctlgImgLi">
+												<button type="button" value="6" class="btnTab"
+														onclick="javascript:fn_chgSn('BB164012','52235','1','6','30')">26A1
+												</button>
+											</li>
+											
+										
+
+											<li id='ctlgImgLi31' class="tabCont ctlgImgLi">
+												<button type="button" value="6" class="btnTab"
+														onclick="javascript:fn_chgSn('BB164012','52236','1','6','31')">26B
+												</button>
+											</li>
+											
+										
+
+											<li id='ctlgImgLi32' class="tabCont ctlgImgLi">
+												<button type="button" value="6" class="btnTab"
+														onclick="javascript:fn_chgSn('BB164012','52237','1','6','32')">26B1
+												</button>
+											</li>
+											
+										
+
+											<li id='ctlgImgLi33' class="tabCont ctlgImgLi">
+												<button type="button" value="6" class="btnTab"
+														onclick="javascript:fn_chgSn('BB164012','52238','1','6','33')">44
+												</button>
+											</li>
+											
+										
+									
+								</ul>
+							</div>
+							<!-- //tabNav -->
+							
+							
+								
+									<div class="tabCont ctlgImgDiv" id='ctlgImgDiv1'>
+										<input type="hidden" value="1">
+										<div class="imgArea">
+											<img src="/smw/smw113010/selectAtchImage.do;BMCW_JSESSIONID=788D02AE61778B6298596B8AEBE34757.JVMAPPLYCENTER22?bizCd=BB164007&rcritNmtm=4&atchFileSn=1162&atchFlag=gp"
+												 alt="">
+										</div>
+									</div>
+									
+								
+									<div class="tabCont ctlgImgDiv" id='ctlgImgDiv2'>
+										<input type="hidden" value="1">
+										<div class="imgArea">
+											<img src="/smw/smw113010/selectAtchImage.do;BMCW_JSESSIONID=788D02AE61778B6298596B8AEBE34757.JVMAPPLYCENTER22?bizCd=BB164007&rcritNmtm=4&atchFileSn=52241&atchFlag=gp"
+												 alt="">
+										</div>
+									</div>
+									
+								
+									<div class="tabCont ctlgImgDiv" id='ctlgImgDiv3'>
+										<input type="hidden" value="1">
+										<div class="imgArea">
+											<img src="/smw/smw113010/selectAtchImage.do;BMCW_JSESSIONID=788D02AE61778B6298596B8AEBE34757.JVMAPPLYCENTER22?bizCd=BB164007&rcritNmtm=4&atchFileSn=52242&atchFlag=gp"
+												 alt="">
+										</div>
+									</div>
+									
+								
+									<div class="tabCont ctlgImgDiv" id='ctlgImgDiv4'>
+										<input type="hidden" value="1">
+										<div class="imgArea">
+											<img src="/smw/smw113010/selectAtchImage.do;BMCW_JSESSIONID=788D02AE61778B6298596B8AEBE34757.JVMAPPLYCENTER22?bizCd=BB164007&rcritNmtm=4&atchFileSn=52243&atchFlag=gp"
+												 alt="">
+										</div>
+									</div>
+									
+								
+									<div class="tabCont ctlgImgDiv" id='ctlgImgDiv5'>
+										<input type="hidden" value="1">
+										<div class="imgArea">
+											<img src="/smw/smw113010/selectAtchImage.do;BMCW_JSESSIONID=788D02AE61778B6298596B8AEBE34757.JVMAPPLYCENTER22?bizCd=BB164007&rcritNmtm=4&atchFileSn=52245&atchFlag=gp"
+												 alt="">
+										</div>
+									</div>
+									
+								
+							
+								
+									<div class="tabCont ctlgImgDiv" id='ctlgImgDiv6'>
+										<input type="hidden" value="2">
+										<div class="imgArea">
+											<img src="/smw/smw113010/selectAtchImage.do;BMCW_JSESSIONID=788D02AE61778B6298596B8AEBE34757.JVMAPPLYCENTER22?bizCd=BB164008&rcritNmtm=9&atchFileSn=52228&atchFlag=gp"
+												 alt="">
+										</div>
+									</div>
+									
+								
+									<div class="tabCont ctlgImgDiv" id='ctlgImgDiv7'>
+										<input type="hidden" value="2">
+										<div class="imgArea">
+											<img src="/smw/smw113010/selectAtchImage.do;BMCW_JSESSIONID=788D02AE61778B6298596B8AEBE34757.JVMAPPLYCENTER22?bizCd=BB164008&rcritNmtm=9&atchFileSn=52229&atchFlag=gp"
+												 alt="">
+										</div>
+									</div>
+									
+								
+									<div class="tabCont ctlgImgDiv" id='ctlgImgDiv8'>
+										<input type="hidden" value="2">
+										<div class="imgArea">
+											<img src="/smw/smw113010/selectAtchImage.do;BMCW_JSESSIONID=788D02AE61778B6298596B8AEBE34757.JVMAPPLYCENTER22?bizCd=BB164008&rcritNmtm=9&atchFileSn=52230&atchFlag=gp"
+												 alt="">
+										</div>
+									</div>
+									
+								
+									<div class="tabCont ctlgImgDiv" id='ctlgImgDiv9'>
+										<input type="hidden" value="2">
+										<div class="imgArea">
+											<img src="/smw/smw113010/selectAtchImage.do;BMCW_JSESSIONID=788D02AE61778B6298596B8AEBE34757.JVMAPPLYCENTER22?bizCd=BB164008&rcritNmtm=9&atchFileSn=52231&atchFlag=gp"
+												 alt="">
+										</div>
+									</div>
+									
+								
+									<div class="tabCont ctlgImgDiv" id='ctlgImgDiv10'>
+										<input type="hidden" value="2">
+										<div class="imgArea">
+											<img src="/smw/smw113010/selectAtchImage.do;BMCW_JSESSIONID=788D02AE61778B6298596B8AEBE34757.JVMAPPLYCENTER22?bizCd=BB164008&rcritNmtm=9&atchFileSn=52232&atchFlag=gp"
+												 alt="">
+										</div>
+									</div>
+									
+								
+									<div class="tabCont ctlgImgDiv" id='ctlgImgDiv11'>
+										<input type="hidden" value="2">
+										<div class="imgArea">
+											<img src="/smw/smw113010/selectAtchImage.do;BMCW_JSESSIONID=788D02AE61778B6298596B8AEBE34757.JVMAPPLYCENTER22?bizCd=BB164008&rcritNmtm=9&atchFileSn=52233&atchFlag=gp"
+												 alt="">
+										</div>
+									</div>
+									
+								
+							
+								
+									<div class="tabCont ctlgImgDiv" id='ctlgImgDiv12'>
+										<input type="hidden" value="3">
+										<div class="imgArea">
+											<img src="/smw/smw113010/selectAtchImage.do;BMCW_JSESSIONID=788D02AE61778B6298596B8AEBE34757.JVMAPPLYCENTER22?bizCd=BB164009&rcritNmtm=2&atchFileSn=73415&atchFlag=gp"
+												 alt="">
+										</div>
+									</div>
+									
+								
+									<div class="tabCont ctlgImgDiv" id='ctlgImgDiv13'>
+										<input type="hidden" value="3">
+										<div class="imgArea">
+											<img src="/smw/smw113010/selectAtchImage.do;BMCW_JSESSIONID=788D02AE61778B6298596B8AEBE34757.JVMAPPLYCENTER22?bizCd=BB164009&rcritNmtm=2&atchFileSn=73416&atchFlag=gp"
+												 alt="">
+										</div>
+									</div>
+									
+								
+									<div class="tabCont ctlgImgDiv" id='ctlgImgDiv14'>
+										<input type="hidden" value="3">
+										<div class="imgArea">
+											<img src="/smw/smw113010/selectAtchImage.do;BMCW_JSESSIONID=788D02AE61778B6298596B8AEBE34757.JVMAPPLYCENTER22?bizCd=BB164009&rcritNmtm=2&atchFileSn=73417&atchFlag=gp"
+												 alt="">
+										</div>
+									</div>
+									
+								
+									<div class="tabCont ctlgImgDiv" id='ctlgImgDiv15'>
+										<input type="hidden" value="3">
+										<div class="imgArea">
+											<img src="/smw/smw113010/selectAtchImage.do;BMCW_JSESSIONID=788D02AE61778B6298596B8AEBE34757.JVMAPPLYCENTER22?bizCd=BB164009&rcritNmtm=2&atchFileSn=73418&atchFlag=gp"
+												 alt="">
+										</div>
+									</div>
+									
+								
+									<div class="tabCont ctlgImgDiv" id='ctlgImgDiv16'>
+										<input type="hidden" value="3">
+										<div class="imgArea">
+											<img src="/smw/smw113010/selectAtchImage.do;BMCW_JSESSIONID=788D02AE61778B6298596B8AEBE34757.JVMAPPLYCENTER22?bizCd=BB164009&rcritNmtm=2&atchFileSn=73419&atchFlag=gp"
+												 alt="">
+										</div>
+									</div>
+									
+								
+									<div class="tabCont ctlgImgDiv" id='ctlgImgDiv17'>
+										<input type="hidden" value="3">
+										<div class="imgArea">
+											<img src="/smw/smw113010/selectAtchImage.do;BMCW_JSESSIONID=788D02AE61778B6298596B8AEBE34757.JVMAPPLYCENTER22?bizCd=BB164009&rcritNmtm=2&atchFileSn=73420&atchFlag=gp"
+												 alt="">
+										</div>
+									</div>
+									
+								
+									<div class="tabCont ctlgImgDiv" id='ctlgImgDiv18'>
+										<input type="hidden" value="3">
+										<div class="imgArea">
+											<img src="/smw/smw113010/selectAtchImage.do;BMCW_JSESSIONID=788D02AE61778B6298596B8AEBE34757.JVMAPPLYCENTER22?bizCd=BB164009&rcritNmtm=2&atchFileSn=73421&atchFlag=gp"
+												 alt="">
+										</div>
+									</div>
+									
+								
+									<div class="tabCont ctlgImgDiv" id='ctlgImgDiv19'>
+										<input type="hidden" value="3">
+										<div class="imgArea">
+											<img src="/smw/smw113010/selectAtchImage.do;BMCW_JSESSIONID=788D02AE61778B6298596B8AEBE34757.JVMAPPLYCENTER22?bizCd=BB164009&rcritNmtm=2&atchFileSn=73422&atchFlag=gp"
+												 alt="">
+										</div>
+									</div>
+									
+								
+									<div class="tabCont ctlgImgDiv" id='ctlgImgDiv20'>
+										<input type="hidden" value="3">
+										<div class="imgArea">
+											<img src="/smw/smw113010/selectAtchImage.do;BMCW_JSESSIONID=788D02AE61778B6298596B8AEBE34757.JVMAPPLYCENTER22?bizCd=BB164009&rcritNmtm=2&atchFileSn=73423&atchFlag=gp"
+												 alt="">
+										</div>
+									</div>
+									
+								
+							
+								
+									<div class="tabCont ctlgImgDiv" id='ctlgImgDiv21'>
+										<input type="hidden" value="4">
+										<div class="imgArea">
+											<img src="/smw/smw113010/selectAtchImage.do;BMCW_JSESSIONID=788D02AE61778B6298596B8AEBE34757.JVMAPPLYCENTER22?bizCd=BB164010&rcritNmtm=4&atchFileSn=3951&atchFlag=gp"
+												 alt="">
+										</div>
+									</div>
+									
+								
+									<div class="tabCont ctlgImgDiv" id='ctlgImgDiv22'>
+										<input type="hidden" value="4">
+										<div class="imgArea">
+											<img src="/smw/smw113010/selectAtchImage.do;BMCW_JSESSIONID=788D02AE61778B6298596B8AEBE34757.JVMAPPLYCENTER22?bizCd=BB164010&rcritNmtm=4&atchFileSn=3952&atchFlag=gp"
+												 alt="">
+										</div>
+									</div>
+									
+								
+									<div class="tabCont ctlgImgDiv" id='ctlgImgDiv23'>
+										<input type="hidden" value="4">
+										<div class="imgArea">
+											<img src="/smw/smw113010/selectAtchImage.do;BMCW_JSESSIONID=788D02AE61778B6298596B8AEBE34757.JVMAPPLYCENTER22?bizCd=BB164010&rcritNmtm=4&atchFileSn=3953&atchFlag=gp"
+												 alt="">
+										</div>
+									</div>
+									
+								
+									<div class="tabCont ctlgImgDiv" id='ctlgImgDiv24'>
+										<input type="hidden" value="4">
+										<div class="imgArea">
+											<img src="/smw/smw113010/selectAtchImage.do;BMCW_JSESSIONID=788D02AE61778B6298596B8AEBE34757.JVMAPPLYCENTER22?bizCd=BB164010&rcritNmtm=4&atchFileSn=3954&atchFlag=gp"
+												 alt="">
+										</div>
+									</div>
+									
+								
+									<div class="tabCont ctlgImgDiv" id='ctlgImgDiv25'>
+										<input type="hidden" value="4">
+										<div class="imgArea">
+											<img src="/smw/smw113010/selectAtchImage.do;BMCW_JSESSIONID=788D02AE61778B6298596B8AEBE34757.JVMAPPLYCENTER22?bizCd=BB164010&rcritNmtm=4&atchFileSn=3957&atchFlag=gp"
+												 alt="">
+										</div>
+									</div>
+									
+								
+									<div class="tabCont ctlgImgDiv" id='ctlgImgDiv26'>
+										<input type="hidden" value="4">
+										<div class="imgArea">
+											<img src="/smw/smw113010/selectAtchImage.do;BMCW_JSESSIONID=788D02AE61778B6298596B8AEBE34757.JVMAPPLYCENTER22?bizCd=BB164010&rcritNmtm=4&atchFileSn=3958&atchFlag=gp"
+												 alt="">
+										</div>
+									</div>
+									
+								
+							
+								
+									<div class="tabCont ctlgImgDiv" id='ctlgImgDiv27'>
+										<input type="hidden" value="5">
+										<div class="imgArea">
+											<img src="/smw/smw113010/selectAtchImage.do;BMCW_JSESSIONID=788D02AE61778B6298596B8AEBE34757.JVMAPPLYCENTER22?bizCd=BB164011&rcritNmtm=3&atchFileSn=52246&atchFlag=gp"
+												 alt="">
+										</div>
+									</div>
+									
+								
+									<div class="tabCont ctlgImgDiv" id='ctlgImgDiv28'>
+										<input type="hidden" value="5">
+										<div class="imgArea">
+											<img src="/smw/smw113010/selectAtchImage.do;BMCW_JSESSIONID=788D02AE61778B6298596B8AEBE34757.JVMAPPLYCENTER22?bizCd=BB164011&rcritNmtm=3&atchFileSn=52247&atchFlag=gp"
+												 alt="">
+										</div>
+									</div>
+									
+								
+							
+								
+									<div class="tabCont ctlgImgDiv" id='ctlgImgDiv29'>
+										<input type="hidden" value="6">
+										<div class="imgArea">
+											<img src="/smw/smw113010/selectAtchImage.do;BMCW_JSESSIONID=788D02AE61778B6298596B8AEBE34757.JVMAPPLYCENTER22?bizCd=BB164012&rcritNmtm=6&atchFileSn=52234&atchFlag=gp"
+												 alt="">
+										</div>
+									</div>
+									
+								
+									<div class="tabCont ctlgImgDiv" id='ctlgImgDiv30'>
+										<input type="hidden" value="6">
+										<div class="imgArea">
+											<img src="/smw/smw113010/selectAtchImage.do;BMCW_JSESSIONID=788D02AE61778B6298596B8AEBE34757.JVMAPPLYCENTER22?bizCd=BB164012&rcritNmtm=6&atchFileSn=52235&atchFlag=gp"
+												 alt="">
+										</div>
+									</div>
+									
+								
+									<div class="tabCont ctlgImgDiv" id='ctlgImgDiv31'>
+										<input type="hidden" value="6">
+										<div class="imgArea">
+											<img src="/smw/smw113010/selectAtchImage.do;BMCW_JSESSIONID=788D02AE61778B6298596B8AEBE34757.JVMAPPLYCENTER22?bizCd=BB164012&rcritNmtm=6&atchFileSn=52236&atchFlag=gp"
+												 alt="">
+										</div>
+									</div>
+									
+								
+									<div class="tabCont ctlgImgDiv" id='ctlgImgDiv32'>
+										<input type="hidden" value="6">
+										<div class="imgArea">
+											<img src="/smw/smw113010/selectAtchImage.do;BMCW_JSESSIONID=788D02AE61778B6298596B8AEBE34757.JVMAPPLYCENTER22?bizCd=BB164012&rcritNmtm=6&atchFileSn=52237&atchFlag=gp"
+												 alt="">
+										</div>
+									</div>
+									
+								
+									<div class="tabCont ctlgImgDiv" id='ctlgImgDiv33'>
+										<input type="hidden" value="6">
+										<div class="imgArea">
+											<img src="/smw/smw113010/selectAtchImage.do;BMCW_JSESSIONID=788D02AE61778B6298596B8AEBE34757.JVMAPPLYCENTER22?bizCd=BB164012&rcritNmtm=6&atchFileSn=52238&atchFlag=gp"
+												 alt="">
+										</div>
+									</div>
+									
+								
+							
+							<!--//tabCont -->
+						</div>
+						<!-- //tabWrap -->
+						<div class="tableTip">
+							<p class="exclamation">상기 이미지는 소비자의 이해를 돕기위해<br class="br type03"/>제작된 것으로 실제와 다를 수 있습니다.</p>
+							<div class="btnArea">
+								<button type="button" class="btn type01 sky download" onclick="javascript:fn_imgDown()">
+									<span>다운로드</span>
+								</button>
+							</div>
+						</div>
+					</section>
+					<!-- //sectionGroup -->
+
+					<!-- //sectionGroup -->
+					<!-- sectionGroup -->
+					<section class="sectionGroup">
+						<div class="conttitArea">
+							<h5 class="tit">주택형 안내</h5>
+						</div>
+						<!-- listArea -->
+						<div class="listArea type02">
+							<ul>
+								<li>
+									<p>인터넷청약신청 가능 여부는 공고문을 확인하시기 바랍니다.</p>
+								</li>
+								<li>
+									<p>현장신청만 가능한 경우에는 신청장소를 방문하여 신청하시기 바랍니다.</p>
+								</li>
+							</ul>
+						</div>
+						<!-- //listArea -->
+
+						<!-- table -->
+						<!-- tabCont -->
+						
+							<div class="tabCont housTable " id="houstab1">
+								<div class="table colType pc">
+									<table>
+										<caption>주택형 안내 테이블로 주택형,전용면적,금회공급 세대수,임대보증금,월임대료,인터넷청약 정보들을 제공합니다.</caption>
+										<colgroup>
+											<col style="width: auto;">
+											<col style="width: 160px;">
+											<col style="width: 160px;">
+											<col style="width: 160px;">
+											<col style="width: 160px;">
+											<col style="width: 160px;">
+										</colgroup>
+										<thead>
+										<tr>
+											<th scope="col">주택형</th>
+											<th scope="col">전용면적<br/>(m²)</th>
+											<th scope="col">금회공급 세대수</th>
+											<th scope="col">임대보증금(원)</th>
+											<th scope="col">월임대료(원)</th>
+											<th scope="col">인터넷청약</th>
+										</tr>
+										</thead>
+										<tbody class="tb_house">
+										
+											
+												
+												
+													<tr class="tb_house_con">
+												
+											
+											<td class="txt-center">
+												19A
+												
+											</td>
+											<td class="txt-center">19.3078</td>
+											<td class="txt-center">28</td>
+											<td class="txt-center">공고문 확인</td>
+											<td class="txt-center">공고문 확인</td>
+											<td class="txt-center">공고문 확인</td>
+											</tr>
+										
+											
+												
+												
+													<tr class="tb_house_con">
+												
+											
+											<td class="txt-center">
+												19A1
+												
+											</td>
+											<td class="txt-center">19.3078</td>
+											<td class="txt-center">14</td>
+											<td class="txt-center">공고문 확인</td>
+											<td class="txt-center">공고문 확인</td>
+											<td class="txt-center">공고문 확인</td>
+											</tr>
+										
+											
+												
+												
+													<tr class="tb_house_con">
+												
+											
+											<td class="txt-center">
+												29A
+												
+											</td>
+											<td class="txt-center">29.0646</td>
+											<td class="txt-center">28</td>
+											<td class="txt-center">공고문 확인</td>
+											<td class="txt-center">공고문 확인</td>
+											<td class="txt-center">공고문 확인</td>
+											</tr>
+										
+											
+												
+												
+													<tr class="tb_house_con">
+												
+											
+											<td class="txt-center">
+												32A
+												
+											</td>
+											<td class="txt-center">32.5086</td>
+											<td class="txt-center">6</td>
+											<td class="txt-center">공고문 확인</td>
+											<td class="txt-center">공고문 확인</td>
+											<td class="txt-center">공고문 확인</td>
+											</tr>
+										
+											
+												
+												
+													<tr class="tb_house_con">
+												
+											
+											<td class="txt-center">
+												36C
+												
+											</td>
+											<td class="txt-center">36.6935</td>
+											<td class="txt-center">6</td>
+											<td class="txt-center">공고문 확인</td>
+											<td class="txt-center">공고문 확인</td>
+											<td class="txt-center">공고문 확인</td>
+											</tr>
+										
+										</tbody>
+									</table>
+								</div>
+								<!-- //table -->
+
+								<!-- table -->
+								
+									<div class="table colType mo init">
+										<table>
+											<caption>주택형 안내 테이블로 주택형,전용면적,금회공급 세대수,임대보증금,월임대료,인터넷청약 정보들을 제공합니다.</caption>
+											<colgroup class="block">
+												<col style="width: 120px;">
+												<col style="width: auto;">
+											</colgroup>
+											<tbody class="block type01">
+											<tr class="tb_house_con">
+												<th scope="row">주택유형</th>
+												<td class="txt-left">
+													19A
+													
+												</td>
+											</tr>
+											<tr>
+												<th scope="row">전용면적<br/>(m²)</th>
+												<td class="txt-left">19.3078</td>
+											</tr>
+											<tr>
+												<th scope="row">금회공급 세대수</th>
+												<td class="txt-left">28</td>
+											</tr>
+											<tr>
+												<th scope="row">임대보증금(원)</th>
+												<td class="txt-left">공고문 확인</td>
+											</tr>
+											<tr>
+												<th scope="row">월임대료(원)</th>
+												<td class="txt-left">공고문 확인</td>
+											</tr>
+											<tr>
+												<th scope="row">인터넷 청약</th>
+												<td class="txt-left">공고문 확인</td>
+											</tr>
+
+											</tbody>
+										</table>
+									</div>
+								
+									<div class="table colType mo init">
+										<table>
+											<caption>주택형 안내 테이블로 주택형,전용면적,금회공급 세대수,임대보증금,월임대료,인터넷청약 정보들을 제공합니다.</caption>
+											<colgroup class="block">
+												<col style="width: 120px;">
+												<col style="width: auto;">
+											</colgroup>
+											<tbody class="block type01">
+											<tr class="tb_house_con">
+												<th scope="row">주택유형</th>
+												<td class="txt-left">
+													19A1
+													
+												</td>
+											</tr>
+											<tr>
+												<th scope="row">전용면적<br/>(m²)</th>
+												<td class="txt-left">19.3078</td>
+											</tr>
+											<tr>
+												<th scope="row">금회공급 세대수</th>
+												<td class="txt-left">14</td>
+											</tr>
+											<tr>
+												<th scope="row">임대보증금(원)</th>
+												<td class="txt-left">공고문 확인</td>
+											</tr>
+											<tr>
+												<th scope="row">월임대료(원)</th>
+												<td class="txt-left">공고문 확인</td>
+											</tr>
+											<tr>
+												<th scope="row">인터넷 청약</th>
+												<td class="txt-left">공고문 확인</td>
+											</tr>
+
+											</tbody>
+										</table>
+									</div>
+								
+									<div class="table colType mo init">
+										<table>
+											<caption>주택형 안내 테이블로 주택형,전용면적,금회공급 세대수,임대보증금,월임대료,인터넷청약 정보들을 제공합니다.</caption>
+											<colgroup class="block">
+												<col style="width: 120px;">
+												<col style="width: auto;">
+											</colgroup>
+											<tbody class="block type01">
+											<tr class="tb_house_con">
+												<th scope="row">주택유형</th>
+												<td class="txt-left">
+													29A
+													
+												</td>
+											</tr>
+											<tr>
+												<th scope="row">전용면적<br/>(m²)</th>
+												<td class="txt-left">29.0646</td>
+											</tr>
+											<tr>
+												<th scope="row">금회공급 세대수</th>
+												<td class="txt-left">28</td>
+											</tr>
+											<tr>
+												<th scope="row">임대보증금(원)</th>
+												<td class="txt-left">공고문 확인</td>
+											</tr>
+											<tr>
+												<th scope="row">월임대료(원)</th>
+												<td class="txt-left">공고문 확인</td>
+											</tr>
+											<tr>
+												<th scope="row">인터넷 청약</th>
+												<td class="txt-left">공고문 확인</td>
+											</tr>
+
+											</tbody>
+										</table>
+									</div>
+								
+									<div class="table colType mo init">
+										<table>
+											<caption>주택형 안내 테이블로 주택형,전용면적,금회공급 세대수,임대보증금,월임대료,인터넷청약 정보들을 제공합니다.</caption>
+											<colgroup class="block">
+												<col style="width: 120px;">
+												<col style="width: auto;">
+											</colgroup>
+											<tbody class="block type01">
+											<tr class="tb_house_con">
+												<th scope="row">주택유형</th>
+												<td class="txt-left">
+													32A
+													
+												</td>
+											</tr>
+											<tr>
+												<th scope="row">전용면적<br/>(m²)</th>
+												<td class="txt-left">32.5086</td>
+											</tr>
+											<tr>
+												<th scope="row">금회공급 세대수</th>
+												<td class="txt-left">6</td>
+											</tr>
+											<tr>
+												<th scope="row">임대보증금(원)</th>
+												<td class="txt-left">공고문 확인</td>
+											</tr>
+											<tr>
+												<th scope="row">월임대료(원)</th>
+												<td class="txt-left">공고문 확인</td>
+											</tr>
+											<tr>
+												<th scope="row">인터넷 청약</th>
+												<td class="txt-left">공고문 확인</td>
+											</tr>
+
+											</tbody>
+										</table>
+									</div>
+								
+									<div class="table colType mo init">
+										<table>
+											<caption>주택형 안내 테이블로 주택형,전용면적,금회공급 세대수,임대보증금,월임대료,인터넷청약 정보들을 제공합니다.</caption>
+											<colgroup class="block">
+												<col style="width: 120px;">
+												<col style="width: auto;">
+											</colgroup>
+											<tbody class="block type01">
+											<tr class="tb_house_con">
+												<th scope="row">주택유형</th>
+												<td class="txt-left">
+													36C
+													
+												</td>
+											</tr>
+											<tr>
+												<th scope="row">전용면적<br/>(m²)</th>
+												<td class="txt-left">36.6935</td>
+											</tr>
+											<tr>
+												<th scope="row">금회공급 세대수</th>
+												<td class="txt-left">6</td>
+											</tr>
+											<tr>
+												<th scope="row">임대보증금(원)</th>
+												<td class="txt-left">공고문 확인</td>
+											</tr>
+											<tr>
+												<th scope="row">월임대료(원)</th>
+												<td class="txt-left">공고문 확인</td>
+											</tr>
+											<tr>
+												<th scope="row">인터넷 청약</th>
+												<td class="txt-left">공고문 확인</td>
+											</tr>
+
+											</tbody>
+										</table>
+									</div>
+								
+
+								<!-- //table -->
+
+
+								<!-- //tabCont 사업지구별 공급정보-->
+								<!-- //table -->
+								<!-- alertBox -->
+								<div class="alertBox">
+									<div class="imgArea">
+										<img src="/images/common/img-loud-speaker.png" alt="안내사항 이미지">
+									</div>
+									<div class="txtArea">
+										<strong class="tit">공급정보 관련 안내사항</strong>
+										
+											<p class="desc">자세한 사항은 공고문을 확인해주시기
+												바랍니다.</p>
+											
+										
+									</div>
+								</div>
+							</div>
+						
+							<div class="tabCont housTable " id="houstab2">
+								<div class="table colType pc">
+									<table>
+										<caption>주택형 안내 테이블로 주택형,전용면적,금회공급 세대수,임대보증금,월임대료,인터넷청약 정보들을 제공합니다.</caption>
+										<colgroup>
+											<col style="width: auto;">
+											<col style="width: 160px;">
+											<col style="width: 160px;">
+											<col style="width: 160px;">
+											<col style="width: 160px;">
+											<col style="width: 160px;">
+										</colgroup>
+										<thead>
+										<tr>
+											<th scope="col">주택형</th>
+											<th scope="col">전용면적<br/>(m²)</th>
+											<th scope="col">금회공급 세대수</th>
+											<th scope="col">임대보증금(원)</th>
+											<th scope="col">월임대료(원)</th>
+											<th scope="col">인터넷청약</th>
+										</tr>
+										</thead>
+										<tbody class="tb_house">
+										
+											
+												
+													<tr class="tb_house_con">
+												
+												
+											
+											<td class="txt-center">
+												19
+												
+											</td>
+											<td class="txt-center">19.5932</td>
+											<td class="txt-center">94</td>
+											<td class="txt-center">공고문 확인</td>
+											<td class="txt-center">공고문 확인</td>
+											<td class="txt-center">공고문 확인</td>
+											</tr>
+										
+											
+												
+													<tr class="tb_house_con">
+												
+												
+											
+											<td class="txt-center">
+												29A
+												
+											</td>
+											<td class="txt-center">29.5489</td>
+											<td class="txt-center">44</td>
+											<td class="txt-center">공고문 확인</td>
+											<td class="txt-center">공고문 확인</td>
+											<td class="txt-center">공고문 확인</td>
+											</tr>
+										
+											
+												
+													<tr class="tb_house_con">
+												
+												
+											
+											<td class="txt-center">
+												29B
+												
+											</td>
+											<td class="txt-center">29.5489</td>
+											<td class="txt-center">63</td>
+											<td class="txt-center">공고문 확인</td>
+											<td class="txt-center">공고문 확인</td>
+											<td class="txt-center">공고문 확인</td>
+											</tr>
+										
+											
+												
+													<tr class="tb_house_con">
+												
+												
+											
+											<td class="txt-center">
+												36
+												
+											</td>
+											<td class="txt-center">36.9256</td>
+											<td class="txt-center">20</td>
+											<td class="txt-center">공고문 확인</td>
+											<td class="txt-center">공고문 확인</td>
+											<td class="txt-center">공고문 확인</td>
+											</tr>
+										
+											
+												
+													<tr class="tb_house_con">
+												
+												
+											
+											<td class="txt-center">
+												44
+												
+											</td>
+											<td class="txt-center">44.7638</td>
+											<td class="txt-center">83</td>
+											<td class="txt-center">공고문 확인</td>
+											<td class="txt-center">공고문 확인</td>
+											<td class="txt-center">공고문 확인</td>
+											</tr>
+										
+											
+												
+													<tr class="tb_house_con">
+												
+												
+											
+											<td class="txt-center">
+												59
+												
+											</td>
+											<td class="txt-center">59.8049</td>
+											<td class="txt-center">69</td>
+											<td class="txt-center">공고문 확인</td>
+											<td class="txt-center">공고문 확인</td>
+											<td class="txt-center">공고문 확인</td>
+											</tr>
+										
+										</tbody>
+									</table>
+								</div>
+								<!-- //table -->
+
+								<!-- table -->
+								
+									<div class="table colType mo init">
+										<table>
+											<caption>주택형 안내 테이블로 주택형,전용면적,금회공급 세대수,임대보증금,월임대료,인터넷청약 정보들을 제공합니다.</caption>
+											<colgroup class="block">
+												<col style="width: 120px;">
+												<col style="width: auto;">
+											</colgroup>
+											<tbody class="block type01">
+											<tr class="tb_house_con">
+												<th scope="row">주택유형</th>
+												<td class="txt-left">
+													19
+													
+												</td>
+											</tr>
+											<tr>
+												<th scope="row">전용면적<br/>(m²)</th>
+												<td class="txt-left">19.5932</td>
+											</tr>
+											<tr>
+												<th scope="row">금회공급 세대수</th>
+												<td class="txt-left">94</td>
+											</tr>
+											<tr>
+												<th scope="row">임대보증금(원)</th>
+												<td class="txt-left">공고문 확인</td>
+											</tr>
+											<tr>
+												<th scope="row">월임대료(원)</th>
+												<td class="txt-left">공고문 확인</td>
+											</tr>
+											<tr>
+												<th scope="row">인터넷 청약</th>
+												<td class="txt-left">공고문 확인</td>
+											</tr>
+
+											</tbody>
+										</table>
+									</div>
+								
+									<div class="table colType mo init">
+										<table>
+											<caption>주택형 안내 테이블로 주택형,전용면적,금회공급 세대수,임대보증금,월임대료,인터넷청약 정보들을 제공합니다.</caption>
+											<colgroup class="block">
+												<col style="width: 120px;">
+												<col style="width: auto;">
+											</colgroup>
+											<tbody class="block type01">
+											<tr class="tb_house_con">
+												<th scope="row">주택유형</th>
+												<td class="txt-left">
+													29A
+													
+												</td>
+											</tr>
+											<tr>
+												<th scope="row">전용면적<br/>(m²)</th>
+												<td class="txt-left">29.5489</td>
+											</tr>
+											<tr>
+												<th scope="row">금회공급 세대수</th>
+												<td class="txt-left">44</td>
+											</tr>
+											<tr>
+												<th scope="row">임대보증금(원)</th>
+												<td class="txt-left">공고문 확인</td>
+											</tr>
+											<tr>
+												<th scope="row">월임대료(원)</th>
+												<td class="txt-left">공고문 확인</td>
+											</tr>
+											<tr>
+												<th scope="row">인터넷 청약</th>
+												<td class="txt-left">공고문 확인</td>
+											</tr>
+
+											</tbody>
+										</table>
+									</div>
+								
+									<div class="table colType mo init">
+										<table>
+											<caption>주택형 안내 테이블로 주택형,전용면적,금회공급 세대수,임대보증금,월임대료,인터넷청약 정보들을 제공합니다.</caption>
+											<colgroup class="block">
+												<col style="width: 120px;">
+												<col style="width: auto;">
+											</colgroup>
+											<tbody class="block type01">
+											<tr class="tb_house_con">
+												<th scope="row">주택유형</th>
+												<td class="txt-left">
+													29B
+													
+												</td>
+											</tr>
+											<tr>
+												<th scope="row">전용면적<br/>(m²)</th>
+												<td class="txt-left">29.5489</td>
+											</tr>
+											<tr>
+												<th scope="row">금회공급 세대수</th>
+												<td class="txt-left">63</td>
+											</tr>
+											<tr>
+												<th scope="row">임대보증금(원)</th>
+												<td class="txt-left">공고문 확인</td>
+											</tr>
+											<tr>
+												<th scope="row">월임대료(원)</th>
+												<td class="txt-left">공고문 확인</td>
+											</tr>
+											<tr>
+												<th scope="row">인터넷 청약</th>
+												<td class="txt-left">공고문 확인</td>
+											</tr>
+
+											</tbody>
+										</table>
+									</div>
+								
+									<div class="table colType mo init">
+										<table>
+											<caption>주택형 안내 테이블로 주택형,전용면적,금회공급 세대수,임대보증금,월임대료,인터넷청약 정보들을 제공합니다.</caption>
+											<colgroup class="block">
+												<col style="width: 120px;">
+												<col style="width: auto;">
+											</colgroup>
+											<tbody class="block type01">
+											<tr class="tb_house_con">
+												<th scope="row">주택유형</th>
+												<td class="txt-left">
+													36
+													
+												</td>
+											</tr>
+											<tr>
+												<th scope="row">전용면적<br/>(m²)</th>
+												<td class="txt-left">36.9256</td>
+											</tr>
+											<tr>
+												<th scope="row">금회공급 세대수</th>
+												<td class="txt-left">20</td>
+											</tr>
+											<tr>
+												<th scope="row">임대보증금(원)</th>
+												<td class="txt-left">공고문 확인</td>
+											</tr>
+											<tr>
+												<th scope="row">월임대료(원)</th>
+												<td class="txt-left">공고문 확인</td>
+											</tr>
+											<tr>
+												<th scope="row">인터넷 청약</th>
+												<td class="txt-left">공고문 확인</td>
+											</tr>
+
+											</tbody>
+										</table>
+									</div>
+								
+									<div class="table colType mo init">
+										<table>
+											<caption>주택형 안내 테이블로 주택형,전용면적,금회공급 세대수,임대보증금,월임대료,인터넷청약 정보들을 제공합니다.</caption>
+											<colgroup class="block">
+												<col style="width: 120px;">
+												<col style="width: auto;">
+											</colgroup>
+											<tbody class="block type01">
+											<tr class="tb_house_con">
+												<th scope="row">주택유형</th>
+												<td class="txt-left">
+													44
+													
+												</td>
+											</tr>
+											<tr>
+												<th scope="row">전용면적<br/>(m²)</th>
+												<td class="txt-left">44.7638</td>
+											</tr>
+											<tr>
+												<th scope="row">금회공급 세대수</th>
+												<td class="txt-left">83</td>
+											</tr>
+											<tr>
+												<th scope="row">임대보증금(원)</th>
+												<td class="txt-left">공고문 확인</td>
+											</tr>
+											<tr>
+												<th scope="row">월임대료(원)</th>
+												<td class="txt-left">공고문 확인</td>
+											</tr>
+											<tr>
+												<th scope="row">인터넷 청약</th>
+												<td class="txt-left">공고문 확인</td>
+											</tr>
+
+											</tbody>
+										</table>
+									</div>
+								
+									<div class="table colType mo init">
+										<table>
+											<caption>주택형 안내 테이블로 주택형,전용면적,금회공급 세대수,임대보증금,월임대료,인터넷청약 정보들을 제공합니다.</caption>
+											<colgroup class="block">
+												<col style="width: 120px;">
+												<col style="width: auto;">
+											</colgroup>
+											<tbody class="block type01">
+											<tr class="tb_house_con">
+												<th scope="row">주택유형</th>
+												<td class="txt-left">
+													59
+													
+												</td>
+											</tr>
+											<tr>
+												<th scope="row">전용면적<br/>(m²)</th>
+												<td class="txt-left">59.8049</td>
+											</tr>
+											<tr>
+												<th scope="row">금회공급 세대수</th>
+												<td class="txt-left">69</td>
+											</tr>
+											<tr>
+												<th scope="row">임대보증금(원)</th>
+												<td class="txt-left">공고문 확인</td>
+											</tr>
+											<tr>
+												<th scope="row">월임대료(원)</th>
+												<td class="txt-left">공고문 확인</td>
+											</tr>
+											<tr>
+												<th scope="row">인터넷 청약</th>
+												<td class="txt-left">공고문 확인</td>
+											</tr>
+
+											</tbody>
+										</table>
+									</div>
+								
+
+								<!-- //table -->
+
+
+								<!-- //tabCont 사업지구별 공급정보-->
+								<!-- //table -->
+								<!-- alertBox -->
+								<div class="alertBox">
+									<div class="imgArea">
+										<img src="/images/common/img-loud-speaker.png" alt="안내사항 이미지">
+									</div>
+									<div class="txtArea">
+										<strong class="tit">공급정보 관련 안내사항</strong>
+										
+											<p class="desc">자세한 사항은 공고문을 확인해주시기
+												바랍니다.</p>
+											
+										
+									</div>
+								</div>
+							</div>
+						
+							<div class="tabCont housTable " id="houstab3">
+								<div class="table colType pc">
+									<table>
+										<caption>주택형 안내 테이블로 주택형,전용면적,금회공급 세대수,임대보증금,월임대료,인터넷청약 정보들을 제공합니다.</caption>
+										<colgroup>
+											<col style="width: auto;">
+											<col style="width: 160px;">
+											<col style="width: 160px;">
+											<col style="width: 160px;">
+											<col style="width: 160px;">
+											<col style="width: 160px;">
+										</colgroup>
+										<thead>
+										<tr>
+											<th scope="col">주택형</th>
+											<th scope="col">전용면적<br/>(m²)</th>
+											<th scope="col">금회공급 세대수</th>
+											<th scope="col">임대보증금(원)</th>
+											<th scope="col">월임대료(원)</th>
+											<th scope="col">인터넷청약</th>
+										</tr>
+										</thead>
+										<tbody class="tb_house">
+										
+											
+												
+													<tr class="tb_house_con">
+												
+												
+											
+											<td class="txt-center">
+												26OB
+												
+											</td>
+											<td class="txt-center">26.4136</td>
+											<td class="txt-center">25</td>
+											<td class="txt-center">공고문 확인</td>
+											<td class="txt-center">공고문 확인</td>
+											<td class="txt-center">공고문 확인</td>
+											</tr>
+										
+											
+												
+													<tr class="tb_house_con">
+												
+												
+											
+											<td class="txt-center">
+												26A/B
+												
+											</td>
+											<td class="txt-center">26.6009</td>
+											<td class="txt-center">50</td>
+											<td class="txt-center">공고문 확인</td>
+											<td class="txt-center">공고문 확인</td>
+											<td class="txt-center">공고문 확인</td>
+											</tr>
+										
+											
+												
+													<tr class="tb_house_con">
+												
+												
+											
+											<td class="txt-center">
+												26C
+												
+											</td>
+											<td class="txt-center">26.6009</td>
+											<td class="txt-center">40</td>
+											<td class="txt-center">공고문 확인</td>
+											<td class="txt-center">공고문 확인</td>
+											<td class="txt-center">공고문 확인</td>
+											</tr>
+										
+											
+												
+													<tr class="tb_house_con">
+												
+												
+											
+											<td class="txt-center">
+												26D
+												
+											</td>
+											<td class="txt-center">26.6009</td>
+											<td class="txt-center">15</td>
+											<td class="txt-center">공고문 확인</td>
+											<td class="txt-center">공고문 확인</td>
+											<td class="txt-center">공고문 확인</td>
+											</tr>
+										
+											
+												
+													<tr class="tb_house_con">
+												
+												
+											
+											<td class="txt-center">
+												26OA
+												
+											</td>
+											<td class="txt-center">26.8246</td>
+											<td class="txt-center">20</td>
+											<td class="txt-center">공고문 확인</td>
+											<td class="txt-center">공고문 확인</td>
+											<td class="txt-center">공고문 확인</td>
+											</tr>
+										
+											
+												
+													<tr class="tb_house_con">
+												
+												
+											
+											<td class="txt-center">
+												36A
+												
+											</td>
+											<td class="txt-center">36.2246</td>
+											<td class="txt-center">110</td>
+											<td class="txt-center">공고문 확인</td>
+											<td class="txt-center">공고문 확인</td>
+											<td class="txt-center">공고문 확인</td>
+											</tr>
+										
+											
+												
+													<tr class="tb_house_con">
+												
+												
+											
+											<td class="txt-center">
+												36B
+												
+											</td>
+											<td class="txt-center">36.2246</td>
+											<td class="txt-center">10</td>
+											<td class="txt-center">공고문 확인</td>
+											<td class="txt-center">공고문 확인</td>
+											<td class="txt-center">공고문 확인</td>
+											</tr>
+										
+											
+												
+													<tr class="tb_house_con">
+												
+												
+											
+											<td class="txt-center">
+												44B
+												
+											</td>
+											<td class="txt-center">44.1886</td>
+											<td class="txt-center">30</td>
+											<td class="txt-center">공고문 확인</td>
+											<td class="txt-center">공고문 확인</td>
+											<td class="txt-center">공고문 확인</td>
+											</tr>
+										
+											
+												
+													<tr class="tb_house_con">
+												
+												
+											
+											<td class="txt-center">
+												44A
+												
+											</td>
+											<td class="txt-center">44.9689</td>
+											<td class="txt-center">9</td>
+											<td class="txt-center">공고문 확인</td>
+											<td class="txt-center">공고문 확인</td>
+											<td class="txt-center">공고문 확인</td>
+											</tr>
+										
+										</tbody>
+									</table>
+								</div>
+								<!-- //table -->
+
+								<!-- table -->
+								
+									<div class="table colType mo init">
+										<table>
+											<caption>주택형 안내 테이블로 주택형,전용면적,금회공급 세대수,임대보증금,월임대료,인터넷청약 정보들을 제공합니다.</caption>
+											<colgroup class="block">
+												<col style="width: 120px;">
+												<col style="width: auto;">
+											</colgroup>
+											<tbody class="block type01">
+											<tr class="tb_house_con">
+												<th scope="row">주택유형</th>
+												<td class="txt-left">
+													26OB
+													
+												</td>
+											</tr>
+											<tr>
+												<th scope="row">전용면적<br/>(m²)</th>
+												<td class="txt-left">26.4136</td>
+											</tr>
+											<tr>
+												<th scope="row">금회공급 세대수</th>
+												<td class="txt-left">25</td>
+											</tr>
+											<tr>
+												<th scope="row">임대보증금(원)</th>
+												<td class="txt-left">공고문 확인</td>
+											</tr>
+											<tr>
+												<th scope="row">월임대료(원)</th>
+												<td class="txt-left">공고문 확인</td>
+											</tr>
+											<tr>
+												<th scope="row">인터넷 청약</th>
+												<td class="txt-left">공고문 확인</td>
+											</tr>
+
+											</tbody>
+										</table>
+									</div>
+								
+									<div class="table colType mo init">
+										<table>
+											<caption>주택형 안내 테이블로 주택형,전용면적,금회공급 세대수,임대보증금,월임대료,인터넷청약 정보들을 제공합니다.</caption>
+											<colgroup class="block">
+												<col style="width: 120px;">
+												<col style="width: auto;">
+											</colgroup>
+											<tbody class="block type01">
+											<tr class="tb_house_con">
+												<th scope="row">주택유형</th>
+												<td class="txt-left">
+													26A/B
+													
+												</td>
+											</tr>
+											<tr>
+												<th scope="row">전용면적<br/>(m²)</th>
+												<td class="txt-left">26.6009</td>
+											</tr>
+											<tr>
+												<th scope="row">금회공급 세대수</th>
+												<td class="txt-left">50</td>
+											</tr>
+											<tr>
+												<th scope="row">임대보증금(원)</th>
+												<td class="txt-left">공고문 확인</td>
+											</tr>
+											<tr>
+												<th scope="row">월임대료(원)</th>
+												<td class="txt-left">공고문 확인</td>
+											</tr>
+											<tr>
+												<th scope="row">인터넷 청약</th>
+												<td class="txt-left">공고문 확인</td>
+											</tr>
+
+											</tbody>
+										</table>
+									</div>
+								
+									<div class="table colType mo init">
+										<table>
+											<caption>주택형 안내 테이블로 주택형,전용면적,금회공급 세대수,임대보증금,월임대료,인터넷청약 정보들을 제공합니다.</caption>
+											<colgroup class="block">
+												<col style="width: 120px;">
+												<col style="width: auto;">
+											</colgroup>
+											<tbody class="block type01">
+											<tr class="tb_house_con">
+												<th scope="row">주택유형</th>
+												<td class="txt-left">
+													26C
+													
+												</td>
+											</tr>
+											<tr>
+												<th scope="row">전용면적<br/>(m²)</th>
+												<td class="txt-left">26.6009</td>
+											</tr>
+											<tr>
+												<th scope="row">금회공급 세대수</th>
+												<td class="txt-left">40</td>
+											</tr>
+											<tr>
+												<th scope="row">임대보증금(원)</th>
+												<td class="txt-left">공고문 확인</td>
+											</tr>
+											<tr>
+												<th scope="row">월임대료(원)</th>
+												<td class="txt-left">공고문 확인</td>
+											</tr>
+											<tr>
+												<th scope="row">인터넷 청약</th>
+												<td class="txt-left">공고문 확인</td>
+											</tr>
+
+											</tbody>
+										</table>
+									</div>
+								
+									<div class="table colType mo init">
+										<table>
+											<caption>주택형 안내 테이블로 주택형,전용면적,금회공급 세대수,임대보증금,월임대료,인터넷청약 정보들을 제공합니다.</caption>
+											<colgroup class="block">
+												<col style="width: 120px;">
+												<col style="width: auto;">
+											</colgroup>
+											<tbody class="block type01">
+											<tr class="tb_house_con">
+												<th scope="row">주택유형</th>
+												<td class="txt-left">
+													26D
+													
+												</td>
+											</tr>
+											<tr>
+												<th scope="row">전용면적<br/>(m²)</th>
+												<td class="txt-left">26.6009</td>
+											</tr>
+											<tr>
+												<th scope="row">금회공급 세대수</th>
+												<td class="txt-left">15</td>
+											</tr>
+											<tr>
+												<th scope="row">임대보증금(원)</th>
+												<td class="txt-left">공고문 확인</td>
+											</tr>
+											<tr>
+												<th scope="row">월임대료(원)</th>
+												<td class="txt-left">공고문 확인</td>
+											</tr>
+											<tr>
+												<th scope="row">인터넷 청약</th>
+												<td class="txt-left">공고문 확인</td>
+											</tr>
+
+											</tbody>
+										</table>
+									</div>
+								
+									<div class="table colType mo init">
+										<table>
+											<caption>주택형 안내 테이블로 주택형,전용면적,금회공급 세대수,임대보증금,월임대료,인터넷청약 정보들을 제공합니다.</caption>
+											<colgroup class="block">
+												<col style="width: 120px;">
+												<col style="width: auto;">
+											</colgroup>
+											<tbody class="block type01">
+											<tr class="tb_house_con">
+												<th scope="row">주택유형</th>
+												<td class="txt-left">
+													26OA
+													
+												</td>
+											</tr>
+											<tr>
+												<th scope="row">전용면적<br/>(m²)</th>
+												<td class="txt-left">26.8246</td>
+											</tr>
+											<tr>
+												<th scope="row">금회공급 세대수</th>
+												<td class="txt-left">20</td>
+											</tr>
+											<tr>
+												<th scope="row">임대보증금(원)</th>
+												<td class="txt-left">공고문 확인</td>
+											</tr>
+											<tr>
+												<th scope="row">월임대료(원)</th>
+												<td class="txt-left">공고문 확인</td>
+											</tr>
+											<tr>
+												<th scope="row">인터넷 청약</th>
+												<td class="txt-left">공고문 확인</td>
+											</tr>
+
+											</tbody>
+										</table>
+									</div>
+								
+									<div class="table colType mo init">
+										<table>
+											<caption>주택형 안내 테이블로 주택형,전용면적,금회공급 세대수,임대보증금,월임대료,인터넷청약 정보들을 제공합니다.</caption>
+											<colgroup class="block">
+												<col style="width: 120px;">
+												<col style="width: auto;">
+											</colgroup>
+											<tbody class="block type01">
+											<tr class="tb_house_con">
+												<th scope="row">주택유형</th>
+												<td class="txt-left">
+													36A
+													
+												</td>
+											</tr>
+											<tr>
+												<th scope="row">전용면적<br/>(m²)</th>
+												<td class="txt-left">36.2246</td>
+											</tr>
+											<tr>
+												<th scope="row">금회공급 세대수</th>
+												<td class="txt-left">110</td>
+											</tr>
+											<tr>
+												<th scope="row">임대보증금(원)</th>
+												<td class="txt-left">공고문 확인</td>
+											</tr>
+											<tr>
+												<th scope="row">월임대료(원)</th>
+												<td class="txt-left">공고문 확인</td>
+											</tr>
+											<tr>
+												<th scope="row">인터넷 청약</th>
+												<td class="txt-left">공고문 확인</td>
+											</tr>
+
+											</tbody>
+										</table>
+									</div>
+								
+									<div class="table colType mo init">
+										<table>
+											<caption>주택형 안내 테이블로 주택형,전용면적,금회공급 세대수,임대보증금,월임대료,인터넷청약 정보들을 제공합니다.</caption>
+											<colgroup class="block">
+												<col style="width: 120px;">
+												<col style="width: auto;">
+											</colgroup>
+											<tbody class="block type01">
+											<tr class="tb_house_con">
+												<th scope="row">주택유형</th>
+												<td class="txt-left">
+													36B
+													
+												</td>
+											</tr>
+											<tr>
+												<th scope="row">전용면적<br/>(m²)</th>
+												<td class="txt-left">36.2246</td>
+											</tr>
+											<tr>
+												<th scope="row">금회공급 세대수</th>
+												<td class="txt-left">10</td>
+											</tr>
+											<tr>
+												<th scope="row">임대보증금(원)</th>
+												<td class="txt-left">공고문 확인</td>
+											</tr>
+											<tr>
+												<th scope="row">월임대료(원)</th>
+												<td class="txt-left">공고문 확인</td>
+											</tr>
+											<tr>
+												<th scope="row">인터넷 청약</th>
+												<td class="txt-left">공고문 확인</td>
+											</tr>
+
+											</tbody>
+										</table>
+									</div>
+								
+									<div class="table colType mo init">
+										<table>
+											<caption>주택형 안내 테이블로 주택형,전용면적,금회공급 세대수,임대보증금,월임대료,인터넷청약 정보들을 제공합니다.</caption>
+											<colgroup class="block">
+												<col style="width: 120px;">
+												<col style="width: auto;">
+											</colgroup>
+											<tbody class="block type01">
+											<tr class="tb_house_con">
+												<th scope="row">주택유형</th>
+												<td class="txt-left">
+													44B
+													
+												</td>
+											</tr>
+											<tr>
+												<th scope="row">전용면적<br/>(m²)</th>
+												<td class="txt-left">44.1886</td>
+											</tr>
+											<tr>
+												<th scope="row">금회공급 세대수</th>
+												<td class="txt-left">30</td>
+											</tr>
+											<tr>
+												<th scope="row">임대보증금(원)</th>
+												<td class="txt-left">공고문 확인</td>
+											</tr>
+											<tr>
+												<th scope="row">월임대료(원)</th>
+												<td class="txt-left">공고문 확인</td>
+											</tr>
+											<tr>
+												<th scope="row">인터넷 청약</th>
+												<td class="txt-left">공고문 확인</td>
+											</tr>
+
+											</tbody>
+										</table>
+									</div>
+								
+									<div class="table colType mo init">
+										<table>
+											<caption>주택형 안내 테이블로 주택형,전용면적,금회공급 세대수,임대보증금,월임대료,인터넷청약 정보들을 제공합니다.</caption>
+											<colgroup class="block">
+												<col style="width: 120px;">
+												<col style="width: auto;">
+											</colgroup>
+											<tbody class="block type01">
+											<tr class="tb_house_con">
+												<th scope="row">주택유형</th>
+												<td class="txt-left">
+													44A
+													
+												</td>
+											</tr>
+											<tr>
+												<th scope="row">전용면적<br/>(m²)</th>
+												<td class="txt-left">44.9689</td>
+											</tr>
+											<tr>
+												<th scope="row">금회공급 세대수</th>
+												<td class="txt-left">9</td>
+											</tr>
+											<tr>
+												<th scope="row">임대보증금(원)</th>
+												<td class="txt-left">공고문 확인</td>
+											</tr>
+											<tr>
+												<th scope="row">월임대료(원)</th>
+												<td class="txt-left">공고문 확인</td>
+											</tr>
+											<tr>
+												<th scope="row">인터넷 청약</th>
+												<td class="txt-left">공고문 확인</td>
+											</tr>
+
+											</tbody>
+										</table>
+									</div>
+								
+
+								<!-- //table -->
+
+
+								<!-- //tabCont 사업지구별 공급정보-->
+								<!-- //table -->
+								<!-- alertBox -->
+								<div class="alertBox">
+									<div class="imgArea">
+										<img src="/images/common/img-loud-speaker.png" alt="안내사항 이미지">
+									</div>
+									<div class="txtArea">
+										<strong class="tit">공급정보 관련 안내사항</strong>
+										
+											<p class="desc">자세한 사항은 공고문을 확인해주시기
+												바랍니다.</p>
+											
+										
+									</div>
+								</div>
+							</div>
+						
+							<div class="tabCont housTable " id="houstab4">
+								<div class="table colType pc">
+									<table>
+										<caption>주택형 안내 테이블로 주택형,전용면적,금회공급 세대수,임대보증금,월임대료,인터넷청약 정보들을 제공합니다.</caption>
+										<colgroup>
+											<col style="width: auto;">
+											<col style="width: 160px;">
+											<col style="width: 160px;">
+											<col style="width: 160px;">
+											<col style="width: 160px;">
+											<col style="width: 160px;">
+										</colgroup>
+										<thead>
+										<tr>
+											<th scope="col">주택형</th>
+											<th scope="col">전용면적<br/>(m²)</th>
+											<th scope="col">금회공급 세대수</th>
+											<th scope="col">임대보증금(원)</th>
+											<th scope="col">월임대료(원)</th>
+											<th scope="col">인터넷청약</th>
+										</tr>
+										</thead>
+										<tbody class="tb_house">
+										
+											
+												
+													<tr class="tb_house_con">
+												
+												
+											
+											<td class="txt-center">
+												29A
+												
+											</td>
+											<td class="txt-center">29.4166</td>
+											<td class="txt-center">40</td>
+											<td class="txt-center">공고문 확인</td>
+											<td class="txt-center">공고문 확인</td>
+											<td class="txt-center">공고문 확인</td>
+											</tr>
+										
+											
+												
+													<tr class="tb_house_con">
+												
+												
+											
+											<td class="txt-center">
+												36B
+												
+											</td>
+											<td class="txt-center">36.7854</td>
+											<td class="txt-center">25</td>
+											<td class="txt-center">공고문 확인</td>
+											<td class="txt-center">공고문 확인</td>
+											<td class="txt-center">공고문 확인</td>
+											</tr>
+										
+											
+												
+													<tr class="tb_house_con">
+												
+												
+											
+											<td class="txt-center">
+												36A
+												
+											</td>
+											<td class="txt-center">36.7895</td>
+											<td class="txt-center">21</td>
+											<td class="txt-center">공고문 확인</td>
+											<td class="txt-center">공고문 확인</td>
+											<td class="txt-center">공고문 확인</td>
+											</tr>
+										
+											
+												
+													<tr class="tb_house_con">
+												
+												
+											
+											<td class="txt-center">
+												36A1
+												
+											</td>
+											<td class="txt-center">36.7895</td>
+											<td class="txt-center">2</td>
+											<td class="txt-center">공고문 확인</td>
+											<td class="txt-center">공고문 확인</td>
+											<td class="txt-center">공고문 확인</td>
+											</tr>
+										
+											
+												
+													<tr class="tb_house_con">
+												
+												
+											
+											<td class="txt-center">
+												45A
+												
+											</td>
+											<td class="txt-center">45.3244</td>
+											<td class="txt-center">8</td>
+											<td class="txt-center">공고문 확인</td>
+											<td class="txt-center">공고문 확인</td>
+											<td class="txt-center">공고문 확인</td>
+											</tr>
+										
+											
+												
+													<tr class="tb_house_con">
+												
+												
+											
+											<td class="txt-center">
+												59A
+												
+											</td>
+											<td class="txt-center">59.956</td>
+											<td class="txt-center">4</td>
+											<td class="txt-center">공고문 확인</td>
+											<td class="txt-center">공고문 확인</td>
+											<td class="txt-center">공고문 확인</td>
+											</tr>
+										
+										</tbody>
+									</table>
+								</div>
+								<!-- //table -->
+
+								<!-- table -->
+								
+									<div class="table colType mo init">
+										<table>
+											<caption>주택형 안내 테이블로 주택형,전용면적,금회공급 세대수,임대보증금,월임대료,인터넷청약 정보들을 제공합니다.</caption>
+											<colgroup class="block">
+												<col style="width: 120px;">
+												<col style="width: auto;">
+											</colgroup>
+											<tbody class="block type01">
+											<tr class="tb_house_con">
+												<th scope="row">주택유형</th>
+												<td class="txt-left">
+													29A
+													
+												</td>
+											</tr>
+											<tr>
+												<th scope="row">전용면적<br/>(m²)</th>
+												<td class="txt-left">29.4166</td>
+											</tr>
+											<tr>
+												<th scope="row">금회공급 세대수</th>
+												<td class="txt-left">40</td>
+											</tr>
+											<tr>
+												<th scope="row">임대보증금(원)</th>
+												<td class="txt-left">공고문 확인</td>
+											</tr>
+											<tr>
+												<th scope="row">월임대료(원)</th>
+												<td class="txt-left">공고문 확인</td>
+											</tr>
+											<tr>
+												<th scope="row">인터넷 청약</th>
+												<td class="txt-left">공고문 확인</td>
+											</tr>
+
+											</tbody>
+										</table>
+									</div>
+								
+									<div class="table colType mo init">
+										<table>
+											<caption>주택형 안내 테이블로 주택형,전용면적,금회공급 세대수,임대보증금,월임대료,인터넷청약 정보들을 제공합니다.</caption>
+											<colgroup class="block">
+												<col style="width: 120px;">
+												<col style="width: auto;">
+											</colgroup>
+											<tbody class="block type01">
+											<tr class="tb_house_con">
+												<th scope="row">주택유형</th>
+												<td class="txt-left">
+													36B
+													
+												</td>
+											</tr>
+											<tr>
+												<th scope="row">전용면적<br/>(m²)</th>
+												<td class="txt-left">36.7854</td>
+											</tr>
+											<tr>
+												<th scope="row">금회공급 세대수</th>
+												<td class="txt-left">25</td>
+											</tr>
+											<tr>
+												<th scope="row">임대보증금(원)</th>
+												<td class="txt-left">공고문 확인</td>
+											</tr>
+											<tr>
+												<th scope="row">월임대료(원)</th>
+												<td class="txt-left">공고문 확인</td>
+											</tr>
+											<tr>
+												<th scope="row">인터넷 청약</th>
+												<td class="txt-left">공고문 확인</td>
+											</tr>
+
+											</tbody>
+										</table>
+									</div>
+								
+									<div class="table colType mo init">
+										<table>
+											<caption>주택형 안내 테이블로 주택형,전용면적,금회공급 세대수,임대보증금,월임대료,인터넷청약 정보들을 제공합니다.</caption>
+											<colgroup class="block">
+												<col style="width: 120px;">
+												<col style="width: auto;">
+											</colgroup>
+											<tbody class="block type01">
+											<tr class="tb_house_con">
+												<th scope="row">주택유형</th>
+												<td class="txt-left">
+													36A
+													
+												</td>
+											</tr>
+											<tr>
+												<th scope="row">전용면적<br/>(m²)</th>
+												<td class="txt-left">36.7895</td>
+											</tr>
+											<tr>
+												<th scope="row">금회공급 세대수</th>
+												<td class="txt-left">21</td>
+											</tr>
+											<tr>
+												<th scope="row">임대보증금(원)</th>
+												<td class="txt-left">공고문 확인</td>
+											</tr>
+											<tr>
+												<th scope="row">월임대료(원)</th>
+												<td class="txt-left">공고문 확인</td>
+											</tr>
+											<tr>
+												<th scope="row">인터넷 청약</th>
+												<td class="txt-left">공고문 확인</td>
+											</tr>
+
+											</tbody>
+										</table>
+									</div>
+								
+									<div class="table colType mo init">
+										<table>
+											<caption>주택형 안내 테이블로 주택형,전용면적,금회공급 세대수,임대보증금,월임대료,인터넷청약 정보들을 제공합니다.</caption>
+											<colgroup class="block">
+												<col style="width: 120px;">
+												<col style="width: auto;">
+											</colgroup>
+											<tbody class="block type01">
+											<tr class="tb_house_con">
+												<th scope="row">주택유형</th>
+												<td class="txt-left">
+													36A1
+													
+												</td>
+											</tr>
+											<tr>
+												<th scope="row">전용면적<br/>(m²)</th>
+												<td class="txt-left">36.7895</td>
+											</tr>
+											<tr>
+												<th scope="row">금회공급 세대수</th>
+												<td class="txt-left">2</td>
+											</tr>
+											<tr>
+												<th scope="row">임대보증금(원)</th>
+												<td class="txt-left">공고문 확인</td>
+											</tr>
+											<tr>
+												<th scope="row">월임대료(원)</th>
+												<td class="txt-left">공고문 확인</td>
+											</tr>
+											<tr>
+												<th scope="row">인터넷 청약</th>
+												<td class="txt-left">공고문 확인</td>
+											</tr>
+
+											</tbody>
+										</table>
+									</div>
+								
+									<div class="table colType mo init">
+										<table>
+											<caption>주택형 안내 테이블로 주택형,전용면적,금회공급 세대수,임대보증금,월임대료,인터넷청약 정보들을 제공합니다.</caption>
+											<colgroup class="block">
+												<col style="width: 120px;">
+												<col style="width: auto;">
+											</colgroup>
+											<tbody class="block type01">
+											<tr class="tb_house_con">
+												<th scope="row">주택유형</th>
+												<td class="txt-left">
+													45A
+													
+												</td>
+											</tr>
+											<tr>
+												<th scope="row">전용면적<br/>(m²)</th>
+												<td class="txt-left">45.3244</td>
+											</tr>
+											<tr>
+												<th scope="row">금회공급 세대수</th>
+												<td class="txt-left">8</td>
+											</tr>
+											<tr>
+												<th scope="row">임대보증금(원)</th>
+												<td class="txt-left">공고문 확인</td>
+											</tr>
+											<tr>
+												<th scope="row">월임대료(원)</th>
+												<td class="txt-left">공고문 확인</td>
+											</tr>
+											<tr>
+												<th scope="row">인터넷 청약</th>
+												<td class="txt-left">공고문 확인</td>
+											</tr>
+
+											</tbody>
+										</table>
+									</div>
+								
+									<div class="table colType mo init">
+										<table>
+											<caption>주택형 안내 테이블로 주택형,전용면적,금회공급 세대수,임대보증금,월임대료,인터넷청약 정보들을 제공합니다.</caption>
+											<colgroup class="block">
+												<col style="width: 120px;">
+												<col style="width: auto;">
+											</colgroup>
+											<tbody class="block type01">
+											<tr class="tb_house_con">
+												<th scope="row">주택유형</th>
+												<td class="txt-left">
+													59A
+													
+												</td>
+											</tr>
+											<tr>
+												<th scope="row">전용면적<br/>(m²)</th>
+												<td class="txt-left">59.956</td>
+											</tr>
+											<tr>
+												<th scope="row">금회공급 세대수</th>
+												<td class="txt-left">4</td>
+											</tr>
+											<tr>
+												<th scope="row">임대보증금(원)</th>
+												<td class="txt-left">공고문 확인</td>
+											</tr>
+											<tr>
+												<th scope="row">월임대료(원)</th>
+												<td class="txt-left">공고문 확인</td>
+											</tr>
+											<tr>
+												<th scope="row">인터넷 청약</th>
+												<td class="txt-left">공고문 확인</td>
+											</tr>
+
+											</tbody>
+										</table>
+									</div>
+								
+
+								<!-- //table -->
+
+
+								<!-- //tabCont 사업지구별 공급정보-->
+								<!-- //table -->
+								<!-- alertBox -->
+								<div class="alertBox">
+									<div class="imgArea">
+										<img src="/images/common/img-loud-speaker.png" alt="안내사항 이미지">
+									</div>
+									<div class="txtArea">
+										<strong class="tit">공급정보 관련 안내사항</strong>
+										
+											<p class="desc">자세한 사항은 공고문을 확인해주시기
+												바랍니다.</p>
+											
+										
+									</div>
+								</div>
+							</div>
+						
+							<div class="tabCont housTable " id="houstab5">
+								<div class="table colType pc">
+									<table>
+										<caption>주택형 안내 테이블로 주택형,전용면적,금회공급 세대수,임대보증금,월임대료,인터넷청약 정보들을 제공합니다.</caption>
+										<colgroup>
+											<col style="width: auto;">
+											<col style="width: 160px;">
+											<col style="width: 160px;">
+											<col style="width: 160px;">
+											<col style="width: 160px;">
+											<col style="width: 160px;">
+										</colgroup>
+										<thead>
+										<tr>
+											<th scope="col">주택형</th>
+											<th scope="col">전용면적<br/>(m²)</th>
+											<th scope="col">금회공급 세대수</th>
+											<th scope="col">임대보증금(원)</th>
+											<th scope="col">월임대료(원)</th>
+											<th scope="col">인터넷청약</th>
+										</tr>
+										</thead>
+										<tbody class="tb_house">
+										
+											
+												
+													<tr class="tb_house_con">
+												
+												
+											
+											<td class="txt-center">
+												36A
+												
+											</td>
+											<td class="txt-center">36.8169</td>
+											<td class="txt-center">2</td>
+											<td class="txt-center">공고문 확인</td>
+											<td class="txt-center">공고문 확인</td>
+											<td class="txt-center">공고문 확인</td>
+											</tr>
+										
+											
+												
+													<tr class="tb_house_con">
+												
+												
+											
+											<td class="txt-center">
+												36B
+												
+											</td>
+											<td class="txt-center">36.9848</td>
+											<td class="txt-center">4</td>
+											<td class="txt-center">공고문 확인</td>
+											<td class="txt-center">공고문 확인</td>
+											<td class="txt-center">공고문 확인</td>
+											</tr>
+										
+										</tbody>
+									</table>
+								</div>
+								<!-- //table -->
+
+								<!-- table -->
+								
+									<div class="table colType mo init">
+										<table>
+											<caption>주택형 안내 테이블로 주택형,전용면적,금회공급 세대수,임대보증금,월임대료,인터넷청약 정보들을 제공합니다.</caption>
+											<colgroup class="block">
+												<col style="width: 120px;">
+												<col style="width: auto;">
+											</colgroup>
+											<tbody class="block type01">
+											<tr class="tb_house_con">
+												<th scope="row">주택유형</th>
+												<td class="txt-left">
+													36A
+													
+												</td>
+											</tr>
+											<tr>
+												<th scope="row">전용면적<br/>(m²)</th>
+												<td class="txt-left">36.8169</td>
+											</tr>
+											<tr>
+												<th scope="row">금회공급 세대수</th>
+												<td class="txt-left">2</td>
+											</tr>
+											<tr>
+												<th scope="row">임대보증금(원)</th>
+												<td class="txt-left">공고문 확인</td>
+											</tr>
+											<tr>
+												<th scope="row">월임대료(원)</th>
+												<td class="txt-left">공고문 확인</td>
+											</tr>
+											<tr>
+												<th scope="row">인터넷 청약</th>
+												<td class="txt-left">공고문 확인</td>
+											</tr>
+
+											</tbody>
+										</table>
+									</div>
+								
+									<div class="table colType mo init">
+										<table>
+											<caption>주택형 안내 테이블로 주택형,전용면적,금회공급 세대수,임대보증금,월임대료,인터넷청약 정보들을 제공합니다.</caption>
+											<colgroup class="block">
+												<col style="width: 120px;">
+												<col style="width: auto;">
+											</colgroup>
+											<tbody class="block type01">
+											<tr class="tb_house_con">
+												<th scope="row">주택유형</th>
+												<td class="txt-left">
+													36B
+													
+												</td>
+											</tr>
+											<tr>
+												<th scope="row">전용면적<br/>(m²)</th>
+												<td class="txt-left">36.9848</td>
+											</tr>
+											<tr>
+												<th scope="row">금회공급 세대수</th>
+												<td class="txt-left">4</td>
+											</tr>
+											<tr>
+												<th scope="row">임대보증금(원)</th>
+												<td class="txt-left">공고문 확인</td>
+											</tr>
+											<tr>
+												<th scope="row">월임대료(원)</th>
+												<td class="txt-left">공고문 확인</td>
+											</tr>
+											<tr>
+												<th scope="row">인터넷 청약</th>
+												<td class="txt-left">공고문 확인</td>
+											</tr>
+
+											</tbody>
+										</table>
+									</div>
+								
+
+								<!-- //table -->
+
+
+								<!-- //tabCont 사업지구별 공급정보-->
+								<!-- //table -->
+								<!-- alertBox -->
+								<div class="alertBox">
+									<div class="imgArea">
+										<img src="/images/common/img-loud-speaker.png" alt="안내사항 이미지">
+									</div>
+									<div class="txtArea">
+										<strong class="tit">공급정보 관련 안내사항</strong>
+										
+											<p class="desc">자세한 사항은 공고문을 확인해주시기
+												바랍니다.</p>
+											
+										
+									</div>
+								</div>
+							</div>
+						
+							<div class="tabCont housTable " id="houstab6">
+								<div class="table colType pc">
+									<table>
+										<caption>주택형 안내 테이블로 주택형,전용면적,금회공급 세대수,임대보증금,월임대료,인터넷청약 정보들을 제공합니다.</caption>
+										<colgroup>
+											<col style="width: auto;">
+											<col style="width: 160px;">
+											<col style="width: 160px;">
+											<col style="width: 160px;">
+											<col style="width: 160px;">
+											<col style="width: 160px;">
+										</colgroup>
+										<thead>
+										<tr>
+											<th scope="col">주택형</th>
+											<th scope="col">전용면적<br/>(m²)</th>
+											<th scope="col">금회공급 세대수</th>
+											<th scope="col">임대보증금(원)</th>
+											<th scope="col">월임대료(원)</th>
+											<th scope="col">인터넷청약</th>
+										</tr>
+										</thead>
+										<tbody class="tb_house">
+										
+											
+												
+													<tr class="tb_house_con">
+												
+												
+											
+											<td class="txt-center">
+												26A
+												
+											</td>
+											<td class="txt-center">26.0041</td>
+											<td class="txt-center">3</td>
+											<td class="txt-center">공고문 확인</td>
+											<td class="txt-center">공고문 확인</td>
+											<td class="txt-center">공고문 확인</td>
+											</tr>
+										
+											
+												
+													<tr class="tb_house_con">
+												
+												
+											
+											<td class="txt-center">
+												26A1
+												
+											</td>
+											<td class="txt-center">26.0041</td>
+											<td class="txt-center">3</td>
+											<td class="txt-center">공고문 확인</td>
+											<td class="txt-center">공고문 확인</td>
+											<td class="txt-center">공고문 확인</td>
+											</tr>
+										
+											
+												
+													<tr class="tb_house_con">
+												
+												
+											
+											<td class="txt-center">
+												26B
+												
+											</td>
+											<td class="txt-center">26.4111</td>
+											<td class="txt-center">3</td>
+											<td class="txt-center">공고문 확인</td>
+											<td class="txt-center">공고문 확인</td>
+											<td class="txt-center">공고문 확인</td>
+											</tr>
+										
+											
+												
+													<tr class="tb_house_con">
+												
+												
+											
+											<td class="txt-center">
+												26B1
+												
+											</td>
+											<td class="txt-center">26.4111</td>
+											<td class="txt-center">3</td>
+											<td class="txt-center">공고문 확인</td>
+											<td class="txt-center">공고문 확인</td>
+											<td class="txt-center">공고문 확인</td>
+											</tr>
+										
+											
+												
+													<tr class="tb_house_con">
+												
+												
+											
+											<td class="txt-center">
+												44
+												
+											</td>
+											<td class="txt-center">44.1405</td>
+											<td class="txt-center">10</td>
+											<td class="txt-center">공고문 확인</td>
+											<td class="txt-center">공고문 확인</td>
+											<td class="txt-center">공고문 확인</td>
+											</tr>
+										
+										</tbody>
+									</table>
+								</div>
+								<!-- //table -->
+
+								<!-- table -->
+								
+									<div class="table colType mo init">
+										<table>
+											<caption>주택형 안내 테이블로 주택형,전용면적,금회공급 세대수,임대보증금,월임대료,인터넷청약 정보들을 제공합니다.</caption>
+											<colgroup class="block">
+												<col style="width: 120px;">
+												<col style="width: auto;">
+											</colgroup>
+											<tbody class="block type01">
+											<tr class="tb_house_con">
+												<th scope="row">주택유형</th>
+												<td class="txt-left">
+													26A
+													
+												</td>
+											</tr>
+											<tr>
+												<th scope="row">전용면적<br/>(m²)</th>
+												<td class="txt-left">26.0041</td>
+											</tr>
+											<tr>
+												<th scope="row">금회공급 세대수</th>
+												<td class="txt-left">3</td>
+											</tr>
+											<tr>
+												<th scope="row">임대보증금(원)</th>
+												<td class="txt-left">공고문 확인</td>
+											</tr>
+											<tr>
+												<th scope="row">월임대료(원)</th>
+												<td class="txt-left">공고문 확인</td>
+											</tr>
+											<tr>
+												<th scope="row">인터넷 청약</th>
+												<td class="txt-left">공고문 확인</td>
+											</tr>
+
+											</tbody>
+										</table>
+									</div>
+								
+									<div class="table colType mo init">
+										<table>
+											<caption>주택형 안내 테이블로 주택형,전용면적,금회공급 세대수,임대보증금,월임대료,인터넷청약 정보들을 제공합니다.</caption>
+											<colgroup class="block">
+												<col style="width: 120px;">
+												<col style="width: auto;">
+											</colgroup>
+											<tbody class="block type01">
+											<tr class="tb_house_con">
+												<th scope="row">주택유형</th>
+												<td class="txt-left">
+													26A1
+													
+												</td>
+											</tr>
+											<tr>
+												<th scope="row">전용면적<br/>(m²)</th>
+												<td class="txt-left">26.0041</td>
+											</tr>
+											<tr>
+												<th scope="row">금회공급 세대수</th>
+												<td class="txt-left">3</td>
+											</tr>
+											<tr>
+												<th scope="row">임대보증금(원)</th>
+												<td class="txt-left">공고문 확인</td>
+											</tr>
+											<tr>
+												<th scope="row">월임대료(원)</th>
+												<td class="txt-left">공고문 확인</td>
+											</tr>
+											<tr>
+												<th scope="row">인터넷 청약</th>
+												<td class="txt-left">공고문 확인</td>
+											</tr>
+
+											</tbody>
+										</table>
+									</div>
+								
+									<div class="table colType mo init">
+										<table>
+											<caption>주택형 안내 테이블로 주택형,전용면적,금회공급 세대수,임대보증금,월임대료,인터넷청약 정보들을 제공합니다.</caption>
+											<colgroup class="block">
+												<col style="width: 120px;">
+												<col style="width: auto;">
+											</colgroup>
+											<tbody class="block type01">
+											<tr class="tb_house_con">
+												<th scope="row">주택유형</th>
+												<td class="txt-left">
+													26B
+													
+												</td>
+											</tr>
+											<tr>
+												<th scope="row">전용면적<br/>(m²)</th>
+												<td class="txt-left">26.4111</td>
+											</tr>
+											<tr>
+												<th scope="row">금회공급 세대수</th>
+												<td class="txt-left">3</td>
+											</tr>
+											<tr>
+												<th scope="row">임대보증금(원)</th>
+												<td class="txt-left">공고문 확인</td>
+											</tr>
+											<tr>
+												<th scope="row">월임대료(원)</th>
+												<td class="txt-left">공고문 확인</td>
+											</tr>
+											<tr>
+												<th scope="row">인터넷 청약</th>
+												<td class="txt-left">공고문 확인</td>
+											</tr>
+
+											</tbody>
+										</table>
+									</div>
+								
+									<div class="table colType mo init">
+										<table>
+											<caption>주택형 안내 테이블로 주택형,전용면적,금회공급 세대수,임대보증금,월임대료,인터넷청약 정보들을 제공합니다.</caption>
+											<colgroup class="block">
+												<col style="width: 120px;">
+												<col style="width: auto;">
+											</colgroup>
+											<tbody class="block type01">
+											<tr class="tb_house_con">
+												<th scope="row">주택유형</th>
+												<td class="txt-left">
+													26B1
+													
+												</td>
+											</tr>
+											<tr>
+												<th scope="row">전용면적<br/>(m²)</th>
+												<td class="txt-left">26.4111</td>
+											</tr>
+											<tr>
+												<th scope="row">금회공급 세대수</th>
+												<td class="txt-left">3</td>
+											</tr>
+											<tr>
+												<th scope="row">임대보증금(원)</th>
+												<td class="txt-left">공고문 확인</td>
+											</tr>
+											<tr>
+												<th scope="row">월임대료(원)</th>
+												<td class="txt-left">공고문 확인</td>
+											</tr>
+											<tr>
+												<th scope="row">인터넷 청약</th>
+												<td class="txt-left">공고문 확인</td>
+											</tr>
+
+											</tbody>
+										</table>
+									</div>
+								
+									<div class="table colType mo init">
+										<table>
+											<caption>주택형 안내 테이블로 주택형,전용면적,금회공급 세대수,임대보증금,월임대료,인터넷청약 정보들을 제공합니다.</caption>
+											<colgroup class="block">
+												<col style="width: 120px;">
+												<col style="width: auto;">
+											</colgroup>
+											<tbody class="block type01">
+											<tr class="tb_house_con">
+												<th scope="row">주택유형</th>
+												<td class="txt-left">
+													44
+													
+												</td>
+											</tr>
+											<tr>
+												<th scope="row">전용면적<br/>(m²)</th>
+												<td class="txt-left">44.1405</td>
+											</tr>
+											<tr>
+												<th scope="row">금회공급 세대수</th>
+												<td class="txt-left">10</td>
+											</tr>
+											<tr>
+												<th scope="row">임대보증금(원)</th>
+												<td class="txt-left">공고문 확인</td>
+											</tr>
+											<tr>
+												<th scope="row">월임대료(원)</th>
+												<td class="txt-left">공고문 확인</td>
+											</tr>
+											<tr>
+												<th scope="row">인터넷 청약</th>
+												<td class="txt-left">공고문 확인</td>
+											</tr>
+
+											</tbody>
+										</table>
+									</div>
+								
+
+								<!-- //table -->
+
+
+								<!-- //tabCont 사업지구별 공급정보-->
+								<!-- //table -->
+								<!-- alertBox -->
+								<div class="alertBox">
+									<div class="imgArea">
+										<img src="/images/common/img-loud-speaker.png" alt="안내사항 이미지">
+									</div>
+									<div class="txtArea">
+										<strong class="tit">공급정보 관련 안내사항</strong>
+										
+											<p class="desc">자세한 사항은 공고문을 확인해주시기
+												바랍니다.</p>
+											
+										
+									</div>
+								</div>
+							</div>
+						
+						<!-- //alertBox -->
+					</section>
+					<!-- //sectionGroup -->
+					<!-- sectionGroup -->
+					<section class="sectionGroup">
+						<div class="conttitArea">
+							<h5 class="tit">공급일정</h5>
+						</div>
+						
+							<div class="tabCont splyYmd" id="splyYmd1">
+								<!-- listArea -->
+								<div class="listArea type02">
+									<ul>
+										<li>
+											<p>온라인접수기간 : 2026.07.27 10:00 ~ 2026.08.03 16:00</p>
+										</li>
+										<li>
+											<p>현장접수기간 : 2026.07.27 10:00 ~ 2026.08.03 16:00</p>
+										</li>
+										<li>
+											<p>서류제출대상자 발표일 : 2026.08.12 10:00</p>
+										</li>
+										<li>
+											<p>서류제출기간 : 2026.08.24 10:00 ~ 2026.08.31 16:00</p>
+										</li>
+										<li>
+											<p>당첨자발표일 : 2026.11.20 10:00</p>
+										</li>
+										<li>
+											<p>계약기간 : </p>
+										</li>
+									</ul>
+								</div>
+								<!-- //listArea -->
+							</div>
+						
+							<div class="tabCont splyYmd" id="splyYmd2">
+								<!-- listArea -->
+								<div class="listArea type02">
+									<ul>
+										<li>
+											<p>온라인접수기간 : 2026.07.27 10:00 ~ 2026.08.03 16:00</p>
+										</li>
+										<li>
+											<p>현장접수기간 : 2026.07.27 10:00 ~ 2026.08.03 16:00</p>
+										</li>
+										<li>
+											<p>서류제출대상자 발표일 : 2026.08.12 10:00</p>
+										</li>
+										<li>
+											<p>서류제출기간 : 2026.08.24 10:00 ~ 2026.08.31 16:00</p>
+										</li>
+										<li>
+											<p>당첨자발표일 : 2026.11.20 10:00</p>
+										</li>
+										<li>
+											<p>계약기간 : </p>
+										</li>
+									</ul>
+								</div>
+								<!-- //listArea -->
+							</div>
+						
+							<div class="tabCont splyYmd" id="splyYmd3">
+								<!-- listArea -->
+								<div class="listArea type02">
+									<ul>
+										<li>
+											<p>온라인접수기간 : 2026.07.27 10:00 ~ 2026.08.03 16:00</p>
+										</li>
+										<li>
+											<p>현장접수기간 : 2026.07.27 10:00 ~ 2026.08.03 16:00</p>
+										</li>
+										<li>
+											<p>서류제출대상자 발표일 : 2026.08.12 10:00</p>
+										</li>
+										<li>
+											<p>서류제출기간 : 2026.08.24 10:00 ~ 2026.08.31 16:00</p>
+										</li>
+										<li>
+											<p>당첨자발표일 : 2026.11.20 10:00</p>
+										</li>
+										<li>
+											<p>계약기간 : </p>
+										</li>
+									</ul>
+								</div>
+								<!-- //listArea -->
+							</div>
+						
+							<div class="tabCont splyYmd" id="splyYmd4">
+								<!-- listArea -->
+								<div class="listArea type02">
+									<ul>
+										<li>
+											<p>온라인접수기간 : 2026.07.27 10:00 ~ 2026.08.03 16:00</p>
+										</li>
+										<li>
+											<p>현장접수기간 : 2026.07.27 10:00 ~ 2026.08.03 16:00</p>
+										</li>
+										<li>
+											<p>서류제출대상자 발표일 : 2026.08.12 10:00</p>
+										</li>
+										<li>
+											<p>서류제출기간 : 2026.08.24 10:00 ~ 2026.08.31 16:00</p>
+										</li>
+										<li>
+											<p>당첨자발표일 : 2026.11.20 10:00</p>
+										</li>
+										<li>
+											<p>계약기간 : </p>
+										</li>
+									</ul>
+								</div>
+								<!-- //listArea -->
+							</div>
+						
+							<div class="tabCont splyYmd" id="splyYmd5">
+								<!-- listArea -->
+								<div class="listArea type02">
+									<ul>
+										<li>
+											<p>온라인접수기간 : 2026.07.27 10:00 ~ 2026.08.03 16:00</p>
+										</li>
+										<li>
+											<p>현장접수기간 : 2026.07.27 10:00 ~ 2026.08.03 16:00</p>
+										</li>
+										<li>
+											<p>서류제출대상자 발표일 : 2026.08.12 10:00</p>
+										</li>
+										<li>
+											<p>서류제출기간 : 2026.08.24 10:00 ~ 2026.08.31 16:00</p>
+										</li>
+										<li>
+											<p>당첨자발표일 : 2026.11.20 10:00</p>
+										</li>
+										<li>
+											<p>계약기간 : </p>
+										</li>
+									</ul>
+								</div>
+								<!-- //listArea -->
+							</div>
+						
+							<div class="tabCont splyYmd" id="splyYmd6">
+								<!-- listArea -->
+								<div class="listArea type02">
+									<ul>
+										<li>
+											<p>온라인접수기간 : 2026.07.27 10:00 ~ 2026.08.03 16:00</p>
+										</li>
+										<li>
+											<p>현장접수기간 : 2026.07.27 10:00 ~ 2026.08.03 16:00</p>
+										</li>
+										<li>
+											<p>서류제출대상자 발표일 : 2026.08.12 10:00</p>
+										</li>
+										<li>
+											<p>서류제출기간 : 2026.08.24 10:00 ~ 2026.08.31 16:00</p>
+										</li>
+										<li>
+											<p>당첨자발표일 : 2026.11.20 10:00</p>
+										</li>
+										<li>
+											<p>계약기간 : </p>
+										</li>
+									</ul>
+								</div>
+								<!-- //listArea -->
+							</div>
+						
+					</section>
+					<!-- //sectionGroup -->
+					<section class="sectionGroup">
+						<div class="conttitArea">
+							<h5 class="tit">청약접수 유의사항</h5>
+						</div>
+						<!-- listArea -->
+						
+							<div class="tabCont etc" id="etc1">
+								<div class="listArea type02">
+									<ul>
+										<li>
+											
+												
+												<p style="white-space: pre-line;">금회 공고는 예비입주자 모집공고로 결과발표 후 공가발생시 대기순번에 따라 계약체결할 예정으로 입주대기시간이 발생함을 유의하여 주시기 바랍니다.</p>
+											
+										</li>
+									</ul>
+								</div>
+							</div>
+						
+							<div class="tabCont etc" id="etc2">
+								<div class="listArea type02">
+									<ul>
+										<li>
+											
+												
+												<p style="white-space: pre-line;">금회 공고는 예비입주자 모집공고로 결과발표 후 공가발생시 대기순번에 따라 계약체결할 예정으로 입주대기시간이 발생함을 유의하여 주시기 바랍니다.</p>
+											
+										</li>
+									</ul>
+								</div>
+							</div>
+						
+							<div class="tabCont etc" id="etc3">
+								<div class="listArea type02">
+									<ul>
+										<li>
+											
+												
+												<p style="white-space: pre-line;">금회 공고는 예비입주자 모집공고로 결과발표 후 공가발생시 대기순번에 따라 계약체결할 예정으로 입주대기시간이 발생함을 유의하여 주시기 바랍니다.</p>
+											
+										</li>
+									</ul>
+								</div>
+							</div>
+						
+							<div class="tabCont etc" id="etc4">
+								<div class="listArea type02">
+									<ul>
+										<li>
+											
+												
+												<p style="white-space: pre-line;">금회 공고는 예비입주자 모집공고로 결과발표 후 공가발생시 대기순번에 따라 계약체결할 예정으로 입주대기시간이 발생함을 유의하여 주시기 바랍니다.</p>
+											
+										</li>
+									</ul>
+								</div>
+							</div>
+						
+							<div class="tabCont etc" id="etc5">
+								<div class="listArea type02">
+									<ul>
+										<li>
+											
+												
+												<p style="white-space: pre-line;">금회 공고는 예비입주자 모집공고로 결과발표 후 공가발생시 대기순번에 따라 계약체결할 예정으로 입주대기시간이 발생함을 유의하여 주시기 바랍니다.</p>
+											
+										</li>
+									</ul>
+								</div>
+							</div>
+						
+							<div class="tabCont etc" id="etc6">
+								<div class="listArea type02">
+									<ul>
+										<li>
+											
+												
+												<p style="white-space: pre-line;">금회 공고는 예비입주자 모집공고로 결과발표 후 공가발생시 대기순번에 따라 계약체결할 예정으로 입주대기시간이 발생함을 유의하여 주시기 바랍니다.</p>
+											
+										</li>
+									</ul>
+								</div>
+							</div>
+						
+
+						<!-- //listArea -->
+					</section>
+
+					<!-- sectionGroup -->
+					<section class="sectionGroup">
+						<div class="conttitArea">
+							<h5 class="tit">기타사항</h5>
+						</div>
+						<!-- listArea -->
+						
+							<div class="tabCont etcMatr" id="etcMatr1">
+								<div class="listArea type02">
+									<ul>
+										<li>
+											
+												
+												<p style="white-space: pre-line;">상세내용은 공고문 참고</p>
+											
+										</li>
+									</ul>
+								</div>
+							</div>
+						
+							<div class="tabCont etcMatr" id="etcMatr2">
+								<div class="listArea type02">
+									<ul>
+										<li>
+											
+												
+												<p style="white-space: pre-line;">상세내용은 공고문 참고</p>
+											
+										</li>
+									</ul>
+								</div>
+							</div>
+						
+							<div class="tabCont etcMatr" id="etcMatr3">
+								<div class="listArea type02">
+									<ul>
+										<li>
+											
+												
+												<p style="white-space: pre-line;">상세내용은 공고문 참고</p>
+											
+										</li>
+									</ul>
+								</div>
+							</div>
+						
+							<div class="tabCont etcMatr" id="etcMatr4">
+								<div class="listArea type02">
+									<ul>
+										<li>
+											
+												
+												<p style="white-space: pre-line;">상세내용은 공고문 참고</p>
+											
+										</li>
+									</ul>
+								</div>
+							</div>
+						
+							<div class="tabCont etcMatr" id="etcMatr5">
+								<div class="listArea type02">
+									<ul>
+										<li>
+											
+												
+												<p style="white-space: pre-line;">상세내용은 공고문 참고</p>
+											
+										</li>
+									</ul>
+								</div>
+							</div>
+						
+							<div class="tabCont etcMatr" id="etcMatr6">
+								<div class="listArea type02">
+									<ul>
+										<li>
+											
+												
+												<p style="white-space: pre-line;">상세내용은 공고문 참고</p>
+											
+										</li>
+									</ul>
+								</div>
+							</div>
+						
+
+						<!-- //listArea -->
+					</section>
+					<!-- //sectionGroup -->
+				
+
+
+				<!-- sectionGroup -->
+				<section class="sectionGroup">
+					<div class="conttitArea">
+						<h5 class="tit">접수처 정보</h5>
+					</div>
+					<!-- table -->
+					<div class="table rowType pc">
+						<table>
+							<caption>접수처정보 테이블로 소재지,전화번호,유형 정보들을 제공합니다.</caption>
+							<colgroup>
+								<col style="width: 240px">
+								<col style="width: 360px">
+								<col style="width: 240px">
+								<col style="width: 360px">
+							</colgroup>
+							<tbody>
+							<tr>
+								<th scope="row">소재지</th>
+								<td colspan="3">
+									부산광역시 부산진구 신천대로 156 (부전동) 부산도시공사
+								</td>
+							</tr>
+							<tr>
+								<th scope="row">전화번호</th>
+								<td>051-810-9905~9910</td>
+								<th scope="row">유형</th>
+								<td>행복주택</td>
+							</tr>
+							</tbody>
+						</table>
+					</div>
+					<!-- //table -->
+
+
+					<!-- table -->
+					<div class="table rowType init mo">
+						<table>
+							<caption>접수처정보 테이블로 소재지,전화번호,유형 정보들을 제공합니다.</caption>
+							<colgroup class="block">
+								<col style="width: 120px">
+								<col style="width: auto">
+							</colgroup>
+							<tbody class="block type01">
+							<tr>
+								<th scope="row">소재지</th>
+								<td class="txt-left">
+									부산광역시 부산진구 신천대로 156 (부전동)
+
+								</td>
+							</tr>
+							<tr>
+								<th scope="row">전화번호</th>
+								<td class="txt-left">051-810-9905~9910</td>
+							</tr>
+							<tr>
+								<th scope="row">유형</th>
+								<td class="txt-left">행복주택</td>
+							</tr>
+							</tbody>
+						</table>
+					</div>
+					<!-- //table -->
+
+
+					<!-- alertBox -->
+					<div class="alertBox">
+						<div class="imgArea">
+							<img src="/images/common/img-loud-speaker.png" alt="안내사항 이미지">
+						</div>
+						<div class="txtArea">
+							<strong class="tit">안내사항</strong>
+							
+								
+								<p class="desc">[부산도시공사 공고 제2026-173호]2026년 행복주택 예비입주자 모집 정정공고부산도시공사에서 2026.07.20.(월) 공고한 “2026년 행복주택 예비입주자 모집공고(부산도시공사 공고 제2026-153호)” 건에 대하여 아래와 같이 정정공고 합니다.<br/><br/>■ 정정위치 : (공고문 5페이지) 공급대상주택 및 임대조건<br/>■ 정정내용 : “무상옵션 반영여부” 중 “가스,전기쿡탑”<br/>  - 대상주택 : 시청앞 행복주택 2단지 <br/>  - 대상평형 : 26OA, 26OB, 26ABCD<br/>  - 정정내용 : (당초) ×  → (정정) ○<br/>■ 기타 다른 사항은 변경이 없으므로 기존 공고문(부산도시공사 공고 제2026-153호, 2026.07.20.)을 참고하시기 바랍니다.<br/><br/><br/>[부산도시공사 공고 제2026-153호]<br/><br/>공고일정<br/> - 신청서 접수 : ’26. 7.27.(월) ~ ’26. 8. 3.(월)<br/> - 서류제출 대상자 선정 및 발표 : ’26. 8.12.(수)<br/> - 서류제출 대상자 서류접수 : ’26. 8.24.(월) ~ ’26. 8.31.(월)<br/> - 당첨자 발표 : ’26.11.20.(금)  <br/><br/>  ※ 행복주택의 청약접수는 전자신청 접수로 진행합니다.<br/>    (장애인 및 고령자 등 전자시스템을 통한 신청이 어려우신 분에 한하여 공사에 방문하여 신청이 가능합니다.)<br/>(현장접수 장소 : 부산광역시 부산진구 신천대로 156, 1층 행복주택 접수처, <br/> 현장접수 시간 : 점심시간(12:00~13:00) 제외, 10시~16시 접수하며 공휴일 제외)</p>
+							
+						</div>
+					</div>
+					<!-- //alertBox -->
+
+					<div class="btnArea center type03">
+						<button type="button" id="btn_submit" class="btn type02">목록으로</button>
+					</div>
+				</section>
+				<!-- //sectionGroup -->
+
+				<div class="btnArea type05">
+					<button type="button" class="btnTop">
+						<span class="hidden">맨 위로 이동</span>
+					</button>
+				</div>
+			</section>
+			<!-- //sectionWrap -->
+		</div>
+		<!-- //content -->
+		<form id="detailFrm" style="display:none;">
+			<input type="hidden" name="bizCd" id="bizCd" value="">
+			<input type="hidden" name="rcritNmtm" id="rcritNmtm" value="">
+			<input type="hidden" name="bizTyCd" id="bizTyCd" value="">
+			<input type="hidden" name="gnrlDrwtYn" id="gnrlDrwtYn" value="">
+			<input type="hidden" name="priorDrwtYn" id="priorDrwtYn" value="">
+			<input type="hidden" name="gnrlDrwtGroupTyCd" id="gnrlDrwtGroupTyCd" value="">
+			<input type="hidden" name="priorDrwtGroupTyCd" id="priorDrwtGroupTyCd" value="">
+			<input type="hidden" name="splySlsrtCd" id="splySlsrtCd" value="">
+			<input type="hidden" name="houseTyCd" id="houseTyCd" value="">
+		</form>
+
+		<form id="imgFrm" style="display:none;">
+			<input type="hidden" name="bizCd" id="bizCd2" value="BB164007">
+			<input type="hidden" name="atchFileSn" id="atchFileSn" value="1162">
+			<input type="hidden" name="atchFileDtlSn" id="atchFileDtlSn" value="">
+		</form>
+
+		<!-- FOOTER BEGIN-->
+		
+
+
+<!-- 푸터 영역 ///// -->
+<!--footer-->
+<div id="footer">
+	<div class="customerArea">
+		<span class="tit colorType aqua">고객센터</span>
+		<a href="tel:051-810-1200" class="tel">
+			<strong>051-810-1200</strong>
+		</a>
+		<span class="time">(월~금 09:00 ~ 17:30)</span>
+	</div>
+
+	<div class="footArea">
+		<div class="cr">
+			<div class="ex"><p>BMC청약센터는 부산도시공사 임대주택의 공급안내 및 청약신청을 위한 사이트입니다</p></div>
+			<div class="address">
+				<address>[47281] 부산광역시 부산진구 신천대로 156 TEL. 051 ) 810-1200</address>
+			</div>
+			<div class="copyright"><p>COPYRIGHTⓒ2023 BY BMC. ALL RIGHT RESERVED.</p></div>
+		</div>
+		<div class="sitemap">
+			<a href="https://www.bmc.busan.kr/index.do?menuCd=DOM_000000108004000000" target="_blank" tabindex="-1" style="font-weight:bolder; color:#108CCF" title="부산도시공사 메인홈페이지로 이동합니다." target="_blank">개인정보처리방침</a>
+			<a href="/smw/smw051010/email.do" tabindex="-1">이메일 추출방지정책</a>
+			<!-- <a href="#none">공동인증서 관리</a> -->
+			<a href="/smw/smw061010/siteMap.do" tabindex="-1">사이트맵</a>
+		</div>
+	</div>
+</div>
+
+<div class="loding" id="commonProgressBar">
+	<div class="loging">
+		<div id="load1"></div>
+		<div id="load2"></div>
+		<div id="load3"></div>
+		<div id="load4"></div>
+		<div id="load5"></div>
+	</div>
+	<div class="txt">
+		<p>처리중입니다</p>
+		<p class="forWait">잠시만 기다려 주세요</p>
+	</div>
+</div>
+
+<div class="loding" id="actNoProgressBar">
+	<div class="loging">
+		<div id="load1"></div>
+		<div id="load2"></div>
+		<div id="load3"></div>
+		<div id="load4"></div>
+		<div id="load5"></div>
+	</div>
+	<div class="txt">
+		<p>조회중입니다</p>
+		<p class="forWait">잠시만 기다려 주세요</p>
+	</div>
+</div>
+<input type="hidden" value="0" id="accCheck">
+
+
+<!-- msg popup -->
+<div id="msgPop" class="popup" style="width: 550px; display:none; position:fixed; z-index:20000">
+</div>
+<!-- //msg popup -->
+
+<script>
+    //계좌검색버튼 클릭 이벤트
+    progressBarClose();
+
+    var gvPgmId = "SMW113010M01";
+    var gvPgmIdMain = $(location).attr('pathname');
+    
+    var gvPgmIdSplit = gvPgmIdMain.split("/");
+    var gvPgmIdSub = "";
+    
+
+    if (gvPgmIdSplit.length > 2) {
+        var gvPgmIdSub = gvPgmIdSplit[2];
+        if (gvPgmIdSub.length > 7) {
+            gvPgmIdSub = gvPgmIdSub.substr(3, 4);
+        } else {
+            gvPgmIdSub = "";
+        }
+    }
+
+    window.onpageshow = function (event) {
+        var commonProgressBar = (window.name == "iframeDialog") ? parent.document.getElementById("commonProgressBar") : document.getElementById("commonProgressBar");
+        commonProgressBar.style.display = "none";
+    };
+
+    /*계좌유효성 검사를 위한 로딩창 Open  */
+    /**
+     * @function
+     * @description 프로그레스 (로딩바) 바 오픈
+     * @name progressBarOpen
+     * @constructor 김도훈 주임
+     */
+    function progressBarOpen() {
+        var commonProgressBar = (window.name == "iframeDialog") ? parent.document.getElementById("actNoProgressBar") : document.getElementById("actNoProgressBar");
+        commonProgressBar.style.display = "block";
+        // 누른 시점의 화면 가운데에 띄우기
+        commonProgressBar.style.position = 'fixed';
+        commonProgressBar.style.top = '50%';
+        commonProgressBar.style.left = '50%';
+        commonProgressBar.style.transform = 'translate(-50%, -50%)';
+    }
+
+    /*계좌유효성 검사를 위한 로딩창 Close  */
+    /**
+     * @function
+     * @description 프로그레스 (로딩바) 바 클로즈
+     * @name progressBarClose
+     * @constructor 김도훈 주임
+     */
+    function progressBarClose() {
+        var commonProgressBar = (window.name == "iframeDialog") ? parent.document.getElementById("actNoProgressBar") : document.getElementById("actNoProgressBar");
+        commonProgressBar.style.display = "none";
+    }
+
+
+    /*-------------------- 유효성 관련 함수 --------------------*/
+    // 입력값이 NULL인지 체크
+    C_isNull = function (asValue) {
+        if (asValue == null || asValue == undefined || asValue.toString().replace(/ /g, "") == "") {
+            return true;
+        }
+
+        return false;
+    };
+
+
+    C_fillZero = function (str, maxLen) {
+        var len = str;
+        var zero = "";
+
+        if (typeof str == 'number') len = '' + str;
+
+        if (len.length < maxLen) {
+            for (var i = len.length; i < maxLen; i++) {
+                zero += "0";
+            }
+        }
+        return (zero + '' + str);
+    };
+
+
+    /**
+     계좌번호 체크
+
+     ====================문의====================
+     쿠콘 한용만 팀장
+     02-3779-4906
+     ==========================================
+     --호출한쪽에 만들거
+     scwin.fn_rtnAcctTrue = function(  ) { //정상계좌처리 };
+     scwin.fn_rtnAcctFalse = function(  ) { //이상계좌처리 };
+     */
+    /**
+     * @description 계좌번호 유효성 검사
+     * @param bankCd  공통코드 N307을 사용한다
+     * @param searchAcctNo 계좌번호
+     * @param acnmNo 사업자, 주민등록번호
+     * @constructor 김도훈 주임
+     */
+    var bankCd = null;
+    var searchAcctNo = null;
+    var acnmNo = null;
+    var SEQ = null;
+    var chkStus = false;
+    C_AcctVldChk = function (bankCd, searchAcctNo, acnmNo) {
+        //프로그레스 바(로딩창) 오픈
+        progressBarOpen();
+        var tarUrl = '';
+        var itemStr = '';
+
+        if (C_isNull(bankCd)) itemStr = "은행이 ";
+        if (C_isNull(searchAcctNo)) itemStr = "계좌번호가  ";
+        if (C_isNull(acnmNo)) itemStr = "사업자번호 또는 주민등록번호가  ";
+
+        if (!C_isNull(itemStr)) {
+            $net.alert(itemStr + " 입력되지 않았습니다.");
+            progressBarClose();
+            return false;
+        }
+        //트랜잭션을 위한 시퀀스 채번
+        var vUrl = "/co/coz/COZBankNoValidCheck.do";
+        var tarUrl = "";
+
+        if (window.location.host.indexOf("127.0.0.1") > -1 ||
+            window.location.host.indexOf("localhost") > -1 ||
+            window.location.host.indexOf("nbiismisdev.bmc.busan.kr") > -1 ||
+            window.location.host.indexOf("192.1.2.16:10400") > -1
+        )
+            tarUrl = "https://gw.coocon.co.kr/sol/gateway/acctnm_rcms_wapi.jsp?";	//운영
+//             tarUrl = "https://dev.coocon.co.kr/sol/gateway/acctnm_rcms_wapi.jsp?";	//개발
+        else
+            tarUrl = "https://gw.coocon.co.kr/sol/gateway/acctnm_rcms_wapi.jsp?";	//운영
+
+
+        var oOptions = new Object();
+        oOptions.CallBack = "fn_selectLovSeqCallBack";
+        oOptions.ErrCallBack = "fn_selectLovSeqErrCallBack";
+        oOptions.dataType = "json";
+        oOptions.requestData = {
+            //param제출
+            "bankCd": bankCd // 은행코드
+            , "searchAcctNo": searchAcctNo     // 계좌번호
+            , "acnmNo": acnmNo                   	 // 사업자, 주민등록번호
+            , "tarUrl": tarUrl // 타겟 url
+            , "jsonData": "JSONData=" + encodeURIComponent(encodeURIComponent(C_AcctVldChkJson(bankCd, searchAcctNo, acnmNo, SEQ)))
+            , "jsonDataEnd": encodeURIComponent(encodeURIComponent('"}]}'))
+        }
+		alert('bankCd' + bankCd + '   ');
+        
+        $net.ajax(vUrl, oOptions);
+
+
+        // // 코쿤서버와 ajax 통신
+        // var data = $.ajax(
+        //     {
+        //         dataType: "jsonp",
+        //         jsonp: "callback",
+        //         url: tarUrl,
+        //         data: "JSONData=" + encodeURIComponent(encodeURIComponent(C_AcctVldChkJson(bankCd, searchAcctNo, acnmNo, SEQ))),
+        //         async: false,
+        //         success: function (data) {
+        //             //$("#source").text( jQuery.stringify( data ));
+        //             if (data.RSLT_CD != "000") {
+        //                 $net.alert(data.RSLT_CD + " : " + data.RSLT_MSG);
+        //                 //$net.alert(data.RSLT_MSG,"scwin.fn_rtnAcct",false,"확인");
+        //
+        //                 //프로그래스바  닫기.. GOOD
+        //                 progressBarClose();
+        //             } else {
+        //                 $(data.RESP_DATA).each(function (key, val) {
+        //                     //$("#acctnm").text(val.ACCT_NM);
+        //                     $net.alert("예금주 : " + val.ACCT_NM + ". 정상계좌 입니다.");
+        //                     //$net.alert("예금주 : " + val.ACCT_NM + ". 정상계좌 입니다.","scwin.fn_rtnAcct",true,"확인");
+        //
+        //                     //프로그래스바  닫기.. GOOD
+        //                     progressBarClose();
+        //                     return true;
+        //                 })
+        //             }
+        //         },
+        //         error: function (msg) {
+        //             //alert("XML Data에 오류가 발생되었습니다.");
+        //
+        //             $net.alert("XML Data에 오류가 발생되었습니다." + msg);
+        //             //$net.alert("XML Data에 오류가 발생되었습니다.","scwin.fn_rtnAcct",false,"확인");
+        //             console.log(msg);
+        //             progressBarClose();
+        //         }
+        //     });
+
+    }
+
+
+    // 트랜잭션 성공 콜백
+    function fn_selectLovSeqCallBack(vRes) {
+        var jsonString = vRes.resultStr;
+        var jsonObject = JSON.parse(jsonString);
+        if (jsonObject.RSLT_CD != "000") {
+            $net.alert(jsonObject.RSLT_CD + " : " + jsonObject.RSLT_MSG);
+            // console.log(jsonString.RSLT_CD);
+            //프로그래스바  닫기.. GOOD
+            progressBarClose();
+        } else {
+            $(jsonObject.RESP_DATA).each(function (key, val) {
+                //$("#acctnm").text(val.ACCT_NM);
+                $net.alert("예금주 : " + val.ACCT_NM + ". 정상계좌 입니다.");
+
+                //프로그래스바  닫기.. GOOD
+                progressBarClose();
+                $('#accCheck').val('1');
+            })
+            progressBarClose();
+        }
+    }
+
+    function fn_selectLovSeqErrCallBack(vRes) {
+        $net.alert("XML Data에 오류가 발생되었습니다.")
+        $('#accCheck').val('0');
+        progressBarClose();
+    }
+
+    //위에딸린거
+
+    /**
+     * @description json 데이터 생성
+     * @param bankCd  공통코드 N307을 사용한다
+     * @param searchAcctNo 계좌번호
+     * @param acnmNo 사업자, 주민등록번호
+     * @param SEQ 트랜잭션 키 생성을 위한 시퀀스
+     * @returns {string}
+     * @constructor 김도훈 주임
+     */
+    C_AcctVldChkJson = function (bankCd, searchAcctNo, acnmNo, SEQ) {
+
+        var jsondata = "";
+        var key = '';
+        if (window.location.host.indexOf("127.0.0.1") > -1 || window.location.host.indexOf("localhost") > -1 || window.location.host.indexOf("nbiismisdev.bmc.busan.kr") > -1)
+            key = "laDVfKxLHMWWpGrufgoC";	//운영
+//             key = "ACCTTEST";	//개발
+        else
+            key = "laDVfKxLHMWWpGrufgoC";	//운영
+
+        jsondata += '{';
+        jsondata += '"SECR_KEY":"' + key + '",';
+        jsondata += '"KEY":"' + "ACCTNM_RCMS_WAPI" + '",';
+        jsondata += '"DOMN":"' + location.href + '",';
+        // jsondata += '"DOMN":"' + url2 + '",';
+        jsondata += '"TRG":"",';
+        jsondata += '"SORT":"",';
+        jsondata += '"PG_PER_CNT":"",';
+        jsondata += '"PG_NO":"",';
+        jsondata += '"REQ_DATA":[{';
+        jsondata += '"BANK_CD":"' + bankCd + '",';	//은행코드
+        jsondata += '"SEARCH_ACCT_NO":"' + searchAcctNo + '",';	//계좌번호
+        jsondata += '"ACNM_NO":"' + acnmNo + '",';		//사업자or주민번호
+        jsondata += '"ICHE_AMT":"' + "" + '",';
+        // jsondata += '"TRSC_SEQ_NO":"' + C_fillZero(SEQ, 7) + '"}]}';	//트랜젝션키 같은거...중복되면 안됨 하루에 한번 초기화
+        jsondata += '"TRSC_SEQ_NO":"';	//트랜젝션키 같은거...중복되면 안됨 하루에 한번 초기화
+
+        jsondata += '';
+        return jsondata;
+    }
+
+    /*모바일버전 대응 Start*/
+
+    /**
+     * 주어진 선택자에 해당하는 요소들 중에서, null이나 빈 문자열이 아닌 첫 번째 값을 반환합니다.
+     * PC 값이나, Mobile 둘중 모든 값을 가져오기 위함입니다.
+     * Input 에서 Name을 선택자로 잡은 모든 값을 처리합니다.
+     *
+     * @param {string} selector - jQuery 선택자 문자열.
+     * @returns {?string} 첫 번째 유효한 값. 만약 적합한 값이 없다면 null을 반환합니다.
+     * @constructor 김도훈 주임
+     */
+    function getFirstNonEmptyValue(selector) {
+        var value = '';
+        $(selector).each(function () {
+            var tempVal = $(this).val();
+            if (tempVal !== null || tempVal.trim() !== '') {
+                value = tempVal;
+                return false; // 첫 번째 일치 항목을 찾으면 순회 종료
+            }
+        });
+        return value;
+    }
+
+    /**
+     * 주어진 입력 요소(jQuery 객체)들 중에서 화면 너비에 따라 적절히 활성화되어야 하는 요소의 값을 반환합니다.
+     * 이 함수는 .mo 또는 .pc 클래스를 가진 부모 요소 내에 위치한 입력 요소들을 처리하기 위해 설계되었습니다.
+     * 화면 너비가 1024px 미만일 경우 '.mo' 클래스를 가진 부모 요소 내의 입력 요소를,
+     * 그렇지 않을 경우 '.mo' 클래스를 가지지 않는 입력 요소의 값을 반환합니다.
+     *
+     * @param {jQuery} $inputs - 검사할 입력 요소들의 jQuery 객체 컬렉션.
+     * @returns {string} 활성화된 입력 요소의 값. 만약 적절한 요소가 없다면 빈 문자열을 반환합니다.
+     * @constructor 김도훈 주임
+     */
+    function getResponsiveInputValue($inputs) {
+        // PC와 모바일 환경의 기준을 설정합니다.
+        const breakpointPC = 1024;
+
+        // 현재 화면의 가로 길이를 확인합니다.
+        const viewportWidth = $(window).width();
+
+        // 활성화된 input 값을 찾기 위한 변수입니다.
+        let activeValue = '';
+
+        // 입력된 jQuery 객체가 화면에 보이는 input들 중 조건에 맞는 것의 값을 가져옵니다.
+        $inputs.each(function () {
+            const $input = $(this);
+
+            // 현재 input의 부모 중 'mo' 또는 'pc' 클래스를 가진 요소를 찾습니다.
+            const $parent = $input.closest('.mo, .pc');
+
+            // 모바일 환경(1024px 미만)에서 '.mo' 클래스를 가진 부모를 가지는 요소를 우선적으로 처리합니다.
+            if (viewportWidth < breakpointPC && $parent.hasClass('mo')) {
+                activeValue = $input.val();
+                return false; // 값을 찾았으므로 반복 종료
+            }
+            // PC 환경(1024px 이상)에서는 '.mo' 클래스가 없는 요소를 처리합니다.
+            else if (viewportWidth >= breakpointPC && !$parent.hasClass('mo')) {
+                activeValue = $input.val();
+                return false; // 값을 찾았으므로 반복 종료
+            }
+        });
+
+        // 활성화된 input의 value를 반환합니다.
+        return activeValue;
+    }
+
+
+    // 모든 select 요소를 선택합니다.
+    const selects = document.querySelectorAll('select');
+
+    // 각 select 요소에 대해 반복 실행합니다.
+    selects.forEach(function (select) {
+        // select 요소의 변경을 감지하는 이벤트 리스너를 추가합니다.
+        select.addEventListener('change', function () {
+            // 모든 options의 selected 속성을 제거합니다.
+            Array.from(this.options).forEach(option => {
+                option.removeAttribute('selected');
+            });
+
+            // 현재 선택된 option에 selected 속성을 추가합니다.
+            this.options[this.selectedIndex].setAttribute('selected', 'selected');
+        });
+    });
+
+
+    /**
+     * 주어진 선택자에 해당하는 각 select 요소에서 현재 선택된 값을 확인하고,
+     * 그 중 첫 번째로 발견된 유효한 값을 반환합니다.
+     * 유효한 값이란 null이 아니고 빈 문자열이 아닌 값을 의미합니다.
+     *
+     * @param {string} selector - select 요소를 찾기 위한 jQuery 선택자.
+     * @returns {?string} 첫 번째 유효한 선택된 값. 만약 유효한 선택된 값이 없다면 null을 반환합니다.
+	 * @constructor 김도훈 주임
+     */
+    function getFirstSelectedValue(selector) {
+        var value = null;
+        $(selector).each(function () {
+            var selectedValue = $(this).find('option:selected').val();
+            if (selectedValue && selectedValue.trim() !== '' && selectedValue != '선택') {
+                value = selectedValue;
+                return false; // 첫 번째 유효한 선택된 값을 찾으면 순회 종료
+            }
+        });
+        return value;
+    }
+
+    /*모바일버전 대응 END*/
+    $('.menu a[href*="' + gvPgmIdSub + '"]').parent().parent().parent().parent().parent().parent().addClass("active");
+    var gvLi = $('.menu a[href*="' + gvPgmIdSub + '"]');
+    gvLi.css("color", "#000");
+    $('.login a[href*="' + gvPgmIdSub + '"]').css("color", "#fff");
+    $('.menu a[href*="' + gvPgmIdSub + '"]').parent().parent().parent().addClass("active");
+
+</script>
+
+
+		<!-- FOOTER END-->
+	</main>
+</div>
+<script type="text/javascript">
+	
+    function open_map(obj, urI) {
+        var SuplyInfoUrl = urI;
+
+        // 사업지구별 공급정보
+        if (obj == "map01") {
+            if (SuplyInfoUrl == '' || SuplyInfoUrl == null) {
+                alert('등록된 링크가 존재하지 않습니다.\n관리자에게 문의 바랍니다.');
+                return false;
+            }
+            window.open(SuplyInfoUrl, '_blank');
+        }
+
+        // 접수처
+        if (obj == "map02") {
+            var infofcUrl = urI;
+
+            if (infofcUrl == '' || infofcUrl == null) {
+                alert('등록된 링크가 존재하지 않습니다.\n관리자에게 문의 바랍니다.');
+                return false;
+            }
+            window.open(infofcUrl, '_blank');
+        }
+    }
+
+    function tab_move(obj, objIdx) {
+
+        //공급정보 li탭
+        var len = document.getElementsByClassName("pbancTab").length;
+        for (var i = 1; i <= len; i++) { //1~3
+            if (i == obj) {
+                document.querySelector("#li" + i).className = "active pbancTab";
+            } else {
+                document.querySelector("#li" + i).className = "pbancTab";
+            }
+        }
+
+        //공급정보 tab
+        for (var i = 1; i <= len; i++) {
+            if (i == obj) {
+                document.querySelector("#tab" + i).className = "tabCont tabTable active";
+            } else {
+                document.querySelector("#tab" + i).className = "tabCont tabTable ";
+            }
+        }
+
+        //주택형  안내
+        var houstabLen = document.getElementsByClassName("housTable").length;
+        for (var i = 1; i <= len; i++) {
+            if (i == obj) {
+                document.querySelector("#houstab" + i).className = "tabCont housTable active";
+            } else {
+                document.querySelector("#houstab" + i).className = "tabCont housTable";
+            }
+        }
+
+        //공급일정
+        var splyYmdLen = document.getElementsByClassName("splyYmd").length;
+        for (var i = 1; i <= len; i++) {
+            if (i == obj) {
+                document.querySelector("#splyYmd" + i).className = "tabCont splyYmd active";
+            } else {
+                document.querySelector("#splyYmd" + i).className = "tabCont splyYmd";
+            }
+        }
+
+        //기타사항
+        var etcMatrLen = document.getElementsByClassName("etcMatr").length;
+        for (var i = 1; i <= len; i++) {
+            if (i == obj) {
+                document.querySelector("#etcMatr" + i).className = "tabCont etcMatr active";
+            } else {
+                document.querySelector("#etcMatr" + i).className = "tabCont etcMatr";
+            }
+        }
+
+        var etcMatrLen = document.getElementsByClassName("etc").length;
+        for (var i = 1; i <= len; i++) {
+            if (i == obj) {
+                document.querySelector("#etc" + i).className = "tabCont etc active";
+            } else {
+                document.querySelector("#etc" + i).className = "tabCont etc";
+            }
+        }
+
+
+        //단지관련 이미지 정보 li
+        var ctlgImgLiLen = document.getElementsByClassName("ctlgImgLi").length;
+        for (var i = 1; i <= ctlgImgLiLen; i++) {
+            document.querySelector("#ctlgImgLi" + i).className = "ctlgImgLi"
+        }
+
+
+        for (var i = 1; i <= ctlgImgLiLen; i++) {
+            if (document.querySelector("#ctlgImgLi" + i + " button").value == obj) {
+                if (gfn_isNull(document.querySelector(".ctlgImgLi.active"))) {
+                    document.querySelector("#ctlgImgLi" + i).className = "ctlgImgLi active";
+                } else {
+                    document.querySelector("#ctlgImgLi" + i).className = "ctlgImgLi";
+                }
+                $("#ctlgImgLi" + i).show();
+            } else {
+                document.querySelector("#ctlgImgLi" + i).className = "ctlgImgLi";
+                $("#ctlgImgLi" + i).hide();
+            }
+        }
+
+
+        var ctlgImgDivLen = document.getElementsByClassName("ctlgImgDiv").length;
+
+        for (var i = 1; i <= ctlgImgDivLen; i++) {
+            document.querySelector("#ctlgImgDiv" + i).className = "tabCont ctlgImgDiv";
+            //$("#ctlgImgDiv" + i).hide();
+            //$("#ctlgImgDiv" + i).css("display","none");
+        }
+
+
+        for (var i = 1; i <= ctlgImgDivLen; i++) {
+            if (document.querySelector("#ctlgImgDiv" + i + " input").value == obj) {
+                if (gfn_isNull(document.querySelector(".tabCont.ctlgImgDiv.active"))) {
+                    document.querySelector("#ctlgImgDiv" + i).className = "tabCont ctlgImgDiv active";
+                    //$("#ctlgImgDiv" + i).show();
+                    //$("#ctlgImgDiv" + i).css("display","");
+                } else {
+                    document.querySelector("#ctlgImgDiv" + i).className = "tabCont ctlgImgDiv";
+                    //$("#ctlgImgDiv" + i).hide();
+                    //$("#ctlgImgDiv" + i).css("display","none");
+                }
+            } else {
+                document.querySelector("#ctlgImgDiv" + i).className = "tabCont ctlgImgDiv";
+                //$("#ctlgImgDiv" + i).hide();
+                //$("#ctlgImgDiv" + i).css("display","none");
+            }
+        }
+
+    }
+
+
+    function fn_imgDown() {
+        var bizCd = $("#bizCd2").val();
+        var atchFileSn = $("#atchFileSn").val();
+        var atchFileDtlSn = $("#atchFileDtlSn").val();
+
+        var nextUrl = "/smw/smw113010/selectCtlgFileDown.do?bizCd="+bizCd+"&atchFileSn="+atchFileSn+"&atchFileDtlSn="+atchFileDtlSn+"";
+
+        location.href = nextUrl
+    }
+
+    function fn_chgSn(bizCd, sn, dtlSn, obj, objIdx) { //단지관련 이미지 정보 li태그 클릭시
+        $("#bizCd2").val(bizCd);
+        $("#atchFileSn").val(sn);
+        $("#atchFileDtlSn").val(dtlSn);
+        //tab_move(obj,objIdx);
+
+
+        var ctlgImgDivLen = document.getElementsByClassName("ctlgImgDiv").length;
+        for (var i = 1; i <= ctlgImgDivLen; i++) {
+            document.querySelector("#ctlgImgDiv" + i).className = "tabCont ctlgImgDiv";
+            //$("#ctlgImgDiv" + i).hide();
+            //$("#ctlgImgDiv" + i).css("display","none");
+        }
+
+
+        for (var i = 1; i <= ctlgImgDivLen; i++) {
+            if (objIdx == i) {
+                console.log(document.querySelector(".tabCont.ctlgImgDiv.active"))
+                document.querySelector("#ctlgImgDiv" + i).className = "tabCont ctlgImgDiv active";
+                //$("#ctlgImgDiv" + i).show();
+                //$("#ctlgImgDiv" + i).css("display","");
+            } else {
+                document.querySelector("#ctlgImgDiv" + i).className = "tabCont ctlgImgDiv";
+                //$("#ctlgImgDiv" + i).hide();
+                //$("#ctlgImgDiv" + i).css("display","none");
+            }
+        }
+
+
+    }
+
+    $(function () {
+        /* $('#sub_content tab_box').on('click', 'a', function() {
+        }); */
+
+        $('#btn_submit').on('click', function () {	//목록으로
+            $net.href("/smw/smw113010/selectPbancRentHouseList.do;BMCW_JSESSIONID=788D02AE61778B6298596B8AEBE34757.JVMAPPLYCENTER22");
+        });
+
+        // 주택형 상세
+        $('.tb_house_con').on('click', 'button', function () {
+            var bizCd = $(this).data('bizcd');
+            var rcritNmtm = $(this).data('rcritnmtm');
+            var bizTyCd = $(this).data('biztycd');
+            var gnrlDrwtYn = $(this).data('gnrldrwtyn');
+            var priorDrwtYn = $(this).data('priordrwtyn');
+            var gnrlDrwtGroupTyCd = $(this).data('gnrldrwtgrouptycd');
+            var priorDrwtGroupTyCd = $(this).data('priordrwtgrouptycd');
+            var splySlsrtCd = $(this).data('splyslsrtcd');
+            var houseTyCd = $(this).data('housetycd');
+
+            $('#bizCd').val(bizCd);
+            $('#rcritNmtm').val(rcritNmtm);
+            $('#bizTyCd').val(bizTyCd);
+            $('#gnrlDrwtYn').val(gnrlDrwtYn);
+            $('#priorDrwtYn').val(priorDrwtYn);
+            $('#gnrlDrwtGroupTyCd').val(gnrlDrwtGroupTyCd);
+            $('#priorDrwtGroupTyCd').val(priorDrwtGroupTyCd);
+            $('#splySlsrtCd').val(splySlsrtCd);
+            $('#houseTyCd').val(houseTyCd);
+
+            var oPopupOptions = new Object();
+            oPopupOptions.title = "주택형 조회";
+            oPopupOptions.url = "/smw/smw113010/selectPblancHouseTyDetail.do;BMCW_JSESSIONID=788D02AE61778B6298596B8AEBE34757.JVMAPPLYCENTER22";
+            oPopupOptions.clazz = "pop_w_700";
+            oPopupOptions.height = "450";
+            oPopupOptions.resizable = true;
+            oPopupOptions.formId = "detailFrm";
+            oPopupOptions.dialogArguments;
+
+            $pop.dialog(oPopupOptions);
+        });
+        tab_move("1", "1");
+
+    });
+    
+    //문서미리보기 뷰어 클릭이벤트
+  	$(document).on("click", ".previewA", function (e) {
+  		e.preventDefault();
+  	    
+  		const href = $(this).attr("href");
+    	
+    	window.open(href, "_blank", "width=1200,height=900");
+	});
+</script>
+
+</body>
+</html>
