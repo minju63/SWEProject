@@ -1,0 +1,4021 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+    window.addEventListener('DOMContentLoaded', function() {
+        setupCSRF();
+        handleMultipartForms();
+
+        setupMutationObserver();
+    });
+
+    function setupCSRF() {
+        var token = getCSRFToken();
+        if (token) {
+            setupAjaxCSRF(token);
+
+            addCSRFToForms(token);
+        } else {
+            console.error("CSRF 토큰을 찾을 수 없습니다.");
+        }
+    }
+
+    function getCSRFToken() {
+        var metaToken = document.querySelector('meta[name="_csrf"]');
+        var token = metaToken ? metaToken.getAttribute('content') : null;
+
+        if (!token) {
+            var inputToken = document.querySelector('input[name="_csrf"]');
+            token = inputToken ? inputToken.value : null;
+        }
+
+        return token;
+    }
+
+    function setupAjaxCSRF(token) {
+        var header = document.querySelector('meta[name="_csrf_header"]');
+        var headerName = header ? header.getAttribute('content') : "X-CSRF-TOKEN";
+
+        if (window.jQuery) {
+            $(document).ajaxSend(function(e, xhr, options) {
+                xhr.setRequestHeader(headerName, token);
+            });
+        } 
+    }
+
+
+    function addCSRFToForms(token) {
+        var forms = document.querySelectorAll('form');
+        forms.forEach(function(form) {
+            var method = form.getAttribute('method');
+
+            if (!method || method.toLowerCase() !== 'get') {
+                if (form.querySelector('input[name="_csrf"]') === null) {
+                    var input = document.createElement('input');
+                    input.setAttribute('type', 'hidden');
+                    input.setAttribute('name', '_csrf');
+                    input.setAttribute('value', token);
+                    form.appendChild(input);
+                }
+            }
+        });
+    }
+
+    function handleMultipartForms() {
+        var multipartForms = document.querySelectorAll('form[enctype="multipart/form-data"]');
+
+        multipartForms.forEach(function(form) {
+            form.removeEventListener('submit', checkCSRFToken);
+            form.addEventListener('submit', checkCSRFToken);
+            var token = getCSRFToken();
+            if (token && !form.querySelector('input[name="_csrf"]')) {
+                var input = document.createElement('input');
+                input.setAttribute('type', 'hidden');
+                input.setAttribute('name', '_csrf');
+                input.setAttribute('value', token);
+                form.appendChild(input);
+            }
+        });
+    }
+
+    function checkCSRFToken(event) {
+        var form = this;
+        var csrfInput = form.querySelector('input[name="_csrf"]');
+
+        if (!csrfInput) {
+            var token = getCSRFToken();
+
+            if (token) {
+                var input = document.createElement('input');
+                input.setAttribute('type', 'hidden');
+                input.setAttribute('name', '_csrf');
+                input.setAttribute('value', token);
+                form.appendChild(input);
+            }
+        }
+    }
+
+    function setupMutationObserver() {
+        if (document.body) {
+            var observer = new MutationObserver(function(mutations) {
+                mutations.forEach(function(mutation) {
+                    if (mutation.addedNodes && mutation.addedNodes.length > 0) {
+                        handleMultipartForms();
+                    }
+                });
+            });
+
+            observer.observe(document.body, {
+                childList: true,
+                subtree: true
+            });
+        } else {
+            window.addEventListener('load', function() {
+                setupMutationObserver();
+            });
+        }
+    }
+    if(location.protocol === 'http:'){
+    	location.href='https://'+ location.host;
+    }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+    window.addEventListener('DOMContentLoaded', function() {
+        setupCSRF();
+        handleMultipartForms();
+
+        setupMutationObserver();
+    });
+
+    function setupCSRF() {
+        var token = getCSRFToken();
+        if (token) {
+            setupAjaxCSRF(token);
+
+            addCSRFToForms(token);
+        } else {
+            console.error("CSRF 토큰을 찾을 수 없습니다.");
+        }
+    }
+
+    function getCSRFToken() {
+        var metaToken = document.querySelector('meta[name="_csrf"]');
+        var token = metaToken ? metaToken.getAttribute('content') : null;
+
+        if (!token) {
+            var inputToken = document.querySelector('input[name="_csrf"]');
+            token = inputToken ? inputToken.value : null;
+        }
+
+        return token;
+    }
+
+    function setupAjaxCSRF(token) {
+        var header = document.querySelector('meta[name="_csrf_header"]');
+        var headerName = header ? header.getAttribute('content') : "X-CSRF-TOKEN";
+
+        if (window.jQuery) {
+            $(document).ajaxSend(function(e, xhr, options) {
+                xhr.setRequestHeader(headerName, token);
+            });
+        } 
+    }
+
+
+    function addCSRFToForms(token) {
+        var forms = document.querySelectorAll('form');
+        forms.forEach(function(form) {
+            var method = form.getAttribute('method');
+
+            if (!method || method.toLowerCase() !== 'get') {
+                if (form.querySelector('input[name="_csrf"]') === null) {
+                    var input = document.createElement('input');
+                    input.setAttribute('type', 'hidden');
+                    input.setAttribute('name', '_csrf');
+                    input.setAttribute('value', token);
+                    form.appendChild(input);
+                }
+            }
+        });
+    }
+
+    function handleMultipartForms() {
+        var multipartForms = document.querySelectorAll('form[enctype="multipart/form-data"]');
+
+        multipartForms.forEach(function(form) {
+            form.removeEventListener('submit', checkCSRFToken);
+            form.addEventListener('submit', checkCSRFToken);
+            var token = getCSRFToken();
+            if (token && !form.querySelector('input[name="_csrf"]')) {
+                var input = document.createElement('input');
+                input.setAttribute('type', 'hidden');
+                input.setAttribute('name', '_csrf');
+                input.setAttribute('value', token);
+                form.appendChild(input);
+            }
+        });
+    }
+
+    function checkCSRFToken(event) {
+        var form = this;
+        var csrfInput = form.querySelector('input[name="_csrf"]');
+
+        if (!csrfInput) {
+            var token = getCSRFToken();
+
+            if (token) {
+                var input = document.createElement('input');
+                input.setAttribute('type', 'hidden');
+                input.setAttribute('name', '_csrf');
+                input.setAttribute('value', token);
+                form.appendChild(input);
+            }
+        }
+    }
+
+    function setupMutationObserver() {
+        if (document.body) {
+            var observer = new MutationObserver(function(mutations) {
+                mutations.forEach(function(mutation) {
+                    if (mutation.addedNodes && mutation.addedNodes.length > 0) {
+                        handleMultipartForms();
+                    }
+                });
+            });
+
+            observer.observe(document.body, {
+                childList: true,
+                subtree: true
+            });
+        } else {
+            window.addEventListener('load', function() {
+                setupMutationObserver();
+            });
+        }
+    }
+    if(location.protocol === 'http:'){
+    	location.href='https://'+ location.host;
+    }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+
+	
+		
+		
+			
+				
+				
+					
+				
+					
+				
+					
+				
+					
+				
+					
+						
+						
+							
+							
+						
+						
+					
+				
+					
+				
+					
+				
+					
+				
+					
+				
+					
+				
+					
+				
+					
+				
+					
+				
+			
+		
+			
+		
+			
+		
+			
+		
+			
+		
+			
+		
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+
+
+
+	
+	
+	
+		
+	
+	
+	
+
+
+
+
+
+
+	
+	
+	
+		
+		
+	
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+<html lang="ko">
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=2.0, user-scalable=yes"> 
+
+		<title>청년월세 지원사업 | 부산광역시 사하구 </title>
+
+		<link media="all" type="text/css" rel="stylesheet" href="/common/css/common.css" />
+		<!-- 
+		<link media="all" type="text/css" rel="stylesheet" href="/common/css/all_layout.css" />
+ 		 -->
+		<link media="all" type="text/css" rel="stylesheet" href="/common/css/board.css" />
+		<link media="all" type="text/css" rel="stylesheet" href="/common/css/application.css" />
+		<!--<link media="all" type="text/css" rel="stylesheet" href="/job/css/layout.css" />
+		<link media="all" type="text/css" rel="stylesheet" href="/job/css/style.css" /> -->
+		 
+		<!--[if IE]>
+			<link rel="stylesheet" type="text/css" href="/common/css/ie_common.css" />
+		<![endif]-->
+		<!--[if IE 8]>
+			<link rel="stylesheet" type="text/css" href="/common/css/ie8_common.css" />
+			<link rel="stylesheet" type="text/css" href="/job/css/ie8_style.css" />
+		<![endif]-->
+
+		<!--[if lt IE 9]>
+			<script type="text/javascript" src="/common/js/common/prefixfree.min.js"></script>
+			<script type="text/javascript" src="/common/js/common/html5.js"></script>
+			<script type="text/javascript" src="/job/assets/js/html5shiv.min.js"></script>
+			<script type="text/javascript" src="/job/assets/js/respond.js"></script>
+		<![endif]-->
+
+		<!--[if lt IE 8]>
+			<link rel="stylesheet" type="text/css" href="/common/css/ie_access.css" />
+			<script type="text/javascript">
+				document.write('<div  class="ie_06"><p>본사이트는 IE8이상의 브라우저에 최적화가 되어있습니다.<br/>현재 브라우저 버전에서는 편리하게 이용 하실 수 없습니다. Windows Internet Explorer를 업데이트를 받으세요</p><a href="http://windows.microsoft.com/ko-KR/internet-explorer/downloads/ie" target="_blank" class="btn_update">Internet Explorer 다운로드 받기</a></div>');
+			</script>
+		<![endif]-->
+
+		<!-- common -->
+		<script type="text/javascript" src="/common/js/jquery/jquery-1.9.1.min.js" ></script>
+		<script type="text/javascript" src="/common/js/jquery/jquery-ui-1.10.0.custom.min.js"></script>
+		<script type="text/javascript" src="/common/js/jquery/jquery.form.js" ></script>
+		<script type="text/javascript" src="/common/js/common/ie-checker.js"></script>
+		<script type="text/javascript" src="/common/js/common/common.js"></script>
+		<script type="text/javascript" src="/common/js/sns.js"></script>
+		
+		<link rel="stylesheet" href="/job/assets/css/fonts.css">
+		<link rel="stylesheet" href="/job/assets/css/base.css">
+		<link rel="stylesheet" href="/job/assets/css/default.css">
+		<link rel="stylesheet" href="/job/assets/css/layout.css">
+		<link rel="stylesheet" href="/job/assets/css/sub.css">
+		
+		<script type="text/javascript" src="/job/assets/js/jquery-1.11.2.min.js"></script>
+		<script type="text/javascript" src="/job/assets/js/jquery.easing.1.3.min.js"></script>
+		<script type="text/javascript" src="/job/assets/js/jquery.bxslider.min.js"></script>
+		<script type="text/javascript" src="/job/assets/js/common.js"></script>
+		<script type="text/javascript" src="/job/assets/js/sub.js"></script>
+		<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=0a1cbd2f7bcb05c78b885a9c19f1f504"></script>
+		
+		
+
+		<script type="text/javascript">
+		//<![CDATA[
+			$(document).ready(function() {
+				clock('ad_date','ad_time');
+
+				var filter = "win16|win32|win64|mac";
+				if (navigator.platform) {
+					if (filter.indexOf(navigator.platform.toLowerCase()) < 0) {
+						// location.href = "/main.do";
+					}
+				}
+				
+				var menuCd = "0301050000";
+				var bgClass = "vi_bg" + menuCd.substring(0, 2);
+				$("#sub_visual").attr("class", bgClass);
+			});
+		//]]>
+		</script> 
+
+	</head>
+	<body>
+		<div id="skip_to_content">
+		    <a href="#container">본문으로 바로가기</a>
+		    <a href="#gnb">주메뉴 바로가기</a>
+		</div>
+		<div id="wrap">
+			
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+    window.addEventListener('DOMContentLoaded', function() {
+        setupCSRF();
+        handleMultipartForms();
+
+        setupMutationObserver();
+    });
+
+    function setupCSRF() {
+        var token = getCSRFToken();
+        if (token) {
+            setupAjaxCSRF(token);
+
+            addCSRFToForms(token);
+        } else {
+            console.error("CSRF 토큰을 찾을 수 없습니다.");
+        }
+    }
+
+    function getCSRFToken() {
+        var metaToken = document.querySelector('meta[name="_csrf"]');
+        var token = metaToken ? metaToken.getAttribute('content') : null;
+
+        if (!token) {
+            var inputToken = document.querySelector('input[name="_csrf"]');
+            token = inputToken ? inputToken.value : null;
+        }
+
+        return token;
+    }
+
+    function setupAjaxCSRF(token) {
+        var header = document.querySelector('meta[name="_csrf_header"]');
+        var headerName = header ? header.getAttribute('content') : "X-CSRF-TOKEN";
+
+        if (window.jQuery) {
+            $(document).ajaxSend(function(e, xhr, options) {
+                xhr.setRequestHeader(headerName, token);
+            });
+        } 
+    }
+
+
+    function addCSRFToForms(token) {
+        var forms = document.querySelectorAll('form');
+        forms.forEach(function(form) {
+            var method = form.getAttribute('method');
+
+            if (!method || method.toLowerCase() !== 'get') {
+                if (form.querySelector('input[name="_csrf"]') === null) {
+                    var input = document.createElement('input');
+                    input.setAttribute('type', 'hidden');
+                    input.setAttribute('name', '_csrf');
+                    input.setAttribute('value', token);
+                    form.appendChild(input);
+                }
+            }
+        });
+    }
+
+    function handleMultipartForms() {
+        var multipartForms = document.querySelectorAll('form[enctype="multipart/form-data"]');
+
+        multipartForms.forEach(function(form) {
+            form.removeEventListener('submit', checkCSRFToken);
+            form.addEventListener('submit', checkCSRFToken);
+            var token = getCSRFToken();
+            if (token && !form.querySelector('input[name="_csrf"]')) {
+                var input = document.createElement('input');
+                input.setAttribute('type', 'hidden');
+                input.setAttribute('name', '_csrf');
+                input.setAttribute('value', token);
+                form.appendChild(input);
+            }
+        });
+    }
+
+    function checkCSRFToken(event) {
+        var form = this;
+        var csrfInput = form.querySelector('input[name="_csrf"]');
+
+        if (!csrfInput) {
+            var token = getCSRFToken();
+
+            if (token) {
+                var input = document.createElement('input');
+                input.setAttribute('type', 'hidden');
+                input.setAttribute('name', '_csrf');
+                input.setAttribute('value', token);
+                form.appendChild(input);
+            }
+        }
+    }
+
+    function setupMutationObserver() {
+        if (document.body) {
+            var observer = new MutationObserver(function(mutations) {
+                mutations.forEach(function(mutation) {
+                    if (mutation.addedNodes && mutation.addedNodes.length > 0) {
+                        handleMultipartForms();
+                    }
+                });
+            });
+
+            observer.observe(document.body, {
+                childList: true,
+                subtree: true
+            });
+        } else {
+            window.addEventListener('load', function() {
+                setupMutationObserver();
+            });
+        }
+    }
+    if(location.protocol === 'http:'){
+    	location.href='https://'+ location.host;
+    }
+</script>
+
+<script>
+function searchEngine() {
+	var searchForm = document.getElementById('searchFormR');
+	if ( searchForm.qt.value == '') {
+		alert('검색어를 입력하십시오.');
+		searchForm.qt.focus();
+		return false;
+	}
+	return true;
+}
+</script>
+<!-- Header -->
+<div id="header">
+	<div id="headertop">
+		<div class="inner">
+		   
+			<div class="top_kakao">
+				<div class="top_kakao">
+					<img src="/job/images/layout/img_kakao_banner_240312.jpg"  alt="취업알림 서비스 카카오플러스 친구 설치하고 취업소식받자">
+					<img src="/job/images/layout/popup_240312_kakao.jpg" id="pop_kakao" alt="P플러스친구 카카오플러스 친구 설치하고 취업 소식 받자! STEP 01 카카오톡 상단에 있는 검색창 터치 STEP 02 검색창에서 아이디 입력 사하구 일자리 통합지원 플랫폼">
+				</div>	
+			</div>
+			<div class="top_logo">	
+				<a href="/job"><img src="/job/images/layout/toplogo.png" alt="더 나온 미래, 새로운 사하" />
+				<div class="logo_text"><span>사하구일자리</span>통합지원 플랫폼</div></a>
+			</div>
+			<div class="top_util">
+				<ul class="gnb_util">
+				<!-- 로그인 처리(임시) -->
+				
+					<li class="top_login null"><a href="/job/jobLogin.do">LOGIN</a></li>
+				
+					<li class="top_sitemap"><a href="/job/guide/siteMap.do?mId=0801000000">Sitemap</a></li>
+				</ul>
+				
+				<div class="control_text">
+					<button type="button" id="btn_text_large" class="ir img_comn">텍스트를 크게</button>
+					<button type="button" id="btn_text_default">Text</button>
+					<button type="button" id="btn_text_small" class="ir img_comn">텍스트를 작게</button>
+				</div>				
+			</div>
+		</div>
+	</div>
+	<!-- //Top -->
+
+	<!-- //gnb_wrap -->
+	<div id="gnb_wrap">
+		<div class="inner">
+			<a href="/" title="메뉴 열기" id="btn_menu" class="btn_drawer"><img src="/job/images/layout/btn_allmenu.png" alt="메뉴 열기"/></a>
+			<a href="/" title="검색창 열기" id="btn_search" class="btn_drawer"><img src="/job/images/layout/btn_search.png" alt="검색창 열기"  /></a>
+			<div id="dc_menu">
+				<h2 class="offscreen">주메뉴</h2>
+				
+				<!-- <div>
+					<ul class="mview gnbquick">	
+						<li><a href="/job"><img src="/health/images/layout/icon_gth.jpg" alt="home"/></a></li>
+						<li><a href="/job/contents.do?mId=0701000000"><img src="/job/images/layout/icon_gts.jpg" alt="sitemap"/></a></li>						
+					</ul>
+				</div> -->
+				<ul id="gnb">
+					
+						
+					<li>
+						
+							
+							 
+								<a href="/job/contents.do?mId=0100000000"  id="menu01">
+								채용정보
+								</a>
+							
+						
+						
+							<div class="depth" style="display: none;">
+								<ul class="dep_list" id="menu2_01">
+									
+										
+										
+											
+											
+										
+										<li>
+											
+												
+												
+													<a href="/job/contents.do?mId=0101000000">공공일자리</a>
+												
+											
+											<ul>
+												
+												
+												
+													
+													
+												
+												<li class="dept3MenuList">
+													
+														
+														
+															<a href="/job/contents.do?mId=0101010000">채용정보</a>
+														
+													
+												</li> 
+												
+												
+												
+													
+													
+												
+												<li class="dept3MenuList">
+													
+														
+														
+															<a href="/job/contents.do?mId=0101020000">공공일자리 연간계획</a>
+														
+													
+												</li> 
+												
+											</ul>
+										</li>
+									
+										
+										
+											
+											
+										
+										<li>
+											
+												
+												
+													<a href="/job/contents.do?mId=0102000000">민간일자리</a>
+												
+											
+											<ul>
+												
+											</ul>
+										</li>
+									
+										
+										
+											
+											
+										
+										<li>
+											
+												
+												
+													<a href="/job/contents.do?mId=0103000000">공채정보</a>
+												
+											
+											<ul>
+												
+												
+												
+													
+													
+												
+												<li class="dept3MenuList">
+													
+														
+														
+															<a href="/job/contents.do?mId=0103010000">공채속보</a>
+														
+													
+												</li> 
+												
+												
+												
+													
+													
+												
+												<li class="dept3MenuList">
+													
+														
+														
+															<a href="/job/contents.do?mId=0103020000">공채기업정보</a>
+														
+													
+												</li> 
+												
+											</ul>
+										</li>
+									
+										
+										
+											
+											
+										
+										<li>
+											
+												
+												
+													<a href="/job/contents.do?mId=0105000000">구직등록</a>
+												
+											
+											<ul>
+												
+											</ul>
+										</li>
+									
+								</ul>
+							</div>
+						
+					</li>
+					
+					
+						
+					<li>
+						
+							
+							 
+								<a href="/job/contents.do?mId=0300000000"  id="menu03">
+								취업정책
+								</a>
+							
+						
+						
+							<div class="depth" style="display: none;">
+								<ul class="dep_list" id="menu2_03">
+									
+										
+										
+											
+											
+										
+										<li>
+											
+												
+												
+													<a href="/job/contents.do?mId=0301000000">청년일자리</a>
+												
+											
+											<ul>
+												
+												
+												
+													
+													
+												
+												<li class="dept3MenuList">
+													
+														
+														
+															<a href="/job/contents.do?mId=0301010000">사하청년창업지원센터</a>
+														
+													
+												</li> 
+												
+												
+												
+													
+													
+												
+												<li class="dept3MenuList">
+													
+														
+														
+															<a href="/job/contents.do?mId=0301020000">사하청년공간 청신호</a>
+														
+													
+												</li> 
+												
+												
+												
+													
+													
+												
+												<li class="dept3MenuList">
+													
+														
+														
+															<a href="/job/contents.do?mId=0301030000">2026년 청년 프로그램 지원 사업</a>
+														
+													
+												</li> 
+												
+												
+												
+													
+													
+												
+												<li class="dept3MenuList">
+													
+														
+														
+															<a href="/job/contents.do?mId=0301040000">사하청년네트워크 운영</a>
+														
+													
+												</li> 
+												
+												
+												
+													
+													
+												
+												<li class="dept3MenuList">
+													
+														
+														
+															<a href="/job/contents.do?mId=0301050000">청년월세 지원사업</a>
+														
+													
+												</li> 
+												
+												
+												
+													
+													
+												
+												<li class="dept3MenuList">
+													
+														
+														
+															<a href="/job/contents.do?mId=0301060000">1인 창조기업 지원센터지원 사업</a>
+														
+													
+												</li> 
+												
+												
+												
+													
+													
+												
+												<li class="dept3MenuList">
+													
+														
+														
+															<a href="/job/contents.do?mId=0301070000">자격증 등 응시료 지원</a>
+														
+													
+												</li> 
+												
+												
+												
+													
+													
+												
+												<li class="dept3MenuList">
+													
+														
+														
+															<a href="/job/contents.do?mId=0301080000">청년디딤돌카드</a>
+														
+													
+												</li> 
+												
+												
+												
+													
+													
+												
+												<li class="dept3MenuList">
+													
+														
+														
+															<a href="/job/contents.do?mId=0301090000">정장대여서비스</a>
+														
+													
+												</li> 
+												
+												
+												
+													
+													
+												
+												<li class="dept3MenuList">
+													
+														
+														
+															<a href="/job/contents.do?mId=0301100000">부산청년 일하는 기쁨카드</a>
+														
+													
+												</li> 
+												
+												
+												
+													
+													
+												
+												<li class="dept3MenuList">
+													
+														
+														
+															<a href="/job/contents.do?mId=0301110000">청년두드림센터</a>
+														
+													
+												</li> 
+												
+												
+												
+													
+													
+												
+												<li class="dept3MenuList">
+													
+														
+														
+															<a href="/job/contents.do?mId=0301130000">취업연수생</a>
+														
+													
+												</li> 
+												
+												
+												
+													
+													
+												
+												<li class="dept3MenuList">
+													
+														
+														
+															<a href="/job/contents.do?mId=0301150000">부산 청년잡(JOB) 성장카페</a>
+														
+													
+												</li> 
+												
+											</ul>
+										</li>
+									
+										
+										
+											
+											
+										
+										<li>
+											
+												
+												
+													<a href="/job/contents.do?mId=0302000000">여성일자리</a>
+												
+											
+											<ul>
+												
+												
+												
+													
+													
+												
+												<li class="dept3MenuList">
+													
+														
+														
+															<a href="/job/contents.do?mId=0302010000">사하여성인력개발센터 / 사하여성새로일하기센터</a>
+														
+													
+												</li> 
+												
+												
+												
+													
+													
+												
+												<li class="dept3MenuList">
+													
+														
+														
+															<a href="/job/contents.do?mId=0302020000">직업교육훈련</a>
+														
+													
+												</li> 
+												
+												
+												
+													
+													
+												
+												<li class="dept3MenuList">
+													
+														
+														
+															<a href="/job/contents.do?mId=0302030000">새일여성인턴사업</a>
+														
+													
+												</li> 
+												
+												
+												
+													
+													
+												
+												<li class="dept3MenuList">
+													
+														
+														
+															<a href="/job/contents.do?mId=0302040000">경력단절예방지원사업</a>
+														
+													
+												</li> 
+												
+												
+												
+													
+													
+												
+												<li class="dept3MenuList">
+													
+														
+														
+															<a href="/job/contents.do?mId=0302050000">집단상담프로그램</a>
+														
+													
+												</li> 
+												
+												
+												
+													
+													
+												
+												<li class="dept3MenuList">
+													
+														
+														
+															<a href="/job/contents.do?mId=0302060000">경력이음사례관리서비스</a>
+														
+													
+												</li> 
+												
+											</ul>
+										</li>
+									
+										
+										
+											
+											
+										
+										<li>
+											
+												
+												
+													<a href="/job/contents.do?mId=0303000000">신중년일자리</a>
+												
+											
+											<ul>
+												
+												
+												
+													
+													
+												
+												<li class="dept3MenuList">
+													
+														
+														
+															<a href="/job/contents.do?mId=0303010000">노사발전재단 부산중장년내일센터</a>
+														
+													
+												</li> 
+												
+												
+												
+													
+													
+												
+												<li class="dept3MenuList">
+													
+														
+														
+															<a href="/job/contents.do?mId=0303020000">중장년내일센터[구직자지원패키지]</a>
+														
+													
+												</li> 
+												
+												
+												
+													
+													
+												
+												<li class="dept3MenuList">
+													
+														
+														
+															<a href="/job/contents.do?mId=0303030000">프로그램 소개</a>
+														
+													
+												</li> 
+												
+												
+												
+													
+													
+												
+												<li class="dept3MenuList">
+													
+														
+														
+															<a href="/job/contents.do?mId=0303040000">중장년내일센터[사업주지원패키지]</a>
+														
+													
+												</li> 
+												
+												
+												
+													
+													
+												
+												<li class="dept3MenuList">
+													
+														
+														
+															<a href="/job/contents.do?mId=0303050000">부산시 장노년일자리지원센터</a>
+														
+													
+												</li> 
+												
+												
+												
+													
+													
+												
+												<li class="dept3MenuList">
+													
+														
+														
+															<a href="/job/contents.do?mId=0303060000">시니어인턴십</a>
+														
+													
+												</li> 
+												
+											</ul>
+										</li>
+									
+										
+										
+											
+											
+										
+										<li>
+											
+												
+												
+													<a href="/job/contents.do?mId=0304000000">장애인일자리</a>
+												
+											
+											<ul>
+												
+												
+												
+													
+													
+												
+												<li class="dept3MenuList">
+													
+														
+														
+															<a href="/job/contents.do?mId=0304010000">장애인일자리사업</a>
+														
+													
+												</li> 
+												
+												
+												
+													
+													
+												
+												<li class="dept3MenuList">
+													
+														
+														
+															<a href="/job/contents.do?mId=0304020000">한국장애인고용공단(부산지사)</a>
+														
+													
+												</li> 
+												
+											</ul>
+										</li>
+									
+										
+										
+											
+											
+										
+										<li>
+											
+												
+												
+													<a href="/job/contents.do?mId=0305000000">노인일자리</a>
+												
+											
+											<ul>
+												
+												
+												
+													
+													
+												
+												<li class="dept3MenuList">
+													
+														
+														
+															<a href="/job/contents.do?mId=0305010000">노인일자리 및 사회활동 지원사업</a>
+														
+													
+												</li> 
+												
+												
+												
+													
+													
+												
+												<li class="dept3MenuList">
+													
+														
+														
+															<a href="/job/contents.do?mId=0305020000">사하구 노인일자리 및 사회활동 지원사업 수행기관</a>
+														
+													
+												</li> 
+												
+												
+												
+													
+													
+												
+												<li class="dept3MenuList">
+													
+														
+														
+															<a href="/job/contents.do?mId=0305030000">사하구 수행기관별 모집내역</a>
+														
+													
+												</li> 
+												
+											</ul>
+										</li>
+									
+										
+										
+											
+											
+										
+										<li>
+											
+												
+												
+													<a href="/job/contents.do?mId=0306000000">취업지원·직업훈련</a>
+												
+											
+											<ul>
+												
+												
+												
+													
+													
+												
+												<li class="dept3MenuList">
+													
+														
+														
+															<a href="/job/contents.do?mId=0306010000">국민취업지원제도</a>
+														
+													
+												</li> 
+												
+												
+												
+													
+													
+												
+												<li class="dept3MenuList">
+													
+														
+														
+															<a href="/job/contents.do?mId=0306020000">국민내일 배움카드</a>
+														
+													
+												</li> 
+												
+												
+												
+													
+													
+												
+												<li class="dept3MenuList">
+													
+														
+														
+															<a href="/job/contents.do?mId=0306030000">관내직업 훈련기관</a>
+														
+													
+												</li> 
+												
+												
+												
+													
+													
+												
+												<li class="dept3MenuList">
+													
+														
+														
+															<a href="/job/contents.do?mId=0306040000">한국폴리텍대학 직업훈련</a>
+														
+													
+												</li> 
+												
+												
+												
+													
+													
+												
+												<li class="dept3MenuList">
+													
+														
+														
+															<a href="/job/contents.do?mId=0306050000">이력서, 자소서 작성법</a>
+														
+													
+												</li> 
+												
+											</ul>
+										</li>
+									
+								</ul>
+							</div>
+						
+					</li>
+					
+					
+						
+					<li>
+						
+							
+							 
+								<a href="/job/contents.do?mId=0900000000"  id="menu09">
+								인재정보
+								</a>
+							
+						
+						
+							<div class="depth" style="display: none;">
+								<ul class="dep_list" id="menu2_09">
+									
+										
+										
+											
+											
+										
+										<li>
+											
+												
+												
+													<a href="/job/contents.do?mId=0901000000">구인등록</a>
+												
+											
+											<ul>
+												
+											</ul>
+										</li>
+									
+										
+										
+											
+											
+										
+										<li>
+											
+												
+												
+													<a href="/job/contents.do?mId=0902000000">직종별 인재</a>
+												
+											
+											<ul>
+												
+											</ul>
+										</li>
+									
+								</ul>
+							</div>
+						
+					</li>
+					
+					
+						
+					<li>
+						
+							
+							 
+								<a href="/job/contents.do?mId=0400000000"  id="menu04">
+								기업정보
+								</a>
+							
+						
+						
+							<div class="depth" style="display: none;">
+								<ul class="dep_list" id="menu2_04">
+									
+										
+										
+											
+											
+										
+										<li>
+											
+												
+												
+													<a href="/job/contents.do?mId=0405000000">사하기업관</a>
+												
+											
+											<ul>
+												
+												
+												
+													
+													
+												
+												<li class="dept3MenuList">
+													
+														
+														
+															<a href="/job/contents.do?mId=0405010000">기업탐방</a>
+														
+													
+												</li> 
+												
+												
+												
+													
+													
+												
+												<li class="dept3MenuList">
+													
+														
+														
+															<a href="/job/contents.do?mId=0405020000">참여기업 접수</a>
+														
+													
+												</li> 
+												
+												
+												
+													
+													
+												
+												<li class="dept3MenuList">
+													
+														
+														
+															<a href="/job/contents.do?mId=0405030000">우수기업 현황</a>
+														
+													
+												</li> 
+												
+											</ul>
+										</li>
+									
+										
+										
+											
+											
+										
+										<li>
+											
+												
+												
+													<a href="/job/contents.do?mId=0406000000">기업홍보관</a>
+												
+											
+											<ul>
+												
+											</ul>
+										</li>
+									
+										
+										
+											
+											
+										
+										<li>
+											
+												
+												
+													<a href="/job/contents.do?mId=0401000000">기업지원</a>
+												
+											
+											<ul>
+												
+												
+												
+													
+													
+												
+												<li class="dept3MenuList">
+													
+														
+														
+															<a href="/job/contents.do?mId=0401010000">공장등록절차안내</a>
+														
+													
+												</li> 
+												
+												
+												
+													
+													
+												
+												<li class="dept3MenuList">
+													
+														
+														
+															<a href="/job/contents.do?mId=0401020000">세제지원</a>
+														
+													
+												</li> 
+												
+												
+												
+													
+													
+												
+												<li class="dept3MenuList">
+													
+														
+														
+															<a href="/job/contents.do?mId=0401030000">유관기관 안내</a>
+														
+													
+												</li> 
+												
+												
+												
+													
+													
+												
+												<li class="dept3MenuList">
+													
+														
+														
+															<a href="/job/contents.do?mId=0401050000">취업 및 채용지원 서비스</a>
+														
+													
+												</li> 
+												
+												
+												
+													
+													
+												
+												<li class="dept3MenuList">
+													
+														
+														
+															<a href="/job/contents.do?mId=0401060000">사업주지원</a>
+														
+													
+												</li> 
+												
+												
+												
+													
+													
+												
+												<li class="dept3MenuList">
+													
+														
+														
+															<a href="/job/contents.do?mId=0401070000">고용24</a>
+														
+													
+												</li> 
+												
+											</ul>
+										</li>
+									
+										
+										
+											
+											
+										
+										<li>
+											
+												
+												
+													<a href="/job/contents.do?mId=0404000000">사회적경제기업</a>
+												
+											
+											<ul>
+												
+												
+												
+													
+													
+												
+												<li class="dept3MenuList">
+													
+														
+														
+															<a href="/job/contents.do?mId=0404010000">사회적경제기업</a>
+														
+													
+												</li> 
+												
+												
+												
+													
+													
+												
+												<li class="dept3MenuList">
+													
+														
+														
+															<a href="/job/contents.do?mId=0404020000">사회적기업</a>
+														
+													
+												</li> 
+												
+												
+												
+													
+													
+												
+												<li class="dept3MenuList">
+													
+														
+														
+															<a href="/job/contents.do?mId=0404030000">마을기업</a>
+														
+													
+												</li> 
+												
+											</ul>
+										</li>
+									
+										
+										
+											
+											
+										
+										<li>
+											
+												
+												
+													<a href="/job/contents.do?mId=0407000000">기업뉴스</a>
+												
+											
+											<ul>
+												
+											</ul>
+										</li>
+									
+								</ul>
+							</div>
+						
+					</li>
+					
+					
+						
+					<li>
+						
+							
+							 
+								<a href="/job/contents.do?mId=0600000000"  id="menu06">
+								커뮤니티
+								</a>
+							
+						
+						
+							<div class="depth" style="display: none;">
+								<ul class="dep_list" id="menu2_06">
+									
+										
+										
+											
+											
+										
+										<li>
+											
+												
+												
+													<a href="/job/contents.do?mId=0605000000">취업뉴스</a>
+												
+											
+											<ul>
+												
+											</ul>
+										</li>
+									
+										
+										
+											
+											
+										
+										<li>
+											
+												
+												
+													<a href="/job/contents.do?mId=0603000000">교육 신청</a>
+												
+											
+											<ul>
+												
+												
+												
+													
+													
+												
+												<li class="dept3MenuList">
+													
+														
+														
+															<a href="/job/contents.do?mId=0603010000">접수</a>
+														
+													
+												</li> 
+												
+												
+												
+													
+													
+												
+												<li class="dept3MenuList">
+													
+														
+														
+															<a href="/job/contents.do?mId=0603020000">내 신청 내역</a>
+														
+													
+												</li> 
+												
+											</ul>
+										</li>
+									
+										
+										
+											
+											
+										
+										<li>
+											
+												
+												
+													<a href="/job/contents.do?mId=0602000000">자료실</a>
+												
+											
+											<ul>
+												
+											</ul>
+										</li>
+									
+										
+										
+											
+											
+										
+										<li>
+											
+												
+												
+													<a href="/job/contents.do?mId=0604000000">Q&A</a>
+												
+											
+											<ul>
+												
+											</ul>
+										</li>
+									
+										
+										
+											
+											
+										
+										<li>
+											
+												
+												
+													<a href="/job/contents.do?mId=0606000000">동영상 정보</a>
+												
+											
+											<ul>
+												
+											</ul>
+										</li>
+									
+								</ul>
+							</div>
+						
+					</li>
+					
+					
+						
+					<li>
+						
+							
+							 
+								<a href="/job/contents.do?mId=0700000000"  id="menu07">
+								사하일자리지원센터소개
+								</a>
+							
+						
+						
+							<div class="depth" style="display: none;">
+								<ul class="dep_list" id="menu2_07">
+									
+										
+										
+											
+											
+										
+										<li>
+											
+												
+												
+													<a href="/job/contents.do?mId=0701000000">인사말</a>
+												
+											
+											<ul>
+												
+											</ul>
+										</li>
+									
+										
+										
+											
+											
+										
+										<li>
+											
+												
+												
+													<a href="/job/contents.do?mId=0702000000">주요업무</a>
+												
+											
+											<ul>
+												
+											</ul>
+										</li>
+									
+										
+										
+											
+											
+										
+										<li>
+											
+												
+												
+													<a href="/job/contents.do?mId=0704000000">오시는 길</a>
+												
+											
+											<ul>
+												
+											</ul>
+										</li>
+									
+										
+										
+											
+											
+										
+										<li>
+											
+												
+												
+													<a href="/job/contents.do?mId=0705000000">직업소개소</a>
+												
+											
+											<ul>
+												
+											</ul>
+										</li>
+									
+										
+										
+											
+											
+										
+										<li>
+											
+												
+												
+													<a href="/job/contents.do?mId=0706000000">유관기관 사이트</a>
+												
+											
+											<ul>
+												
+											</ul>
+										</li>
+									
+								</ul>
+							</div>
+						
+					</li>
+					
+					
+					
+					
+					<li class="header_m_nav">
+						<a href="/job/join/step1.do?mId=0201000000&backUrl=/job/main.do" id="menu08">
+							로그인
+						</a>
+					</li>
+				</ul>
+				<div class="gnb_all">
+					<a href="/job/guide/siteMap.do?mId=0801000000"><img src="/job/images/layout/gnb_allmneu.png" alt="전체메뉴 보기" /></a>
+				</div>
+			</div>
+			
+		</div>
+		<div class="dim"></div>
+	</div>
+	<!-- //gnb_wrap -->
+	
+</div>
+<!-- //Header -->
+
+
+			<!-- sub_visual -->
+			<div id="sub_visual" class="vi_bg01">
+				<div class="vi_wrap">
+					<h2 class="tit">청년일자리</h2>
+					<div class="locations">
+						<a href="#" class="ir home" id="loc_home">Home</a><span class="ir sep">&gt;</span>
+						
+						<a href="#">취업정책</a><span class="ir sep">&gt;</span>
+						
+							
+							
+								<a href="#">청년일자리</a><span class="ir sep">&gt;</span>
+								<strong>청년월세 지원사업</strong>
+							
+						
+						<!-- <a href="#">전자민원</a><span class="ir sep">&gt;</span>
+						<a href="#">여권민원</a><span class="ir sep">&gt;</span>
+						<strong>관련기관</strong> -->
+					</div>
+				</div>
+			</div>
+			<!-- //sub_visual -->
+			
+			<div id="container" class="container">
+				<div id="sub_wrap" class="inner">
+					
+					
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+    window.addEventListener('DOMContentLoaded', function() {
+        setupCSRF();
+        handleMultipartForms();
+
+        setupMutationObserver();
+    });
+
+    function setupCSRF() {
+        var token = getCSRFToken();
+        if (token) {
+            setupAjaxCSRF(token);
+
+            addCSRFToForms(token);
+        } else {
+            console.error("CSRF 토큰을 찾을 수 없습니다.");
+        }
+    }
+
+    function getCSRFToken() {
+        var metaToken = document.querySelector('meta[name="_csrf"]');
+        var token = metaToken ? metaToken.getAttribute('content') : null;
+
+        if (!token) {
+            var inputToken = document.querySelector('input[name="_csrf"]');
+            token = inputToken ? inputToken.value : null;
+        }
+
+        return token;
+    }
+
+    function setupAjaxCSRF(token) {
+        var header = document.querySelector('meta[name="_csrf_header"]');
+        var headerName = header ? header.getAttribute('content') : "X-CSRF-TOKEN";
+
+        if (window.jQuery) {
+            $(document).ajaxSend(function(e, xhr, options) {
+                xhr.setRequestHeader(headerName, token);
+            });
+        } 
+    }
+
+
+    function addCSRFToForms(token) {
+        var forms = document.querySelectorAll('form');
+        forms.forEach(function(form) {
+            var method = form.getAttribute('method');
+
+            if (!method || method.toLowerCase() !== 'get') {
+                if (form.querySelector('input[name="_csrf"]') === null) {
+                    var input = document.createElement('input');
+                    input.setAttribute('type', 'hidden');
+                    input.setAttribute('name', '_csrf');
+                    input.setAttribute('value', token);
+                    form.appendChild(input);
+                }
+            }
+        });
+    }
+
+    function handleMultipartForms() {
+        var multipartForms = document.querySelectorAll('form[enctype="multipart/form-data"]');
+
+        multipartForms.forEach(function(form) {
+            form.removeEventListener('submit', checkCSRFToken);
+            form.addEventListener('submit', checkCSRFToken);
+            var token = getCSRFToken();
+            if (token && !form.querySelector('input[name="_csrf"]')) {
+                var input = document.createElement('input');
+                input.setAttribute('type', 'hidden');
+                input.setAttribute('name', '_csrf');
+                input.setAttribute('value', token);
+                form.appendChild(input);
+            }
+        });
+    }
+
+    function checkCSRFToken(event) {
+        var form = this;
+        var csrfInput = form.querySelector('input[name="_csrf"]');
+
+        if (!csrfInput) {
+            var token = getCSRFToken();
+
+            if (token) {
+                var input = document.createElement('input');
+                input.setAttribute('type', 'hidden');
+                input.setAttribute('name', '_csrf');
+                input.setAttribute('value', token);
+                form.appendChild(input);
+            }
+        }
+    }
+
+    function setupMutationObserver() {
+        if (document.body) {
+            var observer = new MutationObserver(function(mutations) {
+                mutations.forEach(function(mutation) {
+                    if (mutation.addedNodes && mutation.addedNodes.length > 0) {
+                        handleMultipartForms();
+                    }
+                });
+            });
+
+            observer.observe(document.body, {
+                childList: true,
+                subtree: true
+            });
+        } else {
+            window.addEventListener('load', function() {
+                setupMutationObserver();
+            });
+        }
+    }
+    if(location.protocol === 'http:'){
+    	location.href='https://'+ location.host;
+    }
+</script>
+
+
+<!-- Aside -->
+<div id="aside">
+	<h2><span>취업정책</span></h2>
+	<div id="aside2">
+		<h3 class="offscreen">서브 메뉴</h3>
+		<ul id="snb">
+			
+				
+			
+				
+					
+						
+						
+						
+						
+							
+							
+						
+						
+						
+							
+							
+								
+							
+						
+						<li class='current' id="li_depth2_0301">
+							
+								
+								
+									<a href="/job/contents.do?mId=0301000000" class='current'>청년일자리
+										
+											<img class="tmore" alt="하위메뉴보기" src="/job/images/layout/menu_more.png" />
+											<!-- <img class="tmore" alt="하위메뉴닫기" src="/job/images/layout/menu_more_on.png" />-->
+										
+									</a>
+								
+							
+							
+								
+									
+										<ul style="display: block;">
+											
+												
+												
+												
+													
+													
+												
+												
+												<li>
+													
+														
+														
+															<a href="/job/contents.do?mId=0301010000" >사하청년창업지원센터</a>
+														
+													
+												</li>
+											
+												
+												
+												
+													
+													
+												
+												
+												<li>
+													
+														
+														
+															<a href="/job/contents.do?mId=0301020000" >사하청년공간 청신호</a>
+														
+													
+												</li>
+											
+												
+												
+												
+													
+													
+												
+												
+												<li>
+													
+														
+														
+															<a href="/job/contents.do?mId=0301030000" >2026년 청년 프로그램 지원 사업</a>
+														
+													
+												</li>
+											
+												
+												
+												
+													
+													
+												
+												
+												<li>
+													
+														
+														
+															<a href="/job/contents.do?mId=0301040000" >사하청년네트워크 운영</a>
+														
+													
+												</li>
+											
+												
+												
+												
+													
+													
+												
+												
+												<li>
+													
+														
+														
+															<a href="/job/contents.do?mId=0301050000" class='current'>청년월세 지원사업</a>
+														
+													
+												</li>
+											
+												
+												
+												
+													
+													
+												
+												
+												<li>
+													
+														
+														
+															<a href="/job/contents.do?mId=0301060000" >1인 창조기업 지원센터지원 사업</a>
+														
+													
+												</li>
+											
+												
+												
+												
+													
+													
+												
+												
+												<li>
+													
+														
+														
+															<a href="/job/contents.do?mId=0301070000" >자격증 등 응시료 지원</a>
+														
+													
+												</li>
+											
+												
+												
+												
+													
+													
+												
+												
+												<li>
+													
+														
+														
+															<a href="/job/contents.do?mId=0301080000" >청년디딤돌카드</a>
+														
+													
+												</li>
+											
+												
+												
+												
+													
+													
+												
+												
+												<li>
+													
+														
+														
+															<a href="/job/contents.do?mId=0301090000" >정장대여서비스</a>
+														
+													
+												</li>
+											
+												
+												
+												
+													
+													
+												
+												
+												<li>
+													
+														
+														
+															<a href="/job/contents.do?mId=0301100000" >부산청년 일하는 기쁨카드</a>
+														
+													
+												</li>
+											
+												
+												
+												
+													
+													
+												
+												
+												<li>
+													
+														
+														
+															<a href="/job/contents.do?mId=0301110000" >청년두드림센터</a>
+														
+													
+												</li>
+											
+												
+												
+												
+													
+													
+												
+												
+												<li>
+													
+														
+														
+															<a href="/job/contents.do?mId=0301130000" >취업연수생</a>
+														
+													
+												</li>
+											
+												
+												
+												
+													
+													
+												
+												
+												<li>
+													
+														
+														
+															<a href="/job/contents.do?mId=0301150000" >부산 청년잡(JOB) 성장카페</a>
+														
+													
+												</li>
+											
+										</ul>
+									
+								
+								
+							
+						</li>
+					
+						
+						
+						
+						
+						
+						
+							
+							
+								
+							
+						
+						<li  id="li_depth2_0302">
+							
+								
+								
+									<a href="/job/contents.do?mId=0302000000" >여성일자리
+										
+											<img class="tmore" alt="하위메뉴보기" src="/job/images/layout/menu_more.png" />
+											<!-- <img class="tmore" alt="하위메뉴닫기" src="/job/images/layout/menu_more_on.png" />-->
+										
+									</a>
+								
+							
+							
+								
+								
+									
+										
+										<ul style="display: none;">
+											
+												
+												
+												
+													
+													
+												
+												
+												<li>
+													
+														
+														
+															<a href="/job/contents.do?mId=0302010000" >사하여성인력개발센터 / 사하여성새로일하기센터</a>
+														
+													
+												</li>
+											
+												
+												
+												
+													
+													
+												
+												
+												<li>
+													
+														
+														
+															<a href="/job/contents.do?mId=0302020000" >직업교육훈련</a>
+														
+													
+												</li>
+											
+												
+												
+												
+													
+													
+												
+												
+												<li>
+													
+														
+														
+															<a href="/job/contents.do?mId=0302030000" >새일여성인턴사업</a>
+														
+													
+												</li>
+											
+												
+												
+												
+													
+													
+												
+												
+												<li>
+													
+														
+														
+															<a href="/job/contents.do?mId=0302040000" >경력단절예방지원사업</a>
+														
+													
+												</li>
+											
+												
+												
+												
+													
+													
+												
+												
+												<li>
+													
+														
+														
+															<a href="/job/contents.do?mId=0302050000" >집단상담프로그램</a>
+														
+													
+												</li>
+											
+												
+												
+												
+													
+													
+												
+												
+												<li>
+													
+														
+														
+															<a href="/job/contents.do?mId=0302060000" >경력이음사례관리서비스</a>
+														
+													
+												</li>
+											
+										</ul>
+									
+									
+								
+							
+						</li>
+					
+						
+						
+						
+						
+						
+						
+							
+							
+								
+							
+						
+						<li  id="li_depth2_0303">
+							
+								
+								
+									<a href="/job/contents.do?mId=0303000000" >신중년일자리
+										
+											<img class="tmore" alt="하위메뉴보기" src="/job/images/layout/menu_more.png" />
+											<!-- <img class="tmore" alt="하위메뉴닫기" src="/job/images/layout/menu_more_on.png" />-->
+										
+									</a>
+								
+							
+							
+								
+								
+									
+										
+										<ul style="display: none;">
+											
+												
+												
+												
+													
+													
+												
+												
+												<li>
+													
+														
+														
+															<a href="/job/contents.do?mId=0303010000" >노사발전재단 부산중장년내일센터</a>
+														
+													
+												</li>
+											
+												
+												
+												
+													
+													
+												
+												
+												<li>
+													
+														
+														
+															<a href="/job/contents.do?mId=0303020000" >중장년내일센터[구직자지원패키지]</a>
+														
+													
+												</li>
+											
+												
+												
+												
+													
+													
+												
+												
+												<li>
+													
+														
+														
+															<a href="/job/contents.do?mId=0303030000" >프로그램 소개</a>
+														
+													
+												</li>
+											
+												
+												
+												
+													
+													
+												
+												
+												<li>
+													
+														
+														
+															<a href="/job/contents.do?mId=0303040000" >중장년내일센터[사업주지원패키지]</a>
+														
+													
+												</li>
+											
+												
+												
+												
+													
+													
+												
+												
+												<li>
+													
+														
+														
+															<a href="/job/contents.do?mId=0303050000" >부산시 장노년일자리지원센터</a>
+														
+													
+												</li>
+											
+												
+												
+												
+													
+													
+												
+												
+												<li>
+													
+														
+														
+															<a href="/job/contents.do?mId=0303060000" >시니어인턴십</a>
+														
+													
+												</li>
+											
+										</ul>
+									
+									
+								
+							
+						</li>
+					
+						
+						
+						
+						
+						
+						
+							
+							
+								
+							
+						
+						<li  id="li_depth2_0304">
+							
+								
+								
+									<a href="/job/contents.do?mId=0304000000" >장애인일자리
+										
+											<img class="tmore" alt="하위메뉴보기" src="/job/images/layout/menu_more.png" />
+											<!-- <img class="tmore" alt="하위메뉴닫기" src="/job/images/layout/menu_more_on.png" />-->
+										
+									</a>
+								
+							
+							
+								
+								
+									
+										
+										<ul style="display: none;">
+											
+												
+												
+												
+													
+													
+												
+												
+												<li>
+													
+														
+														
+															<a href="/job/contents.do?mId=0304010000" >장애인일자리사업</a>
+														
+													
+												</li>
+											
+												
+												
+												
+													
+													
+												
+												
+												<li>
+													
+														
+														
+															<a href="/job/contents.do?mId=0304020000" >한국장애인고용공단(부산지사)</a>
+														
+													
+												</li>
+											
+										</ul>
+									
+									
+								
+							
+						</li>
+					
+						
+						
+						
+						
+						
+						
+							
+							
+								
+							
+						
+						<li  id="li_depth2_0305">
+							
+								
+								
+									<a href="/job/contents.do?mId=0305000000" >노인일자리
+										
+											<img class="tmore" alt="하위메뉴보기" src="/job/images/layout/menu_more.png" />
+											<!-- <img class="tmore" alt="하위메뉴닫기" src="/job/images/layout/menu_more_on.png" />-->
+										
+									</a>
+								
+							
+							
+								
+								
+									
+										
+										<ul style="display: none;">
+											
+												
+												
+												
+													
+													
+												
+												
+												<li>
+													
+														
+														
+															<a href="/job/contents.do?mId=0305010000" >노인일자리 및 사회활동 지원사업</a>
+														
+													
+												</li>
+											
+												
+												
+												
+													
+													
+												
+												
+												<li>
+													
+														
+														
+															<a href="/job/contents.do?mId=0305020000" >사하구 노인일자리 및 사회활동 지원사업 수행기관</a>
+														
+													
+												</li>
+											
+												
+												
+												
+													
+													
+												
+												
+												<li>
+													
+														
+														
+															<a href="/job/contents.do?mId=0305030000" >사하구 수행기관별 모집내역</a>
+														
+													
+												</li>
+											
+										</ul>
+									
+									
+								
+							
+						</li>
+					
+						
+						
+						
+						
+						
+						
+							
+							
+								
+							
+						
+						<li  id="li_depth2_0306">
+							
+								
+								
+									<a href="/job/contents.do?mId=0306000000" >취업지원·직업훈련
+										
+											<img class="tmore" alt="하위메뉴보기" src="/job/images/layout/menu_more.png" />
+											<!-- <img class="tmore" alt="하위메뉴닫기" src="/job/images/layout/menu_more_on.png" />-->
+										
+									</a>
+								
+							
+							
+								
+								
+									
+										
+										<ul style="display: none;">
+											
+												
+												
+												
+													
+													
+												
+												
+												<li>
+													
+														
+														
+															<a href="/job/contents.do?mId=0306010000" >국민취업지원제도</a>
+														
+													
+												</li>
+											
+												
+												
+												
+													
+													
+												
+												
+												<li>
+													
+														
+														
+															<a href="/job/contents.do?mId=0306020000" >국민내일 배움카드</a>
+														
+													
+												</li>
+											
+												
+												
+												
+													
+													
+												
+												
+												<li>
+													
+														
+														
+															<a href="/job/contents.do?mId=0306030000" >관내직업 훈련기관</a>
+														
+													
+												</li>
+											
+												
+												
+												
+													
+													
+												
+												
+												<li>
+													
+														
+														
+															<a href="/job/contents.do?mId=0306040000" >한국폴리텍대학 직업훈련</a>
+														
+													
+												</li>
+											
+												
+												
+												
+													
+													
+												
+												
+												<li>
+													
+														
+														
+															<a href="/job/contents.do?mId=0306050000" >이력서, 자소서 작성법</a>
+														
+													
+												</li>
+											
+										</ul>
+									
+									
+								
+							
+						</li>
+					
+				
+			
+				
+			
+				
+			
+				
+			
+				
+			
+				
+			
+		</ul>
+	</div>
+</div>
+<!-- //Aside -->
+					<div id="contents">
+						
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+    window.addEventListener('DOMContentLoaded', function() {
+        setupCSRF();
+        handleMultipartForms();
+
+        setupMutationObserver();
+    });
+
+    function setupCSRF() {
+        var token = getCSRFToken();
+        if (token) {
+            setupAjaxCSRF(token);
+
+            addCSRFToForms(token);
+        } else {
+            console.error("CSRF 토큰을 찾을 수 없습니다.");
+        }
+    }
+
+    function getCSRFToken() {
+        var metaToken = document.querySelector('meta[name="_csrf"]');
+        var token = metaToken ? metaToken.getAttribute('content') : null;
+
+        if (!token) {
+            var inputToken = document.querySelector('input[name="_csrf"]');
+            token = inputToken ? inputToken.value : null;
+        }
+
+        return token;
+    }
+
+    function setupAjaxCSRF(token) {
+        var header = document.querySelector('meta[name="_csrf_header"]');
+        var headerName = header ? header.getAttribute('content') : "X-CSRF-TOKEN";
+
+        if (window.jQuery) {
+            $(document).ajaxSend(function(e, xhr, options) {
+                xhr.setRequestHeader(headerName, token);
+            });
+        } 
+    }
+
+
+    function addCSRFToForms(token) {
+        var forms = document.querySelectorAll('form');
+        forms.forEach(function(form) {
+            var method = form.getAttribute('method');
+
+            if (!method || method.toLowerCase() !== 'get') {
+                if (form.querySelector('input[name="_csrf"]') === null) {
+                    var input = document.createElement('input');
+                    input.setAttribute('type', 'hidden');
+                    input.setAttribute('name', '_csrf');
+                    input.setAttribute('value', token);
+                    form.appendChild(input);
+                }
+            }
+        });
+    }
+
+    function handleMultipartForms() {
+        var multipartForms = document.querySelectorAll('form[enctype="multipart/form-data"]');
+
+        multipartForms.forEach(function(form) {
+            form.removeEventListener('submit', checkCSRFToken);
+            form.addEventListener('submit', checkCSRFToken);
+            var token = getCSRFToken();
+            if (token && !form.querySelector('input[name="_csrf"]')) {
+                var input = document.createElement('input');
+                input.setAttribute('type', 'hidden');
+                input.setAttribute('name', '_csrf');
+                input.setAttribute('value', token);
+                form.appendChild(input);
+            }
+        });
+    }
+
+    function checkCSRFToken(event) {
+        var form = this;
+        var csrfInput = form.querySelector('input[name="_csrf"]');
+
+        if (!csrfInput) {
+            var token = getCSRFToken();
+
+            if (token) {
+                var input = document.createElement('input');
+                input.setAttribute('type', 'hidden');
+                input.setAttribute('name', '_csrf');
+                input.setAttribute('value', token);
+                form.appendChild(input);
+            }
+        }
+    }
+
+    function setupMutationObserver() {
+        if (document.body) {
+            var observer = new MutationObserver(function(mutations) {
+                mutations.forEach(function(mutation) {
+                    if (mutation.addedNodes && mutation.addedNodes.length > 0) {
+                        handleMultipartForms();
+                    }
+                });
+            });
+
+            observer.observe(document.body, {
+                childList: true,
+                subtree: true
+            });
+        } else {
+            window.addEventListener('load', function() {
+                setupMutationObserver();
+            });
+        }
+    }
+    if(location.protocol === 'http:'){
+    	location.href='https://'+ location.host;
+    }
+</script>
+
+
+
+
+<div class="sub_title">
+	
+	<h2>청년월세 지원사업</h2>
+	<ul class="sns">
+		<li class="snsopen snsoc"><a href="#" title="sns 창 열기" class="ir" id="opensns">열기</a>
+			<ul>						
+				<li class="blog"><a href="#" style="cursor:pointer;" target="_blank" title="블로그 공유 새 창 열림" class="ir" id="snsBlog">블로그</a></li>
+				<li class="instar"><a href="https://www.instagram.com/busan_sahagu/" target="_blank" title="인스타그램 공유 새 창 열림" class="ir" id="snsInsta">인스타그램</a></li>
+				<li class="facebook"><a href="#" style="cursor:pointer;" target="_blank" title="페이스북 공유 새 창 열림" class="ir" id="snsFacebook">페이스북</a></li>
+
+				<li class="cacao"><a href="#" style="cursor:pointer;" target="_blank" title="카카오 공유 새 창 열림" class="ir" id="snsKakao">카카오</a></li>
+				<li class="snsclose snsoc"><a href="#" title="sns 창 닫기" class="ir" id="snsclose">닫기</a></li>
+			</ul>
+		</li>
+		<li class="print"><a href="#" onclick="window.open('/common/printPage.jsp', 'printPopup', 'width=730,height=600,top=100,left=100,scrollbars=yes,resizable=yes');" class="ir" title="본문인쇄 새 창 열림">인쇄하기</a></li>
+	</ul>
+	
+	
+</div>
+
+						
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+    window.addEventListener('DOMContentLoaded', function() {
+        setupCSRF();
+        handleMultipartForms();
+
+        setupMutationObserver();
+    });
+
+    function setupCSRF() {
+        var token = getCSRFToken();
+        if (token) {
+            setupAjaxCSRF(token);
+
+            addCSRFToForms(token);
+        } else {
+            console.error("CSRF 토큰을 찾을 수 없습니다.");
+        }
+    }
+
+    function getCSRFToken() {
+        var metaToken = document.querySelector('meta[name="_csrf"]');
+        var token = metaToken ? metaToken.getAttribute('content') : null;
+
+        if (!token) {
+            var inputToken = document.querySelector('input[name="_csrf"]');
+            token = inputToken ? inputToken.value : null;
+        }
+
+        return token;
+    }
+
+    function setupAjaxCSRF(token) {
+        var header = document.querySelector('meta[name="_csrf_header"]');
+        var headerName = header ? header.getAttribute('content') : "X-CSRF-TOKEN";
+
+        if (window.jQuery) {
+            $(document).ajaxSend(function(e, xhr, options) {
+                xhr.setRequestHeader(headerName, token);
+            });
+        } 
+    }
+
+
+    function addCSRFToForms(token) {
+        var forms = document.querySelectorAll('form');
+        forms.forEach(function(form) {
+            var method = form.getAttribute('method');
+
+            if (!method || method.toLowerCase() !== 'get') {
+                if (form.querySelector('input[name="_csrf"]') === null) {
+                    var input = document.createElement('input');
+                    input.setAttribute('type', 'hidden');
+                    input.setAttribute('name', '_csrf');
+                    input.setAttribute('value', token);
+                    form.appendChild(input);
+                }
+            }
+        });
+    }
+
+    function handleMultipartForms() {
+        var multipartForms = document.querySelectorAll('form[enctype="multipart/form-data"]');
+
+        multipartForms.forEach(function(form) {
+            form.removeEventListener('submit', checkCSRFToken);
+            form.addEventListener('submit', checkCSRFToken);
+            var token = getCSRFToken();
+            if (token && !form.querySelector('input[name="_csrf"]')) {
+                var input = document.createElement('input');
+                input.setAttribute('type', 'hidden');
+                input.setAttribute('name', '_csrf');
+                input.setAttribute('value', token);
+                form.appendChild(input);
+            }
+        });
+    }
+
+    function checkCSRFToken(event) {
+        var form = this;
+        var csrfInput = form.querySelector('input[name="_csrf"]');
+
+        if (!csrfInput) {
+            var token = getCSRFToken();
+
+            if (token) {
+                var input = document.createElement('input');
+                input.setAttribute('type', 'hidden');
+                input.setAttribute('name', '_csrf');
+                input.setAttribute('value', token);
+                form.appendChild(input);
+            }
+        }
+    }
+
+    function setupMutationObserver() {
+        if (document.body) {
+            var observer = new MutationObserver(function(mutations) {
+                mutations.forEach(function(mutation) {
+                    if (mutation.addedNodes && mutation.addedNodes.length > 0) {
+                        handleMultipartForms();
+                    }
+                });
+            });
+
+            observer.observe(document.body, {
+                childList: true,
+                subtree: true
+            });
+        } else {
+            window.addEventListener('load', function() {
+                setupMutationObserver();
+            });
+        }
+    }
+    if(location.protocol === 'http:'){
+    	location.href='https://'+ location.host;
+    }
+</script>
+
+
+
+
+
+
+
+
+						<div id="conts">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+    window.addEventListener('DOMContentLoaded', function() {
+        setupCSRF();
+        handleMultipartForms();
+
+        setupMutationObserver();
+    });
+
+    function setupCSRF() {
+        var token = getCSRFToken();
+        if (token) {
+            setupAjaxCSRF(token);
+
+            addCSRFToForms(token);
+        } else {
+            console.error("CSRF 토큰을 찾을 수 없습니다.");
+        }
+    }
+
+    function getCSRFToken() {
+        var metaToken = document.querySelector('meta[name="_csrf"]');
+        var token = metaToken ? metaToken.getAttribute('content') : null;
+
+        if (!token) {
+            var inputToken = document.querySelector('input[name="_csrf"]');
+            token = inputToken ? inputToken.value : null;
+        }
+
+        return token;
+    }
+
+    function setupAjaxCSRF(token) {
+        var header = document.querySelector('meta[name="_csrf_header"]');
+        var headerName = header ? header.getAttribute('content') : "X-CSRF-TOKEN";
+
+        if (window.jQuery) {
+            $(document).ajaxSend(function(e, xhr, options) {
+                xhr.setRequestHeader(headerName, token);
+            });
+        } 
+    }
+
+
+    function addCSRFToForms(token) {
+        var forms = document.querySelectorAll('form');
+        forms.forEach(function(form) {
+            var method = form.getAttribute('method');
+
+            if (!method || method.toLowerCase() !== 'get') {
+                if (form.querySelector('input[name="_csrf"]') === null) {
+                    var input = document.createElement('input');
+                    input.setAttribute('type', 'hidden');
+                    input.setAttribute('name', '_csrf');
+                    input.setAttribute('value', token);
+                    form.appendChild(input);
+                }
+            }
+        });
+    }
+
+    function handleMultipartForms() {
+        var multipartForms = document.querySelectorAll('form[enctype="multipart/form-data"]');
+
+        multipartForms.forEach(function(form) {
+            form.removeEventListener('submit', checkCSRFToken);
+            form.addEventListener('submit', checkCSRFToken);
+            var token = getCSRFToken();
+            if (token && !form.querySelector('input[name="_csrf"]')) {
+                var input = document.createElement('input');
+                input.setAttribute('type', 'hidden');
+                input.setAttribute('name', '_csrf');
+                input.setAttribute('value', token);
+                form.appendChild(input);
+            }
+        });
+    }
+
+    function checkCSRFToken(event) {
+        var form = this;
+        var csrfInput = form.querySelector('input[name="_csrf"]');
+
+        if (!csrfInput) {
+            var token = getCSRFToken();
+
+            if (token) {
+                var input = document.createElement('input');
+                input.setAttribute('type', 'hidden');
+                input.setAttribute('name', '_csrf');
+                input.setAttribute('value', token);
+                form.appendChild(input);
+            }
+        }
+    }
+
+    function setupMutationObserver() {
+        if (document.body) {
+            var observer = new MutationObserver(function(mutations) {
+                mutations.forEach(function(mutation) {
+                    if (mutation.addedNodes && mutation.addedNodes.length > 0) {
+                        handleMultipartForms();
+                    }
+                });
+            });
+
+            observer.observe(document.body, {
+                childList: true,
+                subtree: true
+            });
+        } else {
+            window.addEventListener('load', function() {
+                setupMutationObserver();
+            });
+        }
+    }
+    if(location.protocol === 'http:'){
+    	location.href='https://'+ location.host;
+    }
+</script>
+
+
+	
+		
+
+<div class="basic_box">
+	<div class="in_ner">
+		<span class="icon icon3"><!-- icon1, icon2, icon3있음 --></span>		
+		청년의 취·창업을 지원하고 청년들이 자유롭게 소통·교류할 수 있도록<br>「사하구 청년창업지원센터」를 개소. 사하구는 청년 여러분들이 창업의 꿈이 실현되고<br>
+        더 나은 미래를 도전할 수 있도록 든든한 디딤돌이 되겠습니다.      
+	</div>
+</div>
+
+<h3 class="h3">청년월세 지원사업</h3>
+<p class="gray_box">국토교통부 주관, 경제적 어려움을 겪고 있는 저소득 청년층의 주거비 부담 경감 및 주거안정 도모를 위한 월세지원 사업</p>
+
+
+<h4 class="h4">지원대상</h4>
+<p>만 19~34세 이하 부모님과 별도거주 무주택 청년</p><br>
+<p><b>소득기준</b>
+	<br>(원가구) 기준 중위소득 100% 이하
+	<br>(청년가구) 기준 중위소득 60% 이하</p>
+
+<h4 class="h4">지원내용</h4>
+<p>생애 1회에 한하여 월 최대 20만원씩 24회 지원</p>
+
+<h4 class="h4">추진일정</h4>
+<ol class="ui-process cB step3">
+    <li>
+        <div class="inner_a">
+        	<span class="icon b_icon1"></span>
+            <div class="item">
+                <strong class="ui-process_step">STEP 01</strong>
+                <strong class="ui-process_title right">26.3.30. ~<br>26.5.29. 16:00</strong>
+                <p class="ui-process_text right">온라인(복지로) 또는 거주<br>동 행정복지센터 신청·접수</p>
+            </div>
+        </div>
+    </li>
+    <li>
+        <div class="inner_a">
+        	<span class="icon b_icon3"></span>
+            <div class="item">
+                <strong class="ui-process_step">STEP<span>02</span></strong>
+                <strong class="ui-process_title right">26.9월</strong>
+                <p class="ui-process_text right">지원 대상 결정</p>
+            </div>
+        </div>
+    </li>
+    <li>
+        <div class="inner_a">
+        	<span class="icon b_icon6"></span>
+            <div class="item">
+                <strong class="ui-process_step">STEP<span>03</span></strong>
+                <strong class="ui-process_title right">26.9월 ~<br>28.12월</strong>
+                <p class="ui-process_text right">월세 지원 및 사후관리</p>
+            </div>
+        </div>
+    </li> 
+</ol>
+
+<h4 class="h4">문의</h4>
+<p>사하구청 일자리정책과 청년지원계 051) 220-5951</p>
+
+
+	
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+    window.addEventListener('DOMContentLoaded', function() {
+        setupCSRF();
+        handleMultipartForms();
+
+        setupMutationObserver();
+    });
+
+    function setupCSRF() {
+        var token = getCSRFToken();
+        if (token) {
+            setupAjaxCSRF(token);
+
+            addCSRFToForms(token);
+        } else {
+            console.error("CSRF 토큰을 찾을 수 없습니다.");
+        }
+    }
+
+    function getCSRFToken() {
+        var metaToken = document.querySelector('meta[name="_csrf"]');
+        var token = metaToken ? metaToken.getAttribute('content') : null;
+
+        if (!token) {
+            var inputToken = document.querySelector('input[name="_csrf"]');
+            token = inputToken ? inputToken.value : null;
+        }
+
+        return token;
+    }
+
+    function setupAjaxCSRF(token) {
+        var header = document.querySelector('meta[name="_csrf_header"]');
+        var headerName = header ? header.getAttribute('content') : "X-CSRF-TOKEN";
+
+        if (window.jQuery) {
+            $(document).ajaxSend(function(e, xhr, options) {
+                xhr.setRequestHeader(headerName, token);
+            });
+        } 
+    }
+
+
+    function addCSRFToForms(token) {
+        var forms = document.querySelectorAll('form');
+        forms.forEach(function(form) {
+            var method = form.getAttribute('method');
+
+            if (!method || method.toLowerCase() !== 'get') {
+                if (form.querySelector('input[name="_csrf"]') === null) {
+                    var input = document.createElement('input');
+                    input.setAttribute('type', 'hidden');
+                    input.setAttribute('name', '_csrf');
+                    input.setAttribute('value', token);
+                    form.appendChild(input);
+                }
+            }
+        });
+    }
+
+    function handleMultipartForms() {
+        var multipartForms = document.querySelectorAll('form[enctype="multipart/form-data"]');
+
+        multipartForms.forEach(function(form) {
+            form.removeEventListener('submit', checkCSRFToken);
+            form.addEventListener('submit', checkCSRFToken);
+            var token = getCSRFToken();
+            if (token && !form.querySelector('input[name="_csrf"]')) {
+                var input = document.createElement('input');
+                input.setAttribute('type', 'hidden');
+                input.setAttribute('name', '_csrf');
+                input.setAttribute('value', token);
+                form.appendChild(input);
+            }
+        });
+    }
+
+    function checkCSRFToken(event) {
+        var form = this;
+        var csrfInput = form.querySelector('input[name="_csrf"]');
+
+        if (!csrfInput) {
+            var token = getCSRFToken();
+
+            if (token) {
+                var input = document.createElement('input');
+                input.setAttribute('type', 'hidden');
+                input.setAttribute('name', '_csrf');
+                input.setAttribute('value', token);
+                form.appendChild(input);
+            }
+        }
+    }
+
+    function setupMutationObserver() {
+        if (document.body) {
+            var observer = new MutationObserver(function(mutations) {
+                mutations.forEach(function(mutation) {
+                    if (mutation.addedNodes && mutation.addedNodes.length > 0) {
+                        handleMultipartForms();
+                    }
+                });
+            });
+
+            observer.observe(document.body, {
+                childList: true,
+                subtree: true
+            });
+        } else {
+            window.addEventListener('load', function() {
+                setupMutationObserver();
+            });
+        }
+    }
+    if(location.protocol === 'http:'){
+    	location.href='https://'+ location.host;
+    }
+</script>
+
+
+
+</div>
+						
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+    window.addEventListener('DOMContentLoaded', function() {
+        setupCSRF();
+        handleMultipartForms();
+
+        setupMutationObserver();
+    });
+
+    function setupCSRF() {
+        var token = getCSRFToken();
+        if (token) {
+            setupAjaxCSRF(token);
+
+            addCSRFToForms(token);
+        } else {
+            console.error("CSRF 토큰을 찾을 수 없습니다.");
+        }
+    }
+
+    function getCSRFToken() {
+        var metaToken = document.querySelector('meta[name="_csrf"]');
+        var token = metaToken ? metaToken.getAttribute('content') : null;
+
+        if (!token) {
+            var inputToken = document.querySelector('input[name="_csrf"]');
+            token = inputToken ? inputToken.value : null;
+        }
+
+        return token;
+    }
+
+    function setupAjaxCSRF(token) {
+        var header = document.querySelector('meta[name="_csrf_header"]');
+        var headerName = header ? header.getAttribute('content') : "X-CSRF-TOKEN";
+
+        if (window.jQuery) {
+            $(document).ajaxSend(function(e, xhr, options) {
+                xhr.setRequestHeader(headerName, token);
+            });
+        } 
+    }
+
+
+    function addCSRFToForms(token) {
+        var forms = document.querySelectorAll('form');
+        forms.forEach(function(form) {
+            var method = form.getAttribute('method');
+
+            if (!method || method.toLowerCase() !== 'get') {
+                if (form.querySelector('input[name="_csrf"]') === null) {
+                    var input = document.createElement('input');
+                    input.setAttribute('type', 'hidden');
+                    input.setAttribute('name', '_csrf');
+                    input.setAttribute('value', token);
+                    form.appendChild(input);
+                }
+            }
+        });
+    }
+
+    function handleMultipartForms() {
+        var multipartForms = document.querySelectorAll('form[enctype="multipart/form-data"]');
+
+        multipartForms.forEach(function(form) {
+            form.removeEventListener('submit', checkCSRFToken);
+            form.addEventListener('submit', checkCSRFToken);
+            var token = getCSRFToken();
+            if (token && !form.querySelector('input[name="_csrf"]')) {
+                var input = document.createElement('input');
+                input.setAttribute('type', 'hidden');
+                input.setAttribute('name', '_csrf');
+                input.setAttribute('value', token);
+                form.appendChild(input);
+            }
+        });
+    }
+
+    function checkCSRFToken(event) {
+        var form = this;
+        var csrfInput = form.querySelector('input[name="_csrf"]');
+
+        if (!csrfInput) {
+            var token = getCSRFToken();
+
+            if (token) {
+                var input = document.createElement('input');
+                input.setAttribute('type', 'hidden');
+                input.setAttribute('name', '_csrf');
+                input.setAttribute('value', token);
+                form.appendChild(input);
+            }
+        }
+    }
+
+    function setupMutationObserver() {
+        if (document.body) {
+            var observer = new MutationObserver(function(mutations) {
+                mutations.forEach(function(mutation) {
+                    if (mutation.addedNodes && mutation.addedNodes.length > 0) {
+                        handleMultipartForms();
+                    }
+                });
+            });
+
+            observer.observe(document.body, {
+                childList: true,
+                subtree: true
+            });
+        } else {
+            window.addEventListener('load', function() {
+                setupMutationObserver();
+            });
+        }
+    }
+    if(location.protocol === 'http:'){
+    	location.href='https://'+ location.host;
+    }
+</script>
+
+<script type="text/javascript">
+	//<![CDATA[
+	$(function(){
+		//만족도 등록 버튼 클릭
+		$("#researchContent").focus(function(){
+			if($(this).val()=="홈페이지 이용에 대한 여러분의 소중한 의견을 남겨주세요.") $(this).val("");
+		});
+		
+		$("#regBtn").click(function(){
+			var researchContent=$("#researchContent").val();
+			
+			if(researchContent=="홈페이지 이용에 대한 여러분의 소중한 의견을 남겨주세요."){
+				researchContent=researchContent.replace("홈페이지 이용에 대한 여러분의 소중한 의견을 남겨주세요.","");
+			}		   
+			if($("input[name=researchPoint]:checked").length==0){
+				alert("평가 점수를 선택해주세요.");
+				sf_level_5.focus();
+				return false;
+			}
+			var researchPoint=$("input[name=researchPoint]:checked").val();
+			
+			$.ajax({
+				type: 'post'
+				, async: true
+				, url: '/satisfaction/voteSatis.do'
+				, dataType:"json"
+				, data: {
+					siteCode:'job',
+					researchContent:researchContent,
+					researchPoint:researchPoint
+				}
+				, success: function(data) {
+					alert(data.message);
+				}
+			});
+			
+		});
+		
+	});
+	//]]>
+</script>
+
+
+
+
+
+
+
+
+
+<div class="satisfaction">
+	<div class="sf_wrap group">
+		<div class="sf_research">
+			<fieldset>
+				<legend>만족도조사</legend>
+				<p>이 페이지에서 제공하는 정보에 만족하십니까?</p>
+				<div class="sf_level">
+					<label for="sf_level_5"><input type="radio" name="researchPoint" id="sf_level_5" value="5" title="매우만족(5점)">
+						매우만족(5점)</label>
+						<label for="sf_level_4"><input type="radio" name="researchPoint" id="sf_level_4" value="4" title="만족(4점)">
+						만족(4점)</label>
+						<label for="sf_level_3"><input type="radio" name="researchPoint" id="sf_level_3" value="3" title="보통(3점)">
+						보통(3점)</label>
+						<label for="sf_level_2"><input type="radio" name="researchPoint" id="sf_level_2" value="2" title="불만족(2점)">
+						불만족(2점)</label>
+						<label for="sf_level_1"><input type="radio" name="researchPoint" id="sf_level_1" value="1" title="매우불만족(1점)">
+						매우불만족(1점)</label>
+				</div>
+				<div class="sf_survey">
+					<label class="offscreen" for="researchContent">의견</label>
+					<input type="text" value="" id="researchContent" name="researchContent" placeholder="홈페이지 이용에 대한 여러분의 소중한 의견을 남겨주세요."/>
+					<input type="submit" value="의견등록" title="의견등록" name="regBtn" id="regBtn" />
+				</div>
+			</fieldset>
+		</div>
+	</div>
+	
+	<dl class="sf_charge group">
+		
+		<dt class="charge">담당자</dt>
+		<dd>			
+			
+				해당게시물에서 확인바랍니다.
+				
+			
+		</dd>
+		<dt class="date">최근업데이트</dt>
+		<dd>2026-04-03</dd>
+	</dl>
+</div>
+
+<!--research_box-->
+
+					</div>
+					<div class="cleB"></div>
+					
+				</div>
+			</div>
+			
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+    window.addEventListener('DOMContentLoaded', function() {
+        setupCSRF();
+        handleMultipartForms();
+
+        setupMutationObserver();
+    });
+
+    function setupCSRF() {
+        var token = getCSRFToken();
+        if (token) {
+            setupAjaxCSRF(token);
+
+            addCSRFToForms(token);
+        } else {
+            console.error("CSRF 토큰을 찾을 수 없습니다.");
+        }
+    }
+
+    function getCSRFToken() {
+        var metaToken = document.querySelector('meta[name="_csrf"]');
+        var token = metaToken ? metaToken.getAttribute('content') : null;
+
+        if (!token) {
+            var inputToken = document.querySelector('input[name="_csrf"]');
+            token = inputToken ? inputToken.value : null;
+        }
+
+        return token;
+    }
+
+    function setupAjaxCSRF(token) {
+        var header = document.querySelector('meta[name="_csrf_header"]');
+        var headerName = header ? header.getAttribute('content') : "X-CSRF-TOKEN";
+
+        if (window.jQuery) {
+            $(document).ajaxSend(function(e, xhr, options) {
+                xhr.setRequestHeader(headerName, token);
+            });
+        } 
+    }
+
+
+    function addCSRFToForms(token) {
+        var forms = document.querySelectorAll('form');
+        forms.forEach(function(form) {
+            var method = form.getAttribute('method');
+
+            if (!method || method.toLowerCase() !== 'get') {
+                if (form.querySelector('input[name="_csrf"]') === null) {
+                    var input = document.createElement('input');
+                    input.setAttribute('type', 'hidden');
+                    input.setAttribute('name', '_csrf');
+                    input.setAttribute('value', token);
+                    form.appendChild(input);
+                }
+            }
+        });
+    }
+
+    function handleMultipartForms() {
+        var multipartForms = document.querySelectorAll('form[enctype="multipart/form-data"]');
+
+        multipartForms.forEach(function(form) {
+            form.removeEventListener('submit', checkCSRFToken);
+            form.addEventListener('submit', checkCSRFToken);
+            var token = getCSRFToken();
+            if (token && !form.querySelector('input[name="_csrf"]')) {
+                var input = document.createElement('input');
+                input.setAttribute('type', 'hidden');
+                input.setAttribute('name', '_csrf');
+                input.setAttribute('value', token);
+                form.appendChild(input);
+            }
+        });
+    }
+
+    function checkCSRFToken(event) {
+        var form = this;
+        var csrfInput = form.querySelector('input[name="_csrf"]');
+
+        if (!csrfInput) {
+            var token = getCSRFToken();
+
+            if (token) {
+                var input = document.createElement('input');
+                input.setAttribute('type', 'hidden');
+                input.setAttribute('name', '_csrf');
+                input.setAttribute('value', token);
+                form.appendChild(input);
+            }
+        }
+    }
+
+    function setupMutationObserver() {
+        if (document.body) {
+            var observer = new MutationObserver(function(mutations) {
+                mutations.forEach(function(mutation) {
+                    if (mutation.addedNodes && mutation.addedNodes.length > 0) {
+                        handleMultipartForms();
+                    }
+                });
+            });
+
+            observer.observe(document.body, {
+                childList: true,
+                subtree: true
+            });
+        } else {
+            window.addEventListener('load', function() {
+                setupMutationObserver();
+            });
+        }
+    }
+    if(location.protocol === 'http:'){
+    	location.href='https://'+ location.host;
+    }
+</script>
+
+<!-- Footer -->
+<div id="footer">
+    <h2 class="offscreen">사이트 하단정보</h2>
+    <div id="foot_util">
+        <div class="inner">
+            <ul class="foot_util">
+            	 <li><a href="/portal/contents.do?mId=0704000000" class="pinfo" title="새창" target="_blank">개인정보처리방침</a></li>
+				<li><a href="/job/contents.do?mId=0704000000">오시는 길</a></li>
+				<!-- <li><a href="#">전화번호안내</a></li>-->                
+            </ul>          
+        </div>
+    </div>
+    <div id="foot_info">
+        <div class="inner">
+            <div class="foot_logo"><img src="/job/images/layout/footlogo.png" alt="VISION Saha" /></div>
+            <address>신평 일자리지원센터 : (49442) 부산광역시 사하구 신산로 173 (신평동, 어울림센터 5층) 전화 051-220-5691~5 / 팩스 051-220-5699<br>
+하단 일자리지원센터 : (49426) 부산광역시 사하구 낙동남로 1400 (하단동, 사하고용복지플러스센터 8층) 전화 051-220-5696~8</address></address>
+            <p>본 웹사이트에 게시된 이메일 주소가 자동수집되는 것을 거부하며, 이를 위반시 정보통신망법에 의한 처벌됨을 유념하시기 바랍니다.</p>
+            <p class="copyright">Copyrightⓒ 2023, Saha-gu. All rights reserved.</p>
+            <div class="j_foot_count">
+				<li class="img_comn">오늘 방문자 수 : 4</li>
+				<li class="img_comn">총 방문자 수 : 704,807</li>
+			</div>
+            <div class="gotop">
+            	<a href="#"><img src="/job/images/layout/btn_fgotop.png" alt="상단으로" /></a>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- //Footer -->
+
+<div class="mask"></div>
+		</div>
+	</body>
+</html>

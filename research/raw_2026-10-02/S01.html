@@ -1,0 +1,464 @@
+﻿
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="ko">
+    
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  	
+  		
+  		
+  			<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  		
+  	
+    <title>공지사항</title>
+    <!-- css -->
+    <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">-->    <!-- 임시주석(인터넷X) -->
+    <link rel="stylesheet" href="https://m.bokjiro.go.kr/ssis-tem/cms/mob/common/css/reset.css">
+    <link rel="stylesheet" href="https://m.bokjiro.go.kr/ssis-tem/cms/mob/common/css/common.css">
+    <link rel="stylesheet" href="https://m.bokjiro.go.kr/ssis-tem/cms/mob/common/css/mobile-common.css">
+    <script src="/lib/cnvnCert/esign/jquery-3.7.1.min.js"></script>
+    <script src="https://m.bokjiro.go.kr/ssis-tem/cms/mob/common/js/kakao.min.js"></script>
+</head>
+
+<script>
+
+    $(function(){
+        
+        $(".only-mb").click(function(){
+            $(".list_thumb.type-img li.hidden").show();
+        }); 
+    
+    });
+	
+  function documentHeight() {
+        var body = document.body;
+        var html = document.documentElement;
+
+        var htmlHeight = Math.max(body.scrollHeight, body.offsetHeight, html.clientHeight, html.scrollHeight, html.offsetHeight);
+
+        return htmlHeight;
+    }
+  function sendSNS(sns) {
+  		var link;
+  		var param = "cmsUrl=https://m.bokjiro.go.kr/ssis-tem/cms/mob/customer/notice/1309500_1155.html";
+  		//var url = window.location.protocol + "//" + window.location.host;
+  		//var url = window.location.protocol + "//" + "bokjiro.go.kr"; //m.bokjiro 에서는 wfletter2017 없음 수정 필요
+  		var url = window.location.protocol + "//"+ "www.bokjiro.go.kr"; //크로스 오리진 이슈 www. 추가
+  		var agent = navigator.userAgent.toLowerCase();
+  		 if(agent.search("ios_bokjiro") != -1) {
+			url=window.location.protocol + "www.bokjiro.go.kr";
+  		}
+        else if(agent.search("android_bokjiro") != -1) {
+  			url=window.location.protocol + "//"+"www.bokjiro.go.kr";
+        } else {
+			url=window.location.protocol + "//"+ "www.bokjiro.go.kr";
+        }
+  		if(sns == "facebook") {
+  			//param = param.replace("&", "%2526");
+  			param = param.replace(window.location.protocol + "//" + window.location.host, "");
+  			console.log(param);
+  			console.log(url);
+  			link = "http://m.facebook.com/share.php" + "?u=" + encodeURIComponent(url) + "/ssis-teu/link/WFletter2017.jsp?" + param;
+ 			 console.log(link);
+  		} else if(sns == "twitter") {
+  			param = param.replace(window.location.protocol + "//" + window.location.host, "");
+  			console.log(param);
+  			console.log(url);
+  			link = "http://twitter.com/share" + "?url=" + encodeURIComponent(url) + "/ssis-teu/link/WFletter2017.jsp?" + param;
+  			console.log(link);
+  		} else if(sns == "kakao") {
+			param = param.replace(window.location.protocol + "//" + window.location.host, "");
+			try {
+				if(Kakao){
+					Kakao.init("dea98126405212e6186376adb1dca316");
+					Kakao.isInitialized();
+				}
+			}catch(e){
+  
+  			}
+			Kakao.Share.sendDefault({
+				objectType: 'feed',
+				content: {
+					title: "대한민국 대표 복지포털 '복지로'::공지사항",
+					description:"여기를 눌러 링크를 확인하세요.",
+					imageUrl: url + "/ssis-tbu/ui/theme/images/com/main/PC_logo.png",
+					link: {
+						mobileWebUrl: url + "/ssis-teu/link/WFletter2017.jsp?" + param,
+						webUrl: url + "/ssis-teu/link/WFletter2017.jsp?" + param
+					}
+				}
+			});
+			return;
+		} else if(sns == "url") {
+			param = param.replace(window.location.protocol + "//" + window.location.host, "");
+			var dummy = document.createElement("input");
+			document.body.appendChild(dummy);
+			dummy.value = url + "/ssis-teu/link/WFletter2017.jsp?" + param;
+			dummy.select();
+			document.execCommand('copy');
+			document.body.removeChild(dummy);
+  			alert("복사되었습니다.");
+  			return;
+		}
+  		 if(agent.search("ios_bokjiro") != -1) {
+       	window.location.href="bokjiroioscall://APP_SAFARI_CALL?pProtocol="+link.split("://")[0]+"&pUrl="+link.split("://")[1];
+  		}
+        else if(agent.search("android_bokjiro") != -1) {
+           location.href="intent://"+link+"#Intent;scheme=http;package=com.android.chrome;end";
+        } else {
+           window.open(link);
+        }
+  	}
+</script>
+
+<body>
+  
+  		
+  		
+  			
+  
+  	
+  	<div id="snsShareWrap">
+		<div class="snsShare">
+			<ul>
+				<li><a href="javascript:sendSNS('kakao')" title="카카오 공유하기"><img id="kakaoImage" src="https://m.bokjiro.go.kr/ssis-tem/cms/mob/common/img/kakaoIcon.gif" alt="카카오톡"></a></li>
+				<li><a href="javascript:sendSNS('facebook')" title="새창 페이스북 공유하기"><img id="" src="https://m.bokjiro.go.kr/ssis-tem/cms/mob/common/img/facebookIcon02.gif" alt="페이스북"></a></li>
+				<li><a href="javascript:sendSNS('twitter')" title="새창 트위터 공유하기"><img id="" src="https://m.bokjiro.go.kr/ssis-tem/cms/mob/common/img/twitterIcon02.gif" alt="트위터"></a></li>
+				<li><a href="javascript:sendSNS('url')" title="URL 복사하기"><img id="urlImage" src="https://m.bokjiro.go.kr/ssis-tem/cms/mob/common/img/urlIcon.gif" alt="URL"></a></li>
+			</ul>
+		</div>
+	</div>
+    
+  
+  	
+  		
+  
+  
+    	
+    <div id="contents" class="page-board">
+
+        <!--div class="pageLocation mT50">
+            <a href="#none" class="btnPrint"><span>화면인쇄</span></a>
+        </div>
+
+        <div class="title-area">
+            <button type="button" class="ico-page-prev only-mb">이전으로</button>
+            <h3 class="title">이용약관</h3>
+        </div-->
+      
+      <div class="info-area only-pc">
+				    <span class="info-txt"></span>
+				</div>
+        
+
+      
+<style>
+  /* 20221124 추가*/
+  .tbl-view .new_notice_tmpl .topBg {display:flex; align-items:center; background:#f1f4fc url(https://m.bokjiro.go.kr/ssis-tem/cms/mob/common/img/mo_topbg.png) no-repeat 3% 50%;  height:10em; padding:0 20px; box-sizing:border-box; margin:0 auto;}
+  .tbl-view .new_notice_tmpl .topBg strong {font-size:20px; padding-left:110px; line-height:26px;}
+  .tbl-view .new_notice_tmpl .substance {margin-top:30px;}
+  .tbl-view .new_notice_tmpl .substance .tit {padding-bottom:20px;}
+  .tbl-view .new_notice_tmpl .substance .tit:last-of-type {padding-bottom:0;}
+  .tbl-view .new_notice_tmpl .substance .tit dt {display:inline-block; background:#4261d8; border-radius:7px 7px 0 0; padding:6px 20px; color:#fff; font-size:14px; font-weight:600}
+  .tbl-view .new_notice_tmpl .substance .tit dd {border-top:1px solid #ccc}
+  .tbl-view .new_notice_tmpl .substance .tit dd ul {font-size:0}
+  .tbl-view .new_notice_tmpl .substance .tit dd ul li {font-size:16px; padding-top:10px;}
+  .tbl-view .new_notice_tmpl .substance .tit dd ul li .txt {display:block; line-height:18px; padding-top:7px;}
+  .tbl-view .new_notice_tmpl .blueBtn {margin:30px auto 20px auto; text-align:center; width:300px;}
+  .tbl-view .new_notice_tmpl .blueBtn .button {background:#4261d8; margin-bottom:10px; border-radius:8px;}
+  .tbl-view .new_notice_tmpl .blueBtn .button a {display:block; padding:10px 30px; color:#fff; font-size:14px; font-weight:700;}
+  .tbl-view .new_notice_tmpl .blueBtn .button:last-of-type {margin-right:0}
+  
+  @media (max-width: 500px) {
+  	.tbl-view .new_notice_tmpl .topBg strong {font-size: 1em; padding-left:110px; line-height:26px;}
+	.button-area.align-center {margin: 20px 15px 30px !important;}
+  }
+
+  .tbl-view thead {border-bottom: none;}
+  .color_blue {color: #3e61d7; text-align: left;}
+  .more-view-list li .view-cate {color: #3e61d7 !important;}
+</style>
+<script type="text/javascript">
+    /* GA 수집 개선 20221220 i_hnsys22_1 */
+    try {
+  		var p0 = "고객센터";
+		var p1 = "공지사항";
+		var p2 = `2026년 청년월세 지원 신청 안내`;
+		var pT0 = p0 + "-" + p1;
+		var pT1 = pT0 + "-" + p2;
+		parent.gtag('event' , 'page_view2', { event_category : 'subpage', event_label : p0, page_title : pT1, value : pT1 });
+    } catch(e) {}
+  
+    function documentHeight() {
+        var body = document.body;
+        var html = document.documentElement;
+
+        var htmlHeight = Math.max(body.scrollHeight, body.offsetHeight, html.clientHeight, html.scrollHeight, html.offsetHeight);
+
+        return htmlHeight;
+    }
+  
+  	function return2List(data){
+    	if(_ownerApp && _ownerApp.hasAppMethod("return2List")){
+            _ownerApp.callAppMethod("return2List", data);
+        }
+    }
+  
+  	function docHeight() {
+  		var body = document.body;
+  		var html = document.documentElement;
+  		
+  		console.log(body.scrollHeight + ", " + body.offsetHeight + ", " + html.clientHeight + ", " + html.scrollHeight + ", " + html.offsetHeight);
+  
+  		var htmlHeight = Math.max(body.scrollHeight, body.offsetHeight, html.clientHeight, html.scrollHeight, html.offsetHeight);
+  
+  		if (_ownerApp && _ownerApp.hasAppMethod("docHeight")) {
+  			_ownerApp.callAppMethod("docHeight", htmlHeight);
+  		}
+  	}
+  
+    function artNext(){
+  		docHeight();
+    }
+
+    function artPrev(){
+      	docHeight();
+    }
+  
+  	//GA 개선건 20221227 i_hnsys22_1
+	function setTitle() {
+  		parent.document.title = `공지사항 - 2026년 청년월세 지원 신청 안내`;
+	}
+
+	setTitle();
+</script>
+<style>
+.tbody > div {
+	padding : 20px 15px;
+  }
+.table .title{    
+  	text-align: left;
+	font-size : 20px;
+    height:auto;
+    margin : 0 0;
+    padding : 20px 15px 10px;
+	font-family: 'Noto Sans KR', sans-serif;
+    font-weight: bold;
+}
+.row{
+	display:flex;
+	flex-flow: row nowrap !important;
+    text-align:left;
+	letter-spacing: -0.5px;
+	font-family: 'Roboto', sans-serif;
+}
+.row p{
+   margin : 0 0;
+}
+.row-title{
+	box-sizing : border-box;
+	width:110px;
+	min-width:110px !important;
+    padding : 20px 15px 10px;
+}
+.tbl-view .thead .row .row-title {
+	font-weight: 500;
+	font-size: 16px;
+	padding-top: 0;
+}
+@media (max-width: 800px)
+.tbl-view .thead .row .row-title {
+	padding-left: 15px;
+	padding-right: 15px;
+}
+</style>
+
+<div class="tbl-box">
+  <div class="tbl-view">
+	  <div class="table">
+		<div class="thead">
+          <h4 class="title">2026년 청년월세 지원 신청 안내</h4>
+          <div class="row">
+            <p class="color_blue row-title" style="padding-bottom: 0;">등록일</p>
+            <p class="cell">2026-03-20</p>
+         </div>
+        
+      </div>
+      <div class="tbody">
+		<div class="content-wrap">
+			<div class="content" style="margin : 0 0;"><div class="new_notice_tmpl"> 
+<div class="topBg"> <strong><span style="font-size: 16pt;">2026년 청년월세 지원 신청 안내</span></strong> </div> 
+<ul> 
+<li>&nbsp;</li> 
+<li>안녕하세요. 복지로입니다.</li> 
+<li>청년월세 지원 서비스를 2026년 3월 30일(월) 09시부터 복지로에서 온라인으로 신청하실 수 있습니다.</li> 
+</ul> 
+<div class="substance"> <dl class="tit"> <dt>신청기간</dt> <dd> 
+<ul> 
+<li><b>2026년 3월 30일(월) 09시 ~ 2026년 5월 29일(금) 16시</b></li> 
+</ul> </dd> </dl> 
+<div class="substance"> <dl class="tit"> <dt>신청주체</dt> <dd> 
+<ul> 
+<li><b>청년 본인 신청</b></li> 
+</ul> </dd> </dl> 
+<div class="substance"> <dl class="tit"> <dt>지원대상</dt> <dd> 
+<ul> 
+<li><b>○ 19~34세 부모님과 별도 거주 무주택 청년</b><br /> &nbsp;&nbsp;※ '26년 신청 가능 출생연도 : 1991년 ~ 2007년생</li> 
+<li> &nbsp;- (원가구) 기준 중위소득 100% 이하, (청년가구) 기준 중위소득 60% 이하<br />
+&nbsp;- '26년도 신규 수혜자 전국 6만명 모집 예정(지역별로 선정 인원수가 다름)<br />
+&nbsp;&nbsp;&middot; 1, 2차 지원 구분 없이 인당 최대 24회 지급 가능<br />
+&nbsp;&nbsp;&middot; 1차('22.8~'24.12) 지원 수혜자의 경우 최대 24회에서 지급받은 회차를 제외하여 지원<br />&nbsp;&nbsp;&middot; 2차('24.2~'27.12) 지원 수혜자는 2차 사업이 끝난 이후에 신청 가능</li> 
+</ul> </dd> </dl> 
+<div class="substance"> <dl class="tit"> <dt>지급기간</dt> <dd> 
+<ul> 
+<li><b>○ '26년 신규 수혜자는 '28년 12월까지만 지원</b></li> 
+<li>&nbsp;- '26년에 선정된 이후 지급 중지 등으로 인해 '28년 까지 24개월(회) 지원을 다 못 받았다면,<br />&nbsp;&nbsp;'29년 이후 정기 신청기간에 재신청(소득, 재산 등 재심사)하여 선정될 때 지원을 재개하고 잔여횟수만 지원합니다.</li> 
+</ul> </dd> </dl> 
+<div class="substance"> <dl class="tit"> <dt>지급규모</dt> <dd> 
+<ul> 
+<li><b>○ 월 20만원씩 최대 24개월(회) 간 지원(생애 1회)</b><br />&nbsp; ※ 실제 납부하는 월세의 최대 20만원까지 지원(임차보증금, 관리비 등 제외)</li> 
+</ul> </dd> </dl> 
+<div class="substance"> <dl class="tit"><dt>민원상담(지침 및 서류 관련 문의)</dt> <dd> 
+<ul> 
+<li><b>○ 전담 콜센터 국토교통부 ☎1599-0001</b></li> 
+<li>○ <span style="font-weight: bold;">가구원 추가 입력 기준</span><br />
+&nbsp;- 만 30세 미만(미혼) : 별도 거주하는 친부/친모 추가<br />
+&nbsp;- 만 30세 이상 : 별도 거주하는 친부/친모 미추가<br />&nbsp;* 부모가 사망하신 경우 추가 입력하시지 않으셔도 됩니다. </li> 
+</ul> </dd> </dl> </div> 
+<div class="blueBtn"> 
+<div class="button"><a href="https://www.bokjiro.go.kr/ssis-tbu/ssis-tbu/twataa/wlfareInfo/moveTWAT52011M.do?wlfareInfoId=WLF00004661" target="_top">"청년월세 지원 서비스" 정보&nbsp;바로가기(PC)</a></div> 
+<div class="button"><a href="https://m.bokjiro.go.kr/ssis-tem/ssis-tem/twataa/wlfareInfo/moveTWAT52011M.do?wlfareInfoId=WLF00004661" target="_top">"청년월세 지원 서비스" 정보&nbsp;바로가기(모바일)</a></div> </div> </div> </div></div><b> </b></div></div></div></p>
+		</div>
+        <div class="tag-wrap">
+          <div>
+            
+<script>
+  function moveTotalSearch(e) {
+    if(_ownerApp && _ownerApp.hasAppMethod("moveTotalSearch")){
+            _ownerApp.callAppMethod("moveTotalSearch", e.innerText);
+    }
+  }
+</script>  
+
+<div class="keywordWrap">
+    <div class="keywordIcon"><img src="https://m.bokjiro.go.kr/ssis-tem/cms/mob/common/img/keyword_icon.png" alt="키워드 아이콘"></div>
+    <ul class="keywordList">
+    <li><a href="#" onclick="moveTotalSearch(this);">#청년월세지원</a></li>
+    <li><a href="#" onclick="moveTotalSearch(this);">#청년</a></li>
+    <li><a href="#" onclick="moveTotalSearch(this);">#복지로 온라인신청</a></li>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    </ul>
+</div> <!--//tag-area -->
+  
+          </div>
+        </div>
+      </div>
+    </div>
+  </div> <!--//tbl-comn -->
+  
+  <div class="button-area align-center">
+    <button type="button" class="btn-round bg-gray" style="background-color: rgb(109,111,130) !important; color: #fff !important;" onclick="return2List();" role="link">목록</button>
+  </div>
+
+            <div class="more-view-list">
+                <ul>
+                    <li>
+                        <span class="view-cate prev">다음글</span>
+                        <span id='prev' class="tit"><a href="https://m.bokjiro.go.kr/ssis-tem/cms/mob/customer/notice/1309524_1155.html">복지로 서비스 신청 중단 안내(PC, 모바일)</a></span>
+                    </li>
+                    <li>
+                        <span class="view-cate next">이전글</span>
+                        <span id='next' class="tit"><a href="https://m.bokjiro.go.kr/ssis-tem/cms/mob/customer/notice/1309394_1155.html">2026년도 초중고 학생 교육급여·교육비 지원 온라인신청 집중신청기간 안내</a></span>
+                    </li>
+                </ul>
+            </div>
+
+        </div>
+		<script>
+          $(function(){
+                var next='2026년도 초중고 학생 교육급여·교육비 지원 온라인신청 집중신청기간 안내';
+          		var prev='복지로 서비스 신청 중단 안내(PC, 모바일)';
+          		if(next==""){
+          			$("#next").find("a").remove();
+          			$("#next").text("이전글 없음");
+          		}
+                if(prev==""){
+          			$("#prev").find("a").remove();
+         			 $("#prev").text("다음글 없음");
+          		}
+          });
+		</script>
+
+        <!--div class="stateBox mt50">
+            <strong class="tit">현재 페이지의 내용과 사용 편의성에 대해 만족하십니까?</strong>
+            <button id="submitBtn1" type="button" class="btn-round bg-gray only-pc">평가하기</button>
+            <ul class="list_star">
+                <li><label for="radio01" class="star05"><span class="icon"></span><input type="radio" id="radio01" class="radio" name="radioGr" value="5" title="매우만족 선택">매우만족</label></li>
+                <li><label for="radio02" class="star04"><span class="icon"></span><input type="radio" id="radio02" class="radio" name="radioGr" value="4" title="만족 선택">만족</label></li>
+                <li><label for="radio03" class="star03"><span class="icon"></span><input type="radio" id="radio03" class="radio" name="radioGr" value="3" title="보통 선택">보통</label></li>
+                <li><label for="radio04" class="star02"><span class="icon"></span><input type="radio" id="radio04" class="radio" name="radioGr" value="2" title="불만족 선택">불만족</label></li>
+                <li><label for="radio05" class="star01"><span class="icon"></span><input type="radio" id="radio05" class="radio" name="radioGr" value="1" title="매우불만족 선택">매우불만족</label></li>
+            </ul>
+
+            <button id="submitBtn1" type="button" class="btn-round bg-gray only-mb">평가하기</button>
+            
+            <div class="stateText">
+            
+                <strong class="tit2">현재 페이지의 오류와 개선점이 있으면 의견을 주시기 바랍니다.</strong>
+                <div class="txtArea"><textarea name="stsfCn" id="stsfCn" class="form-control" placeholder="한글 10자리 이상 입력하여 주시기 바랍니다." title="사용자 의견 입력"></textarea></div>
+            </div>
+            <button type="button" id="stsfCnBtn" class="btn-round bg-gray">의견남기기</a>
+            
+        </div-->
+    
+    </div>
+
+    <!-- js -->
+  <!-- 임시주석(인터넷X) -->
+  <!--	
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+	-->
+    <script>
+        /*
+      	$('li.tab-li').click(function() {
+            $(this).parents('ul.tab').find('li.tab-li').removeClass('active');
+            $(this).parents('ul.tab').find('li.tab-li>.tab-cont').addClass('hide').hide('slow');
+            $(this).children('.tab-cont').show('slow').removeClass('hide');
+            $(this).children('.tab-cont').parents('li.tab-li').addClass('active');
+        });
+        $(".tab-cont.hide").parents('li.tab-li').removeClass('active');
+      	*/
+    </script>
+
+</body>
+  
+<script>
+
+  		//document.getElementById("facebookImage").src= window.location.protocol + "//" + window.location.host + "/ssis-teu/ui/theme/images/newsLetter/facebookIcon.gif";
+  		//document.getElementById("twitterImage").src= window.location.protocol + "//" + window.location.host + "/ssis-teu/ui/theme/images/newsLetter/twitterIcon.gif";
+  		//document.getElementById("facebookImage").src= window.location.protocol + "//" + "bokjiro.go.kr" + "/ssis-teu/ui/theme/images/newsLetter/facebookIcon.gif";
+  		//document.getElementById("twitterImage").src= window.location.protocol + "//" + "bokjiro.go.kr" + "/ssis-teu/ui/theme/images/newsLetter/twitterIcon.gif";
+
+</script>
+
+</html>

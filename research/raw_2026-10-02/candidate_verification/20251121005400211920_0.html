@@ -1,0 +1,1260 @@
+
+
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>재단법인 충북학사</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=0" />
+	<meta charset="UTF-8">
+	<meta name="title" content="재단법인 충북학사">
+	<meta name="author" content="재단법인 충북학사">
+	<meta name="keywords" content="재단법인 충북학사, 충북학사, 재단법인">
+	<meta name="description" content="재단법인 충북학사">
+	<meta name="robots" content="index,follow">
+	<link rel="canonical" href="http://home.cbhs.kr/main">
+	<link rel="shortcut icon" type="image/x-icon" href="../client/images/common/title.ico">
+	<link rel="stylesheet" type="text/css" href="../client/css/reset.css" />
+	<link rel="stylesheet" type="text/css" href="../client/css/common.css" />
+	<link rel="stylesheet" type="text/css" href="../client/css/main.css" />
+	<link rel="stylesheet" type="text/css" href="../client/css/sub_common.css" />
+	<link rel="stylesheet" type="text/css" href="../client/css/content.css" />
+	<link rel="stylesheet" type="text/css" href="../client/css/board.css" />
+	<link rel="stylesheet" type="text/css" href="../client/css/popup.css" />
+	<link rel="stylesheet" type="text/css" href="../client/font-awesome/css/font-awesome.min.css" />
+	
+	<script src="../client/js/jquery.min.js"></script>
+	<script src="../client/js/cookie.js"></script>
+	<script src="../client/js/basepage.js"></script>
+	<script src="../client/js/respond.min.js"></script>
+	<script src="../client/js/html5shiv.js"></script>
+	<link rel="stylesheet" href="../client/plugins/jquery.bxslider/jquery.bxslider.min.css">
+	<script type="text/javascript" src="../client/plugins/jquery.bxslider/jquery.bxslider.min.js"></script>
+	<script src="../client/js/jquery-ui.min.js"></script>
+	<script src="../client/js/components/popup.js"></script>
+	<script language="javascript">
+		$(document).ready(function() {
+			var popup_slider = $('.popup-zone-list');
+
+
+			/*popup_slider.bxSlider({
+		        pause: 5000,
+		        pager: false,
+		        controls: false,
+		        moveSlides: 1,
+		        minSlides: 1,
+		        maxSlides: 1,
+		        responsive: true,
+		        touchEnabled : (navigator.maxTouchPoints > 0)
+		    });
+		    popup_slider.startAuto();
+		    $('.popup-zone-control .prev-btn').on('click', function(){ popup_slider.goToPrevSlide(); });
+		    $('.popup-zone-control .next-btn').on('click', function(){ popup_slider.goToNextSlide(); });
+		    $('.popup-zone-control .stop-btn').on('click', function(){ popup_slider.stopAuto(); });
+
+			*/
+
+		    /* 배너 이미지 불러오기 */
+		    var main_slider = $('.main-visual-list');
+		    /* quick-slider */
+// 		    var quick_slider;
+// 		    quick_slider = $('.quick-slider').bxSlider({
+// 		        pager: false,
+// 		        controls: false,
+// 		        slideWidth: 160,
+// 		        moveSlides: 1,
+// 		        maxSlides: 5,
+// 		        minSlides: 1,
+// 		        responsive: true 
+// 		    });
+// 		    $('.quick-control .quick-prev').on('click', function(){ quick_slider.goToPrevSlide(); });
+// 		    $('.quick-control .quick-next').on('click', function(){ quick_slider.goToNextSlide(); });
+	
+		    ellipsis();
+		   
+		    $.ajax({
+				type : 'get',
+				url : '/api/common/popup',
+				success : function(data){
+				    data.forEach(function(popup) {
+		        		if(!getCookie("popup_"+ popup.popupId)) $("#popup_" + popup.popupId).show();
+				    })
+				},
+				error: function(xhr, status, error){
+					alert(error)
+				}
+			})
+		    $('.draggable_popup').draggable();
+			
+		
+
+
+	});
+	</script>
+</head>
+<body>
+	<div id="wrap">
+		
+
+
+
+
+
+
+<header id="header">
+	<div class="top_layout">
+		<div class="width1100 clearfix">
+			<ul class="sidlink">
+				<li class="on">재단법인 충북학사</li>
+				<!-- <li><a href="http://home.cbhs.kr/main" target="_blank" title="재단법인 충북학사 새 창으로 이동">재단법인 충북학사</a></li> -->
+				<li><a href="https://www.cbhs.kr/main" target="_blank" title="충북학사 서서울관 새 창으로 이동">충북학사 서서울관</a></li>
+				<li><a href="https://www.cbhs2.kr/main" target="_blank" title="충북학사 동서울관 새 창으로 이동">충북학사 동서울관</a></li>
+				<li><a href="https://www.cbhscj.kr/main" target="_blank" title="충북학사 청주관 새 창으로 이동">충북학사 청주관</a></li>
+			</ul>
+			 <ul class="globalBox">
+				<li><a href="/main" title="HOME">HOME</a></li>
+				<li style="list-style: none"></li>
+				
+					
+					
+						<li class='not_login'><a href="/login" title="로그인으로 이동">로그인</a></li>
+<!-- 						<li class='not_login'><a href="/join" title="회원가입으로 이동">회원가입</a></li> -->
+					
+				
+				<li style="list-style: none"></li>
+			</ul> 
+		</div>
+		<div class="width1100 header_menu clearfix">
+			<div class="mb_menu">
+				<i class="fa fa-bars"></i>
+			</div>
+			<a class="top_logo" href="/main" title="충북학사 메인으로 이동">
+				<img alt="충북학사" src="../client/images/common/logo26.png">
+			</a>
+			<ul class="cbox">
+				<li class="cbox_green">
+					<a href="/sitemap" title="사이트맵으로 이동">
+						<i class="fa fa-bars"></i>
+					</a>
+				</li>
+				<li class="cbox_orange">
+					<a href="#">
+						<i class="fa fa-search"></i>
+					</a>
+				</li>
+			</ul>
+			<div class="lnb_layout clearfix">
+				<div class="lnb_area_bg"></div>
+				<!-- 모바일 메뉴 -->
+				<div class="mb_gnb_menu">
+					<a class="mb_menu_closed" href="javascript:void(0)" title="모바일 메뉴 닫기">닫기</a>
+					<div class="mb_logo">
+						<img src="../client/images/common/mb_logo2.png">
+					</div>
+					<div class="mb_list">
+						<ul>
+							<li class='not_login'><a href="http://www.cbhs.kr/main" target="_blank" title="충북학사 서서울관 새 창으로 이동">충북학사 서서울관</a></li>
+							<li class='not_login'><a href="http://www.cbhs2.kr/main" target="_blank" title="충북학사 동서울관 새 창으로 이동">충북학사 동서울관</a></li>
+							<li class='not_login'><a href="http://www.cbhscj.kr/main" target="_blank" title="충북학사 청주관 새 창으로 이동">충북학사 청주관</a></li>
+						</ul>
+					</div>
+				</div>
+				<!-- // 모바일 메뉴 -->
+				<!-- lnb -->
+				<ul class="lnb clearfix">
+					
+						
+							<li class="">
+								
+									
+									
+										<a href="/0000114">재단소개</a> 
+									
+								
+								<div class="top_sub_menu clearfix" style="overflow: hidden; display: none;">
+								    <div class="top_menu_box">
+								       <div class="top_sub_left">
+								           <p class="lnb_ttl">재단소개</p>
+								           <p class="lnb_info">미래사회의 중추적 인재를 <br>양성하는 면학의 산실</p>
+								       </div>
+								       <div class="top_sub_right">
+								       
+								       		<ul class="lnb_sub_02">
+							       				
+							       				
+												
+							       				
+								       				<li>
+														
+															
+															
+																<a href="/0000116" title="설립취지 및 연혁 이동">설립취지 및 연혁</a>
+																
+															
+														
+													</li>
+													
+												
+							       				
+								       				<li>
+														
+															
+															
+																<a href="/0000066" title="미션/비전 이동">미션/비전</a>
+																
+															
+														
+													</li>
+													
+												
+							       				
+								       				<li>
+														
+															
+															
+																<a href="/0000067" title="운영조직도 및 주요사업 이동">운영조직도 및 주요사업</a>
+																
+															
+														
+													</li>
+													
+												
+							       				
+								       				<li>
+														
+															
+															
+																<a href="/0000068" title="일반현황 이동">일반현황</a>
+																
+															
+														
+													</li>
+													
+												
+							       				
+								       				<li>
+														
+															
+															
+																<a href="/0000117" title="법령 및 제규정 이동">법령 및 제규정</a>
+																
+															
+														
+													</li>
+													
+												
+							       				
+								       				<li>
+														
+															
+															
+																<a href="/0000069" title="보도자료 이동">보도자료</a>
+																
+															
+														
+													</li>
+													
+												
+							       				
+								       				<li>
+														
+															
+															
+																<a href="/0000070" title="오시는 길 이동">오시는 길</a>
+																
+															
+														
+													</li>
+													
+												
+								       		</ul>
+								       	
+								       </div>
+							       </div>
+						       </div>
+							</li>
+						
+					
+						
+							<li class="">
+								
+									
+									
+										<a href="/0000007">참여마당</a> 
+									
+								
+								<div class="top_sub_menu clearfix" style="overflow: hidden; display: none;">
+								    <div class="top_menu_box">
+								       <div class="top_sub_left">
+								           <p class="lnb_ttl">참여마당</p>
+								           <p class="lnb_info">미래사회의 중추적 인재를 <br>양성하는 면학의 산실</p>
+								       </div>
+								       <div class="top_sub_right">
+								       
+								       		<ul class="lnb_sub_02">
+							       				
+							       				
+								       				<li>
+														
+															
+															
+																<a href="/0000007" title="공지사항 이동">공지사항</a>
+																
+															
+														
+													</li>
+													
+												
+							       				
+								       				<li>
+														
+															
+															
+																<a href="/0000071" title="공고/공시 이동">공고/공시</a>
+																
+															
+														
+													</li>
+													
+												
+							       				
+								       				<li>
+														
+															
+															
+																<a href="/0000092" title="클린경영 이동">클린경영</a>
+																
+																<ul class="lnb_sub_03">
+																
+																	
+																		
+												                             
+																				
+																				
+																					<li><a href="/0000092">임직원 행동강령</a></li>
+																				
+																			
+																	
+																
+																	
+																		
+												                             
+																				
+																				
+																					<li><a href="/0000086">공무수행사인 공개</a></li>
+																				
+																			
+																	
+																
+																	
+																		
+												                             
+																				
+																				
+																					<li><a href="/0000134">클린신고센터</a></li>
+																				
+																			
+																	
+																
+																	
+																		
+												                             
+																				
+																				
+																					<li><a href="/0000135">인권침해 신고센터</a></li>
+																				
+																			
+																	
+																
+																</ul>
+																
+															
+														
+													</li>
+													
+												
+							       				
+								       				<li>
+														
+															
+															
+																<a href="/0000121" title="홍보마당 이동">홍보마당</a>
+																
+																<ul class="lnb_sub_03">
+																
+																	
+																		
+												                             
+																				
+																				
+																					<li><a href="/0000121">학사동정</a></li>
+																				
+																			
+																	
+																
+																</ul>
+																
+															
+														
+													</li>
+													
+												
+							       				
+								       				<li>
+														
+															
+															
+																<a href="/0000125" title="채용게시판 이동">채용게시판</a>
+																
+																<ul class="lnb_sub_03">
+																
+																	
+																		
+												                             
+																				
+																				
+																					<li><a href="/0000125">채용공고게시판</a></li>
+																				
+																			
+																	
+																
+																	
+																		
+												                             
+																				
+																				
+																					<li><a href="/0000124">채용지원게시판</a></li>
+																				
+																			
+																	
+																
+																</ul>
+																
+															
+														
+													</li>
+													
+												
+							       				
+								       				<li>
+														
+															
+															
+																<a href="/0000126" title="친·인척채용인원 이동">친·인척채용인원</a>
+																
+															
+														
+													</li>
+													
+												
+								       		</ul>
+								       	
+								       </div>
+							       </div>
+						       </div>
+							</li>
+						
+					
+						
+							<li class="">
+								
+									
+									
+										<a href="/0000097">정보공개</a> 
+									
+								
+								<div class="top_sub_menu clearfix" style="overflow: hidden; display: none;">
+								    <div class="top_menu_box">
+								       <div class="top_sub_left">
+								           <p class="lnb_ttl">정보공개</p>
+								           <p class="lnb_info">미래사회의 중추적 인재를 <br>양성하는 면학의 산실</p>
+								       </div>
+								       <div class="top_sub_right">
+								       
+								       		<ul class="lnb_sub_02">
+							       				
+							       				
+								       				<li>
+														
+															
+															
+																<a href="/0000097" title="윤리경영 이동">윤리경영</a>
+																
+																<ul class="lnb_sub_03">
+																
+																	
+																		
+												                             
+																				
+																				
+																					<li><a href="/0000097">고객서비스헌장</a></li>
+																				
+																			
+																	
+																
+																	
+																		
+												                             
+																				
+																				
+																					<li><a href="/0000128">(재)충북학사 고객서비스 이행기준</a></li>
+																				
+																			
+																	
+																
+																	
+																		
+												                             
+																				
+																				
+																					<li><a href="/0000098">윤리헌장</a></li>
+																				
+																			
+																	
+																
+																	
+																		
+												                             
+																				
+																				
+																					<li><a href="/0000099">임직원 행동강령</a></li>
+																				
+																			
+																	
+																
+																	
+																		
+												                             
+																				
+																				
+																					<li><a href="/0000129">(재)충북학사 탄소중립 실천 선언문</a></li>
+																				
+																			
+																	
+																
+																</ul>
+																
+															
+														
+													</li>
+													
+												
+							       				
+								       				<li>
+														
+															
+															
+																<a href="/0000131" title="인권경영 이동">인권경영</a>
+																
+																<ul class="lnb_sub_03">
+																
+																	
+																		
+												                             
+																				
+																				
+																					<li><a href="/0000131">인권경영헌장</a></li>
+																				
+																			
+																	
+																
+																</ul>
+																
+															
+														
+													</li>
+													
+												
+							       				
+								       				<li>
+														
+															
+															
+																<a href="/0000101" title="경영공시 이동">경영공시</a>
+																
+																<ul class="lnb_sub_03">
+																
+																	
+																		
+												                             
+																				
+																				
+																					<li><a href="/0000101">사업 및 예산운용</a></li>
+																				
+																			
+																	
+																
+																	
+																		
+												                             
+																				
+																				
+																					<li><a href="/0000102">임원 및 운영인력</a></li>
+																				
+																			
+																	
+																
+																	
+																		
+												                             
+																				
+																				
+																					<li><a href="/0000103">결산</a></li>
+																				
+																			
+																	
+																
+																	
+																		
+												                             
+																				
+																				
+																					<li><a href="/0000104">인건비</a></li>
+																				
+																			
+																	
+																
+																	
+																		
+												                             
+																				
+																				
+																					<li><a href="/0000105">외부기관 감사결과</a></li>
+																				
+																			
+																	
+																
+																	
+																		
+												                             
+																				
+																				
+																					<li><a href="/0000109">경영실적 평가결과</a></li>
+																				
+																			
+																	
+																
+																	
+																		
+												                             
+																				
+																				
+																					<li><a href="/0000136">기관장 성과계약</a></li>
+																				
+																			
+																	
+																
+																</ul>
+																
+															
+														
+													</li>
+													
+												
+							       				
+								       				<li>
+														
+															
+															
+																<a href="/0000107" title="행정정보 이동">행정정보</a>
+																
+																<ul class="lnb_sub_03">
+																
+																	
+																		
+												                             
+																				
+																				
+																					<li><a href="/0000107">주요업무계획</a></li>
+																				
+																			
+																	
+																
+																	
+																		
+												                             
+																				
+																				
+																					<li><a href="/0000110">예산규모 - 세입세출 예산서</a></li>
+																				
+																			
+																	
+																
+																	
+																		
+												                             
+																				
+																				
+																					<li><a href="/0000111">예산규모 - 재정 및 재무현황</a></li>
+																				
+																			
+																	
+																
+																</ul>
+																
+															
+														
+													</li>
+													
+												
+								       		</ul>
+								       	
+								       </div>
+							       </div>
+						       </div>
+							</li>
+						
+					
+						
+					
+						
+					
+						
+					
+						
+					
+						
+					
+						
+					
+				</ul>
+				<div class="lnb_bg"></div>
+			</div>
+			<div class="top-search">
+				<div class="top-search-form">
+					<form id="searchForm" method="get" action="/search">
+						<div class="top-search-box">
+							<label class="blind" for="topquery">통합검색</label>
+							<input id="topquery" name="searchValue" placeholder="검색어를 입력해주세요" type="text">
+							<a href="javascript:search()" id="topsearchbtn"><i class="fa fa-search"></i></a>
+						</div>
+					</form>
+					<a href="#" class="top-search-close">
+						<img src="../client/images/common/top_close_btn.png" width="30" height="30" alt="검색창 닫기">
+					</a>
+				</div>
+			</div>
+		</div>
+		<!-- 상단 GNB 영역 E -->
+	</div>
+	<!-- 상단디자인 끝 -->
+</header>
+		
+
+
+
+
+
+
+<div id="container"> 
+	<!-- 본문내용 시작 --> 
+	<title>재단법인 충북학사</title>
+	<div class="main-visual">
+	    <ul class="main-visual-list">
+	    </ul>
+	    <div class="main-visual-control">
+	        <ul class="clearfix"></ul>
+	    </div>
+	</div>
+	<div class="main-zone">
+	<h2><span>미래 사회의 중추적 인재를 양성하는 면학의 산실 </span></h2>
+<!-- 	    <div class="main-box-bg"> -->
+	        <div class="main-box clearfix">
+	            <div class="popup-zone">
+	                <ul class="popup-zone-list">
+	                	
+	                </ul>
+	                <div class="popup-zone-control">
+	                    <ul class="clearfix">
+	                        <li class="prev-btn"><img src="../../client/images/main/popup_prev_btn.png" width="10" height="15" alt="이전 슬라이더"></li>
+	                        <li class="slider-control stop-btn"><img src="../../client/images/main/popup_stop_btn.png" width="10" height="15" alt="슬라이더 멈춤"></li>
+	                        <li class="next-btn"><img src="../../client/images/main/popup_next_btn.png" width="10" height="15" alt="다음 슬라이더"></li>
+	                    </ul>
+	                </div>
+	            </div>
+	            <div class="board-zone">
+	                <div class="board-zone-top clearfix">
+	                    
+	                    <div class="notice-box">
+	                    <div id="notice-tabs" class="ui-tabs ui-corner-all ui-widget ui-widget-content">
+	                        <ul class="clearfix ui-tabs-nav ui-corner-all ui-helper-reset ui-helper-clearfix ui-widget-header" role="tablist">
+	                            <li id = "tab2" role="tab" tabindex="0" class="ui-tabs-tab ui-corner-top ui-state-default ui-tab ui-tabs-active ui-state-active" aria-controls="tab-notice" aria-labelledby="ui-id-2" aria-selected="false" aria-expanded="false"><a href="#" role="presentation" tabindex="-1" class="ui-tabs-anchor" id="ui-id-2" onclick="$.clickpost(2);"  data-role="2">공지사항</a></li>
+	                            <li id = "tab1" role="tab" tabindex="-1" class="ui-tabs-tab ui-corner-top ui-state-default ui-tab" aria-controls="tab-data" aria-labelledby="ui-id-1" aria-selected="true" aria-expanded="true" data-role="1"><a href="#" role="presentation" tabindex="-1" class="ui-tabs-anchor" id="ui-id-1" onclick="$.clickpost(1);" data-role="1">공시/공고</a></li>
+								<li id = "tab3" role="tab" tabindex="-1" class="ui-tabs-tab ui-corner-top ui-state-default ui-tab" aria-controls="tab-data" aria-labelledby="ui-id-1" aria-selected="true" aria-expanded="true" data-role="1"><a href="#" role="presentation" tabindex="-1" class="ui-tabs-anchor" id="ui-id-1" onclick="$.clickpost(3);" data-role="1">보도자료</a></li>
+	
+	                        </ul>
+	                        <!-- 공지사항 탭2 -->
+	                        <div id="notice2" aria-labelledby="ui-id-2" role="tabpanel" class="ui-tabs-panel ui-corner-bottom ui-widget-content" aria-hidden="true" style="display: block;">
+	                            <ul class="notice-list">
+	                            
+		                        	<li>
+		                                <a href="/0000007?postId=defaeb65-4482-4c18-b079-00fead4192af&mode=READ" title="2026년 재단법인 충북학사 인권경영 실천 결의대회">
+		                                    <span class="notice-ttl">2026년 재단법인 충북학사 인권경영 실천 결의대회</span>
+		                                    <span class="notice-day">2026-07-08</span>
+		                                </a>
+		                            </li>	
+	                        	
+		                        	<li>
+		                                <a href="/0000007?postId=230164f5-caf7-40fa-ac02-abcdef0c2f20&mode=READ" title="2025년 재단법인 충북학사 인권경영보고">
+		                                    <span class="notice-ttl">2025년 재단법인 충북학사 인권경영보고</span>
+		                                    <span class="notice-day">2025-12-31</span>
+		                                </a>
+		                            </li>	
+	                        	
+		                        	<li>
+		                                <a href="/0000007?postId=28700d0f-dc22-4024-8f98-2ad0ddda3015&mode=READ" title="2025년 재단법인 충북학사 인권경영 실천 결의대회">
+		                                    <span class="notice-ttl">2025년 재단법인 충북학사 인권경영 실천 결의대회</span>
+		                                    <span class="notice-day">2025-08-27</span>
+		                                </a>
+		                            </li>	
+	                        	
+		                        	<li>
+		                                <a href="/0000007?postId=0c6d2442-3e71-4c23-bf21-a57d91eaeaec&mode=READ" title="2024년  인권경영 선포식 개최">
+		                                    <span class="notice-ttl">2024년  인권경영 선포식 개최</span>
+		                                    <span class="notice-day">2024-12-31</span>
+		                                </a>
+		                            </li>	
+	                        	
+		                        	<li>
+		                                <a href="/0000007?postId=a6378f77-9d7b-4bcd-a5d7-e141e56b93d7&mode=READ" title="2024년 재단법인 충북학사 인권경영보고">
+		                                    <span class="notice-ttl">2024년 재단법인 충북학사 인권경영보고</span>
+		                                    <span class="notice-day">2024-12-30</span>
+		                                </a>
+		                            </li>	
+	                        	
+	                            
+	                            </ul>
+	                           <!--  <li><a href="/CmsHome/sub03_02.aspx?T=C&amp;c1=1&amp;w=&amp;sn=229705&amp;page=1" title="강도높은 '사회적 거리두기' 국민행동지침"><span class="notice-ttl">강도높은 '사회적 거리두기' 국민행동지침</span><span class="notice-day">2020-04-02</span></a></li><li><a href="/CmsHome/sub03_02.aspx?T=C&amp;c1=1&amp;w=&amp;sn=229704&amp;page=1" title="코로나19 관련 도민께 드리는 호소문"><span class="notice-ttl">코로나19 관련 도민께 드리는 호소문</span><span class="notice-day">2020-04-02</span></a></li><li><a href="/CmsHome/sub03_02.aspx?T=C&amp;c1=1&amp;w=&amp;sn=229648&amp;page=1" title="코로나19 예방 및 행동수칙"><span class="notice-ttl">코로나19 예방 및 행동수칙</span><span class="notice-day">2020-03-24</span></a></li><li><a href="/CmsHome/sub03_02.aspx?T=C&amp;c1=1&amp;w=&amp;sn=229598&amp;page=1" title="생명과 태양의 땅 충북 10년, 강호축 UCC 공모전 개최 "><span class="notice-ttl">생명과 태양의 땅 충북 10년, 강호축 UCC 공모전 개최 </span><span class="notice-day">2020-03-18</span></a></li></ul> -->
+	                        </div>
+	                        
+	                         <!--  공시/공고  탭1-->
+	                        <div id="notice1" aria-labelledby="ui-id-2" role="tabpanel" class="ui-tabs-panel ui-corner-bottom ui-widget-content" aria-hidden="false" style="display: none;">
+	                            <ul class="notice-list">
+	                            
+		                        	<li>
+		                               <a href="/0000071?postId=b3e7e84c-d482-4d99-a284-eba8040fd2e2&mode=READ" title="충북학사 청주관 사무국장 경력경쟁 채용 최종합격자 공고">
+		                                    <span class="notice-ttl">충북학사 청주관 사무국장 경력경쟁 채용 최종합격자 공고</span>
+		                                    <span class="notice-day">2026-09-22</span>
+		                                </a>
+		                            </li>	
+	                        	
+		                        	<li>
+		                               <a href="/0000071?postId=57a627d3-c9b4-44f7-a279-4f7dc7d115d1&mode=READ" title="충북학사 청주관 사무국장 채용 서류심사 합격자발표 및 면접시험 시행 공고">
+		                                    <span class="notice-ttl">충북학사 청주관 사무국장 채용 서류심사 합격자발표 및 면접시험 시행 공고</span>
+		                                    <span class="notice-day">2026-09-10</span>
+		                                </a>
+		                            </li>	
+	                        	
+		                        	<li>
+		                               <a href="/0000071?postId=4f559bd4-28c2-4a00-9e8e-19e3cd90fa88&mode=READ" title="충북학사 청주관 사무국장 경력경쟁 공개채용 공고">
+		                                    <span class="notice-ttl">충북학사 청주관 사무국장 경력경쟁 공개채용 공고</span>
+		                                    <span class="notice-day">2026-08-24</span>
+		                                </a>
+		                            </li>	
+	                        	
+		                        	<li>
+		                               <a href="/0000071?postId=cdac110e-fda1-4a77-a524-c70e00f5ab1d&mode=READ" title="재단 직원(행정) 공개채용 추가합격자 발표 및 채용서류제출 안내">
+		                                    <span class="notice-ttl">재단 직원(행정) 공개채용 추가합격자 발표 및 채용서류제출 안내</span>
+		                                    <span class="notice-day">2026-08-11</span>
+		                                </a>
+		                            </li>	
+	                        	
+		                        	<li>
+		                               <a href="/0000071?postId=d98af03f-fe66-492e-b316-d826e532a9cc&mode=READ" title="재단 직원(행정) 공개채용 추가합격자 발표 및 채용서류제출 안내">
+		                                    <span class="notice-ttl">재단 직원(행정) 공개채용 추가합격자 발표 및 채용서류제출 안내</span>
+		                                    <span class="notice-day">2026-08-10</span>
+		                                </a>
+		                            </li>	
+	                        	
+	                            
+	                            </ul>
+	                          
+	                          <!--   <ul class="notice-list"><li><a href="/CmsHome/sub03_01.aspx?T=C&amp;c1=1&amp;w=&amp;sn=229561&amp;page=1" title="(재)충북학사 직원 공개채용 공고"><span class="notice-ttl">(재)충북학사 직원 공개채용 공고</span><span class="notice-day">2020-03-12</span></a></li><li><a href="/CmsHome/sub03_01.aspx?T=C&amp;c1=1&amp;w=&amp;sn=229471&amp;page=1" title="충북학사 서서울관 사무국장 채용  최종 합격자 공고"><span class="notice-ttl">충북학사 서서울관 사무국장 채용  최종 합격자 공고</span><span class="notice-day">2020-02-28</span></a></li><li><a href="/CmsHome/sub03_01.aspx?T=C&amp;c1=1&amp;w=&amp;sn=229331&amp;page=1" title="충북인재양성의 보고 제2충북학사 문을 활짝 열다"><span class="notice-ttl">충북인재양성의 보고 제2충북학사 문을 활짝 열다</span><span class="notice-day">2020-02-19</span></a></li><li><a href="/CmsHome/sub03_01.aspx?T=C&amp;c1=1&amp;w=&amp;sn=229201&amp;page=1" title="충북학사 서서울관 사무국장 경력경쟁 공개채용(재공고)"><span class="notice-ttl">충북학사 서서울관 사무국장 경력경쟁 공개채용(재공고)</span><span class="notice-day">2020-02-11</span></a></li><li><a href="/CmsHome/sub03_01.aspx?T=C&amp;c1=1&amp;w=&amp;sn=229043&amp;page=1" title="충북학사 서서울관 사무국장 경력경쟁 공개채용"><span class="notice-ttl">충북학사 서서울관 사무국장 경력경쟁 공개채용</span><span class="notice-day">2020-01-30</span></a></li></ul> -->
+	                        </div>
+
+							 <!--  공시/공고  탭1-->
+	                        <div id="notice3" aria-labelledby="ui-id-3" role="tabpanel" class="ui-tabs-panel ui-corner-bottom ui-widget-content" aria-hidden="false" style="display: none;">
+	                            <ul class="notice-list">
+	                            
+		                        	<li>
+		                               <a href="/0000069?postId=9b2daa70-64ed-488b-bc5a-0239ddab0902&mode=READ" title="충북학사, SK하이닉스 청주캠퍼스서 기업탐방 프로그램">
+		                                    <span class="notice-ttl">충북학사, SK하이닉스 청주캠퍼스서 기업탐방 프로그램</span>
+		                                    <span class="notice-day">2026-09-21</span>
+		                                </a>
+		                            </li>	
+	                        	
+		                        	<li>
+		                               <a href="/0000069?postId=519d6c4e-2f65-4d03-a004-08a8001e5e13&mode=READ" title="영등포경찰서·충북학사, 학생 체감 ‘안전망 강화’">
+		                                    <span class="notice-ttl">영등포경찰서·충북학사, 학생 체감 ‘안전망 강화’</span>
+		                                    <span class="notice-day">2026-09-17</span>
+		                                </a>
+		                            </li>	
+	                        	
+		                        	<li>
+		                               <a href="/0000069?postId=797d8a34-755e-444f-b28a-15d6c32da473&mode=READ" title="충북학사, '충북-흑룡강성 결연 30주년' 해외연수 성과보고회 개최">
+		                                    <span class="notice-ttl">충북학사, '충북-흑룡강성 결연 30주년' 해외연수 성과보고회 개최</span>
+		                                    <span class="notice-day">2026-09-14</span>
+		                                </a>
+		                            </li>	
+	                        	
+		                        	<li>
+		                               <a href="/0000069?postId=4e062469-9724-410a-89e4-84befa39a7b2&mode=READ" title="충북학사, 후배사랑 프로젝트 '2026 가을 음악회' 성료">
+		                                    <span class="notice-ttl">충북학사, 후배사랑 프로젝트 '2026 가을 음악회' 성료</span>
+		                                    <span class="notice-day">2026-09-10</span>
+		                                </a>
+		                            </li>	
+	                        	
+		                        	<li>
+		                               <a href="/0000069?postId=79c01b6c-fd48-4496-b789-64ad932a450f&mode=READ" title="청주대, 충북학사 학사생 취업역량 강화 특강">
+		                                    <span class="notice-ttl">청주대, 충북학사 학사생 취업역량 강화 특강</span>
+		                                    <span class="notice-day">2026-07-09</span>
+		                                </a>
+		                            </li>	
+	                        	
+	                            
+	                            </ul>
+	                          
+	                          <!--   <ul class="notice-list"><li><a href="/CmsHome/sub03_01.aspx?T=C&amp;c1=1&amp;w=&amp;sn=229561&amp;page=1" title="(재)충북학사 직원 공개채용 공고"><span class="notice-ttl">(재)충북학사 직원 공개채용 공고</span><span class="notice-day">2020-03-12</span></a></li><li><a href="/CmsHome/sub03_01.aspx?T=C&amp;c1=1&amp;w=&amp;sn=229471&amp;page=1" title="충북학사 서서울관 사무국장 채용  최종 합격자 공고"><span class="notice-ttl">충북학사 서서울관 사무국장 채용  최종 합격자 공고</span><span class="notice-day">2020-02-28</span></a></li><li><a href="/CmsHome/sub03_01.aspx?T=C&amp;c1=1&amp;w=&amp;sn=229331&amp;page=1" title="충북인재양성의 보고 제2충북학사 문을 활짝 열다"><span class="notice-ttl">충북인재양성의 보고 제2충북학사 문을 활짝 열다</span><span class="notice-day">2020-02-19</span></a></li><li><a href="/CmsHome/sub03_01.aspx?T=C&amp;c1=1&amp;w=&amp;sn=229201&amp;page=1" title="충북학사 서서울관 사무국장 경력경쟁 공개채용(재공고)"><span class="notice-ttl">충북학사 서서울관 사무국장 경력경쟁 공개채용(재공고)</span><span class="notice-day">2020-02-11</span></a></li><li><a href="/CmsHome/sub03_01.aspx?T=C&amp;c1=1&amp;w=&amp;sn=229043&amp;page=1" title="충북학사 서서울관 사무국장 경력경쟁 공개채용"><span class="notice-ttl">충북학사 서서울관 사무국장 경력경쟁 공개채용</span><span class="notice-day">2020-01-30</span></a></li></ul> -->
+	                        </div>
+	                    </div>
+	                    <p class="notice-more"><a id ="morenotice" href="/0000069" title="보도자료 더보기"><i class="fa fa-list-ul" aria-hidden="true"></i></a></p>
+	                </div>
+	                
+	                <!--  상담안내  -->
+	                  
+	                    <div class="counsel-box">
+                    <p class="counsel-ttl">상담안내</p>
+                    <p class="counsel-time-box">
+                        <span class="counsel-hour-box clearfix">
+                            <span><img src="/client/images/main/counsel_img.png" width="52" height="51" alt="상담안내 아이콘"></span>
+                            <span class="counsel-time">
+                                <span>&nbsp;&nbsp;평일</span>
+                                <span class="counsel-hour">&nbsp; 09:00 ~ 18:00</span>
+                            </span>
+                        </span>
+                    </p>
+                    <ul class="counsel-info">
+                        <li>TEL. 043-293-1241</li>
+                        <li>FAX. 043-293-1236</li>
+                </ul></div>
+	                </div>
+	                <div class="board-zone-bottom">
+	               <ul class="quick-slider clearfix">
+
+		         <li>
+	                        <a href="/0000116" title="설립취지 및 연혁 ">
+	                            <span><img src="../../client/images/main_quick/quick_icon05.png" width="62" height="56" alt="설립취지 및 연혁 아이콘"></span>
+	                            <span class="quick-ttl">설립취지 및 연혁</span>
+	                        </a>
+	                    </li>
+	                    <li>
+	                        <a href="/0000066" title="미션/비전">
+	                            <span><img src="../../client/images/main_quick/quick_icon01.png" width="54" height="67" alt="미션/비전 아이콘"></span>
+	                            <span class="quick-ttl">미션/비전</span>
+	                        </a>
+	                    </li>
+	                   
+	                    <li>
+	                        <a href="/0000117" title="법령 및 제규정">
+	                            <span><img src="../../client/images/main_quick/quick_icon03.png" width="55" height="58" alt="정관 및 제규정 아이콘"></span>
+	                            <span class="quick-ttl">법령 및 제규정</span>
+	                        </a>
+	                    </li>
+
+	                    
+						<li>
+	                        <a href="/0000134" title="클린신고센터">
+	                            <span><img src="../../client/images/main_quick/quick_icon06.png" width="65" height="56" alt="클린신고센터 아이콘"></span>
+	                            <span class="quick-ttl">클린신고센터</span>
+	                        </a>
+	                    </li>
+
+	                    <li>
+	                        <a href="/0000135" title="인권침해 신고센터">
+	                            <span><img src="../../client/images/main_quick/quick_icon04.png" width="54" height="57" alt="인권침해 신고센터 아이콘"></span>
+	                            <span style='padding-top:0px' class="quick-ttl">인권침해 신고센터<div style='font-size: 13px; padding: 0px 7px;'>(성희롱·성폭력 피해, 직장 내 괴롭힘 등)</div></span>
+	                        </a>
+	                    </li>
+			 <li>
+	                        <a href="/0000070" title="오시는 길">
+	                            <span><img src="../../client/images/main_quick/quick_icon02.png" width="63" height="50" alt="오시는 길 아이콘"></span>
+	                            <span class="quick-ttl">오시는 길</span>
+	                        </a>
+	                    </li>
+
+	                </ul>
+	              
+	                </div>
+	            </div>
+	        </div>
+<!-- 	    </div> -->
+	</div>
+	
+<!--div class="pr-zone">
+    <div class="pr-box">
+        <p class="pr-zone-ttl">홍보마당</p>
+        <ul class="pr-list clearfix" id="ulPromoteList">
+	        
+	         	<li>
+	        		<div class="pr-list-box">
+	        			<a href="/0000120?postId=9b2daa70-64ed-488b-bc5a-0239ddab0902&mode=READ" title="충북학사, SK하이닉스 청주캠퍼스서 기업탐방 프로그램">
+	        				<span class="pr-list-img">
+	        					<img src="/api/file/" width="267" height="168" alt="충북학사, SK하이닉스 청주캠퍼스서 기업탐방 프로그램" style="width:267px;height:168px;">
+	        				</span>
+	        				<span class="pr-list-ttl">
+	        					충북학사, SK하이닉스 청주캠퍼스서 기업탐방 프로그램
+	        				</span>
+	        				<span class="pr-list-sub textOverflow">
+	        					
+	        				</span>
+	        			</a>
+	        		</div>
+	        	</li>
+	        
+	         	<li>
+	        		<div class="pr-list-box">
+	        			<a href="/0000120?postId=519d6c4e-2f65-4d03-a004-08a8001e5e13&mode=READ" title="영등포경찰서·충북학사, 학생 체감 ‘안전망 강화’">
+	        				<span class="pr-list-img">
+	        					<img src="/api/file/" width="267" height="168" alt="영등포경찰서·충북학사, 학생 체감 ‘안전망 강화’" style="width:267px;height:168px;">
+	        				</span>
+	        				<span class="pr-list-ttl">
+	        					영등포경찰서·충북학사, 학생 체감 ‘안전망 강화’
+	        				</span>
+	        				<span class="pr-list-sub textOverflow">
+	        					
+	        				</span>
+	        			</a>
+	        		</div>
+	        	</li>
+	        
+	         	<li>
+	        		<div class="pr-list-box">
+	        			<a href="/0000120?postId=797d8a34-755e-444f-b28a-15d6c32da473&mode=READ" title="충북학사, '충북-흑룡강성 결연 30주년' 해외연수 성과보고회 개최">
+	        				<span class="pr-list-img">
+	        					<img src="/api/file/" width="267" height="168" alt="충북학사, '충북-흑룡강성 결연 30주년' 해외연수 성과보고회 개최" style="width:267px;height:168px;">
+	        				</span>
+	        				<span class="pr-list-ttl">
+	        					충북학사, '충북-흑룡강성 결연 30주년' 해외연수 성과보고회 개최
+	        				</span>
+	        				<span class="pr-list-sub textOverflow">
+	        					
+	        				</span>
+	        			</a>
+	        		</div>
+	        	</li>
+	        
+	         	<li>
+	        		<div class="pr-list-box">
+	        			<a href="/0000120?postId=4e062469-9724-410a-89e4-84befa39a7b2&mode=READ" title="충북학사, 후배사랑 프로젝트 '2026 가을 음악회' 성료">
+	        				<span class="pr-list-img">
+	        					<img src="/api/file/" width="267" height="168" alt="충북학사, 후배사랑 프로젝트 '2026 가을 음악회' 성료" style="width:267px;height:168px;">
+	        				</span>
+	        				<span class="pr-list-ttl">
+	        					충북학사, 후배사랑 프로젝트 '2026 가을 음악회' 성료
+	        				</span>
+	        				<span class="pr-list-sub textOverflow">
+	        					
+	        				</span>
+	        			</a>
+	        		</div>
+	        	</li>
+	        
+	         	<li>
+	        		<div class="pr-list-box">
+	        			<a href="/0000120?postId=79c01b6c-fd48-4496-b789-64ad932a450f&mode=READ" title="청주대, 충북학사 학사생 취업역량 강화 특강">
+	        				<span class="pr-list-img">
+	        					<img src="/api/file/" width="267" height="168" alt="청주대, 충북학사 학사생 취업역량 강화 특강" style="width:267px;height:168px;">
+	        				</span>
+	        				<span class="pr-list-ttl">
+	        					청주대, 충북학사 학사생 취업역량 강화 특강
+	        				</span>
+	        				<span class="pr-list-sub textOverflow">
+	        					
+	        				</span>
+	        			</a>
+	        		</div>
+	        	</li>
+	        
+        </ul>
+        <p class="pr-zone-more"><a href="/0000120" title="홍보마당 더보기"><img src="/client/images/main/pr_more_btn.png" width="16" height="16" alt="홍보마당 더보기"></a></p>
+    </div>
+</div-->
+	
+
+
+	
+
+	<div id="popup_62356805-4e09-4dd8-b523-cabdff95e6b2" style="display:none; position: absolute; z-index: 9001; top: 112px; left: 0px" class="draggable_popup">
+		<table cellspacing="0" cellpadding="0" border="0">
+			<tbody>
+				<tr>
+					<td width="9" height="20">
+						<img class="iePngFix" height="20" src="../client/images/popup/box1
+						
+						.gif" width="9">
+					</td>
+					<td class="iePngFix" style="PADDING-TOP: 0px" valign="top" background="../client/images/popup/box2.gif" height="20">
+						<table cellspacing="0" cellpadding="0" width="100%" border="0">
+							<tbody>
+								<tr>
+									<td width="99%" class="msgtitle" style="padding-top: 11px; font-family: tahoma; font-size: 11px; margin: 0 0 0 0; padding: 0 0 0 0;" onmousedown="fixTop('62356805-4e09-4dd8-b523-cabdff95e6b2');">
+										<div id="zpop_pop_4_titlebar" style="width: 100%; margin: 0px; padding: 0px; height: 17px; cursor: move;"></div>
+									</td>
+									<td valign="top">
+										<img style="CURSOR: pointer;"
+											id="zpopclose" onclick="hidePopup('62356805-4e09-4dd8-b523-cabdff95e6b2');"
+											class="iePngFix" height="20"
+											src="../client/images/popup/btn_close_off.gif" width="16"
+											onmouseover="this.src=this.src.replace(/off/gi,'on');"
+											onmouseout="this.src=this.src.replace(/on/gi,'off');"
+										>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</td>
+					<td width="12" height="20">
+						<img class="iePngFix" height="20" src="../client/images/popup/box3.gif" width="12">
+					</td>
+				</tr>
+				<tr>
+					<td class="iePngFix" width="9" background="../client/images/popup/box4.gif">
+					</td>
+					<td width="400" bgcolor="#ffffff"
+						height="600" valign="top">
+						
+							
+								
+									
+									
+										<img src="/api/file/12055803-8b13-4a22-ad5e-1dfe3ffce903" alt="2026년 충청북도 출연기관 경영평가 용역" style="width:100%;height:100%;">
+									
+								
+							
+							
+						
+						
+					</td>
+					<td class="iePngFix" width="12" background="../client/images/popup/box5.gif"></td>
+				</tr>
+				<tr>
+				<td class="iePngFix" width="9" background="../client/images/popup/box4.gif">
+					</td>
+
+					<td>
+						<div class="noMore" style="">
+							<label>오늘 하루 이 창을 열지 않음</label>
+							<input type="checkbox" id="chkNotice" onclick="todayHide('62356805-4e09-4dd8-b523-cabdff95e6b2')">
+						</div>
+					</td>
+				<td class="iePngFix" width="12" background="../client/images/popup/box5.gif"></td>
+
+				</tr>
+				<tr height="12">
+					<td background="../client/images/popup/box6.gif" class="iePngFix"
+						style="height: 9px; width: 9px;"></td>
+					<td class="iePngFix" background="../client/images/popup/box7.gif"
+						style="height: 9px;"></td>
+					<td background="../client/images/popup/box8.gif" class="iePngFix"
+						style="height: 9px; width: 9px;"></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+
+		
+
+
+
+
+
+<footer id="footer">
+    <!-- 하단디자인 시작 --> 
+
+<div class="foot_top">
+    <div class="foot_site clearfix">
+        <p class="foot_site_ttl">관련사이트</p>
+        <ul class="foot_site_slider">
+            <li>
+            	<a href="http://www.chungbuk.go.kr" target="_blank" title="충청북도 새창으로 열기">
+            		<img src="client/images/common/fsite_cb.jpg" alt="충청북도">
+            	</a>
+            </li>
+            <li>
+            	<a href="http://chungbuk.work.go.kr/main.do/main.do" target="_blank" title="충청일자리지원센터 새창으로 열기">
+            		<img src="client/images/common/fsite_09.jpg" alt="충북일자리지원센터">
+            	</a>
+            </li>
+            <li>
+            	<a href="http://www.acrc.go.kr" target="_blank" title="국민권익위원회 새창으로 열기">
+            		<img src="client/images/common/fsite_02.jpg" alt="국민권익위원회">
+            	</a>
+            </li>
+            <li>
+            	<a href="http://www.krivet.re.kr" target="_blank" title="한국직업능력개발원 새창으로 열기">
+            		<img src="client/images/common/fsite_03.jpg" alt="한국직업능력개발원">
+            	</a>
+            </li>
+            <li>
+            	<a href="http://www.hrdkorea.or.kr" target="_blank" title="한국산업인력공단 새창으로 열기">
+            		<img src="client/images/common/fsite_04.jpg" alt="한국산업인력공단">
+            	</a>
+            </li>
+            <li>
+            	<a href="http://www.jobkorea.co.kr" target="_blank" title="잡코리아 새창으로 열기">
+            		<img src="client/images/common/fsite_05.jpg" alt="잡코리아">
+            	</a>
+            </li>
+            <li>
+            	<a href="http://www.incruit.com" target="_blank" title="인크루트 새창으로 열기">
+            		<img src="client/images/common/fsite_06.jpg" alt="인크루트">
+            	</a>
+            </li>
+            <li>
+            	<a href="http://www.dmstudy.com" target="_blank" title="DM스터디 새창으로 열기">
+            		<img src="client/images/common/fsite_07.jpg" alt="DM스터디">
+            	</a>
+            </li>
+            <li>
+            	<a href="http://www.gosi.go.kr" target="_blank" title="사이버국가고시센터 새창으로 열기">
+            		<img src="client/images/common/fsite_08.jpg" alt="사이버국가고시센터">
+            	</a>
+            </li>
+            <li>
+            	<a href="http://www.clean.go.kr" target="_blank" title="청렴포털 새창으로 열기">
+            		<img src="client/images/common/fsite_10.jpg" alt="청렴포털">
+           		</a>
+       		</li>
+		</ul>
+        <div class="foot_site_control">
+            <ul class="clearfix">
+                <li><img src="client/images/common/foot_stop_btn.gif" width="10" height="13" alt="관련사이트 슬라이더 정지"></li>
+                <li><i class="fa fa-caret-left" aria-hidden="true"></i></li>
+                <li><i class="fa fa-caret-right" aria-hidden="true"></i></li>
+            </ul>
+        </div>
+    </div>
+</div>
+<div class="foot_mn">
+	<ul>
+    	<li><a href="/0000054" title="개인정보처리방침으로 이동">개인정보처리방침</a></li>
+        <li><a href="/0000055" title="이용약관으로 이동">이용약관</a></li>
+        <li><a href="/0000056" title="이메일무단수집거부로 이동">이메일무단수집거부</a></li>
+        <li><a href="/sitemap" title="사이트맵으로 이동">사이트맵</a></li>
+    </ul>
+</div>
+<div class="foot_add">
+  <div class="foot_w">
+    <div class="foot_logo"><img src="../client/images/common/logo26.png" alt="생명과 태양의 땅 충북, 재단법인 충북학사"></div>
+    <address>
+      [28786] 충청북도 청주시 상당구 목련로 61-7 <span><br></span>(방서동 650)<span><br></span>  TEL.043-293-1241 FAX. 043-293-1236 <br>
+      Copyright ⓒ 재단법인 충북학사 All rights Reserved.<br>
+      
+    </address>
+  </div>
+</div>
+
+</footer>
+	</div>
+</body>
+</html>

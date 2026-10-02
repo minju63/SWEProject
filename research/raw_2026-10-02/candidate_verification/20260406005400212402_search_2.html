@@ -1,0 +1,2665 @@
+<!DOCTYPE html>
+	<html lang="ko">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, user-scalable=yes" />
+		<meta name="format-detection" content="telephone=no, address=no, email=no" />
+		
+		<!-- Meta Tag -->
+		<link rel="shortcut icon" href="https://www.incheon.go.kr/jobs/main/favicon.ico">
+		<meta name="keywords" content="인천,일자리,채용,지원사업,교육훈련,행사">
+		<meta name="title" content="인천일자리플랫폼">
+		<meta name="description" content="채용정보부터 지원사업, 교육훈련, 행사까지 필요한 정보만 빠르게 찾아보세요">
+		<!-- Sns -->
+		<meta property="og:type" content="website">
+		<meta property="og:title" content="인천일자리플랫폼" />
+		<meta property="og:description" content="채용정보부터 지원사업, 교육훈련, 행사까지 필요한 정보만 빠르게 찾아보세요" />
+		<meta property="og:url" content="https://www.incheon.go.kr/jobs/main/support/business/view.do?plcy_sprt_sn=4905">
+		
+		<meta property="og:image" content="https://www.incheon.go.kr/jobs/main/opengraph.png" />
+		<meta property="og:image:width" content="1200" />
+		<meta property="og:image:height" content="630" />
+		<meta property="og:image:type" content="image/jpeg" />
+		<meta property="og:image:alt" content="일자리플랫폼" />
+		
+		<!-- Title -->
+		<title>내게 맞는 정책 · 지원 - 지원사업 - [인천] 미추홀구 2026년 하반기 착한가격업소 신규 모집 공고</title>
+		
+		<script src="/jobs/cmmn/lib/js/external/jquery-3.7.1.min.js?v=61990&r=1"></script>
+<script src="/jobs/cmmn/lib/js/external/jquery-ui-1.13.3.min.js?v=61990&amp;r=1"></script>
+
+<script src="//t1.kakaocdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js" defer></script>
+
+<script src="/jobs/cmmn/lib/js/script.document.js?v=61990&amp;r=1" defer></script><script src="/jobs/cmmn/lib/js/script.extends.js?v=61990&amp;r=1" defer></script><script src="/jobs/cmmn/lib/js/script.validation.js?v=61990&amp;r=1" defer></script><script src="/jobs/cmmn/lib/js/script.function.js?v=61990&amp;r=1" defer></script><script>
+		//ContextPath 찾기
+		const fnLoad_contextPath = function() {
+		    return "/jobs";
+		}
+		//페이지 리다이렉트 경로
+		const fnLoad_redirect = function() {
+			return "L2pvYnMvbWFpbi9zdXBwb3J0L2J1c2luZXNzL3ZpZXcuZG8/cGxjeV9zcHJ0X3NuPTQ5MDU=";
+		}
+		
+		//에디터 업로드 경로
+		const fnLoad_editor_upload = function() {
+			//토큰정보
+			var _token = fnLoad_obj_token();
+
+			//URL 생성
+			var url_split = [
+				fnLoad_contextPath()
+			,	"/other/editor/process.file.do"
+			,	"?"
+			];
+			//파라미터 생성
+			var params = [
+				"TP=up"
+			,	_token["49256953-2b0f-4035-9cf4-c0eb67b5c3a8"] +"=" +_token["7e16afef-9c1f-481d-8af0-67d8905d116b"]
+			];
+
+			//합치기
+			var url = url_split.join("") +params.join("&");
+
+			//내보내기
+			return url;
+		}
+		
+		//첨부파일 확장자
+		const fnLoad_acept_fileExt = function() {
+			var acepts = ".jpg,.jpeg,.gif,.png,.doc,.docx,.hwp,.hwpx,.txt,.xls,.xlsx,.ppt,.pptx,.pdf,.zip,.mp4".split(",");
+			acepts = acepts.filter(function(val, key){
+			    return acepts.indexOf(val)==key;
+			});
+			
+			return acepts.join(",");
+		}
+
+		//첨부파일 최대 크기
+		const fnLoad_maxFileSize = function(type) {
+			//Def
+			var rtnType = type!=null ? type : "r";
+			var fileSize_raw = Number("20971520");
+			var fileSize_format = "20.00MB";
+			
+			//Return
+			return type=="b" ? fileSize_format : fileSize_raw;
+		}
+		
+		//첨부파일 삭제 이벤트
+		var fnClick_delAtch = function(el) {
+			var _this = $(el);
+			var _target = $("#" +_this.data("target")).closest(".form_group");
+
+			if (el.checked) {
+				_target.removeClass("blind");
+			} else {
+				_target.addClass("blind");
+			}
+		}
+		
+		//리스트 페이지에서 NoData에 ColSpan 맞춰주기
+		const fnLoad_nodata_fillSpan = function() {
+			var el_nodata = $('.cm_nodata');
+			if (el_nodata.length>0) {
+				$.each(el_nodata, function(key, obj) {
+					var _this = $(obj);
+					var el_nodata_top = _this.closest('table');
+					var el_cols = el_nodata_top.find("colgroup col");
+					_this.closest("td").prop("colspan", el_cols.length);
+				});
+			}
+		}
+		
+		//CSRF 토큰 이벤트
+		const fnLoad_obj_token = function(){
+			return {
+				"49256953-2b0f-4035-9cf4-c0eb67b5c3a8" : "csrf"
+			,	"7e16afef-9c1f-481d-8af0-67d8905d116b" : "c09IT0RQMFpaZkd3aEV3VWM2VHBXUVRPdFBYYjc3d3NPNU5LTEQxUi9sWHdoZ09LVit2RnppZk5yMUNyUlp5RVJhZEFDVi9NbEtOS3o1dU5oNDdxT3c9PQ=="
+			};
+		}
+		const fnLoad_bindEvt_token = function() {
+			//Vars
+			var _token = fnLoad_obj_token();
+			var _tokenNm = _token["49256953-2b0f-4035-9cf4-c0eb67b5c3a8"];
+			var _tokenVal = _token["7e16afef-9c1f-481d-8af0-67d8905d116b"];
+	
+			//Proc#0,
+			if (_tokenNm.length<1) {
+				return ;
+			}
+			if (_tokenVal.length<1) {
+				return ;
+			}
+			
+			//Proc#1, Ajax Bind
+			$.ajaxSetup({
+				beforeSend: function(xhr) {
+					xhr.setRequestHeader(_tokenNm, _tokenVal);
+				},
+				complete: function(xhr,status) {
+					fnLoad_bindEvt_token();	
+				},
+			});
+			
+			//Proc#2, Func Define
+			var _func = function() {
+				//Vars
+				var _this = $(this);
+				var _input = _this.find("input[name=" +_tokenNm+ "]");
+				
+				//Proc#2.1, Compare
+				if (_input.length>0) {
+					return true;
+				}
+				
+				//Proc#2.2, Create
+				var _input = $("<input />", {
+					"type" : "hidden"
+				,	"name" : _tokenNm
+				,	"value" : _tokenVal
+				});
+				
+				//Proc#2.3, Token Shell
+				var _div = $("<div />", {
+					"html" : _input
+				});
+				
+				//Proc#2.4, Append
+				_this.append(_div);
+				
+				//Proc#2.5, Remove Bind Event
+				_this.off("submit", _func);
+			}
+	
+			//Proc#2, Form Bind
+			var foms = $("form");
+			$.each(foms, function(key, obj){
+				//Vars
+				var _form = $(obj);
+				var _method = _form.attr("method");
+	
+				//Proc#2.1, Null
+				if (_method==null) {
+					_method = 'get';
+				}
+	
+				//Proc#2.2, Compare
+				if (_method=="get") {
+					return true;
+				}
+				
+				//Proc#2.4, Event Bind
+				_form.on("submit", _func);
+			});
+		}
+		
+		//Ajax 통신
+		const fnWeb_ajax_callJson = function(ajaxAddr, ajaxData, ajaxCalback) {
+			return fnWeb_ajax_call(ajaxAddr, ajaxData, "json", ajaxCalback);
+		}
+		const fnWeb_ajax_callHtml = function(ajaxAddr, ajaxData, ajaxCalback) {
+			return fnWeb_ajax_call(ajaxAddr, ajaxData, "html", ajaxCalback);
+		}
+		const fnWeb_ajax_call = function(ajaxAddr, ajaxData, dataType, ajaxCalback) {
+			//ReturnObject
+			var rtnData = new Object();
+			
+			//ayncYn
+			var asyncYn = false;
+			if (ajaxCalback!=null) {
+				asyncYn = true;
+			}
+			
+			//Lower
+			dataType = dataType.toLowerCase();
+			
+			//Loading
+			if (ajaxData["load"]!="hide") {
+				fnLoading_show();
+			}
+			
+			//Call
+			$.ajax({
+				async: asyncYn,
+				type: "POST",
+				url: ajaxAddr,
+				data: ajaxData,
+				dataType: dataType,
+				success: function(res) {
+					//Valid
+					if (dataType=="json" && res.status!="OK" && res.message=="") {
+						alert("데이터 처리 중 에러가 발생했습니다.[E:0]");	
+					} else {
+						rtnData = res;	
+					}
+				},
+				error: function(eror) {
+					alert("데이터 처리 중 에러가 발생했습니다.[E:2]");
+				},
+			})
+			.always(function(){
+				setTimeout(function(){
+					fnLoading_hide();
+				}, 250);
+			})
+			.done(function() {
+				//Cabllack
+				if (ajaxCalback!=null) {
+					ajaxCalback(rtnData);
+				}
+			})
+			
+			return rtnData;
+		}
+		
+		//페이지 로딩 전 실행
+		fnLoad_bindEvt_token();
+		//페이지 로딩 후 실행
+		$(document).ready(function(){
+			//이벤트 실행
+			fnLoad_nodata_fillSpan();
+			fnLoad_bindEvt_token();
+		});
+	</script>
+<link rel="stylesheet" href="/jobs/cmmn/lib/js/external/jquery-ui-smoothness.min.css?v=61990&amp;r=1" media="print" onload="this.media='all'">
+
+<style>
+		#viewLoading {display:block; position:fixed; top:0; left:0; right:0; bottom:0; width:100%; height:100%; z-Index:9999; text-align:center; background:rgba(0, 0, 0, 0.3); }
+		#viewLoading .lds-spinner {display: inline-block; position:fixed; left:50%; top:50%; margin-left:-40px; margin-top:-40px; }
+		#viewLoading .lds-spinner div {transform-origin: 40px 40px; animation: lds-spinner 1.2s linear infinite; }
+		#viewLoading .lds-spinner div:after {content: " "; display: block; position: absolute; top: 3px; left: 37px; width: 6px; height: 18px; border-radius: 20%; background: #fff; }
+		#viewLoading .lds-spinner div:nth-child(1) {transform: rotate(0deg); animation-delay: -1.1s; }
+		#viewLoading .lds-spinner div:nth-child(2) {transform: rotate(30deg); animation-delay: -1s; }
+		#viewLoading .lds-spinner div:nth-child(3) {transform: rotate(60deg); animation-delay: -0.9s; }
+		#viewLoading .lds-spinner div:nth-child(4) {transform: rotate(90deg); animation-delay: -0.8s; }
+		#viewLoading .lds-spinner div:nth-child(5) {transform: rotate(120deg); animation-delay: -0.7s; }
+		#viewLoading .lds-spinner div:nth-child(6) {transform: rotate(150deg); animation-delay: -0.6s; }
+		#viewLoading .lds-spinner div:nth-child(7) {transform: rotate(180deg); animation-delay: -0.5s; }
+		#viewLoading .lds-spinner div:nth-child(8) {transform: rotate(210deg); animation-delay: -0.4s; }
+		#viewLoading .lds-spinner div:nth-child(9) {transform: rotate(240deg); animation-delay: -0.3s; }
+		#viewLoading .lds-spinner div:nth-child(10) {transform: rotate(270deg); animation-delay: -0.2s; }
+		#viewLoading .lds-spinner div:nth-child(11) {transform: rotate(300deg); animation-delay: -0.1s; }
+		#viewLoading .lds-spinner div:nth-child(12) {transform: rotate(330deg); animation-delay: 0s; }
+		@keyframes lds-spinner {
+			0% {opacity: 1; }
+			100% {opacity: 0; }
+		}
+	</style>
+<!-- CSS -->
+		<link rel="stylesheet" href="/jobs/main/lib/jquery/swiper-bundle.min.css?v=61990&amp;r=1">
+		<link rel="stylesheet" href="/jobs/main/lib/jquery/aos.css?v=61990&amp;r=1">
+		<link rel="stylesheet" href="/jobs/main/lib/css/fonts.css?v=61990&amp;r=1">
+		<link rel="stylesheet" href="/jobs/main/lib/css/reset.css?v=61990&amp;r=1">
+		<link rel="stylesheet" href="/jobs/main/lib/css/common.css?v=61990&amp;r=1">
+		<link rel="stylesheet" href="/jobs/main/lib/css/style.css?v=61990&amp;r=1">
+
+		<!-- JS -->
+		<script src="/jobs/main/lib/jquery/lodash.min.js?v=61990&amp;r=1"></script>
+		<script src="/jobs/main/lib/jquery/jquery.rwdImageMaps.min.js?v=61990&amp;r=1"></script>
+		<script src="/jobs/main/lib/jquery/swiper-bundle.min.js?v=61990&amp;r=1"></script>
+		<script src="/jobs/main/lib/jquery/aos.js?v=61990&amp;r=1"></script>
+		<script src="/jobs/main/lib/jquery/gsap.min.js?v=61990&amp;r=1"></script>
+		<script src="/jobs/main/lib/jquery/ScrollTrigger.min.js?v=61990&amp;r=1"></script>
+		<script src="/jobs/main/lib/js/script.js?v=61990&amp;r=1"></script>
+
+		<!-- Google tag (gtag.js) -->
+			<script async src="https://www.googletagmanager.com/gtag/js?id=G-KSLQBB1JVK"></script>
+			<script>
+				window.dataLayer = window.dataLayer || [];
+				function gtag(){dataLayer.push(arguments);}
+				gtag('js', new Date());
+				
+				gtag('config', 'G-KSLQBB1JVK');
+			</script>
+		<script>
+			try {
+				//$(document).ready(function(){
+					var cookieName = 'site_zoom_level';
+					// 쿠키에서 값 가져오기 (정규식 사용으로 속도 최적화)
+					var match = document.cookie.match(new RegExp('(^| )' + cookieName + '=([^;]+)'));
+					var savedZoom = match ? match[2] : null;
+					// 저장된 값이 있다면 즉시 body에 적용
+					if (savedZoom) {
+						document.body.style.zoom = savedZoom;
+					}
+				//})
+			} catch(e) {}
+		</script>
+		
+		<script src="/jobs/cmmn/lib/js/tshnt.js"></script>
+	</head>
+	<body>
+		<div id="skipNavi">
+			<a href="#real_content">본문 바로가기</a>
+			<a href="#footer">푸터 바로가기</a>
+		</div>
+		
+		<!-- wrap -->
+		<div id="wrap" class="wrap">
+			<!-- 상단 배너영역 -->
+			<div class="cm_masthead">
+				<div class="inner">
+					<div class="nuri_txt"><div>이 누리집은 대한민국 공식 전자정부 누리집입니다.</div></div>
+				</div>
+			</div>
+			
+			<!-- header -->
+			<header id="header" class="header">
+	<div class="header_inner">
+		<div class="header_top">
+			<div class="inner">
+				<div class="header_util">
+					<ul class="cm_dash_list1">
+						<li class="dash1_item">
+							<a href="https://www.incheon.go.kr/index" target="_blank" class="mr-08" title="새창열림">
+								<span class="cm_icon icon_r open_new_window size_sm">인천광역시청</span>
+							</a>
+							<a href="/jobs/jobsincheon/main.do" target="_blank" class="mr-08" title="새창열림">
+								<span class="cm_icon icon_r open_new_window size_sm">잡스인천</span>
+							</a>
+							<a href="/jobs/newlife/main.do" target="_blank" title="새창열림">
+								<span class="cm_icon icon_r open_new_window size_sm">신중년아지트</span>
+							</a>
+						</li>
+						<li class="dash1_item">
+							<div class="cm_font_sample js_font_sample" data-adjust="scale">
+								<button type="button" class="drop_btn"><span class="arrow_down cm_icon icon_r size_sm">글자설정</span></button>
+								<div class="drop_menu">
+									<div class="drop_in">
+										<ul class="drop_list">
+											<li><button type="button" class="active item_link md" data-adjust-scale="md">보통</button></li>
+											<li><button type="button" class="item_link xlg" data-adjust-scale="xlg">크게</button></li>
+										</ul>
+									</div>
+								</div>
+							</div>
+						</li>
+					</ul>
+				</div>
+				<div class="header_branding">
+					<h1 class="logo">
+						<a href="/jobs/main/main.do" class="logo_img">
+							<img src="/jobs/main/images/common/logo.svg" alt="" />
+							<span class="blind">인천일자리플랫폼</span>
+						</a>
+					</h1>
+					<div class="header_actions">
+						<ul class="actions_list">
+							<li class="actions_item search">
+								<button type="button" class="action_btn" onclick="toggleSearchLayer('open')"><span class="cm_icon search"><span class="m_blind">일자리 통합검색</span></span></button>
+
+<form id="globalSearchForm" action="/jobs/main/search/search.do" method="get" onsubmit="return validateGlobalSearch();">
+	<div class="search_layer">
+		<div class="search_layer_header">
+			<div class="inner">
+				<div class="search_layer_header_top">
+					<button type="button" class="search_layer_close" onclick="toggleSearchLayer('close')"><span>닫기</span></button>
+					<div class="search_layer_title">인천 일자리 정보, 간편하게 찾아보세요</div>
+				</div>
+				<div class="search_layer_input_wrap">
+					<label class="blind" for="searchLayerInput">검색어</label>
+                    <input type="text" id="searchLayerInput" name="keyword"  value="" class="form_control search_layer_input" placeholder="검색어를 입력해주세요" />
+                    <button type="button" class="btn_cross" onclick="$('#searchLayerInput').val('');"><span class="blind">입력 초기화</span></button>
+                    <button type="submit" class="search_layer_search_btn"><span><span class="blind">검색</span></span></button>
+				</div>
+			</div>
+		</div>
+		<div class="search_layer_content">
+			<div class="inner">
+				<div class="popular_services">
+					<div class="popular_services_header search_section_header">
+						<div class="popular_services_title search_section_title">자주 찾는 서비스</div>
+					</div>
+					<ul class="popular_services_list">
+					</ul>
+				</div>
+                <div class="recent_searches">
+                    <div class="recent_searches_header search_section_header">
+                        <div class="recent_searches_title search_section_title">최근 검색어</div>
+                        <div class="recent_searches_actions">
+                            <button type="button" class="clear_all_btn"><span>검색어 전체 삭제</span></button>
+                        </div>
+                    </div>
+                    <div class="recent_searches_content">
+                        <ul>
+                        </ul>
+                    </div>
+                </div>
+			</div>
+		</div>
+	</div>
+</form>
+
+<script>
+    $(document).ready(function() {
+        // 1. 헤더가 로드될 때 쿠키에서 최근 검색어를 읽어와 화면에 뿌려줍니다.
+        renderRecentSearches();
+
+        // 전체 삭제 버튼 이벤트 연결
+        $(".clear_all_btn").on("click", function() {
+            delCookie("RECENT_KEYWORD");
+            renderRecentSearches(); // 지우고 다시 그리기
+        });
+    });
+
+    // 쿠키 배열을 문자열로 묶을 때 사용할 구분자
+    var RECENT_DELIMITER = "||";
+
+    /**
+     * [최근 검색어 렌더링] 공통함수 getCookie를 사용합니다.
+     */
+    function renderRecentSearches() {
+        var cookieVal = getCookie("RECENT_KEYWORD");
+        var $ul = $(".recent_searches_content ul");
+        $ul.empty();
+
+        if (!cookieVal) {
+            $ul.append('<li class="nodata" style="text-align:center; padding:20px 0; color:#888;">최근 검색어가 없습니다.</li>');
+            return;
+        }
+
+        var keywordList = cookieVal.split(RECENT_DELIMITER);
+        var html = "";
+
+        for (var i = 0; i < keywordList.length; i++) {
+            var kw = keywordList[i];
+            if(!kw) continue;
+
+            var displayKw = kw.replace(/&/g, "&amp;")
+                              .replace(/</g, "&lt;")
+                              .replace(/>/g, "&gt;")
+                              .replace(/"/g, "&quot;")
+                              .replace(/'/g, "&#39;");
+
+            var jsKw = kw.replace(/\\/g, "\\\\")
+                         .replace(/'/g, "\\'")
+                         .replace(/"/g, "&quot;");
+
+            html += '<li>';
+            html += '   <a href="javascript:;" onclick="executeQuickSearch(\'' + jsKw + '\')"><span>' + displayKw + '</span></a>';
+            html += '   <button type="button" class="delete_btn" onclick="removeRecentSearch(\'' + jsKw + '\')">삭제</button>';
+            html += '</li>';
+        }
+        $ul.html(html);
+    }
+
+    /**
+     * [검색어 추가] 검색 버튼 누를 때 호출 (최대 10개 유지)
+     * 공통함수 getCookie, setCookie를 사용합니다.
+     */
+    function addRecentSearch(keyword) {
+        if (!keyword || keyword.trim() === "") return;
+
+        var cookieVal = getCookie("RECENT_KEYWORD");
+        var keywordList = cookieVal ? cookieVal.split(RECENT_DELIMITER) : [];
+
+        // 이미 있는 검색어면 삭제 (최신으로 끌어올리기 위해)
+        var index = keywordList.indexOf(keyword);
+        if (index > -1) {
+            keywordList.splice(index, 1);
+        }
+
+        // 배열 맨 앞에 추가
+        keywordList.unshift(keyword);
+
+        // 10개가 넘어가면 마지막 데이터(오래된 것) 자르기
+        if (keywordList.length > 10) {
+            keywordList = keywordList.slice(0, 10);
+        }
+
+        // 다시 쿠키에 저장 (30일 보관)
+        setCookie("RECENT_KEYWORD", keywordList.join(RECENT_DELIMITER), 30);
+    }
+
+    /**
+     * [단건 삭제] X 버튼 누를 때 호출
+     * 공통함수 getCookie, setCookie, delCookie를 사용합니다.
+     */
+    function removeRecentSearch(keyword) {
+        var cookieVal = getCookie("RECENT_KEYWORD");
+        if (!cookieVal) return;
+
+        var keywordList = cookieVal.split(RECENT_DELIMITER);
+        var index = keywordList.indexOf(keyword);
+
+        if (index > -1) {
+            keywordList.splice(index, 1); // 배열에서 뺌
+
+            if (keywordList.length === 0) {
+                delCookie("RECENT_KEYWORD"); // 다 지워졌으면 쿠키 자체를 삭제
+            } else {
+                setCookie("RECENT_KEYWORD", keywordList.join(RECENT_DELIMITER), 30);
+            }
+            renderRecentSearches(); // 화면 갱신
+        }
+    }
+
+    /**
+     * [폼 전송 제어]
+     */
+    function validateGlobalSearch() {
+        var keyword = $("#searchLayerInput").val();
+        if (!keyword || keyword.trim() === "") {
+            alert("검색어를 입력해 주세요.");
+            $("#searchLayerInput").focus();
+            return false;
+        }
+
+        addRecentSearch(keyword.trim());
+        return true;
+    }
+
+    /**
+     * [빠른 검색] 최근 검색어 클릭 시
+     */
+    function executeQuickSearch(keyword) {
+        $("#searchLayerInput").val(keyword);
+        $("#globalSearchForm").submit();
+    }
+</script></li>
+							<!-- 로그인 전 -->
+									<li class="actions_item user">
+										<a href="/jobs/main/member/login.do?redirect=L2pvYnMvbWFpbi9zdXBwb3J0L2J1c2luZXNzL3ZpZXcuZG8/cGxjeV9zcHJ0X3NuPTQ5MDU=" class="action_btn">
+											<span class="cm_icon login"><span class="m_blind">로그인</span></span>
+										</a>
+									</li>
+									<li class="actions_item user">
+										<a href="/jobs/main/member/join/write.do" class="action_btn">
+											<span class="cm_icon join"><span class="m_blind">회원가입</span></span>
+										</a>
+									</li>
+								<li class="actions_item mob_menu">
+								<button class="action_btn" aria-controls="mobileMenuLayer" aria-expanded="false" onclick="openMobileMenuLayer();"><span class="cm_icon menu"><span class="m_blind">메뉴 열기</span></span></button>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="header_bottom">
+			<div class="inner">
+				<div class="gnb_wrap">
+						<button type="button" class="sitemap_btn" aria-controls="sitemapLayer" aria-expanded="false" onclick="openSitemap();"><span>전체메뉴 열기</span></button>
+						<nav class="gnb">
+							<div class="gnb_inner">
+								<div class="gnb_depth1_wrap">
+									<ul class="gnb_depth1">
+										<li class="gnb_item1 ">
+												<a href="/jobs/main/recruit/search.do"  class="gnb_link1" >
+													<span class="gnb_text1">채용정보</span>
+												</a>
+												
+												<div class="gnb_depth2_wrap">
+														<div class="gnb_depth2_header">
+															<div class="gnb_depth2_header_title"><span>채용정보</span></div>
+														</div>
+														<div class="gnb_depth2_content">
+															<ul class="gnb_depth2">
+																<li class="gnb_item2 ">
+																		<a href="/jobs/main/recruit/search.do"  class="gnb_link2 " >
+																			<span class="gnb_text2">채용 통합검색</span>
+																		</a>
+																	</li>
+																<li class="gnb_item2 ">
+																		<a href="/jobs/main/recruit/public/list.do"  class="gnb_link2 " >
+																			<span class="gnb_text2">공공 채용정보</span>
+																		</a>
+																	</li>
+																<li class="gnb_item2 ">
+																		<a href="/jobs/main/recruit/private/list.do"  class="gnb_link2 " >
+																			<span class="gnb_text2">민간 채용정보</span>
+																		</a>
+																	</li>
+																<li class="gnb_item2 ">
+																		<a href="/jobs/main/recruit/event/list.do"  class="gnb_link2 " >
+																			<span class="gnb_text2">행사정보</span>
+																		</a>
+																	</li>
+																</ul>
+														</div>
+													</div>
+												</li>
+										<li class="gnb_item1 active">
+												<a href="/jobs/main/support/search.do"  class="gnb_link1" >
+													<span class="gnb_text1">내게 맞는 정책 &middot; 지원</span>
+												</a>
+												
+												<div class="gnb_depth2_wrap">
+														<div class="gnb_depth2_header">
+															<div class="gnb_depth2_header_title"><span>내게 맞는 정책 &middot; 지원</span></div>
+														</div>
+														<div class="gnb_depth2_content">
+															<ul class="gnb_depth2">
+																<li class="gnb_item2 ">
+																		<a href="/jobs/main/support/search.do"  class="gnb_link2 " >
+																			<span class="gnb_text2">빠른 정책 찾기</span>
+																		</a>
+																	</li>
+																<li class="gnb_item2 ">
+																		<a href="/jobs/main/support/policy/list.do"  class="gnb_link2 " >
+																			<span class="gnb_text2">인천시 정책정보</span>
+																		</a>
+																	</li>
+																<li class="gnb_item2 active">
+																		<a href="/jobs/main/support/business/list.do"  class="gnb_link2 " >
+																			<span class="gnb_text2">지원사업</span>
+																		</a>
+																	</li>
+																<li class="gnb_item2 ">
+																		<a href="/jobs/main/support/welfare/list.do"  class="gnb_link2 " >
+																			<span class="gnb_text2">복지혜택</span>
+																		</a>
+																	</li>
+																<li class="gnb_item2 ">
+																		<a href="/jobs/main/support/volunteer/list.do"  class="gnb_link2 " >
+																			<span class="gnb_text2">자원봉사</span>
+																		</a>
+																	</li>
+																<li class="gnb_item2 ">
+																		<a href="/jobs/main/content/view.do?sn=160"  class="gnb_link2 " >
+																			<span class="gnb_text2">인천시 일자리대책</span>
+																		</a>
+																	</li>
+																</ul>
+														</div>
+													</div>
+												</li>
+										<li class="gnb_item1 ">
+												<a href="/jobs/main/education/train/list.do"  class="gnb_link1" >
+													<span class="gnb_text1">교육 &middot; 훈련</span>
+												</a>
+												
+												<div class="gnb_depth2_wrap">
+														<div class="gnb_depth2_header">
+															<div class="gnb_depth2_header_title"><span>교육 &middot; 훈련</span></div>
+														</div>
+														<div class="gnb_depth2_content">
+															<ul class="gnb_depth2">
+																<li class="gnb_item2 ">
+																		<a href="/jobs/main/education/train/list.do"  class="gnb_link2 " >
+																			<span class="gnb_text2">교육 &middot; 훈련 검색</span>
+																		</a>
+																	</li>
+																<li class="gnb_item2 ">
+																		<a href="/jobs/main/content/view.do?sn=140"  class="gnb_link2 " >
+																			<span class="gnb_text2">집단상담</span>
+																		</a>
+																	</li>
+																<li class="gnb_item2 ">
+																		<a href="/jobs/main/content/view.do?sn=20"  class="gnb_link2 " >
+																			<span class="gnb_text2">인력양성사업</span>
+																		</a>
+																	</li>
+																<li class="gnb_item2 ">
+																		<a href="/jobs/main/content/view.do?sn=21"  class="gnb_link2 " >
+																			<span class="gnb_text2">취업지원</span>
+																		</a>
+																	</li>
+																<li class="gnb_item2 ">
+																		<a href="/jobs/main/content/view.do?sn=23"  class="gnb_link2 " >
+																			<span class="gnb_text2">인천마이스터</span>
+																		</a>
+																	</li>
+																<li class="gnb_item2 ">
+																		<a href="/jobs/main/content/view.do?sn=169"  class="gnb_link2 " >
+																			<span class="gnb_text2">기능경기대회</span>
+																		</a>
+																	</li>
+																<li class="gnb_item2 ">
+																		<a href="/jobs/main/content/view.do?sn=263"  class="gnb_link2 " >
+																			<span class="gnb_text2">산학일체형 도제학교</span>
+																		</a>
+																	</li>
+																</ul>
+														</div>
+													</div>
+												</li>
+										<li class="gnb_item1 ">
+												<a href="/jobs/main/content/view.do?sn=120"  class="gnb_link1" >
+													<span class="gnb_text1">일자리 지원기관</span>
+												</a>
+												
+												<div class="gnb_depth2_wrap">
+														<div class="gnb_depth2_header">
+															<div class="gnb_depth2_header_title"><span>일자리 지원기관</span></div>
+														</div>
+														<div class="gnb_depth2_content">
+															<ul class="gnb_depth2">
+																<li class="gnb_item2 ">
+																		<a href="/jobs/main/content/view.do?sn=120"  class="gnb_link2 " >
+																			<span class="gnb_text2">일자리센터</span>
+																		</a>
+																	</li>
+																<li class="gnb_item2 ">
+																		<a href="/jobs/main/content/view.do?sn=122"  class="gnb_link2 " >
+																			<span class="gnb_text2">여성새일센터</span>
+																		</a>
+																	</li>
+																<li class="gnb_item2 ">
+																		<a href="https://youth.incheon.go.kr/" target="_blank" title="새창열림" class="gnb_link2 " >
+																			<span class="gnb_text2">청년</span>
+																		</a>
+																	</li>
+																<li class="gnb_item2 ">
+																		<a href="/jobs/main/content/view.do?sn=124"  class="gnb_link2 " >
+																			<span class="gnb_text2">중장년</span>
+																		</a>
+																	</li>
+																<li class="gnb_item2 ">
+																		<a href="/jobs/main/content/view.do?sn=126"  class="gnb_link2 " >
+																			<span class="gnb_text2">노인일자리</span>
+																		</a>
+																	</li>
+																<li class="gnb_item2 ">
+																		<a href="/jobs/main/content/view.do?sn=128"  class="gnb_link2 " >
+																			<span class="gnb_text2">장애인일자리</span>
+																		</a>
+																	</li>
+																<li class="gnb_item2 ">
+																		<a href="/jobs/main/organ/rcrut/list.do"  class="gnb_link2 " >
+																			<span class="gnb_text2">취업지원기관</span>
+																		</a>
+																	</li>
+																<li class="gnb_item2 ">
+																		<a href="/jobs/main/content/view.do?sn=130"  class="gnb_link2 " >
+																			<span class="gnb_text2">창업지원</span>
+																		</a>
+																	</li>
+																<li class="gnb_item2 ">
+																		<a href="/jobs/main/organ/space/list.do"  class="gnb_link2 " >
+																			<span class="gnb_text2">일자리 공간</span>
+																		</a>
+																	</li>
+																</ul>
+														</div>
+													</div>
+												</li>
+										<li class="gnb_item1 ">
+												<a href="/jobs/main/content/view.do?sn=101"  class="gnb_link1" >
+													<span class="gnb_text1">인천기업관</span>
+												</a>
+												
+												<div class="gnb_depth2_wrap">
+														<div class="gnb_depth2_header">
+															<div class="gnb_depth2_header_title"><span>인천기업관</span></div>
+														</div>
+														<div class="gnb_depth2_content">
+															<ul class="gnb_depth2">
+																<li class="gnb_item2 ">
+																		<a href="/jobs/main/content/view.do?sn=101"  class="gnb_link2 " >
+																			<span class="gnb_text2">인천우수기업</span>
+																		</a>
+																	</li>
+																<li class="gnb_item2 ">
+																		<a href="/jobs/main/ic_cmpy/promote/list.do"  class="gnb_link2 " >
+																			<span class="gnb_text2">인천기업홍보관</span>
+																		</a>
+																	</li>
+																<li class="gnb_item2 ">
+																		<a href="/jobs/main/ic_cmpy/cmpy/list.do"  class="gnb_link2 " >
+																			<span class="gnb_text2">인천기업검색</span>
+																		</a>
+																	</li>
+																</ul>
+														</div>
+													</div>
+												</li>
+										<li class="gnb_item1 ">
+												<a href="/jobs/main/pst/list.do?pst_id=m_notice"  class="gnb_link1" >
+													<span class="gnb_text1">참여소통</span>
+												</a>
+												
+												<div class="gnb_depth2_wrap">
+														<div class="gnb_depth2_header">
+															<div class="gnb_depth2_header_title"><span>참여소통</span></div>
+														</div>
+														<div class="gnb_depth2_content">
+															<ul class="gnb_depth2">
+																<li class="gnb_item2 ">
+																		<a href="/jobs/main/pst/list.do?pst_id=m_notice"  class="gnb_link2 " >
+																			<span class="gnb_text2">공지사항</span>
+																		</a>
+																	</li>
+																<li class="gnb_item2 ">
+																		<a href="/jobs/main/pst/list.do?pst_id=m_job_trend"  class="gnb_link2 " >
+																			<span class="gnb_text2">고용동향</span>
+																		</a>
+																	</li>
+																<li class="gnb_item2 ">
+																		<a href="/jobs/main/pst/list.do?pst_id=m_promo"  class="gnb_link2 " >
+																			<span class="gnb_text2">홍보마당</span>
+																		</a>
+																	</li>
+																<li class="gnb_item2 ">
+																		<a href="/jobs/main/pst/list.do?pst_id=m_qna"  class="gnb_link2 " >
+																			<span class="gnb_text2">묻고 답하기</span>
+																		</a>
+																	</li>
+																<li class="gnb_item2 ">
+																		<a href="/jobs/main/survey/list.do"  class="gnb_link2 " >
+																			<span class="gnb_text2">설문조사</span>
+																		</a>
+																	</li>
+																</ul>
+														</div>
+													</div>
+												</li>
+										</ul>
+								</div>
+							</div>
+						</nav>
+						<div class="header_quick">
+							<button type="button" class="link1 quick_link" onclick="openJabFairLayer();"><span class="calendar2 cm_icon size_sm">채용행사</span></button>
+							<a href="/jobs/map/main.do" target="_blank" class="link2 quick_link" title="새창열림"><span class="cm_icon map2 size_sm">일자리 지도</span></a>
+						</div>
+					</div>
+				</div>
+		</div>
+		<div id="mobileMenuLayer" class="mob_menu_layer" aria-hidden="true">
+			<div class="menu_layer_head">
+				<div class="head_top_section">
+					<div class="inner">
+						<div class="logo">
+							<img src="/jobs/main/images/common/logo_mobile.svg" alt="인천일자리플랫폼">
+						</div>
+						<ul class="util_list">
+							<li class="user_util">
+								<div class="join util_item">
+											<a href="/jobs/main/member/join/write.do" class="util_item_btn">
+												<span class="cm_icon join"><span class="blind">회원가입</span></span>
+											</a>
+										</div>
+										<div class="login util_item">
+											<a href="/jobs/main/member/login.do?redirect=L2pvYnMvbWFpbi9zdXBwb3J0L2J1c2luZXNzL3ZpZXcuZG8/cGxjeV9zcHJ0X3NuPTQ5MDU=" class="util_item_btn">
+												<span class="cm_icon login"><span class="blind">로그인</span></span>
+											</a>
+										</div>
+									</li>
+							<li>
+								<button type="button" class="close util_item" onclick="closeMobileMenuLayer();">
+									<span class="cm_icon cross"><span class="blind">닫기</span></span>
+								</button>
+							</li>
+						</ul>
+					</div>
+				</div>
+				<div class="head_bottom_section">
+					<div class="inner">
+						<button type="button" class="link1 quick_link" onclick="openJabFairLayer();"><span class="calendar2 cm_icon size_sm">채용행사</span></button>
+						<a href="/jobs/map/main.do" target="_blank" class="link2 quick_link" title="새창열림"><span class="cm_icon map2 size_sm">일자리 지도</span></a>
+					</div>
+				</div>
+			</div>
+			<div class="menu_layer_body">
+				<div class="mobile_gnb_area">
+					<nav class="gnb">
+						<div class="gnb_inner">
+							<div class="gnb_depth1_wrap">
+								<ul class="gnb_depth1">
+									<li class="gnb_item1 ">
+											<a href="/jobs/main/recruit/search.do"  class="gnb_link1" >
+												<span class="gnb_text1">채용정보</span>
+											</a>
+
+											<div class="gnb_depth2_wrap">
+													<div class="gnb_depth2_header">
+														<div class="gnb_depth2_header_title"><span>채용정보</span></div>
+													</div>
+													<div class="gnb_depth2_content">
+														<ul class="gnb_depth2">
+															<li class="gnb_item2 ">
+																	<a href="/jobs/main/recruit/search.do"  class="gnb_link2 " >
+																		<span class="gnb_text2">채용 통합검색</span>
+																	</a>
+																	
+																	</li>
+															<li class="gnb_item2 ">
+																	<a href="/jobs/main/recruit/public/list.do"  class="gnb_link2 " >
+																		<span class="gnb_text2">공공 채용정보</span>
+																	</a>
+																	
+																	</li>
+															<li class="gnb_item2 ">
+																	<a href="/jobs/main/recruit/private/list.do"  class="gnb_link2 " >
+																		<span class="gnb_text2">민간 채용정보</span>
+																	</a>
+																	
+																	</li>
+															<li class="gnb_item2 ">
+																	<a href="/jobs/main/recruit/event/list.do"  class="gnb_link2 " >
+																		<span class="gnb_text2">행사정보</span>
+																	</a>
+																	
+																	</li>
+															</ul>
+													</div>
+												</div>
+											</li>
+									<li class="gnb_item1 active">
+											<a href="/jobs/main/support/search.do"  class="gnb_link1" >
+												<span class="gnb_text1">내게 맞는 정책 &middot; 지원</span>
+											</a>
+
+											<div class="gnb_depth2_wrap">
+													<div class="gnb_depth2_header">
+														<div class="gnb_depth2_header_title"><span>내게 맞는 정책 &middot; 지원</span></div>
+													</div>
+													<div class="gnb_depth2_content">
+														<ul class="gnb_depth2">
+															<li class="gnb_item2 ">
+																	<a href="/jobs/main/support/search.do"  class="gnb_link2 " >
+																		<span class="gnb_text2">빠른 정책 찾기</span>
+																	</a>
+																	
+																	</li>
+															<li class="gnb_item2 ">
+																	<a href="/jobs/main/support/policy/list.do"  class="gnb_link2 " >
+																		<span class="gnb_text2">인천시 정책정보</span>
+																	</a>
+																	
+																	</li>
+															<li class="gnb_item2 active">
+																	<a href="/jobs/main/support/business/list.do"  class="gnb_link2 " >
+																		<span class="gnb_text2">지원사업</span>
+																	</a>
+																	
+																	</li>
+															<li class="gnb_item2 ">
+																	<a href="/jobs/main/support/welfare/list.do"  class="gnb_link2 " >
+																		<span class="gnb_text2">복지혜택</span>
+																	</a>
+																	
+																	</li>
+															<li class="gnb_item2 ">
+																	<a href="/jobs/main/support/volunteer/list.do"  class="gnb_link2 " >
+																		<span class="gnb_text2">자원봉사</span>
+																	</a>
+																	
+																	</li>
+															<li class="gnb_item2 ">
+																	<a href="/jobs/main/content/view.do?sn=160"  class="gnb_link2 " >
+																		<span class="gnb_text2">인천시 일자리대책</span>
+																	</a>
+																	
+																	</li>
+															</ul>
+													</div>
+												</div>
+											</li>
+									<li class="gnb_item1 ">
+											<a href="/jobs/main/education/train/list.do"  class="gnb_link1" >
+												<span class="gnb_text1">교육 &middot; 훈련</span>
+											</a>
+
+											<div class="gnb_depth2_wrap">
+													<div class="gnb_depth2_header">
+														<div class="gnb_depth2_header_title"><span>교육 &middot; 훈련</span></div>
+													</div>
+													<div class="gnb_depth2_content">
+														<ul class="gnb_depth2">
+															<li class="gnb_item2 ">
+																	<a href="/jobs/main/education/train/list.do"  class="gnb_link2 " >
+																		<span class="gnb_text2">교육 &middot; 훈련 검색</span>
+																	</a>
+																	
+																	</li>
+															<li class="gnb_item2 ">
+																	<a href="/jobs/main/content/view.do?sn=140"  class="gnb_link2 " >
+																		<span class="gnb_text2">집단상담</span>
+																	</a>
+																	
+																	</li>
+															<li class="gnb_item2 ">
+																	<a href="/jobs/main/content/view.do?sn=20"  class="gnb_link2 " >
+																		<span class="gnb_text2">인력양성사업</span>
+																	</a>
+																	
+																	</li>
+															<li class="gnb_item2 ">
+																	<a href="/jobs/main/content/view.do?sn=21"  class="gnb_link2 " >
+																		<span class="gnb_text2">취업지원</span>
+																	</a>
+																	
+																	</li>
+															<li class="gnb_item2 ">
+																	<a href="/jobs/main/content/view.do?sn=23"  class="gnb_link2 " >
+																		<span class="gnb_text2">인천마이스터</span>
+																	</a>
+																	
+																	</li>
+															<li class="gnb_item2 ">
+																	<a href="/jobs/main/content/view.do?sn=169"  class="gnb_link2 " >
+																		<span class="gnb_text2">기능경기대회</span>
+																	</a>
+																	
+																	</li>
+															<li class="gnb_item2 ">
+																	<a href="/jobs/main/content/view.do?sn=263"  class="gnb_link2 " >
+																		<span class="gnb_text2">산학일체형 도제학교</span>
+																	</a>
+																	
+																	</li>
+															</ul>
+													</div>
+												</div>
+											</li>
+									<li class="gnb_item1 ">
+											<a href="/jobs/main/content/view.do?sn=120"  class="gnb_link1" >
+												<span class="gnb_text1">일자리 지원기관</span>
+											</a>
+
+											<div class="gnb_depth2_wrap">
+													<div class="gnb_depth2_header">
+														<div class="gnb_depth2_header_title"><span>일자리 지원기관</span></div>
+													</div>
+													<div class="gnb_depth2_content">
+														<ul class="gnb_depth2">
+															<li class="gnb_item2 ">
+																	<a href="/jobs/main/content/view.do?sn=120"  class="gnb_link2 " >
+																		<span class="gnb_text2">일자리센터</span>
+																	</a>
+																	
+																	<ul class="gnb_depth3">
+																			<li class="gnb_item3 ">
+																					<a href="/jobs/main/content/view.do?sn=120" class="gnb_link3 "  >
+																						<span class="gnb_text3">사업소개</span>
+																					</a>
+																				</li>
+																			<li class="gnb_item3 ">
+																					<a href="/jobs/main/organ/job/list.do" class="gnb_link3 "  >
+																						<span class="gnb_text3">기관소개</span>
+																					</a>
+																				</li>
+																			</ul>
+																	</li>
+															<li class="gnb_item2 ">
+																	<a href="/jobs/main/content/view.do?sn=122"  class="gnb_link2 " >
+																		<span class="gnb_text2">여성새일센터</span>
+																	</a>
+																	
+																	<ul class="gnb_depth3">
+																			<li class="gnb_item3 ">
+																					<a href="/jobs/main/content/view.do?sn=122" class="gnb_link3 "  >
+																						<span class="gnb_text3">사업소개</span>
+																					</a>
+																				</li>
+																			<li class="gnb_item3 ">
+																					<a href="/jobs/main/organ/wjob/list.do" class="gnb_link3 "  >
+																						<span class="gnb_text3">기관소개</span>
+																					</a>
+																				</li>
+																			</ul>
+																	</li>
+															<li class="gnb_item2 ">
+																	<a href="https://youth.incheon.go.kr/" target="_blank" title="새창열림" class="gnb_link2 " >
+																		<span class="gnb_text2">청년</span>
+																	</a>
+																	
+																	</li>
+															<li class="gnb_item2 ">
+																	<a href="/jobs/main/content/view.do?sn=124"  class="gnb_link2 " >
+																		<span class="gnb_text2">중장년</span>
+																	</a>
+																	
+																	<ul class="gnb_depth3">
+																			<li class="gnb_item3 ">
+																					<a href="/jobs/main/content/view.do?sn=124" class="gnb_link3 "  >
+																						<span class="gnb_text3">사업소개</span>
+																					</a>
+																				</li>
+																			<li class="gnb_item3 ">
+																					<a href="/jobs/main/organ/middlejob/list.do" class="gnb_link3 "  >
+																						<span class="gnb_text3">기관소개</span>
+																					</a>
+																				</li>
+																			</ul>
+																	</li>
+															<li class="gnb_item2 ">
+																	<a href="/jobs/main/content/view.do?sn=126"  class="gnb_link2 " >
+																		<span class="gnb_text2">노인일자리</span>
+																	</a>
+																	
+																	<ul class="gnb_depth3">
+																			<li class="gnb_item3 ">
+																					<a href="/jobs/main/content/view.do?sn=126" class="gnb_link3 "  >
+																						<span class="gnb_text3">사업소개</span>
+																					</a>
+																				</li>
+																			<li class="gnb_item3 ">
+																					<a href="/jobs/main/organ/oldjob/list.do" class="gnb_link3 "  >
+																						<span class="gnb_text3">기관소개</span>
+																					</a>
+																				</li>
+																			</ul>
+																	</li>
+															<li class="gnb_item2 ">
+																	<a href="/jobs/main/content/view.do?sn=128"  class="gnb_link2 " >
+																		<span class="gnb_text2">장애인일자리</span>
+																	</a>
+																	
+																	<ul class="gnb_depth3">
+																			<li class="gnb_item3 ">
+																					<a href="/jobs/main/content/view.do?sn=128" class="gnb_link3 "  >
+																						<span class="gnb_text3">사업소개</span>
+																					</a>
+																				</li>
+																			<li class="gnb_item3 ">
+																					<a href="/jobs/main/organ/dsblty/list.do" class="gnb_link3 "  >
+																						<span class="gnb_text3">기관소개</span>
+																					</a>
+																				</li>
+																			</ul>
+																	</li>
+															<li class="gnb_item2 ">
+																	<a href="/jobs/main/organ/rcrut/list.do"  class="gnb_link2 " >
+																		<span class="gnb_text2">취업지원기관</span>
+																	</a>
+																	
+																	</li>
+															<li class="gnb_item2 ">
+																	<a href="/jobs/main/content/view.do?sn=130"  class="gnb_link2 " >
+																		<span class="gnb_text2">창업지원</span>
+																	</a>
+																	
+																	<ul class="gnb_depth3">
+																			<li class="gnb_item3 ">
+																					<a href="/jobs/main/content/view.do?sn=130" class="gnb_link3 "  >
+																						<span class="gnb_text3">사업소개</span>
+																					</a>
+																				</li>
+																			<li class="gnb_item3 ">
+																					<a href="/jobs/main/organ/startup/list.do" class="gnb_link3 "  >
+																						<span class="gnb_text3">기관소개</span>
+																					</a>
+																				</li>
+																			</ul>
+																	</li>
+															<li class="gnb_item2 ">
+																	<a href="/jobs/main/organ/space/list.do"  class="gnb_link2 " >
+																		<span class="gnb_text2">일자리 공간</span>
+																	</a>
+																	
+																	</li>
+															</ul>
+													</div>
+												</div>
+											</li>
+									<li class="gnb_item1 ">
+											<a href="/jobs/main/content/view.do?sn=101"  class="gnb_link1" >
+												<span class="gnb_text1">인천기업관</span>
+											</a>
+
+											<div class="gnb_depth2_wrap">
+													<div class="gnb_depth2_header">
+														<div class="gnb_depth2_header_title"><span>인천기업관</span></div>
+													</div>
+													<div class="gnb_depth2_content">
+														<ul class="gnb_depth2">
+															<li class="gnb_item2 ">
+																	<a href="/jobs/main/content/view.do?sn=101"  class="gnb_link2 " >
+																		<span class="gnb_text2">인천우수기업</span>
+																	</a>
+																	
+																	<ul class="gnb_depth3">
+																			<li class="gnb_item3 ">
+																					<a href="/jobs/main/content/view.do?sn=101" class="gnb_link3 "  >
+																						<span class="gnb_text3">중견성장사다리기업</span>
+																					</a>
+																				</li>
+																			<li class="gnb_item3 ">
+																					<a href="/jobs/main/content/view.do?sn=104" class="gnb_link3 "  >
+																						<span class="gnb_text3">유망중소기업</span>
+																					</a>
+																				</li>
+																			<li class="gnb_item3 ">
+																					<a href="/jobs/main/content/view.do?sn=107" class="gnb_link3 "  >
+																						<span class="gnb_text3">일자리창출우수기업</span>
+																					</a>
+																				</li>
+																			<li class="gnb_item3 ">
+																					<a href="/jobs/main/content/view.do?sn=110" class="gnb_link3 "  >
+																						<span class="gnb_text3">비전기업</span>
+																					</a>
+																				</li>
+																			<li class="gnb_item3 ">
+																					<a href="/jobs/main/content/view.do?sn=113" class="gnb_link3 "  >
+																						<span class="gnb_text3">품질우수제품기업</span>
+																					</a>
+																				</li>
+																			</ul>
+																	</li>
+															<li class="gnb_item2 ">
+																	<a href="/jobs/main/ic_cmpy/promote/list.do"  class="gnb_link2 " >
+																		<span class="gnb_text2">인천기업홍보관</span>
+																	</a>
+																	
+																	</li>
+															<li class="gnb_item2 ">
+																	<a href="/jobs/main/ic_cmpy/cmpy/list.do"  class="gnb_link2 " >
+																		<span class="gnb_text2">인천기업검색</span>
+																	</a>
+																	
+																	</li>
+															</ul>
+													</div>
+												</div>
+											</li>
+									<li class="gnb_item1 ">
+											<a href="/jobs/main/pst/list.do?pst_id=m_notice"  class="gnb_link1" >
+												<span class="gnb_text1">참여소통</span>
+											</a>
+
+											<div class="gnb_depth2_wrap">
+													<div class="gnb_depth2_header">
+														<div class="gnb_depth2_header_title"><span>참여소통</span></div>
+													</div>
+													<div class="gnb_depth2_content">
+														<ul class="gnb_depth2">
+															<li class="gnb_item2 ">
+																	<a href="/jobs/main/pst/list.do?pst_id=m_notice"  class="gnb_link2 " >
+																		<span class="gnb_text2">공지사항</span>
+																	</a>
+																	
+																	<ul class="gnb_depth3">
+																			<li class="gnb_item3 ">
+																					<a href="/jobs/main/pst/list.do?pst_id=m_notice" class="gnb_link3 "  >
+																						<span class="gnb_text3">플랫폼 공지사항</span>
+																					</a>
+																				</li>
+																			<li class="gnb_item3 ">
+																					<a href="/jobs/main/pst/list.do?pst_id=o_notice" class="gnb_link3 "  >
+																						<span class="gnb_text3">일자리 지원기관 공지</span>
+																					</a>
+																				</li>
+																			</ul>
+																	</li>
+															<li class="gnb_item2 ">
+																	<a href="/jobs/main/pst/list.do?pst_id=m_job_trend"  class="gnb_link2 " >
+																		<span class="gnb_text2">고용동향</span>
+																	</a>
+																	
+																	</li>
+															<li class="gnb_item2 ">
+																	<a href="/jobs/main/pst/list.do?pst_id=m_promo"  class="gnb_link2 " >
+																		<span class="gnb_text2">홍보마당</span>
+																	</a>
+																	
+																	<ul class="gnb_depth3">
+																			<li class="gnb_item3 ">
+																					<a href="/jobs/main/pst/list.do?pst_id=m_promo" class="gnb_link3 "  >
+																						<span class="gnb_text3">홍보자료</span>
+																					</a>
+																				</li>
+																			<li class="gnb_item3 ">
+																					<a href="/jobs/main/pst/list.do?pst_id=m_photo" class="gnb_link3 "  >
+																						<span class="gnb_text3">포토갤러리</span>
+																					</a>
+																				</li>
+																			</ul>
+																	</li>
+															<li class="gnb_item2 ">
+																	<a href="/jobs/main/pst/list.do?pst_id=m_qna"  class="gnb_link2 " >
+																		<span class="gnb_text2">묻고 답하기</span>
+																	</a>
+																	
+																	</li>
+															<li class="gnb_item2 ">
+																	<a href="/jobs/main/survey/list.do"  class="gnb_link2 " >
+																		<span class="gnb_text2">설문조사</span>
+																	</a>
+																	
+																	</li>
+															</ul>
+													</div>
+												</div>
+											</li>
+									</ul>
+							</div>
+						</div>
+					</nav>
+					<div class="mob_family_site">
+						<ul class="mob_family_list">
+							<li><a href="https://www.incheon.go.kr/index" target="_blank" title="새창열림">인천광역시청</a></li>
+							<li><a href="/jobs/jobsincheon/main.do" target="_blank" title="새창열림">잡스인천</a></li>
+							<li><a href="/jobs/newlife/main.do" target="_blank" title="새창열림">신중년아지트</a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</header>
+
+<!-- SiteMap -->
+<div id="sitemapLayer" class="sitemap_layer" role="dialog" aria-labelledby="sitemapTitle" aria-modal="true" hidden>
+	<div class="sitemap_container" role="document">
+	<div class="sitemap_head_area">
+		<div class="inner">
+			<div class="head_top">
+				<div class="left_side">
+					<h2 id="sitemapTitle" class="sitemap_title">전체메뉴</h2>
+				</div>
+				<div class="right_side">
+					<div class="sitemap_menu_search_area">
+						<form onsubmit="fnSitemapMenuSearch(); return false;">
+							<label class="blind" for="sitemapMenuSearch">메뉴 검색</label>
+							<div class="input_wrap">
+								<input type="search" id="sitemapMenuSearch" name="keyword" class="form_control size_md" placeholder="메뉴명을 입력해주세요" required />
+								<input type="hidden" name="tabId" value="MENU" />
+								<button type="reset" class="del sitemap_search_btn" id="sitemapMenuSearchClear"><span class="blind">지우기</span></button>
+								<button type="submit" class="search sitemap_search_btn" id="sitemapMenuSearchBtn"><span class="blind">검색</span></button>
+							</div>
+						</form>
+					</div>
+					<button type="button" class="sitemap_close" onclick="closeSitemap();"><span class="blind">전체메뉴 닫기</span></button>
+				</div>
+			</div>
+			<div class="head_bottom">
+				<ul class="sitemap_depth1_list">
+					<li class="sitemap_depth1_item active">
+							<a href="#sitemap_cont1" class="sitemap_depth1_link" onclick="addParentsActive(this);">채용정보</a>
+						</li>
+					<li class="sitemap_depth1_item ">
+							<a href="#sitemap_cont2" class="sitemap_depth1_link" onclick="addParentsActive(this);">내게 맞는 정책 &middot; 지원</a>
+						</li>
+					<li class="sitemap_depth1_item ">
+							<a href="#sitemap_cont3" class="sitemap_depth1_link" onclick="addParentsActive(this);">교육 &middot; 훈련</a>
+						</li>
+					<li class="sitemap_depth1_item ">
+							<a href="#sitemap_cont4" class="sitemap_depth1_link" onclick="addParentsActive(this);">일자리 지원기관</a>
+						</li>
+					<li class="sitemap_depth1_item ">
+							<a href="#sitemap_cont5" class="sitemap_depth1_link" onclick="addParentsActive(this);">인천기업관</a>
+						</li>
+					<li class="sitemap_depth1_item ">
+							<a href="#sitemap_cont6" class="sitemap_depth1_link" onclick="addParentsActive(this);">참여소통</a>
+						</li>
+					</ul>
+			</div>
+		</div>
+	</div>
+		<div class="sitemap_content_area">
+			<div class="menu_content_area">
+				<div class="inner">
+					<ul class="sitemap_depth2_list">
+						<li id="sitemap_cont1" class="sitemap_depth2_item">
+								<div class="title_area">
+									<div class="depth2_title">채용정보</div>
+									<p class="depth2_desc">
+										
+												인천시 공공 · 민간 채용정보를 원하는 조건에 맞춰 나에게 맞는 일자리를 확인하세요
+											</p>
+								</div>
+								<div class="children_area">
+										<ul class="sitemap_depth3_list">
+											<li class="sitemap_depth3_item">
+													<a href="/jobs/main/recruit/search.do"  class="sitemap_depth3_link">채용 통합검색</a>
+												</li>
+											<li class="sitemap_depth3_item">
+													<a href="/jobs/main/recruit/public/list.do"  class="sitemap_depth3_link">공공 채용정보</a>
+												</li>
+											<li class="sitemap_depth3_item">
+													<a href="/jobs/main/recruit/private/list.do"  class="sitemap_depth3_link">민간 채용정보</a>
+												</li>
+											<li class="sitemap_depth3_item">
+													<a href="/jobs/main/recruit/event/list.do"  class="sitemap_depth3_link">행사정보</a>
+												</li>
+											</ul>
+									</div>
+								</li>
+						<li id="sitemap_cont2" class="sitemap_depth2_item">
+								<div class="title_area">
+									<div class="depth2_title">내게 맞는 정책 &middot; 지원</div>
+									<p class="depth2_desc">
+										
+												나에게 꼭 필요한 맞춤 정책을 확인하고 다양한 지원사업을 신청하세요
+											</p>
+								</div>
+								<div class="children_area">
+										<ul class="sitemap_depth3_list">
+											<li class="sitemap_depth3_item">
+													<a href="/jobs/main/support/search.do"  class="sitemap_depth3_link">빠른 정책 찾기</a>
+												</li>
+											<li class="sitemap_depth3_item">
+													<a href="/jobs/main/support/policy/list.do"  class="sitemap_depth3_link">인천시 정책정보</a>
+												</li>
+											<li class="sitemap_depth3_item">
+													<a href="/jobs/main/support/business/list.do"  class="sitemap_depth3_link">지원사업</a>
+												</li>
+											<li class="sitemap_depth3_item">
+													<a href="/jobs/main/support/welfare/list.do"  class="sitemap_depth3_link">복지혜택</a>
+												</li>
+											<li class="sitemap_depth3_item">
+													<a href="/jobs/main/support/volunteer/list.do"  class="sitemap_depth3_link">자원봉사</a>
+												</li>
+											<li class="sitemap_depth3_item">
+													<a href="/jobs/main/content/view.do?sn=160"  class="sitemap_depth3_link">인천시 일자리대책</a>
+												</li>
+											</ul>
+									</div>
+								</li>
+						<li id="sitemap_cont3" class="sitemap_depth2_item">
+								<div class="title_area">
+									<div class="depth2_title">교육 &middot; 훈련</div>
+									<p class="depth2_desc">
+										
+												직무 역량 향상을 위한 다양한 교육 훈련정보를 확인하세요
+											</p>
+								</div>
+								<div class="children_area">
+										<ul class="sitemap_depth3_list">
+											<li class="sitemap_depth3_item">
+													<a href="/jobs/main/education/train/list.do"  class="sitemap_depth3_link">교육 &middot; 훈련 검색</a>
+												</li>
+											<li class="sitemap_depth3_item">
+													<a href="/jobs/main/content/view.do?sn=140"  class="sitemap_depth3_link">집단상담</a>
+												</li>
+											<li class="sitemap_depth3_item">
+													<a href="/jobs/main/content/view.do?sn=20"  class="sitemap_depth3_link">인력양성사업</a>
+												</li>
+											<li class="sitemap_depth3_item">
+													<a href="/jobs/main/content/view.do?sn=21"  class="sitemap_depth3_link">취업지원</a>
+												</li>
+											<li class="sitemap_depth3_item">
+													<a href="/jobs/main/content/view.do?sn=23"  class="sitemap_depth3_link">인천마이스터</a>
+												</li>
+											<li class="sitemap_depth3_item">
+													<a href="/jobs/main/content/view.do?sn=169"  class="sitemap_depth3_link">기능경기대회</a>
+												</li>
+											<li class="sitemap_depth3_item">
+													<a href="/jobs/main/content/view.do?sn=263"  class="sitemap_depth3_link">산학일체형 도제학교</a>
+												</li>
+											</ul>
+									</div>
+								</li>
+						<li id="sitemap_cont4" class="sitemap_depth2_item">
+								<div class="title_area">
+									<div class="depth2_title">일자리 지원기관</div>
+									<p class="depth2_desc">
+										</p>
+								</div>
+								<div class="children_area">
+										<ul class="sitemap_depth3_list">
+											<li class="sitemap_depth3_item">
+													<a href="/jobs/main/content/view.do?sn=120"  class="sitemap_depth3_link">일자리센터</a>
+												</li>
+											<li class="sitemap_depth3_item">
+													<a href="/jobs/main/content/view.do?sn=122"  class="sitemap_depth3_link">여성새일센터</a>
+												</li>
+											<li class="sitemap_depth3_item">
+													<a href="https://youth.incheon.go.kr/" target="_blank" class="sitemap_depth3_link">청년</a>
+												</li>
+											<li class="sitemap_depth3_item">
+													<a href="/jobs/main/content/view.do?sn=124"  class="sitemap_depth3_link">중장년</a>
+												</li>
+											<li class="sitemap_depth3_item">
+													<a href="/jobs/main/content/view.do?sn=126"  class="sitemap_depth3_link">노인일자리</a>
+												</li>
+											<li class="sitemap_depth3_item">
+													<a href="/jobs/main/content/view.do?sn=128"  class="sitemap_depth3_link">장애인일자리</a>
+												</li>
+											<li class="sitemap_depth3_item">
+													<a href="/jobs/main/organ/rcrut/list.do"  class="sitemap_depth3_link">취업지원기관</a>
+												</li>
+											<li class="sitemap_depth3_item">
+													<a href="/jobs/main/content/view.do?sn=130"  class="sitemap_depth3_link">창업지원</a>
+												</li>
+											<li class="sitemap_depth3_item">
+													<a href="/jobs/main/organ/space/list.do"  class="sitemap_depth3_link">일자리 공간</a>
+												</li>
+											</ul>
+									</div>
+								</li>
+						<li id="sitemap_cont5" class="sitemap_depth2_item">
+								<div class="title_area">
+									<div class="depth2_title">인천기업관</div>
+									<p class="depth2_desc">
+										</p>
+								</div>
+								<div class="children_area">
+										<ul class="sitemap_depth3_list">
+											<li class="sitemap_depth3_item">
+													<a href="/jobs/main/content/view.do?sn=101"  class="sitemap_depth3_link">인천우수기업</a>
+												</li>
+											<li class="sitemap_depth3_item">
+													<a href="/jobs/main/ic_cmpy/promote/list.do"  class="sitemap_depth3_link">인천기업홍보관</a>
+												</li>
+											<li class="sitemap_depth3_item">
+													<a href="/jobs/main/ic_cmpy/cmpy/list.do"  class="sitemap_depth3_link">인천기업검색</a>
+												</li>
+											</ul>
+									</div>
+								</li>
+						<li id="sitemap_cont6" class="sitemap_depth2_item">
+								<div class="title_area">
+									<div class="depth2_title">참여소통</div>
+									<p class="depth2_desc">
+										</p>
+								</div>
+								<div class="children_area">
+										<ul class="sitemap_depth3_list">
+											<li class="sitemap_depth3_item">
+													<a href="/jobs/main/pst/list.do?pst_id=m_notice"  class="sitemap_depth3_link">공지사항</a>
+												</li>
+											<li class="sitemap_depth3_item">
+													<a href="/jobs/main/pst/list.do?pst_id=m_job_trend"  class="sitemap_depth3_link">고용동향</a>
+												</li>
+											<li class="sitemap_depth3_item">
+													<a href="/jobs/main/pst/list.do?pst_id=m_promo"  class="sitemap_depth3_link">홍보마당</a>
+												</li>
+											<li class="sitemap_depth3_item">
+													<a href="/jobs/main/pst/list.do?pst_id=m_qna"  class="sitemap_depth3_link">묻고 답하기</a>
+												</li>
+											<li class="sitemap_depth3_item">
+													<a href="/jobs/main/survey/list.do"  class="sitemap_depth3_link">설문조사</a>
+												</li>
+											</ul>
+									</div>
+								</li>
+						</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<script>
+	var fnSitemapMenuSearch = function() {
+	    var keyword = $("#sitemapMenuSearch").val().trim();
+	    if (!keyword) {
+	        alert("검색어를 입력해주세요.");
+	        return;
+	    }
+	
+	    $(".sitemap_depth3_link, .depth2_title")
+        .removeClass("text-decoration-underline font-weight-bold search-hit");
+	
+	    var isFound = false;
+	
+	    // 3차 메뉴 타이틀에서 검색
+	    $(".sitemap_depth3_link").each(function() {
+	        var menuName = $(this).text();
+	
+	        if (menuName.indexOf(keyword) > -1) {
+	            isFound = true;
+	            var $target = $(this);
+	
+	            $target.addClass("text-decoration-underline font-weight-bold search-hit");
+	
+	            var $parentSection = $target.closest(".sitemap_depth2_item");
+	            var sectionId = $parentSection.attr("id"); 
+	            
+	            $('.sitemap_depth1_link[href="#' + sectionId + '"]').trigger('click');
+
+	            setTimeout(function() {
+	                $target[0].scrollIntoView({ behavior: 'smooth', block: 'center' });
+	            }, 100);
+	
+	            return false; 
+	        }
+	    });
+	
+	    if (!isFound) {
+	        alert("일치하는 메뉴명이 없습니다.");
+	    }
+	};
+	
+	/**
+	 * 검색 초기화
+	 */
+	var fnClearSitemapSearch = function() {
+	    $(".search-hit").removeClass("search-hit");
+	};
+</script>
+<!-- //SiteMap -->
+
+<!-- RcrutEvent -->
+<div id="jabFairLayer" class="job_fair_layer">
+    <div class="job_fair_container">
+        <div class="job_fair_head">
+            <div class="title">채용행사</div>
+            <button type="button" class="btn_close" onclick="closeJabFairLayer();"><span class="blind">채용행사 닫기</span></button>
+        </div>
+        <div class="job_fair_body">
+            <div class="overview_area">
+                <div class="calendar_area">
+                    <div class="cm_calendar">
+                        <div class="select_month">
+                            <button type="button" class="back calendar_navi"><span class="blind">이전달</span></button>
+                            <div class="title">2025.12</div>
+                            <button type="button" class="calendar_navi next"><span class="blind">다음달</span></button>
+                        </div>
+                        <table id="header-event-calendar" class="calendar" data-table-id="header-event" data-table-type="thead-header">
+                            <caption>채용행사 달력</caption>
+                            <colgroup>
+                                <col style="width: 14.285%;">
+                                <col style="width: 14.285%;">
+                                <col style="width: 14.285%;">
+                                <col style="width: 14.285%;">
+                                <col style="width: 14.285%;">
+                                <col style="width: 14.285%;">
+                                <col>
+                            </colgroup>
+                            <thead>
+                                <tr>
+                                    <th class="sun" scope="col">일</th>
+                                    <th scope="col">월</th>
+                                    <th scope="col">화</th>
+                                    <th scope="col">수</th>
+                                    <th scope="col">목</th>
+                                    <th scope="col">금</th>
+                                    <th class="sat" scope="col">토</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="fair_overview">
+                    <div class="month overview_card">
+                        <div class="card_title"><span>12</span>월 채용행사</div>
+                        <div class="card_content">
+                            <strong class="num">7</strong> 건
+                        </div>
+                    </div>
+                    <div class="location overview_card">
+                        <div class="card_title">행사지역 검색</div>
+                        <div class="card_content">
+                            <div class="cm_tab variant2" style="overflow: visible;">
+                                <ul class="flex-wrap tab_list wp-100">
+                                    <li class="active tab_item"><button type="button" class="tab_button" title="선택됨">전체</button></li>
+                                    <li class="tab_item"><button type="button" class="tab_button">인천</button></li>
+                                    <li class="tab_item"><button type="button" class="tab_button">기타</button></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="selected_content_area">
+                <div class="selected_content_title">
+                    <span class="cm_icon date"></span> </div>
+
+                <ul class="cm_overview9">
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="dim"></div>
+</div>
+
+<script>
+    let popupToday = new Date();
+    let popYear = popupToday.getFullYear();
+    let popMonth = popupToday.getMonth() + 1;
+
+    let popGlobalEvents = [];
+    let popSelectedDateStr = popYear + '-' + (popMonth < 10 ? '0'+popMonth : popMonth) + '-' + (popupToday.getDate() < 10 ? '0'+popupToday.getDate() : popupToday.getDate());
+    let currentRegionFilter = 'ALL';
+
+    window.isJabFairLoaded = false;
+
+    window.loadJabFairDataOnce = function() {
+        if (!window.isJabFairLoaded) {
+            renderPopupCalendar(popYear, popMonth, true);
+            window.isJabFairLoaded = true;
+        }
+    };
+
+    // [웹 접근성] 버튼의 상태 클래스를 확인하여 blind 텍스트를 갱신하는 공통 함수
+    function updateA11yText($btn) {
+        let $td = $btn.closest('.dd');
+        let texts = [];
+
+        // 클래스 유무에 따라 스크린 리더용 텍스트 수집
+        if ($td.hasClass('today')) texts.push('오늘');
+        if ($td.hasClass('selected')) texts.push('선택됨');
+        if ($td.hasClass('has_event')) texts.push('행사있음');
+
+        // 기존 blind 태그를 제거하여 중복 방지
+        $btn.find('.blind').remove();
+
+        // 수집된 텍스트가 있다면 쉼표로 연결하여 새로 추가 (예: 오늘, 행사있음)
+        if (texts.length > 0) {
+            $btn.append('<span class="blind">' + texts.join(', ') + '</span>');
+        }
+    }
+
+    $(document).ready(function() {
+        // 2. 이전달 / 다음달 버튼
+        $('#jabFairLayer .calendar_area .calendar_navi.back').on('click', function() {
+            popMonth--;
+            if(popMonth < 1) { popMonth = 12; popYear--; }
+            renderPopupCalendar(popYear, popMonth, false);
+        });
+
+        $('#jabFairLayer .calendar_area .calendar_navi.next').on('click', function() {
+            popMonth++;
+            if(popMonth > 12) { popMonth = 1; popYear++; }
+            renderPopupCalendar(popYear, popMonth, false);
+        });
+
+        // 3. 지역 필터 탭 클릭 이벤트
+        $('#jabFairLayer .location.overview_card .tab_button').on('click', function() {
+            $('#jabFairLayer .location.overview_card .tab_item').removeClass('active');
+            $(this).parent().addClass('active');
+
+            $('#jabFairLayer .location.overview_card .tab_button').removeAttr('title');
+            $(this).attr('title', '선택됨');
+
+            let text = $.trim($(this).text());
+            if(text === '전체') currentRegionFilter = 'ALL';
+            else if(text === '인천') currentRegionFilter = 'INCHEON';
+            else currentRegionFilter = 'OTHER';
+
+            drawPopupEventsOnCalendar();
+            renderPopupBottomPanel(popSelectedDateStr);
+        });
+
+        // 4. 달력 날짜 클릭 이벤트
+        $('#jabFairLayer').on('click', '.day_btn:not(:disabled)', function() {
+            let clickedDate = $(this).data('date');
+            if(clickedDate) {
+
+                // [웹 접근성] 선택이 해제될 기존 버튼을 먼저 찾아둡니다.
+                let $prevBtn = $('#jabFairLayer .calendar_area .dd.selected .day_btn');
+
+                $('#jabFairLayer .calendar_area .dd').removeClass('selected');
+                $(this).closest('.dd').addClass('selected');
+
+                // [웹 접근성] 이전 버튼과 새로 클릭된 버튼의 접근성 텍스트를 각각 갱신합니다.
+                if($prevBtn.length > 0) updateA11yText($prevBtn);
+                updateA11yText($(this));
+
+                popSelectedDateStr = clickedDate;
+                renderPopupBottomPanel(popSelectedDateStr);
+            }
+        });
+    });
+
+    /**
+     * 1. 팝업용 껍데기 달력 그리기
+     */
+    function renderPopupCalendar(year, month, isUpdatePanel) {
+        let monthStr = month < 10 ? '0' + month : month;
+        // (앞에 #jabFairLayer 추가)
+        $('#jabFairLayer .calendar_area .select_month .title').text(year + '.' + monthStr);
+        $('#jabFairLayer .calendar_area #header-event-calendar caption').text(year + '년 ' + month + '월 채용행사 달력');
+        $('#jabFairLayer .fair_overview .month.overview_card .card_title span').text(month);
+
+        let firstDay = new Date(year, month - 1, 1).getDay();
+        let lastDate = new Date(year, month, 0).getDate();
+
+        let html = '';
+        let dateCount = 1;
+        let daysArr = ['일', '월', '화', '수', '목', '금', '토'];
+
+        for (let i = 0; i < 6; i++) {
+            html += '<tr>';
+            for (let j = 0; j < 7; j++) {
+                let dayClass = (j === 0) ? ' sun' : (j === 6) ? ' sat' : '';
+                let dayName = daysArr[j];
+
+                if (i === 0 && j < firstDay) {
+                    html += '<td class="dd outside' + dayClass + '" data-th="' + dayName + '"><button type="button" disabled></button></td>';
+                } else if (dateCount > lastDate) {
+                    html += '<td class="dd outside' + dayClass + '" data-th="' + dayName + '"><button type="button" disabled></button></td>';
+                } else {
+                    let isToday = (year === popupToday.getFullYear() && month === popupToday.getMonth() + 1 && dateCount === popupToday.getDate()) ? ' today' : '';
+                    let fullDateStr = year + '-' + monthStr + '-' + (dateCount < 10 ? '0' + dateCount : dateCount);
+                    let isSelected = (fullDateStr === popSelectedDateStr) ? ' selected' : '';
+
+                    // [웹 접근성] 캘린더 초기 렌더링 시점에 '오늘'과 '선택됨' 상태 텍스트 부여
+                    let blindTexts = [];
+                    if (isToday !== '') blindTexts.push('오늘');
+                    if (isSelected !== '') blindTexts.push('선택됨');
+
+                    let blindHtml = '';
+                    if (blindTexts.length > 0) {
+                        blindHtml = '<span class="blind">' + blindTexts.join(', ') + '</span>';
+                    }
+
+                    html += '<td class="dd' + dayClass + isToday + isSelected + '" data-th="' + dayName + '">';
+                    // [웹 접근성] 생성한 blindHtml을 버튼 안 숫자 뒤에 이어 붙입니다.
+                    html += '  <button type="button" class="day_btn" data-date="' + fullDateStr + '">' + dateCount + blindHtml + '</button>';
+                    html += '</td>';
+
+                    dateCount++;
+                }
+            }
+            html += '</tr>';
+            if (dateCount > lastDate && i >= 4) break;
+        }
+
+        // (앞에 #jabFairLayer 추가)
+        $('#jabFairLayer .calendar_area tbody').html(html);
+        fetchPopupEventData(year, monthStr, isUpdatePanel);
+    }
+
+    /**
+     * 2. 서버 데이터 가져오기
+     */
+    function fetchPopupEventData(year, monthStr, isUpdatePanel) {
+        var url = '/jobs/main/recruit/event/process.json.do';
+
+        var param = {
+            TP: 'calendar',
+            searchYear: year,
+            searchMonth: monthStr
+        };
+
+        fnWeb_ajax_callJson(url, param, function(response) {
+            if(response.status === 'OK') {
+                popGlobalEvents = response.data;
+
+                drawPopupEventsOnCalendar();
+
+                if (isUpdatePanel) {
+                    renderPopupBottomPanel(popSelectedDateStr);
+                }
+            }
+        });
+    }
+
+    /**
+     * 3. 달력 안에 초록색 점(dot) 찍기 및 총 건수 계산
+     */
+    function drawPopupEventsOnCalendar() {
+        // (앞에 #jabFairLayer 추가)
+        $('#jabFairLayer .calendar_area .dd').removeClass('has_event');
+        $('#jabFairLayer .calendar_area .event_dot').remove();
+        // [웹 접근성] 이벤트 렌더링 초기화 시 기존에 있던 '행사있음' 텍스트도 제거되도록 전체 버튼 갱신
+        $('#jabFairLayer .calendar_area .day_btn').each(function() {
+             updateA11yText($(this));
+        });
+
+        let countedEvents = 0;
+
+        popGlobalEvents.forEach(function(ev) {
+            if (currentRegionFilter === 'INCHEON' && ev.badgeName !== '인천') return;
+            if (currentRegionFilter === 'OTHER' && ev.badgeName === '인천') return;
+
+            countedEvents++;
+
+            let targetDates = getPopupDatesBetween(ev.startDate, ev.endDate);
+            targetDates.forEach(function(dateStr) {
+                // (앞에 #jabFairLayer 추가)
+                let $btn = $('#jabFairLayer .calendar_area .day_btn[data-date="' + dateStr + '"]');
+                if($btn.length > 0) {
+                    let $td = $btn.closest('.dd');
+                    if(!$td.hasClass('has_event')) {
+                        $td.addClass('has_event');
+                        $btn.append(' <span class="event_dot" aria-hidden="true"></span>');
+
+                        // [웹 접근성] 행사가 추가되었으므로 텍스트 갱신 (예: 행사있음 추가)
+                        updateA11yText($btn);
+                    }
+                }
+            });
+        });
+
+        // (앞에 #jabFairLayer 추가)
+        $('#jabFairLayer .fair_overview .month.overview_card .num').text(countedEvents);
+    }
+
+    /**
+     * 4. 하단 리스트(상세정보) 그리기
+     */
+    function renderPopupBottomPanel(dateStr) {
+        let targetDate = new Date(dateStr);
+        let days = ['일', '월', '화', '수', '목', '금', '토'];
+        let displayTitleDate = targetDate.getFullYear() + '년 ' + (targetDate.getMonth()+1) + '월 ' + targetDate.getDate() + '일';
+
+        // (앞에 #jabFairLayer 추가)
+        $('#jabFairLayer .selected_content_title .cm_icon.date').text(displayTitleDate);
+
+        let dayEvents = popGlobalEvents.filter(function(ev) {
+            let start = ev.startDate;
+            let end = ev.endDate ? ev.endDate : ev.startDate;
+            let isDateMatch = (dateStr >= start && dateStr <= end);
+
+            if (!isDateMatch) return false;
+
+            if (currentRegionFilter === 'INCHEON' && ev.badgeName !== '인천') return false;
+            if (currentRegionFilter === 'OTHER' && ev.badgeName === '인천') return false;
+
+            return true;
+        });
+
+        // (앞에 #jabFairLayer 추가)
+        let $ul = $('#jabFairLayer .cm_overview9');
+        $ul.empty();
+        $('#jabFairLayer .selected_content_area .cm_nodata2').remove();
+
+        if (dayEvents.length > 0) {
+            let html = '';
+            dayEvents.forEach(function(ev) {
+                let startDateObj = new Date(ev.startDate);
+                let eventPeriod = ev.startDate + ' (' + days[startDateObj.getDay()] + ')';
+
+                if(ev.endDate && ev.startDate !== ev.endDate) {
+                    let endDateObj = new Date(ev.endDate);
+                    eventPeriod += ' ~ ' + ev.endDate + ' (' + days[endDateObj.getDay()] + ')';
+                }
+
+                let locationText = ev.location ? ev.location : '온라인 / 장소 미정';
+                let badgeText = ev.badgeName;
+
+                let imgSrc = '/jobs/main/recruit/event/process.file.do?TP=thumb&rcrut_evnt_sn=' + ev.id + '&w=220';
+                let noImg = '/jobs/main/images/common/no_img_3_4.svg';
+                let detailUrl = '/jobs/main/recruit/event/view.do?rcrut_evnt_sn=' + ev.id;
+
+                html += '<li class="ovw9_item">';
+                html += '  <div class="thumb_area">';
+                html += '    <div class="thumb"><img src="' + imgSrc + '" onerror="this.src=\'' + noImg + '\'" class="img" alt="' + (ev.title || '') + ' 썸네일"></div>';
+                html += '  </div>';
+                html += '  <div class="content_area">';
+                html += '    <div class="ovw9_title">' + ev.title + '</div>';
+
+                if (ev.ognzNm && ev.ognzNm.trim() !== '') {
+                    html += '    <div class="ovw9_organization cm_color primary-80"><span class="cm_icon organization size_sm"><span class="ellipsis line2">' + ev.ognzNm + '</span></span></div>';
+                }
+
+                html += '    <div class="ovw9_date"><span class="cm_icon date size_sm">' + eventPeriod + '</span></div>';
+                html += '    <div class="ovw9_location"><span class="cm_icon location size_sm">' + locationText + '</span></div>';
+                html += '    <div class="ovw9_btns">';
+
+                let titleBlind = '<span class="blind">' + (ev.title || '') + ' </span>';
+
+                if (ev.lat && ev.lot) {
+                    let targetName = ev.addr ? ev.addr : '목적지';
+                    let kakaoMapUrl = 'https://map.kakao.com/link/to/' + encodeURIComponent(targetName) + ',' + ev.lat + ',' + ev.lot;
+                    html += '      <a href="' + kakaoMapUrl + '" target="_blank" class="cm_btn size_sm variant3" title="새창열림"><span class="cm_icon gap-04 location size_sm">' + titleBlind + '길찾기</span></a>';
+                }
+
+                html += '      <a href="' + detailUrl + '" class="btn_more cm_btn size_sm variant2"><span class="cm_icon icon_r plus_primary" style="--icon-size: 20; --icon-gap: 4;">' + titleBlind + '자세히 보기</span></a>';
+                html += '    </div>';
+                html += '  </div>';
+                html += '</li>';
+            });
+            $ul.append(html);
+        } else {
+            let nodataHtml = '<div class="cm_nodata2 no_border">' +
+                             '  <div class="nodata_icon"><img src="/jobs/main/images/common/icon_nodata.svg" alt=""></div>' +
+                             '  <p class="nodata_text">등록된 채용행사가 없습니다.</p>' +
+                             '</div>';
+            $('#jabFairLayer .selected_content_area').append(nodataHtml);
+        }
+    }
+
+    function getPopupDatesBetween(startDateStr, endDateStr) {
+        let dates = [];
+        if (!startDateStr) return dates;
+        if (!endDateStr) return [startDateStr];
+
+        let currentDate = new Date(startDateStr);
+        let endDate = new Date(endDateStr);
+
+        while (currentDate <= endDate) {
+            let y = currentDate.getFullYear();
+            let m = ('0' + (currentDate.getMonth() + 1)).slice(-2);
+            let d = ('0' + currentDate.getDate()).slice(-2);
+            dates.push(y + '-' + m + '-' + d);
+
+            // 하루 더하기
+            currentDate.setDate(currentDate.getDate() + 1);
+        }
+        return dates;
+    }
+
+</script>
+<!-- //header -->
+			
+			<!-- container -->
+			<div id="container" class="container">
+						<div class="sub_page">
+									<div id="real_content" class="sub_page_content">
+										<div class="inner">
+											<div class="sub_page_head">
+												<div class="cm_breadcrumb">
+													<ul class="nav_list">
+														<li class="home">
+															<a href="/jobs/main/main.do">
+																<span class="cm_icon home size_xs">홈</span>
+															</a>
+														</li>
+														<li class="on">
+																	<a href="/jobs/main/support/search.do"  >
+																		<span>내게 맞는 정책 · 지원</span>
+																	</a>
+																</li>
+															</ul>
+												</div>
+												<h2 class="sub_page_head_title"><span>지원사업</span></h2>
+											</div>
+											<div class="real_content">
+												<div id="login_extension" class="cm_modal3 login_extension ">
+	<div class="modal_container">
+		<div class="modal_head">
+			<div class="title"><span class="keep_time_text">00</span>초 후 자동 로그아웃됩니다.</div>
+			<button type="button" class="modal_close" onclick="closeModalFunc('#login_extension');">
+				<span class="blind">닫기</span>
+			</button>
+		</div>
+		<div class="modal_body">
+			<p class="cm_font_size19 wb-ka">로그인 연장을 원하시면, 아래의 로그인 연장 버튼을 선택해주세요.</p>
+			<div class="cm_btn_area right">
+				<div class="btns">
+					<a href="/jobs/main/member/logout.do" class="cm_btn size_lg variant3">
+						로그아웃
+					</a>
+					<button type="button" onclick="extendTime(); closeModalFunc('#login_extension'); " class="cm_btn size_lg variant1">로그인 연장</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="dim"></div>
+</div><!-- 내게 맞는 정책 · 지원 - 지원사업 검색 - 상세 -->
+<div class="cm_inpage_navigation">
+	<div class="inpage_content_head">
+		<div class="cm_box1">
+			<div class="align-items-start cm_toolbar">
+				<div class="toolbar_item">
+					<div class="d-flex gap-08 mb-08">
+							<span class="badge1 cm_badge variant4">기업</span>
+							<ul class="cm_dash_list1 ">
+								<li class="dash1_item">성장기</li>
+									<li class="dash1_item">마케팅</li>
+									</ul>
+						</div>
+					<div class="cm_title size_md">[인천] 미추홀구 2026년 하반기 착한가격업소 신규 모집 공고</div>
+					<p class="mt-12">
+						우리 구에서는 지역 물가안정에 기여해 온 업소를 착한가격업소로 지정하여 지원 하고자 다음과 같이 신규 지정 신청 공고합니다.<br/><br/>☞ 개인사업자, 법인으로서 서민생활과 밀접한 개인서비스요금(통계청 분류)에 해당하는 업종에 대해 시민에게 직접 소매 단위로 물품ㆍ서비스 등의 판매행위를 하는 업소 (예: 외식업, 이ㆍ미용업, 목욕업, 숙박업 등)<br/><br/>☞ 미추홀구 홈페이지에 착한가격업소 소개 및 홍보지원, 착한가격업소 인증 표찰 제작 지원, 식재료, 소모품 등 인센티브 지원</p>
+				</div>
+				</div>
+		</div>
+		<div class="cm_box2 mt-16">
+				<div class="cm_toolbar mb-00">
+					<div class="toolbar_item">
+						<div class="cm_validation info">
+							<div class="text">이 지원사업 정보는 중소기업 성공 길잡이 기업마당에 등록된 정보입니다.</div>
+						</div>
+					</div>
+					<div class="flex-shrink-0 toolbar_item img_area">
+						<a href="https://www.bizinfo.go.kr/sii/siia/selectSIIA200Detail.do?pblancId=PBLN_000000000125145" target="_blank" title="새창열림">
+						<span class=" arrow_right  cm_icon icon_r"><span class="blind">[인천] 미추홀구 2026년 하반기 착한가격업소 신규 모집 공고 바로가기</span><img src="/jobs/main/images/common/logo/logo13.png" alt="중소기업 성공 길잡이 기업마당"></span>
+						</a>
+						</div>
+				</div>
+			</div>
+		</div>
+	<!-- //inpage_content_head -->
+	<!-- 페이지 네비게이션 -->
+	<div class="inpage_navigation_area">
+		<div class="inpage_navigation_header">
+			<p class="quick_caption">이 페이지의 구성</p>
+			<p class="quick_title">상세 정보 확인</p>
+		</div>
+		<nav class="inpage_navigation_list">
+			<ul>
+				<li><a href="#section_01" class="active">사업개요</a></li>
+				<li><a href="#section_02">모집구분</a></li>
+				<li><a href="#section_03">문의처</a></li>
+				<li><a href="#section_04">첨부서류</a></li>
+				</ul>
+		</nav>
+		<div class="inpage_navigation_action">
+			<button type="button" class="btn_like2 cm_btn size_md variant3 w-100p btn_itrst " data-se="plcy" data-sn="4905" data-label="[인천] 미추홀구 2026년 하반기 착한가격업소 신규 모집 공고" aria-pressed="false" ><span class="blind">관심설정</span><span class="cm_icon size_md wish" aria-hidden="true">관심정보 담기</span></button>
+			</div>
+	</div>
+	<!-- //페이지 네비게이션 -->
+	<div class="inpage_content js_scroll_check">
+		<div class="cm_page_section mt-48">
+			<div id="section_01" class="js_section_link">
+				<h3 class="cm_title js_sec_tit mb-24 size_md">사업개요</h3>
+				<div class="cm_box1">
+					<div class="cm_dl1 column">
+						<dl>
+								<dt>지원대상</dt>
+								<dd>
+									성장기</dd>
+							</dl>
+						<dl>
+								<dt>주관부처</dt>
+								<dd>인천광역시</dd>
+							</dl>
+						<dl>
+							<dt>운영기관</dt>
+							<dd>기초자치단체</dd>
+						</dl>
+						</div>
+				</div>
+				</div>
+			<div id="section_02" class="js_section_link">
+				<h3 class="cm_title js_sec_tit mb-24 size_md">모집구분</h3>
+				<div class="cm_box1">
+					<div class="cm_dl1 column">
+						<dl>
+								<dt>모집기간</dt>
+								<dd>
+									2026-08-03 ~ 2026-09-04</dd>
+							</dl>
+						</div>
+				</div>
+			</div>
+			<div id="section_03" class="js_section_link">
+				<h3 class="cm_title js_sec_tit mb-24 size_md">문의처</h3>
+				<div class="cm_box1 guide_box">
+					<div class="guide_box_inner">
+						<div class="cm_dl1 column">
+							<dl>
+									<dt>홈페이지</dt>
+									<dd> 
+										<a href="https://www.bizinfo.go.kr/sii/siia/selectSIIA200Detail.do?pblancId=PBLN_000000000125145" target="_blank" class="cm_btn ml-12 size_xs variant2" title="새창열림">
+											<span class="cm_icon icon_r link" style="--icon-size: 20; --icon-gap: 2;"><span class="blind">[인천] 미추홀구 2026년 하반기 착한가격업소 신규 모집 공고</span>홈페이지 바로가기</span>
+										</a>
+									</dd>
+								</dl>
+							</div>
+                        <div id="location_modal" class="cm_modal1 location_modal">
+                            <div class="modal_container">
+                                <div class="modal_head">
+                                    <div class="title">지도보기</div>
+                                    <button type="button" class="modal_close" onclick="closeModalFunc('#location_modal');">
+                                        <span class="blind">닫기</span>
+                                    </button>
+                                </div>
+                                <div class="modal_body">
+                                    <div class="modal_body_inner">
+                                        <div class="text_info_area">
+                                            <div class="title"></div>
+                                            <p class="address">
+                                                <span></span>
+                                                </p>
+                                        </div>
+                                        <div class="map_area">
+                                            <div class="map">
+                                                <div id="location-map" class="root_daum_roughmap root_daum_roughmap_landing"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="dim"></div>
+                        </div>
+					</div>
+					<div class="box_guide_area">
+						<div class="cm_validation info2">
+							<div class="text">지원사업 내용 및 운영과 관련한 문의사항은 해당 담당기관으로 문의해 주시기 바랍니다.</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div id="section_04" class="js_section_link">
+					<h3 class="cm_title js_sec_tit mb-24 size_md">첨부서류</h3>
+					<div class="cm_file_list">
+						<div class="file_label_wrap">
+								<div class="cm_file_item type2">
+									<span class="cm_icon file" style="--icon-gap: 4;">2026년 하반기 착한가격업소 신규 모집 공고.hwpx</span>
+									<div class="file_btns"> 
+										<a href="/jobs/other/attach/process.viewer.do?sn=dMM7ERvqpPencVnqPS02Qw%3D%3D&amp;fileType=t1" target="_blank">
+											<span class="cm_icon view" style="--icon-size: 20;">미리보기</span>
+										</a>
+										<a href="https://www.bizinfo.go.kr/cmm/fms/getImageFile.do?atchFileId=FILE_000000000767891&fileSn=1">
+											<span class="cm_icon download" style="--icon-size: 20;">다운로드</span>
+										</a>
+									</div>
+								</div>
+							</div>
+						</div>
+				</div>
+			</div>
+		<div class="cm_btn_area">
+			<div class="btns"></div>
+			<div class="btns"><a href="javascript:history.back();" class="cm_btn size_lg_board variant3"><span>목록</span></a></div>
+		</div>
+		<!-- 유사한 지원사업 -->
+		
+		<!-- 데이터 없는 경우 해당 영역 미노출 -->
+			<div class="cm_toolbar mo_nocol mt-40">
+				<div class="toolbar_item">
+					<div class="align-items-center d-flex gap-16">
+						<h3 class="cm_title size_md">유사한 지원사업</h3>
+					</div>
+				</div>
+			</div>
+			<div class="cm_overview6 col-03 type2">
+				<ul class="ovw6_list">
+					<li class="ovw6_item">
+							<div class="ovw6_box">
+								<div class="box_head">
+									
+									<span class="badge1 cm_badge variant9">성장기</span>
+											<ul class="cm_dash_list1 size_sm">
+										<li class="dash1_item">기술지원(R&D)</li>
+												</ul>
+								</div>
+								<div class="box_title">
+									<span class="ellipsis line2">AI기반 슬립테크 국제협력 실증 확산 지원사업 기업지원 공고(국제공인시험 지원)</span>
+								</div>
+								<div class="box_desc">
+									<div class="desc_bubble">
+										<span class="ellipsis line2">
+											산업통상자원부와 한국기계전기전자시험연구원에서 지원하는 바이오산업 개방형 생태계 조성사업에 따른「AI 기반 슬립테크 국제협력 실증 확산 지원」과제의 기업지원사업을 다음과 같이 공고하오니 동 사업에 참여를 희망하는 AI기반 슬립테크 기업의 많은 참여 바랍니다. ☞ AI기반 슬립테크 산업 제품 분야 제조 및 연구개발 중소ㆍ중견기업 ☞ 국제 공인 시험 지원(건당 14백만원) - KOLAS, CB 등 국제 공인 시험 성적서 획득 지원 - IEC60601-1, 사이버보안, 소프트웨어, 개별 성능에 관한 시험 등 성적서 획득 지원</span>
+									</div>
+								</div>
+								<div class="box_info">
+									<dl class="cm_dl2">
+										<dt>지원대상</dt>
+										<dd>
+											<span class="ellipsis">
+												성장기</span>
+										</dd>
+									</dl>
+									<dl class="cm_dl2">
+										<dt>사업기간</dt>
+										<dd>
+											<span class="ellipsis"> 
+												2026-09-29 ~ 2026-12-31</span>
+										</dd>
+									</dl>
+									<dl class="cm_dl2">
+										<dt>주관부처</dt>
+										<dd>
+											<span class="ellipsis">산업통상부</span>
+										</dd>
+									</dl>
+								</div>
+								<div class="box_foot">
+									<div class="agency">
+										<div class="agency_logo"><img src="/jobs/main/images/common/logo/logo13.png" class="img" alt="중소기업 성공 길잡이 기업마당"></div>
+									</div>
+								</div>
+								<div class="box_btn">
+									<button type="button" class="btn_like btn_itrst " data-se="plcy" data-sn="5541" data-label="AI기반 슬립테크 국제협력 실증 확산 지원사업 기업지원 공고(국제공인시험 지원)" aria-pressed="false" >
+										<span class="blind">관심설정</span>
+									</button>
+
+                                    <a href="view.do?plcy_sprt_sn=5541&amp;search=" class="btn_more cm_btn size_md variant2">
+                                                <span class="cm_icon icon_r plus_primary" style="--icon-size: 20; --icon-gap: 4;"><span class="blind">AI기반 슬립테크 국제협력 실증 확산 지원사업 기업지원 공고(국제공인시험 지원)</span>자세히 보기</span>
+                                            </a>
+                                        </div>
+							</div>
+						</li>
+					<li class="ovw6_item">
+							<div class="ovw6_box">
+								<div class="box_head">
+									
+									<span class="badge1 cm_badge variant9">성장기</span>
+											<ul class="cm_dash_list1 size_sm">
+										<li class="dash1_item">컨설팅</li>
+												<li class="dash1_item">마케팅</li>
+												<li class="dash1_item">판로/해외진출</li>
+												<li class="dash1_item">법률지원</li>
+												</ul>
+								</div>
+								<div class="box_title">
+									<span class="ellipsis line2">2026년 중국 온라인 플랫폼 진출(희망) 기업을 위한 해외 권리확보 지원사업 모집 공고</span>
+								</div>
+								<div class="box_desc">
+									<div class="desc_bubble">
+										<span class="ellipsis line2">
+											우리기업의 해외 지식재산 보호 및 수출 경쟁력 강화를 위한 「중국 온라인 플랫폼 진출(희망) 기업을 위한 해외 권리확보 지원사업」에 참여할 기업을 다음과 같이 모집합니다. ☞「중소기업기본법」제2조 및 같은 법 시행령 제3조에 따른 중소기업(개인사업자 포함) 또는「중견기업 성장촉진 및 경쟁력 강화에 관한 특별법」제2조 및 같은 법 시행령 제2조에 따른 중견기업 - 중국 온라인 플랫폼(타오바오, 티몰, 징동닷컴 등)에 진출하였거나 진출을 희망하는 국내 중소ㆍ중견기업 ☞ 국내 지재권 전문기관이 지원기업에 대한 사전진단, 컨설팅, 해외 권리화 및 브랜드 성장 등 지원</span>
+									</div>
+								</div>
+								<div class="box_info">
+									<dl class="cm_dl2">
+										<dt>지원대상</dt>
+										<dd>
+											<span class="ellipsis">
+												성장기</span>
+										</dd>
+									</dl>
+									<dl class="cm_dl2">
+										<dt>사업기간</dt>
+										<dd>
+											<span class="ellipsis"> 
+												2026-09-29 ~ 2026-10-06</span>
+										</dd>
+									</dl>
+									<dl class="cm_dl2">
+										<dt>주관부처</dt>
+										<dd>
+											<span class="ellipsis">지식재산처</span>
+										</dd>
+									</dl>
+								</div>
+								<div class="box_foot">
+									<div class="agency">
+										<div class="agency_logo"><img src="/jobs/main/images/common/logo/logo13.png" class="img" alt="중소기업 성공 길잡이 기업마당"></div>
+									</div>
+								</div>
+								<div class="box_btn">
+									<button type="button" class="btn_like btn_itrst " data-se="plcy" data-sn="5540" data-label="2026년 중국 온라인 플랫폼 진출(희망) 기업을 위한 해외 권리확보 지원사업 모집 공고" aria-pressed="false" >
+										<span class="blind">관심설정</span>
+									</button>
+
+                                    <a href="view.do?plcy_sprt_sn=5540&amp;search=" class="btn_more cm_btn size_md variant2">
+                                                <span class="cm_icon icon_r plus_primary" style="--icon-size: 20; --icon-gap: 4;"><span class="blind">2026년 중국 온라인 플랫폼 진출(희망) 기업을 위한 해외 권리확보 지원사업 모집 공고</span>자세히 보기</span>
+                                            </a>
+                                        </div>
+							</div>
+						</li>
+					<li class="ovw6_item">
+							<div class="ovw6_box">
+								<div class="box_head">
+									
+									<span class="badge1 cm_badge variant9">성장기</span>
+											<ul class="cm_dash_list1 size_sm">
+										<li class="dash1_item">컨설팅</li>
+												<li class="dash1_item">자금지원</li>
+												<li class="dash1_item">판로/해외진출</li>
+												</ul>
+								</div>
+								<div class="box_title">
+									<span class="ellipsis line2">2026년 5차 수출 도전기업 IP위험 대응역량 강화사업 위험대응 유형 모집 공고</span>
+								</div>
+								<div class="box_desc">
+									<div class="desc_bubble">
+										<span class="ellipsis line2">
+											수출 도전기업의 안정적인 해외진출과 수출활성화 도모를 위한「수출 도전기업 IP위험 대응역량 강화사업」위험대응 유형 5차 모집을 다음과 같이 공고합니다 ☞ 위험진단 유형 지원기업 ☞ 위험진단에서 확인된 IP위험을 해소하는 대응전략 지원(최대 사업비 14,000,000원 지원)</span>
+									</div>
+								</div>
+								<div class="box_info">
+									<dl class="cm_dl2">
+										<dt>지원대상</dt>
+										<dd>
+											<span class="ellipsis">
+												성장기</span>
+										</dd>
+									</dl>
+									<dl class="cm_dl2">
+										<dt>사업기간</dt>
+										<dd>
+											<span class="ellipsis"> 
+												2026-09-28 ~ 2026-10-12</span>
+										</dd>
+									</dl>
+									<dl class="cm_dl2">
+										<dt>주관부처</dt>
+										<dd>
+											<span class="ellipsis">지식재산처</span>
+										</dd>
+									</dl>
+								</div>
+								<div class="box_foot">
+									<div class="agency">
+										<div class="agency_logo"><img src="/jobs/main/images/common/logo/logo13.png" class="img" alt="중소기업 성공 길잡이 기업마당"></div>
+									</div>
+								</div>
+								<div class="box_btn">
+									<button type="button" class="btn_like btn_itrst " data-se="plcy" data-sn="5539" data-label="2026년 5차 수출 도전기업 IP위험 대응역량 강화사업 위험대응 유형 모집 공고" aria-pressed="false" >
+										<span class="blind">관심설정</span>
+									</button>
+
+                                    <a href="view.do?plcy_sprt_sn=5539&amp;search=" class="btn_more cm_btn size_md variant2">
+                                                <span class="cm_icon icon_r plus_primary" style="--icon-size: 20; --icon-gap: 4;"><span class="blind">2026년 5차 수출 도전기업 IP위험 대응역량 강화사업 위험대응 유형 모집 공고</span>자세히 보기</span>
+                                            </a>
+                                        </div>
+							</div>
+						</li>
+					</ul>
+			</div>
+			<!-- // 유사한 지원사업 -->
+		</div>
+</div>
+<!-- //내게 맞는 정책 · 지원 - 지원사업 검색 - 상세 -->
+
+<script src="https://dapi.kakao.com/v2/maps/sdk.js?appkey=005ba0f5fa5e186d3a18e555cacebca9"></script>
+<script>
+
+    function fnChgHeight(iframeObj) {
+        var innerBody = iframeObj.contentWindow.document.body;
+        var innerHeight = innerBody.scrollHeight + (innerBody.offsetHeight - innerBody.clientHeight);
+        iframeObj.style.height = innerHeight;
+        var innerWidth = innerBody.scrollWidth + (innerBody.offsetWidth - innerBody.clientWidth);
+        iframeObj.style.width = innerWidth;
+        this.scrollTo(1,1);
+     }
+
+     // 지도 모달 렌더링 함수
+     function renderLocationMap() {
+         
+     }
+    
+</script>
+
+
+</div>
+											
+											<div class="mt-96">
+													<!-- 공공 누리 -->
+													<!-- //공공 누리 -->
+													
+													<!-- 컨텐츠 만족도 조사 -->
+													<div class="cm_content_satisfaction">
+	<form id="formWrite_dgstfn" action="/jobs/main/content/process.do" method="post" onsubmit="return fnFormValidation_dgstfn(); " target="hidden_iframe">
+		<input type="hidden" name="TP" value="dgstfn" />
+		<input type="hidden" name="cms_menu_sn" value="15" />
+	
+		<div class="survey_content">
+			<div class="survey_title"><span>이 페이지에서 제공하는 정보에 대해 만족하십니까?</span></div>
+			<div class="survey_input">
+				<div class="survey_chk_wrap">
+					<label class="survey_chk">
+						<input type="radio" name="menu_dgstfn_scr" value="5" />
+						<span class="chk_label">
+							<img src="/jobs/main/images/common/icon_very_satisfied.png" class="survey_chk_icon" alt /> 매우 만족 </span>
+					</label>
+					<label class="survey_chk">
+						<input type="radio" name="menu_dgstfn_scr" value="4" />
+						<span class="chk_label">
+							<img src="/jobs/main/images/common/icon_satisfied.png" class="survey_chk_icon" alt /> 만족 </span>
+					</label>
+					<label class="survey_chk">
+						<input type="radio" name="menu_dgstfn_scr" value="3" />
+						<span class="chk_label">
+							<img src="/jobs/main/images/common/icon_neutral.png" class="survey_chk_icon" alt /> 보통 </span>
+					</label>
+					<label class="survey_chk">
+						<input type="radio" name="menu_dgstfn_scr" value="2" />
+						<span class="chk_label">
+							<img src="/jobs/main/images/common/icon_dissatisfied.png" class="survey_chk_icon" alt /> 불만족 </span>
+					</label>
+					<label class="survey_chk">
+						<input type="radio" name="menu_dgstfn_scr" value="1" />
+						<span class="chk_label">
+							<img src="/jobs/main/images/common/icon_very_dissatisfied.png" class="survey_chk_icon" alt /> 매우 불만족 </span>
+					</label>
+				</div>
+				<div class="survey_action">
+					<button type="submit" class="cm_btn size_md variant1">평점주기</button>
+				</div>
+			</div>
+		</div>
+		</form>
+	<script>
+		var formWrite_dgstfn = null;
+		$(document).ready(function(){
+			formWrite_dgstfn = $("#formWrite_dgstfn");
+		});
+		var fnFormValidation_dgstfn = function() {
+			return (
+						true
+				&&	chk_field(formWrite_dgstfn.find("input[name=menu_dgstfn_scr]"), "checked", "만족도")
+				&&	fnPrevent_check()
+			);
+		}
+	</script>
+</div><!-- //컨텐츠 만족도 조사 -->
+												</div>
+											</div>
+									</div>
+								</div>
+							</div>
+				<!-- //container -->
+			
+			<!-- 퀵메뉴 -->
+			<div class="cm_quick_menu">
+				<div class="quick_menu_inner">
+					<ul class="quick_menu_list">
+						<li class="list1"><a href="/jobs/main/recruit/search.do"><span class="quick_icon"></span><span>채용 통합검색</span></a></li>
+						<li class="list2"><a href="/jobs/main/support/business/list.do"><span class="quick_icon"></span><span>지원사업 검색</span></a></li>
+						<li class="list3"><a href="/jobs/main/education/train/list.do"><span class="quick_icon"></span><span>교육&middot;훈련 검색</span></a></li>
+						<li class="list4"><a href="/jobs/map/main.do" target="_blank"><span class="quick_icon"></span><span>인천 일자리지도</span></a></li>
+					</ul>
+					<button type="button" class="quick_menu_top_btn" onclick="scrollToTop()"><span>TOP</span></button>
+				</div>
+			</div>
+			<!-- //퀵메뉴 -->
+			
+			<!-- footer -->
+			<!-- 관련 사이트 -->
+<div class="cm_site_info">
+	<div class="inner">
+		<ul class="site_list_wrap">
+			<li>
+					<button type="button" class="site_list_btn" title="인천광역시·군·구 닫힘" aria-expanded="false" onclick="toggleSiteList(this)"><span>인천광역시·군·구</span></button>
+					<div class="site_list">
+						<div class="site_list_title">인천광역시·군·구</div>
+						<ul class="site_list_items">
+							<li><a href="https://www.incheon.go.kr/index" target="_blank" title="인천광역시 새창열림">인천광역시</a></li>
+								<li><a href="http://www.ganghwa.go.kr" target="_blank" title="강화군 새창열림">강화군</a></li>
+								<li><a href="http://www.ongjin.go.kr" target="_blank" title="옹진군 새창열림">옹진군</a></li>
+								<li><a href="https://www.jemulpo.go.kr" target="_blank" title="제물포구 새창열림">제물포구</a></li>
+								<li><a href="https://www.yeongjong.go.kr" target="_blank" title="영종구 새창열림">영종구</a></li>
+								<li><a href="https://www.michuhol.go.kr/main/main.do" target="_blank" title="미추홀구 새창열림">미추홀구</a></li>
+								<li><a href="http://www.yeonsu.go.kr" target="_blank" title="연수구 새창열림">연수구</a></li>
+								<li><a href="http://www.namdong.go.kr" target="_blank" title="남동구 새창열림">남동구</a></li>
+								<li><a href="http://www.icbp.go.kr" target="_blank" title="부평구 새창열림">부평구</a></li>
+								<li><a href="http://www.gyeyang.go.kr" target="_blank" title="계양구 새창열림">계양구</a></li>
+								<li><a href="https://www.seohae.go.kr" target="_blank" title="서해구 새창열림">서해구</a></li>
+								<li><a href="https://www.geomdan.go.kr" target="_blank" title="검단구 새창열림">검단구</a></li>
+								</ul>
+					</div>
+				</li>
+			<li>
+					<button type="button" class="site_list_btn" title="일자리관련 닫힘" aria-expanded="false" onclick="toggleSiteList(this)"><span>일자리관련</span></button>
+					<div class="site_list">
+						<div class="site_list_title">일자리관련</div>
+						<ul class="site_list_items">
+							<li><a href="https://www.incheon.go.kr/jobs/jobsincheon/main.do" target="_blank" title="잡스인천 새창열림">잡스인천<span class="f_icon">F</span></a></li>
+								<li><a href="https://www.incheon.go.kr/jobs/newlife/main.do" target="_blank" title="신중년아지트 새창열림">신중년아지트<span class="f_icon">F</span></a></li>
+								<li><a href="https://www.work24.go.kr" target="_blank" title="고용24 새창열림">고용24</a></li>
+								<li><a href="https://www.gojobs.go.kr" target="_blank" title="나라일터 새창열림">나라일터</a></li>
+								<li><a href="https://academy.visitkorea.or.kr/mainHome.do" target="_blank" title="관광전문인력(관광인) 새창열림">관광전문인력(관광인)</a></li>
+								<li><a href="https://www.vnet.go.kr/VnetIndex.do" target="_blank" title="제대군인지원센터 새창열림">제대군인지원센터</a></li>
+								<li><a href="https://cworknet.kocea.or.kr" target="_blank" title="건설워크넷 새창열림">건설워크넷</a></li>
+								<li><a href="http://www.worldjob.or.kr/intro.do" target="_blank" title="월드잡플러스 새창열림">월드잡플러스</a></li>
+								<li><a href="https://www.icpa.or.kr/recruit/index.do" target="_blank" title="인천항만공사일자리 새창열림">인천항만공사일자리</a></li>
+								<li><a href="https://www.airportal.go.kr/work/workMain.do" target="_blank" title="항공일자리 새창열림">항공일자리</a></li>
+								<li><a href="https://work.mma.go.kr/caisBYIS/main.do" target="_blank" title="산업지원 병역일터 새창열림">산업지원 병역일터</a></li>
+								<li><a href="https://www.saramin.co.kr/zf_user/jobs/theme/incheon-airport" target="_blank" title="인천공항채용관 새창열림">인천공항채용관</a></li>
+								<li><a href="https://www.smes.go.kr/gsmb/company/excellence_employment" target="_blank" title="참 괜찮은 강소기업 새창열림">참 괜찮은 강소기업</a></li>
+								<li><a href="https://youth.incheon.go.kr/space/inuu" target="_blank" title="인천광역시 청년지원센터 유유기지 새창열림">인천광역시 청년지원센터 유유기지</a></li>
+								<li><a href="https://job.alio.go.kr/" target="_blank" title="공공기관 채용정보시스템 새창열림">공공기관 채용정보시스템</a></li>
+								<li><a href="https://job.kosmes.or.kr/" target="_blank" title="기업인력애로센터 일자리매칭플랫폼 새창열림">기업인력애로센터 일자리매칭플랫폼</a></li>
+								<li><a href="https://yw.work24.go.kr/" target="_blank" title="청년일경험포털 새창열림">청년일경험포털</a></li>
+								</ul>
+					</div>
+				</li>
+			<li>
+					<button type="button" class="site_list_btn" title="창업/기업지원관련 닫힘" aria-expanded="false" onclick="toggleSiteList(this)"><span>창업/기업지원관련</span></button>
+					<div class="site_list">
+						<div class="site_list_title">창업/기업지원관련</div>
+						<ul class="site_list_items">
+							<li><a href="http://incheon-startup.kr" target="_blank" title="인천창업플랫폼 새창열림">인천창업플랫폼</a></li>
+								<li><a href="https://www.insupport.or.kr/main" target="_blank" title="인천광역시소상공인종합지원센터 새창열림">인천광역시소상공인종합지원센터</a></li>
+								<li><a href="https://www.insehub.or.kr" target="_blank" title="인천광역시사회적경제지원센터 새창열림">인천광역시사회적경제지원센터</a></li>
+								<li><a href="http://bizok.incheon.go.kr" target="_blank" title="비즈오케이 새창열림">비즈오케이</a></li>
+								<li><a href="https://www.icsp.or.kr" target="_blank" title="성장대로 새창열림">성장대로</a></li>
+								<li><a href="https://www.makeall.com/home/kor/main.do" target="_blank" title="메이크올 새창열림">메이크올</a></li>
+								<li><a href="http://www.bizinfo.go.kr" target="_blank" title="중소기업 성공길잡이 기업마당 새창열림">중소기업 성공길잡이 기업마당</a></li>
+								<li><a href="https://pms.ripc.org/www/main.do" target="_blank" title="지역지식재산센터 새창열림">지역지식재산센터</a></li>
+								<li><a href="https://www.k-startup.go.kr" target="_blank" title="K-Startup 새창열림">K-Startup</a></li>
+								<li><a href="https://www.kised.or.kr" target="_blank" title="창업진흥원 새창열림">창업진흥원</a></li>
+								<li><a href="http://hp.kosmes.or.kr" target="_blank" title="중소벤처기업진흥공단 새창열림">중소벤처기업진흥공단</a></li>
+								<li><a href="http://www.icsinbo.or.kr" target="_blank" title="인천신용보증재단 새창열림">인천신용보증재단</a></li>
+								<li><a href="https://www.kibo.or.kr" target="_blank" title="기술보증기금 새창열림">기술보증기금</a></li>
+								<li><a href="http://www.bi.go.kr" target="_blank" title="Bi-net 창업보육센터 새창열림">Bi-net 창업보육센터</a></li>
+								<li><a href="https://www.startuppark.kr/user/main.do" target="_blank" title="인천스타트업파크 새창열림">인천스타트업파크</a></li>
+								<li><a href="https://www.sbiz.or.kr/sup/main.do" target="_blank" title="소상공인24 새창열림">소상공인24</a></li>
+								<li><a href="https://ccei.creativekorea.or.kr/incheon" target="_blank" title="인천창조경제혁신센터 새창열림">인천창조경제혁신센터</a></li>
+								<li><a href="https://www.inckl.or.kr/main/main.do" target="_blank" title="인천콘텐츠코리아랩 새창열림">인천콘텐츠코리아랩</a></li>
+								<li><a href="https://www.modoo.or.kr" target="_blank" title="모두의 창업 새창열림">모두의 창업</a></li>
+								<li><a href="https://www.k-startup.go.kr/onestop" target="_blank" title="스타트업 원스톱 지원센터 새창열림">스타트업 원스톱 지원센터</a></li>
+								</ul>
+					</div>
+				</li>
+			<li>
+					<button type="button" class="site_list_btn" title="관련기관 닫힘" aria-expanded="false" onclick="toggleSiteList(this)"><span>관련기관</span></button>
+					<div class="site_list">
+						<div class="site_list_title">관련기관</div>
+						<ul class="site_list_items">
+							<li><a href="http://www.moel.go.kr/index.do" target="_blank" title="고용노동부 새창열림">고용노동부</a></li>
+								<li><a href="http://www.hrdkorea.or.kr" target="_blank" title="한국산업인력공단 새창열림">한국산업인력공단</a></li>
+								<li><a href="https://www.keis.or.kr/" target="_blank" title="한국고용정보원 새창열림">한국고용정보원</a></li>
+								<li><a href="http://www.kosha.or.kr/kosha/index.do" target="_blank" title="한국산업안전보건공단 새창열림">한국산업안전보건공단</a></li>
+								<li><a href="http://www.mogef.go.kr" target="_blank" title="성평등가족부 새창열림">성평등가족부</a></li>
+								<li><a href="https://www.cwma.or.kr/index.do" target="_blank" title="건설근로자공제회 새창열림">건설근로자공제회</a></li>
+								<li><a href="https://www.ifwf.or.kr/incheon/index.do" target="_blank" title="인천여성가족재단 새창열림">인천여성가족재단</a></li>
+								<li><a href="http://www.incheonhrd.or.kr" target="_blank" title="인천지역인적자원개발위원회 새창열림">인천지역인적자원개발위원회</a></li>
+								<li><a href="https://www.kead.or.kr" target="_blank" title="한국장애인고용공단 새창열림">한국장애인고용공단</a></li>
+								<li><a href="http://www.nlrc.go.kr/nlrc/main/index_home.go" target="_blank" title="중앙노동위원회 새창열림">중앙노동위원회</a></li>
+								<li><a href="http://www.kopo.ac.kr/index.do" target="_blank" title="한국폴리텍대학 새창열림">한국폴리텍대학</a></li>
+								<li><a href="https://www.wagework.go.kr" target="_blank" title="임금직업포털 새창열림">임금직업포털</a></li>
+								<li><a href="https://www.itp.or.kr" target="_blank" title="인천테크노파크 새창열림">인천테크노파크</a></li>
+								<li><a href="https://www.kbiz.or.kr" target="_blank" title="중소기업중앙회 새창열림">중소기업중앙회</a></li>
+								</ul>
+					</div>
+				</li>
+			</ul>
+	</div>
+</div>
+<!-- //관련 사이트 -->
+
+<!-- footer -->
+<footer id="footer" class="footer">
+	<div class="inner">
+		<div class="footer_content">
+			<div class="footer_logo">
+				<img src="/jobs/main/images/common/logo2.svg" alt="인천광역시 인천일자리플랫폼" />
+			</div>
+			<div class="footer_info">
+				<div class="footer_address">
+					<ul class="info_list">
+						<li>(21554) 인천광역시 남동구 정각로 29(구월동)</li>
+						<li><span class="font-weight-bold">TEL</span> (032)120(유료)</li>
+					</ul>
+					<div class="footer_actions">
+						<ul class="actions_list">
+							<li><a href="https://www.incheon.go.kr/cool/COOL030101" target="_blank" title="정책제안 새창이동"><span class="arrow_forward_w cm_icon icon_r size_sm">정책제안</span></a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="footer_bottom">
+			<div class="footer_menu">
+				<ul class="footer_menu_list">
+					<li><a href="/jobs/main/guide/policy_agre/view.do"><span>이용약관</span></a></li>
+					<li><a href="https://www.incheon.go.kr/IC050401" target="_blank" title="인천광역시 개인정보처리방침 새창열림"><span class="cm_color primary-40">개인정보처리방침</span></a></li>
+					<li><a href="/jobs/main/content/view.do?sn=149"><span>저작권보호정책</span></a></li>
+					<li><a href="/jobs/main/content/view.do?sn=150"><span>이메일 수집거부</span></a></li>
+					<li><a href="/jobs/main/open_api/list.do"><span>OPEN API</span></a></li>
+
+					</ul>
+				<p class="copyright">2026 © Incheon Metropolitan City. All rights reserved. </p>
+			</div>
+			<div class="footer_mark">
+				<a href="/jobs/main/files/accessibility_certificate.pdf" target="_blank" title="웹 접근성 품질인증서 PDF 새창보기">
+					<img src="/jobs/main/images/common/mark_wa_cert.png" alt="(사)한국장애인단체총연합회 한국정보접근성인증평가원 웹 접근성 우수사이트 인증마크(WA인증마크)" />
+				</a>
+			</div>
+		</div>
+	</div>
+</footer>
+<!-- //footer --><!-- // footer -->
+			
+		</div>
+		<!-- //wrap -->
+	
+		<iframe name="hidden_iframe" id="hidden_iframe" title="숨겨진 프레임" src="about:blank" style="display: none; " ></iframe>
+	</body>
+</html>

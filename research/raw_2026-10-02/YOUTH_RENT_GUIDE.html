@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/css/style.css" />
+    <script type="text/javascript" src="/jquery/js/jquery-1.11.3.min.js"></script>
+    <title>마이홈포털</title>
+    
+  <script type="text/javascript">
+  
+  /* ajax error popup close - jquery 충돌방지 */
+  $.noConflict();
+  jQuery(document).ready( function() {
+  	if(jQuery("#alertBox").css("display") == "block" ){
+  		// jQuery(".errorBtn").hide();
+  	}
+  	if(opener != null){
+  		// jQuery(".errorBtn").hide();
+  		jQuery("#closeBtn").show();
+  	}
+  });
+  
+  function fncGoAfterErrorPage(arg){
+		
+	if(arg == 1){
+		history.go(-1);
+	}else if(arg == 2){
+		document.location.href="/hws/portal/main/getMgtMainHubPage.do";
+	}else{
+		if(opener != null){
+			window.opener = self;
+            self.close();
+		}	
+	}
+ }
+  
+  </script>  
+    
+  </head>
+  <body>
+    <!-- el :: s -->
+    <div class="body-wrapper sub-wrapper">
+      
+      <main id="main">
+        <div class="subpage-container errorpage">
+          <!-- contents :: s -->
+          <div class="contents-container">
+            <img src="/images/error/img_errorpage.png" alt="" class="img-error" />
+            <h2 class="title"><em>요청한 페이지 및 주소</em> 를 찾을 수 없습니다.</h2>
+            <p class="text">URL을 확인하고 다시 시도해 주세요.</p>
+            <div class="btn-wrap">
+              <a href="javascript:fncGoAfterErrorPage(1);" class="btn lg outline btn-prev">이전페이지</a>
+              <a href="javascript:fncGoAfterErrorPage(2);" class="btn lg btn-home">홈으로</a>
+              <a href="javascript:fncGoAfterErrorPage(3);" class="btn lg btn-home" id="closeBtn" style="display: none;">창닫기</a>
+            </div>
+          </div>
+          <!-- contents :: e -->
+        </div>
+      </main>
+      
+    </div>
+    <!-- el :: e -->
+
+  </body>
+</html>

@@ -1,0 +1,2637 @@
+
+
+
+
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>부산청년플랫폼</title>
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="/images/common/favicon.ico">
+    <link rel="icon" href="/images/common/favicon.ico">
+
+    <!-- jquery ui.css -->
+    <link rel="stylesheet" type="text/css" media="screen" href="/jqgrid450/themes/redmond/jquery-ui.css">
+    <link rel="stylesheet" type="text/css" media="screen" href="/jqgrid450/css/ui.jqgrid.css">
+
+    <!-- Common CSS -->
+    <link href="/css/cms/533.css?ver=20260907144435"  rel="stylesheet" type="text/css">
+    <!-- base.css -->
+    <link href="/css/cms/531.css?ver=20260907144435"  rel="stylesheet" type="text/css">
+    <!-- common.css -->
+
+    <!-- Page CSS -->
+    <link href="/css/cms/535.css?ver=20260907144435"  rel="stylesheet" type="text/css">
+    <!-- board.css -->
+    <link href="/css/cms/537.css?ver=20260907144435"  rel="stylesheet" type="text/css">
+    <!-- form.css -->
+    
+    <link href="/css/cms/538.css?ver=20260907144435"  rel="stylesheet" type="text/css">
+    <!--member.css -->
+
+    <!-- Common JSds -->
+    <script src="/js/default/jquery-3.5.1.min.js"></script>
+    <script type="text/javascript" src="/js/cms/532.js?ver=20260907144435" ></script>
+    <!-- common.js -->
+    <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+    <script type="text/javascript" src=" /validator.do"></script>
+    <!-- bbs -->
+    <script src="/js/egovframework/com/cmm/fms/EgovMultiFileCustom.js"></script>
+    <script src="/ckeditor/ckeditor.js"></script>
+    <script src="/ckeditor/samples/js/bbs.js"></script>
+
+    <!-- Slick -->
+    <link rel="stylesheet" type="text/css" href="/js/slick/slick.css">
+    <link rel="stylesheet" type="text/css" href="/js/slick/slick-theme.css">
+    <script src="/js/slick/slick.js"></script>
+
+    <!-- bizappguard.js --> 
+    <script type="text/javascript" src="/js/cms/359.js?ver=20260907144435" ></script>
+    <!-- Board JS -->
+    <script type="text/javascript" src="/js/cms/539.js?ver=20260907144435" ></script>
+    <!-- board.js -->
+    <script type="text/javascript" src="/js/cms/10.js?ver=20260907144435" ></script>
+    <!-- form.js -->
+    <script language="javascript">
+
+/* ì£¼ì ì¡°íapi*/
+    function execution_daum_address() {
+
+        new daum.Postcode({
+            oncomplete: function(data) {
+                var addr = ''; // ì£¼ì ë³ì
+                var extraAddr = ''; // ì°¸ê³ í­ëª© ë³ì
+                if (data.userSelectedType === 'R') {
+                    addr = data.roadAddress;
+                } else {
+                    addr = data.jibunAddress;
+                }
+                if (data.userSelectedType === 'R') {
+                    if (data.bname !== '' && /[ë|ë¡|ê°]$/g.test(data.bname)) {
+                        extraAddr += data.bname;
+                    }
+                    if (data.buildingName !== '' && data.apartment === 'Y') {
+                        extraAddr += (extraAddr !== '' ? ', ' + data.buildingName : data.buildingName);
+                    }
+                    if (extraAddr !== '') {
+                        extraAddr = ' (' + extraAddr + ')';
+                    }
+                    addr += extraAddr;
+
+                } else {
+                    addr += ' ';
+                }
+                 $("#addrPost").val(data.zonecode);
+                 $(".addrRoad").val(addr);
+
+                 $(".addrDetail").attr("readonly", false);
+                 $(".addrDetail").focus();
+
+            }
+        }).open();
+    }
+
+/* ëë²ì§¸ ì£¼ì ì¡°íapi*/
+function execution_daum_address2() {
+
+    new daum.Postcode({
+        oncomplete: function(data) {
+            var addr = ''; // ì£¼ì ë³ì
+            var extraAddr = ''; // ì°¸ê³ í­ëª© ë³ì
+            if (data.userSelectedType === 'R') {
+                addr = data.roadAddress;
+            } else {
+                addr = data.jibunAddress;
+            }
+            if (data.userSelectedType === 'R') { 
+                if (data.bname !== '' && /[ë|ë¡|ê°]$/g.test(data.bname)) {
+                    extraAddr += data.bname;
+                }
+                if (data.buildingName !== '' && data.apartment === 'Y') {
+                    extraAddr += (extraAddr !== '' ? ', ' + data.buildingName : data.buildingName);
+                }
+                if (extraAddr !== '') {
+                    extraAddr = ' (' + extraAddr + ')';
+                }
+                addr += extraAddr;
+
+            } else {
+                addr += ' ';
+            }
+            $("#bldAddrPost").val(data.zonecode);
+            $(".bldAddrRoad").val(addr);
+
+            $(".bldAddrDetail").attr("readonly", false);
+            $(".bldAddrDetail").focus();
+
+        }
+    }).open();
+}
+
+
+/* ì¸ë²ì§¸ ì£¼ì ì¡°íapi*/
+function execution_daum_address3() { 
+
+    new daum.Postcode({
+        oncomplete: function(data) {
+            var addr = ''; // ì£¼ì ë³ì
+            var extraAddr = ''; // ì°¸ê³ í­ëª© ë³ì
+            if (data.userSelectedType === 'R') {
+                addr = data.roadAddress;
+            } else {
+                addr = data.jibunAddress;
+            }
+            if (data.userSelectedType === 'R') { 
+                if (data.bname !== '' && /[ë|ë¡|ê°]$/g.test(data.bname)) {
+                    extraAddr += data.bname;
+                }
+                if (data.buildingName !== '' && data.apartment === 'Y') {
+                    extraAddr += (extraAddr !== '' ? ', ' + data.buildingName : data.buildingName);
+                }
+                if (extraAddr !== '') {
+                    extraAddr = ' (' + extraAddr + ')';
+                }
+                addr += extraAddr;
+
+            } else {
+                addr += ' ';
+            }
+            $("#lseAddrPost").val(data.zonecode);
+            $(".lseAddrRoad").val(addr);
+
+            $(".lseAddrDetail").attr("readonly", false);
+            $(".lseAddrDetail").focus();
+
+        }
+    }).open();
+}
+
+
+/* ë¤ë²ì§¸ ì£¼ì ì¡°íapi*/
+function execution_daum_address4() { 
+
+    new daum.Postcode({
+        oncomplete: function(data) {
+            var addr = ''; // ì£¼ì ë³ì
+            var extraAddr = ''; // ì°¸ê³ í­ëª© ë³ì
+            if (data.userSelectedType === 'R') {
+                addr = data.roadAddress;
+            } else {
+                addr = data.jibunAddress;
+            }
+            if (data.userSelectedType === 'R') { 
+                if (data.bname !== '' && /[ë|ë¡|ê°]$/g.test(data.bname)) {
+                    extraAddr += data.bname;
+                }
+                if (data.buildingName !== '' && data.apartment === 'Y') {
+                    extraAddr += (extraAddr !== '' ? ', ' + data.buildingName : data.buildingName);
+                }
+                if (extraAddr !== '') {
+                    extraAddr = ' (' + extraAddr + ')';
+                }
+                addr += extraAddr;
+
+            } else {
+                addr += ' ';
+            }
+            $("#workaddrPost").val(data.zonecode);
+            $(".workaddrRoad").val(addr);
+
+            $(".workaddrDetail").attr("readonly", false);
+            $(".workaddrDetail").focus();
+
+        }
+    }).open();
+}
+
+	      
+	</script>
+    <!-- addr.js --> 
+    <script type="text/javascript" src="/js/cms/363.js?ver=20260907144435" ></script>
+    <!-- aply_common.js -->
+    <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=a0d201d56d43c439c8686a30605fae0f"></script>
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-7QC5G6WT2B"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-7QC5G6WT2B');
+    </script>
+
+</head>
+
+<body>
+    <!-- Wrap -->
+    <div id="wrap">
+
+        <!-- Header -->
+        
+
+<script>
+    function totalSearch_fn(){
+                   const input = document.getElementById('total_search');
+       const value = input.value;
+  
+  // 특수문자 패턴을 정의합니다
+  const specialCharacters = /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/;
+
+  if (specialCharacters.test(value)) {
+    alert('특수문자는 검색할 수 없습니다.');
+    return;
+};
+
+        var keyword = document.getElementById("total_search").value;
+        var Search_url = 'https://young.busan.go.kr/search/search?category=TOTAL&kwd=' + keyword;
+
+        window.open(Search_url);
+    }
+
+    function totalSearch_fn2(){
+       
+
+       var keyword = document.getElementById("total_search2").value;
+       var Search_url = 'https://young.busan.go.kr/search/search?category=TOTAL&kwd=' + keyword;
+
+       window.open(Search_url);
+   }
+
+    function Enter_Remove(){ // input 에서 enter 입력시 다음에 있는 button이 호출되는 현상때문에 
+
+        // 엔터키의 코드는 13입니다.
+        if(event.keyCode == 13){
+            return false;
+        }
+    }
+</script>
+
+<!-- Skip -->
+<div id="accessibility">
+    <a href="#container">본문 바로가기</a>
+    <a href="#gnb">주메뉴 바로가기</a>
+</div>
+<!-- //Skip -->
+
+<!-- Header -->
+<div id="header">
+    <div class="pc_header">
+        <div class="top_menu">
+            <div class="top_menu_inner">
+                <div class="top_gnb_menu">
+                    <ul>
+                        <li class="logo_busan">
+                            <a href="https://www.busan.go.kr/index" target="_blank" title="새창으로 이동">
+                                <img src="/images/common/20231121041202192.png" alt="부산광역시">
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="login_menu">
+                    <ul>
+                        
+                            <li><a href="/join/list.nm?menuCd=89&lang=ko&url=join">회원가입</a></li>
+                            <li class="login_out"><a href="/index.nm?menuCd=88">로그인</a></li>
+                        
+                        <!-- 로그인 했을때 로그아웃 버튼 표시 -->
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="pc_wrap">
+            <div class="pc_menu">
+                <div class="header_top">
+                    <h1 class="logo">
+                        <a href="/index.nm">
+                            <img src="/images/common/20260629055313351.png" alt="청년G대 부산청년포털">
+                        </a>
+                    </h1>
+                    <!--
+                    <div class="total_search_box">
+                        <div class="ts_input">
+                            <label class="blind" for="total_search">통합검색</label>
+                            <input type="text" id="total_search" name="total_search" placeholder="#검색해 봐야G">
+                            <button class="btn_ts" type="button" onclick="totalSearch_fn();" onkeydown="return Enter_Remove();">검색</button>
+                        </div>
+                    </div>
+                    -->
+                    <!--드롭다운메뉴-->
+                    <div id="gnb">
+                        <div class="gnb_wrap">
+                            <ul id="gnb_menu">
+                                
+                                    
+                                        <li id="menu01"><a href="javascript:;" class="dep01">부산청년정책</a>
+                                            <!--대분류넣는곳-->
+                                            <div id="dep02_01" class="dep02">
+                                                <div class="sub_nav">
+
+                                                    <div class="depth2_left">
+                                                        <div class="depth2_tit">부산청년정책</div>
+                                                        <div class="depth2_sub_txt">
+                                                            
+                                                                Busan Youth Policy
+                                                                
+                                                                
+                                                                
+                                                                
+                                                                
+                                                                
+                                                                
+                                                            
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="sub_rt_nav">
+                                                        <ul class="dep02_nav">
+                                                            
+                                                                <li  ><a href="/index.nm?menuCd=273"  >
+                                        2026년 달라지는 청년정책</a>
+                                    <ul>
+                                        
+                                    </ul>
+                                    </li>
+                                
+                                                                <li  ><a href="/index.nm?menuCd=20"  >
+                                        청년G대 추진계획</a>
+                                    <ul>
+                                        
+                                    </ul>
+                                    </li>
+                                
+                                                                <li  ><a href="/index.nm?menuCd=195"  >
+                                        청년정책 캘린더</a>
+                                    <ul>
+                                        
+                                    </ul>
+                                    </li>
+                                
+                                                                <li  ><a href="/ai/list.do?menuCd=260"  >
+                                        청년정책 AI 추천</a>
+                                    <ul>
+                                        
+                                    </ul>
+                                    </li>
+                                
+                                                                <li  ><a href="/policySupport/list.nm?menuCd=12"  >
+                                        청년지원 프로그램</a>
+                                    <ul>
+                                        
+                                    </ul>
+                                    </li>
+                                
+                                                                <li  ><a href=""  >
+                                        부산온나청년패스</a>
+                                    <ul>
+                                        
+                                            <li  ><a href="/index.nm?menuCd=269"  >사업안내</a></li>
+                                        
+                                            <li  ><a href="/onnaStore/list.do?menuCd=268"  >제휴시설 안내</a></li>
+                                        
+                                            <li  ><a href="/article/list.nm?menuCd=267"  >FAQ</a></li>
+                                        
+                                    </ul>
+                                    </li>
+                                
+                                                                <li  ><a href="/article/list.nm?menuCd=169"  >
+                                        청년정책 자료실</a>
+                                    <ul>
+                                        
+                                    </ul>
+                                    </li>
+                                
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                </li>
+                
+                
+    
+                                    
+                                        <li id="menu02"><a href="javascript:;" class="dep01">일자리</a>
+                                            <!--대분류넣는곳-->
+                                            <div id="dep02_02" class="dep02">
+                                                <div class="sub_nav">
+
+                                                    <div class="depth2_left">
+                                                        <div class="depth2_tit">일자리</div>
+                                                        <div class="depth2_sub_txt">
+                                                            
+                                                                
+                                                                Job
+                                                                
+                                                                
+                                                                
+                                                                
+                                                                
+                                                                
+                                                            
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="sub_rt_nav">
+                                                        <ul class="dep02_nav">
+                                                            
+                                                                <li  ><a href="/job/list.nm?menuCd=222"  >
+                                        일자리 정책 안내</a>
+                                    <ul>
+                                        
+                                    </ul>
+                                    </li>
+                                
+                                                                <li  ><a href="/index.nm?menuCd=31"  >
+                                        청년디딤돌카드 플러스</a>
+                                    <ul>
+                                        
+                                    </ul>
+                                    </li>
+                                
+                                                                <li  ><a href="/index.nm?menuCd=32"  >
+                                        정장대여서비스(드림옷장)</a>
+                                    <ul>
+                                        
+                                    </ul>
+                                    </li>
+                                
+                                                                <li  ><a href="/index.nm?menuCd=33"  >
+                                        부산청년 일하는 기쁨카드</a>
+                                    <ul>
+                                        
+                                    </ul>
+                                    </li>
+                                
+                                                                <li  ><a href="/index.nm?menuCd=266"  >
+                                        부산청년 취업성공풀(Full) 패키지 지원</a>
+                                    <ul>
+                                        
+                                    </ul>
+                                    </li>
+                                
+                                                                <li  ><a href="/index.nm?menuCd=161"  >
+                                        취업연수생</a>
+                                    <ul>
+                                        
+                                    </ul>
+                                    </li>
+                                
+                                                                <li  ><a href="/index.nm?menuCd=35"  >
+                                        부산일자리종합센터</a>
+                                    <ul>
+                                        
+                                    </ul>
+                                    </li>
+                                
+                                                                <li  ><a href="/index.nm?menuCd=34"  >
+                                        청년두드림센터</a>
+                                    <ul>
+                                        
+                                    </ul>
+                                    </li>
+                                
+                                                                <li  ><a href="/index.nm?menuCd=265"  >
+                                        부산 청년잡(JOB) 성장카페</a>
+                                    <ul>
+                                        
+                                    </ul>
+                                    </li>
+                                
+                                                                <li  ><a href="/index.nm?menuCd=244"  >
+                                        청끌기업</a>
+                                    <ul>
+                                        
+                                    </ul>
+                                    </li>
+                                
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                </li>
+                
+                
+    
+                                    
+                                        <li id="menu03"><a href="javascript:;" class="dep01">주거</a>
+                                            <!--대분류넣는곳-->
+                                            <div id="dep02_03" class="dep02">
+                                                <div class="sub_nav">
+
+                                                    <div class="depth2_left">
+                                                        <div class="depth2_tit">주거</div>
+                                                        <div class="depth2_sub_txt">
+                                                            
+                                                                
+                                                                
+                                                                Residence
+                                                                
+                                                                
+                                                                
+                                                                
+                                                                
+                                                            
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="sub_rt_nav">
+                                                        <ul class="dep02_nav">
+                                                            
+                                                                <li  ><a href="/dwjob/list.nm?menuCd=223"  >
+                                        주거 정책 안내</a>
+                                    <ul>
+                                        
+                                    </ul>
+                                    </li>
+                                
+                                                                <li  ><a href="/index.nm?menuCd=0"  >
+                                        청년 임차보증금 대출 및 대출이자 지원(머물자리론)</a>
+                                    <ul>
+                                        
+                                    </ul>
+                                    </li>
+                                
+                                                                <li  ><a href="/index.nm?menuCd=271"  >
+                                        청년 중개보수 및 이사비 지원</a>
+                                    <ul>
+                                        
+                                    </ul>
+                                    </li>
+                                
+                                                                <li  ><a href="/index.nm?menuCd=37"  >
+                                        청년 월세 지원</a>
+                                    <ul>
+                                        
+                                    </ul>
+                                    </li>
+                                
+                                                                <li  ><a href="/index.nm?menuCd=221"  >
+                                        안심전세</a>
+                                    <ul>
+                                        
+                                    </ul>
+                                    </li>
+                                
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                </li>
+                
+                
+    
+                                    
+                                        <li id="menu04"><a href="javascript:;" class="dep01">생활안정</a>
+                                            <!--대분류넣는곳-->
+                                            <div id="dep02_04" class="dep02">
+                                                <div class="sub_nav">
+
+                                                    <div class="depth2_left">
+                                                        <div class="depth2_tit">생활안정</div>
+                                                        <div class="depth2_sub_txt">
+                                                            
+                                                                
+                                                                
+                                                                
+                                                                Stability Of Life
+                                                                
+                                                                
+                                                                
+                                                                
+                                                            
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="sub_rt_nav">
+                                                        <ul class="dep02_nav">
+                                                            
+                                                                <li  ><a href="/lfjob/list.nm?menuCd=227"  >
+                                        생활안정 정책 안내</a>
+                                    <ul>
+                                        
+                                    </ul>
+                                    </li>
+                                
+                                                                <li  ><a href="/index.nm?menuCd=53"  >
+                                        부산청년 기쁨두배통장</a>
+                                    <ul>
+                                        
+                                    </ul>
+                                    </li>
+                                
+                                                                <li  ><a href="/index.nm?menuCd=48"  >
+                                        청년내일저축계좌</a>
+                                    <ul>
+                                        
+                                    </ul>
+                                    </li>
+                                
+                                                                <li  ><a href="/index.nm?menuCd=164"  >
+                                        부산지역인재 장학금</a>
+                                    <ul>
+                                        
+                                    </ul>
+                                    </li>
+                                
+                                                                <li  ><a href="/index.nm?menuCd=230"  >
+                                        취업장려금</a>
+                                    <ul>
+                                        
+                                    </ul>
+                                    </li>
+                                
+                                                                <li  ><a href="/index.nm?menuCd=47"  >
+                                        대학생 기숙사비 지원</a>
+                                    <ul>
+                                        
+                                    </ul>
+                                    </li>
+                                
+                                                                <li  ><a href="/index.nm?menuCd=49"  >
+                                        학자금 대출이자 지원</a>
+                                    <ul>
+                                        
+                                    </ul>
+                                    </li>
+                                
+                                                                <li  ><a href="/index.nm?menuCd=54"  >
+                                        청년 신용회복지원사업(희망신용상담센터)</a>
+                                    <ul>
+                                        
+                                    </ul>
+                                    </li>
+                                
+                                                                <li  ><a href="/index.nm?menuCd=165"  >
+                                        청년 마음이음(일대일 상담)</a>
+                                    <ul>
+                                        
+                                    </ul>
+                                    </li>
+                                
+                                                                <li  ><a href="/index.nm?menuCd=207"  >
+                                        청년 마음이음(집단 상담)</a>
+                                    <ul>
+                                        
+                                    </ul>
+                                    </li>
+                                
+                                                                <li  ><a href="/index.nm?menuCd=52"  >
+                                        청년사회서비스사업단</a>
+                                    <ul>
+                                        
+                                    </ul>
+                                    </li>
+                                
+                                                                <li  ><a href="/index.nm?menuCd=275"  >
+                                        청년돌봄이음</a>
+                                    <ul>
+                                        
+                                    </ul>
+                                    </li>
+                                
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                </li>
+                
+                
+    
+                                    
+                                        <li id="menu05"><a href="javascript:;" class="dep01">문화/공간</a>
+                                            <!--대분류넣는곳-->
+                                            <div id="dep02_05" class="dep02">
+                                                <div class="sub_nav">
+
+                                                    <div class="depth2_left">
+                                                        <div class="depth2_tit">문화/공간</div>
+                                                        <div class="depth2_sub_txt">
+                                                            
+                                                                
+                                                                
+                                                                
+                                                                
+                                                                
+                                                                
+                                                                
+                                                                
+                                                            
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="sub_rt_nav">
+                                                        <ul class="dep02_nav">
+                                                            
+                                                                <li  ><a href="/wfjob/list.nm?menuCd=224"  >
+                                        문화/공간 정책 안내</a>
+                                    <ul>
+                                        
+                                    </ul>
+                                    </li>
+                                
+                                                                <li  ><a href="/space/list.nm?menuCd=1"  >
+                                        청년공간</a>
+                                    <ul>
+                                        
+                                            <li  ><a href="/space/list.nm?menuCd=1"  >청년공간 안내</a></li>
+                                        
+                                            <li  ><a href="/policySupport/act.nm?menuCd=261"  >청년공간 프로그램</a></li>
+                                        
+                                            <li  ><a href="/spPlace/list.nm?menuCd=3"  >청년공간 예약</a></li>
+                                        
+                                    </ul>
+                                    </li>
+                                
+                                                                <li  ><a href="/index.nm?menuCd=55"  >
+                                        청년 문화공간 지원</a>
+                                    <ul>
+                                        
+                                            <li  ><a href="/index.nm?menuCd=55"  >사상인디스테이션</a></li>
+                                        
+                                            <li  ><a href="/index.nm?menuCd=56"  >민락인디트레이닝센터</a></li>
+                                        
+                                            <li  ><a href="/index.nm?menuCd=57"  >청년작당소</a></li>
+                                        
+                                    </ul>
+                                    </li>
+                                
+                                                                <li  ><a href="/index.nm?menuCd=234"  >
+                                        부산청년만원+문화패스</a>
+                                    <ul>
+                                        
+                                            <li  ><a href="/index.nm?menuCd=234"  >부산청년만원+문화패스</a></li>
+                                        
+                                            <li  ><a href="/article/list.nm?menuCd=254"  >FAQ</a></li>
+                                        
+                                    </ul>
+                                    </li>
+                                
+                                                                <li  ><a href="/index.nm?menuCd=245"  >
+                                        청년문화예술패스</a>
+                                    <ul>
+                                        
+                                    </ul>
+                                    </li>
+                                
+                                                                <li  ><a href="/index.nm?menuCd=61"  >
+                                        신진청년예술인 인큐베이팅 및 경력개발 지원</a>
+                                    <ul>
+                                        
+                                    </ul>
+                                    </li>
+                                
+                                                                <li  ><a href="/index.nm?menuCd=235"  >
+                                        청년 문화육성 지원</a>
+                                    <ul>
+                                        
+                                    </ul>
+                                    </li>
+                                
+                                                                <li  ><a href="/index.nm?menuCd=236"  >
+                                        청년문화 축제 개최(부산스텝업댄스페스티벌)</a>
+                                    <ul>
+                                        
+                                    </ul>
+                                    </li>
+                                
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                </li>
+                
+                
+    
+                                    
+                                        <li id="menu06"><a href="javascript:;" class="dep01">교육</a>
+                                            <!--대분류넣는곳-->
+                                            <div id="dep02_06" class="dep02">
+                                                <div class="sub_nav">
+
+                                                    <div class="depth2_left">
+                                                        <div class="depth2_tit">교육</div>
+                                                        <div class="depth2_sub_txt">
+                                                            
+                                                                
+                                                                
+                                                                
+                                                                
+                                                                
+                                                                
+                                                                
+                                                                
+                                                            
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="sub_rt_nav">
+                                                        <ul class="dep02_nav">
+                                                            
+                                                                <li  ><a href="/edjob/list.nm?menuCd=225"  >
+                                        교육 정책 안내</a>
+                                    <ul>
+                                        
+                                    </ul>
+                                    </li>
+                                
+                                                                <li  ><a href="/index.nm?menuCd=72"  >
+                                        NEXT 10(청년 월드클래스 육성)</a>
+                                    <ul>
+                                        
+                                    </ul>
+                                    </li>
+                                
+                                                                <li  ><a href="/index.nm?menuCd=73"  >
+                                        청년도전 지원사업(위닛캠퍼스)</a>
+                                    <ul>
+                                        
+                                    </ul>
+                                    </li>
+                                
+                                                                <li  ><a href="/index.nm?menuCd=203"  >
+                                        스파로스 아카데미(SW 실무 인재 양성)</a>
+                                    <ul>
+                                        
+                                    </ul>
+                                    </li>
+                                
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                </li>
+                
+                
+    
+                                    
+                                        <li id="menu07"><a href="javascript:;" class="dep01">참여/권리</a>
+                                            <!--대분류넣는곳-->
+                                            <div id="dep02_07" class="dep02">
+                                                <div class="sub_nav">
+
+                                                    <div class="depth2_left">
+                                                        <div class="depth2_tit">참여/권리</div>
+                                                        <div class="depth2_sub_txt">
+                                                            
+                                                                
+                                                                
+                                                                
+                                                                
+                                                                
+                                                                
+                                                                
+                                                                
+                                                            
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="sub_rt_nav">
+                                                        <ul class="dep02_nav">
+                                                            
+                                                                <li  ><a href="/ptjob/list.nm?menuCd=226"  >
+                                        참여/권리 정책 안내</a>
+                                    <ul>
+                                        
+                                    </ul>
+                                    </li>
+                                
+                                                                <li  ><a href="/index.nm?menuCd=66"  >
+                                        청년정책조정위원회</a>
+                                    <ul>
+                                        
+                                    </ul>
+                                    </li>
+                                
+                                                                <li  ><a href="/index.nm?menuCd=65"  >
+                                        청년정책네트워크(청정넷)</a>
+                                    <ul>
+                                        
+                                    </ul>
+                                    </li>
+                                
+                                                                <li  ><a href="/index.nm?menuCd=263"  >
+                                        부산청년멘토단</a>
+                                    <ul>
+                                        
+                                    </ul>
+                                    </li>
+                                
+                                                                <li  ><a href="/index.nm?menuCd=264"  >
+                                        부산청년봉사단</a>
+                                    <ul>
+                                        
+                                    </ul>
+                                    </li>
+                                
+                                                                <li  ><a href="/index.nm?menuCd=248"  >
+                                        청년활동 마일리지</a>
+                                    <ul>
+                                        
+                                            <li  ><a href="/index.nm?menuCd=248"  >사업 안내</a></li>
+                                        
+                                            <li  ><a href="/index.nm?menuCd=249"  >적립 항목</a></li>
+                                        
+                                            <li  ><a href="/mileagesave/list.nm?menuCd=246"  >마일리지 참여 및 적립 </a></li>
+                                        
+                                            <li  ><a href="/mileagechange/list.nm?menuCd=247"  >동백전 전환내역·신청</a></li>
+                                        
+                                    </ul>
+                                    </li>
+                                
+                                                                <li  ><a href="/index.nm?menuCd=276"  >
+                                        청년 소셜 다이닝</a>
+                                    <ul>
+                                        
+                                    </ul>
+                                    </li>
+                                
+                                                                <li  ><a href="/index.nm?menuCd=69"  >
+                                        청년 커뮤니티 활동</a>
+                                    <ul>
+                                        
+                                            <li  ><a href="/index.nm?menuCd=69"  >청년 커뮤니티 사업 안내</a></li>
+                                        
+                                            <li  ><a href="/index.nm?menuCd=258"  >청년 커뮤니티 소개</a></li>
+                                        
+                                    </ul>
+                                    </li>
+                                
+                                                                <li  ><a href="/index.nm?menuCd=68"  >
+                                        청년 프로그램 지원</a>
+                                    <ul>
+                                        
+                                    </ul>
+                                    </li>
+                                
+                                                                <li  ><a href="/index.nm?menuCd=75"  >
+                                        부산청년주간</a>
+                                    <ul>
+                                        
+                                    </ul>
+                                    </li>
+                                
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                </li>
+                
+                
+    
+                                    
+                                        <li id="menu08"><a href="javascript:;" class="dep01">커뮤니티</a>
+                                            <!--대분류넣는곳-->
+                                            <div id="dep02_08" class="dep02">
+                                                <div class="sub_nav">
+
+                                                    <div class="depth2_left">
+                                                        <div class="depth2_tit">커뮤니티</div>
+                                                        <div class="depth2_sub_txt">
+                                                            
+                                                                
+                                                                
+                                                                
+                                                                
+                                                                
+                                                                
+                                                                Community
+                                                                
+                                                            
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="sub_rt_nav">
+                                                        <ul class="dep02_nav">
+                                                            
+                                                                <li  ><a href="/article/list.nm?menuCd=153"  >
+                                        공지사항</a>
+                                    <ul>
+                                        
+                                    </ul>
+                                    </li>
+                                
+                                                                <li  ><a href="/itgnotice/list.nm?menuCd=228"  >
+                                        부산시 통합 공지사항</a>
+                                    <ul>
+                                        
+                                    </ul>
+                                    </li>
+                                
+                                                                <li  ><a href="/index.nm?menuCd=29"  >
+                                        문자알림서비스 신청</a>
+                                    <ul>
+                                        
+                                    </ul>
+                                    </li>
+                                
+                                                                <li  class="new_blank"
+                                     ><a href="https://www.busan.go.kr/minwon/myminwon"  target="_blank" title="새창으로 이동"  >
+                                        부산시 통합 민원신청</a>
+                                    <ul>
+                                        
+                                    </ul>
+                                    </li>
+                                
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                </li>
+                
+                
+    
+    </ul>
+
+    <button class="total_search"><img src="/images/common/20260623040807969.png" alt="통합검색" /></button>
+    <div class="search_area">
+        <div class="sc_bg">
+            <div class="search_inner container_inner">
+                <div class="tts_stxt">부산청년플랫폼의 어떤 정보를 찾고 계시나요?</div>
+                        <div class="top-search-form">
+                            <label class="blind" for="total_search">통합검색</label>
+                            <input type="search" id="total_search" name="total_search" placeholder="검색어를 입력해주세요" onkeydown="if (event.keyCode === 13) { totalSearch_fn(); return false; }">
+                            <button type="button" class="enter_search" onclick="totalSearch_fn();">검색</button>
+                            <button type="button" class="close_search">닫기</button>
+                        </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+</div>
+<!--//드롭다운메뉴-->
+</div>
+</div>
+</div>
+</div>
+<div class="mobile_header">
+    <div class="header_top">
+        <a href="/index.nm" class="logo"><img src="/images/common/20260702045042226.png" alt="청년G대 부산청년포털"></a>
+        <a class="menuBtn">
+            <img id="m_menu_img" src="/images/common/20260623041612622.png" alt="모바일 메뉴">
+        </a>
+        <button class="total_search"><img src="/images/common/20260623041612694.png" alt="통합검색"></button>
+        <div class="search_area">
+            <div class="sc_bg">
+                <div class="container_inner">
+                    <div class="tts_stxt">부산청년플랫폼의 어떤 정보를 찾고 계시나요?</div>
+                    <div class="top-search-form">
+                        <label class="blind" for="total_search2">통합검색</label>
+                        <input type="search" name="q" placeholder="검색어를 입력해주세요" id="total_search2">
+                        <button type="button" class="enter_search" onclick="totalSearch_fn2();" onkeydown="return Enter_Remove();">검색</button>
+                        <button type="button" class="close_search">닫기</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <nav class="mainMenu">
+        <div id="lnb">
+            <div class="m_top_wrap">
+                <div class="m_menu_tit">Menu</div>
+                <div class="m_member">
+                    <ul>
+                        
+                            <li class="m_join"><a href="/join/list.nm?menuCd=89&lang=ko&url=join">회원가입</a></li>
+                            <li class="m_login"><a href="/index.nm?menuCd=88">로그인</a></li>
+                        
+                        <!-- 로그인 했을때 로그아웃 버튼 표시 -->
+                        
+                    </ul>
+                </div>
+            </div>
+            <ul>
+                
+                    
+                        <li class="side_icon1">
+                            <a href="#none">부산청년정책</a>
+                            <ul class="dep02_nav">
+                                
+                                    <li >
+                    
+                     <a href="/index.nm?menuCd=273" >2026년 달라지는 청년정책</a>
+                    
+            </li>
+            
+                                    <li >
+                    
+                     <a href="/index.nm?menuCd=20" >청년G대 추진계획</a>
+                    
+            </li>
+            
+                                    <li >
+                    
+                     <a href="/index.nm?menuCd=195" >청년정책 캘린더</a>
+                    
+            </li>
+            
+                                    <li >
+                    
+                     <a href="/ai/list.do?menuCd=260" >청년정책 AI 추천</a>
+                    
+            </li>
+            
+                                    <li >
+                    
+                     <a href="/policySupport/list.nm?menuCd=12" >청년지원 프로그램</a>
+                    
+            </li>
+            
+                                    <li >
+                     <a href="#none">부산온나청년패스</a>
+                    
+                    
+                        <ul>
+                            
+                                <li  ><a href="/index.nm?menuCd=269"  >사업안내</a></li>
+                
+                                <li  ><a href="/onnaStore/list.do?menuCd=268"  >제휴시설 안내</a></li>
+                
+                                <li  ><a href="/article/list.nm?menuCd=267"  >FAQ</a></li>
+                
+            </ul>
+            
+            </li>
+            
+                                    <li >
+                    
+                     <a href="/article/list.nm?menuCd=169" >청년정책 자료실</a>
+                    
+            </li>
+            
+            </ul>
+            </li>
+            
+            
+            
+                    
+                        <li class="side_icon2">
+                            <a href="#none">일자리</a>
+                            <ul class="dep02_nav">
+                                
+                                    <li >
+                    
+                     <a href="/job/list.nm?menuCd=222" >일자리 정책 안내</a>
+                    
+            </li>
+            
+                                    <li >
+                    
+                     <a href="/index.nm?menuCd=31" >청년디딤돌카드 플러스</a>
+                    
+            </li>
+            
+                                    <li >
+                    
+                     <a href="/index.nm?menuCd=32" >정장대여서비스(드림옷장)</a>
+                    
+            </li>
+            
+                                    <li >
+                    
+                     <a href="/index.nm?menuCd=33" >부산청년 일하는 기쁨카드</a>
+                    
+            </li>
+            
+                                    <li >
+                    
+                     <a href="/index.nm?menuCd=266" >부산청년 취업성공풀(Full) 패키지 지원</a>
+                    
+            </li>
+            
+                                    <li >
+                    
+                     <a href="/index.nm?menuCd=161" >취업연수생</a>
+                    
+            </li>
+            
+                                    <li >
+                    
+                     <a href="/index.nm?menuCd=35" >부산일자리종합센터</a>
+                    
+            </li>
+            
+                                    <li >
+                    
+                     <a href="/index.nm?menuCd=34" >청년두드림센터</a>
+                    
+            </li>
+            
+                                    <li >
+                    
+                     <a href="/index.nm?menuCd=265" >부산 청년잡(JOB) 성장카페</a>
+                    
+            </li>
+            
+                                    <li >
+                    
+                     <a href="/index.nm?menuCd=244" >청끌기업</a>
+                    
+            </li>
+            
+            </ul>
+            </li>
+            
+            
+            
+                    
+                        <li class="side_icon3">
+                            <a href="#none">주거</a>
+                            <ul class="dep02_nav">
+                                
+                                    <li >
+                    
+                     <a href="/dwjob/list.nm?menuCd=223" >주거 정책 안내</a>
+                    
+            </li>
+            
+                                    <li >
+                    
+                     <a href="/index.nm?menuCd=0" >청년 임차보증금 대출 및 대출이자 지원(머물자리론)</a>
+                    
+            </li>
+            
+                                    <li >
+                    
+                     <a href="/index.nm?menuCd=271" >청년 중개보수 및 이사비 지원</a>
+                    
+            </li>
+            
+                                    <li >
+                    
+                     <a href="/index.nm?menuCd=37" >청년 월세 지원</a>
+                    
+            </li>
+            
+                                    <li >
+                    
+                     <a href="/index.nm?menuCd=221" >안심전세</a>
+                    
+            </li>
+            
+            </ul>
+            </li>
+            
+            
+            
+                    
+                        <li class="side_icon4">
+                            <a href="#none">생활안정</a>
+                            <ul class="dep02_nav">
+                                
+                                    <li >
+                    
+                     <a href="/lfjob/list.nm?menuCd=227" >생활안정 정책 안내</a>
+                    
+            </li>
+            
+                                    <li >
+                    
+                     <a href="/index.nm?menuCd=53" >부산청년 기쁨두배통장</a>
+                    
+            </li>
+            
+                                    <li >
+                    
+                     <a href="/index.nm?menuCd=48" >청년내일저축계좌</a>
+                    
+            </li>
+            
+                                    <li >
+                    
+                     <a href="/index.nm?menuCd=164" >부산지역인재 장학금</a>
+                    
+            </li>
+            
+                                    <li >
+                    
+                     <a href="/index.nm?menuCd=230" >취업장려금</a>
+                    
+            </li>
+            
+                                    <li >
+                    
+                     <a href="/index.nm?menuCd=47" >대학생 기숙사비 지원</a>
+                    
+            </li>
+            
+                                    <li >
+                    
+                     <a href="/index.nm?menuCd=49" >학자금 대출이자 지원</a>
+                    
+            </li>
+            
+                                    <li >
+                    
+                     <a href="/index.nm?menuCd=54" >청년 신용회복지원사업(희망신용상담센터)</a>
+                    
+            </li>
+            
+                                    <li >
+                    
+                     <a href="/index.nm?menuCd=165" >청년 마음이음(일대일 상담)</a>
+                    
+            </li>
+            
+                                    <li >
+                    
+                     <a href="/index.nm?menuCd=207" >청년 마음이음(집단 상담)</a>
+                    
+            </li>
+            
+                                    <li >
+                    
+                     <a href="/index.nm?menuCd=52" >청년사회서비스사업단</a>
+                    
+            </li>
+            
+                                    <li >
+                    
+                     <a href="/index.nm?menuCd=275" >청년돌봄이음</a>
+                    
+            </li>
+            
+            </ul>
+            </li>
+            
+            
+            
+                    
+                        <li class="side_icon5">
+                            <a href="#none">문화/공간</a>
+                            <ul class="dep02_nav">
+                                
+                                    <li >
+                    
+                     <a href="/wfjob/list.nm?menuCd=224" >문화/공간 정책 안내</a>
+                    
+            </li>
+            
+                                    <li >
+                     <a href="#none">청년공간</a>
+                    
+                    
+                        <ul>
+                            
+                                <li  ><a href="/space/list.nm?menuCd=1"  >청년공간 안내</a></li>
+                
+                                <li  ><a href="/policySupport/act.nm?menuCd=261"  >청년공간 프로그램</a></li>
+                
+                                <li  ><a href="/spPlace/list.nm?menuCd=3"  >청년공간 예약</a></li>
+                
+            </ul>
+            
+            </li>
+            
+                                    <li >
+                     <a href="#none">청년 문화공간 지원</a>
+                    
+                    
+                        <ul>
+                            
+                                <li  ><a href="/index.nm?menuCd=55"  >사상인디스테이션</a></li>
+                
+                                <li  ><a href="/index.nm?menuCd=56"  >민락인디트레이닝센터</a></li>
+                
+                                <li  ><a href="/index.nm?menuCd=57"  >청년작당소</a></li>
+                
+            </ul>
+            
+            </li>
+            
+                                    <li >
+                     <a href="#none">부산청년만원+문화패스</a>
+                    
+                    
+                        <ul>
+                            
+                                <li  ><a href="/index.nm?menuCd=234"  >부산청년만원+문화패스</a></li>
+                
+                                <li  ><a href="/article/list.nm?menuCd=254"  >FAQ</a></li>
+                
+            </ul>
+            
+            </li>
+            
+                                    <li >
+                    
+                     <a href="/index.nm?menuCd=245" >청년문화예술패스</a>
+                    
+            </li>
+            
+                                    <li >
+                    
+                     <a href="/index.nm?menuCd=61" >신진청년예술인 인큐베이팅 및 경력개발 지원</a>
+                    
+            </li>
+            
+                                    <li >
+                    
+                     <a href="/index.nm?menuCd=235" >청년 문화육성 지원</a>
+                    
+            </li>
+            
+                                    <li >
+                    
+                     <a href="/index.nm?menuCd=236" >청년문화 축제 개최(부산스텝업댄스페스티벌)</a>
+                    
+            </li>
+            
+            </ul>
+            </li>
+            
+            
+            
+                    
+                        <li class="side_icon6">
+                            <a href="#none">교육</a>
+                            <ul class="dep02_nav">
+                                
+                                    <li >
+                    
+                     <a href="/edjob/list.nm?menuCd=225" >교육 정책 안내</a>
+                    
+            </li>
+            
+                                    <li >
+                    
+                     <a href="/index.nm?menuCd=72" >NEXT 10(청년 월드클래스 육성)</a>
+                    
+            </li>
+            
+                                    <li >
+                    
+                     <a href="/index.nm?menuCd=73" >청년도전 지원사업(위닛캠퍼스)</a>
+                    
+            </li>
+            
+                                    <li >
+                    
+                     <a href="/index.nm?menuCd=203" >스파로스 아카데미(SW 실무 인재 양성)</a>
+                    
+            </li>
+            
+            </ul>
+            </li>
+            
+            
+            
+                    
+                        <li class="side_icon7">
+                            <a href="#none">참여/권리</a>
+                            <ul class="dep02_nav">
+                                
+                                    <li >
+                    
+                     <a href="/ptjob/list.nm?menuCd=226" >참여/권리 정책 안내</a>
+                    
+            </li>
+            
+                                    <li >
+                    
+                     <a href="/index.nm?menuCd=66" >청년정책조정위원회</a>
+                    
+            </li>
+            
+                                    <li >
+                    
+                     <a href="/index.nm?menuCd=65" >청년정책네트워크(청정넷)</a>
+                    
+            </li>
+            
+                                    <li >
+                    
+                     <a href="/index.nm?menuCd=263" >부산청년멘토단</a>
+                    
+            </li>
+            
+                                    <li >
+                    
+                     <a href="/index.nm?menuCd=264" >부산청년봉사단</a>
+                    
+            </li>
+            
+                                    <li >
+                     <a href="#none">청년활동 마일리지</a>
+                    
+                    
+                        <ul>
+                            
+                                <li  ><a href="/index.nm?menuCd=248"  >사업 안내</a></li>
+                
+                                <li  ><a href="/index.nm?menuCd=249"  >적립 항목</a></li>
+                
+                                <li  ><a href="/mileagesave/list.nm?menuCd=246"  >마일리지 참여 및 적립 </a></li>
+                
+                                <li  ><a href="/mileagechange/list.nm?menuCd=247"  >동백전 전환내역·신청</a></li>
+                
+            </ul>
+            
+            </li>
+            
+                                    <li >
+                    
+                     <a href="/index.nm?menuCd=276" >청년 소셜 다이닝</a>
+                    
+            </li>
+            
+                                    <li >
+                     <a href="#none">청년 커뮤니티 활동</a>
+                    
+                    
+                        <ul>
+                            
+                                <li  ><a href="/index.nm?menuCd=69"  >청년 커뮤니티 사업 안내</a></li>
+                
+                                <li  ><a href="/index.nm?menuCd=258"  >청년 커뮤니티 소개</a></li>
+                
+            </ul>
+            
+            </li>
+            
+                                    <li >
+                    
+                     <a href="/index.nm?menuCd=68" >청년 프로그램 지원</a>
+                    
+            </li>
+            
+                                    <li >
+                    
+                     <a href="/index.nm?menuCd=75" >부산청년주간</a>
+                    
+            </li>
+            
+            </ul>
+            </li>
+            
+            
+            
+                    
+                        <li class="side_icon8">
+                            <a href="#none">커뮤니티</a>
+                            <ul class="dep02_nav">
+                                
+                                    <li >
+                    
+                     <a href="/article/list.nm?menuCd=153" >공지사항</a>
+                    
+            </li>
+            
+                                    <li >
+                    
+                     <a href="/itgnotice/list.nm?menuCd=228" >부산시 통합 공지사항</a>
+                    
+            </li>
+            
+                                    <li >
+                    
+                     <a href="/index.nm?menuCd=29" >문자알림서비스 신청</a>
+                    
+            </li>
+            
+                                    <li  class="new_blank"
+                    >
+                    
+                     <a href="https://www.busan.go.kr/minwon/myminwon"  target="_blank" title="새창으로 이동" >부산시 통합 민원신청</a>
+                    
+            </li>
+            
+            </ul>
+            </li>
+            
+            
+            
+ 
+            </ul>
+        </div>
+    </nav>
+</div>
+</div>
+<!-- //Header -->
+
+<div class="quickmenu">
+    <div class="quick_wrap">
+        <div class="quick_page">
+            <ul>
+              <!--   <li class="p_icon1">
+                    <a href="/policySearch/list.nm?menuCd=15&lang=ko&url=policySearch" target="_blank" title="새창으로 이동">
+                        <div class="quick_icon"><img src="/images/common/20260623040808056.png" alt="맞춤형검색 아이콘"></div>
+                        <div class="quick_name">맞춤정책정보</div>
+                    </a>
+                </li> -->
+                <li class="p_icon2">
+                    <a href="/space/list.nm?menuCd=1&lang=ko&url=space" target="_blank" title="새창으로 이동">
+                        <div class="quick_icon"><img src="/images/common/20260623040808127.png" alt="청년공간 아이콘"></div>
+                        <div class="quick_name">청년공간</div>
+                    </a>
+                </li>
+                <!-- <li class="p_icon3">
+                    <a href="/index.nm?menuCd=151" target="_blank" title="새창으로 이동">
+                        <div class="quick_icon"><img src="/images/common/20260623040808189.png" alt="중앙정부 타지역정책 아이콘"></div>
+                        <div class="quick_name">중앙정부/<br>타지역정책</div>
+                    </a>
+                </li> -->
+                <li class="p_icon4">
+                    <a href="/policySupport/list.nm?menuCd=12&lang=ko&url=policySupport" target="_blank" title="새창으로 이동">
+                        <div class="quick_icon"><img src="/images/common/20260623040808252.png" alt="청년지원정보 아이콘"></div>
+                        <div class="quick_name">청년지원사업</div>
+                    </a>
+                </li>
+                <li class="p_icon5">
+                    <a href="/ai/list?menuCd=260" target="_blank" title="새창으로 이동">
+                        <div class="quick_icon"><img src="https://young.busan.go.kr/images/main/20260623040445145.png" alt="청년정책 AI 추천 아이콘"></div>
+                        <div class="quick_name">청년정책<br> AI 추천</div>
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <div class="q_sns_list">
+            <ul>
+                <li>
+                    <a href="https://www.youtube.com/@busanyouth.official" target="_blank" title="새창으로 이동">
+                        <div class="q_sns_icon"><img src="/images/common/20250805043436135.png" alt="유튜브"></div>
+                    </a>
+                </li>
+                <li>
+                    <a href="https://www.instagram.com/busanyouth.official/" target="_blank" title="새창으로 이동">
+                        <div class="q_sns_icon"><img src="/images/common/20231128110022957.png" alt="인스타그램"></div>
+                    </a>
+                </li>
+            </ul>
+        </div>    
+    </div>
+    <div class="go_top"><a href="javascript:;">TOP</a></div>
+</div>
+        <!-- //Header -->
+
+        <!-- Container -->
+        <div id="container">
+
+            <!-- Sub Top -->
+            
+
+
+
+
+<!-- 해당하는 메뉴명 및 위치 -->
+<div class="top_img">
+    <div class="container_inner">
+        <div class="sub_top_tit">부산청년정책</div>
+        <div class="location">
+            <ul>
+                <li class="home"><a href="/index.nm"><img src="/images/common/icon_home.png" alt="홈"></a></li>
+                <li>부산청년정책</li>
+                <li>청년정책 AI 추천</li>
+                
+            </ul>
+        </div>
+        <div class="addons">
+            <ul>
+                <li><a href="javascript:void(0);" onclick="window.print();return false;" title="인쇄"><img src="/images/common/icon_print.png" alt="프린트"></a></li>
+                <li><a href="#" id="btnFacebook" title="페이스북 공유하기, 새창열림" class="iconset fb"><img src="/images/common/icon_fb.png" alt="페이스북"></a></li>
+                <li><a href="#" id="btnKakao" title="카카오스토리 공유하기, 새창열림" class="iconset in"><img src="/images/common/icon_kakao.png" alt="카카오톡"></a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+            <!-- //Sub Top -->
+
+            <div class="sub_wrap">
+                <div class="container_inner">
+                    <!-- Sub Left Menu -->
+                    
+
+<!-- Sub Left Menu -->
+<div class="sub_left_menu">
+    <div class="sub_nab_wrap">
+        <div class="menu1_name">부산청년정책</div>
+        <nav class="accordion_wrap">
+            <ul>
+                
+              <li  >
+                    <a href="/index.nm?menuCd=273" >
+                    2026년 달라지는 청년정책</a>
+                    
+                </li>
+                
+              <li  >
+                    <a href="/index.nm?menuCd=20" >
+                    청년G대 추진계획</a>
+                    
+                </li>
+                
+              <li  >
+                    <a href="/index.nm?menuCd=195" >
+                    청년정책 캘린더</a>
+                    
+                </li>
+                
+              <li  class="accordion_cont accordion-active"  >
+                    <a href="/ai/list.do?menuCd=260" >
+                    청년정책 AI 추천</a>
+                    
+                </li>
+                
+              <li  >
+                    <a href="/policySupport/list.nm?menuCd=12" >
+                    청년지원 프로그램</a>
+                    
+                </li>
+                
+              <li  >
+                    <a href="" >
+                    부산온나청년패스</a>
+                    
+                    <ul  >
+                        <!-- 현재 메뉴일 때 class="act" 추가 -->                        
+                         
+                        <li  ><a href="/index.nm?menuCd=269"  >사업안내</a></li>
+                          
+                        <li  ><a href="/onnaStore/list.do?menuCd=268"  >제휴시설 안내</a></li>
+                          
+                        <li  ><a href="/article/list.nm?menuCd=267"  >FAQ</a></li>
+                                                
+                    </ul>
+                    
+                </li>
+                
+              <li  >
+                    <a href="/article/list.nm?menuCd=169" >
+                    청년정책 자료실</a>
+                    
+                </li>
+               
+            </ul>
+        </nav>
+    </div>
+</div>
+<!-- Sub Left Menu -->
+                    <!-- Sub Left Menu -->
+
+                    <!-- Sub Content -->
+                    <div class="sub_content">
+                        <div class="title_wrap">
+                            <h3 class="sub_title">청년정책 AI 추천</h3>
+                        </div>
+                        <div class="cont_body">
+                            <script src="https://d3js.org/d3.v7.min.js"></script>
+<style>
+    polyline {
+        stroke: #ccc;
+    }
+
+    #donutChart {
+        width: 300px;
+        height: 225px;
+        margin: 0 auto;
+    }
+
+    .central {
+        font-size: 30px;
+        /* 중앙 텍스트 사이즈 키우기 */
+        font-weight: bold;
+        text-anchor: middle;
+        dominant-baseline: middle;
+        /* 수직 정렬을 중앙으로 */
+        stroke-width: 1px;
+        font-family: "Nanum Gothic";
+        /* 글꼴 통일 */
+    }
+
+    .graph_area {
+        position: relative;
+    }
+
+    .chart_area {
+        /*position: absolute;
+        top: 0;
+        left: 0;*/
+    }
+
+    #legend {
+        display: flex;
+        flex-wrap: wrap;
+        /* 자동 줄바꿈 활성화 */
+        justify-content: center;
+        max-width: 350px;
+        /* 범례의 최대 너비 설정 */
+        margin: 0 auto;
+    }
+
+    .legend-item {
+        margin: 5px;
+        display: flex;
+        align-items: center;
+        width: calc(50% - 10px);
+        /* 두 개씩 표시되도록 너비 조정 */
+        box-sizing: border-box;
+        padding: 0;
+        /* 여백 제거 */
+    }
+
+    .legend-color {
+        width: 15px;
+        height: 15px;
+        border-radius: 50%;
+        margin-right: 10px;
+        flex-shrink: 0;
+        /* 동그라미 크기 고정 */
+    }
+
+    .legend-text {
+        font-size: 12px;
+        font-family: "Nanum Gothic";
+        white-space: nowrap;
+        /* 줄바꿈 방지 */
+        overflow: hidden;
+        /* 넘치는 텍스트 숨기기 */
+        text-overflow: ellipsis;
+        /* 넘치는 텍스트에 ... 표시 */
+        flex: 1;
+        /* 텍스트가 가능한 공간을 차지하도록 설정 */
+        margin: 0;
+        /* 여백 제거 */
+        text-align: left;
+        /* 텍스트 왼쪽 정렬 */
+    }
+</style>
+<div class="wrap board">
+    <div class="section board ai_cont">
+
+        <!-- AI 안내문구 -->
+        <div class="ai_info_box">
+            <div class="ai_small_txt">반가워요!</div>
+            <div class="ai_large_txt">AI가 추천하는 <span class="highlight">나를 위한 부산청년정책이에요.</span> 천천히 확인해 보세요.</div>
+        </div>
+        <!-- //AI 안내문구 -->
+        
+        <!-- 실시간 방문현황 -->
+        <div class="cont_section">
+            <div class="ai_statistics">
+                <div class="graph_area">
+                    <div class="ai_tit">실시간 방문현황<!-- <font size=3>(하루 데이터 기준)</font> --> </div>
+
+                    <!-- 그래프 영역(그래프 이미지 삭제하고 그래프 넣으면 됨) -->
+                    <div class="chart_area">
+                          <div id="donutChart"></div>
+                        <div id="legend"></div>
+                    </div>
+                    <!-- //그래프 영역(그래프 이미지 삭제하고 그래프 넣으면 됨) -->
+                </div>
+
+                <div class="menu_ranking">
+                    <div class="ai_tit">최다 방문 메뉴<!-- <font size=3>(일주일 데이터 기준)</font> --> </div>
+                    <div class="ranking_list">
+                        <ul>
+                        
+                            <li>
+                                <div class="rk_box">
+                                    <span class="rk_num">01.</span>
+                                    <span class="rk_menu">부산청년 기쁨두배통장</span>
+                                </div>
+                                <div class="rk_tag">#생활안정</div>
+                                
+                                    
+                                        <!-- menuTy가 null일 때 출력할 내용 -->
+                                        <div class="rk_btn_link">
+                                            <a href="/index.nm?menuCd=53" target="_blank" title="새창으로 이동">이동하기 눌일때 </a>
+                                        </div>
+                                    
+                                    
+                                    
+                                    
+                                
+                            </li>
+                        
+                            <li>
+                                <div class="rk_box">
+                                    <span class="rk_num">02.</span>
+                                    <span class="rk_menu">청년 월세 지원</span>
+                                </div>
+                                <div class="rk_tag">#주거</div>
+                                
+                                    
+                                        <!-- menuTy가 null일 때 출력할 내용 -->
+                                        <div class="rk_btn_link">
+                                            <a href="/index.nm?menuCd=37" target="_blank" title="새창으로 이동">이동하기 눌일때 </a>
+                                        </div>
+                                    
+                                    
+                                    
+                                    
+                                
+                            </li>
+                        
+                            <li>
+                                <div class="rk_box">
+                                    <span class="rk_num">03.</span>
+                                    <span class="rk_menu">청년 임차보증금 대출 및 대출이자 지원(머물자리론)</span>
+                                </div>
+                                <div class="rk_tag">#주거</div>
+                                
+                                    
+                                        <!-- menuTy가 null일 때 출력할 내용 -->
+                                        <div class="rk_btn_link">
+                                            <a href="/index.nm?menuCd=0" target="_blank" title="새창으로 이동">이동하기 눌일때 </a>
+                                        </div>
+                                    
+                                    
+                                    
+                                    
+                                
+                            </li>
+                        
+                            <li>
+                                <div class="rk_box">
+                                    <span class="rk_num">04.</span>
+                                    <span class="rk_menu">부산청년 중개보수 및 이사비 지원</span>
+                                </div>
+                                <div class="rk_tag">#주거</div>
+                                
+                                    
+                                        <!-- menuTy가 null일 때 출력할 내용 -->
+                                        <div class="rk_btn_link">
+                                            <a href="/index.nm?menuCd=271" target="_blank" title="새창으로 이동">이동하기 눌일때 </a>
+                                        </div>
+                                    
+                                    
+                                    
+                                    
+                                
+                            </li>
+                        
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+                <!-- 오늘의 정책 메뉴 제안 -->
+           
+                <div class="cont_section">
+           
+                    <div class="section_tit front">오늘의 정책메뉴 제안</div> <!-- 일주일 기준 -->
+                    <div class="policy_list">
+                        <ul>
+                            
+                            
+                            <!--
+                            ******* 각 타입별 class 정보(li에 타입별 class) *******
+                            바로가기 : link1_type
+                            홈페이지 : link2_type
+                            사업안내 : toggle_type
+                            -->
+                            <!-- 바로가기 type -->
+                            <li class="link1_type">
+                                <div class="plc_box">
+                                    <div class="plc_tit_wrap">
+                                        <div class="plc_tit">
+                                            <!-- 
+                                                ******* 분야별 class 정보(plc_icon 옆에 해당클래스 추가) *******
+                                                icon1 : 일자리
+                                                icon2 : 주거
+                                                icon3 : 생활안정
+                                                icon4 : 문화/공간
+                                                icon5 : 교육  
+                                                icon6 : 참여/권리                                 
+                                            -->
+                                            
+                                                
+                                                
+                                                    <span class="plc_icon icon2">주거</span>
+                                                
+                                                
+                                                
+                                                
+                                                
+                                                
+                                            <span>청년월세지원</span>
+                                        </div>
+                                        <div class="plc_part">청년정책과</div>
+                                    </div>
+                                    <div class="ply_btn"><a href="https://young.busan.go.kr/index.nm?menuCd=37" class="btn-link-style1" target="_blank" title="새창으로 이동">바로가기</a></div>
+                                </div>
+                            </li>
+                        
+                            <!-- //바로가기 type -->
+                            <!-- 홈페이지 type -->
+                            
+                            <!-- //홈페이지 type -->
+                            <!-- 사업안내 type -->
+                            
+                            <!-- //사업안내 type -->
+                        
+                            
+                            <!-- //바로가기 type -->
+                            <!-- 홈페이지 type -->
+                            
+                            <li class="link2_type">
+                                <div class="plc_box">
+                                    <div class="plc_tit_wrap">
+                                        <div class="plc_tit">
+                                            <!-- 
+                                                ******* 분야별 class 정보(plc_icon 옆에 해당클래스 추가) *******
+                                                icon1 : 일자리
+                                                icon2 : 주거
+                                                icon3 : 생활안정
+                                                icon4 : 문화/공간
+                                                icon5 : 교육  
+                                                icon6 : 참여/권리                                 
+                                            -->
+                                            
+                                                
+                                                
+                                                    <span class="plc_icon icon2">주거</span>
+                                                
+                                                
+                                                
+                                                
+                                                
+                                                                         
+                                            <span>매입임대주택(청년 맞춤형 임대주택)</span>
+                                        </div>
+                                        <div class="plc_part">주택정책과</div>
+                                    </div>
+                                    <div class="ply_btn"><a href="https://www.bmc.busan.kr/bmc/contents.do?mId=0102090000#" class="btn-link-style2" target="_blank" title="새창으로 이동">홈페이지</a></div>
+                                </div>
+                            </li>
+                            
+                            <!-- //홈페이지 type -->
+                            <!-- 사업안내 type -->
+                            
+                            <!-- //사업안내 type -->
+                        
+                            
+                            <!-- //바로가기 type -->
+                            <!-- 홈페이지 type -->
+                            
+                            <li class="link2_type">
+                                <div class="plc_box">
+                                    <div class="plc_tit_wrap">
+                                        <div class="plc_tit">
+                                            <!-- 
+                                                ******* 분야별 class 정보(plc_icon 옆에 해당클래스 추가) *******
+                                                icon1 : 일자리
+                                                icon2 : 주거
+                                                icon3 : 생활안정
+                                                icon4 : 문화/공간
+                                                icon5 : 교육  
+                                                icon6 : 참여/권리                                 
+                                            -->
+                                            
+                                                
+                                                
+                                                    <span class="plc_icon icon2">주거</span>
+                                                
+                                                
+                                                
+                                                
+                                                
+                                                                         
+                                            <span>행복주택(통합공공임대주택)</span>
+                                        </div>
+                                        <div class="plc_part">주택정책과</div>
+                                    </div>
+                                    <div class="ply_btn"><a href="https://www.busan.go.kr/depart/ahhappyhouse01" class="btn-link-style2" target="_blank" title="새창으로 이동">홈페이지</a></div>
+                                </div>
+                            </li>
+                            
+                            <!-- //홈페이지 type -->
+                            <!-- 사업안내 type -->
+                            
+                            <!-- //사업안내 type -->
+                        
+                            
+                            <!-- //바로가기 type -->
+                            <!-- 홈페이지 type -->
+                            
+                            <li class="link2_type">
+                                <div class="plc_box">
+                                    <div class="plc_tit_wrap">
+                                        <div class="plc_tit">
+                                            <!-- 
+                                                ******* 분야별 class 정보(plc_icon 옆에 해당클래스 추가) *******
+                                                icon1 : 일자리
+                                                icon2 : 주거
+                                                icon3 : 생활안정
+                                                icon4 : 문화/공간
+                                                icon5 : 교육  
+                                                icon6 : 참여/권리                                 
+                                            -->
+                                            
+                                                
+                                                
+                                                    <span class="plc_icon icon2">주거</span>
+                                                
+                                                
+                                                
+                                                
+                                                
+                                                                         
+                                            <span>평생함께 청년모두家 주거비 지원사업</span>
+                                        </div>
+                                        <div class="plc_part">주택정책과</div>
+                                    </div>
+                                    <div class="ply_btn"><a href="https://www.busan.go.kr/depart/house0204" class="btn-link-style2" target="_blank" title="새창으로 이동">홈페이지</a></div>
+                                </div>
+                            </li>
+                            
+                            <!-- //홈페이지 type -->
+                            <!-- 사업안내 type -->
+                            
+                            <!-- //사업안내 type -->
+                        
+                            
+                            <!-- //바로가기 type -->
+                            <!-- 홈페이지 type -->
+                            
+                            <li class="link2_type">
+                                <div class="plc_box">
+                                    <div class="plc_tit_wrap">
+                                        <div class="plc_tit">
+                                            <!-- 
+                                                ******* 분야별 class 정보(plc_icon 옆에 해당클래스 추가) *******
+                                                icon1 : 일자리
+                                                icon2 : 주거
+                                                icon3 : 생활안정
+                                                icon4 : 문화/공간
+                                                icon5 : 교육  
+                                                icon6 : 참여/권리                                 
+                                            -->
+                                            
+                                                
+                                                
+                                                    <span class="plc_icon icon2">주거</span>
+                                                
+                                                
+                                                
+                                                
+                                                
+                                                                         
+                                            <span>희망더함주택(청년 맞춤형 민간임대주택)</span>
+                                        </div>
+                                        <div class="plc_part">주택정책과</div>
+                                    </div>
+                                    <div class="ply_btn"><a href="https://www.busan.go.kr/depart/dreamhouse" class="btn-link-style2" target="_blank" title="새창으로 이동">홈페이지</a></div>
+                                </div>
+                            </li>
+                            
+                            <!-- //홈페이지 type -->
+                            <!-- 사업안내 type -->
+                            
+                            <!-- //사업안내 type -->
+                        
+                        </ul>
+                    </div>
+                </div>
+                <!-- //오늘의 정책 메뉴 제안 -->
+                
+        <!-- Tab -->
+        <div class="cont_section">
+            <div class="policy_tab list">
+                <ul>
+
+                    <li class="active icon2"><a href="#"><span>현재 모집 중인 청년지원사업</span></a> <!-- 일주일 기준 -->
+                        <div class="tab_cont">
+                            <div class="clear_b recruit_list">
+                                <ul>
+                                    
+                                    <li>
+                                        <a href="/policySupport/view.nm?menuCd=13&bizSid=SUP0000003800"  target="_self" title="이동">
+                                            <div class="recruit_state">
+                                                <!-- 모집중 class : ing, 모집마감 class : end -->
+                                                
+                                                
+                                                   <span class="ing">모집중</span>
+                                                                                                
+                                            </div>
+                                            <div class="recruit_cont">
+                                                <div class="recruit_tit">해운대구 청년 구직활동비 지원사업 참여자 3차 모집 공고</div>
+                                                <div class="recruit_date">
+                                                    <span>신청기간 : </span>
+                                                    
+                                                    
+                                                    
+                                                       
+                                                    <span>2026-09-14 ~ 2026-10-16</span>
+                                                </div>
+                                            </div>
+                                            <div class="part1">
+                                                
+                                                    
+                                                        일자리분야
+                                                    
+                                                    
+                                                    
+                                                    
+                                                    
+                                                      
+                                            </div>
+                                            <div class="part2">해운대구</div>                                            
+                                        </a>
+                                    </li>  
+                                    
+                                    <li>
+                                        <a href="/policySupport/view.nm?menuCd=13&bizSid=SUP0000003776"  target="_self" title="이동">
+                                            <div class="recruit_state">
+                                                <!-- 모집중 class : ing, 모집마감 class : end -->
+                                                
+                                                
+                                                   <span class="ing">모집중</span>
+                                                                                                
+                                            </div>
+                                            <div class="recruit_cont">
+                                                <div class="recruit_tit">(수영구)2026년「청년 및 신혼부부 주거자금 대출이자 지원 사업」접수기간 연장</div>
+                                                <div class="recruit_date">
+                                                    <span>신청기간 : </span>
+                                                    
+                                                    
+                                                    
+                                                       
+                                                    <span>2026-08-26 ~ 2026-10-07</span>
+                                                </div>
+                                            </div>
+                                            <div class="part1">
+                                                
+                                                    
+                                                    
+                                                        주거분야
+                                                    
+                                                    
+                                                    
+                                                    
+                                                      
+                                            </div>
+                                            <div class="part2">수영구 일자리경제과</div>                                            
+                                        </a>
+                                    </li>  
+                                    
+                                    <li>
+                                        <a href="/policySupport/view.nm?menuCd=13&bizSid=SUP0000002781"  target="_self" title="이동">
+                                            <div class="recruit_state">
+                                                <!-- 모집중 class : ing, 모집마감 class : end -->
+                                                
+                                                
+                                                   <span class="ing">모집중</span>
+                                                                                                
+                                            </div>
+                                            <div class="recruit_cont">
+                                                <div class="recruit_tit">부산청년EV드림(전기차 구입 지원금)</div>
+                                                <div class="recruit_date">
+                                                    <span>신청기간 : </span>
+                                                    
+                                                    
+                                                    
+                                                       
+                                                    <span>2026-02-01 ~ 2026-12-31</span>
+                                                </div>
+                                            </div>
+                                            <div class="part1">
+                                                
+                                                    
+                                                    
+                                                    
+                                                    
+                                                        복지·문화분야
+                                                    
+                                                    
+                                                      
+                                            </div>
+                                            <div class="part2">부산광역시 탄소중립정책과</div>                                            
+                                        </a>
+                                    </li>  
+                                                                                                                                        
+                                </ul>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <!-- //Tab -->
+
+
+
+        <!-- //실시간 방문현황 -->
+<script type="text/javascript">
+    // 차트 데이터 배열 (서버에서 받은 데이터로 대체됨)
+    var chartData = [
+        
+            {
+                "key": "부산청년 기쁨두배통장",
+                "value": 4142
+            }
+            
+                
+                ,
+            
+        
+            {
+                "key": "청년 임차보증금 대출 및 대출이자 지원(머물자리론)",
+                "value": 503
+            }
+            
+                
+                ,
+            
+        
+            {
+                "key": "청년 월세 지원",
+                "value": 490
+            }
+            
+                
+                ,
+            
+        
+            {
+                "key": "청년내일저축계좌",
+                "value": 203
+            }
+            
+                
+                
+            
+        
+    ];
+
+    window.onload = function() {
+    // 차트의 크기 및 반지름 설정
+    var width = 450, height = 450, margin = 40;
+
+    var radius = Math.min(width, height) / 2 - margin;
+
+    // SVG 컨테이너 생성 및 위치 조정
+    var svg = d3.select("#donutChart")
+                .append("svg")
+                .attr("width", + (width / 2))
+                .attr("height", + (height / 2))
+                .append("g")
+                .attr("transform", "translate(" + (width / 4) + "," + (height / 4) + ")");
+
+    // 데이터 준비 (키-값 쌍으로 변환)
+    var data = chartData.reduce(function(acc, item) {
+        acc[item.key] = item.value;
+        return acc;
+    }, {});
+
+    // 색상 스케일 정의
+    var color = d3.scaleOrdinal()
+                  .domain(Object.keys(data))
+                  .range(["#603cd4", "#7ed9e5", "#67b8ec", "#98b0fc"]);
+
+    // 파이 차트 함수 정의
+    var pie = d3.pie().value(function(d) { return d[1]; }).padAngle(0);
+
+    // 파이 차트 데이터 준비
+    var data_ready = pie(Object.entries(data));
+
+    // 아크(호) 함수 정의
+    var arc = d3.arc().innerRadius(radius * 0.05).outerRadius(radius * 0.6);
+
+    // 부드러운 모서리의 아크 함수 정의
+    function roundedArc(d) {
+        var path = d3.arc().innerRadius(radius * 0.2).outerRadius(radius * 0.5).cornerRadius(0); // cornerRadius를 0으로 설정
+    return path(d);
+    }
+
+    // 총합을 계산하여 백분율을 구하는 데 사용
+    var total = d3.sum(Object.values(data));
+
+    // 최대 값과 최대 백분율을 계산
+    var maxData = d3.max(Object.entries(data), function(d) { return d[1]; });
+    var maxPercent = Math.round((maxData / total) * 100) + '%';
+    var maxKey = Object.keys(data).find(key => data[key] === maxData);
+    var maxColor = color(maxKey);
+
+    // 파이 조각 생성
+    var paths = svg.selectAll('pieces')
+                   .data(data_ready)
+                   .enter()
+                   .append('path')
+                   .attr('d', arc)
+                   .attr('fill', function(d) { return color(d.data[0]); })
+                   .style("stroke", "none")
+                   .style("stroke-width", "0")
+                   .each(function(d) { this._current = d; })
+                   .on('mouseover', function(event, d) {
+                       // 마우스 오버 시 백분율 표시
+                       var percent = Math.round((d.data[1] / total) * 100) + '%';
+                       var currentColor = color(d.data[0]);
+                       svg.selectAll("text.central").remove();
+                       svg.append("text")
+                          .attr("class", "central")
+                          .text(percent)
+                          .attr("fill", currentColor)
+                          .style("font-size", "24px")
+                          .style("font-weight", "bold");
+                   })
+                   .on('mouseout', function() {
+                       // 마우스 아웃 시 기본 상태의 중앙 텍스트
+                       svg.selectAll("text.central").remove();
+                       svg.append("text")
+                          .attr("class", "central")
+                          .text(maxPercent)
+                          .attr("fill", maxColor)
+                          .style("font-size", "24px")
+                          .style("font-weight", "bold");
+                   })
+                   .transition()
+                   .duration(1000)
+                   .attrTween('d', function(d) {
+                       var i = d3.interpolate({ startAngle: 0, endAngle: 0 }, d);
+                       return function(t) { return roundedArc(i(t)); };
+                   });
+
+    // 차트 조각에 레이블 추가
+    /*
+    var textElements = svg.selectAll('pieces')
+       .data(data_ready)
+       .enter()
+       .append('text')
+       .text(function(d){ return d.data[0]; })
+       .attr("transform", function(d) {
+           var pos = arc.centroid(d);
+           var midAngle = d.startAngle + (d.endAngle - d.startAngle) / 2;
+           pos[0] = (radius * 0.6) * (midAngle < Math.PI ? 1 : -1);
+           pos[1] = pos[1] * 1.02;
+           return "translate(" + pos + ")";
+       })
+       .style("text-anchor", function(d) {
+           var midAngle = d.startAngle + (d.endAngle - d.startAngle) / 2;
+           return midAngle < Math.PI ? "start" : "end";
+       })
+       .style("font-size", "12px")
+       .style("fill", "black")
+       .style("font-family", "Nanum Gothic")
+       .style("font-weight", "bold")
+       .on('mouseover', function(event, d) {
+           var percent = Math.round((d.data[1] / total) * 100) + '%';
+           var currentColor = color(d.data[0]);
+           svg.selectAll("text.central").remove();
+           svg.append("text")
+              .attr("class", "central")
+              .text(percent)
+              .attr("fill", currentColor)
+              .style("font-size", "24px")
+              .style("font-weight", "bold");
+       })
+       .on('mouseout', function() {
+           svg.selectAll("text.central").remove();
+           svg.append("text")
+              .attr("class", "central")
+              .text(maxPercent)
+              .attr("fill", maxColor)
+              .style("font-size", "24px")
+              .style("font-weight", "bold");
+       });
+    */
+    // 차트 조각에 선 추가
+    /*
+    var lines = svg.selectAll('pieces')
+       .data(data_ready)
+       .enter()
+       .append('polyline')
+       .attr("points", function(d) {
+           var posA = arc.centroid(d);
+           var posB = arc.centroid(d);
+           var midAngle = d.startAngle + (d.endAngle - d.startAngle) / 2;
+           posB[0] = radius * 0.4 * (midAngle < Math.PI ? 1 : -1);
+           var posC = [radius * 0.55 * (midAngle < Math.PI ? 1 : -1), posB[1]];
+           return [posA, posB, posC];
+       })
+       .style("fill", "none")
+       .attr("stroke", "black")
+       .style("stroke-width", "1px");
+    */
+    // 기본 상태의 중앙 텍스트 추가
+    svg.append("text")
+       .attr("class", "central")
+       .text(maxPercent)
+       .attr("fill", maxColor)
+       .style("font-size", "24px")
+       .style("font-weight", "bold");
+
+    // 범례 추가
+    var legend = d3.select("#legend");
+
+    // 데이터에서 범례 항목 생성
+    var legendItems = Object.keys(data);
+    legendItems.forEach(function(key) {
+        var item = legend.append("div")
+                        .attr("class", "legend-item");
+
+        item.append("div")
+            .attr("class", "legend-color")
+            .style("background-color", color(key));
+
+        item.append("div")
+            .attr("class", "legend-text")
+            .text(key);
+
+        // 범례 항목에 이벤트 리스너 추가
+        item.on('mouseover', function() {
+            var percent = Math.round((data[key] / total) * 100) + '%';
+            var currentColor = color(key);
+            svg.selectAll("text.central").remove();
+            svg.append("text")
+               .attr("class", "central")
+               .text(percent)
+               .attr("fill", currentColor)
+               .style("font-size", "24px")
+               .style("font-weight", "bold");
+        })
+        .on('mouseout', function() {
+            svg.selectAll("text.central").remove();
+            svg.append("text")
+               .attr("class", "central")
+               .text(maxPercent)
+               .attr("fill", maxColor)
+               .style("font-size", "24px")
+               .style("font-weight", "bold");
+        });
+    });
+};
+
+
+</script>
+
+        
+        
+        
+    </div>
+</div>
+                        </div>
+                    </div>
+                    <!-- //Sub Content -->
+                </div>
+            </div>
+
+        </div>
+        <!-- //Container -->
+
+        <!-- Footer -->
+        
+
+<!-- Footer -->
+<div id="footer">
+    <div class="container_inner">
+        <div class="foot_info">
+            <div class="foot_logo">
+                <img src="/images/common/20260702034343631.png" alt="하단로고">
+            </div>
+            <div class="foot_cont">
+                <div class="copyright">
+                    <p>
+                        (우 47545) 부산광역시 연제구 중앙대로 1001(연산동) ☎(051)120 (평일 08:30-18:30, ※야간/공휴일 등 근무시간외는 당직실 전환)<br>
+                    </p>
+                    <p>Copyright &copy; Busan Metropolitan City. All rights reserved.<!--made by 안상균--></p>
+                </div>
+                <div class="foot_menu">
+                    <ul>
+                        <li class="point"><a href="https://www.busan.go.kr/vprivacy1" target="_blank" title="새창으로 이동">개인정보처리방침</a></li>
+                        <li><a href="/index.nm?menuCd=108" target="_blank" title="새창으로 이동">이용약관</a></li>
+                        <li><a href="/index.nm?menuCd=101" target="_blank" title="새창으로 이동">공공마이데이터 소개</a></li>
+                        <li><a href="https://www.busan.go.kr/bhintro02" target="_blank" title="새창으로 이동">찾아오시는길</a></li>
+                    </ul>
+                </div>               
+            </div>
+            <div class="foot_sns">
+                <ul>
+                    <li>
+                        <a href="https://www.youtube.com/@busanyouth.official" target="_blank" title="새창으로 이동">
+                            <img src="/images/common/20250804055106156.png" alt="유튜브">
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.instagram.com/busanyouth.official/" target="_blank" title="새창으로 이동">
+                            <img src="/images/common/20231128093437166.png" alt="인스타그램">
+                        </a>
+                    </li>
+                </ul>
+            </div>             
+        </div>
+    </div>
+</div>
+<!-- //Footer -->
+
+        <!-- //Footer -->
+
+    </div>
+    <!-- //Wrap -->
+</body>
+
+</html>

@@ -1,0 +1,533 @@
+[
+  {
+    "id": "S01",
+    "URL": "https://m.bokjiro.go.kr/ssis-tem/cms/mob/customer/notice/1309500_1155.html",
+    "관련data_id": "HOU-001",
+    "확인일": "2026-10-02",
+    "status": 200,
+    "contentType": "text/html",
+    "bytes": 20369,
+    "sha256": "ffb48e12e0837ce64679324c28ad15505812156d4a6474a76051bd28112bba27",
+    "file": "S01.html"
+  },
+  {
+    "id": "S02",
+    "URL": "https://young.busan.go.kr/index.nm?menuCd=37",
+    "관련data_id": "HOU-001",
+    "확인일": "2026-10-02",
+    "status": 200,
+    "contentType": "text/html; charset=utf-8",
+    "bytes": 91422,
+    "sha256": "e8ea37add4a9bf6dd6f665c1e50263c65afe173d2a24c8d23dbc5fd289d3f8cb",
+    "file": "S02.html"
+  },
+  {
+    "id": "S03",
+    "URL": "https://english.saha.go.kr/startup/contents.do?mId=0305000000",
+    "관련data_id": "HOU-001;사하구 조사",
+    "확인일": "2026-10-02",
+    "status": 200,
+    "contentType": "text/html;charset=UTF-8",
+    "bytes": 76163,
+    "sha256": "4419ba146c360eb0879626c509c7030aa2c2fcb293a0f108aec59bb3755000c3",
+    "file": "S03.html"
+  },
+  {
+    "id": "S04",
+    "URL": "https://www.saha.go.kr/job/contents.do?mId=0301050000",
+    "관련data_id": "HOU-001;사하구 조사",
+    "확인일": "2026-10-02",
+    "status": 200,
+    "contentType": "text/html;charset=UTF-8",
+    "bytes": 99187,
+    "sha256": "ac4a3b9f44ab788eac7ef3365231ab887ddcd80b4c69461fc45106339782a995",
+    "file": "S04.html"
+  },
+  {
+    "id": "S05",
+    "URL": "https://apply.lh.or.kr/lhapply/apply/wt/wrtanc/selectWrtancInfo.do?aisTpCd=17&ccrCnntSysDsCd=03&mi=1026&panId=2015122300019376&uppAisTpCd=13",
+    "관련data_id": "HOU-002",
+    "확인일": "2026-10-02",
+    "status": 200,
+    "contentType": "text/html; charset=UTF-8",
+    "bytes": 695054,
+    "sha256": "c620622919eb716cf9ef61498d15cd526fbb2df2b92905218fe4b03ea83d4f6e",
+    "file": "S05.html"
+  },
+  {
+    "id": "S06",
+    "URL": "https://jeonse.lh.or.kr/jw/li/lfstsRentBsnsGuidance.do",
+    "관련data_id": "HOU-002",
+    "확인일": "2026-10-02",
+    "status": 200,
+    "contentType": "text/html; charset=UTF-8",
+    "bytes": 121162,
+    "sha256": "3a657ac4b00be74f16746a9c06185a02dac37af643ccc13d0e01b814c8699b93",
+    "file": "S06.html"
+  },
+  {
+    "id": "S07",
+    "URL": "https://www.energyv.or.kr/info/support_info.do",
+    "관련data_id": "HOU-003",
+    "확인일": "2026-10-02",
+    "status": 200,
+    "contentType": "text/html; charset=utf-8",
+    "bytes": 38078,
+    "sha256": "75ecd42168d6148e5a87b08ebe36e8b61d81688ff914b48b0efe817d9a6c6558",
+    "file": "S07.html"
+  },
+  {
+    "id": "S08",
+    "URL": "https://www.korea.kr/news/policyFocusView.do?newsId=148958906&pkgId=49500831",
+    "관련data_id": "HOU-004",
+    "확인일": "2026-10-02",
+    "status": 200,
+    "contentType": "text/html;charset=UTF-8",
+    "bytes": 168572,
+    "sha256": "2751d96436b7099150ce8b1f32e090a0da9bec19070c3fdeeb533d5d4a73a115",
+    "file": "S08.html"
+  },
+  {
+    "id": "S09",
+    "URL": "https://www.korea.kr/briefing/presidentView.do?newsId=148962480",
+    "관련data_id": "HOU-004",
+    "확인일": "2026-10-02",
+    "status": 200,
+    "contentType": "text/html;charset=UTF-8",
+    "bytes": 153051,
+    "sha256": "959726312f1d8acb4023fa7f6474307044dddac985c4f5210ae8290619b08b96",
+    "file": "S09.html"
+  },
+  {
+    "id": "S10",
+    "URL": "https://www.korea.kr/news/policyNewsView.do?newsId=148928697",
+    "관련data_id": "HOU-004",
+    "확인일": "2026-10-02",
+    "status": 200,
+    "contentType": "text/html;charset=UTF-8",
+    "bytes": 171045,
+    "sha256": "3948d915e2fcf65506585a2b827fc2bea0a157168453b50ab2526682bfe65e56",
+    "file": "S10.html"
+  },
+  {
+    "id": "S12",
+    "URL": "https://www.busan.go.kr/depart/dongbaegpass",
+    "관련data_id": "HOU-005",
+    "확인일": "2026-10-02",
+    "status": 200,
+    "contentType": "text/html; charset=UTF-8",
+    "bytes": 405280,
+    "sha256": "8900fe4b4efe215fac8821be6bf4aadaf84e8c6fd8919eae2269653ce0f9eb3b",
+    "file": "S12.html"
+  },
+  {
+    "id": "S13",
+    "URL": "https://www.busan.go.kr/nbtnewsBU/1725490",
+    "관련data_id": "HOU-005",
+    "확인일": "2026-10-02",
+    "status": 200,
+    "contentType": "text/html; charset=UTF-8",
+    "bytes": 108557,
+    "sha256": "fd792b53491dc2d08d08ab25da3c7ad35b1cf8fe2e8fa84fd0015ffeee248f1a",
+    "file": "S13.html"
+  },
+  {
+    "id": "S17",
+    "URL": "https://young.busan.go.kr/index.nm?menuCd=271",
+    "관련data_id": "HOU-007",
+    "확인일": "2026-10-02",
+    "status": 200,
+    "contentType": "text/html; charset=utf-8",
+    "bytes": 93097,
+    "sha256": "365e8c5d35d54a9bb1654726c9a40d8830d4ddd8ac60e2b78394992ad1f20880",
+    "file": "S17.html"
+  },
+  {
+    "id": "S18",
+    "URL": "https://www.busan.go.kr/depart/house0204",
+    "관련data_id": "HOU-008",
+    "확인일": "2026-10-02",
+    "status": 200,
+    "contentType": "text/html; charset=UTF-8",
+    "bytes": 405701,
+    "sha256": "01ad3acb02ebd78b844f2dd9422014cfe48982da3daa9b5eabf9e500d43913e2",
+    "file": "S18.html"
+  },
+  {
+    "id": "S19",
+    "URL": "https://young.busan.go.kr/dwjob/list.nm?menuCd=223",
+    "관련data_id": "HOU-009",
+    "확인일": "2026-10-02",
+    "status": 200,
+    "contentType": "text/html; charset=utf-8",
+    "bytes": 105575,
+    "sha256": "a6a2fb131af8caf9a505821cfa455da5f9a81e1f99235a2c651c7eabdcbc6821",
+    "file": "S19.html"
+  },
+  {
+    "id": "S20",
+    "URL": "https://young.busan.go.kr/policySupport/view.nm?bizSid=SUP0000001160&lang=ko&menuCd=13&url=policySupport",
+    "관련data_id": "HOU-010;HOU-011",
+    "확인일": "2026-10-02",
+    "status": 200,
+    "contentType": "text/html; charset=utf-8",
+    "bytes": 83468,
+    "sha256": "2b8a326fd388880ca3564f81bd7eb91cef8b9960a1bc43369684ad6a054d0a50",
+    "file": "S20.html"
+  },
+  {
+    "id": "S21",
+    "URL": "https://www.bokjiro.go.kr/ssis-tbu/ssis-tbu/twataa/wlfareInfo/moveTWAT52011M.do?wlfareInfoId=WLF00006621",
+    "관련data_id": "HOU-010",
+    "확인일": "2026-10-02",
+    "status": 200,
+    "contentType": "text/html;charset=utf-8",
+    "bytes": 98926,
+    "sha256": "152db5c76ef87493d20f529af4cf7a1fe1fa4dbd5c1411c2f1b112fefb695195",
+    "file": "S21.html"
+  },
+  {
+    "id": "S22",
+    "URL": "https://www.busan.go.kr/depart/reguarantee",
+    "관련data_id": "HOU-012",
+    "확인일": "2026-10-02",
+    "status": 200,
+    "contentType": "text/html; charset=UTF-8",
+    "bytes": 398085,
+    "sha256": "72648bf43b215d486c828faae868e7c83d8f38888e55eeffe7de5e614794d576",
+    "file": "S22.html"
+  },
+  {
+    "id": "S23",
+    "URL": "https://www.saha.go.kr/portal/contents.do?mId=0509020200",
+    "관련data_id": "사하구 조사",
+    "확인일": "2026-10-02",
+    "status": 200,
+    "contentType": "text/html;charset=UTF-8",
+    "bytes": 293363,
+    "sha256": "8c5ca3e05a8b1ff8374a4aa0f9f02168f535befd2042c833a0c9fdcc12da2799",
+    "file": "S23.html"
+  },
+  {
+    "id": "S24",
+    "URL": "https://young.busan.go.kr/cmm/fms/FileDown.do?atchFileId=FILE_000000000118909&fileSn=0",
+    "관련data_id": "HOU-006",
+    "확인일": "2026-10-02",
+    "status": 200,
+    "contentType": "application/x-msdownload",
+    "bytes": 110428,
+    "sha256": "b05c9d7ce9989229bb73450ec2ee6dbd2ecb095a2b6ea0a30103757f56ca2c0e",
+    "file": "S24.bin"
+  },
+  {
+    "id": "S25",
+    "URL": "https://young.busan.go.kr/index.nm?menuCd=0",
+    "관련data_id": "HOU-006",
+    "확인일": "2026-10-02",
+    "status": 200,
+    "contentType": "text/html; charset=utf-8",
+    "bytes": 91639,
+    "sha256": "50607a40238421131759ce017ad22e400e7ea58ff1454b88aa393bd6730de9d0",
+    "file": "S25.html"
+  },
+  {
+    "id": "S26",
+    "URL": "https://www.busan.go.kr/depart/ahcard005",
+    "관련data_id": "HOU-004",
+    "확인일": "2026-10-02",
+    "status": 200,
+    "contentType": "text/html; charset=UTF-8",
+    "bytes": 411339,
+    "sha256": "aa5b1561b3a93262ad2d3b76138e8b5fc01bb0bca8d0cc08b3b296e9273737ce",
+    "file": "S26.html"
+  },
+  {
+    "id": "S27",
+    "URL": "https://nhuf.molit.go.kr/FP/FP05/FP0502/FP05020301.jsp",
+    "관련data_id": "HOU-013",
+    "확인일": "2026-10-02",
+    "status": 200,
+    "contentType": "text/html; charset=UTF-8",
+    "bytes": 109988,
+    "sha256": "f4cd498096e7902086b672665f70b4cbd04e5c6cf5af7a6f96801f07ac68c749",
+    "file": "S27.html"
+  },
+  {
+    "id": "S28",
+    "URL": "https://nhuf.molit.go.kr/FP/FP05/FP0502/FP05020701.jsp",
+    "관련data_id": "HOU-014",
+    "확인일": "2026-10-02",
+    "status": 200,
+    "contentType": "text/html; charset=UTF-8",
+    "bytes": 100516,
+    "sha256": "8965e74e1dc898a79058d175b8a951ac8a390c20ab3b45aee92b595617c50296",
+    "file": "S28.html"
+  },
+  {
+    "id": "S29",
+    "URL": "https://www.myhome.go.kr/hws/portal/cont/selectRentalHouseholdSupView.do",
+    "관련data_id": "HOU-015",
+    "확인일": "2026-10-02",
+    "status": 200,
+    "contentType": "text/html; charset=UTF-8",
+    "bytes": 138108,
+    "sha256": "05c518062aef888fc4d2c7cbffdd4a8dcd55190873c2bdb60911cd545b5bd6c1",
+    "file": "S29.html"
+  },
+  {
+    "id": "S30",
+    "URL": "https://www.myhome.go.kr/hws/portal/cont/selectSupResidentsAbnormalView.do",
+    "관련data_id": "HOU-016",
+    "확인일": "2026-10-02",
+    "status": 200,
+    "contentType": "text/html; charset=UTF-8",
+    "bytes": 127523,
+    "sha256": "e24e39352005fd22b3634e64837fef756cafbe31d7a3082e29acc6c32df343d1",
+    "file": "S30.html"
+  },
+  {
+    "id": "S31",
+    "URL": "https://www.busan.go.kr/depart/charterdamage001/1712433",
+    "관련data_id": "HOU-017;HOU-018;HOU-019",
+    "확인일": "2026-10-02",
+    "status": 200,
+    "contentType": "text/html; charset=UTF-8",
+    "bytes": 386761,
+    "sha256": "12b3bb3048c2d317ff8db0452fc5945ff46e12a47b1fde0e37cbf0efc2b8b529",
+    "file": "S31.html"
+  },
+  {
+    "id": "S33",
+    "URL": "https://www.busan.go.kr/comm/getFile?srvcId=BBSTY1&upperNo=1712433&fileTy=ATTACH&fileNo=4",
+    "관련data_id": "HOU-017;HOU-018;HOU-019;HOU-020",
+    "확인일": "2026-10-02",
+    "status": 200,
+    "contentType": "application/octet-stream;charset=UTF-8",
+    "bytes": 491876,
+    "sha256": "75fbbbd8ee7fa2376325b18010d87c287ba16bd8fc3ab891d3db2a9859667a96",
+    "file": "S33.bin"
+  },
+  {
+    "id": "S34",
+    "URL": "https://www.saha.go.kr/portal/contents.do?mId=0501060300",
+    "관련data_id": "HOU-021",
+    "확인일": "2026-10-02",
+    "status": 200,
+    "contentType": "text/html;charset=UTF-8",
+    "bytes": 293032,
+    "sha256": "ee1953ef4bc17a416812fee0809387bcd6d2f5e2e01a9578c6ca63f91c81a070",
+    "file": "S34.html"
+  },
+  {
+    "id": "S35",
+    "URL": "https://www.saha.go.kr/portal/contents.do?mId=0509020200",
+    "관련data_id": "HOU-022;HOU-021;HOU-012",
+    "확인일": "2026-10-02",
+    "status": 200,
+    "contentType": "text/html;charset=UTF-8",
+    "bytes": 293363,
+    "sha256": "9c3c1fc8aa5325aaa011a765bcaf29762439998d9bdece54a2885937efe42869",
+    "file": "S35.html"
+  },
+  {
+    "id": "S36",
+    "URL": "https://economy.saha.go.kr/startup/program/view.do?idx_select=251&mId=0302000000",
+    "관련data_id": "HOU-023",
+    "확인일": "2026-10-02",
+    "status": 200,
+    "contentType": "text/html;charset=UTF-8",
+    "bytes": 74526,
+    "sha256": "c14000d19fda3f3f9932d9c20fa079612e2f5ce9e6cefb299ec3f2847aae1533",
+    "file": "S36.html"
+  },
+  {
+    "id": "S37",
+    "URL": "https://www.saha.go.kr/job/contents.do?mId=0301050000",
+    "관련data_id": "HOU-001",
+    "확인일": "2026-10-02",
+    "status": 200,
+    "contentType": "text/html;charset=UTF-8",
+    "bytes": 99187,
+    "sha256": "3b8e707db6788657cd8a6c5e63ea0fbdd6a248ffc6329504ce315859a2c0e233",
+    "file": "S37.html"
+  },
+  {
+    "id": "NEW_MOVING",
+    "URL": "https://www.busan.go.kr/nbnews/1746181",
+    "관련data_id": "HOU-007",
+    "확인일": "2026-10-02",
+    "status": 200,
+    "contentType": "text/html; charset=UTF-8",
+    "bytes": 113502,
+    "sha256": "de67d7bb7292c89f2049db20bb6f300d8368a37dfe79a8025b4ab0b721f249e0",
+    "file": "NEW_MOVING.html"
+  },
+  {
+    "id": "NEW_HOUSING",
+    "URL": "https://www.myhome.go.kr/hws/portal/cont/selectHappyHouseView.do",
+    "관련data_id": "후보",
+    "확인일": "2026-10-02",
+    "status": 200,
+    "contentType": "text/html; charset=UTF-8",
+    "bytes": 150740,
+    "sha256": "db0b159eaf6a9724a243ee3fba6d14e4ae5fc2b921a93fab4aabec39c4628ef9",
+    "file": "NEW_HOUSING.html"
+  },
+  {
+    "id": "NEW_CENTER",
+    "URL": "https://www.busan.go.kr/housing/ko/pages/residential_welfare.php",
+    "관련data_id": "HOU-009",
+    "확인일": "2026-10-02",
+    "status": 200,
+    "contentType": "text/html; charset=utf-8",
+    "bytes": 73952,
+    "sha256": "23e59611a6575a00ed6b7aaf90e4c9ebdf154f962f6184c67860468fc0e5a863",
+    "file": "NEW_CENTER.html"
+  },
+  {
+    "id": "NEW_ENERGY",
+    "URL": "https://www.energyv.or.kr/info/support_info.do",
+    "관련data_id": "HOU-003",
+    "확인일": "2026-10-02",
+    "status": 200,
+    "contentType": "text/html; charset=utf-8",
+    "bytes": 38078,
+    "sha256": "75ecd42168d6148e5a87b08ebe36e8b61d81688ff914b48b0efe817d9a6c6558",
+    "file": "NEW_ENERGY.html"
+  },
+  {
+    "id": "NEW_ALLOWANCE",
+    "URL": "https://www.myhome.go.kr/hws/portal/cont/selectYouthPolicyHousingView.do",
+    "관련data_id": "HOU-015",
+    "확인일": "2026-10-02",
+    "status": 200,
+    "contentType": "text/html; charset=UTF-8",
+    "bytes": 21337,
+    "sha256": "fdbded4a4c8d5509a237ce061146e6676f3d77f5e097286b56acb93bb3a07910",
+    "file": "NEW_ALLOWANCE.html"
+  },
+  {
+    "id": "NEW_BMC",
+    "URL": "https://www.bmc.busan.kr",
+    "관련data_id": "후보",
+    "확인일": "2026-10-02",
+    "status": 200,
+    "contentType": "text/html;charset=utf-8",
+    "bytes": 267129,
+    "sha256": "ea1010e1f6004c8fb9c39a242e6b28eb63daafaabae2e26b8944b5d1444008f7",
+    "file": "NEW_BMC.html"
+  },
+  {
+    "id": "NEW_BUSANJIN",
+    "URL": "https://www.busanjin.go.kr",
+    "관련data_id": "부산진구 추가조사",
+    "확인일": "2026-10-02",
+    "status": 200,
+    "contentType": "text/html; charset=UTF-8",
+    "bytes": 14021,
+    "sha256": "f806c0cbb0e449d89e9f8e6dcd397ef9b8485e2e09cdf667c56e4ce2a98a7730",
+    "file": "NEW_BUSANJIN.html"
+  },
+  {
+    "id": "API_HOUSING_1",
+    "URL": "https://www.youthcenter.go.kr/go/ythip/getPlcy",
+    "관련data_id": "후보",
+    "요청조건": {
+      "pageNum": "1",
+      "lclsfNm": "주거"
+    },
+    "확인일": "2026-10-02",
+    "status": 200,
+    "contentType": "application/json",
+    "bytes": 328171,
+    "sha256": "ab11aa38ceb9136599894fb7be650aae30b107fa5d13707598d6feb8e79a4ff8",
+    "file": "API_HOUSING_1.json"
+  },
+  {
+    "id": "API_HOUSING_2",
+    "URL": "https://www.youthcenter.go.kr/go/ythip/getPlcy",
+    "관련data_id": "후보",
+    "요청조건": {
+      "pageNum": "2",
+      "lclsfNm": "주거"
+    },
+    "확인일": "2026-10-02",
+    "status": 200,
+    "contentType": "application/json",
+    "bytes": 297395,
+    "sha256": "cf84d19738584d07680e66bb4cb2fee99f7246a0264a0243e36c88fb5819d7e4",
+    "file": "API_HOUSING_2.json"
+  },
+  {
+    "id": "API_HOUSING_3",
+    "URL": "https://www.youthcenter.go.kr/go/ythip/getPlcy",
+    "관련data_id": "후보",
+    "요청조건": {
+      "pageNum": "3",
+      "lclsfNm": "주거"
+    },
+    "확인일": "2026-10-02",
+    "status": 200,
+    "contentType": "application/json",
+    "bytes": 274533,
+    "sha256": "ced1995b199ad1e9261f889b99baa667f7005072bfdfc444243fc5129d2855fe",
+    "file": "API_HOUSING_3.json"
+  },
+  {
+    "id": "API_HOUSING_4",
+    "URL": "https://www.youthcenter.go.kr/go/ythip/getPlcy",
+    "관련data_id": "후보",
+    "요청조건": {
+      "pageNum": "4",
+      "lclsfNm": "주거"
+    },
+    "확인일": "2026-10-02",
+    "status": 200,
+    "contentType": "application/json",
+    "bytes": 69161,
+    "sha256": "2bd9c2d6518e53c2c06e50f5c0e7eb39119e7cd5b1bc822a68bed000b718aa14",
+    "file": "API_HOUSING_4.json"
+  },
+  {
+    "id": "API_TRANSPORT",
+    "URL": "https://www.youthcenter.go.kr/go/ythip/getPlcy",
+    "관련data_id": "후보",
+    "요청조건": {
+      "plcyNm": "교통"
+    },
+    "확인일": "2026-10-02",
+    "status": 200,
+    "contentType": "application/json",
+    "bytes": 49676,
+    "sha256": "0e4b991cf09788b0e3ee1d90cc01934c3baf39c1ef80f6794a418c34f69783ca",
+    "file": "API_TRANSPORT.json"
+  },
+  {
+    "id": "API_BUSANJIN",
+    "URL": "https://www.youthcenter.go.kr/go/ythip/getPlcy",
+    "관련data_id": "후보",
+    "요청조건": {
+      "zipCd": "26230"
+    },
+    "확인일": "2026-10-02",
+    "status": 200,
+    "contentType": "application/json",
+    "bytes": 361696,
+    "sha256": "154965a26823fa6e32e9591eb9c80511d20059464ecf8368dbbcbaa8c2e9730d",
+    "file": "API_BUSANJIN.json"
+  },
+  {
+    "id": "API_SAHA",
+    "URL": "https://www.youthcenter.go.kr/go/ythip/getPlcy",
+    "관련data_id": "후보",
+    "요청조건": {
+      "zipCd": "26380"
+    },
+    "확인일": "2026-10-02",
+    "status": 200,
+    "contentType": "application/json",
+    "bytes": 361696,
+    "sha256": "fccfe6abb8f60d83177f862937193570bde3742d87eaf63a75cc8fd6d659d4b0",
+    "file": "API_SAHA.json"
+  }
+]

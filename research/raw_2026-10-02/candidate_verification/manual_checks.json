@@ -1,0 +1,120 @@
+[
+  {
+    "plcyNo": "20260914005400213410",
+    "URL": "https://young.busan.go.kr/policySupport/view.nm?bizSid=SUP0000003776&menuCd=13",
+    "확인일": "2026-10-02",
+    "status": 200,
+    "finalURL": "https://young.busan.go.kr/policySupport/view.nm?bizSid=SUP0000003776&menuCd=13",
+    "bytes": 87671,
+    "sha256": "b7b1ad29f87b3977148ce6494eaab9bdfb29a7287f795aaaf154ac89d136382b",
+    "file": "20260914005400213410_manual.html",
+    "textFile": "20260914005400213410_manual.txt",
+    "title": "청년지원사업 상세정보 : 부산청년플랫폼",
+    "links": [],
+    "errorPage": false
+  },
+  {
+    "plcyNo": "20260908005400213383",
+    "URL": "https://www.hwasun.go.kr/board.do?M=030100000000&S=S08&act=view&b_code=0000000292&cg_code=&list_no=221&nPage=2",
+    "확인일": "2026-10-02",
+    "status": 200,
+    "finalURL": "https://www.hwasun.go.kr/board.do?M=030100000000&S=S08&act=view&b_code=0000000292&cg_code=&list_no=221&nPage=2",
+    "bytes": 28798,
+    "sha256": "60061cbf0ffc7b5aa05fc9993d1840af04ae5e481cef05937b0168cfc9acc2ac",
+    "file": "20260908005400213383_manual.html",
+    "textFile": "20260908005400213383_manual.txt",
+    "title": "화순군 청년센터 청춘들락",
+    "links": [
+      {
+        "URL": "https://www.hwasun.go.kr/youth/contents.do?S=S08&M=010101000000",
+        "title": "모집중"
+      },
+      {
+        "URL": "https://www.hwasun.go.kr/youth/contents.do?S=S08&M=010101000000",
+        "title": "모집중"
+      },
+      {
+        "URL": "https://www.hwasun.go.kr/fileDownload.do?filename=2026%EB%85%84+%ED%99%94%EC%88%9C%EA%B5%B0+%EC%B2%AD%EB%85%84%ED%95%98%EC%9A%B0%EC%8A%A4+%EC%9E%85%EC%A3%BC%EC%9E%90+%EB%AA%A8%EC%A7%91%EA%B3%B5%EA%B3%A0.hwp&f_path=board&b_code=0000000292",
+        "title": "2026년 화순군 청년하우스 입주자 모집공고.hwp(67KByte)"
+      },
+      {
+        "URL": "https://www.hwasun.go.kr/board.do?M=030100000000&S=S08&act=view&b_code=0000000292&cg_code=&list_no=221&nPage=2#",
+        "title": "첨부파일 미리보기"
+      },
+      {
+        "URL": "https://www.hwasun.go.kr/fileDownload.do?filename=%EC%B2%AD%EB%85%84%ED%95%98%EC%9A%B0%EC%8A%A4+%EC%9E%85%EC%A3%BC%EC%9E%90+%EB%AA%A8%EC%A7%91+%ED%8F%AC%EC%8A%A4%ED%84%B0%282026%29.png&f_path=board&b_code=0000000292",
+        "title": "청년하우스 입주자 모집 포스터(2026).png(197KByte)"
+      },
+      {
+        "URL": "https://www.hwasun.go.kr/board.do?M=030100000000&S=S08&act=view&b_code=0000000292&cg_code=&list_no=221&nPage=2#",
+        "title": "첨부파일 미리보기"
+      }
+    ],
+    "errorPage": false
+  },
+  {
+    "plcyNo": "20250106005400210052",
+    "URL": "https://www.gokseong.go.kr/board/GosiList.do?menuNo=102001003000&pageIndex=1",
+    "확인일": "2026-10-02",
+    "error": "TypeError: fetch failed"
+  },
+  {
+    "plcyNo": "20260406005400212507",
+    "URL": "https://www.incheon.go.kr/IC010101/view?cntPerPage=50&curPage=4&nttNo=2045767&srchKey=srchSj&srchSiteRealmCode=&srchWord=",
+    "확인일": "2026-10-02",
+    "status": 200,
+    "finalURL": "https://www.incheon.go.kr/IC010101/view?cntPerPage=50&curPage=4&nttNo=2045767&srchKey=srchSj&srchSiteRealmCode=&srchWord=",
+    "bytes": 221197,
+    "sha256": "4672db9c4dd0ce74af10de35a99bf017d20535cccc8afe438b179b1ca3e35903",
+    "file": "20260406005400212507_manual.html",
+    "textFile": "20260406005400212507_manual.txt",
+    "title": "2026년 천원주택(매입임대주택) 예비입주자 모집 공고",
+    "links": [
+      {
+        "URL": "https://www.incheon.go.kr/IC010303",
+        "title": "고시/공고/시보"
+      },
+      {
+        "URL": "http://announce.incheon.go.kr/citynet/jsp/sap/SAPGosiBizProcess.do?command=searchList&flag=gosiGL&svp=Y&sido=ic",
+        "title": "고시공고"
+      },
+      {
+        "URL": "https://www.incheon.go.kr/IC021001",
+        "title": "맞춤형 시정정보"
+      },
+      {
+        "URL": "https://www.incheon.go.kr/IC010303",
+        "title": "고시/공고/시보\r\n 하위메뉴 열기"
+      },
+      {
+        "URL": "http://announce.incheon.go.kr/citynet/jsp/sap/SAPGosiBizProcess.do?command=searchList&flag=gosiGL&svp=Y&sido=ic",
+        "title": "고시공고"
+      },
+      {
+        "URL": "https://www.incheon.go.kr/comm/getFile?srvcId=MFNewInfo&upperNo=2045767&fileTy=ATTACH&fileNo=4",
+        "title": "다운로드"
+      },
+      {
+        "URL": "https://www.incheon.go.kr/comm/getFile?srvcId=MFNewInfo&upperNo=2045767&fileTy=ATTACH&fileNo=5",
+        "title": "다운로드"
+      },
+      {
+        "URL": "https://www.incheon.go.kr/comm/getFile?srvcId=MFNewInfo&upperNo=2045767&fileTy=ATTACH&fileNo=6",
+        "title": "다운로드"
+      },
+      {
+        "URL": "https://www.incheon.go.kr/IC010303",
+        "title": "고시/공고/시보"
+      },
+      {
+        "URL": "http://announce.incheon.go.kr/citynet/jsp/sap/SAPGosiBizProcess.do?command=searchList&flag=gosiGL&svp=Y&sido=ic",
+        "title": "고시공고"
+      },
+      {
+        "URL": "https://www.incheon.go.kr/IC021001",
+        "title": "맞춤형 시정정보"
+      }
+    ],
+    "errorPage": false
+  }
+]

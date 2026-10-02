@@ -1,0 +1,177 @@
+
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>팝업 - 월세대출 제도개선 비교표 팝업</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, target-densityDpi=medium-dpi">
+<link rel="stylesheet" href="/common/css/style.css">
+<link rel="shortcut icon" type="image/x-icon" href="/common/images/32.ico">
+<link rel="icon" type="image/x-icon" href="/common/images/32.png">
+<link rel="apple-touch-icon" href="/common/images/128.png">
+<link rel="apple-touch-icon-precomposed" href="/common/images/128.png" />
+<script src="/common/js/jquery-1.10.2.min.js"></script>
+<script src="/common/js/jquery.mobile-1.4.5.js"></script>
+<script src="/common/js/jquery-ui.min.js"></script>
+<script src="/common/js/onlypub.js"></script>
+<script src="/common/js/base.js"></script>
+<script language="javascript" type="text/javascript">
+<!--
+// 수정자 장병석
+// 수정일 20151013
+$(document).ready(function() {
+	$('.bt > a').click(function() {
+		window.close();
+	});
+});
+function doResize(){
+	var brVer = navigator.userAgent;//브라우져 정보
+	var brVerId = brVer.indexOf('MSIE');//브라우져 정보에서 'MSIE'라는 부분의 문자열
+	var brNum = brVer.substr(brVerId,8);//브라우져 버전('MSIE' 포함..)..
+	var brNum2 = brNum.substr(5,3)//브라우져 버번. 숫자만...
+	var ifrm = document.body;
+	var x = ifrm.scrollWidth;
+	var y = ifrm.scrollHeight;
+	if(Number(brNum2) >= 7) {
+		window.resizeTo(x+10,y+90);
+	} else {
+		window.resizeTo(x+10,y+90);
+	}
+}
+
+var winResizeW = 0;
+var winResizeH = 0;
+
+(function($) {
+    $(function () {
+        $(document).ready(function () {
+               var filter = "win16|win32|win64|mac";
+               if( navigator.platform  ){
+                   if( filter.indexOf(navigator.platform.toLowerCase())<0 ){
+       	      self.close();
+                   }
+                }
+        	$('#popup').css('height', $('#popup').css('width'));
+        });//ready
+ 
+        $(window).load(function () {
+        	  //크롬, 사파리일때
+            if (navigator.userAgent.indexOf('Chrome')>-1 || navigator.userAgent.indexOf('Safari')>-1) 
+            {
+                $(window).resize(function() {
+                    
+                    if(winResizeW==0 && winResizeH==0)
+                    {
+                    	popupAutoResize();//팝업리사이징
+                    }
+                });
+            }
+            //크롬, 사파리말고 모두
+            else
+            {
+            	popupAutoResize();//팝업리사이징
+            }
+            
+        });//load
+    });//$
+ 
+    function popupAutoResize() {//팝업리사이징
+       
+        var mw = window.outerWidth - window.innerWidth;
+        var mh = window.outerHeight - window.innerHeight;
+      
+         if (navigator.userAgent.indexOf('Chrome')>-1 || navigator.userAgent.indexOf('Safari')>-1)  {
+             var conW = $('#popup').innerWidth(); 
+             var conH =  $('#popup').innerHeight();
+             
+             winResizeW = conW + mw;
+             winResizeH = conH + mh;
+             
+             window.resizeTo(winResizeW,winResizeH);        	 
+         } else {
+        	        	 
+        	 var w = document.getElementsByTagName('div')[1].clientWidth;
+             var h = document.getElementsByTagName('div')[1].clientHeight;
+             window.resizeTo(w, h);
+             
+             window.resizeBy(mw, mh);
+             
+             if (msieversion() < 9 && msieversion() != 0) {
+                 // get window fake outer size
+                 var fakeOuterWidth = document.documentElement.clientWidth;
+                 var fakeOuterHeight = document.documentElement.clientHeight;
+      
+                 // resize to innerSize
+                 window.resizeTo(fakeOuterWidth, fakeOuterHeight);
+      
+                 // get window fake inner size
+                 var fakeInnerWidth = document.documentElement.clientWidth;
+                 var fakeInnerHeight = document.documentElement.clientHeight;
+      
+                 // get delta
+                 deltaWidth = fakeOuterWidth - fakeInnerWidth;
+                 deltaHeight = fakeOuterHeight - fakeInnerHeight;
+                 window.resizeTo(w + deltaWidth, h + deltaHeight);
+             }
+         }
+ 
+    }
+    function msieversion() {//익스버전체크
+        var ua = window.navigator.userAgent;
+        var msie = ua.indexOf ( "MSIE " );
+        if ( msie > 0 ) // If Internet Explorer, return version number
+            return parseInt (ua.substring (msie+5, ua.indexOf (".", msie )));
+        else // If another browser, return 0
+            return 0;
+    }
+})(jQuery);
+//-->
+</script>
+</head>
+<body onload="doResize('popFrame'); return false;">
+<form name="popForm" method="post">
+<div id="popup" style="width:620px;">
+	<div class="mainCont"><script>
+  $(document).ready(function(){
+     $('#popup > p.bt').hide(); 
+     $('#btn').show();
+
+     $('#Map').click(function(){
+     });
+  });
+
+  function sendURL( pageId ){
+     if(pageId == '1') {
+       window.opener.location.href = '/FP/FP05/FP0502/FP05020201.jsp';
+     } 
+      self.close();
+  }
+</script>
+<div id="popup" height="920" width="620"><img border="0" alt="주택도시기금 월세대출 제도개선 비교표" width="620" height="920" usemap="#Map" src="/common/images/popup/popup_20160822.jpg" /> <map id="Map" name="Map">
+<area shape="rect" alt="주택도시기금 월세대출 제도개선 비교표 자세히 보기" coords="182,780,436,827" href="javascript:sendURL(&quot;1&quot;)" /><!-- target="_blank" 는 새창으로 링크. --></map></div></div>
+	<p class="bt">
+		<a href="#none"><img src="/common/images/common/btn/btn_close.gif" alt="닫기"></a>
+	</p>
+</div>
+</form>
+<!-- //popup -->
+</body>
+
+</html>
