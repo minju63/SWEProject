@@ -1,0 +1,1839 @@
+
+
+
+
+
+
+   
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ko" xml:lang="ko">
+<head>
+	
+
+
+<meta http-equiv="Content-Type" 		content="application/xhtml+xml; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible"  	content="IE=Edge" />
+<meta http-equiv="Content-Script-Type"  content="text/javascript" />
+<meta name="naver-site-verification" 	content="0725f42637afca9894a734d6ae2d7fda0bc50f2a" />
+
+<title>할인제도</title>
+
+<script type="text/javascript" src="/com/selectKorailCoMessage.do"></script>
+
+<!-- 메뉴관련 -->
+<script type="text/javascript" src="/js/common/korailMenu.js"></script>
+<script type="text/javascript" src="/js/egovframework/korail/common/menu1.js"></script>
+<script type="text/javascript" src="/js/egovframework/korail/common/menu2.js"></script>
+<script type="text/javascript" src="/js/egovframework/korail/common/menu3.js"></script>
+<script type="text/javascript" src="/js/egovframework/korail/common/menu4.js"></script>
+<script type="text/javascript" src="/js/egovframework/korail/common/menu5.js"></script>
+<script type="text/javascript" src="/js/egovframework/korail/common/menu6.js"></script>
+<script type="text/javascript" src="/js/egovframework/korail/common/menu7.js"></script>
+<script type="text/javascript" src="/js/egovframework/korail/common/menu8.js"></script>
+<script type="text/javascript" src="/js/egovframework/korail/common/menu9.js"></script>
+<script type="text/javascript" src="/js/egovframework/korail/common/menu10.js"></script>
+<script type="text/javascript" src="/js/egovframework/korail/common/menu11.js"></script>
+<script type="text/javascript" src="/js/egovframework/korail/common/menu12.js"></script>
+<script type="text/javascript" src="/js/egovframework/korail/common/menu13.js"></script>
+<script type="text/javascript" src="/js/egovframework/korail/common/menu14.js"></script>
+<script type="text/javascript" src="/js/egovframework/korail/common/menu15.js"></script>
+<script type="text/javascript" src="/js/egovframework/korail/common/menu16.js"></script>
+<script type="text/javascript" src="/js/egovframework/korail/common/menu17.js"></script>
+<script type="text/javascript" src="/js/egovframework/korail/common/menu18.js"></script>
+<script type="text/javascript" src="/js/egovframework/korail/common/menu19.js"></script>
+<script type="text/javascript" src="/js/egovframework/korail/common/menu20.js"></script>
+<script type="text/javascript" src="/js/egovframework/korail/common/menu21.js"></script>
+
+<script type="text/javascript" src="/js/jquery.ui/jquery-1.8.3.min.js"></script>
+<script type="text/javascript" src="/js/jquery.ui/jquery-ui-1.9.2.min.js"></script>
+<script type="text/javascript" src="/js/jquery.ui/jquery.ui.core.js"></script>
+<!-- <script type="text/javascript" src="/js/jquery.ui/jquery.ui.button.js"></script>		-->
+<!-- <script type="text/javascript" src="/js/jquery.ui/jquery.ui.tabs.js"></script>			-->
+<!-- <script type="text/javascript" src="/js/jquery.ui/jquery.ui.mouse.js"></script>		-->
+<!-- <script type="text/javascript" src="/js/jquery.ui/jquery.ui.draggable.js"></script>	-->
+<!-- <script type="text/javascript" src="/js/jquery.ui/jquery.ui.droppable.js"></script>	-->
+<!-- <script type="text/javascript" src="/js/common/korailJquery.cookie.js"></script>  		-->
+<script type="text/javascript" src="/js/common/korailCommon.js"></script>
+<script type="text/javascript" src="/js/common/korailCommonUtil.js"></script>
+<script type="text/javascript" src="/js/common/korailWindow.js"></script>
+
+<script src="/js/jquery.plainmodal/jquery.plainmodal.min.js"></script>
+<link rel="stylesheet" type="text/css" href="/js/jquery.plainmodal/jquery.plainmodal.css" />
+
+<link rel="stylesheet" type="text/css" href="/css/jquery.ui/jquery.ui.all.css" />
+
+<!-- 공통 CSS -->
+<link rel="stylesheet" type="text/css" href="/css/korail.css" />
+
+<meta name="author" content="한국철도공사" />
+<meta name="copyright" content="Copyright ⓒ KOREA RAILROAD. All Right Reserved.">
+<meta name="format-detection" content="telephone=no,email=no,address=no">
+<meta name="title" content="레츠코레일 LetsKorail">
+<meta name="Keywords" content="레츠코레일 LetsKorail">
+<meta name="description" content="한국철도공사, 레츠코레일, 승차권 예매, 기차여행상품, 운행정보 안내">
+<meta property="og:type" content="website">
+<meta property="og:title" content="레츠코레일 LetsKorail">
+<meta property="og:description" content="한국철도공사, 레츠코레일, 승차권 예매, 기차여행상품, 운행정보 안내">
+<meta property="og:image" content="https://www.letskorail.com/images/mail/logo.gif">
+<meta property="og:url" content="https://dev2.letskorail.com">
+
+
+<script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "Organization",
+        "name": "레츠코레일",
+        "url": "https://dev2.letskorail.com",
+        "sameAs": [
+            "https://www.facebook.com/KoreaRailroad",
+            "https://www.instagram.com/korail_official_/",
+            "https://www.youtube.com/c/한국철도TV/",
+            "https://blog.naver.com/korailblog",
+            "https://twitter.com/korail_official"
+        ]
+    }
+</script>
+
+<script>
+function fn_chk_loginMsg(m_url) {
+	var event = window.event || e ;
+	var url = location.href;
+	var menuURI = m_url;
+	
+	
+		if (confirm("코레일멤버십 로그인 후 이용 가능합니다.\n\n계속하시겠습니까?")) {
+			location.href = menuURI;
+			return false;
+		} else {
+	 		if (event.stopImmediatePropagation) {
+			 	event.stopImmediatePropagation(); 
+			} else {
+				location.href = url;
+				return false;			
+			}
+		}
+	
+}
+</script>
+
+
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-X12KNBW153"></script>
+<script>
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+
+	gtag('config', 'G-X12KNBW153');
+</script>
+	
+	
+<link rel="stylesheet" type="text/css" href="/css/basic.css" 	/>
+<link rel="stylesheet" type="text/css" href="/css/default.css" 	/>
+<link rel="stylesheet" type="text/css" href="/css/sub_cmt.css" 	/>
+<link rel="stylesheet" type="text/css" href="/css/com.css" 		/>
+
+<script type="text/javascript">
+$(document).ready(function (){
+	$('#tab_1').show();
+	$('#tab_2').hide();
+	$('#tab_3').hide();
+	$('#tab_4').hide();
+	$('#tab_5').hide();
+	
+	var idx = '';
+	var tab = '';
+	//alert('idx : '+idx);
+
+	if(idx != undefined && (idx == 'goYouth' || idx== 'goMom' || idx== 'goMnChd' ))
+	{
+		if(idx == "goYouth"){
+			$(function(){
+				$("#ctr_tab_disc1").removeClass("on");
+				$("#ctr_tab_disc14").addClass("on");
+				$('#tab_1').css("display", "none");
+				$('#tab_14').css("display", "block");
+			});
+		}else if(idx == "goMom"){
+			
+			$(function(){
+				$("#ctr_tab_disc1").removeClass("on");
+				$("#ctr_tab_disc15").addClass("on");
+				$('#tab_1').css("display", "none");
+				$('#tab_15').css("display", "block");
+				});		
+		}else if(idx == "goMnChd"){
+			
+			$(function(){
+				$("#ctr_tab_disc1").removeClass("on");
+				$("#ctr_tab_disc16").addClass("on");
+				$('#tab_1').css("display", "none");
+				$('#tab_16').css("display", "block");
+				});		
+		}
+		
+	}	
+	
+	if(tab != undefined && tab == '5'){
+		$("#ctr_tab_disc1").removeClass("on");
+		$("#ctr_tab_disc5").addClass("on");
+		$('#tab_1').css("display", "none");
+		$('#tab_5').css("display", "block");
+	}
+});
+
+function openPopup01(){
+	window.open('/ebizcom/cs/guide/guide/w_pc12240.do', '', 'width=770,height=350,resizable=yes,scrollbars=no');
+	return false;
+}
+
+function fn_Youth_Chk(){
+	if(!confirm('13세~ 24세 이하의 청소년에 한하여 사용이가능합니다.\n계속 진행하시겠습니까?')){
+		return;
+	}
+	window.open('/korail/com/mypage/edit.do' ,'_self');
+}
+
+function fn_guide(){
+	alert('11월 11일부터 등록 가능합니다.');
+	return;
+}
+
+window.onload = function(){
+	
+};
+
+
+</script>
+<style>
+.cs-center ul li {padding-bottom:13px;}
+</style>
+</head>
+<body>
+<div id="wrap">
+	
+    <script type="text/javascript" src="/js/pwdConfirm/pwdConfirmYn.js?v=1790870644164"></script>
+    <script type="text/javascript">
+    var NowDateSpecial = parseInt('202610020104',10);
+
+    function selectSubMenu(sub_id){
+        for(var i=1; i<=6; i++){
+            //if(i != 6 && i != 7 )document.getElementById("lnb_sub0"+i).style.display="none";
+            document.getElementById("lnb_s0"+i).style.display="none";
+        }
+        if(sub_id != "")document.getElementById(sub_id).style.display="block";
+    }
+
+    function closeSubMenu(sub_id){
+        if(sub_id != "")document.getElementById(sub_id).style.display="none";
+    }
+
+    function selectQck(qck_id){
+        if(qck_id != "")document.getElementById(qck_id).style.display="block";
+    }
+
+    function closeQck(qck_id){
+        if(qck_id != "")document.getElementById(qck_id).style.display="none";
+    }
+
+    // 통합검색
+    function fn_searchHead() {
+        var frm = document.searchHeadForm;
+
+        if( frm.searchTerm.value == "" ) {
+            alert( "검색어를 입력하세요." );
+            frm.searchTerm.focus();
+            return;
+        }
+        frm.action = "/totalSearch.do";
+        frm.submit();
+    }
+
+    // 검색대상 목록 보여주기
+    function fn_collectView() {
+        document.getElementById('collectList').style.display="block";
+    }
+
+    function fn_collectSelect(collectionName) {
+        document.searchHeadForm.collectionName.value = collectionName;
+        document.getElementById('collectionField').innerHtml = "";
+        var field = "";
+        if(collectionName == "Total") {
+            field = "통합검색";
+        } else if(collectionName == "IR_KORAIL") {
+            field = "기업홍보";
+        } else if(collectionName == "IR_KIDS") {
+            field = "어린이";
+        } else if(collectionName == "IR_LANGUAGE") {
+            field = "외국어";
+        } else if(collectionName == "NAVER") {
+            field = "네이버";
+        }
+
+        document.getElementById('collectionField').innerHtml = field;
+    }
+
+    $(document).ready(function(){
+
+        fn_sp_logo_chk();
+
+        //beta bar 색상변경 15.10.12
+        if (pub2.indexOf('beta.letskorail.com') != -1 ||
+            pub3.indexOf('beta.letskorail.com') != -1 ||
+            pub6.indexOf('beta.letskorail.com') != -1 ||
+            pub7.indexOf('beta.letskorail.com') != -1 ){
+            $("body").css("background", "#efefef url(/images/body_bg_1.gif) repeat-x");
+            $(".h_cont h1").css("background", "url(/images/lets_logo_beta.gif) no-repeat 0 0");
+        }
+
+        /*
+         * 언어 선택 레이어 영역 제어
+         * 2014.01.20 명진추가
+         */
+        /*
+        $('.lang_slt01').bind('mouseover focusin', function(){
+            $("#lang_list").show();
+        });
+        $('.lang_slt01').bind('mouseout focusout', function(){
+            $("#lang_list").hide();
+        });
+        */
+    });
+
+    //즐겨찾기 추가
+    function favoritemark(){
+        var browser = navigator.userAgent.toLowerCase();
+        var title = "코레일 홈페이지";
+        var url = location.href;
+
+        /*
+        if(window.sidebar){     //firefox
+            window.sidebar.addPanel(title, url, "");
+        }else if(window.opera && window.print){ //opera
+            var elem = document.createElement("a");
+            elem.setAttribute("href", url);
+            elem.setAttribute("title", title);
+            elem.setAttribute("rel", "sidebar");
+            elem.click();
+        }
+        */
+
+        if(document.all){   //ie
+            window.external.AddFavorite(url, title);
+        }else{
+            alert("해당 브라우저는 즐겨찾기 추가기능이 지원되지 않습니다. \n\n Ctrl+D키를 누르시면 즐겨찾기에 추가하실 수 있습니다.");
+        }
+    }
+
+    function cmntLink(){
+        if (pwdConfirmYn=="Y"){
+            alert('비밀번호를 변경 후 이용해주시기 바랍니다.');
+        }else{
+            m_main_ct_link();
+        }
+    }
+    </script>
+
+    <div id="skip">
+        <dl>
+        <dt>페이지 본문으로 이동하기</dt>
+        <dd><a href="#container">본문으로 바로가기</a></dd>
+        </dl>
+    </div>
+
+    <hr />
+
+    <div id="header">
+    <!-- header -->
+        <div class="h_cont">
+            <h1><a href="#" onclick="return m_main_prd_link()"><img src="/images/lets_logo.gif" alt="Let's Korail" /></a></h1>
+            <div class="gnb">
+                <ul class="gnb_list">
+                    <li><a href="#" onclick="return m_main_prd_link()"><img src="/images/gnb_home.gif" alt="HOME" /></a></li>
+
+                    
+
+                        
+                            <li><a href="#" onclick="return m_login_link()"><img src="/images/gnb_login.gif" alt="로그인" /></a></li>
+                        
+
+                    
+
+                    <li><a href="#" onclick="return m_membership_link()"><img src="/images/gnb_mems.gif" alt="코레일멤버십" /></a></li>
+                    <li><a href="#" onclick="return m_com_cs12_5_2_link()"><img src="/images/gnb_tieup.gif" alt="승차권제휴할인" /></a></li>
+                    <li><a href="#" onclick="return m_prd_cart_main_link()"><img src="/images/gnb_sh_basket.gif" alt="장바구니" /></a></li>
+                    <li><a href="#" onclick="return m_prd_mypage_main_link()"><img src="/images/gnb_my.gif" alt="마이페이지" /></a></li>
+                    <li><a href="#" onclick="return m_com_cs12_3_1_link()"><img src="/images/gnb_customer.gif" alt="철도고객센터" /></a></li>
+                    <li><a href="#" onclick="return m_menuPrd20_1_1_link()"><img src="/images/gnb_sitm.gif" alt="사이트맵" /></a></li>
+                    <li><a href="javascript:favoritemark();"><img src="/images/gnb_enjoy.gif" alt="즐겨찾기" /></a></li>
+                    <li class="lang_slt01" onmouseover="$('#lang_list').show();" onmouseout="$('#lang_list').hide();">
+                        <div class="lang">
+                            <h2><a href="#"><img src="/images/tit_lang.gif" alt="LANGUAGE"/></a></h2>
+                            <ul class="lang_list" id="lang_list">
+                                <li><a href="#" onclick="return m_main_eng_link();">ENGLISH</a></li>
+                                <li><a href="#" onclick="return m_main_china_link();">中國語</a></li>
+                                <li><a href="#" onclick="return m_main_japan_link();">日本語</a></li>
+                            </ul>
+                        </div>
+                    </li>
+
+                    
+                        <li><a href="https://info.korail.com/mbs/www/" target="_blank"><img src="/images/gnb_ir.gif" alt="코레일홈페이지" /></a></li>
+                    
+
+                    
+                    <li><a href="https://bizdev2.letskorail.com" target="_blank"><img src="/images/gnb_bz.gif" alt="기업전용홈페이지" /></a></li>
+                    
+                </ul>
+            </div>
+        </div>
+
+        <div class="h_bar">
+           <div class="m_sch" style="display:none;">
+                <form name="searchHeadForm" method="post" action="">
+                <input type="hidden" name="collectionName" value="Total" />
+
+                <fieldset>
+                <legend>통합검색영역</legend>
+                <div class="sch_area">
+                    <h2><a href="#">통합검색<span><img src="/images/btn_sel.gif" alt="선택"/></span></a></h2>
+                    <ul id="collectList" style="display:none;z-index:10;">
+                        <li><a href="#" onclick="fn_collectSelect('Total');">통합검색</a></li>
+                        <li><a href="#" onclick="fn_collectSelect('IR_KORAIL');">기업홍보</a></li>
+                        <li><a href="#" onclick="fn_collectSelect('IR_KIDS');">어린이</a></li>
+                        <li><a href="#" onclick="fn_collectSelect('IR_LANGUAGE');">외국어</a></li>
+                        <li><a href="#" onclick="fn_collectSelect('NAVER');">네이버</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <label for="keyword">검색어입력</label>
+                    <input type="text" id="keyword" name="searchTerm" value="" class="txt_m" onkeydown="if(event.keyCode == 13) fn_searchHead();" autocomplete="off" style="ime-mode:active"/><input type="image" src="/images/btn_sch.gif" alt="검색" class="btn_sch" onclick="fn_searchHead();"/>
+                </div>
+                </fieldset>
+
+                </form>
+            </div>
+
+            <div style="float: left; margin: 18px 0px 0px 20px; color: rgb(255, 255, 255); font-size: 14px; font-weight: bold;">
+            운영개발
+            </div>
+
+            <div class="main_mu">
+                <ul>
+                    <li class="tit_mu01"><a href="#" onclick="return m_main_prd_link()" class="selected">여행상품</a></li>
+                    <li class="tit_mu02"><a href="#" onclick="return m_main_ct_link()">커뮤니티</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="lnb"><!-- lnb -->
+            <h2 class="blind">여행상품</h2>
+            <div class="lnb_m01" onmouseover="selectSubMenu('lnb_s01')">
+                <h3 class="first"><a href="#" onclick="return m_menuPrd1_1_1_link()"><img src="/images/lnb_mu01_01.gif" alt="승차권" /></a></h3>
+                <div class="lnb_s" id="lnb_s01" onmouseout="closeSubMenu('lnb_s01')">
+                    <div class="lnb_sm01">
+                        <dl class="first">
+                            <dt><a href="#" onclick="return m_menuPrd1_1_1_link()">승차권예약</a></dt>
+                            <dd><a href="#" onclick="return m_menuPrd1_1_1_link()">일반승차권</a></dd>
+                            
+                            <dd><a href="#" onclick="return m_menuPrd1_1_2_link()">할인승차권</a></dd>
+                            <dd><a href="#" onclick="return m_menuPrd1_1_3_link()">4인 동반석</a></dd>
+                            <dd><a href="#" onclick="return m_menuPrd1_1_4_link()">관광 열차</a></dd>
+                            
+                        </dl>
+                        <dl>
+                            <dt><a href="#" onclick="return m_menuPrd1_2_1_link()">발권/취소/변경</a></dt>
+                            <dd><a href="#" onclick="return m_menuPrd1_2_1_link()">발권/취소(반환)</a></dd>
+                            <dd><a href="#" onclick="return m_menuPrd1_2_2_link()">예약변경</a></dd>
+                            <dd><a href="#" onclick="return m_menuPrd1_2_3_link()">이용내역/영수증출력</a></dd>
+                            <dd><a href="#" onclick="return m_menuPrd1_2_5_link()">도시락영수증출력</a></dd>
+                            <dd><a href="#" onclick="return m_menuPrd1_2_4_link()">인터넷반환접수</a></dd>
+                        </dl>
+                        <dl>
+                            <dt><a href="#" onclick="return m_menuPrd1_3_0_link()">정기승차권</a></dt>
+                            <dd><a href="#" onclick="return m_menuPrd1_3_1_link()">정기승차권 조회</a></dd>
+                            <dd><a href="#" onclick="return m_menuPrd1_3_2_link()">정기승차권 발급</a></dd>
+                        </dl>
+                        <dl style="width:170px;">
+                            <dt><a href="#" onclick="return m_menuPrd1_4_3_link()">비회원 서비스</a></dt>
+                            <dd><a href="#" onclick="return m_menuPrd1_1_1_link()">승차권예약</a></dd>
+                            <dd><a href="#" onclick="return m_menuPrd1_4_1_link()">발권/취소(반환)</a></dd>
+                            <dd><a href="#" onclick="return m_menuPrd1_4_5_link()">받은승차권 예약취소</a></dd>
+                            <dd><a href="#" onclick="return m_menuPrd1_4_2_link()">승차권재발권</a></dd>
+                            <dd><a href="#" onclick="return m_menuPrd1_4_3_link()">이용내역/영수증출력</a></dd>
+                            <dd><a href="#" onclick="return m_menuPrd1_4_8_link()">외부 플랫폼 승차권 영수증출력</a></dd>
+                            
+                            <dd><a href="#" onclick="return m_menuPrd1_4_7_link()">지연료 계좌반환 신청</a></dd>
+                            
+                        </dl>
+                        <dl>
+                            <dt><a href="#" onclick="return m_com_cs12_2_1_link()">이용안내</a></dt>
+                            <dd>&nbsp;</dd>
+                        </dl>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 2014-12-11 메뉴 재구성 시작 -->
+            <div class="lnb_m04" onmouseover="selectSubMenu('lnb_s04')">
+                <h3><a href="#" onclick="return m_menuPrd4_15_0_link()"><img src="/images/lnb_mu01_02_02.gif" alt="관광열차 "/></a></h3>
+                <div class="lnb_s"  id="lnb_s04" onmouseout="closeSubMenu('lnb_s04')">
+                    <div class="lnb_sm04">
+                        <dl class="first">
+                            <dt><a href="#" onclick="return m_menuPrd4_15_0_link()">동해산타열차</a></dt>
+                            <dd><a href="#" onclick="return m_menuPrd4_15_3_link()">동해산타열차 소개</a></dd>
+                            <dd><a href="#" onclick="return m_menuPrd4_15_4_link()">동해산타열차 추천여행</a></dd>
+                            <dd>&nbsp;</dd>
+                            <dt><a href="#" onclick="return m_menuPrd4_4_0_link()">서해금빛열차</a></dt><!-- 신규생성 -->
+                            <dd><a href="#" onclick="return m_menuPrd4_4_2_link()">G-train 소개</a></dd><!-- 신규생성 -->
+                            <dd><a href="#" onclick="return m_menuPrd4_4_1_link()">G-train 추천여행</a></dd><!-- 신규생성 -->
+                        </dl>
+                        <dl>
+                            <dt><a href="#" onclick="return m_menuPrd4_1_11_link()">백두대간협곡열차</a></dt>
+                            <dd><a href="#" onclick="return m_menuPrd4_1_3_link()">V-train 소개</a></dd>
+                            <dd><a href="#" onclick="return m_menuPrd4_1_5_link()">V-train 추천여행</a></dd>
+                            <dd>&nbsp;</dd>
+                            <dt><a href="#" onclick="return m_menuPrd4_3_0_link()">남도해양열차</a></dt>
+                            <dd><a href="#" onclick="return m_menuPrd4_3_2_link()">S-train 소개</a></dd>
+                            <dd><a href="#" onclick="return m_menuPrd4_3_1_link()">S-train 추천여행</a></dd>
+                        </dl>
+                        
+                        <dl class="sm_no">
+                            <dt><a href="#" onclick="return m_menuPrd4_2_0_link()">정선아리랑열차</a></dt><!-- 신규생성 -->
+                            <dd><a href="#" onclick="return m_menuPrd4_2_2_link()">A-train 소개</a></dd><!-- 신규생성 -->
+                            <dd><a href="#" onclick="return m_menuPrd4_2_1_link()">A-train 추천여행</a></dd><!-- 신규생성 -->
+                            <dd>&nbsp;</dd>
+                            <dt><a href="#" onclick="return m_menuPrd4_6_0_link()">교육열차</a></dt>
+                        </dl>
+						<dl class="sm_no">
+							<dt><a href="#" onclick="return m_menuPrd4_9_0_link()">국악와인열차</a></dt>
+                            <dd>&nbsp;</dd>
+                            <dt><a href="#" onclick="return m_menuPrd4_16_0_link()">에코레일열차</a></dt>
+						</dl>
+                        <dl class="sm_no">
+                            <dt><a href="#" onclick="return m_menuPrd4_12_0_link()">팔도장터열차</a></dt>
+                            <dd>&nbsp;</dd>
+                            <dt><a href="#" onclick="return m_menuPrd4_7_0_link()">레일크루즈해랑</a></dt>
+
+                        </dl>
+                    </div>
+                </div>
+            </div>
+
+            <div class="lnb_m03" onmouseover="selectSubMenu('lnb_s03')">
+                <h3><a href="#" onclick="return m_menuPrd21_0_0_link()"><img src="/images/menu_new01.gif" alt="자유여행"/></a></h3>
+                <div class="lnb_s" id="lnb_s03" onmouseout="closeSubMenu('lnb_s03')">
+ 					<div class="lnb_sm03">
+ 						<dl class="first">
+ 							<dt><a href="#" onclick="return m_menuPrd21_2_0_link()">국내여행패스</a></dt>
+ 							<!-- <dd><a href="#" onclick="return m_menuPrd21_2_16_0_link()">팔도레일패스-호남</a></dd> -->
+ 							<!-- <dd><a href="#" onclick="return m_menuPrd21_2_2_0_link()">하나로</a></dd> -->
+ 							<dd><a href="#" onclick="return m_menuPrd21_2_1_0_link()">내일로 두번째 이야기</a></dd>
+ 							<!-- <dd><a href="#" onclick="return m_menuPrd21_2_3_0_link()" title='2017.07.01일 부터 예발매가 중지됩니다. *기존 발권한 패스(바우처) 이용 가능'>나드리 패스</a></dd>  -->
+ 							<dd><a href="#" onclick="return m_menuPrd21_2_4_0_link()">문화누리레일패스</a></dd>
+ 							<!-- <dd><a href="#" onclick="return m_menuPrd21_2_5_0_link()" title='2017.07.01일 부터 예발매가 중지됩니다. * 기존 발권한 패스(바우처) 이용 가능'>DMZ Pass</a></dd>  -->
+ 							<!-- <dd><a href="#" onclick="return m_menuPrd21_2_6_0_link()" title='2017.07.01일 부터 예발매가 중지됩니다. * 기존 발권한 패스(바우처) 이용 가능'>365 미즈레일</a></dd> -->
+ 							<!-- <dd><a href="#" onclick="return m_menuPrd21_2_8_0_link()">하나로강원패스</a></dd> -->
+ 							<!-- <dd><a href="#" onclick="return m_menuPrd21_2_9_0_link()">오레일패스</a></dd> -->
+ 						</dl>
+ 						
+ 						<dl>
+ 							<dt><a href="#" onclick="return m_menuPrd21_1_0_link()">기차여행 만들기</a></dt>
+                            <dd><a href="#" onclick="return m_menuPrd21_1_1_0_link()">나만의 기차여행 만들기</a></dd>
+                            <dd><a href="#" onclick="return m_menuPrd21_1_2_0_link()">지역사랑 철도여행</a></dd>
+ 						</dl>
+ 						<dl>
+                            
+                            <dt><a href="#" onclick="return m_menuPrd21_6_0_link()">렌터카예약</a></dt>
+                            <!-- <dd><a href="#" onclick="return m_menuPrd21_6_1_link()">카셰어링YOUCAR</a></dd> -->
+                            <dd><a href="#" onclick="return m_menuPrd21_6_2_link()">롯데렌터카</a></dd>
+                            <!-- <dd><a href="#" onclick="return m_menuPrd21_6_3_link()">AJ렌터카</a></dd> -->                            
+ 						</dl>
+ 					</div>               
+                </div>
+            </div>
+            <div class="lnb_m02" onmouseover="selectSubMenu('lnb_s02')">
+                <h3><a href="#" onclick="return m_menuPrd2_3_link()"><img src="/images/menu_new02.gif" alt="여행상품" onmouseover="selectSubMenu('lnb_s02')" /></a></h3>
+                <div class="lnb_s" id="lnb_s02" onmouseout="closeSubMenu('lnb_s02')">
+                    <div class="lnb_sm02"><!-- lnb_sm06 -->
+                        <dl class="first">
+                            <dt><a href="#" onclick="return m_menuPrd2_1_1_link()">테마패키지</a></dt>
+                            <!-- <dd><a href="#" onclick="return m_menuPrd2_1_2_link()">베스트기차여행</a></dd>
+                            <dd><a href="#" onclick="return m_menuPrd2_1_3_link()">레일그린</a></dd> -->
+                            <dd><a href="#" onclick="return m_menuPrd2_1_13_link()">우리지역 대표상품</a></dd>
+                            <!-- <dd><a href="#" onclick="return m_menuPrd2_1_12_link()">으뜸촌 기차여행</a></dd> -->
+                            <!--<dd><a href="#" onclick="return m_menuPrd2_1_11_link()">세계유산백제</a></dd>-->
+                            <!-- <dd><a href="#" onclick="return m_menuPrd2_1_4_link()">농가명품</a></dd> -->
+                            <!-- <dd><a href="#" onclick="return m_menuPrd2_1_6_link()">팔도장터</a></dd>
+                            <dd><a href="#" onclick="return m_menuPrd2_1_7_link()">KTX-서울로</a></dd> -->
+                        </dl>
+ 						<dl>
+ 							<dt><a href="#" onclick="return m_menuPrd2_8_0_link()">KTX + 연계서비스</a></dt>
+ 							<dd><a href="#" onclick="return m_menuPrd2_8_1_link()">레일텔</a></dd>
+ 							<dd><a href="#" onclick="return m_menuPrd2_8_2_link()">레일시티투어</a></dd>
+ 							<!-- <dd><a href="#" onclick="return m_menuPrd2_8_3_link()">레일쉽-일본</a></dd> -->
+ 							<dd><a href="#" onclick="return m_menuPrd2_8_4_link()">레일쉽-제주도</a></dd>
+ 							
+ 							<!--
+ 							  <dd>&nbsp;</dd>
+ 							 <dt><a href="#" onclick="return m_menuPrd2_8_8_link()">특가패키지</a></dt>
+                             <dd><a href="#" onclick="return m_menuPrd2_8_8_link()">파격할인 관광상품</a></dd>
+                             -->
+ 						</dl>                       
+                        <dl>
+                            <dt><a href="#" onclick="return m_menuPrd2_3_1_link()">국내패키지</a></dt>
+                            <dd><a href="#" onclick="return m_menuPrd2_3_1_link()">수도권</a></dd>
+                            <dd><a href="#" onclick="return m_menuPrd2_3_2_link()">강원권</a></dd>
+                            <dd><a href="#" onclick="return m_menuPrd2_3_3_link()">충청권</a></dd>
+                            <dd><a href="#" onclick="return m_menuPrd2_3_4_link()">경상권</a></dd>
+                            <dd><a href="#" onclick="return m_menuPrd2_3_5_link()">전라권</a></dd>
+                            <dd><a href="#" onclick="return m_menuPrd2_3_6_link()">제주권</a></dd>
+                        </dl>
+                        <dl>
+                            <dt><a href="#" onclick="return m_menuPrd2_2_0_link()">해외패키지</a></dt>
+                            <!-- <dd><a href="#" onclick="return m_menuPrd2_2_1_link()">코레일관광개발</a></dd>
+                            <dd><a href="#" onclick="return m_menuPrd2_2_2_link()">모두투어</a></dd>
+                            <dd><a href="#" onclick="return m_menuPrd2_2_3_link()">하나투어</a></dd> 
+                            <dd>&nbsp;</dd>
+                            -->
+                            
+	                            <dt><a href="#" onclick="return m_menuPrd2_4_0_link()">이달의 기차여행</a></dt>
+	                            <dd>&nbsp;</dd>
+                            
+                            <dt><a  href="#" onclick="return m_menuPrd2_9_0_link()">여행상품 예약확인</a></dt>                            
+                        </dl>
+                    </div>
+                </div>
+            </div>
+            <div class="lnb_m05" onmouseover="selectSubMenu('lnb_s05')">
+                <h3 style="padding-left:61px;"><a href="#" onclick="return m_com_cs12_1_1_link()"><img src="/images/lnb_mu01_08.gif" alt="종합이용안내" onmouseover="selectSubMenu('lnb_s05')"/></a></h3>
+                <div class="lnb_s" id="lnb_s05" onmouseout="closeSubMenu('lnb_s05')">
+                    <div class="lnb_sm08" style="width:1133px;">
+                        <dl class="first">
+                            <dt><a href="#" onclick="return m_com_cs12_1_1_link()">할인 및 부가서비스</a></dt>
+                            <dd>&nbsp;</dd>
+                            <dt><a href="#" onclick="return m_com_cs12_2_1_link()">승차권 이용안내</a></dt>
+                            <dd>&nbsp;</dd>
+                            <dt><a href="#" onclick="return m_com_cs12_2_4_link()">교통약자 배려서비스</a></dt>
+                        </dl>
+                        <dl>
+                            <dt><a href="#" onclick="return m_com_cs12_1_5_link()">전철이용안내/지연증명</a></dt>
+                            <dd>&nbsp;</dd>
+                            <dt><a href="#" onclick="return m_com_cs12_7_1_link()">유실물</a></dt>
+                            <dd>&nbsp;</dd>
+                            <dt>
+                            
+								<a href="https://info.korail.com/mbs/www/jsp/voc/login" target="_blank">고객의소리 접수/조회</a>
+							
+							<!-- <li><a href="http://info.korail.com/mbs/www/jsp/voc/login" target="_blank">고객의소리 접수/조회</a> -->
+							</dt>
+                            <dd>&nbsp;</dd>
+                        </dl>
+                        <dl>
+                            <dt><a href="#" onclick="return m_com_cs12_3_1_link()">철도고객센터</a></dt>
+                            <dd>&nbsp;</dd>
+                            <dt><a href="#" onclick="return m_com_cs12_4_1_link()">광고안내</a></dt>
+                            <dd>&nbsp;</dd>
+                            <dt><a href="#" onclick="return m_com_cs12_5_2_link()">승차권 제휴할인 안내</a></dt>
+                            <dd>&nbsp;</dd>
+                        </dl>
+                        <dl>
+                            <dt><a href="#" onclick="return m_com_cs12_8_1_link()">예약보관금 반환 접수</a></dt>
+                            <dd>&nbsp;</dd>
+                            <dt><a href="#" onclick="return m_com_cs12_10_1_link()">암표 제보</a></dt>
+                            <dd>&nbsp;</dd>
+                        </dl>
+                    </div>
+                </div>
+            </div>
+
+            <div class="lnb_m06" onmouseover="selectSubMenu('lnb_s06')">
+                <h3 class="last" style="margin:19px 0 0 57px;"><a href="#" onclick="return m_menuPrd9_1_1_link()"><img src="/images/lnb_mu01_09.gif" alt="기차역 정보" onmouseover="selectSubMenu('lnb_s06')"/></a></h3>
+                <div class="lnb_s" id="lnb_s06" onmouseout="closeSubMenu('lnb_s06')">
+                    <div class="lnb_sm09">
+                        <dl class="first">
+                            <dt><a href="#" onclick="return m_menuPrd9_1_1_link()">기차역 안내</a></dt>
+                            <dd><a href="#" onclick="return m_menuPrd9_1_1_link()">KTX역</a></dd>
+                            <dd><a href="#" onclick="return m_menuPrd9_1_2_link()">일반철도</a></dd>
+                            <dd><a href="#" onclick="return m_menuPrd9_1_3_link()">광역철도</a></dd>
+                        </dl>
+                        <dl class="last">
+<!--15.11.07 ojs : 메뉴 삭제
+                            <dt><a href="#" onclick="return m_menuPrd9_2_1_link()">환승역 조회</a></dt>
+                            <dd>&nbsp;</dd>
+ -->
+                            <dt><a href="http://info.korail.com/mbs/www/subview.jsp?id=www_020110010000" target="_blank" >철도 노선안내</a></dt>
+                            <dd>&nbsp;</dd>
+                        </dl>
+                    </div>
+                </div>
+            </div>
+        </div><!-- //lnb -->
+    <!-- //header -->
+    </div>
+<div id="container">
+		<!-- container -->
+		<div id="contents"><!-- contents -->
+
+			<div class="content"><!-- content -->
+				<!-- title --><div class="s_visual 
+
+
+				tra12
+			">
+  
+	
+<p class="location"><a href='#' onclick="return m_main_prd_link();">홈</a> &gt; <a href="#" onclick="return m_com_cs12_1_1_link();">종합이용안내</a>
+
+	&gt; <a href="#" onclick="return m_com_cs12_1_1_link();">할인 및 부가서비스</a>
+	
+		  &gt; <a href="#" onclick="return m_com_cs12_1_1_link();">할인제도</a>
+	
+	
+
+
+
+
+</p>
+<h3 class="title" id="ebizPrdPageTitle">할인제도</h3>
+     
+</div><!-- //title -->
+				<!-- cont_info -->
+				<div class="cont_info cart">
+                	<div class="cont_info prd_pkg_certify">
+                    	<div class="tab">
+                        	<ul class="control control01">
+                            	<li class="first"><a id="ctr_tab_disc26" class="on" href="#tab_26">영업할인 공통안내</a></li>
+                            	<li><a id="ctr_tab_disc1" href="#tab_1">인터넷특가</a></li>
+                                <li><a id="ctr_tab_disc2" href="#tab_2">청소년 드림</a></li>
+                                <li><a id="ctr_tab_disc14" href="#tab_14">힘내라 청춘</a></li>
+                                <li><a id="ctr_tab_disc15" href="#tab_15">맘편한 코레일</a></li>
+                                <li class="first"><a id="ctr_tab_disc16" href="#tab_16">다자녀 행복</a></li>
+                                <li><a id="ctr_tab_disc20" href="#tab_20">기차누리</a></li>
+                                <li><a id="ctr_tab_disc6" href="#tab_6">공공할인</a></li>
+                                <li><a id="ctr_tab_disc25" href="#tab_25">모범납세자</a></li>
+                                <li><a id="ctr_tab_disc8" href="#tab_8">어린이, 유아 할인</a></li>
+                                <li class="first"><a id="ctr_tab_disc24" href="#tab_24">N카드(ITX-청춘)</a></li>
+                                <li ><a id="ctr_tab_disc27" href="#tab_27">N카드(KTX, 새마을)</a></li>
+                                <li><a id="ctr_tab_disc5" href="#tab_5">정기승차권</a></li>
+                                <li><a id="ctr_tab_disc9" href="#tab_9">입석, 자유석, 환승할인</a></li>
+                                <li><a id="ctr_tab_disc13" href="#tab_13">단체할인</a></li>
+                                <li  class="first" ><a id="ctr_tab_disc7" href="#tab_7">4인 동반석</a></li>
+                                
+                                
+                                
+                                
+                                <!-- <li ><a id="ctr_tab_disc18" href="#tab_18">넷이서 5만원</a></li> -->
+                                <!-- <li ><a id="ctr_tab_disc19" href="#tab_19">50% 파격특가</a></li> -->
+                                <!-- <li><a id="ctr_tab_disc10" href="#tab_10">셀프 티켓 할인쿠폰</a></li> -->
+                                <!-- <li><a id="ctr_tab_disc3" href="#tab_3">특실 할인</a></li> -->
+                                <!--
+                                 <li ><a id="ctr_tab_disc21" href="#tab_21">넷이서10민원</a></li>
+                                <li ><a id="ctr_tab_disc22" href="#tab_22">넷이서5만원</a></li>
+                                <li class="first"><a id="ctr_tab_disc23" href="#tab_23">369할인</a></li>
+                                 -->
+                                <!-- <li><a id="ctr_tab_disc11" href="#tab_11">가족愛카드</a></li> -->
+                                <!-- <li><a id="ctr_tab_disc17" href="#tab_17">사랑여행 KTX 묶음상품</a></li> -->
+                            </ul>
+                            <div class="tab_con">
+                                <div id="tab_26" style="display: block;">
+                                	<div class="cs-center">
+                                    	<ul>
+                                        	<li><span class="tbl-rcol" style="font-weight:bold;">(대상)</span> 인터넷 특가, 청소년 드림, 힘내라 청춘, 맘편한 KTX, 다자녀행복, 기차누리 할인</li>
+                                            <li><span class="tbl-rcol" style="font-weight:bold;">(이용방법)</span> 레츠코레일 홈페이지, 코레일톡 등에서 구매 가능 <br>
+                                                &nbsp; * 할인제도 별 상이(별도 안내 참고)
+                                            </li>
+                                            <li><span class="tbl-rcol" style="font-weight:bold;">(중복할인)</span> 다른 할인과 중복 적용 없음<br>
+	                                            &nbsp; * 영업할인 시 마일리지 적립 불가<br>
+	                                            &nbsp; * 단, 인터넷 특가의 경우 회원쿠폰, 지연할인증 이외에 다른 할인과 중복 적용 없음<br>
+	                                        </li>
+                                            <li><span class="tbl-rcol" style="font-weight:bold;">(기타안내)</span><br>
+	                                            &nbsp; * 할인이 적용된 승차권을 역 창구(고객센터)에서 변경 시 할인 취소<br>
+	                                            &nbsp; * 할인은 운임에만 적용하고 요금은 미적용<span class="tbl-rcol" style="font-weight:bold;">(특실/우등실은 운임, 요금으로 구분)</span>되며, 최저운임 이하로 할인하지 않음<br>
+	                                            &nbsp; * 기명식 승차권은 구입한 본인에 한하여 이용가능<span class="tbl-rcol" style="font-weight:bold;">(승차 시 신분증 제시)</span><br>
+                                                &nbsp; &nbsp; <span class="txt_org">※ 인터넷 특가, 맘편한 KTX 별도 안내 참고</span><br>
+	                                           	&nbsp; * 대상 상품은 열차별 공석 중 일부 좌석을 활용하는 상품으로 고객이 원하는 시간대에 운영되지 않을 수 있음<br><br>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    </div>                                                                         
+                                <div id="tab_1" style="display: none;">
+                                	<div class="cs-center">
+                                    	<ul>
+                                        	<li><span class="tbl-rcol" style="font-weight:bold;">(할인대상) </span>모든 KTX 이용객</li>
+                                            <li><span class="tbl-rcol" style="font-weight:bold;">(할인율)</span> KTX 열차별 승차율에 따라 <span class="tbl-rcol" style="font-weight:bold;">10~30%까지 할인</span><br />
+                                            &nbsp; * 회원쿠폰 이외에 <span class="tbl-rcol" style="font-weight:bold;">다른 할인과 중복 적용없음</span><br />
+                                            &nbsp; * 최저운임 이하로 할인하지 않음<br />
+                                             &nbsp; * 할인은 운임에만 적용하고 요금은 미적용<span class="tbl-rcol" style="font-weight:bold;">(특실/우등실은 운임, 요금으로 구분)</span><br/>
+                                            </li>
+                                            <li><span class="tbl-rcol" style="font-weight:bold;">이용방법</span><br />
+                                            &nbsp; * 출발  2 일전까지  <span class="tbl-rcol" style="font-weight:bold;">레츠코레일, 코레일톡</span>으로 할인대상열차 구매시 할인 가능<br />
+                                            &nbsp; * 할인이 적용된 승차권을 역 창구(고객센터)에서 변경시 할인 취소<br />                                            
+                                            </li>
+                                        </ul>
+                                        <p class="txt_org">※ 철도공사에서 정한 <strong>명절 특별 수송기간</strong>에는 운영하지 않습니다.</p>
+                                        <p class="txt_org">※ 이 상품은 열차별 승차율에 따라 운영하는 상품으로 <strong>고객이 원하는 시간대에 할인열차가 운행되지 않거나 할인좌석이 조기에 매진</strong>될 수 있으며, 할인율은 사전 공지없이 변경될 수 있습니다.</p>
+                                    </div>
+                                </div>
+                                <div id="tab_2" style="display: none;">
+                                	<div class="cs-center">
+                                    	<ul>
+                                        	<li><span class="tbl-rcol" style="font-weight:bold;">(할인대상) </span>코레일멤버십 회원 중 <span class="tbl-rcol" style="font-weight:bold;">24세까지 청소년 </span><br />
+                                        	&nbsp; * 청소년인증을 받은 경우에 이용 가능 <a onClick="fn_Youth_Chk();" href="#"  class="btn_gray"><span >인증하고 청소년드림 이용하기</span></a><br />
+                                        	</li>
+                                            <li><span class="tbl-rcol" style="font-weight:bold;">(할인율) </span>KTX 열차별 승차율에 따라 지정된 좌석을  <span class="tbl-rcol" style="font-weight:bold;">10~30%까지 할인</span><br />
+                                            &nbsp; * 다른 할인과 중복 적용없음<br />
+                                            &nbsp; * 할인은 운임에만 적용하고 요금은 미적용<span class="tbl-rcol" style="font-weight:bold;">(특실/우등실은 운임, 요금으로 구분)</span><br />
+                                            &nbsp; * 최저운임 이하로 할인하지 않음<br />
+                                            </li>
+                                            <li><span class="tbl-rcol" style="font-weight:bold;">이용방법</span><br />
+                                            &nbsp; * 출발 1일전까지  <span class="tbl-rcol" style="font-weight:bold;">레츠코레일, 코레일톡</span>으로 할인대상열차 구매시 할인 가능<br />
+                                            &nbsp; * 할인이 적용된 승차권을 역 창구(고객센터)에서 변경시 할인 취소<br />                                            
+                                            &nbsp; * 구입한 본인에 한하여 이용 가능(승차시 신분증 제시), 1인 1회 1매, 1일 2회, 1개월 8회 이용 가능<br />
+                                            &nbsp; * 할인승차권을 다른 사람이 이용하는 경우 할인금액 회수 및 추가로 부가운임을 수수하며, 할인승차권을 다른 사람에게 제공한 회원은 할인자격 정지<br />
+                                            </li>
+                                        </ul>
+                                        <p class="txt_org">※ 철도공사에서 정한 <strong>명절 특별 수송기간</strong>에는 운영하지 않습니다.</p>
+                                        <p class="txt_org">※ 이 상품은 열차별 승차율에 따라 운영하는 상품으로 <strong>고객이 원하는 시간대에 할인열차가 운행되지 않거나 할인좌석이 조기에 매진</strong>될 수 있으며, 할인율은 사전 공지없이 변경될 수 있습니다.</p>                                    </div>
+                                </div>   
+                                <div id="tab_3" style="display: none;">
+                                	<div class="cs-center">
+                                    	<ul>
+                                        	<li>KTX 특실 할인서비스는 코레일멤버십 회원이 <span class="tbl-bcol" style="font-weight:bold;">승차권을 예매시 추첨 </span>을 통하여  <span class="tbl-rcol"  style="font-weight:bold;">특실 이용요금의 50%할인</span> 을 받을 수 있는 서비스입니다.</li>
+                                            <li>승차권을 예매할 때 팝업을 통해 할인서비스를 안내하며 동의하는 경우에 할인서비스가 적용됩니다. </li>
+                                        </ul>
+                                        <p class="txt_org">* 이상품은 열차별 공석 중 일부 좌석을 활용하는 상품으로 고객이 원하는 시간대에 운영되지 않을 수 있습니다. </p>
+                                    </div> 
+                                </div> 
+                                <div id="tab_4" style="display: none;">
+                                	<div class="cs-center">
+                                		<p style="color:red; font-weight:bold;">※ 승차일 기준‘16.11.11일 이후 열차는 인터넷특가로 통합하여 운영합니다.</p><br />
+                                    	<ul>
+                                        	<li>KTX 열차의 승차율에 따라 운임을 <span class="tbl-rcol">최소 15%에서 최대 30%</span>까지 할인하여 드립니다.</li>
+                                            <li><span class="tbl-rcol">열차출발 1개월전부터</span>
+                                            <span class="tbl-rcol">2일전까지</span> 홈페이지 및 코레일톡에서 구입하실 수 있습니다.
+                                            	</li>
+                                            <li>코레일멤버십 회원이 스마트폰승차권, 홈티켓으로 <span class="tbl-rcol">‘즉시발권’</span>시에만 할인이 적용됩니다.</li>
+                                            <li>반환 또는 변경하는 경우 할인이 취소됩니다.</li>
+                                            <li>명절 대수송기간 및 공사에서 별도로 지정한 기간에는 이용하실 수 없습니다.</li>
+                                        </ul>
+                                        <p class="txt_org">* 이상품은 열차별 공석 중 일부 좌석을 활용하는 상품으로 고객이 원하는 시간대에 운영되지 않을 수 있습니다. </p>
+                                    </div>
+                                </div>   
+                                <div id="tab_5" style="display: none;">
+                                	<div class="cs-center">
+                                    	<ul>
+                                        	<li><span class="tbl-rcol" style="font-weight:bold;">(상품정의)</span> 지정한 승차구간을 유효기간 동안 1일 2회(왕복) 이용 가능하며 45%~60%까지 운임을 할인하여 드립니다.</li>
+                                        </ul>
+                                        <ul>
+                                        <li><span class="tbl-rcol" style="font-weight:bold;">(판매매체)</span> 홈페이지, 코레일톡 앱</li>
+                                        </ul>
+                                        <ul>
+                                        <li><span class="tbl-rcol" style="font-weight:bold;">(상품종류 및 할인율)</span>
+                                        <table class="tbl_h" summary="">
+                                        	<caption>정기승차권 할인율</caption>
+                                            <colgroup><col width="12%"><col width="12%"><col width="12%"><col width="10%"><col width="*"></colgroup>
+                                            <thead>
+                                            	<tr>
+                                                	<th colspan="3">정기승차권 종류</th>
+                                                    <th>할인율</th>
+                                                    <th>이용기준</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                            	<tr>
+                                                    <td rowspan="4">일반형</td>
+                                                    <td rowspan="2">어른</td>
+                                                    <td rowspan="1">10일용</td>
+                                                    <td> 45%</td>
+                                                    <td rowspan="4">◦유효기간 중 월요일부터 금요일까지 이용 가능 <br/>(단, 월~금요일 중의 공휴일을 제외함) <br/>*토～일·공휴일은 계산 일수에서 제외</td>
+                                                </tr>
+                                                <tr>
+                                                	<td>1개월용</td>
+                                                    <td>50%</td>
+                                                </tr>
+                                                <tr>
+                                                	<td rowspan="2">청소년</td>
+                                                    <td>10일용</td>
+                                                    <td rowspan="2">60%</td>
+                                                </tr>
+                                                <tr>
+                                                	<td>1개월용</td>
+                                                </tr>
+                                                <tr>
+                                                    <td rowspan="3">기간자유형</td>
+                                                    <td rowspan="2">어른</td>
+                                                    <td rowspan="1">10일~20일</td>
+                                                    <td> 45%</td>
+                                                    <td rowspan="3">◦10일 이상의 이용기간과 주중 이용, 휴일 포함 이용 여부를 고객이 직접 선택 가능 <br/>*휴일 이용시, 휴일 일수만큼 운임 계산 일수에 포함
+                                                </tr>
+                                                <tr>
+                                                	<td>21일~1개월</td>
+                                                    <td>50%</td>
+                                                </tr>
+                                                <tr>
+                                                	<td>청소년</td>
+                                                    <td>10일~1개월</td>
+                                                    <td>60%</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                        </li>
+                                        </ul>
+                                        <ul>
+                                       	  <li><span class="tbl-rcol" style="font-weight:bold;">(이용방법)</span><br/>
+                                       	  &nbsp; - 정기승차권은 기명식 승차권으로 승차권에 표기된 고객에 한하여 이용하셔야 합니다.<br />
+                                       	  &nbsp; - 정기승차권에 표시된 승차구간(같은 경로)을 운행하는 같은 등급의 열차를 입석 또는 자유석으로 이용합니다.(관광전용열차는 이용할 수 없습니다.)<br />
+                                       	  &nbsp;&nbsp; * 열차등급 : KTX(KTX산천 포함) > ITX-마음, ITX-새마을, 새마을호 > 누리로, 무궁화호<br />
+                                       	  &nbsp;&nbsp; * 정기승차권의 승차구간이라 함은 실제 승차하는 경로에 의하므로 수원, 구포역 등을 경유하는 KTX 정기승차권으로 운임이 다른 구간을 운행하는 KTX의 승차는 불가합니다.<br />
+                                       	  &nbsp; - 이용시작 5일 전부터 구매할 수 있습니다.<br />
+                                       	  &nbsp; - 정기승차권을 소지하지 않은 경우에는 출발역에서 승차할 열차의 5분 전까지 공공기관에서 발행한 신분증을 제시하고 정기승차권 발급확인서를 청구할 수 있으며 발급확인서는 정기승차권 이용기간에 따라 2회(10일), 4회(11~20일), 6회(21일~1개월)로 발급을 제한합니다.<br />
+                                       	  </li>
+                                       	  
+                                          <li><span class="tbl-rcol" style="font-weight:bold;">(환불기준)</span><br/>
+                                          &nbsp; - 유효기간 시작일 이전 : 최저위약금(400원)<br />
+                                          &nbsp; - 유효기간 시작일 이후 : 승차구간의 기준운임과 청구 당일 까지의 사용횟수(1일 2회)를 곱한 금액 및 최저위약금(400원)을 공제한 잔액을 환불합니다.<br />
+                                          </li>
+                                          <li><span class="tbl-rcol" style="font-weight:bold;">(부가운임 징수)</span><br/>
+                                          &nbsp; - 정기승차권의 위․ 변조, 유효기간 경과, 타인에게 전송하여 사용 등으로 부정사용한 경우 철도사업법 제10조에 의하여 해당 구간의 기준운임 및 그 30배 이내에 해당하는 금액을 부가운임으로 수수합니다.<br />
+                                          &nbsp; - 이용자는 철도종사자의 정기승차권 정당사용자 확인 요구에 응하여야 하며 정당한 사용자임을 증명하지 못하는 경우 부가운임을 수수합니다.<br />
+                                          &nbsp; - 이용자가 정기승차권 발급확인서 또는 분실확인서로 부정사용한 경우 부가운임을 수수합니다.<br />
+                                          &nbsp; - 부가운임을 받은 경우 정기승차권을 부정사용하게 하거나 부정사용하도록 한 사람에게는 부정 사용한 정기승차권의 유효기간 종료일로부터 6개월간 정기승차권 판매를 제한할 수 있습니다.<br />
+                                          </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div id="tab_6" style="display: none;">
+                                	<div class="cs-center">
+									<h5>장애인 (장애의 정도가 심한 장애인은 보호자 1명포함)</h5>
+									<table class="tbl_h" summary="이용대상은 가족(희망할 경우 친인척 포함), 이용인원은 2~8명, 유효기간은 1년, 연회비는 46,000원을 나타냄">
+									<colgroup><col width="25%"><col width="25%"><col width="25%"><col width="*"></colgroup>
+									<thead>
+										<tr>
+											<th>구분</th>
+											<th>KTX</th>
+											<th>새마을호(ITX-새마을)</th>
+											<th>무궁화호(누리로) 이하</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr>	
+											<td>장애의 정도가 심한 장애인</td>
+											<td>50%</td>
+											<td>50%</td>
+											<td rowspan=2>50%</td>
+										</tr>
+										<tr>	
+											<td>장애의 정도가 심하지 않은 장애인</td>
+											<td>30% (토·일·공휴일 제외)</td>
+											<td>30% (토·일·공휴일 제외)</td>
+										</tr>										
+									</tbody>
+									</table>   
+									<span>&nbsp; ※ (근거) 장애인 복지법 및 동법 시행령(보건복지부)</span>
+									<h5>국가유공자(상이) : 6회까지 무임으로 이용할 수 있으며, 6회 초과 시 부터는 운임의 50% 할인</h5>
+									<span>&nbsp; ※ 독립유공자와 상이등급 1~2등급은 동반보호자 1명 포함</span><br/>
+                                    <span>&nbsp; ※ 6회 무임은 해당 연도의 승차일 기준으로 적용</span><br/>
+                                    <span style="padding-left:15px;">&nbsp;    (예시 : 2021년 6회 무임은 2021년 1월1일~12월31일 출발하는 열차에 적용 가능)</span><br/>
+                                    <span>&nbsp; ※ (근거) 국가유공자 등 예우 및 지원에 관한 법률 등(국가보훈처)</span>
+									<h5>경로 </h5>
+									<table class="tbl_h" summary="이용대상은 가족(희망할 경우 친인척 포함), 이용인원은 2~8명, 유효기간은 1년, 연회비는 46,000원을 나타냄">
+									<colgroup><col width="25%"><col width="25%"><col width="25%"><col width="*"></colgroup>
+									<thead>
+										<tr>
+											<th>구분</th>
+											<th>KTX</th>
+											<th>새마을호(ITX-새마을)</th>
+											<th>무궁화호(누리로) 이하</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr>	
+											<td>노인</td>
+											<td>30% (토&middot;일&middot;공휴일 제외)</td>
+											<td>30% (토&middot;일&middot;공휴일 제외)</td>
+											<td>30% (통근열차 50%)</td>
+										</tr>
+									</tbody>
+									</table> 
+									<span>&nbsp; ※ (근거) 노인복지법 시행령(보건복지부)</span> 
+									<h5>공공할인은 영업할인(인터넷 특가 등) 과 중복할인이 되지 않습니다. </h5>
+                                    </div>
+                                </div>                             
+                                <div id="tab_7" style="display: none;">
+                                	<div class="cs-center">
+                                    	<ul>
+                                            <li><span class="tbl-rcol" style="font-weight:bold;">(할인대상)</span> 코레일멤버십 회원 누구나</li>
+                                            <li><span class="tbl-rcol" style="font-weight:bold;">(할인율)</span> 코레일톡 및 홈페이지에서 구매 시 열차별 승차율 및 예매시점에 따라 어른은 15∼35%까지 할인되며, 어린이 또는 유아가 함께 이용할 경우 어린이(6세~13세 미만)는 어린이 할인, 유아(만 6세 미만)는 동반 유아 좌석 지정 할인이 적용됩니다.<br/>
+                                            	<!-- &nbsp; *'다자녀 행복'등록 회원이 이용 시 어른은 50% 단일 할인 적용 --></li>
+                                            <li><span class="tbl-rcol" style="font-weight:bold;">(이용방법)</span> 4인 동반석의 동반 유아 좌석 지정 할인은 1세트(SET) 당 2명으로 제한됩니다.</br>
+                                            	* 4인 동반석은 KTX, KTX-산천 열차의 마주보고 앉아가는 4인 동반석을 4인(4좌석)이 이용하는 경우 한 장의 승차권(1세트)으로 판매하며, 1회 1세트, 열차당 최대 2세트까지 구입 가능합니다.<br/>
+                                            	<span class="tbl-rcol">※ 구매한 동반석 세트 승차권과 다른 조건(인원수, 연령)임에도 해당 세트 승차권을 이용하여 승차하는 경우 부정승차로서 할인금액 회수 및 10배의 부가운임을 수수하므로, 조건 변경 시에는 해당 세트 승차권을 반환하고 새로운 조건에 맞는 승차권으로 구매하여야 합니다.<br/>
+                                            	※ 코레일톡 및 레츠코레일 홈페이지에서 구입한 승차권을 역 창구에서 변경 시 할인이 취소될 수 있습니다.</span></li>
+                                        </ul>
+                                            <p class="txt_org">※ 4인 동반석 할인은 열차별 승차율 및 예매시점에 따라 운영되며, 고객이 원하는 시간대에 할인열차가 운행되지 않거나, 할인율이 사전 공지 없이 변경될 수 있으며, 열차 출발 24시간 전부터 낱장의 승차권으로 판매됩니다.</p>
+                                    </div>
+                                </div> 
+                                <div id="tab_8" style="display: none;">
+                                	<div class="cs-center">
+                                    	<!-- <ul>
+                                            <li>만 6세 미만의 유아는 어른 1명당 1명까지 별도의 좌석 지정없이 보호자가 동반하여 승차할 수 있습니다.</li>
+                                            <li>좌석을 지정하거나 어른 1명당 유아 1명을 초과하여 이용하는 경우에는 유아 승차권을 구매하셔야 합니다.</li>
+                                        </ul> -->
+                                        <h5>어린이</h5>
+                                        <ul>
+	                                        	<li>6세 이상 13세 미만 어린이는 운임의 50%를 할인합니다.</li>
+	                                        </ul>
+	                                         <h5>유아할인</h5>
+                                        <ul>
+	                                        	<li>6세 미만의 유아는 어른 1명당 1명까지 별도의 좌석 지정없이 보호자가 동반하여 승차할 수 있습니다.</li>
+	                                        	<li>동반한 유아의 좌석을 지정하거나 어른 1명당 유아 1명을 초과하여 이용하는 경우에는 유아 승차권(운임의 75% 할인)을 구매하셔야 합니다.</li>
+	                                        </ul>
+                                    </div>
+                                </div>   
+                                <div id="tab_9" style="display: none;">
+                                	<div class="cs-center">
+	                                	<h5>입석할인</h5>
+	                                    	<ul>
+	                                        	<li>(입석승차권) 이용하고자 하는 구간의 좌석이 모두 판매된 경우 고객의 이용동의를 받아 좌석을 지정하지 않고 발매하는 승차권입니다.</li>
+	                                            <li>KTX, 일반열차 모두 일반실 좌석운임의 15%를 할인합니다.</li>
+	                                            <li>입석 이용 시 해당 호차에 승차해야 하며, 입석 승차권은 전화반환, 분실재발매, 전달하기가 불가합니다.</li>
+	                                        </ul>
+	                                	<h5>자유석할인</h5>
+											<ul>
+	                                        	<li>월～금요일(공휴일 제외) 출ㆍ퇴근시간대 자유석 운영 객실을 이용할 수 있으며, 좌석을 지정하지 않는 승차권입니다.</li>
+	                                            <li>자유석 객실에는 정기승차권 소지 고객도 함께 승차할 수 있으며, 이용객이 많은 일부 열차는 입석으로 이용할 수 있습니다.</li>
+	                                            <li>자유석 운임은 일반실 좌석운임의 5%를 할인합니다. </li>
+	                                            <li>자유석 이용 시 해당 호차에 승차해야 하며, 자유석 승차권은 전화반환, 분실재발매, 전달하기가 불가합니다. </li>
+	                                        </ul>
+	                                	<h5>환승할인</h5>
+                                    	<ul>
+                                        	<li>KTX가 정차하지 않는 역으로 여행하는 고객을 위한 할인제도입니다.</li>
+                                            <li>KTX와 일반열차(ITX-마음, ITX-새마을, 새마을호, 무궁화호)를 상호 갈아타고 여행하는 경우 <span class="tbl-rcol">일반열차 운임의 30%에 해당하는 운임을 할인</span>하여 드립니다.</li>
+                                            <li>환승할인은 <span class="tbl-rcol">10분~50분이내에 출발</span>하는 열차로 환승시 적용됩니다. </li>
+                                            <li>환승할인 승차권은 홈페이지(www.letskorail.com), 코레일앱(App), 자동발매기, 역창구에서 구입하실 수 있으며, <span class="tbl-rcol">한 장의 승차권으로 미리 구매</span>하셔야 할인이 적용됩니다.</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div id="tab_10" style="display: none;">
+                                	<div class="cs-center">
+                                    	<ul>
+                                        	<li>셀프티켓을 이용하면 추첨을 통해 10% 할인쿠폰을 제공해드립니다.(구입즉시 당첨결과 확인)</li>
+                                            <li>코레일멤버십 회원은 승차종료 익일부터 홈페이지 마이페이지에서 	할인쿠폰을 확인하실 수 있습니다.</li>
+                                            <li>할인쿠폰은 당첨된 승차권의 <span class="tbl-rcol">승차일 익일부터 3개월</span>간 유효합니다.</li>
+                                            <li><span class="tbl-rcol">당첨된 승차권을 반환·변경하거나 역창구에서 재발권하는 경우 할인쿠폰은 취소</span>됩니다.</li>
+                                            <li>할인쿠폰은 타할인과 중복되지 않으며 1인에 한하여 1회 운임할인(특실 등 요금제외)이 적용됩니다.</li>
+                                            <li>최저운임 이하로 할인되지 않습니다.</li>
+                                        </ul>
+                                    </div>
+                            	</div>
+                                <div id="tab_11" style="display: none;">
+                                	<div class="cs-center">
+                                    	<h5>가족愛카드는 일반열차 운임의 20%할인과 KTX가족석 우선예약 및 40%할인 혜택을 제공하는 가족단위 여행객을 위한 상품입니다.</h5>
+                                        <table class="tbl_h" summary="이용대상은 가족(희망할 경우 친인척 포함), 이용인원은 2~8명, 유효기간은 1년, 연회비는 46,000원을 나타냄">
+                                        	<caption>가족愛카드 소개 표</caption>
+                                            <colgroup><col width="25%"/><col width="25%"/><col width="25%"/><col width="*"/></colgroup>
+                                            <thead>
+                                            	<tr>
+                                                    <th scope="row">이용대상</th>
+                                                    <th scope="row">이용인원</th>
+                                                    <th scope="row">유효기간</th>
+                                                    <th scope="row">연회비</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>가족<br/>(직계존·비속, 배우자, 형제자매)<br/>회원이 희망할 경우<br/>친인척 포함가능</td>
+                                                    <td>2명~8명</td>
+                                                    <td>사용개시일로부터 1년</td>
+                                                    <td>46,000원</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                        <h5>카드구입</h5>
+                                        <table class="b-list" style="border:none;width:100%;text-align:center;">
+                                            <caption>카드 구입</caption>
+                                            <tbody>
+                                            	<tr>
+                                                	<td style="border:1px solid #D6DBE1;padding:5px;">코레일 멤버십<br />회원가입</td>
+                                                    <td rowspan="2" style="padding:10px;">☞</td>
+                                                    <td style="border:1px solid #D6DBE1;padding:5px;">카드신청<br />(가족등록, 연회비결제)</td>
+                                                    <td rowspan="2" style="padding:10px;">☞</td>
+                                                    <td style="border:1px solid #D6DBE1;padding:5px;">증명서 제출</td>
+                                                    <td rowspan="2" style="padding:10px;">☞</td>
+                                                    <td style="border:1px solid #D6DBE1;padding:5px;">카드발급</td>
+                                                </tr>
+                                                <tr>
+                                                	<td style="border:1px solid #D6DBE1;padding:5px;background:#EDF1F5;">홈페이지</td>
+                                                    <td style="border:1px solid #D6DBE1;padding:5px;background:#EDF1F5;">홈페이지<br />(사용시작 7일전부터)</td>
+                                                    <td style="border:1px solid #D6DBE1;padding:5px;background:#EDF1F5;">역<br />(사용개시일까지)</td>
+                                                    <td style="border:1px solid #D6DBE1;padding:5px;background:#EDF1F5;">역</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                        <ul>
+                                        	<li>사용시작 7일전부터 홈페이지에서 카드를 신청하실 수 있습니다.</li>
+                                            <li>가족愛카드 신청후 사용시작일까지 역에 증빙자료(회원과 가족임을 증명할 수 있는 자료)를 제시하고 카드를 발급받으시기 바랍니다. 증빙자료를 제출하지 않으시면 자동 취소됩니다.<br />* 증빙자료 : 회원과 카드에 등록한 사람이 가족임을 증명할 수 있는 가족관계증빙자료, 신청확인증(홈페이지 출력) 또는 신청회원의 신분증<br />* 가족관계증빙자료 : 가족관계증명서, 주민등록등본, 제적등본, 의료보험증 등 공공기관에서 발급하는 증명서</li>
+                                        </ul>
+                                        <h5>카드변경 &middot; 취소 &middot; 반환</h5>
+                                        <ul>
+                                        	<li>새로운 가족 추가 등 등록가족을 변경하고자 하실때에는 홈페이지에서 가족변경 신청 후 역에 변경된 가족에 대한 가족관계증빙자료를 제시하고 카드를 재발급 받으시기 바랍니다.</li>
+                                            <li>카드발급 전까지 홈페이지에서 카드 신청을 취소할 수 있습니다.</li>
+                                            <li>카드를 발급받으신 후에는 가족愛카드를 이용해 할인받은 총금액과 최저 환불 위약금(400원)를 뺀 나머지 금액을 반환받으실 수 있습니다.</li>
+                                            <li>사용실적이 없는 경우에는 최저 환불 위약금(400원)을 뺀 나머지 금액을 반환받으실 수 있습니다.</li>
+                                            <li>카드에 표기된 유효기간을 지나서는 카드 구입금액을 반환받으실 수 없습니다.</li>
+                                        </ul>
+                                        <h5>분실재발급</h5>
+                                        <ul>
+                                        	<li>카드를 분실한 경우에는 역에 방문하여 재발급 받으시기 바랍니다. 재발급시에는 최저수수료(400원)가 부가됩니다.</li>
+                                        </ul>
+                                        <h5>이용혜택</h5>
+                                        <ul>
+                                        	<li>카드에 등록된 2인 이상의 가족이 함께 일반열차를 이용하는 경우 운임의 20%를 할인받으실 수 있습니다.<br />* 환승승차권(KTX와 ITX-새마을, 새마을호,누리로,무궁화호를 상호 갈아타는 승차권)은 할인대상에서 제외됩니다.<br />* 입석할인 외 타할인과 중복 적용하지 않으며, 최저운임구간은 할인에서 제외됩니다.<br />* 설, 추석 등 대수송기간에는 이용하실 수 없습니다.</li>
+                                            <li>KTX가족석을 열차출발 1개월전부터 3일전까지 우선 구입할 수 있는 혜택이 제공되며, 어른기준 운임의 40%를 할인하여 드립니다.<br />* 열차출발 2일전부터는 일반고객도 KTX가족석을 구입할수 있습니다.<br />* 다른할인과 중복 적용하지 않습니다.<br />* 설, 추석 등 대수송기간에는 이용하실 수 없습니다. </li>
+                                        </ul>
+                                        <h5>일반열차 할인승차권 이용방법</h5>
+                                        <ul>
+                                        	<li>할인승차권에 표기된 가족 외 다른 가족이 이용하고자 할 경우에는 역에서 승차자를 변경하시고 열차를 이용하시기 바랍니다. </li>
+                                            <li>가족愛카드로 구입한 할인승차권과 이용시간이 겹치는 열차의 할인승차권은 구입하실 없습니다.</li>
+                                            <li>신분증과 가족愛카드를 휴대하여 주시고, 승무원의 승차권 및 신분확인 요청시 제시하여 주시기 바랍니다.</li>
+                                        </ul>
+                                        <h5>KTX가족석 이용방법</h5>
+                                        <ul>
+                                        	<li>가족석은 어른 4인 이용을 기준으로 세트(한장의 승차권)로 판매합니다.<br />* 3인이하 가족 또는 어린이 이용에 따른 차액을 반환하지 않습니다.</li>
+                                            <li>KTX가족석은 열차당 최대 2세트까지 구입하실 수 있습니다.</li>
+                                            <li>가족愛카드로 구입한 KTX가족석과 이용시간이 겹치는 열차의 KTX가족석을 구입하실 수 없습니다.</li>
+                                            <li>신분증과 가족愛카드를 휴대하여 주시고, 승무원의 승차권 및 신분확인 요청시 제시하여 주시기 바랍니다.</li>
+                                        </ul>
+                                        <h5>카드이용 자격상실</h5>
+                                        <ul>
+                                        	<li>카드를 신청한 회원이 코레일멤버십 가입 및 이용에 관한 약관 제8조, 9조에 의거 코레일멤버십 탈회하거나 또는 회원자격을 상실한 경우 가족愛카드를 사용하실 수 없습니다.</li>
+                                        </ul>
+                                    </div>
+                            	</div>
+                                <div id="tab_13" style="display: none;">
+                                	<div class="cs-center">
+                                    	<ul>
+                                            <li>10명 이상의 단체로 여행을 하고자 하는 고객이 좌석구입시 운임의 10%를 할인하여 드립니다. <br />* 타 할인과 중복 적용하지 않으며, 유리한 할인율을 적용합니다.<br /><span class="tbl-rcol">* 열차별로 판매 좌석수는 한정되어 있습니다.</span></li>
+                                            <li>단체할인 승차권은 예약과 동시에 결제를 완료하셔야 합니다.</li>
+                                            <li>승차변경으로 운임 및 요금 반환이 발생하는 경우 환불 위약금을 징수합니다.</li>
+                                        </ul>
+                                        <h5>지역테마열차</h5>
+                                        <ul>
+                                        	<li>지역테마열차는 단체의 원활한 이동을 위하여 열차 전체를 빌리는 전세열차입니다.</li>
+                                        	<li>신청기한 : 운행월 기준 2개월 전 10일자까지</li>
+                                        	<li>문의처 : 각 지역 여행센터  </li>
+                                        </ul>
+                                    </div>
+                                </div>                            	                            	
+                                <div id="tab_14" style="display: none;">
+                                	<div class="cs-center">
+                                    	<ul>
+                                        	<li><span class="tbl-rcol" style="font-weight:bold;">(할인대상) </span>코레일멤버십 회원 중 <span class="tbl-rcol" style="font-weight:bold;">25~33세까지 청년 </span><br />
+                                        	&nbsp; * 청년 인증을 받은 경우에 이용 가능 <span style="padding-top:5px;"><a href='/korail/com/mypage/edit.do' target="_self" class="btn_gray"><span >인증하고 힘내라 청춘 이용하기</span></a></span><br />
+                                        	</li>
+                                            <li><span class="tbl-rcol" style="font-weight:bold;">(할인율) </span> KTX 열차별 승차율에 따라 지정된 좌석을  <span class="tbl-rcol" style="font-weight:bold;">10~40%까지 할인</span><br />
+                                            &nbsp; * 다른 할인과 중복 적용없음<br />
+                                            &nbsp; * 최저운임 이하로 할인하지 않음<br />
+                                            &nbsp; * 할인은 운임에만 적용하고 요금은 미적용<span class="tbl-rcol" style="font-weight:bold;">(특실/우등실은 운임, 요금으로 구분)</span><br />
+                                            </li>
+                                            <li><span class="tbl-rcol" style="font-weight:bold;">이용방법</span><br />
+                                            &nbsp; * 출발 1일전까지 레츠코레일, 코레일톡으로 할인대상열차 구매시 할인 가능<br />
+                                            &nbsp; * 할인이 적용된 승차권을 역 창구(고객센터)에서 변경시 할인 취소<br />                                            
+                                            &nbsp; * 구입한 본인에 한하여 이용 가능(승차시 신분증 제시), 1인 1회 1매, 1일 2회, 1개월 8회 이용 가능<br />
+                                            &nbsp; * 할인승차권을 다른 사람이 이용하는 경우 할인금액 회수 및 추가로 부가운임을 수수하며, 할인승차권을 다른 사람에게 제공한 회원은 할인자격 정지<br />
+                                            </li>
+                                        </ul>
+                                        <p class="txt_org">※ 철도공사에서 정한 <strong>명절 특별 수송기간</strong>에는 운영하지 않습니다.</p>
+                                        <p class="txt_org">※ 이 상품은 열차별 승차율에 따라 운영하는 상품으로 <strong>고객이 원하는 시간대에 할인열차가 운행되지 않거나 할인좌석이 조기에 매진</strong>될 수 있으며, 할인율은 사전 공지없이 변경될 수 있습니다.</p>                                    </div>
+                                </div>
+                                <div id="tab_15" style="display: none;">
+                                	<div class="cs-center">
+                                    	<ul>
+                                        	<li><span class="tbl-rcol" style="font-weight:bold;">(할인대상) </span>코레일멤버십 회원 중 <span class="tbl-rcol" style="font-weight:bold;">임산부, 임산부와 함께 동행하는 동반인 1명(임산부 동행 없이 동반인 단독 승차 불가)</span><br />
+                                        	&nbsp; * 정부24(<a href="https://www.gov.kr" target="blank" class="txt_blu02"> https://www.gov.kr</a>) 홈페이지 맘편한임신 원스톱서비스를 통해 온라인 신청가능(마이페이지/할인등록서비스 내역 참조)<br />
+                                        	&nbsp; * 역 창구에서 임신확인서(또는 임신진단서_사본 가능), 신분증(주민등록증, 운전면허증, 여권 등)을 제시하고 등록 ☞ 대리 등록도 가능<br />
+                                        	&nbsp; * 할인기간은 출산예정일+1년까지 가능(출산이후 1년이내 맘편한 코레일 이용등록 시에는 가족관계증명서, 주민등록등본 등 관공서에서 발급한 서류의 출생일을 출산예정일로 간주함) <br />
+                                        	</li>
+                                            <li><span class="tbl-rcol" style="font-weight:bold;">(할인율)</span><br />
+                                            &nbsp; ① KTX 특/우등실 요금 면제(일반실 가격으로 제공)<br />
+                                            &nbsp; ② KTX 일반실 운임 40% 할인<br />
+                                            &nbsp; ③ 일반열차* 운임 40% 할인<br />
+                                            &nbsp; * 새마을, ITX-새마을, ITX-마음, 무궁화호, 누리로, ITX-청춘<br />
+                                            &nbsp; ※ 다른 할인과 중복 적용 없음, 동반인이 어린이, 동반유아일 경우 어린이, 동반유아 할인 적용, 최저운임 이하 할인 없음 <br />
+                                            </li>
+                                            <li><span class="tbl-rcol" style="font-weight:bold;">이용방법</span><br />
+                                            &nbsp; * 열차출발 1개월전부터 20분전까지 레츠코레일 홈페이지, 코레일톡, 역창구에서 할인대상열차 구매 시 할인 가능<br />
+                                            &nbsp; * 할인이 적용된 승차권을 역 창구(고객센터)에서 변경시 할인 취소<br />                                            
+                                            &nbsp; * 구입한 본인과 동반인 1명에 한하여 이용 가능(승차시 신분증 제시), 1인 1회 2매, 1일 2회, 1개월 8회 이용 가능<br />
+                                            &nbsp; * 할인승차권을 다른 사람이 이용하는 경우 할인금액 회수 및 추가로 부가운임을 수수하며, 할인승차권을 다른 사람에게 제공한 회원은 할인자격 정지<br />
+                                            </li>
+                                        </ul>
+                                        <p class="txt_org">※ 철도공사에서 정한 <strong>명절 특별 수송기간</strong>에는 운영하지 않습니다.</p>
+                                        <p class="txt_org">※ 일부 시간대의 경우 수요 집중에 따른 조기 매진으로 할인 좌석 구매가 어려울 수 있습니다.</p>                                    </div>
+                                </div>
+                                <div id="tab_16" style="display: none;">
+                                	<div class="cs-center">
+                                    	<ul>
+                                            <li><span class="tbl-rcol" style="font-weight:bold;">(인증방법) </span>온라인과 오프라인으로 신청 가능</span><br />
+                                            &nbsp;1. 온라인<br/>
+                                                &nbsp;&nbsp;가. 정부24(<a href='https://www.gov.kr/portal/onestopSvc/happyBirth' target="_blank">https://www.gov.kr/portal/onestopSvc/happyBirth</a>)를 통한 신청<br/>
+                                                &nbsp;&nbsp;나. 코레일 홈페이지(<a href='/ebizcom/cs/guide/discount/discount01.do' target="_blank">https://www.letskorail.com/ebizcom/cs/guide/discount/discount01.do</a>) 접속 후 다자녀 행복 선택<br/>
+                                            &nbsp;2. 오프라인<br/>
+                                            &nbsp;&nbsp;가. 전국 읍면동 행정복지센터<br/>
+                                            </li>
+                                        	<li><span class="tbl-rcol" style="font-weight:bold;">(할인대상) </span>코레일멤버십 회원 중 25세 미만 자녀 2명 이상을 둔 회원</span><br />
+                                        	&nbsp; * [다자녀행복 가족정보 인증하기]에서 부모 중 1명의 회원번호로 접속하여 인증 절차를 진행하여 주시기 바랍니다. <span style="padding-top:5px;"><a href='/ebizprd/EbizComMypageManyKidsReq2.do' target="_self" class="btn_gray"><span >다자녀행복 가족정보 인증하기</span></a></span><br />
+                                        	&nbsp; * 다자녀 가정 인증 절차가 완료된 경우, 별도 증빙서류 제출 또는 역방문 없이 ‘다자녀 행복’ 할인승차권 구매가 가능합니다.<br />
+                                        	&nbsp; * 다만, 다자녀행복 가족정보 온라인에서 인증이 되지 않은 경우(가족구성원이 주소를 달리거나, 주민등록등본상 표시되지 않을 경우 등)는 가까운 읍면동 행정복지센터를 방문하여 출산서비스 통합처리 신청서를 통해 신청하여 주시기 바랍니다.<br />
+                                        	</li>
+                                            <li><span class="tbl-rcol" style="font-weight:bold;">(할인율) </span> 열차별 승차율에 따라 등록 가족 중 최소 3명이상(어른 1명 포함)이 이용하여야 하며, KTX열차 승차 시 2자녀 가정은 30%, 3자녀 가정은 50% 운임을 할인합니다.<br />
+                                            &nbsp; * 다른 할인과 중복 적용없음<br />
+                                            &nbsp; * 최저운임 이하로 할인하지 않음<br />
+                                            &nbsp; * 할인은 운임에만 적용하고 요금은 미적용<span class="tbl-rcol" style="font-weight:bold;">(특실/우등실은 운임, 요금으로 구분)</span><br />
+                                            <!--
+                                            &nbsp; * 승차일 기준 ‘16.11.10일까지 출발하는 열차는 이용인원에 따라 할인율이 다르게 적용(3~4명 20%, 5명 이상 30%)<br />
+                                             -->
+                                            </li>
+                                            <li><span class="tbl-rcol" style="font-weight:bold;">이용방법</span><br />
+                                            &nbsp; * 열차출발 1개월전부터 20분전까지 레츠코레일 홈페이지, 코레일톡, 역창구에서 할인대상 열차 구매 시 할인 가능<br />
+                                            &nbsp; * 할인이 적용된 승차권을 역 창구(고객센터)에서 변경시 할인 취소<br />                                            
+                                            &nbsp; * 1개월 8회 이용 가능<br />
+                                            &nbsp; * 등록된 가족 이외에 다른 사람이 이용하는 경우 할인금액 회수 및 추가로 부가운임을 수수하며, 할인승차권을 다른 사람에게 제공한 회원은 할인자격 정지<br />
+                                            &nbsp; * 역창구에서 다른 승차권으로 변경되지 않으며 환불 신청 후 재구매해야 함<br />
+                                            </li>
+                                        </ul>
+                                        <p class="txt_org">※ 철도공사에서 정한 <strong>명절 특별 수송기간</strong>에는 운영하지 않습니다.</p>
+                                        <p class="txt_org">※ 이 상품은 열차별 승차율에 따라 운영하는 상품으로 <strong>고객이 원하는 시간대에 할인열차가 운행되지 않거나 할인좌석이 조기에 매진</strong>될 수 있으며, 할인율은 사전 공지없이 변경될 수 있습니다.</p>                                    </div>
+                                </div>
+                                <div id="tab_17" style="display: none;">
+                                	<div class="cs-center">
+                                    	<ul>
+                                        	<li><span class="tbl-rcol" style="font-weight:bold;">(할인대상) 7일 이내의 동일한 왕복 여정</span>을 함께 이용하는<span class="tbl-rcol" style="font-weight:bold;"> 2인~9인</span>의 코레일멤버십 고객</li>
+                                        	<li><span class="tbl-rcol" style="font-weight:bold;">(대상열차) 아침 일찍 또는 저녁 늦게 운행하는 KTX</span> 중 <span class="tbl-rcol" style="font-weight:bold;">별도 지정된 열차</span></li>
+                                            <li><span class="tbl-rcol" style="font-weight:bold;">(할인율) </span><span class="tbl-rcol" style="font-weight:bold;"> 일반실 운임의 50%(추가 특실요금 제외)</span></li>
+                                            
+                                            <li><span class="tbl-rcol" style="font-weight:bold;">(이용방법) 출발 1개월전 ~ 출발 1일전</span>까지 <span class="tbl-rcol" style="font-weight:bold;">코레일톡, 레츠코레일 홈페이지, 역</span>에서 구매 <br />
+                                            
+                                            &nbsp; * 할인된 승차권을  고객센터에서 변경하는 경우 할인이 취소됨<br />
+                                            
+                                            &nbsp; (할인을 적용받으려면 코레일톡, 레츠코레일 홈페이지, 역에서 출발 1일전까지 취소 후 다시 구입하여야 함)<br />
+                                            
+                                            &nbsp; * 높은 할인율이 적용된 특가상품으로<span class="tbl-rcol" style="font-weight:bold;"> 아래의 별도 환불 위약금 기준이 적용</span>됨
+                                            <table class="tbl_h">
+											<caption>정기승차권 할인율</caption>
+											<colgroup><col width="*"><col width="11%"><col width="11%"><col width="13%"><col width="13%"><col width="11%"><col width="11%"><col width="11%"></colgroup>
+											  <thead>
+											  <tr>
+											    <th rowspan=2>매체</th>
+											    <th rowspan=2>2일이전</th>
+											    <th rowspan=2>1일전</th>
+											    <th rowspan=2>당일~1시간전</th>
+											    <th rowspan=2>1시간~출발전</th>
+											    <th colspan="3">왕편 열차 출발 후</th>
+											  </tr>
+											  <tr>
+											    <th class="bdl_on">20분전까지</th>
+											    <th>60분이내</th>
+											    <th>도착역<br />도착시간전</th>
+											  </tr>
+											  </thead>
+											  <tbody>
+											  <tr>
+											    <td>역,전화반환</td>
+											    <td>400원</td>
+											    <td rowspan=2>10%</td>
+											    <td rowspan=2 colspan=2>20%</td>
+											    <td colspan="3" rowspan=2>70%</td>
+											  </tr>
+											  <tr>
+											  	<td>인터넷(앱,ARS)</td>
+											  	<td>없음</td>
+											  </tr>
+											  </tbody>
+											</table>
+                                            &nbsp; * <span class="tbl-rcol" style="font-weight:bold;">왕편열차 도착시각 이후에는 반환이 불가</span>함<br />                                           
+                                            </li>
+                                        </ul>
+                                        <p class="txt_org">※이 상품은 지정된 열차에 한해 운영하는 특가 상품으로, 고객이 원하는 시간대에 <strong>할인열차가 운행되지 않거나 할인좌석이 조기에 매진</strong>될 수 있습니다.</p>
+                                    </div>
+                                </div>
+                                <div id="tab_18" style="display: none;">
+                                	<div class="cs-center">
+                                    	<ul>
+                                        	<li><span class="tbl-rcol" style="font-weight:bold;">(할인대상)</span> 코레일멤버십 회원 누구나</li>
+                                            <li><span class="tbl-rcol" style="font-weight:bold;">(할인율)</span> 강릉선 KTX 4좌석을 구간에 관계없이 정액 5만원으로 이용<br />
+                                            &nbsp; * 지연할인증 이외에 다른 할인과 중복 적용 없음<br />
+                                            </li>
+                                            <li><span class="tbl-rcol" style="font-weight:bold;">이용방법</span><br />
+                                            &nbsp; * 역 창구와 코레일톡에서는 출발시간 전까지, 홈페이지에서는 출발 20분전까지 할인승차권 메뉴에서 구매 가능<br />
+                                            &nbsp; * 구입 후 열차시간 및 구간 변경불가(반환 후 재구입시에도 위약금 발생)<br />                                            
+                                            &nbsp; * 회원 1인당 1일 2매, 1개월 8매까지 예매 가능(1매=4좌석)<br />
+                                            &nbsp; * 승차권 전달하기 불가<br />
+                                            &nbsp; * 할인율이 높은 승차권으로 반환 시 별도의 위약금 기준이 적용됩니다.
+                                            </li>
+                                        </ul>
+                                        <table class="tbl_h" summary="넷이서 5만원 상품안내" style="margin-left: 30px; width: 70%; margin-top: 10px;margin-bottom: 30px;">
+											<colgroup><col width="35%"><col width="35%"><col width="*"></colgroup>
+											<thead>
+												<tr>
+													<th>결제 후∼출발 1일전</th>
+													<th>출발 당일</th>
+													<th>출발후∼도착역 도착시간</th>
+												</tr>
+											</thead>
+											<tbody>
+												<tr>
+													<td>15%</td>
+													<td>40%</td>
+													<td>70%(역에서만 반환 가능)</td>
+												</tr>								
+												<tr>
+													<td colspan="3" style="text-align:left;">
+													* 출발 2일 전까지 구입 당일에 반환하는 경우 위약금 면제(역창구 400원)<br/>
+													* 출발 1일 전∼출발 당일까지는 구입 후 30분 안에 반환하는 경우 위약금 면제(역창구 400원)<br/>
+													&nbsp;단. 출발시간 이후에는 위약금 면제 불가(구입시간 상관없음)
+													</td>
+												</tr>
+											</tbody>
+										</table> 
+                                        <p class="txt_org">※ 철도공사에서 정한 <strong>명절 특별 수송기간</strong>에는 운영하지 않습니다.</p>
+                                        <p class="txt_org">※ 이 상품은 열차별 승차율에 따라 운영하는 상품으로 <strong>고객이 원하는 시간대에 할인열차가 운행되지 않거나 할인좌석이 조기에 매진</strong>될 수 있으며, 할인율은 사전 공지없이 변경될 수 있습니다.</p>                                   </div>
+                                </div> 
+                                <div id="tab_19" style="display: none;">
+                                	<div class="cs-center">
+                                    	<ul>
+                                        	<li><span class="tbl-rcol" style="font-weight:bold;">(할인대상)</span> 코레일멤버십 회원 누구나</li>
+                                        	<li><span class="tbl-rcol" style="font-weight:bold;">(대상열차)</span> 강릉선(서울~청량리~강릉)을 운행하는 열차</li>  
+                                        	<li><span class="tbl-rcol" style="font-weight:bold;">(이용기간)</span> 승차일기준 ’17.12.22.～’18.01.31.</li>
+                                            <li><span class="tbl-rcol" style="font-weight:bold;">(할인율)</span> 50% 할인<br />
+                                            &nbsp; * 지연할인증 이외에 다른 할인과 중복 적용없음<br />
+                                            &nbsp; * 최저운임 이하로 할인하지 않음<br />
+                                            </li>
+                                            <li><span class="tbl-rcol" style="font-weight:bold;">이용방법</span><br />
+                                            &nbsp; * 출발  2 일전까지  <span class="tbl-rcol" style="font-weight:bold;">레츠코레일, 코레일톡</span>으로 할인대상열차 구매시 할인 가능<br />
+                                            &nbsp; * 할인이 적용된 승차권을 역 창구(고객센터)에서 변경시 할인 취소<br />                                            
+                                            </li>
+                                        </ul>
+                                        <p class="txt_org">※ 이 상품은 열차별 승차율에 따라 운영하는 상품으로 <strong>고객이 원하는 시간대에 할인열차가 운행되지 않을 수 있습니다.</strong></p>
+                                         <p class="txt_org"> ※  할인 승차권의 할인율은 별도 공지없이 변경될 수 있습니다.</p>
+                                    </div>
+                                </div> 
+                                <div id="tab_20" style="display: none;">
+                                	<div class="cs-center">
+                                    	<ul>
+                                        	<li><span class="tbl-rcol" style="font-weight:bold;">(할인대상)</span> 코레일멤버십 회원 중 기초생활수급자<br />
+                                        		&nbsp;* 역 창구에서 기초생활수급자 증명서 및 신분증을 제시하고 인증(등록)을 완료한 후 이용가능<br />
+                                        	    &nbsp;* 홈페이지에서 증빙자료를 등록한 경우는 역 창구를 방문하지 않고, 인증 절차를 거친 후 이용 가능<br />
+                                        		&nbsp;* 할인기간은 등록일부터 1년이며 매 1년마다 재등록 필요</li>
+                                            <li><span class="tbl-rcol" style="font-weight:bold;">(할인율)</span> KTX·ITX-마음·새마을호·ITX청춘·무궁화호의 열차별 승차율에 따라 지정된 할인 좌석을 30% 할인<br />
+	                                            &nbsp; * 다른 할인과 중복적용 없음<br />
+	                                            &nbsp; * 할인은 운임에만 적용하고 요금은 미적용<span class="tbl-rcol" style="font-weight:bold;">(특실/우등실은 운임, 요금으로 구분)</span><br />
+                                            </li>
+                                            <li><span class="tbl-rcol" style="font-weight:bold;">이용방법</span><br />
+	                                            &nbsp; * 열차출발 1개월전부터 20분전까지 레츠코레일 홈페이지, 코레일톡, 역창구에서 할인대상열차 구매 시 할인 가능<br />
+	                                            &nbsp; * 할인이 적용된 승차권을 역 창구(고객센터)에서 변경시 할인 취소<br />          
+	                                            &nbsp; * 구입한 본인에 한하여 이용 가능(신분증 소지) 1인 1회 1매, 1일 2회, 1개월 8회 이용가능<br /> 
+	                                            &nbsp; * 할인승차권을 다른 사람이 이용하는 경우 할인금액 회수 및 추가로 부가운임을 수수하며, 할인승차권을 다른 사람에게 제공한 회원은 할인 자격 정지<br />                             
+                                            </li>
+                                        </ul>
+                                        <p class="txt_org">※ 철도공사에서 정한 <strong>명절 특별 수송기간</strong>에는 운영하지 않습니다.</p>
+                                        <p class="txt_org">※ 이 상품은 열차별 승차율에 따라 운영하는 상품으로 <strong>고객이 원하는 시간대에 할인열차가 운행되지 않거나 할인좌석이 조기에 매진</strong>될 수 있으며, 할인율은 사전 공지없이 변경될 수 있습니다.</p>                                    </div>
+                                </div>     
+                                <div id="tab_21" style="display: none;">
+                                	<div class="cs-center">
+                                    	<ul>
+                                        	<li><span class="tbl-rcol" style="font-weight:bold;">(할인대상)</span> 코레일멤버십회원 누구나</li>
+                                            <li><span class="tbl-rcol" style="font-weight:bold;">(할인율)</span> 이용구간에 관계없이 KTX 4좌석 10만원 정액<br />
+	                                            &nbsp; * 지연할인증 외 다른 할인과 중복 적용 안됨
+                                            </li>
+                                            <li><span class="tbl-rcol" style="font-weight:bold;">(이용방법)</span><br />
+	                                            &nbsp; * 출발 2일전까지 레츠코레일홈페이지 > 할인상품, 코레일톡 >정기・할인권에서 할인대상 승차권 구매<br />
+	                                            &nbsp; * 여행변경을 원하는 경우 취소 후 다시 구입하여야 함<br />          
+	                                            &nbsp; * 역 창구나 철도고객센터에서 변경 시 할인이 취소됨<br /> 
+	                                            &nbsp; * 높은 할인율을 적용하는 할인상품으로 아래의 별도 환불 위약금을 적용합니다.<br />                             
+                                            </li>
+                                        </ul>
+                                        <table class="tbl_h" summary="넷이서 10만원 상품안내" style="margin-left: 30px; width: 70%; margin-top: 10px;margin-bottom: 10px;">
+											<colgroup><col width="35%"><col width="35%"><col width="*"></colgroup>
+											<thead>
+												<tr>
+													<th>출발 1일전까지</th>
+													<th>출발당일~출발전</th>
+													<th>출발후</th>
+												</tr>
+											</thead>
+											<tbody>
+												<tr>
+													<td>15%</td>
+													<td>40%</td>
+													<td>70%</td>
+												</tr>								
+											</tbody>
+										</table>   
+										<p style="padding-left: 29px;">&nbsp;&nbsp;* 단, 구매 당일 환불 신청하는 경우 환불 위약금 없음.(역 창구 환불 신청시에는 최저위약금 400원)</p>
+										<p style="padding-left: 29px;">&nbsp;&nbsp;* 도착시간이후에는 환불되지 않습니다.</p><br/>
+                                        <p class="txt_org">※ 2018. 5. 4. ~ 2018. 6.30.까지 운영하는 기간 한정 특가상품입니다.</p>
+                                        <p class="txt_org">※ 이 상품은 열차별 승차율에 따라 운영하는 상품으로 고객이 원하는 시간대에 할인열차가 운행되지 않거나 할인좌석이 조기 매진될 수 있습니다.</p>
+                                    </div>
+                                </div>            
+                                <div id="tab_22" style="display: none;">
+                                	<div class="cs-center">
+                                    	<ul>
+                                        	<li><span class="tbl-rcol" style="font-weight:bold;">(할인대상)</span> 코레일멤버십회원 누구나</li>
+                                            <li><span class="tbl-rcol" style="font-weight:bold;">(할인율)</span> 이용구간에 관계없이 강릉선 KTX 4좌석 5만원 정액<br />
+	                                            &nbsp; * 지연할인증 외 다른 할인과 중복 적용 안됨
+                                            </li>
+                                            <li><span class="tbl-rcol" style="font-weight:bold;">(이용방법)</span><br />
+	                                            &nbsp; * 출발 2일전까지 레츠코레일홈페이지 > 할인상품, 코레일톡 >정기・할인권에서 할인대상 승차권 구매<br />
+	                                            &nbsp; * 여행변경을 원하는 경우 취소 후 다시 구입하여야 함<br />          
+	                                            &nbsp; * 역 창구나 철도고객센터에서 변경 시 할인이 취소됨<br /> 
+	                                            &nbsp; * 높은 할인율을 적용하는 할인상품으로 아래의 별도 환불 위약금을 적용합니다.<br />                             
+                                            </li>
+                                        </ul>
+                                        <table class="tbl_h" summary="넷이서 10만원 상품안내" style="margin-left: 30px; width: 70%; margin-top: 10px;margin-bottom: 10px;">
+											<colgroup><col width="35%"><col width="35%"><col width="*"></colgroup>
+											<thead>
+												<tr>
+													<th>출발 1일전까지</th>
+													<th>출발당일~출발전</th>
+													<th>출발후</th>
+												</tr>
+											</thead>
+											<tbody>
+												<tr>
+													<td>15%</td>
+													<td>40%</td>
+													<td>70%</td>
+												</tr>								
+											</tbody>
+										</table>   
+										<p style="padding-left: 29px;">&nbsp;&nbsp;* 단, 구매 당일 환불 신청하는 경우 환불 위약금 없음.(역 창구 환불 신청시에는 최저위약금 400원)</p>
+										<p style="padding-left: 29px;">&nbsp;&nbsp;* 도착시간이후에는 환불되지 않습니다.</p><br/>
+                                        <p class="txt_org">※ 2018. 5. 4. ~ 2018. 6.30.까지 운영하는 기간 한정 특가상품입니다.</p>
+                                        <p class="txt_org">※ 이 상품은 열차별 승차율에 따라 운영하는 상품으로 고객이 원하는 시간대에 할인열차가 운행되지 않거나 할인좌석이 조기 매진될 수 있습니다.</p>
+                                    </div>
+                                </div>                
+                                <div id="tab_23" style="display: none;">
+                                	<div class="cs-center">
+                                    	<ul>
+                                        	<li><span class="tbl-rcol" style="font-weight:bold;">(할인대상)</span> 코레일멤버십회원 누구나</li>
+                                            <li><span class="tbl-rcol" style="font-weight:bold;">(할인율)</span> 3~9명이 함께 여행하는 경우 열차에 따라 10~50% 할인<br />
+	                                            &nbsp; * 지연할인증 외 다른 할인과 중복 적용 안됨
+                                            </li>
+                                            <li><span class="tbl-rcol" style="font-weight:bold;">(이용방법)</span><br />
+	                                            &nbsp; * 출발 2일전까지 레츠코레일홈페이지 > 할인상품, 코레일톡 >정기・할인권에서 할인대상 승차권 구매<br />
+	                                            &nbsp; * 여행변경을 원하는 경우 취소 후 다시 구입하여야 함<br />          
+	                                            &nbsp; * 역 창구나 철도고객센터에서 변경 시 할인이 취소됨<br /> 
+	                                            &nbsp; * 높은 할인율을 적용하는 할인상품으로 아래의 별도 환불 위약금을 적용합니다.<br />                             
+                                            </li>
+                                        </ul>
+                                        <table class="tbl_h" summary="넷이서 10만원 상품안내" style="margin-left: 30px; width: 70%; margin-top: 10px;margin-bottom: 10px;">
+											<colgroup><col width="35%"><col width="35%"><col width="*"></colgroup>
+											<thead>
+												<tr>
+													<th>출발 1일전까지</th>
+													<th>출발당일~출발전</th>
+													<th>출발후</th>
+												</tr>
+											</thead>
+											<tbody>
+												<tr>
+													<td>15%</td>
+													<td>40%</td>
+													<td>70%</td>
+												</tr>								
+											</tbody>
+										</table>   
+										<p style="padding-left: 29px;">&nbsp;&nbsp;* 단, 구매 당일 환불 신청하는 경우 환불 위약금 없음.(역 창구 환불 싱청시에는 최저위약금 400원)</p>
+										<p style="padding-left: 29px;">&nbsp;&nbsp;* 도착시간이후에는 환불되지 않습니다.</p><br/>
+                                        <p class="txt_org">※ 2018. 5. 4. ~ 2018. 6.30.까지 운영하는 기간 한정 특가상품입니다.</p>
+                                        <p class="txt_org">※ 이 상품은 열차별 승차율에 따라 운영하는 상품으로 고객이 원하는 시간대에 할인열차가 운행되지 않거나 할인좌석이 조기 매진될 수 있습니다.</p>
+                                    </div>
+                                </div>               
+                                <div id="tab_24" style="display: none;">
+                                	<div class="cs-center">
+                                    	<ul>
+                                        	<li><span class="tbl-rcol" style="font-weight:bold;">(상품정의)</span> 이용횟수와 이용구간을 선택한 N카드 구매 후, 유효기간 내에 주중, 주말 구분 없이 열차 출발 전까지 할인승차권을 구매하여 이용</li>
+                                            <li><span class="tbl-rcol" style="font-weight:bold;">(대상열차)</span> ITX-청춘</li>
+                                            <li><span class="tbl-rcol" style="font-weight:bold;">(상품종류)</span><br />
+	                                            <table class="tbl_h" summary="">
+                                        	<caption>N카드 상품종류 </caption>
+                                            <colgroup><col width="*"><col width="25%"><col width="25%"><col width="25%"></colgroup>
+                                            <tbody>
+                                            	<tr>
+                                                	<td style="background: #f8f8f8;">구분</td>
+                                                    <td>기본형(1인용)</td>
+                                                    <td>2인용</td>
+                                                    <td>3구간용</td>
+                                                </tr>
+                                            	<tr>
+                                                	<td style="background: #f8f8f8;">이용인원 수</td>
+                                                	<td>1명</td>
+                                                    <td>2명</td>
+                                                    <td>1명</td>
+                                                </tr>
+                                                <tr>
+                                                	<td style="background: #f8f8f8;">이용구간 수</td>
+                                                	<td>1개</td>
+                                                    <td>2개</td>
+                                                    <td>3개</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+	                                        </li>
+                                            <li><span class="tbl-rcol" style="font-weight:bold;">(유효기간)</span> 카드 구매일로부터 2개월 또는 3개월(카드에 표시)<br />
+	                                            &nbsp; * 2,3개월의 유효기간 중 50% 경과한 날부터 1회에 한하여 유효기간의 50%에 해당하는 기간 연장 신청 가능
+                                          
+                                            <table class="tbl_h" summary="">
+                                        	<caption>N카드 사용기준</caption>
+                                            <colgroup><col width="*"><col width="35%"><col width="35%"></colgroup>
+                                            <tbody>
+                                            	<tr>
+                                                	<td style="background: #f8f8f8;">사용기준</td>
+                                                    <td>2개월</td>
+                                                    <td>3개월</td>
+                                                </tr>
+                                            	<tr>
+                                                	<td style="background: #f8f8f8;">사용횟수</td>
+                                                	<td>10회~20회</td>
+                                                    <td>21회~30회</td>
+                                                </tr>
+                                            </tbody>
+                                        </table></li>
+                                        </ul>
+                                        
+                                    	<ul>
+                                        	<li><span class="tbl-rcol" style="font-weight:bold;">(판매매체)</span> 코레일톡 앱</li>
+                                            <li><span class="tbl-rcol" style="font-weight:bold;">(카드금액)</span><br />
+	                                            &nbsp; - (1인용) 이용구간 총 운임의 5%  <br />
+	                                            &nbsp; - (2인용) 이용구간(최고 운임 구간 기준) 총 운임의 7%<br />
+	                                            &nbsp; - (3구간용) 이용구간(최고 운임 구간 기준) 총 운임의 7%<br />
+	                                        </li>
+                                            <li><span class="tbl-rcol" style="font-weight:bold;">(운임할인)</span> 기본 15%에서 열차별 이용객수에 따라 최대 30%까지 좌석승차권 할인(ITX-청춘의 경우 최대 30%)</li>
+                                            <li><span class="tbl-rcol" style="font-weight:bold;">(이용기준)</span><br />
+	                                            &nbsp; - 코레일멥버십 대상 기명식 모바일 카드로 본인에 한하여 승차권 이용 가능<br />
+	                                            &nbsp; - 할인승차권을 역창구에서 변경시 할인율이 변동될 수 있으며, 이용 구간을 연장하는 경우 연장 구간은 할인하지 않음<br />          
+	                                            &nbsp; - 이용구간의 도중에서 하차하는 경우 사용횟수는 복구되지 않음<br /> 
+	                                            &nbsp; - 동일열차, 동일시간대 승차권 중복 구매 불가, 타인 이용 불가<br />       
+	                                            &nbsp; - 타 할인 및 쿠폰 적용 없음, 마일리지 적립 없음<br />
+	                                            &nbsp; - 특실 요금은 할인 하지 않음<br />
+	                                            &nbsp; - 명절(설,추석) 수송 기간 중에는 운영하지 않음<br />        
+	                                            &nbsp; - 승차권을 구매하지 않고 N카드만 소지하고 승차한 경우, 본인 이외 타인이 사용한 경우 철도사업법 제10조에 따라 기준운임과 그 10배에<br />
+	                                            &nbsp;&nbsp;	  해당하는 부가운임을 수수하며 부정사용 사례적발 시 N카드 이용 제한(6개월)<br />
+	                                            &nbsp; - N카드로 구매한 승차권을 소지하지 않은 경우에는 역 창구에서 승차권을 재발행 받을 수 있으며, 재발행은 N카드 1매당 3회까지 가능<br />
+	                                            &nbsp; ※ 이 상품은 열차에 따라 할인율이 다르게 적용되며 할인율 변경은 사전에 공지 하지 않으며, 고객이 원하는 시간대에 할인열차가 운영되지 않거나 매진될 수 있습니다. <br/>
+	                                            &nbsp; ※ N카드 자유석은 자유석 중 제한된 일부 좌석을 배정하여 높은 할인을 제공하는 혜택으로 일찍 매진될 수 있습니다. <br/>                          
+                                            </li>
+                                            <li><span class="tbl-rcol" style="font-weight:bold;">(환불기준)</span><br />
+	                                            &nbsp; - N카드 환불: 유효기간 내에 N카드의 환불(반환)을 청구하는 경우 카드 금액에서 총 할인받은 금액과 최저수수료를 공제한 잔액을 환불<br />
+	                                            &nbsp; - 승차권 환불: 일반승차권 환불 위약금 기준과 동일<br />
+	                                        </li>
+	                                         
+	                                         
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div id="tab_27" style="display: none;">
+                                	<div class="cs-center">
+                                    	<ul>
+                                        	<li><span class="tbl-rcol" style="font-weight:bold;">(상품정의)</span> 이용인원, 이용구간, 이용횟수를 선택한 N카드 구매 후, 할인승차권을 구매하여 이용할 수 있는 할인상품</li>
+                                            <li><span class="tbl-rcol" style="font-weight:bold;">(대상열차)</span> KTX, ITX-새마을, ITX-마음, 새마을호</li>
+                                           <li><span class="tbl-rcol" style="font-weight:bold;">(상품종류)</span><br />
+	                                            &nbsp; - 이용인원: 1인용(기본), 2인용(추가사용자 등록)  <br />
+	                                            &nbsp; - 이용구간: 1∼3구간 내 선택<br />
+	                                        </li>
+                                            <li><span class="tbl-rcol" style="font-weight:bold;">(기간·횟수)</span> 카드 구매일로부터 60일 또는 90일<br />
+	                                     <table class="tbl_h" summary="">
+                                        	<caption>N카드 사용기준</caption>
+                                            <colgroup><col width="*"><col width="35%"><col width="35%"></colgroup>
+                                            <tbody>
+                                            	<tr>
+                                                	<td style="background: #f8f8f8;">구분</td>
+                                                    <td>60일</td>
+                                                    <td>90일</td>
+                                                </tr>
+                                            	<tr>
+                                                	<td style="background: #f8f8f8;">사용횟수</td>
+                                                	<td>10, 15, 20</td>
+                                                    <td>15, 20, 25, 30</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                      </li>
+                                        <li><span class="tbl-rcol" style="font-weight:bold;">(판매매체)</span> 코레일톡 앱</li>
+                                        <li><span class="tbl-rcol" style="font-weight:bold;">(카드금액)</span>이용구간 × 이용횟수 × 비중<br />
+	                                            &nbsp; - (이용구간) 2개 이상을 선택하는 경우 최고 운임구간을 기준  <br />
+	                                            &nbsp; - (비    중) 이용횟수가 많을수록 비중 체감<br />
+	                                             <table class="tbl_h" summary="">
+                                        	<caption>N카드 사용기준</caption>
+                                            <colgroup><col width="*"><col width="35%"><col width="35%"></colgroup>
+                                            <tbody>
+                                            	<tr>
+                                                	<td style="background: #f8f8f8;">구분</td>
+                                                    <td>KTX</td>
+                                                    <td>90일</td>
+                                                </tr>
+                                            	<tr>
+                                                	<td style="background: #f8f8f8;">비 중</td>
+                                                	<td>3~5%</td>
+                                                    <td>8~10%</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+	                      
+	                                        </li>
+	                                         <li><span class="tbl-rcol" style="font-weight:bold;">(운임할인)</span><br />
+	                                            &nbsp; - (KTX) 기본 15%에서 최대 40% 까지<br />
+	                                            &nbsp; - (ITX-마음, ITX-새마을, 새마을호) 기본 15%에서 최대 30% 까지<br />
+	                                        </li>
+	                                         <li><span class="tbl-rcol" style="font-weight:bold;">(환불기준)</span><br />
+	                                            &nbsp; - N카드 환불: 유효기간 내에 N카드의 환불(반환)을 청구하는 경우 카드 금액에서 총 할인받은 금액과 최저수수료를 공제한 잔액을 환불<br />
+	                                            &nbsp; &nbsp;&nbsp; * 한번도 사용하지 않은 경우 최저수수료 없음<br />
+	                                            &nbsp;  - 승차권 환불: 일반승차권 환불 위약금 기준과 동일<br />
+	                                        </li>
+                                        </ul>
+                                        
+                                    	<ul>
+                                        	
+                                            <li><span class="tbl-rcol" style="font-weight:bold;">(이용기준)</span><br />
+                                            <부정승차 관련><br />
+	                                            &nbsp; - N카드로 구매한 승차권은 본인만 이용가능 합니다.<br />
+	                                            &nbsp; - N카드는 승차권이 아닙니다. N카드로 할인승차권을 반드시 구매하시고 탑승하시기 바랍니다.<br />          
+	                                            &nbsp;&nbsp;&nbsp; ※ 본인 이외 타인이 사용한 경우, 승차권을 구매하지 않고 N카드만 소지하고 승차한 경우에는 철도사업법 제 10조에 따라 기준운임과 그 10배에 해당하는 부가운임을 수수하며 부정사용 사례적발 시 N카드 이용제한(6개월) 될 수 있음<br /> 
+	                                         <할인승차권 관련><br />
+	                                            &nbsp; - 열차에 따라 할인율이 다르게 적용되며 할인율 변경은 사전에 공지 하지 않으며, 고객이 원하는 시간대에 할인열차가 운영되지 않거나 매진될 수 있습니다.<br />
+	                                            &nbsp; - 할인승차권 코레일톡 및 역창구에서 변경 시 할인율이 변동될 수 있습니다.<br />
+	                                            &nbsp; - 할인은 운임대상으로 특실(운임+요금)의 경우 운임에 한하여 할인을 제공합니다.<br />
+	                                            &nbsp; - 열차 내에서 이용구간을 연장하는 경우 연장 구간은 할인하지 않습니다.<br />
+	                                            &nbsp; - 이용구간의 도중에서 하차하는 경우 사용횟수는 복구되지 않습니다.<br />
+	                                            &nbsp; - 동일열차, 동일시간대 승차권 중복구매 불가합니다.<br />
+	                                            &nbsp; - 타 할인 및 쿠폰 적용 불가합니다.<br />
+	                                            &nbsp; - 할인승차권 구매에 따른 마일리지 적립은 없습니다.<br />
+	                                            &nbsp; - 명절(설날·추석) 수송 기간 중에는 할인승차권을 구매할 수 없습니다.<br />
+	                                            &nbsp; - N카드로 구매한 승차권을 소지하지 않은 경우에는 역 창구에서 승차권 재발행을 받을 수 있으며, 재발행은 N카드 1매당 3회까지 가능<br />                
+                                            </li>
+                                           
+	                                         
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div id="tab_25" style="display: none;">
+                                	<div class="cs-center">
+                                    	<ul>
+                                        	<li><span class="tbl-rcol" style="font-weight:bold;">(할인대상)</span> 코레일멤버십 회원 중 국세청에서 정한 모범납세자</li>
+                                            <li><span class="tbl-rcol" style="font-weight:bold;">(할인율)</span> 주중에 운행하는 KTX, ITX-마음, 새마을호, 무궁화호를 기본 10%를 할인하며, KTX의 경우 열차별 승차율에 따라 지정된 좌석을 최대 30%까지 할인<br />
+	                                            &nbsp; * 다른 할인과 중복 적용 없음<br/>
+	                                            &nbsp; * 최저운임 이하로 할인하지 않음<br/>
+                                                &nbsp; * 할인은 운임에만 적용하고 요금은 미적용<span class="tbl-rcol" style="font-weight:bold;">(특실/우등실은 운임, 요금으로 구분)</span><br/>
+	                                        </li>
+                                            <li><span class="tbl-rcol" style="font-weight:bold;">(이용방법)</span><br />
+	                                            &nbsp; * 열차출발 1개월전부터 열차출발 전까지 코레일톡에서 구매 시 할인 가능<br/>
+	                                            &nbsp; * 할인이 적용된 승차권을 역 창구(고객센터)에서 변경 시 할인이 취소 또는 변경될 수 있음<br/>
+	                                            &nbsp; * 구입한 본인에 한하여 1일 4매 까지 이용 가능(신분증 소지)<br/>
+	                                           	&nbsp; * 할인승차권을 다른 사람이 이용하는 경우 할인금액 회수 및 추가로 부가운임을 수수하며, 할인승차권을 다른 사람에게 제공한 회원은 할인자격 정지<br/><br/>
+	                                           	※ 철도공사에서 정한 명절 특별 수송기간에는 운영하지 않습니다.
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    
+                                </div>   
+                               
+                            </div>
+                        </div>
+                    </div>
+				</div>
+				<!-- //cont_info -->
+			</div><!-- //content -->
+
+			<div id="snv">
+				<!-- sub nav -->
+				
+				
+ <script type="text/javascript" src="/js/pwdConfirm/pwdConfirmYn.js?v=202610020104"></script>
+ <script>
+ $(document).ready(function(){
+     fn_sp_left_chk();
+ });
+  
+</script>
+   
+  	
+
+			<!-- left memu -->
+			<h3>종합이용안내<span>LET'S KORAIL TRAIN</span></h3>
+			<ul class="snv_mu">
+				<li>
+					<a href="#" onclick="return m_com_cs12_1_1_link()" class="selected">할인 및 부가서비스</a>
+					<ul class="snv_smu" style="display:block">
+						<li><a href="#" onclick="return m_com_cs12_1_1_link()" class="selected">할인제도</a></li>
+						<li><a href="#" onclick="return m_com_cs12_1_2_link()" >역서비스</a></li>
+						<li><a href="#" onclick="return m_com_cs12_1_3_link()" >열차서비스</a></li>
+						<li><a href="#" onclick="return m_com_cs12_1_4_link()" >연계교통서비스</a></li>
+ 						
+					</ul>
+				</li>
+				<li>
+					<a href="#" onclick="return m_com_cs12_2_1_link()" >승차권 이용안내</a>
+					<ul class="snv_smu" >
+						<li><a href="#" onclick="return m_com_cs12_2_1_link()"  class="selected">승차권 구매/환불/분실</a></li>
+						<li><a href="#" onclick="return m_com_cs12_2_14_link()"  >정기승차권 구매/환불/분실</a></li>
+						<li><a href="#" onclick="return m_com_cs12_2_2_link()"  >셀프티켓</a></li>
+						<li><a href="#" onclick="return m_com_cs12_2_10_link()" >장바구니/전달하기</a></li>
+						<li><a href="#" onclick="return m_com_cs12_2_3_link()"  >열차지연/운행중지</a></li>
+						<li><a href="#" onclick="return m_com_cs12_2_11_link()" >열차운임 및 시간표</a></li>
+						<li><a href="#" onclick="return m_com_cs12_2_7_link()"  >할인쿠폰 이용방법</a></li>
+						<li><a href="#" onclick="return m_com_cs12_2_5_link()"   style="line-height:1.3em;padding-top:4px;padding-bottom:7px">부가운임 징수기준<br/>및 열차이용에티켓</a></li>
+						<li><a href="#" onclick="return m_com_cs12_2_6_link()"  >FAQ</a></li>
+						<li><a href="#" onclick="return m_com_cs12_2_13_link()" >코레일톡+ 이용안내</a></li>
+						<li><a href="#" onclick="return m_com_cs12_2_12_link()" >기념입장권</a></li>
+					</ul>
+				</li>				
+				<li>
+					<a href="#" onclick="return m_com_cs12_2_4_link()" >교통약자 배려서비스</a>
+				</li>	
+				<li>
+					<a href="#" onclick="return m_com_cs12_1_5_link()" >전철이용안내/지연증명</a>
+					<ul class="snv_smu" >
+					<li><a href="#" onclick="return m_com_cs12_1_5_link()" >광역전철 이용안내</a></li>
+							<li>
+								<ul class="smu02" >
+									<li><a href="#" onclick="return m_com_cs12_1_5_link()" >수도권</a></li>
+									<li><a href="#" onclick="return m_com_cs12_1_7_link()" >동해선</a></li>
+									<li><a href="#" onclick="return m_com_cs12_1_8_link()" >대경선</a></li>
+								</ul>
+							</li>
+						
+						<li><a href="http://info.korail.com/mbs/www/delay/delaylist.jsp" target="_blank">간편지연증명서 발급</a></li>
+					</ul>
+				</li>	
+				<li>
+					<a href="#" onclick="return m_com_cs12_7_1_link()" >유실물</a>
+					<ul class="snv_smu" >
+						<li><a href="#" onclick="return m_com_cs12_7_1_link()" class="selected">유실물신고안내</a></li>
+						<li><a href="#" onclick="return m_com_cs12_7_2_link()" >유실물찾기</a></li>
+					</ul>
+				</li>
+				
+				<li><a href="https://info.korail.com/mbs/www/jsp/voc/login" target="_blank" >고객의소리 접수/조회</a></li>
+				
+				<li>
+					<a href="#" onclick="return m_com_cs12_3_1_link()" >철도고객센터</a>
+					<ul class="snv_smu" >
+						<li><a href="#" onclick="return m_com_cs12_3_1_link()" class="selected">서비스안내</a></li>
+						<li><a href="#" onclick="return m_com_cs12_3_2_link()" >ARS안내</a></li>
+					</ul>
+				</li>
+				<li>
+					<a href="#" onclick="return m_com_cs12_4_1_link()" >광고안내</a>
+					<ul class="snv_smu" >
+						<li><a href="#" onclick="return m_com_cs12_4_1_link()" class="selected">입찰공고/판매</a></li>
+						<li><a href="#" onclick="return m_com_cs12_4_2_link()" >종합광고안내</a></li>
+                        <li><a href="#" onclick="return m_com_cs12_4_3_link()" >중소기업명품마루 입점안내</a></li>
+                        <li><a href="#" onclick="return m_com_cs12_4_4_link()" >철도역사상업시설운영자 선정안내</a></li>
+					</ul>
+				</li>
+				<li>
+					<a href="#" onclick="return m_com_cs12_5_2_link()" >승차권 제휴할인 안내</a>
+					<ul class="snv_smu" >
+						<li><a href="#" onclick="return m_com_cs12_5_2_link()" >역별 제휴사 안내</a></li>
+						<li><a href="#" onclick="return m_com_cs12_5_1_link()" class="selected">제휴사업 문의</a></li>
+					</ul>					
+				</li>				
+				<li>
+					<a href="#" onclick="return m_com_cs12_8_1_link()" >예약보관금 반환 접수</a>
+				</li>
+				<li>
+					<a href="#" onclick="return m_com_cs12_10_1_link()" >암표 제보</a>
+				</li>
+ 			</ul>
+			<!-- //left memu -->
+    
+				<!-- //sub nav -->
+			</div>
+			
+			<div class="quick">
+				<!-- quick -->
+				
+				<!-- //quick -->
+			</div>
+			
+		</div><!-- contents -->
+		<!-- //container -->
+	</div>
+</div>
+
+  	<script type="text/javascript" src="/js/egovframework/korail/ebizprd/prd_main/prd_main_cmm.js"></script>
+  	<script>
+  	$(document).ready(function(){
+  		fn_brnImg_chk();
+  	});  	
+  	</script>
+	<div class="banner">
+		<div class="ban_box"> 
+			<ul>
+				<li><img id="imgShwChk1" src="/images/ban01.gif" /></li>
+				<li><img id="imgShwChk2" src="/images/ban02.gif" /></li>
+				<li><img id="imgShwChk3" src="/images/ban03.gif" /></li>
+				<li><img id="imgShwChk4" src="/images/ban04.gif" /></li>
+				<li><img id="imgShwChk5" src="/images/ban05.gif" /></li>
+				<li><img id="imgShwChk6" src="/images/ban06.gif" /></li>
+				<li><img id="imgShwChk7" src="/images/ban07.gif" /></li>
+			</ul>
+		</div>
+	</div>
+<div id="footer">
+<!-- footer -->
+
+	<div class="f_box">
+		<div class="f_info">
+			<ul>
+			<li><a href="#" onclick="return m_menuPrd14_1_1_link()"><img src="/images/f_info01.gif" alt="고객서비스헌장" /></a></li>
+			<li><a href="#" onclick="return m_menuPrd14_2_1_link()"><img src="/images/f_info02.gif" alt="보도자료" /></a></li>
+			<li><a href="#" onclick="return m_menuPrd14_9_1_link()"><img src="/images/f_info12.gif" alt="홈페이지이용약관" /></a></li>
+			<li><a href="#" onclick="return m_menuPrd14_3_1_link()"><img src="/images/f_info03.gif" alt="여객운송약관/부속약관" /></a></li>
+			<li><a href="#" onclick="return m_menuPrd14_4_1_link()"><img src="/images/f_info04.gif" alt="정보공개" /></a></li>
+			<li><a href="#" onclick="return m_menuPrd14_5_1_link()"><img src="/images/f_info05.gif" alt="개인정보처리방침" /></a></li>
+			<li><a href="#" onclick="return m_menuPrd14_6_1_link()"><img src="/images/f_info06.gif" alt="이메일무단수집거부" /></a></li>
+			<li><a href="#" onclick="return m_menuPrd14_7_1_link()"><img src="/images/f_info07.gif" alt="광고안내" /></a></li>
+			<li><a href="#" onclick="return m_menuPrd14_8_1_link()"><img src="/images/f_info08.gif" alt="저작권정책" /></a></li>
+			<!-- <li><a href="#" onclick="return m_menuPrd15_1_1_link()"><img src="/images/f_info11.gif" alt="유실물찾기" /></a></li> -->
+			<li><a href="#" onclick="return m_menuPrd17_1_1_link()"><img src="/images/f_info09.gif" alt="러브포인트" /></a></li>
+			<li><a href="#" onclick="return m_menuPrd16_1_1_link()"><img src="/images/f_info10.gif" alt="이벤트" /></a></li>
+			</ul>
+			<div class="korail_fmy">
+				<fieldset>
+					<legend>코레일관련 사이트 바로가기</legend>
+					<label for="selectsite" class="blind">코레일관련 사이트 바로가기</label>
+					<select id="selectsite" name="selectsite">
+						<option value="#" selected="selected">코레일 Family</option>
+						
+						<option value="https://info.korail.com/mbs/www/">코레일 홈페이지</option>
+						
+						<option value="http://logis.korail.go.kr">물류정보</option>
+						<!-- <option value="http://www.naksanresort.co.kr">코레일 낙산연수원</option> -->
+						<option value="https://info.korail.com/mbs/www/subview.jsp?id=www_030502000000">윤리경영</option>
+						<option value="https://info.korail.com/mbs/company/login.jsp">이사회커뮤니티</option>
+						<option value="http://ebid.korail.com">조달ㆍ입찰</option>
+						<option value="http://railroadmuseum.co.kr">철도박물관</option>
+						
+						<!-- <option value="http://photo.korail.com" >사진으로 보는 코레일</option>
+						<option value="http://www.trainshop.co.kr" >트레인샵</option>
+						<option value="http://raildream.korail.com" >퇴직지원 포털사이트</option> -->
+					</select>&nbsp;<input type="image" src="/images/btn_go_sel.gif" alt="검색" onclick="openBaseWindow(document.getElementById('selectsite').value,'selectsite')"/>
+				</fieldset>
+			</div>
+		</div>
+		<div class="f_cont">
+			<h6><img src="/images/f_logo.gif" alt="KORAIL 여행 나만의 여행플랜~!" /></h6>
+			<div class="add">
+				<address><img src="/images/f_add.gif" alt="(34618) 대전광역시 동구 중앙로 240 TEL:1588-7788" /></address>
+				<p class="copy"><img src="/images/f_copy.gif" alt="Copyright ⓒ 2014 By KOREA RAILROAD All Rights Reserved." /></p>
+			</div>
+		</div>
+	</div>
+<!-- //footer -->
+</div>
+ </body>
+</html>

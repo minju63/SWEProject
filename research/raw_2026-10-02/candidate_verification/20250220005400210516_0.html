@@ -1,0 +1,766 @@
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<meta charset="utf-8" />
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+	<title>주거종합포털 대구안방 - 대구광역시</title>
+	<meta property="og:title" content="주거종합포털 대구안방 - 대구광역시" />
+	<link rel="shortcut icon" type="image/x-icon" href="/resources/favicon.ico" />
+	
+	<meta name="naver-site-verification" content="d1a350a465a8dfcf583ac48d3b64ef1d12fa3751" />
+	<meta name="google-site-verification" content="rjRdgzgp5EgJ5izv6YBLR8OrayIr-IHsyZLO1UrJy50" />
+
+	<meta name="format-detection" content="telephone=no" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no" />
+	<meta name="_csrf_parameter" content="_csrf" /><meta name="_csrf_header" content="X-CSRF-TOKEN" /><meta name="_csrf" content="7eb69368-71c6-4168-abb5-0a9d643d1d6f" />
+
+	<!-- css import -->
+	<link rel="stylesheet" type="text/css" href="/resources/user/css/reset.css" />
+	<link rel="stylesheet" type="text/css" href="/resources/user/css/font.css" />
+	<link rel="stylesheet" type="text/css" href="/resources/user/css/layout.css?no=20260630" />
+	<link rel="stylesheet" type="text/css" href="/resources/user/css/style.css" />
+	<link rel="stylesheet" type="text/css" href="/resources/user/css/main2023.css" />
+	
+	<style>
+		.blind {position:absolute !important;width:1px !important;height:1px !important;clip:rect(0,0,0,0) !important;margin:-1px !important;overflow:hidden !important;}
+	</style>
+	
+	<!-- script import -->
+	<link rel="stylesheet" type="text/css" href="/resources/cmmn/js/ckeditor/build/content-styles.css" />
+	<link rel="stylesheet" type="text/css" href="/resources/cmmn/js/jquery-ui/jquery-ui.min.css" />
+	<link rel="stylesheet" type="text/css" href="/resources/cmmn/js/design/customScrollbar.css" />
+	<link rel="stylesheet" type="text/css" href="/resources/cmmn/js/design/slick.css" />
+	<link rel="stylesheet" type="text/css" href="/resources/cmmn/js/design/swiper.min.css" />
+	<script type="text/javascript" src="/resources/cmmn/js/jquery/dist/jquery.min.js"></script>
+	<script type="text/javascript" src="/resources/cmmn/js/jquery-ui/jquery-ui.min.js"></script>
+	<script type="text/javascript" src="/resources/cmmn/js/jquery-plugins/jquery.bpopup.js"></script>
+	<script type="text/javascript" src="/resources/cmmn/js/moment/min/moment.min.js"></script>
+	<script type="text/javascript" src="/resources/cmmn/js/design/customScrollbar.min.js"></script>
+	<script type="text/javascript" src="/resources/cmmn/js/design/slick.min.js"></script>
+	<script type="text/javascript" src="/resources/cmmn/js/design/swiper.min.js"></script>
+
+	<script type="text/javascript" src="/resources/cmmn/js/utils/anbangUtils.js"></script>
+	<script type="text/javascript" src="/resources/user/js/design.js"></script>
+	<script type="text/javascript" src="/resources/user/js/design2023.js"></script>
+
+	<script type="text/javascript" charset="UTF-8" src="//t1.daumcdn.net/kas/static/kp.js"></script>
+	<script type="text/javascript">
+		kakaoPixel('9108214954614082425').pageView('Visti_home');
+	</script>
+
+	<script>
+		var header = $("meta[name='_csrf_header']").attr("content");
+		var token = $("meta[name='_csrf']").attr("content");
+		
+		$.ajaxSetup({
+			beforeSend: function(xhr) {
+				xhr.setRequestHeader(header, token);
+			},
+			dataType: "json"
+		});
+	
+		$(document).ajaxComplete(function(event,xhr,options) {
+			if(!xhr.responseJSON) {
+				if(xhr.status === 401 || xhr.status === 403) {
+					alert("로그인이 필요합니다.");
+					location.href = "/join/login.do";
+				} else if(xhr.status === 200) {
+					if(!xhr.responseText) {
+						alert("응답 내용이 없습니다. 시스템 관리자에게 문의해주세요.");
+					} else if(xhr.responseText.indexOf("<!-- PAGE_TYPE_LOGIN -->") >= 0) {
+						alert("로그인이 필요합니다.");
+						location.href = "/join/login.do";
+					} else if(xhr.responseText.indexOf("SmartXFilter") >= 0) {
+						alert("개인정보유출차단솔루션에 의해 차단되었습니다. 시스템 관리자에게 문의해주세요.");
+					} else {
+						alert("알 수 없는 응답을 수신했습니다. 시스템 관리자에게 문의해주세요.");
+					}
+				}
+			} else {
+				if(xhr.status === 429) {
+					alert("짧은 시간 내 너무 많은 요청으로 로그아웃 처리되었습니다.");
+					location.href = "/";
+				}
+			}
+		});
+		
+		if(_isIE) {
+			$(document).on("click", "a[download]", function() {
+				event.preventDefault();
+				var filename = this.getAttribute("download");
+				var xhr = new XMLHttpRequest();
+				xhr.onloadstart = function () { xhr.responseType = "blob"; };
+				xhr.onload = function () { navigator.msSaveOrOpenBlob(xhr.response, filename); };
+				xhr.open("GET", this.href, true);
+				xhr.send();
+			});
+		}
+	</script>
+	<style>
+        @media print{ body{-webkit-print-color-adjust: exact;print-color-adjust: exact;} }
+        .ck-editor__editable{min-height:300px;}
+        .file-list input[type="file"]{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);border:0;}
+        .file-list li{display:block;}
+        
+        #popup_construct .cont1{position:absolute;top:59%;left:33%;color:#173b55;font-weight:600;white-space:nowrap;overflow:hidden;}
+        #popup_construct .cont2{position:absolute;top:65.5%;left:33%;color:#173b55;font-weight:400;white-space:nowrap;overflow:hidden;}
+    </style>
+</head>
+<body>
+	
+	
+		<!-- Google Tag Manager -->
+		<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+		new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+		j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+		'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+		})(window,document,'script','dataLayer','GTM-KL2RPDP');</script>
+		<!-- Google Tag Manager (noscript) -->
+		<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KL2RPDP"
+		height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+	
+
+	
+
+
+<div id="skip">
+    <a href="#content">본문 바로가기</a>
+</div>
+<header id="header" class="">
+    <div class="header_inner">
+        <!-- header 상단-->
+        <div class="header__top">
+            <h1 class="logo">
+                <a href="/">대구안방</a>
+            </h1>
+            
+                <ul class="header__util logout">
+                    <li class="util__login util__loggo">
+                        <a href="/join/login.do"><span>로그인</span></a>
+                    </li>
+                    <li class="util__join">
+                        <a href="/join/signup01.do"><span>회원가입</span></a>
+                    </li>
+                </ul>
+            
+            
+            <button class="header__mbM--open nav-open-btn" title="네비게이션 열기">
+                <span class="line line1"></span><span class="line line2"></span><span class="line line3"></span>
+            </button>
+        </div>
+
+        <!-- header 하단-->
+        <div class="header__inside">
+            <h2 class="blind">주메뉴 영역</h2>
+            <nav class="header__nav">
+                <div class="header__nav-top">
+                </div>
+                <div class="login__nav">
+                    
+                        <h3><b>로그인</b>하세요! <a href="/join/login.do" class="login__nav--logout">로그인</a></h3>
+                    
+                    
+                </div>
+                <ul>
+                    <li class="depth1 bus_box"><a href="javascript:;">주거정책 소개</a>
+                        <div class="depth2">
+                            <div class="depth2_inner">
+                                <div class="mainMd_tle">
+                                    <p>주거정책 소개</p>
+                                    <span>대구시 청년, 신혼부부 주거지원<br>당신에게 필요한 정책은 무엇인가요?</span>
+                                </div>
+                                <ul>
+								    <li>
+								        <a href="/intro/policy/dgpolicy">주거정책 소개</a> 
+								        <ul>
+								            <li><a href="/intro/policy/dgpolicy">대구형 주거지원 정책</a></li>
+								            <li><a href="/intro/policy/aptbusiness">공동주택 지원사업</a></li>
+								            <li><a href="/intro/policy/ythpackage">청년주거안정 패키지</a></li>
+								        </ul>
+								    </li>
+
+								    <li>
+								        <a href="/board/houseAgcyInfo">주거관련 기관 정보</a>
+								        
+								    </li>
+								    <li>
+								        <a href="/board/promotion">홍보자료</a>
+								        
+								    </li>
+								</ul>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="depth1 bus_box"><a href="javascript:;">부동산 상담</a>
+                        <div class="depth2">
+                            <div class="depth2_inner">
+                                <div class="mainMd_tle">
+                                    <p>부동산 상담</p>
+                                    <span>법률 , 부동산임대&middot;거래 등<br>부동산 관련정보를 확인 할 수 있습니다.</span>
+                                </div>
+                                <ul>
+                                    <li>
+                                        <a href="/intro/estate/trade">부동산 관련정보 안내</a> 
+                                        <ul>
+                                            <li><a href="/intro/estate/trade">부동산 거래</a></li>
+                                            <li><a href="/intro/estate/trouble">주택임대차 분쟁</a></li>
+                                        </ul>
+                                    </li>
+                                    <li><a href="/intro/subscr">청약 관련정보 안내</a></li>
+                                    <li><a href="/board/realPropertyFaq">자주묻는 질문(FAQ)</a></li>
+                                    <li><a href="/board/realPropertyQna">부동산 상담 게시판</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="depth1 bus_box"><a href="javascript:;">지원사업 신청</a>
+                        <div class="depth2">
+                            <div class="depth2_inner">
+                                <div class="mainMd_tle">
+                                    <p>지원사업 신청</p>
+                                    <span>월세지원, 대출이자등 다양한<br>청년주거지원 상품을 확인 할 수 있습니다.</span>
+                                </div>
+                            <ul>
+                                
+                                <li><a href="javascript:;" onclick="$(this).parent().effect('highlight', 1000)">청년전세</a>
+                                    <ul>
+                                        <li><a href="/jeonseMonthly/businessOverView.do">청년 주택 임차보증금(전월세) 대출이자 지원 사업</a></li>
+                                        
+                                        <li><a href="/hopeHousing/businessOverView.do">청년 희망주택 대출이자 지원 사업</a></li>
+                                        <li><a href="/youthBeotim/businessOverView.do">청년전용 버팀목 전세자금 대출이자 지원</a></li>
+                                    </ul>
+                                </li>
+                                <li><a href="javascript:;" onclick="$(this).parent().effect('highlight', 1000)">전세보증금 반환보증</a>
+                                    <ul>
+                                        <li><a href="/jeonseReturn/businessOverView.do">전세보증금 반환보증료 지원</a></li>
+                                    </ul>
+                                </li>
+                                <li><a href="javascript:;" onclick="$(this).parent().effect('highlight', 1000)">신혼부부전세</a>
+                                    <ul>
+                                        <li><a href="/supportNewlyweds/businessOverView.do">신혼부부 전세자금 대출이자 지원</a></li>
+                                    </ul>
+                                </li>
+                                <li><a href="javascript:;" onclick="$(this).parent().effect('highlight', 1000)">공공임대주택</a>
+                                    <ul>
+                                        <li><a href="/rentalHousing/buyHouseOverView.do">매입 임대주택</a></li>
+                                        <li><a href="/rentalHousing/jeonseHouseOverView.do">전세 임대주택</a></li>
+                                        <li><a href="/rentalHousing/buildHouseOverView.do">건설형 임대주택</a></li>
+                                        <li><a href="/rentalHousing/rentHouseOverView.do">공공임대주택 찾기</a></li>
+                                    </ul>
+                                </li>
+                                <li>
+							        <a href="/board/homeStability">자주묻는 질문(FAQ)</a>
+							        
+							    </li>
+                            </ul>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="depth1"><a href="javascript:;">알림 및 소통</a>
+                        <div class="depth2">
+                            <div class="depth2_inner">
+                                <div class="mainMd_tle">
+                                    <p>알림 및 소통</p>
+                                    <span>대구안방의 공지사항,자료실등<br>확인 할 수 있습니다.</span>
+                                </div>
+                                <ul>
+                                    <li><a href="/board/notice">공지사항</a></li>
+                                    <li><a href="/board/data">자료실</a></li>
+                                    
+                                </ul>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+        <div class="mbM_bg"></div>
+    </div>
+</header>
+
+	
+
+
+
+<div id="popup_holder"></div> <!-- POPUP -->
+
+<div id="content">
+    <!-- CONT -->
+    <div id="cont" class="mainCont">
+
+        <!-- 상단 -->
+        <section class="mcont_top">
+            <div class="mcont_top_left">
+                <div class="go_box">
+                    <h3><b>부동산 상담</b> 서비스</h3>
+                    <ul>
+                        <li><a href="/intro/estate/trade" class="go02"><span>부동산정보</span></a></li>
+                        <li><a href="/intro/subscr" class="go01"><span>청약정보안내</span></a></li>
+                        <li><a href="/board/realPropertyQna" class="go03"><span>부동산상담</span></a></li>
+                    </ul>
+                </div>
+                <div class="my_box">
+                    <a href="/myService">
+                        <h3><b>My맞춤형</b> 서비스</h3>
+                        <p>연령, 대상, 분야, 소득에 맞는<br>서비스를 빠르게 검색합니다</p>
+                        <p class="go01">서비스 바로가기</p>
+                    </a>
+                </div>
+            </div>
+            <div class="mcont_top_visual">
+                <div>
+                    <div class="visual_txt">
+                        <h3><span>대구시 주거정책을 한눈에!</span><b>주거종합포털 대구안방</b></h3>
+                        <p>경기 침체와 주택 가격 상승에 따라 대구 청년·신혼부부에게<br>‘주거 부담’을 덜어드립니다!</p>
+                    </div>
+                    <div class="mV_img">
+                        <span class="mVi1"></span>
+                        <span class="mVi2"></span>
+                        <span class="mVi3"></span>
+                    </div>
+
+                    <div class="visual_slider">
+                        <div class="swiper vbox_slider">
+                            <div class="swiper-wrapper">
+                                <div class="swiper-slide la01">
+                                    <a href="/jeonseMonthly/businessOverView.do">
+                                        <div class="face front">
+                                            <span class="label">청년</span>
+                                            <h4>청년 주택 <b>임차보증금<small style="font-size:12px;">(전월세)</small> 대출이자 지원</b></h4>
+                                            <p>만 19~39세 이하 무주택 청년</p>
+                                            <div>
+                                                <p><small>1억원 까지</small>
+                                                <b>최대 3.5%</b>이자지원 </p>
+                                            </div>
+                                        </div>
+                                        <div class="face back">
+                                            <div class="inner">
+                                            <h4><span>청년</span>청년 주택 <b>임차보증금<br><small>(전월세)</small>대출이자 지원</b></h4>
+                                            <p class="go">자세히보기</p>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+                                <div class="swiper-slide la01">
+                                    <a href="/youthBeotim/businessOverView.do">
+                                        <div class="face front">
+                                            <span class="label">청년</span>
+                                            <h4>청년전용 버팀목 <b>전세자금<br>대출이자 지원</b></h4>
+                                            <p>「주택도시기금 청년전용 버팀목 전세자금」 이용자</p>
+                                            <div>
+                                                <p><small>&nbsp;</small>대출금리의 <b>1/2지원</b></p>
+                                            </div>
+                                        </div>
+                                        <div class="face back">
+                                            <div class="inner">
+                                            <h4><span>청년</span>청년전용 버팀목 <b>전세자금<br>대출이자 지원</b></h4>
+                                            <p class="go">자세히보기</p>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+                                <div class="swiper-slide la01">
+                                    <a href="/jeonseReturn/businessOverView.do">
+                                        <div class="face front">
+                                            <span class="label">전연령</span>
+                                            <h4>전세보증금 <b>반환보증료<br>지원</b></h4>
+                                            <p>무주택 임차인(전연령층)</p>
+                                            <div>
+                                                <p><small>전세보증금 반환보증료</small><b>최대 40만원 지원</b><small style="font-size: 12px; color: black; display: inline-block; margin-top: 1px;">(단, 2025.3.30.이전 보증가입자는 최대 30만원 지원)</small></p>
+                                            </div>
+                                        </div>
+                                        <div class="face back">
+                                            <div class="inner">
+                                            <h4>전세보증금<b><br>반환보증료 지원</b></h4>
+                                            <p class="go">자세히보기</p>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+                                <div class="swiper-slide la01">
+                                    <a href="/hopeHousing/businessOverView.do">
+                                        <div class="face front">
+                                            <span class="label">청년</span>
+                                            <h4>청년 희망주택 <b>대출이자<br> 지원</b></h4>
+                                            <p>대구형 청년희망주택의 청년계층 입주자 중<br>전세자금 대출자</p>
+                                            <div>
+                                                <p><small>표준임대보증금 범위내</small>
+                                                <b>대출이자 50%</b> 지원 </p>
+                                            </div>
+                                        </div>
+                                        <div class="face back">
+                                            <div class="inner">
+                                            <h4><span>청년</span>청년 희망주택 <b>대출이자<br> 지원</b></h4>
+                                            <p class="go">자세히보기</p>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+                                <div class="swiper-slide la02">
+                                    <a href="/supportNewlyweds/businessOverView.do">
+                                        <div class="face front">
+                                            <span class="label">신혼</span>
+                                            <h4>신혼부부 전용<br>전세자금 <b>대출이자 지원</b></h4>
+                                            <p>2020.1.1. 이후 「주택도시기금 신혼부부 전용 전세자금」 을 이용중인 신혼부부</p>
+                                            <div>
+                                                <p><small>※자녀 수에따라 차등 지원</small>최대 <b>1.6%까지</b> 지원</p>
+                                            </div>
+                                        </div>
+                                        <div class="face back">
+                                            <div class="inner">
+                                            <h4><span>신혼</span>신혼부부 전용<br>전세자금 <b>대출이자 지원</b></h4>
+                                            <p class="go">자세히보기</p>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+                                
+                                
+                            </div>
+
+                            <div class="swiper_button_wrap">
+                                <div class="swiper-button-next"></div>
+                                <div class="swiper-button-prev"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!--// 상단 -->
+
+        <!-- 하단 -->
+        <section class="mcont_bottom">
+            <div class="mcont_bottom_wrap">
+                <div class="mcont_bottom_reference">
+                    <h3 class="tle_h3">자료실</h3>
+                    <div class="board__content">
+                        <ul id="boardData">
+                            
+                        </ul>
+                        <a href="/board/data" class="board_more">더보기</a>
+                    </div>
+                </div>
+                <div class="mcont_bottom_notice">
+                    <h3 class="tle_h3">공지사항</h3>
+                    <div class="board__content">
+                        <ul id="boardNotice">
+                            
+                        </ul>
+                        <a href="/board/notice" class="board_more">더보기</a>
+                    </div>
+                </div>
+            </div>
+            <div class="mcont_bottom_right">
+                <div class="service_box">
+                    <h3 class="tle_h3"><b>빠른 조회</b>서비스</h3>
+                    <div class="swiper service_slider">
+                        <ul class="swiper-wrapper">
+                            <li class="swiper-slide"><a href="https://www.daegu.go.kr" target="_blank"><span class="img"><img src="/resources/user/img/main_new/banner_01.png" alt="대구광역시 홈페이지"></span><span class="txt">대구광역시 홈페이지</span></a></li>
+                            <li class="swiper-slide"><a href="https://apply.lh.or.kr/index.html" target="_blank"><span class="img"><img src="/resources/user/img/main_new/banner_02.png" alt="LH청약센터"></span><span class="txt">LH청약센터</span></a></li>
+                            <li class="swiper-slide"><a href="https://www.dudc.or.kr/ko/main.do" target="_blank"><span class="img"><img src="/resources/user/img/main_new/banner_03.png" alt="대구도시개발공사"></span><span class="txt">대구도시개발공사</span></a></li>
+                            <li class="swiper-slide"><a href="https://www.bokjiro.go.kr" target="_blank"><span class="img"><img src="/resources/user/img/main_new/banner_04.png" alt="복지로"></span><span class="txt">복지로</span></a></li>
+                            <li class="swiper-slide"><a href="https://www.dgjump.com" target="_blank"><span class="img"><img src="/resources/user/img/main_new/banner_05.png" alt="젊프"></span><span class="txt">젊프</span></a></li>
+                            <li class="swiper-slide"><a href="https://www.myhome.go.kr" target="_blank"><span class="img"><img src="/resources/user/img/main_new/banner_06.png" alt="마이홈 포털"></span><span class="txt">마이홈 포털</span></a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="que_box">
+                    <h3 class="tle_h3"><b>자주하는</b>질문</h3>
+                    <div class="swiper que_slider">
+                        <ul id="boardFaq" class="swiper-wrapper">
+                            <li class="swiper-slide" data-typ="33" data-subtyp="" data-baseurl="/board/homeStability"><a href="javascript:;" class="label_red"><span class="label">사업</span><span class="tle">(불러오는 중입니다)</span></a></li>
+                            <li class="swiper-slide" data-typ="7" data-subtyp="72" data-baseurl="/board/realPropertyFaq"><a href="javascript:;" class="label_green"><span class="label">부동산</span><span class="tle">(불러오는 중입니다)</span></a></li>
+                            <li class="swiper-slide" data-typ="7" data-subtyp="71" data-baseurl="/board/realPropertyFaq"><a href="javascript:;" class="label_blue"><span class="label">법률</span><span class="tle">(불러오는 중입니다)</span></a></li>
+                        </ul>
+                    </div>
+                    <div class="que_slider_control">
+                        <button type="button" class="btn prev sr-only-text swiper-button-disabled" tabindex="0" role="button" aria-label="Previous slide" aria-disabled="true">이전</button>
+                        <button type="button" class="btn next sr-only-text" tabindex="0" role="button" aria-label="Next slide" aria-disabled="false">다음</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!--// 하단 -->
+
+        <button class="scrollTop"><i class="fa fa-arrow-up"></i><span class="blind">페이지 상단으로 이동</span></button>
+    </div>
+    <!-- //CONT -->
+</div>
+
+<script>
+	$(document).ready(function() {
+		getBoard();
+		initPopup();
+
+		var msg = "";
+		if(msg === "unlockedOfTrmnDmnd") {
+			msg = "탈퇴 요청이 해제되었습니다.";
+		}
+		if(msg) { setTimeout(function() { alert(msg); }, 10); }
+	});
+
+	function getBoard() {
+		$.ajax({
+			url: "/api/cmm/main/board",
+			type: "get",
+			cache: false,
+			success: function(response,status,xhr) {
+				drawCmmnBoard(response.result.notice, "notice", "#boardNotice");
+				drawCmmnBoard(response.result.data, "data", "#boardData");
+				drawFaqBoard(response.result.faq);
+			},
+			error: function(xhr,status,err) {
+				if(xhr.status === 400) {
+					alert("전송 항목에 문제가 발생했습니다.");
+				} else if(xhr.status === 500) {
+					alert("내부 작업 중 오류가 발생했습니다.");
+				} else {
+					alert("로딩을 실패했습니다.");
+				}
+			}
+		});
+	}
+	function drawCmmnBoard(list, urlpath, el) {
+		var $list = $(el);
+
+		if(!list || list.length === 0) {
+			$list.html("<li class=\"board__item\"><a href=\"javascript:;\" class=\"board__link\"><strong class=\"board__item--title\">(게시물이 존재하지 않습니다)</strong><em class=\"board__item--content\"></em><em class=\"board__item--date\"><span>0000.00.<i>00</i></span></em></a></li>");
+			return;
+		}
+
+		$list.html("");
+		var newItemThreshold = new Date();
+		newItemThreshold.setDate(newItemThreshold.getDate() - 1);
+
+		for(var idx in list) {
+			var regDtObj = new Date(list[idx].regDt);
+			var regDtStr = moment(regDtObj).format("YYYY.MM.<i>DD</i>");
+
+			var $itemTitle = $("<strong class=\"board__item--title\"></strong>");
+			$itemTitle.text(list[idx].nttSj);
+			if(regDtObj > newItemThreshold) {
+				// 24시간 전 이후 작성된 글이면 새 글로 처리
+				$itemTitle.append("<span class=\"ir ir-icon__new\">N</span>");
+			}
+
+			var $item = $("<a href=\"/board/"+urlpath+"/"+list[idx].nttId+"\" class=\"board__link\"></a>")
+						.append($itemTitle)
+						.append($("<em class=\"board__item--content\"></em>").html(list[idx].nttContent)) // TODO: XSS 테스트 필요
+						.append($("<em class=\"board__item--date\"></em>").html("<span>"+regDtStr+"</span>"));
+
+			$list.append($("<li class=\"board__item\"></li>").append($item));
+		}
+	}
+	function drawFaqBoard(list) {
+		var $list = $("#boardFaq > li");
+		if(!list) { list = new Array(); }
+
+		for(var elIdx = 0; elIdx < $list.length; elIdx++) {
+			var $item = $list.eq(elIdx);
+			var typ = $item.attr("data-typ");
+			var subtyp = $item.attr("data-subtyp");
+			var baseurl = $item.attr("data-baseurl");
+
+			var item = new Object();
+			for(var idx in list) {
+				if(list[idx].bbsTypeCd === typ && (!subtyp || list[idx].faqTypeCd === subtyp)) {
+					item = list[idx]; break;
+				}
+			}
+
+			$item.find("a").attr("href", (item.nttId ? baseurl+"?nttId="+item.nttId : "javascript:;"));
+			$item.find(".tle").text(item.nttId ? item.nttSj : "(게시물이 존재하지 않습니다)");
+		}
+	}
+
+	function initPopup() {
+		var $popupHolder = $("#popup_holder");
+		
+		let today = new Date();
+		let periodCheck = today >= new Date('2026-07-09T10:00:00') && today <= new Date('2026-07-15T18:00:00');
+		let periodCheck2 = today >= new Date('2025-11-01T09:00:00') && today <= new Date('2025-11-15T18:00:00');
+		
+		var popupContents = [
+			{
+				id: "popup2",
+				img: "/resources/user/img/main/popup/popup260708.png",
+				//href: "https://www.gov.kr/search?srhQuery=%EA%B5%AD%ED%86%A0%EA%B5%90%ED%86%B5%EB%B6%80%20%EC%A0%84%EC%84%B8%EB%B3%B4%EC%A6%9D%EA%B8%88",
+				href: "https://www.daegu.go.kr/build/index.do?menu_id=00941311&servletPath=%2Fbuild",
+				hrefopt: "target=\"_blank\"",
+				//hrefopt: "download=\"대출사실확인서.hwp\"",
+				pos: { top: 150, left: 40 , width: 400 },
+				show: true,
+				//wideonly: true
+			},
+			
+			{
+				id: "popup3",
+				img: "/resources/user/img/main/popup/survey.png",
+				href: "https://naver.me/5Vx6zjff", 
+				hrefopt: "target=\"_blank\"",
+				pos: { top: 165, left: 340, width:750 },
+				show: periodCheck,
+				//wideonly: true
+			},
+			
+			/*
+			{
+				id: "popup4",
+				img: "/resources/user/img/main/popup/popup241113.png",
+				hrefopt: "target=\"_blank\"",
+				href: "https://www.youtube.com/watch?si=vu4PxRCifl7m4ZLH&v=wdLvy_68w7Y&feature=youtu.be",
+				pos: { top: 165, left: 400 , width: 380},
+				show: false,
+				//wideonly: true
+			},
+			*/
+			
+			{
+				id: "popup5",
+				img: "/resources/user/img/main/popup/popup_20260427.png",
+				//href: "/jeonseMonthly/businessOverView.do",
+				hrefopt: "target=\"_blank\"",
+				pos: { top: 165, left: 60, width: 450},
+				show: false,
+				//wideonly: true
+			},
+			
+			{
+				id: "popup_construct", // 점검중 전용 ID
+				img: "/resources/user/img/main/popup/pop_construct_251113.png",
+				datetime: "",
+				content: "",
+				pos: { top: 165, left: 80},
+				show: false
+			}
+		]; // 마지막 항목이 가장 위에 표시됨
+
+		var html = "";
+		var isNarrow = matchMedia("screen and (max-width: 760px)").matches;
+		var cookie = document.cookie;
+		var popupPosCnt = 0;
+		for(var idx in popupContents) {
+			var hideFlag = cookie.indexOf(popupContents[idx].id+"=done") >= 0;
+			if(hideFlag) { continue; }
+
+			if(popupContents[idx].show === false) { continue; }
+			if(isNarrow && popupContents[idx].wideonly === true) { continue; }
+
+			var posObj = popupContents[idx].pos;
+			const screenWidth = window.screen.width;
+			
+			if(!posObj) {
+				posObj = { top: 30 + (popupPosCnt*50), left: 30 + (popupPosCnt*50) };
+				popupPosCnt += 1;
+			}
+			var posStyle = "top:"+posObj.top+"px;left:"+posObj.left+"px;";
+
+			if(screenWidth < 1000 && posObj.width != null){ //모바일에서 이미지가 잘리는 현상 수정
+				posStyle = "width:" + (posObj.width * 0.7) + "px;height:auto;";
+			}else
+			if(posObj.width != null){
+				posStyle += "width:" + posObj.width + "px;height:auto;";
+			}
+
+			var hrefOpt = popupContents[idx].hrefopt ? popupContents[idx].hrefopt : "";
+
+			html += "<div class=\"layerPopup\" id=\""+popupContents[idx].id+"\" onmousedown=\"startDrag(event,this)\" style=\""+posStyle+"\">";
+				html += "<div class=\"layerPopcont\">";
+					if(popupContents[idx].id === "popup_construct") {
+						html += "<span class=\"cont1\">"+popupContents[idx].datetime+"</span>";
+						html += "<span class=\"cont2\">"+popupContents[idx].content+"</span>";
+					}
+					
+					if (popupContents[idx].id === "popup5") {
+					    var contextPath = "";
+					    var w = (posObj && posObj.width) ? posObj.width : 380;
+
+					    // 모바일이면 0.7배 축소 (기존 로직 반영)
+					    if (screenWidth < 1000 && w != null) {
+					        w = Math.round(w * 0.7);
+					    }
+
+					    html += '<div style="position:relative;width:' + w + 'px;">';
+					    html += '<img src="' + popupContents[idx].img + '"'
+					          + ' alt="" style="display:block;width:100%;height:auto;">';
+				        html += '<div style="position:absolute; bottom:8px; left:50%; transform:translateX(-50%); z-index:2;'
+				              + ' display:flex; flex-direction:row; gap:10px; width:90%; justify-content:center;">';
+					    html += '<img src="' + contextPath + '/resources/user/img/main/popup/button_application.png" alt="안내문 보기"'
+					          + ' style="cursor:pointer; width:48%; height:auto;"'
+					          + ' onclick="location.href=\'https://anbang.daegu.go.kr/board/notice/3084?p=1&typ=&qry=\'">';
+					    html += '<img src="' + contextPath + '/resources/user/img/main/popup/button_claim.png" alt="청구신청 하기"'
+					          + ' style="cursor:pointer; width:48%; height:auto;"'
+					          + ' onclick="location.href=\'' + contextPath + '/supportNewlyweds/businessOverView.do\'">';
+					    html += '</div></div>';
+					
+				    } else if (popupContents[idx].href) {
+				        html += "<a href=\"" + popupContents[idx].href + "\" " + hrefOpt + ">";
+				        html += "<img src=\"" + popupContents[idx].img + "\">";
+				        html += "</a>";
+				    } else {
+				        html += "<img src=\"" + popupContents[idx].img + "\">";
+				    }
+				    html += "</div>";
+
+				    html += "<div class=\"layerP_bottom\" style=\"overflow:hidden;\">";
+				    html += "  <span class=\"fl\">";
+				    html += "    <input type=\"checkbox\" id=\"" + popupContents[idx].id + "_chkhide\" onclick=\"removePopup('#" + popupContents[idx].id + "',true);\" value=\"checkbox\"/>";
+				    html += "    <label for=\"" + popupContents[idx].id + "_chkhide\">오늘하루보지않기</label>";
+				    html += "  </span>";
+				    html += "  <button class=\"layerP_close\" onclick=\"removePopup('#" + popupContents[idx].id + "',false);\">";
+				    html += "    <i class=\"fas fa-times\"></i><span class=\"blind\">닫기</span>";
+				    html += "  </button>";
+				    html += "</div>";
+				    html += "</div>";
+		}
+		$popupHolder.html(html);
+	}
+	function removePopup(el, isHide) {
+		if (isHide) { setCookie($(el).attr("id"), "done", 1); }
+		$(el).remove();
+	}
+	function setCookie(name, value, expireDays) {
+		var todayDate = new Date();
+		todayDate.setDate(todayDate.getDate() + expireDays);
+		document.cookie = name + "=" + escape(value) + "; path=/; expires=" + todayDate.toGMTString() + ";";
+	}
+</script>
+
+	
+
+<footer id="footer">
+    <div class="foot_top">
+        <div class="footer__inner">
+            <ul>
+                <li>
+                    <a href="https://www.daegu.go.kr/index.do?menu_id=00050250" target="_blank">개인정보처리방침</a>
+                </li>
+                
+                
+            </ul>
+        </div>
+    </div>
+    <div class="foot_bot">
+        <div class="footer__inner">
+            <p class="foot_adress">
+                (41542) 대구광역시 북구 연암로 40 (대구광역시청 산격청사)<br>
+                <b>대표안내전화</b>
+                (053)120
+                <b>팩스</b>
+                (053)803-2879
+            </p>
+            <p class="foot_copyright">© DAEGU METROPOLITAN CITY ALL RIGHTS RESERVED.</p>
+        </div>
+    </div>
+</footer>
+
+</body>
+</html>

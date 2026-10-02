@@ -1,0 +1,1929 @@
+
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        
+		<meta charset="utf-8">
+	    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+	    <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0">
+	    <meta name="format-detection" content="telephone=no">
+	    <title>전세임대포털</title>
+	    <meta name="keywords" content="전세임대포털">
+	    <meta name="description" content="행복을 나누는 전세임대포털 홈페이지에 오신 것을 환영합니다.">
+	    <link rel="stylesheet" href="/css/web/jw/common_v1.css"> <!-- 공통 common_v1 -->
+	    <link rel="stylesheet" href="/css/web/jw/con_com.css" media="all"> <!-- 공통 con_com -->
+	    <link rel="stylesheet" href="/css/web/jw/webfont.css" media="all"> <!-- 공통 webfont -->
+	    <link rel="stylesheet" href="/css/web/jw/layout.css" media="all">  <!-- 전세임대포털 신규 메인 CSS -->
+	    <link rel="stylesheet" href="/css/web/jw/sub_cnt.css" media="all">
+	    <link rel="stylesheet" href="/css/web/jw/login.css" media="all">
+	    <link rel="stylesheet" href="/css/web/jw/board.css" media="all">
+	    <link rel="stylesheet" href="/css/com/jquery/jquery-ui.min.css" media="all">
+	    <script type="text/javascript" src="/js/html5shiv.js"></script>
+	    <script type="text/javascript" src="/js/jquery.min.js"></script>
+	    <script type="text/javascript" src="/js/jquery-ui.min.js"></script>
+	    <script type="text/javascript" src="/js/jquery.form.min.js"></script>
+	    <script type="text/javascript" src="/js/jquery.easing.1.3.js"></script>
+	    <script type="text/javascript" src="/js/jquery.bpopup.min.js"></script>
+	    <script type="text/javascript" src="/js/common.js"></script>
+	    <script type="text/javascript" src="/js/sha256.js"></script>
+	    <script type="text/javascript" src="/js/crypto-js/crypto-js.js"></script>
+	    <script type="text/javascript" src="/js/layout.js"></script>  <!-- 전세임대포털 신규 메인 JS -->
+	</head>
+    <body>
+    	<!-- 바로가기 -->
+        <div id="skipArea">
+            <a href="#gnb">메인메뉴 바로가기</a>
+            <a href="#container">본문으로 바로가기</a>
+        </div>
+		<!-- //바로가기 -->
+        	<!-- header -->
+			
+
+
+
+
+
+<!-- web -->
+        <!-- web -->
+        <div class="area_header">
+            <!-- header  -->
+            <header id="header">
+                <div class="headerWrap">
+                    <div class="head_top">
+                        <div class="inner">
+                            <!-- 유틸메뉴 -->
+                            <div class="h_util">
+                                <ul class="util_list">
+									
+										<!-- 비로그인 -->
+										<li class="login">
+											<a href="/jw/lo/login/loginPage.do" title="로그인">
+												<i class="ri-lock-line"></i>
+                                           		<span>로그인</span>
+											</a>
+										</li>
+										<li class="mypage" >
+											<a href="/jw/sb/sbscrb/insertSbscrbInfo01.do?mi=2986" title="회원가입">
+												<i class="ri-account-circle-line"></i>
+                                           		<span>회원가입</span>
+											</a>
+										</li>
+									
+									
+                                </ul>
+                            </div>
+                            <!--// 유틸메뉴 -->
+                            
+                            <!-- 관련사이트 -->
+                            <div class="h_quick">
+                                <button type="button" title="관련사이트 열기" class="quick_btn">
+                                    <i class="ri-pages-line"></i>
+                                    <span>관련 사이트</span>
+                                </button>
+                                <div class="quick_wrap">
+                                    <ul class="quick_list">
+                                        <li>
+                                            <a href="https://www.molit.go.kr" target="_blank" title="새창" rel="noopener noreferrer" class="quick_link">국토교통부</a>
+                                        </li>
+                                        <li>
+                                            <a href="https://www.lh.or.kr" target="_blank" title="새창" rel="noopener noreferrer" class="quick_link">한국토지주택공사</a>
+                                        </li>
+                                        <li>
+                                            <a href="https://ziptoss.com" target="_blank" title="새창" rel="noopener noreferrer" class="quick_link">집토스부동산</a>
+                                        </li>
+                                        <li>
+                                            <a href="https://www.myhome.go.kr" target="_blank" title="새창" rel="noopener noreferrer" class="quick_link">마이홈</a>
+                                        </li>
+                                        <li>
+                                            <a href="https://adrhome.reb.or.kr" target="_blank" title="새창" rel="noopener noreferrer" class="quick_link">한국부동산원-<br />LH임대차분쟁조정위원회</a>
+                                        </li>
+                                        <li>
+                                            <a href="https://www.r114.com" target="_blank" title="새창" rel="noopener noreferrer" class="quick_link">부동산114</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <!--// 관련사이트 -->
+                        </div>
+                    </div>
+                    <div class="head_body">
+                        <div class="inner">
+                            <h1 class="logo" id="logo">
+                                <a href="/jw/main.do"><span class="sr-only">전세임대포털</span></a>
+                            </h1>
+                            <div id="nav">
+							<div class="menuBox" id="gnb">
+							<h2 class="sr-only">메뉴</h2>
+							<ul class="group">
+							<li class="menu1 depth1"><a href="/jw/rs/search/selectRthousList.do?mi=2871"  ><span>전세임대 뱅크</span></a>
+								<ul class="depth_ul">
+									<li><a href="/jw/rs/search/selectRthousList.do?mi=2871"  >주택검색</a>
+									</li>
+									<li><a href="/jw/li/falseSaleGuide.do?mi=3106"  >허위매물신고 방법</a>
+									</li>
+									<li><a href="/jw/rm/manage/getRthousList.do?mi=3107"  >주택등록</a>
+									</li>
+									<li><a href="/jw/br/brkrg/srch.do?mi=3108"  >중개업소 검색</a>
+									</li>
+								</ul>
+							</li>
+							<li class="menu2 depth1"><a href="/jw/rs/search/selectDdRthousList.do?mi=4220"  ><span>든든임대인</span></a>
+								<ul class="depth_ul">
+									<li><a href="/jw/rs/search/selectDdRthousList.do?mi=4224"  >주택검색</a>
+									</li>
+									<li><a href="/jw/li/ddLandlordInfo.do?mi=4221" >든든임대인이란</a>
+									</li>
+									<li><a href="/jw/rm/manage/getDdRthousList.do?mi=4222"  >주택등록</a>
+									</li>
+									<li><a href="/jw/cm/cntnts/cntntsView.do?mi=4300&cntntsId=1000060"  >법무법인 안내</a>
+									</li>
+								</ul>
+							</li>
+							<li class="menu3 depth1"><a href=""  ><span>소통창구</span></a>
+								<ul class="depth_ul">
+									<li><a href="/jw/na/ntt/selectNttList.do?mi=4240&bbsId=1403"  >자료실</a>
+									</li>
+									<li><a href="/jw/na/ntt/selectNttList.do?mi=3268&bbsId=1541"  >홍보자료</a>
+									</li>
+
+								</ul>
+							</li>
+							<li class="menu4 depth1"><a href="/jw/na/ntt/selectNttList.do?mi=2857&bbsId=1443"  ><span>전월세상담</span></a>
+								<ul class="depth_ul">
+									<li><a href="/jw/na/ntt/selectNttList.do?mi=2857&bbsId=1443"  >상담사례</a>
+									</li>
+									<li><a href="/jw/na/ntt/selectNttList.do?mi=2858&bbsId=1442"  >법률/판례 해설</a>
+									</li>
+								</ul>
+							</li>
+							<li class="menu5 depth1"><a href=""  ><span>알려드려요</span></a>
+								<ul class="depth_ul">
+									<li><a href="https://apply.lh.or.kr/lhapply/apply/wt/wrtanc/selectWrtancList.do?srchUppAisTpCd=13&uppAisTpaCd=13&aisTpCd=17&srchAisTpCd=17&panSs=공고중&listCo=50&mi=1026" target="_blank">입주자 모집공고</a>
+									</li>
+									<li><a href="https://apply.lh.or.kr/lhapply/cm/cntnts/cntntsView.do?mi=1240&cntntsId=1143" target="_blank">전세임대 사업안내</a>
+									</li>
+									<li><a href="/jw/na/ntt/selectNttList.do?mi=3119&bbsId=1401"  >공지사항</a>
+									</li>
+									<li><a href="/jw/na/ntt/selectNttList.do?mi=3266&bbsId=1522"  >이벤트</a>
+									</li>
+									<li><a href="/jw/li/areaAcctoCnslt.do?mi=3267"  >전세임대 상담센터</a>
+									</li>
+								</ul>
+							</li>
+							
+							
+							
+							</ul>
+						</div>
+                            <!-- //PC메뉴 -->
+                            <div class="last_item">
+                                <!-- 검색 -->
+                                <div class="search">
+                                    <form name="searchForm" class="clearfix" id="searchForm" onsubmit="return searchGo(this)" action="/jw/jeonwolse/search.do" method="post" target="_blank">
+                                        <fieldset>
+                                            <legend>통합검색 폼</legend>
+                                            <div class="search_wrap">
+                                                <div class="search_item">
+                                                	<label class="hid" for="total_search">검색어 입력</label>
+                                                    <input type="search" name="query" type="search" id="total_search" placeholder="검색어를 입력하세요" value="">
+                                                    <input type="hidden" name="bbsId" value=""/>
+													<input type="hidden" name="searchType" value=""/>
+                                                    <button>
+                                                        <span class="sr-only">검색하기</span>
+                                                        <i class="ri-search-line"></i>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </fieldset>
+                                    </form>
+                                </div>
+                                <!-- // 검색 -->
+                                <!-- 콜센터 -->
+                                <div class="call_info">
+                                    <div class="call_item num">
+                                        <span class="tit">콜센터</span>
+                                        <span class="text">1670-0002</span>
+                                    </div>
+                                    <div class="call_item time">
+                                        <span class="tit">운영시간</span>
+                                        <span class="text">09:00 ~ 18:00</span>
+                                    </div>
+                                </div>
+                                <!--// 콜센터 -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </header>
+            <!-- //header -->
+        </div>
+        <!--// web -->
+        
+        <!-- tablet, moblie -->
+        <div id="tablet">
+            <div id="mNavi">
+                <div id="mtitle">
+                    <a href="#">메뉴닫기</a>
+                </div>
+                <nav id="mgnb">
+                    <div class="snb">
+                        <!-- 유틸메뉴 -->
+                        <div class="h_util">
+                            <ul class="util_list">
+                            	
+	                                <li class="login">
+	                                    <a href="/jw/lo/login/loginPage.do">
+	                                        <span>로그인</span>
+	                                    </a>
+	                                </li>
+	                                <li class="mypage">
+	                                    <a href="/jw/sb/sbscrb/insertSbscrbInfo01.do?mi=2986">
+	                                        <span>회원가입</span>
+	                                    </a>
+	                                </li>
+                                
+                                
+                            </ul>
+                        </div>
+                        <!--// 유틸메뉴 -->
+                        <!-- 관련사이트 -->
+                        <div class="h_quick">
+                            <button type="button" title="관련사이트 열기" class="quick_btn">
+                                <span>관련 사이트</span>
+                            </button>
+                            <div class="quick_wrap">
+                                <ul class="quick_list">
+                                    <li>
+                                        <a href="https://www.molit.go.kr" target="_blank" title="새창" rel="noopener noreferrer" class="quick_link">국토교통부</a>
+                                    </li>
+                                    <li>
+                                        <a href="https://www.lh.or.kr" target="_blank" title="새창" rel="noopener noreferrer" class="quick_link">한국토지주택공사</a>
+                                    </li>
+                                    <li>
+                                        <a href="https://ziptoss.com" target="_blank" title="새창" rel="noopener noreferrer" class="quick_link">집토스부동산</a>
+                                    </li>
+                                    <li>
+                                        <a href="https://www.myhome.go.kr" target="_blank" title="새창" rel="noopener noreferrer" class="quick_link">마이홈</a>
+                                    </li>
+                                    <li>
+                                        <a href="https://adrhome.reb.or.kr" target="_blank" title="새창" rel="noopener noreferrer" class="quick_link">한국부동산원-LH임대차분쟁조정위원회</a>
+                                    </li>
+                                    <li>
+                                        <a href="https://www.r114.com" target="_blank" title="새창" rel="noopener noreferrer" class="quick_link">부동산114</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <!--// 관련사이트 -->
+                    </div>
+                    <!--M_START-->
+                    <!--M_END-->
+                </nav>
+            </div>
+            <div id="tabletHeader">
+                <div id="tabletLogo">
+                    <a href="/jw/main.do"><img src="/images/layout/logo.png" alt="LH전세임대포털 로고" /></a>
+                </div>
+            </div>
+            <div id="tabletGnb">
+                <div id="menuOpen">
+                    <a href="#"><img src="/images/layout/btn_menu_t.png" alt="메뉴열기" /></a>
+                </div>
+            </div>
+            <!--// 태블릿 검색 -->
+            <div id="tabletSearch">
+                <div id="searchOpen">
+                    <a href="#"><img src="/images/layout/btn_search_t.png" alt="검색열기" /></a>
+                </div>
+            </div>
+            <div id="mSearch">
+                <form name="searchFrm" id="searchFrm" method="POST" onsubmit="return searchMobGo(this)" action="/jw/jeonwolse/search.do">
+                    <div class="con">
+                        <p>
+                            <input type="text" id="searchText" name="query" class="inputText" title="통합 검색어" value="">
+                            <input type="hidden" name="bbsId" value="1482">
+                            <input type="hidden" name="searchType" value="">
+                            <button class="btnSearch" id="searchTextBtn">
+                                <span>검색</span>
+                            </button>
+                        </p>
+                        <button type="button" class="btnSearchClose">
+                            <span>통합검색 닫기</span>
+                        </button>
+                    </div>
+                </form>
+            </div>
+            <!-- 태블릿 검색 -->
+        </div>
+        <!--// tablet -->
+
+            <!-- //header  -->
+            <div class="box_mot_1">
+                <!-- container -->
+                <a href="#" name="container" title="메인콘텐츠 바로가기" class="hid"></a>
+
+                <div id="sub_container_wrap">
+                    <div class="sub_content_wrap">
+						
+
+
+<script>
+$(document).ready(function() {
+	if($('#menu ul').hasClass('lnb')==true){
+		$('#menu h2 span').removeClass("no-after");
+    }else{
+    	 $('#menu h2 span').addClass("no-after");
+    }
+	$('#2879,#2881,#4021,#3110,#3112,#2858,#4000,#3267').addClass("mob_hide");
+});
+</script>
+<div style="display:none;"><h1></h1><h2></h2><h3></h3><h4></h4><h5></h5><h6></h6></div>
+<!-- 웹용 -->
+<div id="menu">
+	<h2><span></span></h2>
+	<!--START-->
+										
+										<input type="hidden" id="leftCurrMi" value="">
+										<input type="hidden" id="tabBaseMi" value="">
+										<input type="hidden" id="tabUpperMi" value="">
+
+
+
+
+
+
+
+
+	<!--END-->
+	<!-- 2차메뉴 --
+                            <ul class="lnb">
+                                <li class="on"><a href="#" title="현재페이지">2차메뉴</a></li>
+                                <li><a href="#">2차메뉴</a></li>
+                                <li><a href="#">2차메뉴</a></li>
+                                <li><a href="#">2차메뉴</a></li>
+                                <li><a href="#">2차메뉴</a></li>
+                            </ul>
+                            !-- //2차메뉴 -->
+	<!-- 3차메뉴 --
+                            <ul class="subLnb">
+                                <li class="on"><a href="#">3차메뉴</a></li>
+                                <li><a href="#" target="_blank" title="새창">3차메뉴</a></li>
+                                <li><a href="#">3차메뉴</a></li>
+                            </ul>
+                            !-- //3차메뉴 -->
+</div>
+<!-- //웹용 -->
+<!-- 모바일용 -->
+<div id="m_menu">
+	<!-- 이쪽의 메뉴는 사용하지 않음. -->
+</div>
+
+                        <!-- sub 내용 -->
+                        <section id="sub_content">
+                            <div class="title_area">
+                            	
+
+
+<div style="display:none;"><h1></h1><h2></h2><h3></h3><h4></h4><h5></h5><h6></h6></div>
+
+                                <h2 class="pageTitle"></h2>
+                                <div class="location">
+                                    <a href="/jw/main.do" class="home"><i class="ri-home-4-fill"></i>
+                                    <span class="sr-only">HOME</span></a>
+									
+									
+                                </div>
+
+                                <!-- sns -->
+								
+
+
+<script src="//developers.kakao.com/sdk/js/kakao.min.js"></script><!-- FIXME : offline 스크립트 필요 -->
+<div class="snsBox">
+                                <button type="button" class="btnPrint">
+                                    <span class="sr-only ">인쇄</span>
+                                    <i class="ri-printer-fill"></i>
+                                </button>
+                                <button type="button" title="SNS 박스 열기" class="btnShare">
+                                    <span class="sr-only ">공유</span>
+                                    <i class="ri-share-fill"></i>
+                                </button>
+                                <div class="sns_more">
+                                    <button type="button" class="btnFbook" title="페이스북"><span class="sr-only">페이스북</span></button>
+                                    <button type="button" class="btnTwt" title="트위터"><span class="sr-only">트위터</span></button>
+                                    <button type="button" class="btnBlog" title="블로그"><span class="sr-only">블로그</span></button>
+                                    <button type="button" class="btnYtb" title="유투브"><span class="sr-only">유투브</span></button>
+                                    <button type="button" class="btnInstar" title="인스타그램"><span class="sr-only">인스타그램</span></button>
+                                </div>
+                            </div>
+<script>
+    (function() {
+        'use strict';
+        $(function() {
+            /**
+            페이스북 버튼 
+            */
+            $(document).on("click", ".btnFbook", function() {
+                window.open('https://www.facebook.com/sharer/sharer.php?u=' + encodeURIComponent(location.href), 'facebook', 'width=626,height=436');
+            });
+
+            /**
+            트위터 버튼
+            */
+            $(document).on("click", ".btnTwt", function() {
+                window.open('https://twitter.com/intent/tweet?url=' + encodeURIComponent(location.href), 'twitter', 'width=626,height=436');
+            });
+
+            /**
+            네이버 버튼 
+            */
+            $(document).on("click", ".btnBlog", function() {
+                var url = encodeURI(encodeURIComponent(location.href));
+                var title = $(".pageTitle").text();
+                window.open('https://share.naver.com/web/shareView.nhn?url=' + url + "&title=" + title, 'naver', 'width=626,height=436');
+            });
+
+            /**
+            카카오 버튼
+            */
+            $(document).on("click", ".btnKakao", function() {
+                var loc = 'https://story.kakao.com/share?url='+encodeURIComponent(location.href);
+                window.open(loc, 'kakao', 'width=626,height=436');
+            });
+        });
+    }());
+</script>
+<script>
+	(function() {
+	    'use strict';
+	    var makeBtnKakao = function() {
+	        Kakao.init('710dbbfe84c5cea8f2b2fc5cb54afe35');	// FIXME : 고유키 필요 
+            //<![CDATA[
+            // // 사용할 앱의 JavaScript 키를 설정해 주세요.
+            // // 카카오링크 버튼을 생성합니다. 처음 한번만 호출하면 됩니다.
+            Kakao.Link.createDefaultButton({
+                container : '.btnKakao',
+                objectType : 'feed',
+                content : {
+                    title : '전세임대포털',
+                    description : $(".pageTitle").text(),
+                    imageUrl : '/images/web/jw/layout/logo.png',
+                    link : {
+                        mobileWebUrl : location.href,
+                        webUrl : location.href
+                    }
+                },
+                buttons : [ {
+                    title : '링크 보기',
+                    link : {
+                        mobileWebUrl : location.href,
+                        webUrl : location.href
+                    }
+                }, ]
+            });
+            //]]>
+	    };
+// 	    makeBtnKakao();
+	}());
+</script>
+                                <!-- //sns -->
+                            </div>
+                            <div class="subCntBody clearfix">
+								<!-- 페이지뷰 : 서브콘텐츠 시작-->
+								
+
+
+
+<div>
+   <!--START-->
+										
+    <!--END-->
+</div>
+	
+
+
+
+
+								
+
+
+
+<!-- <link rel="stylesheet" href="/css/web/jw/sub_cnt_lfsts.css?" media="all"> -->
+<head>
+	<style>
+		table, td, th{
+			border-collapse : collapse;
+			border : 1px solid gray;
+			text-align: center;
+			vertical-align : middle;
+			padding : 5px;
+		}
+	</style>
+</head>
+<div style="display: none;">
+    <h1></h1>
+    <h2></h2>
+    <h3></h3>
+    <h4></h4>
+    <h5></h5>
+    <h6></h6>
+</div>
+<!-- 페이지뷰 : 서브콘텐츠 시작-->
+<div>
+    <div class="box_st6">
+        <div class="box_st_ico">
+            <div class="ico_boxImg"> <img src="/images/web/jw/con_com/ico_boxImg3.png" alt=""> </div>
+            <h3 class="box_tit pc_black">
+            전세임대 사업안내
+            </h3>
+            <p class="box_txt">저소득층의 주거 안정을 위해 복권기금과 주택도시기금이 전세임대사업을 지원합니다.</p>
+        </div>
+    </div>
+    <script>
+        $(function() {
+            $('.slideList .allShow').on('click', function(e) {
+                e.preventDefault();
+                if ($(this).hasClass('show')) {
+                    $('.slideList > dl').removeClass('open')
+                    $('.slideList > dl > dd').stop().slideUp(400);
+                    $(this).text('모두보기').removeClass('show');
+                } else {
+                    $('.slideList > dl').addClass('open');
+                    $('.slideList > dl > dd').stop().slideDown(400);
+                    $(this).text('모두닫기').addClass('show');
+                }
+            });
+
+            $('.slideList dt').on('click', function() {
+                if ($(this).parent('dl').hasClass('open')) {
+                    $('.slideList > dl').removeClass('open');
+                    $('.slideList > dl > dd').stop().slideUp(400);
+                    $('.slideList .allShow').text('모두보기').removeClass('show');
+                } else {
+                    $('.slideList > dl').removeClass('open')
+                    $('.slideList > dl > dd').stop().slideUp(400);
+                    $($(this)).next('dd').stop().slideDown(400);
+                    $($(this)).parent('dl').addClass('open');
+                }
+            });
+        });
+    </script>
+    <!-- 210204 : 내용 전체 수정 -->
+    <div class="slideList cnckrInfo">
+        <dl class="">
+            <dt> <span>1</span>기존주택전세임대주택 </dt>
+            <dd>
+                <p class="bu_st5"> <span class="pc_blue">무주택 저소득계층이 현 생활권에서 거주할 수 있도록</span> 기존주택에 대해 전세계약을 체결한 후 저소득층에서 저렴하게 재임대하는 주택입니다. </p>
+                <h3 class="tit1 mgt30"> 공급대상 </h3>
+                <div class="box_st1">
+                    <h4 class="tit2">수급자 등</h4>
+                    <p class="bu_st1">사업대상지역에 거주하는 무주택세대구성원 </p>
+                    <ul class="list_st2">
+                        <li>1순위
+                            <ul class="bu_none">
+                                <li><span class="t_cirDot">1</span> 생계, 의료급여 수급자</li>
+                                <li><span class="t_cirDot">2</span> 보호대상 한부모가족 </li>
+                                <li><span class="t_cirDot">3</span> 수급자 또는 차상위계층에 해당하는 자 중 최저주거기준에 미달하거나 RIR이 30% 이상인 자</li>
+                                <li><span class="t_cirDot">4</span> 장애인등록증 교부자 중 해당 세대의 월평균 소득이 전년도 도시근로자 가구당 월평균 소득 70% 이하인 사람</li>
+                            </ul>
+                        </li>
+                        <li>2순위
+                            <ul class="bu_none">
+                                <li><span class="t_cirDot">1</span> 해당 세대의 월평균소득이 전년도 도시근로자 가구당 월평균 소득의 50% 이하이면서 영구임대 자산기준 충족하는 사람 </li>
+                                <li><span class="t_cirDot">2</span> 장애인등록증 교부자 중 해당 세대의 월평균 소득이 전년도 도시근로자 가구당 월평균 소득 이하이면서 영구임대 자산기준 충족하는 사람</li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <p class="bu_atte2_line">동일 순위 경쟁시 자활사업프로그램 참여기간, 신청자의 당해 시 &middot; 군지역 연속 거주기간, 부양가족의 수, 청약저축 또는 주택청약종합저축 납입회차, 최저주거기준 미달여부, 소득 대비 임차료 비율 등에 따른 배점을 합산한 순위에 따라 입주자 선정</p>
+                    <h4 class="tit2 mgt20">부도공공임대 아파트 퇴거자</h4>
+                    <p class="bu_st1">시장등이 긴급히 주거지원이 필요하다고 인정하는 부도공공임대아파트의 임차인으로서 경락을 희망하지 않거나 경락을 받을 수 없어 퇴거하였거나 퇴거할 예정인 무주택세대구성원</p>
+                    <h4 class="tit2 mgt20">보증거절자</h4>
+                    <ul class="list_st1">
+                        <li>LH가 임대하는 공공건설임대주택(영구임대주택과 국민임대주택은 제외)입주자로서 기금재수탁자에게 주택도시기금의 대출을 신청하였으나, 주택신용보증기금에서 보증서 발급이 거절된 무주택세대구성원으로서
+                            <ul class="list_st2">
+                                <li>해당 가구의 월평균소득이 전년도 도시근로자 가구당 월평균소득의 50% 이하이고</li>
+                                <li>임대차계약서상 입주일과 주민등록 전입일 중 빠른 날로부터 3개월 이내에 대출을 신청한 자</li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <h4 class="tit2 mgt20">주거지원 시급가구</h4>
+                    <ul class="list_st1">
+                        <li>「수급자 또는 차상위계층에 해당하는 자 중 최저주거기준에 미달하고 RIR이 30% 이상인 자 </li>
+                    </ul>
+                    <h4 class="tit2 mgt20">공동생활가정(그룹홈)</h4>
+                    <ul class="list_st1">
+                        <li>저소득 장애인, 보호아동, 노인(중증 노인성질환자 제외), 저소득 한부모, 성폭력피해자, 가정폭력피해자, 탈성매매여성, 가출청소년, 갱생보호자, 아동복지시설 퇴소자, 북한이탈주민, 노숙인, 자립지원시설 퇴소자 등 관계 중앙행정기관의 장이 필요하다고 인정하여 지원을 요청하는 사람</li>
+                    </ul>
+                    <h4 class="tit2 mgt20">국가유공자 등</h4>
+                    <ul class="list_st1">
+                        <li>국가보훈처장이 전세임대주택의 입주가 필요하다고 인정한 전년도 도시근로자 가구당 월평균소득의 70% 이하 무주택세대 구성원으로써 영구임대 자산 기준을 충족한 자</li>
+                    </ul>
+                    <h4 class="tit2 mgt20">이재민</h4>
+                    <ul class="list_st1">
+                        <li>「재해구호법」에 따른 이재민 등 지방자치단체의 장이 긴급한 주거지원이 필요하다고 인정한 사람</li>
+                    </ul>
+                    <h4 class="tit2 mgt20">다자녀</h4>
+                    <ul class="list_st1">
+                        <li>사업대상지역에 거주하는 무주택세대구성원으로서 두명이상의 자녀를 양육하는 가구
+                            <ul class="list_st2">
+                                <li>1순위
+                                    <ul class="list_st3">
+                                        <li> 생계, 의료, 주거, 교육급여수급자가구 또는 차상위계층</li>
+                                    </ul>
+                                </li>
+                                <li>2순위
+                                    <ul class="list_st3">
+                                        <li>전년도 월평균소득 70% 이하이면서 국민임대자산기준 충족하는 자</li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <h4 class="tit2 mgt20">고령자</h4>
+                    <ul class="list_st1">
+                        <li>수급자 또는 차상위계층에 해당하는 자 중 65세 이상인 자</li>
+                    </ul>
+                    <h4 class="titL mgt30"> <span>소득 기준(2024년 적용기준)</span> </h4>
+                    <h5 class="tit2">전년도 도시근로자 가구당 월평균 소득</h5>
+                    <div class="box_st2">
+                        <ul class="list_st1 li_st_fm">
+                        	 <p class="rsp_img ac mgt10 mgb10">
+	                        	 <img src="/images/web/jw/sub_cnt/img_240326_2.png" alt="전년도 도시근로자 가구당 월평균 소득">
+                        	 </p>
+                             <!-- <li>1인 가구
+                                <ul class="list_st2">
+                                    <li>50% : 1,741,482원</li>
+                                    <li>70% : 2,438,075원</li>
+                                    <li>100% : 3,482,964원</li>
+                                    <li>120% : 4,179,557원</li>
+                                </ul>
+                            </li>
+                            <li>2인 가구
+                                <ul class="list_st2">
+                                    <li>50% : 2,707,856원</li>
+                                    <li>70% : 3,790,998원</li>
+                                    <li>100% : 5,415,712원</li>
+                                    <li>120% : 6,498,854원</li>
+                                </ul>
+                            </li>
+                            <li>3인 가구
+                                <ul class="list_st2">
+                                    <li>50% : 3,599,324.5원</li>
+                                    <li>70% : 5,039,054원</li>
+                                    <li>100% : 7,198,649원</li>
+                                    <li>120% : 8,638,379원</li>
+                                </ul>
+                            </li>
+                            <li>4인 가구
+                                <ul class="list_st2">
+                                    <li>50% : 4,124,233.5원</li>
+                                    <li>70% : 5,773,927원</li>
+                                    <li>100% : 8,248,467원</li>
+                                    <li>120% : 9,898,160원</li>
+                                </ul>
+                            </li>
+                            <li>5인 가구
+                                <ul class="list_st2">
+                                    <li>50% : 4,387,535.5원</li>
+                                    <li>70% : 6,142,550원</li>
+                                    <li>100% : 8,775,071원</li>
+                                    <li>120% : 10,530,085원</li>
+                                </ul>
+                            </li>
+                            <li>6인 가구
+                                <ul class="list_st2">
+                                    <li>50% : 4,781,641원</li>
+                                    <li>70% : 6,694,297원</li>
+                                    <li>100% : 9,563,282원</li>
+                                    <li>120% : 11,475,938원</li>
+                                </ul>
+                            </li>
+                            <li>7인 가구
+                                <ul class="list_st2">
+                                    <li>50% : 5,175,746.5원</li>
+                                    <li>70% : 7,246,045원</li>
+                                    <li>100% : 10,351,493원</li>
+                                    <li>120% : 12,421,792원</li>
+                                </ul> 
+                            </li>
+                            <li>8인 가구
+                                <ul class="list_st2">
+                                    <li>50% : 5,569,852원</li>
+                                    <li>70% : 7,797,793원</li>
+                                    <li>100% : 11,139,704원</li>
+                                    <li>120% : 13,367,645원</li>
+                                </ul>
+                            </li>  -->
+                        </ul>
+                    </div>
+                    <p class="bu_atte2_line mgt5"> 가구원수는 세대구성원 전원(임신 중인 경우 태아 포함)을 말하며, 세전금액으로 산정</p>
+                    <h4 class="titL mgt30"> <span>영구임대주택 입주자 보유자산 기준</span> </h4>
+                    <div class="astStdr">
+                        <dl class="asts">
+                            <dt> <span>총자산</span> </dt>
+                            <dd>
+                                <p class="num"> <span>24,100</span>만원 이하 </p>
+                                부동산, 자동차, 금융자산, 기타자산가액을 합산한 금액에서 부채를 차감한 금액 </dd>
+                        </dl>
+                        <dl class="car">
+                            <dt> <span>자동차</span> </dt>
+                            <dd>
+                                <p class="num"> <span>3,708</span>만원 이하 </p>
+                                비영업용 승용자동차에 한하며, 장애인 사용 자동차, 국가유공자(상이 1 ~7급) 보철용 차량 등은 제외 </dd>
+                        </dl>
+                    </div>
+                    <p class="bu_atte2_line hid">차량기준가액이 없는 경우에는 등록당시 과세표준액인 취득가액을 기준으로 최초등록일 또는 이전등록일로부터 경과년수에 따라 매년 10%씩 감가상각하여 산출한 금액</p>
+                    <h4 class="titL mgt30"> <span>국민임대 입주자 보유자산 기준</span> </h4>
+                    <div class="astStdr">
+                        <dl class="asts">
+                            <dt> <span>총자산</span> </dt>
+                            <dd>
+                                <p class="num"> <span>34,500</span>만원 이하 </p>
+                                부동산, 자동차, 금융자산, 기타자산가액을 합산한 금액에서 부채를 차감한 금액 </dd>
+                        </dl>
+                        <dl class="car">
+                            <dt> <span>자동차</span> </dt>
+                            <dd>
+                                <p class="num"> <span>3,708</span>만원 이하 </p>
+                                비영업용 승용자동차에 한하며, 장애인 사용 자동차, 국가유공자(상이 1 ~7급) 보철용 차량 등은 제외 </dd>
+                        </dl>
+                    </div>
+                    <p class="bu_atte2_line">차량기준가액이 없는 경우에는 등록당시 과세표준액인 취득가액을 기준으로 최초등록일 또는 이전등록일로부터 경과년수에 따라 매년 10%씩 감가상각하여 산출한 금액</p>
+                    <p class="line_dot"></p>
+                    <p class="bu_atte">소득 &middot; 자산 등 확인은 무주택세대구성원 전원을 대상으로 하며, 세대원의 실종으로 소득 파악이 불가한 경우에는 주민등록표 말소를 확인하고 소득 및 자산 산정의 대상에서 제외</p>
+                </div>
+                <h3 class="tit1 mgt30"> 대상주택 </h3>
+                <div class="box_st1">
+                    <ul class="list_st1">
+                        <li>단독 &middot; 다가구 &middot; 다세대 &middot; 연립주택 &middot; 아파트 &middot; 오피스텔* 중 국민주택규모(전용면적 85㎡) 이하 전세주택 또는 부분전세주택
+                            <ul class="list_st2">
+                                <li class="bu_none">* 바닥난방, 취사시설, 화장실을 구비하여 주거용으로 이용하는 경우
+                                    <p class="bu_atte2_line">단, 가구원수가 5인 이상인 경우 국민주택규모(전용면적 85㎡) 초과 가능</p>
+                                </li>
+                                <li>현재 보증부월세 및 월세주택에 거주하고 있는 경우 주택소유자와 협의하여 전세주택으로 전환하여 계약 체결할 수 있음</li>
+                                <li>보증부월세주택 입주를 희망하는 경우에는 주택소유자에게 지급하는 월세 12개월 해당액을 입주자가 추가보증금으로 납부하여야 계약 체결할 수 있음
+                                    <p class="bu_atte2_line">지역별 일정금액 이하(수도권 60만원, 광역시 45만원, 기타 40만원) 월세의 경우 3개월 해당액만 입주자가 보증금으로 추가 납부하고, 9개월치는 지급보증으로 대체하는 「임차료 지급보증」 가입 가능</p>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+                <h3 class="tit1 mgt30"> 전세금 지원 한도액 </h3>
+                <div class="box_st1">
+                    <ul class="list_st1">
+                        <li>수도권 13,000만원, 광역시 9,000만원, 그 밖의 지역은 7,000만원
+                            <ul class="list_st2">
+                                <li>공동생활가정은 수도권 &middot; 광역시 13,000만원, 그 밖의 지역은 9,000만원
+                                    <ul class="list_st3">
+                                        <li>수도권 : 서울, 인천, 경기</li>
+                                        <li>지원한도액을 초과하는 전세주택은 초과하는 전세금액을 입주자가 부담할 경우 지원 가능.<br>
+                                            	단, 전세금은 호당 지원한도액의 250% 이내로 제한하되 가구원의 수가 5인 이상시 예외 인정 가능 </li>
+                                        <li>지원한도액은 2023년 3월 기준이며, 추후 변동될 수 있음</li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+                <h3 class="tit1 mgt30"> 임대조건 </h3>
+                <div class="box_st1">
+                    <ul class="list_st1">
+                        <li>임대보증금 : 한도액 범위 내에서 전세지원금의 5%
+                            <ul class="list_st2">
+                                <li>기존주택 전세임대 1순위자 중 신규계약(’19. 6. 1.이후)자는 2% 선택가능</li>
+                            </ul>
+                        </li>
+                        <li>월임대료 : 전세지원금 중 임대보증금을 제외한 금액에 대한 연 1~2% 이자 해당액
+                            <ul class="list_st2">
+                                <li class="bu_none">※단, 보증거절자의 경우 기존 공공건설임대주택의 임대조건을 적용하되, 지원금액에 대한 이자(연1～2%)를 월임대료에 가산</li>
+                                <li class="bu_none">※취약계층 우대금리 적용
+                                    <ul class="list_st3">
+                                        <li>1자녀 0.2%p, 2자녀 0.3%p, 3자녀 0.5%p(단 최저금리는 1.0%)</li>
+                                        <li>생계의료급여 수급자 0.2%p(단 최저금리는 1.0%)</li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <h5 class="tit2 mgt20">임대조건(예시)</h5>
+                    <ul class="list_st1">
+                        <li>전세금 8,500만원 주택을 전세주택으로 임차한 경우(수도권 기준)</li>
+                        <li><span class="f_weightB">임대보증금</span> : 425만원</li>
+                        <li><span class="f_weightB">월임대료</span>
+                            <p class="bu_st2"> [(전세금 - 임대보증금) × 2%(연) ÷ 12개월]<br>
+                                = [(8,500만원 - 425만원) × 2% ÷ 12] = 134,580원 </p>
+                        </li>
+                    </ul>
+                </div>
+                <h3 class="tit1 mgt30"> 임대기간 </h3>
+                <div class="box_st1">
+                    <ul class="list_st1">
+                        <li>최초 임대기간은 2년으로 하되, 14회까지 재계약(2년 단위) 가능
+                            <p class="bu_atte2_line">공동생활가정의 경우 해당 시장, 도지사의 제청에 의해 2년 단위로 체결하되 횟수 제한 없음</p>
+                        </li>
+                    </ul>
+                </div>
+                <h3 class="tit1 mgt30"> 신청방법 </h3>
+                <div class="box_st1">
+                    <h4 class="tit2">수급자 등</h4>
+                    <p class="bu_st1">LH가 전세임대 입주자 모집시 입주희망자는 주소지 관할 행정복지센터에 신청</p>
+                    <h4 class="tit2 mgt20">보증거절자</h4>
+                    <ul class="list_st1">
+                        <li>입주희망자가 LH에 신청
+                            <p class="bu_atte2_line">보증거절자 신청서류 : 보증거절 증명서류, 임대주택 보증금 지원신청서, 확정일자를 받은 임대차계약서 사본</p>
+                        </li>
+                    </ul>
+                    <h4 class="tit2 mgt20">공동생활가정(그룹홈)</h4>
+                    <p class="bu_st1">운영기관으로 선정받고자 하는 기관은 도지사 등에게 신청, 도지사 등이 운영기관선정위원회의 심의를 거쳐 운영기관을 선정</p>
+                    <h4 class="tit2 mgt20">기타</h4>
+                    <ul class="list_st1">
+                        <li>부도공공임대아파트 퇴거자 : 아파트 소재시 시 &middot; 군 &middot; 구청에 신청</li>
+                        <li>주거취약계층 주거지원 대상자 : 쪽방, 비닐하우스, 고시원, 여인숙, 노숙인시설, 컨테이너, 움막 등 거주자는 행정복지센터*에, 범죄피해자는 지방검찰청에 신청<br>
+                            * 주거급여 주택조사가 실시된 자는 LH로 직접 신청 가능 </li>
+                        <li>긴급주거지원대상자 : 지자체 또는 보건복지콜센터(129번)에 긴급복지지원신청 및 주거 지원 신청</li>
+                        <li>이재민 : 재난지역 지자체에 주거 지원 신청</li>
+                    </ul>
+                </div>
+                <h3 class="tit1 mgt30"> 지원방법 </h3>
+                <div class="box_st1">
+                    <p class="rsp_img ac mgt10 mgb10"> <img src="/images/web/jw/sub_cnt/img_0401_01.png" alt="일반전세임대주택 지원방법 모식도 이미지"> </p>
+                    <div class="blind hid">
+                        <ul>
+                            <li>1. LH는 국토교통부에게 공급승인신청</li>
+                            <li>2. 국토교통부는 LH에게 공급승인</li>
+                            <li>3. 시,도지사(동동생활가정 운영기관선정, 물량배정)와 시군구청장(자격,희망사항확인)은 LH에게 물량통보 선정의뢰</li>
+                            <li>4. 수급자, 한부모가족, 소득50%이하자, 장애인, 부도임대퇴거자, 긴급지원대상자, 유공자는 시군구청장(자격,희망사항확인)으로 신청, 공동생활가정 운영희망기관은 시,도시자로 신청</li>
+                            <li>5. 시,도지사(동동생활가정 운영기관선정, 물량배정)는 LH에게 선정통보</li>
+                            <li>6. 수급자, 한부모가족, 소득50%이하자, 장애인, 부도임대퇴거자, 긴급지원대상자, 유공자 등 과 LH는 전세주택을 물색하여 계약요청</li>
+                            <li>7. LH와 주택소유자가 전세계약체결</li>
+                            <li>8. 입주</li>
+                            <li class="bu_none">* 보증거절자(공공건설임대 입주자)가 LH에게 신청 시, LH는 보증금 지원</li>
+                        </ul>
+                    </div>
+                </div>
+            </dd>
+        </dl>
+        <dl>
+            <dt> <span>2</span>청년전세임대주택 </dt>
+            <dd>
+                <p class="bu_st5"> <span class="pc_blue">청년층(대학생 &middot; 만19~39세  &middot; 취업준비생)의 주거비 부담 완화를 위하여 </span> 기존주택을 전세계약 체결하여 저렴하게 재임대하는 주택입니다. </p>
+                <h3 class="tit1 mgt30"> 공급대상 </h3>
+                <div class="box_st1">
+                    <h5 class="tit2">무주택요건 및 소득 &middot; 자산기준을 충족하는 대학생, 취업준비생, 만19세 ~ 39세</h5>
+                    <ul class="list_st1">
+                        <li>본인이 무주택자이고 사업대상지역내 대학에 재학중이거나 입학예정인 대학생</li>
+                        <li>본인이 무주택자이고 대학 또는 고등 &middot; 고등기술학교를 졸업하거나 중퇴한 후 2년 이내이며 직장에 재직중이지 않은 자</li>
+                        <li>본인이 무주택자이면서 만 19세 이상 39세 이하인 자</li>
+                    </ul>
+                    <ul class="list_st2">
+                        <li>1순위
+                            <ul class="list_st3">
+                                <li>생계 &middot; 의료 &middot; 주거급여 수급가구, 차상위계층,   보호대상 한부모 가족 가구, 가정위탁이 종료되거나 아동복지시설에서 퇴소한지 5년이내인자,
+                                    청소년 쉼터를 2년 이상 이용한 자로 퇴소한지 5년 이내인 자 중 여성가족부 장관이 주거지원이 필요하다고 인정한 자 </li>
+                            </ul>
+                        </li>
+                        <li>2순위
+                            <ul class="list_st3">
+                                <li>본인과 부모의 월평균소득이 100% 이하
+                                    <p class="bu_st3">다만 국민임대주택 입주자 보유자산 기준 초과하는 경우 입주대상 제외(총자산 34,500만원, 자동차 3,708만원 이하)</p>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>3순위
+                            <ul class="list_st3">
+                                <li>본인의 월평균소득이 100% 이하
+                                    <p class="bu_st3">다만 행복주택(청년) 입주자 보유 자산 기준 초과하는 경우 입주대상 제외(본인기준 총자산 27,300만원 이하, 자동차 3,708만원 이하)</p>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <h4 class="titL mgt30"> <span>소득 기준(2024년 적용기준)</span> </h4>
+                    <h5 class="tit2">전년도 도시근로자 가구당 월평균 소득</h5>
+                    <div class="box_st2">
+                        <ul class="list_st1 li_st_fm">
+                        	<p class="rsp_img ac mgt10 mgb10">
+	                        	 <img src="/images/web/jw/sub_cnt/img_240326_2.png" alt="전년도 도시근로자 가구당 월평균 소득">
+                        	 </p>
+                            <!--<li>1인 가구
+                                <ul class="list_st2">
+                                    <li>50% : 1,741,482원</li>
+                                    <li>70% : 2,438,075원</li>
+                                    <li>100% : 3,482,964원</li>
+                                    <li>120% : 4,179,557원</li>
+                                </ul>
+                            </li>
+                            <li>2인 가구
+                                <ul class="list_st2">
+                                    <li>50% : 2,707,856원</li>
+                                    <li>70% : 3,790,998원</li>
+                                    <li>100% : 5,415,712원</li>
+                                    <li>120% : 6,498,854원</li>
+                                </ul>
+                            </li>
+                            <li>3인 가구
+                                <ul class="list_st2">
+                                    <li>50% : 3,599,324.5원</li>
+                                    <li>70% : 5,039,054원</li>
+                                    <li>100% : 7,198,649원</li>
+                                    <li>120% : 8,638,379원</li>
+                                </ul>
+                            </li>
+                            <li>4인 가구
+                                <ul class="list_st2">
+                                    <li>50% : 4,124,233.5원</li>
+                                    <li>70% : 5,773,927원</li>
+                                    <li>100% : 8,248,467원</li>
+                                    <li>120% : 9,898,160원</li>
+                                </ul>
+                            </li>
+                            <li>5인 가구
+                                <ul class="list_st2">
+                                    <li>50% : 4,387,535.5원</li>
+                                    <li>70% : 6,142,550원</li>
+                                    <li>100% : 8,775,071원</li>
+                                    <li>120% : 10,530,085원</li>
+                                </ul>
+                            </li> -->
+                        </ul>
+                    </div>
+                    <p class="bu_atte2_line mgt5">가구원수는 청년 2순위는 3인(청년 본인 + 부모), 청년 3순위는 1인(청년 본인)을 기준으로 하며, 세전금액으로 산정</p>
+                    <h4 class="titL mgt30"> <span>청년전세임대 입주자 보유자산 기준</span> </h4>
+                    <div class="astStdr">
+                        <dl class="asts">
+                            <dt> <span>총자산</span> </dt>
+                            <dd>
+                                <p class="num"> 2순위 <span>34,500</span>만원 이하 </p>
+                                <p class="num"> 3순위 <span>27,300</span>만원 이하 </p>
+                            </dd>
+                        </dl>
+                        <dl class="car">
+                            <dt> <span>자동차</span> </dt>
+                            <dd>
+                                <p class="num"> 2순위 <span>3,708</span>만원 이하 </p>
+                                <p class="num"> 3순위 <span>3,708</span>만원 이하 </p>
+                            </dd>
+                        </dl>
+                    </div>
+                    <p class="bu_atte2_line"> 부동산, 자동차, 금융자산, 기타자산가액을 합산한 금액에서 부채를 차감한 금액</p>
+                </div>
+                <h3 class="tit1 mgt30"> 대상주택 </h3>
+                <div class="box_st1">
+                    <ul class="list_st1">
+                        <li>단독 &middot; 다가구 &middot; 다세대 &middot; 연립주택 &middot; 아파트 &middot; 오피스텔* 중 국민주택규모(전용면적 85㎡) 이하 전세주택 또는 부분전세주택<br>
+                            * 바닥난방, 취사시설, 화장실을 구비하여 주거용으로 이용하는 경우 </li>
+                        <li>현재 보증부월세 및 월세주택에 거주하고 있는 경우 주택소유자와 협의하여 전세주택으로 전환하여 계약 체결할 수 있음</li>
+                        <li>보증부월세주택 입주를 희망하는 경우에는 주택소유자에게 지급하는 월세 12개월 해당액을 입주자가 추가보증금으로 납부하여야 계약 체결할 수 있음
+                            <p class="bu_atte2_line">지역별 일정금액 이하(수도권 60만원, 광역시 45만원, 기타 40만원) 월세의 경우 3개월 해당액만 입주자가 보증금으로 추가 납부하고, 9개월치는 지급보증으로 대체하는 「임차료 지급보증」가입 가능</p>
+                        </li>
+                    </ul>
+                </div>
+                <h3 class="tit1 mgt30"> 전세금 지원 한도액 </h3>
+                <div class="box_st1">
+                    <div class="box_st2">
+                        <ul class="list_st1 li_st_live">
+                            <li>단독거주(1인)
+                                <ul class="list_st2">
+                                    <li>수도권 : 1.2억원</li>
+                                    <li>광역시 : 9천5백만원</li>
+                                    <li>기타지역 : 8천5백만원</li>
+                                </ul>
+                            </li>
+                            <li>공동거주(셰어형 2인)
+                                <ul class="list_st2">
+                                    <li>수도권 : 1.5억원</li>
+                                    <li>광역시 : 1.2억원</li>
+                                    <li>기타지역 : 1.0억원</li>
+                                </ul>
+                            </li>
+                            <li>공동거주(셰어형 3인)
+                                <ul class="list_st2">
+                                    <li>수도권 : 2.0억원</li>
+                                    <li>광역시 : 1.5억원</li>
+                                    <li>기타지역 : 1.2억원</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                    <h5 class="tit2 mgt30">청년전세임대 셰어하우스(2~3인 공동거주)</h5>
+                    <ul class="list_st1">
+                        <li>입주자격을 갖춘 청년 2～3인이 공동거주할 주택을 물색하여 입주하는 주택
+                            <p class="bu_atte2_line">가구원수가 5인 이상인 경우 국민주택규모(전용면적 85㎡) 초과 가능(셰어형에 한함)</p>
+                        </li>
+                    </ul>
+                    <p class="line_dot"></p>
+                    <ul class="list_st2">
+                        <li>지원한도액을 초과하는 전세주택은 초과하는 전세금액을 입주자가 부담할 경우 지원 가능. <br>
+                            단, 전세금은 단독거주자는 호당 지원한도액의 150% 이내, 공동거주자는 호당 지원한도액의 200%이내로 제한 </li>
+                        <li>지원한도액은 2023년 3월 기준이며, 추후 변동될 수 있음</li>
+                    </ul>
+                </div>
+                <h3 class="tit1 mgt30"> 임대조건 </h3>
+                <div class="box_st1">
+                    <ul class="list_st1">
+                        <li>임대보증금 : 1순위 : 100만원, 2 &middot; 3순위 : 200만원</li>
+                        <li>월임대료 : 전세지원금 중 임대보증금을 제외한 금액에 대한 연 1 ~ 2% 이자 해당액</li>
+                        <li>※ 취약계층 우대금리 적용
+                        	<ul class="list_st2">
+	                            <li>① 1순위 : 0.5%p 금리우대(다른 우대금리와 중복적용 불가)</li>
+	                            <li>② 1자녀 0.2%p, 2자녀 0.3%p, 3자녀 이상 0.5%p(단, 최저금리는 1.0%)</li>
+	                            <li>③ 보호 종료 아동 · 청소년 쉼터 퇴소 청소년 :
+		                            <ul class="list_st3">
+		                                <li>22세 이하 및 보호 종료 이전 무이자</li>
+		                                <li>보호 종료 후 5년 이후 보증금 지원 규모별 연 1.0 ~ 2.0%</li>
+		                                <li>보호 종료 후 5년 이내 50% 감면(단, 다른 우대금리와 중복 적용 불가)</li>
+		                            </ul>
+		                        </li>
+                         	</ul>
+                        </li>
+                     </ul>
+                </div>
+                <h3 class="tit1 mgt30"> 임대기간 </h3>
+                <div class="box_st1">
+                    <ul class="list_st1">
+                        <li>최초 임대기간은 2년으로 하되, 자격요건 충족시 4회 재계약(2년 단위) 가능</li>
+                    </ul>
+                </div>
+                <h3 class="tit1 mgt30"> 신청 및 지원방법 </h3>
+                <div class="box_st1">
+                    <p class="bu_st1"> 청년전세임대 입주자 모집 공고 시 입주희망자는 인터넷( LH청약플러스 <a href="https://apply.lh.or.kr" class="bu_linkL" target="_blank" title="새창">https://apply.lh.or.kr</a> )으로 신청 </p>
+                    <p class="bu_st1">LH가 입주대상자의 자격 등을 심사하여 입주대상자 선정 &middot; 통보</p>
+                    <div class="ordrList listTy02 dbline wStep4">
+                        <ul>
+                            <li>
+                                <div class="box">
+                                    <p> <span>입주신청</span> </p>
+                                    <p class="txt"> <span>(LH청약플러스)</span> </p>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="box">
+                                    <p> <span>입주자 자격조회</span> </p>
+                                    <p class="txt"> <span>(LH)</span> </p>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="box">
+                                    <p> <span>대상자 발표</span> </p>
+                                    <p class="txt"> <span>(개별발표)</span> </p>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="box">
+                                    <p> <span>입주대상자에 주택물색 안내</span> </p>
+                                    <p class="txt"> <span>(LH &gt; 입주대상자)</span> </p>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="box">
+                                    <p> <span>입주희망주택 물색&middot;결정</span> </p>
+                                    <p class="txt"> <span>(입주대상자)</span> </p>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="box">
+                                    <p> <span>전세가능여부 검토(권리분석)</span> </p>
+                                    <p class="txt"> <span>(LH)</span> </p>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="box">
+                                    <p> <span>전세계약 및 임대차계약 체결</span> </p>
+                                    <p class="txt"> <span>(LH, 임대인, 입주자)</span> </p>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="box">
+                                    <p class="h100"> <span>입주</span> </p>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </dd>
+        </dl>
+        <dl>
+            <dt> <span>3</span>신혼·신생아 전세임대주택 Ⅰ, Ⅱ </dt>
+            <dd>
+            <p class="bu_st5"> <span class="pc_blue">신혼부부의 주거안정을 위하여 전세임대사업의 입주대상자로 선정된 자가 현 생활권에서 안정적으로 거주할 수 있도록 </span>기존주택을 전세계약 체결하여 저렴하게 재임대하는 주택입니다. </p>
+            <h3 class="tit1 mgt30"> 지원대상 </h3>
+            <div class="box_st1">
+            <h5 class="tit2">Ⅰ형 자격기준</h5>
+            <p class="bu_st1">혼인기간 7년 이내인 자로 해당세대의 전년도 도시근로자 가구원수별 월평균소득* 70% 이하인 자로 국민임대 자산기준 총족하는 자</p>
+            <p class="bu_atte2_line">배우자가 소득이 있는 경우 90% 이하 인자</p>
+            <h5 class="tit2 mgt20">Ⅱ형 자격기준</h5>
+            <p class="bu_st1">혼인기간 7년 이내인 자로 해당세대의 전년도 도시근로자 가구원수별 월평균소득 *100% 이하인 자로 행복주택 자산기준 충족하는 자</p>
+            <p class="bu_atte2_line">배우자가 소득이 있는 경우 120% 이하 인자</p>
+            <h5 class="tit2 mgt20">상기 기준을 갖출 경우 아래 대상자도 신혼부부 입주대상자로 본다.</h5>
+            <ul class="list_st2 ">
+            <li class="bu_none">① 예비신혼부부</li>
+            <li class="bu_none">② 지원대상 한부모가족*</li>
+            <li class="bu_none">③ ②에 해당하지 않는 6세 자녀를 둔 한부모가족</li>
+            <li class="bu_none">④ 6세 이하 자녀를 둔 혼인가구</li>
+            <li class="bu_none">⑤ 신생아가구*</li>
+            <li class="bu_none">*지원대상 한부모가족 :「한부모가족 지원법 시행규칙」제3조에 따라 여성가족부 장관이 정하여 고시하는 한부모가족</li>
+            <li class="bu_none">*신생아가구 : 입주자 모집공고일로부터 최근2년이내 출산한 자녀(태아, 2년이내 출생한 입양자 포함)가 있는 가구</li>
+            </ul>
+            <ul class="list_st2 mgt10">
+            	<li>1순위 : 신생아 가구, 지원대상 한부모가족</li>
+                <li>2순위 : 공고일 현재 임신 중이거나 출산 &middot; 입양하여 자녀(태아를 포함하며, 미성년자에 한함)가 있는 자</li>
+                <li>3순위 : 신혼부부 입주대상자 중 자녀가 없는 자</li>
+                <li>4순위 : 1순위가 아닌 6세 이하 자녀를 둔 혼인가구</li>
+            </ul>
+            <h4 class="titL mgt30"> <span>소득 기준(2024년 적용기준)</span> </h4>
+            <h5 class="tit2">전년도 도시근로자 가구당 월평균 소득</h5>
+            <div class="box_st2">
+            	<p class="rsp_img ac mgt10 mgb10">
+                	 <img src="/images/web/jw/sub_cnt/img_240326_2.png" alt="전년도 도시근로자 가구당 월평균 소득">
+               	 </p>
+                <!-- <ul class="list_st1 li_st_fm25">
+                    <li>2인 가구
+                         <ul class="list_st2">
+                             <li>50% : 2,707,856원</li>
+                             <li>70% : 3,790,998원</li>
+                             <li>100% : 5,415,712원</li>
+                             <li>120% : 6,498,854원</li>
+                         </ul>
+                     </li>
+                     <li>3인 가구
+                         <ul class="list_st2">
+                             <li>50% : 3,599,324.5원</li>
+                             <li>70% : 5,039,054원</li>
+                             <li>100% : 7,198,649원</li>
+                             <li>120% : 8,638,379원</li>
+                         </ul>
+                     </li>
+                     <li>4인 가구
+                         <ul class="list_st2">
+                             <li>50% : 4,124,233.5원</li>
+                             <li>70% : 5,773,927원</li>
+                             <li>100% : 8,248,467원</li>
+                             <li>120% : 9,898,160원</li>
+                         </ul>
+                     </li>
+                     <li>5인 가구
+                         <ul class="list_st2">
+                             <li>50% : 4,387,535.5원</li>
+                             <li>70% : 6,142,550원</li>
+                             <li>100% : 8,775,071원</li>
+                             <li>120% : 10,530,085원</li>
+                         </ul>
+                     </li>
+                     <li>6인 가구
+                         <ul class="list_st2">
+                             <li>50% : 4,781,641원</li>
+                             <li>70% : 6,694,297원</li>
+                             <li>100% : 9,563,282원</li>
+                             <li>120% : 11,475,938원</li>
+                         </ul>
+                     </li>
+                     <li>7인 가구
+                         <ul class="list_st2">
+                             <li>50% : 5,175,746.5원</li>
+                             <li>70% : 7,246,045원</li>
+                             <li>100% : 10,351,493원</li>
+                             <li>120% : 12,421,792원</li>
+                         </ul>
+                     </li>
+                     <li>8인 가구
+                         <ul class="list_st2">
+                             <li>50% : 5,569,852원</li>
+                             <li>70% : 7,797,793원</li>
+                             <li>100% : 11,139,704원</li>
+                             <li>120% : 13,367,645원</li>
+                         </ul>
+                     </li>
+                </ul> -->
+            </div>
+            <p class="bu_atte2_line mgt5">가구원수는 해당세대(세대구성원) 전원(태아 포함)을 말함, 세전금액으로 산정</p>
+            <p class="bu_atte2_line mgt5">월평균소득액은 세전금액으로서 해당세대(세대구성원)의 월평균소득액을 모두 합산한 금액임</p>
+            <h4 class="titL mgt30"> <span>국민임대주택 및 행복주택 입주자 보유자산 기준</span> </h4>
+            <div class="astStdr">
+                <dl class="asts">
+                    <dt> <span>총자산</span> </dt>
+                    <dd>
+                        <p class="num"> <span>34,500</span>만원 이하 </p>
+                        부동산, 자동차, 금융자산, 기타자산가액을 합산한 금액에서 부채를 차감한 금액 </dd>
+                </dl>
+                <dl class="car">
+                    <dt> <span>자동차</span> </dt>
+                    <dd>
+                        <p class="num"> <span>3,708</span>만원 이하 </p>
+                        비영업용 승용자동차에 한하며, 장애인 사용 자동차, 국가유공자(상이 1 ~7급) 보철용 차량 등은 제외 </dd>
+                </dl>
+            </div>
+            <p class="bu_atte2_line">차량기준가액이 없는 경우에는 등록당시 과세표준액인 취득가액을 기준으로 최초등록일 또는 이전등록일로부터 경과년수에 따라 매년 10%씩 감가상각하여 산출한 금액</p>
+            <p class="line_dot"></p>
+            <p class="bu_atte">소득 &middot; 자산 등 확인은 무주택세대구성원 전원을 대상으로 하며, 세대원의 실종으로 소득 파악이 불가한 경우에는 주민등록표 말소를 확인하고 소득 및 자산 산정의 대상에서 제외</p>
+            <p class="bu_atte">예비 신혼부부의 경우 현재 주민등록표등본 구성에도 불구 하고 혼인으로 구성될 세대를 대상으로 주택소유 검색, 소득&middot;자산 산정함</p>
+            </div>
+            <h3 class="tit1 mgt30"> 대상주택 </h3>
+            <div class="box_st1">
+                <ul class="list_st1">
+                    <li>단독 &middot; 다가구 &middot; 다세대 &middot; 연립주택 &middot; 아파트 &middot; 오피스텔* 중 국민주택규모(전용면적 85㎡) 이하 전세 또는 보증부 월세주택
+                        <ul class="list_st2">
+                            <li class="bu_none">* 바닥난방, 취사시설, 화장실을 구비하여 주거용으로 이용하는 경우
+                                <p class="bu_atte2_line">가구원수가 5인 이상인 경우 국민주택규모(전용면적 85㎡) 초과 가능</p>
+                            </li>
+                            <li>현재 보증부월세 및 월세주택에 거주하고 있는 경우 주택소유자와 협의하여 전세주택으로 전환하여 계약 체결할 수 있음</li>
+                            <li>보증부월세주택 입주를 희망하는 경우에는 주택소유자에게 지급하는 월세 12개월 해당액을 입주자가 추가보증금으로 납부하여야 계약 체결할 수 있음
+                                <p class="bu_atte2_line">지역별 일정금액 이하(수도권 60만원, 광역시 45만원, 기타 40만원) 월세의 경우 3개월 해당액만 입주자가 보증금으로 추가 납부하고, 9개월치는 지급보증으로 대체하는 「임차료 지급보증」 가입 가능</p>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            <h3 class="tit1 mgt30"> 전세금 지원 한도액 </h3>
+            <div class="box_st1">
+                <ul class="list_st1">
+                    <li>Ⅰ형 : 수도권 14,500만원, 광역시 11,000만원, 그 밖의 지역은 9,500만원</li>
+                    <li>Ⅱ형 : 수도권 24,000만원, 광역시 16,000만원, 그 밖의 지역은 13,000만원
+                        <ul class="list_st2">
+                            <li>지원한도액을 초과하는 전세주택은 초과하는 전세금액을 입주자가 부담할 경우 지원 가능.<br>
+                                단, 전세금은 호당 지원한도액의 250% 이내로 제한하되 가구원의 수가 5인 이상시 예외 인정 가능 </li>
+                            <li>지원한도액은 2023년 3월 기준이며, 추후 변동될 수 있음</li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            <h3 class="tit1 mgt30"> 임대조건 </h3>
+            <div class="box_st1">
+                <ul class="list_st1">
+                    <li>Ⅰ형 임대보증금 : 한도액 범위 내에서 전세지원금의 5%</li>
+                    <li>Ⅱ형 임대보증금 : 한도액 범위 내에서 전세지원금의 20%</li>
+                    <li>월임대료 : 전세지원금 중 임대보증금을 제외한 금액에 대한 연 1 ~ 2% 이자 해당액</li>
+                    <li class="bu_none">※ 취약계층 우대금리 적용
+                        <ul class="list_st2">
+                            <li>1자녀 0.2%p, 2자녀 0.3%p, 3자녀이상 0.5%p(단 최저금리는 1.0%)</li>
+                            <li>생계&middot;의료급여 수급자 0.2%p(단 최저금리는 1.0%)</li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            <h3 class="tit1 mgt30"> 임대기간 </h3>
+            <div class="box_st1">
+                <ul class="list_st1">
+                    <li>Ⅰ형
+                    	<ul class="list_st2">
+                    		<li>최초 임대기간 2년 경과 후 2년 단위로 9회 재계약 가능(최장 20년 거주 가능)</li>
+                    	</ul>
+                    </li>
+                    <li>Ⅱ형
+          				<ul class="list_st2">
+          					<li>최초 임대기간 2년 경과 후 2년 단위로 4회 재계약 가능(최장 10년 거주 가능)</li>
+          					<li>자녀가 있는 경우 2회 추가 재계약 가능(최장 14년 거주 가능)</li>
+          				</ul>
+          			</li>
+                </ul>
+            </div>
+            <h3 class="tit1 mgt30"> 신청 및 지원방법 </h3>
+            <div class="box_st1">
+                <p class="bu_st1"> LH가 신혼부부전세임대 입주자 모집 공고 시 입주희망자는 인터넷( LH청약플러스 <a href="https://apply.lh.or.kr" class="bu_linkL" target="_blank" title="새창">https://apply.lh.or.kr</a> )으로 신청 </p>
+                <div class="ordrList listTy02 dbline wStep4">
+                    <ul>
+                        <li>
+                            <div class="box">
+                                <p> <span>입주신청</span> </p>
+                                <p class="txt"> <span>(LH청약플러스)</span> </p>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="box">
+                                <p> <span>입주자 자격조회</span> </p>
+                                <p class="txt"> <span>(LH)</span> </p>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="box">
+                                <p> <span>대상자 발표</span> </p>
+                                <p class="txt"> <span>(개별발표)</span> </p>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="box">
+                                <p> <span>입주대상자에 주택물색 안내</span> </p>
+                                <p class="txt"> <span>(LH &gt; 입주대상자)</span> </p>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="box">
+                                <p> <span>입주희망주택 물색&middot;결정</span> </p>
+                                <p class="txt"> <span>(입주대상자)</span> </p>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="box">
+                                <p> <span>전세가능여부 검토(권리분석)</span> </p>
+                                <p class="txt"> <span>(LH)</span> </p>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="box">
+                                <p> <span>전세계약 및 임대차계약 체결</span> </p>
+                                <p class="txt"> <span>(LH, 임대인, 입주자)</span> </p>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="box">
+                                <p class="h100"> <span>입주</span> </p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            </dd>
+        </dl>
+        <dl>
+            <dt> <span>4</span>소년소녀가정 등 전세주택지원 </dt>
+            <dd>
+                <p class="bu_st5"> <span class="pc_blue">사회취약계층 아동 &middot; 청소년의 주거생활 안정 및 주거수준 향상을 위하여</span> 기존주택을 전세계약 체결하여 저렴하게 재임대하는 제도입니다. </p>
+                <h3 class="tit1 mgt30"> 공급대상 </h3>
+                <div class="box_st1">
+                    <p class="bu_st1">무주택가구인 소년소녀가정 &middot; 대리양육가정 &middot; 친인척위탁가정 &middot; 일반가정위탁 &middot; 아동복지시설퇴소자 (퇴소예정자 포함) 및 교통사고유자녀가정으로서 해당 가구의 월평균소득이 전년도 도시근로자 가구당 월평균소득 100% 이하인 자(아동복지시설퇴소자는 소득기준 적용하지 아니함)</p>
+                    <h4 class="tit2 mgt20">소년소녀가정</h4>
+                    <ul class="lsit_st1">
+                        <li>국민기초생활보장법에 따른 생계 &middot; 의료급여 수급자 중 18세 미만의 아동으로만 구성된 세대 또는 18세 미만의 아동이 부양능력이 없는 부모와 동거하는 세대로서 아동이 실질적으로 가정을 이끌어가고 있는 세대
+                            <p class="bu_atte2_line">시 &middot; 군 &middot; 구에서 지정, 읍 &middot; 면 &middot; 동에서 관리</p>
+                        </li>
+                    </ul>
+                    <h4 class="tit2 mgt20">가정위탁아동</h4>
+                    <ul class="list_st1">
+                        <li>대리양육가정 : 18세 미만의 아동이 국민기초생활보장법상 부양 의무자 (친조부모, 외조부모)와 동거하는 경우</li>
+                        <li>친인척위탁가정 : 18세 미만의 아동이 국민기초생활보장법상 부양 의무자가 아닌 친인척과 동거하는 경우</li>
+                        <li>일반가정위탁 : 18세 미만의 아동이 부양 의무자가 아닌 일반인의 가정에서 양육되는 경우</li>
+                    </ul>
+                    <h4 class="tit2 mgt20">교통사고 유자녀 가정</h4>
+                    <ul class="list_st1">
+                        <li>자동차사고로 사망 또는 중증후유장애를 입은 사람으로 18세 미만(고등학교 재학의 경우 20세 이하) 자녀가 있는 세대
+                            <p class="bu_atte2_line">교통안전공단에서 지정 &middot; 관리</p>
+                        </li>
+                    </ul>
+                    <h4 class="tit2 mgt20">아동복지시설 퇴소자</h4>
+                    <ul class="list_st1">
+                        <li>아동복지시설 보호대상아동 중 18세에 달하여 시설에서 퇴소하는 자 및 퇴소한지 5년 이내인 퇴소자</li>
+                    </ul>
+                </div>
+                <h3 class="tit1 mgt30"> 대상주택 </h3>
+                <div class="box_st1">
+                    <ul class="list_st1">
+                        <li>단독 &middot; 다가구 &middot; 다세대 &middot; 연립주택 &middot; 아파트 &middot; 오피스텔* 중 국민주택규모(전용면적 85㎡) 이하 전세주택 또는 보증부 월세주택
+                            <ul class="list_st2">
+                                <li class="bu_none">* 바닥난방, 취사시설, 화장실을 구비하여 주거용으로 이용하는 경우
+                                    <p class="bu_atte2_line">단, 가구원수가 5인 이상인 경우 국민주택규모(전용면적 85㎡) 초과 가능</p>
+                                </li>
+                                <li>현재 보증부월세 및 월세주택에 거주하고 있는 경우 주택소유자와 협의하여 전세주택으로 전환하여 계약 체결할 수 있음</li>
+                                <li>보증부월세주택 입주를 희망하는 경우에는 주택소유자에게 지급하는 월세 12개월 해당액을 입주자가 추가보증금으로 납부하여야 계약 체결할 수 있음
+                                    <p class="bu_atte2_line">지역별 일정금액 이하(수도권 60만원, 광역시 45만원, 기타 40만원) 월세의 경우 3개월 해당액만 입주자가 보증금으로 추가 납부하고, 9개월치는 지급보증으로 대체하는 「임차료 지급보증」 가입 가능</p>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+                <h3 class="tit1 mgt30"> 전세금 지원 한도액 </h3>
+                <div class="box_st1">
+                    <ul class="list_st1">
+                        <li>수도권 13,000만원, 광역시 9,000만원, 그 밖의 지역은 7,000만원
+                            <ul class="list_st2">
+                                <li>지원한도액을 초과하는 전세주택은 초과하는 전세금액을 입주자가 부담할 경우 지원 가능.<br>
+                                    단, 전세금은 호당 지원한도액의 250% 이내로 제한하되 가구원의 수가 5인 이상시 예외 인정 가능 </li>
+                                <li>지원한도액은 2023년 3월 기준이며, 추후 변동될 수 있음</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+                <h3 class="tit1 mgt30"> 신청 및 지원방법 </h3>
+                <div class="box_st1">
+                    <p class="bu_st1">입주희망자(친권자 또는 후견인 포함)는 주소지 관할 읍 &middot; 면 &middot; 동 행정복지센터 또는 시 &middot; 군 &middot; 구청 담당 사회복지사나 공무원에게 신청, 교통사고 유자녀는 교통안전공단에 신청</p>
+                    <p class="bu_st2 mgl10">시장, 군수, 구청장 등은 지원대상 가정의 자격, 주거실태 등을 조사하여 대상자를 확정하고 이를 LH 지역본부에 추천</p>
+                    <p class="rsp_img ac mgt10"> <img src="/images/web/jw/sub_cnt/img_0401_02.png" alt="소년소녀가정 등 전세주택지원 신청 및 지원방법 모식도 이미지"> </p>
+                    <div class="blind hid">
+                        <ul>
+                            <li>1. 소년소녀가정, 대리양육가정, 친인척위탁가정, 일반가정위탁, 아동복지시설퇴소자는 시군구청장(자격확인, 입주자 선정)에게, 교통사고유자녀가정의 경우엔 교통안전공단에 신청</li>
+                            <li>2. 시군구청장과 교통안전공단은 자격확인 후 LH에게 추천</li>
+                            <li>3. LH는 신청자에게 전세주택 물색 등 계약안내</li>
+                            <li>4. LH와 주택소유자는 전세계약 체결</li>
+                            <li>5. 입주</li>
+                        </ul>
+                    </div>
+                </div>
+            </dd>
+        </dl>
+        <dl>
+            <dt> <span>5</span>취약계층 긴급주거지원 </dt>
+            <dd>
+                <p class="bu_st5"> <span class="pc_blue">긴급주거지원이 필요한 주거취약계층 등에게</span> 매입임대 및 전세임대주택을 지원하여 주거안정을 도모하는 제도입니다. </p>
+                <h3 class="tit1 mgt30"> 지원대상 </h3>
+                <div class="box_st1">
+                    <ul class="list_st1">
+                        <li>긴급복지지원법 제9조제1항제1호의 지원을 받고 있거나 지원완료 후 3개월 이내인 자로서, 같은법 제14조에 따른 적정성 심사 완료 후 시장 &middot; 군수 &middot; 구청장이 주거지원이 필요하다고 인정하여 LH에 통보한 자</li>
+                        <li>다만, 시장 &middot; 군수 &middot; 구청장이 긴급하다고 인정하는 경우에는 사후조사 결과 적정성 심사기준을 충족하면 대상자 통보가 가능하며, 주거지원 후 적정성 심사결과 대상자가 아닌 것으로 판명된 경우 입주 자격을 회수</li>
+                        <li>가구구성원이 무주택*이거나 임대주택 주거지원을 받고 있지 않은 경우에 한하여 원칙적으로 지원
+                            <p>* 가구구성원으로부터 방인, 유기되거나 가정폭력을 당한 경우 등은 제외</p>
+                        </li>
+                    </ul>
+                </div>
+                <h3 class="tit1 mgt30"> 임대기간 </h3>
+                <div class="box_st1">
+                    <ul class="list_st1">
+                        <li>최초 임대기간은 2년으로 하되, 9회까지 재계약(2년 단위) 가능
+                            <p class="bu_st2">가구구성원으로부터 방인, 유기되거나 가정폭력을 당한 경우 등은 제외</p>
+                        </li>
+                    </ul>
+                </div>
+                <h3 class="tit1 mgt30"> 유형별 임대조건 </h3>
+                <div class="box_st1">
+                    <!-- <h4 class="tit2">기존주택 매입임대</h4>
+                    <ul class="list_st1">
+                        <li>전용면적(㎡)
+                            <ul class="list_st2">
+                                <li>60㎡ 이하(2인 50㎡ 이하)</li>
+                            </ul>
+                        </li>
+                        <li>임대료 수준
+                            <ul class="list_st2">
+                                <li>보증금 300∼700만원</li>
+                                <li>월 임대료 5∼12만원 수준</li>
+                            </ul>
+                        </li>
+                    </ul> -->
+                    <!-- <h4 class="tit2 mgt20">기존주택 전세임대</h4> -->
+                    <h4 class="tit2">기존주택 전세임대</h4>
+                    <ul class="list_st1">
+                        <li>전용면적(㎡)
+                            <ul class="list_st2">
+                                <li>85㎡ 이하</li>
+                            </ul>
+                        </li>
+                        <li>임대료 수준
+                            <ul class="list_st2">
+                                <li>보증금 300∼450만원</li>
+                                <li>월 임대료 9∼14만원 수준</li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <p class="bu_atte2_line mgt5">주택유형 및 공급지역에 따라 임대조건(보증금 &middot; 임대료)이 다르며, 각 주택유형별지역별로 공급가능한 물량 범위 내에서 지원</p>
+                    <p class="bu_atte2_line mgt5">기존주택 전세임대 전세금 지원한도액 : 수도권 13,000만원, 광역시 9,000만원, 그 밖의 지역은 7,000만원</p>
+                </div>
+                <h3 class="tit1 mgt30"> 지원방법 </h3>
+                <div class="ordrList listTy03 wStep3">
+                    <ul>
+                        <li>
+                            <div class="box">
+                                <p>지원요청 및 신고</p>
+                                <div class="txt">
+                                    <ul class="list_st2">
+                                        <li>시장&middot;군수&middot;구청장에게 지원요청 및 신고</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="box">
+                                <p>지원대상자 선정</p>
+                                <div class="txt">
+                                    <ul class="list_st2">
+                                        <li>지자체에서 지원 대상자를 선정하여 LH에 통보</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="box">
+                                <p>공급신청 안내</p>
+                                <div class="txt">
+                                    <ul class="list_st2">
+                                        <li>LH가 지원대상자에게 공급신청 사실 확인 및 필요서류 준비 안내</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="box">
+                                <p>계약 및 입주 안내</p>
+                                <div class="txt">
+                                    <ul class="list_st2">
+                                        <!-- <li>매입임대 : LH는 선정된 입주자에게 임대대상 주택목록 계약 및 입주관련 사항 안내</li> -->
+                                        <li>전세임대 : LH는 선정된 입주자에게 전세주택 물색 안내, 계약 및 입주관련 사항 안내</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="box">
+                                <p>임대계약 체결</p>
+                                <div class="txt">
+                                    <ul class="list_st2">
+                                        <!-- <li>매입임대 : 입주할 주택을 결정하고 LH와 입주대상자간 임대차계약 체결</li> -->
+                                        <li>전세임대 : 입주대상자가 물색한 주택에 대해 LH가 주택소유자와 전세계약 체결하고 입주대상자에게 재임대</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="box">
+                                <p>입주</p>
+                                <div class="txt">
+                                    <ul class="list_st2">
+                                        <li>해당 주택으로 입주</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <h3 class="tit1 mgt30"> 위기상황 유형(긴급복지지원법 제2조) </h3>
+                <div class="box_st1">
+                    <ul class="list_st1">
+                        <li>주소득자가 사망, 가출, 행방불명, 구금시설에 수용되는 등의 사유로 소득을 상실한 경우</li>
+                        <li>중한 질병 또는 부상을 당한 경우</li>
+                        <li>가구구성원으로부터 방임 또는 유기되거나 학대 등을 당한 경우</li>
+                        <li>가정폭력을 당하여 가구구성원과 함께 원만한 가정생활을 하기 곤란하거나 가구구성원으로부터 성폭력을 당한 경우</li>
+                        <li>화재 등으로 인하여 거주하는 주택 또는 건물에서 생활하기 곤란하게 된 경우</li>
+                        <li>주소득자 또는 부소득자의 휴업, 폐업 또는 사업장의 화재 등으로 인하여 실직적인 영업이 곤란하게 된 경우</li>
+                        <li>주소득자 또는 부소득자의 실직으로 소득을 상실한 경우</li>
+                        <li>보건복지부령으로 정하는 기준에 따라 지방자치단체의 조례로 정한 사유가 발생한 경우</li>
+                        <li>그 밖에 보건복지부장관이 정하여 고시하는 사유가 발생한 경우
+                            <ol class="bu_none mgt10">
+                                <li><span class="t_cirDot">1</span> 주소득자와 이혼 한 때</li>
+                                <li><span class="t_cirDot">2</span> 단전된 때</li>
+                                <li><span class="t_cirDot">3</span> 주소득자 또는 부소득자(가구별 1명 한정)의 휴업, 폐업, 사업장의 화재 등 실질적인 영업 곤란으로 가구의 생계유지 등이 곤란한 경우</li>
+                                <li><span class="t_cirDot">4</span> 주소득자 또는 부소득자(가구별 1명 한정)의 실직으로 가구의 생계유지 등이 곤란한 경우</li>
+                                <li><span class="t_cirDot">5</span> 교정시설에서 출소한 자가 생계가 곤란한 경우</li>
+                                <li><span class="t_cirDot">6</span> 가족으로부터 방임 &middot; 유기 또는 생계유지의 곤란 등으로 노숙을 하는 경우</li>
+                            </ol>
+                        </li>
+                    </ul>
+                    <p class="bu_atte2_line mgt5">각 항목별 세부내용은 「 위기상황으로 인정하는 사유」 보건복지부고시 2017-195 참조</p>
+                </div>
+            </dd>
+        </dl>
+        <dl>
+            <dt> <span>6</span>주거취약계층 주거지원사업 </dt>
+            <dd>
+            <p class="bu_st5"> <span class="pc_blue">최저주거기준에 미달되고 열악한 환경에서 생활하는 주거취약계층에게</span> 저렴한 임대주택(전세임대)을 지원하여 주거안정, 주거상향이동을 도모하는 사업입니다. </p>
+            <h3 class="tit1 mgt30"> 공급대상 </h3>
+            <div class="box_st1">
+            <ul class="list_st1">
+                <li>쪽방, 고시원, 여인숙, 비닐하우스, 노숙인시설(노숙인 등의 복지 및 자립지원에 관한 법률 제2조제2호), 컨테이너, 움막, PC방, 만화방 등에 3개월 이상* 거주한 자 및 최저주거기준을 미달하는 주거환경에서 만 18세미만의 자녀와 함께 거주하고 있는 사람 중 거주지 관할 시장 &middot; 군수 &middot; 구청장이 주거지원이 필요하다고 인정하는 사람
+                    <ul class="list_st2">
+                        <li class="bu_none">* 단, 신청일을 기준으로 최근 1년간 각 시설의 거주기간을 합산하여 산정 가능</li>
+                        <li class="bu_none">*주거급여 주택조사가 실시된 자는 LH로 직접 신청 가능</li>
+                    </ul>
+                </li>
+                <li>지방검찰청에 신청하여 법무부장관으로부터 주거지원이 필요하다고 인정되어 LH 등 사업시행자에 통보된 범죄피해자</li>
+            </ul>
+            <h4 class="titL mgt30"> <span>소득 기준(2024년 적용기준)</span> </h4>
+            <h5 class="tit3">1. 가구원 수가 3인 이상인 경우 : 전년도 도시근로자 가구원수별 가구당 월평균소득의 50%</h5>
+            <div class="box_st2 mgb10">
+	            <ul class="list_st1 li_st_fm">
+		            <ul class="list_st3 li_st_fm">
+		                <li>3인: 3,502,255원</li>
+		                <li>4인: 4,124,234원</li>
+		                <li>5인: 4,387,536원</li>
+		                <li>6인: 4,781,641원</li>
+		                <li>7인: 5,175,747원</li>
+		                <li>8인: 5,569,852원</li>
+		            </ul>
+	            </ul>
+            </div>
+            <h5 class="tit3">2. 가구원 수가 2인인 경우 : 전년도 도시근로자 가구원수별 가구당 월평균소득의 60%(3,249,428원)</h5>
+            <h5 class="tit3">3. 가구원 수가 1인인 경우 : 전년도 도시근로자 가구원수별 가구당 월평균소득의 70%(2,438,075원)</h5>
+            <p class="bu_atte2_line mgt10"> 가구원수는 세대구성원 전원(임신 중인 경우 태아 포함)을 말하며, 세전금액으로 산정</p>
+            <h4 class="titL mgt30"> <span>영구임대주택 입주자 보유자산 기준</span> </h4>
+            <div class="astStdr">
+                <dl class="asts">
+                    <dt> <span>총자산</span> </dt>
+                    <dd>
+                        <p class="num"> <span>24,100</span>만원 이하 </p>
+                        부동산, 자동차, 금융자산, 기타자산가액을 합산한 금액에서 부채를 차감한 금액 </dd>
+                </dl>
+                <dl class="car">
+                    <dt> <span>자동차</span> </dt>
+                    <dd>
+                        <p class="num"> <span>3,708</span>만원 이하 </p>
+                        비영업용 승용자동차에 한하며, 장애인 사용 자동차, 국가유공자(상이 1 ~7급) 보철용 차량 등은 제외 </dd>
+                </dl>
+            </div>
+            <div class="box_st2 mgt10">
+                <p class="bu_atte_line">소득 &middot; 자산 등 확인은 무주택세대구성원 전원을 대상으로 하며, 세대원의 실종으로 소득 파악이 불가한 경우에는 주민등록표 말소를 확인하고 소득 및 자산 산정의 대상에서 제외</p>
+            </div>
+            </div>
+            <h3 class="tit1 mgt30"> 지원대상지역 </h3>
+            <div class="box_st1">
+                <p class="bu_st1">입주희망지역 제한 없음</p>
+            </div>
+            <h3 class="tit1 mgt30"> 임대기간 </h3>
+            <div class="box_st1">
+                <p class="bu_st1"> 최초 임대기간은 2년으로 하되, 9회까지 재계약(2년 단위) 가능<br>
+                    (최장 20년간 거주 가능) </p>
+            </div>
+            <h3 class="tit1 mgt30"> 주거취약계층 주거지원 유형 </h3>
+            <div class="box_st1">
+                <!-- <h5 class="tit2">기존주택임대</h5>
+                <p class="bu_st1">임대조건</p>
+                <div class="box_st2">
+                    <ul class="list_st2">
+                        <li>임대보증금
+                            <ul class="list_st3">
+                                <li>쪽방, 고시원, 여인숙, 노숙인시설, 비닐하우스, 컨테이너, 움막 등 거주자
+                                    <ul class="list_st4">
+                                        <li>50만원(고정)</li>
+                                    </ul>
+                                </li>
+                                <li>범죄피해자
+                                    <ul class="list_st4">
+                                        <li> 일반 매입임대주택과 동일</li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>월 임대료
+                            <ul class="list_st3">
+                                <li>쪽방, 고시원, 여인숙, 노숙인시설, 비닐하우스, 컨테이너, 움막 등 거주자, 범죄피해자
+                                    <ul class="list_st4">
+                                        <li>일반 매입임대주택과 동일하게 시세 30% 수준</li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+                <h5 class="tit2 mgt30">운영기관을 통한 주거지원(매입임대)</h5>
+                <p class="bu_st1">지원방법 : 주거복지재단이 선정한 운영기관에게 공급</p>
+                <p class="rsp_img mgt10 ac"> <img src="/images/web/jw/sub_cnt/img_0401_03.png" alt="운영기관을 통한 주거지원(매입임대) 지원방법 모식도 이미지"> </p>
+                <div class="blind hid">
+                    <ul>
+                        <li>1. 주거취약계층이 운영기관에게 입주신청</li>
+                        <li>2. 운영기관은 주거복지재단에게 대상자 추천</li>
+                        <li>3. 주거복지재단은 LH에게 대상자 통보</li>
+                        <li>4. LH는 운영기관에게 자격확인, 입주자 선정</li>
+                        <li>5. 운영기관은 주거취약계층에게 선경결과 통보</li>
+                        <li>6. LH는 운영기관에게 임대차계약(동별) 체결</li>
+                        <li>7. 운영기관과 주거취약계층은 입주계약(호별)체결</li>
+                        <li>8. 운영기관은 다가구주택 매입자에게 입주자관리, 복지서비스 제공</li>
+                        <li>9. 입주</li>
+                        <li class="bu_none">* LH는 다가구주택매입 사전확보</li>
+                    </ul>
+                </div> -->
+                <h5 class="tit2 mgt30">기존주택 전세임대</h5>
+                <ul class="list_st1">
+                    <li>지원방법 : 입주대상자가 거주하기 원하는 기존주택에 대하여 사업시행자가 전세계약을 체결하여 입주대상자에게 재임대</li>
+                    <li>전세금 지원 한도액 : 수도권 13,000만원, 광역시 9,000만원, 그 밖의 지역은 7,000만원</li>
+                    <li>임대조건</li>
+                </ul>
+                <div class="box_st2">
+                    <ul class="list_st2">
+                        <li>임대보증금
+                            <ul class="list_st3">
+                                <li>쪽방, 고시원, 여인숙, 노숙인시설, 비닐하우스, 컨테이너, 움막 등 거주자
+                                    <ul class="list_st4">
+                                        <li>50만원(고정)</li>
+                                    </ul>
+                                </li>
+                                <li>범죄피해자
+                                    <ul class="list_st4">
+                                        <li> 일반 매입임대주택과 동일</li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>월 임대료
+                            <ul class="list_st3">
+                                <li>쪽방, 고시원, 여인숙, 노숙인시설, 비닐하우스, 컨테이너, 움막 등 거주자, 범죄피해자
+                                    <ul class="list_st4">
+                                        <li> 전세지원금 중 임대보증금을 제외한 금액의 연 1~2% 이자해당액</li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+                <ul class="list_st1">
+                    <li>지원대상 주택 및 규모
+                        <ul class="list_st2">
+                            <li>국민주택규모(전용 85㎡) 이하인 단독 &middot; 다가구주택, 다세대주택 &middot; 연립주택, 아파트, 오피스텔(바닥난방, 취사시설, 화장실을 구비하여 주거용으로 이용하는 경우)<br>
+                                * 1인 가구는 60㎡ 이하로 면적 제한 </li>
+                        </ul>
+                    </li>
+                </ul>
+                <h5 class="tit2 mgt30">범죄피해자에 대한 입주지원(전세임대)</h5>
+                <ul class="list_st1">
+                    <li>지원방법
+                        <ul class="list_st2">
+                            <li>당해 범죄피해를 담당하는 지방검찰청 소재 범죄피해자구조심의회에 주거지원을 신청하면 법무부 장관이 필요하다고 인정하여 국토교통부 장관에게 주거지원을 요청함에 따라 사업시행자는 희망임대주택에 입주추진</li>
+                        </ul>
+                    </li>
+                    <li>주택유형에 따른 입주방법
+                        <ul class="list_st2">
+                            <!-- <li>기존주택 매입임대 : LH 등 사업시행자가 매입 &middot; 보유하는 임대주택</li> -->
+                            <li>기존주택 전세임대 : 입주대상자가 거주 희망주택을 물색하여 사업시행자에게 요청하면 사업시행자가 주택소유자와 전세계약을 체결 후 입주대상자에게 재임대</li>
+                        </ul>
+                    </li>
+                </ul>
+                <!-- <h5 class="tit2 mgt30">국민 &middot; 영구임대주택</h5>
+                <h6 class="tit3">지원대상</h6>
+                <ul class="list_st1">
+                    <li><span class="t_cirDot">1</span>쪽방 <span class="t_cirDot">2</span>고시원, 여인숙 <span class="t_cirDot">3</span>비닐하우스, <span class="t_cirDot">4</span>노숙인 시설(「노숙인 등의 복지 및 자립지원에 관한 법률」 제2조제2호), <span class="t_cirDot">5</span>컨테이너, 움막 등에 3개월 이상 거주*한 사람으로서 시장 &middot; 군수 &middot; 구청장(이하 ‘시장 등’이라 한다)이 주거지원이 필요하다고 인정하는 사람<br>
+                        * 주거지원 신청일을 기준으로 하되, 최근 1년간 각 호의 거주기간을 합산하여 산정할 수 있음</li>
+                    <li>최저주거기준을 미달(공공주택업무처리지침 별표 6 제5항*에 해당하는 경우를 말한다)하는 주거환경에서 만 18세미만의 자녀와 함께 거주하고 있는 사람 중 거주지 관할 시장 등이 주거지원이 필요하다고 인정하는 사람
+                        <div class="box_st2 mg10">
+                            <p class="titT3 pc_black ac">공공주택업무처리지침 별표6 제5항</p>
+                            <ul class="list_st2">
+                                <li>5. 현 거주지의 최저주거기준 미달 여부에 대하여 다음 각 목에 따라 산정. 다만, 「국민기초생활보장법」 제32조 및 같은 법 시행령 제38조에 규정된 보장시설 거주자는 전용입식부엌, 전용수세식화장실을 모두 구비한 것으로 본다
+                                    <ul class="list_st3">
+                                        <li>가. 전용입식부엌, 전용수세식화장실을 모두 구비하지 못한 주택에 거주하는 자 : 4점</li>
+                                        <li>나. 전용입식부엌, 전용수세식화장실 중 어느 하나를 구비하지 못한 주택에 거주하는 자 : 2점</li>
+                                    </ul>
+                                    <p class="bu_atte2_line">입주자 모집 공고일 전 3개월 이상(최근 1년간의 거주기간 합산 가능) 가목 또는 나목에 해당하는 곳에 거주한 경우에 인정</p>
+                                </li>
+                            </ul>
+                        </div>
+                        <p class="bu_atte_line mgt5 mgl10"> 비닐간이공작물 거주자는 국민임대주택 우선공급 대상자이므로 LH 등이 시행하는 국민임대주택 모집 공고에 따라 신청기간 내에 직접 청약신청할 수 있음<br>
+                            - 비닐간이공작물 거주자 중 전세임대주택을 지원받은 무주택세대구성원은 전세임대를 지원받은 사업시행자로부터 「입주사실 확인서」 발급 받아 제출 </p>
+                        <p class="bu_atte_line mgt5 mgl10">범죄피해자는 주거취약계층 지원대상에 해당하지 않으나 국민임대주택 우선공급 대상자로서 LH 등이 시행하는 국민임대주택 모집 공고에 따라 신청기간 내에 직접 청약신청할 수 있음</p>
+                    </li>
+                    <li>범죄피해자로서 무주택세대구성원은 해당 범죄를 조사하는 지방검찰청 범죄피해자구조심 의회로부터 국민임대 신청용 범죄피해자 확인증을 발급받아 제출(입주희망지역에 당분간 국민임대주택 공급계획이 없어 다른 유형으로 입주하기를 원할 경우 지방검찰청 범죄피해자 구조심의회에 변경신청)</li>
+                </ul>
+                <h5 class="tit2 mgt20">소득 &middot; 자산기준 및 임대기간 : 매입 &middot; 전세임대와 동일</h5>
+                <ul class="list_st1">
+                    <li>소득기준
+                    	<ul class="list_st2">
+                    		<li>가구원 수가 3인 이상인 경우 : 전년도 도시근로자 가구원수별 가구당 월평균소득의 50%</li>
+                    		<li>가구원 수가 2인인 경우 : 전년도 도시근로자 가구원수별 가구당 월평균소득의 60%</li>
+                    		<li>가구원 수가 1인인 경우 : 전년도 도시근로자 가구원수별 가구당 월평균소득의 70%</li>
+                    	</ul>
+                    </li>
+                    <li>자산기준 : 영구임대 자산기준(총자산 25,500만원 이하, 자동차 3,683만원 이하)</li>
+                    <li>임대기간 : 최초 임대기간 2년, 이후 2년 단위로 최대 9회까지 재계약 가능(최장 20년 거주)</li>
+                </ul> -->
+                <h5 class="tit2 mgt20">임대조건</h5>
+                <div class="box_st2">
+                    <ul class="list_st2">
+                        <li>임대보증금
+                            <ul class="list_st3">
+                                <li>국민임대
+                                    <ul class="list_st4">
+                                        <li>50만원</li>
+                                    </ul>
+                                </li>
+                                <li>영구임대
+                                    <ul class="list_st4">
+                                        <li>50만원</li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>월 임대료
+                            <ul class="list_st3">
+                                <li>국민임대
+                                    <ul class="list_st4">
+                                        <li>시중 임대료의 50% 이하</li>
+                                    </ul>
+                                </li>
+                                <li>영구임대
+                                    <ul class="list_st4">
+                                        <li>현행 국민임대주택 임대보증금 수준 (단, 시장 등의 요청이 있는 경우 50% 감면) 생계 · 의료급여수급자와 동일 임대조건 적용</li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+                <h5 class="tit2 mgt20">지원대상 주택 및 규모</h5>
+                <ul class="list_st1">
+                    <li>LH가 공급 &middot; 운영하는 국민임대주택 및 영구임대주택</li>
+                    <li>국민임대주택의 경우 단독세대주는 전용면적 40㎡ 이하로 제한</li>
+                </ul>
+            </div>
+            </dd>
+        </dl>
+        <a href="#" class="allShow">모두보기</a> </div>
+    <!-- //200317 : 내용 전체 수정 -->
+</div>
+<!-- //페이지뷰 : 서브콘텐츠 끝 -->
+
+								<!-- //페이지뷰 : 서브콘텐츠 끝 -->
+                            </div>
+                            
+
+
+								
+								
+                        </section>
+                        <!-- // sub 내용-->
+						<!-- 챗봇 -->
+						<!-- <div class="link-chatbot-pc">
+							<a title="전세임대 챗봇상담" href="#chatbot"><img src="/images/web/jw/layout/chatbot_icon_04.png" alt="전세임대챗봇 아이콘"></a>
+						</div> -->
+                    </div>
+                </div>
+                <!-- //container -->
+                <!-- footer -->
+                
+
+
+<!-- footer -->
+        <footer id="footer">
+            <div class="foot_wrap">
+                <div class="foot_top">
+                    <div class="logo">
+                        <a href="/jw/main.do"><span class="sr-only">전세임대포털</span></a>
+                    </div>
+                </div>
+                <div class="foot_body">
+                    <div class="foot_info">
+                        <ul class="info_list">
+                            <li><a href="/jw/utility/privacy.do?mi=3009">개인정보처리방침</a></li>
+                            <li><a href="/jw/utility/fakeSale.do?mi=4140">매물신고운영</a></li>
+                            <li><a href="/jw/utility/sitemap.do?mi=3011">사이트맵</a></li>
+                            <li><a href="/jw/utility/location.do?mi=3012">찾아오시는 길</a></li>
+							<li><a href="javascript:;" style="pointer-events: none; font-size: 1.2rem;">홈페이지 오류 문의(🕘09:00~12:00, 13:00~18:00) 070-4018-1095</a></li> 
+                        </ul>
+                    </div>
+                    <div class="foot_add">
+                        <ul class="add_list">
+                            <li>
+                                <address>(우)52852 경상남도 진주시 충의로 19</address>
+                            </li>
+                            <li>전세임대상담 : 1670-0002</li>
+                        </ul>
+                    </div>
+                    <p class="copyright">Copyright © KOREA LAND &amp; HOUSING CORPORATION All Rights Reserved.</p>
+                </div>
+                <div class="foot_etc">
+                    <ul class="etc_list">
+                        <li>
+                            <a href="https://www.molit.go.kr/portal.do" target="_blank" title="새창" rel="noopener noreferrer" class="etc_link">
+                                <img src="/images/layout/ft_etc_logo1.png" alt="국토교통부 로고"/>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www.lh.or.kr" target="_blank" title="새창" rel="noopener noreferrer" class="etc_link">
+                                <img src="/images/layout/ft_etc_logo2.png" alt="살고 싶은 집과 도시로 국민의 희망을 가꾸는 기업 LH 로고"/>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </footer>
+        <!--// footer -->
+                <!-- // footer -->
+            </div>
+    <script type="text/javascript" src="/js/template/common.js"></script>
+   
+		<!-- menuForm -->
+        
+
+
+<!--공통 메뉴 Form -->
+<form name="mainMenuForm" id="mainMenuForm" method="post">
+	<input type="hidden" name="mi" id="nowMenuId" value="" />
+	<input type="hidden" name="paramNm" id="paramNm" value=""/>
+	<input type="hidden" name="paramVal" id="paramVal" value=""/>
+</form>
+<!--/공통 메뉴 Form -->
+	
+<script>
+$(function() {
+	
+	//공통 submit
+	$(".menuFormBtn").click(function(){
+		var paramVal = $(this).attr('data-param'); 
+		var paramNm = $(this).attr('data-nm');
+		var paramUrl = $(this).attr('data-url');
+		$("#paramVal").val(paramVal);
+		$("#paramNm").val(paramNm);
+		setTrimMenuId();
+		$("#mainMenuForm").attr('action', paramUrl).submit();
+	});
+	
+});
+
+//파라미터 페이지 이동 
+function goParamPage( setVal, setNm, setUrl ) {
+	$("#paramNm").val(setNm);
+	$("#paramVal").val(setVal);
+	setTrimMenuId();
+	$("#mainMenuForm").attr('action', setUrl).submit();
+};
+
+//메뉴 아이디 공백제거
+function setTrimMenuId(){
+	var nowMenuId = $.trim($("#nowMenuId").val());
+	$("nowMenuId").val(nowMenuId);
+};
+</script>
+	
+	 
+	
+	
+
+	
+        <!-- /menuForm -->
+    </body>
+</html>
+

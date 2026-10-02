@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>마이홈포털</title>
+
+<script type="text/javascript" src="/js/netfunnel.js"></script>
+
+<script type="text/javaScript">
+
+NetFunnel_Action({action_id:"hws_00"},function(ev,ret){
+	
+	NetFunnel_Complete({host:"ntfnnl.myhome.go.kr", action_id:"hws_00"},function(ev,ret){
+		document.location.href="/hws/portal/main/getMgtMainHubPage.do";
+	});
+	
+}); 
+
+</script>
+
+</head>
+</html>

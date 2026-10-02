@@ -1,0 +1,45 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv='cache-control' content='no-cache' />
+	<meta http-equiv='Expires' content='-1' />
+    <title></title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+</head>
+
+<body>
+
+    <!-- begin of megafence -------------------------------------------->
+    <link href="https://cdn2.devy.kr/1811/css/webgate.css?v=1" rel="stylesheet" />
+    <script src="https://cdn2.devy.kr/1811/js/webgate.js?v=1"></script>
+
+    <script>
+        function startWebGate() {
+            WG_StartWebGate(
+                1651, // GATE-ID
+                function () {
+                    var res = $WG.lastResponse;
+                    if (res.GateOperationMode == "ALERT") {
+                        if (res.GateOperationMessageTitle == "NOT_OPEN") {
+                            setTimeout(function () {
+                                alert(res.GateOperationMessageDetail);
+                                $WG.setCookie("WG_TOKEN_NO", "");
+                            }, 100);
+                        }
+                    } else if (res.GateOperationMode == "GATE") {
+                        window.location.href = "/index.jsp";
+                    }
+                },
+                "접속 대기 중"
+            );
+        }
+        window.addEventListener("load", function () {
+            startWebGate();
+        });
+    </script>
+    <!-- end of megafence -------------------------------------------->
+
+</body>
+</html>

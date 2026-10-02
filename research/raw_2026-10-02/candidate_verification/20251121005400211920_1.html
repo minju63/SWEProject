@@ -1,0 +1,1326 @@
+
+
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>충북학사 청주관</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=0" />
+	<meta charset="UTF-8">
+	<meta name="title" content="충북학사 청주관">
+	<meta name="author" content="충북학사 청주관">
+	<meta name="keywords" content="충북학사, 청주관, 충북학사 청주관">
+	<meta name="description" content="학사소개, 시설현황, 입사, 학사생활 안내.">
+	<meta name="robots" content="index,follow">
+	<link rel="canonical" href="http://www.cbhscj.kr/main">
+	<link rel="shortcut icon" type="image/x-icon" href="../client/images/common/title.ico">
+	<link rel="stylesheet" type="text/css" href="../client/css/reset.css" />
+	<link rel="stylesheet" type="text/css" href="../client/css/common.css" />
+	<link rel="stylesheet" type="text/css" href="../client/css/main.css" />
+	<link rel="stylesheet" type="text/css" href="../client/css/sub_common.css" />
+	<link rel="stylesheet" type="text/css" href="../client/css/content.css" />
+	<link rel="stylesheet" type="text/css" href="../client/css/board.css" />
+	<link rel="stylesheet" type="text/css" href="../client/css/popup.css" />
+	<link rel="stylesheet" type="text/css" href="../client/font-awesome/css/font-awesome.min.css" />
+	
+	<script src="../client/js/jquery.min.js"></script>
+	<script src="../client/js/cookie.js"></script>
+	<script src="../client/js/basepage.js"></script>
+	<script src="../client/js/respond.min.js"></script>
+	<script src="../client/js/html5shiv.js"></script>
+	<link rel="stylesheet" href="../client/plugins/jquery.bxslider/jquery.bxslider.min.css">
+	<script type="text/javascript" src="../client/plugins/jquery.bxslider/jquery.bxslider.min.js?v1=2"></script>
+	<script src="../client/js/jquery-ui.min.js"></script>
+	<script src="../client/js/components/popup.js"></script>
+	<script language="javascript">
+		$(document).ready(function() {
+			var popup_slider = $('.popup-zone-list');
+			popup_slider.bxSlider({
+		        pause: 5000,
+		        pager: false,
+		        controls: false,
+		        moveSlides: 1,
+		        minSlides: 1,
+		        maxSlides: 1,
+		        responsive: true
+		    });
+		    popup_slider.startAuto();
+		    $('.popup-zone-control .prev-btn').on('click', function(){ popup_slider.goToPrevSlide(); });
+		    $('.popup-zone-control .next-btn').on('click', function(){ popup_slider.goToNextSlide(); });
+		    $('.popup-zone-control .stop-btn').on('click', function(){ popup_slider.stopAuto(); });
+		    /* 배너 이미지 불러오기 */
+		    var main_slider = $('.main-visual-list');
+		    /* quick-slider */
+		    var quick_slider;
+		    quick_slider = $('.quick-slider').bxSlider({
+		    	auto: true, 
+                speed: 500, 
+                pause: 4000, 
+		        pager: false,
+		        controls: false,
+		        slideWidth: 160,
+		        moveSlides: 1,
+		        maxSlides: 5,
+		        minSlides: 1,
+		        responsive: true,
+		        touchEnabled : (navigator.maxTouchPoints > 0)
+		    });
+		    $('.quick-control .quick-prev').on('click', function(){ quick_slider.goToPrevSlide(); });
+		    $('.quick-control .quick-next').on('click', function(){ quick_slider.goToNextSlide(); });
+	
+		    ellipsis();
+		   
+		    $.ajax({
+				type : 'get',
+				url : '/api/common/popup',
+				success : function(data){
+				    data.forEach(function(popup) {
+		        		if(!getCookie("popup_"+ popup.popupId)) $("#popup_" + popup.popupId).show();
+				    })
+				},
+				error: function(xhr, status, error){
+					alert(error)
+				}
+			})
+		    $('.draggable_popup').draggable();
+	});
+	</script>
+</head>
+<body>
+	<div id="wrap">
+		
+
+
+
+
+
+
+<header id="header">
+	<div class="top_layout">
+		<div class="width1100 clearfix">
+			<ul class="sidlink">
+				<li><a href="https://home.cbhs.kr/main" target="_blank" title="재단법인 충북학사 새 창으로 이동">재단법인 충북학사</a></li>
+				<li><a href="https://www.cbhs.kr/main" target="_blank" title="충북학사 서서울관 새 창으로 이동">충북학사 서서울관</a></li>
+				<li><a href="https://www.cbhs2.kr/main" target="_blank" title="충북학사 동서울관새 창으로 이동">충북학사 동서울관</a></li>
+				<li class="on">충북학사 청주관</li>
+			</ul>
+			<ul class="globalBox">
+				<li><a href="/main" title="HOME">HOME</a></li>
+				<li style="list-style: none"></li>
+				
+					
+					
+						<li class='not_login'><a href="/login" title="로그인으로 이동">로그인</a></li>
+						<li class='not_login'><a href="/join" title="회원가입으로 이동">회원가입</a></li>
+					
+				
+				<li style="list-style: none"></li>
+			</ul>
+		</div>
+		<div class="width1100 header_menu clearfix">
+			<div class="mb_menu">
+				<i class="fa fa-bars"></i>
+			</div>
+			<a class="top_logo" href="/main" title="충북학사 메인으로 이동">
+				<img alt="충북학사" src="../client/images/common/logo.png">
+			</a>
+			<ul class="cbox">
+				<li class="cbox_green">
+					<a href="/sitemap" title="사이트맵으로 이동">
+						<i class="fa fa-bars"></i>
+					</a>
+				</li>
+				<li class="cbox_orange">
+					<a href="#">
+						<i class="fa fa-search"></i>
+					</a>
+				</li>
+			</ul>
+			<div class="lnb_layout clearfix">
+				<div class="lnb_area_bg"></div>
+				<!-- 모바일 메뉴 -->
+				<div class="mb_gnb_menu">
+					<a class="mb_menu_closed" href="javascript:void(0)" title="모바일 메뉴 닫기">닫기</a>
+					<div class="mb_logo">
+						<img src="../client/images/common/mb_logo2.png">
+					</div>
+					<div class="mb_list">
+						<ul>
+							<li><a href="http://home.cbhs.kr/main" target="_blank" title="재단법인 충북학사 새 창으로 이동">재단법인 충북학사</a></li>
+							<li><a href="http://www.cbhs.kr/main" target="_blank" title="충북학사 서서울관 새 창으로 이동">충북학사 서서울관</a></li>
+							<li><a href="http://www.cbhscj.kr/main" target="_blank" title="충북학사 청주관 새 창으로 이동">충북학사 청주관</a></li>
+							
+								
+								
+									<li class='not_login'><a href="/login" title="로그인으로 이동">로그인</a></li>
+									<li class='not_login'><a href="/join" title="회원가입으로 이동">회원가입</a></li>
+								
+							
+						</ul>
+					</div>
+				</div>
+				<!-- // 모바일 메뉴 -->
+				<!-- lnb -->
+				<ul class="lnb clearfix">
+					
+						
+							<li class="">
+								
+									
+									
+										<a href="/0000008">학사소개</a> 
+									
+								
+								<div class="top_sub_menu clearfix" style="overflow: hidden; display: none;">
+								    <div class="top_menu_box">
+								       <div class="top_sub_left">
+								           <p class="lnb_ttl">학사소개</p>
+								           <p class="lnb_info">미래사회의 중추적 인재를 <br>양성하는 면학의 산실</p>
+								       </div>
+								       <div class="top_sub_right">
+								       
+								       		<ul class="lnb_sub_02">
+							       				
+							       				
+								       				<li>
+														
+															
+															
+																<a href="/0000008" title="원장 인사말 이동">원장 인사말</a>
+																
+															
+														
+													</li>
+													
+												
+							       				
+								       				<li>
+														
+															
+															
+																<a href="/0000118" title="조직도 이동">조직도</a>
+																
+															
+														
+													</li>
+													
+												
+							       				
+								       				<li>
+														
+															
+															
+																<a href="/0000071" title="시설현황 이동">시설현황</a>
+																
+															
+														
+													</li>
+													
+												
+							       				
+								       				<li>
+														
+															
+															
+																<a href="/0000032" title="찾아오시는 길 이동">찾아오시는 길</a>
+																
+															
+														
+													</li>
+													
+												
+								       		</ul>
+								       	
+								       </div>
+							       </div>
+						       </div>
+							</li>
+						
+					
+						
+							<li class="">
+								
+									
+									
+										<a href="/0000073">학생선발</a> 
+									
+								
+								<div class="top_sub_menu clearfix" style="overflow: hidden; display: none;">
+								    <div class="top_menu_box">
+								       <div class="top_sub_left">
+								           <p class="lnb_ttl">학생선발</p>
+								           <p class="lnb_info">미래사회의 중추적 인재를 <br>양성하는 면학의 산실</p>
+								       </div>
+								       <div class="top_sub_right">
+								       
+								       		<ul class="lnb_sub_02">
+							       				
+							       				
+								       				<li>
+														
+															
+															
+																<a href="/0000073" title="신입생 선발 이동">신입생 선발</a>
+																
+																<ul class="lnb_sub_03">
+																
+																	
+																		
+												                             
+																				
+																				
+																					<li><a href="/0000113">입사생 선발요강</a></li>
+																				
+																			
+																	
+																
+																</ul>
+																
+															
+														
+													</li>
+													
+												
+							       				
+								       				<li>
+														
+															
+															
+																<a href="/0000075" title="재입사생 선발 이동">재입사생 선발</a>
+																
+															
+														
+													</li>
+													
+												
+							       				
+								       				<li>
+														
+															
+															
+																<a href="/0000076" title="국가고시 준비 계속재사생 선발 이동">국가고시 준비 계속재사생 선발</a>
+																
+															
+														
+													</li>
+													
+												
+							       				
+								       				<li>
+														
+															
+															
+																<a href="/0000077" title="대학원 진학자 선발 이동">대학원 진학자 선발</a>
+																
+															
+														
+													</li>
+													
+												
+							       				
+								       				<li>
+														
+															
+															
+																<a href="/0000078" title="퇴사기준 및 절차 이동">퇴사기준 및 절차</a>
+																
+															
+														
+													</li>
+													
+												
+								       		</ul>
+								       	
+								       </div>
+							       </div>
+						       </div>
+							</li>
+						
+					
+						
+							<li class="">
+								
+									
+									
+										<a href="/0000079">학사생활</a> 
+									
+								
+								<div class="top_sub_menu clearfix" style="overflow: hidden; display: none;">
+								    <div class="top_menu_box">
+								       <div class="top_sub_left">
+								           <p class="lnb_ttl">학사생활</p>
+								           <p class="lnb_info">미래사회의 중추적 인재를 <br>양성하는 면학의 산실</p>
+								       </div>
+								       <div class="top_sub_right">
+								       
+								       		<ul class="lnb_sub_02">
+							       				
+							       				
+								       				<li>
+														
+															
+															
+																<a href="/0000079" title="학사 생활안내 이동">학사 생활안내</a>
+																
+															
+														
+													</li>
+													
+												
+							       				
+								       				<li>
+														
+															
+															
+																<a href="/0000080" title="명예규칙 이동">명예규칙</a>
+																
+															
+														
+													</li>
+													
+												
+							       				
+								       				<li>
+														
+															
+															
+																<a href="/0000114" title="도서이용 이동">도서이용</a>
+																
+																<ul class="lnb_sub_03">
+																
+																	
+																		
+												                             
+																				
+																				
+																					<li><a href="/0000114">도서현황</a></li>
+																				
+																			
+																	
+																
+																	
+																		
+												                             
+																				
+																				
+																					<li><a href="/0000085">도서구입신청</a></li>
+																				
+																			
+																	
+																
+																</ul>
+																
+															
+														
+													</li>
+													
+												
+							       				
+								       				<li>
+														
+															
+															
+																<a href="/meal" title="주간식단 이동">주간식단</a>
+																
+															
+														
+													</li>
+													
+												
+							       				
+								       				<li>
+														
+															
+															
+																<a href="/0000131" title="퇴사안내 및 신청 이동">퇴사안내 및 신청</a>
+																
+															
+														
+													</li>
+													
+												
+							       				
+								       				<li>
+														
+															
+															
+																<a href="/0000088" title="학사주요행사 이동">학사주요행사</a>
+																
+															
+														
+													</li>
+													
+												
+							       				
+								       				<li>
+														
+															
+															
+																<a href="/0000089" title="서식다운로드 이동">서식다운로드</a>
+																
+															
+														
+													</li>
+													
+												
+							       				
+								       				<li>
+														
+															
+															
+																<a href="/0000115" title="홍보마당 이동">홍보마당</a>
+																
+																<ul class="lnb_sub_03">
+																
+																	
+																		
+												                             
+																				
+																				
+																					<li><a href="/0000115">고향소식</a></li>
+																				
+																			
+																	
+																
+																	
+																		
+												                             
+																				
+																				
+																					<li><a href="/0000095">학사동정</a></li>
+																				
+																			
+																	
+																
+																</ul>
+																
+															
+														
+													</li>
+													
+												
+								       		</ul>
+								       	
+								       </div>
+							       </div>
+						       </div>
+							</li>
+						
+					
+						
+							<li class="">
+								
+									
+									
+										<a href="/0000097">참여마당</a> 
+									
+								
+								<div class="top_sub_menu clearfix" style="overflow: hidden; display: none;">
+								    <div class="top_menu_box">
+								       <div class="top_sub_left">
+								           <p class="lnb_ttl">참여마당</p>
+								           <p class="lnb_info">미래사회의 중추적 인재를 <br>양성하는 면학의 산실</p>
+								       </div>
+								       <div class="top_sub_right">
+								       
+								       		<ul class="lnb_sub_02">
+							       				
+							       				
+								       				<li>
+														
+															
+															
+																<a href="/0000097" title="공지사항 이동">공지사항</a>
+																
+															
+														
+													</li>
+													
+												
+							       				
+								       				<li>
+														
+															
+															
+																<a href="/0000098" title="질의응답 이동">질의응답</a>
+																
+															
+														
+													</li>
+													
+												
+							       				
+								       				<li>
+														
+															
+															
+																<a href="/0000100" title="사생게시판 이동">사생게시판</a>
+																
+															
+														
+													</li>
+													
+												
+							       				
+								       				<li>
+														
+															
+															
+																<a href="/0000101" title="자율회 이동">자율회</a>
+																
+																<ul class="lnb_sub_03">
+																
+																	
+																		
+												                             
+																				
+																				
+																					<li><a href="/0000116">자율회 소개</a></li>
+																				
+																			
+																	
+																
+																	
+																		
+												                             
+																				
+																				
+																					<li><a href="/0000103">자율회게시판</a></li>
+																				
+																			
+																	
+																
+																</ul>
+																
+															
+														
+													</li>
+													
+												
+							       				
+								       				<li>
+														
+															
+															
+																<a href="/0000104" title="졸업생 게시판 이동">졸업생 게시판</a>
+																
+															
+														
+													</li>
+													
+												
+							       				
+								       				<li>
+														
+															
+															
+																<a href="/0000105" title="건의 제안방 이동">건의 제안방</a>
+																
+															
+														
+													</li>
+													
+												
+							       				
+								       				<li>
+														
+															
+															
+																<a href="/0000126" title="채용게시판 이동">채용게시판</a>
+																
+																<ul class="lnb_sub_03">
+																
+																	
+																		
+												                             
+																				
+																				
+																					<li><a href="/0000126">채용공고게시판</a></li>
+																				
+																			
+																	
+																
+																	
+																		
+												                             
+																				
+																				
+																					<li><a href="/0000127">채용지원게시판</a></li>
+																				
+																			
+																	
+																
+																</ul>
+																
+															
+														
+													</li>
+													
+												
+							       				
+								       				<li>
+														
+															
+															
+																<a href="/0000130" title="VLOG 이동">VLOG</a>
+																
+															
+														
+													</li>
+													
+												
+								       		</ul>
+								       	
+								       </div>
+							       </div>
+						       </div>
+							</li>
+						
+					
+						
+							<li class="">
+								
+									
+									
+										<a href="/0000010">정보공개</a> 
+									
+								
+								<div class="top_sub_menu clearfix" style="overflow: hidden; display: none;">
+								    <div class="top_menu_box">
+								       <div class="top_sub_left">
+								           <p class="lnb_ttl">정보공개</p>
+								           <p class="lnb_info">미래사회의 중추적 인재를 <br>양성하는 면학의 산실</p>
+								       </div>
+								       <div class="top_sub_right">
+								       
+								       		<ul class="lnb_sub_02">
+							       				
+							       				
+								       				<li>
+														
+															
+															
+																<a href="/0000010" title="업무추진비 이동">업무추진비</a>
+																
+															
+														
+													</li>
+													
+												
+							       				
+								       				<li>
+														
+															
+															
+																<a href="/0000012" title="입찰정보 이동">입찰정보</a>
+																
+															
+														
+													</li>
+													
+												
+							       				
+								       				<li>
+														
+															
+															
+																<a href="/0000018" title="계약정보 이동">계약정보</a>
+																
+															
+														
+													</li>
+													
+												
+							       				
+								       				<li>
+														
+															
+															
+																<a href="/0000133" title="수의계약 결격업체 이동">수의계약 결격업체</a>
+																
+															
+														
+													</li>
+													
+												
+							       				
+								       				<li>
+														
+															
+															
+																<a href="/0000128" title="친·인척채용인원 이동">친·인척채용인원</a>
+																
+															
+														
+													</li>
+													
+												
+								       		</ul>
+								       	
+								       </div>
+							       </div>
+						       </div>
+							</li>
+						
+					
+						
+							<li class="">
+								
+									
+										<a href="https://sys.cbhs.kr:1433/cbhs/indexstdcj.html?var1=M000004111" target="_blank">학생정보</a> 
+										
+									
+									
+								
+								<div class="top_sub_menu clearfix" style="overflow: hidden; display: none;">
+								    <div class="top_menu_box">
+								       <div class="top_sub_left">
+								           <p class="lnb_ttl">학생정보</p>
+								           <p class="lnb_info">미래사회의 중추적 인재를 <br>양성하는 면학의 산실</p>
+								       </div>
+								       <div class="top_sub_right">
+								       
+								       		<ul class="lnb_sub_02">
+							       				
+							       				
+								       				<li>
+														
+															
+																<a href="https://sys.cbhs.kr:1433/cbhs/indexstdcj.html?var1=M000004111" target="_blank">신상정보관리</a>
+																
+															
+															
+														
+													</li>
+													
+												
+							       				
+								       				<li>
+														
+															
+																<a href="https://sys.cbhs.kr:1433/cbhs/indexstdcj.html?var1=M000004115" target="_blank">시설보수요청</a>
+																
+															
+															
+														
+													</li>
+													
+												
+							       				
+								       				<li>
+														
+															
+																<a href="https://sys.cbhs.kr:1433/cbhs/indexstdcj.html?var1=M000004116" target="_blank">외박신청</a>
+																
+															
+															
+														
+													</li>
+													
+												
+							       				
+								       				<li>
+														
+															
+																<a href="https://sys.cbhs.kr:1433/cbhs/indexstdcj.html?var1=M000004112" target="_blank">상벌점현황</a>
+																
+															
+															
+														
+													</li>
+													
+												
+							       				
+								       				<li>
+														
+															
+																<a href="https://sys.cbhs.kr:1433/cbhs/indexstdcj.html?var1=M000004117" target="_blank">퇴사신청</a>
+																
+															
+															
+														
+													</li>
+													
+												
+								       		</ul>
+								       	
+								       </div>
+							       </div>
+						       </div>
+							</li>
+						
+					
+				</ul>
+				<div class="lnb_bg"></div>
+			</div>
+			<div class="top-search">
+				<div class="top-search-form">
+					<form id="searchForm" method="get" action="/search">
+						<div class="top-search-box">
+							<label class="blind" for="topquery">통합검색</label>
+							<input id="topquery" name="searchValue" placeholder="검색어를 입력해주세요" type="text">
+							<a href="javascript:search()" id="topsearchbtn"><i class="fa fa-search"></i></a>
+						</div>
+					</form>
+					<a href="#" class="top-search-close">
+						<img src="../client/images/common/top_close_btn.png" width="30" height="30" alt="검색창 닫기">
+					</a>
+				</div>
+			</div>
+		</div>
+		<!-- 상단 GNB 영역 E -->
+	</div>
+	<!-- 상단디자인 끝 -->
+</header>
+		
+
+
+
+
+
+<div id="container"> 
+<!-- 본문내용 시작 --> 
+<div class="main-visual">
+    <ul class="main-visual-list">
+    </ul>
+    <div class="main-visual-control">
+        <ul class="clearfix"></ul>
+    </div>
+</div>
+<div class="main-zone">
+	<!-- quick box start -->
+    <div class="quick-box clearfix">
+    	<!-- popup zone start -->
+   		<div class="popup-zone">
+   			<p class="popup-zone-ttl">POPUP ZONE</p>
+	   		<!-- popup zone list start-->
+   			<div class="bx-wrapper">
+   				<div class="bx-viewport" aria-live="polite">
+	   				<ul class="popup-zone-list">
+	   					<!-- 관리자 페이지 배너관리 글자 추가하는부분도 추가해야함 -->
+	                	
+		   			</ul>
+	   			</div>
+	   		</div>
+	   		<!-- popup zone list end-->
+	   		<!-- popup zone control start-->
+	   		<div class="popup-zone-control">
+                 <ul class="clearfix">
+                     <li class="prev-btn"><img src="../../client/images/main/popup_prev_btn.png" width="10" height="15" alt="이전 슬라이더"></li>
+                     <li class="slider-control stop-btn"><img src="../../client/images/main/popup_stop_btn.png" width="10" height="15" alt="슬라이더 멈춤"></li>
+                     <li class="next-btn"><img src="../../client/images/main/popup_next_btn.png" width="10" height="15" alt="다음 슬라이더"></li>
+                 </ul>
+            </div>
+	   		<!-- popup zone control end-->
+   		</div>
+    	<!-- popup zone end -->
+    	<!-- ipsa zone start -->
+			<div class="ipsa" onclick="window.open('https://sys.cbhs.kr:1433/cbhs/indexcj.html?code=info007&rcept=4')" style="cursor:pointer;">
+    	   <div class="ipsa-photo"></div>
+    	   <div class="ipsa-box">
+           	  <p class="ipsa-box-ttl">입사지원  바로가기</p>
+              <p class="ipsa-box-help">당신의 소중한 꿈, <br>충북학사 청주관과 <br>함께하세요.</p>
+              <div class="ipsa-box-arr"><img src="/client/images/main/quick_arr.png" alt="바로가기"></div>
+           </div>
+        </div>
+    	<!-- ipsa zone end -->
+    </div>
+    <!-- quick-box end -->
+    <!-- main-box-bg start -->
+    <div class="main-box-bg">
+        <div class="main-box clearfix">
+        	<!-- quick-menu start-->
+            <div class="quick-menu">
+                <p class="quick-menu-ttl">QUICK MENU</p>
+                <ul class="quick-menu-list">
+                    <li><a href="/0000119" title="신규입사생으로 이동">신규입사생&nbsp; &nbsp;</a></li>
+                    <li><a href="/0000114" title="도서검색으로 이동">도서검색</a></li>
+                    <li><a href="https://sys.cbhs.kr:1433/cbhs/indexstdcj.html?var1=M000004115" title="시설보수요청으로 이동">시설보수요청</a></li>
+                    <li><a href="https://sys.cbhs.kr:1433/cbhs/indexstdcj.html?var1=M000004116" title="외박신청으로 이동">외박신청</a></li>
+                    <li><a href="/0000120" title="셔틀버스운행으로 이동">셔틀버스운행</a></li>
+                </ul>
+            </div>
+        	<!-- quick-menu end -->
+            <!-- board-zone start -->
+            <div class="board-zone">
+           		<!-- board-zone-top start -->
+                <div class="board-zone-top clearfix">
+                
+                	<!-- notice-box start -->
+                	<div class="notice-box">
+                        <p class="notice-box-ttl">공지사항</p>
+                        <ul class="notice-list" id="ulNoticeList">
+                        	
+	                        	<li>
+	                                <a href="/0000097?postId=6c5fb8d7-097c-4f50-8b87-e2fb31bacc36&mode=READ" title="재사생 층별 친교 및 단합행사 개최">
+	                                    <span class="notice-ttl">재사생 층별 친교 및 단합행사 개최</span>
+	                                    <span class="notice-day">2026-09-22</span>
+	                                </a>
+	                            </li>	
+                        	
+	                        	<li>
+	                                <a href="/0000097?postId=fdaf1112-ab9c-42d5-9b9e-dc12edf77628&mode=READ" title="충북학사 청주관 하반기 행사 일정 안내">
+	                                    <span class="notice-ttl">충북학사 청주관 하반기 행사 일정 안내</span>
+	                                    <span class="notice-day">2026-09-20</span>
+	                                </a>
+	                            </li>	
+                        	
+	                        	<li>
+	                                <a href="/0000097?postId=a56a0524-b5ad-4601-b052-3f63b22ed9c4&mode=READ" title="2026년 2학기 충북학사 청주관 통학버스 운행시간표 운행시간(변경)">
+	                                    <span class="notice-ttl">2026년 2학기 충북학사 청주관 통학버스 운행시간표 운행시간(변경)</span>
+	                                    <span class="notice-day">2026-09-14</span>
+	                                </a>
+	                            </li>	
+                        	
+	                        	<li>
+	                                <a href="/0000097?postId=8bddf6f6-ce94-447a-bc4e-a506397684e8&mode=READ" title="추석 명절 기간 중 학사 휴원">
+	                                    <span class="notice-ttl">추석 명절 기간 중 학사 휴원</span>
+	                                    <span class="notice-day">2026-09-07</span>
+	                                </a>
+	                            </li>	
+                        	
+                        </ul>
+                        <p class="notice-more"><a href="/0000097" title="공지사항 더보기"><i class="fa fa-list-ul" aria-hidden="true"></i></a></p>
+                    </div>
+                	<!-- notice-box end -->
+                    <!-- today-menu start -->
+                    <div class="today-menu">
+                        <p class="menu-ttl">
+                        	오늘의 식단
+                        	<span class="menu-day">
+                        		
+                        		2026.10.02
+                        	</span>
+                        </p>
+                        <ul class="menu-list clearfix">
+                            <li>
+                                <div class="menu-more">
+                                    <p class="menu-more-ttl">아침</p>
+                                    <div id="divMorningMenu">소고기새송이볶음, 잡곡밥, 물만두국, 무생채, 배추김치, 양상추샐러드*드레싱, 식빵*딸기잼*버터, 시리얼*우유</div>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="menu-more">
+                                    <p class="menu-more-ttl">점심</p>
+                                    <div id="divLunchMenu">제육볶음, 잡곡밥, 배추된장국, 야채계란찜, 오징어젓갈, 파래김구이, 배추김치</div>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="menu-more">
+                                    <p class="menu-more-ttl">저녁</p>
+                                    <div id="divDinnerMenu">닭감자조림, 잡곡밥, 들깨미역국, 비엔나케찹볶음, 크림떡볶이, 상추겉절이, 배추김치</div>
+                                </div>
+                            </li>
+                        </ul>
+                        <p class="today-menu-more"><a href="/meal" title="오늘의 식단 더보기"><i class="fa fa-list-ul" aria-hidden="true"></i></a></p>
+                    </div>
+                    <!-- today-menu end -->
+                </div>
+           		<!-- board-zone-top end -->
+           		<!-- board-zone-bottom start -->
+                <div class="board-zone-bottom">
+                    <div class="bx-wrapper">
+                    	<div class="bx-viewport" aria-live="polite">
+                    	<ul class="quick-slider">
+	                    	<li style="float: left; list-style: none; position: relative; width: 160px;" class="bx-clone" aria-hidden="true">
+	                            <a href="/0000089" title="서식다운로드">
+	                                <span><img src="/client/images/main/quick_icon07.png" width="24" height="29" alt="서식다운로드"></span>
+	                                <span class="quick-ttl">서식다운로드</span>
+	                            </a>
+	                        </li>
+	                        <li style="float: left; list-style: none; position: relative; width: 160px;" class="bx-clone" aria-hidden="true">
+	                            <a href="/0000105" title="건의 제안방">
+	                                <span><img src="/client/images/main/quick_icon11.png" width="31" height="26" alt="건의 제안방"></span>
+	                                <span class="quick-ttl">건의·제안방</span>
+	                            </a>
+                        	</li>
+                        	<li style="float: left; list-style: none; position: relative; width: 160px;" class="bx-clone" aria-hidden="true">
+	                            <a href="/0000098" title="질의응답">
+	                                <span><img src="/client/images/main/quick_icon09.png" width="24" height="29" alt="질의응답"></span>
+	                                <span class="quick-ttl">질의응답</span>
+	                            </a>
+                        	</li><li style="float: left; list-style: none; position: relative; width: 160px;" class="bx-clone" aria-hidden="true">
+	                            <a href="/0000032" title="찾아오시는길">
+	                                <span><img src="/client/images/main/quick_icon08.png" width="20" height="29" alt="찾아오시는길"></span>
+	                                <span class="quick-ttl">찾아오시는길</span>
+	                            </a>
+                        	</li><li style="float: left; list-style: none; position: relative; width: 160px;" class="bx-clone" aria-hidden="true">
+	                            <a href="https://sys.cbhs.kr:1433/cbhs/indexstdcj.html" title="학사정보시스템" target="_blank">
+	                                <span><img src="/client/images/main/quick_icon10.png" width="30" height="30" alt="학사정보시스템"></span>
+	                                <span class="quick-ttl">학사정보시스템</span>
+	                            </a>
+	                        </li>
+	                        <li style="float: left; list-style: none; position: relative; width: 160px;" aria-hidden="true">
+	                            <a href="/0000071" title="시설현황">
+	                                <span><img src="/client/images/main/quick_icon01.png" width="28" height="26" alt="시설현황"></span>
+	                                <span class="quick-ttl">시설현황</span>
+	                            </a>
+	                        </li>
+	                     </ul>
+	                  </div>
+	                </div>
+                    <div class="quick-control">
+                        <p class="quick-prev"><img src="/client/images/main/quick_prev_btn.png" width="18" height="34" alt="이전 슬라이드"></p>
+                        <p class="quick-next"><img src="/client/images/main/quick_next_btn.png" width="18" height="34" alt="다음 슬라이드"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- main-box-bg end -->
+</div>
+
+
+	<div id="popup_8863b4c7-5260-42fd-a66a-3725e1be8a4b" style="display:none; position: absolute; z-index: 9001; top: 0px; left: 0px" class="draggable_popup">
+		<table cellspacing="0" cellpadding="0" border="0">
+			<tbody>
+				<tr>
+					<td width="9" height="20">
+						<img class="iePngFix" height="20" src="../client/images/popup/box1
+						
+						.gif" width="9">
+					</td>
+					<td class="iePngFix" style="PADDING-TOP: 0px" valign="top" background="../client/images/popup/box2.gif" height="20">
+						<table cellspacing="0" cellpadding="0" width="100%" border="0">
+							<tbody>
+								<tr>
+									<td width="99%" class="msgtitle" style="padding-top: 11px; font-family: tahoma; font-size: 11px; margin: 0 0 0 0; padding: 0 0 0 0;" onmousedown="fixTop('8863b4c7-5260-42fd-a66a-3725e1be8a4b');">
+										<div id="zpop_pop_4_titlebar" style="width: 100%; margin: 0px; padding: 0px; height: 17px; cursor: move;"></div>
+									</td>
+									<td valign="top">
+										<img style="CURSOR: pointer;"
+											id="zpopclose" onclick="hidePopup('8863b4c7-5260-42fd-a66a-3725e1be8a4b');"
+											class="iePngFix" height="20"
+											src="../client/images/popup/btn_close_off.gif" width="16"
+											onmouseover="this.src=this.src.replace(/off/gi,'on');"
+											onmouseout="this.src=this.src.replace(/on/gi,'off');"
+										>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</td>
+					<td width="12" height="20">
+						<img class="iePngFix" height="20" src="../client/images/popup/box3.gif" width="12">
+					</td>
+				</tr>
+				<tr>
+					<td class="iePngFix" width="9" background="../client/images/popup/box4.gif">
+					</td>
+					<td width="400" bgcolor="#ffffff"
+						height="600" valign="top">
+						
+							
+								
+									
+									
+										<img src="/api/file/aa520c94-f11a-4b25-a10c-beb20aa684bd" alt="2026년 충청북도 출연기관 경영평가 용역" style="width:100%;height:100%;">
+									
+								
+							
+							
+						
+						
+					</td>
+					<td class="iePngFix" width="12" background="../client/images/popup/box5.gif"></td>
+				</tr>
+				<tr>
+				<td class="iePngFix" width="9" background="../client/images/popup/box4.gif">
+					</td>
+
+					<td>
+						<div class="noMore" style="">
+							<label>오늘 하루 이 창을 열지 않음</label>
+							<input type="checkbox" id="chkNotice" onclick="todayHide('8863b4c7-5260-42fd-a66a-3725e1be8a4b')">
+						</div>
+					</td>
+				<td class="iePngFix" width="12" background="../client/images/popup/box5.gif"></td>
+
+				</tr>
+				<tr height="12">
+					<td background="../client/images/popup/box6.gif" class="iePngFix"
+						style="height: 9px; width: 9px;"></td>
+					<td class="iePngFix" background="../client/images/popup/box7.gif"
+						style="height: 9px;"></td>
+					<td background="../client/images/popup/box8.gif" class="iePngFix"
+						style="height: 9px; width: 9px;"></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+
+	<div id="popup_2f20932a-1445-4c55-a16b-f13cc50d99f3" style="display:none; position: absolute; z-index: 9002; top: 0px; left: 420px" class="draggable_popup">
+		<table cellspacing="0" cellpadding="0" border="0">
+			<tbody>
+				<tr>
+					<td width="9" height="20">
+						<img class="iePngFix" height="20" src="../client/images/popup/box1
+						
+						.gif" width="9">
+					</td>
+					<td class="iePngFix" style="PADDING-TOP: 0px" valign="top" background="../client/images/popup/box2.gif" height="20">
+						<table cellspacing="0" cellpadding="0" width="100%" border="0">
+							<tbody>
+								<tr>
+									<td width="99%" class="msgtitle" style="padding-top: 11px; font-family: tahoma; font-size: 11px; margin: 0 0 0 0; padding: 0 0 0 0;" onmousedown="fixTop('2f20932a-1445-4c55-a16b-f13cc50d99f3');">
+										<div id="zpop_pop_4_titlebar" style="width: 100%; margin: 0px; padding: 0px; height: 17px; cursor: move;"></div>
+									</td>
+									<td valign="top">
+										<img style="CURSOR: pointer;"
+											id="zpopclose" onclick="hidePopup('2f20932a-1445-4c55-a16b-f13cc50d99f3');"
+											class="iePngFix" height="20"
+											src="../client/images/popup/btn_close_off.gif" width="16"
+											onmouseover="this.src=this.src.replace(/off/gi,'on');"
+											onmouseout="this.src=this.src.replace(/on/gi,'off');"
+										>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</td>
+					<td width="12" height="20">
+						<img class="iePngFix" height="20" src="../client/images/popup/box3.gif" width="12">
+					</td>
+				</tr>
+				<tr>
+					<td class="iePngFix" width="9" background="../client/images/popup/box4.gif">
+					</td>
+					<td width="360" bgcolor="#ffffff"
+						height="195" valign="top">
+						
+							
+							
+								<img src="/api/file/e99e7a47-b9f2-428b-b871-61fc50009fe5" alt="2026년도 수시 입사생 선발계획" usemap="#cbhscj260219">
+
+<map name="#cbhscj260219" id="#cbhscj260219">
+<area shape="rect" coords="18,141,176,177" alt="name" href="https://www.cbhscj.kr/0000097?postId=6276de20-6fe2-4c32-bd57-7473e5c6d27c&mode=READ&where=&keyword=&page=0">
+<area shape="rect" coords="183,141,341,177" alt="name" href="https://sys.cbhs.kr:1433/cbhs/indexcj.html?code=info007" target="_blank">
+</map>
+							
+						
+						
+					</td>
+					<td class="iePngFix" width="12" background="../client/images/popup/box5.gif"></td>
+				</tr>
+				<tr>
+				<td class="iePngFix" width="9" background="../client/images/popup/box4.gif">
+					</td>
+
+					<td>
+						<div class="noMore" style="">
+							<label>오늘 하루 이 창을 열지 않음</label>
+							<input type="checkbox" id="chkNotice" onclick="todayHide('2f20932a-1445-4c55-a16b-f13cc50d99f3')">
+						</div>
+					</td>
+				<td class="iePngFix" width="12" background="../client/images/popup/box5.gif"></td>
+
+				</tr>
+				<tr height="12">
+					<td background="../client/images/popup/box6.gif" class="iePngFix"
+						style="height: 9px; width: 9px;"></td>
+					<td class="iePngFix" background="../client/images/popup/box7.gif"
+						style="height: 9px;"></td>
+					<td background="../client/images/popup/box8.gif" class="iePngFix"
+						style="height: 9px; width: 9px;"></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+
+<!-- popup end -->
+		
+
+
+
+
+
+<footer id="footer">
+	<!-- 하단디자인 시작 -->
+	<div class="foot_top">
+		<div class="foot_site clearfix">
+			<p class="foot_site_ttl">관련사이트</p>
+			<ul class="foot_site_slider">
+				<li><a href="http://www.jobkorea.co.kr" target="_blank"
+					title="잡코리아 새창으로 열기">  <img src="client/images/common/fsite_05.jpg" alt="잡코리아">
+						<!--잡코리아-->
+				</a></li>
+				<li><a href="http://www.incruit.com" target="_blank"
+					title="인크루트 새창으로 열기">  <img src="client/images/common/fsite_06.jpg" alt="인크루트">
+						<!--인크루트-->
+				</a></li>
+				<li><a href="http://www.dmstudy.com" target="_blank"
+					title="DM스터디 새창으로 열기">  <img src="client/images/common/fsite_07.jpg" alt="DM스터디"> 
+						<!--DM스터디-->
+				</a></li>
+				<li><a href="http://www.gosi.go.kr" target="_blank"
+					title="사이버국가고시센터 새창으로 열기">  <img src="client/images/common/fsite_08.jpg" alt="사이버국가고시센터"> 
+						<!--사이버국가고시센터-->
+				</a></li>
+				<li><a href="http://www.chungbuk.go.kr" target="_blank"
+					title="충청북도 새창으로 열기">  <img src="client/images/common/fsite_cb.jpg" alt="충청북도"> 
+						<!--충청북도-->
+				</a></li>
+				<li><a href="http://www.acrc.go.kr" target="_blank"
+					title="국민권익위원회 새창으로 열기"> <img src="client/images/common/fsite_02.jpg" alt="국민권익위원회"> 
+						<!--국민권익위원회-->
+				</a></li>
+				<li><a href="http://www.krivet.re.kr" target="_blank"
+					title="한국직업능력개발원 새창으로 열기">  <img src="client/images/common/fsite_03.jpg" alt="한국직업능력개발원"> 
+						<!--한국직업능력개발원-->
+				</a></li>
+				<li><a href="http://www.hrdkorea.or.kr" target="_blank"
+					title="한국산업인력공단 새창으로 열기">  <img src="client/images/common/fsite_04.jpg" alt="한국산업인력공단"> 
+						<!--한국산업인력공단-->
+				</a></li>
+
+				<li><a href="http://www.clean.go.kr" target="_blank" title="청렴포털 새창으로 열기">
+		 	            		<img src="client/images/common/fsite_10.jpg" alt="청렴포털">
+						<!--청렴포털-->
+	           		</a>
+	       		</li>
+				<!-- 
+	            <li>
+	            	<a href="http://chungbuk.work.go.kr/main.do/main.do?regionCd=43000" target="_blank" title="충북일자리지원센터 새창으로 열기">
+	               		<img src="client/images/common/fsite_09.jpg" alt="충북일자리지원센터">
+	               	</a>
+	            </li> -->
+			</ul>
+			<div class="foot_site_control">
+				<ul class="clearfix">
+					<li><img src="client/images/common/foot_stop_btn.gif"
+						width="10" height="13" alt="관련사이트 슬라이더 정지"></li>
+					<li><i class="fa fa-caret-left" aria-hidden="true"></i></li>
+					<li><i class="fa fa-caret-right" aria-hidden="true"></i></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+
+	<div class="foot_mn">
+		<ul>
+			<li><a href="/0000054" title="개인정보처리방침으로 이동">개인정보처리방침</a></li>
+			<li><a href="/0000055" title="이용약관으로 이동">이용약관</a></li>
+			<li><a href="/0000056" title="이메일무단수집거부로 이동">이메일무단수집거부</a></li>
+			<li><a href="/sitemap" title="사이트맵으로 이동">사이트맵</a></li>
+		</ul>
+	</div>
+
+	<div class="foot_add">
+		<div class="foot_w">
+			<div class="foot_logo">
+				<img src="client/images/common/logo_foot.png"
+					alt="충북 로고 - 생명과 태양의 땅 충북" />
+			</div>
+			<address>
+				
+		      [28786] 충청북도 청주시 상당구 목련로 61-7  <span><br /></span>(방서동 650)<span><br /></span>
+						 TEL.043-293-1234 FAX. 043-293-1236  <br /> 
+		      Copyright ⓒ 충북학사 청주관 All rights Reserved.<br>
+		      
+			</address>
+		</div>
+	</div>
+</footer>
+	</div>
+</body>
+</html>

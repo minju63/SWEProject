@@ -1,0 +1,568 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<meta name="_csrf" content="e8b8d616-48b7-4ccf-b15d-d2feeb33019f " />
+<meta name="_csrf_header" content="X-CSRF-TOKEN" />
+
+
+
+
+
+
+
+
+<script src="/js/gris/cmm/adr/selectAdres.js"></script>
+<script src="/js/gris/cmm/jquery/jquery-1.12.4.min.js"></script>
+<script src="/js/gris/cmm/jquery/jquery-ui.min.js"></script>
+<script src="/js/gris/cmm/jquery/jquery.tmpl.js"></script>
+<script src="/js/gris/cmm/jquery/jquery.mCustomScrollbar.js"></script>
+<script src="/js/gris/cmm/jquery/jquery.bxslider.min.js"></script>
+<script src="/js/gris/cmm/jquery/i18n/grid.locale-kr.js"></script>
+<script src="/js/gris/cmm/jquery/jquery.jqGrid.min.js"></script>
+<link rel="stylesheet" href="/css/gris/cmm/reset.css?v=1.0">
+<link rel="stylesheet" href="/css/gris/cmm/font.css?v=1.0">
+<link rel="stylesheet" href="/css/gris/cmm/common.css?v=1.0">
+<script src="/js/gris/cmm/common.js?v=1.5"></script>
+<script src="/js/gris/cmm/grisUtils.js?v=1.2"></script>
+<script src="/js/gris/cmm/md/mobile-detect.min.js"></script>
+
+<!DOCTYPE html>
+<html lang="ko">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=640px" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+		<style>
+			body {
+		    	line-height: 1;
+		    	 height: 100vh;;
+			}
+	        .header {
+	            background-color: #fff;
+	            padding: 0px 20px;
+	            display: flex;
+	            justify-content: space-between;
+	            align-items: center;
+	            border-bottom: 1px solid;
+	        }
+	        .header img {
+	            height: 40px;
+	            margin-right: 10px;
+	        }
+	        .header-title {
+	            display: flex;
+	            align-items: center;
+	        }
+	        .nav {
+	            display: flex;
+	            justify-content: space-around;
+	            background-color: #fff;
+	            padding: 14px 0;
+	            font-weight: 600;
+	        }
+	        .nav a {
+	            color: 000;
+	            padding: 14px 20px;
+	        }
+	        #loadingBar {
+			 width: 100%;   
+			 height: 100%;   
+			 top: 0px;
+			 left: 0px;
+			 position: fixed;   
+			 display: block;
+			 opacity: 0.5;
+			 -moz-opacity:0.5;
+			 background-color: #fff;
+			 filter:alpha(opacity=50); 
+			 z-index: 99999;   
+			 text-align: center; }  
+			 
+			#loading-image {   
+			 position: absolute;   
+			 top: 50%;
+			 left: 50%;
+			 z-index: 100000; }
+		</style>
+		<script>
+			//모바일, PC구분
+			var deviceSe = "MOBILE";
+			var curUrl = location.href;
+			var md = new MobileDetect(navigator.userAgent);
+			if(md.tablet() != null && md.tablet() != "null"){
+				deviceSe = "TABLET";
+			}else if(md.mobile() != null && md.mobile() != "null"){
+				deviceSe = "MOBILE";
+				if(curUrl.indexOf("M.do") == -1){
+					var mobileUrl = curUrl.replace(".do","M.do");
+					window.location.href = mobileUrl;
+				}
+			}else{
+				deviceSe = "PC";
+			}
+			jQuery(document).ready(function(){
+				closeProgress();
+				//모바일 브라우저 문자열 체크
+				var indexFlag = false;
+				var mobileInfo = new Array('Android', 'iPhone', 'iPod', 'iPad', 'BlackBerry', 'Windows CE', 'SAMSUNG', 'LG', 'MOT', 'SonyEricsson');
+				for (var info in mobileInfo) {
+					if (navigator.userAgent.match(mobileInfo[info]) != null) {
+						// 모바일 수행
+						indexFlag = true;
+						break;
+				    }
+				}
+				
+				if (indexFlag && curUrl.indexOf("M.do") == -1) {
+					if(curUrl.indexOf("DetailView.do") == 1){
+					}else{
+						var mobileUrl = curUrl.replace(".do","M.do");
+						window.location.href = mobileUrl;
+					}
+				}
+			});
+			
+			function processing_message(flag) {
+				//alert("processing_message : " + flag);
+				try {
+					var loadingBar = document.getElementById("loadingBar");
+					if(loadingBar) {
+						loadingBar.style.display = flag;
+					}
+				} catch (e){
+					console.log("processing_message error");
+				}
+			}
+
+			//로딩이미지 생성
+			function openProgress(){
+				processing_message('block');
+			}
+
+			//로딩이미지 없애기
+			function closeProgress(){
+				processing_message('none');
+			}
+		</script>
+	    <div class="header">
+	        <div class="header-title">
+	        <a href="/safe/main.do">
+	            <img src="/images/gris/safe/safeLogo_01.png" alt="경기 안전전세 프로젝트">
+	          	</a>
+	        </div>
+	        <div class="nav">
+	            <a href="/safe/safeProjectGuide.do">사업소개</a>
+	            <a href="/safe/safeProjectOffice.do">경기 안전전세 길목 지킴 운동</a>
+	            <a href="/safe/safeProjectManagement.do">안전전세 관리단</a>
+	            <a href="/bbs/selectBbsView.do?menuType=BBSMENU14&noticeType=BBSTYPE14&sort=1">피해예방 지원 안내</a>
+	            <a href="/bbs/selectBbsView.do?menuType=BBSMENU11&noticeType=BBSTYPE11&sort=2">자료실</a>
+	        </div>
+	    </div>
+	    <div id="loadingBar">
+			<div>
+				<img id="loading-image" src="/images/gris/common/viewLoading.gif" alt="로딩이미지"/>
+			</div>
+		</div>
+	</head>
+</html>
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+	 <title>경기 안전전세 프로젝트</title>
+	<style>
+		body{
+		    background-color: #4d4d4d;
+		}
+		img{
+			max-width: none !important;
+		}
+        .container {
+		    background-color: rgb(225, 242, 253);
+		    background-image: url(/images/gris/safe/safeMainBack01.png);
+		    background-size: cover;
+		    background-repeat: no-repeat;
+		}
+        .safeSidebar {
+			background-size: contain;
+			    background-repeat: no-repeat;
+		    position: relative;
+        }
+        .safeSidebar img{
+			height: 5px;
+        }
+        .main-content {
+        }
+        .box {
+            background-size: contain;
+		    background-repeat: no-repeat;
+		    display: inline-block;
+        }
+        .box img{
+   			height: 2px;
+        }
+        #boxMenu03{
+   			height: 2px;
+        }
+        .safeMenu_img{
+            width: 100%;
+        }
+        .link_area{
+        	position: absolute;
+        	opacity : 0.5;
+        }
+        .link_area2{
+        	position: absolute;
+        	opacity : 0.5;
+        }
+         .mapNotice {
+		    position: fixed;
+		    top: 0;
+		    left: 0;
+		    width: 100%;
+		    height: 100%;
+		    z-index: 1000;
+		    background: rgba(0, 0, 0, 0.7);
+		    display: flex;
+		    justify-content: center;
+		    align-items: center;
+		    opacity: 1;
+		    text-align: center;
+		}
+		.mapNotice .popupBox{
+			position: relative;
+		    background: #fff;
+		    padding: 30px;
+		    border-radius: 12px;
+		    box-sizing: border-box;
+		    max-width: 80vw;
+		    max-height: 80vh;
+		    overflow: hidden;
+		}
+		.mapNotice .popupBox img{
+			width: 100%;
+		    height: auto;
+		    max-height: 70vh;
+		    object-fit: contain;
+		    display: block;
+		    margin: 0 auto;
+		}
+		.mapNotice .close{
+		    display: block;
+		    position: absolute;
+		    top: 10px;
+		    right: 10px;
+		    width: 20px;
+		    height: 20px;
+		    font-size: 0;
+		    background: url(/images/gris/map/icnCloseBlack.png) center center no-repeat;
+		}
+		
+		#mapNoticeFont {
+			color: black;
+			font-size: 18px;
+			font-weight: 400;
+		}
+	</style>
+</head>
+	<div class="mapNotice" id="popup" style="display:none;">
+    	<div class="popupBox">
+			<a href="javascript:void(0);" class="close" onclick="javascript:mapNoticeclose();">닫기</a>
+			<a href="https://form.naver.com/response/hBTP7ftPkEpo5vf7fLrqqA" target="_blank" title="새창열림"><img alt="" src="/images/gris/safe/notice/safeNotice.png"></a>
+			<div class="mapNoticeFooterCheck">
+				<a href="https://form.naver.com/response/hBTP7ftPkEpo5vf7fLrqqA" target="_blank" class="gg-btn blue" style="position: relative;right: 55px;top: 5px;" title="새창열림">바로가기</a>
+				<span style=" position: relative; left: 50px;">
+					<input type="checkbox" id="mapNoticeChkbox"><label for="mapNoticeChkbox" style="font-size: 16px;"> 오늘 하루동안 열지 않음</label> <a href="javascript:void(0);" onclick="javascript:mapNoticeclose();" style="font-size: 16px; font-weight: bold; margin-left: 20px;">[ 닫기 ]</a>
+				</span>
+			</div>
+      	</div>
+    </div>
+	<body>
+	    <div class="container" style="text-align: center;">
+	    	<div style="text-align: center; position: relative; width: 100%; height: 20%;">
+	    		
+	    	</div>
+	    	<div class="warp" style="position: relative; display: inline-flex;flex-direction: row; gap: 5px; justify-content: center;">
+	    		<div style="display: flex;flex-direction: column;">
+		    		<a class="safeSidebar" id="boxMenu00" href="/safe/safeProjectProcess.do">
+		    			<img alt="" src="/images/gris/safe/safeMenu00_2025_1.png">
+		    		</a>
+		    		<a class="safeSidebar" id="boxMenu01" href="/safe/safeProjectGuide.do" style="margin-top: 5px;">
+		    			<img alt="" src="/images/gris/safe/safeMenu01_2025_1.png" style="width: 100%;">
+		    		</a>
+	    		</div>
+		        <div class="main-content" style="display: flex; gap: 3px; flex-direction: column;">
+		        	<div style="display: flex; gap: 3px;">
+			            <a class="box" id="boxMenu02" href="/safe/safeProjectOffice.do">
+			            	<img alt="" src="/images/gris/safe/safeMenu02_2.png?v=1">
+			            </a>
+			            <map name="imagemap" style="z-index: 1;">
+			            	<area class="link_area" id="link_area1" style="left: 915px;" href="https://consult.kapanet.or.kr/" alt="깡통전세 피해예방 상담센터" target="_blank">
+			            	<area class="link_area" id="link_area2" style="left: 1003px;" href="https://gris.gg.go.kr/kapa/selectKapaCheckView.do" alt="깡통전세 알아보기 서비스" target="_blank">
+			            	<area class="link_area" id="link_area3" style="left: 1092px;" href="https://www.gseek.kr/user/course/online/view?s_sbjct_sn=7765&s_sbjct_cycl_sn=1" alt="부동산 계약 온라인 무료 교육 서비스" target="_blank">
+			            	<area class="link_area" id="link_area4" style="left: 1182px;" href="/bbs/selectBbsView.do?menuType=BBSMENU14&noticeType=BBSTYPE14&sort=1" alt="피해예방지원 사업 안내" target="_blank">
+			            </map>
+			            <img src="/images/gris/safe/safeMenu03_2025.png" usemap="#imagemap" id="boxMenu03">
+			            </img>
+		        	</div>
+		        	<div style="display: flex; gap: 3px;">
+						<a class="box" id="boxMenu04" href="/safe/safeProjectManagement.do">
+							<img alt="" src="/images/gris/safe/safeMenu04_1.png?v=1">
+						</a>
+						<map name="imagemap2" style="z-index: 1;">
+			            	<area class="link_area2" id="link_area5" style="left: 1092px;"  href="/bbs/selectBbsView.do?menuType=BBSMENU13&noticeType=BBSTYPE13&sort=2" alt="교육영상">
+			            	<area class="link_area2" id="link_area6" style="left: 1182px;" href="/bbs/selectBbsView.do?menuType=BBSMENU13&noticeType=BBSTYPE13&sort=1" alt="홍보영상">
+			            </map>
+						 <img src="/images/gris/safe/safeMenu06_2.png" usemap="#imagemap2" id="boxMenu06">
+						<a class="box" id="boxMenu05" href="/bbs/selectBbsView.do?menuType=BBSMENU11&noticeType=BBSTYPE11&sort=2" style="width:100%;">
+							<img alt="" src="/images/gris/safe/safeMenu05_2.png" style="width:100%;">
+						</a>
+		        	</div>
+		        </div>
+	    	</div>
+		</div>
+	</body>
+	<script type="text/javascript">
+		$(document).ready(function(){
+			insertScrinLog("PRGM01090101000");
+			var headerHeight = $(".header").height();
+			var footerHeight = $(".lay-footer").height();
+			var height = $(window).height();
+			height = height - headerHeight - footerHeight;
+			var width = $(window).width();
+			$(".container").css("height",height+"px");
+// 			$(".safeSidebar img").css("height",(height-159)+"px");
+			$(".box img").css("height",((height-159)/2-25)+"px");
+			$("#boxMenu03").css("height",((height-159)/2-25)+"px");
+			$(".warp").css("width",($(".main-content").width()+$(".safeSidebar img").width()+10)+"px");
+			if(width > 1919){
+				$(".warp").css("margin","0px " + width * 0.15 + "px");
+			}
+			var boxMenu05height = document.getElementById("boxMenu02").offsetHeight;
+			document.getElementById("boxMenu06").style.height = boxMenu05height + "px";
+			
+// 			var sideHeight = $("#boxMenu02").height() + $("#boxMenu02").height() - $("#boxMenu00").height() + 12;
+// 			$("#boxMenu01 img").css("height",sideHeight+"px");
+			console.log($("div.warp").height());
+			var sideFullHeight = $("div.warp").height();
+			$("#boxMenu00 img").css("height",(sideFullHeight*0.2791519434628975)+"px");
+			var sideHeight = $("#boxMenu02").height() + $("#boxMenu02").height() - $("#boxMenu00").height();
+			$("#boxMenu01 img").css("height",sideHeight+"px");
+// 			mapNoticeOpen();
+		});
+		window.addEventListener('load',function(){
+			var boxLeft2 = $("#boxMenu06").position().left;
+			var boxWidth2 = $("#boxMenu06").width();
+			var boxHeight2 = $("#boxMenu06").height();
+			$("#link_area5").css("top",(boxHeight2*1.28)+"px");
+			$("#link_area5").css("left",boxLeft2+"px");
+			$("#link_area5").css("width",(boxWidth2*0.5)+"px");
+			$("#link_area5").css("height",(boxHeight2*0.72)+"px");
+			$("#link_area6").css("top",(boxHeight2*1.28)+"px");
+			$("#link_area6").css("left",(boxLeft2+boxWidth2*0.5)+"px");
+			$("#link_area6").css("width",(boxWidth2*0.5)+"px");
+			$("#link_area6").css("height",(boxHeight2*0.72)+"px");
+			
+			var boxLeft = $("#boxMenu03").position().left;
+			var boxWidth = $("#boxMenu03").width();
+			var boxHeight = $("#boxMenu03").height();
+			$("#link_area1").css("top",(boxHeight*0.28)+"px");
+			$("#link_area1").css("left",boxLeft+"px");
+			$("#link_area1").css("width",(boxWidth*0.25)+"px");
+			$("#link_area1").css("height",(boxHeight*0.72)+"px");
+			$("#link_area2").css("top",(boxHeight*0.28)+"px");
+			$("#link_area2").css("left",(boxLeft+boxWidth*0.25)+"px");
+			$("#link_area2").css("width",(boxWidth*0.25)+"px");
+			$("#link_area2").css("height",(boxHeight*0.72)+"px");
+			$("#link_area3").css("top",(boxHeight*0.28)+"px");
+			$("#link_area3").css("left",(boxLeft+boxWidth*0.50)+"px");
+			$("#link_area3").css("width",(boxWidth*0.25)+"px");
+			$("#link_area3").css("height",(boxHeight*0.72)+"px");
+			$("#link_area4").css("top",(boxHeight*0.28)+"px");
+			$("#link_area4").css("left",(boxLeft+boxWidth*0.75)+"px");
+			$("#link_area4").css("width",(boxWidth*0.25)+"px");
+			$("#link_area4").css("height",(boxHeight*0.72)+"px");
+		});
+		
+		window.onresize = function(event) {
+			var headerHeight = $(".header").height();
+			var footerHeight = $(".lay-footer").height();
+			var height = $(window).height();
+			height = height - headerHeight - footerHeight;
+			var width = $(window).width();
+			$(".container").css("height",height+"px");
+// 			$(".safeSidebar img").css("height",(height-159)+"px");
+			$(".box img").css("height",((height-159)/2-25)+"px");
+			$("#boxMenu03").css("height",((height-159)/2-25)+"px");
+			$(".warp").css("width",($(".main-content").width()+$(".safeSidebar img").width()+10)+"px");
+			if(width > 1919){
+				$(".warp").css("margin","0px " + width * 0.15 + "px");
+			}
+			var boxMenu05height = document.getElementById("boxMenu02").offsetHeight;
+			document.getElementById("boxMenu06").style.height = boxMenu05height + "px";
+			
+// 			var sideHeight = $("#boxMenu02").height() + $("#boxMenu02").height() - $("#boxMenu00").height() + 12;
+// 			$("#boxMenu01 img").css("height",sideHeight+"px");
+			console.log($("div.warp").height());
+			var sideFullHeight = $("div.warp").height();
+			$("#boxMenu00 img").css("height",(sideFullHeight*0.2791519434628975)+"px");
+			var sideHeight = $("#boxMenu02").height() + $("#boxMenu02").height() - $("#boxMenu00").height();
+			$("#boxMenu01 img").css("height",sideHeight+"px");
+			
+			var boxLeft2 = $("#boxMenu06").position().left;
+			var boxWidth2 = $("#boxMenu06").width();
+			var boxHeight2 = $("#boxMenu06").height();
+			$("#link_area5").css("top",(boxHeight2*1.28)+"px");
+			$("#link_area5").css("left",boxLeft2+"px");
+			$("#link_area5").css("width",(boxWidth2*0.5)+"px");
+			$("#link_area5").css("height",(boxHeight2*0.72)+"px");
+			$("#link_area6").css("top",(boxHeight2*1.28)+"px");
+			$("#link_area6").css("left",(boxLeft2+boxWidth2*0.5)+"px");
+			$("#link_area6").css("width",(boxWidth2*0.5)+"px");
+			$("#link_area6").css("height",(boxHeight2*0.72)+"px");
+			
+			var boxLeft = $("#boxMenu03").position().left;
+			var boxWidth = $("#boxMenu03").width();
+			var boxHeight = $("#boxMenu03").height();
+			$("#link_area1").css("top",(boxHeight*0.28)+"px");
+			$("#link_area1").css("left",boxLeft+"px");
+			$("#link_area1").css("width",(boxWidth*0.25)+"px");
+			$("#link_area1").css("height",(boxHeight*0.72)+"px");
+			$("#link_area2").css("top",(boxHeight*0.28)+"px");
+			$("#link_area2").css("left",(boxLeft+boxWidth*0.25)+"px");
+			$("#link_area2").css("width",(boxWidth*0.25)+"px");
+			$("#link_area2").css("height",(boxHeight*0.72)+"px");
+			$("#link_area3").css("top",(boxHeight*0.28)+"px");
+			$("#link_area3").css("left",(boxLeft+boxWidth*0.50)+"px");
+			$("#link_area3").css("width",(boxWidth*0.25)+"px");
+			$("#link_area3").css("height",(boxHeight*0.72)+"px");
+			$("#link_area4").css("top",(boxHeight*0.28)+"px");
+			$("#link_area4").css("left",(boxLeft+boxWidth*0.75)+"px");
+			$("#link_area4").css("width",(boxWidth*0.25)+"px");
+			$("#link_area4").css("height",(boxHeight*0.72)+"px");
+		}
+		
+		function mapNoticeOpen(){
+			var cnt = 0;
+			
+			if (notice_getCookie( "mapNotice" ) == "done") {
+				cnt++;
+			}
+			
+			if(cnt == 0){
+			  $('.mapNotice').css('display','flex');
+			  $('.mapNotice').fadeIn();
+			}
+		}
+
+		function mapNoticeclose(){
+			if(document.getElementById("mapNoticeChkbox").checked == true){
+				setcookie("mapNotice", "done", 1);
+			}
+			$('.mapNotice').fadeOut();
+		}
+		function setcookie(name, value, expiredays) {
+			var todayDate = new Date();
+			todayDate.setDate(todayDate.getDate()+expiredays);
+			document.cookie = name + "=" + escape( value ) + "; path=/; expires=" + todayDate.toGMTString() + ";";
+		}
+		
+		function notice_getCookie( name ) {
+			var nameOfCookie = name + "=";
+			var x = 0;
+			
+			while ( x <= document.cookie.length ) {
+				var y = (x+nameOfCookie.length);
+				if ( document.cookie.substring( x, y ) == nameOfCookie ) {
+					if ((endOfCookie=document.cookie.indexOf( ";", y )) == -1 )
+						endOfCookie = document.cookie.length;
+					return unescape( document.cookie.substring( y, endOfCookie ));
+				}
+				x = document.cookie.indexOf( " ", x ) + 1;
+				if ( x == 0 )  break;
+			}
+			return "";
+		}
+	</script>
+	<div class="lay-footer">
+	<div style=" position: relative;top: 10px;">
+		<a href="/main/selectPrivacyView.do" style="color: #ff9900;">개인정보
+			처리방침</a> <a href="https://gg.go.kr" target="_blank"
+			style="margin-left: 20px; color: #fff;">경기도청</a> <a
+			href="/main/selectGovermentLicenseView.do" target="_blank"
+			style="margin-left: 20px; color: yellow;">저작권 정책</a> <a
+			href="https://www.gg.go.kr/contents/contents.do?ciIdx=1377&menuId=3187"
+			target="_blank" style="margin-left: 20px; color: #fff;">찾아오시는길</a>
+		<span style="margin-left: 20px;">경기도 콜센터 031-120</span>
+	</div>
+	<div>
+		<table>
+			<tbody>
+				<tr>
+					<td class="footerLogo"><img alt="경기부동산포털"
+						src="/images/gris/footer/footerLogo.png"></td>
+					<td class="footerCopyright" style="color: #fff;">경기도청 (16508) 경기도 수원시 영통구 도청로 30
+						(이의동) 경기부동산포털 운영지원센터 - 시스템 문의 031-8008-4977 ©
+						GYEONGGI PROVINCE All Rights Reserved.
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	<style>
+		.lay-footer {
+			background-color: #4d4d4d;
+			color: #fff;
+ 					text-align: center;
+ 					font-size: 15px;
+		}
+		
+		.lay-footer .right {
+			position: relative;
+		    top: -50px;
+		    font-size: 0;
+		    line-height: 0;
+		    width: 160px;
+		    left: 1220.5px;
+		}
+		.lay-footer .mark-image {
+			position: sticky;
+			top: 28px;
+			width: 80px;
+			height: 57px;
+			background: url("/images/gris/footer/imgMarkAccess_2026.png") no-repeat
+				50%;
+			background-size: 80px;
+			object-fit: cover;
+		}
+		
+		.lay-footer table {
+			width: auto;
+			margin: 10px auto 0;
+		}
+		
+		.lay-footer .footerLogo {
+			text-align: right;
+			vertical-align: top;
+		}
+		
+		.lay-footer .footerCopyright {
+			text-align: left;
+		}
+		</style>
+</div>
+</html>

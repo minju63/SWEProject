@@ -1,0 +1,1915 @@
+[PAGE 1]
+Certificate of Alien Registration |   Certificate of Domestic Residence Report |   Certificate of Income Amount
+Land Registry |   Resident Registration Certificate |   Membership Registration 
+Government24   Service 
+User Guide 
+
+[PAGE 2]
+English   03 
+漢語   31 
+ti ế ng   V i ệ t   60 
+User Guide 
+Index 
+
+[PAGE 3]
+Government24   Service 
+Certificate of
+Alien Registration 
+
+[PAGE 4]
+GOV.KR Service Usage Guide 
+Certificate of Alien Registration 
+Click the login button on the GOV.KR homepage or main screen and proceed with the login
+process. 
+※ Signing up for membership allows you to use the GOV.KR services more conveniently. 
+What is the Certificate of Alien Registration? 
+This certificate is   a civil   service document that allows foreigners to prove their Foreign Resident Registration facts
+by applying for the certificate through Immigration Offices, Immigration Service Centers (including branch offices),
+or at the offices of townships, towns, or neighborhoods. 
+Service Usage Guide 
+1 
+Login to GOV.KR 
+Before You
+Move On! 
+When is the Certificate of Alien Registration required? 
+In cases where a foreign resident in   South Korea is   required to provide a resident registration card or a certified
+copy of resident registration for various legal procedures and transactions under Korean law, they may use the 
+“ Foreign   Resident Registration Card ”   or the   “ Certificate   of Alien Registration ”   as a substitute. 
+회원가입 
+
+[PAGE 5]
+1.   Enter   “ Certificate   of Alien Registration ”   in the search bar. 
+2.   In the quick access menu, select   “ Certificate   of Alien Registration. ” 
+> Quick Access Link 
+2 
+Select Service 
+Review the detailed information on the service guide page, then click the   “ I s s u e ” button
+to move to the application screen. 
+3 
+Review the Service Details 
+
+[PAGE 6]
+1.   Verify the applicant's information (the login information will   be automatically populated). 
+2.   Click the   “ Apply for Civil   Service ”   button to complete the application for the Certificate
+of Alien Registration. 
+4 
+Service Application Screen 
+123456 
+
+[PAGE 7]
+5 
+Application Screen Details 
+Name 
+Verify your automatically entered name (in   English or Korean). 
+1 
+Foreign Resident Registration Number 
+Verify your automatically entered Foreign Resident Registration number. 
+2 
+Selection of Residence 
+- Current Address
+:Displays the address currently registered as your place of residence. 
+- Last 3 Years
+:Displays addresses where you have lived during the last three years. 
+- All   Addresses
+:Displays a l l   addresses where you have resided. 
+3 
+Family Members Display Option 
+- To include family members living together on the certificate,
+select Y. 
+- To display the f u l l   Foreign Resident Registration number on the certificate,
+select Y. 
+4 
+Display of Previous Foreign Resident Registration Number 
+To include previous Foreign Resident Registration numbers on the certificate,
+select Y. 
+5 
+Display of Previous Name Changes 
+To include names used prior to any name changes, select Y. 
+6 
+Display of Previous Visa Status Changes 
+To include changes in visa or stay status, select Y. 
+7 
+Display of Past Residence Changes 
+To include changes to your registered residence, select Y. 
+8 
+Purpose of Issuance 
+Select the appropriate purpose for the certificate issuance: 
+9 
+A Submission to courts
+B   Submission to educational institutions
+C   Submission to public institutions
+D   Submission to financial   institutions or hospitals
+E Other purposes 
+A
+B
+C
+D
+E 
+1 
+2 
+3 
+6 
+7 
+8 
+9 
+4 
+5 
+123456 
+
+[PAGE 8]
+1.   Accessing Application Records
+From the top menu, select   “ MyGOV > M y Application History > Service Application History ” . 
+6 
+Certificate Printing 
+2. Locate your application in the l i s t   and click   “ P r i n t “ to print the certificate. 
+3. Review the printed certificate. 
+
+[PAGE 9]
+Government24   Service 
+Certificate of Domestic
+Residence Report 
+
+[PAGE 10]
+GOV.KR Service Usage Guide 
+Certificate of Domestic Residence Report 
+What is the Certificate of Domestic Residence Report Service? 
+※ Residence :A place where a person resides continuously for a certain period.
+This is   a civil   service that allows foreigners holding an Foreign Resident Registration Card, foreigners residing in
+Korea, or overseas Koreans with foreign nationality to prove their domestic residence registration. Applications can
+be submitted at Immigration Offices, Immigration Service Centers (including branch offices), or local city,   county,
+or district offices. 
+Click the login button on the GOV.KR homepage or main screen and proceed with the login
+process. 
+※ Signing up for membership allows you to use the GOV.KR services more conveniently. 
+Service Usage Guide 
+1 
+Login to GOV.KR 
+회원가입 
+
+[PAGE 11]
+1.   Enter   “ Certificate   of Domestic Residence Report ”   in the search bar. 
+2.   In the quick access menu, select   “ Certificate   of Domestic Residence Report. ” 
+> Quick Access Link 
+2 
+Select Service 
+Review the detailed information on the service guide page, then click the   “ I s s u e ” button
+to move to the application screen. 
+3 
+Review the Service Details 
+
+[PAGE 12]
+1.   Verify the applicant's information (the login information will   be automatically populated). 
+2.   Click the   “ Apply for Civil   Service ”   button to complete the application for the Certificate
+of Domestic Residence Report. 
+4 
+Apply for the Service 
+123456 
+123456 
+
+[PAGE 13]
+5 
+Application Screen Details 
+Name 
+Verify your automatically entered name (in   English or Korean). 
+1 
+Domestic Residence Registration Number 
+Verify your automatically entered domestic residence registration number. 
+2 
+Display of Previous Registration Numbers 
+To display previous registration numbers, select Y. 
+3 
+Display of Deleted Resident Registration Numbers 
+To display deleted resident registration numbers, select Y. 
+4 
+Display of Previous Name Changes 
+To include names used prior to any na me changes, select Y. 
+5 
+Display of Previous Visa Status Changes 
+To include changes in visa or stay status, select Y. 
+6 
+Display of Past Residence Changes 
+To include changes to your registered residence, select Y. 
+7 
+Purpose of Issuance 8 
+Method of Receipt 9 
+A Submission to courts
+B   Submission to educational institutions
+C   Submission to public institutions
+D   Submission to financial   institutions or hospitals
+E Other purposes 
+A
+B
+C
+D
+E 
+A   C   B
+D
+A   Online issuance (self-print)
+B   Online issuance (electronic document wallet)
+C   Online issuance (submission to a third party)
+D   Online viewing (applicant access only) 
+1 
+2 
+3 
+6 
+7 
+8 
+9 
+4 
+5 
+123456 
+
+[PAGE 14]
+1.   From the top menu, select   “ MyGOV > M y Application History > Service Application History ” . 
+6 
+Certificate Printing 
+2. Locate your application in the l i s t   and click   “ P r i n t “ to print the certificate. 
+3.Review the printed certificate. 
+
+[PAGE 15]
+Government24   Service 
+Certificate of
+Income Amount 
+
+[PAGE 16]
+회원가입 
+GOV.KR Service Usage Guide 
+Certificate of Income Amount 
+What is the Certificate of Income Amount Service? 
+This service provides certification of taxable income for a specified year (or period), including comprehensive
+income, year-end settlement income, and daily labor income. 
+Click the login button on the GOV.KR homepage or main screen and proceed with the login
+process. 
+※ Signing up for membership allows you to use the GOV.KR services more conveniently. 
+Service Usage Guide 
+1 
+Login to GOV.KR 
+
+[PAGE 17]
+1.   Enter   “ Certificate   of Income Amount ”   in the search bar. 
+2.   In the quick access menu, select   “ Certificate of Income Amount. ” 
+> Quick Access Link 
+2 
+Select Service 
+Review the detailed information on the service guide page, then click the   “ I s s u e ” button to
+move to the application screen. 
+3 
+Review the Service Details 
+
+[PAGE 18]
+1.   Verify the applicant's information (the login information will   be automatically populated). 
+2.   Enter the details,   such as the period for which the certificate is   needed. 
+3.   Select the desired method of receipt, then click   “ A pp ly ”   to complete the application for
+the Certificate of Income Amount. 
+4 
+Service Application 
+123456 
+
+[PAGE 19]
+Name 
+Verify your automatically entered name (in   English or Korean). 
+1 
+Resident Registration Number 
+For foreigners, the Foreign Resident Registration Number will   be
+displayed. Verify your Foreign Resident Registration Number. 
+2 
+Phone Number 
+Enter your personal phone number (optional). 
+3 
+Disclosure of Resident Registration Number 
+- Choose whether to disclose your entire resident registration number. 
+- For foreigners, select   “ Disclose ”   to display the f u l l   Foreign Resident
+Registration Number, including the second half. 
+4 
+Disclosure of Address 
+Select   “ Disclose ”   to include your address on the certificate. 
+5 
+Disclosure of Income Source 
+Select   “ Disclose ”   to display the income source. 
+6 
+Display of All Withholding Agents for Daily Labor Income 
+Select   “ Display   A l l ” to include a l l   related information. 
+Period for Certification 
+Enter the period for which you need income certification. 
+7 
+8 
+9   Purpose 
+Select the purpose that matches the intended use of the certificate: 
+10   Submission Destination 
+Enter the destination where the certificate will   be submitted. 
+11   Method of Receipt 
+Choose the method for receiving the issued document: 
+A   관공서제출용 
+B   국민건   보험공단제출용 
+C   금융기관제출용 
+D   기타 
+E   대출용 
+F   수금용 
+G   신용카드발급용 
+H   여권또는비자신청용 
+I   입 찰 , 계약용 
+J   해당없음 
+A   Submission to government offices
+B   Submission to the National Health Insurance Corporation 
+C   Submission to financial institutions
+D   Other purposes
+E Loan applications
+F Collection purposes
+G   Credit card issuance
+H   Passport or visa application
+I Bidding or contract purposes
+J Not applicable 
+A   Online issuance (self-print)
+B   Online issuance (electronic document wallet)
+C   Online viewing (applicant access only) 
+1 
+5 
+Application Screen Details   2 
+3 
+6 
+7 
+8 
+9 
+10 
+11 
+4 
+5 
+123456 
+A   B   C 
+
+[PAGE 20]
+1.   From the top menu, select   “ MyGOV > M y Application History > Service Application History ” . 
+6 
+Certificate Printing 
+2. Locate your application in the l i s t   and click   “ P r i n t “ to print the certificate. 
+3.Review the printed certificate. 
+
+[PAGE 21]
+Government24   Service 
+Land Registry 
+
+[PAGE 22]
+회원가입 
+GOV.KR Service Usage Guide 
+Land Registry 
+What is the Land (Forest Land) Registry Issuance Service? 
+The Land (Forest Land) Registry is a document that records the location, surveying information, and ownership
+details of land (or forest), which is   used for appraisal, real estate transactions, and other purposes.
+Through GOV.KR, you can quickly and conveniently issue and review the Land (Forest Land) Registry online. 
+Click the login button on the GOV.KR homepage or main screen and proceed with the login
+process. 
+※ Signing up for membership allows you to use the GOV.KR services more conveniently. 
+Service Usage Guide 
+1 
+Login to GOV.KR 
+
+[PAGE 23]
+O n the main screen, select the   “ Land (Forest) Registry “   service. 
+2 
+Select Service 
+Review the detailed information on the service guide page, then click the   “ I s s u e ” button to
+move to the application screen. 
+3 
+Review the Service Details 
+
+[PAGE 24]
+1.   Verify the applicant's information (the login information will   be automatically populated). 
+2.   Click the   “ Apply for Civil   Service ”   button to complete the application for issuing the
+Land (Forest) Registry. 
+4 
+Apply for the Service 
+Before You
+Move On! 
+GOV.KR provides Land
+(Forest) Registry services
+tailored for various purposes.
+Be sure to select the
+appropriate service for your
+specific needs. 
+
+[PAGE 25]
+5 
+Application Screen Details 
+Issuance of Land (Forest)
+Registry Copy 
+Registry Type 
+Select the type of registry you wish to issue. 
+1 
+Location of Land in Registry 
+Enter the address of the land subject to the registry. 
+2 
+Print History of Land Changes 3 
+Print Ownership History 4 
+Specific Owner Information 
+I fa specific owner exists, input the owner's information. 
+6 
+Reference Year for Officially Announced Land Value 
+Include history 
+7 
+Reference Year for Grade History 
+Include history 
+8 
+A None
+B Exists
+C   Full   Resident Registration Number of the Owner
+(Mandatory i fB is   selected) 
+1 
+2 
+3 
+6 
+7 
+8 
+9 
+10 
+4 
+5 
+A   Land Registry
+B Forest Registry A   B 
+A D o not print
+B Print A   B 
+A D o not print
+B Print A   B 
+D 
+A   Online issuance (self-print)
+B   Online issuance (electronic document wallet)
+C   Online issuance (submission to a third party)
+D   In-person collection (post-payment) 
+10   Method of Receipt 
+Select the method of receiving the document. 
+A   B 
+Display of the Owner’s Resident Registration Number (Last Digits) 
+Choose whether to display the last   digits   of the owner ’ s resident registration number. 
+9 
+A D o not display
+B Display A   B 
+Closed Registry Type 
+Select the type of closed registry. 
+5 
+A General
+B Closed A   B 
+A
+B
+C 
+C 
+
+[PAGE 26]
+5 
+Application Screen Details 
+Issuance of Land (Forest)
+Registry Copy
+(Including Land Rights Registry) 
+A D o not display
+B Display A   B 
+Registry Type 
+Select the type of registry you wish to issue. 
+1 
+Location of Land in Registry 
+Enter the address of the land subject to the registry. 
+2 
+Building Name 
+Enter the building name and click   “ Search ” . 
+3 
+Print History of Land Changes 5 
+7   Display of the Owner’s Resident Registration Number (Last Digits) 
+Choose whether to display the last   digits   of the owner ’ s resident registration number. 
+1 
+2 
+3 
+6 
+7 
+4 
+5 
+A   Land Registry
+B Forest Registry A   B 
+Unit Number 
+Enter the unit number and click   “ Search ” . 
+4 
+6 
+1.   From the top menu, select   “ MyGOV > M y Application History > Service Application History ” . 
+6 
+Certificate Printing 
+2. Locate your application in the l i s t   and click   “ P r i n t “ to print the certificate. 
+3.Review the printed certificate. 
+A D o not print
+B Print A   B 
+Print Ownership History 
+A D o not print
+B Print A   B 
+
+[PAGE 27]
+Government24   Service 
+Resident Registration
+Certificate 
+
+[PAGE 28]
+GOV.KR Service Usage Guide 
+Resident Registration Certificate 
+Are you still visiting the community center to issue
+your Resident Registration Certificate (Copy/Abstract)? 
+Through GOV.KR, you can issue a Resident Registration Certificate (Copy/Abstract) for free via the website. From
+n ow on, conveniently and easily issue your Resident Registration Certificate (Copy/Abstract) online using GOV.KR. 
+Click the login button on the GOV.KR homepage or main screen and proceed with the login
+process. 
+※ Signing up for membership allows you to use the GOV.KR services more conveniently. 
+Service Usage Guide 
+1 
+Login to GOV.KR
+Certificate 
+Make Sure to Remember 
+To issue a Resident
+Registration Certificate
+(Copy/Abstract) via
+GOV.KR, you must log in
+with a certificate. Before
+starting, prepare a simpli-
+fied authentication method
+or a joint/financial certifi-
+cate of your choice. 
+회원가입 
+※ I f   you are not yet a GOV.KR member, please complete the membership registration
+process first. 
+
+[PAGE 29]
+O n the main screen, select the   “ Resident Registration Certificate (Copy/Abstract) “   service. 
+2 
+Select Service 
+Review the detailed information on the service guide page, then click the   “ I s s u e ” button to
+move to the application screen. 
+3 
+Review the Service Details 
+
+[PAGE 30]
+After verifying your registered address and other application details, click the   “ Apply “ 
+button to complete the issuance application for the selected civil   service. 
+Confirm the type of document you wish to apply for. 
+4 
+Select Service 
+5 
+Apply for the Service 
+Before You
+Move On! 
+I fyou need to adjust the content, such as
+adding or removing specific information,
+select   “ Custom Issuance ”   in the issuance
+type options, and then choose the desired
+information. 
+
+[PAGE 31]
+Issuance of Resident Registration
+Certificate (English Version) 
+Issuance of Resident
+Registration Abstract
+(English Version) 
+Consent for Use of Passport Information 
+Select your consent to the use of passport information
+by the Ministry of Foreign Affairs.
+A Self
+B   Other household member 
+1 
+Issuance Type Selection 
+Choose the type of issuance based on your requirements. 
+3 4 
+2-C 2-A
+2-D 
+2-B
+2-E 
+1 
+1   Consent for Use of Passport Information 
+Select your consent to the use of passport information
+by the Ministry of Foreign Affairs. 
+1-A   1-B   1-A D o not consent 
+1-B Consent 
+2 
+2   Verification of Registered Address 
+3   Select the district of your registered address. 
+Method of Receipt 
+Choose the method for receiving the issued document. 
+4 
+a Full   issuance
+b Selective issuance
+c Household composition information
+d Household member information
+e Last digits   of the resident registration
+number 
+A.   Online issuance (self-print) 
+B.   Online issuance (electronic document wallet)
+2-C Online issuance (submission to a third party)
+2-D Registered regular   mail
+2-E Standard regular mail 
+A   B 
+1 
+a   b 
+c
+d
+e 
+
+[PAGE 32]
+Make Sure to Remember 
+I f   you select   “ Online Issuance (Self-Print) ”   as the method of receipt during the application
+process, you can print the document directly. Ensure that your device is   connected to a
+printer. For printer setup and usage instructions, please refer to the guide provided by your
+printer's manufacturer. 
+1.   From the top menu, select   “ MyGOV > M y Application History > Service Application History ” . 
+6 
+Printing the Issued
+Document 
+2. Locate your application in the l i s t   and click   “ P r i n t “ to print the certificate. 
+3.Review the printed certificate. 
+
+[PAGE 33]
+Government24   Service 
+Membership Registration 
+
+[PAGE 34]
+GOV.KR Service Usage Guide 
+Membership Registration 
+How can foreigners use GOV.KR if they are not Korean citizens? 
+Certain GOV.KR services are accessible to foreigners. To use these services, please register as a foreign member
+and log in. 
+Click   “ Sign Up “   on the GOV.KR homepage to access the membership registration screen. 
+Service Usage Guide 
+1 
+GOV.KR Membership
+Registration 
+회원가입 
+
+[PAGE 35]
+2 
+Agree to
+Membership Terms 
+Review the membership terms and select   “ Agree ”   before clicking the   “ Ne xt ”   button to proceed. 
+1   Agree to all 
+1 
+
+[PAGE 36]
+3 
+Enter Member Information 
+Before You
+Move On! 
+After entering your username, click   “ Check for Duplicates “   to ensure
+i tis   available. 
+Passwords must be 9 to 12 characters long and include letters,
+numbers, and special characters. 
+* Be sure to distinguish between uppercase and lowercase letters
+when entering your password. 
+* Special characters that cannot be used: <, >, _ ," ,' 
+Enter your member information accurately and click   “ Complete Registration “   to
+finalize the process. 
+1   N a m e (required) 
+2   Resident Registration Number (Alien   Registration Number) (required) 
+3   Username (required) 
+4   Password (required) 
+5   Confirm Password (required) 
+6   Select Authentication Method (required) 
+1 
+2 
+3 
+4 
+5 
+6 
+
+[PAGE 37]
+外国人登记事实证明 | 韩国居留事实证明 | 收入金额证明
+土地登记簿 | 身份证复印件 | 注册会员 
+Government24 
+服務操作手冊 
+
+[PAGE 38]
+Government24   服务 
+外国人登记事实证明 
+
+[PAGE 39]
+GOV.KR Service Usage Guide 
+外国人登记事实证明 
+在政府24主页等上点击登录后进行登录。 
+※ 注册会员后可以更方便地使用政府24的服务。 
+外国人登录事实证明是什么？ 
+为了取得外国人登录事实证明，外国人向出入境· 外国人厅（办事处）、出入境· 外国人事务所（办事处）或邑· 面·
+洞议长申请证明的信访请求。 
+服务使用指南 
+1 
+登录政府 24 
+请等一下！   哪里需要外国人登录事实证明？ 
+外国人在韩国法令规定的各种程序和交易关系等中需要身份证或身份证复印件时，可以用“外国人登
+录证”或“外国人登录事实证明”代替。 
+회원가입 
+
+[PAGE 40]
+1. 输入搜索词”外国人登录事实证明“。 
+2. 在服务快捷方式中选择”外国人登录事实证明“。
+> 服务快捷方式 
+2 
+选择服务 
+确认服务详细指南页面后，点击“发放”按钮后移动至发放申请画面。 
+3 
+确认服务
+详细画面 
+
+[PAGE 41]
+1. 确认申请人信息。（自动输入登录信息。） 
+2. 点击“信访申请”按键后即可完成外国人登录事实证明发放申请。 
+4 
+服务申请
+画面 
+123456 
+
+[PAGE 42]
+5 
+申请画面
+项目指南 
+A. 提价至法院 
+B. 提交至教育机构 
+C. 提交至公共机构 
+D. 提交至金融· 医院 
+E. 其他用途 
+姓名 
+请确认自动输入的本人姓名。（英语或韩语） 
+1 
+外国人登录号码 
+请确认自动输入的外国人登录号码。 
+2 
+选择滞留地 
+- 当前地址：显示目前申报迁入并居住的地址。 
+- 最近3年：显示最近3年居住的地址。 
+- 全部地址：显示您居住过的所有地址。 
+3 
+是否打印同居家庭 
+- 选择Y时，证明中将显示共同生活的家人。 
+- 选择Y时，证明中将显示外国人登录号码的后几位。 
+4 
+是否打印旧登录号 
+选择Y时显示之前的外国人登录号码。 
+5 
+是否打印旧姓名变更 
+选择Y时显示变更前的姓名。 
+6 
+旧滞留资格变动事项 
+选择Y时显示滞留资格变更事项。 
+7 
+是否打印旧滞留地变动事项 
+选择Y时显示滞留地变更事项。 
+8 
+发放用途 
+选择符合发放用途的项目。 
+9 
+A
+B
+C
+D
+E 
+1 
+2 
+3 
+6 
+7 
+8 
+9 
+4 
+5 
+123456 
+
+[PAGE 43]
+1. 在上方菜单中选择“MyGOV > 我的申请明细 > 服务申请明细”。 
+6 
+打印证明 
+2. 确认列表中的申请详情后点击“打印”，即可打印证明。 
+3. 确认打印的证明。 
+
+[PAGE 44]
+Government24   服务 
+韩国居留事实证明 
+
+[PAGE 45]
+GOV.KR Service Usage Guide 
+韩国住所事实证明 
+韩国住所事实证明服务是什么？ 
+※ 住所：在一定期间内持续居住的场所。持有外国人登陆证的外国人或在韩国居住的外国人、外国国籍同胞向出入
+境· 外国人厅（办事处）、出入境· 外国人事务所（办事处）及市郡区厅申请韩国住所申报事实证明的信访请求。 
+在政府24主页等点击登录按键后进行登录。 
+※ 注册会员后，可以更加方便地使用政府24服务。 
+服务使用指南 
+1 
+登录政府 24 
+회원가입 
+
+[PAGE 46]
+1. 输入搜索词“韩国住所事实证明”。 
+2. 在服务快捷方式中选择“韩国住所事实证明”。
+> 服务快捷方式 
+2 
+选择服务 
+确认服务详细指南页面后点击“发放”按键，移动至发放申请画面。 
+3 
+确认服务
+详细画面 
+
+[PAGE 47]
+1. 确认申请人信息。（自动输入登录信息。） 
+2. 输入“申请信访”按键后，则完成韩国住所申报事实证明发放申请。 
+4 
+申请服务 
+123456 
+
+[PAGE 48]
+123456 
+5 
+申请画面
+项目指南 
+姓名 
+请确认自动输入的本人姓名。（英语或韩语） 
+1 
+韩国住所申报号 
+请确认自动输入的韩国住所申报号。 
+2 
+是否打印旧登录号 
+选择Y时显示是否打印旧登录号。 
+3 
+是否打印已注销的身份证号 
+选择Y时显示已注销的身份证号。 
+4 
+是否打印旧姓名变更 
+选择Y时显示变更前的姓名。 
+5 
+旧滞留资格变动事项 
+选择Y时显示滞留资格变更事项。 
+6 
+是否打印旧滞留地变动事项 
+选择Y时显示滞留地变更事项。 
+7 
+发放用途 8 
+选择领取方法 9 
+A 提交至法院 
+B. 提交至教育机构 
+C. 提交至公共机构 
+D. 提交至金融· 医院 
+E. 其他用途 
+1 
+2 
+3 
+6 
+7 
+8 
+9 
+4 
+5 
+A
+B
+C
+D
+E 
+D
+A 网上发放（本人打印） 
+B. 网上发放（电子文件钱包） 
+C. 网上发放（第3方提交） 
+D. 网上阅览（申请人） 
+B A   C 
+
+[PAGE 49]
+1. 在上方菜单中选择“MyGOV > 我的申请明细 > 服务申请明细”。 
+6 
+打印证明 
+2. 确认列表中的申请详情后点击“打印”，即可打印证明。 
+3. 确认打印的证明。 
+
+[PAGE 50]
+Government24   服务 
+收入金额证明 
+
+[PAGE 51]
+GOV.KR Service Usage Guide 
+收入金额证明 
+收入金额证明服务是什么？ 
+证明综合收入、年末结算收入及日工劳动所得等指定年度（期间）产生的个人征税所得的服务。 
+在政府24主页等点击登录按键后进行登录。 
+※ 注册会员后，可以更加方便地使用政府24服务。 
+服务使用指南 
+1 
+登录政府 24 
+회원가입 
+
+[PAGE 52]
+1. 输入搜索词“收入金额证明”。 
+2. 在服务快捷方式中选择“收入金额证明”。
+> 服务快捷方式 
+2 
+选择服务 
+确认服务详细指南页面后点击“发放”按键，移动至发放申请画面。 
+3 
+确认服务
+详细画面 
+
+[PAGE 53]
+1. 确认申请人信息。（自动输入登录信息。） 
+2. 输入想要获得证明的期间等详细事项。 
+3. 选择想要的领取方法后点击“申请”按键，即可完成收入金额证明申请。 
+4 
+申请服务 
+
+[PAGE 54]
+123456 
+5 
+申请画面
+项目指南 
+姓名 
+请确认自动输入的本人姓名。（英语或韩语） 
+1 
+身份证号 
+如果是外国人，则显示外国人登录号码。请确认本人的外国人登录号
+码。 
+2 
+电话号码 
+- 输入本人使用的电话号码。（选填事项） 
+3 
+是否公开身份证号 
+- 选择是否公开全部身份证号。 
+- 如果是外国人，如果想要把外国人登录号码后几位全部显示，请选择“公开”。 
+4 
+是否公开住址 
+如果想要显示住址，请选择“公开”。 
+5 
+是否公开收入来源 
+如果想要显示收入来源，请选择“公开”。 
+6 
+是否全部显示日工劳动所得预扣税义务人 
+如果要显示全部信息，请选择“全部显示”。 
+证明期间 
+输入欲证明收入的期间。 
+7 
+8 
+9   用途 
+选择符合发放用途的项目。 
+10   提交处 
+输入将要提交的地方。 
+11   领取方法 
+选择领取发放文件的方法。 
+A 提交至官公署 
+B. 提交至国民健康保险公团 
+C. 提交至金融机构 
+D. 其他 
+E. 贷款用 
+F. 收款用 
+G. 发放信用卡 
+H. 申请护照或签证
+I   投标、合同用
+J 无相应事项 
+A 网上发放（本人打印） 
+B. 网上发放（电子文件钱包） 
+C. 网上阅览（申请人） 
+1 
+2 
+3 
+6 
+7 
+8 
+9 
+10 
+11 
+4 
+5 
+A   B   C 
+A   관공서제출용 
+B   국민건강보험공단제출용 
+C   금융기관제출용 
+D   기타 
+E   대출용 
+F   수금용 
+G   신용카드발급용 
+H   여권또는비자신청용 
+I   입찰 ,   계약용 
+J   해당없음 
+
+[PAGE 55]
+1. 在上方菜单中选择“MyGOV > 我的申请明细 > 服务申请明细”。 
+6 
+打印证明 
+2. 确认列表中的申请详情后点击“打印”，即可打印证明。 
+3. 确认打印的证明。 
+
+[PAGE 56]
+Government24   服务 
+土地登记簿 
+
+[PAGE 57]
+GOV.KR Service Usage Guide 
+土地登记簿 
+土地（林地）登记簿发放服务是什么？ 
+土地（林地）登记簿是指记录土地（林地）所在地、测量信息及土地所有人信息等，被用于鉴定评估及不动产交
+易等的登记簿。
+通过政府24可以在网上轻松快速地发放及确认土地（林地）登记簿。 
+在政府24主页等点击登录按键后进行登录。 
+※ 注册会员后，可以更加方便地使用政府24服务。 
+服务使用指南 
+1 
+登录 
+政府 24 
+회원가입 
+
+[PAGE 58]
+在主页中选择“土地（林地）登记簿”。 
+2 
+选择服务 
+确认服务详细指南页面后点击“发放”按键，移动至发放申请画面。 
+3 
+确认服务
+详细画面 
+
+[PAGE 59]
+1. 确认申请人信息。（自动输入登录信息。） 
+2. 点击“申请信访”按键后，完成土地（林地）登记簿发放申请。 
+4 
+申请服务 
+여기서   잠깐 ! 
+政府24根据用途分类提供土
+地（林地）登记簿，请选择
+使用符合目的的服务。 
+
+[PAGE 60]
+5 
+申请画面
+项目指南 
+发放土地（林地）登记簿复印件 
+登记簿分类 
+选择想要发放的登记簿类型。 
+1 
+登记簿土地所在地 
+输入登记簿的土地所在地地址。 
+2 
+是否印刷土地变动沿革 3 
+有无特定所有者 
+如有特定所有者，则输入所有者信息。 
+6 
+等级沿革基准年度 
+包含沿革 
+8 
+公示地价基准年度 
+包含沿革 
+7 
+显示所有者身份证号后几位 
+选择是否显示所有者身份证号后几位。 
+9 
+10   领取方法 
+选择领取方法。 
+A 无 
+B. 有 
+C. 所有者身份证号前几位和后几位（选择B时必须输入） 
+1 
+2 
+3 
+6 
+7 
+8 
+10 
+9 
+4 
+5 
+A 土地登记簿
+B 林地登记簿 A   B 
+A 不印刷
+B 印刷 A   B 
+A 不印刷
+B 印刷 A   B 
+A 不显示
+B 显示 A   B 
+封闭登记簿分类 
+选择封闭登记簿分类。 
+5 
+是否印刷所有权沿革 4 
+A 普通
+B 封闭 A   B 
+A
+B
+C 
+A   B 
+C 
+A 网上发放（本人打印） 
+B. 网上发放（电子文件钱包） 
+C. 访问领取（后付） 
+
+[PAGE 61]
+5 
+申请画面
+项目指南 
+发放土地（林地）
+登记簿复印件（土地权登记簿） 
+A 不显示
+B 显示 A   B 
+登记簿分类 
+选择想要发放的登记簿类别。 
+1 
+登记簿土地所在地 
+输入登记簿上的土地所在地地址。 
+2 
+建筑物名称 
+输入建筑物名称后“搜索”。 
+3 
+是否印刷土地变动沿革 5 
+7   显示所有者身份证号后几位 
+选择是否显示所有者身份证号后几位。 
+1 
+2 
+3 
+6 
+7 
+4 
+5 
+A 土地登记簿
+B 林地登记簿 A   B 
+栋号 
+输入栋号数后“搜索”。 
+4 
+1. 在上方菜单中选择“MyGOV > 我的申请明细 > 服务申请明细”。 
+6 
+打印发放
+文件 
+2. 确认列表中的申请详情后点击“打印”，即可打印证明。 
+3. 确认打印的证明。 
+A   B 
+6   是否印刷所有权沿革 
+A 不印刷
+B 印刷 
+A 不印刷
+B 印刷 A   B 
+
+[PAGE 62]
+Government24   服务 
+身份证复印件 
+
+[PAGE 63]
+회원가입 
+GOV.KR Service Usage Guide 
+身份证复印件 
+您还在居民中心发放身份证复印件（副本）吗？ 
+通过政府24主页可以免费获得身份证复印件（副本）。从现在开始，通过政府24可以轻松方便地在线上获得身份
+证复印件（副本）。 
+在政府24主页等点击登录按键后进行登录。
+※ 注册会员后，可以更加方便地使用政府24服务。 
+想要通过政府24获得身份证复
+印件（副本）时，需要登录认
+证书。请在使用前准备简便认
+证或通用· 金融认证书等想要的
+认证书。 
+※ 如果您不是政府24会员，请先注册会员。 
+服务使用指南 
+1 
+登录政府 24 
+认证书 
+꼭   알아두세요 ! 
+
+[PAGE 64]
+在主页选择“身份证复印件（副本）”服务。 
+2 
+选择服务 
+确认服务详细指南页面后，点击“发放”按键后移动至发放申请画面。 
+3 
+确认服务
+详细画面 
+
+[PAGE 65]
+确认身份证上的地址等申请信息后，点击“申请”按键后，即可完成对所选信访的发放申请。 
+确认本人想要申请的信访文件种类。 
+4 
+选择服务 
+5 
+申请服务 
+여기서   잠깐 !   如果需要在发放内容信息中加入或删除所
+需信息等进行详细调整，那么请在发放形
+态选项中选择“发放”后，选择所需信息。 
+
+[PAGE 66]
+发放居民登记表复印件（英文） 
+发放居民登记表副本（英文） 
+同意使用护照信息 
+选择同意使用外交部护照信息。 
+A.   不同意 
+B.   同意 
+1 
+选择发放对象 
+选择发放对象。
+A 本人
+B 其他家庭成员 
+1 
+确认居民登记地址 
+选择本人登记地址所在的地区。 
+2 
+选择发放形态 
+输入登记簿上的土地所在地地址。 
+3 
+1 
+2 
+3 
+4 
+2-C 2-A
+2-D 
+2-B
+2-E 
+1-A   1-B 
+领取方法 
+选择领取方法。 
+A.   网上发放（本人打印） 
+B.   网上发放（电子文件钱包） 
+C.   网上发放（第3方提交） 
+D.   普通挂号信 
+E.   普通邮件 
+4 
+a. 全部发放 
+b. 选择发放 
+c. 家庭构成信息 
+d. 家庭成员信息 
+e. 身份证号后几位 
+A   B 
+1 
+a   b 
+c
+d
+e 
+
+[PAGE 67]
+꼭   알아두세요 ! 
+申请时，在领取方法中选择“网上发放（本人打印）”时，可以直接打印，只有与打印机
+连接才能打印。打印设置及使用指南请确认相应产品指南内容。 
+1. 在上方菜单中选择“MyGOV > 我的申请明细 > 服务申请明细”。 
+6 
+打印发放
+文件 
+2. 确认列表中的申请详情后点击“打印”，即可打印证明。 
+3. 确认打印的证明。 
+
+[PAGE 68]
+Government24   服务 
+注册会员 
+
+[PAGE 69]
+GOV.KR Service Usage Guide 
+注册会员 
+如果不是韩国国民，而是外国人想要使用政府 24 ？ 
+政府24的服务中包含外国人也能使用的服务。如果希望使用该服务，请注册外国人会员后登录。 
+在政府24主页点击注册会员后，移动至会员注册画面。 
+服务使用指南 
+1 
+注册 
+政府 24 会员 
+회원가입 
+
+[PAGE 70]
+2 
+同意会员
+条款 
+确认会员条款内容且“同意”后，点击“下一步”按键后进行下一步操作。 
+1   全部同意 
+1 
+
+[PAGE 71]
+3 
+输入会员
+信息 
+여기서   잠깐 !   输入账号后点击“重复确认”后确认是否可以使用。 
+密码为9~12位的所有字母+数字+特殊字符 
+* 输入时要区别字母大小写。 
+* 不可使用的特殊字符：< > _ “ ‘ 
+选择认证方式（必选） 
+准确输入将要使用的会员信息后，点击“完成注册”后注册会员完毕。 
+1   姓名（必填） 
+2   身份证号（外国人登录号码）（必填） 
+3   账号（必填） 
+4   密码（必填） 
+5   确认密码（必填） 
+6 
+1 
+2 
+3 
+4 
+5 
+6 
+
+[PAGE 72]
+X á c nh ậ n   đă ng   k ý n g ư ờ i   n ướ c   ngo à i |   Ch ứ ng nh ậ n x á c   minh n ơ ic ư   t r ú t ạ iH à n Qu ố c |   Ch ứ ng nh ậ n thu nh ậ p
+S ổ   đă ng   k ý s ử d ụ ng   đ ấ t|   B ả n sao C ă n c ư ớ c   c ô ng d â n |   đ ă ng   k ý th à nh vi ê n 
+Hướng dẫn sử dụng dịch vụ 
+Government24 
+
+[PAGE 73]
+Government24   Service 
+Xác nhận đăng
+ký người nước ngoài 
+
+[PAGE 74]
+GOV.KR Service Usage Guide 
+Xác nhận đăng ký người nước ngoài 
+Nh ấ n v à o   n ú t   Login   ở m à n h ì nh   ch í nh   c ủ a   Goverment 24   đ ể t i ế nh à nh   đ ă n gnh ậ p. 
+※ C ó   th ể  s ử  d ụ ng d ị ch   v ụ Government 24 d ễ d à ng h ơ n   n ế u   đ ă n gk ý th à nh   vi ê n. 
+Xác minh   đă ng ký n g   4   i n 4   c ngoài là gì? 
+Đ â yl à y ê u   c ầ u   d â n   s ự đ ể n g ư ờ in ư ớ cngo à i   đ ă ngk ý xin c ấ p   gi ấ ych ứ ng nh ậ n x á c   minh   đ ă n gk ý n g ư ờ in ư ớ cngo à i v ớ iC ụ c Xu ấ t   nh ậ p c ả nh - Ng ườ i
+n ư ớ cngo à i   (Chi nh á nh),   V ă n ph ò ng Xu ấ t   nh ậ p c ả nh - Ng ườ i   n ư ớ cngo à i   (Chi nh á nh), n g ư ờ i đứ ng   đ ầ uEup, Myeon, Dong. 
+H   4   n g d ẫ n s ử   d ụ ng d c ch v ụ 
+1 
+Đăng nhập vào
+Government 24 
+Ch ờ   m ộ t ch ú t!   Giấy chứng nhận đăng ký người nước ngoài được sử dụng ở   đâu? 
+D o c á c   t h ủ t ụ cv à m ố i   quan h ệ giao d ị ch   đ ư ợ cquy   đ ị n htrong Lu ậ t   v ề n g ư ờ in ư ớ cngo à i   c ủ a   H à n Qu ố c n ê n t r ư ờ n gh ợ p   c ầ n   c ó C ă n c ư ớ c
+c ô ng d â n   ho ặ c B ả n   s ả o   C ă n c ư ớ cc ô ng d â n/B ả n   t r í c hl ụ cc ó t h ể thay t h ế b ằ ng   “ Th ẻ   đ ă n gk ý n g ư ờ in ư ớ cn g o à i ” ho ặ c   “ G i ấ ych ứ ng nh ậ n   đ ă n gk ý 
+n g ư ờ in ư ớ cngo à i ” 
+회원가입 
+
+[PAGE 75]
+1.   Nh ậ p   “ Ch ứ ng nh ậ n x á c   minh   đ ă n g   k ý n g ư ờ in ư ớ cngo à i ” . 
+2.   L ự a   ch ọ n   “ Ch ứ ng   nh ậ n x á c   minh   đ ă n gk ý n g ư ờ in ư ớ cn g o à i ” ở m ụ c X e m ngay d ị ch   v ụ .
+> X e m ngay d ị ch   v ụ : 
+2 
+Lựa chọn dịch vụ 
+Sau khi x á c   nh ậ n trang h ướ ng   d ẫ n   chi t i ế tc ủ a   d ị ch   v ụ ,nh ấ n n ú t   “ C ấ p ” đ ể chuy ể n sang m à n h ì nh   đ ă n gk ý c ấ p. 
+3 
+Xác nhận màn hình chi
+tiết của dịch vụ 
+
+[PAGE 76]
+1.   X á c   nh ậ n th ô ng tin   n g ư ờ i đ ă n gk ý .(Th ô ng tin   đ ă n g   nh ậ p   đ ư ợ cnh ậ p t ự độ ng.) 
+2.   Nh ấ n n ú t “ Đ ă n gk ý y ê u   c ầ u ” đ ể k ế tth ú c   đ ă n gk ý c ấ p   Gi ấ y   ch ứ ng nh ậ n   đ ă n gk ý ng ườ i n ư ớ cngo à i. 
+4 
+Màn hì nh đăng ký dịch vụ 
+
+[PAGE 77]
+5 
+Hướng dẫn các hạng
+mục màn hì nh đăng ký 
+Họ và tên 
+Vui l ò ng   ki ể m   tra   ph ầ n t ê nc ủ a   m ì nh   đ ã đ ư ợ cnh ậ p t ự độ ng. (Ti ế ng   Anh
+ho ặ c Ti ế ng   H à n) 
+1 
+Số đăng ký người nước ngoài 
+Vui l ò ng   ki ể m tra s ố đ ă n gk ý n g ư ờ in ư ớ cngo à i   c ủ a   m ì nh   đ ã đ ư ợ cnh ậ p t ự độ ng. 
+2 
+Lựa chọn nơi cư trú 
+L ự a   ch ọ n n ơ ic ư tr ú   Đ ị ac h ỉ 
+hi ệ n   t ạ i :Hi ể n   t h ị đ ị ac h ỉ đ ang c ư t r ú v ì đ ã khai b á o vi ệ c   chuy ể n   đ ế n ở hi ệ n   t ạ i.
+3 n ă m g ầ n   nh ấ t:   Hi ể n   t h ị đ ị ac h ỉ đ ã c ư t r ú 3 n ă m g ầ n   nh ấ t. To à n b ộ đ ị ac h ỉ :
+Hi ể n   t h ị t ấ tc ả đ ị ac h ỉ b ạ n   đ ã c ư tr ú . 
+3 
+FCó in thông tin gia đình sinh sống cùng hay khô ng 
+–   Ch ọ n Y n ế u mu ố n hi ể n   t h ị gia   đ ì n h đ ang sinh s ố ng c ù ng t r ê n   gi ấ y ch ứ ng
+nh ậ n. 
+–   Ch ọ n Y n ế u   mu ố n hi ể n   t h ị t ấ tc ả c á c   s ố ph í a   sau c ủ a   s ố đ ă n gk ý ng ườ i n ư ớ cngo à i. 
+4 
+Có in số đăng ký trước đây hay không 
+Ch ọ n Y n ế u   mu ố n hi ể n   t h ị s ố đ ă n gk ý n g ư ờ in ư ớ cngo à i   t r ư ớ c đ â y . 
+5 
+A: N ộ p cho To à   á n   B:
+N ộ p cho c ơ quan   đ à ot ạ o   C: N ộ p
+cho c ơ quan c ô ng   D: N ộ p cho
+c ơ quan t à ich í nh,   b ệ nh vi ệ n E:   M ụ c   đ í c hkh á c 
+A
+B
+C
+D
+E 
+1 
+2 
+3 
+6 
+7   6   Có in thay đổi họ tên trước đây không 
+– Ch ọ n Y n ế u   mu ố n hi ể nt h ị h ọ t ê nt r ư ớ ckhi thay   đ ổ i . 
+8 
+9 
+7   Tì nh hì nh thay đổi tư cách cư trú trước đây 
+Ch ọ n Y n ế u   mu ố n hi ể n   t h ị t ì n hh ì n h   thay   đ ổ it ư c á ch   c ư tr ú 
+8   DCó in tì nh hì nh thay đổi nơi cư trú trước đây khô ng 
+Ch ọ n Y n ế u   mu ố n hi ể n   t h ị t ì n hh ì nhthay   đ ổ in ơ ic ư tr ú . 
+9   Mục đích cấp 
+Ch ọ n h ạ ng   m ụ c ph ù   h ợ p   v ớ im ụ c   đ í c hc ấ p. 
+4 
+5 
+123456 
+
+[PAGE 78]
+1.Ch ọ n   “ MyGOV > Chi t i ế t đ ă n gk ý c ủ a   t ô i> Chi t i ế t đ ă n gk ý d ị ch   v ụ ” ở Menu ph í a   tr ê n. 
+6 
+In Giấy chứng nhận 
+2. Sau khi x á c   nh ậ n chi t i ế t đ ã đ ă n gk ý trong danh s á ch,   nh ấ n n ú t “ I n ” đ ể c ó  t h ể in   gi ấ y   x á c   nh ậ n. 
+3. X á c   nh ậ n gi ấ y   ch ứ ng nh ậ n   đ ã in. 
+
+[PAGE 79]
+Government24   Service 
+Chứng nhận xác minh 
+nơi cư trú tại Hàn Quốc 
+
+[PAGE 80]
+GOV.KR Service Usage Guide 
+Chứng nhận xác minh nơi cư trú tại Hàn Quốc 
+D ị ch   v ụ ch ứ ng nh ậ n x á c   minh n ơ ic ư   t r ú t ạ iH à n Qu ố c l à g ì ? 
+※ N ơ ic ư t r ú : Đ ị a đ i ể mc ư t r ú l i ê nt ụ ctrong m ộ t   kho ả ng t h ờ igian nh ấ t   đ ị n h 
+Đ â yl à y ê u   c ầ u   d â n   s ự đ ể n g ư ờ in ư ớ cngo à i   c ó Th ẻ   đ ă ngk ý n g ư ờ in ư ớ cngo à i   ho ặ c n g ư ờ in ư ớ cngo à i   đ ang c ư t r ú   t ạ iH à n Qu ố c ho ặ c c ô ng d â n   H à n Qu ố c
+c ó qu ố c t ị c hn ư ớ cngo à i   đ ă n gk ý xin x á c   minh khai b á o   n ơ ic ư t r ú t ạ iH à n Qu ố c v ớ iC ụ c Xu ấ t   nh ậ p c ả nh - Ng ườ i   n ư ớ cngo à i   (Chi nh á nh),   V ă n
+ph ò ng Xu ấ t   nh ậ p c ả nh - Ng ườ i   n ư ớ cngo à i   (Chi nh á nh),   n g ư ờ i đứ ng   đ ầ uSi,   Gun, Gu. 
+H   4   n g d ẫ n s ử   d ụ ng d c ch v ụ 
+1 
+Đăng nhập vào
+Government 24 
+Nh ấ n v à o   n ú tLogin   ở m à n h ì nh   ch í nh   c ủ a   Goverment 24   đ ể t i ế nh à nh   đ ă n gnh ậ p. 
+※ C ó   th ể  s ử  d ụ ng d ị ch   v ụ  Government 24 d ễ d à ng h ơ n   n ế u   đ ă n gk ý th à nh   vi ê n. 
+회원가입 
+
+[PAGE 81]
+1.   Nh ậ p   “ Ch ứ ng nh ậ n x á c   minh n ơ ic ư t r ú t ạ iH à n Qu ố c ”   v à o   khung t ì mki ế m 
+2.   L ự a   ch ọ n   “ Ch ứ ng   nh ậ n x á c   minh n ơ ic ư t r ú t ạ iH à n Qu ố c ”   ở m ụ c X e m ngay d ị ch   v ụ .
+> X e m ngay d ị ch   v ụ : 
+2 
+Lựa chọn dịch vụ 
+Sau khi x á c   nh ậ n trang h ướ ng   d ẫ n   chi t i ế tc ủ a   d ị ch   v ụ ,nh ấ n n ú t   “ C ấ p ” đ ể chuy ể n sang m à n h ì nh   đ ă n gk ý 
+c ấ p. 
+3 
+Xác nhận màn hình chi
+tiết của dịch vụ 
+
+[PAGE 82]
+1.   X á c   nh ậ n th ô ng tin   n g ư ờ i đ ă n gk ý .(Th ô ng tin   đ ă n g   nh ậ p   đ ư ợ cnh ậ p t ự độ ng.) 
+2.   Nh ấ n n ú t “ Đ ă n gk ý y ê u   c ầ u ” đ ể k ế tth ú c   đ ă n gk ý c ấ p   Gi ấ y   ch ứ ng nh ậ n khai b á o   n ơ ic ư   t r ú t ạ iH à n Qu ố c. 
+4 
+Đăng ký dịch vụ 
+123456 
+
+[PAGE 83]
+5 
+Hướng dẫn các hạng
+mục màn hì nh đăng ký 
+Họ và tên 
+Vui l ò ng   ki ể m   tra   ph ầ n t ê nc ủ a   m ì nh   đ ã đ ư ợ cnh ậ p t ự độ ng. (Ti ế ng   Anh
+ho ặ c Ti ế ng   H à n) 
+Số khai báo nơi cư trú tại Hàn Quốc 
+Vui l ò ng   x á c   nh ậ n s ố khai b á o n ơ ic ư t r ú t ạ iH à n Qu ố c   đ ư ợ cnh ậ p t ự độ ng. 
+1 
+2 
+Có in số đăng ký trước đây không 
+Ch ọ n Y n ế u   mu ố n hi ể n   t h ị in s ố đ ă n gk ý t r ư ớ c đ â y . 
+3 
+Có in số căn cước công dân đã hết hạn khô ng 
+Ch ọ n Y n ế u   mu ố n hi ể n   t h ị s ố c ă n   c ư ớ cc ô ng d â n h ế th ạ n. 
+4 
+Có in thay đổi họ tên trước đây không 5 
+Chọn phương thức nhận 9 
+A: N ộ p cho To à   á n   B:
+N ộ p cho c ơ quan   đ à ot ạ o   C: N ộ p
+cho c ơ quan c ô ng   D: N ộ p cho
+c ơ quan t à ich í nh,   b ệ nh vi ệ n E:   M ụ c   đ í c hkh á c 
+A
+B
+C
+D
+E 
+A   C   B
+D
+A: C ấ p t r ự ctuy ế n   (B ả n   th â n   t ự in)   B:
+C ấ p t r ự ctuy ế n   ( V í t à il i ệ u đ i ệ nt ử ) C: C ấ p t r ự c
+tuy ế n   (N ộ p cho b ê n t h ứ 3) D: X e m tr ự c
+tuy ế n   ( N g ườ i   đ ă n gk ý ) 
+1 
+2 
+3 
+6 
+7   Ch ọ n Y n ế u   mu ố n hi ể n   t h ị h ọ t ê n t r ư ớ ckhi thay   đ ổ i . 
+8 
+9 
+6   Tì nh hì nh thay đổi tư cách cư trú trước đây 
+Ch ọ n Y n ế u   mu ố n hi ể n   t h ị t ì n hh ì n h   thay   đ ổ it ư c á ch   c ư tr ú 
+7   Có in tì nh hì nh thay đổi nơi cư trú trước đây khô ng 
+Ch ọ n Y n ế u   mu ố n hi ể n   t h ị t ì n hh ì nhthay   đ ổ in ơ ic ư tr ú . 
+8   Mục đích cấp 
+4 
+5 
+123456 
+
+[PAGE 84]
+1.Ch ọ n   “ MyGOV > Chi t i ế t đ ă n gk ý c ủ a   t ô i> Chi t i ế t đ ă n gk ý d ị ch   v ụ ” ở Menu ph í a   tr ê n. 
+6 
+In Giấy chứng nhận 
+2. Sau khi x á c   nh ậ n chi t i ế t đ ã đ ă n gk ý trong danh s á ch,   nh ấ n n ú t “ I n ” đ ể c ó  t h ể in   gi ấ y ch ứ ng nh ậ n. 
+3. X á c   nh ậ n gi ấ y   ch ứ ng nh ậ n   đ ã in. 
+
+[PAGE 85]
+Government24   Service 
+Chứng nhận thu nhập 
+
+[PAGE 86]
+Nh ấ n v à o   n ú tLogin   ở m à n h ì nh   ch í nh   c ủ a   Goverment 24   đ ể t i ế nh à nh   đ ă n gnh ậ p. 
+※ C ó   th ể  s ử  d ụ ng d ị ch   v ụ Government 24 d ễ d à ng h ơ n   n ế u   đ ă n gk ý th à nh   vi ê n. 
+GOV.KR Service Usage Guide 
+Chứng nhận thu nhập 
+D ị ch   v ụ ch ứ ng nh ậ n thu nh ậ p l à g ì ? 
+Đ â yl à d ị ch   v ụ đ ể ch ứ ng nh ậ n thu nh ậ p t ự ch ị u   thu ế   ph á t   sinh trong n ă m (kho ả ng t h ờ igian) c ụ th ể ch ẳ ng h ạ n   nh ư   thu nh ậ p to à n   di ệ n,thu
+nh ậ p quy ế t to á n   cu ố i   n ă m v à thu nh ậ p t i ề nl ư ơ n gh à ng ng à y. 
+H   4   n g d ẫ n s ử   d ụ ng d c ch v ụ 
+1 
+Đăng nhập vào
+Government 24 
+회원가입 
+
+[PAGE 87]
+1.   Nh ậ p   “ Ch ứ ng nh ậ n thu nh ậ p ”   v à o   khung t ì mki ế m. 
+2.   L ự a   ch ọ n   “ Ch ứ ng   nh ậ n thu n h ậ p ” ở m ụ c X e m ngay d ị ch   v ụ .
+> X e m ngay d ị ch   v ụ : 
+2 
+Lựa chọn dịch vụ 
+Sau khi x á c   nh ậ n trang h ướ ng   d ẫ n   chi t i ế tc ủ a   d ị ch   v ụ ,nh ấ n n ú t   “ C ấ p ” đ ể chuy ể n sang m à n h ì nh   đ ă n gk ý 
+c ấ p. 
+3 
+Xác nhận màn hình chi
+tiết của dịch vụ 
+
+[PAGE 88]
+1.   X á c   nh ậ n th ô ng tin   n g ư ờ i đ ă n gk ý .(Th ô ng tin   đ ă n g   nh ậ p   đ ư ợ cnh ậ p t ự độ ng.) 
+2.   Nh ậ p th ô ng tin   chi t i ế tnh ư   t h ờ igian mu ố n c ấ p   ch ứ ng nh ậ n. 
+3.   Sau khi ch ọ n ph ươ ng   th ứ c   nh ậ n mong mu ố n, nh ấ n v à o   n ú t   “ Đ ă n gk ý ” đ ể ho à n th à nh   đ ă n gk ý ch ứ ng nh ậ n
+thu nh ậ p. 
+4 
+Đăng ký dịch vụ 
+
+[PAGE 89]
+5 
+Hướng dẫn các hạng
+mục màn hì nh đăng ký 
+Họ và tên 
+Vui l ò ng   ki ể m   tra   ph ầ n t ê nc ủ a   m ì nh   đ ã đ ư ợ cnh ậ p t ự độ ng. (Ti ế ng   Anh
+ho ặ c Ti ế ng   H à n) 
+Số Căn cước công dân 
+Tr ườ ng   h ợ p l à n g ư ờ i n ư ớ cngo à i   s ẽ hi ể n   t h ị s ố đ ă n gk ý n g ư ờ in ướ c ngo à i.   Vui l ò ng   x á c
+nh ậ n s ố đ ă n gk ý n g ư ờ in ư ớ cngo à i. 
+1 
+2 
+Số điện thoại 
+Nh ậ p s ố đ i ệ ntho ạ i   b ả n   th â n   đ ang s ử d ụ ng.   (H ạ ng m ụ c t u ỳ ch ọ n) 
+3 
+Có công khai số Căn cước công dân hay khô ng 
+–   L ự a   ch ọ n c ó c ô ng khai t ấ tc ả s ố C ă n c ư ớ c c ô ng d â n kh ô ng. 
+–   Tr ườ ng   h ợ p l à n g ư ờ i n ư ớ cngo à i,   ch ọ n   “ C ô ng   khai ”   n ế u mu ố n hi ể n   t h ị t ấ t c ả c á c   s ố ph í a   sau
+c ủ a   s ố đ ă n gk ý n g ư ờ in ư ớ cngo à i. 
+4 
+Có công khai địa chỉ không 
+Ch ọ n   “ C ô ng   khai ”   n ế u   mu ố n hi ể n   t h ị đ ị ac h ỉ . 
+5 
+Có công khai nơi phát sinh thu nhập khô ng 
+Ch ọ n   “ C ô ng   khai ” n ế u   mu ố n hi ể n   t h ị n ơ iph á t   sinh thu nh ậ p. 
+6 
+Có hiển thị tất cả nơi thu thuế tại nguồn của thu nhập
+tiền lương hàng ngày không 
+Ch ọ n   “ H i ể nt h ị t ấ tc ả ” n ế u   mu ố n hi ể n   t h ị t ấ tc ả th ô ng tin. 
+Thời gian nhận chứng nhận 
+Nh ậ p t h ờ igian mu ố n nh ậ n ch ứ ng nh ậ n thu nh ậ p. 
+7 
+8 
+9   Mục đích cấp 
+Ch ọ n h ạ ng   m ụ c ph ù   h ợ p   v ớ im ụ c   đ í c hc ấ p. 
+10   Nơi nộp 
+Nh ậ p n ơ imu ố n n ộ p. 
+11   Phương thức nhận 
+Ch ọ n ph ươ ng   th ứ c   nh ậ n h ồ s ơ đ ã c ấ p. 
+A   관공서제출용 
+B   국민건강보험공단제출용 
+C   금융기관제출용 
+D   기타 
+E   대출용 
+F   수금용 
+G   신용카드발급용 
+H   여권또는비자신청용 
+I   입 찰 , 계약용 
+J   해당없음 
+A: N ộ p cho c ơ quan Ch í nh ph ủ   B: 
+N ộ p cho T ổ ng c ô ng ty b ả o   hi ể m s ứ c   kho ẻ   Qu ố c gia   C: N ộ p
+cho c ơ quan t à ich í nh
+D: Kh á c
+E: N ộ p   đ ể vay t i ề nF:
+N ộ p   đ ể thu t i ề n
+G: N ộ p   đ ể c ấ p   t h ẻ t í nd ụ ng   H: N ộ p   đ ể 
+đ ă n gk ý l à m   h ộ chi ế u   ho ặ c visa I :N ộ p   đ ể đ ấ uth ầ u,   l à m
+h ợ p   đồ ng   J:   Kh ô ng c ó t ư ơ n g ứ ng 
+A: C ấ p t r ự ctuy ế n   (B ả n   th â n   t ự in) B: C ấ p
+tr ự ctuy ế n   ( V í t à il i ệ u đ i ệ nt ử )C: X e m t r ự c
+tuy ế n   ( N g ư ờ i   đ ă n gk ý ) 
+A   B   C 
+1 
+2 
+3 
+6 
+7 
+8 
+9 
+10 
+11 
+4 
+5 
+123456 
+
+[PAGE 90]
+6 
+In Giấy chứng nhận 
+1.Ch ọ n   “ MyGOV > Chi t i ế t đ ă n gk ý c ủ a   t ô i> Chi t i ế t đ ă n gk ý d ị ch   v ụ ” ở Menu ph í a   tr ê n. 
+2. Sau khi x á c   nh ậ n chi t i ế t đ ã đ ă n g   k ý trong danh s á ch,   nh ấ n n ú t “ I n ” đ ể c ó  t h ể in   gi ấ y ch ứ ng nh ậ n. 
+3. X á c   nh ậ n gi ấ y   ch ứ ng nh ậ n   đ ã in. 
+
+[PAGE 91]
+Government24   Service 
+Sổ đăng ký sử dụng đất 
+
+[PAGE 92]
+GOV.KR Service Usage Guide 
+Sổ đăng ký sử dụng đất 
+D ị ch   v ụ c ấ p   S ổ   đ ă n g   k ý s ử d ụ ng   đ ấ t(r ừ ng)? 
+S ổ đ ă n gk ý s ử d ụ ng   đ ấ t(r ừ ng)   l à s ổ c á ighi l ạ ic á c   th ô ng tin   nh ư   đ ị ac h ỉ ,th ô ng tin   đ o   đ ạ cv à n g ư ờ is ở h ữ u   đ ấ tc ủ a khu   đ ấ t(r ừ ng)   v.v.   đ ồ n g   t h ờ in ó c ũ ng 
+đ ư ợ cs ử d ụ ng cho vi ệ c   th ẩ m   đ ị n h ,giao d ị ch   b ấ t   đ ộ n g   s ả n,v.v..
+C ó   th ể c ấ p   v à ki ể m tra S ổ   đ ă ngk ý s ử d ụ ng   đ ấ t(r ừ ng)   d ễ d à ng v à nhanh ch ó ng qua tr ự c   tuy ế n   t ạ itrang Govern- ment 24. 
+Nh ấ n v à o   n ú tLogin   ở m à n h ì nh   ch í nh   c ủ a   Goverment 24   đ ể t i ế nh à nh   đ ă n gnh ậ p. 
+※ C ó   th ể  s ử  d ụ ng d ị ch   v ụ  Government 24 d ễ d à ng h ơ n   n ế u   đ ă n gk ý th à nh   vi ê n. 
+H   4   n g d ẫ n s ử   d ụ ng d c ch v ụ 
+1 
+Đăng nhập vào
+Government 24 
+회원가입 
+
+[PAGE 93]
+Ch ọ n d ị ch   v ụ “ S ổ đ ă n gk ý s ử d ụ ng   đ ấ t( r ừ n g ) ” ở m à n h ì nh   ch í nh. 
+2 
+. Lựa chọn dịch vụ 
+Sau khi x á c   nh ậ n trang h ướ ng   d ẫ n   chi t i ế tc ủ a   d ị ch   v ụ ,nh ấ n n ú t   “ C ấ p ” đ ể chuy ể n sang m à n h ì nh   đ ă n gk ý 
+c ấ p. 
+3 
+Xác nhận màn hình chi
+tiết của dịch vụ 
+
+[PAGE 94]
+1.   X á c   nh ậ n th ô ng tin   n g ư ờ i đ ă n gk ý .(Th ô ng tin   đ ă n g   nh ậ p   đ ư ợ cnh ậ p t ự độ ng.) 
+2.   Nh ấ n n ú t “ Đ ă n gk ý y ê u   c ầ u ” đ ể k ế tth ú c   đ ă n gk ý c ấ p   S ổ đ ă n gk ý s ử d ụ ng   đ ấ t(r ừ ng). 
+4 
+Đăng ký dịch vụ 
+Ch ờ   m ộ t ch ú t! 
+Government 24 ph â n chia S ổ 
+đ ă n gk ý s ử d ụ ng   đ ấ t(r ừ ng) ri ê ng   đ ể 
+n g ư ờ id â n   c ó t h ể s ử   d ụ ng theo m ụ c 
+đ í c hc ủ a   m ì nh n ê n   vui l ò ng   l ự ach ọ n
+v à s ử   d ụ ng d ị ch   v ụ ph ù   h ợ p   v ớ i
+m ụ c   đ í c hc ủ a   m ì nh. 
+
+[PAGE 95]
+5 
+Hướng dẫn các hạng
+mục màn hì nh đăng ký 
+Cấp   Bản   sao   Sổ   đăng   ký 
+sử   dụng   đất   (rừng) 
+Phân loại Sổ đăng ký 
+L ự a   ch ọ n ph â n l o ạ iS ổ đ ă n gk ý mo ng mu ố n. 
+1 
+Địa chỉ của đất trên Sổ đăng ký 
+ENh ậ p   đ ị ac h ỉ đ ị a đ i ể mc ủ a   đ ấ ttrong S ổ   đ ă n gk ý 
+2 
+Có in lịch sử biến động đất đai hay khô ng 3 
+Có chủ sở hữu cụ thể không 
+Nh ậ p th ô ng tin   ch ủ   s ở h ữ u trong t r ườ n g   h ợ p c ó ch ủ   s ở h ữ u c ụ th ể . 
+6 
+Năm cơ sở áp dụng cho giá đất công bố 
+Bao g ồ m l ị c hs ử 
+7 
+Năm cơ sở của lịch sử phân cấp 
+Bao g ồ m l ị c hs ử 
+8 
+Có in lịch sử quyền sở hữu hay khô ng 4 
+Hiển thị số phí a sau của số Căn cước công dân của chủ sở hữu 
+Ch ọ n c ó h i ể nt h ị s ố p h í asau c ủ as ố C ă n   c ư ớ cc ô ng   d â n   c ủ ach ủ   s ở h ữ u   hay kh ô ng. 
+9 
+10   Phương thức nhận 
+Ch ọ n ph ươ ng   th ứ c   nh ậ n. 
+A: Kh ô ng c ó 
+B: C ó 
+C: S ố ph í at r ư ớ c ,ph í a   sau c ủ a   s ố C ă n c ư ớ cc ô ng d â n   c ủ a   ng ườ i s ở h ữ u   (B ắ tbu ộ c
+nh ậ p khi   ch ọ n B) 
+A: S ổ đ ă n gk ý s ử d ụ ng   đ ấ tB: S ổ đ ă n g
+k ý s ử d ụ ng r ừ ng A   B 
+A: Kh ô ng in
+B: In A   B 
+A: Kh ô ng in
+B: In A   B 
+A: Kh ô ng hi ể n   t h ị   B:
+Hi ể n   t h ị A   B 
+Phân loại Sổ đăng ký đã bị huỷ 
+Ch ọ n ph â n l o ạ iS ổ   đ ă n gk ý đ ã b ị hu ỷ . 
+5 
+A: Th ô ng th ườ ng B:
+Hu ỷ A   B 
+A
+B
+C 
+A 
+D 
+A: C ấ p t r ự ctuy ế n   (B ả n   th â n   t ự in)   B:
+C ấ p t r ự ctuy ế n   ( V í t à il i ệ u đ i ệ nt ử ) C: C ấ p t r ự c
+tuy ế n   (N ộ p cho b ê n t h ứ 3) D: Nh ậ n tr ự ct i ế p
+( T r ả sau) 
+B   C 
+1 
+2 
+3 
+6 
+7 
+8 
+9 
+10 
+4 
+5 
+
+[PAGE 96]
+A: Kh ô ng hi ể n   t h ị   B:
+Hi ể n   t h ị A   B 
+Phân loại Sổ đăng ký 
+L ự a   ch ọ n ph â n l o ạ iS ổ đ ă n gk ý mo ng mu ố n. 
+1 
+Địa chỉ của đất trên Sổ đăng ký 
+Nh ậ p   đ ị ac h ỉ đ ị a đ i ể mc ủ a   đ ấ ttrong S ổ   đ ă n gk ý 
+2 
+Tên toà nhà 
+Nh ậ p t ê nt o à   nh à   r ồ inh ấ n   “ T ì mk i ế m ” . 
+3 
+Có in lịch sử biến động đất đai hay khô ng 5 
+7   Có in lịch sử quyền sở hữu hay khô ng 
+A: S ổ đ ă n gk ý s ử d ụ ng   đ ấ tB: S ổ đ ă n g
+k ý s ử d ụ ng r ừ ng A   B 
+Nhập số toà 
+– s ố ph ò ng r ồ inh ấ n   “ T ì mki ế m ” 
+4 
+6 
+In hồ sơ đã cấp 
+A: Kh ô ng in
+B: In A   B 
+5 
+Hướng dẫn các hạng
+mục màn hì nh đăng ký 
+Cấp   Bản   sao   Sổ Đăng   ký   sử 
+dụng   đất   (rừng)   (Bản   đăng   ký 
+quyền   sử   dụng   đất) 
+1.Ch ọ n   “ MyGOV > Chi t i ế t đ ă n gk ý c ủ a   t ô i> Chi t i ế t đ ă n gk ý d ị ch   v ụ ” ở Menu ph í a   tr ê n. 
+2. Sau khi x á c   nh ậ n chi t i ế t đ ã đ ă n g   k ý trong danh s á ch,   nh ấ n n ú t “ I n ” đ ể c ó  t h ể in   gi ấ y ch ứ ng nh ậ n. 
+3. X á c   nh ậ n gi ấ y   ch ứ ng nh ậ n   đ ã in. 
+1 
+2 
+3 
+6 
+7 
+4 
+5 
+Có in lịch sử quyền sở hữu hay khô ng 
+A: Kh ô ng in
+B: In A   B 
+6 
+
+[PAGE 97]
+Government24   Service 
+Bản sao Căn cước công dân 
+
+[PAGE 98]
+GOV.KR Service Usage Guide 
+Bản sao Căn cước công dân 
+B ạ n v ẫ n   đ ang c ấ p   B ả n sao C ă n c ư ớ cc ô ng d â n (B ả n   t r í c hl ụ c )t ạ iTrung t â m C ư   d â n sao? 
+C ó   th ể   c ấ p   mi ễ n p h í B ả n sao C ă n c ư ớ cc ô ng d â n (B ả n   t r í c hl ụ c )th ô ng qua trang w e b t ạ iGovernment 24. H y v ọ ng k ể t ừ g i ờ b ạ n   c ó th ể 
+c ấ p   B ả n sao C ă n c ư ớ cc ô ng d â n   (B ả n   t r í c hl ụ c )tr ự ctuy ế n   d ễ d à ng v à thu ậ n t i ệ nt ạ iGovern- ment 24. 
+Nh ấ n v à o   n ú t   Login   ở m à n h ì nh   ch í nh   c ủ a   Goverment 24   đ ể t i ế nh à nh   đ ă n gnh ậ p. 
+※ C ó   th ể  s ử d ụ ng d ị ch   v ụ  Government 24 d ễ d à ng h ơ n n ế u   đ ă n gk ý th à nh   vi ê n. 
+※ Vui l ò ngt i ế nh à nh   đ ă n gk ý th à nh   vi ê n   n ế u   b ạ n ch ư a ph ả i
+l à th à nh vi ê n   c ủ a   Government 24. 
+H   4   n g d ẫ n s ử   d ụ ng d c ch v ụ 
+1 
+Đăng nhập vào
+Government 24 
+L 4 u   ý 
+회원가입 
+C ầ n   đ ă n gnh ậ p X á c   th ự c   đ ể c ấ p
+B ả nsao C ă n c ướ c c ô ng d â n
+(B ả n   t r í c hl ụ c) th ô ng qua
+Government 24. Vui l ò ng
+chu ẩ n b ị X á c   th ự c m ong mu ố n
+nh ư   X á c   th ự c   đ ơ ngi ả nho ặ c X á c
+th ự c chung/t à i ch í nh,   v.v.
+tr ướ c khi s ử d ụ ng d ị ch   v ụ . 
+
+[PAGE 99]
+Ch ọ n d ị ch   v ụ “ B ả nsao C ă n c ư ớ cc ô ng d â n   (B ả n   t r í c hl ụ c ) ” ở m à n h ì nh   ch í nh. 
+2 
+Lựa chọn dịch vụ 
+Sau khi x á c   nh ậ n trang h ướ ng   d ẫ n   chi t i ế tc ủ a   d ị ch   v ụ ,nh ấ n n ú t   “ C ấ p ” đ ể chuy ể n sang m à n h ì nh   đ ă n gk ý 
+c ấ p. 
+3 
+Xác nhận màn hình chi
+tiết của dịch vụ 
+
+[PAGE 100]
+Nh ấ n n ú t “ Đ ă n gk ý ” sau khi x á c   nh ậ n th ô ng tin   đ ă n gk ý nh ư   đ ị ac h ỉ t r ê nC ă n c ư ớ cc ô ng d â n,   v.v.   đ ể ho à n th à nh
+vi ệ c đ ă n gk ý c ấ p   h ồ  s ơ đ ã l ự ach ọ n. 
+Ki ể m tra   l o ạ ih ồ s ơ d â n   s ự mu ố n   đ ă n gk ý .N ế u c ầ n   B ả n t r í c hl ụ cC ă n c ư ớ cc ô ng d â n   ho ặ c h ồ  s ơ ti ế ng
+Anh, vui l ò ng   nh ấ n v à o   “ M ở r ộ ng   c á c   l o ạ ik h á c ” đ ể l ự a ch ọ n m ộ t   l o ạ it ừ t ấ tc ả c á c   l o ạ id ị ch   v ụ . 
+4 
+Lựa chọn dịch vụ 
+5 
+Đăng ký dịch vụ 
+Ch ờ   m ộ t ch ú t!   N ế u c ầ n   đ i ề uch ỉ nh   chi t i ế tnh ư   th ê m ho ặ c b ớ t   th ô ng
+tin   m ong mu ố n trong ph ầ n th ô ng tin   n ộ idung
+c ấ p,   vui l ò ng   ch ọ n   “ C ấ ptu ỳ   c h ọ n ” ở ph ầ n l ự ach ọ n
+h ì nhth ứ c   c ấ p   sau   đ ó ch ọ n th ô ng   tin   mo ng
+mu ố n. 
+
+[PAGE 101]
+-   Cấp   Bản   sao   Phiếu Căn   cước 
+công dân   (Tiếng   Anh) 
+Cấp   Bản   trí ch   lục   Phiếu   Căn cước 
+công dân   (Tiếng   Anh)   Lựa chọn đối tượng cấp 
+Ch ọ n   đ ố it ư ợ n g   c ấ p. 
+1 
+Chọn hì nh thức cấp 
+Nh ậ p   đ ị ac h ỉ đ ị a đ i ể m đ ấ tm ụ c t i ê u c ủ a   S ổ   đ ă n gk ý . 
+3 
+Phương thức nhận 
+L ự a ch ọ n ph ươ ng th ứ c nh ậ n 
+4 
+a:   C ấ p to à n   b ộ   b:
+C ấ p t u ỳ ch ọ n
+c:   Th ô ng tin   th à nh   ph ầ n h ộ gia   đì nh   d:
+Th ô ng tin   th à nh   vi ê nh ộ gia   đì nh   e:   S ố 
+ph í a   sau c ủ a   s ố C ă n c ư ớ cc ô ng d â n 
+2-A: C ấ p t r ự ctuy ế n   (B ả n   th â n   t ự in)
+2-B: C ấ p t r ự ctuy ế n   ( V í t à il i ệ u đ i ệ nt ử )
+2-C: C ấ p t r ự c   tuy ế n   (N ộ p cho b ê n t h ứ 3) 2-D:
+B ư u   đ i ệ nth ô ng th ườ ng   đ ã đ ă n gk ý   2-E: B ư u   đ i ệ n
+th ô ng th ườ ng 
+A   B 
+A: B ả n   th â n   B:
+Th à nh vi ê n   kh á c   c ủ a   h ộ gia   đ ì n h 
+1 
+4 
+2-C 2-A
+2-D 
+2-B
+2-E 
+1 
+1   Đồng ý sử dụng thông tin Hộ chiếu 
+Ch ọ n   đ ồ n g ý v ớ ivi ệ cs ử d ụ ng H ộ   chi ế u   c ủ a   B ộ   Ngo ạ i giao. 
+1-A   1-B   1-A Kh ô ng   đ ồ n g ý 
+2 
+1-B   Đồ ng ý 
+2   Xác nhận địa chỉ trên Căn cước công dân 
+3   Ch ọ n khu v ự c   c ủ a   đ ị ac h ỉ m à   b ả n th â n   đ ã đ ă n gk ý 
+a   b 
+c
+d
+e 
+
+[PAGE 102]
+L 4 u   ý. 
+.Tr ườ ng   h ợ p l ự ach ọ n   “ C ấ pt r ự c   tuy ế n   (B ả n th â n   t ự i n ) ” trong ph ươ ng   th ứ c   nh ậ n,   c ó th ể   tr ự c   t i ế pin   v à c ầ n
+ph ả i   k ế tn ố iv ớ it h i ế tb ị in.   Vui l ò ng   tham kh ả o h ướ ng   d ẫ n   c à i đ ặ t ,s ử   d ụ ng m á y in   trong ph ầ n h ướ ng   d ẫ n s ử 
+d ụ ng t h i ế tb ị t ư ơ ng   ứ ng. 
+1.Ch ọ n   “ MyGOV > Chi t i ế t đ ă n gk ý c ủ a   t ô i> Chi t i ế t đ ă n gk ý d ị ch   v ụ ” ở Menu ph í a   tr ê n. 
+6 
+In hồ sơ đã cấp 
+2. Sau khi x á c   nh ậ n chi t i ế t đ ã đ ă n gk ý trong danh s á ch,   nh ấ n n ú t “ I n ” đ ể c ó t h ể in   gi ấ y ch ứ ng nh ậ n. 
+3. X á c   nh ậ n gi ấ y   ch ứ ng nh ậ n   đ ã in. 
+
+[PAGE 103]
+Government24   Service 
+đăng ký thành viên 
+
+[PAGE 104]
+GOV.KR Service Usage Guide 
+đăng ký thành viên 
+Ng ư ờ i   n ư ớ c   ngo à i kh ô ng ph ả i   l à c ô ng d â n H à n Qu ố c mu ố n s ử   d ụ ng Government 24 t h ì ph ả i l à m nh ư   th ế   n à o? 
+C á c d ị ch   v ụ c ủ a   Government 24 l à nh ữ ng d ị ch   v ụ n g ư ờ in ư ớ cngo à i   c ũ ng c ó th ể s ử d ụ ng. Ng ườ i   n ư ớ cngo à i   vui l ò ng   đ ă n gk ý th à nh vi ê n   r ồ i 
+đ ă n gnh ậ p   đ ể s ử d ụ ng c á c   d ị ch   v ụ n à y. 
+Nh ấ n v à o   “ Đ ă n gk ý th à nh v i ê n ” trong m à n h ì nh   ch í nh   c ủ a   Government 24   đ ể chuy ể n   đ ế n m à n h ì nh   đ ă n gk ý 
+th à nh vi ê n. 
+H   4   n g d ẫ n s ử   d ụ ng d c ch v ụ 
+1 
+Đăng ký thành viên
+Government 24 
+회원가입 
+
+[PAGE 105]
+2 
+Đồng ký Điều khoản
+thành viên 
+Ch ọ n   “ Đ ồ n g ý ” sau khi x á c   nh ậ n   đ i ề ukho ả n th à nh vi ê n   r ồ inh ấ n n ú t “ T i ế ptheo ”   đ ể th ự c hi ệ n   b ư ớ ct i ế ptheo. 
+1   Đồ ng ý to à nb ộ 
+1 
+
+[PAGE 106]
+3 
+E Nn ht ậ e p r t M he ôm ng be tir nIt n h fo àr n m ha vt ii ê o n n 
+Ch ờ   m ộ t ch ú t!   Sau khi   nh ậ p   ID,   vui l ò ngnh ấ n   n ú t “ X á cnh ậ n tr ù ng   l ặ p ” đ ể ki ể m   tra ID   đ ã b ị s ử d ụ ng
+ch ư a.
+Vui l ò ng   nh ậ p m ậ t kh ẩ u g ồ m 9~12 k ý t ự ,t ấ tc ả ch ữ   c á i+ s ố + k ý t ự   đ ặ cbi ệ t 
+* Ph â n b i ệ tk ý t ự v i ế thoa v à v i ế tth ườ ng. 
+* K ý t ự đ ặ cb i ệ tkh ô ng t h ể s ử d ụ ng:   < > _   “ ‘ 
+Sau khi nh ậ p ch í nh   x á c   th ô ng tin   th à nh vi ê n   mu ố n s ử d ụ ng, nh ấ n n ú t   “ Ho à n th à nh   đ ă n gk ý ” đ ể 
+k ế tth ú c   đ ă n gk ý th à nh vi ê n. 
+1   H ọ   t ê n(b ắ tbu ộ c) 
+2   S ố C ă n c ư ớ cc ô ng d â n   ( s ố đ ă n gk ý n g ư ờ in ư ớ cngo à i)   (b ắ tbu ộ c) 
+3   ID (b ắ tbu ộ c) 
+4   M ậ t   kh ẩ u   (b ắ tbu ộ c) 
+5   X á c   nh ậ n   m ậ t   kh ẩ u   (b ắ tbu ộ c) 
+6   L ự a   ch ọ n   ph ươ ng   th ứ c   x á c   th ự c   (b ắ tbu ộ c) 
+1 
+2 
+3 
+4 
+5 
+6 

@@ -1,0 +1,2399 @@
+
+
+
+
+
+
+
+
+
+
+ 
+
+ 
+
+ 
+
+
+
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<title>충남청년포털</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">	
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width">
+	<meta name="subject" content="">
+	<meta name="keywords" content="">
+	<meta name="author" content="">
+	<meta name="copyright" content="copyrights Chungnam Provincial Government all rights reserved">
+
+	<!-- SEO -->
+	
+
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="충남청년포털">
+<meta property="og:title" content="충남청년포털">
+<meta property="og:url" content="http://youth.chungnam.go.kr/web/main/main">
+<meta property="og:description" content="충남청년포털,Home, 메인 사이트로 최초 생성돼 있고 삭제할 수 없다. cms 를 호출할 사이트 이며 사용자 사이트가 하나일 경우 같은도메인을 사용하면 된다.">
+<meta property="og:image" content="http://youth.chungnam.go.kr/design/theme/cnyouth/images/logo-200x200.gif">
+<meta property="og:image:height" content="200">
+<meta property="og:image:width" content="200">
+<meta name="name" content="">
+<meta name="keywords" content="충남청년포털,Home" >
+<meta name="description" content="충남청년포털,Home, 메인 사이트로 최초 생성돼 있고 삭제할 수 없다. cms 를 호출할 사이트 이며 사용자 사이트가 하나일 경우 같은도메인을 사용하면 된다." >
+<meta name="robots" content="index,follow">
+<meta name="googlebot" content="index,follow,snippet,archive">
+<link rel="image_src" href="http://youth.chungnam.go.kr/design/theme/cnyouth/images/logo-200x200.gif" >
+	<!-- //SEO -->
+	
+	<!-- css  -->
+	<link type="text/css" rel="stylesheet" href="/design/theme/cnyouth/css/slick.css">
+	<link type="text/css" rel="stylesheet" href="/design/theme/cnyouth/css/GmarketSans.css">
+	<link type="text/css" rel="stylesheet" href="/design/theme/cnyouth/css/swiper-bundle.min.css">
+	<link type="text/css" rel="stylesheet" href="/design/theme/cnyouth/css/common.css">
+	<!-- css 메인페이지용 -->
+	<link type="text/css" rel="stylesheet" href="/design/theme/cnyouth/css/main.css">
+	<link type="text/css" rel="stylesheet" href="/design/theme/cnyouth/css/respon.css">
+	<link type="text/css" rel="stylesheet" href="/design/theme/cnyouth/css/aos.css">
+	
+	<!-- js  -->
+	<link href="/design/common/js/jquery-ui-1.12.1/jquery-ui.min.css" rel="stylesheet" type="text/css" />
+	
+	
+
+
+	<script src="/design/common/js/jquery.min.js"></script>
+	<script src="/design/common/js/jquery.cookie.js"></script>
+	<script src="/design/common/js/jquery.drags.js"></script>
+	<script src="/design/common/js/common.js"></script>
+	
+	<script src="/design/theme/cnyouth/js/slick.js"></script>
+	<script src="/design/theme/cnyouth/js/swiper-bundle.min.js"></script>
+	<script src="/design/theme/cnyouth/js/aos.js"></script>
+	<script src="/design/theme/cnyouth/js/common.js"></script>
+	<script src="/design/theme/cnyouth/js/main.js"></script>	
+	
+	
+	<!-- Global -->
+	<script>
+var GLOBAL = {
+		APP_PATH:'/web/main',
+		CONTEXT_PATH:'',
+		
+		API_PATH:'/api',
+		siteId:'asa',
+		menuId:'home',
+		SECURITY_TOKEN_NAME:'_sToken',
+		SECURITY_TOKEN:'1790939646844_1a16a09950486985a03866a6848fd8497e2d8a1b12e67c7bb83fd551f0ce7e8e',
+		SECURITY_ASYNC_TOKEN_NAME:'',
+		SECURITY_ASYNC_COOKIE_NAME:'',
+		
+		SITE_LOCALE:'ko_KR',
+		MOBILE:false
+		};
+</script>
+
+	
+	<script>
+	jQuery(function($){
+		$(document).ready(function(){
+	        AOS.init({
+	            duration: 2000,
+	            once: true,
+	        });
+	    })
+	});
+	</script>
+</head>
+<body>
+
+
+
+
+
+<script>
+jQuery(function($){
+
+	if (!$.cookie('asa_not_today_38') && $('#layer_popup_38').length === 0) {
+		var html = '<div class="layer-popup" id="layer_popup_38" tabindex="1" style="width: 350px; z-index : 99978; position:absolute; top:0px; left:px;">';
+				// html += '<a class="layer-link" href="https://youth.chungnam.go.kr/web/main/bbs/cnyouth_idea/list" target="_blank">';		
+				html += '<img class="layer-popup-image" src="/web/main/file/image/uu/d18acd9226074063bdb229e802ccd91c" alt="" style="width: 350px;"/>';
+				// html += '</a>';
+				html += '<div class="layer-link-wrap"><a class="layer-link" href="https://youth.chungnam.go.kr/web/main/bbs/cnyouth_idea/list" target="_blank">바로가기</a></div>';
+				html += '<div class="not-today" >';
+				html += `<label class="not-today-38" style="cursor: pointer;">`;
+				html += `<input id="not_today_38" type="checkbox" name="notToday" value="1" style="width: 16px; height: 16px; vertical-align: middle; margin-right: 5px;"/> 오늘 하루 보지 않기`;
+				html += `</label>`;
+					html += ' <a href="#layer_close" class="layer-close-38"><img src="/design/common/images/asset/close.png" alt="닫기"></a>';
+				html += '</div>';
+			html += '</div>';
+		var layer_popup_38 = $(html);
+		$('body').append(layer_popup_38);
+		layer_popup_38.show();
+		//layer_popup_38.drags();
+		$('.layer-close-38').click(function(e){
+			//$(e.target).closest('.layer-popup').remove();
+			$('#layer_popup_38').remove();
+		});
+		$('.not-today-38').click(function(e){
+			$.cookie('asa_not_today_38', '1', {expires : 1, path : '/'});
+			$('#layer_popup_38').remove(); 
+		});
+		
+		if(false ){
+			$('.layer-popup').css({
+				width: (window.innerWidth > 0) ? window.innerWidth : screen.width
+				, top: 0
+				, left: 0
+			});
+			$('.layer-popup-image').css({
+				width: (window.innerWidth > 0) ? window.innerWidth : screen.width
+			});
+		}
+	}
+
+});
+</script>
+
+	<ul id="skip-nav">
+		<li><a href="#container">본문 바로가기</a></li>
+    	<li><a href="#gnb">주메뉴 바로가기</a></li>
+	</ul>
+	<!-- wrap -->
+	<div id="wrap" class="">
+		<!-- HEADER -->
+        <header id="header" class="header">
+        	<div class="inner">
+        		<div class="header_box">
+        			<div class="top_head">
+	        			 <h1>
+	        			 	<a href="/web/main/main" title="충남청년포털"><img src="/design/theme/cnyouth/images/hLogo01.png" alt="충남청년포털"></a>
+	        			 </h1>
+	        			 
+
+
+
+<script>
+jQuery(function($){
+	$("#totSearch").click(function(){
+		$("#pQuery").val($("#pQuery_tmp").val());
+		$("#frm").submit();		
+	});
+});
+</script>
+
+<div class="r_box">
+    <ul class="log_box">
+	
+        <li><a href="/web/main/member/login?returnUrl=http://youth.chungnam.go.kr/web/main/main" title="로그인">로그인</a></li>
+        <li><a href="/web/main/member/agreement" title="회원가입">회원가입</a></li>
+    
+    
+    </ul>
+    <div class="serch_box">
+        
+        <div class="nav_all">
+            <a href="#none" class="hambur_box">
+                <span class="hambur_inner">전체메뉴열기</span>
+            </a>
+            <div></div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+        			 </div>
+        			 <div class="bott_head">
+	        			 <nav id="gnb" class="header-menu">
+	        			 	<ul class="depth1">
+	        			 		
+
+
+
+
+
+
+
+
+
+
+<li><a href="/web/main/contents/M070-02"><span>충남 청년정책</span></a><div class="depth2_box"><ul class="inner"><li class="depIn"><a href="#none">충남 청년정책</a><ul><li><a href="#none" class="depth2">청년정책</a><div class="depth3"><a href="/web/main/contents/M070-02">조직도</a><a href="/web/main/contents/M010-01">정책개요</a></div></li><li><a href="#none" class="depth2">충남청년센터</a><div class="depth3"><a href="/web/main/contents/M080-01">센터소개</a><a href="/web/main/contents/M080-03">조직도</a></div></li><li><a href="#none" class="depth2">청년정책 검색</a><div class="depth3"><a href="/web/main/customSupp/list">맞춤형 청년정책</a><a href="https://www.youthcenter.go.kr/youthPolicy/ythPlcyTotalSearch">중앙정부 및 타 지자체 정책</a></div></li><li><a href="/web/main/youthSupportInfo/list">청년 지원정보</a></li><li><a href="/web/main/contents/M010-07">청년지원 사이트</a></li></ul></li></ul></div></li><li><a href="/web/main/bbs/cnyouth_notice/list"><span>소통과 공감</span></a><div class="depth2_box"><ul class="inner"><li class="depIn"><a href="#none">소통과 공감</a><ul><li><a href="#none" class="depth2">충남청년 소식</a><div class="depth3"><a href="/web/main/bbs/cnyouth_notice/list">공지사항</a><a href="/web/main/bbs/cnyouth_prom_ref/list">자료실</a><a href="/web/main/bbs/cnyouth_photo/list">사진 게시판</a><a href="/web/main/bbs/cnyouth_video/list">영상 게시판</a></div></li><li><a href="/web/main/bbs/organ_notice/list">전국 청년 소식</a></li><li><a href="#none" class="depth2">청년 공간정보</a><div class="depth3"><a href="/web/main/youthSpaceInfo/SI01/list">청년 공간정보</a><a href="/web/main/youthSpaceInfo/SI02/list">청년 공간홍보</a></div></li><li><a href="/web/main/survey/list">설문조사</a></li><li><a href="/web/main/bbs/cnyouth_idea/list">청년정책 아이디어 공장</a></li></ul></li></ul></div></li><li><a href="/web/main/customSupp/M030-01/list"><span>일자리ㆍ금융</span></a><div class="depth2_box"><ul class="inner"><li class="depIn"><a href="#none">일자리ㆍ금융</a><ul><li><a href="/web/main/customSupp/M030-01/list">진로탐색</a></li><li><a href="/web/main/customSupp/M030-02/list">취업지원</a></li><li><a href="/web/main/customSupp/M030-03/list">창업지원</a></li><li><a href="/web/main/customSupp/M030-04/list">금융지원</a></li><li><a href="#none" class="depth2">청년친화기업</a><div class="depth3"><a href="/web/main/bbs/cnyouth_friendly/list">2024년 청년친화기업</a><a href="/web/main/bbs/cnyouth_friendly2025/list">2025년 청년친화기업</a><a href="/web/main/bbs/cnyouth_friendly2026/list">2026년 청년친화기업</a></div></li><li><a href="/web/main/youthDB/wholeList">청년DB</a></li></ul></li></ul></div></li><li><a href="/web/main/customSupp/M040-05/list"><span>주거ㆍ복지</span></a><div class="depth2_box"><ul class="inner"><li class="depIn"><a href="#none">주거ㆍ복지</a><ul><li><a href="/web/main/customSupp/M040-05/list">주거지원</a></li><li><a href="/web/main/customSupp/M040-06/list">복지지원</a></li><li><a href="/web/main/share/center/list">공유물품대여</a></li></ul></li></ul></div></li><li><a href="/web/main/customSupp/M050-07/list"><span>영농ㆍ정착</span></a><div class="depth2_box"><ul class="inner"><li class="depIn"><a href="#none">영농ㆍ정착</a><ul><li><a href="/web/main/customSupp/M050-07/list">영농역량강화</a></li><li><a href="/web/main/customSupp/M050-08/list">청년정착지원</a></li></ul></li></ul></div></li><li><a href="/web/main/customSupp/M060-09/list"><span>문화ㆍ활동</span></a><div class="depth2_box"><ul class="inner"><li class="depIn"><a href="#none">문화ㆍ활동</a><ul><li><a href="/web/main/customSupp/M060-09/list">문화지원</a></li><li><a href="/web/main/customSupp/M060-10/list">활동지원</a></li><li><a href="/web/main/customSupp/M060-11/list">행사지원</a></li></ul></li></ul></div></li>
+	        			 	</ul>
+	        			 </nav>
+        			 </div>
+        		</div>
+        		<div class="mob_header_box">
+                    <div class="nav_all">
+                        <a href="#none" class="hambur_box">
+                            <span class="hambur_inner">전체메뉴열기</span>
+                        </a>
+						<div></div>
+					</div>
+					<h1><a href="/web/main/main" title="충남청년포털"><img src="/design/theme/cnyouth/images/hLogo01.png" alt="충남청년포털"/></a></h1>
+					<button type="button" class="search_btn" title="검색창 열기">
+						<img src="/design/theme/cnyouth/images/search_icon01.png" alt="검색">
+					</button>
+                </div>
+        	</div>
+        	<div class="totalSearch focusOn">
+        		
+
+
+
+
+<div class="inner">
+    <div class="search_form">
+        <form id="frm" action="/web/main/youthSearch/list" method="post">
+        	<input type="hidden" name="_sToken" value="1790939646844_1a16a09950486985a03866a6848fd8497e2d8a1b12e67c7bb83fd551f0ce7e8e" />
+        	<input type="hidden" name="pQuery" id="pQuery">
+            <div>
+                <input type="text" name="pQuery_tmp" id="pQuery_tmp" placeholder="검색어를 입력보세요." title="검색어 입력창">
+                <button class="btn_totalSearch" id="btn_totalSearch" type="submit">검색</button>
+            </div>
+        </form>
+    </div>
+    <ul>
+        <li>
+            <div>
+                <h3>주간 인기 검색어</h3>
+            </div>
+            <div class="scroll_box">
+                <ul id="weeklyHeader">
+                    <li>
+                        <span class="rang_num">1</span>
+                        <a href="http://yjit58.asadal.com/chnYouth/index.html#none" title="지원금">
+                            지원금
+                        </a>
+                    </li>
+                    <li>
+                        <span class="rang_num">2</span>
+                        <a href="http://yjit58.asadal.com/chnYouth/index.html#none" title="신청">
+                            신청
+                        </a>
+                    </li>
+                    <li>
+                        <span class="rang_num">3</span>
+                        <a href="http://yjit58.asadal.com/chnYouth/index.html#none" title="">
+                            창업
+                        </a>
+                    </li>
+                    <li>
+                        <span class="rang_num">4</span>
+                        <a href="http://yjit58.asadal.com/chnYouth/index.html#none" title="">
+                            청년
+                        </a>
+                    </li>
+                    <li>
+                        <span class="rang_num">5</span>
+                        <a href="http://yjit58.asadal.com/chnYouth/index.html#none" title="">
+                            청년지원
+                        </a>
+                    </li>
+                    <li>
+                        <span class="rang_num">6</span>
+                        <a href="http://yjit58.asadal.com/chnYouth/index.html#none" title="">
+                            청년정책
+                        </a>
+                    </li>
+                    <li>
+                        <span class="rang_num">7</span>
+                        <a href="http://yjit58.asadal.com/chnYouth/index.html#none" title="">
+                            전세
+                        </a>
+                    </li>
+                    <li>
+                        <span class="rang_num">8</span>
+                        <a href="http://yjit58.asadal.com/chnYouth/index.html#none" title="">
+                            지원금
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </li>
+        <li>
+            <div>
+                <h3>월간 인기 검색어</h3>
+            </div>
+            <div class="scroll_box">
+                <ul id="dailyHeader">
+                    <li>
+                        <span class="rang_num">1</span>
+                        <a href="http://yjit58.asadal.com/chnYouth/index.html#none" title="청년수당">
+                            청년수당
+                        </a>
+                    </li>
+                    <li>
+                        <span class="rang_num">2</span>
+                        <a href="http://yjit58.asadal.com/chnYouth/index.html#none" title="교통비">
+                            교통비
+                        </a>
+                    </li>
+                    <li>
+                        <span class="rang_num">3</span>
+                        <a href="http://yjit58.asadal.com/chnYouth/index.html#none" title="">
+                            월세
+                        </a>
+                    </li>
+                    <li>
+                        <span class="rang_num">4</span>
+                        <a href="http://yjit58.asadal.com/chnYouth/index.html#none" title="">
+                            마음건강
+                        </a>
+                    </li>
+                    <li>
+                        <span class="rang_num">5</span>
+                        <a href="http://yjit58.asadal.com/chnYouth/index.html#none" title="">
+                            이사비
+                        </a>
+                    </li>
+                    <li>
+                        <span class="rang_num">6</span>
+                        <a href="http://yjit58.asadal.com/chnYouth/index.html#none" title="">
+                            영농지원
+                        </a>
+                    </li>
+                    <li>
+                        <span class="rang_num">7</span>
+                        <a href="http://yjit58.asadal.com/chnYouth/index.html#none" title="">
+                            전세
+                        </a>
+                    </li>
+                    <li>
+                        <span class="rang_num">8</span>
+                        <a href="http://yjit58.asadal.com/chnYouth/index.html#none" title="">
+                            지원금
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </li>
+    </ul>
+</div>
+
+        	</div>
+        </header>
+        <div class="all_menu">
+        	<h3><a href="/web/main/main" title="충남청년포털"><img src="/design/theme/cnyouth/images/hLogo01.png" alt="충남청년포털"></a></h3>
+       		<!-- all menu -->
+       		<div class="all_menu_inner">
+				
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<ul><li class="on"><a href="#none">충남 청년정책</a><ul><li><a href="#none" class="depth2">청년정책</a><div class="all_menu_depth3"><a href="/web/main/contents/M070-02">조직도</a><a href="/web/main/contents/M010-01">정책개요</a></div></li><li><a href="#none" class="depth2">충남청년센터</a><div class="all_menu_depth3"><a href="/web/main/contents/M080-01">센터소개</a><a href="/web/main/contents/M080-03">조직도</a></div></li><li><a href="#none" class="depth2">청년정책 검색</a><div class="all_menu_depth3"><a href="/web/main/customSupp/list">맞춤형 청년정책</a><a href="https://www.youthcenter.go.kr/youthPolicy/ythPlcyTotalSearch" title="새창" target="_blank">중앙정부 및 타 지자체 정책</a></div></li><li><a href="/web/main/youthSupportInfo/list" class="depth2">청년 지원정보</a></li><li><a href="/web/main/contents/M010-07" class="depth2">청년지원 사이트</a></li></ul></li><li class="on"><a href="#none">소통과 공감</a><ul><li><a href="#none" class="depth2">충남청년 소식</a><div class="all_menu_depth3"><a href="/web/main/bbs/cnyouth_notice/list">공지사항</a><a href="/web/main/bbs/cnyouth_prom_ref/list">자료실</a><a href="/web/main/bbs/cnyouth_photo/list">사진 게시판</a><a href="/web/main/bbs/cnyouth_video/list">영상 게시판</a></div></li><li><a href="/web/main/bbs/organ_notice/list" class="depth2">전국 청년 소식</a></li><li><a href="#none" class="depth2">청년 공간정보</a><div class="all_menu_depth3"><a href="/web/main/youthSpaceInfo/SI01/list">청년 공간정보</a><a href="/web/main/youthSpaceInfo/SI02/list">청년 공간홍보</a></div></li><li><a href="/web/main/survey/list" class="depth2">설문조사</a></li><li><a href="/web/main/bbs/cnyouth_idea/list" class="depth2">청년정책 아이디어 공장</a></li></ul></li><li class="on"><a href="#none">일자리ㆍ금융</a><ul><li><a href="/web/main/customSupp/M030-01/list" class="depth2">진로탐색</a></li><li><a href="/web/main/customSupp/M030-02/list" class="depth2">취업지원</a></li><li><a href="/web/main/customSupp/M030-03/list" class="depth2">창업지원</a></li><li><a href="/web/main/customSupp/M030-04/list" class="depth2">금융지원</a></li><li><a href="#none" class="depth2">청년친화기업</a><div class="all_menu_depth3"><a href="/web/main/bbs/cnyouth_friendly/list">2024년 청년친화기업</a><a href="/web/main/bbs/cnyouth_friendly2025/list">2025년 청년친화기업</a><a href="/web/main/bbs/cnyouth_friendly2026/list">2026년 청년친화기업</a></div></li><li><a href="/web/main/youthDB/wholeList" class="depth2">청년DB</a></li></ul></li><li class="on"><a href="#none">주거ㆍ복지</a><ul><li><a href="/web/main/customSupp/M040-05/list" class="depth2">주거지원</a></li><li><a href="/web/main/customSupp/M040-06/list" class="depth2">복지지원</a></li><li><a href="/web/main/share/center/list" class="depth2">공유물품대여</a></li></ul></li><li class="on"><a href="#none">영농ㆍ정착</a><ul><li><a href="/web/main/customSupp/M050-07/list" class="depth2">영농역량강화</a></li><li><a href="/web/main/customSupp/M050-08/list" class="depth2">청년정착지원</a></li></ul></li><li class="on"><a href="#none">문화ㆍ활동</a><ul><li><a href="/web/main/customSupp/M060-09/list" class="depth2">문화지원</a></li><li><a href="/web/main/customSupp/M060-10/list" class="depth2">활동지원</a></li><li><a href="/web/main/customSupp/M060-11/list" class="depth2">행사지원</a></li></ul></li></ul>
+			</div>
+			<div class="bott_box">
+				<ul class="log_box">
+				
+					<li><a href="/web/main/member/login?returnUrl=http://youth.chungnam.go.kr/web/main/main" title="로그인">로그인</a></li>
+					<li><a href="/web/main/member/agreement" title="회원가입">회원가입</a></li>
+				
+				
+					
+					<li>
+						
+						
+						<a href="https://www.youtube.com/channel/UCboJhXNpjKROxeOsjvkyk9w" title="유튜브" target="_blank"><img src="/design/theme/cnyouth/images/youtube.png" alt=""/></a>
+                        <a href="https://ko-kr.facebook.com/echungnam/" title="페이스북" target="_blank"><img src="/design/theme/cnyouth/images/facebook.png" alt=""/></a>
+                        <a href="https://www.instagram.com/chungnam_official/?hl=ko" title="인스타그램" target="_blank"><img src="/design/theme/cnyouth/images/instar.png" alt=""/></a>
+					</li>
+				</ul>
+			</div>
+			<button type="button" title="전체메뉴닫기" class="all_menu_close">
+				<img src="/design/theme/cnyouth/images/close_icon01.png" alt="전체메뉴닫기">
+			</button>
+			<!-- all menu end -->
+		</div>
+
+
+<script>
+jQuery(function($){
+	
+	// popupzone
+	/*
+	$('.popupzone').flexslider({
+            animation: "slide",
+            controlNav: true,
+            animationLoop: true,
+            slideshow: true,
+            slideshowSpeed: 4000,
+            pauseOnHover: true,
+            pauseOnAction : true,
+            pausePlay: true
+     });
+	*/
+	$("#polDivCnSearch").on('change', function(e){
+		e.preventDefault();
+		var catId = $('#polDivCnSearch').find(':selected').val();
+		$('#polDivCnDetailSearch').empty();
+		$('#polDivCnDetailSearch').append("<option value=''>정책구분(충청남도 기준 상세)</option>");
+		if(catId == null || catId == ''){
+			return;
+		}
+		
+		$.ajax({
+			url : '/web/main/code/api/item/jsonList'
+			, type : 'get'
+			, data : {
+				catId : catId
+			}
+			, dataType: 'json'
+		}).done(function(result){
+			if(result.length > 0){
+
+				$.each(result, function(index, item){
+  					$('#polDivCnDetailSearch').append("<option value='"+ item.codeId +"'>"+ item.codeName +"</option>");
+				});
+			}
+		}).fail(function(result){
+			swal({
+                type: 'error',
+                title: '코드를 불러오지 못하였습니다.[fail]'
+            });
+		});
+	});
+	$(".sm_btn").on("click", function(e){
+		var polyBizSjnmSearch = $("#polyBizSjnmSearch").val();
+		if(polyBizSjnmSearch == null || polyBizSjnmSearch == ""){
+			var polDivCnSearch = $("#polDivCnSearch").val();
+			var polDivCnDetailSearch = $("#polDivCnDetailSearch").val();
+			if(polDivCnSearch == null || polDivCnSearch == ''){
+				alert("분야를 선택해 주세요.");
+				$("#polDivCnSearch").focus();
+				return false;
+			}
+			
+			if(polDivCnDetailSearch == null || polDivCnDetailSearch == ''){
+				alert("세부분야를 선택해 주세요.");
+				$("#polDivCnDetailSearch").focus();
+				return false;
+			}
+			$("#polDivCnCatMultiSearch").val(polDivCnSearch + "-" + polDivCnDetailSearch);
+		}/* else{
+			var polDivCnSearch = $("#polDivCnSearch").val();
+			var polDivCnDetailSearch = $("#polDivCnDetailSearch").val();
+			
+			if(polDivCnDetailSearch == null || polDivCnDetailSearch == ''){
+				alert("세부분야를 선택해 주세요.");
+				$("#polDivCnDetailSearch").focus();
+				return false;
+			}
+			$("#polDivCnCatMultiSearch").val(polDivCnSearch + "-" + polDivCnDetailSearch);
+		} */
+		$("#customSuppSearch").attr("action","/web/main/customSupp/list").submit();
+	});
+	
+	// Enter 키로 검색하기
+    document.getElementById("polyBizSjnmSearch").addEventListener("keypress", function(event) {
+        if (event.key === "Enter") { // Enter 키 감지
+            event.preventDefault(); // 기본 Enter 키 동작 방지 (폼 제출 방지)
+            var polyBizSjnmSearch = $("#polyBizSjnmSearch").val();
+    		if(polyBizSjnmSearch == null || polyBizSjnmSearch == ""){
+    			var polDivCnSearch = $("#polDivCnSearch").val();
+    			var polDivCnDetailSearch = $("#polDivCnDetailSearch").val();
+    			if(polDivCnSearch == null || polDivCnSearch == ''){
+    				alert("분야를 선택해 주세요.");
+    				$("#polDivCnSearch").focus();
+    				return false;
+    			}
+    			
+    			if(polDivCnDetailSearch == null || polDivCnDetailSearch == ''){
+    				alert("세부분야를 선택해 주세요.");
+    				$("#polDivCnDetailSearch").focus();
+    				return false;
+    			}
+    			$("#polDivCnCatMultiSearch").val(polDivCnSearch + "-" + polDivCnDetailSearch);
+    		}
+    		$("#customSuppSearch").attr("action","/web/main/customSupp/list").submit();
+        }
+    });
+	
+	
+	
+	/*$("#btn_mainTotalSearch").click(function(){
+		$("#pQuery").val($("#pQuery_tmp").val());
+		$("#frm_main").submit();		
+	});*/
+});
+</script>
+<!-- <script>
+	const chatID = 'ccfe8cbf-580a-4a50-b382-8a4178d53bf7';
+	const chatURL = 'https://youthchungnam.han.kr';
+	document.write('<script src="'+chatURL+'/chat/js/user_chaticon-last.js"><\/script>');
+</script> -->
+<!-- main -->
+ <main>
+<!-- container -->
+<div id="container">
+
+	<section class="m_cont1">
+		<div class="bg_img"></div>
+		<div class="inner">
+			<!-- 20250107 -->
+			<div class="t_cont">
+				<div class="cont_inner">
+					<h2>충남<span>청</span>년포털</h2>
+					<p>충청남도 청년들의 다양한 삶을 지원합니다.<br/>충청남도 청년포털은 청년에게 필요한 정책을 제공합니다.</p>
+				</div>
+				<div class="tp-banner-search-wrap">
+					<div class="banner">
+						
+						 <a href="/web/main/file/stream/uu/f2b2e7b2b1dd4600bdb92b592ab55123" target="_blank"><img src="/design/theme/cnyouth/images/tp_banner.png" alt="충남청년이 꼭 알아야 할 청년정책" title="충남청년이 꼭 알아야 할 청년정책"></a>
+					</div>
+					<div class="main_search">
+						<form id="frm_main" action="/web/main/youthSearch/list" method="post">
+						<input type="hidden" name="_sToken" value="1790939646844_1a16a09950486985a03866a6848fd8497e2d8a1b12e67c7bb83fd551f0ce7e8e" />
+							<!-- <input type="hidden" name="pQuery" id="pQuery"> -->
+							<div class="serch_in">
+								<!-- <input type="text" name="pQuery_tmp" id="pQuery_tmp" placeholder="검색어를 입력해 보세요." title="검색어 입력창"> -->
+								 <input type="text" name="pQuery" id="pQuery_main" placeholder="검색어를 입력해 보세요." title="검색어 입력창">
+								<button type="submit" class="searchOk" id="btn_mainTotalSearch" title="검색버튼" >
+									<img src="/design/theme/cnyouth/images/search_icon02.png" alt="">
+								</button>
+							</div>
+							
+							<!-- 20240228 수정s -->
+							<div class="suggest_box">
+								<p>주간청년정책</p>
+								<div class="suggest">
+								
+									 <a href="/web/main/bbs/cnyouth_prom_ref/755" title="">
+										<div class="tit">[충남청년정책NEWS] 2026년 9월 3주차</div>
+									</a>
+								
+									 <a href="/web/main/bbs/cnyouth_prom_ref/746" title="">
+										<div class="tit">[충남청년 스펙UP] 2026년 9월 2주차</div>
+									</a>
+								
+									 <a href="/web/main/bbs/cnyouth_prom_ref/745" title="">
+										<div class="tit">[충남청년정책NEWS] 2026년 9월 2주차</div>
+									</a>
+								
+									 <a href="/web/main/bbs/cnyouth_prom_ref/744" title="">
+										<div class="tit">[충남청년정책NEWS] 2026년 9월 1주차</div>
+									</a>
+								
+									 <a href="/web/main/bbs/cnyouth_prom_ref/729" title="">
+										<div class="tit">[충남청년 스펙UP] 2026년 8월 4주차</div>
+									</a>
+								
+								</div>
+							</div>
+							<!-- 20240228 수정e -->
+						</form>
+					</div>
+				</div>
+			</div>
+			<!-- 20250107 -->
+			<div class="b_cont">
+				<div class="srh_menu">
+					<h3>충청남도 청년정책 찾기</h3>
+					<div class="menu_box">
+						<form action="#" method="get" id="customSuppSearch" name="customSuppSearch">
+							<input type="hidden" name="polDivCnCatMultiSearch" id="polDivCnCatMultiSearch">
+							<div>
+								<select class="menu1" title="분야별" name="polDivCnSearch" id="polDivCnSearch">
+									<option value="" selected disabled hidden >분야</option>
+									
+										<option value="M030">일자리ㆍ금융</option>
+									
+										<option value="M040">주거ㆍ복지</option>
+									
+										<option value="M050">영농ㆍ정착</option>
+									
+										<option value="M060">문화ㆍ활동</option>
+									
+								</select>
+								<select class="menu2" title="세부분야별" name="polDivCnDetailSearch" id="polDivCnDetailSearch">
+									<option value="" selected disabled hidden >세부분야별</option>
+									<option></option>
+								</select>
+								<input type="text" id="polyBizSjnmSearch" name="polyBizSjnmSearch" placeholder="궁금한 청년정책을 검색하세요" title="검색어 입력">
+							</div>
+							<div class="btn_box">
+								<button type="button" class="sm_btn" title="정책찾기"><span>정책찾기</span></button>
+							</div>
+						</form>
+					</div>
+				</div>
+				<div class="noti_box" data-aos="fade-up">
+	                 <div class="noti_inner">
+	                     <h3>공지사항</h3>
+	                     <ul>
+	                     	
+	                         <li>
+	                             <a href="/web/main/bbs/cnyouth_notice/754" title="">
+	                                 <span class="isu_data">26.09.29</span>
+	                                 <div class="tit">사회연대경제 청년 일경험 시범사업 참여청년 5차 모집 공고</div>
+	                             </a>
+	                         </li>
+	                     	
+	                         <li>
+	                             <a href="/web/main/bbs/cnyouth_notice/741" title="">
+	                                 <span class="isu_data">26.09.15</span>
+	                                 <div class="tit">충남청년 정착플러스 통장 참여자 추가 모집 공고</div>
+	                             </a>
+	                         </li>
+	                     	
+	                         <li>
+	                             <a href="/web/main/bbs/cnyouth_notice/738" title="">
+	                                 <span class="isu_data">26.09.11</span>
+	                                 <div class="tit">2026 피크타임 페스티벌 관람 및 이용 안내(관람객 입장, 짐보관소, 행사장 안내도)</div>
+	                             </a>
+	                         </li>
+	                     	
+	                     </ul>
+	                     <a href="/web/main/bbs/cnyouth_notice/list" class="m_more" title="더보기"><img src="/design/theme/cnyouth/images/add_icon01.png" alt="공지사항"></a>
+	                 </div>
+	             </div>
+			</div>
+		</div>
+	</section>
+
+	<section class="m_cont2">
+		<div class="slide_box">
+			<h3 data-aos="fade-up">지원 가능한 사업</h3>
+			<p data-aos="fade-up" data-aos-duration="2500">신청 가능한 정책에 신청해 보세요!</p>
+			<div class="swiper-container">
+				<div class="swiper-wrapper m_slide1">
+					
+						<div class="swiper-slide">
+							<a href="/web/main/customSupp/M060-09/view?bizId=A20260309CT000000000003057" class="item">
+								<div class="item_inner">
+									<div class="img_box">
+										
+											
+											
+												<img src="/web/main/file/image/uu/6f0ffe9a034c4b61af659d056126c013" alt=""
+												onerror="this.src='/design/common/images/asset/noImage400x300.jpg'">
+											
+											
+									</div>
+									<div class="txt_box">
+										<h4>청년문화예술패스</h4>
+										<ul>
+											<li>
+												<span>대상</span>
+												<span>
+													
+														
+													
+														
+													
+														
+													
+														
+													
+														
+													
+														
+													
+														
+													
+														
+															[기타]
+														
+													
+												</span>
+											</li>
+											<li>
+												<span>모집기간</span>
+												<span>
+													
+														
+														
+															2026-01-01~2026-12-31
+														
+													
+												</span>
+											</li>
+											<li>
+												<span>신청방법</span>
+												<span>
+													
+														
+														링크를 통한 외부접수
+													
+												</span>
+											</li>
+										</ul>
+									</div>
+								</div>
+							</a>
+						</div>
+					
+						<div class="swiper-slide">
+							<a href="/web/main/customSupp/M060-09/view?bizId=A20260309CT000000000003056" class="item">
+								<div class="item_inner">
+									<div class="img_box">
+										
+											
+											
+												<img src="/web/main/file/image/uu/cf3c71593f534c12afd611e4f662c6ef" alt=""
+												onerror="this.src='/design/common/images/asset/noImage400x300.jpg'">
+											
+											
+									</div>
+									<div class="txt_box">
+										<h4>지역문화 전문인력 양성</h4>
+										<ul>
+											<li>
+												<span>대상</span>
+												<span>
+													
+														
+															[제한없음]
+														
+													
+														
+													
+														
+													
+														
+													
+														
+													
+														
+													
+														
+													
+														
+													
+												</span>
+											</li>
+											<li>
+												<span>모집기간</span>
+												<span>
+													
+														
+														
+															2026-01-01~2026-12-31
+														
+													
+												</span>
+											</li>
+											<li>
+												<span>신청방법</span>
+												<span>
+													
+														
+														링크를 통한 외부접수
+													
+												</span>
+											</li>
+										</ul>
+									</div>
+								</div>
+							</a>
+						</div>
+					
+						<div class="swiper-slide">
+							<a href="/web/main/customSupp/M060-09/view?bizId=A20260309CT000000000003054" class="item">
+								<div class="item_inner">
+									<div class="img_box">
+										
+											
+											
+												<img src="/web/main/file/image/uu/58ac62b4c1504829b39bd464f2dc3344" alt=""
+												onerror="this.src='/design/common/images/asset/noImage400x300.jpg'">
+											
+											
+									</div>
+									<div class="txt_box">
+										<h4>산업단지 청년문화센터 건립</h4>
+										<ul>
+											<li>
+												<span>대상</span>
+												<span>
+													
+														
+															[제한없음]
+														
+													
+														
+													
+														
+													
+														
+													
+														
+													
+														
+													
+														
+													
+														
+													
+												</span>
+											</li>
+											<li>
+												<span>모집기간</span>
+												<span>
+													
+														
+														
+															2026-01-01~2026-12-31
+														
+													
+												</span>
+											</li>
+											<li>
+												<span>신청방법</span>
+												<span>
+													
+														
+														링크를 통한 외부접수
+													
+												</span>
+											</li>
+										</ul>
+									</div>
+								</div>
+							</a>
+						</div>
+					
+						<div class="swiper-slide">
+							<a href="/web/main/customSupp/M040-06/view?bizId=A20260309CT000000000003053" class="item">
+								<div class="item_inner">
+									<div class="img_box">
+										
+											
+											
+												<img src="/web/main/file/image/uu/fbf9c693dc5c44bc87dede0dab8961b0" alt=""
+												onerror="this.src='/design/common/images/asset/noImage400x300.jpg'">
+											
+											
+									</div>
+									<div class="txt_box">
+										<h4>청년 등 생애주기별 마음건강사업</h4>
+										<ul>
+											<li>
+												<span>대상</span>
+												<span>
+													
+														
+															[제한없음]
+														
+													
+														
+													
+														
+													
+														
+													
+														
+													
+														
+													
+														
+													
+														
+													
+												</span>
+											</li>
+											<li>
+												<span>모집기간</span>
+												<span>
+													
+														
+														
+															2026-01-01~2026-12-31
+														
+													
+												</span>
+											</li>
+											<li>
+												<span>신청방법</span>
+												<span>
+													
+														
+														링크를 통한 외부접수
+													
+												</span>
+											</li>
+										</ul>
+									</div>
+								</div>
+							</a>
+						</div>
+					
+						<div class="swiper-slide">
+							<a href="/web/main/customSupp/M030-02/view?bizId=A20260309CT000000000003051" class="item">
+								<div class="item_inner">
+									<div class="img_box">
+										
+											
+											
+												<img src="/web/main/file/image/uu/e2593ae052514a6fb7530c905f132a4d" alt=""
+												onerror="this.src='/design/common/images/asset/noImage400x300.jpg'">
+											
+											
+									</div>
+									<div class="txt_box">
+										<h4>청년·사회초년생을 위한 필수 교육 운영</h4>
+										<ul>
+											<li>
+												<span>대상</span>
+												<span>
+													
+														
+													
+														
+													
+														
+													
+														
+													
+														
+													
+														
+													
+														
+													
+														
+															[기타]
+														
+													
+												</span>
+											</li>
+											<li>
+												<span>모집기간</span>
+												<span>
+													
+														
+														
+															2026-01-01~2026-12-31
+														
+													
+												</span>
+											</li>
+											<li>
+												<span>신청방법</span>
+												<span>
+													
+														
+														링크를 통한 외부접수
+													
+												</span>
+											</li>
+										</ul>
+									</div>
+								</div>
+							</a>
+						</div>
+					
+						<div class="swiper-slide">
+							<a href="/web/main/customSupp/M040-06/view?bizId=A20260309CT000000000003050" class="item">
+								<div class="item_inner">
+									<div class="img_box">
+										
+											
+											
+												<img src="/web/main/file/image/uu/ad871b2cc8dd4de688a3ad99143a8574" alt=""
+												onerror="this.src='/design/common/images/asset/noImage400x300.jpg'">
+											
+											
+									</div>
+									<div class="txt_box">
+										<h4>청년 자살예방 조기검진 및 심리지원</h4>
+										<ul>
+											<li>
+												<span>대상</span>
+												<span>
+													
+														
+															[제한없음]
+														
+													
+														
+													
+														
+													
+														
+													
+														
+													
+														
+													
+														
+													
+														
+													
+												</span>
+											</li>
+											<li>
+												<span>모집기간</span>
+												<span>
+													
+														
+														
+															2026-01-01~2026-12-31
+														
+													
+												</span>
+											</li>
+											<li>
+												<span>신청방법</span>
+												<span>
+													
+														
+														링크를 통한 외부접수
+													
+												</span>
+											</li>
+										</ul>
+									</div>
+								</div>
+							</a>
+						</div>
+					
+						<div class="swiper-slide">
+							<a href="/web/main/customSupp/M040-06/view?bizId=A20260309CT000000000003048" class="item">
+								<div class="item_inner">
+									<div class="img_box">
+										
+											
+											
+												<img src="/web/main/file/image/uu/6d447277796e4f20a633c903e2624a65" alt=""
+												onerror="this.src='/design/common/images/asset/noImage400x300.jpg'">
+											
+											
+									</div>
+									<div class="txt_box">
+										<h4>정신건강 심리상담 바우처 사업</h4>
+										<ul>
+											<li>
+												<span>대상</span>
+												<span>
+													
+														
+															[제한없음]
+														
+													
+														
+													
+														
+													
+														
+													
+														
+													
+														
+													
+														
+													
+														
+													
+												</span>
+											</li>
+											<li>
+												<span>모집기간</span>
+												<span>
+													
+														
+														
+															2026-01-01~2026-12-31
+														
+													
+												</span>
+											</li>
+											<li>
+												<span>신청방법</span>
+												<span>
+													
+														
+														링크를 통한 외부접수
+													
+												</span>
+											</li>
+										</ul>
+									</div>
+								</div>
+							</a>
+						</div>
+					
+						<div class="swiper-slide">
+							<a href="/web/main/customSupp/M040-06/view?bizId=A20260309CT000000000003043" class="item">
+								<div class="item_inner">
+									<div class="img_box">
+										
+											
+											
+												<img src="/web/main/file/image/uu/d1262abe45ba4bde8a1092d9870292a6" alt=""
+												onerror="this.src='/design/common/images/asset/noImage400x300.jpg'">
+											
+											
+									</div>
+									<div class="txt_box">
+										<h4>지역사회서비스 청년사업단</h4>
+										<ul>
+											<li>
+												<span>대상</span>
+												<span>
+													
+														
+															[제한없음]
+														
+													
+														
+													
+														
+													
+														
+													
+														
+													
+														
+													
+														
+													
+														
+													
+												</span>
+											</li>
+											<li>
+												<span>모집기간</span>
+												<span>
+													
+														
+														
+															2026-03-01~2026-12-31
+														
+													
+												</span>
+											</li>
+											<li>
+												<span>신청방법</span>
+												<span>
+													
+														
+														링크를 통한 외부접수
+													
+												</span>
+											</li>
+										</ul>
+									</div>
+								</div>
+							</a>
+						</div>
+					
+						<div class="swiper-slide">
+							<a href="/web/main/customSupp/M040-06/view?bizId=A20260309CT000000000003035" class="item">
+								<div class="item_inner">
+									<div class="img_box">
+										
+											
+											
+												<img src="/web/main/file/image/uu/fc434607111e4e26b67b895ceef87ecd" alt=""
+												onerror="this.src='/design/common/images/asset/noImage400x300.jpg'">
+											
+											
+									</div>
+									<div class="txt_box">
+										<h4>자립준비청년 지원</h4>
+										<ul>
+											<li>
+												<span>대상</span>
+												<span>
+													
+														
+															[제한없음]
+														
+													
+														
+													
+														
+													
+														
+													
+														
+													
+														
+													
+														
+													
+														
+													
+												</span>
+											</li>
+											<li>
+												<span>모집기간</span>
+												<span>
+													
+														
+														
+															2026-01-01~2026-12-31
+														
+													
+												</span>
+											</li>
+											<li>
+												<span>신청방법</span>
+												<span>
+													
+														
+														링크를 통한 외부접수
+													
+												</span>
+											</li>
+										</ul>
+									</div>
+								</div>
+							</a>
+						</div>
+					
+						<div class="swiper-slide">
+							<a href="/web/main/customSupp/M040-06/view?bizId=A20260309CT000000000003030" class="item">
+								<div class="item_inner">
+									<div class="img_box">
+										
+											
+											
+												<img src="/web/main/file/image/uu/bc1ab588b7a44375ae6192eeb2786fc9" alt=""
+												onerror="this.src='/design/common/images/asset/noImage400x300.jpg'">
+											
+											
+									</div>
+									<div class="txt_box">
+										<h4>청소년 한부모 복지급여 지원</h4>
+										<ul>
+											<li>
+												<span>대상</span>
+												<span>
+													
+														
+															[제한없음]
+														
+													
+														
+													
+														
+													
+														
+													
+														
+													
+														
+													
+														
+													
+														
+													
+												</span>
+											</li>
+											<li>
+												<span>모집기간</span>
+												<span>
+													
+														
+														
+															2026-01-01~2026-12-31
+														
+													
+												</span>
+											</li>
+											<li>
+												<span>신청방법</span>
+												<span>
+													
+														
+														링크를 통한 외부접수
+													
+												</span>
+											</li>
+										</ul>
+									</div>
+								</div>
+							</a>
+						</div>
+					
+					
+					</div>
+					</div>
+					<div class="control">
+						<div class="swiper_arrow">
+							<button class="swiper-button-prev">
+								<img src="/design/theme/cnyouth/images/arrow_prev.png" alt=""/>
+							</button>
+							<button class="swiper-button-next">
+								<img src="/design/theme/cnyouth/images/arrow_next.png" alt=""/>
+							</button>
+						</div>
+						<div class="scrollbar_box">
+							<!-- 네비게이션 버튼 -->
+							<div class="swiper-scrollbar"></div>
+							<!-- 스크롤바 -->
+						</div>
+					</div>
+		</div>
+	</section>
+	<section class="m_cont3">
+		 <!-- <div class="top_cont">
+			<div class="inner2">
+				<h3 data-aos="fade-up">생애주기별<span>정책</span></h3>
+				<ul>
+                   <li class="on">
+                       <a href="/web/main/contents/M010-06?dep=1" title="탐색기">
+                           <div>
+                               <p class="chk_cir"></p>
+                               <div class="tit_box"><span>탐색기</span></div>
+                               <div class="desc_box">
+                                   <span>사회에 진입하지 않은 학생 및 취업준비생 대상</span>
+                                   <p data-aos="fade-up"><img src="/design/theme/cnyouth/images/lcp_img01.png" alt=""></p>
+                               </div>
+                           </div>
+                       </a>
+                   </li>
+                   <li>
+                       <a href="/web/main/contents/M010-06?dep=2" title="사회진입기">
+                           <div>
+                               <p class="chk_cir"></p>
+                               <div class="tit_box"><span>사회진입기</span></div>
+                               <div class="desc_box">
+                                   <span>사회에 진입한<br>사회초년생 대상</span>
+                                   <p data-aos="fade-up"><img src="/design/theme/cnyouth/images/lcp_img02.png" alt=""></p>
+                               </div>
+                           </div>
+                       </a>
+                   </li>
+                   <li>
+                       <a href="/web/main/contents/M010-06?dep=3" title="안정기">
+                           <div>
+                               <p class="chk_cir"></p>
+                               <div class="tit_box"><span>안정기</span></div>
+                               <div class="desc_box">
+                                   <span>사회초년생에서 벗어나 안정된 사회생활을 하고 있는 청년 대상</span>
+                                   <p data-aos="fade-up"><img src="/design/theme/cnyouth/images/lcp_img03.png" alt=""></p>
+                               </div>
+                           </div>
+                       </a>
+                   </li>
+                   <li>
+                       <a href="/web/main/contents/M010-06?dep=4" title="전주기">
+                           <div>
+                               <p class="chk_cir"></p>
+                               <div class="tit_box"><span>전주기</span></div>
+                               <div class="desc_box">
+                                   <span>청년의 창업 준비단계부터 성장단계까지 청년 전체 대상</span>
+                                   <p data-aos="fade-up"><img src="/design/theme/cnyouth/images/lcp_img04.png" alt=""></p>
+                               </div>
+                           </div>
+                       </a>
+                   </li>
+               </ul> 
+			</div>
+		</div> -->
+		
+		<!-- 20240624 _s -->
+                <div class="bott_cont">
+                    <div class="inner2">
+                        <h3>청년공간</h3>
+                        <div class="slide_box">
+                            <div class="m_slide2">
+                                
+								<a href="/web/main/youthSpaceInfo/2010/view" title="세한대학교 취·창업지원센터(대학청년센터)" class="itme">
+                                    <div class="img_box">
+                                        
+											<img src="/web/main/file/image/uu/a3f7814527f54e6b801825e5c90a45dd" alt="세한대학교 취·창업지원센터(대학청년센터)" onerror="this.src='/design/common/images/asset/noImage400x300.jpg'">
+											
+											
+                                    </div>
+                                    <div class="txt_box">
+                                        <div class="box_inner">
+                                            <h4><span>세한대학교 취·창업지원센터(대학청년센터)</span></h4>
+                                            <div class="desc">
+                                                <div class="txt">
+                                                    <p class="addr">충남 당진시 신평면 세한대길 33 (남산리, 세한대학교 당진캠퍼스) 근학관 1층 취·창업지원센터</p>
+                                                    <p class="addr_tel"> <b>Tel:</b> 041-359-6106</p>
+                                                </div>
+                                                
+                                            </div>
+                                        </div>
+                                    </div>
+                               </a>
+								
+								<a href="/web/main/youthSpaceInfo/2009/view" title="국립공주대학교 예산캠퍼스 대학청년센터" class="itme">
+                                    <div class="img_box">
+                                        
+											<img src="/web/main/file/image/uu/96f27b05041b493f825c0e181a977a3c" alt="국립공주대학교 예산캠퍼스 대학청년센터" onerror="this.src='/design/common/images/asset/noImage400x300.jpg'">
+											
+											
+                                    </div>
+                                    <div class="txt_box">
+                                        <div class="box_inner">
+                                            <h4><span>국립공주대학교 예산캠퍼스 대학청년센터</span></h4>
+                                            <div class="desc">
+                                                <div class="txt">
+                                                    <p class="addr">충남 예산군 예산읍 대학로 54 (대회리, 공주대학교산업과학대학) .</p>
+                                                    <p class="addr_tel"> <b>Tel:</b> 041-635-1370</p>
+                                                </div>
+                                                
+                                            </div>
+                                        </div>
+                                    </div>
+                               </a>
+								
+								<a href="/web/main/youthSpaceInfo/2008/view" title="국립공주대학교 공주캠퍼스 대학청년센터" class="itme">
+                                    <div class="img_box">
+                                        
+											<img src="/web/main/file/image/uu/41d5ec22848f4de38c57cd7b071b89ae" alt="국립공주대학교 공주캠퍼스 대학청년센터" onerror="this.src='/design/common/images/asset/noImage400x300.jpg'">
+											
+											
+                                    </div>
+                                    <div class="txt_box">
+                                        <div class="box_inner">
+                                            <h4><span>국립공주대학교 공주캠퍼스 대학청년센터</span></h4>
+                                            <div class="desc">
+                                                <div class="txt">
+                                                    <p class="addr">충남 공주시 공주대학로 56 (신관동, 공주대학교) 대학본부 301호</p>
+                                                    <p class="addr_tel"> <b>Tel:</b> 041-850-0432~3</p>
+                                                </div>
+                                                
+                                            </div>
+                                        </div>
+                                    </div>
+                               </a>
+								
+								<a href="/web/main/youthSpaceInfo/2007/view" title="금산군청년센터 청년잇삼" class="itme">
+                                    <div class="img_box">
+                                        
+											<img src="/web/main/file/image/uu/1e663e9ac351456a97845bf39c570dfe" alt="금산군청년센터 청년잇삼" onerror="this.src='/design/common/images/asset/noImage400x300.jpg'">
+											
+											
+                                    </div>
+                                    <div class="txt_box">
+                                        <div class="box_inner">
+                                            <h4><span>금산군청년센터 청년잇삼</span></h4>
+                                            <div class="desc">
+                                                <div class="txt">
+                                                    <p class="addr">충남 금산군 금산읍 금산천1길 81-19 (중도리, 우리동네 아지트) 2층</p>
+                                                    <p class="addr_tel"> <b>Tel:</b> 041-750-3022</p>
+                                                </div>
+                                                
+                                            </div>
+                                        </div>
+                                    </div>
+                               </a>
+								
+								<a href="/web/main/youthSpaceInfo/2006/view" title="논산청년꿈키움광장" class="itme">
+                                    <div class="img_box">
+                                        
+											<img src="/web/main/file/image/uu/445be9391637437da33ba1858ff508f2" alt="논산청년꿈키움광장" onerror="this.src='/design/common/images/asset/noImage400x300.jpg'">
+											
+											
+                                    </div>
+                                    <div class="txt_box">
+                                        <div class="box_inner">
+                                            <h4><span>논산청년꿈키움광장</span></h4>
+                                            <div class="desc">
+                                                <div class="txt">
+                                                    <p class="addr">충남 논산시 대학로 61 (내동, 복합문화센터 논산미래광장) 5층</p>
+                                                    <p class="addr_tel"> <b>Tel:</b> 041-730-6060~2</p>
+                                                </div>
+                                                
+                                            </div>
+                                        </div>
+                                    </div>
+                               </a>
+								
+                                
+                            </div>
+                            <div class="auto_control">
+                                <div class="inner_box">
+                                    <button type="button" class="btn arrow prev" title="이전"><img
+                                        src="/design/theme/cnyouth/images/arrow_prev.png" alt="" /></button>
+
+                                    <button type="button" class="btn p_control stop">정지</button>
+                                    <button class="btn arrow next" title="다음"><img src="/design/theme/cnyouth/images/arrow_next.png"  alt="" /></button>
+                                    <a href="https://youth.chungnam.go.kr/web/main/youthSpaceInfo/SI01/list" title="청년공간 자세히보기" class="link">
+                                        <span>자세히보기</span>
+                                        <img src="/design/common/images/arrow_next3.png" alt="">
+                                    </a>
+                                </div>
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+                <!-- 20240624 _e -->
+                
+                
+		
+		
+	</section>
+	<section class="m_cont4">
+		<div class="inner2" style="display: flex; justify-content: center; gap: 250px;">
+			<!-- <div class="cont1" data-aos="fade-up" data-aos-duration="2000">
+				<h3>청년 생활 고민소</h3>
+				<div class="tab_box">
+					<ul class="tap_tit">
+						<li class="on"><a href="#none" rel="stab1" title="취업/교육">취업/교육</a></li>
+						<li><a href="#none" rel="stab2" title="금융/정보">금융/정보</a></li>
+						<li><a href="#none" rel="stab3" title="마음/건강">마음/건강</a></li>
+						<li><a href="#none" rel="stab4" title="영농/자립">영농/자립</a></li>
+					</ul>
+					<div class="cont_box">
+						<div id="stab1" class="conBox">
+							<ul class="tab_inner">
+								
+									<li>
+										<p class="img_box"><img src="/design/theme/cnyouth/images/temImg04.png" alt=""/></p>
+										<a href="/web/main/bbs/cnyouth_counseling1/599" title="" class="txt_box">
+											<p>익산시 고향올래(로컬벤처)_청년 인사이트 솜솜쌀롱 2회차 참여자 모집</p>
+										</a>
+									</li>
+								
+									<li>
+										<p class="img_box"><img src="/design/theme/cnyouth/images/temImg04.png" alt=""/></p>
+										<a href="/web/main/bbs/cnyouth_counseling1/596" title="" class="txt_box">
+											<p>익산시 고향올래(로컬벤처)_로컬체인지 솜솜스쿨</p>
+										</a>
+									</li>
+								
+									<li>
+										<p class="img_box"><img src="/design/theme/cnyouth/images/temImg04.png" alt=""/></p>
+										<a href="/web/main/bbs/cnyouth_counseling1/581" title="" class="txt_box">
+											<p>전북 익산시 로컬벤처_솜솜스쿨&amp;솜솜쌀롱</p>
+										</a>
+									</li>
+								
+									<li>
+										<p class="img_box"><img src="/design/theme/cnyouth/images/temImg04.png" alt=""/></p>
+										<a href="/web/main/bbs/cnyouth_counseling1/482" title="" class="txt_box">
+											<p>공유물품대여사업 이용에 대한 불편</p>
+										</a>
+									</li>
+								
+							</ul>
+						</div>
+						<div id="stab2" class="conBox">
+							<ul class="tab_inner">
+								
+									<li>
+										<p class="img_box"><img src="/design/theme/cnyouth/images/temImg04.png" alt=""/></p>
+										<a href="/web/main/bbs/cnyouth_counseling2/94" title="" class="txt_box">
+											<p>청년희망적금 만기후 청년도약계좌 환승 고민</p>
+										</a>
+									</li>
+								
+									<li>
+										<p class="img_box"><img src="/design/theme/cnyouth/images/temImg04.png" alt=""/></p>
+										<a href="/web/main/bbs/cnyouth_counseling2/74" title="" class="txt_box">
+											<p>청약저축 해지 고민</p>
+										</a>
+									</li>
+								
+							</ul>
+						</div>
+						<div id="stab3" class="conBox">
+							<ul class="tab_inner">
+								
+									<li>
+										<p class="img_box"><img src="/design/theme/cnyouth/images/temImg04.png" alt=""/></p>
+										<a href="/web/main/bbs/cnyouth_counseling3/95" title="" class="txt_box">
+											<p>회사에서 너무 적응하기 힘들어요</p>
+										</a>
+									</li>
+								
+									<li>
+										<p class="img_box"><img src="/design/theme/cnyouth/images/temImg04.png" alt=""/></p>
+										<a href="/web/main/bbs/cnyouth_counseling3/75" title="" class="txt_box">
+											<p>제가 우울증일까요?</p>
+										</a>
+									</li>
+								
+									<li>
+										<p class="img_box"><img src="/design/theme/cnyouth/images/temImg04.png" alt=""/></p>
+										<a href="/web/main/bbs/cnyouth_counseling3/38" title="" class="txt_box">
+											<p>마음 건강 게시판</p>
+										</a>
+									</li>
+								
+							</ul>
+						</div>
+						<div id="stab4" class="conBox">
+							<ul class="tab_inner">
+								
+									<li>
+										<p class="img_box"><img src="/design/theme/cnyouth/images/temImg04.png" alt=""/></p>
+										<a href="/web/main/bbs/cnyouth_counseling4/76" title="" class="txt_box">
+											<p>영농상속공제 질문</p>
+										</a>
+									</li>
+								
+									<li>
+										<p class="img_box"><img src="/design/theme/cnyouth/images/temImg04.png" alt=""/></p>
+										<a href="/web/main/bbs/cnyouth_counseling4/43" title="" class="txt_box">
+											<p>영농자립 글작성 테스트</p>
+										</a>
+									</li>
+								
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div> -->
+			<div class="cont2" data-aos="fade-up" data-aos-delay="300" data-aos-duration="2000">
+				<h3>알림존</h3>
+				<div class="slide_box">
+					<div class="alrArrows">
+						<div class="slides-numbers" style="display: block;">
+							<span class="active">01</span> / <span class="total"></span>
+						</div>
+						<button type="button" class="arrow alrPrev" title="이전"><img src="/design/theme/cnyouth/images/arrow_prev.png" alt="이전"/></button>
+						<button  type="button" class="alrcontrol stop">정지</button>
+						<button class="arrow alrNext" title="다음"><img src="/design/theme/cnyouth/images/arrow_next.png" alt="다음"/></button>
+					</div>
+					<div class="m_slide3">
+						
+							
+								
+									<a href="https://transport.chungnam.go.kr" title="" class="itme">
+								
+										<div class="img_box">
+											<img src="/web/main/file/image/uu/705270ba937f4ef59acc8d73b0c3f71d" alt="천안/아산-서울/경기 수도권 철도 정기 승차권 교통비 지원 천안 또는 아산에 주민등록 된 사람 중 수도권  통학생, 기준중위소득150%이하 주민/철도 정기승차권 금애그이 25% 시 지역화폐로 환급 *1인당 연 100만원 한도(충청남도)" />
+										</div>
+								
+									</a>
+								
+							
+												
+					</div>
+				</div>
+			</div>
+			<div class="cont3" data-aos="fade-up" data-aos-delay="600" data-aos-duration="2000">
+				<h3>충청남도 정책제안</h3>
+				<div class="prop_box">
+					<div class="img_tit"><img src="/design/theme/cnyouth/images/mbg_06_1.png" alt=""/></div>
+					<div class="txt_img"><p><img src="/design/theme/cnyouth/images/mbg_06_3.png" alt="청년에게 필요한 정책을 제안해봐!"/></p></div>
+					<a href="https://e-um.chungnam.go.kr/homepage/resident/proposal/ing-proposal" title="제안하기" class="prop_btn" target="_blank">
+						<span>제안하기</span>
+					</a>
+				</div>
+			</div>
+		</div>
+	</section>
+</div>
+</main>
+    <!--main floor1 end-->  	
+
+
+<!-- #content end -->
+			
+
+
+
+
+<script>
+jQuery(function($){
+
+	if (!$.cookie('asa_not_today_38') && $('#layer_popup_38').length === 0) {
+		var html = '<div class="layer-popup" id="layer_popup_38" tabindex="1" style="width: 350px; z-index : 99978; position:absolute; top:0px; left:px;">';
+				// html += '<a class="layer-link" href="https://youth.chungnam.go.kr/web/main/bbs/cnyouth_idea/list" target="_blank">';		
+				html += '<img class="layer-popup-image" src="/web/main/file/image/uu/d18acd9226074063bdb229e802ccd91c" alt="" style="width: 350px;"/>';
+				// html += '</a>';
+				html += '<div class="layer-link-wrap"><a class="layer-link" href="https://youth.chungnam.go.kr/web/main/bbs/cnyouth_idea/list" target="_blank">바로가기</a></div>';
+				html += '<div class="not-today" >';
+				html += `<label class="not-today-38" style="cursor: pointer;">`;
+				html += `<input id="not_today_38" type="checkbox" name="notToday" value="1" style="width: 16px; height: 16px; vertical-align: middle; margin-right: 5px;"/> 오늘 하루 보지 않기`;
+				html += `</label>`;
+					html += ' <a href="#layer_close" class="layer-close-38"><img src="/design/common/images/asset/close.png" alt="닫기"></a>';
+				html += '</div>';
+			html += '</div>';
+		var layer_popup_38 = $(html);
+		$('body').append(layer_popup_38);
+		layer_popup_38.show();
+		//layer_popup_38.drags();
+		$('.layer-close-38').click(function(e){
+			//$(e.target).closest('.layer-popup').remove();
+			$('#layer_popup_38').remove();
+		});
+		$('.not-today-38').click(function(e){
+			$.cookie('asa_not_today_38', '1', {expires : 1, path : '/'});
+			$('#layer_popup_38').remove(); 
+		});
+		
+		if(false ){
+			$('.layer-popup').css({
+				width: (window.innerWidth > 0) ? window.innerWidth : screen.width
+				, top: 0
+				, left: 0
+			});
+			$('.layer-popup-image').css({
+				width: (window.innerWidth > 0) ? window.innerWidth : screen.width
+			});
+		}
+	}
+
+});
+</script>
+
+<!-- footer -->
+
+
+
+
+	<!-- layerPop -->
+	<div class="popup-box style1" style="display:none;">
+		
+	</div>
+	<!-- // layerPop -->
+	
+
+	<!-- satisfaction -->
+	
+
+<script>
+jQuery(function($){
+	$('.satisfactionBtn').on('click', function(e){
+		e.preventDefault();
+		
+		var menuId = $('#satisfactionForm [name=menuId]').val(); 
+		if( !menuId || ( menuId != GLOBAL.menuId ) ){
+			alert('페이지정보가 없어 평가를 처리할 수 없습니다.');
+			return;
+		}
+		
+		if( !$('#satisfactionForm [name=satisScore]:checked').size() ){
+			alert('평가점수를 선택해 주세요.');
+			return;
+		} 
+		
+		var params = $('#satisfactionForm').serialize();
+			
+		$.ajax({
+			url : $('#satisfactionForm').attr('action')
+			, type : 'post'
+			, data : params
+			, context : this
+		}).done(function(data){
+			if( data.success ){
+				alert('평가해주셔서 감사합니다.');
+				location.reload();
+			} else {
+				alert(data.text);
+			}
+		}).fail(function(){
+			alert('서버오류로 평가를 처리하지 못하였습니다.[failure]');
+		});
+		
+	});
+});
+</script>
+<div class="gap80"></div>
+<div class="satisfy_area">
+	<!-- page manager info -->
+	
+
+
+<script>
+jQuery(function($){
+	
+});
+
+</script>
+
+
+	
+	
+</div>
+
+
+<!-- 		</div>.area
+	</div>#content -->
+
+	
+	<!-- footer -->
+        <footer id="footer">
+            <div class="inner2">
+                
+                <div class="f_bottom">
+                    <div>
+                        <ul class="fnb">
+                            <li class="bl"><a href="#none" id="PrtcPolicy">개인정보처리방침</a></li>
+                            <li><a href="#none" class="siteMap_open">사이트맵</a></li>
+                            <li><a href="#none" id="infoPolicy">이용약관</a></li>
+                            <li><a href="https://www.chungnam.go.kr/cnportal/main/contents.do?menuNo=500700" target="_blank">오시는길</a></li>
+                            <li>
+                                 <a href="https://www.youtube.com/channel/UCboJhXNpjKROxeOsjvkyk9w" title="유튜브" target="_blank"><img src="/design/theme/cnyouth/images/youtube.png" alt="충청남도 유튜브"/></a>
+                                <a href="https://ko-kr.facebook.com/echungnam/" title="페이스북" target="_blank"><img src="/design/theme/cnyouth/images/facebook.png" alt="충청남도 페이스북"/></a>
+                                <a href="https://www.instagram.com/chungnam_official/?hl=ko" title="인스타그램" target="_blank"><img src="/design/theme/cnyouth/images/instar.png" alt="충청남도 인스타그램"/></a>
+                                
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="copy_box">
+                        <div class="copy">
+                            <div class="copy_cnlogo"><img src="/design/theme/cnyouth/images/f_logo01.png" alt="충청남도로고"></div>
+                            <div class="foot_pra">
+                                <p>[32255] 충청남도 홍성군 홍북읍 충남대로 21 </p>
+                                <p>전화 : 1551-7942 </p>
+                                <p>COPYRIGHT ⓒ 2024 충남청년포털 .ALL RIGHT RESERVED.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="mark"><img src="/design/theme/cnyouth/images/mark.png" alt="과학기술정보통신부 WEB 접근성 한국웹접근성인증평가원 2025.11.14~2026.11.13"></div> <!-- 20241202 -->
+                    </div>
+                </div>
+            </div>
+        </footer>
+        <!-- //footer -->
+
+         <!-- 상시 만족도 조사 20260821 -->
+		<div class="survey-youth">
+		    <a href="https://youth.chungnam.go.kr/web/main/survey/70/new?target=2&cp=1&pageSize=8&applyFlagYn=1" class="survey-btn">
+		        <span class="survey-icon">설문</span>
+		        <span class="survey-text">만족도 조사</span>
+		    </a>
+		</div>
+		
+		<style>
+		.survey-youth {
+		    position: fixed;
+		    right: 20px;
+		    bottom: 100px;
+		    z-index: 99998;
+		}
+		
+		.survey-btn {
+		    display: flex;
+		    align-items: center;
+		    gap: 8px;
+		    padding: 5px 70px 5px 5px;
+		    margin-bottom: 70px;
+		    background: #ffffff;
+		    border: 2px solid #dddddd;
+		    border-radius: 30px;
+		    cursor: pointer;
+		    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+		    font-family: inherit;
+		    text-decoration: none;
+		}
+		
+		.survey-btn:hover {
+		    background: #f8f8f8;
+		    text-decoration: none;
+		}
+		
+		.survey-icon {
+		    display: flex;
+		    align-items: center;
+		    justify-content: center;
+		
+		    width: 40px;
+		    height: 40px;
+		
+		    border-radius: 50%;
+		    background: #51b65f;
+		    color: #ffffff;
+		
+		    font-size: 12px;
+		    font-weight: bold;
+		}
+		
+		.survey-text {
+		    color: #333333;
+		    font-size: 20px;
+		    font-weight: 600;
+		    white-space: nowrap;
+		}
+		</style>
+		<!-- //만족도 조사 -->
+
+        <!-- 챗봇 변경 20260107 -->
+		<div class="chat-youth">
+			<button type="button" onclick="openChat(); return false;" aria-label="새 창 열기">
+				<img src="/design/theme/cnyouth/images/chat_ico.png" alt="충남청년포털 AI챗봇 충남청년 톡톡에게 물어보세요">
+			</button>
+			<script>
+				function openChat() {
+					const width = 400;
+					const height = 600;
+					const left = window.screenX + window.outerWidth - width;
+					const top = window.screenY + window.outerHeight - height;
+					window.open('https://chat.youth-chungnam.ai.kr','_blank', 'width=800,height=600,left='+left+',top='+top+',scrollbars=yes');
+				}
+			</script>
+		</div>
+		<style>
+			.chat-youth{position: fixed;right: 10px;bottom: 10px;cursor: move;z-index: 99999;}
+		</style>
+		<!-- //챗봇 -->
+		                <!-- 수정 20240503 s -->
+        <!-- 개인정보처리방침 -->
+        <div class="terms_ft_pop PrtcPolicy02 popup_content" style="display: none;">
+            <div class="popup Wd">
+                <div class="pop_inner">
+                    <div class="top_cont">
+                        <h5>충남청년포털(누리집) 개인정보 처리방침</h5>
+                        <div class="terms_desc" tabIndex="0"> <!-- 20240911 -->
+                            <p>
+                                충청남도 청년정책관은 「개인정보 보호법」제30조에 따라 충남청년포털(youth.chungnam.go.kr) 정보주체의 개인정보를 보호하고,<br/> 이와 관련한 고충을 신속하고 원활하게 처리할 수 있도록 하기 위하여 다음과 같이 개인정보 처리방침을 수립·공개합니다.
+                            </p>
+                            <div class="terms_desc_inner">
+                                <h6>주요 개인정보 처리 표시(라벨링)</h6>
+                                <ul class="PrtcPolicy-label">
+                                    <li>
+                                        <figure>
+                                            <img src="/design/theme/cnyouth/images/icon_privacy_b1.png" alt="" />
+                                            <figcaption>개인정보</figcaption>
+                                        </figure>
+                                    </li>
+                                    <li>
+                                        <figure>
+                                            <img src="/design/theme/cnyouth/images/icon_privacy_b2.png" alt="" />
+                                            <figcaption>처리목적</figcaption>
+                                        </figure>
+                                    </li>
+                                    <li>
+                                        <figure>
+                                            <img src="/design/theme/cnyouth/images/icon_privacy_b3.png" alt="" />
+                                            <figcaption>보유기간(설정)</figcaption>
+                                        </figure>
+                                    </li>
+                                    <li>
+                                        <figure>
+                                            <img src="/design/theme/cnyouth/images/icon_privacy_b4.png" alt="" />
+                                            <figcaption>제3자 제공</figcaption>
+                                        </figure>
+                                    </li>
+                                    <li>
+                                        <figure>
+                                            <img src="/design/theme/cnyouth/images/icon_privacy_b5.png" alt="" />
+                                            <figcaption>처리위탁</figcaption>
+                                        </figure>
+                                    </li>
+                                    <li>
+                                        <figure>
+                                            <img src="/design/theme/cnyouth/images/icon_privacy_b6.png" alt="" />
+                                            <figcaption>열람청구</figcaption>
+                                        </figure>
+                                    </li>
+                                </ul>
+                                <div class="desc">
+                                    <p>1. “개인정보”란 살아 있는 개인에 관한 정보로서 다음 각 목의 어느 하나에 해당하는 정보를 말한다.</p>
+                                    <p>가. 성명, 주민등록번호 및 영상 등을 통하여 개인을 알아볼 수 있는 정보</p>
+                                    <p>나. 해당 정보만으로는 특정 개인을 알아볼 수 없더라도 다른 정보와 쉽게 결합하여 알아볼 수 있는 정보. 이 경우 쉽게 결합할 수 있는지 여부는 다른 정보의 입수 가능성 등 개인을 알아보는 데 소요되는 시간, 비용, 기술 등을 합리적으로 고려하여야 한다.</p>
+                                    <p>
+                                        다. 가목 또는 나목을 제1호의2에 따라 가명처리함으로써 원래의 상태로 복원하기 위한 추가 정보의 사용ㆍ결합 없이는 특정 개인을 알아볼 수 없는 정보(이하 “가명정보”라 한다)
+                                        1의2. “가명처리”란 개인정보의 일부를 삭제하거나 일부 또는 전부를 대체하는 등의 방법으로 추가 정보가 없이는 특정 개인을 알아볼 수 없도록 처리하는 것을 말한다.
+                                        <b>※개인정보 보호법 제2조(정의)</b>
+                                        <p><b>※ 자세한 내용은 아래의 개인정보 처리방침을 확인하시기 바랍니다.</b></p>
+                                    </p>
+                                </div>
+                                <h6>「충청남도 청년정책관 개인정보 처리방침」은 다음과 같은 내용으로 구성되어 있습니다</h6>
+                                <div class="panel_box">
+                                    <ul class="cnt_list">
+                                        <li class="article01">
+                                            <a href="#article01" title="개인정보의 처리 목적">
+                                                제1조 개인정보의 처리 목적
+                                            </a>
+                                        </li>
+                                        <li class="article02">
+                                            <a href="#article02" title="개인정보 처리 및 보유기간, 항목">
+                                                제2조 개인정보 처리 및 보유기간, 항목
+                                            </a>
+                                        </li>
+                                        <li class="article03">
+                                            <a href="#article03" title="개인정보의 파기절차 및 파기방법">
+                                                제3조 개인정보의 파기절차 및 파기방법
+                                            </a>
+                                        </li>
+                                        <li class="article04">
+                                            <a href="#article04" title="개인정보의 제3자 제공">
+                                                제4조 개인정보의 제3자 제공
+                                            </a>
+                                        </li>
+                                        <li class="article05">
+                                            <a href="#article05" title="추가적인 이용‧제공 판단기준 ">
+                                                제5조 추가적인 이용‧제공 판단기준 
+                                            </a>
+                                        </li>
+                                        <li class="article06">
+                                            <a href="#article06" title="개인정보처리의 위탁">
+                                                제6조 개인정보처리의 위탁
+                                            </a>
+                                        </li>
+                                        <li class="article07">
+                                            <a href="#article07" title="개인정보의 안전성 확보조치">
+                                                제7조 개인정보의 안전성 확보조치
+                                            </a>
+                                        </li>
+                                        <li class="article08">
+                                            <a href="#article08" title="개인정보 자동 수집 장치의 설치·운영 및 거부에 관한 사항">
+                                                제8조 개인정보 자동 수집 장치의 설치·운영 및 거부에 관한 사항
+                                            </a>
+                                        </li>
+                                        <li class="article09">
+                                            <a href="#article09" title="개인정보 자동 수집 장치의 설치·운영 및 거부에 관한 사항 ">
+                                                제9조 개인정보 자동 수집 장치의 설치·운영 및 거부에 관한 사항
+                                            </a>
+                                        </li>
+                                        <li class="article10">
+                                            <a href="#article10" title="정보주체의 권익침해에 대한 구제방법">
+                                                제10조 정보주체의 권익침해에 대한 구제방법
+                                            </a>
+                                        </li>
+                                        <li class="article11">
+                                            <a href="#article11" title="개인정보 보호책임자">
+                                                제11조 개인정보 보호책임자
+                                            </a>
+                                        </li>
+                                        <li class="article12">
+                                            <a href="#article12" title="가명정보의 처리">
+                                                제12조 가명정보의 처리
+                                            </a>
+                                        </li>
+                                        <li class="article13">
+                                            <a href="#article13" title="개인정보 처리방침의 변경에 관한 사항 ">
+                                                제13조 개인정보 처리방침의 변경에 관한 사항
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="cnt_list_desc">
+                                    <div class="box" id="article01">
+                                        <p class="tit">제1조(개인정보의 처리목적) </p>
+                                        <div class="txt">
+                                           <div>① 충청남도 청년정책관은 다음의 목적을 위하여 개인정보를 처리합니다. 처리하고 있는 개인정보는 다음의 목적 이외의 용도로는 이용되지 않으며, 이용 목적이 변경되는 경우에는 ｢개인정보 보호법｣ 제18조에 따라 별도의 동의를 받는 등 필요한 조치를 이행할 예정입니다.</div>
+                                            <div>
+                                                1. 회원 가입 및 관리
+                                                <ul class="dash">
+                                                    <li>회원 가입의사 확인, 회원제 서비스 제공에 따른 본인 식별‧인증, 회원자격 유지․관리, 서비스 부정이용 방지, 각종 고지․통지 등을 목적으로 개인정보를 처리합니다.</li>
+                                                </ul>
+                                            </div>
+                                            <div>
+                                                2. 민원사무 처리
+                                                <ul class="dash">
+                                                    <li>민원인의 신원 확인, 민원사항 확인, 사실조사를 위한 연락‧통지, 처리결과 통보 등을 목적으로 개인정보를 처리합니다.</li>
+                                                </ul>
+                                            </div>
+                                            <div>
+                                                3. 각종 청년정책 관련 처리
+                                                <ul class="dash">
+                                                    <li>청년정책 문자알림서비스, 청년정책 상담, 청년제안, 각종 청년정책 신청을 위하여 개인정보를 처리합니다.</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="box" id="article02">
+                                        <p class="tit">제2조(개인정보 처리 및 보유기간, 항목) </p>
+                                        <div class="txt">
+                                            <div>① 충청남도 청년정책관은 법령에 따른 개인정보 보유‧이용 기간 또는 정보주체로부터 개인정보를 수집 시 동의받은 개인정보 보유‧이용기간 내에서 개인정보를 처리합니다.</div>
+                                            <div>② 각각의 개인정보 처리 및 보유 기간은 다음과 같습니다.</div>
+                                            <div class="cnt_lis_tbl">
+                                                <table>
+                                                    <caption>개인정보 처리 및 보유 기간-순번,개인정보 파일의 명칭, 운영근거,수집항목, 보유기간
+                                                        </caption>
+                                                    <colgroup>
+                                                        <col width="10%">
+                                                        <col width="25%">
+                                                        <col width="20%">
+                                                        <col width="25%">
+                                                        <col width="20%">
+                                                    </colgroup>
+                                                    <thead>
+                                                        <tr>
+                                                            <th scope="col">순번</th>
+                                                            <th scope="col">개인정보 파일의 명칭</th>
+                                                            <th scope="col">운영근거</th>
+                                                            <th scope="col">수집항목</th>
+                                                            <th scope="col">보유기간</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr>
+                                                            <td>1</td>
+                                                            <td>충남청년포털 회원 가입 및 관리</td>
+                                                            <td>정보주체 동의</td>
+                                                            <td>이메일, 연락처, 비밀번호, ID 이름, 성별, 서비스이용기록, 접속로그, CI 등</td>
+                                                            <td>회원탈퇴 시 까지</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>2</td>
+                                                            <td>민원사무처리 개인정보</td>
+                                                            <td>정보주체 동의</td>
+                                                            <td>이메일, 연락처, 비밀번호, ID 이름, 성별, 서비스이용기록, 접속로그 등</td>
+                                                            <td>3년</td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                            <div>
+                                                1. 홈페이지 회원 가입 및 관리 : 「충남청년포털」 홈페이지 탈퇴시 까지<br/>
+                                                다만, 다음의 사유에 해당하는 경우에는 해당 사유 종료시 까지
+                                            </div>
+                                            <div class="pl15">
+                                                <p class="mb10">1) 관계 법령 위반에 따른 수사‧조사 등이 진행중인 경우에는 해당 수사, 조사 종료시까지</p>
+                                                <p class="mb10">2) 홈페이지 이용에 따른 채권, 채무관계 잔존시에는 해당 채권, 채무관계 정산시까지</p>
+                                                <p class="mb10">3) &lt;예외사유&gt;시에는 &lt;보유기간&gt; 까지</p>
+                                            </div>
+                                            <div>2. 민원사무 처리 : 민원처리 종료 후 3년</div>
+                                        </div>
+                                    </div>
+                                    <div class="box" id="article03">
+                                        <p class="tit">제3조(개인정보의 파기절차 및 파기방법)  </p>
+                                        <div class="txt">
+                                            <div>① 충청남도 청년정책관은 개인정보 보유기간의 경과, 처리목적 달성 등 개인정보가 불필요하게 되었을 때에는 지체없이 해당 개인정보를 파기합니다. 개인정보 파기의 절차 및 방법은 다음과 같습니다</div>
+                                            <div>
+                                                1. 파기절차
+                                                <p class="pl15">
+                                                    충청남도 청년정책관은 파기하여야 하는 개인정보(또는 개인정보파일)에 대해 개인정보 파기계획을 수립하여 파기합니다. 충청남도 청년정책관은 파기 사유가 발생한 개인정보(또는 개인정보파일)를 선정하고, 충청남도 청년정책관의 개인정보 보호책임자의 승인을 받아 개인정보(또는 개인정보파일)를 파기합니다. 
+                                                </p>
+                                            </div>
+                                            <div>
+                                                2. 파기방법
+                                                <p class="pl15 pb10">
+                                                    ① 충청남도 청년정책관은 전자적 파일 형태로 기록․저장된 개인정보는 기록을 재생할 수 없도록 파기하며, 종이 문서에 기록․저장된 개인정보는 분쇄기로 분쇄하거나 소각하여 파기합니다.
+                                                </p>
+                                                <p class="pl15">
+                                                    ② 정보주체로부터 동의받은 개인정보 보유기간이 경과하거나 처리목적이 달성되었음에도 불구하고 다른 법령에 따라 개인정보를 계속 보존하여야 하는 경우에는, 해당 개인정보(또는 개인정보파일)를 별도의 데이터베이스(DB)로 옮기거나 보관장소를 달리하여 보존합니다.
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="box" id="article04">
+                                        <p class="tit">제4조(개인정보의 제3자 제공) </p>
+                                        <div class="txt">
+                                            <div>충청남도 청년정책관은 정보주체의 동의, 법률의 특별한 규정 등 개인정보 보호법 제17조 및 제18조에 해당하는 경우에만 개인정보를 제3자에게 제공합니다.</div>
+                                        </div>
+                                    </div>
+                                    <div class="box" id="article05">
+                                        <p class="tit">제5조(추가적인 이용‧제공 판단기준)</p>
+                                        <div class="txt">
+                                            <div>① 충청남도 청년정책관은 「개인정보 보호법」 제15조제3항 또는 제17조제4항에 따라 「개인정보 보호법」 시행령 제14조의2에 따른 사항을 고려하여 정보주체의 동의 없이 개인정보를 추가적으로 이용・제공할 수 있습니다.</div>
+                                            <div>
+                                                ② 이에 따라 충청남도 청년정책관은 정보주체의 동의 없이 추가적인 이용・제공을 하기 위해서 다음과 같은 사항을 고려하였습니다.
+                                                <div class="pl15">
+                                                    <p class="mb5">1. 당초 수집 목적과 관련성이 있는지 여부</p>
+                                                    <p class="mb5">2. 개인정보를 수집한 정황 또는 처리 관행에 비추어 볼 때 개인정보의 추가적인 이용 또는 제공에 대한 예측 가능성이 있는지 여부</p>
+                                                    <p class="mb5">3. 정보주체의 이익을 부당하게 침해하는지 여부</p>
+                                                    <p class="mb5">4. 가명처리 또는 암호화 등 안전성 확보에 필요한 조치를 하였는지 여부</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="box" id="article06">
+                                        <p class="tit">제6조(개인정보처리의 위탁)</p>
+                                        <div class="txt">
+                                            <div>충청남도 청년정책관은 원활한 개인정보 업무 처리를 위하여 붙임과 같이 개인정보 처리업무를 위탁하고 있습니다.</div>
+                                            <div class="cnt_lis_tbl">
+                                                <table>
+                                                    <caption>개인정보 처리 업무 위탁-위탁받는자(수탁자), 위탁업무, 계약기간
+                                                        </caption>
+                                                    <colgroup>
+                                                        <col/>
+                                                        <col/>
+                                                        <col/>
+                                                    </colgroup>
+                                                    <thead>
+                                                        <tr>
+                                                            <th scope="col">위탁받는자(수탁자)</th>
+                                                            <th scope="col">위탁업무</th>
+                                                            <th scope="col">계약기간</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr>
+                                                            <td>㈜나라원시스템</td>
+                                                            <td>충남청년포털 운영 관리</td>
+                                                            <td>2024.4.5. ~2025.4.4.</td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                            <div>
+                                                ② 충청남도 청년정책관은 개인정보 처리업무 위탁계약 체결시 개인정보 보호법 제26조에 따라 위탁업무 수행목적 외 개인정보 처리금지, 안전성 확보조치, 재위탁 제한, 수탁자에 대한 관리‧감독, 손해배상 등 책임에 관한 사항을 계약서 등 문서에 명시하고, 수탁자가 개인정보를 안전하게 처리하는지를 교육 및 감독하고 있습니다.
+                                            </div>
+                                            <div>③ 위탁업무의 내용이나 수탁자가 변경 될 경우에는 본 개인정보 처리방침을 통하여 공개하도록 하겠습니다.</div>
+                                        </div>
+                                    </div>
+                                    <div class="box" id="article07">
+                                        <p class="tit">제7조(개인정보의 안전성 확보조치)</p>
+                                        <div class="txt">
+                                            <div>① 충청남도 청년정책관은 개인정보의 안전성 확보를 위해 다음과 같은 조치를 취하고 있습니다. </div>
+                                            <div class="pl15">
+                                                <p class="mb5">1. 관리적 조치 : 내부관리계획 수립․시행, 정기적 직원 교육 </p>
+                                                <p class="mb5">2. 기술적 조치 : 개인정보처리시스템 등의 접근권한 관리, 접근통제시스템 설치, 고유 식별정보 등의 암호화, 보안프로그램 설치 </p>
+                                                <p class="mb5">3. 물리적 조치 : 통합정보센터, 자료 보관실의 접근통제</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="box" id="article08">
+                                        <p class="tit">제8조(개인정보 자동 수집 장치의 설치·운영 및 거부에 관한 사항)</p>
+                                        <div class="txt">
+                                            <div>① 충청남도 청년정책관은 이용자에게 개별적인 맞춤서비스를 제공하기 위해 이용정보를 저장하고 수시로 불러오는 ‘쿠키(cookie)’를 사용합니다.</div>
+                                            <div>
+                                                <span class="mb5">② 쿠키는 웹사이트를 운영하는데 이용되는 서버(http)가 이용자의 컴퓨터 브라우저에게 보내는 소량의 정보이며 이용자의 PC 컴퓨터내의 하드디스크에 저장되기도 합니다.</span>
+                                                <div class="pl15">
+                                                    <p class="mb5">가. 쿠키의 사용목적 : 이용자가 방문한 각 서비스와 웹 사이트들에 대한 방문 및 이용형태, 인기 검색어, 보안접속 여부, 등을 파악하여 이용자에게 최적화된 정보 제공을 위해 사용됩니다.</p>
+                                                    <p class="mb5">나. 쿠키의 설치·운영 및 거부 : 웹브라우저 상단의 도구>인터넷 옵션>개인정보 메뉴의 옵션 설정을 통해 쿠키 저장을 거부 할 수 있습니다.</p>
+                                                    <p class="mb5">다. 쿠키 저장을 거부할 경우 맞춤형 서비스 이용이 원활하지 않을 수 있습니다.</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="box" id="article09">
+                                        <p class="tit">제9조(정보주체와 법정대리인의 권리·의무 및 행사방법)</p>
+                                        <div class="txt">
+                                            <div>
+                                                <span class="mb5">① 정보주체는 충청남도 청년정책관에 대해 언제든지 개인정보 열람‧정정‧삭제‧처리정지 요구 등의 권리를 행사할 수 있습니다.</span>
+                                                <p>
+                                                    ※만 14세 미만 아동에 관한 개인정보의 열람등 요구는 법정대리인이 직접 해야 하며,   만 14세 이상의 미성녀자인 정보주체는 정보주체의 개인정보에 관하여 미성년자 본인이 권리를 행사하거나 법정대리인을 통하여 권리를 행사 할 수도 있습니다.
+                                                </p>
+                                            </div>
+                                            <div>② 제1항에 따른 권리 행사는 개인정보 보호법 시행령 제41조 제1항에 따라 서면, 전자 우편, 모사전송(FAX) 등을 통하여 하실 수 있으며, 충청남도 청년정책관은 이에 대해 지체 없이 조치하겠습니다. </div>
+                                            <div>③ 제1항에 따른 권리 행사는 정보주체의 법정대리인이나 위임을 받은 자 등 대리인을 통하여 하실 수 있습니다. 이 경우 <span class="blu">&lt;개인정보 처리 방법에 관한 고시&gt;</span> 별지 제11호 서식에 따른 위임장을 제출하셔야 합니다. </div>
+                                            <div>④ 개인정보 열람 및 처리정지 요구는 개인정보 보호법 제35조, 제37조에 의하여 정보  주체의 권리가 제한 될 수 있습니다.</div>
+                                            <div>⑤ 개인정보의 정정·삭제 요구는 다른 법령에서 그 개인정보가 수집 대상으로 명시되어 있는 경우에는 그 삭제를 요구할 수 없습니다.</div>
+                                            <div>⑥ 충청남도 청년정책관은 정보주체 권리에 따른 열람의 요구, 정정·삭제의 요구, 처리정지의 요구 시 열람 등 요구를 한 자가 본인이거나 정당한 대리인인지를 확인합니다. </div>
+                                        </div>
+                                    </div>
+                                    <div class="box" id="article10">
+                                        <p class="tit">제10조(정보주체의 권익침해에 대한 구제방법)</p>
+                                        <div class="txt">
+                                            <div>① 정보주체는 개인정보침해로 인한 구제를 받기 위하여 개인정보분쟁조정위원회, 한국인터넷진흥원 개인정보침해신고센터 등에 분쟁해결이나 상담 등을 신청할 수 있습니다. 이 밖에 기타 개인정보침해의 신고, 상담에 대하여는 아래의 기관에 문의하시기 바랍니다.</div>
+                                            <div class="pl15">
+                                                <p class="mb5">1. 개인정보분쟁조정위원회 : (국번없이) 1833-6972 (www.kopico.go.kr)</p>
+                                                <p class="mb5">2. 개인정보침해신고센터 : (국번없이) 118 (privacy.kisa.or.kr)</p>
+                                                <p class="mb5">3. 대검찰청 : (국번없이) 1301 (www.spo.go.kr)</p>
+                                                <p class="mb5">4. 경찰청 사이버수사국 : (국번없이) 182 (ecrm.police.go.kr)</p>
+                                            </div>
+                                            <div>
+                                                <span class="mb5">② 개인정보위는 정보주체의 개인정보자기결정권을 보장하고, 개인정보침해로 인한 상담 및 피해 구제를 위해 노력하고 있으며, 신고나 상담이 필요한 경우 아래의 담당부서로  연락해 주시기 바랍니다.</span>
+                                                <div class="pl20">
+                                                    <span>▶ 개인정보보호 관련 고객 상담 및 신고</span>
+                                                    <ul class="dash">
+                                                        <li>부서명 : 청년정책관</li>
+                                                        <li>담당자 : 이원미</li>
+                                                        <li>연락처 : &lt;전화 : 041-635-3986&gt;, &lt;팩스 : 041-635-3494&gt;</li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                            <div>
+                                                ③ ｢개인정보 보호법｣ 제35조(개인정보의 열람), 제35조의2(개인정보의 전송 요구), 제36조(개인정보의 정정·삭제), 제37조(개인정보의 처리정지 등),의 규정에 의한 요구에 대하여 공공기관의 장이 행한 처분 또는 부작위로 인하여 권리 또는 이익의 침해를 받은 자는 행정심판법이 정하는 바에 따라 행정심판을 청구할 수 있습니다.<br/>※ 중앙행정심판위원회 : (국번없이) 110 (www.simpan.go.kr)
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="box" id="article11">
+                                        <p class="tit">제11조(개인정보 보호책임자)</p>
+                                        <div class="txt">
+                                            <div>① 충청남도 청년정책관은 개인정보 처리에 관한 업무를 총괄해서 책임지고, 개인정보 처리와 관련한 정보주체의 불만처리 및 피해구제 등을 위하여 아래와 같이 개인정보 보호책임자를 지정하고 있습니다. </div>
+                                            <div class="pl20">
+                                                <span>▶ 개인정보 보호책임자</span>
+                                                <ul class="dash">
+                                                    <li>부서명 : 청년정책관</li>
+                                                    <li>성명 : 이영조</li>
+                                                    <li>직책 : 청년정책관</li>
+                                                    <li>연락처 : 041-635-3986(담당부서)</li>
+                                                </ul>
+                                            </div>
+                                            <div class="pl20">
+                                                <span>▶ 개인정보 보호 담당부서</span>
+                                                <ul class="dash">
+                                                    <li>부서명 : 청년정책관</li>
+                                                    <li>담당자 : 이원미</li>
+                                                    <li>연락처 : 041-635-3986</li>
+                                                </ul>
+                                            </div>
+                                            <div class="pl20">▶ 개인정보 관리책임자 : 개인정보를 처리하는 처리부서의 장(본청의 부서장, 직속기관·사업소의 장)</div>
+                                            <div>② 정보주체께서는 충청남도 청년정책관의 서비스(또는 사업)을 이용하시면서 발생한 모든 개인정보 보호 관련 문의, 불만처리, 피해구제 등에 관한 사항을 개인정보 보호책임자 및 담당부서로 문의하실 수 있습니다. 충청남도 청년정책관은 정보주체의 문의에 대해 지체 없이 답변 및 처리해드릴 것입니다. </div>
+                                        </div>
+                                    </div>
+                                    <div class="box" id="article12">
+                                        <p class="tit">제12조(가명정보의 처리)</p>
+                                        <div class="txt">
+                                            <div>충청남도 청년정책관은 가명정보를 처리하고 있지 않습니다. 가명정보 처리시 다음과 같은 목적으로 가명정보를 처리하도록 하고 가명정보 처리시 홈페이지에 게시 하도록 하겠습니다.</div>
+                                            <div  class="pl20">
+                                                1. 가명정보의 처리 목적<br/>
+                                                2. 가명정보의 처리 및 보유기간<br/>
+                                                3. 가명정보의 제3자 제공에 관한 사항<br/>
+                                                4. 가명정보 처리의 위탁에 관한 사항<br/>
+                                                5. 가명처리하는 개인정보의 항목<br/>
+                                                6. 법 제28조의4에 따른 가명정보의 안전성 확보조치에 관한 사항
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="box" id="article13">
+                                        <p class="tit">제13조(개인정보 처리방침 변경)</p>
+                                        <div class="txt">
+                                            <div>① 이 개인정보 처리방침은 <span class="blu">2024. 5. 3.</span>부터 적용됩니다.</div>
+                                            <div>② 이전의 개인정보 처리방침은 아래에서 확인하실 수 있습니다.</div>
+                                            <p><a href="#" class="blu openPrtcPolicy01" title="2024.  4. 5. ~ 2024.  5. 2. 적용 개인정보 처리방침">- 2024.  4. 5. ~ 2024.  5. 2. 적용</a></p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bott_btn">
+                        <button type="button" title="확인" class="bl_btn popClose">확인</button>
+                    </div>
+                    <button type="button" title="팝업닫기" class="pop_close">
+                        <img src="/design/theme/cnyouth/images/close_icon01.png" alt="팝업닫기">
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- 2024.  4. 5. ~ 2024.  5. 2.  개인정보처리방침  -->
+        <div class="terms_ft_pop PrtcPolicy01 popup_content" style="display: none;">
+            <div class="popup Wd">
+                <div class="pop_inner">
+                    <div class="top_cont">
+                        <h5>개인정보 처리방침</h5>
+                        <div class="terms_desc" tabIndex="0"> <!-- 20240911 -->
+                        <div><p>1. 개인정보의 수집·이용 목적</p>충남청년포털 홈페이지는 개인정보를 다음의 목적을 위해 처리합니다. 처리한 개인정보는 다음의 목적이외의 용도로는 사용되지 않으며 이용 목적이 변경될 시에는 사전동의를 구할 예정입니다.<p>&lt;홈페이지 회원가입 및 관리&gt;</p>제한적 본인확인제 시행에 따른 본인확인, 각종 고지·통지, 고충처리, 분쟁 조정을 위한 기록 보존 등을 목적으로 개인정보를 처리합니다.<p>&lt;민원사무 처리&gt;</p>민원인의 신원 확인, 민원사항 확인, 사실조사를 위한 연락·통지, 처리결과 통보 등을 목적으로 개인정보를 처리합니다.</div><div>2. 수집하려는 개인정보의 항목<p>&lt;홈페이지 회원가입정보&gt;</p>이메일, 연락처, 비밀번호, ID, 이름, 성별, 서비스 이용 기록, 접속 로그, CI 등<p>&lt;민원사무 처리정보 개인정보 항목&gt;</p>이메일, 연락처, 비밀번호, ID, 이름, 성별, 서비스 이용 기록, 접속 로그 등</div><div>3. 개인정보의 보유 및 이용 기간<p>&lt;홈페이지 회원가입 및 관리&gt;</p>관련 개인정보는 회원가입 약관 등 동의일로부터&lt;회원 탈퇴시까지&gt;까지 위 이용목적을 위하여 보유·이용됩니다.(보유근거 : 이용약관 및 정보주체의 동의)<p>&lt;민원사무 처리정보 개인정보 항목&gt;</p>관련 개인정보는 수집.이용에 관한 동의일로부터&lt;3년&gt;까지 위 이용목적을 위하여 보유·이용됩니다.(보유근거 : 이용약관 및 정보주체의 동의)<p>&lt;관련 기록 등&gt;</p>신용정보의 수집/처리 및 이용 등에 관한 기록, 소비자의 불만 또는 분쟁처리에 관한 기록</div><div>4. 이용자는 본 동의를 거부할 권리가 있습니다. 동의를 거부할 경우에는 서비스 이용이 제한됨을 알려드립니다.</div></div>
+                    </div>
+                    <div class="bott_btn">
+                        <button type="button" title="확인" class="bl_btn popClose">확인</button>
+                    </div>
+                    <button type="button" title="팝업닫기" class="pop_close">
+                        <img src="/design/theme/cnyouth/images/close_icon01.png" alt="팝업닫기">
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- 이용약관 -->
+        <div class="terms_ft_pop infoPolicy popup_content" style="display: none;">
+            <div class="popup Wd">
+                <div class="pop_inner">
+                    <div class="top_cont">
+                        <h5>이용약관</h5>
+                        <div class="terms_desc" tabIndex="0"> <!-- 20240911 -->
+                        </div>
+                    </div>
+                    <div class="bott_btn">
+                        <button type="button" title="확인" class="bl_btn popClose">확인</button>
+                    </div>
+                    <button type="button" title="팝업닫기" class="pop_close">
+                        <img src="/design/theme/cnyouth/images/close_icon01.png" alt="팝업닫기">
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- 수정 20240503 e -->
+</div> <!-- #wrap -->
+</body>
+</html>

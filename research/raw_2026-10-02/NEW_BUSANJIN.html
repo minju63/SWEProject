@@ -1,0 +1,338 @@
+<script>
+    location.href = 'https://www.busanjin.go.kr/index.busanjin'
+</script>
+
+<!doctype html>
+<html lang ='ko' xml:lang="ko">
+<head>
+  <meta name="author" content="" />
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge"><!--ie 최상위버전 -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0 ,maximum-scale=1.0, minimum-scale=1.0,user-scalable=no,target-densitydpi=medium-dpi">
+  <!--<script type="text/javascript" src="http://busanjin.go.kr/rfc3/user/domain/www.busanjin.go.kr.80/0/13.js"></script>-->
+  <script type='text/javascript' src="https://busanjin.go.kr/js/jquery-1.9.1.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="/rfc3/user/domain/www.busanjin.go.kr.80/0/39.css" /><!-- common.css -->
+
+  <title>부산진구</title>
+
+
+  
+
+  <script type="application/ld+json">
+    {
+      "@context": "http://schema.org",
+      "@type": "Person",
+      "name": "부산진구청",
+      "url": "https://www.busanjin.go.kr",
+      "sameAs": [
+        "http://www.instagram.com/busanjin9",
+        "http://www.youtube.com/channel/UCY8rf5_xl4HVGhSwhOj1tWA"
+      ]
+    }
+  </script>
+
+
+  <script type="text/javascript">
+
+    $(document).ready(function() {
+
+//      $("div.img210125 span.btn-box a.link01").click(function() {
+//        alert('1월27일 09:00부터 신청가능합니다.');
+//      });
+		
+
+
+    });
+
+
+
+    Date.prototype.yyyymmdd = function() {
+      var mm = this.getMonth() + 1; // getMonth() is zero-based
+      var dd = this.getDate();
+
+      return [this.getFullYear(),
+        (mm>9 ? '' : '0') + mm,
+        (dd>9 ? '' : '0') + dd
+      ].join('');
+    };
+
+    Date.prototype.yyyyMMddHHmmss = function() {
+      var MM = this.getMonth() + 1; // getMonth() is zero-based
+      var dd = this.getDate();
+      var hh = ('0' + this.getHours()).slice(-2);
+      var mm = ('0' + this.getMinutes()).slice(-2);
+      var ss = ('0' + this.getSeconds()).slice(-2);
+
+      return [this.getFullYear(),
+        (MM>9 ? '' : '0') + MM,
+        (dd>9 ? '' : '0') + dd,
+        (hh>9 ? '' : '0') + hh,
+        mm,
+        ss
+      ].join('');
+    };
+
+    var date = new Date();
+    var today = date.yyyymmdd();
+    var timeToday = date.yyyyMMddHHmmss();
+
+
+    function openWin2020(url, width, height) {
+      var winX = 0;
+      var winY = 0;
+      winX = (screen.availWidth - width) * .5;
+      inY = (screen.availHeight - height) * .5 - 40;
+      var vote_popup = window.open(url, 'post', 'toolbar=no,location=no,directories=no,status=no, menubar=no,scrollbars=yes,resizable=yes,width=' + width + ',height=' + height + ',top=' + winY + ',left=' + winX);
+    }
+
+
+    if( (20200329 <= today) && (today < 20200401) ){
+      openWin2020('/index.busanjin?contentsSid=3095',500,900);
+    }
+
+    $(function(){
+      $("#popupClose1").click(function(){
+//                          parent.close();
+        vote_popup.close();
+//                          self.close();
+        console.log("111111");
+      });
+
+      cookiedata = document.cookie;
+      if(cookiedata.indexOf("layorClose1=Y")<0){
+        $(".ele").show();
+      }else{
+        $(".ele").hide();
+      }
+    });
+  </script>
+
+  <style>
+	@font-face {font-family: 'Busan'; font-style: normal; font-weight: 400; src: url('//cdn.jsdelivr.net/korean-webfonts/1/orgs/govs/busan/Busan/Busan.woff2') format('woff2'), url('//cdn.jsdelivr.net/korean-webfonts/1/orgs/govs/busan/Busan/Busan.woff') format('woff'); }
+
+    body{font-family: 'NotoKrL', sans-serif; width:100%; height:100%; background: url("http://busanjin.go.kr/images/Potal_/content/bn-topbg02-new.jpg") top no-repeat;}    
+
+    .wrap{width:1200px; margin: 0 auto; position: relative; text-align:center; box-sizing:border-box;}
+    .pcver {display:inline-block;}
+	.mover {display:none;}
+	.cB::after {content:''; display:block; clear:both;}
+
+	h1 {margin:50px 0px;}
+
+	.con-list {display: flex; margin:50px 0px;
+    flex-flow: wrap;
+    align-content: space-between;
+    justify-content: space-evenly; }
+	.con-list li { background:#cc0000; width:23%; margin:1%; height:315px; box-sizing:border-box;  align-content: center; padding: 0 20px; position:relative;  align-items: center;}
+	
+	.con-list li.int01 {background: #666ed1; border-radius: 25px;}
+	.con-list li.int02 {background: #f16075; border-radius: 25px;}
+	.con-list li.int03 {background: #2597d8; border-radius: 25px;}
+	.con-list li.int04 {background: #28a797; border-radius: 25px;}
+
+	
+	.con-list li .top-bg {margin-top:60px; display:inline-block;}
+    .con-list li div.listcon-wrap h4.tit{ font-family: 'Busan'; font-size:20px; color: #fff; text-align: center; padding: 13px 0 0 0; line-height: 110%; font-weight: 500; letter-spacing: -1.2px; margin-bottom:15px; /* height:50px */ word-break:keep-all;}
+    .con-list li div.listcon-wrap span.txt{padding: 15px 0 30px 0; font-family: 'NotoKrL'; font-size: 16px; display: block; color:#555555; text-align: center; font-weight: bold;}
+    .con-list li div.listcon-wrap a.blue-btn{width:135px; padding: 7px 0; border-radius: 30px; background: #fff; color:#666ed1; text-align: center; display: block; margin: 0 auto; text-decoration: none; font-family: 'NotoKrL'; font-size: 18px; font-weight: bold; transition:all .2s;}
+	 .con-list li div.listcon-wrap a.blue-btn:hover {background-color:rgba(255,255,255,0.7);}
+	
+	.con-list li.int02 { display: flex;    flex-direction: column;    align-content: center;  justify-content: space-around; padding:30px 20px;}
+	.con-list li.int02 a {color:#fff; font-family: 'Busan'; font-size:20px; color: #fff; display:block; }
+	.con-list li.int02::before {    content: '';    display: block;    width: 90%;    height: 1px;    position: absolute;    top: 52%;    left: 5%;    background: rgba(255,255,255,0.3);}
+	/*.con-list li.int02 a:nth-child(1) {letter-spacing:18px; margin-right:-11px;}
+	.con-list li.int02 a:nth-child(2) {letter-spacing:8px;}
+	.con-list li.int02 a:nth-child(3) {letter-spacing:1px;}
+	.con-list li.int02 a:nth-child(3) {letter-spacing:0.4px;}
+	.con-list li.int02 a:nth-child(4) {letter-spacing:-2.5px;}*/
+	.con-list li.int02 a.blue-btn {color:#f16075!important; letter-spacing:0px;}
+	.con-list li.int03 a.blue-btn {color:#2597d8!important;}
+	.con-list li.int04 a.blue-btn {color:#28a797!important;}
+	
+	.con-list li.int04 {display: flex;    flex-direction: column;    align-content: center;  justify-content: space-around; padding:30px 20px;}
+	.con-list li.int04::before {content:''; display:block; width:90%; height:1px; position:absolute; top:50%; left:5%; background:rgba(255,255,255,0.3);}
+	.con-list li div.listcon-wrap {padding:20px 0px; width:100%;}
+	.con-list li div.listcon-wrap h4.tit {padding-top:0px;}
+
+	footer {margin-bottom:20px;}
+	@media all and (max-width:1220px){
+		.wrap{width:100%; padding:0 10px;}
+		.con-list li.int02 a,
+		.con-list li div.listcon-wrap h4.tit {font-size:17px;}
+		.con-list li.int02 a br {display:none;}
+		.con-list li.int02 a {padding:5px 0px;}
+	}
+
+	@media all and (max-width:1024px){
+		body {background: #c7e9f4;}
+		.pcver img {width:100%;}
+		.con-list li {float:none; width:48%; margin-right:0!important; height:auto; padding:20px!important; align-items: center;}
+		.con-list li .top-bg {margin-top:0;}
+		.con-list li.int02 a {letter-spacing:0!important; margin-right:0!important;}
+	}
+
+
+	@media all and (max-width:700px){
+		body {background: #c7e9f4;}
+		h1 {margin:30px 0px;}
+		.pcver {display:none;}
+		.mover {display:inline-block;}
+		.mover img {width:100%;}
+		.con-list li div.listcon-wrap a.blue-btn{width:100%;}
+	}
+
+  </style>
+
+</head>
+
+<body>
+<div class="wrap">
+	<h1 class="main-logo">
+		<a href="/index.busanjin"><img src="http://busanjin.go.kr/images/Potal_/content/new/logo.png" alt="부산진구청 로고"></a>
+	</h1>
+
+	<a href="https://www.busan.go.kr/covid19/GosibbsView.do?sno=56390&gosiGbn=N&curPage=1" class="pcver" target="_blank" title="새창으로 열림">
+	<img src="http://busanjin.go.kr/images/Potal_/content/new/banner0925.png" alt="사회적 거리두기 2주간 연장 2022.3.21(월)~2022.4.3(일) 기본방역수칙:실내실외 마스크 착용등, 사적모임:접종완료 구분없이 8명까지 가능 ※접종증명 음성확인제(방역패스) 잠정중단 - 자세히보기">
+	</a>
+
+	<a href="https://www.busan.go.kr/covid19/GosibbsView.do?sno=56390&gosiGbn=N&curPage=1" class="mover" target="_blank" title="새창으로 열림">
+	<img src="http://busanjin.go.kr/images/Potal_/content/new/mbanner0925.png" alt="사회적 거리두기 2주간 연장 2022.3.21(월)~2022.4.3(일) 기본방역수칙:실내실외 마스크 착용등, 사적모임:접종완료 구분없이 8명까지 가능 ※접종증명 음성확인제(방역패스) 잠정중단 - 자세히보기">
+	</a>    
+
+
+
+<ul class="con-list cB">
+	<li class="int01">
+	<span class="top-bg" style="margin-top:20px;">
+	<img src="https://www.busanjin.go.kr/images/Potal_/content/new/intro-n-icon01.png" alt="부산진구청">
+	</span>
+	<div class="listcon-wrap">
+		<h4 class="tit">
+		부산진구청<br/>
+		홈페이지
+		</h4>
+		<a href="/index.busanjin" class="blue-btn">바로가기</a>
+	</div>
+	<div style="color:#666; font-size:16px; color:#fff; border-top:1px solid #dedede; padding-top:10px;  font-family: 'Busan';">
+		<span style="color:#ffff00;">코로나19</span> 행정안내센터<br />
+		051-605-4639<br />
+		(24시간 운영)
+	</div>
+	</li>
+
+	<li class="int02">	
+		<div class="listcon-wrap" style="padding-top:10px;">
+			<h4 class="tit">
+			재택치료자 구호물품<br />
+            지원사항 안내
+			</h4>
+			<a href="https://www.busanjin.go.kr/board/view.busanjin?boardId=BBS_0000009&menuCd=DOM_000000110001001000&dataSid=3846365" class="blue-btn" target="_blank">바로가기</a>
+		</div>
+
+		<a href="https://www.busanjin.go.kr/index.busanjin?menuCd=DOM_000000505007000000" target="_blank" title="새창열림" style="letter-spacing:8px; margin-top:20px;">신속항원검사</a>
+		<!-- <a href="https://www.busanjin.go.kr/health/index.busanjin?menuCd=DOM_000000505009000000" target="_blank" title="새창열림">호흡기전담클리닉</a> -->
+		<!-- <a href="https://www.busanjin.go.kr/health/index.busanjin?menuCd=DOM_000000505008000000" target="_blank" title="새창열림">재택치료 협력의료기관</a> -->
+		<a href="https://www.busan.go.kr/covid19/Hometreat.do?tab=3" target="_blank" title="새창열림" style="letter-spacing:-1px;">재택치료자 비대면 의료기관</a>
+		<a href="https://www.busan.go.kr/covid19/Hometreat.do?tab=1" target="_blank" title="새창열림"><span style="letter-spacing:1px;">재택치료자 외래진료센터</span><br />(대면진료 병·의원)</a>
+	</li>
+
+
+
+	<!-- <li class="int03 date_none">
+		<span class="top-bg">
+		<img src="https://www.busanjin.go.kr/images/Potal_/content/new/intro-n-icon020.png" alt="">
+		</span>
+		<div class="listcon-wrap">
+		<h4 class="tit">
+		소기업 소상공인<br/>
+		방역물품 지원금 신청하기
+		</h4>
+		<a href="https://www.busanjin.go.kr/board/view.busanjin?boardId=BBS_0000009&menuCd=DOM_000000110001001000&paging=ok&startPage=1&dataSid=3843731" class="blue-btn" >바로가기</a>
+		<span style="color:#fff; font-size: 16px; font-weight: 600; padding-top:10px; display:inline-block;">문의전화: 051-605-8501~8507</span>
+		</div>
+	</li> -->
+
+    <li class="int03 date_block">
+		<span class="top-bg" style="margin-top:50px;">
+		    <img src="https://www.busanjin.go.kr/images/Potal_/content/new/intro-n-icon020.png" alt="">
+		</span>
+		<div class="listcon-wrap">
+		<h4 class="tit">
+            부산형 착한 임대인<br/>
+            지원사업 신청하기
+		</h4>
+		<a href="http://receipt.busanhopecenter.or.kr" class="blue-btn" target="_blank" title="새창열림">바로가기</a>
+		<p style="text-align:left;">
+		<span style="color:#fff; font-size: 16px; font-weight: 600; padding-top:10px; display:inline-block;">신청기간 : 2022. 3. 28.~10. 31.</span>
+		<span style="color:#fff; font-size: 16px; font-weight: 600; padding-top:10px; display:inline-block;">문의전화 : 051-605-4482</span>
+		</p>
+		</div>
+	</li>
+
+
+	<li class="int04">
+	<!-- <span class="top-bg">
+	<img src="https://www.busanjin.go.kr/images/Potal_/content/new/intro-n-icon02.png" alt="부산진구청 코로나19현황">
+	</span> -->
+		<div class="listcon-wrap">
+			<h4 class="tit">
+			부산진구<br/>
+			코로나19현황
+			</h4>
+			<a href="/index.busanjin?contentsSid=3479" class="blue-btn" target="_blank">바로가기</a>
+		</div>
+
+		<div class="listcon-wrap">
+			<h4 class="tit">
+			부산진구<br/>
+			백신 예방접종 안내
+			</h4>
+			<a href="http://www.busanjin.go.kr/index.busanjin?contentsSid=3386" target="_blank" title="새창열림" class="blue-btn">바로가기</a>
+		</div>
+	</li>
+
+</ul>
+</div>
+
+<footer id="footer">
+  <div class="wrap">
+    <p>
+      Copyright(C) Busanjin-gu office All Rights Reserved.
+    </p>
+  </div>
+</footer>
+
+
+<!-- <script type="text/javascript">
+    const setDay = new Date("2022-03-26T00:00:00+0900");
+    const nowDay = new Date();
+    const closeTag = document.querySelector('.date_none');
+    const openTag = document.querySelector('.date_block');
+    if (nowDay > setDay) {
+        closeTag.style.display = "none";
+        openTag.style.display = "inline-block";
+    } else {
+        closeTag.style.display = "block";
+        openTag.style.display = "none";
+    }
+</script> -->
+
+<!--<script type="text/javascript">
+  $(document).ready(function() {
+    $("a.link01").click(function() {
+      alert('1월27일 09:00부터 신청가능합니다.');
+    });
+  });
+</script>-->
+
+</body>
+
+</html>
+<!--
+<frameset rows="," cols=",">
+    <frame src="" name="">
+    <frame src="" name="">
+</frameset>
+-->
+
+

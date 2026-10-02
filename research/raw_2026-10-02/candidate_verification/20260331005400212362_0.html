@@ -1,0 +1,885 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0">
+<meta name="_csrf" content="e8f2722c-2617-4237-ad40-fc1880459d5f"/>
+<meta name="_csrf_header" content="X-CSRF-TOKEN"/>
+<title>고시/공고 상세 : 고령군</title>
+<link rel="stylesheet" href="https://www.goryeong.go.kr/css/front//jquery-ui.css" />
+<link type="text/css" rel="stylesheet" href="https://www.goryeong.go.kr/css/front/common.css?ver=240101" />
+<link type="text/css" rel="stylesheet" href="https://www.goryeong.go.kr/css/front/main.css?ver=4.3" />
+<link type="text/css" rel="stylesheet" href="https://www.goryeong.go.kr/css/front/jquery.bxslider.css?ver=240101" />
+<link type="text/css" rel="stylesheet" href="https://www.goryeong.go.kr/css/front/sub.css?ver=250612" />
+<link type="text/css" rel="stylesheet" href="https://www.goryeong.go.kr/css/front/sub_common.css?ver=241002" />
+<link rel="stylesheet" href="//code.jquery.com/ui/1.8.18/themes/base/jquery-ui.css" />
+<link rel="stylesheet" type="text/css" media="screen" href="/css/manager/jquery.ui.timepicker.css">
+<!--[if lt IE 9]>
+<script type="text/javascript" src="https://www.goryeong.go.kr/js/front/html5shiv-printshiv.min.js"></script>
+<![endif]-->
+<script src="https://www.goryeong.go.kr/js/front/jquery-1.8.3.min.js" type="text/javascript"></script>
+<script src="https://www.goryeong.go.kr/js/front/jquery-ui.min.js" type="text/javascript"></script>
+<script src="https://www.goryeong.go.kr/js/front/common.js?ver=3.514" type="text/javascript"></script>
+<script src="https://www.goryeong.go.kr/js/front/jquery.bxslider.js" type="text/javascript"></script>
+<script src="https://www.goryeong.go.kr/js/front/main_popup.js" type="text/javascript"></script>
+<script src="https://www.goryeong.go.kr/js/front/jquery-inertiaScroll.js" type="text/javascript"></script>
+<script type="text/javascript" src="https://www.goryeong.go.kr/js/manager/common.js"></script>
+<script src="/js/manager/jquery.ui.timepicker.js"></script>
+<script type="text/javascript">
+	var tabName = '';
+	var contentName = '';
+	var tabLength = 0;
+
+	function setTab(t, c, l) {
+		tabName = t;
+		contentName = c;
+		tabLength = l;
+
+		addTabEvent();
+	}
+	function addTabEvent() {
+		for (var i = 1; i <= tabLength; i++) {
+			var tabObj = document.getElementById(tabName + i);
+			tabObj.getElementsByTagName("a")[0].onclick = onTab;
+			tabObj.getElementsByTagName("a")[0].onfocus = onTab;
+		}
+	}
+	function onTab() {
+		for (var i = 1; i <= tabLength; i++) {
+			var tabObj = document.getElementById(tabName + i);
+			tabObj.className = "";
+            tabObj.getElementsByTagName("a")[0].removeAttribute('title');
+		}
+        this.setAttribute('title', '선택됨');
+		this.parentNode.className = "main_On";
+		var seq = this.parentNode.id.substring(8);
+		for (var i = 1; i <= tabLength; i++) {
+			tabObj = document.getElementById(contentName + i);
+			tabObj.className = "";
+		}
+		document.getElementById(contentName + seq).className = "main_Visible";
+	}
+
+//	$('.header_select').click(function() {
+//		$('.select_down').slideToggle('slow', function() {
+//		});
+//	});
+</script>
+</head>
+<body>
+	<!-- 스킵네비게이션 -->
+	<div id="skip_navigation">
+		<ul>
+			<!-- 여기 -->
+			<li><a class="accessibility" href="#content_Wrap">본문 바로가기</a></li>
+		</ul>
+	</div>
+	<!-- //스킵네비게이션 -->
+	<!--임시헤더-->
+	<div class="header_Wrap">
+		<div class="header_TopWrap">
+			<div class="header_Top">
+                <p class="eg">이 누리집은 대한민국 공식 전자정부 누리집입니다.</p>
+				<form name="searchForm" onsubmit="return searchFormCheck(this)" action="?" method="post">
+					<input type="hidden" name="IDX" value="163" />
+					<input type="hidden" name="searchOk" value="Y" />
+					<input type="hidden" name="keyword" value="" />
+					<div class="header_search">
+						<select name="type" title="검색분류">
+							<option value="search">통합검색</option>
+							<option value="staff">직원검색</option>
+							<option value="staff">담당업무</option>
+						</select>
+						<input type="text" class="header_searchBox" name="searchValue" title="검색어" style="ime-mode:active;"/>
+						<div class="header_searchBtn">
+							<input type="submit" value="검색"/>
+						</div>
+					</div>
+				</form>
+				<script type="text/javascript">
+				function searchFormCheck(form){
+					switch(form.type.value){
+					case "staff":
+						form.action = "/kor/staffList.do?IDX=163";
+						break;
+					case "search":
+					default:
+						form.method = "get";
+						form.keyword.value = form.searchValue.value;
+						form.action = "/search.do";
+						break;
+					}
+				}
+				</script>
+
+				<ul class="header_right">
+					<li>
+						<ul class="language">
+							<li><a href="/kor/index.do">홈</a></li>
+							<li>|</li>
+							<li><a href="/kor/sitemap.do?IDX=54">사이트맵</a></li>
+							<li>|</li>
+							<li><a href="http://council.goryeong.go.kr" target="_blank" title="새창열기">고령군의회</a></li>
+							<li>|</li>
+							<li><a href="/eng/" target="_blank" title="새창열기">ENGLISH</a></li>
+							<li>|</li>
+							<li><a href="/chi/" target="_blank" title="새창열기" lang="zh">中國語</a></li>
+							<li>|</li>
+							<li><a href="/jpn/" target="_blank" title="새창열기" lang="ja">日本語</a></li>
+						</ul>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<div class="header_bottomWrap">
+			<div class="header_bottom">
+				<h1 class="logo">
+					<a href="/kor/index.do" id="hv1_1"> <img src="https://www.goryeong.go.kr/img/front/logo.jpg" alt="고령군 Goryeong-Gun" /></a>
+				</h1>
+				<div class="mbMenu">
+					<a href="javascript:;"> <img src="https://www.goryeong.go.kr/img/front/mbMenu.jpg" alt="모바일메뉴" /></a>
+				</div>
+				<div id="gnb" style="float: right;">
+					<ul class="Main_menu">
+						<li class="MM"><a href="/kor/contents.do?IDX=62">편리한 민원</a>
+								<ul class="SS">
+									<li><a href="/kor/contents.do?IDX=62">종합민원안내</a></li><li><a href="/kor/contents.do?IDX=12">전자민원공개</a></li><li><a href="/kor/boardList.do?IDX=344&BRD_ID=1126">부동산민원</a></li><li><a href="/kor/boardList.do?IDX=457&BRD_ID=1162">민원사무편람</a></li><li><a href="/kor/contents.do?IDX=168">교통정보</a></li><li><a href="/kor/contents.do?IDX=69">지방세안내</a></li><li><a href="/kor/contents.do?IDX=262">현수막게시현황</a></li><li><a href="/kor/contents.do?IDX=447">공공디자인</a></li></ul>
+							</li>
+						<li class="MM"><a href="/kor/contents.do?IDX=79">군민참여</a>
+								<ul class="SS">
+									<li><a href="/kor/contents.do?IDX=79">고령신문고</a></li><li><a href="/kor/contents.do?IDX=434">고향사랑기부제</a></li><li><a href="/budget/index.do" target="_blank" title="새창열기">예산현황</a></li><li><a href="/kor/contents.do?IDX=85">제안하기</a></li><li><a href="/kor/contents.do?IDX=383">적극행정</a></li><li><a href="/kor/surveyList.do?IDX=491">군민광장</a></li><li><a href="/kor/contents.do?IDX=91">군민소통</a></li><li><a href="/kor/boardList.do?BRD_ID=1014&IDX=26">일자리 자유게시판</a></li><li><a href="/kor/boardList.do?IDX=389&BRD_ID=1132">군민배움터</a></li><li><a href="/kor/boardList.do?IDX=393&BRD_ID=1135">유기동물 보호 공고</a></li></ul>
+							</li>
+						<li class="MM"><a href="/kor/contents.do?IDX=96">정보공개</a>
+								<ul class="SS">
+									<li><a href="/kor/contents.do?IDX=96">공공데이터개방</a></li><li><a href="/kor/contents.do?IDX=184">행정정보</a></li><li><a href="/kor/boardList.do?BRD_ID=1173&IDX=479">사전정보공표목록</a></li><li><a href="/kor/boardList.do?BRD_ID=1174&IDX=480">사전정보목록</a></li><li><a href="/kor/boardList.do?IDX=104&BRD_ID=1074">비공개대상세부정보목록</a></li><li><a href="/kor/boardList.do?IDX=30&BRD_ID=1097">정책실명제</a></li><li><a href="/kor/contents.do?IDX=105">행정규제개혁</a></li><li><a href="http://www.elis.go.kr/newlaib/laibLaws/h1126/laws.jsp?regionId=47830" target="_blank" title="새창열기">자치법규</a></li><li><a href="/kor/boardList2.do?IDX=478&BRD_ID=1172">통계자료</a></li><li><a href="/kor/contents.do?IDX=113">민방위/재난안전</a></li><li><a href="/kor/contents.do?IDX=437">군민행동요령</a></li><li><a href="/kor/boardList.do?BRD_ID=1161&IDX=451">고령군 마을대피소</a></li></ul>
+							</li>
+						<li class="MM"><a href="/kor/contents.do?IDX=115">산업경제</a>
+								<ul class="SS">
+									<li><a href="/tec/index.do" target="_blank" title="새창열기">농업기술센터</a></li><li><a href="/kor/contents.do?IDX=117">산업단지안내</a></li><li><a href="/kor/boardList.do?BRD_ID=1157&IDX=432">기업지원시책</a></li><li><a href="/kor/contents.do?IDX=121">고령5일장</a></li><li><a href="/kor/contents.do?IDX=394">고령사랑상품권</a></li><li><a href="/kor/contents.do?IDX=126">그린에너지</a></li><li><a href="http://www.grmall.co.kr/" target="_blank" title="새창열기">고령쇼핑몰</a></li></ul>
+							</li>
+						<li class="MM"><a href="/kor/contents.do?IDX=347">생활복지</a>
+								<ul class="SS">
+									<li><a href="/kor/contents.do?IDX=347">복지정보</a></li><li><a href="/kor/boardList.do?IDX=413&BRD_ID=1144">청년지원사업</a></li><li><a href="/health/index.do" target="_blank" title="새창열기">고령군보건소</a></li><li><a href="http://www.goryeong.go.kr/art/index.do" target="_blank" title="새창열기">대가야문화누리</a></li><li><a href="/kor/contents.do?IDX=273">군립가야금연주단</a></li><li><a href="/gredu/index.do" target="_blank" title="새창열기">교육발전위원회</a></li><li><a href="http://lib.goryeong.go.kr/" target="_blank" title="새창열기">다산도서관</a></li><li><a href="/kor/contents.do?IDX=371">인구증가시책</a></li><li><a href="/kor/boardList.do?IDX=416&BRD_ID=1147">평생교육사업</a></li><li><a href="/kor/boardList.do?IDX=257&BRD_ID=1124">환경관련</a></li></ul>
+							</li>
+						<li class="MM on"><a href="/kor/contents.do?IDX=140">대가야고령</a>
+								<ul class="SS">
+									<li><a href="/ceo/index.do" target="_blank" title="새창열기">열린군수실</a></li><li><a href="/kor/contents.do?IDX=140">고령소개</a></li><li><a href="/kor/contents.do?IDX=147">고령군정</a></li><li><a href="/kor/boardList.do?IDX=152&BRD_ID=1019">고령알리미</a></li><li><a href="/kor/boardList.do?IDX=157&BRD_ID=1062">고령홍보관</a></li><li><a href="/kor/contents.do?IDX=161">군청안내</a></li><li><a href="/kor/boardList.do?BRD_ID=1112&IDX=363">기관 및 사회단체</a></li></ul>
+							</li>
+						<li class="MM"><a href="">문화관광</a>
+								<ul class="SS">
+									<li><a href="http://tour.goryeong.go.kr" target="_blank" title="새창열기">관광홈페이지</a></li><li><a href="https://mall.goryeong.go.kr/PlaceIntro" target="_blank" title="새창열기">대가야역사테마관광지</a></li><li><a href="https://www.foresttrip.go.kr/indvz/main.do?hmpgId=ID02030026" target="_blank" title="새창열기">미숭산자연휴양림</a></li><li><a href="http://www.goryeong.go.kr/daegaya" target="_blank" title="새창열기">대가야박물관</a></li><li><a href="http://gr.scinema.org/" target="_blank" title="새창열기">대가야시네마</a></li><li><a href="http://goryeong.grandculture.net" target="_blank" title="새창열기">디지털문화대전</a></li><li><a href="http://www.goryeong.go.kr/culture/" target="_blank" title="새창열기">고령문화원</a></li><li><a href="https://mall.goryeong.go.kr/VillageIntro" target="_blank" title="새창열기">대가야생활촌</a></li><li><a href="http://www.festdgy.com/" target="_blank" title="새창열기">고령대가야축제</a></li><li><a href="https://www.goari-mural.com" target="_blank" title="새창열기">고아리벽화고분모형관</a></li><li><a href="http://dt.goryeong.go.kr:28388/daegaya/metaMuseum/" target="_blank" title="새창열기">메타버스박물관</a></li></ul>
+							</li>
+						</ul>
+					<div class="mbMenu1">
+						<a href="javascript:;"><img src="https://www.goryeong.go.kr/img/front/mbMenu.jpg" alt="메뉴 전체보기" /></a>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="menuBg"></div>
+		<!-- 	mobile	 -->
+		<div class="mbMenu_wrap">
+			<ul class="mbMenu_menuwrap">
+				<li class="mbMenu_title s_title01"><a href="javascript:;">편리한 민원<span class="plus_btn"></span></a>
+						<div class="mbMenu_contents_wrap s_contents01">
+							<ul class="mbMenu_contents">
+								<li><a href="javascript:;">종합민원안내<span class="plus_btn"></span></a>
+											<ul class="mbMenu_contents2">
+												<li><a href="/kor/contents.do?IDX=62">민원종합</a></li><li><a href="/kor/contents.do?IDX=63">무인민원발급안내</a></li><li><a href="/kor/contents.do?IDX=64">민원전화번호</a></li></ul>
+										</li>
+									<li><a href="javascript:;">전자민원공개<span class="plus_btn"></span></a>
+											<ul class="mbMenu_contents2">
+												<li><a href="http://eminwon.goryeong.go.kr/emwp/gov/mogaha/ntis/web/caf/mwwd/action/CafMwWdOpenAction.do?method=selectListMwOpn&amp;menu_id=CAFOPNWebMwOpenL&amp;jndinm=CafMwWdOpenEJB&amp;methodnm=selectListMwOpn&amp;context=NTIS" target="_blank" title="새창열기">서식민원처리공개</a></li><li><a href="http://eminwon.goryeong.go.kr/emwp/gov/mogaha/ntis/web/caf/mwwd/action/CafMwWdOpenAction.do?method=selectListAdmm&amp;menu_id=CAFOPNWebAdmmOpenL&amp;jndinm=CafMwWdOpenEJB&amp;methodnm=selectListAdmm&amp;context=NTIS" target="_blank" title="새창열기">행정처분공개</a></li></ul>
+										</li>
+									<li><a href="javascript:;">부동산민원<span class="plus_btn"></span></a>
+											<ul class="mbMenu_contents2">
+												<li><a href="http://kras.gb.go.kr" target="_blank" title="새창열기">부동산정보조회</a></li><li><a href="http://www.nsdi.go.kr/lxportal/?menuno=2679" target="_blank" title="새창열기">국가공간정보포털</a></li><li><a href="/kor/contents.do?IDX=344">조상땅찾기</a></li><li><a href="https://rtms.molit.go.kr/" target="_blank" title="새창열기">부동산거래관리시스템</a></li><li><a href="/kor/boardList.do?IDX=68&BRD_ID=1076">부동산 불법거래 신고센터</a></li><li><a href="/kor/boardList.do?IDX=349&BRD_ID=1042">지적공부등록지 현황</a></li></ul>
+										</li>
+									<li><a href="/kor/boardList.do?IDX=457&BRD_ID=1162">민원사무편람</a></li><li><a href="javascript:;">교통정보<span class="plus_btn"></span></a>
+											<ul class="mbMenu_contents2">
+												<li><a href="/kor/contents.do?IDX=168">자동차민원</a></li><li><a href="/kor/contents.do?IDX=472">버스시간표</a></li><li><a href="/kor/contents.do?IDX=477">광역환승 소개</a></li><li><a href="/kor/contents.do?IDX=490">대가야읍 공영주차장 위치</a></li></ul>
+										</li>
+									<li><a href="javascript:;">지방세안내<span class="plus_btn"></span></a>
+											<ul class="mbMenu_contents2">
+												<li><a href="/kor/contents.do?IDX=69">지방세개요</a></li><li><a href="/kor/contents.do?IDX=70">월별납부안내</a></li><li><a href="/kor/contents.do?IDX=71">세목별안내</a></li><li><a href="/kor/contents.do?IDX=72">구제제도</a></li><li><a href="/kor/contents.do?IDX=444">마을세무사</a></li><li><a href="/kor/contents.do?IDX=261">납세자보호관</a></li><li><a href="/kor/contents.do?IDX=385">납세자보호관 업무실적</a></li><li><a href="/kor/contents.do?IDX=73">편리한납부제도</a></li><li><a href="/kor/contents.do?IDX=74">사이버지방세창구</a></li><li><a href="/kor/contents.do?IDX=484">지방세 환급금 안내</a></li><li><a href="https://chatbot.wetax.go.kr/" target="_blank" title="새창열기">지방세상담챗봇</a></li><li><a href="http://www.goodinfocar.com" target="_blank" title="새창열기">인터넷 자동차 공매</a></li></ul>
+										</li>
+									<li><a href="javascript:;">현수막게시현황<span class="plus_btn"></span></a>
+											<ul class="mbMenu_contents2">
+												<li><a href="/kor/contents.do?IDX=262">옥외광고물 신고절차</a></li></ul>
+										</li>
+									<li><a href="javascript:;">공공디자인<span class="plus_btn"></span></a>
+											<ul class="mbMenu_contents2">
+												<li><a href="/kor/contents.do?IDX=447">공사장 가림벽 디자인</a></li><li><a href="/kor/contents.do?IDX=448">공공디자인 자료실</a></li></ul>
+										</li>
+									</ul>
+						</div>
+					</li>
+				<li class="mbMenu_title s_title02"><a href="javascript:;">군민참여<span class="plus_btn"></span></a>
+						<div class="mbMenu_contents_wrap s_contents02">
+							<ul class="mbMenu_contents">
+								<li><a href="javascript:;">고령신문고<span class="plus_btn"></span></a>
+											<ul class="mbMenu_contents2">
+												<li><a href="/kor/contents.do?IDX=79">건의함</a></li><li><a href="/kor/contents.do?IDX=80">나의민원보기</a></li><li><a href="/kor/boardList.do?IDX=81&BRD_ID=1123">공공부문 갑질 상담 제보방</a></li><li><a href="https://ncp.clean.go.kr/cmn/secCtfcKMC.do?menuCode=acs&mapAcs=Y&insttCd=5200000" target="_blank" title="새창열기">부패 · 공익신고</a></li><li><a href="/kor/boardList.do?IDX=84&BRD_ID=1008">분묘개장공고</a></li><li><a href="https://www.safetyreport.go.kr/api?apiKey=5200000IHR9OEYLDL4JK7CWCSJ4" target="_blank" title="새창열기">안전신고</a></li><li><a href="https://www.epeople.go.kr/nep/pttn/negativePttn/NegativePttnCotents.npaid" target="_blank" title="새창열기">소극행정 신고센터</a></li><li><a href="https://www.clean.go.kr/index.es?sid=a1  " target="_blank" title="새창열기">지방보조금 부정수급 신고</a></li></ul>
+										</li>
+									<li><a href="javascript:;">고향사랑기부제<span class="plus_btn"></span></a>
+											<ul class="mbMenu_contents2">
+												<li><a href="/kor/contents.do?IDX=434">고향사랑기부제</a></li><li><a href="/kor/boardList.do?IDX=435&BRD_ID=1158">기부자 명예의전당</a></li></ul>
+										</li>
+									<li><a href="/budget/index.do" target="_blank" title="새창열기">예산현황</a></li><li><a href="javascript:;">제안하기<span class="plus_btn"></span></a>
+											<ul class="mbMenu_contents2">
+												<li><a href="/kor/contents.do?IDX=85">제안공모 개요</a></li><li><a href="/kor/boardList.do?IDX=86&BRD_ID=1113">제안공모 참여</a></li></ul>
+										</li>
+									<li><a href="javascript:;">적극행정<span class="plus_btn"></span></a>
+											<ul class="mbMenu_contents2">
+												<li><a href="/kor/contents.do?IDX=383">적극행정 제도</a></li><li><a href="/kor/boardList.do?IDX=386&BRD_ID=1129">적극행정알림</a></li><li><a href="/kor/boardList.do?IDX=387&BRD_ID=1131">군민추천서 등록</a></li></ul>
+										</li>
+									<li><a href="javascript:;">군민광장<span class="plus_btn"></span></a>
+											<ul class="mbMenu_contents2">
+												<li><a href="/kor/surveyList.do?IDX=491">설문조사</a></li><li><a href="/kor/boardList.do?BRD_ID=1009&IDX=87">자유게시판</a></li><li><a href="/kor/boardList.do?IDX=89&BRD_ID=1011">벼룩시장</a></li></ul>
+										</li>
+									<li><a href="javascript:;">군민소통<span class="plus_btn"></span></a>
+											<ul class="mbMenu_contents2">
+												<li><a href="https://www.facebook.com/goryeong" target="_blank" title="새창열기">페이스북</a></li><li><a href="https://blog.naver.com/gokory" target="_blank" title="새창열기">블로그</a></li><li><a href="https://www.youtube.com/channel/UCj1OysvIWGA9ST81SjSzcTQ" target="_blank" title="새창열기">유튜브</a></li></ul>
+										</li>
+									<li><a href="/kor/boardList.do?BRD_ID=1014&IDX=26">일자리 자유게시판</a></li><li><a href="javascript:;">군민배움터<span class="plus_btn"></span></a>
+											<ul class="mbMenu_contents2">
+												<li><a href="/kor/boardList.do?IDX=389&BRD_ID=1132">(평생) 그림책 콘서트</a></li><li><a href="/kor/boardList.do?IDX=390&BRD_ID=1133">(평생) 중국어회화</a></li><li><a href="/kor/boardList.do?IDX=391&BRD_ID=1134">(평생) 한국수어</a></li></ul>
+										</li>
+									<li><a href="/kor/boardList.do?IDX=393&BRD_ID=1135">유기동물 보호 공고</a></li></ul>
+						</div>
+					</li>
+				<li class="mbMenu_title s_title03"><a href="javascript:;">정보공개<span class="plus_btn"></span></a>
+						<div class="mbMenu_contents_wrap s_contents03">
+							<ul class="mbMenu_contents">
+								<li><a href="javascript:;">공공데이터개방<span class="plus_btn"></span></a>
+											<ul class="mbMenu_contents2">
+												<li><a href="/kor/contents.do?IDX=96">공공데이터개방 안내</a></li><li><a href="/kor/boardList.do?IDX=442&BRD_ID=1159">공공데이터 의견수렴</a></li></ul>
+										</li>
+									<li><a href="javascript:;">행정정보<span class="plus_btn"></span></a>
+											<ul class="mbMenu_contents2">
+												<li><a href="/kor/contents.do?IDX=184">조직운영 6대지표</a></li><li><a href="/kor/contents.do?IDX=205">행정정보공개안내</a></li><li><a href="https://www.open.go.kr/" target="_blank" title="새창열기">정보공개시스템</a></li><li><a href="/kor/boardList.do?BRD_ID=1175&IDX=481">업무추진비공개</a></li><li><a href="/kor/boardList.do?IDX=482&BRD_ID=1176">감사결과공개</a></li></ul>
+										</li>
+									<li><a href="/kor/boardList.do?BRD_ID=1173&IDX=479">사전정보공표목록</a></li><li><a href="/kor/boardList.do?BRD_ID=1174&IDX=480">사전정보목록</a></li><li><a href="/kor/boardList.do?IDX=104&BRD_ID=1074">비공개대상세부정보목록</a></li><li><a href="/kor/boardList.do?IDX=30&BRD_ID=1097">정책실명제</a></li><li><a href="javascript:;">행정규제개혁<span class="plus_btn"></span></a>
+											<ul class="mbMenu_contents2">
+												<li><a href="/kor/contents.do?IDX=105">추진개요</a></li><li><a href="/kor/boardList.do?IDX=106&BRD_ID=1102">행정규제신고</a></li><li><a href="https://www.sinmungo.go.kr/sz2.prpsl.main" target="_blank" title="새창열기">규제신문고</a></li><li><a href="/kor/boardList.do?IDX=399&BRD_ID=1138">규제입증창구</a></li></ul>
+										</li>
+									<li><a href="http://www.elis.go.kr/newlaib/laibLaws/h1126/laws.jsp?regionId=47830" target="_blank" title="새창열기">자치법규</a></li><li><a href="javascript:;">통계자료<span class="plus_btn"></span></a>
+											<ul class="mbMenu_contents2">
+												<li><a href="/kor/boardList2.do?IDX=478&BRD_ID=1172">기본통계</a></li><li><a href="/kor/boardList.do?IDX=462&BRD_ID=1163">사회조사</a></li><li><a href="/kor/boardList.do?IDX=463&BRD_ID=1164">사업체조사</a></li><li><a href="/kor/boardList.do?IDX=464&BRD_ID=1165">광업제조업조사</a></li><li><a href="/kor/boardList.do?IDX=468&BRD_ID=1169">경제총조사</a></li><li><a href="/kor/boardList.do?IDX=469&BRD_ID=1170">인구통계</a></li><li><a href="/kor/boardList.do?IDX=470&BRD_ID=1171">지역내총생산(GRDP)</a></li></ul>
+										</li>
+									<li><a href="javascript:;">민방위/재난안전<span class="plus_btn"></span></a>
+											<ul class="mbMenu_contents2">
+												<li><a href="http://www.safekorea.go.kr/idsiSFK/index_web.jsp" target="_blank" title="새창열기">국민재난안전포털</a></li><li><a href="/kor/contents.do?IDX=113">민방위비상급수시설</a></li><li><a href="/kor/contents.do?IDX=114">민방위대피시설</a></li></ul>
+										</li>
+									<li><a href="/kor/contents.do?IDX=437">군민행동요령</a></li><li><a href="/kor/boardList.do?BRD_ID=1161&IDX=451">고령군 마을대피소</a></li></ul>
+						</div>
+					</li>
+				<li class="mbMenu_title s_title04"><a href="javascript:;">산업경제<span class="plus_btn"></span></a>
+						<div class="mbMenu_contents_wrap s_contents04">
+							<ul class="mbMenu_contents">
+								<li><a href="/tec/index.do" target="_blank" title="새창열기">농업기술센터</a></li><li><a href="javascript:;">산업단지안내<span class="plus_btn"></span></a>
+											<ul class="mbMenu_contents2">
+												<li><a href="/kor/contents.do?IDX=117">지역산업단지</a></li><li><a href="/kor/contents.do?IDX=118">산업단지입주업체</a></li><li><a href="/kor/contents.do?IDX=119">읍면별입주업체</a></li></ul>
+										</li>
+									<li><a href="javascript:;">기업지원시책<span class="plus_btn"></span></a>
+											<ul class="mbMenu_contents2">
+												<li><a href="/kor/boardList.do?BRD_ID=1157&IDX=432">기업지원사업 안내</a></li><li><a href="/kor/contents.do?IDX=430">경상북도 중소기업 지원시책</a></li></ul>
+										</li>
+									<li><a href="javascript:;">고령5일장<span class="plus_btn"></span></a>
+											<ul class="mbMenu_contents2">
+												<li><a href="/kor/contents.do?IDX=121">장터소개</a></li><li><a href="/kor/contents.do?IDX=122">장터지도</a></li><li><a href="/kor/boardList.do?IDX=123&BRD_ID=1015">장터풍경</a></li></ul>
+										</li>
+									<li><a href="javascript:;">고령사랑상품권<span class="plus_btn"></span></a>
+											<ul class="mbMenu_contents2">
+												<li><a href="/kor/contents.do?IDX=394">고령사랑상품권</a></li></ul>
+										</li>
+									<li><a href="javascript:;">그린에너지<span class="plus_btn"></span></a>
+											<ul class="mbMenu_contents2">
+												<li><a href="http://www.opinet.co.kr/user/main/mainView.do" target="_blank" title="새창열기">유가정보</a></li><li><a href="http://greenhome.energy.or.kr/index.do" target="_blank" title="새창열기">그린홈 보급사업</a></li><li><a href="/kor/contents.do?IDX=126">에너지 절약</a></li><li><a href="/kor/contents.do?IDX=127">에너지 공급업체 현황</a></li></ul>
+										</li>
+									<li><a href="http://www.grmall.co.kr/" target="_blank" title="새창열기">고령쇼핑몰</a></li></ul>
+						</div>
+					</li>
+				<li class="mbMenu_title s_title05"><a href="javascript:;">생활복지<span class="plus_btn"></span></a>
+						<div class="mbMenu_contents_wrap s_contents05">
+							<ul class="mbMenu_contents">
+								<li><a href="javascript:;">복지정보<span class="plus_btn"></span></a>
+											<ul class="mbMenu_contents2">
+												<li><a href="/kor/contents.do?IDX=347">국민기초생활복지</a></li><li><a href="/kor/contents.do?IDX=348">장애인복지</a></li></ul>
+										</li>
+									<li><a href="javascript:;">청년지원사업<span class="plus_btn"></span></a>
+											<ul class="mbMenu_contents2">
+												<li><a href="/kor/boardList.do?IDX=413&BRD_ID=1144">청년월세 주거비 지원사업 신청</a></li><li><a href="/kor/boardList.do?IDX=414&BRD_ID=1145">청년 교통비 지원사업 신청</a></li><li><a href="/kor/boardList.do?IDX=427&BRD_ID=1143">청년지원사업 안내</a></li></ul>
+										</li>
+									<li><a href="/health/index.do" target="_blank" title="새창열기">고령군보건소</a></li><li><a href="http://www.goryeong.go.kr/art/index.do" target="_blank" title="새창열기">대가야문화누리</a></li><li><a href="javascript:;">군립가야금연주단<span class="plus_btn"></span></a>
+											<ul class="mbMenu_contents2">
+												<li><a href="/kor/contents.do?IDX=273">군립가야금연주단 소개</a></li><li><a href="/kor/contents.do?IDX=274">군립가야금연주단 연혁</a></li><li><a href="/kor/contents.do?IDX=275">군립가야금연주단원</a></li><li><a href="/kor/contents.do?IDX=276">오시는 길</a></li></ul>
+										</li>
+									<li><a href="/gredu/index.do" target="_blank" title="새창열기">교육발전위원회</a></li><li><a href="http://lib.goryeong.go.kr/" target="_blank" title="새창열기">다산도서관</a></li><li><a href="javascript:;">인구증가시책<span class="plus_btn"></span></a>
+											<ul class="mbMenu_contents2">
+												<li><a href="/kor/contents.do?IDX=371">전입지원</a></li><li><a href="/kor/contents.do?IDX=372">결혼·출산</a></li><li><a href="/kor/contents.do?IDX=373">출산</a></li><li><a href="/kor/contents.do?IDX=374">임산부·영유아</a></li><li><a href="/kor/contents.do?IDX=375">양육</a></li><li><a href="/kor/contents.do?IDX=449">다자녀가정 지원</a></li><li><a href="/kor/contents.do?IDX=377">청년</a></li><li><a href="/kor/contents.do?IDX=378">귀농·귀촌</a></li><li><a href="/kor/contents.do?IDX=379">기업·세제</a></li><li><a href="/kor/contents.do?IDX=380">생활문화</a></li><li><a href="/kor/contents.do?IDX=381">건강·기타</a></li><li><a href="/kor/contents.do?IDX=376">근로자지원제도</a></li></ul>
+										</li>
+									<li><a href="javascript:;">평생교육사업<span class="plus_btn"></span></a>
+											<ul class="mbMenu_contents2">
+												<li><a href="/kor/boardList.do?IDX=416&BRD_ID=1147">공지사항</a></li><li><a href="https://www.goryeong.go.kr/lifelong/index.do" target="_blank" title="새창열기">평생교육포털</a></li></ul>
+										</li>
+									<li><a href="javascript:;">환경관련<span class="plus_btn"></span></a>
+											<ul class="mbMenu_contents2">
+												<li><a href="/kor/boardList.do?IDX=257&BRD_ID=1124">공지사항</a></li><li><a href="/kor/contents.do?IDX=266">안내문</a></li></ul>
+										</li>
+									</ul>
+						</div>
+					</li>
+				<li class="mbMenu_title s_title06"><a href="javascript:;">대가야고령<span class="plus_btn"></span></a>
+						<div class="mbMenu_contents_wrap s_contents06">
+							<ul class="mbMenu_contents">
+								<li><a href="/ceo/index.do" target="_blank" title="새창열기">열린군수실</a></li><li><a href="javascript:;">고령소개<span class="plus_btn"></span></a>
+											<ul class="mbMenu_contents2">
+												<li><a href="/kor/contents.do?IDX=140">기본현황</a></li><li><a href="/kor/boardList.do?IDX=405&BRD_ID=1140">월별 인구 현황</a></li><li><a href="/kor/contents.do?IDX=142">고령역사</a></li><li><a href="/kor/contents.do?IDX=143">고령상징물</a></li><li><a href="/kor/contents.do?IDX=409">전용 서체</a></li><li><a href="/kor/contents.do?IDX=144">자매결연도시</a></li><li><a href="/kor/contents.do?IDX=145">고령군 명예군민</a></li></ul>
+										</li>
+									<li><a href="javascript:;">고령군정<span class="plus_btn"></span></a>
+											<ul class="mbMenu_contents2">
+												<li><a href="/kor/contents.do?IDX=147">고령비전</a></li><li><a href="/kor/contents.do?IDX=148">군정방향</a></li><li><a href="/kor/boardList.do?IDX=150&BRD_ID=1137">군정백서</a></li><li><a href="/kor/boardList.do?IDX=443&BRD_ID=1160">주요업무계획</a></li></ul>
+										</li>
+									<li><a href="javascript:;">고령알리미<span class="plus_btn"></span></a>
+											<ul class="mbMenu_contents2">
+												<li><a href="/kor/boardList.do?IDX=151&BRD_ID=1018">군정소식</a></li><li><a href="/kor/boardList.do?IDX=152&BRD_ID=1019">공지사항</a></li><li><a href="/kor/boardList.do?IDX=153&BRD_ID=1020">고령군보</a></li><li><a href="/kor/boardList.do?IDX=252&BRD_ID=1022">행사일정</a></li><li><a href="/kor/boardList.do?IDX=154&BRD_ID=1023">고시/공고</a></li><li><a href="http://ecios.goryeong.go.kr/" target="_blank" title="새창열기">계약정보공개시스템</a></li><li><a href="/kor/boardList.do?IDX=156&BRD_ID=1025">행정입법예고</a></li></ul>
+										</li>
+									<li><a href="javascript:;">고령홍보관<span class="plus_btn"></span></a>
+											<ul class="mbMenu_contents2">
+												<li><a href="/kor/boardList.do?IDX=157&BRD_ID=1062">고령뉴스</a></li><li><a href="/kor/boardList.do?IDX=158&BRD_ID=1027">고령군풍경</a></li><li><a href="/kor/boardList.do?BRD_ID=1127&IDX=159">동영상갤러리</a></li><li><a href="/pdf/web/viewer.html?file=/file/yesterday.pdf" target="_blank" title="새창열기">고령의 어제와 오늘</a></li></ul>
+										</li>
+									<li><a href="javascript:;">군청안내<span class="plus_btn"></span></a>
+											<ul class="mbMenu_contents2">
+												<li><a href="/kor/contents.do?IDX=161">청사안내도</a></li><li><a href="/kor/staffList.do?IDX=163">조직도</a></li><li><a href="/kor/contents.do?IDX=165">군청오시는길</a></li></ul>
+										</li>
+									<li><a href="/kor/boardList.do?BRD_ID=1112&IDX=363">기관 및 사회단체</a></li></ul>
+						</div>
+					</li>
+				<li class="mbMenu_title s_title07"><a href="javascript:;">문화관광</a>
+						<div class="mbMenu_contents_wrap s_contents07">
+							<ul class="mbMenu_contents">
+								<li><a href="http://tour.goryeong.go.kr" target="_blank" title="새창열기">관광홈페이지</a></li><li><a href="https://mall.goryeong.go.kr/PlaceIntro" target="_blank" title="새창열기">대가야역사테마관광지</a></li><li><a href="https://www.foresttrip.go.kr/indvz/main.do?hmpgId=ID02030026" target="_blank" title="새창열기">미숭산자연휴양림</a></li><li><a href="http://www.goryeong.go.kr/daegaya" target="_blank" title="새창열기">대가야박물관</a></li><li><a href="http://gr.scinema.org/" target="_blank" title="새창열기">대가야시네마</a></li><li><a href="http://goryeong.grandculture.net" target="_blank" title="새창열기">디지털문화대전</a></li><li><a href="http://www.goryeong.go.kr/culture/" target="_blank" title="새창열기">고령문화원</a></li><li><a href="https://mall.goryeong.go.kr/VillageIntro" target="_blank" title="새창열기">대가야생활촌</a></li><li><a href="http://www.festdgy.com/" target="_blank" title="새창열기">고령대가야축제</a></li><li><a href="https://www.goari-mural.com" target="_blank" title="새창열기">고아리벽화고분모형관</a></li><li><a href="http://dt.goryeong.go.kr:28388/daegaya/metaMuseum/" target="_blank" title="새창열기">메타버스박물관</a></li></ul>
+						</div>
+					</li>
+				</ul>
+		</div>
+		<button type="button" class="moClose">닫기</button>
+	</div>
+
+	<!-- 전체메뉴 -->
+	<div class="allWrap">
+		<div class="all_boxWrap clearfix">
+			<div class="all_leftWrap">
+				<!-- 대가야고령이 아닌 메뉴 -->
+						<div class="all_box">
+							<div class="all_title">편리한 민원</div>
+							<ul>
+								<li><a href="javascript:;">종합민원안내</a>
+											<ul>
+												<li><a href="/kor/contents.do?IDX=62">민원종합</a></li><li><a href="/kor/contents.do?IDX=63">무인민원발급안내</a></li><li><a href="/kor/contents.do?IDX=64">민원전화번호</a></li></ul>
+										</li>
+									<li><a href="javascript:;">전자민원공개</a>
+											<ul>
+												<li><a href="http://eminwon.goryeong.go.kr/emwp/gov/mogaha/ntis/web/caf/mwwd/action/CafMwWdOpenAction.do?method=selectListMwOpn&amp;menu_id=CAFOPNWebMwOpenL&amp;jndinm=CafMwWdOpenEJB&amp;methodnm=selectListMwOpn&amp;context=NTIS" target="_blank" title="새창열기">서식민원처리공개</a></li><li><a href="http://eminwon.goryeong.go.kr/emwp/gov/mogaha/ntis/web/caf/mwwd/action/CafMwWdOpenAction.do?method=selectListAdmm&amp;menu_id=CAFOPNWebAdmmOpenL&amp;jndinm=CafMwWdOpenEJB&amp;methodnm=selectListAdmm&amp;context=NTIS" target="_blank" title="새창열기">행정처분공개</a></li></ul>
+										</li>
+									<li><a href="javascript:;">부동산민원</a>
+											<ul>
+												<li><a href="http://kras.gb.go.kr" target="_blank" title="새창열기">부동산정보조회</a></li><li><a href="http://www.nsdi.go.kr/lxportal/?menuno=2679" target="_blank" title="새창열기">국가공간정보포털</a></li><li><a href="/kor/contents.do?IDX=344">조상땅찾기</a></li><li><a href="https://rtms.molit.go.kr/" target="_blank" title="새창열기">부동산거래관리시스템</a></li><li><a href="/kor/boardList.do?IDX=68&BRD_ID=1076">부동산 불법거래 신고센터</a></li><li><a href="/kor/boardList.do?IDX=349&BRD_ID=1042">지적공부등록지 현황</a></li></ul>
+										</li>
+									<li><a href="/kor/boardList.do?IDX=457&BRD_ID=1162">민원사무편람</a></li><li><a href="javascript:;">교통정보</a>
+											<ul>
+												<li><a href="/kor/contents.do?IDX=168">자동차민원</a></li><li><a href="/kor/contents.do?IDX=472">버스시간표</a></li><li><a href="/kor/contents.do?IDX=477">광역환승 소개</a></li><li><a href="/kor/contents.do?IDX=490">대가야읍 공영주차장 위치</a></li></ul>
+										</li>
+									<li><a href="javascript:;">지방세안내</a>
+											<ul>
+												<li><a href="/kor/contents.do?IDX=69">지방세개요</a></li><li><a href="/kor/contents.do?IDX=70">월별납부안내</a></li><li><a href="/kor/contents.do?IDX=71">세목별안내</a></li><li><a href="/kor/contents.do?IDX=72">구제제도</a></li><li><a href="/kor/contents.do?IDX=444">마을세무사</a></li><li><a href="/kor/contents.do?IDX=261">납세자보호관</a></li><li><a href="/kor/contents.do?IDX=385">납세자보호관 업무실적</a></li><li><a href="/kor/contents.do?IDX=73">편리한납부제도</a></li><li><a href="/kor/contents.do?IDX=74">사이버지방세창구</a></li><li><a href="/kor/contents.do?IDX=484">지방세 환급금 안내</a></li><li><a href="https://chatbot.wetax.go.kr/" target="_blank" title="새창열기">지방세상담챗봇</a></li><li><a href="http://www.goodinfocar.com" target="_blank" title="새창열기">인터넷 자동차 공매</a></li></ul>
+										</li>
+									<li><a href="javascript:;">현수막게시현황</a>
+											<ul>
+												<li><a href="/kor/contents.do?IDX=262">옥외광고물 신고절차</a></li></ul>
+										</li>
+									<li><a href="javascript:;">공공디자인</a>
+											<ul>
+												<li><a href="/kor/contents.do?IDX=447">공사장 가림벽 디자인</a></li><li><a href="/kor/contents.do?IDX=448">공공디자인 자료실</a></li></ul>
+										</li>
+									</ul>
+						</div>
+				<!-- 대가야고령이 아닌 메뉴 -->
+						<div class="all_box">
+							<div class="all_title">군민참여</div>
+							<ul>
+								<li><a href="javascript:;">고령신문고</a>
+											<ul>
+												<li><a href="/kor/contents.do?IDX=79">건의함</a></li><li><a href="/kor/contents.do?IDX=80">나의민원보기</a></li><li><a href="/kor/boardList.do?IDX=81&BRD_ID=1123">공공부문 갑질 상담 제보방</a></li><li><a href="https://ncp.clean.go.kr/cmn/secCtfcKMC.do?menuCode=acs&mapAcs=Y&insttCd=5200000" target="_blank" title="새창열기">부패 · 공익신고</a></li><li><a href="/kor/boardList.do?IDX=84&BRD_ID=1008">분묘개장공고</a></li><li><a href="https://www.safetyreport.go.kr/api?apiKey=5200000IHR9OEYLDL4JK7CWCSJ4" target="_blank" title="새창열기">안전신고</a></li><li><a href="https://www.epeople.go.kr/nep/pttn/negativePttn/NegativePttnCotents.npaid" target="_blank" title="새창열기">소극행정 신고센터</a></li><li><a href="https://www.clean.go.kr/index.es?sid=a1  " target="_blank" title="새창열기">지방보조금 부정수급 신고</a></li></ul>
+										</li>
+									<li><a href="javascript:;">고향사랑기부제</a>
+											<ul>
+												<li><a href="/kor/contents.do?IDX=434">고향사랑기부제</a></li><li><a href="/kor/boardList.do?IDX=435&BRD_ID=1158">기부자 명예의전당</a></li></ul>
+										</li>
+									<li><a href="/budget/index.do" target="_blank" title="새창열기">예산현황</a></li><li><a href="javascript:;">제안하기</a>
+											<ul>
+												<li><a href="/kor/contents.do?IDX=85">제안공모 개요</a></li><li><a href="/kor/boardList.do?IDX=86&BRD_ID=1113">제안공모 참여</a></li></ul>
+										</li>
+									<li><a href="javascript:;">적극행정</a>
+											<ul>
+												<li><a href="/kor/contents.do?IDX=383">적극행정 제도</a></li><li><a href="/kor/boardList.do?IDX=386&BRD_ID=1129">적극행정알림</a></li><li><a href="/kor/boardList.do?IDX=387&BRD_ID=1131">군민추천서 등록</a></li></ul>
+										</li>
+									<li><a href="javascript:;">군민광장</a>
+											<ul>
+												<li><a href="/kor/surveyList.do?IDX=491">설문조사</a></li><li><a href="/kor/boardList.do?BRD_ID=1009&IDX=87">자유게시판</a></li><li><a href="/kor/boardList.do?IDX=89&BRD_ID=1011">벼룩시장</a></li></ul>
+										</li>
+									<li><a href="javascript:;">군민소통</a>
+											<ul>
+												<li><a href="https://www.facebook.com/goryeong" target="_blank" title="새창열기">페이스북</a></li><li><a href="https://blog.naver.com/gokory" target="_blank" title="새창열기">블로그</a></li><li><a href="https://www.youtube.com/channel/UCj1OysvIWGA9ST81SjSzcTQ" target="_blank" title="새창열기">유튜브</a></li></ul>
+										</li>
+									<li><a href="/kor/boardList.do?BRD_ID=1014&IDX=26">일자리 자유게시판</a></li><li><a href="javascript:;">군민배움터</a>
+											<ul>
+												<li><a href="/kor/boardList.do?IDX=389&BRD_ID=1132">(평생) 그림책 콘서트</a></li><li><a href="/kor/boardList.do?IDX=390&BRD_ID=1133">(평생) 중국어회화</a></li><li><a href="/kor/boardList.do?IDX=391&BRD_ID=1134">(평생) 한국수어</a></li></ul>
+										</li>
+									<li><a href="/kor/boardList.do?IDX=393&BRD_ID=1135">유기동물 보호 공고</a></li></ul>
+						</div>
+				<!-- 대가야고령이 아닌 메뉴 -->
+						<div class="all_box">
+							<div class="all_title">정보공개</div>
+							<ul>
+								<li><a href="javascript:;">공공데이터개방</a>
+											<ul>
+												<li><a href="/kor/contents.do?IDX=96">공공데이터개방 안내</a></li><li><a href="/kor/boardList.do?IDX=442&BRD_ID=1159">공공데이터 의견수렴</a></li></ul>
+										</li>
+									<li><a href="javascript:;">행정정보</a>
+											<ul>
+												<li><a href="/kor/contents.do?IDX=184">조직운영 6대지표</a></li><li><a href="/kor/contents.do?IDX=205">행정정보공개안내</a></li><li><a href="https://www.open.go.kr/" target="_blank" title="새창열기">정보공개시스템</a></li><li><a href="/kor/boardList.do?BRD_ID=1175&IDX=481">업무추진비공개</a></li><li><a href="/kor/boardList.do?IDX=482&BRD_ID=1176">감사결과공개</a></li></ul>
+										</li>
+									<li><a href="/kor/boardList.do?BRD_ID=1173&IDX=479">사전정보공표목록</a></li><li><a href="/kor/boardList.do?BRD_ID=1174&IDX=480">사전정보목록</a></li><li><a href="/kor/boardList.do?IDX=104&BRD_ID=1074">비공개대상세부정보목록</a></li><li><a href="/kor/boardList.do?IDX=30&BRD_ID=1097">정책실명제</a></li><li><a href="javascript:;">행정규제개혁</a>
+											<ul>
+												<li><a href="/kor/contents.do?IDX=105">추진개요</a></li><li><a href="/kor/boardList.do?IDX=106&BRD_ID=1102">행정규제신고</a></li><li><a href="https://www.sinmungo.go.kr/sz2.prpsl.main" target="_blank" title="새창열기">규제신문고</a></li><li><a href="/kor/boardList.do?IDX=399&BRD_ID=1138">규제입증창구</a></li></ul>
+										</li>
+									<li><a href="http://www.elis.go.kr/newlaib/laibLaws/h1126/laws.jsp?regionId=47830" target="_blank" title="새창열기">자치법규</a></li><li><a href="javascript:;">통계자료</a>
+											<ul>
+												<li><a href="/kor/boardList2.do?IDX=478&BRD_ID=1172">기본통계</a></li><li><a href="/kor/boardList.do?IDX=462&BRD_ID=1163">사회조사</a></li><li><a href="/kor/boardList.do?IDX=463&BRD_ID=1164">사업체조사</a></li><li><a href="/kor/boardList.do?IDX=464&BRD_ID=1165">광업제조업조사</a></li><li><a href="/kor/boardList.do?IDX=468&BRD_ID=1169">경제총조사</a></li><li><a href="/kor/boardList.do?IDX=469&BRD_ID=1170">인구통계</a></li><li><a href="/kor/boardList.do?IDX=470&BRD_ID=1171">지역내총생산(GRDP)</a></li></ul>
+										</li>
+									<li><a href="javascript:;">민방위/재난안전</a>
+											<ul>
+												<li><a href="http://www.safekorea.go.kr/idsiSFK/index_web.jsp" target="_blank" title="새창열기">국민재난안전포털</a></li><li><a href="/kor/contents.do?IDX=113">민방위비상급수시설</a></li><li><a href="/kor/contents.do?IDX=114">민방위대피시설</a></li></ul>
+										</li>
+									<li><a href="/kor/contents.do?IDX=437">군민행동요령</a></li><li><a href="/kor/boardList.do?BRD_ID=1161&IDX=451">고령군 마을대피소</a></li></ul>
+						</div>
+				<!-- 대가야고령이 아닌 메뉴 -->
+						<div class="all_box">
+							<div class="all_title">산업경제</div>
+							<ul>
+								<li><a href="/tec/index.do" target="_blank" title="새창열기">농업기술센터</a></li><li><a href="javascript:;">산업단지안내</a>
+											<ul>
+												<li><a href="/kor/contents.do?IDX=117">지역산업단지</a></li><li><a href="/kor/contents.do?IDX=118">산업단지입주업체</a></li><li><a href="/kor/contents.do?IDX=119">읍면별입주업체</a></li></ul>
+										</li>
+									<li><a href="javascript:;">기업지원시책</a>
+											<ul>
+												<li><a href="/kor/boardList.do?BRD_ID=1157&IDX=432">기업지원사업 안내</a></li><li><a href="/kor/contents.do?IDX=430">경상북도 중소기업 지원시책</a></li></ul>
+										</li>
+									<li><a href="javascript:;">고령5일장</a>
+											<ul>
+												<li><a href="/kor/contents.do?IDX=121">장터소개</a></li><li><a href="/kor/contents.do?IDX=122">장터지도</a></li><li><a href="/kor/boardList.do?IDX=123&BRD_ID=1015">장터풍경</a></li></ul>
+										</li>
+									<li><a href="javascript:;">고령사랑상품권</a>
+											<ul>
+												<li><a href="/kor/contents.do?IDX=394">고령사랑상품권</a></li></ul>
+										</li>
+									<li><a href="javascript:;">그린에너지</a>
+											<ul>
+												<li><a href="http://www.opinet.co.kr/user/main/mainView.do" target="_blank" title="새창열기">유가정보</a></li><li><a href="http://greenhome.energy.or.kr/index.do" target="_blank" title="새창열기">그린홈 보급사업</a></li><li><a href="/kor/contents.do?IDX=126">에너지 절약</a></li><li><a href="/kor/contents.do?IDX=127">에너지 공급업체 현황</a></li></ul>
+										</li>
+									<li><a href="http://www.grmall.co.kr/" target="_blank" title="새창열기">고령쇼핑몰</a></li></ul>
+						</div>
+				<!-- 대가야고령이 아닌 메뉴 -->
+						<div class="all_box">
+							<div class="all_title">생활복지</div>
+							<ul>
+								<li><a href="javascript:;">복지정보</a>
+											<ul>
+												<li><a href="/kor/contents.do?IDX=347">국민기초생활복지</a></li><li><a href="/kor/contents.do?IDX=348">장애인복지</a></li></ul>
+										</li>
+									<li><a href="javascript:;">청년지원사업</a>
+											<ul>
+												<li><a href="/kor/boardList.do?IDX=413&BRD_ID=1144">청년월세 주거비 지원사업 신청</a></li><li><a href="/kor/boardList.do?IDX=414&BRD_ID=1145">청년 교통비 지원사업 신청</a></li><li><a href="/kor/boardList.do?IDX=427&BRD_ID=1143">청년지원사업 안내</a></li></ul>
+										</li>
+									<li><a href="/health/index.do" target="_blank" title="새창열기">고령군보건소</a></li><li><a href="http://www.goryeong.go.kr/art/index.do" target="_blank" title="새창열기">대가야문화누리</a></li><li><a href="javascript:;">군립가야금연주단</a>
+											<ul>
+												<li><a href="/kor/contents.do?IDX=273">군립가야금연주단 소개</a></li><li><a href="/kor/contents.do?IDX=274">군립가야금연주단 연혁</a></li><li><a href="/kor/contents.do?IDX=275">군립가야금연주단원</a></li><li><a href="/kor/contents.do?IDX=276">오시는 길</a></li></ul>
+										</li>
+									<li><a href="/gredu/index.do" target="_blank" title="새창열기">교육발전위원회</a></li><li><a href="http://lib.goryeong.go.kr/" target="_blank" title="새창열기">다산도서관</a></li><li><a href="javascript:;">인구증가시책</a>
+											<ul>
+												<li><a href="/kor/contents.do?IDX=371">전입지원</a></li><li><a href="/kor/contents.do?IDX=372">결혼·출산</a></li><li><a href="/kor/contents.do?IDX=373">출산</a></li><li><a href="/kor/contents.do?IDX=374">임산부·영유아</a></li><li><a href="/kor/contents.do?IDX=375">양육</a></li><li><a href="/kor/contents.do?IDX=449">다자녀가정 지원</a></li><li><a href="/kor/contents.do?IDX=377">청년</a></li><li><a href="/kor/contents.do?IDX=378">귀농·귀촌</a></li><li><a href="/kor/contents.do?IDX=379">기업·세제</a></li><li><a href="/kor/contents.do?IDX=380">생활문화</a></li><li><a href="/kor/contents.do?IDX=381">건강·기타</a></li><li><a href="/kor/contents.do?IDX=376">근로자지원제도</a></li></ul>
+										</li>
+									<li><a href="javascript:;">평생교육사업</a>
+											<ul>
+												<li><a href="/kor/boardList.do?IDX=416&BRD_ID=1147">공지사항</a></li><li><a href="https://www.goryeong.go.kr/lifelong/index.do" target="_blank" title="새창열기">평생교육포털</a></li></ul>
+										</li>
+									<li><a href="javascript:;">환경관련</a>
+											<ul>
+												<li><a href="/kor/boardList.do?IDX=257&BRD_ID=1124">공지사항</a></li><li><a href="/kor/contents.do?IDX=266">안내문</a></li></ul>
+										</li>
+									</ul>
+						</div>
+				<!-- 대가야고령이 아닌 메뉴 -->
+						<div class="all_box">
+							<div class="all_title">대가야고령</div>
+							<ul>
+								<li><a href="/ceo/index.do" target="_blank" title="새창열기">열린군수실</a></li><li><a href="javascript:;">고령소개</a>
+											<ul>
+												<li><a href="/kor/contents.do?IDX=140">기본현황</a></li><li><a href="/kor/boardList.do?IDX=405&BRD_ID=1140">월별 인구 현황</a></li><li><a href="/kor/contents.do?IDX=142">고령역사</a></li><li><a href="/kor/contents.do?IDX=143">고령상징물</a></li><li><a href="/kor/contents.do?IDX=409">전용 서체</a></li><li><a href="/kor/contents.do?IDX=144">자매결연도시</a></li><li><a href="/kor/contents.do?IDX=145">고령군 명예군민</a></li></ul>
+										</li>
+									<li><a href="javascript:;">고령군정</a>
+											<ul>
+												<li><a href="/kor/contents.do?IDX=147">고령비전</a></li><li><a href="/kor/contents.do?IDX=148">군정방향</a></li><li><a href="/kor/boardList.do?IDX=150&BRD_ID=1137">군정백서</a></li><li><a href="/kor/boardList.do?IDX=443&BRD_ID=1160">주요업무계획</a></li></ul>
+										</li>
+									<li><a href="javascript:;">고령알리미</a>
+											<ul>
+												<li><a href="/kor/boardList.do?IDX=151&BRD_ID=1018">군정소식</a></li><li><a href="/kor/boardList.do?IDX=152&BRD_ID=1019">공지사항</a></li><li><a href="/kor/boardList.do?IDX=153&BRD_ID=1020">고령군보</a></li><li><a href="/kor/boardList.do?IDX=252&BRD_ID=1022">행사일정</a></li><li><a href="/kor/boardList.do?IDX=154&BRD_ID=1023">고시/공고</a></li><li><a href="http://ecios.goryeong.go.kr/" target="_blank" title="새창열기">계약정보공개시스템</a></li><li><a href="/kor/boardList.do?IDX=156&BRD_ID=1025">행정입법예고</a></li></ul>
+										</li>
+									<li><a href="javascript:;">고령홍보관</a>
+											<ul>
+												<li><a href="/kor/boardList.do?IDX=157&BRD_ID=1062">고령뉴스</a></li><li><a href="/kor/boardList.do?IDX=158&BRD_ID=1027">고령군풍경</a></li><li><a href="/kor/boardList.do?BRD_ID=1127&IDX=159">동영상갤러리</a></li><li><a href="/pdf/web/viewer.html?file=/file/yesterday.pdf" target="_blank" title="새창열기">고령의 어제와 오늘</a></li></ul>
+										</li>
+									<li><a href="javascript:;">군청안내</a>
+											<ul>
+												<li><a href="/kor/contents.do?IDX=161">청사안내도</a></li><li><a href="/kor/staffList.do?IDX=163">조직도</a></li><li><a href="/kor/contents.do?IDX=165">군청오시는길</a></li></ul>
+										</li>
+									<li><a href="/kor/boardList.do?BRD_ID=1112&IDX=363">기관 및 사회단체</a></li></ul>
+						</div>
+				<!-- 대가야고령이 아닌 메뉴 -->
+						<div class="all_box">
+							<div class="all_title">이용안내</div>
+							<ul>
+								<li><a href="/kor/sitemap.do?IDX=54">사이트맵</a></li><li><a href="javascript:;">개인정보처리방침</a>
+											<ul>
+												<li><a href="/kor/contents.do?IDX=166">고령군 개인정보 처리방침</a></li><li><a href="/kor/contents.do?IDX=455">고정형 영상정보처리기기 운영·관리 방침</a></li></ul>
+										</li>
+									<li><a href="/kor/contents.do?IDX=56">저작권정책</a></li><li><a href="/kor/boardList.do?IDX=59&BRD_ID=1114">누리집 오류신고</a></li><li><a href="/kor/contents.do?IDX=60">배너모음</a></li><li><a href="/kor/contents.do?IDX=61">품질마크인증</a></li></ul>
+						</div>
+				</div>
+			<a href="javascript:;" class="all_close">X<i class="comment">닫기</i></a>
+		</div>
+	</div>
+
+	<script type="text/javascript">
+		/* 햄버거 메뉴바 설정 javascript */
+		$(function() {
+			$('.mbMenu1 a').click(function() {
+				$('.allWrap').show();
+				$('.mbMenu1 img').scrollTop();
+				$('.quickWrap a, .mbMenu1 a').on('focus', function(){
+					$('.allWrap').hide();
+				});
+				$('.allWrap .all_box:first a').focusin();
+			});
+			$('.all_close').click(function() {
+				$('.allWrap').hide();
+				$('.mbMenu1 a').focus();
+			});
+		});
+		$(document).on("click", ".mbMenu1 a", function() {
+			$(window).scroll(function() {
+				var position = $(window).scrollTop();
+				if (position > 800) {
+					$('html, body').scrollTop(800);
+				}
+			});
+		});
+		$(document).on("click", ".all_close", function() {
+			$(window).off("scroll");
+		});
+	</script>
+	<!-- 전체메뉴끝 -->
+<div class="subWrap">
+	<div class="wrap">
+		<script>
+$(document).ready(function () {
+	$(".lnb_menu_li:eq(3)>a").click();
+});
+</script>
+<span class="bg_txt">대가야의 도읍지&nbsp;&nbsp;<span>고령</span></span>
+<aside class="Wrap_lnb_box">
+   	<div class="lnb_box">
+       	<h2 class="lnb_menu_title">대가야고령</h2>
+        <div class="lnb_menu">
+          	<ul class="lnb_menu_ul">
+            	<li class="lnb_menu_li"><a href="/ceo/index.do" target="_blank" title="열린군수실 새창가기1">열린군수실<img src="/img/front/sub/lnbNew.png" alt="열린군수실 새창" class="newwind"/></a></li>           			
+            		<li class="lnb_menu_li"><a href="javascript:;">고령소개</a><ul class="hide">
+            					<li><a href="/kor/contents.do?IDX=140">기본현황</a></li><li><a href="/kor/boardList.do?IDX=405&BRD_ID=1140">월별 인구 현황</a></li><li><a href="/kor/contents.do?IDX=142">고령역사</a></li><li><a href="/kor/contents.do?IDX=143">고령상징물</a></li><li><a href="/kor/contents.do?IDX=409">전용 서체</a></li><li><a href="/kor/contents.do?IDX=144">자매결연도시</a></li><li><a href="/kor/contents.do?IDX=145">고령군 명예군민</a></li></ul>
+						</li>
+            		<li class="lnb_menu_li"><a href="javascript:;">고령군정</a><ul class="hide">
+            					<li><a href="/kor/contents.do?IDX=147">고령비전</a></li><li><a href="/kor/contents.do?IDX=148">군정방향</a></li><li><a href="/kor/boardList.do?IDX=150&BRD_ID=1137">군정백서</a></li><li><a href="/kor/boardList.do?IDX=443&BRD_ID=1160">주요업무계획</a></li></ul>
+						</li>
+            		<li class="lnb_menu_li lnb_choice1"><a href="javascript:;">고령알리미</a><ul class="hide">
+            					<li><a href="/kor/boardList.do?IDX=151&BRD_ID=1018">군정소식</a></li><li><a href="/kor/boardList.do?IDX=152&BRD_ID=1019">공지사항</a></li><li><a href="/kor/boardList.do?IDX=153&BRD_ID=1020">고령군보</a></li><li><a href="/kor/boardList.do?IDX=252&BRD_ID=1022">행사일정</a></li><li class="lnb_choice2"><a href="/kor/boardList.do?IDX=154&BRD_ID=1023">고시/공고</a></li><li><a href="http://ecios.goryeong.go.kr/" target="_blank" title="계약정보공개시스템 새창가기2">계약정보공개시스템<img src="/img/front/sub/lnbNew.png" alt="계약정보공개시스템 새창"  class="newwind"/></a></li>
+                                   	<li><a href="/kor/boardList.do?IDX=156&BRD_ID=1025">행정입법예고</a></li></ul>
+						</li>
+            		<li class="lnb_menu_li"><a href="javascript:;">고령홍보관</a><ul class="hide">
+            					<li><a href="/kor/boardList.do?IDX=157&BRD_ID=1062">고령뉴스</a></li><li><a href="/kor/boardList.do?IDX=158&BRD_ID=1027">고령군풍경</a></li><li><a href="/kor/boardList.do?BRD_ID=1127&IDX=159">동영상갤러리</a></li><li><a href="/pdf/web/viewer.html?file=/file/yesterday.pdf" target="_blank" title="고령의 어제와 오늘 새창가기2">고령의 어제와 오늘<img src="/img/front/sub/lnbNew.png" alt="고령의 어제와 오늘 새창"  class="newwind"/></a></li>
+                                   	</ul>
+						</li>
+            		<li class="lnb_menu_li"><a href="javascript:;">군청안내</a><ul class="hide">
+            					<li><a href="/kor/contents.do?IDX=161">청사안내도</a></li><li><a href="/kor/staffList.do?IDX=163">조직도</a></li><li><a href="/kor/contents.do?IDX=165">군청오시는길</a></li></ul>
+						</li>
+            		<li class="lnb_menu_li"><a href="/kor/boardList.do?BRD_ID=1112&IDX=363">기관 및 사회단체</a></li></ul>
+		</div>
+	</div>
+</aside>
+<div id="content_Wrap" class="content_Wrap">
+			<div class="content">
+				<div class="sub_navi">
+	<ul class="subNabi_left">
+		<li><a href="/kor/index.do"><img src="/img/front/sub/home.png" alt="home 아이콘" /></a></li>
+		<li>〉</li>
+		<li><a href="/kor/contents.do?IDX=140">대가야고령</a></li>
+		<li>〉</li>
+		<li><a href="/kor/boardList.do?IDX=152&BRD_ID=1019">고령알리미</a></li>
+		<li>〉</li>
+		<li class="subNabi_select"><a href="/kor/boardList.do?IDX=154&BRD_ID=1023">고시/공고</a></li>
+	</ul>
+	<ul class="subNabi_right">
+		<li><a href="#this" onclick="window.print();"><img src="/img/front/sub/print.png" alt="프린트" /></a></li>
+		<li><a href="#this" onClick="zoomIn();"><img src="/img/front/sub/plus.png" alt="확대" /></a></li>
+		<li><a href="#this" onClick="zoomOut();"><img src="/img/front/sub/minus.png" alt="축소" /></a></li>
+		<li><a href="https://www.facebook.com/goryeong" target="_blank" onclick="return sendFacebook()" title="페이스북 새창열기"><img src="/img/front/sub/facebook.png" alt="페이스북" /></a></li>
+		<li><a href="https://twitter.com/gayadori" target="_blank" onclick="return sendTwitterBoard()" title="트위터 새창열기"><img src="/img/front/sub/twitter.png" alt="트위터" /></a></li>
+		<li><a href="https://story.kakao.com/hashtag/%EA%B3%A0%EB%A0%B9%EA%B5%B0" target="_blank" onclick="return sendKakaostory()" title="카카오스토리 새창열기"><img src="/img/front/sub/icon_kakaos.png" alt="카카오스토리" /></a></li>
+	</ul>
+</div>
+<div class="subTitle_wrap">
+	<h3 class="subTitle">고시/공고</h3>
+</div>
+
+<script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
+<script type="text/javascript">
+	Kakao.init('b88bc79b57af5be2844f2e135159099a');
+	function sendTwitterBoard(){
+		var wp = window.open('//twitter.com/share?text='+encodeURIComponent(document.title)+'&url='+encodeURIComponent(location),'twitter','');
+		if(wp){
+			wp.focus();
+		}
+		return false;
+	}
+	function sendFacebook(){
+		var wp = window.open('//www.facebook.com/sharer.php?u='+encodeURIComponent(location)+'&t='+encodeURIComponent(document.title),'facebook','');
+		if(wp){
+			wp.focus();
+		}
+		return false;
+	}
+	function sendKakaostory(){
+        var wp = window.open('//story.kakao.com/share?url='+location+'&text='+document.title,'');
+		if(wp){
+			wp.focus();
+		}
+		return false;
+	}
+</script><div class="subContents">
+
+					<table class="boardView_table">
+						<caption>
+							게시물 상세<p>선택한 게시물의 상세정보를 확인할 수 있습니다.</p>
+						</caption>
+						<colgroup>
+							<col style="width:17%" />
+							<col style="width:33%" />
+							<col style="width:17%" />
+							<col style="width:33%" />
+						</colgroup>
+						<tbody>
+							<tr>
+								<th scope="col" colspan="4">
+								2026년 고령군 월세 주거비 지원사업 대상자 2차 모집 공고<span class="bV_date">2026-03-25 13:33</span>
+								</th>
+							</tr>
+							<tr>
+								<th scope="row">작성자</th>
+								<td>
+									청년정책담당</td>
+								<th scope="row">조회수</th>
+								<td>
+									888</td>
+							</tr>
+							<tr>
+								<th scope="row">첨부</th>
+								<td colspan="3">
+									<p>
+										<a class="bV_file" target="_blank" href="/front/viewFile.do?IDX_FI=194225&amp;BRD_ID=1023"><img src="https://www.goryeong.go.kr/img/front/sub/icon_hwp.png" alt="첨부파일" />15. (공고문) 2026년 고령군 청년 월세 주거비 지원사업 2차 모집.hwp  [hwp, 174.1KB]</a>
+										<a class="subBtnSuq" href="/front/downFile.do?IDX_FI=194225&amp;BRD_ID=1023">다운로드</a>
+									</p>
+									<p>
+										<a class="bV_file" target="_blank" href="/front/viewFile.do?IDX_FI=194226&amp;BRD_ID=1023"><img src="https://www.goryeong.go.kr/img/front/sub/icon_pdf.png" alt="첨부파일" />15-1. (공고문) 2026년 고령군 청년 월세 주거비 지원사업 2차 모집.pdf  [pdf, 175.9KB]</a>
+										<a class="subBtnSuq" href="/front/downFile.do?IDX_FI=194226&amp;BRD_ID=1023">다운로드</a>
+									</p>
+									<p>
+										<a class="bV_file" target="_blank" href="/front/viewFile.do?IDX_FI=194300&amp;BRD_ID=1023"><img src="https://www.goryeong.go.kr/img/front/sub/icon_hwp.png" alt="첨부파일" />15-2. 신청서(서식).hwp  [hwp, 150.0KB]</a>
+										<a class="subBtnSuq" href="/front/downFile.do?IDX_FI=194300&amp;BRD_ID=1023">다운로드</a>
+									</p>
+									<p>
+										<a class="bV_file" target="_blank" href="/front/viewFile.do?IDX_FI=194391&amp;BRD_ID=1023"><img src="https://www.goryeong.go.kr/img/front/sub/icon_png.png" alt="첨부파일" />(카드뉴스)월세 주거비 지원사업 2차 대상자 모집.jpg  [jpg, 48.5KB]</a>
+										<a class="subBtnSuq" href="/front/downFile.do?IDX_FI=194391&amp;BRD_ID=1023">다운로드</a>
+									</p>
+									</td>
+							</tr>
+							<tr>
+								<td colspan="4" class="bV_contents">
+									<img src="/imageFileDown.do?BRD_ID=1023&IDX=194391" alt="2026년 고령군 월세 주거비 지원사업 대상자 2차 모집 공고 4" />
+									2026년 고령군 월세 주거비 지원사업 대상자 2차 모집 공고<br /><br />※ 자세한 사항은 첨부파일 공고문을 참조하시기 바랍니다.</td>
+							</tr>
+							<tr>
+								<th scope="row">다음글</th>
+								<td colspan="3">
+									<a href="/kor/boardView.do?BRD_ID=1023&amp;BOARD_IDX=41405&amp;IDX=154">2026년 고령군 청년 월세 주거비 지원사업 추가선발 결과 공고</a></td>
+							</tr>
+							<tr>
+								<th scope="row">이전글</th>
+								<td colspan="3">
+									<a href="/kor/boardView.do?BRD_ID=1023&amp;BOARD_IDX=41362&amp;IDX=154">2026년 고령군 청년 월세 주거비 지원사업 선발 결과 공고</a></td>
+							</tr>
+							</tbody>
+					</table>
+					
+					<div class="bV_listBtnWrap">
+						<div class="bV_listBtn"><a href="/kor/boardList.do?IDX=154&BRD_ID=1023&page=1&searchType=ALL&searchValue=주거비">목록</a></div>
+						</div>
+	
+					</div>
+				</div>
+		</div>
+	</div>
+</div>
+
+<script type="text/javascript">
+//<![CDATA[
+$(document).ready(function(){
+});
+//]]>
+</script>
+<!-- 날씨정보 -->
+<div class="mV_weather">
+	<div class="quickTitle">날씨<br />정보</div>
+	<div class="mV_weatherBox">
+		<p><span>기온 : </span> ℃</p>
+		<p><span>미세먼지 : </span>㎍/㎥<strong>(점검중)</strong></p>
+	</div>
+</div>
+<!-- page zoom -->
+<div class="pageZoom">
+	<dl>
+		<dt>화면</dt>
+		<dd>
+			<ul>
+				<li class="zoomIn"><button type="button" onclick="zoomIn();">화면확대</button></li>
+				<li class="zoomOut"><button type="button" onclick="zoomOut();">화면축소</button></li>
+			</ul>
+		</dd>
+	</dl>
+</div>
+<!-- 퀵메뉴 -->
+<div class="quickWrap">
+	<div class="quickTitle">Quick<br />Menu</div>
+	<ul>
+                <li><a href="http://www.goryeong.go.kr/ceo/" target="_blank" title="새창">열린군수실</a></li>
+                <li><a href="http://www.goryeong.go.kr/ceo/contents.do?IDX=13" target="_blank" title="새창">매니패스토</a></li>
+                <li><a href="http://www.goryeong.go.kr/daegaya/" target="_blank" title="새창">대가야박물관</a></li>
+                <li><a href="https://www.goryeong.go.kr/art/" target="_blank" title="새창">대가야<br />문화누리</a></li>
+                <li><a href="https://mall.goryeong.go.kr/PlaceIntro" target="_blank" title="새창">대가야역사<br />테마관광지</a></li>
+                <li><a href="https://www.foresttrip.go.kr/indvz/main.do?hmpgId=ID02030026" target="_blank" title="새창">미숭산<br />자연휴양림</a></li>
+                <li><a href="/gredu/" target="_blank" title="새창">고령군 교육<br />발전위원회</a></li>
+                <li><a href="http://lib.goryeong.go.kr/" target="_blank" title="새창">다산도서관</a></li>
+                <li><a href="http://aml.goryeong.go.kr/" target="_blank" title="새창">농기계<br />임대사업소</a></li>
+                <li><a href="/health/" target="_blank" title="새창">보건소</a></li>
+                <li><a href="/tec/" target="_blank" title="새창">농업기술센터</a></li>
+				<li><a href="https://www.goari-mural.com/" target="_blank" title="새창">고아리벽화<br />고분모형관</a></li>
+				<li><a href="https://csm.goryeong.go.kr/" target="_blank" title="새창">고령어린이<br />과학체험관</a></li>
+                <li><a href="https://sports.goryeong.go.kr/" target="_blank" title="새창">공공체육시설<br>통합<br>예약시스템</a></li>
+                <li><a href="/town/index.do?sec=twn001" target="_blank" title="새창">대가야읍</a></li>
+                <li><a href="/town/index.do?sec=twn002" target="_blank" title="새창">덕곡면</a></li>
+                <li><a href="/town/index.do?sec=twn003" target="_blank" title="새창">운수면</a></li>
+                <li><a href="/town/index.do?sec=twn004" target="_blank" title="새창">성산면</a></li>
+                <li><a href="/dasan/index.do" target="_blank" title="새창">다산면</a></li>
+                <li><a href="/town/index.do?sec=twn006" target="_blank" title="새창">개진면</a></li>
+                <li><a href="/town/index.do?sec=twn007" target="_blank" title="새창">우곡면</a></li>
+                <li><a href="/town/index.do?sec=twn008" target="_blank" title="새창">쌍림면</a></li>
+	</ul>
+	<div class="quick_top">
+		<a href="javascript:window.scrollTo(0,0)">TOP</a>
+	</div>
+</div>
+<!-- 퀵메뉴끝 -->
+<div class="footer_wrap">
+	<div class="footer_tWrap">
+		<div class="footer_t">
+			<ul class="footer_left clearfix">
+				<li><a href="/kor/contents.do?IDX=166" style="color: #409bde;font-size:1.125em; font-weight: 600;">개인정보처리방침</a></li>
+				<li class="footer_bar">|</li>
+				<li><a href="/kor/contents.do?IDX=455">영상정보처리기기 운영관리 방침</a></li>
+				<li class="footer_bar">|</li>
+				<li><a href="/kor/contents.do?IDX=56">저작권정책</a></li>
+				<li class="footer_bar">|</li>
+				<li><a href="/kor/contents.do?IDX=165">군청오시는길</a></li>
+				<li class="footer_bar">|</li>
+				<li><a href="/kor/boardList.do?IDX=59&BRD_ID=1114">누리집 오류신고</a></li>
+				<!--
+				<li class="footer_bar">|</li>
+				<li><a href="#this">운영자메일</a></li>
+				<li class="footer_bar">|</li>
+				<li><a href="#this">이용약관</a></li>
+				-->
+			</ul>
+			<div class="footerSelect_Wrap clearfix">
+				<ul class="footer_T2">
+					<li class="footer_select footerC2"><a href="javascript:;">직속기관&middot;읍면 바로가기<span>▲</span></a>
+						<ul class="selectF_down footerD2">
+                            <li><a href="/health/index.do" class="select_url" target="_blank" title="보건소 새창가기">보건소</a></li>
+                            <li><a href="/tec/index.do" class="select_url" target="_blank" title="농업기술센터 새창가기">농업기술센터</a></li>
+                            <li><a href="https://www.goryeong.go.kr/art/" class="select_url" target="_blank" title="대가야문화누리 새창가기">대가야문화누리</a></li>
+                            <li><a href="http://www.goryeong.go.kr/daegaya" class="select_url" target="_blank" title="대가야박물관 새창가기">대가야박물관</a></li>
+							<li><a href="/town/index.do?sec=twn001" class="select_url" target="_blank" title="대가야읍 새창가기">대가야읍</a></li>
+							<li><a href="/town/index.do?sec=twn002" class="select_url" target="_blank" title="덕곡면 새창가기">덕곡면</a></li>
+							<li><a href="/town/index.do?sec=twn003" class="select_url" target="_blank" title="운수면 새창가기">운수면</a></li>
+							<li><a href="/town/index.do?sec=twn004" class="select_url" target="_blank" title="성산면 새창가기">성산면</a></li>
+							<li><a href="/dasan/index.do" class="select_url" target="_blank" title="다산면 새창가기">다산면</a></li>
+							<li><a href="/town/index.do?sec=twn006" class="select_url" target="_blank" title="개진면 새창가기">개진면</a></li>
+							<li><a href="/town/index.do?sec=twn007" class="select_url" target="_blank" title="우곡면 새창가기">우곡면</a></li>
+							<li><a href="/town/index.do?sec=twn008" class="select_url" target="_blank" title="쌍림면 새창가기">쌍림면</a></li>
+							<li><a href="https://www.goryeong.go.kr/lifelong/index.do" class="select_url" target="_blank" title="평생교육포털 새창가기">평생교육포털</a></li>
+						</ul>
+					</li>
+				</ul>
+				<ul class="footer_T2">
+					<li class="footer_select footerC3"><a href="javascript:;">유관기관 바로가기<span>▲</span></a>
+						<ul class="selectF_down footerD3">
+							<li><a href="https://www.lx.or.kr/daegu.do" class="select_url" target="_blank" title="LX한국국토정보공사 새창가기">LX 한국국토정보공사</a></li>
+							<li><a href="https://www.gbpolice.go.kr/gr/index.do" class="select_url" target="_blank" title="고령경찰서 새창가기">고령경찰서</a></li>
+							<li><a href="https://www.gbe.kr" class="select_url" target="_blank" title="경상북도고령교육지원청 새창가기">경상북도고령교육지원청</a></li>
+							<li><a href="http://www.gbelib.kr/gr/index.do" class="select_url" target="_blank" title="고령공공도서관 새창가기">고령공공도서관</a></li>
+							<li><a href="http://gb119.go.kr/gr/" class="select_url" target="_blank" title="고령소방서 새창가기">고령소방서</a></li>
+							<li><a href="http://www.koreapost.go.kr/kb/717/" class="select_url" target="_blank" title="고령우체국 새창가기">고령우체국</a></li>
+							<li><a href="http://t.nts.go.kr/sdg/Default.asp" class="select_url" target="_blank" title="서대구세무서 새창가기">서대구세무서</a></li>
+							<li><a href="/culture/" class="select_url" target="_blank" title="고령문화원 새창가기">고령문화원</a></li>
+							<li><a href="https://www.gb.go.kr/" class="select_url" target="_blank" title="경상북도청 새창가기">경상북도청</a></li>
+							<li><a href="https://grctf.or.kr/" class="select_url" target="_blank" title="(재)고령문화관광재단 새창가기">(재)고령문화관광재단</a></li>
+						</ul>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	<div class="footer_bWrap">
+		<div class="footer_b clearfix">
+			<div class="footer_bLeft">
+				40138 ) 경상북도 고령군 대가야읍 왕릉로 55 고령군청<br />대표전화 : <a href="tel:054-954-2201" style="color:currentColor;">054-954-2201</a> | 팩스 : <a href="tel:054-950-6089" style="color:currentColor;">054-950-6089</a><br />
+			</div>
+			<div class="footer_bRight">
+				<img src="https://www.goryeong.go.kr/img/front/f_logo.jpg" alt="고령군 Goryeong-Gun" />
+			</div>
+		</div>
+	</div>
+</div>
+<!--임시푸터 끝-->
+
+</body>
+</html>

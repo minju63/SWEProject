@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<script type="text/javascript" src="/jquery/js/jquery-1.11.3.min.js"></script>
+<script type="text/javascript" src="/jquery/js/jquery-ui-1.11.4.custom.min.js"></script>
+<script type="text/javascript" src="/js/CommonUtil.js"></script>
+<link rel="stylesheet" href="/css/style.css" />
+<title>마이홈포털</title>
+<script type="text/javascript">
+    
+	//모바일 장치인경우 모바일 페이지로 이동
+	if (
+	    navigator.userAgent.match(/Android/i) || 
+	    navigator.userAgent.match(/webOS/i) || 
+	    navigator.userAgent.match(/iPhone/i) || 
+	    navigator.userAgent.match(/iPad/i) || 
+	    navigator.userAgent.match(/iPod/i) || 
+	    navigator.userAgent.match(/BlackBerry/i) || 
+	    navigator.userAgent.match(/Windows Phone/i)
+	    ) 
+	{
+		  window.location = "https://m.myhome.go.kr";
+	}
+    
+    
+	//메인페이지 팝업공지 Slide 선언
+	let swiperInstance = null;
+	
+	//허브페이지 공고목록 Slide 선언
+	let mainBannerSwiper = null;
+	
+	var gPopCookieAt = "N";
+    
+    
+  	$(document).ready( function() {
+  		fnRsdtSearch();
+  		
+  		
+  		var mainPopTag = "";
+  		var mainPopCnt = 0;
+  		
+  		/* 공지 팝업 창 처리 */
+		var gCreateMainPop = '';
+		
+		$("#mainPopupDiv").html(mainPopTag);
+		
+		
+	    /* 공지 팝업 창 내용 처리 */
+		var gCreateMainSlide = '';
+  		
+	    
+	    if(mainPopCnt != 0){
+	    	fnSlideInit('.main-pop-swiper');
+	    	$("#mainPopupModal").addClass("is-open");
+    		document.getElementById("mainPopupModal").ariaHidden="false";
+	    }
+  		
+  		
+	});
+  	
+	//입주자모집공고 조회
+	function fnRsdtSearch(param){
+			$.ajax({
+		    	type: "POST",    
+		        url: "/hws/portal/main/selectRsdtRcritNtcLttotHouseList.do",
+		        dataType: "JSON",
+		        async: false,
+		        success : function(json){
+		        	var result = json.resultList;
+		        	var content = "";
+		        	var content1 = "";
+		        	var content2 = "";
+		        	var content3 = "";
+		        	var content4 = "";
+		    	   	var cnt = json.cnt;
+		    	   	var rccnt = json.rcCnt;
+		    	   	var ltcnt = json.ltCnt;
+		    	   	let today = new Date();  
+		    	   	
+		    	   	
+	    	   		content1 += "<p class='label'>전체</p>";
+	    	   		content1 += "<h3 class='value'>" + cnt + "</h3>";
+	    	   		
+	    	   		content2 += "<p class='label'>임대주택</p>";
+	    	   		content2 += "<h6 class='value'>" + rccnt + "</h6>";
+	    	   		
+	    	   		content3 += "<p class='label'>공공분양</p>";
+	    	   		content3 += "<h3 class='value'>" + ltcnt + "</h3>";
+	    	   		
+	    	   		content4 += "<h2 class='title'>모집 중인 공고 <span class='date'>" + today.toLocaleDateString() + "</span></h2>";
+	    	   		content4 += "<a target='_blank' href=\"/hws/portal/sch/selectRsdtRcritNtcView.do\" class='link'>전체보기<i class='icon-plus'></i></a>";
+
+	        		for(var i=0;i<result.length;i++){
+	        		    
+	        		    if(result[i].suplyTy == '100'){
+	        		    	// 공공분양 모집공고
+	        				content += "<div class='swiper-slide list type"+fnTransSuplyTy(result[i].suplyTy)+"'><a target='_blank' href=\"/hws/portal/sch/selectLttotHouseDetailView.do?pblancId=" + result[i].pblancId + "\">" + result[i].pblancNm + "</a></div>";	
+	        			}else{
+	        				// 공공임대 모집공고
+	        				content += "<div class='swiper-slide list type"+fnTransSuplyTy(result[i].suplyTy)+"'><a target='_blank' href=\"/hws/portal/sch/selectRsdtRcritNtcDetailView.do?pblancId=" + result[i].pblancId + "\">" + result[i].pblancNm + "</a></div>";
+	        			}
+	        		    
+	        		};
+
+		        		
+	        		$("#totalCnt").html(content1);
+	        		$("#lentCnt").html(content2);
+	        		$("#sellCnt").html(content3);
+	        		$("#topNm").html(content4);
+	        		
+	       		    $("#hubList").html(content);
+	       		    
+	       		    // 목록 슬라이드 세팅
+	       		 	fnPbSlideInit(".hub-main .rolling-list");
+	       		    
+		        },
+		        error:function(response, textStatus, errorThrown){
+		        	returnAjaxError(response, textStatus, errorThrown);
+		        }
+		    });
+	}
+	
+	// 모집공고 임대종류 CSS 태그 변환
+    function fnTransSuplyTy(suplyTy){
+     
+     var cssSuplyTy = "";
+     
+     // 영구임대
+     if(suplyTy == "01"){      
+      cssSuplyTy = "6";
+      
+     // 국민임대
+     }else if(suplyTy == "02"){      
+      cssSuplyTy = "7";
+      
+     // 50년임대
+     }else if(suplyTy == "03"){      
+      cssSuplyTy = "13";
+     
+     // 다가구임대(일반), 다가구임대(예비)
+     }else if(suplyTy == "04" || suplyTy == "09"){
+      cssSuplyTy = "3";
+     
+     // 10년임대
+     }else if(suplyTy == "05"){
+      cssSuplyTy = "12";
+     
+     // 5년임대
+     }else if(suplyTy == "06"){
+      cssSuplyTy = "10";
+     
+     // 장기전세
+     }else if(suplyTy == "07"){
+      cssSuplyTy = "1";
+     
+     // 전세임대
+     }else if(suplyTy == "08"){
+      cssSuplyTy = "5";
+     
+     // 행복주택
+     }else if(suplyTy == "10"){
+      cssSuplyTy = "2";
+     
+     // 공공지원민간임대
+     }else if(suplyTy == "11"){
+      cssSuplyTy = "8";
+      
+     // 통합공공임대
+     }else if(suplyTy == "12"){
+      cssSuplyTy = "9";
+     
+     // 6년임대
+     }else if(suplyTy == "13"){
+      cssSuplyTy = "11";
+     
+     //공공분양
+     }else if(suplyTy == "100"){
+         cssSuplyTy = "4";
+         
+    }
+     
+     return cssSuplyTy;
+     
+    }
+	
+	
+ 	// 목록 상세 내 슬라이드
+    function fnSlideInit(target){
+    	
+        if (swiperInstance) {
+          swiperInstance.destroy(); //swiperInstance에 1개의 스와이퍼 인스턴스만 담고, 있는 경우 파괴 후 생성하게끔 수정
+        }
+        swiperInstance = new Swiper(target, {
+          on: {
+            init: function (swiper) {},
+          },
+          loop: true,
+          autoHeight: true,
+          pagination: {
+            el: '.swiper-pagination',
+            type: 'fraction',
+          },
+          navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+          },
+        });
+        
+    }
+	
+	function fnClosePopupModal(popupId, cookieAt){
+    	
+    	$("#mainPopupModal").removeClass("is-open");
+		document.getElementById("mainPopupModal").ariaHidden="true";
+		if(cookieAt == "Y"){
+			addCookie("STOPVEW_ESTBS_AT_" + popupId, cookieAt, 1); // 1일
+		}
+    }
+	
+	// 목록 상세 내 슬라이드 (모집공고 목록)
+    function fnPbSlideInit(target){
+    	
+        if (mainBannerSwiper) {
+        	mainBannerSwiper.destroy(); //swiperInstance에 1개의 스와이퍼 인스턴스만 담고, 있는 경우 파괴 후 생성하게끔 수정
+        }
+        mainBannerSwiper = new Swiper(target, {
+          on: {
+            init: function (swiper) {},
+          },
+          autoplay: true,
+          slidesPerView: 1,
+          direction: 'vertical',
+          loop: true,
+          navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+          },
+        });
+        
+    }
+	
+    </script>
+</head>
+
+<body>
+	<!-- el :: s -->
+	<div class="body-wrapper landing-wrapper">
+		<header class="hub-header">
+			<div class="hub-header-wrap sec-container">
+				<h1 class="title">
+					<span class="additional">행복한 주거생활을 위한 모든 정보</span>마이홈포털
+				</h1>
+				<div class="description">
+					<p>
+						보다 나은 보금자리를 위한 국민의 희망을 지원합니다.<br />주거복지와 관련된 모든 유용한 정보를 마이홈포털에서
+						만나실 수 있습니다.
+					</p>
+					<p class="copyright">
+						Copyright <em>MOLIT & LH</em> All rights reserved.
+					</p>
+				</div>
+			</div>
+		</header>
+
+		<main class="hub-main">
+		<div class="hub-main-wrap sec-container">
+			<div class="summary">
+				<div class="current-posting">
+					<div class="top-bar" id="topNm"></div>
+
+					<div class="count-box">
+						<div class="total" id="totalCnt"></div>
+						<ul class="part">
+							<li class="lent" id="lentCnt"></li>
+							<li class="sell" id="sellCnt"></li>
+						</ul>
+					</div>
+
+					<!-- 롤링 리스트 :: s -->
+					<div class="rolling-list-wrap">
+						<div class="swiper rolling-list">
+			                  <div class="swiper-wrapper" id="hubList">
+			                  </div>						
+							<div class="swiper-button-prev">
+								<i class="icon-arrowdown-fill"></i>
+							</div>
+							<div class="swiper-button-next">
+								<i class="icon-arrowdown-fill"></i>
+							</div>
+						</div>
+					</div>
+					<!-- 롤링 리스트 :: e -->
+				</div>
+
+
+				<div class="banner-area">
+					<div class="rolling-banner-wrap">
+						 
+						<div class="toolbar">
+							<div class="swiper-pagination"></div>
+							<!-- <button class="btn-auto pause"></button> -->
+							<button class="btn-auto pause" style="display:none;"></button>
+						</div>
+						
+						<div class="swiper rolling-banner">
+							<div class="swiper-wrapper">
+								<!-- 
+								<div class="swiper-slide banner">
+									<a href="https://xn--vg1bl39d.kr/" target="_blank">
+										<img src="/images/hub/img_banner_1.png" alt="뉴홈으로 해결" />
+									</a>
+								</div>
+								-->
+							</div>
+						</div>
+					</div>
+					
+					<div class="banner-call-center">
+						<p class="call-number">
+							마이홈 콜센터<a href="tel:1600-1004">1600-1004</a>
+						</p>
+						<ul class="operation-time">
+							<li class="on">평일 09:00 - 18:00</li>
+							<li class="lunch">점심 12:00 - 13:00</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+
+			<!-- 사이트 숏컷 영역 :: s -->
+			<ul class="site-list">
+				<li class="myhome">
+					<a href="/hws/portal/main/getMgtMainPage.do">
+						<p>대한민국 국민의<br />집 걱정 덜어주는</p>
+						<h2>마이홈</h2> 
+						<img src="/images/hub/img_myhome_1.svg" alt="마이홈" />
+					</a>
+				</li>
+				<li class="youth-support">
+					<a href="/hws/portal/main/getMgtMainYhsPage.do">
+						<p>청년･신혼부부를 위한<br />주거복지솔루션</p>
+						<h2>청년･신혼부부<br />주거지원</h2>
+						<div class="img-group">
+							<img src="/images/hub/img_youth_1.svg" class="img-y1" alt="청년신혼부부 주거지원 이미지1" /> 
+							<img src="/images/hub/img_youth_2.svg" class="img-y2" alt="청년신혼부부 주거지원 이미지2" /> 
+							<img src="/images/hub/img_youth_3.svg" class="img-y3" alt="청년신혼부부 주거지원 이미지3" /> 
+							<img src="/images/hub/img_youth_4.svg" class="img-y4" alt="청년신혼부부 주거지원 이미지4" />
+						</div>
+					</a>
+				</li>
+			</ul>
+			<!-- 사이트 숏컷 영역 :: e -->
+		</div>
+		</main>
+		
+		
+		
+		<!-- 메인 공지팝업 (슬라이더) :: s -->
+	      <div class="modal micromodal-slide main-popup modal-swiper" id="mainPopupModal" aria-hidden="true">
+	        <div class="modal__overlay" tabindex="-1" data-micromodal-close>
+	          <div class="modal__container" role="dialog" aria-modal="true" aria-labelledby="pop-custom-info-settings2-title">
+	            <div class="modal__content" id="pop-custom-info-settings2-content">
+	              <div class="swiper main-pop-swiper">
+	                <div class="swiper-wrapper" id="mainPopupDiv">
+	                  
+	                </div>
+	                <div class="swiper-bottom-wrap">
+	                  <div class="swiper-button-prev"></div>
+	                  <div class="swiper-pagination"></div>
+	                  <div class="swiper-button-next"></div>
+	                </div>
+	              </div>
+	            </div>
+	          </div>
+	        </div>
+	      </div>
+	      <!-- 메인 공지팝업 (슬라이더) :: e -->
+		
+		
+		
+		<footer class="hub-footer">
+			<p class="copyright">
+				Copyright <em>MOLIT & LH</em> All rights reserved.
+			</p>
+		</footer>
+	</div>
+	<!-- el :: e -->
+
+	<!-- import library js :: s -->
+	<script src="/libs/swiper/swiper-bundle.min.js"></script>
+	<script src="/libs/micromodal/micromodal.min.js"></script>
+	<!-- import library js :: e -->
+	<script defer src="/js/common.js"></script>
+	
+	<script>
+      //목록 롤링 리스트
+      /* const mainBannerSwiper = new Swiper('.hub-main .rolling-list', {
+        autoplay: true,
+        slidesPerView: 1,
+        direction: 'vertical',
+        loop: true,
+        navigation: {
+          nextEl: '.swiper-button-next',
+          prevEl: '.swiper-button-prev',
+        },
+      }); */
+
+      
+      //하단 뉴홈 배너 스와이퍼
+      /* '26.07.01 배너 슬라이드 임시 제거
+      const bottomBannerSwiper = new Swiper('.hub-main .rolling-banner', {
+        autoplay: true,
+        slidesPerView: 1,
+        loop: true,
+        navigation: false,
+        pagination: {
+          el: '.rolling-banner-wrap .swiper-pagination',
+          clickable: true,
+        },
+        on: {
+          init: function (swiper) {
+            const btnToggleAutoPlay = document.querySelector('.rolling-banner-wrap .btn-auto');
+            btnToggleAutoPlay.addEventListener('click', (e) => {
+              // if(!swiper.autoplay.paused) {
+              //   swiper.autoplay.pause();
+              //   e.currentTarget.classList.remove('pause');
+              //   e.currentTarget.classList.add('play');
+              // } else {
+              //   swiper.autoplay.resume();
+              //   e.currentTarget.classList.remove('play');
+              //   e.currentTarget.classList.add('pause');
+              // }
+
+              if (e.currentTarget.classList.contains('pause')) {
+                swiper.autoplay.stop();
+                e.currentTarget.classList.remove('pause');
+                e.currentTarget.classList.add('play');
+              } else if (e.currentTarget.classList.contains('play')) {
+                swiper.autoplay.start();
+                e.currentTarget.classList.remove('play');
+                e.currentTarget.classList.add('pause');
+              } else {
+                e.currentTarget.classList.remove('play');
+                e.currentTarget.classList.add('pause');
+              }
+            });
+          },
+        },
+      });
+      */
+      
+    </script>
+    
+    <!-- naver analytics : s -->
+	<script type="text/javascript" src="https://wcs.naver.net/wcslog.js"></script> 
+	<script type="text/javascript"> if(!wcs_add) var wcs_add = {}; wcs_add["wa"] = "12af10d328fefd8"; wcs_do(); </script>
+	<!-- naver analytics : e -->
+</body>
+</html>

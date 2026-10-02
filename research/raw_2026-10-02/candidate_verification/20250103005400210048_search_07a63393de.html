@@ -1,0 +1,3117 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ko" xml:lang="ko">
+ <head>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" /> 
+  <meta name="viewport" content="initial-scale=0.1,user-scalable=yes,maximum-scale=1600,width=device-width" />      
+  <script type="text/javascript" src="/LSW/js/jquery/jquery.js"></script> 
+  <script type="text/javascript" src="/LSW/js/common/jquery-custom.js"></script> 
+  <script type="text/javascript" src="/LSW/js/jquery/jquery.loadmask.js"></script> 
+  <script type="text/javascript">
+    var webRoot = '/LSW';
+</script>  
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />  
+  <link rel="shortcut icon" type="text/css" href="/LSW/images/ico_favorites.ico" />
+  <link rel="stylesheet" type="text/css" href="/LSW/css/lsw/common.css" />
+  <link rel="stylesheet" type="text/css" href="/LSW/js/jquery/jquery.loadmask.css" />
+  <link rel="stylesheet" type="text/css" href="/LSW/css/ext/ext-all.css" />
+  <link rel="stylesheet" type="text/css" href="/LSW/css/lsw/xtheme-layer.css" />
+  <link rel="stylesheet" type="text/css" href="/LSW/css/siteMap.css?Time=1790941824" />
+  <link rel="stylesheet" type="text/css" href="/LSW/css/lsw/ext-all.css?Time=1790941824" />
+  <link rel="stylesheet" type="text/css" href="/LSW/css/lsw/common.css?Time=1790941824" />
+  <link rel="stylesheet" type="text/css" href="/LSW/css/lsw/common-ex.css?Time=1790941824" />
+  <link rel="stylesheet" type="text/css" href="/LSW/css/mobileView.css?Time=1790941824" />
+  <link rel="stylesheet" type="text/css" href="/LSW/js/jquery/layout-default-latest.css?Time=1790941824" />
+  <link rel="stylesheet" type="text/css" href="/LSW/css/lsw/layout.css?Time=1790941824" />
+  <link rel="stylesheet" type="text/css" href="/LSW/css/lsw/board.css?Time=1790941824" />
+  <link rel="stylesheet" type="text/css" href="/LSW/css/ui_2017.css?Time=1790941824" />
+  <link rel="stylesheet" type="text/css" href="/LSW/css/header.css?Time=1790941824" />
+  <link rel="stylesheet" type="text/css" href="/LSW/css/fonts.css?Time=1790941824" />
+  <link rel="stylesheet" type="text/css" href="/LSW/css/lsw/pop.css?Time=1790941824" />
+  <link rel="stylesheet" type="text/css" href="/LSW/css/lsw/wa.css" />
+  <link rel="stylesheet" type="text/css" href="/LSW/css/lsw/xtheme-ls.css" />
+  <link rel="stylesheet" type="text/css" href="/LSW/css/lsw/xtheme-lsOutput.css" />
+  <link rel="stylesheet" type="text/css" href="/LSW/css/lsw/commonForOrdin.css" />
+  <link rel="stylesheet" type="text/css" href="/LSW/js/jquery/jquery.fancybox-2.1.5.css" />
+  <style type="text/css">
+        .ui-layout-pane {
+            padding: 0;
+            background: #EEE;
+        }
+        .ui-layout-west {
+            background: #CFC;
+        }
+        .ui-layout-center {
+            background: #FFC;
+            padding:    0; /* IMPORTANT - remove padding so pane can 'collapse' to 0-width */
+        }
+
+        .ui-layout-west > .ui-layout-center {
+            background: #CFC;
+        }
+
+        .ui-layout-west > .ui-layout-south {
+            background: #AFE;
+        }
+        .ui-layout-pane         { border-width:         0; }
+        .ui-layout-north        { border-bottom-width:  1px; }
+        .ui-layout-south        { border-top-width:     1px; }
+        .ui-layout-resizer-west { border-width:         0; border-left: 2px solid #b4b4b4; background-color:white; }
+        .ui-layout-toggler      { border: 0; background-color:#fff}
+        .ui-layout-toggler-west div {   width:  15px;   height: 63px;   }
+
+        .westClose  { background-image: url("./images/button/leslidev7_1.gif"); background-color:white; background-repeat: no-repeat; }
+        .westOpen       { background-image: url("./images/button/leslidev7_2.gif"); background-color:white; background-repeat: no-repeat; }
+
+        .area_skip a:focus{top:0}
+        .area_skip a{position:fixed;top:-100px;left:0;right:0;z-index:1000;background:#054689;padding:10px;color:#fff!important;font-size:16px;font-weight:bold;text-align:center}
+        .autoAllDelBtn{border:0; outline:0;}
+    </style> 
+  <style type="text/css">
+
+.login-window .x-resizable-handle {
+	opacity: 100;
+}
+
+.login-window-proxy {
+	background: #ff9d5d;
+	border: 1px solid #ff9d5d;
+	z-index: 12000;
+	overflow: hidden;
+	position: relative;
+	left: 0;
+	top: 0;
+	display: none;
+	opacity: 100;
+}
+
+.login-window-header {
+	overflow: hidden;
+}
+
+.login-window-bwrap {
+	z-index: 1;
+	position: relative;
+	left: 0;
+	top: 0;
+}
+
+.login-window-tl .login-window-header {
+	color: #15428b;
+	/*font:bold 11px tahoma,arial,verdana,sans-serif;*/
+	padding: 0 0 0 0;
+}
+
+.login-window-header-text {
+	font-style: normal;
+	font-size: 12px;
+	cursor: pointer;
+}
+
+.login-window-tc {
+	/*background: transparent url(../images/default/window/top-bottom.png) repeat-x 0 0;*/
+	background: #0C74CD none repeat scroll 0 0;
+	overflow: hidden;
+}
+
+.login-window-tl {
+	/*background: transparent url(../images/default/window/left-corners.png) no-repeat 0 0;*/
+	background: #0C74CD none repeat scroll 0 0;
+	padding-left: 6px;
+	z-index: 1;
+	position: relative;
+}
+
+.login-window-tr {
+	/*background: transparent url(../images/default/window/right-corners.png) no-repeat right 0;*/
+	background: #0C74CD none repeat scroll 0 0;
+	padding-right: 6px;
+}
+
+.login-window-bc {
+	/*background: transparent url(../images/default/window/top-bottom.png) repeat-x 0 bottom;
+            background:#FFFFFF none repeat scroll 0 0;
+            height:1px !important;
+            zoom:1;*/
+	
+}
+
+.login-window-bc .login-window-footer {
+	padding-bottom: 1px;
+	font-size: 0;
+	line-height: 0;
+}
+
+.login-window-bl {
+	/*background: transparent url(../images/default/window/left-corners.png) no-repeat 0 bottom;*/
+	background: #FEFEFE none repeat scroll 0 0;
+	padding-left: 6px;
+}
+
+.login-window-br {
+	/*background: transparent url(../images/default/window/right-corners.png) no-repeat right bottom;*/
+	background: #FEFEFE none repeat scroll 0 0;
+	padding-right: 1px;
+}
+
+.login-window-mc {
+	border: 1px solid #EFEFEF;
+	padding: 0;
+	margin: 0;
+	/*font: normal 11px tahoma,arial,helvetica,sans-serif;*/
+	/*background:#dfe8f6;*/
+	background: #FEFEFE;
+}
+
+.login-window-ml {
+	/*background: transparent url(../images/default/window/left-right.png) repeat-y 0 0;*/
+	background: #FEFEFE none repeat scroll 0 0;
+	padding-left: 0px;
+}
+
+.login-window-mr {
+	/*background: transparent url(../images/default/window/left-right.png) repeat-y right 0;*/
+	background: #FEFEFE none repeat scroll 0 0;
+	padding-right: 0px;
+}
+
+.login-window-body {
+	border-bottom: 1px solid #EFEFEF;
+	overflow: hidden;
+}
+
+.login-window-bwrap {
+	overflow: hidden;
+}
+
+.login-window-maximized .login-window-bl, .login-window-maximized .login-window-br,
+	.login-window-maximized .login-window-ml, .login-window-maximized .login-window-mr,
+	.login-window-maximized .login-window-tl, .login-window-maximized .login-window-tr
+	{
+	padding: 0;
+}
+
+.login-window-maximized .login-window-footer {
+	padding-bottom: 0;
+}
+
+.login-window-maximized .login-window-tc {
+	padding-left: 1px;
+	padding-right: 3px;
+	background-color: blue;
+}
+
+.login-window-maximized .login-window-mc {
+	border-left: 0 none;
+	border-right: 0 none;
+}
+
+.login-window-tbar .x-toolbar, .login-window-bbar .x-toolbar {
+	border-left: 0 none;
+	border-right: 0 none;
+}
+
+.login-window-bbar .x-toolbar {
+	border-top: 1px solid #99bbe8;
+	border-bottom: 0 none;
+}
+
+.login-window-draggable, .login-window-draggable .login-window-header-text
+	{
+	cursor: move;
+}
+
+.login-window-maximized .login-window-draggable, .login-window-maximized .login-window-draggable .login-window-header-text
+	{
+	cursor: default;
+}
+
+.login-window-body {
+	background: transparent;
+}
+
+.x-panel-btns {
+	padding: 0px;
+	overflow: hidden;
+}
+
+</style> 
+  <style type="text/css">
+    div#topDiv {padding-top:0;}
+    html>/**/body div#topDiv {padding-top:0px;}
+</style> 
+  <style type="text/css">
+     /* 위임 행정규칙 css */
+    	label.hg		{ margin:0; padding:1px 0 2px; font-size:11px;}
+	input.chkint	{ margin:0; padding:0; vertical-align:middle; padding-bottom:3px}
+	.chebtn_area	{ vertical-align: middle; float: left; padding:3px 0;}
+	.chkbtnbox		{ border:1px solid #7f9db9; margin:0 3px 0 0; border-radius:2px; background-color: #fff; padding:2px 3px 2px; display:inline-block;}
+</style>
+  <title>국가법령정보센터</title>
+ </head> 
+ <body class="subtop3" id="bodyId"> 
+  <!-- header -->     
+  <script type="text/javascript" src="/LSW/js/common/common.js?Time=1790941824"></script> 
+  <script type="text/javascript" src="/LSW/js/common/drag_search.js?Time=1790941824"></script> 
+  <script type="text/javascript" src="/LSW/js/ls/lsLink.js?Time=1790941824"></script> 
+  <script type="text/javascript" src="/LSW/js/common/CookieUtil.js"></script> 
+  <script type="text/javascript" src="/LSW/js/common/layout.js?Time=1790941824"></script> 
+  <script type="text/javascript" src="/LSW/EDotXPressHtml/js/edotxpress-html.min.js"></script> 
+  <script type="text/javascript" src="/LSW/EDotXPressHtml/js/edotxpress-common.js"></script> 
+  <script type="text/javascript" src="/LSW/EDotXPressHtml/js/edotxpress-config-law.js"></script>      
+  <!-- 3단비교 CSS --> 
+  <!-- 레이아웃 관련 CSS -->        
+  <!-- 레이아웃 관련 CSS //-->  
+  <script type="text/javascript">
+//<![CDATA[
+        var searchId = 0;
+        var searchMessage = new Array("주제어, 법령명 등을 입력하세요."
+                , "주제어, 행정규칙명 등을 입력하세요."
+                , "주제어, 자치법규명 등을 입력하세요."
+                , "제목, 주제어를 입력하세요."
+                , "주제어, 사건명, 사건번호, 판결일자를 입력하세요."
+                , "주제어, 사건명, 사건번호, 판결일자를 입력하세요."
+                , "주제어, 안건명, 해석일자를 입력하세요."
+                , "주제어, 사건명, 의결일자를 입력하세요."
+                , "서식명, 법령명을 입력하세요."
+                , "주제어, 생활분류명을 입력하세요."
+                , "법령용어를 입력하십시오."
+                , "주제어, 안건명, 처리일자를 입력하세요."
+                , "주제어, 학칙명을 입력하세요."
+                , "공단규정명, 기관명 등을 입력하세요."
+                , "사건명, 사건번호를 입력하세요."
+                , "콘텐츠명, 법령명, 키워드를 입력하세요."
+                , "접수번호, 신청기관명, 건명을 입력하세요."
+        );
+
+        //메뉴 OnMouseOver 이벤트
+        function menuImgOn(obj, imgPath){
+            obj.src = '/LSW'+imgPath;
+        }
+
+        //메뉴 OnMouseOut 이벤트
+        function menuImgOff(obj, imgPath){
+            if(obj.id != '3') {
+                obj.src = '/LSW'+imgPath;
+            }
+        }
+
+        //탑메뉴 클릭시 이동
+        function moveTopMenu(linkUrl){
+            location.href = setUrl(linkUrl);
+        }
+
+        // 서브메뉴 클릭 시 이동
+        function moveSubMenu(linkUrl){
+            location.href = setUrl(linkUrl);
+
+        }
+
+        // 탭 메뉴 클릭 시 이동
+        function tabLawSearch(linkUrl){
+            location.href = setUrl(linkUrl);
+        }
+
+        //새창으로 띄우기
+        function openUrl(linkUrl){
+            window.open(linkUrl, '_blank');
+        }
+
+        // URL 세팅
+        function setUrl(linkUrl) {
+            for(var message in searchMessage) {
+                if($("#query").val() == searchMessage[message]) {
+                    $("#query").val("");
+                }
+            }
+
+            linkUrl += linkUrl.indexOf("?") != -1 ? "&" : "?";
+            linkUrl += "query=" + encodeURIComponent($("#query").val().replaceAll("<", " ").replaceAll(">"," "));
+
+            return linkUrl;
+        }
+
+        // 조회이력 Layer open
+        function comHstView(obj, no) {
+            var val = 0;
+            
+            lsSeHstView(obj, no, val);
+        }
+
+        //회원 탈퇴
+        function memDel(usrSeq, eamilAddr){
+            var snsGubunCd = "";
+
+            if(usrSeq != ''){
+                if(confirm("회원탈퇴를 진행하시겠습니까?")){
+                    if(snsGubunCd == '800302'){
+                        location.href = "https://www.lawmaking.go.kr/member/lawMemberD?aesParam="+encodeURIComponent("");
+                    }else{
+                        location.href = "https://www.lawmaking.go.kr/member/lawSnsMemberD?aesParam="+encodeURIComponent("");
+                    }
+                }else{
+                    location.reload();
+                }
+            }else{
+                alert('로그인 후 진행하여 주십시오.');
+            }
+        }
+
+        var bannerFlag = true;
+        $(document).ready(function(){
+            // [#37314] 메뉴 개편으로 메인페이지 제외한 자동완성기능 걷어냄
+            /*var klawAutoComUse = getCookie("klawAutoComUse");
+            if(klawAutoComUse == "unuse"){
+                document.getElementById("autoOff").style.display = "";
+                document.getElementById("autoOn").style.display = "none";
+            } else {
+                document.getElementById("autoOff").style.display = "none";
+                document.getElementById("autoOn").style.display = "";
+            }*/
+
+            $(".gnb > li > a").each(function(){
+                $(this).css('opacity',1);
+            });
+            //근대법령 팝업
+            if ('27' == '19') {
+                modernLawCookie = document.cookie;
+                if (modernLawCookie.indexOf("modernLawPop=prd_1") >= 0 || modernLawCookie.indexOf("modernLawPop=prd_7") >= 0) {
+                    $('.modernLawPop').css('display','none');
+                } else {
+                    $('.modernLawPop').css('display','block');
+                }
+            }
+            //법령해석례 중앙부처 법령해석 팝업
+            var isAsGubun = "IS";
+            if('139' == 'tab91' && isAsGubun == 'IS') {
+                expcLawCookie = document.cookie;
+                if (expcLawCookie.indexOf("expcLawPop=prd1") >= 0 || expcLawCookie.indexOf("expcLawPop=prd7") >= 0) {
+                    $('.expcLawPop').css('display','none');
+                } else {
+                    $('.expcLawPop').css('display','block');
+                }
+            }
+
+            // 서브 메뉴 cursor 세팅
+            $("#naviId a").each(function(){
+                $(this).css({"cursor" : "pointer"});
+            });
+
+            //내가찾은 검색어 목록 생성
+            initAutoComplet();
+
+            $("#query").attr("autocomplete", "off");
+
+            if ('' == 'N') {
+                $('#select_lay').css('display', 'none');
+            }
+
+            if($('.sub_tab li.on a').text() == ''){
+                $('.subMenuInfo').toggleClass('remove');
+            }
+
+            if($('.mainMenuInfo a').text() == '') {
+				$('.location').css('display', 'none');
+            }
+        });
+
+        //검색 버튼 클릭시 - 필요시 각 페이지마다 override 해서 사용
+        function txtSearch(){
+            var urlName = '/LSW/ordinSc.do';
+            var menuId = '3';
+            var subMenuId = '27';
+            var tabMenuId = '139';
+            var query = encodeURIComponent($("#query").val());
+            var isAsGubun = "IS";
+            var brdSeq = '';
+            var pageIndex = '';
+
+            if(urlName == 'information.do'|| urlName == 'OneLookInformation.do' || urlName == 'lawState.do') {
+                if(isAsGubun == 'IS') {
+                    urlName = 'lsSc.do';
+                    menuId = 1;
+                    subMenuId = 15;
+                    tabMenuId = 81;
+                } else if(isAsGubun == 'AS') {
+                    urlName = 'unSc.do';
+                    menuId = 391;
+                    subMenuId = 395;
+                    tabMenuId = 409;
+                    }
+                }
+
+            if(urlName == '/LSW/lawPetitionView.do'){
+                return location.href = urlName+"?ctsClsCd=0&searchKeyword=&query="+query+"&brdSeq="+brdSeq+"&menuId="+menuId+  "&subMenuId=" +subMenuId+ "&pageIndex="+pageIndex;
+            }
+
+            location.href = urlName+"?menuId="+menuId+"&subMenuId="+subMenuId+"&tabMenuId="+tabMenuId+"&query="+query;
+        }
+
+        //검색어  값 입력시 이벤트
+        var ie_first_idx = -1;
+        var mv_idx = -1;
+        var autoComUrl = '/search/autocom?colname=LS_NM_KO_AUTO';
+        function keyPressQuery(){
+            var klawAutoComUse = getCookie("klawAutoComUse");
+            // 자동완성 사용여부 체크
+            if(klawAutoComUse != "unuse"){
+                //자동완성
+                if($("#query").val() != ''){
+                    autoComClose();
+                } else {
+                    autoComOpen();
+                }
+
+                //자동완성
+                var inputText = $("#query").val();
+
+                //좌우, shift, ctrl, alt 클릭 시  수행되지 않도록 처리
+                if(event.keyCode == 37 || event.keyCode == 39 || event.keyCode == 27 || event.keyCode == 16 || event.keyCode == 17 || event.keyCode == 18) {
+                    return;
+                }
+
+                //키보드 상하키 입력 시 목록 선택
+                if(event.keyCode == 38 || event.keyCode == 40) {
+                    if($("#lsNmKoAutoList").children().length > 0 && $("#autoComLsNmList").css('display') == 'none') {
+                        return;
+                    }
+
+                    var autoList_len = $("#lsNmKoAutoList > li").length;
+
+                    if(autoList_len > 0 && event.keyCode == 38) {
+                        mv_idx--;
+                        if(mv_idx < 0) {
+                            mv_idx = 0;
+                        }
+                        getAutoLsNm();
+                    } else if(autoList_len > 0 && event.keyCode == 40) {
+                        var agent = navigator.userAgent.toLowerCase();
+                        if((navigator.appName == "Netscape" && navigator.userAgent.search("Trident") != -1) || (agent.indexOf("msie") != -1)) {
+                            //ie일 경우 첫 이동(아래방향)시 두번 실행되는 현상 처리
+                            //1. mv_idx=-1 일 경우(=첫 이동) mv_idx=0
+                            //2. 두번 실행될 때 mv_idx=0일 경우 이전 mv_idx=-1 이면 return
+                            if(mv_idx == -1) {
+                                ie_first_idx = -1;
+                                mv_idx = 0;
+                            } else if(ie_first_idx == -1) {
+                                ie_first_idx = 0;
+                                return;
+                            } else {
+                                mv_idx++;
+                            }
+                        } else {
+                            mv_idx++;
+                        }
+
+                        if(mv_idx > autoList_len - 1) {
+                            mv_idx = autoList_len -1;
+                        }
+                        getAutoLsNm();
+                    } else {
+                        mv_idx = -1;
+                        ie_first_idx = -1;
+                    }
+                } else if(inputText != "") {
+                    setAutoComLsNmList(inputText);
+                } else {
+                    $("#lsNmKoAutoList").children().remove();
+                    $("#autoComLsNmList").hide();
+                }
+            }
+        }
+
+        //자동완성목록 상하키 이동
+        function getAutoLsNm() {
+            var slt_kwd = $("#akc" + mv_idx).css("background-color", "#d5e6ff").children().removeClass("akclist").addClass("selected").text();
+
+            if(slt_kwd != null) {
+                $(".selected").parent().css("background-color", "");
+                $(".selected").removeClass("selected").addClass("akclist");
+
+                var mv_slt_kwd = $("#akc" + mv_idx).children().removeClass("akclist").addClass("selected");
+                $(".selected").parent().css("background-color", "#d5e6ff");
+                $("#query").val(mv_slt_kwd.text());
+            }
+        }
+
+        // WEB -> 자동완성 검색호출  - 2022.10.13 내부망 우선 적용
+        function setAutoComLsNmList(query) {
+            mv_idx = -1;
+
+            if('3' == '3' || '139' == '415' || '139' == '439') {
+                autoComUrl = "/search/autocom?colname=ORDIN_NM_AUTO";
+            } else if('3' == '5' || '139' == '413' || '139' == '441'){
+                autoComUrl = "/search/autocom?colname=ADMRUL_NM_AUTO";
+            } else {
+                autoComUrl = "/search/autocom?colname=LS_NM_KO_AUTO";
+            }
+
+            $.ajax({
+                url : autoComUrl,
+                type : "POST",
+                data : {keyword : query, outmax : 10},
+                async : false,
+                dataType : "text",
+                success : function(data) {
+                    $("#lsNmKoAutoList").children().remove();
+
+                    var cnt = 0;
+                    var lsNmList = data.split("|");
+
+                    for(var i = 0; i < lsNmList.length; i++) {
+                        if(lsNmList[i].length > 1) {
+                            var lsNm = lsNmList[i].replace('<font color=red>', '').replace('</font>', '').replace('\n', '');
+                            var autoComDiv = "<li id='akc" + i + "'><a href='javascript:;' class='akclist' onclick='javascript:selectAutoComQuery(this);\'>" + lsNmList[i] + "</a></li>";
+                            $("#lsNmKoAutoList").append(autoComDiv);
+                            cnt++;
+                        }
+                    }
+
+                    if(cnt == 0) {
+                        $("#autoComLsNmList").hide();
+                    } else {
+                        $("#autoComLsNmList").show();
+                        $("#autoComLayer").hide();
+                        $(".srch_inp").attr('class', 'srch_inp');
+                    }
+                },
+                error : function(request, status, error) {
+                    console.log("code : " + request.status);
+                    console.log("message : " + request.responseText);
+                    console.log("error", error);
+                }
+            });
+        }
+
+        function menuMove(gubun){
+            var query = "";
+            var menu = "";
+
+            if(el("query") != null  && typeof(el("query")) != "undefined" ){
+                query = el("query").value;
+            }else{
+                if(el("lsNm") != null && typeof(el("lsNm")) != "undefined" ){
+                    query = el("lsNm").value;
+                }else if(el("admRulNm") != null && typeof(el("admRulNm")) != "undefined" ){
+                    query = el("admRulNm").value;
+                }else if(el("searchKeyWord") != null && typeof(el("searchKeyWord")) != "undefined" ){
+                    query = el("searchKeyWord").value;
+                }else{
+                    query = "";
+                }
+            }
+
+            if(searchMessage.containsValue(query)){
+                query ="";
+            }
+
+            if(gubun == "1"){
+                if($("#sub15").is(":checked")){ menu = "/LSW/lsAstSc.do?menuId=391&subMenuId=397&tabMenuId=437"; }
+                if($("#sub25").is(":checked")){ menu = "/LSW/bothTrtyAstSc.do?menuId=391&subMenuId=397&tabMenuId=451"; }
+            } else if(gubun == "3"){
+                menu = "/LSW/ordinAstSc.do?menuId=391&subMenuId=397&tabMenuId=439";
+            } else if(gubun == "5"){
+                menu = "/LSW/admRulAstSc.do?menuId=391&subMenuId=397&tabMenuId=441";
+            } else if(gubun == "7"){
+                if($("#sub47").is(":checked")){ menu = "/LSW/precAstSc.do?menuId=391&subMenuId=397&tabMenuId=443"; }
+                if($("#sub49").is(":checked")){ menu = "/LSW/detcAstSc.do?menuId=391&subMenuId=397&tabMenuId=445"; }
+                if($("#sub51").is(":checked")){ menu = "/LSW/expcAstSc.do?menuId=391&subMenuId=397&tabMenuId=447"; }
+                if($("#sub53").is(":checked")){ menu = "/LSW/deccAstSc.do?menuId=391&subMenuId=397&tabMenuId=449"; }
+                if($("#sub731").is(":checked")){ menu = "/LSW/specialDeccAstSc.do?menuId=391&subMenuId=397&tabMenuId=739"; }
+            } else if (gubun == "11") {
+                if($("#sub729").is(":checked")){ menu = "/LSW/cgmExpcAstSc.do?menuId=391&subMenuId=397&tabMenuId=741"; }
+            }
+
+            if(menu.indexOf("lbListR.do") > -1){
+                document.location.href = menu + "&query=" ;
+            }else{
+                document.location.href = menu + "&query=" + encodeURIComponent(query);
+            }
+        }
+
+        //자동완성 목록 생성
+        function initAutoComplet(){
+            var viewlen = 200;
+            var keywordList = getDatList("SearchHistory");
+
+            if( keywordList.length == 0 ) return;
+
+            var keywordCnt = keywordList.length;
+            var tmpViewArray = new Array(keywordCnt);
+            var tmpDataArray = new Array(keywordCnt);
+            var quot = "\"";
+            var replaceQuot = "&quot;";
+            var rowData = "";
+
+            for(var i = 0; i < keywordCnt; i ++) {
+                if( keywordList[i].length > viewlen/2 ) {
+                    tmpViewArray[i] = unescape(keywordList[i]).substr(0,28) + "...";
+                    tmpDataArray[i] = unescape(keywordList[i]);
+                } else {
+                    tmpViewArray[i] = unescape(keywordList[i]);
+                    tmpDataArray[i] = unescape(keywordList[i]);
+                }
+            }
+
+            var list = "";
+            for (var i = 0; i < tmpViewArray.length ; i++) {
+                rowData = cleanSearchKeyword(tmpViewArray[i]);
+                //rowData = rowData.replace("/\'/gi", "\\'");
+                if(rowData != "") {
+                    list += "<li><a href='javascript:;' title= '"+rowData+"' data-srchvalue = '"+rowData+"' onclick='javascript:selectAutoComQuery(this);\'>"+tmpViewArray[i].trim()+"</a>";
+                    list += "<button type='button' style='float:right; cursor:pointer; width: 26px;' title='내가찾은 검색어 삭제' onclick='javascript:removeAutoComQuery(this)'><span>x</span></button>";
+                }
+                list += "</li>";
+            }
+
+            if(list != '') {
+                $(".list_bx").html(list);
+            }
+        }
+
+        // 내가 찾은 검색어 목록 선택
+        function selectAutoComQuery(anchorTag){
+            $("#query").val($(anchorTag).html().replace("<font color=\"red\">", '').replace("</font>", '').replaceAll("&amp;", "&"));
+            $("#query").focus();
+            autoComClose();
+
+            if($("#query").val() != ""){
+                $("#btn-textRemove").css("display","");
+           }
+            searchBtnClick(); //자동완성 목록 클릭시 바로 검색되게 수정
+        }
+
+        // 내가 찾은 검색어 저장
+        function saveSearchHistory(){
+            var tmpCookieStr = "";
+            var cookieCnt = 0;
+
+            var query = $("#query").val().replaceAll("<"," ").replaceAll(">"," ");
+
+            if(query != ''){
+                var keywordList = getDatList("SearchHistory");
+
+                //중복 검색어 체크
+                for(var i=0; i<keywordList.length; i++){
+                    if(unescape(keywordList[i]) != query){
+                        tmpCookieStr = tmpCookieStr + "---" + keywordList[i];
+                        cookieCnt ++;
+                    }
+
+                    //8개만 저장
+                    if(cookieCnt ==  7){
+                        break;
+                    }
+                }
+                tmpCookieStr = escape(query)+tmpCookieStr;
+                setCookie("SearchHistory", tmpCookieStr);
+            }
+        }
+
+        // 내가 찾은 검색어 삭제
+        function removeAutoComQuery(query) {
+
+            var data = $(query).parent().find("a").attr('data-srchvalue');
+            if(data){
+                $(query).parent().remove();
+                var searchHist = getCookie("SearchHistory");
+
+                if(searchHist.indexOf("---"+escape(data)) > -1) {
+                    searchHist = searchHist.replace("---"+escape(data), "");
+                }else if(searchHist.indexOf(escape(data)+"---") > -1) {
+                    searchHist = searchHist.replace(escape(data)+"---", "");
+                }else {
+                    searchHist = searchHist.replace(escape(data), "");
+                }
+                setCookie("SearchHistory", searchHist);
+            }
+        }
+
+        // 내가 찾은 검색어 모두 삭제
+        function removeAutoAllQuery(){
+            $("#autoComList").empty();
+            setCookie("SearchHistory", "");
+            autoComClose();
+        }
+
+        // 내가 찾은 법령 삭제
+        function removeAutoLawHistory(query){
+
+            var parseLsiSeq=$(query).siblings("a").attr("onclick").split("'")[1];
+            var lawHist = getCookie("lawHistory");
+            var splitData = lawHist.split(parseLsiSeq)[0];
+            var LawCookieOne=splitData.substring(splitData.lastIndexOf("-")+1)+parseLsiSeq;
+
+            $(query).parent().remove();
+
+            if(lawHist.indexOf("---"+LawCookieOne) > -1){
+                lawHist=lawHist.replace("---"+LawCookieOne, "");
+            } else if(lawHist.indexOf(LawCookieOne+"---") > -1){
+                lawHist=lawHist.replace(LawCookieOne+"---", "");
+            } else {
+                lawHist = lawHist.replace(LawCookieOne, "");
+            }
+
+            setCookie("lawHistory", lawHist);
+
+            if(lawHist.length < 1){
+                var data = "<ul onmouseout=\"javascript:lawSeHstClose();return false;\">";
+                data += "<li onmouseout=\"javascript:lawSeHstClose();return false;\">";
+                data += "<a href=\"javascript:;\"><img src=\"/LSW/images/common/txt_none_not.gif\" alt=\"조회이력 없음\" /></a>";
+                data += "</li> </ul>";
+                $("#historyList").html(data);
+                $("#historyList").siblings('div').remove();
+            }
+        }
+
+        //내가 찾은 법령 전체 삭제
+        function removeAutoAllLawHistory(query){
+            var data = "<ul onmouseout=\"javascript:lawSeHstClose();return false;\">";
+            data += "<li onmouseout=\"javascript:lawSeHstClose();return false;\">";
+            data += "<a href=\"javascript:;\"><img src=\"/LSW/images/common/txt_none_not.gif\" alt=\"조회이력 없음\" /></a>";
+            data += "</li> </ul>";
+
+            $(query).parent().siblings("div").html(data);
+            $(query).parent().remove();
+
+            setCookie("lawHistory", "");
+        }
+
+        //검색 버튼 클릭 이벤트
+        function searchBtnClick(){
+            //자동완성 레이어 숨김
+            $("#autoComLsNmList").hide();
+            //쿠키 저장
+            saveSearchHistory();
+            //검색 이동
+            txtSearch(true);
+        }
+
+        // 검색 버튼 이벤트(엔터입력)
+        function searchEnter(event){
+            var keyCode = event.keyCode ? event.keyCode : event.which ? event.which : event.charCode;
+            if(keycode == 13){
+                //쿠키 저장
+                saveSearchHistory();
+                //검색 이동
+                txtSearch();
+            }
+        }
+
+        // 법령용어 검색
+        var lsTrmDragSrch = new classLsTrmDragSrch();
+
+        // 웹접근성 : 본문 바로가기(메뉴영역 접기)
+        // [#36883] 화면 보는 방식 개선 : 기존 '본문바로가기' 기능을 본문영역으로 꺼내 버튼으로 꺼내도록 개선
+        function skipNavi() {
+            var skipFlag = $("#skipFlag").val();
+
+            if (skipFlag == 0) {
+                /* 웹접근성 : 화면 최상단 탭 */
+                myLayout.open('north');
+                $("#skipCts").text('본문바로가기');
+
+                /* 본문영역 조문선택 옆 화살표 */
+                $("#menuOpen").hide();
+                $("#menuClose").show();
+                $("#skipNavi").attr('title','본문바로가기'); // title 변경
+                skipFlag = 1;
+
+            } else {
+                /* 웹접근성 : 화면 최상단 탭 */
+                myLayout.close('north');
+                $("#skipCts").text('전체메뉴가기');
+
+                /* 본문영역 조문선택 옆 화살표 */
+                $("#menuOpen").show();
+                $("#menuClose").hide();
+                $("#skipNavi").attr('title','전체메뉴가기'); // title 변경
+                skipFlag = 0;
+            }
+            $("#skipFlag").val(skipFlag);
+
+        }
+
+        function moveKoDictPop(netPrivateYn){
+            var koDictUrl = "";
+            if(netPrivateYn == 'Y'){
+                koDictUrl = 'http://istdict.korean.go.kr/search/searchResult.do';
+                window.open(koDictUrl,"koDictPopup","width=1120, height=680, scrollbars=yes, resizable=yes");
+            }else{
+                koDictUrl = 'http://stdict.korean.go.kr/search/searchResult.do';
+                window.open(koDictUrl,"koDictPopup","width=1120, height=680, scrollbars=yes, resizable=yes");
+            }
+        }
+
+        //검색어 이력 열고 닫는 버튼
+        function autoComOpenCloseBtn(){
+            if($("#autoComLayer").css("display") == 'none' /* && ($("#query").val() == '' || searchMessage.includes($("#query").val()) == true )*/) {
+                autoComOpen();
+            } else {
+                autoComClose();
+            }
+        }
+
+        //자동완성 목록 display 설정
+        function autoComOpenClose(){
+            var klawAutoComUse = getCookie("klawAutoComUse");
+            // 자동완성 사용여부 체크
+            if(klawAutoComUse != "unuse"){
+                if($("#lsNmKoAutoList").children().attr("id") == "lsNmKo1"){
+                    $("#lsNmKo1").remove();
+                }
+
+                searchFlag = false;
+
+                if($("#query").val() != "") {
+                    $("#lsNmKoAutoList").children().remove();
+                    setAutoComLsNmList($("#query").val());
+                } else if($("#autoComLayer").css("display") == 'none' && ($("#query").val() == '' || searchMessage.includes($("#query").val()) == true)) {
+                    autoComOpen();
+                } else{
+                    autoComClose();
+                }
+
+                if($("#lsNmKoAutoList").children().length > 0 && $("#autoComLayer").css("display") == 'none') {
+                    $("#autoComLsNmList").show();
+                }
+            }
+        }
+
+        // 검색어 지우기
+        function queryTextRemove(){
+            $("#query").val("");
+            $("#query").focus();
+            $("#autoComLsNmList").hide();
+            $("#lsNmKoAutoList").children().remove();
+            $("#btn-textRemove").css("display","none");
+        }
+
+        // 자동완성 열림
+        function autoComOpen(){
+            $("#autoComLayer").show();
+            $(".srch_inp").attr('class', 'srch_inp on');
+            $("#autoComLsNmList").hide();
+        }
+
+        // 자동완성 닫힘
+        function autoComClose(){
+            $("#autoComLayer").hide();
+            $(".srch_inp").attr('class', 'srch_inp');
+            if($("#lsNmKoAutoList").children().length > 0) {
+                $("#autoComLsNmList").show();
+            }
+        }
+        var curserInOutFlag = false;
+
+        $(function(){
+            if($("#query").val() != ""){
+                $("#btn-textRemove").css("display","");
+            }
+            $('#autoComList, #autoAllDel').on('mouseenter', function(){
+                curserInOutFlag = true;
+            });
+            $('#autoComList, #autoAllDel').on('mouseleave', function(){
+                curserInOutFlag = false;
+            });
+            $('#sr_area').on('mouseleave', function(){
+                curserInOutFlag = false;
+            });
+            // [#35725] '#query' 에서 포커스 아웃 시 검색이력창을 닫아버려 자동완성 설정 버튼이 눌리지 않는현상
+           /*  $('#query').focusout(function(){
+                if(!curserInOutFlag){
+                    autoComClose();
+                }
+            }); */
+            $(document).click(function() {
+                if(!$("#query").is(event.target)) {
+                    $("#autoComLsNmList").hide();
+                    $("#autoComLayer").hide();
+                }
+
+                if($("#lsNmKoAutoList").children().length == 0) {
+                    $("#autoComLsNmList").hide();
+                }
+
+                if($(".keyboardBtn").is(event.target) || $(".bksp").is(event.target) || $(".space").is(event.target)) {
+                    setAutoComLsNmList($("#query").val());
+                }
+            });
+
+            $("#query").focus(function(){
+                for(var message in searchMessage) {
+                    if($("#query").val() == searchMessage[message]) {
+                        $("#query").val("");
+                        break;
+                    }
+                }
+            });
+            $("#query").on("input", function(){
+                $("#btn-textRemove").css("display","none");
+                if($("#query").val() == ""){
+                    $("#btn-textRemove").css("display","none");
+                }else{
+                    $("#btn-textRemove").css("display","");
+                }
+            });
+        });
+
+        //마우스 입력기
+        $(function(){
+            if($("#query").val() != ""){
+                $("#btn-textRemove").css("display","");
+            }
+
+            //마우스 입력기 열기
+            $('.btn-keyboardOpen').click(function(){
+                var textRange = document.getElementById("query").value.length;
+                move_cursor(textRange);
+                searchFlag = false;
+                if ($(this).hasClass('active')){
+                    $(this).removeClass('active');
+                    $('#keyboard-layout').css('display','none');
+                    $('#keyboard-layout .language-tab ul li .language_cont > div .shift').removeClass('active');
+                } else {
+                    $(this).addClass('active');
+                    $('#keyboard-layout').css('display','block');
+                }
+            });
+
+            //마우스 입력기 닫기
+            $('.btn-keyboardClose').click(function(){
+
+                $('#keyboard-layout').css('display','none');
+                $('.btn-keyboardOpen').removeClass('active');
+                $('#keyboard-layout .language-tab ul li .language_cont > div .shift').removeClass('active');
+            });
+
+            //한글/영문 탭 소스
+            $('#keyboard-layout .language-tab ul li a').on('click', function() {
+                if ($(this).hasClass('active')){
+
+                } else {
+                    $(this).parent().siblings('li').children('a').removeClass('active');
+                    $(this).addClass('active');
+                    $(this).parent().addClass('active');
+                    $(this).parent().siblings('li').removeClass('active');
+                    $(this).parent().siblings('li').children('.language_cont').css('display','none');
+                    $(this).siblings('.language_cont').css('display','block');
+                }
+            });
+
+            //basic/shift 탭 소스
+            $('#keyboard-layout .language-tab ul li .language_cont > div .shift').on('click', function() {
+                if ($(this).hasClass('active')){
+                    $(this).parents().siblings('.group_keyboard').find('div .shift').removeClass('active');
+                    $(this).parents('.group_keyboard').css('display','none');
+                    $(this).parents().siblings('.group_keyboard').css('display','block');
+                } else {
+                    $(this).parents().siblings('.group_keyboard').find('div .shift').addClass('active');
+                    $(this).parents('.group_keyboard').css('display','none');
+                    $(this).parents().siblings('.group_keyboard').css('display','block');
+                }
+            });
+        });
+
+        //해당 페이지로 이동
+        function goLinkUrl(url){
+            if($("#query").val() != '' && !searchFlag){
+                if(url.indexOf("?") < 0){
+                    url += "?query=" + encodeURIComponent($("#query").val());
+                } else {
+                    url += "&query=" + encodeURIComponent($("#query").val());
+                }
+            }
+            document.location.href = url;
+        }
+
+        // 브레드 크럼 내 sub_tab 명칭 클릭시 클릭 이벤트 부여
+        function brdSubTabOn(){
+
+            var target = $('.sub_tab li.on a'); // 현재 열려있는 li 중 on 속성 찾기
+
+            if(target.length){
+                target.trigger('click'); // li class="on" 속성을 클릭
+            }
+        }
+
+		// 탭메뉴 변경시 브레드 크럼내 tab 명칭 변경
+		function chgTabMenu(tabNm){
+			$('#tabMenuInfo a').text(tabNm); // a태그 내 텍스트만 수정
+		}
+
+        function autoComOnOff() {
+            var klawAutoComUse = getCookie("klawAutoComUse");
+
+            if(klawAutoComUse == "unuse"){
+                if(confirm("자동완성기능을 사용하시겠습니까?")){
+                    setCookie("klawAutoComUse", "use");
+                    document.getElementById("autoOff").style.display = "none";
+                    document.getElementById("autoOn").style.display = "";
+                }
+            } else {
+                if(confirm("자동완성기능을 중지하시겠습니까?")){
+                    setCookie("klawAutoComUse", "unuse");
+                    document.getElementById("autoOff").style.display = "";
+                    document.getElementById("autoOn").style.display = "none";
+                }
+            }
+        }
+
+		// ai 법령검색 서비스로 이동
+        function goAiSearch(){
+        	window.open('/LSW/ais/main.do',"_blank");
+        }
+
+//]]>
+</script>  
+  <input id="netPrivateYn" type="hidden" value="N" />  
+  <div class="area_skip" id="area_skip">
+   <a id="skipCts" href="javascript:;" onclick="javascript:skipNavi();return false;">본문 바로가기</a>
+  </div> 
+  <input type="hidden" id="skipFlag" value="1" /> 
+  <!-- 서브메뉴 영역  --> 
+  <div id="topDiv" class="ui-layout-north"> 
+   <div class="top_area"> 
+    <div id="gov_top"> 
+     <div id="gov_top_inner"> 
+      <img src="/LSW/images/common/ico_kor.png" alt="태극기" /> 
+      <span style="font-family: NanumSquareR, sans-serif; top: 7px;">이 누리집은 대한민국 공식 전자정부 누리집입니다.</span> 
+     </div> 
+    </div> 
+    <!-- 왼쪽 유틸 --> 
+    <div class="sub_utl"> 
+     <h1 class="logo"><a href="/LSW/main.html" title="국가법령정보센터 메인페이지로 이동">법제처 국가법령정보센터 로고</a></h1> 
+    </div> 
+    <!-- 오른쪽 유틸 --> 
+    <div class="sub_utl2"> 
+     <ul class="utl_list"> 
+      <li><a id="logIn" href="/LSW/login.do?menuId=465" class="login">로그인</a></li> 
+      <li><a id="memberEnter" href="/LSW/identifySelect.do" title="회원가입">회원가입</a></li> 
+      <li class="on"> <a id="rightBannerDiv" href="javascript:;" onclick="openScrollPop('https://www.law.go.kr/LSW/getPollRschInfo.do?pollRschSeq=83', '620' ,'658');return false;" style="color: #4366BA">국가법령 만족도조사</a> </li> 
+      <li><a href="/LSW/eng/engMain.do" target="_blank">English</a></li> 
+      <li class="type"> <span style="background: none;">화면</span> 
+       <div class="fs_wrap"> 
+        <button class="plus" onclick="javascript:fontSizeChange(1)" title="글씨크기확대"><span class="blind">글씨크기확대</span></button> 
+        <button class="reset" onclick="javascript:fontSizeChange(3)" title="글씨크기확대초기화"><span class="blind">글씨크기확대초기화</span></button> 
+        <button class="minus" onclick="javascript:fontSizeChange(2)" title="글씨크기축소"><span class="blind">글씨크기축소</span></button> 
+       </div> </li> 
+     </ul> 
+    </div> 
+    <!-- 상단 검색 영역 --> 
+    <div class="srch_area" id="sr_area"> 
+     <a class="btn_help" href="" title="새 창 열림" onclick="javascript:openScrollPop('/LSW/html/renew/lawSrch.html','685','520');return false;"> <span class="ally-hidden">법령검색 방법 상세내용 확인</span> </a> 
+     <div class="srch_area_info" style="display:none;"> 
+     </div> 
+     <div class="srch_bx"> 
+      <!-- search input --> 
+      <div class="srch_inp"> 
+       <label for="query" class="blind">검색어 입력</label> 
+       <input type="text" id="query" name="query" value="당진시 신혼부부 주택 전세자금 대출이자 지원 조례" onkeyup="javascript:keyPressQuery(); if(event.keyCode==13) searchBtnClick(); return false;" style="ime-mode:active" onclick="javascript:autoComOpenClose();return false;" /> 
+       <button class="btn-textRemove" onclick="javascript:queryTextRemove();return false;" id="btn-textRemove" style="display:none;"> <img src="/LSW/images/button/btn_del2.gif" alt="검색내용 삭제" /> </button> 
+       <button class="btn-keyboardOpen" onclick="return false;" id="btn_keyboard" style="right: 90px; top:7px;"> <img src="/LSW/images/common/btn_keyboardOpen.png" alt="마우스 입력 사용하기" /> </button> 
+       <div id="keyboard-layout"> 
+        <h4>마우스 입력기</h4> 
+        <div class="language-tab"> 
+         <ul> 
+          <li class="active key_kor"> <a href="javascript:;" class="active"> 한글</a> 
+           <div style="display:block;" class="language_cont"> 
+            <div class="group_keyboard kor_basic active" style="display: block;"> 
+             <div class="keyboard_line"> 
+              <button class="keyboardBtn" onclick="javascript:keyboardOpen(this); return false;" value="1">1</button> 
+              <button class="keyboardBtn" onclick="javascript:keyboardOpen(this); return false;" value="2">2</button> 
+              <button class="keyboardBtn" onclick="javascript:keyboardOpen(this); return false;" value="3">3</button> 
+              <button class="keyboardBtn" onclick="javascript:keyboardOpen(this); return false;" value="4">4</button> 
+              <button class="keyboardBtn" onclick="javascript:keyboardOpen(this); return false;" value="5">5</button> 
+              <button class="keyboardBtn" onclick="javascript:keyboardOpen(this); return false;" value="6">6</button> 
+              <button class="keyboardBtn" onclick="javascript:keyboardOpen(this); return false;" value="7">7</button> 
+              <button class="keyboardBtn" onclick="javascript:keyboardOpen(this); return false;" value="8">8</button> 
+              <button class="keyboardBtn" onclick="javascript:keyboardOpen(this); return false;" value="9">9</button> 
+              <button class="keyboardBtn" onclick="javascript:keyboardOpen(this); return false;" value="0">0</button> 
+              <button class="spe bksp" onclick="javascript:keyboardOpen(this); return false;" value="Bksp">Bksp</button> 
+             </div> 
+             <div class="keyboard_line"> 
+              <button class="keyboardBtn" onclick="javascript:keyboardOpen(this); return false;" value="ㅂ">ㅂ</button> 
+              <button class="keyboardBtn" onclick="javascript:keyboardOpen(this); return false;" value="ㅈ">ㅈ</button> 
+              <button class="keyboardBtn" onclick="javascript:keyboardOpen(this); return false;" value="ㄷ">ㄷ</button> 
+              <button class="keyboardBtn" onclick="javascript:keyboardOpen(this); return false;" value="ㄱ">ㄱ</button> 
+              <button class="keyboardBtn" onclick="javascript:keyboardOpen(this); return false;" value="ㅅ">ㅅ</button> 
+              <button class="keyboardBtn" onclick="javascript:keyboardOpen(this); return false;" value="ㅛ">ㅛ</button> 
+              <button class="keyboardBtn" onclick="javascript:keyboardOpen(this); return false;" value="ㅕ">ㅕ</button> 
+              <button class="keyboardBtn" onclick="javascript:keyboardOpen(this); return false;" value="ㅑ">ㅑ</button> 
+              <button class="keyboardBtn" onclick="javascript:keyboardOpen(this); return false;" value="ㅐ">ㅐ</button> 
+              <button class="keyboardBtn" onclick="javascript:keyboardOpen(this); return false;" value="ㅔ">ㅔ</button> 
+             </div> 
+             <div class="keyboard_line"> 
+              <button class="spe shift" onclick="return false;">Shift</button> 
+              <button class="keyboardBtn" onclick="javascript:keyboardOpen(this); return false;" value="ㅁ">ㅁ</button> 
+              <button class="keyboardBtn" onclick="javascript:keyboardOpen(this); return false;" value="ㄴ">ㄴ</button> 
+              <button class="keyboardBtn" onclick="javascript:keyboardOpen(this); return false;" value="ㅇ">ㅇ</button> 
+              <button class="keyboardBtn" onclick="javascript:keyboardOpen(this); return false;" value="ㄹ">ㄹ</button> 
+              <button class="keyboardBtn" onclick="javascript:keyboardOpen(this); return false;" value="ㅎ">ㅎ</button> 
+              <button class="keyboardBtn" onclick="javascript:keyboardOpen(this); return false;" value="ㅗ">ㅗ</button> 
+              <button class="keyboardBtn" onclick="javascript:keyboardOpen(this); return false;" value="ㅓ">ㅓ</button> 
+              <button class="keyboardBtn" onclick="javascript:keyboardOpen(this); return false;" value="ㅏ">ㅏ</button> 
+              <button class="keyboardBtn" onclick="javascript:keyboardOpen(this); return false;" value="ㅣ">ㅣ</button> 
+             </div> 
+             <div class="keyboard_line"> 
+              <button class="keyboardBtn" onclick="javascript:keyboardOpen(this); return false;" value="ㅋ">ㅋ</button> 
+              <button class="keyboardBtn" onclick="javascript:keyboardOpen(this); return false;" value="ㅌ">ㅌ</button> 
+              <button class="keyboardBtn" onclick="javascript:keyboardOpen(this); return false;" value="ㅊ">ㅊ</button> 
+              <button class="keyboardBtn" onclick="javascript:keyboardOpen(this); return false;" value="ㅍ">ㅍ</button> 
+              <button class="keyboardBtn" onclick="javascript:keyboardOpen(this); return false;" value="ㅠ">ㅠ</button> 
+              <button class="keyboardBtn" onclick="javascript:keyboardOpen(this); return false;" value="ㅜ">ㅜ</button> 
+              <button class="keyboardBtn" onclick="javascript:keyboardOpen(this); return false;" value="ㅡ">ㅡ</button> 
+              <button class="spe space" onclick="javascript:keyboardOpen(this); return false;" value="space">띄어쓰기</button> 
+              <button class="spe enter" onclick="javascript:goSearch();">검색</button> 
+             </div> 
+            </div> 
+            <div class="group_keyboard kor_shift" style="display: none;"> 
+             <div class="keyboard_line"> 
+              <button class="keyboardBtn" onclick="javascript:keyboardOpen(this); return false;" value="!">!</button> 
+              <button class="keyboardBtn" onclick="javascript:keyboardOpen(this); return false;" value="@">@</button> 
+              <button class="keyboardBtn" onclick="javascript:keyboardOpen(this); return false;" value="#">#</button> 
+              <button class="keyboardBtn" onclick="javascript:keyboardOpen(this); return false;" value="$">$</button> 
+              <button class="keyboardBtn" onclick="javascript:keyboardOpen(this); return false;" value="%">%</button> 
+              <button class="keyboardBtn" onclick="javascript:keyboardOpen(this); return false;" value="^">^</button> 
+              <button class="keyboardBtn" onclick="javascript:keyboardOpen(this); return false;" value="&amp;">&amp;</button> 
+              <button class="keyboardBtn" onclick="javascript:keyboardOpen(this); return false;" value="*">*</button> 
+              <button class="keyboardBtn" onclick="javascript:keyboardOpen(this); return false;" value="(">(</button> 
+              <button class="keyboardBtn" onclick="javascript:keyboardOpen(this); return false;" value=")">)</button> 
+              <button class="spe bksp" onclick="javascript:keyboardOpen(this); return false;" value="Bksp">Bksp</button> 
+             </div> 
+             <div class="keyboard_line"> 
+              <button class="keyboardBtn" onclick="javascript:keyboardOpen(this); return false;" value="ㅃ">ㅃ</button> 
+              <button class="keyboardBtn" onclick="javascript:keyboardOpen(this); return false;" value="ㅉ">ㅉ</button> 
+              <button class="keyboardBtn" onclick="javascript:keyboardOpen(this); return false;" value="ㄸ">ㄸ</button> 
+              <button class="keyboardBtn" onclick="javascript:keyboardOpen(this); return false;" value="ㄲ">ㄲ</button> 
+              <button class="keyboardBtn" onclick="javascript:keyboardOpen(this); return false;" value="ㅆ">ㅆ</button> 
+              <button class="keyboardBtn" onclick="javascript:keyboardOpen(this); return false;" value="ㅛ">ㅛ</button> 
+              <button class="keyboardBtn" onclick="javascript:keyboardOpen(this); return false;" value="ㅕ">ㅕ</button> 
+              <button class="keyboardBtn" onclick="javascript:keyboardOpen(this); return false;" value="ㅑ">ㅑ</button> 
+              <button class="keyboardBtn" onclick="javascript:keyboardOpen(this); return false;" value="ㅒ">ㅒ</button> 
+              <button class="keyboardBtn" onclick="javascript:keyboardOpen(this); return false;" value="ㅖ">ㅖ</button> 
+             </div> 
+             <div class="keyboard_line"> 
+              <button class="spe shift" onclick="return false;">Shift</button> 
+              <button class="keyboardBtn" onclick="javascript:keyboardOpen(this); return false;" value="ㅁ">ㅁ</button> 
+              <button class="keyboardBtn" onclick="javascript:keyboardOpen(this); return false;" value="ㄴ">ㄴ</button> 
+              <button class="keyboardBtn" onclick="javascript:keyboardOpen(this); return false;" value="ㅇ">ㅇ</button> 
+              <button class="keyboardBtn" onclick="javascript:keyboardOpen(this); return false;" value="ㄹ">ㄹ</button> 
+              <button class="keyboardBtn" onclick="javascript:keyboardOpen(this); return false;" value="ㅎ">ㅎ</button> 
+              <button class="keyboardBtn" onclick="javascript:keyboardOpen(this); return false;" value="ㅗ">ㅗ</button> 
+              <button class="keyboardBtn" onclick="javascript:keyboardOpen(this); return false;" value="ㅓ">ㅓ</button> 
+              <button class="keyboardBtn" onclick="javascript:keyboardOpen(this); return false;" value="ㅏ">ㅏ</button> 
+              <button class="keyboardBtn" onclick="javascript:keyboardOpen(this); return false;" value="ㅣ">ㅣ</button> 
+             </div> 
+             <div class="keyboard_line"> 
+              <button class="keyboardBtn" onclick="javascript:keyboardOpen(this); return false;" value="ㅋ">ㅋ</button> 
+              <button class="keyboardBtn" onclick="javascript:keyboardOpen(this); return false;" value="ㅌ">ㅌ</button> 
+              <button class="keyboardBtn" onclick="javascript:keyboardOpen(this); return false;" value="ㅊ">ㅊ</button> 
+              <button class="keyboardBtn" onclick="javascript:keyboardOpen(this); return false;" value="ㅍ">ㅍ</button> 
+              <button class="keyboardBtn" onclick="javascript:keyboardOpen(this); return false;" value="ㅠ">ㅠ</button> 
+              <button class="keyboardBtn" onclick="javascript:keyboardOpen(this); return false;" value="ㅜ">ㅜ</button> 
+              <button class="keyboardBtn" onclick="javascript:keyboardOpen(this); return false;" value="ㅡ">ㅡ</button> 
+              <button class="spe space" onclick="javascript:keyboardOpen(this); return false;" value="space">띄어쓰기</button> 
+              <button class="spe enter" onclick="javascript:goSearch();">검색</button> 
+             </div> 
+            </div> 
+           </div> </li> 
+          <li class="key_eng"> <a href="javascript:;">영문</a> 
+           <div style="display:none;" class="language_cont"> 
+            <div class="group_keyboard eng_basic active" style="display: block;"> 
+             <div class="keyboard_line"> 
+              <button class="keyboardBtn" onclick="javascript:keyboardOpen(this); return false;" value="1">1</button> 
+              <button class="keyboardBtn" onclick="javascript:keyboardOpen(this); return false;" value="2">2</button> 
+              <button class="keyboardBtn" onclick="javascript:keyboardOpen(this); return false;" value="3">3</button> 
+              <button class="keyboardBtn" onclick="javascript:keyboardOpen(this); return false;" value="4">4</button> 
+              <button class="keyboardBtn" onclick="javascript:keyboardOpen(this); return false;" value="5">5</button> 
+              <button class="keyboardBtn" onclick="javascript:keyboardOpen(this); return false;" value="6">6</button> 
+              <button class="keyboardBtn" onclick="javascript:keyboardOpen(this); return false;" value="7">7</button> 
+              <button class="keyboardBtn" onclick="javascript:keyboardOpen(this); return false;" value="8">8</button> 
+              <button class="keyboardBtn" onclick="javascript:keyboardOpen(this); return false;" value="9">9</button> 
+              <button class="keyboardBtn" onclick="javascript:keyboardOpen(this); return false;" value="0">0</button> 
+              <button class="spe bksp" onclick="javascript:keyboardOpen(this); return false;" value="Bksp">Bksp</button> 
+             </div> 
+             <div class="keyboard_line"> 
+              <button class="keyboardBtn" onclick="javascript:keyboardOpen(this); return false;" value="q">q</button> 
+              <button class="keyboardBtn" onclick="javascript:keyboardOpen(this); return false;" value="w">w</button> 
+              <button class="keyboardBtn" onclick="javascript:keyboardOpen(this); return false;" value="e">e</button> 
+              <button class="keyboardBtn" onclick="javascript:keyboardOpen(this); return false;" value="r">r</button> 
+              <button class="keyboardBtn" onclick="javascript:keyboardOpen(this); return false;" value="t">t</button> 
+              <button class="keyboardBtn" onclick="javascript:keyboardOpen(this); return false;" value="y">y</button> 
+              <button class="keyboardBtn" onclick="javascript:keyboardOpen(this); return false;" value="u">u</button> 
+              <button class="keyboardBtn" onclick="javascript:keyboardOpen(this); return false;" value="i">i</button> 
+              <button class="keyboardBtn" onclick="javascript:keyboardOpen(this); return false;" value="o">o</button> 
+              <button class="keyboardBtn" onclick="javascript:keyboardOpen(this); return false;" value="p">p</button> 
+             </div> 
+             <div class="keyboard_line"> 
+              <button class="spe shift" onclick="return false;" value="0">Shift</button> 
+              <button class="keyboardBtn" onclick="javascript:keyboardOpen(this); return false;" value="a">a</button> 
+              <button class="keyboardBtn" onclick="javascript:keyboardOpen(this); return false;" value="s">s</button> 
+              <button class="keyboardBtn" onclick="javascript:keyboardOpen(this); return false;" value="d">d</button> 
+              <button class="keyboardBtn" onclick="javascript:keyboardOpen(this); return false;" value="f">f</button> 
+              <button class="keyboardBtn" onclick="javascript:keyboardOpen(this); return false;" value="g">g</button> 
+              <button class="keyboardBtn" onclick="javascript:keyboardOpen(this); return false;" value="h">h</button> 
+              <button class="keyboardBtn" onclick="javascript:keyboardOpen(this); return false;" value="j">j</button> 
+              <button class="keyboardBtn" onclick="javascript:keyboardOpen(this); return false;" value="k">k</button> 
+              <button class="keyboardBtn" onclick="javascript:keyboardOpen(this); return false;" value="l">l</button> 
+             </div> 
+             <div class="keyboard_line "> 
+              <button class="keyboardBtn" onclick="javascript:keyboardOpen(this); return false;" value="z">z</button> 
+              <button class="keyboardBtn" onclick="javascript:keyboardOpen(this); return false;" value="x">x</button> 
+              <button class="keyboardBtn" onclick="javascript:keyboardOpen(this); return false;" value="c">c</button> 
+              <button class="keyboardBtn" onclick="javascript:keyboardOpen(this); return false;" value="v">v</button> 
+              <button class="keyboardBtn" onclick="javascript:keyboardOpen(this); return false;" value="b">b</button> 
+              <button class="keyboardBtn" onclick="javascript:keyboardOpen(this); return false;" value="n">n</button> 
+              <button class="keyboardBtn" onclick="javascript:keyboardOpen(this); return false;" value="m">m</button> 
+              <button class="spe space" onclick="javascript:keyboardOpen(this); return false;" value="space">띄어쓰기</button> 
+              <button class="spe enter" onclick="javascript:goSearch();">검색</button> 
+             </div> 
+            </div> 
+            <div class="group_keyboard eng_shift" style="display: none;"> 
+             <div class="keyboard_line"> 
+              <button class="keyboardBtn" onclick="javascript:keyboardOpen(this); return false;" value="!">!</button> 
+              <button class="keyboardBtn" onclick="javascript:keyboardOpen(this); return false;" value="@">@</button> 
+              <button class="keyboardBtn" onclick="javascript:keyboardOpen(this); return false;" value="#">#</button> 
+              <button class="keyboardBtn" onclick="javascript:keyboardOpen(this); return false;" value="$">$</button> 
+              <button class="keyboardBtn" onclick="javascript:keyboardOpen(this); return false;" value="%">%</button> 
+              <button class="keyboardBtn" onclick="javascript:keyboardOpen(this); return false;" value="^">^</button> 
+              <button class="keyboardBtn" onclick="javascript:keyboardOpen(this); return false;" value="&amp;">&amp;</button> 
+              <button class="keyboardBtn" onclick="javascript:keyboardOpen(this); return false;" value="*">*</button> 
+              <button class="keyboardBtn" onclick="javascript:keyboardOpen(this); return false;" value="(">(</button> 
+              <button class="keyboardBtn" onclick="javascript:keyboardOpen(this); return false;" value=")">)</button> 
+              <button class="spe bksp" onclick="javascript:keyboardOpen(this); return false;" value="Bksp">Bksp</button> 
+             </div> 
+             <div class="keyboard_line"> 
+              <button class="keyboardBtn" onclick="javascript:keyboardOpen(this); return false;" value="Q">Q</button> 
+              <button class="keyboardBtn" onclick="javascript:keyboardOpen(this); return false;" value="W">W</button> 
+              <button class="keyboardBtn" onclick="javascript:keyboardOpen(this); return false;" value="E">E</button> 
+              <button class="keyboardBtn" onclick="javascript:keyboardOpen(this); return false;" value="R">R</button> 
+              <button class="keyboardBtn" onclick="javascript:keyboardOpen(this); return false;" value="T">T</button> 
+              <button class="keyboardBtn" onclick="javascript:keyboardOpen(this); return false;" value="Y">Y</button> 
+              <button class="keyboardBtn" onclick="javascript:keyboardOpen(this); return false;" value="U">U</button> 
+              <button class="keyboardBtn" onclick="javascript:keyboardOpen(this); return false;" value="I">I</button> 
+              <button class="keyboardBtn" onclick="javascript:keyboardOpen(this); return false;" value="O">O</button> 
+              <button class="keyboardBtn" onclick="javascript:keyboardOpen(this); return false;" value="P">P</button> 
+             </div> 
+             <div class="keyboard_line"> 
+              <button class="spe shift" onclick="return false;" value="m">Shift</button> 
+              <button class="keyboardBtn" onclick="javascript:keyboardOpen(this); return false;" value="A">A</button> 
+              <button class="keyboardBtn" onclick="javascript:keyboardOpen(this); return false;" value="S">S</button> 
+              <button class="keyboardBtn" onclick="javascript:keyboardOpen(this); return false;" value="D">D</button> 
+              <button class="keyboardBtn" onclick="javascript:keyboardOpen(this); return false;" value="F">F</button> 
+              <button class="keyboardBtn" onclick="javascript:keyboardOpen(this); return false;" value="G">G</button> 
+              <button class="keyboardBtn" onclick="javascript:keyboardOpen(this); return false;" value="H">H</button> 
+              <button class="keyboardBtn" onclick="javascript:keyboardOpen(this); return false;" value="J">J</button> 
+              <button class="keyboardBtn" onclick="javascript:keyboardOpen(this); return false;" value="K">K</button> 
+              <button class="keyboardBtn" onclick="javascript:keyboardOpen(this); return false;" value="L">L</button> 
+             </div> 
+             <div class="keyboard_line"> 
+              <button class="keyboardBtn" onclick="javascript:keyboardOpen(this); return false;" value="Z">Z</button> 
+              <button class="keyboardBtn" onclick="javascript:keyboardOpen(this); return false;" value="X">X</button> 
+              <button class="keyboardBtn" onclick="javascript:keyboardOpen(this); return false;" value="C">C</button> 
+              <button class="keyboardBtn" onclick="javascript:keyboardOpen(this); return false;" value="V">V</button> 
+              <button class="keyboardBtn" onclick="javascript:keyboardOpen(this); return false;" value="B">B</button> 
+              <button class="keyboardBtn" onclick="javascript:keyboardOpen(this); return false;" value="N">N</button> 
+              <button class="keyboardBtn" onclick="javascript:keyboardOpen(this); return false;" value="M">M</button> 
+              <button class="spe space" onclick="javascript:keyboardOpen(this); return false;" value="space">띄어쓰기</button> 
+              <button class="spe enter" onclick="javascript:goSearch();">검색</button> 
+             </div> 
+            </div> 
+           </div> </li> 
+         </ul> 
+        </div>
+        <!-- language-tab --> 
+        <button class="btn-keyboardClose" onclick="return false;" title="마우스 입력기"> <img src="/LSW/images/common/btn_keyboard_close.png" alt="닫기" /> </button> 
+        <!-- btn-keyboardClose --> 
+       </div>
+       <!-- keyboard-layout --> 
+       <button class="btn_history" title="내가 찾은 검색어" onclick="javascript:autoComOpenCloseBtn();return false;"><span class="blind">검색기록 열기</span></button> 
+       <!-- 내가 찾은 검색어 box --> 
+       <div class="history_bx" id="autoComLayer"> 
+        <p class="tit">내가 찾은 검색어</p> 
+        <ul class="list_bx" id="autoComList" onclick="javascript:return false;"> 
+         <li></li> 
+        </ul> 
+        <button id="autoAllDel" class="btn_delAll" onclick="javascript:removeAutoAllQuery();return false;">전체삭제</button> 
+        <span class="diverseSpan"> | </span> 
+        <button class="btn_clse" onclick="javascript:autoComOpenClose();return false;">닫기</button> 
+        <p class="tit" style="height:13px;"></p> 
+       </div> 
+       <!-- 검색어 자동완성 레이어 --> 
+       <div id="autoComLsNmList" class="autoComLsNmList_header"> 
+        <ul id="lsNmKoAutoList" class="list_bx2_header"> 
+         <li id="lsNmKo1"></li> 
+        </ul> 
+       </div> 
+      </div> 
+      <button class="btn_srch" onclick="javascript:searchBtnClick();return false;"></button> 
+     </div> 
+     <div class="sub_btn sub_srch" id="dtlSch"> 
+      <a href="javascript:;" class="btn type3 sch_tab" onclick="dtlSchOpen('3');return false;"> <img src="/LSW/images/newimg/bg_ico_glass2.png" alt="" />상세검색 </a> 
+      <a href="javascript:;" id="ctgSch" class="btn type4" onclick="menuMove('3')"> <img src="/LSW/images/newimg/bg_ico_glass3.png" alt="" />분류검색 </a> 
+     </div> 
+     <a class="btn_ai" href="javascript:;" title="새창열림" onclick="javascript:goAiSearch();"> <img src="/LSW/images/button/bg_aiLinkHeader_2.png" alt="AI법령검색 서비스로 이동" /> </a> 
+    </div> 
+   </div> 
+   <div id="naviId" class="gnb_area"> 
+    <ul class="gnb"> 
+     <li class=" line-two "> <a href="javascript:moveTopMenu('/lsSc.do?menuId=1&amp;subMenuId=15&amp;tabMenuId=81');" style="cursor: pointer;"> 법령<span>(법률·대통령령·부령)</span> </a> </li> 
+     <li class=" line-two "> <a href="javascript:moveTopMenu('/admRulSc.do?menuId=5&amp;subMenuId=41&amp;tabMenuId=183');" style="cursor: pointer;"> 행정규칙<span>(훈령·예규·고시)</span> </a> </li> 
+     <li class="  "> <a href="javascript:moveTopMenu('/lsBylSc.do?menuId=9&amp;subMenuId=55&amp;tabMenuId=261');" style="cursor: pointer;"> 별표·서식 </a> </li> 
+     <li class="on line-two "> <a href="javascript:moveTopMenu('/ordinSc.do?menuId=3&amp;subMenuId=27&amp;tabMenuId=139');" style="cursor: pointer;"> 자치법규<span>(조례·규칙)</span> </a> 
+      <div class="sub_menu "> 
+       <div id="subM0" class="sub_menu_inp"> 
+        <input type="radio" id="sub27" name="inp_m" checked="checked" onclick="moveSubMenu('/ordinSc.do?menuId=3&amp;subMenuId=27&amp;tabMenuId=139'); return false;" /> 
+        <label for="sub27" onclick="moveSubMenu('/ordinSc.do?menuId=3&amp;subMenuId=27&amp;tabMenuId=139'); return false;"><a href="javascript:;">현행 자치법규</a></label> 
+        <input type="radio" id="sub31" name="inp_m" onclick="moveSubMenu('/ordinSc.do?menuId=3&amp;subMenuId=31&amp;tabMenuId=151'); return false;" /> 
+        <label for="sub31" onclick="moveSubMenu('/ordinSc.do?menuId=3&amp;subMenuId=31&amp;tabMenuId=151'); return false;"><a href="javascript:;">연혁(전체)</a></label> 
+        <input type="radio" id="sub37" name="inp_m" onclick="moveSubMenu('/ordcSc.do?menuId=3&amp;subMenuId=37&amp;tabMenuId=169'); return false;" /> 
+        <label for="sub37" onclick="moveSubMenu('/ordcSc.do?menuId=3&amp;subMenuId=37&amp;tabMenuId=169'); return false;"><a href="javascript:;">의견제시사례</a></label> 
+        <input type="radio" id="sub35" name="inp_m" onclick="moveSubMenu('/ordinScNw.do?menuId=3&amp;subMenuId=35&amp;tabMenuId=161'); return false;" /> 
+        <label for="sub35" onclick="moveSubMenu('/ordinScNw.do?menuId=3&amp;subMenuId=35&amp;tabMenuId=161'); return false;"><a href="javascript:;">최신자치법규</a></label> 
+        <input type="radio" id="sub29" name="inp_m" onclick="moveSubMenu('/ordinDelegationSc.do?menuId=3&amp;subMenuId=29&amp;tabMenuId=149'); return false;" /> 
+        <label for="sub29" onclick="moveSubMenu('/ordinDelegationSc.do?menuId=3&amp;subMenuId=29&amp;tabMenuId=149'); return false;"><a href="javascript:;">필수 자치법규 마련현황</a></label> 
+        <!-- 행정규칙 테스트 --> 
+        <a href="/LSW/getLsHstXls.do" class="btn type20" id="lsHstXls" style="display:none;"> <img src="/LSW/images/button/bg_ico3.gif" alt="연혁법령목록" /> 연혁법령목록 </a> 
+       </div> 
+      </div> </li> 
+     <li class=" line-two "> <a href="javascript:moveTopMenu('/precSc.do?menuId=7&amp;subMenuId=47&amp;tabMenuId=213');" style="cursor: pointer;"> 판례·해석례등<span>(헌재결정례·행정심판재결례)</span> </a> </li> 
+     <li class="  wide"> <a href="javascript:moveTopMenu('/cgmExpcSc.do?menuId=11&amp;subMenuId=729&amp;tabMenuId=733');" style="cursor: pointer;"> 중앙행정기관 결정선례 </a> </li> 
+     <li class="  "> <a href="javascript:moveTopMenu('/schlPubRulSc.do?menuId=13&amp;subMenuId=63&amp;tabMenuId=285');" style="cursor: pointer;"> 그밖의 정보 </a> </li> 
+     <li class=""> </li> 
+     <li class=""> </li> 
+     <li class=""> </li> 
+    </ul> 
+   </div> 
+   <div id="moreSchDivWrite"> 
+    <div id="moreSchLayer" style="display:none"></div> 
+   </div> 
+   <div id="siteMapDivWrite"> 
+    <div id="siteMapLayer" style="display:none"></div> 
+   </div> 
+   <div id="select_lay" class="sub_tab_area "> 
+    <div class="more_area">
+      ~ 
+    </div> 
+    <div class="location_area "> 
+     <!-- 브레드 크럼 적용시작 --> 
+     <ol class="location" style="display:none;"> 
+      <li class="icon"> <a href="/LSW/main.html" title="메인페이지로 이동">메인페이지로 이동</a> </li> 
+      <li class="mainMenuInfo"> 
+       <!-- 메인메뉴 --> <a href="javascript:moveTopMenu('/ordinSc.do?menuId=3&amp;subMenuId=27&amp;tabMenuId=139');" style="cursor: pointer;"> 자치법규 </a> </li> 
+      <li class="subMenuInfo"> 
+       <!-- 서브메뉴 --> <label for="sub27" onclick="moveSubMenu('/ordinSc.do?menuId=3&amp;subMenuId=27&amp;tabMenuId=139'); return false;" style="padding:0;"> <a href="javascript:;"> 현행 자치법규 </a> </label> </li> 
+      <li class="tabMenuInfo" id="tabMenuInfo"> 
+       <!-- 서브메뉴 --> <a href="   javascript:;" style="display:block;" onclick="javascript:brdSubTabOn();return false;"> 법규명 </a> </li> 
+     </ol> 
+    </div> 
+    <!-- 화면을 축소 했을때 분류검색 탭이 깨지는 현상을 방지 하기 위해 class를 바꿔 준다.--> 
+    <ul class="sub_tab"> 
+     <li class="on"> <input type="hidden" value="139" /> <a href="javascript:;" style="display:block;" title="법규명 선택" id="tab1" onclick="javascript:tabLawSearch('/ordinSc.do?menuId=3&amp;subMenuId=27&amp;tabMenuId=139', '1', this); chgTabMenu('법규명'); return false;">법규명</a> <span class="tl"></span> <span class="tr"></span> </li> 
+     <li class=""> <input type="hidden" value="141" /> <a href="javascript:;" style="display:block;" title="법규본문 미선택" id="tab2" onclick="javascript:tabLawSearch('/ordinSc.do?menuId=3&amp;subMenuId=27&amp;tabMenuId=141', '2', this); chgTabMenu('법규본문'); return false;">법규본문</a> <span class="tl"></span> <span class="tr"></span> </li> 
+     <li class=""> <input type="hidden" value="143" /> <a href="javascript:;" style="display:block;" title="조문내용 미선택" id="tab3" onclick="javascript:tabLawSearch('/ordinSc.do?menuId=3&amp;subMenuId=27&amp;tabMenuId=143', '3', this); chgTabMenu('조문내용'); return false;">조문내용</a> <span class="tl"></span> <span class="tr"></span> </li> 
+     <li class=""> <input type="hidden" value="145" /> <a href="javascript:;" style="display:block;" title="조문제목 미선택" id="tab4" onclick="javascript:tabLawSearch('/ordinSc.do?menuId=3&amp;subMenuId=27&amp;tabMenuId=145', '4', this); chgTabMenu('조문제목'); return false;">조문제목</a> <span class="tl"></span> <span class="tr"></span> </li> 
+     <li class=""> <input type="hidden" value="147" /> <a href="javascript:;" style="display:block;" title="부칙 미선택" id="tab5" onclick="javascript:tabLawSearch('/ordinSc.do?menuId=3&amp;subMenuId=27&amp;tabMenuId=147', '5', this); chgTabMenu('부칙'); return false;">부칙</a> <span class="tl"></span> <span class="tr"></span> </li> 
+     <li class=""> <input type="hidden" value="323" /> <a href="javascript:;" style="display:none;" title="법규명·본문 미선택" id="tab6" onclick="javascript:tabLawSearch('/ordinSc.do', '6', this); chgTabMenu('법규명·본문'); return false;">법규명·본문</a> <span class="tl"></span> <span class="tr"></span> </li> 
+     <li class=""> <input type="hidden" value="325" /> <a href="javascript:;" style="display:none;" title="조문내용 미선택" id="tab7" onclick="javascript:tabLawSearch('/ordinSc.do', '7', this); chgTabMenu('조문내용'); return false;">조문내용</a> <span class="tl"></span> <span class="tr"></span> </li> 
+     <li class=""> <input type="hidden" value="327" /> <a href="javascript:;" style="display:none;" title="조문제목 미선택" id="tab8" onclick="javascript:tabLawSearch('/ordinSc.do', '8', this); chgTabMenu('조문제목'); return false;">조문제목</a> <span class="tl"></span> <span class="tr"></span> </li> 
+    </ul> 
+    <div class="more_area"> 
+     <p class="ma_info_tx" style="left:280px">* <strong>더보기 버튼</strong>을 누르시면 더많은 탭메뉴를 보실 수 있습니다.</p> 
+     <div class="ma_cover"> 
+      <div class="ma_btn_area"> 
+       <a href="javascript:;" class="btn_ma">더보기</a> 
+       <span class="tl"></span> 
+       <span class="tr"></span> 
+      </div> 
+      <div class="ma_bx"> 
+      </div> 
+     </div> 
+    </div> 
+   </div> 
+   <p id="dpInSchDiv1" class="nwin1 "> <a href="javascript:;" id="lsSeHstView" class="btn type18" onmouseover="javascript:comHstView(this,2);return false;" onmouseout="javascript:lawSeHstClose();return false;" onclick="javascript:comHstView(this, 2);return false;" onfocus="javascript:comHstView(this,2);return false;" style="cursor: pointer;"> <img src="/LSW/images/button/leslidev7_4.gif" alt="조회이력" /> 조회이력 </a> <span class="chk_inner"> <input type="checkbox" id="openPopYn" class="check" onclick="openPopSet(this);" data-brl-use="NO" /> <label class="ct1 hg" for="openPopYn">새창(목록)</label> </span> <a href="javascript:;" title="새 창 열림" class="btn type19" id="koDict" onclick="javascript:moveKoDictPop('N');"> 표준국어대사전 <img src="/LSW/images/common/ico_newpage.png" alt="표준국어대사전" /> </a> </p> 
+   <!-- modernLawPop --> 
+   <div class="modernLawPop"> 
+    <div class="modernLawPop_btn"> 
+     <a href="javascript:;" onclick="modernLawPop_prd(0)"><img src="/LSW/images/button/btn_close11.gif" alt="닫기" /></a> 
+    </div> 
+    <div class="inner"> 
+     <p> 국가법령정보센터에서 찾을 수 없는 근대법령은 <a href="http://dl.nanet.go.kr/index.do" target="_blank" title="국회도서관 홈페이지"><b>국회도서관</b></a>을 이용해서 찾아보실 수 있습니다.<br /> 아래 <b>바로가기를 클릭</b>하시면 바로 확인이 가능합니다. </p> 
+     <ul> 
+      <li><a href="http://dl.nanet.go.kr/SearchDetailView.do?cn=MONO1198018771" target="_blank">現行大韓法規類纂 [현행대한법규유찬]</a></li> 
+      <li><a href="http://dl.nanet.go.kr/SearchDetailView.do?cn=OLDP1000000445" target="_blank">法規類編(及)續. 冊1-2 [법규유편(급)속, 책 1-2]</a></li> 
+      <li><a href="http://dl.nanet.go.kr/SearchDetailView.do?cn=OLDP1201200012" target="_blank">法規類編(及)續. 冊3-4 [법규유편(급)속, 책 3-4]</a></li> 
+      <li><a href="http://dl.nanet.go.kr/SearchDetailView.do?cn=OLDP1201200013" target="_blank">法規類編(及)續. 冊5-7 [법규유편(급)속, 책 5-7]</a></li> 
+      <li><a href="http://dl.nanet.go.kr/SearchDetailView.do?cn=OLDP1201200014" target="_blank">法規類編(及)續. 冊8-9 [법규유편(급)속, 책 8-9]</a></li> 
+      <li><a href="http://dl.nanet.go.kr/SearchDetailView.do?cn=OLDP1196001011" target="_blank">(現行)韓國法典 [(현행)한국법전]</a></li> 
+     </ul> 
+    </div> 
+    <div class="modernLawPop_prd"> 
+     <a href="javascript:;" onclick="modernLawPop_prd(1);">하루동안 보지 않기</a> 
+     <a href="javascript:;" onclick="modernLawPop_prd(7);">일주일간 보지 않기</a> 
+    </div> 
+   </div> 
+   <!-- modernLawPop --> 
+   <!-- expcLawPop --> 
+   <div class="expcLawPop"> 
+    <div class="expcLawPop_btn"> 
+     <a href="javascript:;" onclick="expcLawPop_prd(0)"><img src="/LSW/images/button/btn_close11.gif" alt="닫기" /></a> 
+    </div> 
+    <div class="inner"> 
+     <p> <img src="/LSW/images/expcLawPop.jpg" alt="중앙부처 법령 유권해석 이미지" /> </p> 
+     <ul> 
+      <li> 중앙부처 법령 유권해석은 <b><a href="https://www.laiis.go.kr" target="_blank" title="내고장알리미 홈페이지">내고장알리미</a></b>를<br /> 이용해서 찾아보실 수 있습니다.<br /> 아래 <b>바로가기를 클릭</b>하시면 바로 확인이 가능<br />합니다. </li> 
+     </ul> 
+     <span><a href="https://www.laiis.go.kr/lips/nya/lrn/localRegulationList.do" target="_blank" title="중앙부처 법령 유권해석 페이지">내고장알리미&gt;중앙부처 법령 유권해석</a></span> 
+    </div> 
+    <div class="expcLawPop_prd"> 
+     <a href="javascript:;" onclick="expcLawPop_prd(1);">하루동안 보지 않기</a> 
+     <a href="javascript:;" onclick="expcLawPop_prd(7);">일주일간 보지 않기</a> 
+    </div> 
+   </div> 
+   <!-- expcLawPop --> 
+  </div> 
+  <script type="text/javascript">
+    //<![CDATA[
+    // 메뉴정보 Obj
+    var menuInfoParam = {
+        menuId : "3",
+        subMenuId : "27",
+        tabMenuId : "139",
+        menuNm : "",
+        linkUrl : "",
+        upMenuId : "",
+        menuDepth : "0",
+        query : "당진시 신혼부부 주택 전세자금 대출이자 지원 조례",
+        schHstYn : "Y",
+        dtlSchYn : "Y",
+        astSchYn : "Y"
+    };
+    //]]>
+</script> 
+  <script type="text/javascript" src="/LSW/js/common/hrefRemove.js"></script>   
+  <!-- //header --> 
+  <!-- container --> 
+  <!-- contants -->          
+  <script type="text/javascript" src="/LSW/js/common/xmlHttpUtil.js"></script> 
+  <script type="text/javascript" src="/LSW/js/common/common-ex.js"></script> 
+  <script type="text/javascript" src="/LSW/js/ls/lsPopLayer.js"></script> 
+  <script type="text/javascript" src="/LSW/js/ls/lsLink.js?Time=1790941824"></script> 
+  <script type="text/javascript" src="/LSW/js/ls/lsJo.js"></script> 
+  <script type="text/javascript" src="/LSW/js/ls/ls.js"></script> 
+  <script type="text/javascript" src="/LSW/js/ordin/ordinSedCmp.js"></script> 
+  <script type="text/javascript" src="/LSW/js/common/commPop.js"></script> 
+  <script type="text/javascript" src="/LSW/js/ordin/ordinOutPutJoNew.js"></script> 
+  <script type="text/javascript" src="/LSW/js/advertise.js"></script> 
+  <script type="text/javascript" src="/LSW/js/common/autocom.js"></script> 
+  <script type="text/javascript" src="/LSW/js/jquery/jquery.fancybox-2.1.5.pack.js"></script> 
+  <script defer="defer" type="text/javascript" src="/LSW/js/common/lawNavigation.js"></script> 
+  <!-- 레이아웃 관련 JS --> 
+  <script type="text/javascript" src="/LSW/js/jquery/jquery-ui.js?Time=1790941824"></script> 
+  <script type="text/javascript" src="/LSW/js/jquery/jquery-ui_2017.js?Time=1790941824"></script> 
+  <script type="text/javascript" src="/LSW/js/jquery/jquery.layout-latest.js?Time=1790941824"></script> 
+  <script type="text/javascript" src="/LSW/js/common/layout.js?Time=1790941824"></script> 
+  <script type="text/javascript" src="/LSW/js/ordin/ordin.js?Time=1790941824"></script> 
+  <script type="text/javascript" src="/LSW/js/oneview/kakao.js"></script> 
+  <script type="text/javascript">
+//<![CDATA[
+	var searchId = 2;
+	var ordinVO = new OrdinValueObj();
+	var ordinSearchObj = new OrdinSearchObj();
+	var chkFOrdinUpdate = true;
+	var lsSearchObj = new LsSearchObj();
+	var isAsGubun = "IS";
+
+	var linkUrl = "menuId=" + '3';
+	linkUrl += "&subMenuId=" + '27';
+	linkUrl += "&tabMenuId=" + '139';
+
+	// 서브 메뉴 ID (ajax 호출이 아니기 때문에 한번만 체크)
+	var subMenuIdx = "1";
+
+	// 탭 메뉴 ID (탭 클릭마다 ID 체크)
+	var tabMenuIdx = "1";
+
+	$(document).ready(function(){
+	
+		ordinVO.LangType = "010202";
+
+		// 레이아웃 세팅
+		fnSetLayout();
+
+		$("query").attr("autocomplete", "off").attr("imeMode", "active");
+		
+		if(el("query").value == ""){
+			el("query").value = searchMessage[searchId];
+			el("query").style.fontSize  = "12.3px";
+		}
+	
+		// 본문 버튼 이벤트 등록
+		eventObj.topBtn.init();
+		
+		// 체크된 서브 값 리턴
+		$("#subM0 input[type=radio]").each(function(idx){
+			if($(this).attr("checked")) {
+				subMenuIdx = idx+1;
+		    }
+		});
+		
+		// 검색어 자동완성(현행)
+		//setAutoComplete("query", "autoComList", "autocomImg", "toggleAuto", "LicOrdin", "40", ordinSearch);		
+		
+		el("popCheckBox").checked = true;
+	
+	    	if(myOrdinFsOrgCd!=undefined && myOrdinFsOrgCd.trim()!='ordinLgovOrgCd'){
+	    		el('ordinAreaCd').value = myOrdinFsOrgCd;
+	    		if (el('query').value == '' || el("query").value == searchMessage[searchId]) queryValCheck = false;
+	    		fAreaList(myOrdinFsOrgCd,ordinSearch);
+	    	} else {
+	    		deleteCookie('ordinFsOrgCd');
+	    	    deleteCookie('ordinLgovOrgCd');
+	    	}
+	
+		ordinSearch();
+		el("popCheckBox").checked = true;
+		
+	});
+
+	$(window).resize(function() {
+		asiaAdvertise();
+	});
+	
+	var myOrdinFsOrgCd;
+	var myOrdinLgovOrgCd;
+	
+	/* 검색처리   */
+	var queryValCheck = true; //지역 선택시에는 쿼리 체크 안함, 쿼리가 없으면 "*" 로 검색 
+	
+	function ordinSearch(){
+	
+		var mode = "list";
+
+		/* 현행자치법규-법규명 검색일때 위임자치법규 체크박스 나타남
+		 * 2023.05.26. 자치법규 현행(sub27),연혁(sub31)이면서 법규명 탭(1) 검색 시 우수조례 체크박스 추가*/
+		if( ( el("sub27").checked == true || el("sub31").checked == true ) && tabMenuIdx == "1"   ) {
+			$("#delegatedWithBestOrdin").css("display","block");
+			if( el("sub31").checked == true ){
+				$("#delegatedSpan").css("display","none");
+			}
+		}else {
+			$("#delegatedWithBestOrdin").css("display","none");
+		}
+	
+		// 검색 값
+		var $query = $("#query");
+		syncChkFilter();
+	
+		// 화면 내 검색 레이어 숨기기
+		if(searchLayer){
+			searchLayer.hiddenSearchLayer();
+		}
+		
+		// - 상세검색일 경우 해당 옵션확인 X (dtlYN = N <- 상세검색 X)
+		if(ordinSearchObj.param.dtlYn == 'N'){	 
+			//화면표시개수 설정
+			ordinSearchObj.param.outmax = el('outMaxWide') ? el('outMaxWide').value.trim() : "50";
+			
+			if(queryValCheck){
+				if(el("query").value == searchMessage[searchId] || el("query").value.trim() == "" || el("query").value.trim() == "*") {
+					ordinSearchObj.param.q = "*";
+				} else { 
+					var str = el('query').value;
+					str = str.replace(/^\s+/,"");
+					if(str.length == 0 ){
+						ordinSearchObj.param.q = "*";
+					}else{
+						var str = el('query').value;
+						str = str.replace(/[ㄱ-ㅎ]/gi,"");
+						str = str.replace(/[ㅏ-ㅣ]/gi,"");
+						el('query').value = str;
+
+						//자음 또는 모음만 입력 시 검색결과가 없다는 페이지를 보여주기 위해 임의로 검색어 세팅
+						if (str.length == 0) {
+							str = "검색결과없음.";
+						}
+						
+						ordinSearchObj.param.q = str;
+					}
+				}
+			}else{
+				ordinSearchObj.param.q = "*";
+				queryValCheck = true;
+				
+				if((el("query").value == "" || el("query").value == searchMessage[searchId]) && chkFilter){
+				    ordinSearchObj.param.q = "*";
+				    el("filterValue0").value = "3";
+				    
+		        	el("filterValue0").options[2].selected = true;
+				}else{
+					return ;
+				}
+			}
+			
+			// 현행여부 (법령 : p3, 조문 : p2)
+			var nwYnCd;
+			if(el('sub27').checked ){
+				nwYnCd = '3';
+			}else if(el('sub35').checked){
+				nwYnCd = '3';
+			}else{
+				nwYnCd = '';
+			}
+		
+			var chkBln = false;
+
+			// 최상위(시도) 기관 코드 (법령 : p7, 조문 : p6)
+			var fsOrgCd = el('ordinAreaCd').value;
+			//시군구가 교육청일경우
+			var tmpUpOrgCd = '7010000,7150000,7240000,7310000,7430000,7480000,7530000,7801000,8000000,8140000,8321000,7140000,8750000,9010000,9290000,9300000,7380000,8490000';
+		    var arr = tmpUpOrgCd.split(',');
+			for(var i = 0; i < arr.length; i++){
+				if(el('orgAreaCd') != null && arr[i] == el('orgAreaCd').value){
+					fsOrgCd = tmpUpOrgCd;
+				}
+			}
+			var lgovOrgCd = "";
+			// 소관부처(시군구) 코드 (법령 : p1, 조문 : p5)
+			if(el('orgAreaCd') != null) 
+				lgovOrgCd = el('orgAreaCd').value;
+		
+			// 검색할 색인명 (법령 : idxList, 조문 : p4)
+			var idxList = "";
+	
+			if(ordinSearchObj.param.section == 'joBody')
+				//idxList = '1,2,3,4,5,6,7';
+				idxList = '1'; // 조문내 검색으로 변경
+			else if(ordinSearchObj.param.section == 'joTtl')
+				idxList = '1';
+			else if(ordinSearchObj.sectionMode == 'ordinBdyTab') {
+				idxList = 'JoText_idx,ArText_idx,BylText_idx';
+			} else if(ordinSearchObj.sectionMode == 'ordinBdyTab1') {
+				idxList = 'ArText_idx';
+			} else {
+				idxList = 'LsKwdNm_idx,OrdinNm_idx';
+			}
+		
+			//다른 법령정보에서 호출시
+			if(subMenuIdx == '1'){
+				if(tabMenuIdx == '2'){ 
+					if(ordinSearchObj.param.section == ""){
+						ordinSearchObj.param.section = 'bdyText';
+						idxList = "JoText_idx,ArText_idx,BylText_idx,,";
+					}
+				}
+			}
+
+            var rrClsCd = "";
+            //제정 개정 구분
+            if(el('filterValue6-1') != null){
+                rrClsCd = el('filterValue6-1').value;
+            }
+
+			// 1: 연혁, 2 : 시행예정, 3:현행
+			if(isJo()) {
+                ordinSearchObj.param.p12 = rrClsCd
+				ordinSearchObj.param.p2 = nwYnCd;
+				ordinSearchObj.param.p4 = idxList;
+				ordinSearchObj.param.p6 = fsOrgCd;
+				ordinSearchObj.param.p5 = lgovOrgCd;
+				ordinSearchObj.param.idxList = "";
+				ordinSearchObj.param.p7 = "";
+
+				if(el("filterValue0").value == 1)
+					ordinSearchObj.param.p3 = el("filterValue").value!='0' ? el("filterValue").value : ''; // ㄱ ㄴ ㄷ
+				else if(el("filterValue0").value == 3 && chkFilter)
+				    ordinSearchObj.param.fsort = "21,10,31";
+
+			} else {
+                ordinSearchObj.param.p5 = rrClsCd;
+				ordinSearchObj.param.p3 = nwYnCd;
+				ordinSearchObj.param.idxList = idxList;
+				ordinSearchObj.param.p7 = fsOrgCd;
+				ordinSearchObj.param.p6 = "";
+				ordinSearchObj.param.p1 = lgovOrgCd;
+				ordinSearchObj.param.p4 = "";
+				if(el("filterValue0").value == 1)
+					ordinSearchObj.param.p4 = el("filterValue").value!='0' ? el("filterValue").value : ''; // ㄱ ㄴ ㄷ
+				else if(el("filterValue0").value == 3 && chkFilter)
+				    ordinSearchObj.param.fsort = "21,10,31";
+			}
+
+			// 초기 섹션 값
+			if (ordinSearchObj.param.section == ""){
+				ordinSearchObj.sectionMode = 'ordinNmTab';
+				ordinSearchObj.param.section = "ordinNm";
+			} 
+	
+			// 목록저장 레이어 닫기
+			SaveWindow.hideListSave();
+	
+			var mode = gIsWide;
+			ordinVO.conValue.listDiv = mode == "wide" ? "writeListDiv" : "listDiv";
+			 
+			ordinVO.conValue.listDiv = "listDiv";
+			ordinVO.conValue.srchUrl = "ordinScListR.do?" + linkUrl;
+			
+			ordinVO.removeConValue();
+			ordinSearchObj.param.dtlYn = "N";
+	
+		} // 여기까지
+	
+
+		fOrdinUpdate(ordinVO.conValue.listDiv, ordinVO.conValue.srchUrl, makeParam(ordinSearchObj.param), mode);
+		//자동완성, 내가찾은검색어
+		//setSchKeywordCookie();
+		//changeAutocomState(AFTER_SEARCH);
+			
+		chkFOrdinUpdate = false;
+	}
+ 
+	 /* 검색어 체크 */
+	function QueryValDationCheck(){
+		if(el('query').value.trim().length <=1 ){
+			if(isNumber(el('query').value.trim()) && el('query').value.trim().length ==1) return true;
+			
+			var str = el('query').value;
+			str = str.replace(/^\s+/,"");
+			if(str.length == 0 ) return true;
+			
+			alert("검색어는 두자이상 입력해야 합니다.");
+			el('query').focus();
+			return false;
+			
+		}else if(el('query').value == searchMessage[searchId]){
+			if(isNumber(el('query').value.trim()) && el('query').value.trim().length ==1) return true;
+			
+			var str = el('query').value;
+			str = str.replace(/^\s+/,"");
+			if(str.length == 0 ) return true;
+			
+			alert("검색어는 두자이상 입력해야 합니다.");
+			el('query').focus();
+			el('query').value ="";
+			return false;
+		}
+		return true;
+	}
+ 
+	/* 본문 이외의 정보 조회 */
+	
+	/* 언어 변환 */
+	function chrChange(){					
+		if (ordinVO.conValue.bdyMode){								// 본문 언어 타입 저장 
+			ordinVO.ordinValue.chrClsCd = ordinVO.conValue.bdyLangType;
+		}
+		if (ordinVO.ordinValue.chrClsCd == "010202"){	
+			ordinVO.ordinValue.chrClsCd = "010201";
+		} else {
+			ordinVO.ordinValue.chrClsCd = "010202";
+		}
+		fOrdinUpd(ordinVO);
+
+		// 한자, 한글 변환
+		var langType = $('#langType').find('img').attr('alt');
+		if (langType === '한자') {
+			$('#langType').find('img').attr('alt', '한글');
+			$('#langType').find('img').attr('src', '/LSW/images/common/btn_v13fn10_1.png');
+		} else if (langType === '한글') {
+			$('#langType').find('img').attr('alt', '한자');
+			$('#langType').find('img').attr('src', '/LSW/images/common/btn_v13fn5_1.png');
+
+		}
+	}
+	
+	/* 조단위 법령 본문조회  */
+	function fOrdinListView(chkId, seq, nwYn, mode, gubun){
+		if(chkId != '0000'){
+			setClass(ordinVO.conValue.preChkId,"");
+			ordinVO.conValue.preChkId = chkId;
+		}
+		// 연혁, 별표/서식 레이어 초기화
+		LsPopLayer.setFirstCallLsBylLayer();
+		LsPopLayer.setFirstCallLsHstLayer();
+		LsPopLayer.setFirstCallLsJoLayer();
+		
+		delete ordinVO.ordinValue.docCls;
+		delete ordinVO.ordinValue.joNo;
+		delete ordinVO.ordinValue.joBrNo;
+		
+		if (ordinVO.ordinValue.chrClsCd == ""){
+			ordinVO.ordinValue.chrClsCd = "010202";
+		}	
+		ordinVO.ordinValue.conDatGubunCd = $("#gubun2").val(); //셋팅값 추가 
+		ordinVO.ordinValue.vSct = ordinSearchObj.param.q; 
+		ordinVO.ordinValue.ordinSeq = seq;
+		ordinVO.ordinValue.gubun = gubun;
+		if(el("list"+seq)){
+			ordinVO.ordinValue.paras = el("list"+seq).value; // 각 번호
+		}
+		
+		ordinVO.ordinValue.nwYn = ((nwYn=='3') ? 'Y':'N');
+		
+		if (isWideOpenPop()){ // 새창 여부 
+			openPop('ordinSideInfoP.do?urlMode=ordinScJoAllRltInfoR&' + makeParam(ordinVO.ordinValue));
+		} else {
+			moveCheckOrdinNm(chkId);
+			// 목록 출력 위치 결정   0: 왼쪽 목록  1: 넓은 목록
+			if (mode == 1) {
+				if (gIsWide == "wide") {
+					gIsWide = "default";
+					fnWestDefault();
+					fnWestDivChange();
+				}
+			}
+			
+			fOrdinUpdate('bodyContent', 'ordinInfoR.do', makeParam(ordinVO.ordinValue), 'ordinJoAllBdy');
+
+		}
+	}
+
+	/* 조단위 본문조회  */
+	function fJoView(docCls, chkId, datSeq, seq, joNo, joBrNo, lsNmKo, nwYn, gubun){
+		
+		delete ordinVO.ordinValue.paras;
+
+		if(chkId != '0000'){
+			setClass(ordinVO.conValue.preChkId,"");
+			setClass(chkId,"on");
+			ordinVO.conValue.preChkId = chkId;
+		}
+		
+		if (docCls=="by"){
+			//by(chkId,datSeq,seq,joNo,joBrNo,lsNmKo);
+			//if(listLayout.listMode == "0") {
+				openPop("/LSW/ordinBylInfoPLinkR.do?bylSeq="+datSeq+"&amp;ordinSeq="+seq);
+			//}
+			return;
+		} else {
+	
+			ordinVO.ordinValue.ordinSeq = seq;
+			if (docCls=="ga" || docCls=="re"){
+				joNo = datSeq;
+				// 제정·개정문으로 화면을 이동해야 하지만, 본문을 먼저 조회해야 ordinSeq input 이 생긴다.... 
+				if(listLayout.listMode == "1") {
+					listChangePost();
+				}
+			}else if(docCls=="jo"){
+				if(joNo != ""){
+					var paraTmp = "joa1" + joNo + "a2" + joBrNo;
+					ordinVO.ordinValue.paras = paraTmp;
+					ordinVO.ordinValue.updateDiv = "bodyContent";
+				}
+			}
+			
+			if (ordinVO.ordinValue.chrClsCd == ""){
+				ordinVO.ordinValue.chrClsCd = "010202";
+			}	
+			
+			ordinVO.ordinValue.docCls = docCls;
+			ordinVO.ordinValue.joNo = joNo;
+			ordinVO.ordinValue.joBrNo = joBrNo;
+			ordinVO.ordinValue.nwYn = ((nwYn=='3') ? 'Y':'N');
+			ordinVO.ordinValue.gubun = gubun;
+			
+			if (isWideOpenPop()){ // 새창 여부 
+				openPop('ordinSideInfoP.do?urlMode=ordinScJoAllRltInfoR&' + makeParam(ordinVO.ordinValue));
+			} else {
+				// wide -> list 본문 보여줄 때
+				if (gIsWide == "wide") {
+					gIsWide = "default";
+					fnWestDefault();
+					fnWestDivChange();
+				}
+				fOrdinUpdate("bodyContent", 'ordinInfoXmlR.do', makeParam(ordinVO.ordinValue), "ordinJoBdy");
+			}
+		}
+	}
+
+	// 페이지 이동
+	function movePage(pg){		  
+		ordinSearchObj.param.pg = pg;
+		ordinSearch();
+	}
+
+	//상세검색
+	function dtlSchOpenOrdin(){
+		if(!ordinDtlSchVal) {
+			ordinDtlSchOpen("O","N","","");
+			return;
+		} 
+	}
+	
+	function fBtnLsSystem(){
+		if (ordinVO.ordinValue.ordinSeq == ""){ 
+			alert(ordinVO.msg);
+			return false;
+		}
+		f_lsSystem('ordin',ordinVO.ordinValue.ordinSeq);
+	}
+	
+	function dtlSchAreaListWeb(val){
+		var xmlDoc = xmlHttp.responseXML;
+	   	var allStates = xmlDoc.getElementsByTagName("row");
+	    var currentState = null;
+	    var cd = "";
+	    var cdNm = "";
+	    var divHtml = "";
+	    var selected = "";
+	    var selectedOrgCd = "";
+	
+	    for(var i = 0; i < allStates.length; i++) {
+	
+	       currentState = allStates[i];
+	        orgCd = currentState.getElementsByTagName("orgCd")[0].childNodes[0].nodeValue;
+	 		orgNm =  currentState.getElementsByTagName("orgNm")[0].childNodes[0].nodeValue;
+	 		if(i == 0)
+	 			divHtml += "<option selected value=\"\">시군구전체</option>";
+	 			selected = ('' == orgCd) ? "selected" : "";
+	    		divHtml += "<option value=\""+orgCd+"\" "+selected+" >"+orgNm+"</option>";
+	    	
+	    }
+	
+	    if(allStates.length>0){
+		   	document.getElementById("DtlAreaListR").innerHTML = "<label for=\"orgAreaCd\" class=\"label_b\">시군구선택</label><select name=\"dtlOrgAreaCd\" id=\"dtlOrgAreaCd\">" +divHtml+"</select>";
+		}else{
+			document.getElementById("DtlAreaListR").innerHTML = "<label for=\"orgAreaCd\" class=\"label_b\">시군구선택</label><select name=\"dtlOrgAreaCd\" id=\"dtlOrgAreaCd\"><option value=\"\" selected>시군구전체</option></select>";
+		}
+	}	
+	
+	function setDocTypesDp(mode){
+		if(mode){
+			setDisplay("docTypes1","");
+			setDisplay("docTypes2","");
+			setDisplay("docTypes3","");
+			setDisplay("docTypes4","");
+		}else{
+			setDisplay("docTypes1","none");
+			setDisplay("docTypes2","none");
+			setDisplay("docTypes3","none");
+			setDisplay("docTypes4","none");
+		}
+	}
+	
+	function setListClass(obj){
+		if(obj.id != ordinVO.conValue.preChkId){
+			obj.className = "";			
+		}else{
+			obj.className = "on";			
+		}
+	}
+
+	/* 목록 저장 */
+	function listSave(obj){
+	
+		var listCnt = el('listCnt');
+		if (listCnt == null || listCnt.innerHTML == 0){
+			alert("저장할 검색 결과가 없습니다.");
+			return false;
+		}
+		ordinSearchObj.param.outmax = '5000';
+		ordinSearchObj.param.pg = '1';
+	
+		var form = el('saveForm');
+		var inputContainer = el('inputContainer');
+	
+		inputContainer.innerHTML = "";
+	
+		form.action = "ordinScListSave.do";
+		appendInputEls(inputContainer, "hidden", ordinSearchObj.param);
+		SaveWindow.showListSave(obj, 0, 0);
+	}
+	
+	/* 목록 출력 */
+	function listPrint(){
+		var listCnt = el('listCnt');
+		if (listCnt == null || listCnt.innerHTML == 0){
+			alert("인쇄할 검색 결과가 없습니다."); 
+			return false;
+		}
+		var url = "ordinScListPrint.do?" + makeParam(ordinSearchObj.param);
+		openPrintPop(url,'');
+	}
+	
+	function openPopSet(obj){
+		// checkAllCheckbox(obj.checked, els("openYn"));
+	}
+	
+	// 조문 목록 레이어~
+	function setOrdinJoDp(){
+		if(ordinSeqCheck()){
+			var div = el("ordinJoListPopLayer"); 
+			if(div.style.display == ""){
+				div.style.display = "none";
+			}else{
+				div.style.display = "";
+			}
+		}
+	}	
+	
+	function isJo() {
+		return (tabMenuIdx == '3'
+			|| tabMenuIdx == '4');
+	}
+	
+	function showMore() {
+		el('moreLayer').style.display = (el('moreLayer').style.display=='none') ? 'block':'none';
+	}
+
+	function chgRelationLaw(val) {
+		var menuNm = "";
+		if(val=="1") {
+			menuNm = "관련법령";
+		} else if(val=="2") {
+			menuNm = "관련시행령";
+		} else if(val=="3") {
+			menuNm = "관련시행규칙";
+		}
+		var html = "<a href=\"#AJAX\" onclick=\"\">"+menuNm+"</a> | ";
+	
+		el('relationLaw').innerHTML = html;
+	}
+	
+	function fAreaSearchFun(obj){
+		fAreaList(obj.value, ordinSearch);
+	}
+	/** 시도선택 */
+	function fAreaSearchFunWeb(obj){
+		ordinSearchObj.param.pg = "1";
+		fAreaListWeb(obj.value, ordinSearch);
+	}
+
+	function bylTextFlDownload(bylSeq, bylNo){
+		var frm = el("bylFrm");
+		appendInputEl(frm, "hidden", "bylSeq", bylSeq);
+		appendInputEl(frm, "hidden", "title", bylNo);
+		appendInputEl(frm, "hidden", "mode", "0");
+		frm.submit();
+	}
+	
+	function bookmark(){
+	    var title = el("ordinNm").value;
+	    var No = el("ancNo").value;
+	    var gourl = "http://" + location.host + "/자치법규/" + Space_All(title)+"/("+Space_All(No)+")";
+	    lawBookmark(title, gourl);
+	}
+
+	//var clickQueryCnt = 0;
+	function clickQuery() {
+		if(clickQueryCnt!=0) {
+			el("autom").style.display = el("autom").style.display == 'none' ? 'block':'none';
+			el("autocomImg").src = el("autom").style.display == 'none' ? el("autocomImg").src.replace('upv6.gif','downv6.gif'):el("autocomImg").src.replace('downv6.gif','upv6.gif');
+		}
+		clickQueryCnt++;
+	
+		 if(el("query").value == searchMessage[searchId]){
+	    	el("query").value ="";    
+	    	el("query").style.fontSize  = "13.3px";
+	    }
+	}
+
+	/* title 지정 */
+	function popChk(){
+		if(el("openPopYn").checked == false){
+			el("bdyBtnKO_A").title = "";
+			el("rvsDoc_A").title = "";
+			el("chgJo_A").title = "";
+			el("secLsView0_A").title = "";
+			//el("lsOldAndNew0_A").title = "";
+		}else{
+			el("bdyBtnKO_A").title = "팝업으로 이동";
+			el("rvsDoc_A").title = "팝업으로 이동";
+			el("chgJo_A").title = "팝업으로 이동";
+			el("secLsView0_A").title = "팝업으로 이동";
+			//el("lsOldAndNew0_A").title = "팝업으로 이동";
+		}
+	}
+
+	//search 폼을 전체로 감싼 후 ff 에서 엔터 검색이 안되서 수동으로 keypress 이벤트 줌 2010 10 18 
+	function searchByKeyPress(event) {
+		var keyCode = event.keyCode ? event.keyCode : event.which ? event.which : event.charCode;
+		if (keyCode == 13) {
+			fSearch();
+	    }
+	}
+
+	// ordin.js 에서 이사옴~ 2010 10 20
+	function areaList(val){
+		areaListCommon(val, "true");
+	}
+
+	function interestLaw(){
+		var pDivision = 'II';
+		var pApplicationId = 1;
+		var pListName = 'interest';
+	    var pTitle    = el("ordinNm").value;
+	    var pLsId     = el("ordinId").value;
+	    var pAncNo    = el("ancNo").value;
+	    var pLsiSeq   = el("ordinSeq").value;
+	    var pEfYd     = el("ancYd").value;
+	    var pKndClsCd = '010103';
+	    var pGourl = "http://" + location.host + "/자치법규/" + Space_All(pTitle)+"/("+Space_All(pAncNo)+")";;
+	    var pFolderName = "자치법규";
+	    
+	    if('null' != 'null'){
+	    	interestLawSave(pDivision, pApplicationId, pListName, pTitle, pLsId, pAncNo, pLsiSeq, pEfYd, pKndClsCd, pGourl, pFolderName);
+        } else {
+        	document.location.href = "/login.do??menuId=6";
+        }
+	}
+	
+	/* 지역코드(-시군구-) select 박스  : 웹접근성용*/
+    function fAreaListWeb_session(val){
+    	if(val !='0'){
+    		if(val == '') {
+    			document.getElementById("AreaListR").innerHTML = "<label for=\"orgAreaCd\" class=\"label_b\">시군구 선택</label><select name=\"orgAreaCd\" id=\"orgAreaCd\" class=\"btnfont\"><option value=\"\" selected>시군구전체</option></select>";
+    	    	el('orgAreaCd').value = '';
+    	    	return;
+    		}
+    		
+    		doRequestUsingPOST('AreaListR.do?keyCd='+val, true);
+    		areaListWeb_session(val)
+    		
+    	} else {
+    		document.getElementById("AreaListR").innerHTML = "<label for=\"orgAreaCd\" class=\"label_b\">시군구 선택</label><select name=\"orgAreaCd\" id=\"orgAreaCd\" class=\"btnfont\"><option value=\"\" selected>시군구전체</option></select>";
+    	}
+    }
+    
+    // 웹접근성용 areaList
+    function areaListWeb_session(val){
+    	var xmlDoc = xmlHttp.responseXML;
+       	var allStates = xmlDoc.getElementsByTagName("row");
+        var currentState = null;
+		var $orgAreaSelect = document.createElement("select");
+		$orgAreaSelect.name = "orgAreaCd";
+		$orgAreaSelect.id = "orgAreaCd";
+		$orgAreaSelect.className = "btnfont";
+        
+        for(var i = 0; i < allStates.length; i++) {
+            currentState = allStates[i];
+            orgCd = currentState.getElementsByTagName("orgCd")[0].childNodes[0].nodeValue;
+     		orgNm =  currentState.getElementsByTagName("orgNm")[0].childNodes[0].nodeValue;
+     		var $option = document.createElement('option');
+     		
+     		if(i == 0) {
+     			$option.value = "";
+     			$option.text = "시군구전체";
+     		}else{
+         		$option.value = orgCd;
+     			$option.text = orgNm;
+     			$option.selected = ('' == orgCd) ? "selected" : "";
+     		}
+     		$orgAreaSelect.appendChild($option);
+        }
+
+        el("AreaListR").appendChild($orgAreaSelect);
+    }
+
+	// 검색 버튼 클릭
+	function txtSearch(){
+		fSearch();
+    }
+	
+	// 초기 검색
+	function fSearch(){
+		ordinSearchObj.param.pg = '1';
+		ordinSearch();
+	}
+
+	function fPopSelContentTest(ordinSeq) {
+		action = "unOrdinType.do?";
+		var url = action + "ordinSeq=" + ordinSeq;
+		var size = "width=1024, height=630, scrollbars=no, toolbar=no, resizable=yes, status=no, location=yes, menubar=no, scrollbars=yes, resizable=yes";
+		window.open(url, 'ordinPop', size);
+		
+	}
+
+	// 상세검색시 탭 변경
+	function dtlSchOrdin(){
+		$('.sub_tab_area .sub_tab > li').removeClass('on');
+		$('#tab6').parents().addClass('on');
+		dtlSchOrdinSearch('6');
+	}
+
+	// 엔터입력
+	function ordinbyKeyPress(event) {
+		var keyCode = event.keyCode ? event.keyCode : event.which ? event.which : event.charCode;
+		if (keyCode == 13) {
+			$('.sub_tab_area .sub_tab > li').removeClass('on');
+			$('#tab6').parents().addClass('on');
+			dtlSchOrdinSearch('6');
+			ordinDtlSchClose();
+		}
+	}
+	
+	function locat(){
+		location.href = 'http://prc.law.go.kr/html/lawlist.html';
+	}
+
+	function ordinSearchChk(){
+		chkFilter = false;
+		// 위임자치법규 & 규제자치법규 체크 여부
+		if(ordinSearchObj.param.section == "ordinNm"){
+			ordinSearchObj.param.p9 = $("input:checkbox[name='delegated']").is(":checked") == true ? "1" : "";
+			ordinSearchObj.param.p15 = $("input:checkbox[name='regulated']").is(":checked") == true ? "0" : "";	
+			ordinSearchObj.param.p16 = $("input:checkbox[name='bestOrdin']").is(":checked") == true ? "1" : ""; //우수조례 추가
+		}else{
+			ordinSearchObj.param.p9 = "";
+			ordinSearchObj.param.p16 = ""; //우수조례 추가
+		}
+		ordinSearchObj.param.pg = "1";
+
+		syncChkFilter();
+		ordinSearch();
+	}
+	//]]>
+</script>     
+  <script type="text/javascript">
+//<![CDATA[
+	
+	// lsList.js 에서 이사옴
+	function lsJoLayView(linkParam, linkLawNm){
+		
+		
+		try{
+			if(linkLawNm == "Ordin"){
+			    fSlimUpdateByAjax("lsLinkLayer","ordinLinkProc.do",makeParam(linkParam));
+			    
+			} else {
+			    fSlimUpdateByAjax("lsLinkLayer","lsLinkProc.do",makeParam(linkParam));
+			}
+			
+		}catch(e){
+			logger.err("오류:조문링크 update중..." + e);
+		}
+	
+		var title = "<div class=\"towp2\" id=\"towp2Link\"><DIV class=ltit2 id=\"ltit2Link\">조문정보 </DIV>"
+					+"<DIV class=btn11><A href=\"#AJAX\" onclick=\"javascript:fJoHstAll();return false;\" title=\"팝업으로 이동\"><IMG alt=전체보기 src=\"/LSW/images/button/btn_view1.gif\"></A>"
+					+"&nbsp;<A href=\"#AJAX\" onclick=\"javascript:fJoLnkInfoPrint('"+makeParam(linkParam)+"','"+linkParam.mode+"');return false;\" title=\"팝업으로 이동\"><IMG alt=인쇄 src=\"/LSW/images/button/btn_print3.gif\"></A>" 
+					+"</DIV><div class=\"btn22\" style=\"float:right;\">"
+					+"<A href=\"#AJAX\" onclick=\"javascript:LsLinkLayer.hiddenLsLinkLayer();return false;\"><IMG class=maJoHst alt=닫기 src=\"/LSW/images/button/btn_close8.gif\">"
+					+"</A></DIV></div>";
+					//+"</div>";
+	//	Jeon Hyun Wook 웹 접근성인 경우 팝업으로 엽니다.
+		LsLinkLayer.showLsLinkLayer(0,title);
+		
+	}
+
+//]]>
+</script> 
+  <script type="text/javascript">
+//<![CDATA[
+	
+	function setHeadTitle(str) {
+		document.title = str + " | 국가법령정보센터";
+	}
+	
+	// 화면내 검색 글자 처리
+	function setTRangeSelectOn(){
+		TRange.execCommand("RemoveFormat");
+		TRange.execCommand("ForeColor", false, "#FFFFFF");
+		TRange.execCommand("BackColor", false, "#FF0000");
+	}
+
+	function setTRangeSelectOff(){
+		TRange.execCommand("RemoveFormat");
+		TRange.execCommand("ForeColor", false, "#FF0000");
+	} 
+
+	function setTRangeSelectOffUp(){
+		TRangeCopy.execCommand("RemoveFormat");
+		TRangeCopy.execCommand("ForeColor", false, "#a30200");
+	}
+
+	function setTRangeOn(){
+		TRange.execCommand("ForeColor", false, "#FF0000");
+	}
+	
+	// 화면내검색시 "|" 문자열를 활용해 찾은 검색어 글자 BackColor처리
+	function setTRangeOnAddColor(obj,setColorValue){
+		if(setColorValue == 0){
+			TRange.execCommand("BackColor", false, "#FF0000");
+		}else if(setColorValue == 1){
+			TRange.execCommand("BackColor", false, "#FF8C00");
+		}else if(setColorValue == 2){
+			TRange.execCommand("BackColor", false, "#FFD700");
+		}else if(setColorValue == 3){
+			TRange.execCommand("BackColor", false, "#33CC33");
+		}else if(setColorValue == 4){
+			TRange.execCommand("BackColor", false, "#33CCFF");
+		}
+	}
+
+    function initEDotXPress(name) {
+        $("#eDotViewr").css("display", "block");
+        $("#eDotViewr").removeAttr("onclick");
+        $("#eDotViewr").attr("onclick", "openBrlViewer('"+name+"', null, brlConfArray);return false;");
+
+    }
+//]]>
+</script> 
+  <input type="hidden" id="eduCdStr" value="7010000,7150000,7240000,7310000,7430000,7480000,7530000,7801000,8000000,8140000,8321000,7140000,8750000,9010000,9290000,9300000,7380000,8490000" /> 
+  <form id="search" name="search" action="ordinSc.do" method="get" onsubmit="ordinSearch();return false;" style="padding:0px; margin:0px;"> 
+   <input type="submit" style="display:none;" /> 
+   <!-- container --> 
+   <div id="container8"> 
+    <!-- container --> 
+    <div id="west"> 
+     <div id="leftContent"> 
+      <!-- list --> 
+      <div id="listDiv"> 
+       <div id="lelistwrapLeft" class="left_area"> 
+        <p><img src="/LSW/images/common/img_loading01.gif" alt="검색창에 검색어를 입력하세요. 상세 정보를 확인하실 수 있습니다" /></p> 
+       </div> 
+       <div class="list_bx_in" style="display: none;"> 
+        <!-- 1 depth --> 
+        <ul class="inner"> 
+         <li class=""> <a href="#"><span class="ico"></span></a> 
+          <!-- 2 depth --> 
+          <ul class="depth_bx"> 
+           <li><a href="#"></a></li> 
+          </ul> </li> 
+        </ul> 
+       </div> 
+      </div> 
+      <!-- list //--> 
+     </div> 
+     <!-- 넓은 목록  --> 
+     <div id="WideListDIV"> 
+      <div class="cont_wrap"> 
+       <!-- 리스트 상단 공통영역 --> 
+       <div class="list_util"> 
+        <p class="sub_q" style="display: none">"검색어"에 관한</p>
+        <p class="sub_tx">총 <strong>0</strong>건</p> 
+        <div class="util_cont"> 
+         <!-- one depth --> 
+         <div id="delegatedWithBestOrdin" class="sel_bx" style="display: none; margin-left: 5px;"> 
+          <span id="bestOrdinSpan" class="inp_inner"> <span> <input class="chkint" type="checkbox" id="bestOrdin" name="bestOrdin" /> </span> <label class="hg" for="bestOrdin">우수조례</label> </span> 
+          <span id="delegatedSpan" class="inp_inner"> <span> <input class="chkint" type="checkbox" id="delegated" name="delegated" /> </span> <label class="hg" for="delegated">위임자치법규</label> </span> 
+          <span style="float:right;"><a href="#" class="btn type" onclick="javascript:ordinSearchChk();return false;">선택</a></span> 
+         </div> 
+         <label style="margin:-1px 0 0 5px;"> 
+          <!-- select --> <span class="sel_bx"> <label for="ordinAreaCd" class="label_b">지역선택</label> <select id="ordinAreaCd" name="ordinAreaCd" class="btnfont"> <option value="" selected="selected">시도전체</option> <option value="6110000">서울</option> <option value="6260000">부산</option> <option value="6270000">대구</option> <option value="6280000">인천</option> <option value="6300000">대전</option> <option value="5690000">세종</option> <option value="6310000">울산</option> <option value="6410000">경기</option> <option value="6530000">강원</option> <option value="6430000">충북</option> <option value="6440000">충남</option> <option value="6540000">전북</option> <option value="6130000">전남광주</option> <option value="6470000">경북</option> <option value="6480000">경남</option> <option value="6500000">제주</option> <option value="6550000">충청광역연합</option> <option value="6290000">(구)광주</option> <option value="6460000">(구)전남</option> <option value="7010000,7150000,7240000,7310000,7430000,7480000,7530000,7801000,8000000,8140000,8321000,7140000,8750000,9010000,9290000,9300000,7380000,8490000">교육청</option> </select> <a href="#" class="btn type" onclick="fAreaSearchFunWeb(el('ordinAreaCd'));">선택</a> 
+           <!-- select --> </span> 
+          <!-- select --> <span id="AreaListR" class="sel_bx"> <label for="orgAreaCd" class="label_b">시군구 선택</label> <select id="orgAreaCd" name="orgAreaCd" class="btnfont"> <option value="" selected="selected">시군구전체</option> </select> </span> <a href="#" class="btn type" onclick="filterOrdinLogvOrgCd(el('orgAreaCd').value);">선택</a> 
+          <!-- select --> </label> 
+         <span style="margin:-1px 3px 0 0;" class="sel_bx"> <label for="filterValue0" class="label_b">정렬분류 선택</label> <select id="filterValue0" class="btnfont"> <option value="1" selected="selected">가나다별</option> <option value="2">법규종류</option> <option value="3">정렬기준</option> <option value="6">제정·개정구분</option> </select> <a href="#" class="btn type" onclick="setFilterChg(el('filterValue0'));">선택</a> </span> 
+         <span style="margin:-1px 0 0 7px;" class="sel_bx"> <label for="filterValue" class="label_b">가나다별 정렬방법 선택</label> <select id="filterValue" class="btnfont"> <option value="0">전체</option> <option value="1">가</option> <option value="2">나</option> <option value="3">다</option> <option value="4">라</option> <option value="5">마</option> <option value="6">바</option> <option value="7">사</option> <option value="8">아</option> <option value="9">자</option> <option value="10">차</option> <option value="11">카</option> <option value="12">타</option> <option value="13">파</option> <option value="14">하</option> <option value="15">기타</option> </select> <label for="filterValue1-1" class="label_b">법규종류 선택</label> <select id="filterValue1-1" style="width:90px;display:none;" class="btnfont"> <option selected="selected" value="30001">조례</option> <option value="30002">규칙</option> <option value="30003">훈령</option> <option value="30004">예규</option> <option value="30010">고시</option> <option value="30011">의회규칙</option> <option value="30006">기타</option> </select> <label for="filterValue1-2" class="label_b">정렬순서 선택</label> <select id="filterValue1-2" class="btnfont" style="width:90px;display:none;"> <option selected="selected" value="21,11,31">공포일자</option> <option value="31,11,21">공포번호</option> </select> <label for="filterValue1-3" class="label_b">정렬순서 선택</label> <select id="filterValue1-3" class="btnfont" style="width:90px;display:none;"> <option value="30,21,10">오름차순</option> <option selected="selected" value="31,21,10">내림차순</option> </select> <label for="filterValue1-4" class="label_b">정렬순서 선택</label> <select id="filterValue1-4" class="btnfont" style="width:90px;display:none;"> <option value="40,10,21,31">오름차순</option> <option selected="selected" value="41,10,21,31">내림차순</option> </select> <label for="filterValue2-1" class="label_b">법규종류 선택</label> <select id="filterValue2-1" class="btnfont" style="width:90px;display:none;"> <option selected="selected" value="30001">조례</option> <option value="30002">규칙</option> <option value="30003">훈령</option> <option value="30004">예규</option> <option value="30010">고시</option> <option value="30011">의회규칙</option> <option value="30006">기타</option> </select> <label for="filterValue2-2" class="label_b">정렬순서 선택</label> <select id="filterValue2-2" class="btnfont" style="width:90px;display:none;"> <option value="60,10,20,30,40">오름차순</option> <option selected="selected" value="61,10,20,30,40">내림차순</option> </select> <label for="filterValue2-3" class="label_b">정렬순서 선택</label> <select id="filterValue2-3" class="btnfont" style="width:90px;display:none;"> <option value="70,61,10,20,30">오름차순</option> <option selected="selected" value="71,61,10,20,30">내림차순</option> </select> <label for="filterValue2-4" class="label_b">정렬순서 선택</label> <select id="filterValue2-4" class="btnfont" style="width:90px;display:none;"> <option value="50,10,20,30,40">오름차순</option> <option selected="selected" value="51,10,20,30,40">내림차순</option> </select> <label for="filterValue6-1" class="label_b">정렬순서 선택</label> <select id="filterValue6-1" class="btnfont" style="width:80px;display:none;"> <option value="" selected="selected">전체</option> <option value="300201">제정</option> <option value="300202">일부개정</option> <option value="300203">전부개정</option> <option value="300204">폐지</option> <option value="300205">폐지제정</option> <option value="300206">일괄개정</option> <option value="300207">일괄폐지</option> <option value="300208">타법개정</option> <option value="300209">타법폐지</option> <option value="300214">기타</option> </select> <a href="#" class="btn type" onclick="javascript:selectChange();">선택</a> </span> 
+         <label for="outMaxWide" class="label_b">정렬갯수</label> 
+         <select name="outMaxWide" id="outMaxWide" style="width:60px; margin: 0 0 0 10px;" class="se1_1 btnfont"> <option value="50" selected="selected">50</option> <option value="100">100</option> <option value="150">150</option> </select> 
+         <a href="#" class="btn type" style="margin-left: 3px;" onclick="setOutMax(el('outMaxWide'),'2');">선택</a> 
+         <a href="#AJAX" class="btn_c type3 typeB" style="margin-left: 5px" onclick="javascript:listSave(this);return false;"><img src="/LSW/images/common/btn_v13fn6_1.png" alt="저장" /></a> 
+        </div> 
+       </div> 
+      </div> 
+      <!-- container --> 
+      <div> 
+       <!-- list --> 
+       <div id="writeListDiv" style="margin-top: 0px; padding-top: 0px; display: none;"> 
+        <div class="subdefa"> 
+         <h3><img src="/LSW/images/common/h2_subdef3.gif" alt="자치법규" /></h3> 
+         <p class="txt1"><img src="/LSW/images/common/txt_subdef3-1.gif" alt="이 곳에서는 조례규칙, 지방행정규칙예규, 고시를 찾아볼 수 있습니다." /></p> 
+         <p class="txt2"><img src="/LSW/images/common/txt_subdef9.gif" alt=" 위 검색창에 검색어를 입력하십시오" /><img src="/LSW/images/common/txt_subdef8.gif" alt="검색" /></p> 
+        </div> 
+       </div> 
+       <!-- list //--> 
+      </div> 
+     </div> 
+     <!-- 넓은 목록 //--> 
+    </div> 
+    <!-- left //--> 
+    <!-- content --> 
+    <div id="center"> 
+     <!-- 본문 버튼 영역 --> 
+     <div class="body_top_area"> 
+      <!-- 좌측 박스 --> 
+      <div class="l_bx"> 
+       <a id="bdyBtnKO" class="btn type7" href="#AJAX" title="팝업으로 이동" onclick="bdyChange(true);return false;">본문</a> 
+       <a id="rvsDoc" class="btn type8" href="#AJAX" title="팝업으로 이동" onclick="sideInfo('ordinRvsDocInfoR');return false;">제정·개정이유</a> 
+       <a id="bylView" class="btn type8" href="#AJAX" style="display:none;">별표/서식</a> 
+       <a id="hstView" class="btn type8" href="#AJAX" style="display:none;">연혁</a> 
+       <a id="attFlListView" href="#AJAX" class="btn type8" onmouseover="attFlListView(this);" onmouseout="attFlListClose();">첨부파일</a> 
+       <a id="lawCompare" class="btn type8" href="#AJAX" onclick="javascript:lawComparePop();return false;">법령비교</a> 
+       <a id="unSelContent" class="btn type10" href="#AJAX" style="display:none;" onclick="fPopUnSelContent();return false;" onmouseover="javascript:ordinInfo(this,1);" onmouseout="javascript:admRulClose();">조례비교(전체)</a> 
+       <a id="lsJoView" class="btn type10" href="#AJAX" style="display:none;" onclick="javascript:lsJoView(this, 135);return false;" onmouseover="lsJoView(this);" onmouseout="lsJoViewClose();">상위법령</a> 
+       <a id="eDotViewr" class="btn type17" href="javascript:;" title="점자뷰어" target="_blank" onclick="openBrlViewer('자치법규');return false;">점자뷰어</a> 
+      </div> 
+      <!-- 좌측 박스 //--> 
+      <!-- 본문 바로가기(메뉴영역 접기) --> 
+      <div class="rr_bx"> 
+       <a href="javascript:;" id="skipNavi" onclick="javascript:skipNavi(); return false;" title="본문바로가기" style="padding-right: 4px;"> <span id="menuClose"> <img src="/LSW/images/button/btn_v13slcl.gif" alt="메뉴영역 접기" /> </span> <span id="menuOpen" style="display: none;"> <img src="/LSW/images/button/btn_v13slop.gif" alt="메뉴영역 펼치기" /> </span> </a> 
+      </div> 
+      <!-- 본문 바로가기(메뉴영역 접기) // --> 
+      <!-- 우측 박스 --> 
+      <div class="r_bx"> 
+       <a href="#AJAX" id="innerSearch" class="btn type4" onclick="ordinBodySearch(this);return false;"> 화면내검색 </a> 
+       <input type="checkbox" id="popCheckBox" onclick="popChk()" style="display: none;" />
+       <label for="popCheckBox" class="blind">팝업선택</label> 
+       <a href="javascript:;" class="btn_c type" id="share" onclick="javascript:snsShareLayer(3); return false;" title="공유하기"> <img src="/LSW/images/common/btn_share_1.png" alt="공유하기" /> </a> 
+       <input type="hidden" class="snsAddress" value="" /> 
+       <!-- 공유하기 layer --> 
+       <div class="shareLayer" style="display:none"> 
+        <ul class="shareUl"> 
+         <li><a class="link-icon kakao" title="카카오톡 새 창 열림" href="javascript:shareOnKakao();"><img src="images/onelook/share_kakao.png" alt="카카오톡" /><span>카카오톡</span></a></li> 
+         <li><a class="link-icon facebook" title="페이스북 새 창 열림" href="javascript:shareOnFacebook();"><img src="images/onelook/share_facebook.png" alt="페이스북" /><span>페이스북</span></a></li> 
+         <li><a class="link-icon twitter" title="트위터 새 창 열림" href="javascript:shareOnTwitter();"><img src="images/onelook/share_twitter_tobe.png" alt="트위터" /><span>트위터</span></a></li> 
+         <li><a class="link-icon line" title="라인 새 창 열림" href="javascript:shareOnLine();"><img src="images/onelook/share_line.png" alt="라인" /><span>라인</span></a></li> 
+         <li><a class="link-icon url btnUrl" href="javascript: shareUrl();"><img src="images/onelook/share_url.png" alt="주소복사" /><span>주소복사</span></a></li> 
+        </ul> 
+       </div> 
+       <!-- 공유하기 layer // --> 
+       <script type="text/javascript">
+//<![CDATA[
+	window.addEventListener('mouseup', function(e){
+		var movewrap = document.getElementsByClassName("shareLayer");
+		for(var i=0; i<movewrap.length;i++){
+			if(!movewrap[i].contains(e.target)){
+				movewrap[i].style.display = "none";
+			}
+		}
+	});
+	$('.btnUrl').keydown(function(){
+		if(event.keyCode == 9 && !event.shiftKey){
+			$('.shareLayer').hide();
+		}
+	})
+	$('#share').keyup(function(){
+		$(".shareLayer").hide();
+	})
+	
+//]]>
+</script> 
+       <a href="#" class="btn_c type2" onclick="interestLaw();" title="관심법령추가"> <img src="/LSW/images/common/btn_v13fn8_1.png" alt="관심법령추가" /> </a> 
+       <a href="#" class="btn_c type3 typeA" id="langType" title="한자" onclick="chrChange();return false;"> <img src="/LSW/images/common/btn_v13fn5_1.png" alt="한자" /> </a> 
+       <a href="#" class="btn_c type3 typeB" id="bdySaveBtn" onclick="bdySavePrint(0, this ,0);" title="저장"> <img src="/LSW/images/common/btn_v13fn6_1.png" alt="저장" /> </a> 
+       <a href="#" class="btn_c type3 typeC" id="bdyPrintBtn" onclick="bdySavePrint(1, this ,20);" title="인쇄(새창팝업)"> <img src="/LSW/images/common/btn_v13fn7_1.png" alt="인쇄" /> </a> 
+      </div> 
+      <!-- 우측 박스 //--> 
+     </div> 
+     <!-- 본문 선택 영역  //--> 
+     <div class="hv_pop" id="ordinInfo_1" style="display: none; z-index: 100; position: absolute; width: 200px;"> 
+      <b class="tit">지역별비교</b> 
+      <span class="tx_cont">현재 보고있는 자치법규의 위임사항이 있는 상위법령이 같은 다른지역의 자치법규를 선택하여 비교할 수 있는 기능을 제공합니다.</span> 
+     </div> 
+     <div class="hv_pop" id="ordinInfo_2" style="display: none; z-index: 100; position: absolute; width: 200px;"> 
+      <b class="tit">신구조문비교</b> 
+      <span class="tx_cont">현재 보고있는 자치법규와 이전 연혁의 조문을 비교하여 바뀐 조문에 대해 쉽게 파악할 수 있는 기능을 제공합니다.</span> 
+     </div> 
+     <div class="hv_pop" id="ordinInfo_3" style="display: none; z-index: 100; position: absolute; width: 200px;"> 
+      <b class="tit">상위법령</b> 
+      <span class="tx_cont">위임사항이 있는 상위법령의 목록을 제공합니다.</span> 
+     </div> 
+     <div id="advertiseOrdin" style="POSITION:absolute; z-index:10; display:none;"> 
+      <ul> 
+       <li> <img usemap="#Map" id="advertiseImg" style="cursor:pointer;" src="/LSW/images/pop/advertise_ordin_01.jpg" alt="지방규제신고센터 바로가기" /> <map name="Map" id="Map"> <area shape="rect" coords="1,22,199,158" href="javascript:clickEvent.init('ordin');today_ordinAdvertise.init('advertiseOrdin','');" alt="지방규제 신고센터" /> <area shape="rect" coords="1,1,172,22" href="javascript:clickEvent.init('ordin');today_ordinAdvertise.init('advertiseOrdin','');" alt="지방규제 신고센터" /> <area shape="rect" coords="173,5,195,22" href="javascript:today_ordinAdvertise.hide();today_ordinAdvertise.init('advertiseOrdin','');" alt="지방규제 신고센터" /> </map> </li> 
+       <li style="border:2px solid #2C3A79; background-color:white;"> 
+        <div style="font-size:11px;"> 
+         <input type="checkbox" id="chk_clse1" onclick="today_ordinAdvertise.hide();today_ordinAdvertise.init('advertiseOrdin','viewOffToday');" style="margin:2px 0px 0px 2px;" /> 
+         <label for="chk_clse1" style="margin-left:-2px; padding-right:5px;">하루동안 보지 않기</label> 
+         <input type="checkbox" id="chk_clse2" onclick="today_ordinAdvertise.hide();today_ordinAdvertise.init('advertiseOrdin','viewOffAll');" style="margin-left:-2px;" /> 
+         <label for="chk_clse2" style="margin-left:-2px; padding-right:2px;">다시 보지 않기</label> 
+        </div> </li> 
+      </ul> 
+     </div> 
+     <div id="bodyContentTOP" style="margin-left: 10px;"> 
+      <div class="viewwrap" id="viewwrapCenter" style="padding:0px;margin:0px;"> 
+       <div id="bodyContent"> 
+        <div class="subdefa"> 
+         <h3> <img src="/LSW/images/common/h2_subdef3.gif" alt="자치법규" /> </h3> 
+         <p class="txt1"> <img src="/LSW/images/common/txt_subdef3-1.gif" alt="이 곳에서는 조례규칙, 지방행정규칙예규, 고시를 찾아볼 수 있습니다." /> </p> 
+         <p class="txt2"> <img src="/LSW/images/common/txt_subdef9.gif" alt=" 위 검색창에 검색어를 입력하십시오" /> </p> 
+        </div> 
+       </div> 
+       <div id="bodyContentError" style="display:none;"> 
+        <div class="subdefa"> 
+         <h3> <img src="/LSW/images/common/h2_subdef3.gif" alt="자치법규" /> </h3> 
+         <p class="txt1"> <img src="/LSW/images/common/txt_subdef3-1.gif" alt="이 곳에서는 조례규칙, 지방행정규칙예규, 고시를 찾아볼 수 있습니다." /> </p> 
+         <p class="txt2"> <img src="/LSW/images/common/txt_subdef9.gif" alt=" 위 검색창에 검색어를 입력하십시오" /> </p> 
+        </div> 
+       </div> 
+      </div> 
+     </div> 
+     <div id="bodySideContent" style="display: none; margin-left: 20px;"> 
+      <div class="subdefa"> 
+       <h3> <img src="/LSW/images/common/h2_subdef3.gif" alt="자치법규" /> </h3> 
+       <p class="txt1"> <img src="/LSW/images/common/txt_subdef3-1.gif" alt="이 곳에서는 조례규칙, 지방행정규칙예규, 고시를 찾아볼 수 있습니다." /> </p> 
+       <p class="txt2"> <img src="/LSW/images/common/txt_subdef9.gif" alt=" 위 검색창에 검색어를 입력하십시오" /> </p> 
+      </div> 
+     </div> 
+    </div> 
+    <!-- content --> 
+   </div> 
+   <!-- container //--> 
+  </form> 
+  <!--  조회이력 --> 
+  <div id="lsSeHstDivWrite"> 
+   <div id="lsSeHstLayer" style="display:none; width: 300px; height: 310px;"></div> 
+  </div> 
+  <!--  조회이력 //--> 
+  <!-- 인쇄 layer --> 
+  <!-- 본문검색 layer --> 
+  <div class="vwrap8" id="bdySearchLayer" style="display:none; top: 10px; left: 0px;"> 
+   <div class="viewla" style="top: 0px; left: 0px;"> 
+    <div class="ins"> 
+     <div class="inctn"> 
+      <input type="radio" id="preBtn" name="srcBtn" class="radio" value="1" />
+      <label for="preBtn">위로</label> 
+      <input type="radio" id="nextBtn" name="srcBtn" class="radio" value="2" checked="checked" />
+      <label for="nextBtn">아래로</label> 
+      <input type="checkbox" id="selectSearchJo" class="check" />
+      <label for="selectSearchJo">검색조문선택</label> 
+     </div> 
+     <div class="inctn" style="padding:0 0 10px 17px;"> 
+      <fieldset> 
+       <legend>화면내검색 입력 폼</legend> 
+       <label for="bdySearch" class="label_b">검색어 입력</label>
+       <input type="text" id="bdySearch" name="bdySearch" value="" class="tx" onkeypress="javascript:return enterBdySearch(event,document.getElementsByName('srcBtn'));" /> 
+       <a href="#AJAX" onclick="window.bdySearch(document.getElementsByName('srcBtn'));return false;"><img src="/LSW/images/button/btn_seh4.gif" alt="검색" /></a> 
+      </fieldset> 
+     </div> 
+     <div class="inctn" style="padding:0 0 10px 17px;"> 
+      <span id="bdyKeyVal"></span> 
+     </div> 
+    </div> 
+   </div> 
+  </div> 
+  <!-- 본문검색 layer //--> 
+  <!-- 본문 검색 후 조문 출력 layer --> 
+  <div id="divSearchLayer" style="display: none;"> 
+   <div class="vwrap2" id="vwrapSearchList" style="left:3px;top:32px;background:none;"> 
+    <div class="viewla" style="width:245px;" id="viewSearchList"> 
+     <div class="ins" id="searchList" style="overflow: auto;"></div> 
+    </div> 
+   </div> 
+  </div> 
+  <!-- 목록저장 layer --> 
+  <div class="bx_ly" id="listSaveLayer" style="display:none"> 
+   <form id="saveForm" name="saveForm" target="_self" action="#" method="post"> 
+    <fieldset> 
+     <legend>파일형식 선택</legend> 
+     <input type="image" title="전송" style="display:none;" alt="전송" /> 
+     <input type="hidden" name="save" value="save" /> 
+     <!-- id="save" --> 
+     <input type="hidden" id="lsAstMode2" name="lsAstMode" value="1" /> 
+     <input type="hidden" id="totCnt" name="totCnt" value="" /> 
+     <input type="hidden" id="saveWhole" name="saveTarget" value="whole" /> 
+     <div class="bx_inner" style="margin:1px 0;"> 
+      <p class="ly_tit">목록저장</p> 
+      <button class="btn_clse" onclick="SaveWindow.hideListSave(); return false;"><span class="blind">닫기</span></button> 
+      <div class="ly_cont"> 
+       <div class="ly_tx_bx"> 
+        <p class="tx">파일형식</p> 
+        <div class="ly_inp_bx"> 
+         <input type="radio" id="saveListXLS" name="saveExt" value="xls" checked="checked" /> 
+         <label for="saveListXLS">XLS(엑셀)</label> 
+         <input type="radio" id="saveListTXT" name="saveExt" value="txt" /> 
+         <label for="saveListTXT">TXT(텍스트)</label> 
+        </div> 
+       </div> 
+       <div class="ly_btn_bx"> 
+        <a href="#" class="btn type" onclick="submitListSave();">저장</a> 
+        <a href="#" class="btn type" onclick="SaveWindow.hideListSave();">닫기</a> 
+       </div> 
+      </div> 
+     </div> 
+     <div id="inputContainer" style="display:none;"></div> 
+    </fieldset> 
+   </form> 
+  </div> 
+  <!-- 목록저장 layer //--> 
+  <!-- html 저장 layer --> 
+  <!-- 이전버전
+<div class="vwrap7" id="htmlSaveLayer"  style="display:none">
+	<form id="htmlsaveForm" name="htmlsaveForm" target="_self" onsubmit="javascript:return beforeHtmlSave();">
+	<input type="hidden" id="save" name="save" value="">
+	<input type="hidden" id="lsAstMode2" name="lsAstMode" value="1">
+	<input type="hidden" id="saveWhole" name="saveTarget"  value="" > 
+	<div class="viewla">
+		
+		<div class="btn"><a href="#AJAX" onclick="javascript:SaveWindow.hideHtmlSave();"><img src="images/button/btn_close.gif" alt="닫기" /></a></div>
+		<div class="ins">
+			
+			<div class="ltit">내용저장</div>	
+
+			<div class="inctn">
+				<ul>
+					<li class="itit">파일형식</li>
+					<li class="rdi">
+						<input type="radio" id="saveHTML" name="saveExt" value="" checked="checked"/><strong>HTML</strong>
+						<input type="radio" id="saveXLS" name="saveExt" value=""/><strong>XLS(엑셀)</strong>
+					</li>
+				</ul>
+			</div>
+			
+			<div class="btnc2_1">
+				<input type="image" src="/images/button/btn_save2.gif" value="저장">
+				<span class="btn_close"><a href="#AJAX" onclick="javascript:SaveWindow.hideHtmlSave();"><img src="/images/button/btn_close2.gif" alt="닫기" /></a></span>
+			</div>
+
+		</div>		
+	</div>
+	</form>
+</div>
+ --> 
+  <div class="vwrap7" id="htmlSaveLayer" style="display:none"> 
+   <form id="htmlsaveForm" name="htmlsaveForm" target="_self" action="#"> 
+    <fieldset> 
+     <legend>파일형식 선택</legend> 
+     <input type="image" title="전송" alt="전송" style="display:none;" /> 
+     <input type="hidden" name="save" value="save" /> 
+     <!-- id="save" --> 
+     <div class="contwrap" style="margin:1px 0;"> 
+      <div class="viewla"> 
+       <div class="ins"> 
+        <div class="inctn"> 
+         <ul> 
+          <li class="itit">파일형식</li> 
+          <li class="rdi"> <input type="radio" id="saveHtmlHTML" name="saveExt" class="radio" value="html" checked="checked" /><label for="saveHtmlHTML">HTML</label> <input type="radio" id="saveHtmlXLSb" name="saveExt" class="radio" value="xls" /><label for="saveHtmlXLSb">XLS(엑셀)</label> </li> 
+         </ul> 
+        </div> 
+        <!-- button --> 
+        <div class="btnc2_1"> 
+         <input type="image" onclick="javascript:submitHtmlContent();" src="/LSW/images/button/btn_save2.gif" alt="저장" /> 
+         <span class="btn_close"><a href="#AJAX" onkeypress="" onclick="javascript:SaveWindow.hideHtmlSave();"><img src="/LSW/images/button/btn_close2.gif" alt="닫기" /></a></span> 
+        </div> 
+        <!-- button //--> 
+       </div> 
+      </div> 
+     </div> 
+    </fieldset> 
+   </form> 
+  </div> 
+  <!-- 목록저장 layer //--> 
+  <!-- 신구조문 저장 layer--> 
+  <div class="vwrap7" id="newSaveLayer" style="display:none"> 
+   <form id="newSaveForm" name="newSaveForm" target="_self" action="#"> 
+    <fieldset> 
+     <legend>파일형식 선택</legend> 
+     <input type="image" title="전송" alt="전송" style="display:none;" /> 
+     <input type="hidden" name="save" value="save" /> 
+     <!-- id="save" --> 
+     <div class="contwrap" style="margin:1px 0;"> 
+      <div class="viewla"> 
+       <div class="ins" id="newSaveLayerLoding"> 
+        <div class="inctn"> 
+         <ul> 
+          <li class="itit">파일형식</li> 
+          <li class="rdi"> <input type="radio" id="newSaveHTML" name="newSaveExt" class="radio" value="html" checked="checked" /><label for="newSaveHTML">HTML</label> <input type="radio" id="newSaveHWP" name="newSaveExt" class="radio" value="hwp" /><label for="newSaveHWP">HWP(한글)</label> <input type="radio" id="newSaveXLS" name="newSaveExt" class="radio" value="xls" /><label for="newSaveXLS">XLS(엑셀)</label> </li> 
+         </ul> 
+        </div> 
+        <!-- button --> 
+        <div class="btnc2_1"> 
+         <input type="image" onclick="javascript:submitNewOrdinContent();" src="/LSW/images/button/btn_save2.gif" alt="저장" /> 
+         <span class="btn_close"><a href="#AJAX" onkeypress="" onclick="javascript:SaveWindow.hideNewSave();"><img src="/LSW/images/button/btn_close2.gif" alt="닫기" /></a></span> 
+        </div> 
+        <!-- button //--> 
+       </div> 
+      </div> 
+     </div> 
+    </fieldset> 
+   </form> 
+  </div> 
+  <!-- 신구조문저장 layer  //--> 
+  <!-- 본문 저장 layer --> 
+  <div class="bx_ly" id="infoSaveLayer" style="display:none;"> 
+   <form id="infoSaveForm" name="infoSaveForm" target="_self" action="#"> 
+    <input type="image" title="전송" alt="전송" style="display:none;" /> 
+    <input type="hidden" name="save" value="save" /> 
+    <div class="bx_inner"> 
+     <p class="ly_tit" style="margin-top: 0px;margin-bottom: 0px;">목록저장</p> 
+     <button class="btn_clse" onclick="SaveWindow.hideInfoSave(); return false;"> <span class="blind">닫기</span> </button> 
+     <div class="ly_cont" id="infoSaveLayerLoding"> 
+      <div class="ly_tx_bx"> 
+       <p class="tx">파일형식</p> 
+       <div class="ly_inp_bx"> 
+        <input type="radio" id="saveHWP" name="saveExt" value="hwp" checked="checked" /> 
+        <label for="saveHWP">HWP(한글)</label> 
+        <input type="radio" id="saveTXTb" name="saveExt" value="txt" /> 
+        <label for="saveTXTb">TXT(텍스트)</label> 
+       </div> 
+      </div> 
+      <div class="ly_btn_bx"> 
+       <a href="#" class="btn type" onclick="submitContent();">저장</a> 
+       <a href="#" class="btn type" onclick="SaveWindow.hideInfoSave();">닫기</a> 
+      </div> 
+     </div> 
+    </div> 
+   </form> 
+  </div> 
+  <!-- 본문 저장 layer //--> 
+  <!-- 본문 저장 layer --> 
+  <div class="vwrap7" id="lsRvsRsnInfoSaveLayer" style="display:none;"> 
+   <form id="lsRvsRsnInfoSaveForm" name="lsRvsRsnInfoSaveForm" target="_self" action="#"> 
+    <fieldset> 
+     <legend>파일형식 선택</legend> 
+     <input type="image" title="전송" alt="전송" style="display:none;" /> 
+     <input type="hidden" name="save" value="save" /> 
+     <!--  id="save" --> 
+     <div class="contwrap" style="margin:1px 0;"> 
+      <div class="viewla"> 
+       <div class="ins" id="lsRvsRsnInfoSaveLayerLoding"> 
+        <div class="inctn"> 
+         <ul> 
+          <li class="itit">파일형식</li> 
+          <li class="rdi"> <input type="radio" id="saveRvsRsnHWP" name="saveExt" class="radio" value="hwp" checked="checked" /><label for="saveRvsRsnHWP">HWP(한글)</label> <input type="radio" id="saveRvsRsnTXTb" name="saveExt" class="radio" value="txt" /><label for="saveRvsRsnTXTb">TXT(텍스트)</label> </li> 
+         </ul> 
+        </div> 
+        <!-- button --> 
+        <div class="btnc2_1"> 
+         <input id="lsSaveBtn" type="image" onclick="javascript:submitRvsRsnContent();" src="/LSW/images/button/btn_save2.gif" alt="저장" /> 
+         <span class="btn_close"><a href="#AJAX" onkeypress="" onclick="javascript:SaveWindow.hideLsRvsRsnSave();"><img src="/LSW/images/button/btn_close2.gif" alt="닫기" /></a></span> 
+        </div> 
+        <!-- button //--> 
+       </div> 
+      </div> 
+     </div> 
+    </fieldset> 
+   </form> 
+  </div> 
+  <!-- 본문 저장 layer //--> 
+  <!-- 영문 본문 저장 layer --> 
+  <div class="vwrap7" id="engInfoSaveLayer" style="display:none"> 
+   <form id="engInfoSaveForm" name="engInfoSaveForm" target="_self" action="#"> 
+    <fieldset> 
+     <legend>파일형식 선택</legend> 
+     <input type="image" title="전송" alt="전송" style="display:none;" /> 
+     <input type="hidden" name="save" value="save" /> 
+     <!--  id="save" --> 
+     <div class="contwrap" style="margin:1px 0;"> 
+      <div class="viewla"> 
+       <div class="ins" id="engInfoSaveLayerLoding"> 
+        <div class="inctn"> 
+         <ul> 
+          <li class="itit">파일형식</li> 
+          <li class="rdi" style="width:220px;text-align:center;"> <input type="radio" id="docSelectIdHWP" name="docSelectId" class="radio" value="hwp" checked="checked" /><label for="docSelectIdHWP">한글(HWP)</label> <input type="radio" id="docSelectIdPDF" name="docSelectId" class="radio" value="pdf" /><label for="docSelectIdPDF">PDF</label> <input type="radio" id="docSelectIdDOC" name="docSelectId" class="radio" value="doc" /><label for="docSelectIdDOC">오피스(DOC)</label> </li> 
+         </ul> 
+        </div> 
+        <!-- button --> 
+        <div class="btnc2_1"> 
+         <input id="engLsSaveBtn" type="image" onclick="javascript:engLsBeforeSavePrint();return false;" src="/LSW/images/button/btn_save2.gif" alt="저장" /> 
+         <span class="btn_close"><a href="#AJAX" onkeypress="" onclick="javascript:SaveWindow.hideEngInfoSave();"><img src="/LSW/images/button/btn_close2.gif" alt="닫기" /></a></span> 
+        </div> 
+        <!-- button //--> 
+       </div> 
+      </div> 
+     </div> 
+    </fieldset> 
+   </form> 
+  </div> 
+  <!-- 영문 본문 저장 layer //--> 
+  <!-- 법령용어 저장 layer --> 
+  <div class="vwrap7" id="lsTrmInfoSaveLayer" style="display:none"> 
+   <form id="lsTrmInfoSaveForm" name="lsTrmInfoSaveForm" target="_self" action="#" onsubmit="return lsTrmBeforeSavePrint()"> 
+    <fieldset> 
+     <legend>파일형식 선택</legend> 
+     <input type="image" title="전송" alt="전송" style="display:none;" /> 
+     <input type="hidden" id="saveQuery" name="lsTrm" /> 
+     <input type="hidden" name="save" value="save" /> 
+     <!--  id="save" --> 
+     <div class="contwrap" style="margin:1px 0;"> 
+      <div class="viewla"> 
+       <div class="ins"> 
+        <div class="inctn"> 
+         <ul> 
+          <li class="itit">파일형식</li> 
+          <li class="rdi" style="width:220px;text-align:center;"> <input type="radio" id="lsTrmDocSelectIdHWP" name="lsTrmDocSelectId" class="radio" value="hwp" checked="checked" /><label for="lsTrmDocSelectIdHWP">한글(HWP)</label> <input type="radio" id="lsTrmDocSelectIdPDF" name="lsTrmDocSelectId" class="radio" value="pdf" /><label for="lsTrmDocSelectIdPDF">PDF</label> 
+           <!-- <input type="radio" id="docSelectIdDOC" name="docSelectId" class="radio" value="doc" /><label for="docSelectIdDOC">오피스(DOC)</label>--> </li> 
+         </ul> 
+        </div> 
+        <!-- button --> 
+        <div class="btnc2_1"> 
+         <input type="image" onclick="javascript:lsTrmBeforeSavePrint();return false;" src="/LSW/images/button/btn_save2.gif" alt="저장" /> 
+         <span class="btn_close"><a href="#AJAX" onkeypress="" onclick="javascript:SaveWindow.hideInfoSaveNew();"><img src="/LSW/images/button/btn_close2.gif" alt="닫기" /></a></span> 
+        </div> 
+        <!-- button //--> 
+       </div> 
+      </div> 
+     </div> 
+    </fieldset> 
+   </form> 
+  </div> 
+  <!-- 법령용어 저장 layer TXT(텍스트) 저장 추가 //--> 
+  <!-- 법령용어 저장 layer --> 
+  <div class="vwrap7" id="lsTrmInfoSaveLayer2" style="display:none"> 
+   <form id="lsTrmInfoSaveForm2" name="lsTrmInfoSaveForm2" target="_self" action="#" onsubmit="return lsTrmBeforeSavePrint2()"> 
+    <fieldset> 
+     <legend>파일형식 선택</legend> 
+     <input type="image" title="전송" alt="전송" style="display:none;" /> 
+     <input type="hidden" id="saveQuery1" name="lsTrm" /> 
+     <input type="hidden" name="save" value="save" /> 
+     <!--  id="save" --> 
+     <div class="contwrap" style="margin:1px 0;"> 
+      <div class="viewla"> 
+       <div class="ins"> 
+        <div class="inctn"> 
+         <ul> 
+          <li class="itit">파일형식</li> 
+          <li class="rdi" style="width:220px;text-align:center;"> <input type="radio" id="lsTrmDocSelectIdHWP1" name="saveExt" class="radio" value="hwp" checked="checked" /><label for="lsTrmDocSelectIdHWP1">한글(HWP)</label> <input type="radio" id="lsTrmDocSelectIdTXT1" name="saveExt" class="radio" value="txt" /><label for="lsTrmDocSelectIdTXT1">TXT(텍스트)</label> </li> 
+         </ul> 
+        </div> 
+        <!-- button --> 
+        <div class="btnc2_1"> 
+         <input type="image" onclick="javascript:lsTrmBeforeSavePrint2();return false;" src="/LSW/images/button/btn_save2.gif" alt="저장" /> 
+         <span class="btn_close"><a href="#AJAX" onkeypress="" onclick="javascript:SaveWindow.hideInfoSaveNew();"><img src="/LSW/images/button/btn_close2.gif" alt="닫기" /></a></span> 
+        </div> 
+        <!-- button //--> 
+       </div> 
+      </div> 
+     </div> 
+    </fieldset> 
+   </form> 
+  </div> 
+  <!-- 법령체계도 layer --> 
+  <div class="vwrap5" id="div_lsSystem" style="display:none"></div> 
+  <!-- 법령체계도 layer //--> 
+  <!-- 조선택 레이어 --> 
+  <!-- 조선택 레이어 //--> 
+  <div class="rbox14" id="joSelectLayer" style="left:30px;top:0px;display:none;width:200px;"> 
+   <div class="rri"> 
+    <div class="rle"> 
+     <div class="mn" style="white-space: nowrap;"> 
+      <a href="javascript:;" onclick="javascript:myLawJo();" id="myLawJo" style="display: none;"><img src="/LSW/images/button/btn_caop.gif" alt="나의조문" /></a> 
+      <a href="javascript:;" id="btnLawSave" onclick="javascript:bdyCheckOutPut('0');"><img src="/LSW/images/button/btn_ssav.gif" alt="저장" /></a> 
+      <a href="javascript:;" id="btnLawPri" onclick="javascript:bdyCheckOutPut('1');"><img src="/LSW/images/button/btn_spri.gif" alt="인쇄" /></a> 
+      <a href="javascript:;" id="shareJo" onclick="javascript:snsShareLayerCheck(); return false;" title="공유하기"> <img src="/LSW/images/common/btn_share.png" style="width: 12px;" alt="공유하기" /> </a> 
+      <input type="hidden" class="snsAddress" value="" /> 
+      <!-- 공유하기 layer --> 
+      <div class="shareLayer" style="display:none"> 
+       <ul class="shareUl"> 
+        <li><a class="link-icon kakao" title="카카오톡 새 창 열림" href="javascript:shareOnKakao();"><img src="images/onelook/share_kakao.png" alt="카카오톡" /><span>카카오톡</span></a></li> 
+        <li><a class="link-icon facebook" title="페이스북 새 창 열림" href="javascript:shareOnFacebook();"><img src="images/onelook/share_facebook.png" alt="페이스북" /><span>페이스북</span></a></li> 
+        <li><a class="link-icon twitter" title="트위터 새 창 열림" href="javascript:shareOnTwitter();"><img src="images/onelook/share_twitter_tobe.png" alt="트위터" /><span>트위터</span></a></li> 
+        <li><a class="link-icon line" title="라인 새 창 열림" href="javascript:shareOnLine();"><img src="images/onelook/share_line.png" alt="라인" /><span>라인</span></a></li> 
+        <li><a class="link-icon url btnUrl" href="javascript: shareUrl();"><img src="images/onelook/share_url.png" alt="주소복사" /><span>주소복사</span></a></li> 
+       </ul> 
+      </div> 
+      <!-- 공유하기 layer // --> 
+      <script type="text/javascript">
+//<![CDATA[
+	window.addEventListener('mouseup', function(e){
+		var movewrap = document.getElementsByClassName("shareLayer");
+		for(var i=0; i<movewrap.length;i++){
+			if(!movewrap[i].contains(e.target)){
+				movewrap[i].style.display = "none";
+			}
+		}
+	});
+	$('.btnUrl').keydown(function(){
+		if(event.keyCode == 9 && !event.shiftKey){
+			$('.shareLayer').hide();
+		}
+	})
+	$('#share').keyup(function(){
+		$(".shareLayer").hide();
+	})
+	
+//]]>
+</script> 
+      <a href="javascript:;" id="btnCopyJo">복사</a> | 
+      <a href="#AJAX" id="btnEnlargeJo">돋보기</a> 
+      <p id="nbspBar" style="display:inline"> | </p> 
+      <a href="javascript:;" id="csmLnkDpId">생활법령정보</a> 
+      <p id="csmLnkNbspBar" style="display:none"> | </p> 
+      <a href="javascript:;" id="closeJoLayer"><img src="/LSW/images/button/btn_del2.gif" alt="닫기" /></a> 
+     </div> 
+    </div> 
+   </div> 
+   <div id="csmLnkDivWriter"> 
+    <div id="joCsmLnkLayer" style="display:none;"></div> 
+   </div> 
+   <div id="enlargeJoCts"></div> 
+  </div> 
+  <!-- 조선택 레이어 //--> 
+  <!-- 더보기 layer --> 
+  <div class="vwrap18" id="moreLayer" style="display:none;"> 
+   <div class="viewla"> 
+    <div class="ins"> 
+     <div class="btn">
+      <a href="#AJAX" onclick="showMore();"><img src="/LSW/images/button/btn_close.gif" alt="닫기" /></a>
+     </div> 
+     <ul> 
+      <li><a href="#AJAX" onclick="chgRelationLaw('1');">관련법률</a></li> 
+      <li><a href="#AJAX" onclick="chgRelationLaw('2');">관련시행령</a></li> 
+      <li><a href="#AJAX" onclick="chgRelationLaw('3');">관련시행규칙</a></li> 
+     </ul> 
+    </div> 
+   </div> 
+  </div> 
+  <!-- 더보기 layer //--> 
+  <!-- 첨부파일 레이어 --> 
+  <div id="attFlListDivWrite"> 
+   <div id="attFlListLayer" style="display:none"></div> 
+  </div> 
+  <!-- 상세검색 --> 
+  <div class="laypop_wrap" id="dtlSchId" style="display:none;position:absolute;background:#ffffff;z-index:100;top: 40%;left: 30%;margin: -80px 0 0 -100px;width:690px;"> 
+   <form id="dtlSchFrm" name="dtlSchFrm" action=""> 
+    <div class="laypop_top"> 
+     <p class="ti" style="margin-left:7px;"> <img src="/LSW/images/pop/ico_pop_top_tit.png" alt="자치법규상세검색" /> 자치법규상세검색 </p> 
+     <p class="btn"> <a href="#AJAX" onclick="javascript:ordinDtlSchClose();return false;"> <img src="/LSW/images/pop/pop_btn_cl.gif" alt="닫기" /> </a> </p> 
+    </div> 
+    <!--//laypop_top--> 
+    <div class="laypop_cen" id="detailCtDiv"> 
+     <div> 
+      <p class="seti"></p> 
+     </div> 
+     <div class="de_box01" style="height:110px"> 
+      <dl> 
+       <dt style="margin-top:5px;">
+         법령구분 
+       </dt> 
+       <dd class="dd01"> 
+        <input id="lsNwY" name="lsDtlDv" type="checkbox" class="src_che1" value="100" checked="checked" />
+        <label for="lsNwY"> 현행</label> 
+       </dd> 
+       <dd class="dd02"> 
+        <input id="lsNwN" name="lsDtlDv" type="checkbox" class="src_che1" value="200" />
+        <label for="lsNwN"> 연혁</label> 
+       </dd> 
+      </dl> 
+      <dl> 
+       <dt style="margin-top:5px;">
+         소관부처 
+       </dt> 
+       <dd class="dd01" style="width:300px"> 
+        <!-- select --> 
+        <label for="dtlOrdinAreaCd" class="label_b">지역설정 :</label> 
+        <select id="dtlOrdinAreaCd" name="dtlOrdinAreaCd" onchange="fDtlSchAreaSearch(el('dtlOrdinAreaCd'));" style="width:103px;margin-left:0px; font-family: NanumSquareR, sans-serif;"> <option value="" selected="selected">시도전체</option> <option value="6110000">서울</option> <option value="6260000">부산</option> <option value="6270000">대구</option> <option value="6280000">인천</option> <option value="6300000">대전</option> <option value="5690000">세종</option> <option value="6310000">울산</option> <option value="6410000">경기</option> <option value="6530000">강원</option> <option value="6430000">충북</option> <option value="6440000">충남</option> <option value="6540000">전북</option> <option value="6130000">전남광주</option> <option value="6470000">경북</option> <option value="6480000">경남</option> <option value="6500000">제주</option> <option value="6550000">충청광역연합</option> <option value="6290000">(구)광주</option> <option value="6460000">(구)전남</option> <option value="7010000,7150000,7240000,7310000,7430000,7480000,7530000,7801000,8000000,8140000,8321000,7140000,8750000,9010000,9290000,9300000,7380000,8490000">교육청</option> </select> 
+        <!-- select --> 
+        <a href="#AJAX" onclick="fDtlSchAreaSearch(el('dtlOrdinAreaCd'));"><img src="/LSW/images/button/btn_select.gif" alt="선택" style="margin-top:-7px;  font-family: NanumSquareR, sans-serif;" /></a> 
+        <!-- select --> 
+        <span id="DtlAreaListR"> <label for="dtlOrgAreaCd" class="label_b">시군구 선택</label> <select id="dtlOrgAreaCd" name="dtlOrgAreaCd" style="width:95px; font-family: NanumSquareR, sans-serif;"> <option value="" selected="selected">시군구전체</option> </select> </span> 
+        <!-- select --> 
+       </dd> 
+      </dl> 
+      <dl> 
+       <dt style="margin-top:5px;">
+         근거법령 
+       </dt> 
+       <dd class="in02"> 
+        <input name="lsBasicDts" type="text" id="lsBasicDts" value="" onclick="clickClear(this);" style="width:502px;height:16px;border-color:#fff;" />
+        <label for="lsBasicDts"></label> 
+        <a href="#AJAX" onclick="javascript:fDtlSchConLs(); return false;" title="팝업으로 이동"><img src="/LSW/images/pop/btn_se02.gif" alt="찾아보기" /></a> 
+       </dd> 
+      </dl> 
+      <dl> 
+       <dt style="margin-top:5px;">
+         정렬방법 
+       </dt> 
+       <dd id="selSortDd1"> 
+        <label for="selSort1" class="label_b">정렬방법 선택</label> 
+        <select id="selSort1" name="selSort1" style="width:130px; font-family: NanumSquareR, sans-serif;" onchange="javascript:setDtlOrdinSortFilter(this);"> <option value="10" selected="selected">가나다별</option> <option value="20">공포일자순</option> <option value="30">공포번호별</option> <option value="40">시행일자별</option> </select> 
+       </dd> 
+       <dd id="filterGana"> 
+        <label for="selGana" class="blind">가나다별 정렬방법 선택</label> 
+        <select id="selGana" name="selGana" style="font-family: NanumSquareR, sans-serif;"> <option value="" selected="selected">전체</option> <option value="1">가</option> <option value="2">나</option> <option value="3">다</option> <option value="4">라</option> <option value="5">마</option> <option value="6">바</option> <option value="7">사</option> <option value="8">아</option> <option value="9">자</option> <option value="10">차</option> <option value="11">카</option> <option value="12">타</option> <option value="13">파</option> <option value="14">하</option> <option value="15">기타</option> </select> 
+       </dd> 
+       <dd id="filterDtlSchSort" style="display: none;"> 
+        <label for="sortValue" class="blind">오름차순 정렬방법 선택</label> 
+        <select id="sortValue" name="sortValue"> <option value="desc" selected="selected">내림차순</option> <option value="asc">오름차순</option> </select> 
+       </dd> 
+      </dl> 
+     </div> 
+     <div class="de_box02" style="height:90px"> 
+      <div class="wrap01"> 
+       <dl> 
+        <dd style="margin-top:-2px;margin-bottom:5px;font-size:0.95em;color:#f24400;font-family: NanumSquareR, sans-serif"> 
+         <img src="/LSW/images/cssimg/bul_arrow26.gif" alt="검색" /> AND 검색 : *, &amp;, blank(공백)     OR 검색 : +, |     문자열 검색 : 쌍따옴표(“ ”) 
+        </dd> 
+       </dl> 
+       <dl> 
+        <dt style="margin-top:10px;">
+          법규명 
+        </dt> 
+        <dd class="in01"> 
+         <input name="lsNmDts" type="text" id="lsNmDts" value="공포번호,공포일자 등을 입력하십시오" onclick="clickClear(this);" onkeypress="javascript:ordinbyKeyPress(event);" style="font-size:0.95em;color:#787878; font-family: NanumSquareR, sans-serif;" title="법규명" />
+         <label for="lsNmDts"></label> 
+        </dd> 
+       </dl> 
+       <dl> 
+        <dt style="margin-top:10px;">
+          법규본문 
+        </dt> 
+        <dd class="in02"> 
+         <input name="lsBdyDts" type="text" id="lsBdyDts" value="조문제목,조문내용 등을 입력하십시오" onclick="clickClear(this);" onkeypress="javascript:ordinbyKeyPress(event);" style="font-size:0.95em;color:#787878; font-family: NanumSquareR, sans-serif;" title="법규본문" />
+         <label for="lsBdyDts"></label> 
+        </dd> 
+       </dl> 
+      </div> 
+      <div class="wrap02" style="margin-top:18px;"> 
+       <a href="#AJAX" id="schBtn" onclick="javascript:dtlSchOrdin();ordinDtlSchClose();return false;" onkeydown="dtlSchKeydown('3'); return false;"> <img src="/LSW/images/pop/pop_srch.gif" alt="검색" /> </a> 
+      </div> 
+      <a href="#AJAX" id="schClearBtn" onclick="javascript:dtlSchClear('3');return false;" onkeydown="dtlSchClear('3');return false;"> <img src="/LSW/images/pop/pop_srch_clear.gif" alt="검색초기화" /> </a> 
+     </div> 
+    </div> 
+    <!--//laypop_cen--> 
+    <iframe id="dtlIframe" title="내용 없는 프레임" style="display:none"></iframe> 
+   </form> 
+  </div> 
+  <script type="text/javascript">
+	var dtlSchPop = $("#dtlSchId");
+	var laypopHead = $(".laypop_top");
+
+	laypopHead.on('mousedown', function(e) {
+		e.preventDefault();
+
+		var rect = dtlSchPop[0].getBoundingClientRect();
+
+		dtlSchPop.css({
+			position: "absolute",
+			left: (rect.left + window.scrollX) + "px",
+			top: (rect.top + window.scrollY) + "px",
+			margin : 0,
+			right : "auto",
+			bottom: "auto"
+		});
+
+		var startX = e.clientX;
+		var startY = e.clientY;
+
+		var startLeft = rect.left;
+		var startTop = rect.top;
+
+		$(document).on('mousemove.dragPopup',function(e){
+
+			var newLeft = startLeft + (e.clientX - startX);
+			var newTop = startTop +  (e.clientY - startY);
+
+			var maxLeft = window.innerWidth - dtlSchPop.outerWidth();
+			var maxTop = window.innerHeight - dtlSchPop.outerHeight();
+
+			newLeft = Math.min(Math.max(0, newLeft), maxLeft );
+			newTop = Math.min(Math.max(0, newTop), maxTop );
+
+			dtlSchPop.css({
+				left : newLeft + 'px' ,
+				top : newTop + 'px'
+			});
+		});
+
+		$(document).on('mouseup.dragPopup',function(){
+			$(document).off('.dragPopup');
+		});
+	});
+
+</script> 
+  <!-- 상세검색 //--> 
+  <div id="lsHstDivWrite"> 
+   <div id="lsHstLayer" style="display:none"></div> 
+  </div> 
+  <div id="lsBylDivWrite"> 
+   <div id="lsBylLayer" style="display:none"></div> 
+  </div> 
+  <div id="lsLinkDivWrite"> 
+   <div id="lsLinkLayer" style="display:none"></div> 
+  </div> 
+  <div id="lsOutPutDivWrite"> 
+   <div id="lsOutPutLayer" style="display:none"></div> 
+  </div> 
+  <!-- 자치법규 상위 법령 --> 
+  <div id="lsJoDivWrite"> 
+   <div id="lsJoLayer" style="display:none"></div> 
+  </div> 
+  <form id="bylFrm" name="bylFrm" method="post" target="_self" action="ordinBylTextDownLoad.do"> 
+   <input type="image" title="전송" alt="전송" style="display:none;" /> 
+  </form>   
+  <!-- //contants -->  
+ </body>
+</html>

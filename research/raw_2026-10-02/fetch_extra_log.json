@@ -1,0 +1,86 @@
+[
+  {
+    "id": "LH_LIST",
+    "URL": "https://apply.lh.or.kr/lhapply/apply/wt/wrtanc/selectWrtancList.do?mi=1026&panNm=%EC%B2%AD%EB%85%84&viewType=srch",
+    "확인일": "2026-10-02",
+    "status": 200,
+    "file": "LH_LIST.html"
+  },
+  {
+    "id": "DREAM",
+    "URL": "https://www.busan.go.kr/depart/dreamhouse",
+    "확인일": "2026-10-02",
+    "status": 200,
+    "file": "DREAM.html"
+  },
+  {
+    "id": "LUCKY",
+    "URL": "https://www.busan.go.kr/depart/house0203",
+    "확인일": "2026-10-02",
+    "status": 200,
+    "file": "LUCKY.html"
+  },
+  {
+    "id": "HAPPY_BUSAN",
+    "URL": "https://www.busan.go.kr/depart/ahhouse",
+    "확인일": "2026-10-02",
+    "status": 200,
+    "file": "HAPPY_BUSAN.html"
+  },
+  {
+    "id": "BMC_LIST",
+    "URL": "https://apply.bmc.busan.kr/smw/smw114010/selectNoticeList.do",
+    "확인일": "2026-10-02",
+    "status": 200,
+    "file": "BMC_LIST.html"
+  },
+  {
+    "id": "SAHA_PLAN",
+    "URL": "https://m.saha.go.kr/portal/Downfiles/s_basicplan_2601.pdf",
+    "확인일": "2026-10-02",
+    "status": 200,
+    "file": "SAHA_PLAN.bin"
+  },
+  {
+    "id": "CENTER_MOVING",
+    "URL": "https://www.busan.go.kr/housing/ko/pages/moving_expenses_support.php",
+    "확인일": "2026-10-02",
+    "status": 404,
+    "file": "CENTER_MOVING.html"
+  },
+  {
+    "id": "DREAM_LOAN",
+    "URL": "https://nhuf.molit.go.kr/FP/FP05/FP0503/FP05030901.jsp",
+    "확인일": "2026-10-02",
+    "status": 200,
+    "file": "DREAM_LOAN.html"
+  },
+  {
+    "id": "DREAM_ACCOUNT",
+    "URL": "https://nhuf.molit.go.kr/FP/FP07/FP0701/FP07010301.jsp",
+    "확인일": "2026-10-02",
+    "status": 200,
+    "file": "DREAM_ACCOUNT.html"
+  },
+  {
+    "id": "RENT_LOAN",
+    "URL": "https://nhuf.molit.go.kr/FP/FP05/FP0502/FP05020201.jsp",
+    "확인일": "2026-10-02",
+    "status": 200,
+    "file": "RENT_LOAN.html"
+  },
+  {
+    "id": "SCHOLARSHIP",
+    "URL": "https://www.kosaf.go.kr/ko/notice.do?mode=view&seqNo=21163",
+    "확인일": "2026-10-02",
+    "status": 200,
+    "file": "SCHOLARSHIP.html"
+  },
+  {
+    "id": "HF",
+    "URL": "https://www.hf.go.kr/ko/sub02/sub02_01_02.do",
+    "확인일": "2026-10-02",
+    "status": 200,
+    "file": "HF.html"
+  }
+]

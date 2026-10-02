@@ -1,0 +1,2793 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ <!DOCTYPE html>
+<html lang="ko">
+<head>
+
+	<title>BMC청약센터</title>
+    <meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" >
+	<meta name="format-detection" content="telephone=no">
+	<meta name="author" content="">
+	<meta name="description" content="">
+
+	<!-- 오픈그래프 이미지의 경우 최소한 600 x 315 px은 되어야 하며, 1200 x 630 px을 권장함 -->
+	<meta property="og:image" content="">
+	<meta property="og:title" content="">
+	<meta property="og:description" content="">
+	<meta property="og:url" content="">
+	<!-- 다음의 태그는 필수는 아니지만, 포함하는 것을 추천함 -->
+	<meta property="og:image:width" content="1200">
+	<meta property="og:image:height" content="630">
+
+	<link rel="icon" type="image/ico" href="/images/common/favicon.ico;BMCW_JSESSIONID=3C7B0709658405681FE9690FDBED795F.JVMAPPLYCENTER22">
+	<link rel="stylesheet" href="/lib/swiper/css/swiper.css;BMCW_JSESSIONID=3C7B0709658405681FE9690FDBED795F.JVMAPPLYCENTER22">
+	<link rel="stylesheet" href="/lib/jquery-ui.css;BMCW_JSESSIONID=3C7B0709658405681FE9690FDBED795F.JVMAPPLYCENTER22">
+	<link rel="stylesheet" href="/css/common.css;BMCW_JSESSIONID=3C7B0709658405681FE9690FDBED795F.JVMAPPLYCENTER22">
+	<link rel="stylesheet" href="/css/main.css;BMCW_JSESSIONID=3C7B0709658405681FE9690FDBED795F.JVMAPPLYCENTER22">
+	<link rel="stylesheet" href="/css/sub.css;BMCW_JSESSIONID=3C7B0709658405681FE9690FDBED795F.JVMAPPLYCENTER22">
+	<link rel="stylesheet" href="/css/mobile.css;BMCW_JSESSIONID=3C7B0709658405681FE9690FDBED795F.JVMAPPLYCENTER22">
+	<link rel="stylesheet" href="/css/hover.css;BMCW_JSESSIONID=3C7B0709658405681FE9690FDBED795F.JVMAPPLYCENTER22">
+	<link rel="stylesheet" href="/css/bynImage.css;BMCW_JSESSIONID=3C7B0709658405681FE9690FDBED795F.JVMAPPLYCENTER22">
+
+<!-- 	<script src="../lib/jquery-1.12.4.js"></script> -->
+
+	<!-- Global site tag (gtag.js) - Google Analytics -->
+	<!-- 운영일 경우에만 -->
+	
+	<script>
+	  window.dataLayer = window.dataLayer || [];
+	  function gtag(){dataLayer.push(arguments);}
+	  gtag('js', new Date());
+
+	  gtag('config', 'UA-120963123-1');
+	  document.oncontextmenu = function(){
+		  $net.alert('청약센터에서 우클릭은 불가능합니다.', "fn_srcollPop");
+		  return false;
+	}
+
+  !function() {
+	  function detectDevTool(allow) {
+		return true;
+	    if(isNaN(+allow)) allow = 100;
+	    var start = +new Date(); 
+	    debugger;
+	    var end = +new Date(); 
+	    if(isNaN(start) || isNaN(end) || end - start > allow) {
+	      // 개발자 도구가 open 된것을 감지했을때 실행할 코드 삽입
+	      $net.alert('개발자 도구가 감지되었습니다!', "fn_srcollPop");
+	    }
+	  }
+	  if(window.attachEvent) {
+	    if (document.readyState === "complete" || document.readyState === "interactive") {
+	        detectDevTool();
+	      window.attachEvent('onresize', detectDevTool);
+	      window.attachEvent('onmousemove', detectDevTool);
+	      window.attachEvent('onfocus', detectDevTool);
+	      window.attachEvent('onblur', detectDevTool);
+	    } else {
+	        setTimeout(argument.callee, 0);
+	    }
+	  } else {
+	    window.addEventListener('load', detectDevTool);
+	    window.addEventListener('resize', detectDevTool);
+	    window.addEventListener('mousemove', detectDevTool);
+	    window.addEventListener('focus', detectDevTool);
+	    window.addEventListener('blur', detectDevTool);
+	  }
+	  
+	  if (window.addEventListener) {
+			window.addEventListener('contextmenu', function(e) { try { if (typeof e != 'undefined') { e.preventDefault(); return false; } else { return false; }} catch(e) {} } , false);
+		} else {
+			window.attachEvent('oncontextmenu', function(e) { try { if (typeof e != 'undefined') { e.preventDefault(); return false; } else { return false; }} catch(e) {} } );
+		}
+		var handlemouseEvent = function(e) {
+			try {
+				if (typeof e == 'undefined') {
+					if (window.event.button && window.event.button == "2") {
+						return false;
+					}
+				} else if ((e.which && e.which == 3) || (e.button && e.button == 2)) {
+					e.preventDefault();
+					return false;
+				} else if (e.keyCode == 123) { //F12방지
+					e.preventDefault();
+					return false;
+				}
+			} catch (e) {}
+		};
+		window.onkeydown = handlemouseEvent;
+		window.onkeyup = handlemouseEvent; 
+	}();
+	</script>
+
+	<script src="/js/plugin/jquery.3.1.1.min.js;BMCW_JSESSIONID=3C7B0709658405681FE9690FDBED795F.JVMAPPLYCENTER22"></script>
+	<!-- <script src="/js/plugin/jquery-ui.min.js;BMCW_JSESSIONID=3C7B0709658405681FE9690FDBED795F.JVMAPPLYCENTER22"></script> -->
+	<script src="/js/main/site.js;BMCW_JSESSIONID=3C7B0709658405681FE9690FDBED795F.JVMAPPLYCENTER22"></script>
+	<script src="/lib/jquery-ui.js;BMCW_JSESSIONID=3C7B0709658405681FE9690FDBED795F.JVMAPPLYCENTER22"></script>
+	<script src="/lib/swiper/js/swiper.js;BMCW_JSESSIONID=3C7B0709658405681FE9690FDBED795F.JVMAPPLYCENTER22"></script>
+	<script src="/js/ui.js;BMCW_JSESSIONID=3C7B0709658405681FE9690FDBED795F.JVMAPPLYCENTER22"></script>
+	<script src="/js/com/hom.core.js;BMCW_JSESSIONID=3C7B0709658405681FE9690FDBED795F.JVMAPPLYCENTER22"></script>
+	<script src="/js/util/hom.all.js;BMCW_JSESSIONID=3C7B0709658405681FE9690FDBED795F.JVMAPPLYCENTER22"></script>
+
+	<!-- 성능제어 Netfunnel -->
+
+
+
+	<script>
+		
+
+		
+		var strReqUri = "/WEB-INF/jsp/bmcw/smw/SMW113020M00.jsp";
+		strReqUri = strReqUri.toUpperCase();
+
+		if(window.name == "iframeDialog" && strReqUri.indexOf("login") > -1)
+		{
+			parent.document.location.href = "/login/login.do;BMCW_JSESSIONID=3C7B0709658405681FE9690FDBED795F.JVMAPPLYCENTER22";
+		}
+
+		$(function(){
+			$('head > title').text($("h2").text());
+			$('#header a').attr('tabindex','-1');
+
+// 			$('#preCorRrno').hide();
+// 			$('#midCorRrno').hide();
+// 			$('#postCorRrno').hide();
+
+			 /**
+			 * Description	: 상단 lnb_wrap setting
+			 */
+// 			$navi = $("#naviUl li").last();
+// 			var umid = $navi.data("umid");
+// 			if(umid != null) {
+// 				$navi.append($("#menu"+umid).next("ul").clone());
+// 				$navi.find('a').removeAttr('id');
+// 			}
+
+			
+// 			var strMenuId = "menu" + $("#naviUl li").eq(1).data('mid');
+// 			$('#gnb #' + strMenuId).addClass('lnb_active');
+
+			
+			
+// 			npPfsStartup(document.form, true, true, true, true, "enc", "on");
+			
+// 			if(npPfsCtrl.IsSupport()) {
+// 				npPfsStartup(document.form, true, true, true, true, "npkencrypt", "on");
+// 			} else {
+// 				alert("보안프로그램을 지원하지 않는 환경입니다.");
+// 			}
+			
+// 				// 가상운영체제 여부 확인
+// 				npPfsCtrl.isVirtualMachine(function(result){
+// 				if(result == true) {
+// 				alert("가상운영체제 또는 원격으로 접속하셨습니다.");
+// 				}
+// 			});
+
+		});
+
+	</script>
+
+
+</head>
+<body>
+
+
+
+
+<div id="wrap" class="sub">
+	
+<nav class="pc">
+	<div class="lnb">
+		<h1>
+			<a href="\"><img src="/images/common/logo_w.png;BMCW_JSESSIONID=3C7B0709658405681FE9690FDBED795F.JVMAPPLYCENTER22" alt="부산도시공사로고"></a>
+		</h1>
+		<div class="menu">
+		 <div class="skip" style="opacity:0%;text-align:center;"> 
+		 <a href="#header" alt="본문바로가기" title="본문바로가기">본문바로가기</a> 
+		 </div> 
+			<ul class="deps01">
+				<li class="lnb01 ">
+					<a href="javascript:void(0)" class="dep1Item">청약서비스</a>
+					<ul class="deps02">
+						<li>
+							<a href="#" class="dep2Item">청약정보</a>
+							<ul class="deps03">
+								<li><a href="javascript:$net.href('/smw/smw111010/selectSplyCalendarList.do;BMCW_JSESSIONID=3C7B0709658405681FE9690FDBED795F.JVMAPPLYCENTER22');" id="menu317" class="dep3Item"><span>청약캘린더</span></a></li>
+								<li><a href="javascript:$net.href('/smw/smw112010/selectNoticeList.do;BMCW_JSESSIONID=3C7B0709658405681FE9690FDBED795F.JVMAPPLYCENTER22');" id="menu318" class="dep3Item"><span>전자팸플릿</span></a></li>
+								<li><a href="javascript:$net.href('/smw/smw113010/selectPbancRentHouseList.do;BMCW_JSESSIONID=3C7B0709658405681FE9690FDBED795F.JVMAPPLYCENTER22');" id="menu319" class="dep3Item"><span>청약공고</span></a></li>
+								<li><a href="javascript:$net.href('/smw/smw114010/selectNoticeList.do;BMCW_JSESSIONID=3C7B0709658405681FE9690FDBED795F.JVMAPPLYCENTER22');" id="menu322" class="dep3Item"><span>공지사항</span></a></li>
+								<li><a href="javascript:$net.href('/smw/smw115010/selectDataList.do;BMCW_JSESSIONID=3C7B0709658405681FE9690FDBED795F.JVMAPPLYCENTER22');" id="menu323" class="dep3Item"><span>자료실</span></a></li>
+								<li><a href="javascript:$net.href('/smw/smw116010/selectFaqList.do;BMCW_JSESSIONID=3C7B0709658405681FE9690FDBED795F.JVMAPPLYCENTER22');" id="menu324" class="dep3Item"><span>FAQ</span></a></li>
+								<li><a href="javascript:$net.href('/smw/smw117010/selectPbancList.do;BMCW_JSESSIONID=3C7B0709658405681FE9690FDBED795F.JVMAPPLYCENTER22');" id="menu325" class="dep3Item"><span>경쟁률조회</span></a></li>
+							</ul>
+						</li>
+						<li>
+							<a href="#" class="dep2Item">청약가이드</a>
+							<ul class="deps03">
+								<li><a href="javascript:$net.href('/smw/smw121010/selectHpnsSbcrtGuide.do;BMCW_JSESSIONID=3C7B0709658405681FE9690FDBED795F.JVMAPPLYCENTER22');" id="menu327" class="dep3Item"><span>청약가이드</span></a></li>
+							</ul>
+						</li>
+						<li>
+							<a href="#" class="dep2Item">온라인청약</a>
+							<ul class="deps03">
+								<li><a href="javascript:$net.href('/smw/smw131010/selectRthousSbcrtPrctBfrhndGuid.do;BMCW_JSESSIONID=3C7B0709658405681FE9690FDBED795F.JVMAPPLYCENTER22');" id="menu336" class="dep3Item"><span>청약연습</span></a></li>
+								<li><a href="javascript:$net.href('/smw/smw132010/selectSbscAplyHouse.do;BMCW_JSESSIONID=3C7B0709658405681FE9690FDBED795F.JVMAPPLYCENTER22');" id="menu339" class="dep3Item"><span>청약신청</span></a></li>
+								<li><a href="javascript:$net.href('/smw/smw133010/selectAplyDtlsList.do;BMCW_JSESSIONID=3C7B0709658405681FE9690FDBED795F.JVMAPPLYCENTER22');" id="menu342" class="dep3Item"><span>신청내역 조회</span></a></li>
+								<li><a href="javascript:$net.href('/smw/smw134010/selectPbancList.do;BMCW_JSESSIONID=3C7B0709658405681FE9690FDBED795F.JVMAPPLYCENTER22');" id="menu345" class="dep3Item"><span>서류제출대상조회/서류제출</span></a></li>
+								<li><a href="javascript:$net.href('/smw/smw135010/selectOnlnExplnTrgtList.do;BMCW_JSESSIONID=3C7B0709658405681FE9690FDBED795F.JVMAPPLYCENTER22');" id="menu348" class="dep3Item"><span>소명대상 조회/서류제출</span></a></li>
+								<li><a href="javascript:$net.href('/smw/smw136010/selectPblancWinnerList.do;BMCW_JSESSIONID=3C7B0709658405681FE9690FDBED795F.JVMAPPLYCENTER22');" id="menu350" class="dep3Item"><span>당첨결과조회</span></a></li>
+								<li><a href="javascript:$net.href('/smw/smw137010/selectRvmRegstr.do;BMCW_JSESSIONID=3C7B0709658405681FE9690FDBED795F.JVMAPPLYCENTER22');" id="menu351" class="dep3Item"><span>예비입주자서류제출</span></a></li>
+							</ul>
+						</li>
+					</ul>
+				</ul>
+			<ul class="deps01">
+				<li class="lnb02 ">
+					<a href="javascript:void(0)" class="dep1Item">계약서비스</a>
+					<ul class="deps02">
+						<li>
+							<a href="#" class="dep2Item">계약정보조회/변경</a>
+							<ul class="deps03">
+								<li><a href="javascript:$net.href('/smw/smw211010/selectContractList.do;BMCW_JSESSIONID=3C7B0709658405681FE9690FDBED795F.JVMAPPLYCENTER22');" id="menu354" class="dep3Item"><span>계약정보조회</span></a></li>
+								<li><a href="javascript:$net.href('/smw/smw212010/selectIndividualReserveList.do;BMCW_JSESSIONID=3C7B0709658405681FE9690FDBED795F.JVMAPPLYCENTER22');" id="menu436" class="dep3Item"><span>예비입주자 순위</span></a></li>
+							</ul>
+						</li>
+						<li class = "menu362Li" style="display: none;">
+							<a href="#" class="dep2Item">계약</a>
+							<ul class="deps03">
+
+								<li><a href="javascript:$net.href('/smw/smw222010/selectCancelContractList.do;BMCW_JSESSIONID=3C7B0709658405681FE9690FDBED795F.JVMAPPLYCENTER22');" id="menu362" class="dep3Item"><span>계약해지신청</span></a></li>
+							</ul>
+						</li>
+						<li>
+							<a href="#" class="dep2Item">계약갱신</a>
+							<ul class="deps03">
+								<li><a href="javascript:$net.href('/smw/smw231010/selectHouseUpdtPaprList.do;BMCW_JSESSIONID=3C7B0709658405681FE9690FDBED795F.JVMAPPLYCENTER22');" id="menu365" class="dep3Item"><span>계약갱신서류제출</span></a></li>
+								<li><a href="javascript:$net.href('/smw/smw232010/selectCtrtExplnTrgtList.do;BMCW_JSESSIONID=3C7B0709658405681FE9690FDBED795F.JVMAPPLYCENTER22');" id="menu367" class="dep3Item"><span>소명대상조회/서류제출</span></a></li>
+							</ul>
+						</li>
+						<li>
+							<a href="#" class="dep2Item">분양계약처리</a>
+							<ul class="deps03">
+								<li><a href="javascript:$net.href('/smw/smw241010/selectCtrtList.do;BMCW_JSESSIONID=3C7B0709658405681FE9690FDBED795F.JVMAPPLYCENTER22');" id="menu370" class="dep3Item"><span>분양계약처리</span></a></li>
+							</ul>
+						</li>
+						<li>
+                                                    <a href="#" class="dep2Item">자동이체 신청</a>
+                                                    <ul class="deps03">
+                                                        <li><a href="javascript:$net.href('/smw/smw251010/selectCtrtList.do;BMCW_JSESSIONID=3C7B0709658405681FE9690FDBED795F.JVMAPPLYCENTER22');" id="menu374"  class="dep3Item"><span>자동이체 신청</span></a></li>
+                                                    </ul>
+                                                </li>
+                                                <li>
+                                                    <a href="#" class="dep2Item">고지방식 변경</a>
+                                                    <ul class="deps03">
+                                                        <li><a href="javascript:$net.href('/smw/smw261010/selectCtrtList.do;BMCW_JSESSIONID=3C7B0709658405681FE9690FDBED795F.JVMAPPLYCENTER22');" id="menu377"  class="dep3Item"><span>고지방식 변경</span></a></li>
+                                                    </ul>
+                                                </li>
+		
+					</ul>
+				</ul>
+			<ul class="deps01">
+				<li class="lnb03 ">
+					<a href="javascript:void(0)" class="dep1Item">입주/퇴거 지원</a>
+					<ul class="deps02">
+						<li>
+							<a href="#" class="dep2Item">입주/퇴거</a>
+							<ul class="deps03">
+								<li><a href="javascript:$net.href('/smw/smw311010/selectNoticeList.do;BMCW_JSESSIONID=3C7B0709658405681FE9690FDBED795F.JVMAPPLYCENTER22');" id="menu380" class="dep3Item"><span>입주</span></a></li>
+								<li><a href="javascript:$net.href('/smw/smw312010/selectLvhsAplyList.do;BMCW_JSESSIONID=3C7B0709658405681FE9690FDBED795F.JVMAPPLYCENTER22');" id="menu383" class="dep3Item"><span>퇴거</span></a></li>
+								<li><a href="javascript:$net.href('/smw/smw312020/selectLvhsAplyDetails.do;BMCW_JSESSIONID=3C7B0709658405681FE9690FDBED795F.JVMAPPLYCENTER22');" id="menu433" class="dep3Item"><span>퇴거확인 내역조회</span></a></li>
+							</ul>
+						</li>
+					</ul>
+				</ul>
+			<ul class="deps01">
+				<li class="lnb04 ">
+					<a href="javascript:void(0)" class="dep1Item">고객지원</a>
+					<ul class="deps02">
+						<li>
+							<a href="#" class="dep2Item">증명서발급</a>
+							<ul class="deps03">
+								<li><a href="javascript:$net.href('/smw/smw411010/selectCtrtCrtfList.do;BMCW_JSESSIONID=3C7B0709658405681FE9690FDBED795F.JVMAPPLYCENTER22');" id="menu388" class="dep3Item"><span>증명서발급</span></a></li>
+								<li><a href="javascript:$net.href('/smw/smw412010/selectIssuCrtfView.do;BMCW_JSESSIONID=3C7B0709658405681FE9690FDBED795F.JVMAPPLYCENTER22');" id="menu398" class="dep3Item"><span>증명서진위확인</span></a></li>
+							</ul>
+						</li>
+						
+						<li>
+							<a href="#" class="dep2Item">임대주택 관리규약</a>
+							<ul class="deps03">
+								<li><a href="javascript:$net.href('/smw/smw441010/selectNoticeList.do;BMCW_JSESSIONID=3C7B0709658405681FE9690FDBED795F.JVMAPPLYCENTER22');" id="menu406" class="dep3Item"><span>임대주택 관리규약</span></a></li>
+							</ul>
+						</li>
+						<li>
+							<a href="#" class="dep2Item">관심고객등록</a>
+							<ul class="deps03">
+								<li><a href="javascript:$net.href('/smw/smw461010/selectItrstCust.do;BMCW_JSESSIONID=3C7B0709658405681FE9690FDBED795F.JVMAPPLYCENTER22');" id="menu412" class="dep3Item"><span>관심고객등록</span></a></li>
+							</ul>
+						</li>
+					</ul>
+				</ul>
+				<div class="cs">
+					<div class="login">
+				
+					
+						<a href="/smw/smw041010/LoginForm.do">로그인</a>
+					
+					
+				
+					</div>
+					<div class="csNumber">
+						<span>고객센터</span>
+						<p class="number">051-810-1200</p>
+						<p class="mt10">청약내용과 관련 문의는</p>
+						<p>공고문의 부산도시공사 담당자 연락처 참조</p>
+					</div>
+				</div>
+			</div>
+		</nav>
+<!-- moNav -->
+<div class="moNav">
+	<div class="header">
+		<h1>
+			<a href="/"><img src="/images/common/logo.png;BMCW_JSESSIONID=3C7B0709658405681FE9690FDBED795F.JVMAPPLYCENTER22" alt="부산도시공사로고"></a>
+		</h1>
+		<div class="menuBtn">
+			<a class="menu-trigger" href="#">
+				<span></span>
+				<span></span>
+				<span></span>
+			</a>
+		</div>
+	</div>
+	<nav class="mo">
+			<ul class="deps01">
+				<li>
+					<p>청약서비스</p>
+					<div class="depsIcon"></div>
+					<ul class="deps02">
+						<li>
+							<p>청약정보</p>
+							<ul class="deps03">
+								<li><a href="javascript:$net.href('/smw/smw111010/selectSplyCalendarList.do;BMCW_JSESSIONID=3C7B0709658405681FE9690FDBED795F.JVMAPPLYCENTER22');" id="menu317" class="dep3Item"><span>청약캘린더</span></a></li>
+								<li><a href="javascript:$net.href('/smw/smw112010/selectNoticeList.do;BMCW_JSESSIONID=3C7B0709658405681FE9690FDBED795F.JVMAPPLYCENTER22');" id="menu318" class="dep3Item"><span>전자팸플릿</span></a></li>
+								<li><a href="javascript:$net.href('/smw/smw113010/selectPbancRentHouseList.do;BMCW_JSESSIONID=3C7B0709658405681FE9690FDBED795F.JVMAPPLYCENTER22');" id="menu319" class="dep3Item"><span>청약공고</span></a></li>
+								<li><a href="javascript:$net.href('/smw/smw114010/selectNoticeList.do;BMCW_JSESSIONID=3C7B0709658405681FE9690FDBED795F.JVMAPPLYCENTER22');" id="menu322" class="dep3Item"><span>공지사항</span></a></li>
+								<li><a href="javascript:$net.href('/smw/smw115010/selectDataList.do;BMCW_JSESSIONID=3C7B0709658405681FE9690FDBED795F.JVMAPPLYCENTER22');" id="menu323" class="dep3Item"><span>자료실</span></a></li>
+								<li><a href="javascript:$net.href('/smw/smw116010/selectFaqList.do;BMCW_JSESSIONID=3C7B0709658405681FE9690FDBED795F.JVMAPPLYCENTER22');" id="menu324" class="dep3Item"><span>FAQ</span></a></li>
+								<li><a href="javascript:$net.href('/smw/smw117010/selectPbancList.do;BMCW_JSESSIONID=3C7B0709658405681FE9690FDBED795F.JVMAPPLYCENTER22');" id="menu325" class="dep3Item"><span>경쟁률조회</span></a></li>
+							</ul>
+						</li>
+						<li>
+							<p>청약가이드</p>
+							<ul class="deps03">
+								<li><a href="javascript:$net.href('/smw/smw121010/selectHpnsSbcrtGuide.do;BMCW_JSESSIONID=3C7B0709658405681FE9690FDBED795F.JVMAPPLYCENTER22');" id="menu327" class="dep3Item"><span>청약가이드</span></a></li>
+							</ul>
+						</li>
+						<li>
+							<p>온라인청약</p>
+							<ul class="deps03">
+								<li><a href="javascript:$net.href('/smw/smw131010/selectRthousSbcrtPrctBfrhndGuid.do;BMCW_JSESSIONID=3C7B0709658405681FE9690FDBED795F.JVMAPPLYCENTER22');" id="menu336" class="dep3Item"><span>청약연습</span></a></li>
+								<li><a href="javascript:$net.href('/smw/smw132010/selectSbscAplyHouse.do;BMCW_JSESSIONID=3C7B0709658405681FE9690FDBED795F.JVMAPPLYCENTER22');" id="menu339" class="dep3Item"><span>청약신청</span></a></li>
+								<li><a href="javascript:$net.href('/smw/smw133010/selectAplyDtlsList.do;BMCW_JSESSIONID=3C7B0709658405681FE9690FDBED795F.JVMAPPLYCENTER22');" id="menu342" class="dep3Item"><span>신청내역 조회</span></a></li>
+								<li><a href="javascript:$net.href('/smw/smw134010/selectPbancList.do;BMCW_JSESSIONID=3C7B0709658405681FE9690FDBED795F.JVMAPPLYCENTER22');" id="menu345" class="dep3Item"><span>서류제출대상조회/서류제출</span></a></li>
+								<li><a href="javascript:$net.href('/smw/smw135010/selectOnlnExplnTrgtList.do;BMCW_JSESSIONID=3C7B0709658405681FE9690FDBED795F.JVMAPPLYCENTER22');" id="menu348" class="dep3Item"><span>소명대상 조회/서류제출</span></a></li>
+								<li><a href="javascript:$net.href('/smw/smw136010/selectPblancWinnerList.do;BMCW_JSESSIONID=3C7B0709658405681FE9690FDBED795F.JVMAPPLYCENTER22');" id="menu350" class="dep3Item"><span>당첨결과조회</span></a></li>
+								<li><a href="javascript:$net.href('/smw/smw137010/selectRvmRegstr.do;BMCW_JSESSIONID=3C7B0709658405681FE9690FDBED795F.JVMAPPLYCENTER22');" id="menu351" class="dep3Item"><span>예비입주자서류제출</span></a></li>
+							</ul>
+						</li>
+					</ul>
+				</ul>
+			<ul class="deps01">
+				<li>
+					<p>계약서비스</p>
+					<div class="depsIcon"></div>
+					<ul class="deps02">
+						<li>
+							<p>계약정보조회/변경</p>
+							<ul class="deps03">
+								<li><a href="javascript:$net.href('/smw/smw211010/selectContractList.do;BMCW_JSESSIONID=3C7B0709658405681FE9690FDBED795F.JVMAPPLYCENTER22');" id="menu354" class="dep3Item"><span>계약정보조회</span></a></li>
+								<li><a href="javascript:$net.href('/smw/smw212010/selectIndividualReserveList.do;BMCW_JSESSIONID=3C7B0709658405681FE9690FDBED795F.JVMAPPLYCENTER22');" id="menu436" class="dep3Item"><span>예비입주자 순위</span></a></li>
+							</ul>
+						</li>
+						<li class = "menu362Li" style="display: none;">
+							<p>계약</p>
+							<ul class="deps03">
+
+								<li style="display: none;" class="menu362Li"><a href="javascript:$net.href('/smw/smw222010/selectCancelContractList.do;BMCW_JSESSIONID=3C7B0709658405681FE9690FDBED795F.JVMAPPLYCENTER22');" id="menu362" class="dep3Item"><span>계약해지신청</span></a></li>
+							</ul>
+						</li>
+						<li>
+							<p>계약갱신</p>
+							<ul class="deps03">
+								<li><a href="javascript:$net.href('/smw/smw231010/selectHouseUpdtPaprList.do;BMCW_JSESSIONID=3C7B0709658405681FE9690FDBED795F.JVMAPPLYCENTER22');" id="menu365" class="dep3Item"><span>계약갱신서류제출</span></a></li>
+								<li><a href="javascript:$net.href('/smw/smw232010/selectCtrtExplnTrgtList.do;BMCW_JSESSIONID=3C7B0709658405681FE9690FDBED795F.JVMAPPLYCENTER22');" id="menu367" class="dep3Item"><span>소명대상조회/서류제출</span></a></li>
+							</ul>
+						</li>
+						<li>
+							<p>분양계약처리</p>
+							<ul class="deps03">
+								<li><a href="javascript:$net.href('/smw/smw241010/selectCtrtList.do;BMCW_JSESSIONID=3C7B0709658405681FE9690FDBED795F.JVMAPPLYCENTER22');" id="menu370" class="dep3Item"><span>분양계약처리</span></a></li>
+							</ul>
+						</li>
+						<li>
+						<p>자동이체</p>
+						<ul class="deps03">
+							<li><a
+								href="javascript:$net.href('/smw/smw251010/selectCtrtList.do;BMCW_JSESSIONID=3C7B0709658405681FE9690FDBED795F.JVMAPPLYCENTER22');"
+								id="menu373" class="dep3Item"><span>자동이체 신청</span></a></li>
+						</ul>
+					</li>
+					<li>
+						<p>고지방식변경</p>
+						<ul class="deps03">
+							<li><a
+								href="javascript:$net.href('/smw/smw261010/selectCtrtList.do;BMCW_JSESSIONID=3C7B0709658405681FE9690FDBED795F.JVMAPPLYCENTER22');"
+								id="menu376" class="dep3Item"><span>임대료청구서 고>지방식 변경</span></a></li>
+						</ul>
+					</li>
+					</ul>
+				</ul>
+			<ul class="deps01">
+				<li>
+					<p>입주/퇴거 지원</p>
+					<div class="depsIcon"></div>
+					<ul class="deps02">
+						<li>
+							<p>입주/퇴거</p>
+							<ul class="deps03">
+								<li><a href="javascript:$net.href('/smw/smw311010/selectNoticeList.do;BMCW_JSESSIONID=3C7B0709658405681FE9690FDBED795F.JVMAPPLYCENTER22');" id="menu380" class="dep3Item"><span>입주</span></a></li>
+								<li><a href="javascript:$net.href('/smw/smw312010/selectLvhsAplyList.do;BMCW_JSESSIONID=3C7B0709658405681FE9690FDBED795F.JVMAPPLYCENTER22');" id="menu383" class="dep3Item"><span>퇴거</span></a></li>
+								<li><a href="javascript:$net.href('/smw/smw312020/selectLvhsAplyDetails.do;BMCW_JSESSIONID=3C7B0709658405681FE9690FDBED795F.JVMAPPLYCENTER22');" id="menu433" class="dep3Item"><span>퇴거확인 내역조회</span></a></li>
+							</ul>
+						</li>
+					</ul>
+				</ul>
+			<ul class="deps01">
+				<li>
+					<p>고객지원</p>
+					<div class="depsIcon"></div>
+					<ul class="deps02">
+						<li>
+							<p>증명서발급</p>
+							<ul class="deps03">
+								<li><a href="javascript:$net.href('/smw/smw411010/selectCtrtCrtfList.do;BMCW_JSESSIONID=3C7B0709658405681FE9690FDBED795F.JVMAPPLYCENTER22');" id="menu388" class="dep3Item"><span>증명서발급</span></a></li>
+								<li><a href="javascript:$net.href('/smw/smw412010/selectIssuCrtfView.do;BMCW_JSESSIONID=3C7B0709658405681FE9690FDBED795F.JVMAPPLYCENTER22');" id="menu398" class="dep3Item"><span>증명서진위확인</span></a></li>
+							</ul>
+						</li>
+						
+						<li>
+							<p>임대주택 관리규약</p>
+							<ul class="deps03">
+								<li><a href="javascript:$net.href('/smw/smw441010/selectNoticeList.do;BMCW_JSESSIONID=3C7B0709658405681FE9690FDBED795F.JVMAPPLYCENTER22');" id="menu406" class="dep3Item"><span>임대주택 관리규약</span></a></li>
+							</ul>
+						</li>
+						<li>
+							<p>관심고객등록</p>
+							<ul class="deps03">
+								<li><a href="javascript:$net.href('/smw/smw461010/selectItrstCust.do;BMCW_JSESSIONID=3C7B0709658405681FE9690FDBED795F.JVMAPPLYCENTER22');" id="menu412" class="dep3Item"><span>관심고객등록</span></a></li>
+							</ul>
+						</li>			
+					</ul>
+				</ul>
+				<div class="cs">
+					<div class="login">
+				
+					
+						<a href="/smw/smw041010/LoginForm.do">로그인</a>
+					
+					
+				
+					</div>
+				</div>
+			</nav>
+		</div>
+
+<script>
+
+	$(document).ready(function() {
+		// 접속기기 정보 가져오기
+		let deviceType = "";
+
+		if (navigator.userAgentData && navigator.userAgentData.mobile !== undefined) {
+			deviceType = navigator.userAgentData.mobile ? "mo" : "pc";
+		}
+		
+		// PC일경우 맞춤메뉴 css 조정
+		if(deviceType != "mo"){
+			$(".marginTopMi15").css("margin-top","-10px");
+			$(".marginTopMi15").css("padding-bottom","35px");
+		}else{
+			// mobile일 경우 줄 바꿈 
+			$(".bankReq").html("자동이체<br>신청/해제");
+		}
+
+
+		//임대유형 session 확인 없으면 임대유형 session 저장
+		var bmcLoginSession = 'null';
+		// 세션에 로그인 정보 있을때
+		if (bmcLoginSession && bmcLoginSession !== "null") {
+			// 세션에 임대유형 정보가 있는지 확인
+			var bizTypeCd = 'null';
+			if (bizTypeCd && (bizTypeCd == '06' || bizTypeCd == '07')) {
+				//임대유형이 있을때 매입임대 & 재개발임대 계약해지 메뉴 활성화
+				showHideCancelCntr(bizTypeCd,deviceType);
+			}else{
+				//임대유형이 없을때 ajax로 session에 임대유형 저장 후 메뉴 활성화/비활성화
+				bizTypeCdChk(deviceType);
+			}
+		}else{
+			if(deviceType == "mo"){
+				$(".menu362Box").css("display", "none");
+			}
+		}
+	});
+	// 접속자의 임대유형에 따른 메뉴 활성화//비활성화
+	function bizTypeCdChk(deviceType){
+		$.ajax({
+			url: "/co/coa/saveBizTypeCdSession.do",
+			type: "POST",
+			dataType: "json",
+			data:{"jsonPath" : $("#jsonPath").val()},
+			contentType: "application/json; charset=utf-8",
+			success: function (data) {
+				//console.log("세션 저장 성공." + data.bizTypeCd);
+				if (data.bizTypeCd && (data.bizTypeCd == '06' || data.bizTypeCd == '07')) {
+					//임대유형이 있을때 매입임대 & 재개발임대 계약해지 메뉴 활성화
+					$(".menu362Li").css("display", "block");
+					$(".menu362Div").css("visibility", "visible");
+				}else{
+					$(".menu362Li").css("display", "none");
+					$(".menu362Div").css("visibility", "hidden");
+					if(deviceType == "mo"){
+						$(".menu362Box").css("display", "none");
+					}
+				}
+			},
+			error: function (xhr, status, error) {
+				//console.error("세션 저장 실패:", error);
+			}
+		});
+	}
+
+	// bizTypeCd에 따른 계약해지신청 메뉴 활성화/비활성화
+	function showHideCancelCntr(bizTypeCd,deviceType) {
+		if (bizTypeCd && (bizTypeCd == '06' || bizTypeCd == '07')) {
+			//임대유형이 있을때 매입임대 & 재개발임대 계약해지 메뉴 활성화
+			$(".menu362Li").css("display", "block");
+			$(".menu362Div").css("visibility", "visible");
+		}else{
+			$(".menu362Li").css("display", "none");
+			$(".menu362Div").css("visibility", "hidden");
+			if(deviceType == "mo"){
+				$(".menu362Box").css("display", "none");
+			}
+		}
+	}
+
+
+
+</script>
+	<main>
+		<!-- header -->
+		<div id="header">
+			<div class="header">
+				<header class="gnb">
+					<h2>청약공고</h2>
+					<div class="breadcrumb">
+						<ul class="routeList">
+							<li class="home"><a href="#"> <span class="hidden">홈으로 이동</span>
+							</a></li>
+							<li class="route"><a href="#">청약서비스</a></li>
+							<li class="route"><a href="#">청약정보</a></li>
+							<li class="route"><a href="#">청약공고</a></li>
+						</ul>
+					</div>
+				</header>
+			</div>
+		</div>
+		<!-- //header -->
+
+
+		<div class="content tabcontent">
+			<!-- tabWrap -->
+			<div class="tabWrap type01">
+				<!-- tabNav -->
+				<div class="tabNav">
+					<!-- tabList -->
+					<ul class="tabList">
+						<li>
+							<button type="button" class="btnTab" id="tab1" name="tab1">임대주택</button>
+						</li>
+						<li class="active">
+							<button type="button" class="btnTab" id="tab2" name="tab2">매입임대</button>
+						</li>
+					</ul>
+					<!-- //tabList -->
+				</div>
+				<!-- //tabNav -->
+
+				<!-- tabCont -->
+				<div class="tabCont active">
+					<!-- sectionWrap -->
+					<div class="sectionWrap">
+						<!-- searchBox -->
+						<div class="searchBox type04">
+							<!-- field-->
+							<div class="field type03 f1">
+								<label for="search_area">지역</label>
+								<div class="inputBox f1">
+									<select class="select" id="search_area" name="search_area">
+										<option value="">전체</option>
+										
+											<option value="26" >부산광역시</option>
+										
+											<option value="26110" >중구</option>
+										
+											<option value="26140" >서구</option>
+										
+											<option value="26170" >동구</option>
+										
+											<option value="26200" >영도구</option>
+										
+											<option value="26230" >부산진구</option>
+										
+											<option value="26260" >동래구</option>
+										
+											<option value="26290" >남구</option>
+										
+											<option value="26320" >북구</option>
+										
+											<option value="26350" >해운대구</option>
+										
+											<option value="26380" >사하구</option>
+										
+											<option value="26410" >금정구</option>
+										
+											<option value="26440" >강서구</option>
+										
+											<option value="26470" >연제구</option>
+										
+											<option value="26500" >수영구</option>
+										
+											<option value="26530" >사상구</option>
+										
+											<option value="26710" >기장군</option>
+										
+											<option value="31" >울산광역시</option>
+										
+											<option value="48" >경상남도</option>
+										
+											<option value="48120" >창원시</option>
+										
+											<option value="48125" >창원시 마산합포구</option>
+										
+											<option value="48127" >창원시 마산회원구</option>
+										
+											<option value="48123" >창원시 성산구</option>
+										
+											<option value="48121" >창원시 의창구</option>
+										
+											<option value="48129" >창원시 진해구</option>
+										
+											<option value="48170" >진주시</option>
+										
+											<option value="48220" >통영시</option>
+										
+											<option value="48240" >사천시</option>
+										
+											<option value="48250" >김해시</option>
+										
+											<option value="48270" >밀양시</option>
+										
+											<option value="48310" >거제시</option>
+										
+											<option value="48330" >양산시</option>
+										
+											<option value="48720" >의령군</option>
+										
+											<option value="48730" >함안군</option>
+										
+											<option value="48740" >창녕군</option>
+										
+											<option value="48820" >고성군</option>
+										
+											<option value="48840" >남해군</option>
+										
+											<option value="48850" >하동군</option>
+										
+											<option value="48860" >산청군</option>
+										
+											<option value="48870" >함양군</option>
+										
+											<option value="48880" >거창군</option>
+										
+											<option value="48890" >합천군</option>
+										
+									</select>
+								</div>
+							</div>
+							<!-- //field -->
+
+							<!-- field-->
+							<div class="field type03 f1">
+								<label for="search_state">상태</label>
+								<div class="inputBox f1">
+									<select class="select" id="search_state" name="search_state">
+										<option value="">전체</option>
+										<option value="1" >공고중</option>
+										<option value="2" >접수중</option>
+										<option value="3" >접수마감</option>
+									</select>
+								</div>
+							</div>
+							<!-- //field -->
+
+							<!-- field-->
+							<div class="field type03 col f3">
+								<div class="group f1">
+									<label for="search_title">공고명</label>
+									<div class="inputArea f1">
+										<input type="text" id="search_title" placeholder="검색어를 입력해주세요" value="">
+									</div>
+								</div>
+								<div class="fieldSubmit mFull">
+									<button type="button" class="btn primary" id="search_btn">
+										<span>검색</span>
+									</button>
+								</div>
+							</div>
+							<!-- //field -->
+						</div>
+						<!-- //searchBox -->
+
+
+						
+						<p class="total_txt">
+							<i class="xi-paper-o"></i> 총게시물 : <b class="color_blue">13</b>&nbsp; 페이지 :
+							1
+							/
+							2
+						</p>
+
+						<!-- table -->
+						<div class="tableWrap" id="tableWrap">
+							<!-- table -->
+							<div class="table colType pc">
+								<table>
+									<caption>청약공고 임대주택 테이블로
+										번호,유형,공고명,지역,첨부,게시일,마감일,상태,경쟁률,조회수 정보들을 제공합니다.
+									</caption>
+									<colgroup>
+										<col style="width: 70px">
+										<col style="width: 100px">
+										<col style="width: auto">
+										<col style="width: 100px">
+										<col style="width: 110px">
+										<col style="width: 110px">
+										<col style="width: 90px">
+										<col style="width: 100px">
+									</colgroup>
+									<thead>
+									<tr>
+										<th scope="col">번호</th>
+										<th scope="col">유형</th>
+										<th scope="col">공고명</th>
+										<th scope="col">지역</th>
+										<th scope="col">게시일</th>
+										<th scope="col">마감일</th>
+										<th scope="col">상태</th>
+										<th scope="col">조회수</th>
+									</tr>
+									</thead>
+									<tbody>
+									
+										
+										
+											
+												<tr>
+													<td class="txt-center">1</td>
+													<td class="txt-center">
+														
+														
+															매입임대
+														
+													
+													</td>
+													<td class="txt-left">
+														<a href="#a" class="text_cut"
+														   data-previewYn="N"
+														   data-pbancNo="110"
+														   data-pbancKndCd="01"
+														   data-bizTyNm="매입임대">
+															
+																
+																
+																	2026년 신혼·신생아 매입임대주택Ⅱ (예비)입주자 모집공고
+																
+															
+														</a>
+													</td>
+													<td class="txt-center">
+														
+														
+														
+															부산광역시
+														
+														
+
+													<td class="txt-center">
+														
+														
+															2026-09-30
+														
+													</td>
+													<td class="txt-center">
+														
+														
+														
+															2026-10-21
+														
+														
+													<td class="txt-center">
+														
+														
+														
+															공고중
+														
+														
+													<td class="txt-center">
+													810
+													</td>
+												</tr>
+											
+												<tr>
+													<td class="txt-center">2</td>
+													<td class="txt-center">
+														
+														
+															매입임대
+														
+													
+													</td>
+													<td class="txt-left">
+														<a href="#a" class="text_cut"
+														   data-previewYn="N"
+														   data-pbancNo="108"
+														   data-pbancKndCd="01"
+														   data-bizTyNm="매입임대">
+															
+																
+																
+																	2026년 장기미임대 매입임대주택 (예비)입주자 모집공고
+																
+															
+														</a>
+													</td>
+													<td class="txt-center">
+														
+														
+														
+															부산광역시
+														
+														
+
+													<td class="txt-center">
+														
+														
+															2026-08-24
+														
+													</td>
+													<td class="txt-center">
+														
+														
+														
+															2026-09-09
+														
+														
+													<td class="txt-center">
+														
+														
+														
+															접수마감
+														
+														
+													<td class="txt-center">
+													6,469
+													</td>
+												</tr>
+											
+												<tr>
+													<td class="txt-center">3</td>
+													<td class="txt-center">
+														
+														
+															매입임대
+														
+													
+													</td>
+													<td class="txt-left">
+														<a href="#a" class="text_cut"
+														   data-previewYn="N"
+														   data-pbancNo="91"
+														   data-pbancKndCd="01"
+														   data-bizTyNm="매입임대">
+															
+																
+																
+																	2026년 1차 청년 매입임대주택 (예비)입주자 모집공고
+																
+															
+														</a>
+													</td>
+													<td class="txt-center">
+														
+														
+														
+															부산광역시
+														
+														
+
+													<td class="txt-center">
+														
+														
+															2026-06-12
+														
+													</td>
+													<td class="txt-center">
+														
+														
+														
+															2026-06-26
+														
+														
+													<td class="txt-center">
+														
+														
+														
+															접수마감
+														
+														
+													<td class="txt-center">
+													24,224
+													</td>
+												</tr>
+											
+												<tr>
+													<td class="txt-center">4</td>
+													<td class="txt-center">
+														
+														
+															매입임대
+														
+													
+													</td>
+													<td class="txt-left">
+														<a href="#a" class="text_cut"
+														   data-previewYn="N"
+														   data-pbancNo="79"
+														   data-pbancKndCd="01"
+														   data-bizTyNm="매입임대">
+															
+																
+																
+																	2025년 2차 청년 매입임대주택 (예비)입주자 모집공고(2·3순위)
+																
+															
+														</a>
+													</td>
+													<td class="txt-center">
+														
+														
+														
+															부산광역시
+														
+														
+
+													<td class="txt-center">
+														
+														
+															2025-12-29
+														
+													</td>
+													<td class="txt-center">
+														
+														
+														
+															2026-01-27
+														
+														
+													<td class="txt-center">
+														
+														
+														
+															접수마감
+														
+														
+													<td class="txt-center">
+													19,856
+													</td>
+												</tr>
+											
+												<tr>
+													<td class="txt-center">5</td>
+													<td class="txt-center">
+														
+														
+															매입임대
+														
+													
+													</td>
+													<td class="txt-left">
+														<a href="#a" class="text_cut"
+														   data-previewYn="N"
+														   data-pbancNo="78"
+														   data-pbancKndCd="01"
+														   data-bizTyNm="매입임대">
+															
+																
+																
+																	2025년 2차 청년 매입임대주택 (예비)입주자 모집공고
+																
+															
+														</a>
+													</td>
+													<td class="txt-center">
+														
+														
+														
+															부산광역시
+														
+														
+
+													<td class="txt-center">
+														
+														
+															2025-12-29
+														
+													</td>
+													<td class="txt-center">
+														
+														
+														
+															2026-01-13
+														
+														
+													<td class="txt-center">
+														
+														
+														
+															접수마감
+														
+														
+													<td class="txt-center">
+													27,856
+													</td>
+												</tr>
+											
+												<tr>
+													<td class="txt-center">6</td>
+													<td class="txt-center">
+														
+														
+															매입임대
+														
+													
+													</td>
+													<td class="txt-left">
+														<a href="#a" class="text_cut"
+														   data-previewYn="N"
+														   data-pbancNo="57"
+														   data-pbancKndCd="01"
+														   data-bizTyNm="매입임대">
+															
+																
+																
+																	2025년 1차 청년 매입임대주택 (예비)입주자 모집공고
+																
+															
+														</a>
+													</td>
+													<td class="txt-center">
+														
+														
+														
+															부산광역시
+														
+														
+
+													<td class="txt-center">
+														
+														
+															2025-04-28
+														
+													</td>
+													<td class="txt-center">
+														
+														
+														
+															2025-05-13
+														
+														
+													<td class="txt-center">
+														
+														
+														
+															접수마감
+														
+														
+													<td class="txt-center">
+													25,367
+													</td>
+												</tr>
+											
+												<tr>
+													<td class="txt-center">7</td>
+													<td class="txt-center">
+														
+														
+															매입임대
+														
+													
+													</td>
+													<td class="txt-left">
+														<a href="#a" class="text_cut"
+														   data-previewYn="N"
+														   data-pbancNo="58"
+														   data-pbancKndCd="01"
+														   data-bizTyNm="매입임대">
+															
+																
+																
+																	2025년 1차 청년 매입임대주택 (예비)입주자 모집공고(2·3순위)
+																
+															
+														</a>
+													</td>
+													<td class="txt-center">
+														
+														
+														
+															부산광역시
+														
+														
+
+													<td class="txt-center">
+														
+														
+															2025-04-28
+														
+													</td>
+													<td class="txt-center">
+														
+														
+														
+															2025-05-27
+														
+														
+													<td class="txt-center">
+														
+														
+														
+															접수마감
+														
+														
+													<td class="txt-center">
+													17,393
+													</td>
+												</tr>
+											
+												<tr>
+													<td class="txt-center">8</td>
+													<td class="txt-center">
+														
+														
+															매입임대
+														
+													
+													</td>
+													<td class="txt-left">
+														<a href="#a" class="text_cut"
+														   data-previewYn="N"
+														   data-pbancNo="39"
+														   data-pbancKndCd="01"
+														   data-bizTyNm="매입임대">
+															
+																
+																
+																	2024년 2차 청년 매입임대주택 (예비)입주자 모집공고(2·3순위)
+																
+															
+														</a>
+													</td>
+													<td class="txt-center">
+														
+														
+														
+															부산광역시
+														
+														
+
+													<td class="txt-center">
+														
+														
+															2024-10-16
+														
+													</td>
+													<td class="txt-center">
+														
+														
+														
+															2024-10-22
+														
+														
+													<td class="txt-center">
+														
+														
+														
+															접수마감
+														
+														
+													<td class="txt-center">
+													20,105
+													</td>
+												</tr>
+											
+												<tr>
+													<td class="txt-center">9</td>
+													<td class="txt-center">
+														
+														
+															매입임대
+														
+													
+													</td>
+													<td class="txt-left">
+														<a href="#a" class="text_cut"
+														   data-previewYn="N"
+														   data-pbancNo="37"
+														   data-pbancKndCd="01"
+														   data-bizTyNm="매입임대">
+															
+																
+																
+																	2024년 2차 청년 매입임대주택 (예비)입주자 모집공고
+																
+															
+														</a>
+													</td>
+													<td class="txt-center">
+														
+														
+														
+															부산광역시
+														
+														
+
+													<td class="txt-center">
+														
+														
+															2024-09-27
+														
+													</td>
+													<td class="txt-center">
+														
+														
+														
+															2024-10-11
+														
+														
+													<td class="txt-center">
+														
+														
+														
+															접수마감
+														
+														
+													<td class="txt-center">
+													20,202
+													</td>
+												</tr>
+											
+												<tr>
+													<td class="txt-center">10</td>
+													<td class="txt-center">
+														
+														
+															매입임대
+														
+													
+													</td>
+													<td class="txt-left">
+														<a href="#a" class="text_cut"
+														   data-previewYn="N"
+														   data-pbancNo="24"
+														   data-pbancKndCd="01"
+														   data-bizTyNm="매입임대">
+															
+																
+																
+																	2024년 1차 청년 매입임대주택 입주자 모집공고(2,3순위)
+																
+															
+														</a>
+													</td>
+													<td class="txt-center">
+														
+														
+														
+															부산광역시
+														
+														
+
+													<td class="txt-center">
+														
+														
+															2024-06-28
+														
+													</td>
+													<td class="txt-center">
+														
+														
+														
+															2024-07-04
+														
+														
+													<td class="txt-center">
+														
+														
+														
+															접수마감
+														
+														
+													<td class="txt-center">
+													13,300
+													</td>
+												</tr>
+											
+										
+									
+
+									</tbody>
+								</table>
+							</div>
+							<!-- //table -->
+
+							<!-- table -->
+							<div class="table colType mo">
+								<table>
+									<caption>청약공고 임대주택 테이블로 번호,유형,공고명,지역,첨부,게시일,마감일,상태,경쟁률,조회수 정보들을 제공합니다.</caption>
+									<tbody>
+									
+										
+										
+											
+												<tr>
+													<td class="block">
+														<div class="tagGroup inB">
+															
+																<!-- 공고중 색상 -->
+																<span class="tag type02 wide bgTurquoise">
+																
+																	
+																	
+																
+																
+															
+
+																
+																	
+																	
+																		공고중
+																	
+																
+															</span>
+														</div>
+													</td>
+													<td class="us">
+														<div class="keyword">
+		                                                    <span>
+																
+																	
+																	
+																		매입임대
+																	
+																
+															</span>
+														</div>
+													</td>
+													<td class="us">
+														<div class="keyword">
+			                                                <span>
+															    
+																	
+																	
+																		부산광역시
+																	
+																
+															</span>
+														</div>
+													</td>
+													<td class="us">
+														<div class="keyword none">
+															<span>810</span>
+														</div>
+													</td>
+													<td class="us">
+														<div class="titGroup txt-left">
+															<a href="#a" class="text_cut"
+															   data-previewYn="N"
+															   data-pbancNo="110"
+															   data-pbancKndCd="01"
+															   data-bizTyNm="매입임대">
+																
+																	
+																	
+																		2026년 신혼·신생아 매입임대주택Ⅱ (예비)입주자 모집공고
+																	
+																
+															</a>
+														</div>
+													</td>
+													<td class="date whs">게시일
+														
+															
+															
+																2026-09-30
+															
+														 · 마감일
+														
+															
+															
+																2026-10-21
+															
+														
+													</td>
+												</tr>
+											
+												<tr>
+													<td class="block">
+														<div class="tagGroup inB">
+															
+																
+																	
+																	<!-- 접수마감 색상 -->
+																<span class="tag type02 wide bgGray">
+																
+																
+																
+															
+
+																
+																	
+																	
+																		접수마감
+																	
+																
+															</span>
+														</div>
+													</td>
+													<td class="us">
+														<div class="keyword">
+		                                                    <span>
+																
+																	
+																	
+																		매입임대
+																	
+																
+															</span>
+														</div>
+													</td>
+													<td class="us">
+														<div class="keyword">
+			                                                <span>
+															    
+																	
+																	
+																		부산광역시
+																	
+																
+															</span>
+														</div>
+													</td>
+													<td class="us">
+														<div class="keyword none">
+															<span>6,469</span>
+														</div>
+													</td>
+													<td class="us">
+														<div class="titGroup txt-left">
+															<a href="#a" class="text_cut"
+															   data-previewYn="N"
+															   data-pbancNo="108"
+															   data-pbancKndCd="01"
+															   data-bizTyNm="매입임대">
+																
+																	
+																	
+																		2026년 장기미임대 매입임대주택 (예비)입주자 모집공고
+																	
+																
+															</a>
+														</div>
+													</td>
+													<td class="date whs">게시일
+														
+															
+															
+																2026-08-24
+															
+														 · 마감일
+														
+															
+															
+																2026-09-09
+															
+														
+													</td>
+												</tr>
+											
+												<tr>
+													<td class="block">
+														<div class="tagGroup inB">
+															
+																
+																	
+																	<!-- 접수마감 색상 -->
+																<span class="tag type02 wide bgGray">
+																
+																
+																
+															
+
+																
+																	
+																	
+																		접수마감
+																	
+																
+															</span>
+														</div>
+													</td>
+													<td class="us">
+														<div class="keyword">
+		                                                    <span>
+																
+																	
+																	
+																		매입임대
+																	
+																
+															</span>
+														</div>
+													</td>
+													<td class="us">
+														<div class="keyword">
+			                                                <span>
+															    
+																	
+																	
+																		부산광역시
+																	
+																
+															</span>
+														</div>
+													</td>
+													<td class="us">
+														<div class="keyword none">
+															<span>24,224</span>
+														</div>
+													</td>
+													<td class="us">
+														<div class="titGroup txt-left">
+															<a href="#a" class="text_cut"
+															   data-previewYn="N"
+															   data-pbancNo="91"
+															   data-pbancKndCd="01"
+															   data-bizTyNm="매입임대">
+																
+																	
+																	
+																		2026년 1차 청년 매입임대주택 (예비)입주자 모집공고
+																	
+																
+															</a>
+														</div>
+													</td>
+													<td class="date whs">게시일
+														
+															
+															
+																2026-06-12
+															
+														 · 마감일
+														
+															
+															
+																2026-06-26
+															
+														
+													</td>
+												</tr>
+											
+												<tr>
+													<td class="block">
+														<div class="tagGroup inB">
+															
+																
+																	
+																	<!-- 접수마감 색상 -->
+																<span class="tag type02 wide bgGray">
+																
+																
+																
+															
+
+																
+																	
+																	
+																		접수마감
+																	
+																
+															</span>
+														</div>
+													</td>
+													<td class="us">
+														<div class="keyword">
+		                                                    <span>
+																
+																	
+																	
+																		매입임대
+																	
+																
+															</span>
+														</div>
+													</td>
+													<td class="us">
+														<div class="keyword">
+			                                                <span>
+															    
+																	
+																	
+																		부산광역시
+																	
+																
+															</span>
+														</div>
+													</td>
+													<td class="us">
+														<div class="keyword none">
+															<span>19,856</span>
+														</div>
+													</td>
+													<td class="us">
+														<div class="titGroup txt-left">
+															<a href="#a" class="text_cut"
+															   data-previewYn="N"
+															   data-pbancNo="79"
+															   data-pbancKndCd="01"
+															   data-bizTyNm="매입임대">
+																
+																	
+																	
+																		2025년 2차 청년 매입임대주택 (예비)입주자 모집공고(2·3순위)
+																	
+																
+															</a>
+														</div>
+													</td>
+													<td class="date whs">게시일
+														
+															
+															
+																2025-12-29
+															
+														 · 마감일
+														
+															
+															
+																2026-01-27
+															
+														
+													</td>
+												</tr>
+											
+												<tr>
+													<td class="block">
+														<div class="tagGroup inB">
+															
+																
+																	
+																	<!-- 접수마감 색상 -->
+																<span class="tag type02 wide bgGray">
+																
+																
+																
+															
+
+																
+																	
+																	
+																		접수마감
+																	
+																
+															</span>
+														</div>
+													</td>
+													<td class="us">
+														<div class="keyword">
+		                                                    <span>
+																
+																	
+																	
+																		매입임대
+																	
+																
+															</span>
+														</div>
+													</td>
+													<td class="us">
+														<div class="keyword">
+			                                                <span>
+															    
+																	
+																	
+																		부산광역시
+																	
+																
+															</span>
+														</div>
+													</td>
+													<td class="us">
+														<div class="keyword none">
+															<span>27,856</span>
+														</div>
+													</td>
+													<td class="us">
+														<div class="titGroup txt-left">
+															<a href="#a" class="text_cut"
+															   data-previewYn="N"
+															   data-pbancNo="78"
+															   data-pbancKndCd="01"
+															   data-bizTyNm="매입임대">
+																
+																	
+																	
+																		2025년 2차 청년 매입임대주택 (예비)입주자 모집공고
+																	
+																
+															</a>
+														</div>
+													</td>
+													<td class="date whs">게시일
+														
+															
+															
+																2025-12-29
+															
+														 · 마감일
+														
+															
+															
+																2026-01-13
+															
+														
+													</td>
+												</tr>
+											
+												<tr>
+													<td class="block">
+														<div class="tagGroup inB">
+															
+																
+																	
+																	<!-- 접수마감 색상 -->
+																<span class="tag type02 wide bgGray">
+																
+																
+																
+															
+
+																
+																	
+																	
+																		접수마감
+																	
+																
+															</span>
+														</div>
+													</td>
+													<td class="us">
+														<div class="keyword">
+		                                                    <span>
+																
+																	
+																	
+																		매입임대
+																	
+																
+															</span>
+														</div>
+													</td>
+													<td class="us">
+														<div class="keyword">
+			                                                <span>
+															    
+																	
+																	
+																		부산광역시
+																	
+																
+															</span>
+														</div>
+													</td>
+													<td class="us">
+														<div class="keyword none">
+															<span>25,367</span>
+														</div>
+													</td>
+													<td class="us">
+														<div class="titGroup txt-left">
+															<a href="#a" class="text_cut"
+															   data-previewYn="N"
+															   data-pbancNo="57"
+															   data-pbancKndCd="01"
+															   data-bizTyNm="매입임대">
+																
+																	
+																	
+																		2025년 1차 청년 매입임대주택 (예비)입주자 모집공고
+																	
+																
+															</a>
+														</div>
+													</td>
+													<td class="date whs">게시일
+														
+															
+															
+																2025-04-28
+															
+														 · 마감일
+														
+															
+															
+																2025-05-13
+															
+														
+													</td>
+												</tr>
+											
+												<tr>
+													<td class="block">
+														<div class="tagGroup inB">
+															
+																
+																	
+																	<!-- 접수마감 색상 -->
+																<span class="tag type02 wide bgGray">
+																
+																
+																
+															
+
+																
+																	
+																	
+																		접수마감
+																	
+																
+															</span>
+														</div>
+													</td>
+													<td class="us">
+														<div class="keyword">
+		                                                    <span>
+																
+																	
+																	
+																		매입임대
+																	
+																
+															</span>
+														</div>
+													</td>
+													<td class="us">
+														<div class="keyword">
+			                                                <span>
+															    
+																	
+																	
+																		부산광역시
+																	
+																
+															</span>
+														</div>
+													</td>
+													<td class="us">
+														<div class="keyword none">
+															<span>17,393</span>
+														</div>
+													</td>
+													<td class="us">
+														<div class="titGroup txt-left">
+															<a href="#a" class="text_cut"
+															   data-previewYn="N"
+															   data-pbancNo="58"
+															   data-pbancKndCd="01"
+															   data-bizTyNm="매입임대">
+																
+																	
+																	
+																		2025년 1차 청년 매입임대주택 (예비)입주자 모집공고(2·3순위)
+																	
+																
+															</a>
+														</div>
+													</td>
+													<td class="date whs">게시일
+														
+															
+															
+																2025-04-28
+															
+														 · 마감일
+														
+															
+															
+																2025-05-27
+															
+														
+													</td>
+												</tr>
+											
+												<tr>
+													<td class="block">
+														<div class="tagGroup inB">
+															
+																
+																	
+																	<!-- 접수마감 색상 -->
+																<span class="tag type02 wide bgGray">
+																
+																
+																
+															
+
+																
+																	
+																	
+																		접수마감
+																	
+																
+															</span>
+														</div>
+													</td>
+													<td class="us">
+														<div class="keyword">
+		                                                    <span>
+																
+																	
+																	
+																		매입임대
+																	
+																
+															</span>
+														</div>
+													</td>
+													<td class="us">
+														<div class="keyword">
+			                                                <span>
+															    
+																	
+																	
+																		부산광역시
+																	
+																
+															</span>
+														</div>
+													</td>
+													<td class="us">
+														<div class="keyword none">
+															<span>20,105</span>
+														</div>
+													</td>
+													<td class="us">
+														<div class="titGroup txt-left">
+															<a href="#a" class="text_cut"
+															   data-previewYn="N"
+															   data-pbancNo="39"
+															   data-pbancKndCd="01"
+															   data-bizTyNm="매입임대">
+																
+																	
+																	
+																		2024년 2차 청년 매입임대주택 (예비)입주자 모집공고(2·3순위)
+																	
+																
+															</a>
+														</div>
+													</td>
+													<td class="date whs">게시일
+														
+															
+															
+																2024-10-16
+															
+														 · 마감일
+														
+															
+															
+																2024-10-22
+															
+														
+													</td>
+												</tr>
+											
+												<tr>
+													<td class="block">
+														<div class="tagGroup inB">
+															
+																
+																	
+																	<!-- 접수마감 색상 -->
+																<span class="tag type02 wide bgGray">
+																
+																
+																
+															
+
+																
+																	
+																	
+																		접수마감
+																	
+																
+															</span>
+														</div>
+													</td>
+													<td class="us">
+														<div class="keyword">
+		                                                    <span>
+																
+																	
+																	
+																		매입임대
+																	
+																
+															</span>
+														</div>
+													</td>
+													<td class="us">
+														<div class="keyword">
+			                                                <span>
+															    
+																	
+																	
+																		부산광역시
+																	
+																
+															</span>
+														</div>
+													</td>
+													<td class="us">
+														<div class="keyword none">
+															<span>20,202</span>
+														</div>
+													</td>
+													<td class="us">
+														<div class="titGroup txt-left">
+															<a href="#a" class="text_cut"
+															   data-previewYn="N"
+															   data-pbancNo="37"
+															   data-pbancKndCd="01"
+															   data-bizTyNm="매입임대">
+																
+																	
+																	
+																		2024년 2차 청년 매입임대주택 (예비)입주자 모집공고
+																	
+																
+															</a>
+														</div>
+													</td>
+													<td class="date whs">게시일
+														
+															
+															
+																2024-09-27
+															
+														 · 마감일
+														
+															
+															
+																2024-10-11
+															
+														
+													</td>
+												</tr>
+											
+												<tr>
+													<td class="block">
+														<div class="tagGroup inB">
+															
+																
+																	
+																	<!-- 접수마감 색상 -->
+																<span class="tag type02 wide bgGray">
+																
+																
+																
+															
+
+																
+																	
+																	
+																		접수마감
+																	
+																
+															</span>
+														</div>
+													</td>
+													<td class="us">
+														<div class="keyword">
+		                                                    <span>
+																
+																	
+																	
+																		매입임대
+																	
+																
+															</span>
+														</div>
+													</td>
+													<td class="us">
+														<div class="keyword">
+			                                                <span>
+															    
+																	
+																	
+																		부산광역시
+																	
+																
+															</span>
+														</div>
+													</td>
+													<td class="us">
+														<div class="keyword none">
+															<span>13,300</span>
+														</div>
+													</td>
+													<td class="us">
+														<div class="titGroup txt-left">
+															<a href="#a" class="text_cut"
+															   data-previewYn="N"
+															   data-pbancNo="24"
+															   data-pbancKndCd="01"
+															   data-bizTyNm="매입임대">
+																
+																	
+																	
+																		2024년 1차 청년 매입임대주택 입주자 모집공고(2,3순위)
+																	
+																
+															</a>
+														</div>
+													</td>
+													<td class="date whs">게시일
+														
+															
+															
+																2024-06-28
+															
+														 · 마감일
+														
+															
+															
+																2024-07-04
+															
+														
+													</td>
+												</tr>
+											
+										
+									
+									</tbody>
+								</table>
+							</div>
+							<!-- //table -->
+						</div>
+						<!-- //table -->
+
+
+						<!-- pagination -->
+						<div class="pagination">
+							
+								<a href="#a" data-page="1" onclick="return false;" class="active">1</a>
+<a href="#a" data-page="2" onclick="fn_searchAddress(2);return false;">2</a>
+
+
+							
+						</div>
+						<!-- //pagination -->
+
+						<div class="btnArea type05">
+							<button type="button" class="btnTop">
+								<span class="hidden">맨 위로 이동</span>
+							</button>
+						</div>
+
+					</div>
+					<!-- //sectionWrap -->
+				</div>
+				<!-- //tabCont -->
+			</div>
+			<!-- //tabWrap -->
+		</div>
+		<!-- //content -->
+		<!-- FOOTER BEGIN-->
+		
+
+
+<!-- 푸터 영역 ///// -->
+<!--footer-->
+<div id="footer">
+	<div class="customerArea">
+		<span class="tit colorType aqua">고객센터</span>
+		<a href="tel:051-810-1200" class="tel">
+			<strong>051-810-1200</strong>
+		</a>
+		<span class="time">(월~금 09:00 ~ 17:30)</span>
+	</div>
+
+	<div class="footArea">
+		<div class="cr">
+			<div class="ex"><p>BMC청약센터는 부산도시공사 임대주택의 공급안내 및 청약신청을 위한 사이트입니다</p></div>
+			<div class="address">
+				<address>[47281] 부산광역시 부산진구 신천대로 156 TEL. 051 ) 810-1200</address>
+			</div>
+			<div class="copyright"><p>COPYRIGHTⓒ2023 BY BMC. ALL RIGHT RESERVED.</p></div>
+		</div>
+		<div class="sitemap">
+			<a href="https://www.bmc.busan.kr/index.do?menuCd=DOM_000000108004000000" target="_blank" tabindex="-1" style="font-weight:bolder; color:#108CCF" title="부산도시공사 메인홈페이지로 이동합니다." target="_blank">개인정보처리방침</a>
+			<a href="/smw/smw051010/email.do" tabindex="-1">이메일 추출방지정책</a>
+			<!-- <a href="#none">공동인증서 관리</a> -->
+			<a href="/smw/smw061010/siteMap.do" tabindex="-1">사이트맵</a>
+		</div>
+	</div>
+</div>
+
+<div class="loding" id="commonProgressBar">
+	<div class="loging">
+		<div id="load1"></div>
+		<div id="load2"></div>
+		<div id="load3"></div>
+		<div id="load4"></div>
+		<div id="load5"></div>
+	</div>
+	<div class="txt">
+		<p>처리중입니다</p>
+		<p class="forWait">잠시만 기다려 주세요</p>
+	</div>
+</div>
+
+<div class="loding" id="actNoProgressBar">
+	<div class="loging">
+		<div id="load1"></div>
+		<div id="load2"></div>
+		<div id="load3"></div>
+		<div id="load4"></div>
+		<div id="load5"></div>
+	</div>
+	<div class="txt">
+		<p>조회중입니다</p>
+		<p class="forWait">잠시만 기다려 주세요</p>
+	</div>
+</div>
+<input type="hidden" value="0" id="accCheck">
+
+
+<!-- msg popup -->
+<div id="msgPop" class="popup" style="width: 550px; display:none; position:fixed; z-index:20000">
+</div>
+<!-- //msg popup -->
+
+<script>
+    //계좌검색버튼 클릭 이벤트
+    progressBarClose();
+
+    var gvPgmId = "SMW113020M00";
+    var gvPgmIdMain = $(location).attr('pathname');
+    
+    var gvPgmIdSplit = gvPgmIdMain.split("/");
+    var gvPgmIdSub = "";
+    
+
+    if (gvPgmIdSplit.length > 2) {
+        var gvPgmIdSub = gvPgmIdSplit[2];
+        if (gvPgmIdSub.length > 7) {
+            gvPgmIdSub = gvPgmIdSub.substr(3, 4);
+        } else {
+            gvPgmIdSub = "";
+        }
+    }
+
+    window.onpageshow = function (event) {
+        var commonProgressBar = (window.name == "iframeDialog") ? parent.document.getElementById("commonProgressBar") : document.getElementById("commonProgressBar");
+        commonProgressBar.style.display = "none";
+    };
+
+    /*계좌유효성 검사를 위한 로딩창 Open  */
+    /**
+     * @function
+     * @description 프로그레스 (로딩바) 바 오픈
+     * @name progressBarOpen
+     * @constructor 김도훈 주임
+     */
+    function progressBarOpen() {
+        var commonProgressBar = (window.name == "iframeDialog") ? parent.document.getElementById("actNoProgressBar") : document.getElementById("actNoProgressBar");
+        commonProgressBar.style.display = "block";
+        // 누른 시점의 화면 가운데에 띄우기
+        commonProgressBar.style.position = 'fixed';
+        commonProgressBar.style.top = '50%';
+        commonProgressBar.style.left = '50%';
+        commonProgressBar.style.transform = 'translate(-50%, -50%)';
+    }
+
+    /*계좌유효성 검사를 위한 로딩창 Close  */
+    /**
+     * @function
+     * @description 프로그레스 (로딩바) 바 클로즈
+     * @name progressBarClose
+     * @constructor 김도훈 주임
+     */
+    function progressBarClose() {
+        var commonProgressBar = (window.name == "iframeDialog") ? parent.document.getElementById("actNoProgressBar") : document.getElementById("actNoProgressBar");
+        commonProgressBar.style.display = "none";
+    }
+
+
+    /*-------------------- 유효성 관련 함수 --------------------*/
+    // 입력값이 NULL인지 체크
+    C_isNull = function (asValue) {
+        if (asValue == null || asValue == undefined || asValue.toString().replace(/ /g, "") == "") {
+            return true;
+        }
+
+        return false;
+    };
+
+
+    C_fillZero = function (str, maxLen) {
+        var len = str;
+        var zero = "";
+
+        if (typeof str == 'number') len = '' + str;
+
+        if (len.length < maxLen) {
+            for (var i = len.length; i < maxLen; i++) {
+                zero += "0";
+            }
+        }
+        return (zero + '' + str);
+    };
+
+
+    /**
+     계좌번호 체크
+
+     ====================문의====================
+     쿠콘 한용만 팀장
+     02-3779-4906
+     ==========================================
+     --호출한쪽에 만들거
+     scwin.fn_rtnAcctTrue = function(  ) { //정상계좌처리 };
+     scwin.fn_rtnAcctFalse = function(  ) { //이상계좌처리 };
+     */
+    /**
+     * @description 계좌번호 유효성 검사
+     * @param bankCd  공통코드 N307을 사용한다
+     * @param searchAcctNo 계좌번호
+     * @param acnmNo 사업자, 주민등록번호
+     * @constructor 김도훈 주임
+     */
+    var bankCd = null;
+    var searchAcctNo = null;
+    var acnmNo = null;
+    var SEQ = null;
+    var chkStus = false;
+    C_AcctVldChk = function (bankCd, searchAcctNo, acnmNo) {
+        //프로그레스 바(로딩창) 오픈
+        progressBarOpen();
+        var tarUrl = '';
+        var itemStr = '';
+
+        if (C_isNull(bankCd)) itemStr = "은행이 ";
+        if (C_isNull(searchAcctNo)) itemStr = "계좌번호가  ";
+        if (C_isNull(acnmNo)) itemStr = "사업자번호 또는 주민등록번호가  ";
+
+        if (!C_isNull(itemStr)) {
+            $net.alert(itemStr + " 입력되지 않았습니다.");
+            progressBarClose();
+            return false;
+        }
+        //트랜잭션을 위한 시퀀스 채번
+        var vUrl = "/co/coz/COZBankNoValidCheck.do";
+        var tarUrl = "";
+
+        if (window.location.host.indexOf("127.0.0.1") > -1 ||
+            window.location.host.indexOf("localhost") > -1 ||
+            window.location.host.indexOf("nbiismisdev.bmc.busan.kr") > -1 ||
+            window.location.host.indexOf("192.1.2.16:10400") > -1
+        )
+            tarUrl = "https://gw.coocon.co.kr/sol/gateway/acctnm_rcms_wapi.jsp?";	//운영
+//             tarUrl = "https://dev.coocon.co.kr/sol/gateway/acctnm_rcms_wapi.jsp?";	//개발
+        else
+            tarUrl = "https://gw.coocon.co.kr/sol/gateway/acctnm_rcms_wapi.jsp?";	//운영
+
+
+        var oOptions = new Object();
+        oOptions.CallBack = "fn_selectLovSeqCallBack";
+        oOptions.ErrCallBack = "fn_selectLovSeqErrCallBack";
+        oOptions.dataType = "json";
+        oOptions.requestData = {
+            //param제출
+            "bankCd": bankCd // 은행코드
+            , "searchAcctNo": searchAcctNo     // 계좌번호
+            , "acnmNo": acnmNo                   	 // 사업자, 주민등록번호
+            , "tarUrl": tarUrl // 타겟 url
+            , "jsonData": "JSONData=" + encodeURIComponent(encodeURIComponent(C_AcctVldChkJson(bankCd, searchAcctNo, acnmNo, SEQ)))
+            , "jsonDataEnd": encodeURIComponent(encodeURIComponent('"}]}'))
+        }
+		alert('bankCd' + bankCd + '   ');
+        
+        $net.ajax(vUrl, oOptions);
+
+
+        // // 코쿤서버와 ajax 통신
+        // var data = $.ajax(
+        //     {
+        //         dataType: "jsonp",
+        //         jsonp: "callback",
+        //         url: tarUrl,
+        //         data: "JSONData=" + encodeURIComponent(encodeURIComponent(C_AcctVldChkJson(bankCd, searchAcctNo, acnmNo, SEQ))),
+        //         async: false,
+        //         success: function (data) {
+        //             //$("#source").text( jQuery.stringify( data ));
+        //             if (data.RSLT_CD != "000") {
+        //                 $net.alert(data.RSLT_CD + " : " + data.RSLT_MSG);
+        //                 //$net.alert(data.RSLT_MSG,"scwin.fn_rtnAcct",false,"확인");
+        //
+        //                 //프로그래스바  닫기.. GOOD
+        //                 progressBarClose();
+        //             } else {
+        //                 $(data.RESP_DATA).each(function (key, val) {
+        //                     //$("#acctnm").text(val.ACCT_NM);
+        //                     $net.alert("예금주 : " + val.ACCT_NM + ". 정상계좌 입니다.");
+        //                     //$net.alert("예금주 : " + val.ACCT_NM + ". 정상계좌 입니다.","scwin.fn_rtnAcct",true,"확인");
+        //
+        //                     //프로그래스바  닫기.. GOOD
+        //                     progressBarClose();
+        //                     return true;
+        //                 })
+        //             }
+        //         },
+        //         error: function (msg) {
+        //             //alert("XML Data에 오류가 발생되었습니다.");
+        //
+        //             $net.alert("XML Data에 오류가 발생되었습니다." + msg);
+        //             //$net.alert("XML Data에 오류가 발생되었습니다.","scwin.fn_rtnAcct",false,"확인");
+        //             console.log(msg);
+        //             progressBarClose();
+        //         }
+        //     });
+
+    }
+
+
+    // 트랜잭션 성공 콜백
+    function fn_selectLovSeqCallBack(vRes) {
+        var jsonString = vRes.resultStr;
+        var jsonObject = JSON.parse(jsonString);
+        if (jsonObject.RSLT_CD != "000") {
+            $net.alert(jsonObject.RSLT_CD + " : " + jsonObject.RSLT_MSG);
+            // console.log(jsonString.RSLT_CD);
+            //프로그래스바  닫기.. GOOD
+            progressBarClose();
+        } else {
+            $(jsonObject.RESP_DATA).each(function (key, val) {
+                //$("#acctnm").text(val.ACCT_NM);
+                $net.alert("예금주 : " + val.ACCT_NM + ". 정상계좌 입니다.");
+
+                //프로그래스바  닫기.. GOOD
+                progressBarClose();
+                $('#accCheck').val('1');
+            })
+            progressBarClose();
+        }
+    }
+
+    function fn_selectLovSeqErrCallBack(vRes) {
+        $net.alert("XML Data에 오류가 발생되었습니다.")
+        $('#accCheck').val('0');
+        progressBarClose();
+    }
+
+    //위에딸린거
+
+    /**
+     * @description json 데이터 생성
+     * @param bankCd  공통코드 N307을 사용한다
+     * @param searchAcctNo 계좌번호
+     * @param acnmNo 사업자, 주민등록번호
+     * @param SEQ 트랜잭션 키 생성을 위한 시퀀스
+     * @returns {string}
+     * @constructor 김도훈 주임
+     */
+    C_AcctVldChkJson = function (bankCd, searchAcctNo, acnmNo, SEQ) {
+
+        var jsondata = "";
+        var key = '';
+        if (window.location.host.indexOf("127.0.0.1") > -1 || window.location.host.indexOf("localhost") > -1 || window.location.host.indexOf("nbiismisdev.bmc.busan.kr") > -1)
+            key = "laDVfKxLHMWWpGrufgoC";	//운영
+//             key = "ACCTTEST";	//개발
+        else
+            key = "laDVfKxLHMWWpGrufgoC";	//운영
+
+        jsondata += '{';
+        jsondata += '"SECR_KEY":"' + key + '",';
+        jsondata += '"KEY":"' + "ACCTNM_RCMS_WAPI" + '",';
+        jsondata += '"DOMN":"' + location.href + '",';
+        // jsondata += '"DOMN":"' + url2 + '",';
+        jsondata += '"TRG":"",';
+        jsondata += '"SORT":"",';
+        jsondata += '"PG_PER_CNT":"",';
+        jsondata += '"PG_NO":"",';
+        jsondata += '"REQ_DATA":[{';
+        jsondata += '"BANK_CD":"' + bankCd + '",';	//은행코드
+        jsondata += '"SEARCH_ACCT_NO":"' + searchAcctNo + '",';	//계좌번호
+        jsondata += '"ACNM_NO":"' + acnmNo + '",';		//사업자or주민번호
+        jsondata += '"ICHE_AMT":"' + "" + '",';
+        // jsondata += '"TRSC_SEQ_NO":"' + C_fillZero(SEQ, 7) + '"}]}';	//트랜젝션키 같은거...중복되면 안됨 하루에 한번 초기화
+        jsondata += '"TRSC_SEQ_NO":"';	//트랜젝션키 같은거...중복되면 안됨 하루에 한번 초기화
+
+        jsondata += '';
+        return jsondata;
+    }
+
+    /*모바일버전 대응 Start*/
+
+    /**
+     * 주어진 선택자에 해당하는 요소들 중에서, null이나 빈 문자열이 아닌 첫 번째 값을 반환합니다.
+     * PC 값이나, Mobile 둘중 모든 값을 가져오기 위함입니다.
+     * Input 에서 Name을 선택자로 잡은 모든 값을 처리합니다.
+     *
+     * @param {string} selector - jQuery 선택자 문자열.
+     * @returns {?string} 첫 번째 유효한 값. 만약 적합한 값이 없다면 null을 반환합니다.
+     * @constructor 김도훈 주임
+     */
+    function getFirstNonEmptyValue(selector) {
+        var value = '';
+        $(selector).each(function () {
+            var tempVal = $(this).val();
+            if (tempVal !== null || tempVal.trim() !== '') {
+                value = tempVal;
+                return false; // 첫 번째 일치 항목을 찾으면 순회 종료
+            }
+        });
+        return value;
+    }
+
+    /**
+     * 주어진 입력 요소(jQuery 객체)들 중에서 화면 너비에 따라 적절히 활성화되어야 하는 요소의 값을 반환합니다.
+     * 이 함수는 .mo 또는 .pc 클래스를 가진 부모 요소 내에 위치한 입력 요소들을 처리하기 위해 설계되었습니다.
+     * 화면 너비가 1024px 미만일 경우 '.mo' 클래스를 가진 부모 요소 내의 입력 요소를,
+     * 그렇지 않을 경우 '.mo' 클래스를 가지지 않는 입력 요소의 값을 반환합니다.
+     *
+     * @param {jQuery} $inputs - 검사할 입력 요소들의 jQuery 객체 컬렉션.
+     * @returns {string} 활성화된 입력 요소의 값. 만약 적절한 요소가 없다면 빈 문자열을 반환합니다.
+     * @constructor 김도훈 주임
+     */
+    function getResponsiveInputValue($inputs) {
+        // PC와 모바일 환경의 기준을 설정합니다.
+        const breakpointPC = 1024;
+
+        // 현재 화면의 가로 길이를 확인합니다.
+        const viewportWidth = $(window).width();
+
+        // 활성화된 input 값을 찾기 위한 변수입니다.
+        let activeValue = '';
+
+        // 입력된 jQuery 객체가 화면에 보이는 input들 중 조건에 맞는 것의 값을 가져옵니다.
+        $inputs.each(function () {
+            const $input = $(this);
+
+            // 현재 input의 부모 중 'mo' 또는 'pc' 클래스를 가진 요소를 찾습니다.
+            const $parent = $input.closest('.mo, .pc');
+
+            // 모바일 환경(1024px 미만)에서 '.mo' 클래스를 가진 부모를 가지는 요소를 우선적으로 처리합니다.
+            if (viewportWidth < breakpointPC && $parent.hasClass('mo')) {
+                activeValue = $input.val();
+                return false; // 값을 찾았으므로 반복 종료
+            }
+            // PC 환경(1024px 이상)에서는 '.mo' 클래스가 없는 요소를 처리합니다.
+            else if (viewportWidth >= breakpointPC && !$parent.hasClass('mo')) {
+                activeValue = $input.val();
+                return false; // 값을 찾았으므로 반복 종료
+            }
+        });
+
+        // 활성화된 input의 value를 반환합니다.
+        return activeValue;
+    }
+
+
+    // 모든 select 요소를 선택합니다.
+    const selects = document.querySelectorAll('select');
+
+    // 각 select 요소에 대해 반복 실행합니다.
+    selects.forEach(function (select) {
+        // select 요소의 변경을 감지하는 이벤트 리스너를 추가합니다.
+        select.addEventListener('change', function () {
+            // 모든 options의 selected 속성을 제거합니다.
+            Array.from(this.options).forEach(option => {
+                option.removeAttribute('selected');
+            });
+
+            // 현재 선택된 option에 selected 속성을 추가합니다.
+            this.options[this.selectedIndex].setAttribute('selected', 'selected');
+        });
+    });
+
+
+    /**
+     * 주어진 선택자에 해당하는 각 select 요소에서 현재 선택된 값을 확인하고,
+     * 그 중 첫 번째로 발견된 유효한 값을 반환합니다.
+     * 유효한 값이란 null이 아니고 빈 문자열이 아닌 값을 의미합니다.
+     *
+     * @param {string} selector - select 요소를 찾기 위한 jQuery 선택자.
+     * @returns {?string} 첫 번째 유효한 선택된 값. 만약 유효한 선택된 값이 없다면 null을 반환합니다.
+	 * @constructor 김도훈 주임
+     */
+    function getFirstSelectedValue(selector) {
+        var value = null;
+        $(selector).each(function () {
+            var selectedValue = $(this).find('option:selected').val();
+            if (selectedValue && selectedValue.trim() !== '' && selectedValue != '선택') {
+                value = selectedValue;
+                return false; // 첫 번째 유효한 선택된 값을 찾으면 순회 종료
+            }
+        });
+        return value;
+    }
+
+    /*모바일버전 대응 END*/
+    $('.menu a[href*="' + gvPgmIdSub + '"]').parent().parent().parent().parent().parent().parent().addClass("active");
+    var gvLi = $('.menu a[href*="' + gvPgmIdSub + '"]');
+    gvLi.css("color", "#000");
+    $('.login a[href*="' + gvPgmIdSub + '"]').css("color", "#fff");
+    $('.menu a[href*="' + gvPgmIdSub + '"]').parent().parent().parent().addClass("active");
+
+</script>
+
+
+		<!-- FOOTER END-->
+	</main>
+</div>
+
+<form id="bbsSearchFrm" style="display: none;">
+	<input type="hidden" name="searchArea" id="searchArea" value="">
+	<input type="hidden" name="searchCate" id="searchCate" value="">
+	<input type="hidden" name="searchState" id="searchState" value="">
+	<input type="hidden" name="searchTitle" id="searchTitle" value="">
+	<input type="hidden" name="previewYn" id="mainPreviewYn" value="">
+	<input type="hidden" name="pbancNo" id="mainPbancNo" value="">
+	<input type="hidden" name="pbancKndCd" id="mainPbancKndCd" value="">
+	<input type="hidden" name="bizTyNm" id="mainBizTyNm" value="">
+	<input type="hidden" name="pageIndex" id="pageIndex" value="">
+</form>
+
+<form id="competitionFrm" style="display: none;">
+	<input type="hidden" name="pbancNo" id="pbancNo" value=""> <input type="hidden" name="bizTyCd" id="bizTyCd" value="">
+</form>
+
+
+<script type="text/javascript">
+    var search = {
+        checkSearchCondition: function () {
+            if ($('#search_title').val().length > 100) {
+                alert('올바른 검색어를 입력해 주십시오.');
+                $('#search_title').val('');
+                return false;
+            }
+            $('#searchArea').val($('#search_area option:selected').val());
+            $('#searchCate').val($('#search_cate option:selected').val());
+            $('#searchState').val($('#search_state option:selected').val());
+            $('#searchTitle').val($('#search_title').val());
+            return true;
+        }
+        , submit: function () {
+            if (search.checkSearchCondition() === true) {
+                $net.submit("bbsSearchFrm", "/smw/smw113020/selectPbancRentHouseList.do;BMCW_JSESSIONID=3C7B0709658405681FE9690FDBED795F.JVMAPPLYCENTER22");
+            }
+        }
+    }
+
+    
+
+    function fn_sel_page(pageIndex) {
+        $('#pageIndex').val(pageIndex);
+        $net.submit("bbsSearchFrm", "/smw/smw113020/selectPbancRentHouseList.do;BMCW_JSESSIONID=3C7B0709658405681FE9690FDBED795F.JVMAPPLYCENTER22");
+    }
+
+    $(function () {
+
+        $('#tap2').focus();
+        $('#tap2').blur();
+
+        
+        $('#search_btn').on('click', function () {
+            search.submit();
+        });
+
+        
+        $('#search_title').on('keyup', function (event) {
+            if (event.keyCode == 13) {
+                event.preventDefault();
+                $('#search_btn').trigger('click');
+            }
+        });
+
+
+        
+        $('#tableWrap').on('click', 'a', function () {
+            $('#mainPreviewYn').val($(this).data('previewyn'));
+            $('#mainPbancNo').val($(this).data('pbancno'));
+            $('#mainPbancKndCd').val($(this).data('pbanckndcd'));
+            $('#mainBizTyNm').val($(this).data('biztynm'));
+
+            $('#searchArea').val($('#search_area option:selected').val());
+            $('#searchCate').val($('#search_cate option:selected').val());
+            $('#searchState').val($('#search_state option:selected').val());
+            $('#searchTitle').val($('#search_title').val());
+            $('#pageIndex').val($('#paging .active').text());
+            $net.submit("bbsSearchFrm", "/smw/smw113020/selectPbancDetailView.do;BMCW_JSESSIONID=3C7B0709658405681FE9690FDBED795F.JVMAPPLYCENTER22");
+        });
+
+        var tab1 = document.querySelector('#tab1');
+
+
+        // 링크 움직이기.
+        tab1.addEventListener('click', () => {
+            // Navigate to the desired URL
+            window.location.href = '/smw/smw113010/selectPbancRentHouseList.do';
+        });
+
+
+    });
+
+</script>
+
+</body>
+</html>

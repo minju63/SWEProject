@@ -1,0 +1,518 @@
+<!-- 청년주거지원 페이지 공통 include -->
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+
+<!-- 
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv='imagetoolbar' content='no' />
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=1190" />
+-->
+
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
+<meta name="viewport" content="width=1190" />
+ 
+<title>청년&#183;신혼부부 주거지원</title>
+
+<link type="text/css" rel="stylesheet" href="/css/com/layout.css"/>
+<!-- <link type="text/css" rel="stylesheet" href="/css/com/import.css"/>
+<link type="text/css" rel="stylesheet" href="/css/com/search.css"/> -->
+<link type="text/css" rel="stylesheet" href="/jquery/css/jquery-ui.min.css"/>
+<link type="text/css" rel="stylesheet" href="/css/custom/jquery-ui-custom.css"/>
+<!-- <link type="text/css" rel="stylesheet" href="/css/com/print.css" media="print"/> -->
+
+<!-- <script type="text/javascript" src="/hws/com/cmm/validate.do"></script> -->
+<script type="text/javascript" src="/jquery/js/jquery-1.11.3.min.js"></script>
+<script type="text/javascript" src="/jquery/js/jquery-ui-1.11.4.custom.min.js"></script>
+<script type="text/javascript" src="/js/CommonUtil.js"></script>
+<!-- <script type="text/javascript" src="/js/front.js"></script> -->
+<script type="text/javascript" src="/js/spin.js"></script>
+
+<!-- 청년주거지원 css -->
+<link type="text/css" rel="stylesheet" href="/css/yhs/style.css">
+
+<style>
+
+    #myhome-main .header .nav-list .nav-item:hover {
+		color: #3356F1 !important;
+	}
+	
+	#myhome-main .gnbOver {
+		color: #3356F1 !important;
+	}
+	
+	#content .sub_util UL {
+		overflow:hidden;
+		top:12px;
+		right:0px;
+		z-index:99;
+		}
+	
+	#content .sub_util UL LI {
+		float:right;
+		padding:0 5px 0 5px;
+		height:31px;
+		line-height:28px;
+		color:#666;
+		}
+	
+	#content .sub_util UL LI.last {
+		padding-right:0;
+		background:none;
+		}
+		
+	#container {
+		margin-bottom:0;
+	}
+	
+	#myhome-main .header .nav-list .nav-item {
+  		padding-right: 1.225rem !important;
+  	}
+	
+</style>
+
+<script type="text/javascript">
+//<![CDATA[	
+	
+    // 현재 메뉴 ID
+    var gCurrentMenuId = "";
+    var gSpinner = null;
+    
+	$(document).ready( function() {
+		
+		/* 업무화면 삽입 */
+		$("#content").append('<br />');
+		$("#content").append($("#sub_content"));
+		$("#content").append('<br />');
+		
+		/* 업무화면 시작 펑션호출 */
+		if(typeof fnContentLoad != "undefined"){
+			fnContentLoad();
+		}
+		
+	});
+		
+	function fnToTop(){
+		
+		$("html, body").stop().animate(
+			     {scrollTop : 0},
+			     {duration: 750, easing: "easeOutExpo"}
+	    );
+		
+	}
+	
+	// 현재 보고있는  1dept 메뉴 CSS ON
+	function fnSetCurrenthMenu(){
+	    
+	    if(!isEmpty(gCurrentMenuId)){
+	    	$("#main_yhs_" + gCurrentMenuId + " > a").addClass("gnbOver");
+	    }
+		
+    }
+	
+//]]> 	
+</script>	
+</head>
+
+<body>
+
+	<div id="myhome-main">
+	
+		<!-- header :: s -->
+	    <header class="header">
+	      <div class="header-wrap fluid-wrap">
+	        <a href="/hws/portal/main/getMgtMainYhsPage.do" class="img-logo"><img src="/images/portal/yhs/img_logo.png" alt="img-logo"></a>
+	        <div class="nav-list">
+	          
+	          <div class="nav-item" id="main_yhs_01">
+	            <a href="/hws/portal/cont/selectYouthPolicyHappyView.do">주택공급</a>
+	            <div class="sub-nav-wrap">
+	              <div class="sub-nav">
+	                <h5 class="txt">주택공급</h5>
+	                <ul class="sub-list">
+	                  <li>
+	                    <h3 class="depth2"><a href="/hws/portal/cont/selectYouthPolicyIntegratedPublicView.do" class="sub-title">공공임대</a></h3>
+	                    <div class="depth3">
+	                      <a href="/hws/portal/cont/selectYouthPolicyIntegratedPublicView.do" class="sub-list-item">통합공공임대</a>
+	                      <a href="/hws/portal/cont/selectYouthPolicyPurchaseRentalView.do" class="sub-list-item">매입임대</a>
+	                      <a href="/hws/portal/cont/selectYouthPolicyCharterRentalView.do" class="sub-list-item">전세임대</a>
+	                      <a href="/hws/portal/cont/selectYouthPolicyHappyView.do" class="sub-list-item">행복주택</a>
+	                      <a href="/hws/portal/cont/selectYouthPolicyNationRentalView.do" class="sub-list-item">국민임대</a>
+	                      <a href="/hws/portal/cont/selectYouthPolicyContRentalView.do" class="sub-list-item">영구임대</a>
+						  <a href="/hws/portal/cont/selectYouthPolicyLongCharterView.do" class="sub-list-item">장기전세</a>
+	                    </div>
+	                  </li>
+					  
+	                  <li>
+	                    <h3 class="depth2"><a href="/hws/portal/cont/selectYouthPolicyPublicSupPrivateView.do" class="sub-title">민간임대</a></h3>
+	                    <div class="depth3">
+	                      <a href="/hws/portal/cont/selectYouthPolicyPublicSupPrivateView.do" class="sub-list-item">공공지원민간임대</a>
+	                    </div>
+	                  </li>
+					  
+	                  <li>
+	                    <h3 class="depth2"><a href="/hws/portal/cont/selectYouthPolicyLttotView.do" class="sub-title">공공분양</a></h3>
+	                    <div class="depth3">
+	                      <a href="/hws/portal/cont/selectYouthPolicyLttotView.do" class="sub-list-item">공공분양</a>
+						  <a href="/hws/portal/cont/selectYouthPolicyHoneyMoonView.do" class="sub-list-item">신혼희망타운</a>
+	                    </div>
+	                  </li>
+					  
+	                  <li>
+	                    <h3 class="depth2"><a href="/hws/portal/cont/selectYouthPolicyHoneyMoonSpecialView.do" class="sub-title">민간분양</a></h3>
+	                    <div class="depth3">
+	                      <a href="/hws/portal/cont/selectYouthPolicyHoneyMoonSpecialView.do" class="sub-list-item">신혼부부 특별공급</a>
+	                      <a href="/hws/portal/cont/selectYouthPolicyFirstTimeSpecialView.do" class="sub-list-item">생애최초 특별공급</a>
+	                    </div>
+	                  </li>
+	                </ul>
+	              </div>
+	            </div>
+	          </div>
+	          
+	          <div class="nav-item" id="main_yhs_02">
+	            <a href="/hws/portal/cont/selectYouthPolicySteppingStoneLoanView.do">금융지원</a>
+	            <div class="sub-nav-wrap">
+	              <div class="sub-nav">
+	                <h5 class="txt">금융지원</h5>
+	                <ul class="sub-list">
+	                  <li>
+	                    <h3 class="depth2"><a href="/hws/portal/cont/selectYouthPolicySteppingStoneLoanView.do" class="sub-title">주택구입자금 대출</a></h3>
+	                    <div class="depth3">
+	                      <a href="/hws/portal/cont/selectYouthPolicySteppingStoneLoanView.do" class="sub-list-item">내집마련 디딤돌대출</a>
+	                      <a href="/hws/portal/cont/selectYouthPolicyHoneyMoonPurchaseView.do" class="sub-list-item">신혼부부전용 구입자금</a>
+	                      <a href="/hws/portal/cont/selectYouthPolicyBabySpecialCaseStepStoneLoneView.do" class="sub-list-item">신생아 특례 디딤돌대출</a>
+	                      <a href="/hws/portal/cont/selectYouthHousingStepStoneLoanView.do" class="sub-list-item">청년 주택드림 디딤돌 대출</a>
+                  		  <a href="/hws/portal/cont/selectHopeTownMortgageLoanView.do" class="sub-list-item">신혼희망타운전용 주택담보장기대출</a>
+	                    </div>
+	                  </li>
+	                  <li>
+	                    <h3 class="depth2"><a href="/hws/portal/cont/selectYouthPolicyCrutchLoanView.do" class="sub-title">주택전·월세자금 대출</a></h3>
+	                    <div class="depth3">
+	                      <a href="/hws/portal/cont/selectYouthPolicyCrutchLoanView.do" class="sub-list-item">버팀목전세자금</a>
+	                      <a href="/hws/portal/cont/selectYouthPolicyYouthOnlyCrutchLoanView.do" class="sub-list-item">청년버팀목전세자금</a>
+	                      <!-- <a href="/hws/portal/cont/selectYouthPolicyMiddleAgeYouthLoanView.do" class="sub-list-item">중기청년전세대출</a> -->
+	                      <a href="/hws/portal/cont/selectYouthPolicyWarrantyMonthlyLoanView.do" class="sub-list-item">청년전용보증부 월세대출</a>
+	                      <a href="/hws/portal/cont/selectYouthPolicyHoneyMoonLoanView.do" class="sub-list-item">신혼부부 전세대출</a>
+	                      <a href="/hws/portal/cont/selectYouthPolicyBabySpecialCaseCrutchLoneView.do" class="sub-list-item">신생아 특례 버팀목 대출</a>
+	                      <a href="/hws/portal/cont/selectYouthPolicyUnslRsidSupLoanView.do" class="sub-list-item">주거취약계층 이주지원 버팀목전세자금</a>
+	                    </div>
+	                  </li>
+	                  <li>
+	                    <h3 class="depth2"><a href="/hws/portal/cont/selectYouthPolicyYouthPassbookView.do" class="sub-title">금융연계 지원</a></h3>
+	                    <div class="depth3">
+	                      <a href="/hws/portal/cont/selectYouthPolicyYouthPassbookView.do" class="sub-list-item">청년 주택드림 청약통장</a>
+	                      <a href="/hws/portal/cont/selectYouthPolicyGuaranteeFeeDisView.do" class="sub-list-item">보증료 할인</a>
+	                      <a href="/hws/portal/cont/selectYouthPolicyGuaranteeFeeSupView.do" class="sub-list-item">청년 보증료지원</a>
+	                    </div>
+	                  </li>
+	                </ul>
+	              </div>
+	            </div>
+	          </div>
+	          
+	          <div class="nav-item" id="main_yhs_03">
+	            <a href="/hws/portal/cont/selectYouthPolicyHousingView.do">주거비지원</a>
+	            <div class="sub-nav-wrap">
+	              <div class="sub-nav">
+	                <h5 class="txt">주거비지원</h5>
+	                <ul class="sub-list">
+	                  <li>
+	                    <h3 class="depth2"><a href="/hws/portal/cont/selectYouthPolicyHousingView.do" class="sub-title">주거급여</a></h3>
+	                    <div class="depth3">
+	                      <a href="/hws/portal/cont/selectYouthPolicyHousingView.do" class="sub-list-item">주거급여</a>
+						  <a href="/hws/portal/cont/selectYouthPolicyYouthHousingView.do" class="sub-list-item">청년가구 지원</a>
+	                    </div>
+	                  </li>
+	                  <li>
+	                    <h3 class="depth2"><a href="/hws/portal/cont/selectYouthPolicyYouthMonthlySupView.do" class="sub-title">월세지원</a></h3>
+	                    <div class="depth3">
+	                      <a href="/hws/portal/cont/selectYouthPolicyYouthMonthlySupView.do" class="sub-list-item">청년월세 지원사업</a>
+	                    </div>
+	                  </li>
+	                  <li>
+	                    <h3 class="depth2"><a href="/hws/portal/cont/selectYouthPolicyExpensesSupView.do" class="sub-title">기타 주거비지원</a></h3>
+	                    <div class="depth3">
+	                      <a href="/hws/portal/cont/selectYouthPolicyExpensesSupView.do" class="sub-list-item">비정상거처 거주자 이사비 지원</a>
+	                    </div>
+	                  </li>
+	                </ul>
+	              </div>
+	            </div>
+	          </div>
+	          
+	          <div class="nav-item" id="main_yhs_04">
+	            <a href="/hws/portal/cont/selectYouthPolicyProtectEndChildView.do">기타지원</a>
+	            <div class="sub-nav-wrap">
+	              <div class="sub-nav">
+	                <h5 class="txt">기타지원</h5>
+	                <ul class="sub-list">
+	                  <li>
+	                    <h3 class="depth2"><a href="/hws/portal/cont/selectYouthPolicyProtectEndChildView.do" class="sub-title">지원제도</a></h3>
+	                    <div class="depth3">
+	                      <a href="/hws/portal/cont/selectYouthPolicyProtectEndChildView.do" class="sub-list-item">자립준비청년</a>
+						  <a href="/hws/portal/cont/selectYouthPolicyEmergencyHousSupView.do" class="sub-list-item">긴급주거지원</a>
+						  <a href="/hws/portal/cont/selectYouthPolicyHousWeakSupView.do" class="sub-list-item">주거취약계층지원</a>
+	                    </div>
+	                  </li>
+	                </ul>
+	              </div>
+	            </div>
+	          </div>
+	          
+	          <div class="nav-item" id="main_yhs_05">
+	            <a href="/hws/portal/cont/selectYouthPolicyLocalHousWlfareBussView.do">지자체 주거복지사업</a>
+	          </div>
+	          
+	          <div class="nav-item" id="main_yhs_06">
+	            <a href="/hws/portal/dgn/selectSelfDiagnosisYgJindanView.do">자가진단</a>
+	            <div class="sub-nav-wrap">
+	              <div class="sub-nav">
+	                <h5 class="txt">자가진단</h5>
+	                <ul class="sub-list">
+	                  <li>
+	                    <h3 class="depth2"><a href="/hws/portal/dgn/selectSelfDiagnosisYgJindanView.do" class="sub-title">청년주거지원사업</a></h3>
+	                  </li>
+	                  <li>
+	                  	<h3 class="depth2"><a href="/hws/portal/dgn/SelfDiagnosisYouthHousIndexView.do" class="sub-title">청년월세지원사업</a></h3>
+	                  </li>
+	                </ul>
+	              </div>
+	            </div>	            
+	          </div>
+	          
+	          <div class="nav-item">
+	            <a href="javascript:openChatbotWindow();" data-ajax="false" style="width: 50px; height: 30px;">
+		       		<img src="/images/quick/icon_chats2.svg" alt="img-logo">
+		        </a>
+	          </div>
+	          
+	        </div>
+	        <a href="/hws/portal/main/getMgtMainPage.do" target="_blank" class="btn-go-myhome"><em>마이홈포털</em>로 가기</a>
+	      </div>
+	    </header>
+	    <!-- header :: e -->
+		
+		<!-- main :: s -->
+    	<main class="main" style="background: none;">
+    	
+    		<!-- 본문-->
+			<div id="container">
+				<!-- 상단 고정영역 -->
+				<!-- <div class="headHeight"></div> -->
+				
+				<div id="content">
+					<!-- subUtil -->
+					<div class="sub_util"></div>				
+					<!-- 프로그레스바영역 -->
+					<div id="progressbar" style="display:none;" >
+						<img src="/images/util/progress.png" alt="프로그레스바"/>
+					</div>
+					
+				</div>
+			</div>
+			<!-- //본문-->
+			
+    	</main>
+		
+		<!-- footer :: s -->
+	    <footer class="footer"  style="position: relative;">
+	      <div class="fluid-wrap">
+	        <div class="info-wrap">
+	          <dl class="info">
+	            <dt>국토교통부</dt>
+	            <dd>(30103)세종특별자치시 도움6로 11</dd>
+	          </dl>
+	          <dl class="info">
+	            <dt>한국토지주택공사</dt>
+	            <dd>(52852)경상남도 진주시 충의로 19</dd>
+	          </dl>
+	          <div class="copyright">Copyright MOLIT & LH All rights reserved.</div>
+	          <div class="copyright">
+	          	<a href="https://data.molit.go.kr/systemQuality/list?system_id=S0014" target="_blank"
+					   style="
+					          width: 140px;
+					          height: 23px;
+					          line-height: 23px;
+							  display: inline-block;
+							  color: #fff;
+							  font-size: 14px;
+							  border-radius: 6px;
+							  background: #3356F1;
+							  text-align: center;
+							 "
+					>불편 및 품질오류신고</a>
+	          </div>
+	        </div>
+	        <div class="logo-wrap">
+	          <img src="/images/portal/yhs/img_logo_footer.png" alt="img-logo">
+	          <img src="/images/portal/yhs/img_LH_logo.png" alt="img-logo">
+	        </div>
+	      </div>
+	    </footer>
+	    <!-- footer :: e -->
+		
+	</div>
+
+	<!-- 네이버 애널리틱스 --> 
+	<script type="text/javascript" src="https://wcs.naver.net/wcslog.js"></script> 
+	<script type="text/javascript"> 
+		if(!wcs_add) var wcs_add = {}; wcs_add["wa"] = "12af10d328fefd8"; wcs_do(); 
+	</script>
+	<!-- 네이버 애널리틱스  -->
+ 	
+ 	<script>
+ 	
+	 	// gnb :: 20230801 GNB 메뉴 구조 변경 (2 Level 추가)
+	    const gnbDepth3 = document.querySelectorAll('.header .depth3');
+	
+	    gnbDepth3.forEach((el) => {
+	      el.addEventListener('mouseenter', () => {
+	        const parent = el.parentElement;
+	        const gnbDepth2 = parent.firstElementChild;
+	
+	        gnbDepth2.classList.add('active');
+	      });
+	
+	      el.addEventListener('mouseleave', () => {
+	        const parent = el.parentElement;
+	        const gnbDepth2 = parent.firstElementChild;
+	
+	        gnbDepth2.classList.remove('active');
+	      });
+	    });
+	    
+	    
+	    
+	    /**
+		 * chatbot script start
+		 */
+		 
+		// target의 경우 챗봇이 open되는 스크립트 영역에 같이 적용되어야 합니다
+		var targetCb;
+		
+		function openChatbotWindow() {
+			// 운영 챗봇 url
+			targetCb = window.open('https://chat.myhome.go.kr:18080/chat-client/prod/#/1/b6d64780-b635-4321-9a08-3139647d4fe9', 'Display', 'popup');
+		}
+
+		function receiveChatbotMessage(e) {
+			
+			if(e.data.hasOwnProperty('type')){
+				
+				let type = e.data.type;
+				
+				if(type == "loginChk"){
+					
+					// 서버에서 받아온 로그인 정보 확인
+				    var gEsntlId = '';
+				    let data;
+				    
+				    if (gEsntlId !== "") {
+				    	// 로그인한 사용자인 경우
+				    	data = {type: type, isLogin: true, esntlId: gEsntlId};
+				    }else{
+				    	// 로그인한 사용자가 아닌경우
+				    	data = {type: type, isLogin: false};
+				    }
+					
+					// url 도메인 입력.
+					targetCb.postMessage(data, 'https://chat.myhome.go.kr:18080');
+					
+				}else if(type == "login"){
+					
+					// 로그인 페이지 새창 띄우기
+					window.open('https://www.myhome.go.kr/hws/portal/main/loginUsrView.do');
+					
+				}else if(type == "interest"){
+					
+					// 관심지역 선택하기 페이지 새창 띄우기
+					window.open('https://www.myhome.go.kr/hws/portal/usr/selectUserInterestAreasView.do');
+					
+					
+				}else if(type == "self"){
+					
+					// 자가진단 진행하기 페이지 새창 띄우기
+					window.open('https://www.myhome.go.kr/hws/portal/dgn/selectSelfDiagnosisIntroView.do');	
+					
+				}
+			}
+		}
+		
+		// 챗봇이 open되는 스크립트 영역에 eventListener로 같이 적용되어야 합니다
+		window.addEventListener('message', receiveChatbotMessage, false);
+		
+		/**
+		 * chatbot script end
+		 */
+	    
+ 	</script>
+</body>
+</html><!-- 청년주거지원 페이지 공통 include -->
+
+<!-- <link type="text/css" rel="stylesheet" href="/css/com/myhomeinfo_guide.css" />
+<link type="text/css" rel="stylesheet" href="/css/yhs/infinitum_orid.css" /> -->
+
+<script type="text/javascript">
+//<![CDATA[		
+	
+	$(document).ready( function() {  			
+   		
+		gCurrentMenuId = "01"; // 현재 메뉴 ID 저장 (IncContentHeaderYhsPage.jsp)
+		fnSetCurrenthMenu(); // 현재 메뉴 CSS ON (IncContentHeaderYhsPage.jsp)
+		
+   		var url = window.location.href;	
+   		var hashIndex = url.indexOf("#guide=");
+   		// hash tag 가 없을 때 default hash tag 넣어주기.
+   		if(hashIndex == -1){
+   		    document.location.hash = "#" + "guide=" + "MENU100";
+   		}	
+        setHtmlLoad();	
+   	});   
+	
+	// HTML 세팅
+	function setHtmlLoad(){
+		//클릭한 페이지로 url로 바꿔주기.
+		document.location.hash = "#" + "guide=" + "MENU100";
+		$("#sub_content").load("/html/content/YouthPolicyGuide" + "MENU100" + ".html" + "?ver=" + getQueryStringDate(), function(){
+		});
+		var inStr = "<ul>";
+		inStr += "<li>";
+		inStr += "<a href=\"https://www.facebook.com/sharer/sharer.php?u=https://www.myhome.go.kr/hws/portal/cont/selectYouthPolicyPurchaseRentalView.do;\"><img src='/images/portal/content/ico_facebook.gif' alt='페이스북' /></a>&nbsp;";
+		inStr += "</li>";
+		inStr += "<li>";
+		inStr += "<a href=\"https://twitter.com/share?url=https://www.myhome.go.kr/hws/portal/cont/selectYouthPolicyPurchaseRentalView.do;\"><img src='/images/portal/content/ico_twitter.gif' alt='트위터' /></a>";
+		inStr += "</li>";
+		inStr += "</ul>";
+	
+		$(".sub_util").html(inStr);				
+	}
+
+	function fnToTop(){	
+		$("html, body").stop().animate(
+			     {scrollTop : 0},
+			     {duration: 750, easing: "easeOutExpo"}
+	    );		
+	}
+
+	function getQueryStringDate() {
+	  const today = new Date();
+
+	  const year = today.getFullYear(); // 2023
+	  const month = (today.getMonth() + 1).toString().padStart(2, '0'); // 06
+	  const day = today.getDate().toString().padStart(2, '0'); // 18
+
+	  const dateString = year + '-' + month + '-' + day;
+
+	  return dateString;
+	}
+	
+//]]>
+</script>
+
+<!-- 마이홈 컨텐츠 id="content"부터 넣어주세요. -->
+<div id="sub_content">
+</div>

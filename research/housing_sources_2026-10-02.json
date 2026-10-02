@@ -1,0 +1,1884 @@
+{
+  "sources": [
+    {
+      "source_id": "S02",
+      "관련data_id": "HOU-001",
+      "기관": "부산청년플랫폼",
+      "자료명": "2026 청년월세 지원",
+      "URL": "https://young.busan.go.kr/index.nm?menuCd=37",
+      "확인방법": "공식 원문 직접 다운로드·본문 검토",
+      "HTTP상태": 200,
+      "로컬원문": "raw_2026-10-02/S02.html",
+      "최종확인일": "2026-10-02"
+    },
+    {
+      "source_id": "S01",
+      "관련data_id": "HOU-001",
+      "기관": "복지로",
+      "자료명": "2026 청년월세 신청안내",
+      "URL": "https://m.bokjiro.go.kr/ssis-tem/cms/mob/customer/notice/1309500_1155.html",
+      "확인방법": "공식 원문 직접 다운로드·본문 검토",
+      "HTTP상태": 200,
+      "로컬원문": "raw_2026-10-02/S01.html",
+      "최종확인일": "2026-10-02"
+    },
+    {
+      "source_id": "S03",
+      "관련data_id": "HOU-001",
+      "기관": "사하청년시대1839",
+      "자료명": "청년월세 안내",
+      "URL": "https://english.saha.go.kr/startup/contents.do?mId=0305000000",
+      "확인방법": "공식 원문 직접 다운로드·본문 검토",
+      "HTTP상태": 200,
+      "로컬원문": "raw_2026-10-02/S03.html",
+      "최종확인일": "2026-10-02"
+    },
+    {
+      "source_id": "S37",
+      "관련data_id": "HOU-001",
+      "기관": "사하구청",
+      "자료명": "청년월세 국토부 주관 접수안내",
+      "URL": "https://www.saha.go.kr/job/contents.do?mId=0301050000",
+      "확인방법": "공식 원문 직접 다운로드·본문 검토",
+      "HTTP상태": 200,
+      "로컬원문": "raw_2026-10-02/S37.html",
+      "최종확인일": "2026-10-02"
+    },
+    {
+      "source_id": "S05",
+      "관련data_id": "HOU-002",
+      "기관": "LH청약플러스",
+      "자료명": "2026 청년 전세임대1순위 수시모집",
+      "URL": "https://apply.lh.or.kr/lhapply/apply/wt/wrtanc/selectWrtancInfo.do?aisTpCd=17&ccrCnntSysDsCd=03&mi=1026&panId=2015122300019376&uppAisTpCd=13",
+      "확인방법": "공식 원문 직접 다운로드·본문 검토",
+      "HTTP상태": 200,
+      "로컬원문": "raw_2026-10-02/S05.html",
+      "최종확인일": "2026-10-02"
+    },
+    {
+      "source_id": "S07",
+      "관련data_id": "HOU-003",
+      "기관": "한국에너지공단",
+      "자료명": "2026 에너지바우처 지원안내",
+      "URL": "https://www.energyv.or.kr/info/support_info.do",
+      "확인방법": "공식 원문 직접 다운로드·본문 검토",
+      "HTTP상태": 200,
+      "로컬원문": "raw_2026-10-02/S07.html",
+      "최종확인일": "2026-10-02"
+    },
+    {
+      "source_id": "S26",
+      "관련data_id": "HOU-004",
+      "기관": "부산광역시",
+      "자료명": "K-패스 최신 정률·정액 환급",
+      "URL": "https://www.busan.go.kr/depart/ahcard005",
+      "확인방법": "공식 원문 직접 다운로드·본문 검토",
+      "HTTP상태": 200,
+      "로컬원문": "raw_2026-10-02/S26.html",
+      "최종확인일": "2026-10-02"
+    },
+    {
+      "source_id": "S10",
+      "관련data_id": "HOU-004",
+      "기관": "국토교통부·정책브리핑",
+      "자료명": "K-패스 중앙 시행안내 연령",
+      "URL": "https://www.korea.kr/news/policyNewsView.do?newsId=148928697",
+      "확인방법": "공식 원문 직접 다운로드·본문 검토",
+      "HTTP상태": 200,
+      "로컬원문": "raw_2026-10-02/S10.html",
+      "최종확인일": "2026-10-02"
+    },
+    {
+      "source_id": "S12",
+      "관련data_id": "HOU-005",
+      "기관": "부산광역시",
+      "자료명": "동백패스 공식 안내",
+      "URL": "https://www.busan.go.kr/depart/dongbaegpass",
+      "확인방법": "공식 원문 직접 다운로드·본문 검토",
+      "HTTP상태": 200,
+      "로컬원문": "raw_2026-10-02/S12.html",
+      "최종확인일": "2026-10-02"
+    },
+    {
+      "source_id": "S24",
+      "관련data_id": "HOU-006",
+      "기관": "부산광역시",
+      "자료명": "머물자리론3차변경공고 제2026-2850호",
+      "URL": "https://young.busan.go.kr/cmm/fms/FileDown.do?atchFileId=FILE_000000000118909&fileSn=0",
+      "확인방법": "실제 HWPX 파일 직접 다운로드·Contents XML 본문 추출",
+      "HTTP상태": 200,
+      "로컬원문": "raw_2026-10-02/S24.bin",
+      "최종확인일": "2026-10-02"
+    },
+    {
+      "source_id": "S25",
+      "관련data_id": "HOU-006",
+      "기관": "부산청년플랫폼",
+      "자료명": "머물자리론 사업안내·신청 연결",
+      "URL": "https://young.busan.go.kr/index.nm?menuCd=0",
+      "확인방법": "공식 원문 직접 다운로드·본문 검토",
+      "HTTP상태": 200,
+      "로컬원문": "raw_2026-10-02/S25.html",
+      "최종확인일": "2026-10-02"
+    },
+    {
+      "source_id": "S17",
+      "관련data_id": "HOU-007",
+      "기관": "부산청년플랫폼",
+      "자료명": "2026 부산청년 중개보수 및 이사비 지원",
+      "URL": "https://young.busan.go.kr/index.nm?menuCd=271",
+      "확인방법": "공식 원문 직접 다운로드·본문 검토",
+      "HTTP상태": 200,
+      "로컬원문": "raw_2026-10-02/S17.html",
+      "최종확인일": "2026-10-02"
+    },
+    {
+      "source_id": "NEW_MOVING",
+      "관련data_id": "HOU-007",
+      "기관": "부산광역시",
+      "자료명": "2026 모집 공지",
+      "URL": "https://www.busan.go.kr/nbnews/1746181",
+      "확인방법": "공식 원문 직접 다운로드·본문 검토",
+      "HTTP상태": 200,
+      "로컬원문": "raw_2026-10-02/NEW_MOVING.html",
+      "최종확인일": "2026-10-02"
+    },
+    {
+      "source_id": "S18",
+      "관련data_id": "HOU-008",
+      "기관": "부산광역시",
+      "자료명": "평생함께 청년모두가 주거비지원",
+      "URL": "https://www.busan.go.kr/depart/house0204",
+      "확인방법": "공식 원문 직접 다운로드·본문 검토",
+      "HTTP상태": 200,
+      "로컬원문": "raw_2026-10-02/S18.html",
+      "최종확인일": "2026-10-02"
+    },
+    {
+      "source_id": "S19",
+      "관련data_id": "HOU-009;HOU-020",
+      "기관": "부산청년플랫폼",
+      "자료명": "주거복지센터·전세피해지원센터 안내",
+      "URL": "https://young.busan.go.kr/dwjob/list.nm?menuCd=223",
+      "확인방법": "공식 원문 직접 다운로드·본문 검토",
+      "HTTP상태": 200,
+      "로컬원문": "raw_2026-10-02/S19.html",
+      "최종확인일": "2026-10-02"
+    },
+    {
+      "source_id": "NEW_CENTER",
+      "관련data_id": "HOU-009",
+      "기관": "부산시 주거복지센터",
+      "자료명": "주거복지 상담 대상·시간",
+      "URL": "https://www.busan.go.kr/housing/ko/pages/residential_welfare.php",
+      "확인방법": "공식 원문 직접 다운로드·본문 검토",
+      "HTTP상태": 200,
+      "로컬원문": "raw_2026-10-02/NEW_CENTER.html",
+      "최종확인일": "2026-10-02"
+    },
+    {
+      "source_id": "S20",
+      "관련data_id": "HOU-010;HOU-011",
+      "기관": "부산청년플랫폼",
+      "자료명": "부산진구 안심계약·중개보수2026 안내",
+      "URL": "https://young.busan.go.kr/policySupport/view.nm?bizSid=SUP0000001160&lang=ko&menuCd=13&url=policySupport",
+      "확인방법": "공식 원문 직접 다운로드·본문 검토",
+      "HTTP상태": 200,
+      "로컬원문": "raw_2026-10-02/S20.html",
+      "최종확인일": "2026-10-02"
+    },
+    {
+      "source_id": "S22",
+      "관련data_id": "HOU-012",
+      "기관": "부산광역시",
+      "자료명": "전세보증금반환보증 보증료 지원 부산집행",
+      "URL": "https://www.busan.go.kr/depart/reguarantee",
+      "확인방법": "공식 원문 직접 다운로드·본문 검토",
+      "HTTP상태": 200,
+      "로컬원문": "raw_2026-10-02/S22.html",
+      "최종확인일": "2026-10-02"
+    },
+    {
+      "source_id": "S27",
+      "관련data_id": "HOU-013",
+      "기관": "주택도시기금",
+      "자료명": "청년전용 버팀목전세자금2026 안내",
+      "URL": "https://nhuf.molit.go.kr/FP/FP05/FP0502/FP05020301.jsp",
+      "확인방법": "공식 원문 직접 다운로드·본문 검토",
+      "HTTP상태": 200,
+      "로컬원문": "raw_2026-10-02/S27.html",
+      "최종확인일": "2026-10-02"
+    },
+    {
+      "source_id": "S28",
+      "관련data_id": "HOU-014",
+      "기관": "주택도시기금",
+      "자료명": "청년전용 보증부월세대출2026 안내",
+      "URL": "https://nhuf.molit.go.kr/FP/FP05/FP0502/FP05020701.jsp",
+      "확인방법": "공식 원문 직접 다운로드·본문 검토",
+      "HTTP상태": 200,
+      "로컬원문": "raw_2026-10-02/S28.html",
+      "최종확인일": "2026-10-02"
+    },
+    {
+      "source_id": "API_HOUSING_1",
+      "관련data_id": "전체 후보검토;HOU-026;HOU-027;HOU-028;HOU-029",
+      "기관": "온통청년",
+      "자료명": "온통청년 주거 검색1페이지",
+      "URL": "https://www.youthcenter.go.kr/go/ythip/getPlcy",
+      "확인방법": "API JSON 호출;1~4페이지318건;각 정책번호로 연결",
+      "HTTP상태": 200,
+      "로컬원문": "raw_2026-10-02/API_HOUSING_1.json",
+      "최종확인일": "2026-10-02"
+    },
+    {
+      "source_id": "API_HOUSING_2",
+      "관련data_id": "전체 후보검토;HOU-015;HOU-017;HOU-018;HOU-019;HOU-030",
+      "기관": "온통청년",
+      "자료명": "온통청년 주거 검색2페이지",
+      "URL": "https://www.youthcenter.go.kr/go/ythip/getPlcy",
+      "확인방법": "API JSON 원본 및 정책번호 보존",
+      "HTTP상태": 200,
+      "로컬원문": "raw_2026-10-02/API_HOUSING_2.json",
+      "최종확인일": "2026-10-02"
+    },
+    {
+      "source_id": "API_HOUSING_3",
+      "관련data_id": "전체 후보검토;HOU-015;HOU-017;HOU-018;HOU-019;HOU-030",
+      "기관": "온통청년",
+      "자료명": "온통청년 주거 검색3페이지",
+      "URL": "https://www.youthcenter.go.kr/go/ythip/getPlcy",
+      "확인방법": "API JSON 원본 및 정책번호 보존",
+      "HTTP상태": 200,
+      "로컬원문": "raw_2026-10-02/API_HOUSING_3.json",
+      "최종확인일": "2026-10-02"
+    },
+    {
+      "source_id": "API_HOUSING_4",
+      "관련data_id": "전체 후보검토;HOU-015;HOU-017;HOU-018;HOU-019;HOU-030",
+      "기관": "온통청년",
+      "자료명": "온통청년 주거 검색4페이지",
+      "URL": "https://www.youthcenter.go.kr/go/ythip/getPlcy",
+      "확인방법": "API JSON 원본 및 정책번호 보존",
+      "HTTP상태": 200,
+      "로컬원문": "raw_2026-10-02/API_HOUSING_4.json",
+      "최종확인일": "2026-10-02"
+    },
+    {
+      "source_id": "S29",
+      "관련data_id": "HOU-015",
+      "기관": "마이홈",
+      "자료명": "2026 임차가구지원·청년분리지급 제외조건",
+      "URL": "https://www.myhome.go.kr/hws/portal/cont/selectRentalHouseholdSupView.do",
+      "확인방법": "공식 원문 직접 다운로드·본문 검토",
+      "HTTP상태": 200,
+      "로컬원문": "raw_2026-10-02/S29.html",
+      "최종확인일": "2026-10-02"
+    },
+    {
+      "source_id": "S30",
+      "관련data_id": "HOU-016",
+      "기관": "마이홈",
+      "자료명": "주거취약계층 이사비지원",
+      "URL": "https://www.myhome.go.kr/hws/portal/cont/selectSupResidentsAbnormalView.do",
+      "확인방법": "공식 원문 직접 다운로드·본문 검토",
+      "HTTP상태": 200,
+      "로컬원문": "raw_2026-10-02/S30.html",
+      "최종확인일": "2026-10-02"
+    },
+    {
+      "source_id": "S31",
+      "관련data_id": "HOU-017;HOU-018;HOU-019",
+      "기관": "부산광역시",
+      "자료명": "2026 전세사기피해자 금융주거지원 안내",
+      "URL": "https://www.busan.go.kr/depart/charterdamage001/1712433",
+      "확인방법": "공식 원문 직접 다운로드·본문 검토",
+      "HTTP상태": 200,
+      "로컬원문": "raw_2026-10-02/S31.html",
+      "최종확인일": "2026-10-02"
+    },
+    {
+      "source_id": "S33",
+      "관련data_id": "HOU-017;HOU-018;HOU-019",
+      "기관": "부산광역시",
+      "자료명": "2026 금융주거지원공고 제2025-3906호",
+      "URL": "https://www.busan.go.kr/comm/getFile?srvcId=BBSTY1&upperNo=1712433&fileTy=ATTACH&fileNo=4",
+      "확인방법": "20쪽 공식 PDF 다운로드·텍스트 추출;사업별 자격/제외 전체 대조",
+      "HTTP상태": 200,
+      "로컬원문": "raw_2026-10-02/S33.bin",
+      "최종확인일": "2026-10-02"
+    },
+    {
+      "source_id": "S34",
+      "관련data_id": "HOU-021",
+      "기관": "사하구청",
+      "자료명": "자립준비청년 주거안심매니저",
+      "URL": "https://www.saha.go.kr/portal/contents.do?mId=0501060300",
+      "확인방법": "공식 원문 직접 다운로드·본문 검토",
+      "HTTP상태": 200,
+      "로컬원문": "raw_2026-10-02/S34.html",
+      "최종확인일": "2026-10-02"
+    },
+    {
+      "source_id": "S35",
+      "관련data_id": "HOU-021;HOU-022",
+      "기관": "사하구청",
+      "자료명": "1인가구 청년 지원안내",
+      "URL": "https://www.saha.go.kr/portal/contents.do?mId=0509020200",
+      "확인방법": "공식 원문 직접 다운로드·본문 검토",
+      "HTTP상태": 200,
+      "로컬원문": "raw_2026-10-02/S35.html",
+      "최종확인일": "2026-10-02"
+    },
+    {
+      "source_id": "SAHA_PLAN",
+      "관련data_id": "HOU-022",
+      "기관": "사하구청",
+      "자료명": "2026 지역기본자료",
+      "URL": "https://m.saha.go.kr/portal/Downfiles/s_basicplan_2601.pdf",
+      "확인방법": "공식PDF150쪽 다운로드·텍스트추출;주택사업 존재 보완",
+      "HTTP상태": 200,
+      "로컬원문": "raw_2026-10-02/SAHA_PLAN.bin",
+      "최종확인일": "2026-10-02"
+    },
+    {
+      "source_id": "S36",
+      "관련data_id": "HOU-023",
+      "기관": "사하청년창업지원센터",
+      "자료명": "청약에서 디딤돌대출까지 교육",
+      "URL": "https://economy.saha.go.kr/startup/program/view.do?idx_select=251&mId=0302000000",
+      "확인방법": "공식 원문 직접 다운로드·본문 검토",
+      "HTTP상태": 200,
+      "로컬원문": "raw_2026-10-02/S36.html",
+      "최종확인일": "2026-10-02"
+    },
+    {
+      "source_id": "NEW_HOUSING",
+      "관련data_id": "HOU-024",
+      "기관": "마이홈",
+      "자료명": "행복주택 전체 입주자격 안내",
+      "URL": "https://www.myhome.go.kr/hws/portal/cont/selectHappyHouseView.do",
+      "확인방법": "공식 원문 직접 다운로드·본문 검토",
+      "HTTP상태": 200,
+      "로컬원문": "raw_2026-10-02/NEW_HOUSING.html",
+      "최종확인일": "2026-10-02"
+    },
+    {
+      "source_id": "LUCKY",
+      "관련data_id": "HOU-025",
+      "기관": "부산광역시",
+      "자료명": "럭키7하우스 지원·선정기준",
+      "URL": "https://www.busan.go.kr/depart/house0203",
+      "확인방법": "공식 원문 직접 다운로드·본문 검토",
+      "HTTP상태": 200,
+      "로컬원문": "raw_2026-10-02/LUCKY.html",
+      "최종확인일": "2026-10-02"
+    },
+    {
+      "source_id": "DREAM_LOAN",
+      "관련data_id": "HOU-026",
+      "기관": "주택도시기금",
+      "자료명": "청년주택드림디딤돌대출 전체 대상",
+      "URL": "https://nhuf.molit.go.kr/FP/FP05/FP0503/FP05030901.jsp",
+      "확인방법": "공식 원문 직접 다운로드·본문 검토",
+      "HTTP상태": 200,
+      "로컬원문": "raw_2026-10-02/DREAM_LOAN.html",
+      "최종확인일": "2026-10-02"
+    },
+    {
+      "source_id": "DREAM_ACCOUNT",
+      "관련data_id": "HOU-027",
+      "기관": "주택도시기금",
+      "자료명": "청년주택드림청약통장 가입조건",
+      "URL": "https://nhuf.molit.go.kr/FP/FP07/FP0701/FP07010301.jsp",
+      "확인방법": "공식 원문 직접 다운로드·본문 검토",
+      "HTTP상태": 200,
+      "로컬원문": "raw_2026-10-02/DREAM_ACCOUNT.html",
+      "최종확인일": "2026-10-02"
+    },
+    {
+      "source_id": "RENT_LOAN",
+      "관련data_id": "HOU-028",
+      "기관": "주택도시기금",
+      "자료명": "주거안정월세대출 일반·우대형 전체자격",
+      "URL": "https://nhuf.molit.go.kr/FP/FP05/FP0502/FP05020201.jsp",
+      "확인방법": "공식 원문 직접 다운로드·본문 검토",
+      "HTTP상태": 200,
+      "로컬원문": "raw_2026-10-02/RENT_LOAN.html",
+      "최종확인일": "2026-10-02"
+    },
+    {
+      "source_id": "SCHOLARSHIP",
+      "관련data_id": "HOU-030",
+      "기관": "한국장학재단",
+      "자료명": "2026학년도2학기2차 주거안정장학금 신청",
+      "URL": "https://www.kosaf.go.kr/ko/notice.do?mode=view&seqNo=21163",
+      "확인방법": "공식 원문 직접 다운로드·본문 검토",
+      "HTTP상태": 200,
+      "로컬원문": "raw_2026-10-02/SCHOLARSHIP.html",
+      "최종확인일": "2026-10-02"
+    },
+    {
+      "source_id": "LH_YOUTH_PDF",
+      "관련data_id": "HOU-002",
+      "기관": "LH",
+      "자료명": "2026 청년전세임대1순위 공고11쪽",
+      "URL": "https://apply.lh.or.kr/lhapply/lhFile.do?fileid=65733876",
+      "확인방법": "추가 조사:공식 본문/공고 첨부 직접 다운로드·자격 및 기간 검토",
+      "HTTP상태": 200,
+      "로컬원문": "raw_2026-10-02/LH_YOUTH_PDF.pdf",
+      "최종확인일": "2026-10-02"
+    },
+    {
+      "source_id": "JIN_NOTICE",
+      "관련data_id": "HOU-010",
+      "기관": "부산진구청",
+      "자료명": "부산진구 공고2026-24호",
+      "URL": "https://eminwon.busanjin.go.kr/emwp/gov/mogaha/ntis/web/ofr/action/OfrAction.do?Key=B_Subject&context=NTIS&countYn=Y&epcCheck=Y&homepage_pbs_yn=Y&homepagetype=home&initValue=Y&jndinm=OfrNotAncmtEJB&list_gubun=A&method=selectOfrNotAncmt&methodnm=selectOfrNotAncmtRegst&not_ancmt_mgt_no=51073&not_ancmt_se_code=01%2C04&ofr_pageSize=10&subCheck=Y",
+      "확인방법": "추가 조사:공식 본문/공고 첨부 직접 다운로드·자격 및 기간 검토",
+      "HTTP상태": 200,
+      "로컬원문": "raw_2026-10-02/JIN_NOTICE.html",
+      "최종확인일": "2026-10-02"
+    },
+    {
+      "source_id": "LUCKY_CORRECTION",
+      "관련data_id": "HOU-025",
+      "기관": "부산광역시",
+      "자료명": "럭키7하우스2026-1982호 정정공고",
+      "URL": "https://www.busan.go.kr/nbgosi/view?gosiGbn=A&sno=78417",
+      "확인방법": "추가 조사:공식 본문/공고 첨부 직접 다운로드·자격 및 기간 검토",
+      "HTTP상태": 200,
+      "로컬원문": "raw_2026-10-02/LUCKY_CORRECTION.html",
+      "최종확인일": "2026-10-02"
+    },
+    {
+      "source_id": "LUCKY_HWPX",
+      "관련data_id": "HOU-025",
+      "기관": "부산광역시",
+      "자료명": "럭키7하우스 정정공고 HWPX",
+      "URL": "https://www.busan.go.kr/nbgosi/download?fileId=F26061610445540112&seq=0",
+      "확인방법": "추가 조사:공식 본문/공고 첨부 직접 다운로드·자격 및 기간 검토",
+      "HTTP상태": 200,
+      "로컬원문": "raw_2026-10-02/LUCKY_HWPX.zip",
+      "최종확인일": "2026-10-02"
+    },
+    {
+      "source_id": "HF_SPECIAL",
+      "관련data_id": "HOU-029",
+      "기관": "한국주택금융공사",
+      "자료명": "무주택청년 특례전세자금보증",
+      "URL": "https://www.hf.go.kr/ko/sub02/sub02_01_04.do",
+      "확인방법": "추가 조사:공식 본문/공고 첨부 직접 다운로드·자격 및 기간 검토",
+      "HTTP상태": 200,
+      "로컬원문": "raw_2026-10-02/HF_SPECIAL.html",
+      "최종확인일": "2026-10-02"
+    },
+    {
+      "source_id": "HF_MONTH",
+      "관련data_id": "HOU-029",
+      "기관": "한국주택금융공사",
+      "자료명": "무주택청년 특례월세자금보증",
+      "URL": "https://www.hf.go.kr/ko/sub02/sub02_01_06.do",
+      "확인방법": "추가 조사:공식 본문/공고 첨부 직접 다운로드·자격 및 기간 검토",
+      "HTTP상태": 200,
+      "로컬원문": "raw_2026-10-02/HF_MONTH.html",
+      "최종확인일": "2026-10-02"
+    },
+    {
+      "source_id": "SCHOLARSHIP_DETAIL",
+      "관련data_id": "HOU-030",
+      "기관": "한국장학재단",
+      "자료명": "주거안정장학금 자격·심사·금액·신청매뉴얼",
+      "URL": "https://www.kosaf.go.kr/ko/scholar.do?pg=scholarship05_12_18&ttab1=0",
+      "확인방법": "추가 조사:공식 본문/공고 첨부 직접 다운로드·자격 및 기간 검토",
+      "HTTP상태": 200,
+      "로컬원문": "raw_2026-10-02/SCHOLARSHIP_DETAIL.html",
+      "최종확인일": "2026-10-02"
+    },
+    {
+      "source_id": "SCHOLARSHIP_REVIEW",
+      "관련data_id": "HOU-030",
+      "기관": "한국장학재단",
+      "자료명": "주거안정장학금 자격·심사·금액·신청매뉴얼",
+      "URL": "https://www.kosaf.go.kr/ko/scholar.do?pg=scholarship05_12_18&ttab1=1",
+      "확인방법": "추가 조사:공식 본문/공고 첨부 직접 다운로드·자격 및 기간 검토",
+      "HTTP상태": 200,
+      "로컬원문": "raw_2026-10-02/SCHOLARSHIP_REVIEW.html",
+      "최종확인일": "2026-10-02"
+    },
+    {
+      "source_id": "SCHOLARSHIP_SUPPORT",
+      "관련data_id": "HOU-030",
+      "기관": "한국장학재단",
+      "자료명": "주거안정장학금 자격·심사·금액·신청매뉴얼",
+      "URL": "https://www.kosaf.go.kr/ko/scholar.do?pg=scholarship05_12_18&ttab1=2",
+      "확인방법": "추가 조사:공식 본문/공고 첨부 직접 다운로드·자격 및 기간 검토",
+      "HTTP상태": 200,
+      "로컬원문": "raw_2026-10-02/SCHOLARSHIP_SUPPORT.html",
+      "최종확인일": "2026-10-02"
+    },
+    {
+      "source_id": "SCHOLARSHIP_ZIP",
+      "관련data_id": "HOU-030",
+      "기관": "한국장학재단",
+      "자료명": "주거안정장학금 자격·심사·금액·신청매뉴얼",
+      "URL": "https://www.kosaf.go.kr/ko/download.do?pPath=HP.BRD.UPLOAD&pSeq_No=21163&pFile_No=1",
+      "확인방법": "추가 조사:공식 본문/공고 첨부 직접 다운로드·자격 및 기간 검토",
+      "HTTP상태": 200,
+      "로컬원문": "raw_2026-10-02/SCHOLARSHIP_ZIP.zip",
+      "최종확인일": "2026-10-02"
+    },
+    {
+      "source_id": "LH_BUSAN_BUY",
+      "관련data_id": "HOU-031",
+      "기관": "국토교통부",
+      "자료명": "2026 LH 부산울산 청년매입임대 예비입주자 모집(09-17공고)",
+      "URL": "https://apply.lh.or.kr/lhapply/apply/wt/wrtanc/selectWrtancInfo.do?aisTpCd=26&ccrCnntSysDsCd=03&mi=1026&panId=2015122300020790&uppAisTpCd=13",
+      "확인방법": "추가 조사:공식 본문/공고 첨부 직접 다운로드·자격 및 기간 검토",
+      "HTTP상태": 200,
+      "로컬원문": "raw_2026-10-02/LH_BUSAN_BUY.html",
+      "최종확인일": "2026-10-02"
+    },
+    {
+      "source_id": "LH_BUY_PDF",
+      "관련data_id": "HOU-031",
+      "기관": "LH",
+      "자료명": "청년매입임대09-17공고33쪽",
+      "URL": "https://apply.lh.or.kr/lhapply/lhFile.do?fileid=68632765",
+      "확인방법": "추가 조사:공식 본문/공고 첨부 직접 다운로드·자격 및 기간 검토",
+      "HTTP상태": 200,
+      "로컬원문": "raw_2026-10-02/LH_BUY_PDF.pdf",
+      "최종확인일": "2026-10-02"
+    },
+    {
+      "source_id": "LH_MUNHYEON",
+      "관련data_id": "HOU-032",
+      "기관": "국토교통부",
+      "자료명": "부산문현2 1블록 행복주택 입주자 모집(2026-09-22)",
+      "URL": "https://apply.lh.or.kr/lhapply/apply/wt/wrtanc/selectWrtancInfo.do?aisTpCd=10&ccrCnntSysDsCd=03&mi=1026&panId=2015122300020806&uppAisTpCd=06",
+      "확인방법": "추가 조사:공식 본문/공고 첨부 직접 다운로드·자격 및 기간 검토",
+      "HTTP상태": 200,
+      "로컬원문": "raw_2026-10-02/LH_MUNHYEON.html",
+      "최종확인일": "2026-10-02"
+    },
+    {
+      "source_id": "LH_MUNHYEON_PDF",
+      "관련data_id": "HOU-032",
+      "기관": "LH",
+      "자료명": "부산문현2 행복주택 공고53쪽",
+      "URL": "https://apply.lh.or.kr/lhapply/lhFile.do?fileid=68703985",
+      "확인방법": "추가 조사:공식 본문/공고 첨부 직접 다운로드·자격 및 기간 검토",
+      "HTTP상태": 200,
+      "로컬원문": "raw_2026-10-02/LH_MUNHYEON_PDF.pdf",
+      "최종확인일": "2026-10-02"
+    },
+    {
+      "source_id": "INTEGRATED",
+      "관련data_id": "HOU-033",
+      "기관": "국토교통부",
+      "자료명": "통합공공임대주택(제도 안내)",
+      "URL": "https://www.myhome.go.kr/hws/portal/cont/selectIntegratedPubRentalHouseView.do",
+      "확인방법": "추가 조사:공식 본문/공고 첨부 직접 다운로드·자격 및 기간 검토",
+      "HTTP상태": 200,
+      "로컬원문": "raw_2026-10-02/INTEGRATED.html",
+      "최종확인일": "2026-10-02"
+    },
+    {
+      "source_id": "PUBLIC_PRIVATE_BODY",
+      "관련data_id": "HOU-034",
+      "기관": "국토교통부",
+      "자료명": "공공지원민간임대주택(제도 안내)",
+      "URL": "https://www.myhome.go.kr/html/content/MyHomeGuideRH109.html",
+      "확인방법": "추가 조사:공식 본문/공고 첨부 직접 다운로드·자격 및 기간 검토",
+      "HTTP상태": 200,
+      "로컬원문": "raw_2026-10-02/PUBLIC_PRIVATE_BODY.html",
+      "최종확인일": "2026-10-02"
+    },
+    {
+      "source_id": "WEAK_HOUSING_BODY",
+      "관련data_id": "HOU-035",
+      "기관": "국토교통부",
+      "자료명": "주거취약계층 주거지원(주거상향)",
+      "URL": "https://www.myhome.go.kr/html/content/MyHomeGuideMENU002.html",
+      "확인방법": "추가 조사:공식 본문/공고 첨부 직접 다운로드·자격 및 기간 검토",
+      "HTTP상태": 200,
+      "로컬원문": "raw_2026-10-02/WEAK_HOUSING_BODY.html",
+      "최종확인일": "2026-10-02"
+    },
+    {
+      "source_id": "PROTECT_END_BODY",
+      "관련data_id": "HOU-036",
+      "기관": "국토교통부",
+      "자료명": "자립준비청년 주거지원(건설·매입·전세임대)",
+      "URL": "https://www.myhome.go.kr/html/content/MyHomeGuideMENU003.html",
+      "확인방법": "추가 조사:공식 본문/공고 첨부 직접 다운로드·자격 및 기간 검토",
+      "HTTP상태": 200,
+      "로컬원문": "raw_2026-10-02/PROTECT_END_BODY.html",
+      "최종확인일": "2026-10-02"
+    },
+    {
+      "source_id": "NEWLY_RENT",
+      "관련data_id": "HOU-037",
+      "기관": "국토교통부",
+      "자료명": "신혼부부전용 전세자금대출",
+      "URL": "https://nhuf.molit.go.kr/FP/FP05/FP0502/FP05020401.jsp",
+      "확인방법": "추가 조사:공식 본문/공고 첨부 직접 다운로드·자격 및 기간 검토",
+      "HTTP상태": 200,
+      "로컬원문": "raw_2026-10-02/NEWLY_RENT.html",
+      "최종확인일": "2026-10-02"
+    },
+    {
+      "source_id": "NEWBORN_RENT",
+      "관련data_id": "HOU-038",
+      "기관": "국토교통부",
+      "자료명": "신생아 특례 버팀목 전세자금대출",
+      "URL": "https://nhuf.molit.go.kr/FP/FP05/FP0502/FP05021401.jsp",
+      "확인방법": "추가 조사:공식 본문/공고 첨부 직접 다운로드·자격 및 기간 검토",
+      "HTTP상태": 200,
+      "로컬원문": "raw_2026-10-02/NEWBORN_RENT.html",
+      "최종확인일": "2026-10-02"
+    },
+    {
+      "source_id": "BUSAN_NEWLY",
+      "관련data_id": "HOU-039",
+      "기관": "부산광역시",
+      "자료명": "2026 부산 신혼부부 주택융자 및 대출이자 지원(2차변경)",
+      "URL": "https://www.busan.go.kr/childcare/childcare010106/1742555",
+      "확인방법": "추가 조사:공식 본문/공고 첨부 직접 다운로드·자격 및 기간 검토",
+      "HTTP상태": 200,
+      "로컬원문": "raw_2026-10-02/BUSAN_NEWLY.html",
+      "최종확인일": "2026-10-02"
+    },
+    {
+      "source_id": "BUSAN_NEWLY_PDF",
+      "관련data_id": "HOU-039",
+      "기관": "부산광역시",
+      "자료명": "2026-2304호2차변경공고9쪽",
+      "URL": "https://www.busan.go.kr/comm/getFile?srvcId=BBSTY1&upperNo=1742555&fileTy=ATTACH&fileNo=1",
+      "확인방법": "추가 조사:공식 본문/공고 첨부 직접 다운로드·자격 및 기간 검토",
+      "HTTP상태": 200,
+      "로컬원문": "raw_2026-10-02/BUSAN_NEWLY_PDF.pdf",
+      "최종확인일": "2026-10-02"
+    },
+    {
+      "source_id": "BUSAN_NEWLY_FAQ",
+      "관련data_id": "HOU-039",
+      "기관": "부산광역시",
+      "자료명": "신혼부부전세 FAQ9쪽",
+      "URL": "https://www.busan.go.kr/comm/getFile?srvcId=BBSTY1&upperNo=1742555&fileTy=ATTACH&fileNo=2",
+      "확인방법": "추가 조사:공식 본문/공고 첨부 직접 다운로드·자격 및 기간 검토",
+      "HTTP상태": 200,
+      "로컬원문": "raw_2026-10-02/BUSAN_NEWLY_FAQ.pdf",
+      "최종확인일": "2026-10-02"
+    },
+    {
+      "source_id": "GAS_DISCOUNT",
+      "관련data_id": "HOU-040",
+      "기관": "산업통상부",
+      "자료명": "부산도시가스 사회적배려대상 요금경감",
+      "URL": "https://www.skens.com/busan/content/view.do?cate=service&m1=supplyaskcharge&m2=inspectorsystem",
+      "확인방법": "추가 조사:공식 본문/공고 첨부 직접 다운로드·자격 및 기간 검토",
+      "HTTP상태": 200,
+      "로컬원문": "raw_2026-10-02/GAS_DISCOUNT.html",
+      "최종확인일": "2026-10-02"
+    },
+    {
+      "source_id": "WATER_DISCOUNT",
+      "관련data_id": "HOU-041",
+      "기관": "부산광역시",
+      "자료명": "부산 상하수도요금 복지·다자녀 감면",
+      "URL": "https://www.busan.go.kr/water/wtminwon11",
+      "확인방법": "추가 조사:공식 본문/공고 첨부 직접 다운로드·자격 및 기간 검토",
+      "HTTP상태": 200,
+      "로컬원문": "raw_2026-10-02/WATER_DISCOUNT.html",
+      "최종확인일": "2026-10-02"
+    },
+    {
+      "source_id": "WATER_RATES",
+      "관련data_id": "HOU-042",
+      "기관": "부산광역시",
+      "자료명": "부산 수도요금 자동납부·전자고지 할인",
+      "URL": "https://www.busan.go.kr/water/rateinfo",
+      "확인방법": "추가 조사:공식 본문/공고 첨부 직접 다운로드·자격 및 기간 검토",
+      "HTTP상태": 200,
+      "로컬원문": "raw_2026-10-02/WATER_RATES.html",
+      "최종확인일": "2026-10-02"
+    },
+    {
+      "source_id": "UTILITY_DISABILITY",
+      "관련data_id": "HOU-043",
+      "기관": "한국전력공사",
+      "자료명": "중증장애인 전기요금 복지할인",
+      "URL": "https://www.busan.go.kr/depart/weldisabled0101",
+      "확인방법": "추가 조사:공식 본문/공고 첨부 직접 다운로드·자격 및 기간 검토",
+      "HTTP상태": 200,
+      "로컬원문": "raw_2026-10-02/UTILITY_DISABILITY.html",
+      "최종확인일": "2026-10-02"
+    },
+    {
+      "source_id": "UTILITY_FAMILY",
+      "관련data_id": "HOU-044",
+      "기관": "한국전력공사",
+      "자료명": "3자녀이상가구 전기요금 할인",
+      "URL": "https://www.busan.go.kr/childcare/childcare0602",
+      "확인방법": "추가 조사:공식 본문/공고 첨부 직접 다운로드·자격 및 기간 검토",
+      "HTTP상태": 200,
+      "로컬원문": "raw_2026-10-02/UTILITY_FAMILY.html",
+      "최종확인일": "2026-10-02"
+    },
+    {
+      "source_id": "BMC_NEWLY_DETAIL",
+      "관련data_id": "HOU-045",
+      "기관": "부산도시공사",
+      "자료명": "2026 BMC 신혼·신생아 매입임대주택Ⅱ 예비입주자 모집",
+      "URL": "https://apply.bmc.busan.kr/smw/smw113020/selectPbancDetailView.do?pbancNo=110&pbancKndCd=06&bizTyNm=매입임대",
+      "확인방법": "추가 조사:공식 본문/공고 첨부 직접 다운로드·자격 및 기간 검토",
+      "HTTP상태": 200,
+      "로컬원문": "raw_2026-10-02/BMC_NEWLY_DETAIL.html",
+      "최종확인일": "2026-10-02"
+    },
+    {
+      "source_id": "BMC_NEWLY_PDF",
+      "관련data_id": "HOU-045",
+      "기관": "부산도시공사",
+      "자료명": "제2026-229호 공고25쪽",
+      "URL": "https://apply.bmc.busan.kr/smw/smw113020/selectFileDown.do?pbancNo=110&atchFileSn=87423&atchFileDtlSn=2&mode=1",
+      "확인방법": "추가 조사:공식 본문/공고 첨부 직접 다운로드·자격 및 기간 검토",
+      "HTTP상태": 200,
+      "로컬원문": "raw_2026-10-02/BMC_NEWLY_PDF.pdf",
+      "최종확인일": "2026-10-02"
+    },
+    {
+      "source_id": "BMC_YOUTH_DETAIL",
+      "관련data_id": "HOU-046",
+      "기관": "부산도시공사",
+      "자료명": "2026 BMC 1차 청년 매입임대 예비입주자 모집",
+      "URL": "https://apply.bmc.busan.kr/smw/smw113020/selectPbancDetailView.do?pbancNo=91&pbancKndCd=06&bizTyNm=매입임대",
+      "확인방법": "추가 조사:공식 본문/공고 첨부 직접 다운로드·자격 및 기간 검토",
+      "HTTP상태": 200,
+      "로컬원문": "raw_2026-10-02/BMC_YOUTH_DETAIL.html",
+      "최종확인일": "2026-10-02"
+    },
+    {
+      "source_id": "BMC_YOUTH_PDF",
+      "관련data_id": "HOU-046",
+      "기관": "부산도시공사",
+      "자료명": "2026BMC청년매입임대공고26쪽",
+      "URL": "https://apply.bmc.busan.kr/smw/smw113020/selectFileDown.do?pbancNo=91&atchFileSn=69500&atchFileDtlSn=10&mode=1",
+      "확인방법": "추가 조사:공식 본문/공고 첨부 직접 다운로드·자격 및 기간 검토",
+      "HTTP상태": 200,
+      "로컬원문": "raw_2026-10-02/BMC_YOUTH_PDF.pdf",
+      "최종확인일": "2026-10-02"
+    },
+    {
+      "source_id": "HF_MORTGAGE",
+      "관련data_id": "HOU-047",
+      "기관": "한국주택금융공사",
+      "자료명": "보금자리론 청년·신혼 초장기 대출",
+      "URL": "https://www.hf.go.kr/ko/sub01/sub01_01_01.do",
+      "확인방법": "추가 조사:공식 본문/공고 첨부 직접 다운로드·자격 및 기간 검토",
+      "HTTP상태": 200,
+      "로컬원문": "raw_2026-10-02/HF_MORTGAGE.html",
+      "최종확인일": "2026-10-02"
+    },
+    {
+      "source_id": "DAMAGE_REPAIR",
+      "관련data_id": "HOU-048",
+      "기관": "부산광역시",
+      "자료명": "2026 하반기 부산 전세사기피해주택 시설개선 지원",
+      "URL": "https://www.dongnae.go.kr/board/view.dongnae?boardId=BBS_0000178&dataSid=896372&menuCd=DOM_000001115003001000&startPage=1",
+      "확인방법": "추가 조사:공식 본문/공고 첨부 직접 다운로드·자격 및 기간 검토",
+      "HTTP상태": 200,
+      "로컬원문": "raw_2026-10-02/DAMAGE_REPAIR.html",
+      "최종확인일": "2026-10-02"
+    },
+    {
+      "source_id": "DAMAGE_REPAIR_HWPX",
+      "관련data_id": "HOU-048",
+      "기관": "부산광역시",
+      "자료명": "2026-2088호 전세피해주택시설개선공고HWPX",
+      "URL": "https://www.dongnae.go.kr/board/download.dongnae?boardId=BBS_0000178&command=update&dataSid=896372&fileSid=375701&menuCd=DOM_000001115003001000&startPage=1",
+      "확인방법": "추가 조사:공식 본문/공고 첨부 직접 다운로드·자격 및 기간 검토",
+      "HTTP상태": 200,
+      "로컬원문": "raw_2026-10-02/DAMAGE_REPAIR_HWPX.zip",
+      "최종확인일": "2026-10-02"
+    },
+    {
+      "source_id": "LH_RENT_GUIDE",
+      "관련data_id": "HOU-049",
+      "기관": "국토교통부",
+      "자료명": "LH 기숙사형 청년주택 공급(기숙사형 매입임대)",
+      "URL": "https://apply.lh.or.kr/lhapply/cm/cntnts/cntntsView.do?mi=1150&cntntsId=201269",
+      "확인방법": "추가 조사:공식 본문/공고 첨부 직접 다운로드·자격 및 기간 검토",
+      "HTTP상태": 200,
+      "로컬원문": "raw_2026-10-02/LH_RENT_GUIDE.html",
+      "최종확인일": "2026-10-02"
+    },
+    {
+      "source_id": "LH_DORM_2026",
+      "관련data_id": "HOU-049",
+      "기관": "LH",
+      "자료명": "2026기숙사형광주전남정정공고",
+      "URL": "https://apply.lh.or.kr/lhapply/apply/wt/wrtanc/selectWrtancInfo.do?aisTpCd=26&ccrCnntSysDsCd=03&mi=1026&panId=2015122300020819&uppAisTpCd=13",
+      "확인방법": "추가 조사:공식 본문/공고 첨부 직접 다운로드·자격 및 기간 검토",
+      "HTTP상태": 200,
+      "로컬원문": "raw_2026-10-02/LH_DORM_2026.html",
+      "최종확인일": "2026-10-02"
+    },
+    {
+      "source_id": "LH_DORM_PDF",
+      "관련data_id": "HOU-049",
+      "기관": "LH",
+      "자료명": "2026기숙사형정정공고25쪽",
+      "URL": "https://apply.lh.or.kr/lhapply/lhFile.do?fileid=68714892",
+      "확인방법": "추가 조사:공식 본문/공고 첨부 직접 다운로드·자격 및 기간 검토",
+      "HTTP상태": 200,
+      "로컬원문": "raw_2026-10-02/LH_DORM_PDF.pdf",
+      "최종확인일": "2026-10-02"
+    },
+    {
+      "source_id": "DREAM",
+      "관련data_id": "HOU-050",
+      "기관": "부산광역시",
+      "자료명": "부산 청년 맞춤형 민간임대주택 공급(희망더함주택)",
+      "URL": "https://www.busan.go.kr/depart/dreamhouse",
+      "확인방법": "추가 조사:공식 본문/공고 첨부 직접 다운로드·자격 및 기간 검토",
+      "HTTP상태": 200,
+      "로컬원문": "raw_2026-10-02/DREAM.html",
+      "최종확인일": "2026-10-02"
+    },
+    {
+      "source_id": "DREAM_RULE",
+      "관련data_id": "HOU-050",
+      "기관": "부산광역시",
+      "자료명": "희망더함주택공급운영기준4차개정29쪽",
+      "URL": "https://www.busan.go.kr/comm/getFile?srvcId=MEDIA&upperNo=24276&fileTy=MEDIA&fileNo=1",
+      "확인방법": "추가 조사:공식 본문/공고 첨부 직접 다운로드·자격 및 기간 검토",
+      "HTTP상태": 200,
+      "로컬원문": "raw_2026-10-02/DREAM_RULE.pdf",
+      "최종확인일": "2026-10-02"
+    },
+    {
+      "source_id": "LH_USER_LINK",
+      "관련data_id": "HOU-051",
+      "기관": "국토교통부",
+      "자료명": "LH 공공임대주택 공급(분양전환·분납·50년 제도안내)",
+      "URL": "https://apply.lh.or.kr/lhapply/cm/cntnts/cntntsView.do?mi=1223&cntntsId=1026",
+      "확인방법": "추가 조사:공식 본문/공고 첨부 직접 다운로드·자격 및 기간 검토",
+      "HTTP상태": 200,
+      "로컬원문": "raw_2026-10-02/LH_USER_LINK.html",
+      "최종확인일": "2026-10-02"
+    },
+    {
+      "source_id": "DORM_PUBLIC",
+      "관련data_id": "HOU-052",
+      "기관": "국토교통부",
+      "자료명": "공공기숙사 행복기숙사(제도 안내)",
+      "URL": "https://www.myhome.go.kr/hws/portal/cont/selectPubDormitoryView.do",
+      "확인방법": "추가 조사:공식 본문/공고 첨부 직접 다운로드·자격 및 기간 검토",
+      "HTTP상태": 200,
+      "로컬원문": "raw_2026-10-02/DORM_PUBLIC.html",
+      "최종확인일": "2026-10-02"
+    },
+    {
+      "source_id": "NEWBORN_BUY",
+      "관련data_id": "HOU-053",
+      "기관": "국토교통부",
+      "자료명": "신생아 특례 디딤돌 구입자금대출",
+      "URL": "https://nhuf.molit.go.kr/FP/FP05/FP0503/FP05030801.jsp",
+      "확인방법": "추가 조사:공식 본문/공고 첨부 직접 다운로드·자격 및 기간 검토",
+      "HTTP상태": 200,
+      "로컬원문": "raw_2026-10-02/NEWBORN_BUY.html",
+      "최종확인일": "2026-10-02"
+    },
+    {
+      "source_id": "NEWBORN_REFINANCE",
+      "관련data_id": "HOU-053",
+      "기관": "주택도시기금",
+      "자료명": "1주택 대환 세부기준",
+      "URL": "https://nhuf.molit.go.kr/FP/FP05/FP0503/FP05030802.jsp",
+      "확인방법": "추가 조사:공식 본문/공고 첨부 직접 다운로드·자격 및 기간 검토",
+      "HTTP상태": 200,
+      "로컬원문": "raw_2026-10-02/NEWBORN_REFINANCE.html",
+      "최종확인일": "2026-10-02"
+    },
+    {
+      "source_id": "UNION_DORM_LATEST",
+      "관련data_id": "HOU-054",
+      "기관": "교육부",
+      "자료명": "2026년 2학기 대학생 연합생활관(은행권·고양) 신규입주 3차",
+      "URL": "https://www.kosaf.go.kr/ko/notice.do?mode=view&seqNo=20960",
+      "확인방법": "추가 조사:공식 본문/공고 첨부 직접 다운로드·자격 및 기간 검토",
+      "HTTP상태": 200,
+      "로컬원문": "raw_2026-10-02/UNION_DORM_LATEST.html",
+      "최종확인일": "2026-10-02"
+    },
+    {
+      "source_id": "UNION_DORM_LIST",
+      "관련data_id": "HOU-054",
+      "기관": "한국장학재단",
+      "자료명": "연합생활관 최신 공지 목록",
+      "URL": "https://www.kosaf.go.kr/ko/notice.do?ctgrId1=0000000009",
+      "확인방법": "추가 조사:공식 본문/공고 첨부 직접 다운로드·자격 및 기간 검토",
+      "HTTP상태": 200,
+      "로컬원문": "raw_2026-10-02/UNION_DORM_LIST.html",
+      "최종확인일": "2026-10-02"
+    },
+    {
+      "source_id": "MYHOME_COUNSEL",
+      "관련data_id": "HOU-055",
+      "기관": "국토교통부",
+      "자료명": "LH 마이홈 주거정보·전화·카카오톡·이메일 상담",
+      "URL": "https://lh.or.kr/menu.es?mid=a10310000000",
+      "확인방법": "추가 조사:공식 본문/공고 첨부 직접 다운로드·자격 및 기간 검토",
+      "HTTP상태": 200,
+      "로컬원문": "raw_2026-10-02/MYHOME_COUNSEL.html",
+      "최종확인일": "2026-10-02"
+    },
+    {
+      "source_id": "MYHOME_INFO",
+      "관련data_id": "HOU-055",
+      "기관": "LH",
+      "자료명": "마이홈 이용안내",
+      "URL": "https://www.myhome.go.kr/hws/portal/main/selectMyHomeInfoView.do",
+      "확인방법": "추가 조사:공식 본문/공고 첨부 직접 다운로드·자격 및 기간 검토",
+      "HTTP상태": 200,
+      "로컬원문": "raw_2026-10-02/MYHOME_INFO.html",
+      "최종확인일": "2026-10-02"
+    },
+    {
+      "source_id": "HAMAN_COUNSEL",
+      "관련data_id": "HOU-056",
+      "기관": "국토교통부",
+      "자료명": "2026년 제7회 찾아가는 청년주거 상담소(김해 가야대)",
+      "URL": "https://youthhaman.kr/contents/02_news/board.html?board_id=board_info&mode=view&no=135",
+      "확인방법": "추가 조사:공식 본문/공고 첨부 직접 다운로드·자격 및 기간 검토",
+      "HTTP상태": 200,
+      "로컬원문": "raw_2026-10-02/HAMAN_COUNSEL.html",
+      "최종확인일": "2026-10-02"
+    },
+    {
+      "source_id": "BUFS_COUNSEL",
+      "관련data_id": "HOU-056",
+      "기관": "부산외국어대학교",
+      "자료명": "공동기관 공식 포스터 게시",
+      "URL": "https://www.bufs.ac.kr/bbs/board.php?bo_table=bufs_occasion&wr_id=7942",
+      "확인방법": "추가 조사:공식 본문/공고 첨부 직접 다운로드·자격 및 기간 검토",
+      "HTTP상태": 200,
+      "로컬원문": "raw_2026-10-02/BUFS_COUNSEL.html",
+      "최종확인일": "2026-10-02"
+    },
+    {
+      "source_id": "BUFS_COUNSEL_POSTER",
+      "관련data_id": "HOU-056",
+      "기관": "국토교통부 등",
+      "자료명": "제7회 주거상담소 공식 포스터",
+      "URL": "https://www.bufs.ac.kr/data/editor/2609/61ba0bcc04b4df0e11538580a391ea8f_1790583417_3491.jpg",
+      "확인방법": "추가 조사:공식 본문/공고 첨부 직접 다운로드·자격 및 기간 검토",
+      "HTTP상태": 200,
+      "로컬원문": "raw_2026-10-02/BUFS_COUNSEL_POSTER.html",
+      "최종확인일": "2026-10-02"
+    },
+    {
+      "source_id": "MIRYANG_RURAL_NOTICE",
+      "관련data_id": "HOU-057",
+      "기관": "밀양시",
+      "자료명": "2026 밀양 청년농촌보금자리 가족형 입주자 재모집",
+      "URL": "https://miryang.go.kr/dpt/eMiryangMinwonView.do?mnNo=2020000&owd=agricul&nmmIdx=60302",
+      "확인방법": "추가 조사:공식 본문/공고 첨부 직접 다운로드·자격 및 기간 검토",
+      "HTTP상태": 200,
+      "로컬원문": "raw_2026-10-02/MIRYANG_RURAL_NOTICE.html",
+      "최종확인일": "2026-10-02"
+    },
+    {
+      "source_id": "MIRYANG_RURAL_HWPX",
+      "관련data_id": "HOU-057",
+      "기관": "밀양시",
+      "자료명": "2026-1794호 재모집 공고 첨부",
+      "URL": "https://eminwon.miryang.go.kr/emwp/jsp/ofr/FileDown.jsp?user_file_nm=%EC%9E%85%EC%A3%BC%EC%9E%90+%EB%AA%A8%EC%A7%91+%EA%B3%B5%EA%B3%A0%EB%AC%B8%28%EC%9E%AC%EA%B3%B5%EA%B3%A0%29.hwpx&sys_file_nm=%EC%9E%85%EC%A3%BC%EC%9E%90+%EB%AA%A8%EC%A7%91+%EA%B3%B5%EA%B3%A0%EB%AC%B8%28%EC%9E%AC%EA%B3%B5%EA%B3%A0%29_ofr_ofr_Tuv23QMBacheRAKU_20260716161606852_3.hwpx&file_path=%2Fntishome%2Ffile%2Fupload%2Fofr%2Fofr%2F20260716",
+      "확인방법": "추가 조사:공식 본문/공고 첨부 직접 다운로드·자격 및 기간 검토",
+      "HTTP상태": 200,
+      "로컬원문": "raw_2026-10-02/MIRYANG_RURAL_HWPX.zip",
+      "최종확인일": "2026-10-02"
+    },
+    {
+      "source_id": "RURAL_GUIDELINES",
+      "관련data_id": "HOU-057",
+      "기관": "농림축산식품부",
+      "자료명": "2026농식품시행지침서117~119쪽",
+      "URL": "https://www.mafra.go.kr/bbs/home/795/594263/download.do",
+      "확인방법": "추가 조사:공식 본문/공고 첨부 직접 다운로드·자격 및 기간 검토",
+      "HTTP상태": 200,
+      "로컬원문": "raw_2026-10-02/RURAL_GUIDELINES.pdf",
+      "최종확인일": "2026-10-02"
+    },
+    {
+      "source_id": "JPDC_NOTICE",
+      "관련data_id": "HOU-058",
+      "기관": "제주특별자치도개발공사",
+      "자료명": "2026 JPDC 제주시 통합공공임대 예비입주자 모집",
+      "URL": "https://www.jpdc.co.kr/open/news/notice.htm?act=view&seq=23806",
+      "확인방법": "추가 조사:공식 본문/공고 첨부 직접 다운로드·자격 및 기간 검토",
+      "HTTP상태": 200,
+      "로컬원문": "raw_2026-10-02/JPDC_NOTICE.html",
+      "최종확인일": "2026-10-02"
+    },
+    {
+      "source_id": "JPDC_NOTICE_PDF",
+      "관련data_id": "HOU-058",
+      "기관": "제주개발공사",
+      "자료명": "2026-146호 공고HWPX(파일이름과달리ZIP 컨테이너)",
+      "URL": "https://www.jpdc.co.kr/open/news/notice.htm?act=download&seq=23806&no=1",
+      "확인방법": "추가 조사:공식 본문/공고 첨부 직접 다운로드·자격 및 기간 검토",
+      "HTTP상태": 200,
+      "로컬원문": "raw_2026-10-02/JPDC_NOTICE_PDF.zip",
+      "최종확인일": "2026-10-02"
+    },
+    {
+      "source_id": "JPDC_JOB_NOTICE",
+      "관련data_id": "HOU-058",
+      "기관": "제주개발공사",
+      "자료명": "법환일자리연계형과일반형구분참고",
+      "URL": "https://www.jpdc.co.kr/open/news/notice.htm?act=view&seq=24023",
+      "확인방법": "추가 조사:공식 본문/공고 첨부 직접 다운로드·자격 및 기간 검토",
+      "HTTP상태": 200,
+      "로컬원문": "raw_2026-10-02/JPDC_JOB_NOTICE.html",
+      "최종확인일": "2026-10-02"
+    },
+    {
+      "source_id": "BUSAN_ECO_PLAN",
+      "관련data_id": "HOU-024;HOU-032;HOU-033",
+      "기관": "공식기관",
+      "자료명": "보류·제외사유 재조사 근거: 부산 행복주택 및 통합공공임대주택",
+      "URL": "https://www.busan.go.kr/nbtnewsBU/1738442",
+      "확인방법": "추가 조사:공식 본문/공고 첨부 직접 다운로드·자격 및 기간 검토",
+      "HTTP상태": 200,
+      "로컬원문": "raw_2026-10-02/BUSAN_ECO_PLAN.html",
+      "최종확인일": "2026-10-02"
+    },
+    {
+      "source_id": "NATIONAL_ASSET_PLAN",
+      "관련data_id": "해당없음",
+      "기관": "공식기관",
+      "자료명": "보류·제외사유 재조사 근거: 국유재산 복합개발을 통한 청년 공공주택 공급",
+      "URL": "https://eiec.kdi.re.kr/publish/naraView.do?cidx=15745&fcode=00002000040000100005&sel_month=10&sel_year=2026",
+      "확인방법": "추가 조사:공식 본문/공고 첨부 직접 다운로드·자격 및 기간 검토",
+      "HTTP상태": 200,
+      "로컬원문": "raw_2026-10-02/NATIONAL_ASSET_PLAN.html",
+      "최종확인일": "2026-10-02"
+    },
+    {
+      "source_id": "MIRYANG_RURAL_NOTICE",
+      "관련data_id": "HOU-057",
+      "기관": "공식기관",
+      "자료명": "보류·제외사유 재조사 근거: 청년농촌보금자리조성",
+      "URL": "https://miryang.go.kr/dpt/eMiryangMinwonView.do?mnNo=2020000&owd=agricul&nmmIdx=60302",
+      "확인방법": "추가 조사:공식 본문/공고 첨부 직접 다운로드·자격 및 기간 검토",
+      "HTTP상태": 200,
+      "로컬원문": "raw_2026-10-02/MIRYANG_RURAL_NOTICE.html",
+      "최종확인일": "2026-10-02"
+    },
+    {
+      "source_id": "MIRYANG_RURAL_HWPX",
+      "관련data_id": "HOU-057",
+      "기관": "공식기관",
+      "자료명": "보류·제외사유 재조사 근거: 청년농촌보금자리조성",
+      "URL": "https://eminwon.miryang.go.kr/emwp/jsp/ofr/FileDown.jsp?user_file_nm=%EC%9E%85%EC%A3%BC%EC%9E%90+%EB%AA%A8%EC%A7%91+%EA%B3%B5%EA%B3%A0%EB%AC%B8%28%EC%9E%AC%EA%B3%B5%EA%B3%A0%29.hwpx&sys_file_nm=%EC%9E%85%EC%A3%BC%EC%9E%90+%EB%AA%A8%EC%A7%91+%EA%B3%B5%EA%B3%A0%EB%AC%B8%28%EC%9E%AC%EA%B3%B5%EA%B3%A0%29_ofr_ofr_Tuv23QMBacheRAKU_20260716161606852_3.hwpx&file_path=%2Fntishome%2Ffile%2Fupload%2Fofr%2Fofr%2F20260716",
+      "확인방법": "추가 조사:공식 본문/공고 첨부 직접 다운로드·자격 및 기간 검토",
+      "HTTP상태": 200,
+      "로컬원문": "raw_2026-10-02/MIRYANG_RURAL_HWPX.zip",
+      "최종확인일": "2026-10-02"
+    },
+    {
+      "source_id": "RURAL_GUIDELINES",
+      "관련data_id": "HOU-057",
+      "기관": "공식기관",
+      "자료명": "보류·제외사유 재조사 근거: 청년농촌보금자리조성",
+      "URL": "https://www.mafra.go.kr/bbs/home/795/594263/download.do",
+      "확인방법": "추가 조사:공식 본문/공고 첨부 직접 다운로드·자격 및 기간 검토",
+      "HTTP상태": 200,
+      "로컬원문": "raw_2026-10-02/RURAL_GUIDELINES.pdf",
+      "최종확인일": "2026-10-02"
+    },
+    {
+      "source_id": "NEWBORN_BUY",
+      "관련data_id": "HOU-038;HOU-053",
+      "기관": "공식기관",
+      "자료명": "보류·제외사유 재조사 근거: 신생아 특례 구입·전세대출",
+      "URL": "https://nhuf.molit.go.kr/FP/FP05/FP0503/FP05030801.jsp",
+      "확인방법": "추가 조사:공식 본문/공고 첨부 직접 다운로드·자격 및 기간 검토",
+      "HTTP상태": 200,
+      "로컬원문": "raw_2026-10-02/NEWBORN_BUY.html",
+      "최종확인일": "2026-10-02"
+    },
+    {
+      "source_id": "NEWBORN_REFINANCE",
+      "관련data_id": "HOU-038;HOU-053",
+      "기관": "공식기관",
+      "자료명": "보류·제외사유 재조사 근거: 신생아 특례 구입·전세대출",
+      "URL": "https://nhuf.molit.go.kr/FP/FP05/FP0503/FP05030802.jsp",
+      "확인방법": "추가 조사:공식 본문/공고 첨부 직접 다운로드·자격 및 기간 검토",
+      "HTTP상태": 200,
+      "로컬원문": "raw_2026-10-02/NEWBORN_REFINANCE.html",
+      "최종확인일": "2026-10-02"
+    },
+    {
+      "source_id": "NEWBORN_BUY",
+      "관련data_id": "HOU-038;HOU-053",
+      "기관": "공식기관",
+      "자료명": "보류·제외사유 재조사 근거: 신생아 특례 구입·전세대출",
+      "URL": "https://nhuf.molit.go.kr/FP/FP05/FP0503/FP05030801.jsp",
+      "확인방법": "추가 조사:공식 본문/공고 첨부 직접 다운로드·자격 및 기간 검토",
+      "HTTP상태": 200,
+      "로컬원문": "raw_2026-10-02/NEWBORN_BUY.html",
+      "최종확인일": "2026-10-02"
+    },
+    {
+      "source_id": "NEWBORN_REFINANCE",
+      "관련data_id": "HOU-038;HOU-053",
+      "기관": "공식기관",
+      "자료명": "보류·제외사유 재조사 근거: 신생아 특례 구입·전세대출",
+      "URL": "https://nhuf.molit.go.kr/FP/FP05/FP0503/FP05030802.jsp",
+      "확인방법": "추가 조사:공식 본문/공고 첨부 직접 다운로드·자격 및 기간 검토",
+      "HTTP상태": 200,
+      "로컬원문": "raw_2026-10-02/NEWBORN_REFINANCE.html",
+      "최종확인일": "2026-10-02"
+    },
+    {
+      "source_id": "BUSAN_ECO_PLAN",
+      "관련data_id": "해당없음",
+      "기관": "공식기관",
+      "자료명": "보류·제외사유 재조사 근거: 청년특화주택 공급",
+      "URL": "https://www.busan.go.kr/nbtnewsBU/1738442",
+      "확인방법": "추가 조사:공식 본문/공고 첨부 직접 다운로드·자격 및 기간 검토",
+      "HTTP상태": 200,
+      "로컬원문": "raw_2026-10-02/BUSAN_ECO_PLAN.html",
+      "최종확인일": "2026-10-02"
+    },
+    {
+      "source_id": "HAMAN_COUNSEL",
+      "관련data_id": "HOU-056",
+      "기관": "공식기관",
+      "자료명": "보류·제외사유 재조사 근거: 찾아가는 청년주거 상담소",
+      "URL": "https://youthhaman.kr/contents/02_news/board.html?board_id=board_info&mode=view&no=135",
+      "확인방법": "추가 조사:공식 본문/공고 첨부 직접 다운로드·자격 및 기간 검토",
+      "HTTP상태": 200,
+      "로컬원문": "raw_2026-10-02/HAMAN_COUNSEL.html",
+      "최종확인일": "2026-10-02"
+    },
+    {
+      "source_id": "BUFS_COUNSEL",
+      "관련data_id": "HOU-056",
+      "기관": "공식기관",
+      "자료명": "보류·제외사유 재조사 근거: 찾아가는 청년주거 상담소",
+      "URL": "https://www.bufs.ac.kr/bbs/board.php?bo_table=bufs_occasion&wr_id=7942",
+      "확인방법": "추가 조사:공식 본문/공고 첨부 직접 다운로드·자격 및 기간 검토",
+      "HTTP상태": 200,
+      "로컬원문": "raw_2026-10-02/BUFS_COUNSEL.html",
+      "최종확인일": "2026-10-02"
+    },
+    {
+      "source_id": "BUFS_COUNSEL_POSTER",
+      "관련data_id": "HOU-056",
+      "기관": "공식기관",
+      "자료명": "보류·제외사유 재조사 근거: 찾아가는 청년주거 상담소",
+      "URL": "https://www.bufs.ac.kr/data/editor/2609/61ba0bcc04b4df0e11538580a391ea8f_1790583417_3491.jpg",
+      "확인방법": "추가 조사:공식 본문/공고 첨부 직접 다운로드·자격 및 기간 검토",
+      "HTTP상태": 200,
+      "로컬원문": "raw_2026-10-02/BUFS_COUNSEL_POSTER.html",
+      "최종확인일": "2026-10-02"
+    },
+    {
+      "source_id": "MYHOME_COUNSEL",
+      "관련data_id": "HOU-055",
+      "기관": "공식기관",
+      "자료명": "보류·제외사유 재조사 근거: [마이홈포털] 온라인 기반 주거 정보 전달 및 상담서비스 제공",
+      "URL": "https://lh.or.kr/menu.es?mid=a10310000000",
+      "확인방법": "추가 조사:공식 본문/공고 첨부 직접 다운로드·자격 및 기간 검토",
+      "HTTP상태": 200,
+      "로컬원문": "raw_2026-10-02/MYHOME_COUNSEL.html",
+      "최종확인일": "2026-10-02"
+    },
+    {
+      "source_id": "UNION_DORM_LATEST",
+      "관련data_id": "HOU-054",
+      "기관": "공식기관",
+      "자료명": "보류·제외사유 재조사 근거: 대학생 연합생활관(은행권,고양)",
+      "URL": "https://www.kosaf.go.kr/ko/notice.do?mode=view&seqNo=20960",
+      "확인방법": "추가 조사:공식 본문/공고 첨부 직접 다운로드·자격 및 기간 검토",
+      "HTTP상태": 200,
+      "로컬원문": "raw_2026-10-02/UNION_DORM_LATEST.html",
+      "최종확인일": "2026-10-02"
+    },
+    {
+      "source_id": "UNION_DORM_LIST",
+      "관련data_id": "HOU-054",
+      "기관": "공식기관",
+      "자료명": "보류·제외사유 재조사 근거: 대학생 연합생활관(은행권,고양)",
+      "URL": "https://www.kosaf.go.kr/ko/notice.do?ctgrId1=0000000009",
+      "확인방법": "추가 조사:공식 본문/공고 첨부 직접 다운로드·자격 및 기간 검토",
+      "HTTP상태": 200,
+      "로컬원문": "raw_2026-10-02/UNION_DORM_LIST.html",
+      "최종확인일": "2026-10-02"
+    },
+    {
+      "source_id": "USC_SPACE",
+      "관련data_id": "해당없음",
+      "기관": "공식기관",
+      "자료명": "보류·제외사유 재조사 근거: 이웃사촌시범마을시설운영 (금수장및청년주거지등)",
+      "URL": "https://www.usc.go.kr/youth/page.do?mnu_uid=2024",
+      "확인방법": "추가 조사:공식 본문/공고 첨부 직접 다운로드·자격 및 기간 검토",
+      "HTTP상태": 200,
+      "로컬원문": "raw_2026-10-02/USC_SPACE.html",
+      "최종확인일": "2026-10-02"
+    },
+    {
+      "source_id": "USC_LIST",
+      "관련data_id": "해당없음",
+      "기관": "공식기관",
+      "자료명": "보류·제외사유 재조사 근거: 이웃사촌시범마을시설운영 (금수장및청년주거지등)",
+      "URL": "https://www.usc.go.kr/youth/page.do?mnu_uid=2028",
+      "확인방법": "추가 조사:공식 본문/공고 첨부 직접 다운로드·자격 및 기간 검토",
+      "HTTP상태": 200,
+      "로컬원문": "raw_2026-10-02/USC_LIST.html",
+      "최종확인일": "2026-10-02"
+    },
+    {
+      "source_id": "JPDC_NOTICE",
+      "관련data_id": "HOU-058",
+      "기관": "공식기관",
+      "자료명": "보류·제외사유 재조사 근거: 공공임대주택 공급",
+      "URL": "https://www.jpdc.co.kr/open/news/notice.htm?act=view&seq=23806",
+      "확인방법": "추가 조사:공식 본문/공고 첨부 직접 다운로드·자격 및 기간 검토",
+      "HTTP상태": 200,
+      "로컬원문": "raw_2026-10-02/JPDC_NOTICE.html",
+      "최종확인일": "2026-10-02"
+    },
+    {
+      "source_id": "JPDC_NOTICE_PDF",
+      "관련data_id": "HOU-058",
+      "기관": "공식기관",
+      "자료명": "보류·제외사유 재조사 근거: 공공임대주택 공급",
+      "URL": "https://www.jpdc.co.kr/open/news/notice.htm?act=download&seq=23806&no=1",
+      "확인방법": "추가 조사:공식 본문/공고 첨부 직접 다운로드·자격 및 기간 검토",
+      "HTTP상태": 200,
+      "로컬원문": "raw_2026-10-02/JPDC_NOTICE_PDF.zip",
+      "최종확인일": "2026-10-02"
+    },
+    {
+      "source_id": "JPDC_JOB_NOTICE",
+      "관련data_id": "HOU-058",
+      "기관": "공식기관",
+      "자료명": "보류·제외사유 재조사 근거: 공공임대주택 공급",
+      "URL": "https://www.jpdc.co.kr/open/news/notice.htm?act=view&seq=24023",
+      "확인방법": "추가 조사:공식 본문/공고 첨부 직접 다운로드·자격 및 기간 검토",
+      "HTTP상태": 200,
+      "로컬원문": "raw_2026-10-02/JPDC_JOB_NOTICE.html",
+      "최종확인일": "2026-10-02"
+    },
+    {
+      "source_id": "JPDC_JOB_PDF",
+      "관련data_id": "HOU-058",
+      "기관": "공식기관",
+      "자료명": "보류·제외사유 재조사 근거: 공공임대주택 공급",
+      "URL": "https://www.jpdc.co.kr/open/news/notice.htm?act=download&seq=24023&no=1",
+      "확인방법": "추가 조사:공식 본문/공고 첨부 직접 다운로드·자격 및 기간 검토",
+      "HTTP상태": 200,
+      "로컬원문": "raw_2026-10-02/JPDC_JOB_PDF.zip",
+      "최종확인일": "2026-10-02"
+    },
+    {
+      "source_id": "GANGWON_PLAN",
+      "관련data_id": "해당없음",
+      "기관": "공식기관",
+      "자료명": "보류·제외사유 재조사 근거: 강원형 공공주택 공급",
+      "URL": "https://state.gwd.go.kr/portal/briefing/pressRelease?seq=8511",
+      "확인방법": "추가 조사:공식 본문/공고 첨부 직접 다운로드·자격 및 기간 검토",
+      "HTTP상태": 200,
+      "로컬원문": "raw_2026-10-02/GANGWON_PLAN.html",
+      "최종확인일": "2026-10-02"
+    },
+    {
+      "source_id": "COMWEL_SCOPE",
+      "관련data_id": "해당없음",
+      "기관": "공식기관",
+      "자료명": "보류·제외사유 재조사 근거: 생활안정자금 융자사업",
+      "URL": "https://webzine.comwel.or.kr/2026/vol163/sub_01_02.html",
+      "확인방법": "추가 조사:공식 본문/공고 첨부 직접 다운로드·자격 및 기간 검토",
+      "HTTP상태": 200,
+      "로컬원문": "raw_2026-10-02/COMWEL_SCOPE.html",
+      "최종확인일": "2026-10-02"
+    }
+  ],
+  "issues": [
+    {
+      "조사범위": "전국",
+      "항목": "LH 전세임대 정정공고",
+      "확인결과": "공식PDF에서2026-02-24~12-31 접수기간·전체학력예외 확인",
+      "처리및후속확인": "HOU-002 모집중 및 OR경로 보완",
+      "관련URL": "https://apply.lh.or.kr/lhapply/lhFile.do?fileid=65733876"
+    },
+    {
+      "조사범위": "전국",
+      "항목": "에너지바우처 일시중단",
+      "확인결과": "10-01~10-02 공식신청중단",
+      "처리및후속확인": "HOU-003 즉시신청 보류;사용기간과 분리",
+      "관련URL": "https://www.energyv.or.kr/info/support_info.do"
+    },
+    {
+      "조사범위": "전국",
+      "항목": "청년월세 충돌",
+      "확인결과": "청약통장·원가구 면제 문구 차이",
+      "처리및후속확인": "기관 최종심사조건 확인",
+      "관련URL": "https://young.busan.go.kr/index.nm?menuCd=37"
+    },
+    {
+      "조사범위": "전국",
+      "항목": "K패스 적용시점",
+      "확인결과": "현재시 안내는 시차 지속추진/기준5만원·8.5만원",
+      "처리및후속확인": "이전9월표 배제;회원·횟수예외/시차세부 적용기간 확인",
+      "관련URL": "https://www.busan.go.kr/depart/ahcard005"
+    },
+    {
+      "조사범위": "부산",
+      "항목": "보증료 경계연령",
+      "확인결과": "18~39세와 출생일예시 충돌",
+      "처리및후속확인": "경계연령·예산잔액 확인",
+      "관련URL": "https://www.busan.go.kr/depart/reguarantee"
+    },
+    {
+      "조사범위": "부산진구",
+      "항목": "상세 접수·예산",
+      "확인결과": "부산진구청2026-24호 확인;한도165천원·예산소진까지",
+      "처리및후속확인": "지원액·마감일 정정;잔여예산만 기관 확인",
+      "관련URL": "https://eminwon.busanjin.go.kr/emwp/gov/mogaha/ntis/web/ofr/action/OfrAction.do?Key=B_Subject&context=NTIS&countYn=Y&epcCheck=Y&homepage_pbs_yn=Y&homepagetype=home&initValue=Y&jndinm=OfrNotAncmtEJB&list_gubun=A&method=selectOfrNotAncmt&methodnm=selectOfrNotAncmtRegst&not_ancmt_mgt_no=51073&not_ancmt_se_code=01%2C04&ofr_pageSize=10&subCheck=Y"
+    },
+    {
+      "조사범위": "사하구",
+      "항목": "사하청년주택",
+      "확인결과": "사업·2026지역기본자료 확인;최신입주공고·공실 미확정",
+      "처리및후속확인": "2025연령·소득기준을 이월하지 않음",
+      "관련URL": "https://www.saha.go.kr/portal/contents.do?mId=0509020200"
+    },
+    {
+      "조사범위": "사하구",
+      "항목": "주거안심 접수기간",
+      "확인결과": "자격·동행절차 확인;기간미기재",
+      "처리및후속확인": "상시추정금지;담당부서문의",
+      "관련URL": "https://www.saha.go.kr/portal/contents.do?mId=0501060300"
+    },
+    {
+      "조사범위": "사하구",
+      "항목": "독자 이사비·공과금·교통비",
+      "확인결과": "최신독자사업공고미확인",
+      "처리및후속확인": "사업부재로 단정하지 않음",
+      "관련URL": "https://www.saha.go.kr"
+    },
+    {
+      "조사범위": "전국/부산",
+      "항목": "입주공고·제도 구분",
+      "확인결과": "LH청년매입·문현행복 및BMC청년/신혼Ⅱ 최신공고PDF 조사",
+      "처리및후속확인": "HOU-031/032/045/046 신규;모집예정·마감구분",
+      "관련URL": "https://apply.bmc.busan.kr/smw/smw113020/selectPbancRentHouseList.do"
+    },
+    {
+      "조사범위": "부산",
+      "항목": "희망더함주택",
+      "확인결과": "시공식대상·85%임대료·5개수시모집단지및연락처확인;운영기준도검토",
+      "처리및후속확인": "HOU-050등록;확인필요는개별공실·금액·지역/소득자격및본문85%/운영기준90%차이에한정",
+      "관련URL": "https://www.busan.go.kr/depart/dreamhouse"
+    },
+    {
+      "조사범위": "부산",
+      "항목": "럭키7",
+      "확인결과": "2026-1982호 정정공고·HWPX 자격/지원액/기간 확인",
+      "처리및후속확인": "HOU-025 제도후보→2026 확정공고 마감 행으로 교체",
+      "관련URL": "https://www.busan.go.kr/nbgosi/view?gosiGbn=A&sno=78417"
+    },
+    {
+      "조사범위": "전국",
+      "항목": "HF청년보증",
+      "확인결과": "HF 청년특례 전세·월세 공식상품 확인",
+      "처리및후속확인": "월세 주거급여제외·600만원예외·6개월기한 추가",
+      "관련URL": "https://www.hf.go.kr/ko/sub02/sub02_01_06.do"
+    },
+    {
+      "조사범위": "전국",
+      "항목": "주거안정장학금 붙임",
+      "확인결과": "신청매뉴얼PDF2개·참여대학xlsx 및 공식자격/심사/지원내용3탭 조사",
+      "처리및후속확인": "월20만원·성적예외·원거리·중복금지 정규화",
+      "관련URL": "https://www.kosaf.go.kr/ko/scholar.do?pg=scholarship05_12_18&ttab1=0"
+    },
+    {
+      "조사범위": "전국",
+      "항목": "전기·도시가스 개별감면",
+      "확인결과": "도시가스공급사 및부산시 공식전기·수도감면/납부할인조사",
+      "처리및후속확인": "HOU-040~044 신규등록;종료된겨울확대금액사용금지",
+      "관련URL": "https://www.skens.com/busan/content/view.do?cate=service&m1=supplyaskcharge&m2=inspectorsystem"
+    },
+    {
+      "조사범위": "범위외",
+      "항목": "타지역 전용사업",
+      "확인결과": "API의부산코드가있어도 화순·의성등 실대상지역이타지역",
+      "처리및후속확인": "API코드만으로부산추천금지",
+      "관련URL": "해당없음"
+    },
+    {
+      "조사범위": "과거사업",
+      "항목": "2025종료사업",
+      "확인결과": "부산진구1인가구 주거환경개선 등 과거공고",
+      "처리및후속확인": "2026신규사업으로재사용하지 않음",
+      "관련URL": "해당없음"
+    },
+    {
+      "조사범위": "공통",
+      "항목": "API지역필터검증",
+      "확인결과": "zipCd26230/26380 요청의 첫100건 정책번호배열 동일",
+      "처리및후속확인": "지역필터성공주장안함;응답대상·기관원문으로 재분류",
+      "관련URL": "https://www.youthcenter.go.kr/go/ythip/getPlcy"
+    },
+    {
+      "조사범위": "공통",
+      "항목": "누락·미검증후보",
+      "확인결과": "종전보류32건 각각추가조사판정작성",
+      "처리및후속확인": "Followup에통합/제외/세부미공개사유기록. 지역1차제외240건의개별자격전수검증주장은하지않음",
+      "관련URL": "housing_followup_2026-10-02.csv"
+    },
+    {
+      "조사범위": "공통",
+      "항목": "원문보존범위",
+      "확인결과": "추가PDF·HWPX·장학첨부 및기관본문대조",
+      "처리및후속확인": "읽은자격구간+전체원본보존;부분미공개는구체항목에표시",
+      "관련URL": "raw_2026-10-02"
+    },
+    {
+      "조사범위": "공통",
+      "항목": "비공식자료",
+      "확인결과": "블로그·SNS·재가공·자유게시판",
+      "처리및후속확인": "공식근거에서제외",
+      "관련URL": "해당없음"
+    },
+    {
+      "조사범위": "분야외",
+      "항목": "자립수당·생필품",
+      "확인결과": "일반생활수당·생필품사업",
+      "처리및후속확인": "4개담당세부분류범위밖으로미수록",
+      "관련URL": "해당없음"
+    },
+    {
+      "조사범위": "공통",
+      "항목": "추가공식자료접속·세부공개한계",
+      "확인결과": "SRT요금페이지500;사하청년주택현재세부입주공고/공실미공개;희망더함단지별세부공실확정불가",
+      "처리및후속확인": "실제조회결과보존;확인못한금액·모집을추정하지않음",
+      "관련URL": "https://www.saha.go.kr;https://www.busan.go.kr/depart/dreamhouse"
+    }
+  ],
+  "originals": [
+    {
+      "data_id": "HOU-001",
+      "source_id": "S02",
+      "원문파일": "raw_2026-10-02/S02.txt",
+      "보존범위": "공식 지원대상·자격 구간 전체. HTML 태그·레이아웃 공백 정리;문구 요약 없음",
+      "지원대상_원문": "지원대상\n ▶ 19세~34세 독립거주 무주택 청년 중 청년가구 소득이 기준 중위소득 60% 이하이면서, 원가구 소득이 중위소득 100% 이하인 청년을 지원합니다.\n ※ ① 30세 이상, ② 혼인(이혼), ③ 미혼부·모, ④ 30세 미만 혼인 청년의 소득이 중위소득 50% 이상으로 생계를 달리한다고 시·군·구청장이 인정하는 경우 등은 원가구 소득 미고려\n (청년가구) 청년 + 배우자 + 직계비속 + 동일 주소지에 거주하는 그 외 [민법]상 가족\n (원가구) 청년독립가구 + 1촌이내 직계혈족(부·모)\n ▶ 아래에 해당하는 경우 지원 대상에서 제외합니다.\n 주택 소유자(분양권, 입주권 포함)\n 직계존속·형제·자매 등 2촌 이내 혈족(배우자의 2촌 이내 혈족 포함) 주택 임차\n 공공주택특별법에 따른 공공임대주택(공무원임대주택 포함) 거주\n 1실(방)에 다수가 거주하는 방식의 전대차인 경우(단, 1실에 다수가 거주하는 경우라도 임대인과 별도 임대차계약 체결 시 지원 가능)\n 국토부 또는 지자체에서 시행하는 청년월세 지원 수혜 중인 자(수혜종료 후 신청 가능) 등\n 과거 ‘청년월세 한시 특별지원사업’에 선정되어 이미 24개월을 수혜받은 자 등\n 선정기준\n ▶ 모집인원을 초과할 경우, 다음 기준에 따라 대상자를 선정합니다.\n 청년가구 및 원가구의 소득·재산을 종합적으로 평가하여 총점이 낮은 자를 우선 선발\n (청년가구) 소득점수, 재산점수 (원가구) 소득점수, 재산점수\n 총점 산정 결과 동점자 발생 시에는 별도 기준에 따라 우선순위를 결정\n ▶ 청년가구 소득·재산평가액 산정 기준은 다음과 같습니다.\n ① 소득평가액이 「국민기초생활 보장법」 제2조제11호에 따른 기준 중위소득의 60% 이하\n 소득평가액 = ①근로소득 + ②사업소득 + ③재산소득 + ④공적이전소득 - ⑤근로·사업소득공제\n ② 일반재산, 자동차 등의 재산에 관하여 총재산가액이 1.22억원 이하\n 총재산가액 = ①일반재산가액 + ②자동차가액 - ③부채(임차보증금 마련 용도의 부채만 인정)\n ▶ 원가구 소득·재산평가액 산정 기준은 다음과 같습니다.\n ① 소득평가액이 「국민기초생활 보장법」 제2조제11호에 따른 기준 중위소득의 100% 이하\n 소득평가액 = ①근로소득 + ②사업소득 + ③재산소득 + ④공적이전소득 - ⑤근로·사업소득공제\n ② 일반재산, 자동차 등의 재산에 관하여 총재산가액이 4.7억원 이하\n 총재산가액 = ①일반재산가액 + ②자동차가액 - ③부채(주택구입·임차보증금 마련 용도의 부채만 인정)\n 참고\n ㉮ (근로소득) 상시근로자소득\n ㉯ (사업소득) 기타사업소득\n ㉰ (재산소득) 임대소득, 이자소득\n ㉰ (공적이전소득) 국민연금급여, 사학퇴직연금급여, 공무원퇴직연금급여, 군인퇴직연금급여, 별정우체국연금, 산재보험급여(휴업급여, 장해급여, 유족급여, 상병보상금), 실업급여\n ㉱ (근로소득공제) 근로·사업소득 30%\n ㉲ (일반재산) 건축물(건물, 시설물, 기타), 주택, 토지(밭, 논, 대지, 임야, 기타), 임차보증금(전월세보증금, 상가보증금), 선박, 항공기, 회원권(골프, 콘도미니엄, 승마, 종합체육시설이용, 요트)\n ㉳ (자동차) 자동차가액\n ㉴ (부채) 다음에 따른 증빙서류를 제출한 경우에만 인정\n-대출금 : 금융기관 대출금, 금융기관 이외기관 대출금\n-공공기관 대출금 : 농지연금 등\n※ 주택구입, 임차보증금 마련 용도의 부채만 인정\n※ 취득한 주택의 등기사항증명서 상 소유권 이전등기 접수일로부터 3개월 이내 대출한 자금의 경우 주택구입자금으로 인정"
+    },
+    {
+      "data_id": "HOU-003",
+      "source_id": "S07",
+      "원문파일": "raw_2026-10-02/S07.txt",
+      "보존범위": "공식 지원대상·자격 구간 전체. HTML 태그·레이아웃 공백 정리;문구 요약 없음",
+      "지원대상_원문": "2. 신청대상 - 소득기준과 세대원 특성기준을 모두 충족하는 세대\n - 소득기준\n · 「국민기초생활 보장법」에 따른 생계급여 / 의료급여 / 주거급여 / 교육급여 수급자\n - 세대원 특성기준\n · 주민등록표 등본상 기초생활수급자(본인) 또는 세대원이 다음 어느 하나에 해당\n · 노인 : 주민등록기준 1961. 12. 31 이전 출생자\n · 영유아 : 주민등록기준 2019. 01. 01 이후 출생한 7세 이하의 취학 전 아동\n · 장애인 : 「장애인복지법」에 따라 등록한 장애인\n · 임산부 : 임신 중이거나 분만 후 6개월 미만인 여성\n · 중증질환자, 희귀질환자, 중증난치질환자 : 국민건강보험법 시행령 제19조제1항 및 [별표2]에 따라 보건복지부장관이 정하여 고시하는 중증질환, 희귀질환, 중증난치질환(「본인일부부담금 산정특례에 관한 기준」[별표3], [별표4], [별표4의2])을 가진 사람\n · 한부모가족 : 「한부모가족지원법」 제5조 및 제5조의 2에 따른 지원 대상자\n · 소년소녀가정 : 보건복지부에서 정한 아동분야 사업 중 소년소녀가정 지원대상에 해당하는 사람(「아동복지법」 제3조에 의한 가정위탁보호 아동 포함)\n · 다자녀세대 : 세대원 중 부 또는 모가 있고, 그 부 또는 모의 19세 미만 자녀를 2명 이상 포함된 세대 (동일 등본에 등재된 가정위탁보호아동은 자녀로 포함)\n - 지원 제외 대상\n · 세대원 모두가 「국민기초생활 보장법」 제32조에 따른 보장시설에서 급여를 받는 경우\n - 다음의 경우, 동절기 에너지바우처 중복 지원 불가\n · 「긴급복지지원법」에 따라 동절기 연료비['26년 10월 ~ '27년 3월]를 지급받은 수급자\n · 한국광해광업공단에서 실시하는 연탄쿠폰('26년도)을 발급받은 자[세대]\n · '26년도 연탄전환 에너지바우처를 발급받은 자[세대]\n ※ 하절기 에너지바우처를 사용한 수급자가 동절기에 위 사업들을 신청할 경우 읍·면·동 행정복지센터에서 에너지바우처를 중지한 후(중지사유 : 동절기 에너지바우처 미신청) 다른 동절기 에너지이용권 신청"
+    },
+    {
+      "data_id": "HOU-004",
+      "source_id": "S10",
+      "원문파일": "raw_2026-10-02/S10.txt",
+      "보존범위": "중앙 시행안내 대표 가입연령 문구;지원 계산·회원등록 원문은 S26 전체 파일 보존. 최신 연령예외 별도 확인",
+      "지원대상_원문": "만19세 이상 성인"
+    },
+    {
+      "data_id": "HOU-005",
+      "source_id": "S12",
+      "원문파일": "raw_2026-10-02/S12.txt",
+      "보존범위": "공식 지원대상·자격 구간 전체. HTML 태그·레이아웃 공백 정리;문구 요약 없음",
+      "지원대상_원문": "대상\n 동백전 교통카드를 이용하여 부산 대중교통을 이용하는 만 19세 이상 누구나"
+    },
+    {
+      "data_id": "HOU-006",
+      "source_id": "S24",
+      "원문파일": "raw_2026-10-02/mermul_full.txt",
+      "보존범위": "공식 HWPX 자격요건·대상주택·제외대상 전체;XML 텍스트 순서 유지",
+      "지원대상_원문": "2. 자격요건\n □ \n신청대상자\n \n:\n \n다음 조건을 모두 충족하며 독립세대를 구성하고자 하는 자\n ◦\n 신청일 기준 부산광역시에 주민등록이 되어 있는 자(배우자 포함)\n ◦\n 1\n9세~39세\n 무주택(배우자포함) 세대주 \n※ 대출실행일까지 39세 이하여야 합니다.\n ◦\n \n본인 \n연소득 60백만원 이하, 부부합산 연소득 100백만원 이하 \n ◦\n \n임대차계약을 체결하고 임차보증금 5% 이상을 지불한 자\n \n□\n 대상주택 \n ◦ 부산시 소재 \n주택 및 주거용 오피스텔 등 \n  \n  - \n단, \n금융기관 제 규정 충족 \n및 건축물 대장상 주택만 가능(오피스텔의 경우, ’중개대상물 확인서‘추가 제출)\n  \n  - \n(아파트를 제외한 주택유형) 임대인이 신청일 기준 해당주택 소유기간 3개월 미만일 경우 신청 불가\n \n \n\n◦ \n임차보증금 2억 원 이하이면서 전·월세 전환율 6.1% 이하\n   \n□ 전월세 전환율\n [전월세 전환율 = 월세 X 12개월 / (2억원 – 월세보증금) X 100] \n6.1% 예시 \n보증금\n2억원\n1억 5천만원\n1억원\n5천만원\n월세\n0\n25만원\n50만원\n75만원\n□\n \n제외대상자 \n \n\n◦ 기초생활수급자(생계, 주거), 주택소유자(배우자 포함)\n ※ 공동명의 = 1주택\n ◦ 정부\n(공사․공단 포함)\n 주거지원 사업 참여자(배우자 포함)\n    - 주택 : \n행복주택, 매입·전세 임대주택, 드림아파트, 사회주택, LH주택 등을 임대차계약 한 자\n     ※ 단, 신청 당시 상기 주택에 거주 중이더라도 계약기간만료 등의 사유로 타 주택으로 이사하기 위해 신청하는 경우는 가능\n     ※ 부산시 희망더함주택 등 (공공지원)민간임대주택은 머물자리론 신청 가능 \n    - 금융 : \n주택도시기금 대출(버팀목 전세자금대출 등)을 \n받고 있는 자\n     ※ \n단, 기존 대출을 상환하거나 대환하는 경우 신청 가능\n ◦ 부산시 타 주거지원 사업 참여자(배우자 포함)\n    - 부산시 신혼부부 주택대출 및 대출이자 지원, 대학생 기숙사비 지원, 햇살둥지, \n      \n청년 매입임대주택, 부산형 사회주택 등 주거관련 지원을 받고 있는 자\n     ※ \n단, 신청 당시 상기 주거지원을 받고 있더라도 계약기간만료 등의 사유로 타 주택으로 이사하기 위해 신청하는 경우는 가능\n ◦ ‘17 ~ ’26. 머물자리론 사업 참여자, 종료자(배우자 포함)\n ◦ 부·모, 배우자의 부·모와 임대차 계약한 자\n ◦ 기타 사업 취지에 부합하지 않는다고 판단되는 경우"
+    },
+    {
+      "data_id": "HOU-007",
+      "source_id": "S17",
+      "원문파일": "raw_2026-10-02/S17.txt",
+      "보존범위": "공식 지원대상·자격 구간 전체. HTML 태그·레이아웃 공백 정리;문구 요약 없음",
+      "지원대상_원문": "지원대상 : \n ‘25.8.1.~’26.7.31. (전입신고일 기준) 부산시 전입 및 부산시 내 이사한 18~39세 일하는 청년 (아래조건 모두 충족)\n (주소) 주민등록상 부산거주(임차건물 소재지에 주민등록 등재) \n (연령) 18~39세 청년 *출생연도 기준 : 1986.1.1.~2008.12.31. \n (주택) 부산시 소재 임대차 거래 금액[임차보증금+(월세×100)] 이 1.5억원 이하인 전월세 거주 \n (가구) 청년 세대주 가구 *부모 별도 거주\n (소득) 중위소득 120% 이하\n* 1인기준 본인부담 건강보험료 : 직장가입자 110,969원, 지역가입자 32,899원 이하 (가구원 수별 상이) \n** 청년부부는 소득합산 후, 가구원 수에 따른 소득기준 적용 (단, 형제·자매, 동거인은 가구원 수 미포함) \n * (중위소득) 보건복지부 고시 제 2025-135호 / (본인부담금) ‘지역사회서비스 투자사업’ 내 자료 인용\n ←→ 표를 가로로 스크롤 해주세요\n 매월 저축액,저축기간, 본인 저축액, 시 지원금, 만기 수령액, 비고에 관한 표\n 가구원수\n 월 소득 \n(기준중위소득 120%)\n 건강보험료 본인부담금\n 직장가입자\n 지역가입자\n 혼합(직장+지역)\n 1인\n 3,078,000원\n 110,969원\n 32,899원\n -\n 2인\n 5,040,000원\n 183,365원\n 123,644원\n 185,675원\n 3인\n 6,431,000원\n 232,890원\n 168,649원\n 236,378원\n 지원 제외 대상 \n 기초생활수급자(주거급여 수급자) 제외\n 부모 소유 주택에 임차하는 경우(배우자의 부모 소유 주택 포함)\n 주택 소유자(분양권, 입주권 포함)\n 국토부 비정상거처 거주자 이사비 지원, 타 광역‧기초 유사사업 지원 수혜자\n 한국공인중개사협회 지원 수혜자 등 유사사업 수혜이력 있는 자\n 2025년 부산청년 중개보수 및 이사비 지원사업 선정자\n 기타 사업 취지에 부합하지 않다고 판단되는 경우\n ※ 타 유사사업에서 중개보수만 지원받은 경우 이사비만 지원 가능\n(반대도 동일. 단, 중개보수 및 이사비 합산 최대 수혜 금액 40만원 한도)"
+    },
+    {
+      "data_id": "HOU-008",
+      "source_id": "S18",
+      "원문파일": "raw_2026-10-02/S18.txt",
+      "보존범위": "공식 지원대상·자격 구간 전체. HTML 태그·레이아웃 공백 정리;문구 요약 없음",
+      "지원대상_원문": "신청대상: 1인 미혼 청년과 혼인 7년 이내 신혼부부로 구분\n (입주시기) ’26. 2. 23. 이전 해당 주택 입주하여 계속 거주중인 자\n * 신혼부부의 경우 반드시 모두 입주한 상태여야 하며, 입주일는 주민등록등본상 전입일 기준으로 산정함\n (입주주택)「공공주택특별법 시행령」제2조에 따른 공공임대주택(매입임대, 전세임대, 통합공공임대 및 행복주택 등)\n (1인 미혼 청년) 부산광역시 공공임대주택에 입주 중인 미혼 1인 청년(19세 이상 39세 이하)으로 세대별 월평균 소득이 전년도 도시근로자 가구원수별 월평균 소득의 100% 이하인 세대\n (연 령) ’86. 2. 24. ~ ’07. 2. 23.\n ※ (혼 인) 혼인 여부를 떠나 공고일 이전 혼인 관계가 없어야 함.\n ※ (가 구 원) 주민등록상 청년의 직계비속(자녀)은 포함. 다만, 직계존속(조부모, 부모), 형제자매와 함께 주민등록이 된 경우 신청 제외\n ※ (소득기준) ’25.11월~ ’26.1월(3개월)간 세대별 건강보험료 고지액(본인부담금)의 평균액이 전년도 도시근로자 월평균 소득의 100% 이하인 세대\n ▹1인 기준 본인 부담 건강보험료 고지액(납부액)\n (직장가입자) 130,030원, (지역) 61,696원 (혼합) 131,374원\n (신혼부부) 최근 혼인(재혼 등 포함) 기간 7년* 이내인 신혼부부로 전년도 도시근로자 세대원수별 월평균소득 100% 이하인 세대\n ※ (혼인기간) ’19. 2. 24. ~ ’26. 2. 23. 사이 혼인하여 계속 혼인 유지자\n ※ (가 구 원) 신혼부부, 신혼부부 주민등록에 등재된 신혼부부의 직계존비속은 가구원으로 산정함. 단, 신혼부부의 형제자매, 동거인은 가구원수 산정 제외\n ※ (소득기준) ’25.11월~ ’26.1월(3개월)간 세대별 건강보험료 고지액(본인부담금)의 평균액이 전년도 도시근로자 월평균 소득의 100% 이하인 세대\n ▹2인 기준 본인 부담 건강보험료 고지액(납부액)\n (직장가입자) 197,474원 (지역) 137,188원 (혼합) 199,944원\n ※ 맞벌이 신혼부부의 경우 배우자 중 건강보험료가 적은 자의 건강보험료 고지액(납부액)의 1/2을 감면·적용\n6. 신청제외 대상\n 본 사업에 선정되어 지원을 받고 있는 세대(단, 공고일 전 중지신청한 경우 재신청 가능)\n - 재신청하여 선정된 경우, 총 지원기간 계산 시 기존 지원기간 포함\n 공공임대주택이 아닌 주택에 입주한 경우\n - 예) 공공지원민간임대주택, 민간에서 공급한 공공임대주택 등\n 국민기초생활보장법 제7조 제1항 제2호에 따른 주거급여 수급자\n ※ 신청월 전월까지 중지되어야 신청 가능하며, 임차급여를 받지 않더라도 주거급여를 유지하고 있는 경우는 신청 제외\n 정부 및 지자체(구군 포함)의 월 임대료 지원 등 유사한 주거지원을 받고 있는 자\n - 예) 부산럭키7하우스, 청년월세, 주거안정장학금(한국장학재단) 등\n ※ 청년월세의 경우 신청월 전월까지 중지되어야 신청 가능\n 세대원 중 1명 이상이 주택(입주권, 분양권 포함)을 보유하고 있는 세대\n 외국인인 경우 ▷ 청년 1인, 신혼부부 2인 모두 해당 시\n 월 임대료 납부액이 3만원 이하인 경우\n 청년/신혼부부 모두가 현역군인 등 법률상 의무이행을 위해 현 공공임대주택 외 다른 곳에서 거주 하면서 의무이행 중인 청년/신혼부부(2인)\n ※ 단 사회복무요원, 상근예비역(출퇴근)은 신청 가능\n 그 밖에 부산광역시장이 지원이 적합하지 않다고 판단하는 경우"
+    },
+    {
+      "data_id": "HOU-009",
+      "source_id": "S19",
+      "원문파일": "raw_2026-10-02/S19.txt",
+      "보존범위": "공식 지원대상·자격 구간 전체. HTML 태그·레이아웃 공백 정리;문구 요약 없음",
+      "지원대상_원문": "사업 대상 : \n 부산시민(청년 포함)"
+    },
+    {
+      "data_id": "HOU-011",
+      "source_id": "S20",
+      "원문파일": "raw_2026-10-02/S20.txt",
+      "보존범위": "공식 지원대상·자격 구간 전체. HTML 태그·레이아웃 공백 정리;문구 요약 없음",
+      "지원대상_원문": "o 신청자격: 부산진구 거주자 또는 거주예정자\no 대상물건: 부산진구 내 주거용 건물\no 대상계약: 전세 또는 월세 계약\no 신청방법: 051-605-4762 또는 부산진구청 홈페이지\no 상담방법: 전화 또는 대면상담"
+    },
+    {
+      "data_id": "HOU-012",
+      "source_id": "S22",
+      "원문파일": "raw_2026-10-02/S22.txt",
+      "보존범위": "공식 지원대상·자격 구간 전체. HTML 태그·레이아웃 공백 정리;문구 요약 없음",
+      "지원대상_원문": "지원대상 : 아래 ① ~ ④ 기준을 모두 충족하는 주민등록 상 부산 거주 시민\n ① 신청일 기준 보증 효력이 유효한 전세보증금금반환보증에 가입\n ② 임차보증금 3억원 이하\n ③ 연소득 (청년) 5천만원, (청년 외) 6천만원, (신혼부부) 7.5천만원 이하\n ④ 무주택 ※ 분양권, 입주권 주택에 포함됨 ※ 본인, 배우자 모두 무주택\n 지원제외\n 주택소유자(분양권 및 입주권 포함) ※ 배우자 포함\n 외국인 및 국내에 거주하지 않는 재외국민\n 「민간임대주택에 관한 특별법」에 따른 등록임대사업자의 임대주택에 거주하는 임차인\n 임차인이 법인인 경우(회사 지원 숙소 등)\n 보증료 지원을 받았던 보증과 동일한 보증서 번호로 재신청하는 경우\n 기타 지자체장이 지원이 적합하지 않다고 판단하는 경우"
+    },
+    {
+      "data_id": "HOU-013",
+      "source_id": "S27",
+      "원문파일": "raw_2026-10-02/S27.txt",
+      "보존범위": "공식 지원대상·자격 구간 전체. HTML 태그·레이아웃 공백 정리;문구 요약 없음",
+      "지원대상_원문": "대출 대상\n아래의 요건을 모두 충족하는 자\n 0. (중복대출 금지) 주택도시기금대출, 은행재원 전세자금대출(이주비대출 포함) 및 주택담보대출 미이용자\n (주택도시기금대출) 성년인 세대원 전원(세대가 분리된 배우자 및 자녀, 결혼예정 배우자, 배우자의 직계존속과 동거세대를 구성하는 경우 배우자의 직계존속 포함)이 기금 대출을 이용 중이면 대출 불가\n (전세자금대출 및 주택담보대출) 차주 및 배우자(결혼예정 또는 분리된 배우자 포함)가 전세자금대출 및 주택담보대출을 이용 중이면 대출 불가\n (임차중도금대출 중복예외허용) 아래 중 하나에 해당하는 경우 예외적으로 중복 허용\n 1) 한국주택금융공사 주택보증서 담보로 취급된 기금 또는 은행재원 전세자금 대출을 이용중인 대출자가 한국주택금융공사 주택보증서 담보로 타 물건지의 기금 임차중도금(잔금포함) 대출을 이용하려는 경우\n 2) 한국주택금융공사 주택보증서 담보로 취급된 기금 임차중도금(잔금포함) 대출을 이용 중인 대출자가 타 물건지에서 한국주택금융공사 주택보증서 담보로 기금 또는 은행재원 전세대출을 이용하고자 하는 경우\n 임차중도금 대출의 자세한 사항은 ‘임차중도금대출’ 안내를 참고(바로가기)\n 1. (계약) 주택임대차계약을 체결하고 임차보증금의 5% 이상을 지불한 자\n 2. (세대주) 대출접수일 현재 만19세 이상 만34세 이하의 세대주(예비 세대주 포함)\n 단, 쉐어하우스(채권양도협약기관 소유주택에 한함)에 입주하는 경우 예외적으로 세대주 요건을 만족하지 않아도 이용 가능\n 단, 중소·중견기업(주택도시보증공사에서 연 1회 통보하는 사행성 영위 업종 또는 공기업, 지방공기업에 해당하는 경우 제외)에 취업 또는 중소기업진흥공단, 신용보증기금 및 기술보증기금의 창업 관련 보증 또는 자금 지원을 받고 있는 만 34세 이하인 자는 병역법에 따라 병역의무를 이행한 경우 병역 복무기간을 연장하되 최대 만 39세까지 연장 가능\n 3. (무주택) 세대주를 포함한 세대원 전원이 무주택인 자\n 4. (소득) 대출신청인과 배우자의 합산 총소득이 5천만원 이하인 자, 단, 혁신도시 이전 공공기관 종사자, 타 지역으로 이주하는 재개발 구역내 세입자, 다자녀가구, 2자녀 가구인 경우 6천만원 이하, 신혼가구인 경우는 7.5천만원 이하인 자\n 근로소득자는 건강보험자격득실확인서, 사업소득자는 사업자등록증(또는 사업자등록증명원)의 확인을 통해 현재 재직 중인 직장 또는 현재 영위 중인 사업을 기준으로 소득 산정\n 5. (자산) 대출신청인 및 배우자의 합산 순자산 가액이 통계청에서 발표하는 최근년도 가계금융복지조사의 ‘소득 5분위별 자산 및 부채현황’ 중 소득 3분위 전체가구 평균값 이하(십만원 단위에서 반올림)인 자\n 2026년도 기준 3.45억원\n 자산심사 관련 자세한 사항은 기금포탈 [고객서비스]-[자산심사 및 금리안내]-[자산 심사 안내]를 참고(바로가기)\n 6. (신용도) 아래 요건을 모두 충족하는 자\n 신청인(연대입보한 경우 연대보증인 포함)이 한국신용정보원 “신용정보관리규약”에서 정하는 아래의 신용정보 및 해제 정보가 남아있는 경우 대출 불가능\n 1) 연체, 대위변제·대지급, 부도, 관련인 정보\n 2) 금융질서문란정보, 공공기록정보, 특수기록정보\n 3) 신용회복지원등록정보\n 그 외, 부부에 대하여 대출취급기관 내규로 대출을 제한하고 있는 경우에는 대출 불가능\n 7. (공공임대주택) 대출접수일 현재 공공임대주택에 입주하고 있는 경우 불가\n 대출신청 물건지가 해당 목적물인 경우 또는 대출신청인 및 배우자가 퇴거하는 경우 대출가능"
+    },
+    {
+      "data_id": "HOU-014",
+      "source_id": "S28",
+      "원문파일": "raw_2026-10-02/S28.txt",
+      "보존범위": "공식 지원대상·자격 구간 전체. HTML 태그·레이아웃 공백 정리;문구 요약 없음",
+      "지원대상_원문": "대출대상부부합산 연소득 5천만원 이하, 순자산가액 3.45억원 이하 무주택 단독 세대주(예비세대주 포함)\n 만 19세 이상 ~ 만 34세 이하 청년\n대출 대상\n아래의 요건을 모두 충족하는 자\n 1. (계약) 주택임대차계약을 체결하고 임차보증금의 5% 이상을 지불한 자\n 2. (세대주) 대출접수일 현재 민법상 성년인 단독세대주(예비세대주 포함)\n 3. (무주택) 세대주를 포함한 세대원 전원이 무주택인 자\n 4. (중복대출 금지) 주택도시기금대출, 은행재원 전세자금대출 및 주택담보대출 미이용자\n (주택도시기금대출) 성년인 세대원 전원(세대가 분리된 배우자 및 자녀, 결혼예정 배우자, 배우자의 직계존속과 동거세대를 구성하는 경우 배우자의 직계존속 포함)이 기금 대출을 이용 중이면 대출 불가\n (전세자금대출 및 주택담보대출) 차주 및 배우자(결혼예정 또는 분리된 배우자 포함)가 전세자금대출 및 주택담보대출을 이용 중이면 대출 불가\n (임차중도금대출 중복예외허용) 한국주택금융공사 주택보증서 담보로 취급된 기금 임차중도금(잔금포함) 대출을 이용 중인 대출자가 타 물건지에서 한국주택금융공사 주택보증서 담보로 기금 또는 은행재원 전세대출을 이용하고자 하는 경우\n 5. (소득) 대출신청인과 배우자의 합산 총소득이 5천만원 이하인 자\n 근로소득자는 건강보험자격득실확인서, 사업소득자는 사업자등록증(또는 사업자등록증명원)의 확인을 통해 현재 재직 중인 직장 또는 현재 영위 중인 사업을 기준으로 소득 산정\n 6. (자산) 대출신청인 및 배우자의 합산 순자산 가액이 통계청에서 발표하는 최근년도 가계금융복지조사의 ‘소득 5분위별 자산 및 부채현황’ 중 소득 3분위 전체가구 평균값 이하(십만원 단위에서 반올림)인 자\n 2026년도 기준 3.45억원\n 자산심사 관련 자세한 사항은 기금포탈 [고객서비스]-[자산심사 및 금리안내]-[자산 심사 안내]를 참고(바로가기)\n 7. (신용도) 아래 요건을 모두 충족하는 자\n 신청인(연대입보한 경우 연대보증인 포함)이 한국신용정보원 “신용정보관리규약”에서 정하는 아래의 신용정보 및 해제 정보가 남아있는 경우 대출 불가능\n 1) 연체, 대위변제·대지급, 부도, 관련인 정보\n 2) 금융질서문란정보, 공공기록정보, 특수기록정보\n 3) 신용회복지원등록정보\n 그 외, 부부에 대하여 대출취급기관 내규로 대출을 제한하고 있는 경우에는 대출 불가능\n 8. (공공임대주택) 대출접수일 현재 공공임대주택에 입주하고 있는 경우 불가\n 대출신청인 및 배우자가 퇴거하는 경우 대출가능(대출신청 물건지가 공공임대주택인 경우 취급 불가)"
+    },
+    {
+      "data_id": "HOU-015",
+      "source_id": "API_HOUSING_3",
+      "원문파일": "raw_2026-10-02/API_HOUSING_3.json",
+      "보존범위": "API 추가자격·제외원문 필드 전체;원본 JSON 별도 보존",
+      "지원대상_원문": "주거급여 수급가구 내 부모와 떨어져 사는 청년에게 주거급여를 분리하여 지급\n- 임차급여 또는 수선유지급여를 지급받는 수급가구 내 만 19세 이상 30세 미만의 미혼자녀\n- 청년명의의 임대차계약을 체결하고 임차료를 지불하는 청년에게 지급(전입신고 필수)\n- 주거급여 수급가구의 부모와 청년이 주민등록상 시·군을 달리하는 경우 인정하되, 동일 시·군이라도 보장기관이 인정하는 경우는 예외로 함\n주거급여가 불필요하거나, 타 법령 등에 의하여 주거를 제공받고 있는 수급자에 대해서는 주거급여를 지급하지 않음"
+    },
+    {
+      "data_id": "HOU-016",
+      "source_id": "S30",
+      "원문파일": "raw_2026-10-02/S30.txt",
+      "보존범위": "공식 지원대상·자격 구간 전체. HTML 태그·레이아웃 공백 정리;문구 요약 없음",
+      "지원대상_원문": "지원대상\n (공공임대) ‘주거취약계층 주거지원 업무처리지침(국토부 훈령)’에 근거하여 쪽방,\n 반지하 등에서 공공임대로 이주하도록 선정된 자\n 주거취약계층 주거지원 업무처리 지침\n -(입주대상) 쪽방, 고시원, 여인숙,\n 비닐하우스, 노숙인 시설, 컨테이너, 움막, PC‧만화방,침수우려 지하층 등 3개월 이상 거주자, 아동이 있는\n 최저주거기 준 미달가구 등\n -(지원사항) 공공임대주택에 우선 입주권 부여\n 및 임대보증금 인하 적용 등\n -(자격요건) 무주택세대구성원, 소득 및\n 자산기준 충족\n -(선정절차) 행정복지센터 및 임대주택\n 운영기관에 신청, 시·군·구에서 입주자 선정 후 사업시행자에 통보 및 계약(상시신청, 즉시지원)\n 단, 신청일을 기준으로 최근\n 1년간 다른 시설의 거주기간을 합산하여 산정가능\n (민간임대) 쪽방, 반지하 등의 거주자가 HUG 무이자\n 보증금 대출을 통해 민간주택으로 이주하도록 심사를 통과한 자"
+    },
+    {
+      "data_id": "HOU-018",
+      "source_id": "S33",
+      "원문파일": "raw_2026-10-02/S33.bin.txt",
+      "보존범위": "해당 사업의 공식PDF 사업개요·전체 자격·제외·절차 구간 보존;텍스트추출 원문",
+      "지원대상_원문": "   전세피해 임차인 버팀목 전세대출 이자 지원 \n□ 사업개요 \nㅇ   (지원대상)   특별법에 따른 전세사기피해자(등) 결정자로서,\n『전세피해 임차인 버팀목 전세대출 * 』을 실행한 자 \n* 기금 저리대출, 대환 대출, 최우선변제금 버팀목 대출(무이자 초과분) \nㅇ   (신청기간)   2026. 1. 1. ~ 2026. 12. 31.\nㅇ   (지원인원)   약 345세대\nㅇ   (지원기간)   선정월로부터 2년간   ‣   최대 24회차 납입분까지\nㅇ   (지원내용)   대출이자 실비 지원(월 최대 40만원 한도)\nㅇ   (신청방법)   온라인 이용이 어려운 경우에 한하여 방문접수 \n온라인 접수   - 부산시청 > 분야별정보 > 도시·건축·주택 > 주택 > 전세피해지원 >\n전세사기피해자등 금융주거지원 신청 \n방문 접수   - 부산 전세피해지원센터 (부산시청 1층, 대강당 우측)\n*(운영시간) 09:00~18:00 월~금 (점심시간 12:00~13:00제외) \nㅇ   (지원방법)   신청인이 이자   先 납부, 부산시에서 신청인 계좌로   後 입금 \nㅇ   (소요예산)   5억원(시비)   ‣   약 345세대 ×120,772 원 (월평균 이자) ×12 개월 \n※ 전세피해임차인 버팀목 전세대출 상품 개요 \n구 분   전세피해임차인 버팀목\n전세자금 대출\n전세피해임차인 버팀목\n전세자금 대환대출\n전세사기피해자 최우선변제\n금 버팀목 전세자금 대출 \n신청자격\n전세사기피해결정자 중\n소득자산 기준을\n만족하는   무주택 세대주 \n전세피해 주택에 부득이하게\n계속 거주하면서 임 차 권 등 기 를\n설 정 한   무주택 세대주 \n전세사기피해결정 된 \n무주택 세대주 \n소득자산   부부합산 총소득 1.3억원이하 · 순자산가액 4.69억원 이하   제한 없음\n대출기간   2년(4회 연장, 최장 10년)   6개월(해당 보증기관의\n보증연장 기준에 따름)   2년(4회 연장, 최장 10년)\n대출한도   최대 2.4억원 또는\n임 차 보 증 금 의   80% 중   적 은   금 액\n최대 4억원 또는\n임 차 보 증 금 의   80% 중   적 은   금 액\n최대 2.4억원(일반대출과 최\n우선변제금 대출 포함)\n대출금리   소득 및 보증금에 따라 연   1.2%~2.7%   소득 및 보증금에 따라\n연   1.2%~3.0% \n취급은행   주택도시기금 취급 5개   ‣   은행 국민은행, 신한은행, 하나은행, 우리은행, 농협은행 \n\n[PAGE 3]\n- 3 - \n□ 자격요건 \nㅇ 아래 요건을 모두 충족하는 자\n- 특별법에 따라 전세사기피해자(등)으로 결정된 자 \n*   전세사기피해자(등)으로 결정된 날부터 3년이내 신청(법14조의2) \n- 신청일 현재, 부산광역시에 주민등록이 되어있는 무주택자\n- '23년 이후『전세피해 임차인 버팀목 전세대출 * 』실행자 \n* 기금 저리대출, 대환 대출, 최우선변제금 버팀목 대출(무이자 초과분) \n- 전세피해 주택과 버팀목 전세대출의 주택이 부산광역시에 소재할 것\n- 피해주택 임대차계약서의 임차인과 버팀목 전세대출의 명의자 및\n본 사업 신청자가 모두 피해자 본인일 것 \n□ 지원범위 \nㅇ 대출이자 상환 내역서에서 확인 가능한 이자액에 한함(최대 40만원 한도)\nㅇ 사업 신청 이전 지급 내역에 대하여 소급 지급 불가 \n- (예) 26년 1월 신청의 경우, 26년 1월분 이자 납입금액부터 지원함 \nㅇ 최대 24회차 납입분까지 지원\nㅇ   최우선변제금 버팀목 대출의 경우, 무이자 대출액을 초과한 대출액에\n대하여 이자 지원(최대 40만원 한도)\nㅇ 본 사업과 월세 지원 사업은 동시 및 교차 지원 불가 \n- (예 1) 1인 24회차 범위중 12회는 대출이자지원 12회는 월세지원 불가\n- (예 2) 전 ·월 세 혼 합 된 형 태 로 거 주 하 는 경 우 , 대 출 이 자 지 원 사 업 과 월 세 지 원 중 신 청 자 희 망 사 업 선 택 지 원 \n□ 추진절차 \nㅇ   이자상환 증빙서류 ,   주민등록 거주 등 확인 후 개인별 계좌로 지급 \n①\n대출\n신청\n▶\n②\n대출\n실행\n▶\n③ 이자지원 신청 및\n이자상환내역 제출\n(매월 말까지)\n▶\n④ 지원대상\n적합여부 및\n구비서류 검토\n▶\n⑤\n이자\n지원\n▶\n⑥\n사후\n관리\n신청인   은행   신청인 → 부산시   부산시   부 산 시\n→\n신 청 인   부산시 \n\n[PAGE 4]\n- 4 - \n□ 신청 및 지원시기 \nㅇ   (신청)   대출 실행 후 이자를 1회 이상 상환 후 당월 말일까지 신청\nㅇ   (선정)   매월 말일까지의 접수분 다음달 15일 내 선정 및 안내문자 발송 \n✔   선정 후 2회차부터 증빙서류 제출방법(온라인) \n↳   부산시청 > 분야별정보 > 도시·건축·주택 > 주택 > 전세피해지원 > 주거금융지원 매월증빙자료 제출 \nㅇ   (지원)   선정 후 20일 이내 지급 \n□ 구비서류 \nㅇ 신청서, 개인정보수집·이용등 동의서, 주민등록등본,\n대출사실확인서 * (금융거래확인서 등), 이자상환 증빙서류(이자납부내역서 등),\n전세사기피해자등 결정통지서 및 결정문, 통장사본, 신분증,\n피해주택 및 이주주택 임대차 계약서 \n* 성명, 대출명, 대출기간 등을 확인할 수 있는 대출사실확인서(금융거래확인서 등)를 제출하여\n주시기 바랍니다. \n□ 지원 제외, 종료, 중단 등 \nㅇ   (지원제외)   아래 1가지 이상 해당하는 자는 지원 대상에서 제외\n-   전세사기피해자가 거주주택을 경락받거나 신규주택을 구입하고 주택구입\n자금 대출에 대한 이자를 신청하는 경우\n-「전세피해 임차인 버팀목 대출」 외 다른 전세대출 상품 이자를 신청하는 경우\n-「긴급복지지원법」에 의한 긴급복지지원을 받고 있는 경우\n- 정부 및 지자체의 전세피해자 대상 대출이자 지원사업 참여자 \n-   국민기초생활수급자 중 주거급여 수급자 \n- 국토부에서 피해자 결정이 철회 또는 취소된 자 ( 피해액 전액 회수 등 ) \nㅇ   (지원종료)   아래 1가지 이상 해당하는 자는 지원종료\n- 대출기간 만료 또는 중도 상환\n- 대출 실행 후 주택취득이 확인된 경우\n- 정부 및 지자체의 전세피해자 대상 대출이자 지원사업 참여가 사후 확인된 경우\n- 관외 전출할 경우, 전출일이 속하는 달부터 지원종료\nㅇ   (지원중단)   대상자로 선정되었으나, 사유 없이 이자 상환내역 등 증빙자료 제출\n하지 않은 월에 한하여 해당월 납입분 미지급(횟수차감)\nㅇ   (선정취소)   거짓이나 그 밖의 부정한 방법으로 지원받은 경우 지원 전액 환수 \n\n[PAGE 5]\n- 5 -"
+    },
+    {
+      "data_id": "HOU-017",
+      "source_id": "S33",
+      "원문파일": "raw_2026-10-02/S33.bin.txt",
+      "보존범위": "해당 사업의 공식PDF 사업개요·전체 자격·제외·절차 구간 보존;텍스트추출 원문",
+      "지원대상_원문": "   전세피해 임차인 민간주택 월세 한시 지원 \n□ 사업개요 \nㅇ   (지원대상)   특별법에 따른 전세사기피해자(등) 결정자로서, 민간주택으로\n신규 이주하여 월세 형태로 주거 중인 세대\nㅇ   (신청기간)   2026. 1. 1. ~ 2026. 12. 31.\nㅇ   (지원인원)   약237세대\nㅇ   (지원기간)   선정월로부터 2년간   ‣   최대 24회차 납입분까지\nㅇ   (지원내용)   월세 실비 지원 (월 최대 40만원 한도)\nㅇ   (신청방법)   온라인 이용이 어려운 경우에 한하여 방문접수 \n온라인 접수   - 부산시청 > 분야별정보 > 도시·건축·주택 > 주택 > 전세피해지원\n> 전세사기피해자등 금융주거지원 신청 \n방문   접수   - 부산 전세피해지원센터 (부산시청 1층, 대강당 우측)\n*(운영시간) 09:00~18:00 월~금 (점심시간 12:00~13:00제외) \nㅇ   (지원방법)   신청인이 월세   先 납부, 부산시에서 신청인 계좌로   後 입금\nㅇ   (소요예산)   11억원(시비)   ‣   약 237세대 × 386,779원 (월평균 월세) × 12월 \n□ 자격요건 \nㅇ 아래 요건을 모두 충족하는 자\n- 특별법에 따라 전세사기피해자(등)으로 결정된 자 \n*   전세사기피해자(등)으로 결정된 날부터 3년이내 신청(법14조의2) \n- 신청일 현재, 부산광역시에 주민등록이 되어있는 무주택자* \n* 분양권 및 조합원 입주권은 주택으로 산정하지 않음   ▸ 전세피해 임차인 버팀목 전세대출 조건을 따름 \n-   전세피해   주택이   부산광역시에   소재하면서,   부산광역시에   소재한\n민간 주택에 월세 계약을 체결하여 주민등록 전입 및 실제 거주하는 자\n- 피해주택 임대차계약서의 임차인과 월세주택 임대차계약서의 임차인\n및 본 사업 신청자가 모두 피해자 본인일 것 \n\n[PAGE 6]\n- 6 - \n□ 지원범위 \nㅇ 민간주택 월세 실비 지원 (최대 40만원 한도)\n- 임대차계약서의 월세액에 한하며, 관리비 등은 제외\n- 긴급 주거지원(공공 임대주택) 이용 중 민간 월세 주택으로 이주한 경우,\n총 지원기간 2년 중 긴급 주거지원 기간을 제외한 기간만 지원대상\nㅇ 사업 신청 이전 지출 내역에 대하여 소급 지급 불가 \n- (예) 26년 1월 신청의 경우, 26년 1월분 월세 납입금액부터 지원함 \nㅇ 최대 24회차 납입분까지 지원\nㅇ 본 사업과 전세대출 이자지원 사업은 동시 지급 불가 \n- (예 1) 1인 24회 차 범 위 중 12회 는 대 출 이 자 지 원 12회 는 월 세 지 원 불 가\n- (예 2) 전 ·월 세 혼 합 된 형 태 로 거 주 하 는 경 우 , 대 출 이 자 지 원 사 업 과 월 세 지 원 중 신 청 자 희 망 사 업 선 택 지 원 \n□ 추진절차 \nㅇ   월세 납부 증빙서류 ,   주민등록 거주 등 확인 후 개인별 계좌로 지급 \n①\n민간월세\n계약 \n▶   ②\n이주   ▶ \n③ 월세지원 신청 및\n월세납입내역 제출\n(매월 말까지) \n▶ \n④ 지원대상\n적합여부 및\n구비서류 검토 \n▶ \n⑤\n월세\n지원 \n▶ \n⑥\n사후\n관리\n신청인   신청인   신청인 → 부산시   부산시   부산시\n→\n신청인   부산시 \n□ 신청 및 지원시기 \nㅇ   (신청)   민간주택 이사 후 월세를 1회 이상 납입 후 당월 말일까지 신청\nㅇ   (선정)   매월 말일까지의 접수분 다음달 15일 내 선정 및 안내문자 발송 \n✔   선정 후 2회차부터 증빙서류 제출방법(온라인) \n↳   부산시청 > 분야별정보 > 도시·건축·주택 > 주택 > 전세피해지원 > 주거금융지원 매월증빙자료 제출 \nㅇ   (지원)   선정 후 다음달 20일 이내 지급 \n□ 구비서류 \nㅇ 신청서, 개인정보수집·이용등 동의서, 주민등록등본, 통장사본, 신분증\n가족관계증명서(상세)(부·모·본인 기준 각 1부씩), 전세사기피해자등\n결정통지서   및   결정문,   피해주택   및   이주주택   임대차계약서,   월세\n납부 증빙서류(계좌이체내역서 등) \n\n[PAGE 7]\n- 7 - \n□ 지원 제외, 종료, 중단 등 \nㅇ   (지원제외)   아래   1 가지 이상 해당하는 자는 지원 대상에서 제외 \n-   전세사기피해자가 거주주택을 경락받거나 신규주택을 구입한 경우 \n-   공공 임대주택에 입주한 경우   ( 긴급주거지원 포함 ) \n-   직계존 · 비속 ,   형제 · 자매 등   2 촌 이내 친족의 주택을 임차한 경우 \n- 「 긴급복지지원법 」 에 의한 긴급복지지원을 받고 있는 경우 \n-   정부 및 지자체의 월세 ( 주택임대료 )   지원사업 참여자 ( 청 년 월 세 지 원 사 업 등 ) \n-   국민기초생활수급자 중 주거급여 수급자 \n- 국토부에서 피해자 결정이 철회 또는 취소된 자 ( 피해액 전액 회수 등 ) \nㅇ   (지원종료)   아래   1 가지 이상 해당하는 자는 지원종료 \n-   정부 및 지자체의 월세 ( 주택임대료 )   지원사업 참여가 사후 확인된 경우 \n-   관외 전출할 경우 ,   전출일이 속하는 달부터 지원종료\nㅇ   (지원중단)   대상자로 선정되었으나 ,   사유 없이 월세 납입내역 등 증빙자료   제출\n하지 않은 월에 한하여 해당월 납입분 미지급 ( 횟수차감 ) \nㅇ   (선정취소)   거짓이나 그 밖의 부정한 방법으로 지원받은 경우 지원 전액 환수 \n\n[PAGE 8]\n- 8 -"
+    },
+    {
+      "data_id": "HOU-019",
+      "source_id": "S33",
+      "원문파일": "raw_2026-10-02/S33.bin.txt",
+      "보존범위": "해당 사업의 공식PDF 사업개요·전체 자격·제외·절차 구간 보존;텍스트추출 원문",
+      "지원대상_원문": "   전세피해임차인 주거안정지원금 지원 \n□ 사업개요 \nㅇ   (지원대상)   특별법에 따른 전세사기피해자(등) 결정자   * 이주비 지원사업 수혜자 제외 \nㅇ   (신청기간)   2026. 1. 1. ~ 2026. 12. 31.\nㅇ   (지원인원)   1,000명\nㅇ   (지원금액)   155만원 (생애1회)\nㅇ   (신청방법)   온라인 이용이 어려운 경우에 한하여 방문접수 \n온라인 접수   - 정부24(www.gov.kr)> 보조금24 > 로그인(본인인증)\n> 검색 ‘부산시 전세피해임차인 주거안정지원금’ > 신청 \n방문 접수   - 부산 전세피해지원센터 (부산시청 1층, 대강당 우측)\n*(운영시간) 09:00~18:00 월~금 (점심시간 12:00~13:00제외) \nㅇ   (소요예산)   1,550백만원(시비)   ▸ 1,000명 × 155만원\nㅇ   (지급방법)   매월 말까지 접수 → 다음달 20일 이내 개인 계좌 지급 \n□ 자격요건 \nㅇ 아래 요건을 모두 충족하는 자 \n- 특별법에 따라 전세사기피해자(등)으로 결정된 자 \n*   전세사기피해자(등)으로 결정된 날부터 3년이내 신청(법14조의2) \n- 신청일 현재, 부산광역시에 주민등록이 되어있는 자 \n- 전세피해 주택이 부산광역시에 소재할 것 \n- 2023~2024년 전세피해임차인 이주비 지원금을 받지 않은 자 \n- 전세사기피해자(등)과 본 사업 신청자가 모두 동일인일 것 \n□ 추진절차 \n① 신청대상자\n안내 문자   ▶   ② 주거안정지원금\n신청   ▶   ③ 적합여부 및\n서류 검토   ▶   ④ 지급결정\n통보   ▶   ⑤ 계좌\n입금\n부산시 →\n신청인   신청인 → 부산시   부산시   부산시 →\n신청인\n부산시 →\n신청인 \n①   전세사기피해자 결정 접수 시 작성한 인적사항(연락처 등)을 토대로\n신청 대상 피해자에게 개별 문자 전송 \n\n[PAGE 9]\n- 9 - \n②   온라인 또는 방문 접수 \n③   신청자 구비서류 확인 (보완 필요한 경우 보완요청 등) \n④   지원금 지급대상자로 결정 시, 결정 통보 및 지급 안내 문자 발송 \n⑤   신청인(피해자) 본인 계좌로 지원금 입금\n→ 매월 말일까지의 접수분을 다음달 20일 이내 지급 \n□ 구비서류 \nㅇ (공통)   ① 신청서,   ② 개인정보 수집 ‧ 이용 등 동의서,   ③ 전세사기피해자등\n결정통지서, 결정문 사본,   ④ 주민등록등본 (과거 주소 변동사항 포함, 주민등록번호\n뒷자리 공개, 신청일로부터 30일 이내 발급분) ,   ⑤ 신분증,   ⑥ 통장사본 (피해자 명의 계좌) \nㅇ (대리인 신청)   ※ 피해자 본인 신청 원칙, 부득이한 경우 가족에 한하여 대리신청 가능 \n① 공통서류 +   ② 위임장 (위임자 도장 날인) ,   ③ 신청인 및 대리인 신분증, \n④ 가족관계증명서 상세( 등본으로 가족확인 불가한 경우에 한함. 피해자 기준으로 발급) \n□ 기타 유의사항 \nㅇ 타 시·도에 소재한 주택으로 이주한 경우, 2023 ~ 2024년 전세피해임차인\n이주비   지원을   받은   경우   및   국토부에서   피해자   결정이   철회   또는\n취소된 경우 (피해액 전액 회수 등) 는 지원에서 제외됩니다.\nㅇ 부산시 전세피해임차인 이주비 지원사업 참여가 사후 확인된 경우, 거짓\n이나 그 밖의 부정한 방법으로 지원받은 경우 전액 환수할 수 있습니다.\nㅇ   신청 서류가 누락 ‧ 미비된 경우, 접수 이후라도 처리가 보류되며 추가\n자료 및 서류보완을 요청할 수 있습니다.\nㅇ 서류보완 요청을 받은 피해자는 14일 이내에 서류 보완을 완료하여야\n하며, 연락불능, 서류보완 미이행 등 기한 내 조치가 없는 경우 미지원\n(지원보류)과 관련한 모든 책임은 신청자에게 있습니다.\nㅇ 신청서 기재내용 및 제출서류가 사실과 다른 경우 지원하지 않을 수\n있습니다. \n\n[PAGE 10]\n- 10 -"
+    },
+    {
+      "data_id": "HOU-020",
+      "source_id": "S19",
+      "원문파일": "raw_2026-10-02/S19.txt",
+      "보존범위": "공식 지원대상·자격 구간 전체. HTML 태그·레이아웃 공백 정리;문구 요약 없음",
+      "지원대상_원문": "전세피해 임차인 대상 법률상담 지원 및 금융·주거지원 안내\n 전세피해확인서 신청, 전세사기피해자 결정신청 접수"
+    },
+    {
+      "data_id": "HOU-021",
+      "source_id": "S34",
+      "원문파일": "raw_2026-10-02/S34.txt",
+      "보존범위": "공식 지원대상·자격 구간 전체. HTML 태그·레이아웃 공백 정리;문구 요약 없음",
+      "지원대상_원문": "지원대상\n보호종료 예정 아동 또는 자립준비청년\n보호종료 5년 이내인 자\n관내 물건인 거주 예정지에 한함"
+    },
+    {
+      "data_id": "HOU-022",
+      "source_id": "S35",
+      "원문파일": "raw_2026-10-02/S35.txt",
+      "보존범위": "공식 지원대상·자격 구간 전체. HTML 태그·레이아웃 공백 정리;문구 요약 없음",
+      "지원대상_원문": "관내 기업에서 근로하는 주거취약 청년을 대상으로\n주택을 임대하여 직주환경 개선 \n※ 2년계약(1회 연장가능), 임대료 28만원, 보증금 140만원"
+    },
+    {
+      "data_id": "HOU-023",
+      "source_id": "S36",
+      "원문파일": "raw_2026-10-02/S36.txt",
+      "보존범위": "공식 지원대상·자격 구간 전체. HTML 태그·레이아웃 공백 정리;문구 요약 없음",
+      "지원대상_원문": "운영대상\n 부산시 거주 청년 누구나"
+    },
+    {
+      "data_id": "HOU-024",
+      "source_id": "NEW_HOUSING",
+      "원문파일": "raw_2026-10-02/NEW_HOUSING.txt",
+      "보존범위": "공식 지원대상·자격 구간 전체. HTML 태그·레이아웃 공백 정리;문구 요약 없음",
+      "지원대상_원문": "입주자격\n 계층\n 입주자격\n 소득기준\n 대학생 계층\n 대학생\n 대학에 재학 중 또는 입·복학예정인 혼인 중이 아닌 무주택자\n 본인 및 부모 월평균 소득 합계가 전년도 도시근로자 가구원수별 가구당\n 월평균 소득의 100%이하\n 취업준비생\n 대학(또는 고등학교 및 이와 동등한 학력이 인정되는 교육기관)를 졸업 또는 중퇴한지 2년\n 이내인 혼인 중이 아닌 무주택자\n 청년 계층\n 청년\n 만 19세 이상 만 39세 이하 혼인 중이 아닌 무주택자\n 해당 세대 월평균 소득 합계가 전년도 도시근로자 가구원수별 가구당 월평균\n 소득의 100% 이하\n 사회초년생\n 소득이 있는 업무에 종사한 기간이 총 5년 이내이며, 아래의 하나에 해당하는 혼인 중이 아닌\n 무주택자\n 1. 소득이 있는 업무에 종사하는 자\n 2. 퇴직한 후 1년이 지나지 않은 사람으로서 구직급여 수급자격을 인정받은 자\n 3. 예술인\n 신혼부부 · 한부모가족\n 신혼부부\n 신청인 혼인 기간 7년 이내 또는 만 6세 이하의 자녀를 둔 무주택세대구성원\n 해당 세대 월평균 소득 합계가 전년도 도시근로자 가구원수별 가구당 월평균\n 소득의 100% 이하(맞벌이 120% 이하)\n 예비 신혼부부\n 혼인을 계획 중이며, 입주 전까지 혼인 사실을 증명할 수 있는 자(혼인으로 구성될 세대원 모두\n 무주택자)\n 한부모가족\n 만 6세 이하(태아 포함)의 자녀를 둔 무주택세대구성원\n 고령자\n 만 65세 이상 무주택세대구성원\n 해당 세대 월평균 소득 합계가 전년도 도시근로자 가구원수별 가구당 월평균 소득의 100% 이하\n 주거급여 수급자\n 무주택세대구성원인 「주거급여법 제2조 제2호 및 제3호」에 따른 수급권자 또는 수급자\n -\n 산업단지 근로자\n 아래 구분에 따른 해당(연접) 지역 기업 등에 재직 중이거나, 해당 기업에 소속되지 않고 근무\n 중인 경우\n 1. 1년 이상 근무(예정) 중인 사람\n 2. 산업단지 또는 산업지원 단지에 입주 또는 입주 예정인 기업 및 교육·연구기관\n 3. 경제자유구역 입주 또는 입주 예정인 중소기업\n 해당 세대 월평균 소득 합계가 전년도 도시근로자 가구원수별 가구당 월평균 소득의 100% 이하\n 소득기준 (2026년도 적용기준)\n 월평균 소득기준 100%(3인 기준) 이하 : 약 816만원 이하\n 월평균 소득기준 120%(3인 기준) 이하 : 약 980만원 이하\n 계층별 소득기준에 1인 가구 20%p, 2인 가구 10%p 각각 가산한 소득기준 적용\n 자산기준 (2026년도 적용기준)\n 구분\n 총자산\n 자동차\n 대학생\n 10,800만원\n 자동차를 소유하지 않을 것\n 청년\n 2억 5,100만원\n 4,542만원\n (예비)신혼부부 및 한부모가족\n 3억 4,500만원\n 4,542만원\n 그 외\n 3억 4,500만원\n 4,542만원\n 무주택, 소득, 자산 조회 범위인 ‘해당 세대＇는 신청 자격별로 상이하므로\n 입주자모집 공고문을 참조하시기 바랍니다.\n 상기 입주자격 및 소득기준 등은 관련 법령개정에 따라 변경될 수 있으니 입주자모집 공고문을 필히 확인 바랍니다.\n 입주계층별 공급비율\n 젊은 계층 (대학생, 청년, 신혼부부) : 80%\n 노인·취약계층 : 20%\n 주택규모 및 임대기간\n 주택규모\n 전용면적 기준 60㎡ 이하\n 임대기간\n 2년 단위로 계약체결 (임대의무기간 : 20년)\n 당해 임대차기간 종료 시 입주자격 재확인 후 갱신계약 체결\n 최대 거주기간\n 입주자격\n 최대거주기간\n 대학생·청년·산업단지근로자\n 10년\n 신혼부부·일자리연계형 지원주택\n 무자녀(10년), 자녀1명이상(14년)\n 고령자·주거급여수급자·기존거주자\n 20년\n 임대조건\n 공급대상자별 시중시세의 60~80% 수준"
+    },
+    {
+      "data_id": "HOU-026",
+      "source_id": "DREAM_LOAN",
+      "원문파일": "raw_2026-10-02/DREAM_LOAN.txt",
+      "보존범위": "공식 지원대상·자격 구간 전체. HTML 태그·레이아웃 공백 정리;문구 요약 없음",
+      "지원대상_원문": "대출 대상\n대출 대상주택을 구입하고자 하는 자로서 아래의 요건을 모두 충족하는 자\n 1. \n (청년 주택드림 통장 청약 당첨자) 입주자모집공고일 이전 보유한 청년 주택드림 통장으로 청약 당첨(당첨시 만39세 이하)되어 분양계약을 체결하고, 아래 조건을 모두 충족하여 해당 청년 주택드림 통장과 연계하여 디딤돌 대출을 신청하는 자 (상속, 증여, 재산분할로 주택을 취득하는 경우 불가) \n 가. 청년 주택드림 통장 가입일(전환일)로부터 대출접수일까지 1년 이상 가입\n 나. 대출접수일 기준 1천만원 이상 납입\n (단, 월 납입실적은 최대 100만원까지만 인정하며, 담보목적물(해당주택)의 계약금 납입 목적으로 1회에 한하여 청년 주택드림 통장 납입금액을 인출한 경우에는 대출접수일 기준 1천만원 이상 잔고가 확인되어야 함)\n <청년 주택드림 통장 월 납입실적 예외사항>\n (1) 후분양 등의 사유로 월 100만원 납입만으로는 1천만원 이상 납입요건 충족이 어려운 경우 부족분만큼 대출 신청 전 일시납하는 금액 인정\n (2) 종합저축에서 청년 주택드림 통장으로 전환가입한 경우 기존 통장의 잔고는 최대 500만원까지 인정(단, 청년우대형 종합저축에서 청년 주택드림 통장으로 전환된 경우 기존 잔고 모두 인정)\n (3) 청년도약계좌, 청년희망적금, 군장병 내일적금 등 만기 일시납액을 청년 주택드림 통장으로 예치한 경우 최대 500만원까지 인정\n (4) 이 기준에서 달리 정하고 있지 않은 사항에 대해서는 별도로 정한 지침에 따름\n 2. (세대주) 대출접수일 현재 민법상 성년인 세대주\n 3. \n (무주택) 세대주를 포함한 세대원 전원이 무주택인 자 [자주하는 질문 바로가기-'무주택' 검색]\n 분양권 및 조합원 입주권도 주택 보유로 간주\n 4. \n (중복대출 금지) 주택도시기금대출 및 은행재원 주택담보대출 미이용자 등\n (주택도시기금대출) 성년인 세대원 전원이 기금 대출을 이용 중이면 대출 불가\n 단, 기금의 전세자금 대출을 받은 경우에는 실행일 당일 상환조건부로 대출 가능\n (주택담보대출) 차주 및 배우자(결혼예정 또는 분리된 배우자 포함)가 다른 목적물로 주택담보(중도금)대출을 이용 중이면 대출 불가\n 5. (소득) 미혼인 경우 연간 총소득 7천만원, 신혼가구인 경우 대출신청인과 배우자의 합산 총소득이 연간 1억원 이하인 자\n 단, 토지임대부 분양주택 대출 신청자는 청약 소득요건을 충족하였으므로 소득 초과 시에도 대출 신청 가능\n 근로소득자는 건강보험자격득실확인서, 사업소득자는 사업자등록증(또는 사업자등록증명원)의 확인을 통해 현재 재직 중인 직장 또는 현재 영위 중인 사업을 기준으로 소득 산정\n 6. \n (자산) 대출신청인 및 배우자의 합산 순자산 가액이 통계청에서 발표하는 최근년도 가계금융복지조사의 ‘소득 5분위별 자산 및 부채현황’ 중 소득 4분위 전체가구 평균값 이하(십만원 단위에서 반올림)인 자→2026년도 기준 5.11억원\n 단, 토지임대부 분양주택 사전청약 당첨자는 자산요건을 갖춘 것으로 봄\n 자산심사 관련 자세한 사항 [바로가기]\n 7. \n (신용도) 아래 요건을 모두 충족하는 자\n 신용정보회사의 개인신용평가가 일정점수 이상인 경우\n 신청인이 한국신용정보원 “신용정보관리규약”에서 정하는 아래의 신용정보 및 해제 정보가 남아있는 경우 대출 불가능\n 1) 연체, 대위변제·대지급, 부도, 관련인 정보\n 2) 금융질서문란정보, 공공기록정보, 특수기록정보\n 3) 신용회복지원등록정보\n 그 외, 부부에 대하여 대출취급기관 내규로 대출을 제한하고 있는 경우에는 대출 불가능"
+    },
+    {
+      "data_id": "HOU-027",
+      "source_id": "DREAM_ACCOUNT",
+      "원문파일": "raw_2026-10-02/DREAM_ACCOUNT.txt",
+      "보존범위": "공식 지원대상·자격 구간 전체. HTML 태그·레이아웃 공백 정리;문구 요약 없음",
+      "지원대상_원문": "가입 대상\n나이: 만 19세 이상 ∼ 만 34세 이하 \n(병역증명서에 의한 병역 이행기간이 증명되는 경우 현재 연령에서 병역 이행 기간(최대 6년)을 빼고 계산한 연령이 만 34세 이하인 사람 포함)\n소득: 직전년도 또는 전전년도 신고소득이 있는 자로 연소득 5천만 원 이하인 근로, 사업, 기타소득자로 소득세 신고·납부 이행 등이 증빙된 자* \n(근로기간 1년 미만으로 직전년도 또는 전전년도 신고소득이 없는 근로소득자에 한해 당해 급여명세표 등으로 연소득 환산 후 가입 가능)\n* 단, 비과세 소득만 있는 군인(현역병, 사회복무요원 등), 군 복무기간 비과세 소득만 있었던 전역자(직전 과세기간 중 복무한 기간이 1일 이상 포함된 경우) 는 가입 가능\n※ 이자소득 비과세 대상 소득기준은 일부 상이(하단 참조)\n주택 소유 여부: 주택을 소유하지 않은 무주택자(주택 소유 여보는 \"「청년 주택드림 청약통장」 가이드라인\"(아래)의 '④ 무주택 판단 기준' 참조) \n※ 세부적인 가입 대상 요건은 \"「청년 주택드림 청약통장」 가이드라인\"(아래) 참조"
+    },
+    {
+      "data_id": "HOU-028",
+      "source_id": "RENT_LOAN",
+      "원문파일": "raw_2026-10-02/RENT_LOAN.txt",
+      "보존범위": "공식 지원대상·자격 구간 전체. HTML 태그·레이아웃 공백 정리;문구 요약 없음",
+      "지원대상_원문": "대출 대상\n아래의 요건을 모두 충족하는 자\n 1. (계약) 주택임대차계약을 체결하고 임차보증금의 5% 이상을 지불한 자\n 2. (세대주) 대출접수일 현재 민법상 성년인 세대주(대출실행일로부터 1개월 이내에 세대분가 또는 세대합가로 인한 세대주 예정자 포함) \n ※ 세대주의 정의\n 세대별 주민등록상에 배우자, 직계존속(배우자의 직계존속) 또는 직계 비속인 세대원으로 이루어진 세대의 세대주 (* 형제·자매는 세대원에 미포함)다만, 다음에 해당하는 자도 세대주로 간주\n 1) 세대주의 배우자\n 2) 주민등록표상에 세대원으로 등록된 자가 대출접수일 현재 3개월 이내에 결혼으로 세대주로 예정된 자\n 3. (무주택) 세대주를 포함한 세대원 전원이 무주택인 자\n 4. (중복대출 금지) 주택도시기금대출, 은행재원 전세자금대출 및 주택담보대출 미이용자\n (주택도시기금대출) 성년인 세대원 전원(세대가 분리된 배우자 및 자녀, 결혼예정 배우자, 배우자의 직계존속과 동거세대를 구성하는 경우 배우자의 직계존속 포함)이 기금 대출을 이용 중이면 대출 불가\n (전세자금대출 및 주택담보대출) 차주 및 배우자(결혼예정 또는 분리된 배우자 포함)가 전세자금(이주비)대출 및 주택담보대출을 이용 중이면 대출 불가\n (학자금대출) 차주 및 배우자(결혼예정 또는 분리된 배우자 포함)가 학자금대출을 이용 중이면 대출 불가(단, 대학교 졸업증명서를 제출하는 경우 제외)\n 5. (자산) 대출신청인 및 배우자의 합산 순자산 가액이 통계청에서 발표하는 최근년도 가계금융복지조사의 ‘소득 5분위별 자산 및 부채현황’ 중 소득 3분위 전체가구 평균값 이하(십만원 단위에서 반올림)인 자\n 2026년도 기준 3.45억원\n 자산심사 관련 자세한 사항은 기금포탈 [고객서비스]-[자산심사 및 금리안내]-[자산 심사 안내]를 참고(바로가기)\n 6. (신용도) 아래 요건을 모두 충족하는 자\n 신청인(연대입보한 경우 연대보증인 포함)이 한국신용정보원 “신용정보관리규약”에서 정하는 아래의 신용정보 및 해제 정보가 남아있는 경우 대출 불가능\n 1) 연체, 대위변제·대지급, 부도, 관련인 정보\n 2) 금융질서문란정보, 공공기록정보, 특수기록정보\n 3) 신용회복지원등록정보\n 그 외, 부부에 대하여 대출취급기관 내규로 대출을 제한하고 있는 경우에는 대출 불가능\n 7. (공공임대주택) 대출접수일 현재 공공임대주택에 입주하고 있는 경우 불가\n 대출신청 물건지가 해당 목적물인 경우 또는 대출신청인 및 배우자가 퇴거하는 경우 대출가능\n 8. (우대형) 아래 중 어느 하나에 해당하는 자\n 1) 취업준비생 : 부모와 따로 거주하는 자 또는 독립하려고 하는 자 중 만35세 이하 무소득자로 부모 소득이 6천만원 이하인 자\n 2) 희망저축(키움)통장 가입자\n 3) 사회초년생 : 취업 후 5년 이내로 접수일 현재 만 35세 이하 부부합산 연소득 4천만원 이하인 자\n 4) 근로장려금 수급자 :　대출접수일 기준 최근 1년 이내 수급사실이 인정되는 근로장려금 수급자 중 세대주(세대주로 인정되는 자)\n 5) 자녀장려금 수급자 : 대출접수일 기준 최근 1년이내 수급사실이 인정되는 자녀장려금 수급자 중 세대주(세대주로 인정되는자 포함)인 자\n 6) 주거급여 수급자 : 대출 접수일 현재 주거급여 수급자 중 세대주(세대주로 인정되는 자 포함)인 자\n (일반형) 부부합산 연소득 5천만원 이하자 중 우대형에 해당하지 아니한 자"
+    },
+    {
+      "data_id": "HOU-002",
+      "source_id": "LH_YOUTH_PDF",
+      "원문파일": "raw_2026-10-02/LH_YOUTH_PDF.pdf.txt",
+      "보존범위": "추가 조사에서 직접 확인한 공식 자격·제외 구간;문구 축약 없이 보존. 전체 파일 별도 보존",
+      "지원대상_원문": "4. 신청자격 및 순위 \n대상   자격요건\n신청자격   •   신청일 현재   본인이 무주택자이면서 혼인 중이 아닌   대학생 1) , 취업준비생 2) , 19~39세 3)   로\n아래 1순위 유형 중 어느 하나에 해당하는 자 \n순위   유형   세부 자격요건\n1순위\n수급자   • 「국민기초생활보장법」 제7조제1항제1~3호 생계 · 주거 · 의료급여 수급 가구의 청년 \n한부모가족   • 「한부모가족지원법시행규칙」 제3조의 규정에 따라 성평등가족부장관이 정하여 고시\n하는 한부모가족 가구의 청년 \n차상위계층   • 「국민기초생활보장법」 제2조제10호에 따른 차상위계층 가구의 청년\n1) 대학생 : 2026년도 입 · 복학 예정이거나 재학 중인 19세 미만 대학생 · 39세 초과 대학생\n* 단, 대학생은 본인의 대학 소재 지역 [특별시, 광역시, 도 지역] 및 연접 시 · 군으로만 신청 가능하며,\n대학교 인정 기준은 아래 표 참고\n2) 취업준비생 : 대학 또는 「초·중등교육법」 제2조제3항에 따른 고등·고등기술학교를 졸업하거나 중퇴한 후\n2년 이내인 사람(졸업유예자 포함)으로서 직장에 재직 중이지 않은 19세 미만 또는 39세 초과 청년\n3) 19~39세 : 19세 이상 39세 이하 청년 \n(대학생 유형) 대학교 인정 기준 \n1. 「고등교육법」 제2조에 해당하는 학교(대학, 산업대학, 교육대학, 전문대학, 기술대학)\n2. 「평생교육법」 제31조제4항에 따른 고등기술학교(전공대학)\n3. 「국민평생직업능력개발법」 제2조제5호에 따른 기능대학\n※ 단, 원격대학(방송통신대학, 사이버대학 등), 사내대학, 학점은행제 대학은 제외\n※ 신청자는 본인의 재학 중인 학교가 상기 요건에 해당하는지에 대해 LH에서 증빙을 요구하는 경우 증빙\n서류를 제출하여야 함\n※ 대학알리미(www.academyinfo.go.kr)-2026년 공시대상대학에서 확인가능 \n(취업준비생 유형) 졸업, 중퇴 학교 인정 기준 \n[대학교 인정 기준] \n1. 「고등교육법」 제2조 해당하는 대학, 산업대학, 교육대학, 전문대학, 기술대학, 방송대학, 통신대학, 방송통신대학, 사이버대학\n2. 「평생교육법」 제31조 제4항에 따른 고등기술학교(전공대학)\n3. 「국민평생직업능력개발법」 제2조 제5호에 따른 기능대학\n※ 다만, 사내대학, 대학원, 대학원대학, 해외대학은 제외 \n[고등 ‧ 고등기술학교 인정 기준] \n1. 「초 ‧ 중등교육법」 제2조 제3호에 따른 고등학교, 고등기술학교\n2. 「초 ‧ 중등교육법」 제51조의 방송통신고등학교\n3. 「초 ‧ 중등교육법」 제55조의 특수학교\n4. 「초 ‧ 중등교육법」 제60조의3의 대안학교\n5. 고졸검정고시 등 「초 ‧ 중등교육법」 제2조제3항에 따른 고등학교, 고등기술학교 동등 학력 인정자\n※ 다만, 중학교 졸업, 해외고등학교 졸업은 제외 \n* 본 공고에서 말하는 ‘가구’는 본인과 부모를 의미함\n* 입주대상자 통보 후 계약 시까지 입주자격(무주택 + 수급자 · 한부모가족 · 차상위계층)을 필히 유지 \n\n[PAGE 3]\n- 3 -"
+    },
+    {
+      "data_id": "HOU-010",
+      "source_id": "JIN_NOTICE",
+      "원문파일": "raw_2026-10-02/JIN_NOTICE.txt",
+      "보존범위": "추가 조사에서 직접 확인한 공식 자격·제외 구간;문구 축약 없이 보존. 전체 파일 별도 보존",
+      "지원대상_원문": "○ 지원대상 : 2026년 전월세 안심계약 매니저 서비스 이용자 중\n - (연 령) 19세 ~ (기존) 29세 이하 ？ (확대) 39세 이하 청년\n - (거주기준) 상담 후 임대차계약 및 전입신고를 한 자\n - (소득기준) 중위 소득 140% 이하(연소득 43백만원) \n - (주택기준) 거래금액 1억 원 (전월세 환산 중개수수료 산출 기준) 이하 주거용 주택"
+    },
+    {
+      "data_id": "HOU-025",
+      "source_id": "LUCKY_HWPX",
+      "원문파일": "raw_2026-10-02/lucky_full.txt",
+      "보존범위": "추가 조사에서 직접 확인한 공식 자격·제외 구간;문구 축약 없이 보존. 전체 파일 별도 보존",
+      "지원대상_원문": ". 신청자격 및 선정기준\n  \n  ■ 신청자격 :\n \nL\nH [부산,울산] \n신혼부부Ⅰ 매입임대주택 입주자 모집공고(2026.3.26.), \n(정정공고\n 2026.4.7.)\n 및\n \n신혼\n부부Ⅱ(전세형) 매입임대주택 예비입주자 모집공고(2026.3.26.), \n,(정정공고 2026.4.7.)\n에\n 따른 부산시 소재 주택(신혼부부Ⅰ 143호, 신혼부부Ⅱ 123호)  \n입주 계약자 중 (예비)신혼부부\n     \n①\n \n신혼부부\n : \n해당 매입임대주택 예비입주자모집 공고 기준\n 혼인 7년 이내\n(\n혼인신고일이\n \n2019.03.26. ~ 2026.03.26\n)\n인 사람\n     \n②\n \n예비신혼부부\n : \n공고일 현재 혼인 예정인 사람으로서 입주일 전일까지 혼인신고를 하는 사람\n      \n※ LH 공고문에 따른 한부모 가족, 기타 혼인가구는 지원 대상이 아닙니다.\n  ■ 선정기준 \n  •\n (소득기준) \n전년도 도시근로자 가구원수별 가구당 월평균소득 소득기준 100%이하\n                (맞벌이의\n 경우 120%이하)인 (예비)신혼부부\n     ※ 전년도 도시근로자 가구원수별 월평균소득 금액\n                                                     \n(단위 : 원)\n    \n구  분\n2인 가구\n3인 가구\n4인 가구\n5인 가구\n비 고\n100%\n5,866,270\n8,168,429\n8,802,202\n9,326,985\n120%\n7,039,524\n9,802,115\n10,562,643\n11,192,382\n   - (우선순위) \n     ･ 1순위 : 만1세 이하 자녀(\n2025.3.26.\n이후 출생)가 있는 (예비)신혼부부(태아포함)\n     ･ 2순위 : 1순위가 아닌, 만6세 이하 자녀(\n2020.3.26.\n이후 출생)가 있는 (예비)신혼부부\n     ･ 3순위 : 1,2순위 아닌 (예비) 신혼부부\n     ※ 같은 순위 내 경쟁이 있는 경우, 1차 자녀 수가 많은 경우 우선(민법상 성년의 자녀는 자녀 수에 포함하지 않음), 2차 저소득층 우선 선정\n  ■ 럭키7하우스 지원사업 제외 대상자\n  • \n국민기초생활보장법 제7조제1항제2호에 따른 \n주거급여 수급자(배우자 포함)\n  • \n주택도시기금 대출\n 및 부산광역시로부터 신혼부부 전세지원, 청년월세, 머물자리론, 버팀목전세대출, 평생함께 청년모두가 등\n \n주거관련 지원을 \n받고있는 자\n(배우자, 예비배우자 포함). \n단, 입주 전 주거관련 지원이 종료되었음을 증빙하는\n 경우 지원 가능함\n \n 3\n. 지원내용\n  ■ 지원금액 : 해당 매입임대주택의 임대보증금 대출 이자 및 월 임대료\n  ■ 지원방법\n    1) 임대보증금 대출이자 : 부산은행에서 부산광역시로 청구 및 부산광역시 납입\n    \n2) 월 임대료 : 임대료 고지 확인 후 부산광역시 납입\n  ■ 알림사항\n    1) \n럭키7하우스 지원 신청자는 매입임대주택 계약시 \n보증금 및 월임대료의 상호전환 불가\n    2) 임대차보증금 대출은 \n개인신용도 등에 따라 대출가능 금액은 상이 또는 대출이 불가할 \n수 있으며\n, 부산은행의 \n럭키7하우스 대출 외의 방법으로 대출 시에는 보증금 대출이자를\n 지원하지 않음\n    3) \n지원대상자가 공공임대주택 갱신계약 시 감정평가 및 물가상승 등의 사유로 임대료가\n 상승할 경우 부산광역시에서 지원하나,\n 소득기준 초과로 인한 할증금액은 지원하지 않음(입주자 부담) \n  ■ 지원중단 사유\n  • \n부산광역시 외로 전출시           \n  • \n럭키7하우스 대출 외 주택도시기금 대출, \n주거급여, 청년모두가 지원사업 등 유사급여 수급\n  • 입주지연이 1개월을 초과하는 경우(부득이한 사정으로 입주 지연시 부산시에 알리고 \n입주기간 초과 1개월 이내 입주하여야 하며, 미입주 기간동안은 월임대료가 지원되지\n 않음)\n  • \n임대차계약 종료(대출금 상환하여야 함)\n \n              \n  • \n이혼 등 혼인관계가 종료된 경우(배우자 사망의 경우 제외)\n  • \n거짓이나 그 밖의 부정한 방법으로 임대보증금의 대출이자 및 월임대료를 지원받은 경우\n▪ 참고사항\n - 부산광역시 신혼부부 럭키7하우스 지원사업의 업무범위\n   \n① 부산광역시 : 신혼부부 럭키7하우스 지원사업 \n   ② 한국토지주택공사 : 매입임대주택 공급 계약체결 및 입주관리 등 \n   ③ ㈜부산은행 : 대출 실행 및 운용  \n   ④ 한국주택금융공사 : 임대보증금 대출에 대한 주택금융신용보증서 제공 등"
+    },
+    {
+      "data_id": "HOU-029",
+      "source_id": "HF_SPECIAL;HF_MONTH",
+      "원문파일": "raw_2026-10-02/HF_SPECIAL.txt",
+      "보존범위": "추가 조사에서 직접 확인한 공식 자격·제외 구간;문구 축약 없이 보존. 전체 파일 별도 보존",
+      "지원대상_원문": "무주택 청년\n 특례사항 : 100백만원 이하로 이용시 상환능력별 보증한도 생략, 보증비율 100%\n 대상자 : 아래 요건을 모두 충족하는 자\n 신청일 기준 만 34세 이하인 무주택자\n 본인과 배우자 합산 연소득이 70백만원 이하\n 보증한도 : 최대 200백만원\n 선순위요건 및 채권보전조치 : 필수\n상품소개\n 일반월세, 제주도 협약월세, 무주택청년 특례월세로 보증대상자, 보증비율, 보증목적물, 보증신청시기, 보증기간, 서류제출, 보증한도, 보증료율에 대한 상품소개 정보테이블 입니다.\n 일반월세\n 제주도 협약월세\n 무주택청년 특례월세\n 보증대상자\n 아래 요건 모두 충족\n 임차보증금 1억원, 월세금 60만원 이하\n 주택도시기금 주거안정월세대출 대상자\n 아래 요건 모두 충족\n 제주도 소재 주택으로 임차보증금 30백만원, 월세 60만원 이하\n 1년 또는 2년 연세 임대차계약을 체결한 무주택 세대주\n 제주도 사업공고에서 정한 자격요건을 충족하는 자\n 아래 요건 모두 충족\n 임차보증금 1억원, 월세 70만원 이하\n 만 34세 이하 무주택자\n 잔여 임대차기간 6개월 이상\n 본인과 배우자 합산 연소득이 70백만원 이하\n 본인과 배우자가 주거급여수급자가 아닐 것\n 보증비율\n 대출금액의 80%(부분보증)\n 대출금액의 100%(전액보증)\n 보증목적물\n 아래 요건 모두 충족\n 부동산등기사항전부증명서 상 용도가 주택 또는 오피스텔(업무용시설)이거나 지자체에 노인복지주택으로 신고된 건축물로서 실제 주거용으로 이용할 것\n 부동산등기사항전부증명서(건물) 상 소유권에 권리침해가 없을 것\n 단, 보증목적물이 노인복지주택인 경우 노인복지법에서 정하는 입소자일 것\n 보증신청시기\n 제한없음\n 다음 중 어느 하나에 해당할 것\n 신규 임대차 계약 : 임대차계약서 상 잔금지급일과 주민등록전입일 중 빠른 날로부터 3개월 이내\n 갱신 임대차 계약 : 계약갱신일로부터 3개월 이내(주민등록전입일로부터 3개월 이상 경과할 것)\n 임대차만기 6개월 전까지\n 보증기간\n 최대 10년\n 최대 4년\n 최대 13년\n 거치기간 : 최대 8년(연단위)\n 분할상환기간 : 3년 또는 5년\n 서류제출\n 인적/본인 확인 관련 : 주민등록등본, 신분증, 주택도시기금 주거안정월세대출 대상자 증빙서류\n 임대차계약 확인 관련 : 확정일자부 임대차계약서, 계약금 등 지급 영수증\n 소득/재직 확인 관련 : 연간소득확인서류, 재직증명서, 사업자등록증\n 인적/본인 확인 관련 : 주민등록등본, 신분증, 주거급여 비수급자 확인서\n 임대차계약 확인 관련 : 확정일자부 임대차계약서, 계약금 등 지급 영수증\n 소득/재직 확인 관련 : 연간소득확인서류, 재직증명서, 사업자등록증\n 인적/본인 확인 관련 : 주민등록등본, 신분증\n 임대차계약 확인 관련 : 확정일자부 임대차계약서, 계약금 등 지급 영수증\n 보증한도\n 아래 ① ~ ② 중 적은 금액\n 1,152만원 – 기 이용 월세자금보증잔액\n (월세 2년 환산액) × 80% - 기 이용 월세자금보증잔액\n 아래 ① ~ ② 중 적은 금액\n 12백만원 – 기 이용 월세자금보증잔액\n (월세 2년 환산액) – 기 이용 월세자금보증잔액\n 단, 보증부대출금의 연간한도는 6백만원\n 아래 ① ~ ② 중 적은 금액\n 12백만원 – 기 이용 월세자금보증잔액\n&ensp;* 청년전세자금보증 이용자는 600만원\n (월세 2년 환산액) – 기 이용 월세자금보증잔액\n 보증료율\n 연 0.02%"
+    },
+    {
+      "data_id": "HOU-030",
+      "source_id": "SCHOLARSHIP_DETAIL;SCHOLARSHIP_REVIEW",
+      "원문파일": "raw_2026-10-02/SCHOLARSHIP_DETAIL.txt",
+      "보존범위": "추가 조사에서 직접 확인한 공식 자격·제외 구간;문구 축약 없이 보존. 전체 파일 별도 보존",
+      "지원대상_원문": "주거안정장학금 지원대상\n 학생 지원자격\n 대한민국 국적을 소지하고 재학 중인 대학생(대학원생 제외)\n 당해연도 1월 1일 기준 만 39세 이하(’86.1.1. 이후 출생)로 미혼인 자\n 당해 학기 학자금 신청 시, 기초생활수급자 또는 차상위계층으로 확인된 자 (자격 기준은 학자금 지원구간 산정지침에 따름)\n 부모의 주민등록정보 확인을 위한 가구원 동의를 완료한 자\n 신청 대학생 부모 모두의 주민등록상 주소지가 신청 대학생 소속 대학을 기준으로 통학이 어려운 원거리 지역에 해당하는 자\n 대상대학\n 국내대학 중 당해연도 사업참여를 신청하고, 재단이 승인한 대학\n 2026학년도 학자금 지원 제한 대학의 2026학년도 신·편입 학생은 지원 제외\n 주거안정장학금 지원가능 대학 및 지원 불가 지역 확인\n ※ 검색결과가 없을 경우, 주거안정장학금 참여대학이 아닙니다.\n ※ 소속대학이 본교만 검색되고 실제 소속 캠퍼스가 조회되지 않는 경우, [지원 불가 지역]은 소속학교에 문의하시기 바랍니다.\n주거안정장학금 심사기준\n 주거안정장학금 심사기준표\n 구분\n 심사기준\n 유의사항\n 소득기준\n 당해 학기 학자금 신청 시, 기초생활수급자 또는 차상위계층으로 확인된 자\n ※ 자세한 자격 기준은 학자금 지원구간 산정지침에 따름\n 거리기준\n 신청 대학생 부모 모두의 주민등록상 주소지가 신청 대학생 소속 대학을 기준으로 통학이 어려운 원거리 지역에 해당하는 자\n ※ 단, 사망 또는 부양관계단절 등 부모 주소정보가 모두 없는 경우 원거리 심사 생략(면제)\n ※ 원거리 지역 해당 여부는 ’26년 주거안정장학금 시행계획의 「대학 소재지와 부모 주민등록지 간 원거리 인정기준)」 참고\n 주거안정장학금 참여대학 및 지원 불가 지역 확인\n ※ 검색결과가 없을 경우, 주거안정장학금 참여대학이 아닙니다.\n 성적\n기준\n 신·편입생, 재입학생\n 첫 학기에 한하여 성적 및 이수학점 기준 미적용\n 재학생\n 직전학기 12학점(학년제는 24학점) 이상 이수자로 100점 만점의 70점 이상을 획득한 자\n ※ 장애인 학생은 백분위 점수 및 이수학점 기준 미적용\n ※ 자립준비청년(보호아동 포함)은 백분위 점수 기준 미적용\n ※ 소속대학 최저 이수학점이 12학점 미만인 경우, 소속대학의 학사규정에 의함\n ※ 대학의 관계규정에 명시하여 학년제로 운영할 경우 직전년도 성적(이수학점, 백분위)으로 반영\n ※ 이수학점은 취득학점 기준(신청학점 기준 적용불가)이며, 이수학점 산출 시 수강신청 정정기간 내 취소과목, F학점, 이수 후 포기과목은 미반영\n 수혜한도\n 현재 소속학교 학제별·학생별 한도를 모두 충족하는 범위 내에서 지원\n 학제별: 2년제(4회), 3년제(6회), 4년제(8회), 5년제(10회), 6년제(12회)\n 학생별: 2~4년제(8회), 5년제(10회), 6년제(12회)\n ※ 정규학기를 1년 2학기 기준으로 주거안정장학금 수혜 횟수만 산정\n ※ 초과학기 및 졸업유예도 학적 상태가 재학인 경우, 한도 내 지원 가능\n 기타\n기준\n 연령 및 혼인여부\n 당해연도 1월 1일 기준 만 39세 이하(‘86.1.1.이후 출생)로 미혼인 자\n 중복지원\n 국토교통부 청년 주거급여 분리지급 및 청년 월세 지원 사업과 국가 및 지방자치단체에서 지원하는 주거 관련 현금성 지원 사업에 선정된 경우 지원 불가\n ※ 단, 국토부의 가구단위 주거급여 사업은 중복수혜 가능\n ※ (장학금 심사) 학기별 주거안정장학금 신청 최종종료일이 속한 월의 말일을 기준으로 타 사업 지원 선정 여부(국토부 청년 주거급여 분리지급 및 청년 월세 지원 사업에 한함)를 확인\n ※ (장학금 지급) 선발 이후에도 국가 및 지방자치단체에서 지원하는 주거 관련 지원사업에 선정된 경우 지급 불가\n주거안정장학금 지원내용\n 지원금액: 월 최대 20만 원\n ※ 단, 방학 중(7~8월, 1~2월)에는 지원하지 않으며, 계절학기를 수강하는 경우에는 방학 중에도 장학금 지원 가능\n 지원범위: 월 20만 원 한도 내 학생이 지출한 주거 관련 비용 포괄 지원\n 지출 명의: 학생 본인의 주거 관련 지출 비용만 지원 (단, 임차비용은 부모 지출 인정)\n 산정 기간: 지출일이 속한 월 기준 산정 (지출 원인 발생 월(예: n월분 월세)과 무관)\n 기간 예외: 아래에 해당하는 경우, 사전·사후 지출의 해당월분 인정\n (사전 지출) 임차보증금, 임차료 선급금*, 관리비 선급금*\n * 선급금: 1개월을 초과하는 기간의 비용을 일괄하여 사전 납부하는 경우\n (사후 지출) 매월 말일 자동이체 설정한 임차료(월세), 관리비의 지연 이체*\n * 지연 이체: 말일이 공휴일이거나 은행 사정으로 다음 영업일(익월) 이체된 경우\n 인정 지역: 대학 소재지를 기준으로 원거리에 해당하지 않는 지역(동일 광역교통권‧인접시‧동일 군)의 주거지에서 발생한 지출만 인정\n * 단, 인정 지역을 벗어난 장소에서 대부분의 학업이 발생한다고 대학이 인정하는 경우 또는 대학소재지가 시‧군지역으로 인접시 또는 동일군이 아닌 지역에 거주 필요성을 대학이 인정하는 경우 지원 가능\n 주거안정장학금 지원내용 표\n 구분\n 내용\n 임차비용\n 임차료\n 주택, 고시원, 오피스텔 등 당월 지출 임차료(월세 등) 비용\n 임차보증금\n 주택 , 고시원, 오피스텔 등 임차보증금. 단, 보증금의 4%를 월 환산하여 인정\n(예. 보증금 1,000만원인 경우, 1,000만원*0.04/12 = 33,000원 인정)\n 임차료 선급금\n 임대차기간 중 1개월을 초과하는 기간의 임차료를 일괄하여 사전 납부하는 경우, 총 금액 입력 후 개월 수에 선급개월 수 입력 필요\n(예. 1학기 기숙사비 80만원 지급한 경우, 총 금액 80만원, 개월 수 4 입력하면 월 20만원 자동계산)\n 이자비용\n 전월세보증금대출\n 은행 등 금융기관에서 전세 또는 월세 보증금을 대출한 경우, 보증금 대출에 대한 당월 지출 이자비용 금액\n(전월세보증금대출 이자상환액, 원금 제외). 단, 동일금액에 대해 임차보증금과 중복지원 불가\n 월세대출\n 은행 등 금융기관에서 월세자금을 대출한 경우, 월세 대출에 대한 당월 지출 이자 비용 금액\n(월세대출 이자상환액, 원금 제외)\n 주택마련대출\n 은행 등 금융기관에서 주택을 담보로 구입한 경우, 대출에 대한 당월 지출 이자 비용 금액\n(주택 저당 차입금 이자상환액)\n 수선유지비\n 수선재료구입비\n 벽지, 장판, 변기, 욕조, 전선, 수도관, 가스배관, 창문, 방충망, 방범창 등 당월 지출한 수선 재료 구입 비용\n 설비‧수리 서비스 이용료\n 전기·가스·방수·도배공사 등 공사비 및 보일러‧에어컨 설치비 등 당월 지출한 서비스 비용\n(제품 구입비 불가)\n 수도광열비\n 물공급비용\n 상하수도, 공동수도, 급탕비 등으로 당월 지출한 비용\n 연료비\n 전기·도시가스·LPG·등유·연탄·경유 등에 당월 지출한 비용\n 공동주택관리비\n 공동주택관리비\n 주택, 아파트 등의 공동주택 관리비로 당월 지출한 비용\n 관리비 선급금\n 1개월을 초과하는 기간의 공동주택관리비를 일괄하여 사전 납부하는 경우, 총 금액 입력 후 개월 수에 선급개월 수 입력 필요\n(예. 12개월분 관리비 120만원 지급한 경우, 총 금액 120만원, 개월 수 12 입력하면 월 10만원 자동계산)"
+    },
+    {
+      "data_id": "HOU-031",
+      "source_id": "LH_BUSAN_BUY",
+      "원문파일": "raw_2026-10-02/LH_BUY_PDF.pdf.txt",
+      "보존범위": "추가 조사에서 직접 확인한 공식 자격·제외 구간;문구 축약 없이 보존. 전체 파일 별도 보존",
+      "지원대상_원문": "2   입주자격 및 입주자 선정기준 \n■ 입주자격 \n• 공고일 현재   무주택자인 미혼 청년 으로서   소득 및 자산 기준을 충족 하는,\n①   19세 이상 39세 이하 인 사람 (1986.09.17. ~ 2007.09.17. 출생자)\n②   대학생   (입학·복학 예정자 포함)\n③   취업준비생   (고등학교·대학교 등을 졸업·중퇴 후 2년 이내인 사람으로서 미취업자) \n* ①에 해당되지 않는 사람만 ② 또는 ③으로 신청 \n* 외국인은 신청 불가하며, 재외국민 거주자(재외국민 주민등록신고자)에 한하여 신청 가능\n* 부모가 주택을 소유한 경우에도 신청 가능 \n■ 입주순위 \n순위   자격요건\n1순위\n수급자\n가구\n「국민기초생활보장법」   제7조에   따른   생계·의료·주거급여   중   어느   하나에   해당\n하는 급여를 받는 수급자 가구 \n* 신청자 본인이 수급자가 아닌 경우, 수급자인 부모와 동일 주민등록표에 등재되어 있어야\n하며, 30세 미만인 경우에 한하여 수급자인 부모와 분리 거주 시에도 신청 가능\n** 시설에서 급여를 실시하는 보장시설 수급자도 신청 가능 \n지원대상\n한부모가족\n「한부모가족 지원법 시행규칙」 제3조에 따라 여성가족부장관이 정하는 기준에\n해당하는 한부모가족 \n* 신청자 본인이 한부모가족 지원대상자에 해당되어야 하며, 본인 이름으로 한부모가족\n증명서 발급이 가능한 경우 신청 가능 \n차상위계층\n가구\n「국민기초생활보장법」 제2조 제10호에 해당하는 차상위계층 가구 \n* 신청자 본인이 차상위계층이 아닌 경우, 차상위계층인 부모와 동일 주민등록표에 등재되어 있\n어야 하며, 30세 미만인 경우에 한하여 차상위계층인 부모와 분리 거주 시에도 신청 가능 \n2순위\n본인과 부모 의 월평균 소득이 전년도 도시근로자 가구원수별 가구당 월평균소\n득의   100% 이하 이고, 본인과 부모의 자산이   국민임대주택 자산기준 을 충족하\n는 자 \n3순위   본인 의   월평균 소득이 전년도 도시근로자 1인 가구 월평균소득   100% 이하이 \n고,   행복주택(청년) 자산기준 을 충족하는 자 \n■ 소득 · 자산 기준 \n순위   소득기준   자산기준\n1순위   수급자 등 자격 확인   수급자 등 자격 확인\n2순위\n본인과 부모 의 월평균소득이 전년도 도시근로자 가구원수별\n가구당 월평균소득의   100% 이하\n- (1인) 4,576,036원, (2인) 6,452,897원, (3인) 8,168,429원\n국민임대주택 자산기준 충족 \n-   총자산 34,500만원 이하,\n자동차 4,542만원 이하\n3순위\n본인 의 월평균소득이 전년도 도시근로자 1인 가구\n월평균소득의   100% 이하\n- (1인) 4,576,036원\n행복주택(청년) 자산기준 충족 \n-   총자산 25,100만원 이하,\n자동차 4,542만원 이하 \n* 1인가구는 20%p, 2인가구는 10%p 가산 적용한 금액입니다.\n*   입주자격 검증 시 부모의 범위는 입주자모집공고문에 함께 첨부된 Q&A Ⅰ-1 참조 하시기 바랍니다.\n*   신청 후 순위 변경은 불가 하므로 신청 시 유의하시기 바랍니다. (2순위 신청 시 부모 인적사항 필수 기입) \n\n[PAGE 4]\n- 4 - \n■ 소득 · 자산 산정방법 \n• 소득 = 근로소득 + 사업소득 + 재산소득 + 기타소득\n• 총자산가액 = 부동산가액 + 자동차가액 + 금융자산가액 + 기타자산가액 - 부채\n• 자동차가액은 총자산에 합산되나, 개별 기준도 충족하여야 함 \n구분   산정방법\n소득   • 근로소득(상시, 일용, 자활, 공공일자리), 사업소득(도·소매업, 제조업, 농업 등),\n재산소득(임대, 이자, 배당 등), 기타소득(국민연금, 퇴직연금, 실업급여 등) \n총자산\n부동산   • 토지(공시지가), 건축물(공시가격) \n자동차   • 소득·자산 검증대상 가구원이 보유한 모든 자동차가액의 합산금액 \n금융자산   • 보통예금, 정기예금, 주식, 채권, 연금저축, 보험증권, 연금보험 등 \n기타자산   • 항공기, 선박, 주택·상가 임차보증금, 입목, 어업권, 회원권 등 \n부채   • 대출금, 임대보증금 \n자동차   • 소득·자산 검증대상 가구원이 보유하고 있는 자동차 중 가장 높은 차량가액 기준 \n※ 소득·자산 산정방법에 대한 자세한 사항은 공고문 하단 첨부물 참조 \n■ 동일 순위 내 경합 시 우선순위 결정방법 \n•   아래의   배점을   합산하여   총점이   높은   순으로   입주대상자를   선정하되,   동일   점수인   경우\n다음   각 호의 순서에   따라   점수가   높은   순으로   입주대상자 선정(경합   발생   시   추첨으로\n우선순위 결정) \n평가항목   평가요소   배점\n① 수급자 등 여부 \n* 1순위 자격 경합 시에만 적용\n** 시설에서 급여를 실시하는 보장시설 수급자 포함 \n가.   생계급여,   의료급여,   주거급여,   교육급여\n수급자 중 하나에 해당하는 자 \n* 신청자 본인이 수급자가 아닌 경우에는 수급자인\n부모와 동일 주민등록표에 등재되어 있거나\n30세 미만인 경우에만 인정 \n나. 지원대상 한부모 가족 \n* 신청자 본인이 한부모가족 지원대상에 해당되어야 함 \n3점\n3점\n② 부모 무주택 여부   부모 무주택   2점\n③ 장애 여부   가. 본인이 장애인인 경우\n나. 부모가 장애인인 경우\n2점\n1점\n④ 소득수준이 소득기준 50% 이하 여부 \n* 2순위 또는 3순위 자격 경합 시에만 적용\n* 2순위는 본인과 부모 소득 합산 기준, 3순위는\n본인 소득 기준 \n소득수준이 해당순위 소득기준 50% 이하인 경우\n- (1인) 2,669,354원, (2인) 3,519,762원,\n(3인) 4,084,215원\n3점\n⑤ 청약저축 또는 주택청약종합저축 납입횟수 \n* 신청자 명의 통장의 인정회차 기준 \n가. 24회 이상\n나. 12회 이상 24회 미만\n다.   6회 이상 12회 미만\n3점\n2점\n1점 \n※ 6,7페이지 증빙서류 미제출 시 순위 및 가점 인정 불가 \n\n[PAGE 5]\n- 5 -"
+    },
+    {
+      "data_id": "HOU-032",
+      "source_id": "LH_MUNHYEON",
+      "원문파일": "raw_2026-10-02/LH_MUNHYEON_PDF.pdf.txt",
+      "보존범위": "추가 조사에서 직접 확인한 공식 자격·제외 구간;문구 축약 없이 보존. 전체 파일 별도 보존",
+      "지원대상_원문": "3. 신청자격 및 입주자 선정방법)을 확인하시기 바랍니다. \n① 대학생 계층 \n- 대학생 : 대학에 재학 중이거나 다음 학기에 입·복학 예정인 사람\n- 취업준비생 : 대학 또는 고등학교를 졸업(또는 중퇴)한 지 2년 이내인 사람 \n② 청년 계층 \n- 청년 : 19세 이상 39세 이하인 사람( 출생일 - 1986.09.23.~ 2007.09.22. )\n- 사회초년생 : 소득이 있는 업무에 종사한 기간이 총 5년 이내이며, 아래의 하나에 해당하는 사람\n1) 소득이 있는 업무에 종사하는 사람\n2) 퇴직한 후 1년이 지나지 않은 사람으로서 구직급여 수급자격을 인정받은 사람\n3) 예술인 \n③ 신혼부부·한부모가족 계층 \n- 신혼부부 : 공고일 현재 혼인 중인 사람으로서 혼인기간이 7년(동일 배우자와 재혼하는 경우에는 이전 혼인기간 포함)\n이내인 사람 또는 6세 이하 자녀를 둔 사람\n- 예비신혼부부 : 입주 전까지 혼인사실을 증명할 수 있는 사람\n- 한부모가족 : 6세이하 자녀를 둔 한부모인 사람 \n④ 고령자 :   65세 이상의 사람 (출생일 1961.09.22.까지)\n⑤ 주거급여수급자 :   「주거급여법」제2조제2호 및 제3호에 따른 수급권자 또는 수급자 \n⑥ 기존거주자 :   「부산문현2구역 주거환경개선사업 주택공급기준(안)」에 의한 부산문현2 주거환경개선사업\n지구 내 토지 또는 건축물 소유자와 세입자 중 선정된 공급대상자\n• 상기 신청자격에 따라 임대조건이 달리 적용되오니 해당 신청자격별 세부기준을 확인하신 후 신청하시기\n바랍니다.\n• 서류제출대상자는 경쟁 시 추첨을 통해 선정하며, 서류제출대상자 중 서류를 제출한 자에 한하여 입주자격\n조사가 진행됩니다. \n\n[PAGE 3]\n2. 임대대상 및 임대조건 \n□   임대대상 \n주택형   건설호수\n(144)\n세대당 계약면적(㎡)\n구조 및\n난방   입주 주거\n전용\n주거\n공용\n공용면적   합계\n기타공용   주차장 \n39   44   39.85   15.5285   6.5270   23.7805   85.6860   철근\n콘크리트\n(벽식)\n/개별난방\n’27.9\n(예정)\n39 (주거약자)   4   39.85   15.5285   6.5270   23.7805   85.6860\n44   88   44.88   17.1289   7.3509   26.7822   96.1420\n44 (주거약자)   8   44.88   17.1289   7.3509   26.7822   96.1420 \n주택형   공급계층\n모집호수\n최대거주기간\n(년)\n당첨자   예비자\n계   우선공급   일반공급\n-   -   144   80   64   85   - \n39\n대학생   35   6   18   20   10 청년   11\n고령자   3   1   2   5\n주거급여수급자   6   3   3   5   20\n39 (주거약자)   고령자   4   2   2   5   20\n44\n청년   15   7   8   10   10\n신혼부부·한부모가족   50   25   25   30   10(유자녀 14)\n주거급여수급자   6   3   3   5   20\n기존거주자   17   17   -   -   20\n44 (주거약자)   고령자   6   3   3   5   20\n기존거주자   2   2   -   -   20 \n• 아래 사유 등으로 당첨자 및 예비자 모집호수는 변경될 수 있습니다. \n- 우선공급이 미달된 경우 남은 우선공급물량은 해당 공급대상자의 일반 공급물량으로 전환하여 공급합니다.\n- 39형의 “대학생계층”의 일반공급 물량과 “청년계층”의 일반공급 물량은 각 형별로 통합 추첨하여 공급합니다.\n- 금회 공급대상인 행복주택 144세대는 기존거주자에게 우선공급 후 남은 물량을 관련법령 등 공급비율에 따라\n일반공급 대상에게 공급합니다. 기존거주자 미신청·미계약 물량은 공급비율을 준수하여 동일형의 타 공급계층\n물량으로 전환하여 공급하거나 예비자에게 계약 안내합니다.\n- 일반공급물량 중 동일 공급형별로 청약미달인 계층의 공급물량은 타 공급대상 계층으로 전환하여 공급합니다. \n(39형 : 대학생, 청년 → 고령자 → 주거급여수급자 / 44형 : 청년 → 주거급여수급자 → 신혼부부) \n•   신청인원이 모집호수를 초과할 경우 모집호수의 일정비율을 예비자로 선정하며,   미계약 또는 해약물량 발생 시 예비자\n순번에 따라 계약 안내 합니다. \n•   행복주택 입주자가 거주하는 동안 다른 공급대상의 입주자격을 갖추는 경우에는 공급대상을 변경하여 변경된 공급\n대상의 임대조건으로 새로 계약을 할 수 있으며, 새로 계약을 하는 시점부터 변경된 공급대상의 최대 거주기간을\n새로 적용합니다.\n• 고령자에 배정된 주거약자용 주택은 안전하고 편리한 주거생활을 위하여 편의시설이 설치된 주택으로 「공공주택\n업무처리지침」에 따라 3층 이하에 공급됩니다. 고령자 중   편의시설이   설치된 주택을 희망하는 경우 주거약자용\n주택을 신청 하시기 바랍니다.\n• 주거전용면적은 주거의 용도로만 쓰이는 면적이며, 주거공용면적은 계단, 복도, 주현관 등 공동주택의 지상층에 있는\n공용면적이며, 그 밖의 공용면적은 주거공용면적을 제외한 관리사무소, 경비초소, 지하층 등의 공용면적입니다.\n• 대학생, 청년 등이 거주 중 신혼부부·한부모가족의 입주자격을 갖추는 경우 동일단지 내 전용면적 36㎡이상\n주택형의 예비자 중 가장 후순위로 등록할 수 있습니다. \n\n[PAGE 4]\n□   임대조건 \n(단위 : 원) \n공급형   공급대상\n임대조건   임대보증금 최소화   임대보증금 최대화\n임대보증금   월\n임대료   임대보증금   월임대료   임대보증금   월임대료\n계   계약금   잔금 \n39\n대학생\n청년(소득無)   56,780,000   2,839,000 53,941,000   260,240   9,780,000   397,320   87,780,000   105,240 \n(-47,000,000)   (+137,080)   (+31,000,000)   (-155,000)\n청년(소득有)   60,120,000   3,006,000 57,114,000   275,550   10,120,000   421,380   93,120,000   110,550 \n(-50,000,000)   (+145,830)   (+33,000,000)   (-165,000)\n고령자\n(주거약자용外)   63,460,000   3,173,000 60,287,000   290,850   11,460,000   442,510   97,460,000   120,850 \n(-52,000,000)   (+151,660)   (+34,000,000)   (-170,000)\n주거급여수급자   50,100,000   2,505,000 47,595,000   229,620   9,100,000   349,200   77,100,000   94,620 \n(-41,000,000)   (+119,580)   (+27,000,000)   (-135,000)\n39 \n(주거약자)   고령자   63,460,000   3,173,000 60,287,000   290,850   11,460,000   442,510   97,460,000   120,850 \n(-52,000,000)   (+151,660)   (+34,000,000)   (-170,000)\n44\n청년(소득無)   64,940,000   3,247,000 61,693,000   297,640   11,940,000   455,140   99,940,000   122,640 \n(-53,000,000)   (+157,500)   (+35,000,000)   (-175,000)\n청년(소득有)   68,760,000   3,438,000 65,322,000   315,150   11,760,000   481,400   105,760,000   130,150 \n(-57,000,000)   (+166,250)   (+37,000,000)   (-185,000)\n신혼부부\n한부모가족   76,400,000   3,820,000 72,580,000   350,160   13,400,000   533,910   118,400,000   140,160 \n(-63,000,000)   (+183,750)   (+42,000,000)   (-210,000)\n주거급여수급자   57,300,000   2,865,000 54,435,000   262,620   10,300,000   399,700   88,300,000   107,620 \n(-47,000,000)   (+137,080)   (+31,000,000)   (-155,000)\n44 \n(주거약자)   고령자   72,580,000   3,629,000 68,951,000   332,650   12,580,000   507,650   111,580,000   137,650 \n(-60,000,000)   (+175,000)   (+39,000,000)   (-195,000) \n• 위 임대조건의 임대보증금 및 월임대료는 입주자모집공고일 현재 기준이며, ‘행복주택의 표준임대보증금 및 표준\n임대료 등에 관한 기준‘에 따라   매년 4월 1일을 기준 으로 표준임대조건이 갱신되므로 예비입주자로 선정된 분은\n추후 공가가 발생하여   계약을 체결하는 시점의 주변시세를 반영한 갱신된 임대조건이 적용됩니다.\n• 월임대료의 임대보증금 전환(임대보증금 증액) 및 임대보증금의 월임대료 전환(임대보증금 감액)은 임차인의 선택사항\n으로서 임대보증금 100만원 단위로 전환 가능합니다. \n• 소득이 없는 “청년 계층” 신청자는 동일 면적의 대학생 계층 임대조건이 적용됩니다. 임대조건은 갱신계약전까지\n유지되며 갱신계약시 소득 유무에 따라 변경된 임대조건을 적용합니다. \n• 월임대료를 임대보증금으로 전환시 이율   6% , 임대보증금을 월임대료로 전환시 이율   3.5% 를 적용하며, 향후 전환이율이\n변경되는 때에는 변경된 이율을 적용하여 다시 산정하게 됩니다.\n• 이 주택의 입주예정일은 준공일정 연기 등에 따라 변경될 수 있으며 정확한 입주시기는 추후 개별 통보합니다.\n• “ 기존거주자” 계층 의 경우, 주거환경개선사업지구 내 무상양여받은 국공유지 가액을 주택유형별 공제대상자 공급면적을\n기준으로 배분하여   산정한 호당 차감액 을 전환이율을 적용하여   당해 임대주택 결정임대료에서 차감 하여 드립니다. \n임대료 차감기간 은 당해 임대주택   최초 입주월로부터 5년 이며,   세부 임대조건은 대상자에게 별도 통보 예정 입니다. \n\n[PAGE 5]\n3. 신청자격 및 입주자 선정방법 \n■ 입주자 신청자격\n• 입주자 선정에 필요한 자격 해당여부는 공급신청자를 기준으로 합니다.\n•   주택공급신청자는 성년자(자녀를 부양하거나 직계존속의 사망, 실종신고 및 행방불명 등으로 형제자매를\n부양하여야 하는 세대주인 미성년자, 부 또는 모가 외국인인 한부모가족으로서 미성년자녀가(내국인)이 세대\n주로 외국인 부모가 대리 신청하는 경우 포함)인 무주택세대구성원을 말하며 단, 대학생, 청년, 예비신혼부\n부, 한부모가족은 성년자가 아닌 경우에도 신청가능합니다. \n• 외국인은 신청 불가합니다. \n• 1세대 1주택 신청가능하며, 중복 신청할 경우 전부 무효 처리됩니다. \n• 무주택세대구성원이란? \n다음의 세대구성원에 해당하는 사람 전원이 주택(분양권등 ＊   포함)을 소유하고 있지 않는 세대의 구성원을\n말합니다. \n* 분양권등이라 함은 주택을 공급받는 자로 선정된 지위 또는 재건축등으로 입주자로 선정된 지위를 의미하며 이러한\n지위의 전부 또는 일부를 매매로 취득한 경우도 포함(단 매매가 아닌 상속, 증여 등을 통해 취   득한 분양권등은 제외) \n▪   세대구성원의 범위 \n세대구성원   비고 \n• 신청자\n• 신청자의 배우자   신청자와 주민등록 상 세대 분리되어 있는 배우자(이하 ‘분리배우자’)\n포함\n• 신청자의 직계존속\n• 신청자의 배우자의 직계존속   신청자와 세대별 주민등록표상에 함께 등재되어 있는 사람 및 신청자의\n분리배우자와 세대별 주민등록표상에 함께 등재되어 있는 사람에 한함 • 신청자의 직계비속\n• 신청자의 직계비속의 배우자\n• 신청자의 배우자의 직계비속\n• 신청자의 배우자의 직계비속의 배우자   신청자와 세대별 주민등록표상에 함께 등재되어 있는 사람에 한함 \n* 대학생, 청년 계층의 주택 소유여부는 신청자 본인에 한하여 검증합니다.\n* 예비신혼부부의 주택 소유여부는 혼인으로 구성될 세대의 세대구성원 모두를 대상으로 검증합니다. \n▪ 단, 아래에 해당하는 사람은 자격검증대상(세대구성원)에 포함합니다. \n•   세대구성원이 공공주택특별법 시행규칙 제13조2항에 따라 「국민기초생활 보장법 시행령」 제2조제2항제5\n호부터 제7호까지의 규정에 해당하는 경우에는 해당 세대의 구성원에서 제외되며, 신청자 본인이 입증서류\n를 제출하여야 합니다. \n외국인 배우자 \n가족관계등록부에 등재되고 외국인 등록(또는 국내거소신고)\n을 한 사람\n* 신청자와 동일 주소에 거주하지 않더라도 자격검증대상에\n포함\n* 배우자가 국내 거주하지 않는 재\n외국민이거나 외국인 등록을 하지 않\n은 외국인인   경우(국내거소신고를 하\n지 않은 외국국적동포 포함) 그와 혼\n인관계에 있는 자는 임대주택신청이\n불가능합니다. \n외국인\n직계존·비속 \n가족관계등록부에 등재되고 외국인 등록(또는 국내거소신고)\n을 한 사람으로서,\n신청자   또는   분리배우자의   세대별   주민등록표등본에   기재\n되어 있거나\n외국인   등록증   상의   체류지(거소)가   신청자   또는   분리배우자\n의 세대별 주민등록표상 주소와 동일한 사람 \n태아   세대구성원에 포함되나 자격검증 예외 \n\n[PAGE 6]\n5. 실종선고 절차가 진행 중인 사람\n6. 가출 또는 행방불명으로 경찰서 등 행정관청에 신고된 후 1개월이 지났거나 가출 또는 행방불명\n사실을 특별자치시장·특별자치도지사·시장·군수·구청장(자치구의 구청장을 말하며, 이하 “시장·군수·구청장”이라\n한다)이 확인한 사람\n7. 공급신청자와 생계 및 주거를 달리한다고 시장·군수·구청장이 확인한 사람 \n•   미성년자녀수는 신청자 혹은 신청자의 배우자와 동일한 주민등록표에 등재된 미성년자녀만을 인정하며, 재혼 배우자의 이\n전 혼인 미성년자녀의 경우에는 신청자와 동일한 주민등록표에 등재된 미성년자녀만 인정합니다. \n■ 신청자격별 소득·자산 기준\n• 행복주택의   신청자격별   소득·자산기준은   “3. 신청자격   및   입주자   선정방법”의   공급대상별   상세기준을 확\n인하시기 바랍니다. 소득·자산 기준은 가산항목에 따라 일정 비율로 가산되며, 가산항목이 중복시 합산 적용\n됩니다.\n■ 공급계층 재청약 가능\n• 과거 또는 현재 행복주택에 입주사실이 있는 자도 동일한 공급대상(자격변동 포함)자격으로 신청 할 수 있\n습니다. 단, 각각의 행복주택 거주기간을 합산한 기간은 공급대상별 최대거주기간을 초과할 수 없습니\n다. (자세한 내용은 8. 유의사항 ■ 입주 자격별 최대 거주기간)\n■ 입주자격 조사결과에 대한 부적격사유에 대한 소명의무는 공급신청자에게 있습니다.\n■ 예비입주자 중복선정 불가 \n동일한   공급유형(통합공임,   국민,   행복,   영구)내에서   중복신청도   가능하나,   신청   후   예비입주자로   선정되면\n종전에 동일한 공급유형에 선정된 예비입주자 지위는 자동 상실 됩니다. 중복된 예비입주자 지위는 ①입주자\n모집공고일, ②신청 접수일, ③당첨자 발표일이 빠른 순서로 상실 처리됩니다. \n■ 불법전대자 입주자격 제한 \n불법양도 ・ 전대자 재입주 금지 규정(공공주택 특별법 시행규칙 제36조의2)에 따라 신청자 및 신청자의 세대\n구성원이 과거 공공임대주택 임차인으로서 불법양도, 전대 행위로 적발된 후 4년이 경과되지 않은 경우 해당\n신청자는 입주자로 선정이 불가합니다. \n◎ 소득기준 가산 내용 \n① 가구원 수 가산항목 및 비율 : 1인 가구 20% 가산, 2인 가구 10% 가산\n② 출산자녀 수 가산항목 및 비율 : 출산자녀 2인 이상 20% 가산, 출산자녀 1인 10% 가산 \n◎ 자산기준 가산 내용 \n① 출산자녀 수 가산항목 및 비율 : 출산자녀 2인 이상 20% 가산, 출산자녀 1인 10% 가산\n※   출산자녀는 ’23.3.28 이후 출산한 자녀(입양자녀 및 태아 포함)를 의미하며, 기준일 이후 출산 자녀가 있는\n경우에는 기준일 이전 출생한 기존 미성년자녀도 포함하여 최대 2자녀로 인정 \n(단, 주택공급 신청자 또는 동 배우자와 같은 세대별 주민등록표에 등재되어 있는 경우에 한함, 이하 동일) \n\n[PAGE 7]\n3-1. 대학생 계층 \n■ 일반공급대상자 \n입주자모집공고일(2026.09.22.) 현재, 무주택자로서 아래의 요건을 모두 갖춘 자\n(대학생은 ①-㉮와 ②～④, 취업준비생은 ①-㉯와 ②～④) \n※ ‘ 무주택자’ 란 주택을 소유하고 있지 않은 자를 말함(세대 내 다른 구성원이 주택을 소유해도 신청 가능함)\n※ ‘ 대학’ 은 「고등교육법」 제2조제1호부터 제4호까지, 제6호 및 제7호에 따른 학교, 「평생교육법」 제31조제4항에\n따라 교육부장관의 인가를 받은 고등기술학교 및 「근로자직업능력 개발법」 제2조제5호에 따른 기능대학을 말\n함. 방송대학·통신대학·방송통신대학 및 사이버대학 등 원격대학, 사내대학, 대학원, 대학원대학은 제외. \n①-㉮ (대학생)   ‘ 대학 ’에 재학중이거나 다음 학기에 입학 또는 복학 예정일 것 \n①-㉯ (취업준비생)   ‘ 대학 또는 고등학교 ’를 졸업 또는 중퇴한 지 2년 이내일 것\n* 모든 학기 수료를 완료하였으나 아직 졸업을 하지 않은 경우 재학생으로 간주\n②   혼인 중이 아닐 것 \n③   신청자 부모와 본인의 월평균소득 합계 가 전년도 도시근로자 가구원수별 가구당 월평균소득의 100퍼센트 이하\n※ 단, 가구원 수가 1인인 경우에는 120퍼센트, 2인인 경우에는 110퍼센트 이하일 것\n* 이혼 등의 사유로 가족관계가 단절된 상태인 경우 실질적으로 부양의무를 이행하고 있는 부 또는 모의 소득을 조회\n* 7인이상의 가구는 6인가구 기준소득금액에 추가 1인당 평균금액 579,278원을 합산하여 산정\n④   신청자 본인 의 총 자산가액 합산기준이   10,800만원 이하 이고, 자동차가액 산출대상   자동차를 소유하고 있지 않을 것 \n《 대학생 계층 출생자녀 수에 따른 가산 소득·자산 기준 》\n* 가산 적용 : 출산자녀 2인 이상 20% 가산, 출산자녀 1인 10% 가산\n※   출산자녀는 ’23. 3.28 이후 출산한 자녀(입양자녀 및 태아 포함)를 의미하며, 기준일 이후 출산 자녀가 있는 경우\n에는 기준일 이전 출생한 기존 미성년자녀도 포함하여 최대 2자녀로 인정 \n(단, 주택공급 신청자의 세대별 주민등록표에 등재되어 있는 경우에 한함, 이하 동일) \n** 가산적용 상세 소득기준\n* 7인이상의 가구는 6인가구 기준소득금액에 추가 1인당 평균금액 579,278원을 합산하여 산정\n가구원수   월평균소득금액   기준\n1인   4,576,036원 이하   120%\n2인   6,452,897원 이하   110%\n3인   8,168,429원 이하   100%\n4인   8,802,202원 이하   100%\n5인   9,326,985원 이하   100%\n6인   9,906,263원 이하   100% \n구분\n가산항목   최종 소득 · 자산기준 (한도)\n가구원 수   출생자녀 수\n(태아포함)\n적용\n소득기준\n적용 자산기준\n총자산가액   자동차가액 \n대학생\n1인   0인   120%   108,000,000원   -\n2인   0인   110%   108,000,000원   -\n1인   120%   119,000,000원   -\n3인 이상\n0인   100%   108,000,000원   -\n1인   110%   119,000,000원   -\n2인 이상   120%   130,000,000원   - \n가구원수   전년도 도시근로자 가구원수별 가구당 월평균 소득\n100%   110%   120% \n1인   -   -   4,576,036원 이하\n2인   -   6,452,897원 이하   7,039,524원 이하\n3인   8,168,429원 이하   8,985,272원 이하   9,802,115원 이하\n4인   8,802,202원 이하   9,682,422원 이하   10,562,642원 이하\n5인   9,326,985원 이하   10,259,684원 이하   11,192,382원 이하\n6인   9,906,263원 이하   10,896,889원 이하   11,887,516원 이하 \n\n[PAGE 8]\n※ ‘ 고등학교’ 는 「초 ‧ 중등교육법」 제2조제3호에 따른   고등학교 ‧ 고등기술학교를   말함.   같은   법   제51조의 방송\n통신고등학교, 제55조의 특수학교, 제60조의3의 대안학교 및 고졸검정고시 등 「초 ‧ 중등교육법」 제2조제3호에\n따른 고등 ‧ 고등기술학교와 동등 학력 인정자 포함하며 인정학력 취득시를 졸업시점으로 간주함 \n※ 대학생계층의 월평균소득기준 적용을 위한 가구원수는 다음과 같음\n적용 대상   비고 \n• 신청자 본인\n• 신청자의 부모   신청자의 주민등록표등본에 등재되어 있지 않는 경우에도 포함\n• 신청자의 직계존속\n• 신청자의 직계비속\n• 신청자의 직계비속의 배우자\n신청자와 동일한 세대별 주민등록표등본에 등재되어 있는 사람 \n※   이혼 등의 사유로 가족관계가 단절된 상태인 경우   실질적으로 부양의무를 이행하고 있는 부 또는 모 는 본인과\n동일 주민등록표상 등재된 부 또는 모를 의미하며, 본인 등본에 부,모 모두 미등재시 세대 분리 전 같이 거주\n하던 부 또는 모(부 또는 모가 같이 있을 경우 부 또는 모 중 1인 선택)를 말함\n※ ‘다음 학기’란 입주지정기간만료일 직후 도래하는 학기까지를 말함\n※ ‘다음 학기’에 입학 예정인 대학생은 공고일 현재 합격증명서 등을 통해 입학을 증빙할 수 있어야 하며, 입학 후\n1개월 이내에 입학증명서 또는 등록금납부확인서 제출하지 않을 경우에는 당첨 및 계약을 취소함\n※ ‘다음 학기’에 복학 예정인 대학생으로 공급신청한 자가 복학 후 1개월 이내에 재학증명서 제출하지 않을\n경우에는 당첨 및 계약을 취소함 \n•   일반공급 순위 \n1순위   해당 주택건설지역(부산광역시) 또는 연접지역(울산광역시, 창원시, 김해시, 양산시)이 거주지이거나\n재학 중인 대학 소재지인 자\n2순위   1순위에 해당되지 않는 경상남도가 거주지이거나 재학 중인 대학 소재지인 자\n3순위   제1,2순위에 해당되지 않는 자\n※   ‘재학 중인 대학 소재지’ 란 실제 본인이 재학 중이거나 다음 학기에 입·복학 예정인 캠퍼스 소재지를 말함 \n■ 우선공급대상자 \n입주자모집공고일(2026.09.22.) 현재 일반공급대상자의 요건을 모두 갖추고 아래 1순위 또는 2순위의 요건을 갖춘 자 \n※ 우선공급에서 탈락한 자는 별도의 신청절차 없이 일반 공급신청자로 전환됨 \n•   우선공급 순위 \n1순위   행복주택이 위치하는 부산광역시 남구에\n(대학생) 소재하는 대학에 재학중이거나 다음 학기에\n입학 또는 복학예정인 자\n(취업준비생) 거주하는 자\n2순위   행복주택이 위치하는 부산광역시에\n(부산광역시 남구 제외)\n(대학생) 소재하는 대학에 재학중이거나 다음 학기에\n입학 또는 복학예정인 자\n(취업준비생) 거주하는 자 \n•   우선공급 배점 (우선공급 1순위만 적용) \n항목   3점   1점\n거주\n대학생   부모 모두 부산광역시 외에 거주   부모 또는 부모 중 1인이 남구 외 부산광역시에\n거주(단, 부모 모두 남구 외에 거주해야 함)\n취업준비생   행복주택이 위치하는 부산광역시\n남구에 3년 이상 거주   행복주택이 위치하는 부산광역시 남구에 3년 미만 거주 \n\n[PAGE 9]\n※   거주지   및   거주기간은   주민등록표를   기준으로   하며,   주민등록표상   공고일   현재   “계속하여”   등재되어   있는\n사실이 확인되는 경우에 한함\n※ 대학생 및 취업준비생의 배점항목은 우선순위 1순위에만 적용함 \n■ 경쟁 시 입주자 선정기준 \n구분   입주자 선정 순서\n우선공급   1순위   2세 미만 자녀가 있는 자 → 순위 → 배점 → 추첨\n2순위   2세 미만 자녀가 있는 자 → 순위 → 추첨\n일반공급   순위 → 추첨 \n※ 39형의 “대학생 계층”과 “청년 계층”의 일반공급물량은 각 형별 통합하여 순위에 따라 추첨함 \n3-2. 청년 계층 \n■ 일반공급대상자 \n입주자모집공고일(2026.09.22.) 현재, 무주택자로서 아래의 요건을 모두 갖춘 자\n(신청자 본인이 청년인 경우 ①-㉮와 ②～⑤를 충족하면 되고, 사회초년생의 경우 ①-㉯와 ②～⑤를 만족하면 됨) \n➀ -㉮   (청년)   19세 이상 39세 이하인 자 (출생일   1986.09.23.~ 2007.09.22. ) \n➀ -㉯   (사회초년생)   아래 1), 2), 3) 중 하나에 해당하는 자로서, 소득이 있는 업무에 종사한 기간이 총 5년 이내인 자\n1) 소득이 있는 업무에 종사중인 자\n2) 퇴직한 후 1년이 지나지 않은 사람으로서 「고용보험법」 제43조에 따라 구직급여 수급자격을 인정받은 자\n3) 「예술인 복지법」제2조제2호에 따른 예술인\n② 혼인 중이 아닐 것\n③   해당   세대의(주택공급신청자가 세대원인 경우 주택공급신청자 본인 기준) 월평균소득 이   전년도   도시근로자\n가구원수별 가구당 월평균소득의 100퍼센트 이하 \n※ 단, 가구원수가 1인인 경우에는 120퍼센트, 2인인 경우에는 110퍼센트 이하일 것\n* 7인이상의 가구는 6인가구 기준소득금액에 추가 1인당 평균금액 579,278원을 합산하여 산정 \n④   해당세대 가 보유하고 있는   총 자산가액이 25,100만원 이하 이고 총 자산 중   자동차가액이 4,542만원 이하 \n⑤ 본인 입주전까지   주택청약종합저축(청약저축 포함) 가입사실 을 증명할 수 있을 것\n《 청년 계층 출생자녀 수에 따른 가산 소득·자산 기준 》\n* 가산 적용 : 출산자녀 2인 이상 20% 가산, 출산자녀 1인 10% 가산\n신청자 구분   가구원수   월평균소득금액   기준\n세대주인 청년\n(세대기준)\n1인   4,576,036원 이하   120%\n2인   6,452,897원 이하   110%\n3인   8,168,429원 이하   100%\n4인   8,802,202원 이하   100%\n5인   9,326,985원 이하   100%\n6인   9,906,263원 이하   100%\n세대원(본인)   1인   4,576,036원 이하   120% \n구분   가구원 수   출생자녀 수\n(태아포함)\n최종 소득 · 자산기준\n적용\n소득기준\n적용 자산기준\n총자산가액   자동차가액 \n세대주인 청년\n(세대기준)\n1인   0인   120%   251,000,000원   45,420,000원\n2인   0인   110%   251,000,000원   45,420,000원\n1인   120%   276,000,000원   49,960,000원 \n\n[PAGE 10]\n※ ‘ 무주택자’ 란 주택을 소유하고 있지 않은 자를 말함(세대 내 다른 구성원이 주택을 소유해도 신청가능함)\n※   소득이 없는 청년 계층의 경우 동일면적 대학생계층 임대조건을 적용 \n※   ‘소득’ 은 「소득세법」제19조제1항에 따른 사업소득 및 같은 법 제20조제1항에 따른 근로소득을 말하며 국민\n연금 가입증명서 및 건강보험자격득실확인서 등을 통해 소득이 있는 여부를 판단함\n※   ➀ -㉯의 ‘ 소득이 있는 업무에 종사한 기간’ 은 국민연금 가입증명서 및 건강보험공단 자격득실확인서 등을 통해\n소득이 있었던 기간을 합산함. 단, 대학 또는 고등학교 재학(휴학포함) 중 소득이 있는 업무에 종사한 기간과\n병역의무 이행을 위하여 연구기관, 기간산업체, 방위산업체, 농업회사법인, 농업기계의 사후관리업체 등에 근무한\n기간은 제외\n※   ➀ -㉯2)의 퇴직은 국민연금 가입증명서, 건강보험자격득실확인서 등을 통해 판단함\n※   ➀ -㉯3)의 ‘ 예술인’ 이란 「예술인복지법」제2조제2호에 따라 한국예술인복지재단에서 예술활동증명을 받은 자\n를 말한다.\n※ ‘ 청년계층 ‘ 의 해당 세대의 범위는 다음과 같음 \n구분   해당세대 범위 \n• 신청자가 세대원이 있는\n세대주인 경우\n- 신청자 본인\n- 신청자 직계존속으로 신청자와 같은 세대별 주민등록표에 등재된 사람\n- 신청자 직계비속 및 신청자 직계비속의 배우자로 신청자와 같은 세대별\n주민등록표에 등재된 사람\n• 신청자가 세대원인 경우\n• 신청자가 단독세대주인 경우   - 신청자 본인\n※ 공고일 현재 주택청약저축 미가입자의 경우 입주전까지 청약통장 사본을 제출하지 않을 시 당첨 취소 및\n임대차계약이 해지 처리됨\n※   출산자녀는 ’23.3.28 이후 출산한 자녀(입양자녀 및 태아 포함)를 의미하며, 기준일 이후 출산 자녀가 있는 경우\n에는 기준일 이전 출생한 기존 미성년자녀도 포함하여 최대 2자녀로 인정 \n(단, 주택공급 신청자 세대별 주민등록표에 등재되어 있는 경우에 한함, 이하 동일) \n** 가산적용 상세 소득기준 \n가구원 수   전년도 도시근로자 가구원수별 가구당 월평균 소득\n100%   110%   120% \n1인   -   -   4,576,036원 이하\n2인   -   6,452,897원 이하   7,039,524원 이하\n3인   8,168,429원 이하   8,985,272원 이하   9,802,115원 이하\n4인   8,802,202원 이하   9,682,422원 이하   10,562,642원 이하\n5인   9,326,985원 이하   10,259,684원 이하   11,192,382원 이하\n6인   9,906,263원 이하   10,896,889원 이하   11,887,516원 이하\n* 7인이상의 가구는 6인가구 기준소득금액에 추가 1인당 평균금액 579,278원을 합산하여 산정 \n구분   가구원 수   출생자녀 수\n(태아포함)\n최종 소득 · 자산기준\n적용\n소득기준\n적용 자산기준\n총자산가액   자동차가액 \n3인 이상\n0인   100%   251,000,000원   45,420,000원\n1인   110%   276,000,000원   49,960,000원\n2인 이상   120%   301,000,000원   54,510,000원\n세대원(본인)\n1인   0인   120%   251,000,000원   45,420,000원\n2인   0인   110%   251,000,000원   45,420,000원\n1인   120%   276,000,000원   49,960,000원\n3인 이상\n0인   100%   251,000,000원   45,420,000원\n1인   110%   276,000,000원   49,960,000원\n2인 이상   120%   301,000,000원   54,510,000원 \n\n[PAGE 11]\n•   일반공급 순위 \n1순위   해당 주택건설지역(부산광역시) 또는 연접지역(울산광역시, 창원시, 김해시, 양산시)이 거주지나\n소득 근거지인 자\n2순위   1순위에 해당되지 않는 경상남도가 거주지나 소득 근거지인 자\n3순위   제1,2순위에 해당되지 않는 자\n※ ‘ 소득 근거지’란   사업자등록증(법인등기부등본 등)으로 확인하며 단, 실제 근무지가 사업자등록증의 소재지와\n다른 경우 신청인이 해당 증빙서류(재직증명서, 근로계약서 등)를 추가 제출할 경우에 인정함 \n■ 우선공급대상자 \n입주자모집공고일(2026.09.22.) 현재 일반공급대상자의 요건을 모두 갖추고 아래 1순위 또는 2순위의 요건을 갖춘 자 \n※ 우선공급에서 탈락한 자는 별도의 신청절차 없이 일반공급 신청자로 전환됨 \n•   우선공급 순위 \n1순위   행복주택이 위치하는 부산광역시 남구에 거주하거나 소득 근거지인 자\n2순위   행복주택이 위치하는 부산광역시 남구 외 부산광역시에 거주하거나 소득 근거지인 자\n※ ‘ 소득 근거지’란   사업자등록증(법인등기부등본 등)으로 확인하며 단, 실제 근무지가 사업자등록증의 소재지와\n다른 경우 신청인이 해당 증빙서류(재직증명서, 근로계약서 등)를 추가 제출할 경우에 인정함 \n•   우선공급 배점   ※ 우선공급 2순위 배점항목은 (② 주택청약종합저축 납입횟수)만 적용함\n항목   3점   1점\n① 거주지 및 거주기간   행복주택이 위치하는 부산광역시 남구에\n3년 이상 거주\n행복주택이 위치하는 부산광역시 남구에\n3년 미만 거주\n②   주택청약종합저축(청약\n저축 포함) 납입횟수\n가입 2년이 경과한 자로서 매월 약정\n납입일에 월납입금을 24회 이상 납입한 자\n가입 6개월이 경과한 자로서 매월 약정\n납입일에 월납입금을 6회 이상 23회이하\n납입한 자\n※   거주지   및   거주기간은   주민등록표를   기준으로   하며,   주민등록표상   공고일   현재   “계속하여”   등재되어   있는\n사실이 확인되는 경우에 한함\n※ 신청 시 청약저축 은행명 착오기입으로 인해 납입 인정회차가 조회되지 않을 경우에는 점수가 인정되지 않으\n므로 반드시 가입한 은행을 확인하시기 바랍니다. 청약저축 납입회차는 통장에 나타난 회차가 아닌 청약통장\n순위(가입)확인서의 회차 기준이며, 아래 조회방법에 따라 미리 납입 회차를 확인해 볼 수 있습니다.\n인   터   넷\n직접 발급\n한국부동산원 청약홈 접속(www.applyhome.co.kr) → 화면 중앙의 ‘청약통장순위확인서’ 발급 →\n순위확인서 발급하기 → [일반공급용] 선택 → 동의하기 → 공인인증서 본인 확인 → 청약신청\n주택 선택 → 발급신청 후 내역 확인\n* (주택명) 부산문현2 1블록 행복주택 입주자 모집   (주택관리번호) 2026-000493\n은행 방문   청약통장 가입은행 방문 → 청약통장순위(가입)확인서 발급 신청 → 발급내역 확인 \n■ 경쟁 시 입주자 선정기준 \n구분   입주자 선정 순서\n우선공급   2세 미만 자녀가 있는 자 → 순위 → 배점 → 추첨\n일반공급   순위 → 추첨 \n※ 39형의 “대학생 계층”, “청년 계층”의 일반공급물량은 각 형별 통합하여 순위에 따라 추첨 \n\n[PAGE 12]\n3-3. 신혼부부·한부모가족 계층 \n■ 일반공급대상자 \n입주자모집공고일(2026.09.22.) 현재, 무주택세대구성원(예비신혼부부의 경우 혼인으로 구성될 세대의 세대구성원\n모두 무주택자)으로서 아래의 요건을 모두 갖춘 자\n(신혼부부는   ➀ -㉮와 ②～⑤를, 예비신혼부부는   ➀ -㉯와 ③～⑥ 를 , 한부모가족은   ➀ -㉰와 ③～⑤\n※ 예비신혼부부의 경우 당사자 2인 중 1인을 대표로 지정하여 신청함. 대표신청자는 향후 당첨시 계약자가 될 1인을\n말하며 신청 이후에는 변경이 불가함 \n➀ -㉮   (신혼부부)   혼인중인 자 \n➀ -㉯   (예비신혼부부)   혼인을 계획 중이며 입주 전까지 혼인사실을 증명할 수 있을 것 \n➀ -㉰   (한부모가족)   6세이하 자녀를 둔 한부모인 자(태아포함)\n②   혼인기간이 7년 (전 배우자였던 사람과 재혼하는 경우에는 이전 혼인기간 포함)   이내 일 것 또는   6세 이하\n자녀 (태아포함)를 둔 자\n③   해당세대(예비신혼부부는 혼인으로 구성될 세대)의 월평균소득 이 전년도 도시근로자 가구원수별 가구당\n월평균소득의 100퍼센트 이하(맞벌이 부부 120퍼센트 이하)일 것\n※ 단, 가구원 수가 2인인 경우에는 110퍼센트, 맞벌이 2인 가구의 경우 130퍼센트 이하일 것\n가구원수   일반 신혼부부   맞벌이 신혼부부\n월평균소득금액   기준   월평균소득금액   기준\n2인   6,452,897원 이하   110%   7,626,151원 이하   130%\n3인   8,168,429원 이하   100%   9,802,115원 이하   120%\n4인   8,802,202원 이하   100%   10,562,642원 이하   120%\n5인   9,326,985원 이하   100%   11,192,382원 이하   120%\n6인   9,906,263원 이하   100%   11,887,516원 이하   120%\n* 7인이상의 가구는 6인가구 기준소득금액에 추가 1인당 평균금액 579,278원을 합산하여 산정 \n④ 해당 세대(예비신혼부부는 혼인으로 구성될 세대)가 보유하고 있는   총 자산가액 합산기준 34,500만원 이하 이고,\n총 자산 중   자동차가액이 4,542만원 이하   일 것\n⑤ 본인 또는 배우자(예비신혼부부의 경우는 혼인 예정인 배우자) 중 1인이 입주 전까지   주택청약종합저축 \n(청약저축 포함)   가입사실을 증명 할 수 있을 것 (단, 한부모가족은 본인만 해당)\n⑥ 혼인으로 구성될 세대의 세대구성원 모두   무주택자 일 것\n《 신혼부부·한부모가족 계층 출생자녀 수에 따른 가산 소득·자산 기준 》\n* 가산 적용 : 출산자녀 2인 이상 20% 가산, 출산자녀 1인 10% 가산 \n구분\n가산항목   최종 소득 · 자산기준 (한도)\n맞벌이 여부   가구원 수   출생자녀 수\n(태아포함)\n적용\n소득기준\n자산기준\n총자산가액   자동차가액 \n한부모가족   X\n2인   0인   110%   345,000,000원   45,420,000원\n1인   120%   379,000,000원   49,960,000원\n3인 이상\n0인   100%   345,000,000원   45,420,000원\n1인   110%   379,000,000원   49,960,000원\n2인 이상   120%   413,000,000원   54,510,000원\n신혼부부\n예비신혼부부   X\n2인   0인   110%   345,000,000원   45,420,000원\n3인   0인   100%   345,000,000원   45,420,000원\n1인   110%   379,000,000원   49,960,000원\n4인 이상\n0인   100%   345,000,000원   45,420,000원\n1인   110%   379,000,000원   49,960,000원\n2인 이상   120%   413,000,000원   54,510,000원 \n\n[PAGE 13]\n※ ‘ 신혼부부, 한부모가족 ‘ 의 해당 세대의 범위는 다음과 같음 \n적용 대상   비고 \n• 신청자 본인\n• 신청자 배우자   신청자의 주민등록표등본에 등재되어 있지 않는 경우에도 포함\n• 신청자 직계존속\n• 신청자 직계비속\n• 신청자 배우자의 직계존속\n• 신청자 직계비속의 배우자\n신청자 또는 신청자의 배우자와 동일한 세대별 주민등록표등본에 등재되어\n있는 사람\n• 신청자 배우자의 직계비속\n• 신청자 배우자의 직계비속의 배우자   신청자와 같은 세대별 주민등록표에 등재된 사람 \n※ 무주택세대구성원이란 해당 세대 구성원 전원이 주택을 소유하지 않는 것을 말함\n(“예비신혼부부”는 혼인으로 구성될 세대 구성원 전원이 주택을 소유하지 않을 것)을 말함\n※ 한부모가족은 부 또는 모와 자녀가 동일 주민등록등본에 등재된 경우를 말함\n※   예비신혼부부의 경우 공급신청시 배우자 등 ‘혼인으로 구성될 세대’의 가구원 명단(세대주와의 관계 포함)을\n제출하여야 하며 입주 전까지 혼인으로 구성된 세대를 확인하기 위한 혼인관계증명서, 가족관계증명서, 주민\n등록표(대표신청자와 예비배우자가 동일 등본에 있지 않은 경우는 각각 제출)를 제출하지 않을 경우와 입주\n자모집 시 신청한 예비신혼부부 당사자와 추후 입주하기 위해 제출한 혼인관계증명서상의 부부 및 가구원 명단이\n일치하지 않는 경우에 별도의 통지 없이 당첨 취소 및 임대차계약은 해지 처리됨. \n※ 맞벌이부부 여부 판단기준이 되는   ‘소득’ 은 「소득세법」제19조제1항에 따른 사업소득 및 같은 법 제20조제1항에 따른\n근로소득을 말하며, 국민연금 가입증명서 및 건강보험자격득실확인서 등을 통해 소득이 있는 여부를 판단함\n※ 공고일 현재 주택청약저축 미가입자(본인 또는 배우자 중 1인)의 경우 입주 전까지 청약통장 사본을 제출\n하지 않을 시 당첨 취소 및 임대차계약이 해지 처리됨(단, 한부모가족은 본인만 해당)\n※   출산자녀는 ’23. 3.28 이후 출산한 자녀(입양자녀 및 태아 포함)를 의미하며, 기준일 이후 출산 자녀가 있는 경우\n에는 기준일 이전 출생한 기존 미성년자녀도 포함하여 최대 2자녀로 인정 \n(단, 주택공급 신청자 또는 동 배우자와 같은 세대별 주민등록표에 등재되어 있는 경우에 한함, 이하 동일) \n** 가산적용 상세 소득기준\n* 7인이상의 가구는 6인가구 기준소득금액에 추가 1인당 평균금액 579,278원을 합산하여 산정 \n가구원\n수\n전년도 도시근로자 가구원수별 가구당 월평균 소득\n100%   110%   120%   130%   140% \n2인   -   6,452,897원 이하   7,039,524원 이하   7,626,151원 이하   8,212,778원 이하\n3인   8,168,429원 이하   8,985,272원 이하   9,802,115원 이하   10,618,958원 이하 11,435,801원 이하\n4인   8,802,202원 이하   9,682,422원 이하   10,562,642원 이하 11,442,863원 이하 12,323,083원 이하\n5인   9,326,985원 이하   10,259,684원 이하 11,192,382원 이하 12,125,081원 이하 13,057,779원 이하\n6인   9,906,263원 이하   10,896,889원 이하 11,887,516원 이하 12,878,142원 이하 13,868,768원 이하 \n구분\n가산항목   최종 소득 · 자산기준 (한도)\n맞벌이 여부   가구원 수   출생자녀 수\n(태아포함)\n적용\n소득기준\n자산기준\n총자산가액   자동차가액 \n○\n2인   0인   130%   345,000,000원   45,420,000원\n3인   0인   120%   345,000,000원   45,420,000원\n1인   130%   379,000,000원   49,960,000원\n4인 이상\n0인   120%   345,000,000원   45,420,000원\n1인   130%   379,000,000원   49,960,000원\n2인 이상   140%   413,000,000원   54,510,000원 \n\n[PAGE 14]\n•   일반공급 순위 \n1순위   신청자 본인 또는 배우자(예비신혼부부의 경우 대표신청자 또는 예비배우자)가 해당 주택건설\n지역(부산광역시) 또는 연접지역(울산광역시, 창원시, 김해시, 양산시)이 거주지나 소득 근거지인 자\n2순위   신청자 본인 또는 배우자(예비신혼부부의 경우 대표신청자 또는 예비배우자)가 1순위에   해\n당되지 않는 경상남도가 거주지나 소득 근거지인 자\n3순위   제1,2순위에 해당되지 않는 자\n※ ‘ 소득 근거지’란   사업자등록증(법인등기부등본 등)으로 확인하며 단, 실제 근무지가 사업자등록증의 소재지와\n다른 경우 신청인이 해당 증빙서류(재직증명서, 근로계약서 등)를 추가 제출할 경우에 인정함 \n■ 우선공급대상자 \n입주자모집공고일(2026.09.22.) 현재 일반 공급대상자의 요건을 모두 갖추고 아래 1순위 또는 2순위의 요건을 갖춘 자 \n※ 우선공급에서 탈락한 자는 별도의 신청절차 없이 일반공급신청자로 전환됨 \n※ 순위 및 배점항목은 신청자 본인(예비신혼부부의 경우 대표신청자) 기준\n•   우선공급 순위 \n1순위   신청자 본인이 행복주택이 위치하는 부산광역시 남구에 거주하는 자\n2순위   신청자 본인이 행복주택이 위치하는 부산광역시 남구 외 부산광역시에 거주하는 자 \n•   우선공급 배점   ※ 특별시, 광역시 우선공급 2순위 배점항목은 (② 주택청약종합저축 납입횟수)만 적용함\n항목   3점   1점\n①거주지 및 거주기간   행복주택이 위치하는 부산광역시 남구에\n3년 이상 거주\n행복주택이 위치하는 부산광역시 남구에\n3년 미만 거주\n②주택청약종합저축(청약\n저축 포함) 납입횟수\n가입 2년이 경과한 자로서 매월 약정\n납입일에 월납입금을 24회 이상 납입한 자\n가입 6개월이 경과한 자로서 매월 약정\n납입일에 월납입금을 6회 이상 23회이하\n납입한 자\n※ 신청 시 청약저축 은행명 착오기입으로 인해 납입 인정회차가 조회되지 않을 경우에는 점수가 인정되지 않으\n므로 반드시 가입한 은행을 확인하시기 바랍니다. 청약저축 납입회차는 통장에 나타난 회차가 아닌 청약통장\n순위(가입)확인서의 회차 기준이며, 아래 조회방법에 따라 미리 납입 회차를 확인해 볼 수 있습니다.\n인   터   넷\n직접 발급\n한국부동산원 청약홈 접속(www.applyhome.co.kr) → 화면 중앙의 ‘청약통장순위확인서’ 발급 →\n순위확인서 발급하기 → [일반공급용] 선택 → 동의하기 → 공인인증서 본인 확인 → 청약신청\n주택 선택 → 발급신청 후 내역 확인\n* (주택명) 부산문현2 1블록 행복주택 입주자 모집   (주택관리번호) 2026-000493\n은행 방문   청약통장 가입은행 방문 → 청약통장순위(가입)확인서 발급 신청 → 발급내역 확인\n※ 거주지 및 거주기간은 주민등록표상 공고일 현재 “계속하여” 등재되어 있는 사실이 확인되는 경우에 한함 \n■ 경쟁 시 입주자 선정기준 \n구분   입주자 선정 순서\n우선공급   2세 미만 자녀가 있는 자 → 순위 → 배점\n→ 해당 순위 지역의 거주기간이 오래인 자 → 추첨\n일반공급   순위 →추첨 \n\n[PAGE 15]\n3-4. 고령자 \n■ 일반공급대상자 \n입주자모집공고일(2026.09.22.) 현재, 무주택세대구성원으로서 아래의 요건을 모두 갖춘 65세 이상인 자 \n※ ‘ 고령자 ‘ 의 해당 세대의 범위는 다음과 같음 \n적용 대상   비고 \n• 신청자 본인\n• 신청자 배우자   신청자의 주민등록표등본에 등재되어 있지 않는 경우에도 포함\n• 신청자 직계존속\n• 신청자 직계비속\n• 신청자 배우자의 직계존속\n• 신청자 직계비속의 배우자\n신청자 또는 신청자의 배우자와 동일한 세대별 주민등록표등본에 등재된\n사람\n• 신청자 배우자의 직계비속\n• 신청자 배우자의 직계비속의 배우자   신청자와 같은 세대별 주민등록표에 등재된 사람\n※ 무주택세대구성원이란 해당 세대 구성원 전원이 주택을 소유하지 않는 것을 말함 \n①   해당 세대의 월평균소득 이 전년도 도시근로자 가구원수별 가구당 월평균소득의 100퍼센트 이하 \n※ 단, 가구원수가 1인인 경우에는 120퍼센트, 2인인 경우에는 110퍼센트 이하일 것 \n가구원수   월평균소득금액   기준\n1인   4,576,036원 이하   120%\n2인   6,452,897원 이하   110%\n3인   8,168,429원 이하   100%\n4인   8,802,202원 이하   100%\n5인   9,326,985원 이하   100%\n6인   9,906,263원 이하   100% \n* 7인이상의 가구는 6인가구 기준소득금액에 추가 1인당 평균금액 579,278원을 합산하여 산정\n② 해당 세대가 보유하고 있는   총 자산가액이 34,500만원 이하 이고 총 자산 중   자동차가액이 4,542만원 이하 \n《 고령자 계층 출생자녀 수에 따른 가산 소득·자산 기준 》\n* 가산 적용 : 출산자녀 2인 이상 20% 가산, 출산자녀 1인 10% 가산\n※   출산자녀는 ’23. 3.28 이후 출산한 자녀(입양자녀 및 태아 포함)를 의미하며, 기준일 이후 출산 자녀가 있는 경우\n에는 기준일 이전 출생한 기존 미성년자녀도 포함하여 최대 2자녀로 인정 \n(단, 주택공급 신청자 또는 동 배우자와 같은 세대별 주민등록표에 등재되어 있는 경우에 한함, 이하 동일) \n** 가산적용 상세 소득기준\n* 7인이상의 가구는 6인가구 기준소득금액에 추가 1인당 평균금액 579,278원을 합산하여 산정 \n구분   가구원 수   출생자녀 수\n(태아포함)\n최종 소득 · 자산기준\n적용\n소득기준\n적용 자산기준\n총자산가액   자동차가액 \n고령자\n1인   0인   120%   345,000,000원   45,420,000원\n2인   0인   110%   345,000,000원   45,420,000원\n1인   120%   379,000,000원   49,960,000원\n3인 이상\n0인   100%   345,000,000원   45,420,000원\n1인   110%   379,000,000원   49,960,000원\n2인 이상   120%   413,000,000원   54,510,000원 \n가구원 수   전년도 도시근로자 가구원수별 가구당 월평균 소득\n100%   110%   120% \n1인   -   -   4,576,036원 이하\n2인   -   6,452,897원 이하   7,039,524원 이하\n3인   8,168,429원 이하   8,985,272원 이하   9,802,115원 이하\n4인   8,802,202원 이하   9,682,422원 이하   10,562,642원 이하\n5인   9,326,985원 이하   10,259,684원 이하   11,192,382원 이하\n6인   9,906,263원 이하   10,896,889원 이하   11,887,516원 이하 \n\n[PAGE 16]\n■ 주거약자용 주택 \n•   주거약자용   주택이란   주거약자를   위한   편의시설이   설치되어   있는   주택으로서   「공공주택 업무처리지침」에\n따라 3층 이하에 공급됩니다. 고령자 중   편의시설이   설치된 주택을 희망하는 경우 주거약자용 주택을 신청 \n하시기 바랍니다. \n■ 우선공급대상자 \n입주자모집공고일(2026.09.22.) 현재 일반공급대상자의 요건을 모두 갖추고 아래 1순위 또는 2순위의 요건을 갖춘 자 \n※ 우선공급에서 탈락한 자는 별도의 신청절차 없이 일반공급 신청자로 전환됨 \n•   우선공급 순위 \n1순위   행복주택이 위치하는 부산광역시 남구에 거주하는 자\n2순위   행복주택이 위치하는 남구 외 부산광역시에 거주하는 자 \n•   우선공급 배점 \n항목   3점   2점   1점 \n① 신청자 나이   75세 이상   70세 이상 〜 75세 미만   70세 미만 〜 65세 이상\n② 거주지 및 거주기간   행복주택이   위치하는   부산광\n역시 남구에 5년 이상 거주\n행복주택이   위치하는   부산광\n역시 남구에 5년 미만 거주\n행복주택이 위치하는 남구 외\n부산광역시에 거주\n③ 장애인, 국가유공자 중 상이 1～7급자, 보훈보상대상자 중 상이 1～7급자, 5.18민주화운동부상자로서 신체장해등급 1～14급자,\n고엽제후유의증환자 중 경도장애 이상의 장애등급자, 국가유공자에 준하는 군경등으로 등록된 사람으로서 상이 1~7급 : 3점 \n※   거주지   및   거주기간은   주민등록표를   기준으로   하며,   주민등록표상   공고일   현재   “계속하여”   등재되어   있는\n사실이 확인되는 경우에 한함 \n■ 경쟁 시 입주자 선정기준 \n구분   입주자 선정 순서\n우선공급   2세 미만 자녀가 있는 자 → 순위 → 배점 →\n해당 순위 지역의 거주기간이 오래인 자 → 추첨\n일반공급   추첨 \n■ 주거약자용 주택 경쟁 시 입주자 선정기준 \n구분   입주자 선정 순서\n우선공급   순위 → 배점 → 해당 순위 지역의 거주기간이 오래인 자 → 추첨\n일반공급   추첨 \n\n[PAGE 17]\n3-5. 주거급여수급자 \n■ 일반공급대상자 \n입주자모집공고일(2026.09.22.) 현재 무주택세대구성원인   주거급여수급자 \n「주거급여법」 제2조 제2호 및 제3호에 따른 수급권자 또는 수급자를 말함 \n※   ‘주거급여수급자 ‘ 의 해당 세대의 범위는 다음과 같음 \n적용 대상   비고 \n• 신청자 본인\n• 신청자 배우자   신청자의 주민등록표등본에 등재되어 있지 않는 경우에도 포함\n• 신청자 직계존속\n• 신청자 직계비속\n• 신청자 배우자의 직계존속\n• 신청자 직계비속의 배우자\n신청자 또는 신청자의 배우자와 동일한 세대별 주민등록표등본에 등재된\n사람\n• 신청자 배우자의 직계비속\n• 신청자 배우자의 직계비속의 배우자   신청자와 같은 세대별 주민등록표에 등재된 사람 \n※ 무주택세대구성원이란 해당 세대 구성원 전원이 주택을 소유하지 않는 것을 말함 \n■ 우선공급대상자 \n입주자모집공고일(2026.09.22.) 현재 일반공급대상자의 요건을 모두 갖추고 아래 1순위 또는 2순위의 요건을 갖춘 자 \n※ 우선공급에서 탈락한 자는 별도의 신청절차 없이 일반공급신청자로 전환됨 \n•   우선공급 순위 \n1순위   행복주택이 위치하는 부산광역시 남구에 거주하는 자\n2순위   행복주택이 위치하는 남구 외 부산광역시에 거주하는 자 \n•   우선공급 배점 \n항목   3점   2점   1점\n① 거주지 및 거주기간   부산광역시 남구에\n5년 이상 거주\n부산광역시 남구에\n5년 미만 거주\n부산광역시 남구 외\n부 산광역 시에 거주\n② 국가유공자 ‧ 보훈보상대상자 ‧ 5.18민주유공자 ‧ 특수임무유공자 또는 그 유족, 참전유공자, 장애인, 지원대상\n한부모 가족인 경우 : 3점\n※   거주지   및   거주기간은   주민등록표를   기준으로   하며,   주민등록표상   공고일   현재   “계속하여”   등재되어   있는\n사실이 확인되는 경우에 한함 \n■ 경쟁 시 입주자 선정기준 \n구분   입주자 선정 순서\n우선공급   2세 미만 자녀가 있는 자 → 순위 → 배점 →\n해당 순위 지역의 거주기간이 오래인 자 → 추첨\n일반공급   추첨 \n3-6. 기존거주자 \n■ 「부산문현2구역 주거환경개선사업 주택공급기준(안)」에 의한 부산문현2 주거환경개선사업지구 내 토지 또는\n건축물 소유자와 세입자 중 선정된 공급대상자(이하 ‘기존거주자’라 함) \n• 기존거주자 우선공급 대상자로 선정되었더라도 청약접수 기간 내 신청하지 않을 경우 우선공급권리를 포기하는\n것으로 간주합니다.\n• 사전수요조사 당시 희망한 주택형과 동일한 주택형으로만 신청 가능합니다. (변경 불가) \n\n[PAGE 18]"
+    },
+    {
+      "data_id": "HOU-033",
+      "source_id": "INTEGRATED",
+      "원문파일": "raw_2026-10-02/INTEGRATED.txt",
+      "보존범위": "추가 조사에서 직접 확인한 공식 자격·제외 구간;문구 축약 없이 보존. 전체 파일 별도 보존",
+      "지원대상_원문": "일반공급 입주자격 및 입주자 선정방법\n 구분\n 입주자격\n 입주자 선정방법\n 청년\n 무주택자로서 다음 요건을 모두 갖춘 사람\n 가. 공급 신청자(세대원이 있는 세대의 세대주인 경우에는 해당 세대를 말한다)의 월평균\n 소득이 「국민기초생활보장 법」 제2조제11호에 따른 기준 중위소득(이하 이 별표에서 “기준 중위소득”이라\n 한다)의 150퍼센트(가구원 수가 1명인 경우에는 170퍼센트, 2명인 경우에는 160퍼센트로 한다) 이하일\n 것\n 나. 만 18세 이상 39세 이하일 것\n 다. 혼인 중이 아닐 것\n 추첨\n 신혼부부 ･한부모\n 다음 요건을 모두 갖춘 사람\n 가. 다음의 어느 하나에 해당하는 사람\n (1) 혼인 중인 사람으로서 혼인\n 기간이 7년 이내인 사람\n (2) 예비 신혼부부(혼인을 계획 중이며 해당 주택의 입주 전까지\n 혼인사실을 증명할 수 있는 사람을 말한다. 이하 이 별표에서 같다)\n (3) 혼인 중인 사람으로서\n 만 6세 이하 자녀(태아를 포함한다. 이하 이 별표에서 같다)를 둔 사람\n (4) 만 6세 이하\n 자녀를 둔 한부모가족\n 나. 무주택세대구성원(예비 신혼부부의 경우 혼인으로 구성될 세대의 세대 구성원 모두\n 무주택자인 경우를 말한다)일 것\n 다. 해당 세대의 월평균 소득(예비 신혼부부의 경우 혼인으로 구성될 세대의 세대 구성원\n 월평균 소득의 합계를 말한다) 이 기준 중위소득의 150%(본인 및 배우자(예비 신혼부부의 경우 혼인할\n 상대방을 말한다. 이하 이 별표에서 같다)가 모두 소득이 있는 경우에는 180%를 말한다) 이하일 것. 다만,\n 가구원 수가 2명인 경우에는 기준 중위소득의 160%(본인 및 배우자가 모두 소득이 있는 경우에는 190%로\n 한다) 이하로 한다.\n 추첨\n 고령자\n 무주택세대구성원(혼인 중이 아닌 경우로서 단독세대주로 입주하려는 사람의 경우에는 무주택자를\n 말한다. 이하 이 별표에서 같다)으로서 다음의 요건을 모두 갖춘 사람\n 가. 해당 세대의 월평균 소득이 기준 중위소득의 150%(가구원수가 1명인 경우에는\n 170%, 2명인 경우에는 160%로한다) 이하일 것\n 나. 만 65세 이상일 것\n 추첨\n 일반\n 다음의 요건을 모두 갖춘 사람\n 가. 무주택세대구성원일 것\n 나. 해당 세대의 월평균 소득이 기준 중위소득의 150%(가구원수가 1명인 경우에는\n 170%, 2명인 경우에는 160%로 한다) 이하일 것\n 추첨"
+    },
+    {
+      "data_id": "HOU-034",
+      "source_id": "PUBLIC_PRIVATE_BODY",
+      "원문파일": "raw_2026-10-02/PUBLIC_PRIVATE_BODY.txt",
+      "보존범위": "추가 조사에서 직접 확인한 공식 자격·제외 구간;문구 축약 없이 보존. 전체 파일 별도 보존",
+      "지원대상_원문": "공공지원민간임대주택\n 10년 거주보장, 법정상한선 5% 범위 임대료 인상 제한, 무주택자 우선공급,시세의 95%이하(일반공급) 및 75%이하(특별공급)의 저렴한 임대료로\n 전체 세대수의 20%이상 주거지원대상자에게 특별공급 하는 등 공공성을 강화한 민간임대주택입니다.\n 임대기간\n 10년\n 전용면적\n 85㎡ 이하\n 임대조건\n 일반공급 시세 대비 95% 이하,\n 특별공급 75% 이하\n 공공지원민간임대주택 소개\n 공공지원민간임대주택 VS 뉴스테이\n 구분\n 공공지원민간임대주택\n NewStay\n 의무임대기간\n 10년\n 8년\n 임대료 상승률\n 5% 제한\n 5% 제한\n 초기 임대료\n 일반 : 시세의 95% 이하\n 5% 제한\n 특별 : 시세의 75% 이하\n 5% 제한\n 입주 자격\n 무주택자(미달 시 유주택자 가능)\n 주거지원계층 : 소득 요건 등 입주자격 설정\n 도심, 도시외곽 등 다양\n 입지 여건\n 역세권·대학 인근 등 청년층 수요가 많은 곳\n 입주자격\n 무주택자 우선\n 공급물량의 20%이상은 청년·신혼부부 등 주거지원 계층에 특별공급\n - 주거지원계층 : 도시근로자 평균소득 120% 이하, 19～39세 1인 가구, 혼인 7년 이내 신혼부부, 고령층(65세 이상) 등\n 신청절차\n 01입주자모집공고\n 사업주체의 홈페이지 등을 통해 입주자 모집공고\n 02신청\n 입주희망자는 사업주체가 지정한 장소(인터넷 접수 또는 방문접수)에서 신청서 작성 및 관련서류 제출\n 03입주자 선정 및확인\n 한국부동산원 청약홈 또는 사업주체의 홈페이지 등을 통해 당첨자 명단 발표\n 모집호수의 일정비율을 예비입주자로 선정\n 04입주 계약 체결\n 입주가 확정된 세대는 사업주체가 지정한 장소에서 임대차계약 체결 (예비입주자는 입주예정자의 미계약 또는 해약시 순위에 따라 계약체결 가능)\n 05입주\n 잔금납부 후 입주 가능하며, 입주개시일로부터 최초 관리비 수납시까지의 소요 운영자금을 충당하기 위하여 입주시 입주자들로부터 관리비 예치금을\n 수납(퇴거시 수납액 반환)\n 해당 관리사무소는 입주 이후 전입신고된 주민등록표등본을 확인하여 계약자 본인의 입주 여부를 확인\n 단, 인터넷 청약 신청의 경우에는 입주자 선정 전 서류제출대상자를 선정하여 입주 적격여부 확인 후 당첨(예비)자 선정\n 무주택 여부 확인 방법 및 주거지원계층 소득·나이조건 확인절차 추후 공지\n 공공지원민간임대주택 상세안내\n 공공지원민간임대주택\n 공공지원민간임대주택 홈페이지\n 민간임대정책과\n 044-201-4472"
+    },
+    {
+      "data_id": "HOU-035",
+      "source_id": "WEAK_HOUSING_BODY",
+      "원문파일": "raw_2026-10-02/WEAK_HOUSING_BODY.txt",
+      "보존범위": "추가 조사에서 직접 확인한 공식 자격·제외 구간;문구 축약 없이 보존. 전체 파일 별도 보존",
+      "지원대상_원문": "주거취약계층 주거지원\n 최저주거기준에 미달되고 열악한 환경에서 생활하는 주거취약계층에게 저렴한 임대주택 (매입임대, 전세임대,\n 국민임대주택)을 지원합니다.\n 주거취약계층 이사비 지원\n 지원대상\n 쪽방, 고시원, 여인숙 등에서 3개월 이상 거주하는 자, 범죄피해자, 가정폭력피해자, 최저주거기준 미달 아동가구\n 지원내용\n 매입·전세임대주택에 우선 입주할 수 있도록 지원\n 신청방법\n 주민센터 또는 운영기관(범죄피해자는 지방검찰청)에 신청\n 지원대상\n 쪽방, 고시원, 여인숙, 비닐하우스, 노숙인 쉼터 등에서 3개월 이상 거주하는 자 단, 신청일을 기준으로 최근 1년간 다른 시설의 거주기간을 합산하여 산정가능\n 가정폭력 피해자, 출산예정인 미혼모 등 긴급한 주거지원 필요자\n 법무부 장관이 주거지원이 필요하다고 인정하여 국토교통부장관에게 통보한 범죄피해자(지방검찰청장 추천으로\n 법무부장관이 선정)\n 최저주거기준 미달 아동가구\n 지원대상지역\n 입주희망지역 제한이 없습니다.\n 임대기간\n 최초 임대기간은 2년으로 하되, 9회까지 재계약(2년 단위) 가능합니다. (최장 20년간 거주 가능)\n 자격요건\n 유형별 자격요건\n 쪽방·비닐하우스·고시원·여인숙·노숙인 쉼터 등의 거주자는 지역주민센터에 신청하여\n 시장·군수·구청장으로부터 주거지원이 필요하다고 인정하여 LH 등 사업시행자에게 통보된 자에게 공급합니다.\n 범죄피해자는 지방검찰청에 신청하여 법무부장관으로부터 주거지원이 필요하다고\n 인정하여 LH 등 사업시행자에게 통보된 자에게 공급합니다.\n 소득 등 재산요건\n 세대주 및 세대원(세대주의 직계 존·비속에 한함) 전부 무주택자로서 아래의\n 소득·토지·자동차 보유요건을 충족하는 자에게 공급합니다.\n 단, 범죄피해자 및 가정폭력 피해자의 경우 최초 계약에 한해 주택소유 여부 및 소득ㆍ자산 검증 절차를 생략할 수 있으나, 재계약 시에는 소득 등 자산요건을 충족하여야 합니다.\n 소득기준 (2026년도 적용기준)\n 전년도 도시근로자 가구원수별 가구당 월평균 소득의 50% 이하여야 합니다. (1인 가구는 70%, 2인 가구는 60% 이하)\n 가구원수\n 월평균 소득기준(50%)\n (1인 가구 70%, 2인 가구 60%)\n 월평균 소득기준(70%)\n (1인 가구 90%, 2인 가구 80%)\n 월평균 소득기준(100%)\n (1인 가구 120%, 2인 가구 110%)\n 1인\n 2,669,354원 이하\n 3,432,027원 이하\n 4,576,036원 이하\n 2인\n 3,519,762원 이하\n 4,693,016원 이하\n 6,452,897원 이하\n 3인\n 4,084,215원 이하\n 5,717,900원 이하\n 8,168,429원 이하\n 4인\n 4,401,101원 이하\n 6,161,541원 이하\n 8,802,202원 이하\n 5인\n 4,663,493원 이하\n 6,528,890원 이하\n 9,326,985원 이하\n 6인\n 4,953,132원 이하\n 6,934,384원 이하\n 9,906,263원 이하\n 7인\n 5,242,771원 이하\n 7,339,879원 이하\n 10,485,541원 이하\n 자산기준 (2026년도 적용기준)\n 자산 : 24,500만원 이하\n 자동차 : 4,542만원 이하\n 비영업용 승용자동차에 한하며 장애인사용 자동차, 국가유공자(상이1~7등급) 보철용 차량은 제외\n 주거지원 유형\n 유형\n 사업내용\n 기존주택 매입임대\n 기존주택을 매입하여 보수한 후 입주대상자에게 임대\n 기존주택 전세임대\n 기존주택을 전세계약 체결한 후 입주대상자에게 재임대\n 운영기관을 통한 주거지원\n 입주자 관리, 복지서비스 제공 등을 수행하는 민간복지단체(주거복지재단이 선정)를 통하여 주거지원\n 국민임대주택\n 기존주택을 전세계약 체결한 후 입주대상자에게 재임대\n 비닐하우스거주자, 범죄피해자만 해당\n 임대보증금 및 월임대료\n 구분\n 쪽방·고시원·여인숙·노숙인시설 거주자\n 비닐하우스 거주자·범죄피해자\n 임대보증금\n 50만원(고정)\n 매입 및 전세임대주택의 임대료 산정방식과 동일\n 월임대료\n 매입 및 전세임대주택의 임대조건과 동일\n 지원절차 및 안내\n 지원절차\n 01주거지원 신청\n 주거지원을 원하는 자는 주소지 관할 주민센터 또는 운영기관(범죄피해자는\n 지방검찰청)에 주거지원 신청\n 02주거지원 신청자 조사 및 적격여부 판단\n 각 시·군·구의 장(법무부장관)은 입주자선정위원회 등을 통해\n 입주대상자를 선정하여 사업시행자(LH 등)에게 주거지원 요청\n 03자격확인 및 입주자 선정\n LH는 입주자격(무주택 여부 등)을 확인하고, 최종 입주자 선정 및\n 통보\n 04임대차 계약 체결\n 입주순위명부 등에 따라 주택을 결정하고 임대차계약 체결\n 05입주 및 전입신고\n 입주대상자는 전세계약이 체결된 주택으로 입주 후, 해당 주민센터에서\n 전입신고 완료(사업시행자는 입주자 명단 해당구청에 통보)\n 문의\n 마이홈 콜센터\n 행정복지센터 바로가기\n 1600-1004"
+    },
+    {
+      "data_id": "HOU-036",
+      "source_id": "PROTECT_END_BODY",
+      "원문파일": "raw_2026-10-02/PROTECT_END_BODY.txt",
+      "보존범위": "추가 조사에서 직접 확인한 공식 자격·제외 구간;문구 축약 없이 보존. 전체 파일 별도 보존",
+      "지원대상_원문": "자립준비청년\n 아동복지시설, 공동생활가정 등에서 보호를 받다가 18세가 되어 퇴소 예정이거나 퇴소한지 5년 이내에 해당하는 청년의 안정적인 자립을 위한\n 주거지원 제도입니다.\n 건설임대주택\n 건설임대주택이란?\n LH가 직접 건설하여 임대하는 주택\n 지원대상\n 아동권리보장원의 추천을 받은 보호시설 퇴소 예정자, 보호연장아동, 5년 이내 퇴소자\n 입주 기준 1회 지원\n 지원주택\n 건설임대주택(영구임대주택 · 국민임대주택 · 행복주택) 재임대단지\n 재임대단지란? 이미 입주하여 살고 있는 단지를 의미\n 영구임대주택은 LH가 직접 선정 가능한 단지만 해당\n 입주자격\n 영구·국민·행복주택의 입주자격 기준(무주택, 소득, 자산 검증)을 동일하게 적용하되, 미혼인 경우 신청자 본인만을 기준으로 검증\n 행복주택은 소득유무에 따른 청년계층으로 적용\n 2025년도 입주자 소득기준액\n 가구원수\n 월평균 소득기준(50%)\n (1인 가구 70%, 2인 가구 60%)\n 월평균 소득기준(70%)\n (1인 가구 90%, 2인 가구 80%)\n 월평균 소득기준(100%)\n (1인 가구 120%, 2인 가구 110%)\n 1인\n 2,518,715원 이하\n 3,238,348원 이하\n 4,317,797원 이하\n 2인\n 3,286,202원 이하\n 4,381,602원 이하\n 6,024,703원 이하\n 3인\n 3,813,487원 이하\n 5,338,881원 이하\n 7,626,973원 이하\n 4인\n 4,289,044원 이하\n 6,004,662원 이하\n 8,578,088원 이하\n 5인\n 4,515,524원 이하\n 6,321,734원 이하\n 9,031,048원 이하\n 2025년도 자산 기준액\n 구분\n 총자산\n 자동차\n 영구임대주택\n 23,700만원\n 4,563만원\n 국민임대주택\n 33,700만원\n 행복주택\n 고령자\n 산단근로자\n 신혼부부\n 청년\n 25,400만원\n 대학생\n 10,400만원\n 미보유\n 임대조건 및 임대기간\n 임대조건\n (임대보증금) 임대유형에 관계없이 100만원(계약금10%)\n (월임대료) 기본임대료 + 보증금 차액 전환 임대료\n 임대기간동안 임대보증금을 올려 임대료를 낮출 수 있음\n 임대기간\n 기본 임대기간 : 2년\n 2년 단위로 입주자격검증을 통하여 최장 50년(영구), 30년(국민), 6년(행복) 거주 가능\n 신청절차\n 01임대주택신청\n 대상자 → 아동권리보장원\n 02추천대상자송부\n 아동권리보장원 → LH\n 03서류제출 및 자격검증\n LH지역본부 → 대상자\n 04임대차계약체결\n LH지역본부 → 대상자\n 매입임대주택\n 매입임대주택이란?\n 매입임대주택은 도심 내 저소득계층이 현 생활권에서 안정적으로 거주할 수 있도록 LH가 다가구 등 주택을 매입하여 시중시세보다 저렴하게 임대하는 제도\n 지원대상\n 「아동복지법」제16조에 따라 아동복지시설(가정위탁 포함)에서 퇴소 예정이거나 퇴소한지 5년이 지나지 아니한 사람\n 입주자격\n 신청일 현재 무주택자\n 임대조건 및 임대기간\n 임대조건\n 청년 수급자 등(1순위) 임대조건 적용(보증금 100만원, 시세 40%)\n 임대기간동안 임대보증금을 올려 임대료를 낮출 수 있음\n 임대기간\n 임대기간은 2년으로, 4회 한해 재계약 가능(10년 거주 가능)\n 단, 재계약 시점에 무주택세대구성원으로서 전년도 도시근로자 가구원수별 가구당 월평균소득의 105% 이하, 영구임대주택 자산기준을 충족할 경우 재계약 횟수 5회 연장 가능 (최장 20년)\n 신청절차\n 선착순 수시 모집, 현장 접수, 모집단위는 시·군·구로 하되, 청년임대주택 즉시 공급\n 즉시 공급 가능한 주택이 없는 경우 예비자로 관리\n 예비자의 대기기간 단축을 위해 예비자가 희망하는 경우 해당 공급부서 관할 지역 내 타 시·군·구로 예비자 이관 가능\n 전세임대주택\n 전세임대주택이란?\n 저소득계층의 주거안정을 위하여 입주대상자로 선정된 자가 주택을 물색하면, LH가 해당주택 소유자와 전세계약을 체결하고 이를 입주대상자에게 저렴하게 임대하는 제도\n 지원대상\n 본인이 무주택자이면서 「아동복지법」 제16조 및 제16조의3에 따라 가정위탁 보호조치가 종료되거나 아동복지시설에서 퇴소한지 5년 이내인 사람\n 보호조치를 연장한 자, 보호조치 종료 예정자, 시설 퇴소예정자 포함, 혼인 중인 자는 제외\n 지원주택\n 신청한 지역의 전용면적 85㎡이하 전세 또는 보증부월세로 계약 가능한 주택 (단독, 다가구, 다세대, 연립주택, 아파트, 주거용 오피스텔)\n 주거용 오피스텔의 경우 바닥 난방이 되며, 별도로 취사 · 세면시설 및 화장실을 갖추어 주거용(사실상 사용)으로 이용 가능하여야 함\n 보증부 월세 전세임대주택의 경우 매월 지급하는 월세는 입주대상자가 직접 임대인에게 지급하여야 하며, 1년치 월세에 해당하는 금액을 계약시\n 기본보증금 외에 추가부담(전세계약 만료시 반환함)하여야함 단, 수도권(60만원), 광역시(45만원), 기타지역(40만원) 한도의 보증부월세는 입주 대상자가\n 원할 경우 3개월치 월세에 해당하는 금액만 입주자가 부담하고 9개월치 월세는 임차료 지급보증으로 대체가능\n 신청 및 지원내용\n 구분\n 소년소녀 전세임대\n 청년전세임대\n 신청방법\n 관할 행정복지센터 등\n 인터넷 신청(LH 청약플러스)\n 신청절차\n 01입주신청\n 02자격확인(LH지역본부)\n 03대상자선정(개별안내)\n 04전세주택물색(입주대상자) 권리분석(LH지역본부)\n 05계약 체결(LH지역본부)\n 06입주\n 지원한도액(1인기준)\n 수도권 : 13,000만원 \n 광역시 : 9,000만원 \n 기타 도 지역 : 7,000만원\n 수도권 : 12,000만원 \n 광역시 : 9,500만원 \n 기타 도 지역 : 8,500만원\n 임대보증금\n 없음\n 100만원\n 월임대료\n ① 22세 이하 무이자\n ② 전세임대주택 거주 5년 이내 50%감면 (단, 다른 우대금리와 중복적용 불가)\n ③ 전세임대주택 거주 5년 이후 보증금 지원 규모별 연 1.0~2.0%\n - 4천만원 이하 : 연 1.0%\n - 4천만원 초과 ~ 6천만원 이하 : 연 1.5%\n - 6천만원 초과 : 연 2.0%\n 임대차 기간\n 20세 초과시 3회 재계약 가능, 이후 자격 요건 충족시 최대 14회 재계약 가능\n 최초 계약 이후 최대 14회 재계약 가능(4회를 초과하여 재계약시 자격요건을 충족하는 경우로 한정)"
+    },
+    {
+      "data_id": "HOU-037",
+      "source_id": "NEWLY_RENT",
+      "원문파일": "raw_2026-10-02/NEWLY_RENT.txt",
+      "보존범위": "추가 조사에서 직접 확인한 공식 자격·제외 구간;문구 축약 없이 보존. 전체 파일 별도 보존",
+      "지원대상_원문": "대출 대상\n아래의 요건을 모두 충족하는 자\n 0. (중복대출 금지) 주택도시기금대출, 은행재원 전세자금대출(이주비대출 포함) 및 주택담보대출 미이용자\n (주택도시기금대출) 성년인 세대원 전원(세대가 분리된 배우자 및 자녀, 결혼예정 배우자, 배우자의 직계존속과 동거세대를 구성하는 경우 배우자의 직계존속 포함)이 기금 대출을 이용 중이면 대출 불가\n (전세자금대출 및 주택담보대출) 차주 및 배우자(결혼예정 또는 분리된 배우자 포함)가 전세자금대출 및 주택담보대출을 이용 중이면 대출 불가\n (임차중도금대출 중복예외허용) 아래 중 하나에 해당하는 경우 예외적으로 중복 허용\n 1) 한국주택금융공사 주택보증서 담보로 취급된 기금 또는 은행재원 전세자금 대출을 이용중인 대출자가 한국주택금융공사 주택보증서 담보로 타 물건지의 기금 임차중도금(잔금포함) 대출을 이용하려는 경우\n 2) 한국주택금융공사 주택보증서 담보로 취급된 기금 임차중도금(잔금포함) 대출을 이용 중인 대출자가 타 물건지에서 한국주택금융공사 주택보증서 담보로 기금 또는 은행재원 전세대출을 이용하고자 하는 경우\n 임차중도금 대출의 자세한 사항은 ‘임차중도금대출’ 안내를 참고(바로가기)\n (생애주기형 버팀목전세자금대출 지원) 버팀목전세자금대출, 청년전용 버팀목전세대출, 중소기업취업청년 전월세보증금대출 및 노후고시원거주자 주거이전대출을 이용중인 차주가 결혼 후 신규 또는 갱신계약 시 기존대출 상환조건으로 대출신청 가능\n 1. (계약) 주택임대차계약을 체결하고 임차보증금의 5% 이상을 지불한 자\n 2. (세대주) 대출접수일 현재 민법상 성년인 세대주(대출실행일로부터 1개월 이내에 세대분가 또는 세대합가로 인한 세대주 예정자 포함) \n ※ 세대주의 정의\n 세대별 주민등록상에 배우자, 직계존속(배우자의 직계존속) 또는 직계 비속인 세대원으로 이루어진 세대의 세대주 (* 형제·자매는 세대원에 미포함)다만, 다음에 해당하는 자도 세대주로 간주\n 1) 세대주의 배우자\n 2) 주민등록표상에 세대원으로 등록된 자가 대출접수일 현재 3개월 이내에 결혼으로 세대주로 예정된 자\n 3. (무주택) 세대주를 포함한 세대원 전원이 무주택인 자\n 4. (소득) 대출신청인과 배우자의 합산 총소득이 연간 7.5천만원 이하인 자\n 근로소득자는 건강보험자격득실확인서, 사업소득자는 사업자등록증(또는 사업자등록증명원)의 확인을 통해 현재 재직 중인 직장 또는 현재 영위 중인 사업을 기준으로 소득 산정\n 5. (자산) 대출신청인 및 배우자의 합산 순자산 가액이 통계청에서 발표하는 최근년도 가계금융복지조사의 ‘소득 5분위별 자산 및 부채현황’ 중 소득 3분위 전체가구 평균값 이하(십만원 단위에서 반올림)인 자\n 2026년도 기준 3.45억원\n 자산심사 관련 자세한 사항은 기금포탈 [고객서비스]-[자산심사 및 금리안내]-[자산 심사 안내]를 참고(바로가기)\n 6. (신용도) 아래 요건을 모두 충족하는 자\n 신청인(연대입보한 경우 연대보증인 포함)이 한국신용정보원 “신용정보관리규약”에서 정하는 아래의 신용정보 및 해제 정보가 남아있는 경우 대출 불가능\n 1) 연체, 대위변제·대지급, 부도, 관련인 정보\n 2) 금융질서문란정보, 공공기록정보, 특수기록정보\n 3) 신용회복지원등록정보\n 그 외, 부부에 대하여 대출취급기관 내규로 대출을 제한하고 있는 경우에는 대출 불가능\n 7. (공공임대주택) 대출접수일 현재 공공임대주택에 입주하고 있는 경우 불가\n 대출신청 물건지가 해당 목적물인 경우 또는 대출신청인 및 배우자가 퇴거하는 경우 대출가능\n 8. (신혼가구) 혼인관계증명서상 신청인과 그의 현재 배우자와의 혼인기간(동일한 배우자와 최초 혼인 후 재혼한 경우 최초 혼일일로부터)이 7년 이내인 가구 또는 3개월 이내 결혼을 예정하여 세대 구성이 예정된 가구"
+    },
+    {
+      "data_id": "HOU-038",
+      "source_id": "NEWBORN_RENT",
+      "원문파일": "raw_2026-10-02/NEWBORN_RENT.txt",
+      "보존범위": "추가 조사에서 직접 확인한 공식 자격·제외 구간;문구 축약 없이 보존. 전체 파일 별도 보존",
+      "지원대상_원문": "대출 대상\n아래의 요건을 모두 충족하는 자\n 0. (중복대출 금지) 주택도시기금 대출, 은행재원 전세자금대출(이주비대출 포함) 및 주택담보대출 미이용자 등\n (주택도시기금대출) 성년인 세대원 전원(세대가 분리된 배우자 및 자녀, 결혼예정 배우자, 배우자의 직계존속과 동거세대를 구성하는 경우 배우자의 직계존속, 혼인신고를 하지 않은 경우 신생아의 가족관계증명서 상 등재된 부모 포함)이 기금 대출을 이용 중이면 대출 불가\n (전세자금대출 및 주택담보대출) 차주 및 배우자(결혼예정 또는 분리된 배우자 포함)가 전세자금대출 및 주택담보대출을 이용 중이면 대출 불가\n (임차중도금대출 중복예외허용) 아래 중 하나에 해당하는 경우 예외적으로 중복 허용 \n 1) 한국주택금융공사 주택보증서 담보로 취급된 기금 또는 은행재원 전세자금 대출을 이용중인 대출자가 한국주택금융공사 주택보증서 담보로 타 물건지의 기금 임차중도금(잔금포함) 대출을 이용하려는 경우\n 2) 한국주택금융공사 주택보증서 담보로 취급된 기금 임차중도금(잔금포함) 대출을 이용 중인 대출자가 타 물건지에서 한국주택금융공사 주택보증서 담보로 기금 또는 은행재원 전세대출을 이용하고자 하는 경우\n 임차중도금 대출의 자세한 사항은 ‘임차중도금대출’ 안내를 참고(바로가기)\n 혼인신고를 하지 않은 차주의 경우, 신생아 기준 가족관계증명서상 등재된 부모에 대해 동일한 신생아로 중복대출 불가\n 1. (계약) 주택임대차계약을 체결하고 임차보증금의 5% 이상을 지불한 자\n 2. (세대주) 대출접수일 현재 민법상 성년인 세대주(대출실행일로부터 1개월 이내에 세대분가 또는 세대합가로 인한 세대주 예정자 포함) \n ※ 세대주의 정의\n 세대별 주민등록상에 배우자, 직계존속(배우자의 직계존속) 또는 직계 비속인 세대원으로 이루어진 세대의 세대주 (* 형제·자매는 세대원에 미포함)다만, 다음에 해당하는 자도 세대주로 간주\n 1) 세대주의 배우자\n 2) 주민등록표상에 세대원으로 등록된 자가 대출접수일 현재 3개월 이내에 결혼으로 세대주로 예정된 자\n 3. (출산) 대출접수일 기준 2년 내 출산(입양)한 가구 \n ※ 출산의 범위\n ① ’23.1.1. 이후 출생아부터 적용(임신 중인 태아는 미포함)\n ② ’23.1.1. 이후 출생아를 입양한 경우도 포함(단, 대출접수일 기준 입양아의 나이는 만2살 미만이어야함)\n ③ 혼인신고를 하지 않고 자녀를 출산(입양)한 경우에도 대출취급 가능\n 4. (무주택) 세대주를 포함한 세대원 전원이 무주택인 자(혼인신고를 하지 않은 경우 신생아의 가족관계증명서 상 등재된 부모 포함) \n 5. (소득) 대출신청인과 배우자의 합산 총소득이 연간 1.3억원 이하인 자. 다만 대출신청인과 배우자가 모두 소득이 있는 경우 합산 총소득이 2억원 이하인 자(부부 각 1인의 소득이 1.3억원 이하)\n 혼인신고를 하지 않은 경우, 대출신청인과 신생아 기준의 가족관계증명서상 등재된 신생아 부모의 합산 총소득을 심사\n 6. (자산) 대출신청인 및 배우자의 합산 순자산 가액이 통계청에서 발표하는 최근년도 가계금융복지조사의 ‘소득 5분위별 자산 및 부채현황’ 중 소득 3분위 전체가구 평균값 이하(십만원 단위에서 반올림)인 자\n 2026년도 기준 3.45억원\n 자산심사 관련 자세한 사항은 기금포탈 [고객서비스]-[자산심사 및 금리안내]-[자산 심사 안내]를 참고(바로가기)\n 혼인신고를 하지 않은 경우, 대출신청인과 신생아 기준의 가족관계증명서상 등재된 신생아 부모의 합산 순자산가액을 심사\n 7. (신용도) 아래 요건을 모두 충족하는 자\n 신청인이 한국신용정보원 “신용정보관리규약”에서 정하는 아래의 신용정보 및 해제 정보가 남아있는 경우 대출 불가능\n 1) 연체, 대위변제·대지급, 부도, 관련인 정보\n 2) 금융질서문란정보, 공공기록정보, 특수기록정보\n 3) 신용회복지원등록정보\n 그 외, 부부에 대하여 대출취급기관 내규로 대출을 제한하고 있는 경우에는 대출 불가능\n 8. (공공임대주택) 대출접수일 현재 공공임대주택에 입주하고 있는 경우 불가 \n 대출신청 물건지가 해당 목적물인 경우 또는 대출신청인 및 배우자가 퇴거하는 경우 대출가능"
+    },
+    {
+      "data_id": "HOU-039",
+      "source_id": "BUSAN_NEWLY",
+      "원문파일": "raw_2026-10-02/BUSAN_NEWLY_PDF.pdf.txt",
+      "보존범위": "추가 조사에서 직접 확인한 공식 자격·제외 구간;문구 축약 없이 보존. 전체 파일 별도 보존",
+      "지원대상_원문": "2. 자격요건 \n▢   신청 대상자   ※ 부부가 다음 조건을 모두 만족하여야 함 \n◦   대출신청일 1) 로부터 혼인신고일   7년 이내   신혼부부 또는 혼인 예정\n3개월 이내 예비 2)   신혼부부   ※ 이하 “부부”라 통칭함\n1) 대출신청일은 은행 담당자가 대출신청을 접수하고 보증서 발급신청 한 날을 의미 \n(정확한 보증서 발급 신청일은 서류 제출 완료 후 은행 심사 담당자에게 확인) \n2)   예비신혼부부는 대출신청일 기준 3개월 이내 혼인 예정 증빙 서류(청첩장, 예식장\n계약서 등)를 제출하고, 대출실행일 기준 3개월 이내 혼인관계증명서를 제출해야 함 \n◦   대출신청일 기준 부부 합산 연소득 1억 3천만 원 이하인 무주택자 \n◦   대출신청일 기준 부부 모두 부산광역시에 주소가 등재되어 있는 자 \n◦   확정일자부 임대차계약을 체결하고 임차보증금 5% 이상을 지불한 자 \n※ 모바일 뱅킹 앱 신청 시 계약체결일을 입력해야 하므로, 반드시 임대차계약 체결 후 신청\n※ 갱신 계약도 갱신 확정일자부 임대차계약을 체결하여야 하며 묵시적 갱신 계약은 인정 불가 \n◦   아래 제외 대상자에 해당하지 않는 자 \n\n[PAGE 3]\n- 3 - \n▢   제외 대상자   ※ 부부 중 어느 한 명이라도 다음 조건 중 하나에 해당하는 경우 제외 \n◦ 「 국민기초생활보장법 」 제2조 제2호에 따른 수급자 \n◦   부모(배우자 부모 포함)와 주택임대차 계약을 체결한 자 \n◦   본 사업에 참여하여 대출을 실행한 적이 있는 자   ※ 생애 1회 참여 가능 \n◦ 「 공공주택특별법 시행령 」 제2조 제1항 각 호의 어느 하나에 해당하는\n공공임대주택 거주자 \n◦   정부, 지방자치단체, 공공기관이 공급·운영·재정지원하는 임대주택의\n거주자 3)   및 주거지원사업 (대출·월세 지원 등) 의 수혜자 4) \n3)   행복주택,   영구임대·국민임대·전세임대주택,   드림아파트,   사회주택,   LH   공공\n임대주택, 공무원임대주택, 공공지원민간임대주택 등\n4)   주택도시기금   전세자금   대출(버팀목   등),   부산시   및   타시·도   광역·기초자치\n단체의 주거지원사업(대출·이자·월세 지원 등) 등\n※   단,   신청   당시   상기   주거지원을   받고   있더라도   대출실행일   전까지   해당   지원이\n종료되거나 관련 대출을 상환하는 경우 신청 가능(세부 사항은 FAQ 2-14~17 참고) \n▢   대상주택 \n◦   부산시 소재 임차보증금 4억 원 이하의 주택 (아파트 포함)   및 주거용 오피스텔 \n※ 공공임대주택, 건축물 대장상 불법건축물, 금융기관 제규정에 미충족되는 건물*은\n지원 불가\n* 아파트를 제외한 주택 유형의 경우 대출신청일 기준 임대인이 해당 주택 최저\n소유 기간(3개월) 미충족 시 대출 불가\n▢   이자 지원 중단 사유   ※ 부 부 중 어느 한 명 이라도 다 음 조 건 중 하나 에 해 당하는 경우 지원 중단 \n◦   대출실행 후 정당한 사유없이 1개월 내 대상 주택에 전입하지 않은 경우 \n◦   예비   신혼부부가   대출신청일로부터   3개월   이내   혼인관계증명서를\n제출하지 않은 경우 \n◦   임대차계약이 종료되거나, 현재 이용 중인 임대차계약의 임차보증금이\n4억 원을 초과한 경우 \n◦   1주택 이상 보유한 경우(부부 합산 기준) \n◦   부산시 외 타지역으로 전출하거나 이혼 또는 사별한 경우 \n◦   생계·주거급여 등 수급, 공공임대주택 입주, 공공에서 제공하는 주거\n지원사업 등의 혜택을 받고 있는 경우 \n◦   거짓이나 그 밖의 부정한 방법으로 대출금을 지원 받은 경우 \n※ 신청자(배우자 포함)는 중단 사유 발생 시 지체없이 대출 은행에 통보하여야 하며,\n미통보 및 지연 통보 시 이자 지원금· 대출금 즉시 회수,   대출만기 연장 제한,\n연체이자 부과 등 불이익이 발생할 수 있음 \n\n[PAGE 6]\n- 6 -"
+    },
+    {
+      "data_id": "HOU-040",
+      "source_id": "GAS_DISCOUNT",
+      "원문파일": "raw_2026-10-02/GAS_DISCOUNT.txt",
+      "보존범위": "추가 조사에서 직접 확인한 공식 자격·제외 구간;문구 축약 없이 보존. 전체 파일 별도 보존",
+      "지원대상_원문": "가스요금경감제도\n 경감한도 확대 시행 '22년 12월~'26년 3월, 동절기 기준(12월~익년3월)\n 최근 난방비 부담을 겪고 있는 사회적 배려대상자 고객님들께 동절기 한시적으로 요금 할인 한도를 확대 시행합니다.(12~3월)\n 할인 한도는 아래와 같이 경감 유형, 에너지바우처 대상 여부에 따라 상이합니다. \n 고객님께서 사용하신 금액이 할인 한도보다 적을 경우 사용하신 금액만큼만 추가로 할인 적용되며, \n 아래의 할인 한도는 이미 적용된 할인금액을 포함한 금액입니다. (할인한도 – 기존 할인금액 = 추가 할인금액) \n 이미 납부가 완료된 요금에 대한 추가 할인금액은 발생하는 요금부터 차감 적용될 예정입니다.\n [ 경감금액 (취사난방용) ] 한시적 적용 '22년 12월~'26년 3월, 동절기 기준(12월~익년3월)\n 사회적 배려대상자에 대한 도시가스요금 경감지원한도\n 요금할인\n 구분\n 취사난방용\n 취사용\n 동절기(12월~3월)\n 동절기제외(4월~11월)\n 에너지이용권미수급자\n 생계/의료급여\n 148,000\n 9,900\n 1,680\n 주거급여\n 148,000\n 4,950\n 840\n 교육급여\n 148,000\n 2,470\n 420\n 차상위계층\n 148,000\n 4,950\n 840\n 에너지이용권수급자\n 생계/의료급여\n 86,000\n 9,900\n 1,680\n 주거급여\n 86,000\n 4,950\n 840\n 교육급여\n 86,000\n 2,470\n 420\n 차상위계층\n 86,000\n 4,950\n 840\n 장애의 정도가 심한 장애인\n 72,000\n 9,900\n 1,680\n 국가유공자\n 72,000\n 9,900\n 1,680\n 독립유공자\n 72,000\n 9,900\n 1,680\n 차상위계층확인서발급대상\n 18,000\n 2,470\n 420\n 다자녀가구\n 18,000\n 2,470\n 420\n ※ 도시가스요금 경감대상자의 월 도시가스 사용요금이 경감금액 보다 적은 경우 기본요금을 제외한 사용요금 만큼만 경감.\n 요금할인 제도 내용\n 할인대상 : 기초생활수급자, 장애인(장애정도가 심한 장애인), 국가유공(5.18민주)유공자,독립유공자, 자활사업참여자, 차상위장애수당자, 한부모가족지원가정, 본인부담경감대상자,다자녀(3자녀 이상)가구 등이 사용하는 주택용 (취사용, 개별 난방용,중앙난방용)의 도시가스에 대해 적용함\n 요금 할인 대상\n 요금 할인 대상\n 구분\n 할인대상자\n 증명서류\n 할인자격\n 차상위계층\n 자활사업참여자\n 자활근로사업참여확인서\n 주민센터 증명서류 발급대상자\n 차상위장애수당자\n 장애인수당증명서\n 한부모가족지원가정\n 한부모가족증명서\n 본인부담경감대상자\n 차상위증명서\n 국민건강보험공단 서류 발급대상자\n 차상위계층 확인서 발급대상\n 차상위계층 확인서\n 차상위계층 확인서 발급대상자\n 사회적배려 대상자\n 기초생활수급자\n 기초생활수급자증명서\n 주민센터증명서류 발급대상자\n 장애인\n 장애인증명서\n 장애인(장애정도가 심한 장애인)\n 국가유공자\n 국가유공자증\n 1~3급 상이자\n 5.18민주유공자\n 5.18민주유공자증\n 1~3급 상이자\n 독립유공자\n 독립유공자증, 수급자증\n 독립유공자 또는 수급자\n 다자녀 가구\n 3자녀 이상 세대주\n 주민등록등본 혹은 가족관계증명서\n 알려드립니다.\n 625참전용사, 월남참전용사,고엽제피해자는 사회적배려대상자에 해당되지 않습니다.\n 차상위계층 자격요건은 주민센터(한부모가족지원가정, 자활사업참여자, 차상위장애수당자) 또는 국민건강보험공단(본인부담경감대상자)에 문의 하시기 바랍니다.\n 15년 4월 1일 부터는 읍.면.동 주민센터에서 장애인, 기초생활수급자, 차상위계층 지원을 신청하면서 도시가스, TV수신료, 이동통신요금, 전기요금 감면서비스를 동시에 신청할 수 있습니다.\n 국가유공자 및 5.18 민주유공자 자격요건은 국가보훈처 콜센터(1577-0606)에 문의하시기 바랍니다.\n 유의사항\n 1.경감자는 이사, 수급해지 등 자격 변동시 해당 권역의 지역서비스센터에 해지 요청하시기 바랍니다.\n 2.경감 갱신은 1회/매월 정부이용망을 통해 시행하므로 경감자 등록 주소지 및 자격 여부를 반드시 확인하셔야 하며, 자격 부적격 확인 시 즉시 해지됨을 알려 드립니다.\n 3.중앙난방 공동주택에 거주하는 신청자는 신청서 內 의 “중앙난방 고객번호 일람표”에 고객번호를 확인하신 후 주민센터에 방문신청하시기 바랍니다. (취사용은 요금할인에서 제외)\n 접수방법 및 제출서류\n ※ 전자정부를 통한 고객개인정보 수집에 동의하실 경우 아래의 전자정부로 열람가능한 서류는 제출을 생략합니다.\n 접수방법 및 제출서류\n 제출 여부\n 구 분\n 구 비 서 류 \n 제출생략 \n 가능서류\n 공통서류\n - 주민등록등본\n 기초생활수급자 등\n - 장애정도가 심한 장애인(복지카드 또는 장애증명서) \n - 기초생활수급자할인(기초생활수급자증명서)\n - 국가유공자(5.18)할인(국가유공자증) 1-3급\n - 독립유공자 또는 수급자 할인(독립유공자증, 수급자증)\n - 차상위계층 요금할인(차상위계층확인서) \n 제출필요 \n서류\n 다자녀가구\n - 다자녀가구의 경우 만18세 미만의 “자(子)” 또는 “손(孫)”의 \n 확인이 주민등록표상 불가능할 경우 “가족관계증명원” \n 장애 외국인\n - 장애인의 경우 외국인등록증(사실증명) 또는 국내거소신고증(사실증명) \n -신청서류 : 하단의 신청서 및 개인정보활용동의서를 다운 받으신 뒤 작성하시어 접수\n 도시가스 요금경감 신청서 및 개인정보활용 동의서(한글) / 도시가스 요금경감 신청서 및 개인정보활용 동의서(한글) \n -신청방법 : 읍.면.동 주민센터 방문신청 (단, 다자녀, 국가유공자, 독립유공자는 지역 서비스센터 우편, 방문, 팩스 신청)\n 가스요금할인은 이사 등으로 주민등록 주소지가 변경되는 경우 반드시 도시가스사에 통지하여 이전 주소지 적용건을\n 해지한 후 새로운 주소지로 관할 주민센터에 재신청 하셔야 계속 적용이 가능합니다. \n ※ 2016년 3월 31일부터 전국 시행된 \"행복출산 원스톱서비스\"로, 셋째 자녀 출산 시 주민센터에서 출생신고와 동시에 \n 다자녀가구 경감 신청이 가능합니다. \n 지역서비스 센터안내\n 배너\n 사이트 이용정보\n SK이노베이션 E&S\n 개인정보처리방침\n 영상정보처리기기운영·관리방침\n 이용약관\n 이메일주소무단수집거부\n SK윤리경영 상담/제보\n CONTACT US\n 사이트맵\n FAMILY SITE\n SK이노베이션 E&S\n 코원에너지서비스\n 부산도시가스\n 충청에너지서비스\n 영남에너지서비스(구미)\n 영남에너지서비스(포항)\n 전남도시가스\n 강원도시가스\n 전북에너지서비스\n 나래에너지서비스(O&M)\n 엔솔브\n 아이지이\n 나래에너지서비스\n 파주에너지서비스\n 여주에너지서비스\n 보령LNG터미널주식회사\n ㈜부산도시가스 : 부산광역시 해운대구 좌동순환로217번길 24\n 대표이사 : 최정석\n 사업자등록번호 : 617-81-01562\n TEL : 1544-0009\n 고객센터 : 1544-0009\n busangas@sk.com"
+    },
+    {
+      "data_id": "HOU-041",
+      "source_id": "WATER_DISCOUNT",
+      "원문파일": "raw_2026-10-02/WATER_DISCOUNT.txt",
+      "보존범위": "추가 조사에서 직접 확인한 공식 자격·제외 구간;문구 축약 없이 보존. 전체 파일 별도 보존",
+      "지원대상_원문": "수도사용요금 감면신청(다자녀 등)\n 국민기초생활수급자, 중증장애인, 국가유공자 그리고 다자녀에 대한 상하수도 사용요금 감면을 신청하는 민원사무임. 요금감면신청시 수집하는 주민등록번호는 수도법시행령 제67조의2(고유식별정보의처리)에 준용하여 신청받습니다.\n ※ 복지감면대상자는 중복감면이 불가합니다\n 인터넷\n신청하기\n 민원편람\n 수도법시행령\n 제67조의2(고유식별정보의 처리) 일반수도사업자는 법 제38조제4항에 따른 수돗물의 요금 할인에 관한 사무를 수행하기 위하여 불가피한 경우 「개인정보 보호법 시행령」 제19조제1호 또는 제4호에 따른 주민등록번호 또는 외국인등록번호가 포함된 자료를 처리할 수 있다.\n 수급자 등 요금감면 신청 : 신청장소, 민원처리, 수수료, 구비서류, 후속민원, 유의사항으로 구성 된 표\n 신청장소\n 다자녀 : 인터넷(상수도홈페이지), 주소지 주민센터\n 수급자·장애인·국가유공자 등 : 인터넷(상수도홈페이지), 전화(☎120), 사업소방문 또는 팩스\n 관할사업소찾기 \n 민원처리\n 처리기간 : 즉시\n 신청 -> 공부대조 확인 -> 대장정리 -> 자료입력\n 수수료\n 없음\n 구비서류\n 신청서 1부 다운로드 \n 다자녀는 신청서1부 + 주소지가 다를 경우 가족관계증명서 필요함 \n 후속민원\n 없음\n 유의사항 \n ○ 「국민기초생활보장법」에 따른 생계·의료·주거·교육급여 수급자.\n ○ 장애의 정도가 심한 장애인(장애의 정도가 심하지 아니한 시각장애인의 경우 장애의 정도가 좋은 눈의 시력이 0.06 초과 0.1 이하 또는 두 눈의 시야가 각각 모든 방향에서 5도 초과 10도 이하로 남은 사람을 포함) 세대주 및 그 배우자(단, 차상위계층은 세대원까지 가능).\n ※ 장애의 정도가 심하지 아니한 시각장애인의 경우 시력·시야 확인을 위해 ‘장애정도 결정서’를 별도로 제출하셔야 합니다.\n ○ 국가유공자 상이등급 1~5급 세대주 및 그 배우자 \n ○ 다자녀 : 1. 시에 주민등록을 둔 만 18세 미만의 자녀가 3명 이상인 다자녀가정\n 2. 세대별 주민등록표상 만 18세 미만의 손자ㆍ손녀가 3명 이상인 조손가정\n ※ 신청한 자녀는 행정정보공동이용망을 통해 확인하며 자녀가 세대별 주민등록표상 같이 되어 있지 않은 경우 가족관계증명서를 별도로 제출하셔야 합니다.\n ○ 매월 가구당 사용요금중 가정용 1단계요율의 10세제곱미터에 해당하는 상하수도사용 요금 및 물이용부담금 감면.\n ○ 공동주택은 신청후 관리실에 알려주셔야 관리비 적용에 반영됩니다."
+    },
+    {
+      "data_id": "HOU-042",
+      "source_id": "WATER_RATES",
+      "원문파일": "raw_2026-10-02/WATER_RATES.txt",
+      "보존범위": "추가 조사에서 직접 확인한 공식 자격·제외 구간;문구 축약 없이 보존. 전체 파일 별도 보존",
+      "지원대상_원문": "시민들의 불편사항을 해소하고 · 납부의 편의를 도모코자 자동납부 제도를 시행중에 있으며, 이를 권장 · 확대 실시하기 위해 수도요금의 일부를 할인하여 드리니 많은 신청바랍니다.\n 할인근거\n「수도급수조례 제38조」\n할인금액\n 자동납부\n - 급수전당 매월 상수도요금의 1%할인(5,000원 한도)\n - 물이용부담금도 상수도 할인율을 준용\n - 하수도 할인 없음\n 전자고지\n - 전자고지 건당 200원 할인\n 구비서류\n 통장 : 주거래통장 계좌번호, 예금주, 생년월일(사업자번호), 고객번호(수도요금영수증참조)\n신용카드 : 카드번호, 생년월일, 고객번호 (법인카드, 체크카드는 제외) ※ 휴대전화와 신용카드 소유주가 동일해야 신청 가능(본인인증필요)\n 신청방법\n 통장 : 인터넷(상수도홈페이지), 전화(콜센터 ☎120), 수도사업소 직접 방문신청, 금융기관(거래은행) 신청 등\n신용카드 : 1899-0100 (상수도 ARS)\n 주의사항\n 자동납부 이용약관 및 유의사항 숙지 철저\n - 납부마감일 은행영업시간내 통장 잔액유무 및 신용카드 한도 확인\n - 잔액부족시 익월 말일에 재청구(연체금을 다음 납기분에 포함)\n - 당월 자동납부자의 경우 해당월의 고지서 발급후부터 가상계좌, 사이버지방세청 납부 가능(반드시 콜센터(☎120) 전화하셔서 생성해야 함)\n 변동사유(이사,계좌변경,납부자변경 등) 발생시 납기 2일 전까지 콜센터(☎120) 또는 해당 금융기관에 반드시 변경 또는 해지 신청\n ※자동납부 이용 약관보기\n 자동납부시 전자고지(이메일, 휴대폰문자) 가능\n 신청방법 : 인터넷(홈페이지), 전화(☎120), 사업소 방문 또는 팩스"
+    },
+    {
+      "data_id": "HOU-043",
+      "source_id": "UTILITY_DISABILITY",
+      "원문파일": "raw_2026-10-02/UTILITY_DISABILITY.txt",
+      "보존범위": "추가 조사에서 직접 확인한 공식 자격·제외 구간;문구 축약 없이 보존. 전체 파일 별도 보존",
+      "지원대상_원문": "전기요금 할인/"
+    },
+    {
+      "data_id": "HOU-045",
+      "source_id": "BMC_NEWLY_DETAIL",
+      "원문파일": "raw_2026-10-02/BMC_NEWLY_PDF.pdf.txt",
+      "보존범위": "추가 조사에서 직접 확인한 공식 자격·제외 구간;문구 축약 없이 보존. 전체 파일 별도 보존",
+      "지원대상_원문": "2   입주자격 및 (예비)입주자 선정 기준 \n○ 공통 입주자격: 모집공고일(2026. 9. 30.) 현재 무주택세대구성원으로서 신혼ㆍ신생아 매입임대\n주택Ⅱ 소득 및 자산기준을 충족하고, 아래의 ①~⑥ 중 하나에 해당하는 자\n① 신혼부부: 모집공고일 현재 혼인 7년 이내(혼인신고일이 2019. 9. 30. ~ 2026. 9. 30.)인 사람\n② 예비 신혼부부: 모집공고일 현재 혼인 예정인 사람으로서 입주일 전일까지 혼인신고를 하는 사람\n③-1 6세 이하 자녀가 있는 한부모가족(2019. 10. 1. 이후 출생한 자녀 및 태아)\n③-2   지원대상   한부모가족:   「한부모가족지원법   시행규칙」   제3조에   따라   성평등가족부장관이\n정하여 고시하는 한부모가족\n④ 6세 이하 자녀가 있는 혼인가구(2019. 10. 1. 이후 출생한 자녀 및 태아)\n⑤ 신생아가구: 2년 이내 출산한 자녀가 있는 가구(2024. 10. 1. 이후 출생ㆍ입양한 자녀 및 태아)\n⑥ 혼인가구: 모집공고일 현재 혼인한 가구 \n<무주택세대구성원이란?> \n￭   아래 표의 세대구성원 전원이 주택(분양권 등 포함)을 소유하고 있지 않은 세대의 구성원을\n말합니다.(「주택공급에 관한 규칙」 제2조제4호) \n세대구성원   비   고\n• 신청자 및 배우자   신청자와 세대 분리되어 있는 배우자도 세대구성원에 포함\n• 신청자의 직계존속\n• 배우자의 직계존속\n• 신청자의 직계비속 (및 그 배우자)\n신청자의 세대별 주민등록표에 등재되어 있거나, 세대 분리된 신청자 배\n우자의 세대별 주민등록표에 등재되어 있는 사람에 한함\n• 배우자의 직계비속 (및 그 배우자)   신청자의 세대별 주민등록표에 등재되어 있는 사람에 한함 \n￭   아래 표에 해당하는 사람은 세대구성원에 포함됩니다. \n• 외국인 배우자   가족관계등록부에 등재되고 외국인등록(또는 국내거소신고)을 한 외국인 배우자\n• 외국인 직계존·비속\n가족관계등록부에 등재되고 외국인등록(또는 국내거소신고)을 한 사람으로서, 신청자 또\n는   분리배우자의   세대별   주민등록표에   등재되어   있거나   외국인등록증   상의   체류지(거\n소)가 신청자 또는 분리배우자의 세대별 주민등록표상 주소와 동일한 사람\n• 태아   세대구성원의 태아 \n※ 청약 신청 후 외국인 세대구성원의 출국 등으로 외국인등록번호가 효력정지 또는 말소될\n경우 부적격 처리될 수 있습니다.\n※   배우자가 국내   거주하지 않는   재외국민이거나 외국인 등록을 하지   않은 외국인(국내거소\n신고를 하지 않은 외국국적동포 포함)인 경우 그와 혼인관계에 있는 국민은 공급 신청이\n불가합니다. \n\n[PAGE 5]\n<순위별 입주자격, 소득 및 자산기준> \n￭   순위별 입주자격 \n순   위   세부 입주자격 \n1순위 \n• 공고일 기준 2년 이내 출생한 자녀 또는 태아가 있는 신생아가구\n• 지원대상 한부모가족(「한부모가족지원법 시행규칙」 제3조에 따라 성평등가족부장\n관이 정하여 고시하는 한부모가족) \n2순위 \n1순위가 아닌,\n• 미성년 자녀가 있는 신혼부부 및 예비 신혼부부\n• 6세 이하 자녀가 있는 한부모가족 \n3순위   • 미성년 자녀가 없는 신혼부부 및 예비 신혼부부 \n4순위   1 ~ 3순위가 아닌,\n• 6세 이하 자녀가 있는 혼인가구 \n5순위   1, 2, 3, 4순위가 아닌,\n• 혼인가구 \n※ 세부 입주자격 내용 중 “미성년 자녀”란 모집공고일 기준 「민법」상 미성년자로 한정합니다.\n※ 예비 신혼부부로 선정된 자가 입주일 전일까지 혼인신고를 하지 않은 경우 계약이 취소됩니다.\n※ 순위를 잘못 입력하여 신청하는 경우 변경이 불가하며, 순위조건 미충족시 탈락처리되니 정확히\n확인하고 신청하시기 바랍니다. \n￭   소득 및 자산기준 \n구   분   소득 및 자산기준\n소   득\n• 해당 세대의 월평균소득이 전년도 도시근로자 가구원수별 가구당 월평균소득의 130% 이하\n(본인 및 배우자가 모두 소득이 있는 경우 200% 이하)\n(단위: 원)\n구 분   2인 가구   3인 가구   4인 가구   5인 가구   6인 가구\n130%   8,212,778   10,618,958   11,442,863   12,125,081   12,878,142 \n200%   12,319,167   16,336,858   17,604,404   18,653,970   19,812,526 \n• 월평균소득액은 세전금액으로서 해당 세대의 월평균소득액을 모두 합산한 금액임\n• 2인 가구는 10%p 가산 적용한 금액임\n• 수급자, 지원대상 한부모가족, 차상위계층은 소득 및 자산 심사 불필요(예비 신혼부부 제외) \n￭   세대구성원 중 아래 사람은 세대구성원에서 제외되며, 신청자 본인이 입증 서류를 제출하여\n야 합니다. \n「국민기초생활 보장법 시행령」 제2조제2항제5호부터 제7호 \n5. 실종선고 절차가 진행 중인 사람\n6. 가출 또는 행방불명으로 경찰서 등 행정관청에 신고된 후 1개월이 지났거나 가출 또는 행방불명 사실을 특\n별자치시장·특별자치도지사·시장·군수·구청장(자치구의 구청장을 말하며, 이하 “시장·군수·구청장”이라 한다)이\n확인한 사람\n7. 그 밖에 공급신청자와 생계 및 주거를 달리한다고 시장·군수·구청장이 확인한 사람 \n￭   세대원의 실종, 별거 등으로 소득 및 자산파악이 불가능한 경우에는 주민등록표 말소를 확\n인하고 소득 및 자산산정의 대상에서 제외합니다. \n\n[PAGE 6]\n- 입주자격, 주택,   소득금액, 총자산가액의   산정시점은   모집공고일이며, 사업주체가   입주대상\n자 확정을 목적으로 정보시스템을 통해 확인한 입주자격은 해당 산정시점에 산정된 것으로\n간주합니다. \n￭   소득 및 자산 산정방법\n- 소득 및 자산 정보는 보건복지부에서 운영하는 사회보장정보시스템을 통하여 제공되며, 이\n는 국가 또는 공공기관이 보유한 공적 소득자료입니다.\n[소득 및 자산은 해당 세대(세대구성원 전원)의 합계액을 말함]\n- 소득 = 근로소득 + 사업소득 + 재산소득 + 기타소득\n- 총자산가액 = 부동산가액 + 자동차가액 + 금융자산가액 + 기타자산가액 - 부채\n- 자동차가액은 총자산가액에 합산 \n구   분   산정방법\n소득\n• 근로소득(상시근로소득, 일용근로소득, 자활근로소득, 공공일자리소득)\n• 사업소득(농업소득, 임업소득, 어업소득, 기타사업소득)\n• 재산소득(임대소득, 이자소득, 연금소득)\n• 기타소득(공적이전소득)\n총자산가액\n부동산가액   • 건축물(공시가격), 토지(공시지가)\n자동차가액   • 해당 세대가 보유한 모든 자동차가액의 합산금액\n금융자산가액   • 보통예금, 정기예금, 주식, 채권, 연금저축, 보험증권, 연금보험 등\n기타자산가액   • 항공기 및 선박, 주택·상가 등에 대한 임차보증금, 입목, 어업권, 회원권 등\n부채   • 대출금, 임대보증금 등 \n※ 소득 및 자산 산정방법에 대한 자세한 사항은 모집공고문 하단 첨부물 참고 \n자   산   총자산\n가액\n• 임대의무기간이 6년인 분양전환공공임대주택 자산기준 충족\n- 총자산가액   36,200만원 이하 \n• 2023년 3월 28일 이후 출산한 자녀가 있는 경우\n구   분   출산자녀수(태아 포함)에 따른 자산기준\n없음(105%)   1인(+10%p)   2인 이상(+20%p)\n총자산가액   36,200만원 이하   39,600만원 이하   43,100만원 이하 \n* 출산자녀수는 2023년 3월 28일 이후 출산한 자녀(입양자녀 및 모집공고일 기준 태아 포\n함)수를 의미하며, 기준일 이후 출산 자녀가 있는 경우에는 기준일 이전 출생한 기존 미성\n년자녀도   포함하여   최대   2자녀로   인정(단,   신청자   또는   신청자의   배우자와   같은   세대별\n주민등록표에 등재되어 있는 경우에 한함) \n\n[PAGE 7]\n○   경합 시 (예비)입주자 선정방법 \n- 동일순위 내에서 경합이 있는 경우에는 배점항목표 각 항목의 배점을 합산하여 총점이 높은\n순으로 (예비)입주자를 선정하되, 동일 점수인 경우에는 배점항목표 각 항목의 순서에 따라 점\n수가 높은 순으로 (예비)입주자를 선정하며, 경합이 있는 경우에는 추첨으로 우선순위를 결정\n※   배점항목표(국토교통부훈령 「기존주택등 매입임대주택 업무처리지침」 [별표 3]) \n평가항목   평가요소   배   점\n① 신청자의 수급자 등 여부\n※ 시설에서 급여를 실시하는 보장시설 수급자 포함\n가. 「국민기초생활 보장법」 제2조제2항에 따른\n수급자(생계급여,   의료급여,   주거급여,   교육\n급여 수급자 중 하나에 해당되는 자)\n3점\n나. 「국민기초생활 보장법」 제2조제10호에 따른\n차상위계층   2점\n② 자녀의 수\n※   (태아를   포함한   「민법」상   미성년인   자녀에   한하며,\n재혼한   경우에   이전   배우자와의   혼인관계에서   출산한\n미성년인 자녀는 공고일 현재 신청자와 동일 등본에 등\n재되어 있는 경우에 인정)\n가. 3인 이상\n나. 2인\n다. 1인\n4점\n3점\n2점\n③ 청약저축 또는 주택청약종합저축 납입 회차\n※ 신청자 명의 통장의 인정 회차 기준\n※ 발급기준일(모집공고일) : 2026.09.30.\n※ 발급 관리번호 :   2026980214 \n가. 24회 이상\n나. 12회 이상 24회 미만\n다. 6회 이상 12회 미만\n3점\n2점\n1점\n④ 공고 기준일 현재까지 신청인이 해당 사업대상지역인\n부산광역시에 연속 거주한 기간\n※ 공고일 현재까지의 연속 거주기간 산정\n가. 5년 이상\n나. 3년 이상 5년 미만\n다. 3년 미만 \n* 공고일 기준 타지역 거주자는 가점 없음(0점) \n3점\n2점\n1점\n⑤ 신청자의 장애 여부\n※ 배우자가 지적장애인ㆍ정신장애인 및 장애의 정도가\n심한 뇌병변 장애인에 해당하는 경우 배우자 장애인\n등록도 인정\n「장애인복지법」   제32조제1항에   따라   장애인\n등록증이 교부된 사람   2점\n⑥ 신청자의 65세 이상 직계존속 부양 여부\n(배우자의 직계존속도 포함)\n※ 예비 신혼부부의 경우 혼인으로 구성될 세대구성원에\n65세 이상 직계존속 등록여부\n(세대구성 확인서로 확인)\n65세 이상(1961. 10. 1. 이전 출생)의 직계존속이\n세대별 주민등록표상에   세대원 으로 등재된 경우   1점 \n※ 증빙서류 미제출 시 순위 및 배점 인정 불가하며 미신청한 배점에 대해서는 추후 인정되지 않습니다. \n\n[PAGE 8]"
+    },
+    {
+      "data_id": "HOU-046",
+      "source_id": "BMC_YOUTH_DETAIL",
+      "원문파일": "raw_2026-10-02/BMC_YOUTH_PDF.pdf.txt",
+      "보존범위": "추가 조사에서 직접 확인한 공식 자격·제외 구간;문구 축약 없이 보존. 전체 파일 별도 보존",
+      "지원대상_원문": "2   입주자격 및 (예비)입주자 선정 기준 \n○ 공통 입주자격: 모집공고일(2026. 6. 12.) 현재 무주택자인 미혼 청년으로서,\n① 19세 이상 39세 이하 (출생일 1986. 6. 13. ~ 2007. 6. 12.) 인 사람\n② 대학생(신청일 현재 해당연도 입학 및 복학 예정자 포함)\n③ 취업준비생(대학 또는 고등·고등기술학교를 졸업하거나 중퇴한 후 2년 이내인 사람(졸업유예자\n포함)으로서 직장에 재직 중이지 않은 사람)\n-   ①~③ 자격 간에는 우선순위가 없으므로, ①에 해당되지 않는 사람만 ② 또는 ③으로 신청 \n- 외국인은 신청 불가하며, 재외국민 거주자(재외국민 주민등록신고자)에 한하여 신청 가능\n- 부모가 주택을 소유한 경우에도 신청 가능 \n<대학교 인정기준> \n1. 「고등교육법」 제2조에 따른 학교(대학, 산업대학, 교육대학, 전문대학, 방송대학 등)\n2. 「평생교육법」 제31조제4항에 따라 교육부장관의 인가를 받은 고등기술학교(전공대학)\n3. 「국민 평생 직업능력 개발법」 제2조제5호에 따른 기능대학\n※ 단, 사내대학, 학점은행제 대학, 대학원, 대학원대학, 해외대학은 제외 \n<졸업·중퇴 학교 인정기준> \n￭   대학교 인정기준 \n1. 「고등교육법」 제2조에\n따른 학교(대학, 산업대학, 교육대학, 전문대학, 방송대학 등)\n※ 단, 사내대학, 학점은행제 대학, 대학원, 대학원대학, 해외대학은 제외 \n￭   고등·고등기술학교 인정기준 \n1. 「초·중등교육법」 제2조제3호에 따른 고등학교·고등기술학교\n2. 「초·중등교육법」 제51조의 방송통신고등학교\n3. 「초·중등교육법」 제55조의 특수학교\n4. 「초·중등교육법」 제60조3의 대안학교\n5. 「초·중등교육법」 제2조제3호에 따른 고등학교·고등기술학교 동등 학력 인정자(검정고시 등)\n※ 중학교, 해외고등학교는 제외 \n\n[PAGE 5]\n- 5 - \n<순위별 입주자격, 소득 및 자산기준> \n￭   순위별 입주자격 \n순   위   세부 입주자격 \n1순위\n수급자 가구 \n「국민기초생활 보장법」 제7조에 따른 생계·주거·의료급여 중 어느 하나에 해당하는\n급여를 받는 수급자 가구\n※ 신청자 본인이 수급자가 아닌 경우 수급자인 부모와 동일 주민등록표에 등재되어\n있어야 하며, 공고일 기준 30세 미만인 경우에 한하여 수급자인 부모와 분리 거주\n시에도 신청 가능\n※ 시설에서 급여를 실시하는 보장시설 수급자도 신청 가능 \n지원대상\n한부모가족 \n「한부모가족지원법 시행규칙」 제3조에 따라 여성가족부장관이 정하는 기준에 해당\n하는 지원대상 한부모가족\n※ 신청자 본인이 한부모가족 지원대상자에 해당되어야 하며, 본인 이름으로 한부모\n가족증명서 발급이 가능한 경우 신청 가능 \n차상위계층 가구 \n「국민기초생활보장법」 제2조제10호에 해당하는 차상위계층 가구\n※ 신청자 본인이 차상위계층이 아닌 경우 차상위계층인 부모와 동일 주민등록표에\n등재되어 있어야 하며, 공고일 기준 30세 미만인 경우에 한하여 차상위계층인 부모\n와 분리 거주 시에도 신청 가능 \n2순위   본인과   부모의   월평균소득이   전년도   도시근로자   가구원수별   가구당   월평균소득의\n100% 이하이고, 본인과 부모의 자산이 국민임대주택의 자산기준을 충족하는 자 \n3순위   본인의   월평균소득이   전년도   도시근로자   1인   가구   월평균소득의   100%   이하이고,\n본인의 자산이 행복주택(청년)의 자산기준을 충족하는 자 \n￭   소득 및 자산기준\n- 1인 가구는 20%P, 2인 가구는 10%P 가산 적용한 금액입니다.\n- 신청접수 후 순위 변경은 불가하므로 신청 시 유의하시기 바랍니다. \n※ 2순위 신청자 → 부모 인적사항 필수 기입\n1순위 또는 3순위 신청자 → 부모 무주택 배점 신청한 사람에 한하여, 부모 인적사항 필수 기입 \n￭   소득 및 자산 산정방법\n- 소득 및 자산 정보는 보건복지부에서 운영하는 사회보장정보시스템을 통하여 제공되며, 이는\n국가 또는 공공기관이 보유한 공적 소득자료입니다.\n- 소득 = 근로소득 + 사업소득 + 재산소득 + 기타소득\n- 총자산가액 = 부동산가액 + 자동차가액 + 금융자산가액 + 기타자산가액 - 부채 \n순 위   소득기준   자산기준\n1순위   수급자 등 자격 확인   수급자 등 자격 확인\n2순위\n본인과 부모의 월평균소득이 전년도 도시근로자\n가구원수별 가구당 월평균소득의 100% 이하\n- (1인)   4,576,036원 , (2인)   6,452,897원, \n(3인)   8,168,429원 \n국민임대주택 자산기준 충족\n- 총자산가액   34,500만원   이하,\n자동차가액   4,542만원   이하\n3순위\n본인의 월평균소득이 전년도 도시근로자 가구\n원수별 가구당 월평균소득의 100% 이하\n- (1인)   4,576,036원 \n행복주택(청년) 자산기준 충족\n- 총자산가액   25,100만원   이하,\n자동차가액   4,542만원   이하 \n\n[PAGE 6]\n- 6 - \n○   경합 시 (예비)입주자 선정방법 \n- 동일순위 내에서 경합이 있는 경우에는 배점항목표 각 항목의 배점을 합산하여 총점이 높은 순\n으로 (예비)입주자를 선정하되, 동일 점수인 경우에는 배점항목표 각 항목의 순서에 따라 점수가\n높은 순으로 (예비)입주자를 선정하며, 경합이 있는 경우에는 추첨으로 우선순위를 결정\n※   배점항목표(국토교통부훈령 「기존주택등 매입임대주택 업무처리지침」 [별표 2의2]) \n- 자동차가액은 총자산가액에 합산되나, 개별 기준도 충족하여야 함 \n구   분   산정방법\n소득\n• 근로소득(상시근로소득, 일용근로소득, 자활근로소득, 공공일자리소득)\n• 사업소득(농업소득, 임업소득, 어업소득, 기타사업소득)\n• 재산소득(임대소득, 이자소득, 연금소득)\n• 기타소득(공적이전소득)\n총자산가액\n부동산가액   • 건축물(공시가격), 토지(공시지가)\n자동차가액   • 소득 및 자산조회 대상 가구원이 보유한 모든 자동차가액의 합산금액\n금융자산가액   • 보통예금, 정기예금, 주식, 채권, 연금저축, 보험증권, 연금보험 등\n기타자산가액   • 항공기 및 선박, 주택·상가 등에 대한 임차보증금, 입목, 어업권, 회원권 등\n부채   • 대출금, 임대보증금 등\n자동차가액   • 소득 및 자산조회 대상 가구원이 보유하고 있는 자동차 중 가장 높은 자동차가액 기준 \n※ 소득 및 자산 산정방법에 대한 자세한 사항은 모집공고문 하단 첨부물 참고 \n적용대상   평가항목   평가요소   배   점\n1순위\n① 수급자 등 여부\n※ 1순위 자격 경합 시에만 적용\n※ 시설에서 급여를 실시하는 보장시설 수급자 포함\n가. 「국민기초생활 보장법」 제2조제2항에\n따른 수급자 \n※ 신청자 본인이 수급자가 아닌 경우에는 수급자인\n부모와 동일 주민등록표에 등재되어 있거나 30세\n미만인 경우에만 인정 \n3점\n나. 「한부모가족지원법 시행규칙」 제3조에\n따라 여성가족부장관이 정하는 기준에\n해당하는 지원대상 한부모가족 \n※ 신청자 본인이 한부모가족 지원대상에 해당되어야 함 \n3점\n공 통   ② 부모 무주택 여부   부모가 무주택인 경우   2점\n공 통   ③ 장애 여부\n가. 「장애인복지법」 제32조제1항에 따라\n장애인등록증이 교부된 사람   2점\n나. 「장애인복지법」 제32조제1항에 따라\n장애인등록증이 교부된 가구의 청년   1점\n2 · 3순위\n④ 소득수준이 소득기준 50% 이하 여부\n※ 2순위 또는 3순위 자격 경합 시에만 적용\n※ 2순위는 본인과 부모 소득 합산 기준,\n3순위는 본인 소득 기준\n소득수준이 해당 순위 소득기준의 50%\n이하인 경우\n- (1인)   2,669,354원 , (2인)   3,519,762원, \n(3인)   4,084,215원 \n3점\n공 통   ⑤ 청약저축 또는 주택청약종합저축 납입 회차\n※ 신청자 명의 통장의 인정 회차 기준\n가. 24회 이상\n나. 12회 이상 24회 미만\n다. 6회 이상 12회 미만\n3점\n2점\n1점 \n※ 증빙서류 미제출 시 순위 및 배점 인정 불가 \n\n[PAGE 7]\n- 7 -"
+    },
+    {
+      "data_id": "HOU-047",
+      "source_id": "HF_MORTGAGE",
+      "원문파일": "raw_2026-10-02/HF_MORTGAGE.txt",
+      "보존범위": "추가 조사에서 직접 확인한 공식 자격·제외 구간;문구 축약 없이 보존. 전체 파일 별도 보존",
+      "지원대상_원문": "상품요건\n 상품구조\n 상품요건\n 연령\n 민법상 성년(연령은 민법에 따라 계산)\n 국적\n 주민등록표 등본에 기재된 대한민국 국민(재외국민, 외국국적동포 포함)\n 주택 및 소유자\n 실주거용으로 사용되는「주택법」제2조1호의 공부상 주택\n 아파트와 기타주택(연립ㆍ다세대ㆍ단독주택)으로 구분\n 대출승인일 현재 담보주택이 6억원을 초과하는 주택은 취급 불가담보주택의 평가 방법 안내\n 구입용도의 경우 시세정보, 감정평가액, 매매가액(낙찰가액, 분양계약서상 실매매액 등 매수인이 실제 지급한 금액) 중 어느 하나라도 6억원을 초과하는 주택은 취급 불가\n 채무자 또는 배우자(결혼예정자 포함)가 소유자(예정 소유자)\n 채무자와 소유자가 다른 경우 소유자를 담보제공자로 하여 근저당권 설정\n 소득 요건\n 부부(미혼인 경우 본인)기준 연소득 7천만원 이하 [대출 신청일 기준 혼인 신고일이 7년 이내인 신혼부부(결혼예정자) 8천5백만원 이하, 미성년 자녀 1자녀 9천만원, 다자녀가구 1억원 소득심사 방법 안내\n 신용 평가 및 정보\n NICE신용평가정보(주)의 CB점수가 271점 이상인 경우만 취급 가능\n 공사가 사전심사 하는 경우에는 승인일 현재 부부가 공사 내규에 의한 채무관계자로 규제되고 있는 경우 취급 불가\n 신청인 본인이 한국신용정보원 “신용정보관리규약”에서 정하는 아래의 신용정보가 남아있는 경우는 취급불가\n 연체, 대위변제ㆍ대지급, 부도, 관련인 정보\n 금융질서문란정보, 공공정보\n 신용회복지원 등록정보\n 대출 약정위반 정보, 용도외 유용자 정보\n 배우자도 소득이 있을 경우 신용정보 함께 확인. (신용평가, 대출 약정위반 및 용도외 유용자 정보는 생략)\n 주택 보유수\n 채무자와 배우자의 총 주택보유수가 본건 담보주택을 제외하고 무주택 또는 1주택\n 대체취득을 위한 일시적 2주택자로, 구입용도에 한하여 기존주택 처분조건부로 취급 가능\n 기존주택은 대출실행일로부터 3년내 처분\n 자금용도\n 구입용도: 담보주택의 건물에 대한 소유권 이전(보존) 등기일로부터 3개월 이내에 대출 신청한 경우\n 소유권이전과 동시에 대출 취급 가능\n 담보주택이 수도권(서울특별시·인천광역시·경기도) 또는 규제지역에 소재하는 경우 대출실행 후 6개월 이내 전입 및 입증서류 제출 필수\n ※ 자세한 전입요건은 상품설명서를 참고해주시기 바랍니다.\n 보전용도: 대출신청일이 소유권 이전(보존) 등기일로부터 3개월을 경과*하고 30년 이내이며 다음중 하나에 해당하는 경우\n* 상속·증여로 주택을 취득하는 경우 적용 제외\n 임차보증금 반환용도(부부간 임대차계약은 제외)\n 상속·증여로 주택을 취득하는 경우(이미 취득한 경우 포함 하며, 부부간 증여는 제외)\n 채무자가 소상공인에 해당하는 경우\n 상환용도: 구입 또는 보전용도의 기존 주택담보대출을 상환하기 위해 대출 신청한 경우\n 기존대출의 채무자와 보금자리론의 채무자는 동일인이어야 하나, 배우자의 경우는 동일인으로 간주\n 상품구조\n LTV\n 아파트기준 최대 70% (기타주택은 65% 이내) 다만, 담보주택 소재지가 규제지역인 경우,(또는) CB점수 271~614점 또는 MSS점수가 「MSS운영기준」에서 별도로 정하는 경우,(또는) 소득추정방법을 사용하는 경우 담보주택의 유형별로 10%p씩 차감하여 적용\n 규제지역 : 조정대상지역, 투기지역, 투기과열지구\n※ 담보주택 소재지가 규제지역이더라도 생애최초, 전세사기피해자, 실수요자(구입용도, 무주택, 주택 가격 6억 이하, 부부합산 연소득 7천만원 이하 모두 충족)인 경우 미차감\n DTI\n 최대 60%다만, 담보주택 소재지가 규제지역인 경우 10%p 차감하여 적용(조정지역일지라도 실수요자 요건에 해당되거나 임차보증금 반환용도인 경우에는 차감 적용하지 않음)\n 규제지역 : 조정대상지역, 투기지역, 투기과열지구\n※ 담보주택 소재지가 규제지역이더라도 임차보증금 반환용도, 생애최초, 전세사기피해자, 실수요자(구입용도, 무주택, 주택 가격 6억 이하, 부부합산 연소득 7천만원 이하 모두 충족)인 경우 미차감\n 대출한도\n 대출한도 최대 3.6억원(다자녀 가구 · 전세사기피해자 4억원, 생애최초 4.2억원)\n 대출만기\n 10년, 15년, 20년, 30년, 40년, 50년\n(만기 40년은 만 40세 미만 또는 만 50세 미만 신혼가구, 만기 50년은 만 35세 미만 또는 만 40세 미만 신혼가구 조건을 충족하셔야 합니다. 신혼가구는 대출신청일 기준 혼인신고일이 7년이내인 가구를 의미하며 배우자가 외국인인 경우 외국인등록이 필요합니다.)\n 상환방식\n 원리금 균등분할상환, 체감식 분할상환(원금 균등분할상환), 체증식 분할상환\n만 40세 미만 채무자 및 공사가 사전심사한 경우에만 허용하며, 대출만기 50년 적용 불가\n 대출실행 후에는 대출만기 및 원금상환방식 변경 불가\n 금리우대 (-) 및 가산(+)\n 우대금리(최대 1.0%p 적용 가능)\n 저소득청년(0.1%p), 신혼가구(0.3%p), 사회적 배려층(한부모가구·장애인가구·다문화가구로 각 항목별 0.7%p 최대 2가지 항목 중복적용 가능), 다자녀가구(2자녀 0.5%p, 3자녀 이상 0.7%p), 녹색건축물(0.1%p), 미분양관리지역 내 미분양주택 입주자에 대한 우대금리(0.2%p), 전세사기피해자(1.0%p), 신생아출산가구(0.2%p)\n※ 단, 신혼부부 우대금리와 신생아 출산가구 우대금리 서로 중복 불가\n 가산금리\n 담보물 소재지가 규제지역인 경우 0.2%p 가산금리 부과(단, 전세사기피해자인 경우 미부과)\n 조기(중도)상환수수료\n 최초 실행일로부터 3년 이내에 원금을 조기(중도)상환할 경우 대출의 남은일수에 따라 0.5% 한도 내에서 부과\n 신청일 기준 사회적배려층 또는 다자녀가구(3자녀 이상) 우대금리 적용 대상자 및 전세사기피해자 보금자리론 이용자는 조기상환수수료 면제\n 위 내용은 상품특징 중 일부 대표적인 내용만 기술하였으므로, 소득산정방법, 담보주택평가방법 등 자세한 사항은 PDF파일 참조 부탁드립니다.\n 우대금리 적용여부에 따라 보금자리론 상품 성격이 달라지므로 참고 부탁드립니다.\n 자세한 내용은 설명자료(보금자리론 업무처리기준)를 통해 확인할 수 있습니다.\n 바로보기다운로드\n 보다 이해하기 쉬운 안내는 [보금자리론 상품설명서]를 통해 확인할 수 있습니다.\n 바로보기다운로드\n 주택보유수\n 대출실행일 후 매 검증 기준일(대출실행일로부터 매 1년)을 기준으로 추가주택을 보유 시 검증기준일로부터 6개월 내 처분해야 합니다.\n 분양권(조합원 입주권 포함) 또는 상속으로 추가 주택을 취득한 경우에는 검증기준일로부터 3년 내 처분해야 합니다.\n 처분 사실을 처분기한 내 은행 또는 공사에 입증하지 못한 경우 기한의 이익 상실되어 즉시 채무 전액을 변제하여야 하며, 미처분 사실 확인일로부터 향후 3년 간 보금자리론 신규 이용이 제한됩니다."
+    },
+    {
+      "data_id": "HOU-048",
+      "source_id": "DAMAGE_REPAIR",
+      "원문파일": "raw_2026-10-02/repair_full.txt",
+      "보존범위": "추가 조사에서 직접 확인한 공식 자격·제외 구간;문구 축약 없이 보존. 전체 파일 별도 보존",
+      "지원대상_원문": "□ 신 청 자: \n공용부분 소유자(점유자)의 과반수 동의를 득한\n 사업대상 전세사기피해주택의 관리단 또는 거주 중인 전세사기피해자\n □ 대상지역:\n 부산시 전 지역\n  \n2. 지원대상\n □ 대상주택 \n(단독·다가구·다세대·연립·아파트·오피스텔 등\n(주거용만 해당)\n)\n  ○\n \n임대인(소유자)의 소재불명 또는 연락두절 등으로 공용부의 안전확보\n 및 피해복구가 시급한 부산광역시 소재의 전세사기피해주택\n   ※ 단독주택(다가구주택)의 경우 ‘개별 가구의 전용면적’ 이외 면적을 ‘공용부분’으로 함\n  \n○ 제외대상\n    - 경매 등으로 소유권이 이전된 피해주택\n    - 파산결정 등에 따라 피해주택을 관리하는 관재인이 존재하는 경우  \n    - \n인테리어, 조명기기 또는 통신기기(인터넷, TV 등)를 교체하려는 주택\n    - \n「건축법」 제11조에 따른 인허가 사항 및 「집합건물법」 제15조에 \n따라 구분소유자의 3분의 2이상의 결의가 필요한 공용부분의 변경사항\n □ 대상요건\n  ○ 부산광역시 소재의 전세사기피해주택\n  ○ \n전세사기피해자가\n 거주하고 있는 전세사기피해주택\n  ○ 공용부 안전확보·피해복구가 시급히 필요한 전세사기피해주택\n  ○ \n임대인이 소재불명 및 연락두절 상태인 전세사기피해주택\n(2가지 요건 충족)\n   \n구    분\n필요 여부\n지원 방식\n비    고\n전세사기피해자\nO\n모두 \n필요\n보조금 \n지급 \n✔\n \n「전세사기피해자법」에서 정하는\n 지원대상에 한하여 지원 원칙\n전세사기피해주택 거주 \nO\n시급한 안전확보 및 피해복구\nO\n임대인 소재불명 상태 증빙\nO\n임대인 연락두절 상태 증빙\nO\n   ※ \n전세사기피해자·전세사기피해주택 여부 \n「전세사기피해자등 결정문」\n으로 확인\n   ※ \n시급한 안전확보 및 피해복구 여부는 \n“부산광역시 전세피해주택 실태조사”\n 결과에 근거\n하여 전세피해지원센터(선정위원회)에서 결정\n  \n3. 소재불명·연락두절 증빙\n □ 소재불명 및 연락두절\n(신청일 기준 3개월 이내)\n  ○ 증빙내용: 전세사기피해주택의 임대인이 소재불명·연락두절인 상태\n  ○ 증빙필요 여부: 소재불명과 연락두절 \n2가지 증빙\n 모두 필요\n \n ○ 소재불명\n   - 소재탐지*를 통해 확인된 주소지에 \n내용증명 발송(1회) 후 반송기록\n     * \n소재탐지 : 부동산계약서, 공부(등기 등), 관계자(공인중개사 등) 확인 방법으로 주소지 확인\n     * 소재탐지 결과 \n주소지가 상이할 경우 모든 주소지로 등기를 발송\n 후 반송기록\n \n  ○ 연락두절\n   - 임대인에게 연락을 취하였으나 \n14일 이상\n(최소 3회 이상)\n 무응답 기록\n    \n&lt; 임대인이 소재불명·연락두절 증빙 및 확인 방법 &gt;\n ✔ \n증빙서류 제출\n(임차인 → 전세피해지원센터)\n  - \n우편기록\n〔주택 수선요구 내용증명 발송 및 반송(수취거절로 인한 반송은 제외)기록〕\n +\n \n통신기록\n(통화, 문자, SNS 등 14일 이상 3회\n 이상 무응답 기록)\n \n모두 제출\n   ※ 신청일 기준 3개월 이내 기록\n ✔ \n증빙서류 사실여부 확인\n(전세피해지원센터)\n  - \n임대인 소재탐지\n(주소지, 연락처 등)\n 후 \n3회 이상 \n무응답 확인 예정\n   ※ 전세피해지원센터에서 \n소재불명·연락두절 사실여부 확인 후\n \n“최종결정”\n  \n○ 임대인이 체포·구속 또는 유치된 경우\n   - 피해자가 사건 담당 경찰관을 통하여 소재 확인 및 \n사실확인 증빙\n 제출\n   - \n전세사기피해지원센터에서\n 안전확보 및 피해복구 시급성 판단 후 \n“최종결정”\n  \n○ 소재불명 및 연락두절 제외사항\n   - \n전세피해지원센터에서 소재 확인 또는 연락된 경우\n(단, 체포·구속·유치 제외)\n   - 임대인이 「병역법」 제3조에 따라 병역의무를 수행하는 경우\n   - \n임대인의 \n파산결정 등에 따라 피해주택을 관리하는 관재인이 존재하는 경우"
+    },
+    {
+      "data_id": "HOU-044",
+      "source_id": "UTILITY_FAMILY",
+      "원문파일": "raw_2026-10-02/UTILITY_FAMILY.txt",
+      "보존범위": "추가 조사에서 직접 확인한 공식 자격·제외 구간;문구 축약 없이 보존. 전체 파일 별도 보존",
+      "지원대상_원문": "다자녀 가정 주요 혜택(혜택유형, 연번, 제공기관, 혜택 내용, 자녀수(3자녀이상 / 2자녀), 사용시 유의사항, 문의처로 이루어진 표)\n 혜택\n전기요금 30% 감면\n(최대 16,000원)\n O\n -\n 주민등록등본 확인\n 한국전력공사\n(123)"
+    },
+    {
+      "data_id": "HOU-049",
+      "source_id": "LH_RENT_GUIDE",
+      "원문파일": "raw_2026-10-02/LH_RENT_GUIDE.txt",
+      "보존범위": "추가 조사에서 직접 확인한 공식 자격·제외 구간;문구 축약 없이 보존. 전체 파일 별도 보존",
+      "지원대상_원문": "기숙사형 매입임대\n 개요\n 대학 기숙사 부족 해소를 위해 LH에서 매입한 주택을 대학생 등에게 시중시세 40% 수준으로 임대하는 주택\n 입주자격\n 무주택자인 미혼 청년으로 1. 대학생 및 대학원생, 2. 만 19세 이상 만 39세 이하(3순위에 한함)이면서, 아래 순위에 해당하는 자\n 1순위\n 1 생계,의료,주거급여수급자 가구\n 2 지원대상 한부모가족\n 3 차상위계층\n 2순위\n 본인+부모 월평균소득 100%이하자\n 3순위\n 본인 월평균소득 100%이하자\n 임대조건\n 시중시세의 40%\n 신청방법\n 모집공고 시 LH청약센터 온라인 신청"
+    },
+    {
+      "data_id": "HOU-050",
+      "source_id": "DREAM",
+      "원문파일": "raw_2026-10-02/DREAM.txt",
+      "보존범위": "추가 조사에서 직접 확인한 공식 자격·제외 구간;문구 축약 없이 보존. 전체 파일 별도 보존",
+      "지원대상_원문": "공급방안\n 사업시행자 : 민간 \n 공급대상 : 19세 이상 39세 이하로서 무주택인 청년 및 신혼부부\n 최초임대료 : 주변시세의 85% 이하\n 임차인 모집 정보\n 단지명, 위치, 세대수, 사업시행자(연락처), 진행단계, 비고로 구성된 표입니다.\n 단지명\n 위 치\n 세대수\n 사업시행자(연락처)\n 진행단계\n 비고\n 서면이랜드피어\n(부전동 희망더함주택)\n 부산진구 부전동 536-18\n 299\n ㈜이베데스다제이호 \n 위탁관리 부동산 투자회사\n(☏051-809-4660)\n 준공(‘22.1)\n 수시모집\n 예서두레라움\n(연산동 희망더함주택)\n 연제구 연산동 1244-1\n 276\n ㈜은영\n(☏051-905-0030)\n 준공(‘23.4)\n 수시모집\n 서면5차 봄여름가을겨울\n(범천동 희망더함주택)\n 부산진구 범천동 1298-10\n 234\n 수영주택건설(주)\n(☏051-808-3745)\n 준공(‘24.1)\n 수시모집\n 부산항 퀸즈W 오션프런트\n(봉래동 희망더함주택)\n 영도구 봉래동2가 140\n 299\n 대성문산업개발(주)\n(☏051-731-0508)\n 준공 (`25.4)\n 수시모집\n 예서두레라움(괘법동 희망더함주택)\n 괘법동 544-28\n 99\n (주)은영\n(☏051-905-0030)\n 준공('26.8.)\n 수시모집\n ※ 임대료, 입주방법, 계약 등 임대사업자(사업시행자)에게 별도 문의\n제11조(임차인   자격 및   최초임대료   산정   원칙)   ① 임차인 자격 및 선정방법은\n민간임대주택법 등 관계법령에 따르며, 최초임대료는 청년층의 주거 안정을 위해 주변\n시세의 90%(특별공급 75% 이하)이하로 책정하여야 한다.\n② 최초임대료 산정 및 임대주택 공급비율 등은 자문위원회의 자문을 거쳐 결정하며,\n사업시행자는 자문위원회의 결과를 반영하여 시장과 사업협약 등을 추진하여야\n한다.\n③ 분양자격, 분양주택 공급 방법, 분양가격 등 주택의 분양에 관한사항은 「주택\n공급에 관한 규칙」, 「건축물의 분양에 관한 법률」 등 관련 법령에 따른다.\n제12조(임차인   모집)   ①   일반공급대상자 및 특별공급대상자에게 공급하는 주택의\n비율은 민간임대주택법에 따른다.\n② 사업시행자는 공개모집의 방법으로 임차인을 모집하여야 하며, 민간임대주택법\n시행규칙 제14조의8에 따라 전산관리지정기관에 같은 규칙 제14조의4부터 제14조의\n6까지에 따른 공급신청서 접수, 임차인·예비임차인 선정 및 동·호수 배정 업무의\n대행을 의뢰할 수 있다. 또한 관할 구청장등은 민간임대주택법 제42조제4항에\n따른 민간임대주택 공급신고를 사업시행자로부터 접수받은 경우 다음 각 호의\n사항을 시장과 협의하여야 한다.\n1. 사업시행인가(사업승인, 건축허가 포함)의 내용\n2. 다음 각 목의 사항이 포함된 임차인 모집계획안\n가. 민간임대주택 공급 현황 및 임대조건\n나. 임차인의 자격 및 선정방법\n3. 민간임대주택법 제49조제1항에 따른 임대보증금에 대한 보증 가입 여부 \n\n[PAGE 6]\n- 6 - \n4. 임차인 모집공고(안)\n③ 시장은 구청장등으로부터 제2항에 따른 협의가 있을 경우 3일 이내 검토결과를\n통보하여야 하며, 사업시행자는 민간임대주택 공급 신고 후 부산광역시를 주된\n보급지역으로 하는 하나 이상의 일간신문에 임차인 모집공고하여야 한다.\n④ 사업시행자는 임차인과 표준임대차 계약을 체결할 경우 민간임대주택법 제46조에\n따라 임대주택 소재지의 관할 구청장등에게 신고하여야 하며, 청년 임차인 모집\n결과 및 입주 현황을 매 분기마다 그 분기가 끝나는 달의 다음 달 말일까지\n시장에게 제출하여야 한다."
+    },
+    {
+      "data_id": "HOU-051",
+      "source_id": "LH_USER_LINK",
+      "원문파일": "raw_2026-10-02/LH_USER_LINK.txt",
+      "보존범위": "추가 조사에서 직접 확인한 공식 자격·제외 구간;문구 축약 없이 보존. 전체 파일 별도 보존",
+      "지원대상_원문": "분양전환 공공임대주택(5년, 6년, 10년)\n 임대기간(5년, 6년, 10년) 종료 후 입주자에게 우선 분양전환하는 주택\n입주자격 및 임대조건\n 5년(10년) 공공임대주택 입주자격 및 임대조건 : 구분, 입주자격, 임대조건,비고에 대한 정보를 제공합니다\n 구분\n 입주자격\n 임대조건\n 비고\n 전용 85㎡ 이하\n 무주택세대구성원으로서 입주자저축(청약저축 포함) 가입자 우선\n 보증금+월임대료\n 시중 시세 90% 수준\n 전용 85㎡ 초과\n 만19세 이상인 자로서 입주자저축(청약예금 포함) 가입자 우선\n 보증금+월임대료\n 시중 시세 수준\n분납 임대주택\n 입주자가 입주 시까지 집값의 일부만을 초기 자본금(30%)으로 납부하고 임대 기간(10년) 동안 단계적으로 잔여분 납금을 모두 납부하고 분양전환 받는 주택\n입주자격 및 임대조건\n 분납 임대주택 입주자격 및 임대조건 : 구분, 입주자격, 임대조건, 비고에 대한정보를 제공합니다\n 구분\n 입주자격\n 임대조건\n 비고\n 전용 85㎡ 이하\n 무주택세대구성원으로서 입주자저축(청약저축 포함) 가입자 우선\n 분납금+월임대료\n -\n 전용 85㎡ 초과\n 만19세 이상인 자로서 입주자저축(청약예금 포함) 가입자 우선\n 분납금+월임대료\n -\n분납금 납부시기 및 비율\n 분납 임대주택 분납금 납부시기 및 비율 : 납부시기, 납부비율, 납부기준에 대한정보를 제공합니다\n 납부시기\n 납부비율\n 납부기준\n 입주시까지\n 전체지분의 30%\n 최초주택가격(택지비조성원가의 60~85% + 표준건축비)\n 입주 후 4/8년\n 40% (각 20%)\n 최초주택가격 + 기간이자와 감정가격 중 적은 금액\n 임대기간 종료 시\n 30%\n 감정가격\n50년 공공임대주택\n 영구임대주택을 대처할 목적으로 기금 등을 지원받아 한국토지주택공사 또는 지자체가 건설·공급하는 임대주택으로 분양전환되지 않음\n 임대조건\n 보증금 + 월임대료"
+    },
+    {
+      "data_id": "HOU-052",
+      "source_id": "DORM_PUBLIC",
+      "원문파일": "raw_2026-10-02/DORM_PUBLIC.txt",
+      "보존범위": "추가 조사에서 직접 확인한 공식 자격·제외 구간;문구 축약 없이 보존. 전체 파일 별도 보존",
+      "지원대상_원문": "신청대상\n 행복기숙사\n 구분\n 공통 선발\n 사회적배려대상 우선 선발\n 1인실\n 직전학기 성적이 C0(4.5만점의 2.0) 이상인 자(신입생 제외)\n 고등교육법상 제2조에 해당하는 대학의 재학생\n 취업준비생 : 졸업(또는 중퇴)한 지 2년 이내로서 재직중이지 않은\n 사람\n 장애인\n 2인실\n 사회적 배려 대상자\n 기초생활수급 가구 자녀\n 차상위계층 가구 자녀\n 전년도 도시근로자 월평균 소득 70% 이하 가구\n 자녀\n 세부 사항은 기숙사별 홈페이지(입사공고문) 참고\n 대학은 고등교육법 제2조 대학, 산업대학, 교육대학, 전문대학, 기술대학을\n 말하며 방송대학, 통신대학, 방송통신대학 및 사이버 대학 및 각종학교, 평생교육법상 교육기관은 제외\n신청대상 자격\n 행복기숙사\n 순위\n 자격 조건\n 1순위\n 장애인\n 2순위\n 기초생활수급 가구 자녀\n 3순위\n 차상위계층 가구 자녀\n 4순위\n 아동복지시설 퇴소자, 한부모가정 자녀, 다문화가정 자녀\n 5순위\n 전년도 도시근로자 월 평균 소득 30% 이하 가구 자녀 또는 한국장학재단 학자금 지원구간\n 경계값 2구간(기준 중위소득 50%) 이하 가구 자녀\n 6순위\n 전년도 도시근로자 월 평균 소득 50% 이하 가구 자녀 또는 한국장학재단 학자금 지원구간\n 경계값 3구간(기준 중위소득 70%) 가구 자녀\n 7순위\n 전년도 도시근로자 월 평균 소득 70% 이하 가구 자녀"
+    },
+    {
+      "data_id": "HOU-053",
+      "source_id": "NEWBORN_BUY",
+      "원문파일": "raw_2026-10-02/NEWBORN_BUY.txt",
+      "보존범위": "추가 조사에서 직접 확인한 공식 자격·제외 구간;문구 축약 없이 보존. 전체 파일 별도 보존",
+      "지원대상_원문": "대출 대상\n대출 대상주택을 구입하고자 하는 자로서 아래의 요건을 모두 충족하는 자\n 1. (계약) 주택을 취득하기 위하여 주택매매계약을 체결한 자 (상속, 증여, 재산분할로 주택을 취득하는 경우 불가)\n 2. (세대주) 대출접수일 현재 민법상 성년인 세대주\n 도움말\n 3. (출산) 대출접수일 기준 2년 내 출산(입양)한 가구(다만, 신생아 특별공급 또는 우선공급 당첨자인 경우 대출접수일 현재 자녀가 만 2세 초과시에도 가능) \n ※ 출산의 범위[자주하는 질문 바로가기]\n ① ’23.1.1. 이후 출생아부터 적용(임신 중인 태아는 미포함)\n ② ’23.1.1. 이후 출생아를 입양한 경우도 포함(단, 대출접수일 기준 입양아의 나이는 만2살 미만이어야함)\n ③ 혼인신고를 하지 않고 자녀를 출산(입양)한 경우에도 대출취급 가능\n 4. (무주택) 세대주를 포함한 세대원 전원(혼인신고를 하지 않은 경우 신생아의 가족관계증명서 상 등재된 부모 포함)이 무주택인 자 [자주하는 질문 바로가기]\n - 분양권 및 조합원 입주권도 주택 보유로 간주\n 5. (중복대출 금지) 주택도시기금대출 및 은행재원 주택담보대출 미이용자 등\n (주택도시기금대출) 성년인 세대원 전원(혼인신고를 하지 않은 경우 신생아의 가족관계증명서 상 등재된 부모 포함)\n 도움말\n 이 기금 대출을 이용 중이면 대출 불가 \n 단, 기금의 전세자금 대출을 받은 경우에는 실행일 당일 상환조건부로 대출 가능\n (주택담보대출) 차주 및 배우자(결혼예정 또는 분리된 배우자 포함)가 다른 목적물로 주택담보(중도금)대출을 이용 중이면 대출 불가\n 한국주택금융공사가 심사하여 취급하는 경우 채무자 또는 배우자가 동일 물건지로 한국주택금융공사 전세 및 월세자금보증을 이용 중이면 대출 불가 (대출실행일까지 전세자금보증을 해지하는 경우 대출 가능)\n (동일 신생아) 혼인신고를 하지 않은 차주의 경우, 신생아 기준 가족관계증명서상 등재된 부모에 대해 동일한 신생아로 중복대출 불가\n 6. (소득) 대출신청인과 배우자의 합산 총소득이 연간 1.3억원 이하, 다만 대출신청인과 배우자가 모두 소득이 있는 경우 합산 총소득이 2억원 이하인 자(부부 각 1인의 소득이 1.3억원 이하)\n 혼인신고를 하지 않은 경우, 대출신청인과 신생아 기준의 가족관계증명서상 등재된 신생아 부모의 합산 총소득을 심사\n 단, 토지임대부 분양주택 대출 신청자는 청약 소득요건을 충족하였으므로 소득 초과 시에도 대출 신청 가능\n 근로소득자는 건강보험자격득실확인서, 사업소득자는 사업자등록증(또는 사업자등록증명원)의 확인을 통해 현재 재직 중인 직장 또는 현재 영위 중인 사업을 기준으로 소득 산정\n 7. (자산) 대출신청인 및 배우자의 합산 순자산 가액이 통계청에서 발표하는 최근년도 가계금융복지조사의 ‘소득 5분위별 자산 및 부채현황’ 중 소득 4분위 전체가구 평균값 이하(십만원 단위에서 반올림)인 자→2026년도 기준 5.11억원\n 단, 토지임대부 분양주택 사전청약 당첨자는 자산요건을 갖춘 것으로 봄\n 자산심사 관련한 자세한 사항[바로가기]\n 혼인신고를 하지 않은 경우, 대출신청인과 신생아 기준의 가족관계증명서상 등재된 신생아 부모의 합산 순자산가액을 심사\n 8. (신용도) 아래 요건을 모두 충족하는 자\n 신용정보회사의 개인신용평가가 일정 점수 이상인 경우\n 신청인이 한국신용정보원 「신용정보관리규약」에서 정하는 아래의 신용정보 및 해제 정보가 남아있는 경우 대출 불가능\n 1) 연체, 대위변제·대지급, 부도, 관련인 정보\n 2) 금융질서문란정보, 공공기록정보, 특수기록정보\n 3) 신용회복지원등록정보\n 그 외, 부부에 대하여 대출취급기관 내규로 대출을 제한하고 있는 경우에는 대출 불가능\n1주택자 대환대출시 세부 기준\n 부부합산 연소득 1.3억원 이하 가능\n 단, 토지임대부 분양주택 대출 신청자는 1.3억원 초과 시에도 가능\n 대출신청시기에 제한 없음\n 기존 주택담보대출 용도는 구입자금 용도여야 함\n 구입자금 용도는 수탁은행의 대출심사 과정에서 확인 가능\n 추가 제출서류 : 기존 주택담보대출 관련 금융거래확인서(부채증명원), 대출 목적물 등기사항전부증명서\n 기존 주택담보대출 잔액 범위내에서 대출 신청 가능\n 다만, 소유권 이전등기접수일로부터 3개월 이내 대출을 신청하는 경우 신생아 특례 디딤돌 대출한도 내에서 신규대출로 취급\n 기존 주택담보대출의 채무자와 신생아 특례 디딤돌대출의 채무자는 동일인이어야 하나, 배우자의 경우는 동일인으로 간주\n 신생아 디딤돌 대출 대환의 경우, 채무자가 변경될 시 소득공제가 불가할 수 있으니 상세사항은 국세청 및 수탁은행에 문의하시기 바랍니다.\n 이외의 사항은 [일반대출 안내] 사항과 동일(바로가기)\n 업무취급은행\n 1599-0800\n 1599-8000\n 1599-1771\n 1588-2100\n 1599-1111"
+    },
+    {
+      "data_id": "HOU-054",
+      "source_id": "UNION_DORM_LATEST",
+      "원문파일": "raw_2026-10-02/UNION_DORM_LATEST.txt",
+      "보존범위": "추가 조사에서 직접 확인한 공식 자격·제외 구간;문구 축약 없이 보존. 전체 파일 별도 보존",
+      "지원대상_원문": "[입주 신청]\n ㅇ 신청대상: 대상 대학에 입학 예정 또는 재적 중인 대학(원)생(외국인 포함)\n - (대상 대학) 아래에 해당하는 대한민국 소재 국내 대학(원)\n •「고등교육법」제2조 제1호～제4호 및 제7호에 해당하는 대학, 산업대학, 교육대학, 전문대학, 각종학교, 동법 제29조헤 해당하는 대학원(단, 원격대학 및 사이버대학의 대학원은 제외)\n •「근로자직업능력 개발법」 제2조제5호에 따른 기능대학\n •「평생교육법」제31조제4항에 따른 전공대학\n - (선발 기준) 홈페이지 (기숙사 > 입주및퇴실 > 입주안내) 확인\n ㅇ 신청기간: 2026. 7. 27.(월) 09:00 ~ 2026. 8. 10.(월) 23:59\n - 신청방법: 한국장학재단 홈페이지 및 모바일 앱을 통해 로그인 후 신청\n * 홈페이지: 한국장학재단 > 기숙사 > 마이페이지 > 입주신청\n * 모바일 앱: 기숙사 > 대학생연합생활관 > 입주신청\n - “2026년 2학기 3차” 선택 후 신청\n ㅇ 거주기간: 2026. 8. 27.(목) ~ 2027. 2. 15.(월)\n ㅇ 합격자 발표: 2026. 8. 13.(목) 예정 (※ 단, 심사 일정에 따라 발표일은 변동될 수 있음)"
+    },
+    {
+      "data_id": "HOU-055",
+      "source_id": "MYHOME_COUNSEL",
+      "원문파일": "raw_2026-10-02/MYHOME_COUNSEL.txt",
+      "보존범위": "추가 조사에서 직접 확인한 공식 자격·제외 구간;문구 축약 없이 보존. 전체 파일 별도 보존",
+      "지원대상_원문": "LH가 제공하는 토지, 주택 및 주거지원에 대한 고객 여러분의 의문사항 해소를 위해, LH에서는 콜센터를 운영하고 있습니다.\n LH 콜센터 1600-1004(천사) 를 통해 신속, 정확한 상담서비스를 제공받으시기 바랍니다.\n 상담 분야\n LH가 제공하는 주택과 토지, 상가에 대한 공급계획, 자격, 필요 서류 및 부서·직원 연결 등 LH에 대한 주요 분야의 상담이 가능합니다.\n 좌, 우로 이동 가능합니다.\n LH콜센터 상담분야 관한 테이블 입니다. 항목 으로는 구분, 상담유형, 상담내용 입니다.\n 구분\n 상담유형\n 상담내용\n 주택\n 공공분양, 공공임대,\n국민임대, 영구임대,\n통합공공임대, 신축다세대,\n장기전세,행복주택\n 공급계획 · 신청일정\n 신청자격 · 방법 · 서류 · 분양 및 임대조건(금액)\n 서류대상자 발표· 당첨자 발표\n 계약 · 해약 · 입주일정 · 대금납부 관련 기본 상담\n 예비입주자 순번 · 입주시기 · 제도관련\n 상가 / 토지\n 공급계획 · 신청일정\n 신청자격 · 방법· 서류\n 계약 · 해약 · 대금납부 관련 기본 상담\n 주거복지\n 다가구매입,\n다가구임대,\n전세임대\n 주택매입계획 · 신청방법\n 공급계획 · 신청일정\n 신청자격 · 방법 · 서류\n 맞춤형 주거지원\n 주거급여\n 주거급여 신청자격 · 신청방법\n 기타\n 부서/직원 연결, 회사 행사 안내\n 인증 획득\n 콜센터 서비스 KS인증을 획득하였습니다.\n LH 마이홈 콜센터 1600-1004(천사)\n LH 마이홈 콜센터에서는 고객님들이 보다 쉽게 기억할 수 있도록 1600-1004(천사) 를 통해 전화 상담을 제공하고 있습니다.\n 전화상담시간 및 이용방법\n 상담시간\n 월요일 ~ 금요일\n 오전 09:00~12:00\n 오후 13:00~18:00\n 주말과 공휴일은 상담이 제공되지 않습니다.\n 이용방법\n 국번없이 1600-1004번\n 일반 통화요금이 부과되며, 별도의 정보이용료는 없습니다.\n 전화연결 시 안내내용\n 좌, 우로 이동 가능합니다.\n 전화연결시 안내내용 관한 테이블 입니다. 항목으로는 진행단계(도입단계, 코드안내 단계, 결과단계), 연결안내가 있습니다.\n 진행단계\n 연결안내\n 도입단계\n 고객님의 포근한 보금자리를 꿈꾸는 마이홈 콜센터 입니다.\n 코드안내 단계\n 분양 문의는 1번, 임대 문의는 2번, 토지, 상가 문의는 3번, 하자접수 상담 및 카카오톡 플러스 친구 관련 문의는 4번, 주거급여 안내는 5번, 기타 문의는 6번, 주택공급유형 ARS 안내는 7번입니다. 당첨자 및 임대료 조회는 0번 ARS를 통해 간단히 조회 가능합니다.\n 결과단계\n [번호 선택후]\n 상담사 통화 시 서비스 품질관리를 위하여 통화내용이 녹음되며, 산업안전 보건법에 따라 고객응대 근로자 보호조치를 시행하고 있으니, 상담사를 배려하는 마음으로 상담 시 폭언 등의 행위는 삼가주시기 바랍니다. 고객님의 말씀을 정성을 다해 듣겠습니다. 상담사를 곧 연결해 드리겠습니다. 전화상담은 청약을 위한 참고사항으로 반드시 공고문을 확인하시길 바랍니다.\n [전 상담사 통화중]\n 죄송합니다. 현재 모든 상담사가 통화중입니다.\n 고객님의 예상 대기 시간은 약00분00초 이상입니다.\n 대기 고객수는 00명입니다.\n 간단한 문의사항은 천육백에 천사번을 수신번호로 하여 문자상담이 가능하며, \n 주택공급유형에 대한 안내는 ARS로도 가능합니다.\n LH 마이홈 콜센터 카카오톡 및 이메일 상담\n LH 마이홈 콜센터에서는 고객님의 편의를 위해 카카오톡·이메일 상담을 제공하고 있습니다.\n카카오톡 상담 안내\n상담시간\n 평일 09:00 ~ 18:00 (점심시간 12:00 ~ 13:00 상담 제외)\n이용방법\n 카카오톡 앱에서 \"LH\"검색 후 친구 등록\n분양/임대상담(마이홈센터), 전세임대 상담(전세임대센터), 임대주택 A/S 접수(바로처리센터)\n이용요금\n 별도의 정보 이용료 없이 이용 중인 인터넷 환경에 따라 데이터 요금이 발생할 수 있습니다.\n데이터 요금은 가입하신 요금제나 접속 환경(Wi-Fi 등)에 따라 개인별로 다릅니다.\n이용시 유의사항\n 세부 확인이 필요한 사항은 전화상담을 이용하여 주시기 바랍니다.\n 이메일 상담 안내\n 문의내용을 마이홈 콜센터 이메일(16001004@lh.or.kr)로 송부해 주시면 이메일로 회신 받을 수 있는 서비스입니다.\n 상담시간\n 상담센터 운영시간(평일 오전 9시 ~ 오후 6시) 외에도 상담 접수 가능\n 운영시간 중 접수된 문의는 당일 답변되며, 운영시간 외 접수된 문의는 근무일 기준 익일 회신해 드립니다.\n 상담유형\n 공급계획 · 접수일정 · 접수장소\n 관심지구 알리미 서비스 등록 · 삭제\n 지역본부 · 관리소 위치 및 전화번호 등\n 세부 확인이 필요한 신청자격 및 서류 등은 문자 · 이메일 상담 불가"
+    },
+    {
+      "data_id": "HOU-056",
+      "source_id": "HAMAN_COUNSEL",
+      "원문파일": "raw_2026-10-02/HAMAN_COUNSEL.txt",
+      "보존범위": "추가 조사에서 직접 확인한 공식 자격·제외 구간;문구 축약 없이 보존. 전체 파일 별도 보존",
+      "지원대상_원문": "✅ 행사 안내\n❗️ 일시 : 2026년 10월 6일(화) 14:00~16:00\n❗️ 장소 : 김해 가야대학교 가락관 1층 시청각실\n❗️ 대상 : 청년 및 주거정보에 관심 있는 분\n❗️ 신청은 포스터의 QR코드를 통해 가능합니다!"
+    },
+    {
+      "data_id": "HOU-057",
+      "source_id": "MIRYANG_RURAL_NOTICE",
+      "원문파일": "raw_2026-10-02/MIRYANG_RURAL_FULL.txt",
+      "보존범위": "추가 조사에서 직접 확인한 공식 자격·제외 구간;문구 축약 없이 보존. 전체 파일 별도 보존",
+      "지원대상_원문": "신청기준\n \n❍\n 필수기준(공통) \n  - \n밀양시 관내 \n주택을 소유하고 있지 않은 세대(세대원 포함)\n ＊ 입주신청자는 실거주 가능한 자만 신청(계약서 제 9조 2항에 의거하여 \n    입주신청자는 실거주 가능한 자만 신청)\n \n❍\n 신청유형별 기준(중복신청 불가)  \n  □ 가족형 주택(1순위)\n  - 가구주 연령이 만 40세 미만인 혼인 신고가 된 부부 세대, 유자녀세대\n  ※ \n입주 시 가족관계증명서상 배우자, 자녀 모두 주소이전(필수)\n  ※ 부부세대 인정은 공고일 이전 혼인신고 부부에 한함. \n  ※ 가구주 또는 배우자 \n중 1명 영농종사(필수)\n     (ex 농업경영체, 임대형 스마트팜 임대계약서 등)\n  ＊ \n배우자, 자녀 주소이전(실거주 포함) 불가 시 팀을 구성하여 청년팀으로 신청\n  □ 가족형 주택(2순위)\n  - 만 40세 미만 2~3명으로 구성된 청년팀(세대원 포함)\n  ＊ 구성원 전원 필수기준을 만족하여야 함\n  \n \n❍\n 경쟁 시 우선순위 요건\n  ① 무주택세대 구성원(세대에 속하는 사람 전체가 무주택인 세대의 구성원)\n무주택\n⦁ \n주택 또는 분양권 등을 소유하고 있지 아니할 것\n  ＊ 분양권등이라 함은 주택을 공급받는 자로 선정된 지위 또는 재건축등으로            입주자로 선정된 지위를 의미하며 이러한 지위의 전부 또는 일부를 매매로           \n취득한 경우도 포함(단 매매가 아닌 상속, 증여 등을 통해 취득한 분양권등은 제외)\n세대\n구성원\n⦁ \n세대구성원의 범위\n세대구성원(자격검증대상)\n비  고\n⦁신청자 신청자의 배우자 및 직계비속\n신청자와 주민등록 상 세대 분리되어 있는 경우 (이하 ‘분리배우자 및 직계비속’)포함\n  ② 스마트팜 관련 영농 종사자\n스마트팜 \n영농종사자 기준\n⦁ 스마트팜 혁신밸리 청년창업보육센터 교육생\n⦁ 스마트팜 혁신밸리 임대형 스마트팜 임대인\n⦁ 스마트팜 영농창업자(600평 이상, ict융복합 스마트팜 시설)\n⦁ 지역특화 임대형 스마트팜 임대인\n ＊ 이외 스마트팜 영농종사자 별도 증빙\n  ③ 저소득 해당 기준\n소  득 \n ＊ 도시근로자        가구당            월평균소득\n    기준\n가구원수\n기준\n월평균 소득기준\n1인가구\n90% 이하\n2,817,565원 이하\n2인가구\n80% 이하\n4,048,122원 이하\n3인가구\n70% 이하\n5,337,404원 이하\n4인가구\n5,787,162원 이하\n5인이상\n6,573,494원 이하\n＊ 가구원수는 신청자, 신청자의 배우자 및 직계비속으로 함(임신중인 경우 태아 포함)\n＊ \n월평균소득액은 세전금액으로서 세대구성원 전원의 월평균소득액을 모두 합산한 금액임\n＊ 2025년 1분기~3분기 통계치 기준\n ※ 팀 인원에 따른 우선순위 요건 해당요건 해당율을 통한 산정\n3\n 신청방법 및\n입주예정일: 2026. 9. 1. 예정(예정사항이며 입주일은 변동될 수 있음)\n   ※ 입주지정기간: 계약일로부터 1개월 內\n  입주대상자는 임대차 계약과 관련하여 다음의 조건을 이행하여야 하며, \n해당 조건 미 이행시에는 선정취소 및 계약무효(계약거절)가 될 수 있으며,\n \n변경사항 발생 시 밀양시 스마트유통과 스마트팜담당으로 즉시 통지하여야 함\n  - \n입주대상자(가족 및 세대원포함)는 임대차 계약을 완료하고, 입주 후 30일 \n \n   \n 이내에 밀양시로 전입신고를 완료하여야 함\n  - 계약기간 내 타 시군구로 주소 이전시 계약이 취소됨\n  - \n가족형 입주대상자 중 취학아동은 입주 후 6개월 이내 전입신고 완료해야함\n   ※ 밀양 소재 초등학교 입학 및 전학\n7"
+    },
+    {
+      "data_id": "HOU-058",
+      "source_id": "JPDC_NOTICE",
+      "원문파일": "raw_2026-10-02/JPDC_NOTICE_FULL.txt",
+      "보존범위": "추가 조사에서 직접 확인한 공식 자격·제외 구간;문구 축약 없이 보존. 전체 파일 별도 보존",
+      "지원대상_원문": "입주 자격\n모집 공고일 현재 \n① 성년자인 무주택세대구성원\n으로서 \n② 자산・소득 기준\n 및 「공공주택 특별법\n \n시행규칙」 별표5의2에 따른 \n입주자격 구분별 신청자격을 충족한 자(「5. 입주자격 구분별 신청자격」 참조)\n에\n게 \n③1\n세대 1주택 기준\n으로 공급합니다. 다만, 신청자의 세대구성원 중 과거 공공임대\n주택 \n임\n차인으로서 불법양도, 전대 행위로 적발된 후 4년이 경과되지 않은 자가 있는 경우 입주자로 선정이 불가합니다.\n※ \n‘자녀’\n는 「주택공급에 관한 규칙」 제2조제2의3호에 따른 \n‘신청자의 세대구성원인 자녀’와\n ‘태아’를 의미\n하므로 신청 시 유의하시기 바랍니다. (이하 이 공고문에서 같음)\n 무주택세대구성원 및 주택소유여부 판정기준\n■ 성년자 기준\n• 「민법」 상 미성년자(19세 미만)는 신청하실 수 없습니다. 단\n, 아래 하나에 해당하는 경우 법정대리인의 동의 또는 대리를 통해 미성년자도 공급신청이 가능\n합니다.\n① 자녀를 양육하는 세대주인 미성년자(단, 자녀가 신청자와 같은 세대별 주민등록표에 등재되어야 함)\n② \n직계존속의 사망, 실종선고 및 행방불명 등으로 형제자매를 부양하여야 하는 세대주인 미성년자\n   (단, 형제자매가 반드시\n 신청자와 같은 세대별 주민등록표에 등재되어야 함)\n③ 부 또는 모가 외국인인 한부모가족으로서 미성년 자녀(내국인)가 세대주인 경우\n■ 무주택세대구성원 기준\n • \n다음의 세대구성원에 해당하는 사람 전원은 주택(분양권 등 포함)을 소유하고 있지 않아야 하며,\n \n입주자격 검증(주택 소유, 소득, 자산) 대상\n이 됩니다.\n세대구성원\n비고\n • 신청자\n • 신청자의 배우자\n신청자와 주민등록상 세대 분리되어 있는 배우자(이하 ‘분리\n배우자’) 포함\n • 신청자의 직계존속\n • 신청자의 배우자의 직계존속\n신청자와 세대별 주민등록표상에 함께 등재되어 있는 사람 및 신청자의 분리배우자와 세대별 주민등록표상에 함께 등재되어 있는 사람에 한함\n • 신청자의 직계비속\n • 신청자의 직계비속의 배우자\n • 신청자의 배우자의 직계비속\n • 신청자의 배우자의 직계비속의 배우자\n신청자와 세대별 주민등록표상에 함께 등재되어 있는 사람에\n 한함\n \n• \n다음에 해당하는 사람은 세대구성원에 포함되며, \n신청자가 외국인인 경우에는 신청이\n 불가\n합니다.\n 외국인 배우자\n가족관계등록부에 등재되고 외국인 등록(또는 국내거소신고)을 한 사람\n- 신청자와 동일 주소에 거주하지 않더라도 자격검증대상에 포함\n 외국인 직계존\n·\n비속\n가\n족관계등록부에 등재되고 외국인 등록(또는 국내거소신고)을 한 사람으로서, 신청자 또는 분리배우자의 세대별 주민등록표등본에 기재되어 있거나 외국인 등록증 상의 체류지(거소)가 신청자 또는 분리배우자의 세대별 주민등록표 상 주소와 동일한 사람\n • \n배우자가 국내 거주하지 않는 재외국민이거나 외국인 등록을 하지 않은 외국인(국내거소신고를 하지 않은 외국국적동포 포함)인 경우 그와 혼인관계에 있는 국민은 공급 신청이 불가\n합니다.\n •\n \n「국\n민기초생활 보장법 시행령」 제2조2제2항제5호부터 제7호에 해당\n하는 자는 세대구성원에서\n 제외되며, 신청자 본인이 입증서류를 제출하여야 합니다.\n가. \n실종선고\n 절차가 진행 중인 사람\n나. \n가출 또는 행방불\n명으로 경찰서 등 행정관청에 신고된 후 1개월이 지났거나 가출 또는 행방   불명 사실을 특별자치시장·특별자치도지사·시장·군수·구청장이 확인한 사람\n다. 그 밖에 공급신청자와 \n생계 및 주거를 달리한다고 시장·군수·구청장이 확인한 사람\n • 무주택 여부는 「주택공급에 관한 규칙」 제52조 및 제53조에 따르며, 국토교통부 주택소유 확인시\n스템을 통해 \n주택 소유가 확인되어 소명이 필요한 경우 증빙서류를 제출받아 소명처리하며, 소\n명 의무는 신청자에게 있습니다.\n■ 주택소유여부 판정 기준\n • \n주택소유여부는 모집 공고일을 기준으로 세대구성원 전원을 대상으로 국가 및 지자체가 보유\n하고 있는 공적자료\n \n조\n회를 통해 확인하며, \n사업주체가 입주대상자 선정을 위해 주택소유확인시스템을 통해\n 조회된 자료는 모집 공고일 시점에 \n산정된 것으로 간주\n합니다.\n • \n입주자로 선정된 경우에는 \n입주 시까지 무주택세대구성원을 유지\n하여야 하며, 입주 후 주택을 소유한 경우 에는 갱신계약이 거절됨에 유의하시기 바랍니다.\n • 주택 소유의 범위\n- 건물등기부등본, 건축물대장등본, 과세자료 등에 등재된 전국 소재 주택\n  (주택의 공유지분이나 주택용도가 있는 복합건물도 주택으로 봄)\n- 주택에 대한 분양권 및 입주권(이하 ‘분양권등’, ‘분양권등’의 공유지분을 소유하고 있는 경우도 포함)\n • 주택 및 분양권등의 소유 기준일\n- 주택의 경우(①과 ②의 일자가 상이할 경우, 먼저 처리된 날을 기준으로 함)\n ① 건물등기부등본 : 등기접수일 (미등기 주택인 경우에는 건축물대장등본상의 처리일)\n ② 건축물대장등본 : 처리일\n ③ 그밖에 주택소유여부를 증명할 수 있는 서류 : 시장 또는 군수 등 공공기관이 인정하는 날\n- 분양권등의 경우\n ① 부동산거래계약 신고서 상 공급계약체결일\n ② (분양권등의 매매가 이루어진 경우) 부동산거래계약 신고서 상 매매대금 완납일\n ③ (분양권등의 상속·증여 등이 이루어진 경우) 사업주체와의 계약서 상 명의변경일\n • 주택 및 분양권등을 소유한 것으로 보지 않는 경우 \n(무주택으로 인정하는 경우)\n   \n※ 무주택으로 인정되더라도 자산(부동산) 가액에는 포함하여 산정됨에 유의\n① \n상속으로 인하여 주택의 공유지분을 취득한 사실이 판명되어 사업주체(제주특별자치도개발공사)로부터\n 부적격자로 통보받은 날부터 3월 이내에\n 그 공유지분을 처분한 경우\n② \n도시지역이 아닌 지역 또는 면의 행정구역(수도권은 제외)에 건축되어 있는 주택으로서 다음 각 항의\n \n어느 하나에 \n해\n당하는 주\n택의 소유자가 당해주택건설지역에 거주(상속으로 주택을 취득한 경우에는\n 피상속인이 거주한 것을 상속\n인이 거주한 것으로 봄)하다가 다른 주택건설지역으로 이주한 경우\n     가. 사용승인 후 20년이 경과된 단독주택\n     나. 85㎡ 이하인 단독주택\n     다. \n소유자의 본적지에 건축되어 있는 주택으로서 직계존속 또는 배우자로부터 상속 등에 의하여 이전        \n받은 단독주택\n③ \n개인주택사업자가 분양을 목적으로 주택을 건설하여 이를 분양완료 하였거나 부적격자로 통보받은 날부터\n 3월 이내에 이를 처분한 경우\n④ \n세무서에 사업자로 등록한 개인사업자가 그 소속근로자의 숙소로 사용하기 위하여 주택법의 규정에 의하여 주택을 건\n설하여 소유하고 있거나 사업주체가 정부시책의 일환으로 근로자에게 공급할 목적으로 사업계획승인을 얻어 건설한 주택을 공급받아 소유하고 있는 경우\n⑤ \n주택공급신청자가 속한 세대가 20㎡ 이하의 주택 또는 분양권등을 1호 또는 1세대만 소유하고 있는 경우\n⑥ \n건물등기부 또는 건축물대장 등의 공부 상 주택으로 등재되어 있으나 폐가이거나, 멸실되었거나, \n주택이 아닌 다른 용도로 사용되고 있는 경우로서 \n사업주체(제주특별자치도개발공사)로부터\n \n부적격자로 통보받은 날부터 3개월 이내에 이를 멸실 또는 실제용도로 공부를 정리한 경우\n⑦ 무허가 건물[종전의 「건축법」(법률 제7696호 건축법 일부개정법률로 개정되기 전의 것을 말한다) 제8조\n 및 제9조에 따\n라 건축허가 또는 건축신고 없이 건축한 건물을 말한다]을 소유하고 있는 경우(소유자가 해당 건물이 건축 당시의 법령에 따른 적법한 건물임을 증명하여야 함)\n* (소명방법) \n해당 주택이 2006.5.8 이전 건축법 제8조에 따라 도시지역 이외의 지역 등에서 건축허가 \n또는 신고 없이\n 건축된 연면적 200㎡ 미만이거나 2층 이하의 건물로서 주택공급에 관한 규칙 제53조\n제8호에 해당하는지를 확인하는 내용의 민원회신문을 해당 지자체(시･군･자치구)로부터 받아서 제출\n⑧ \n규칙 제27조 5항 및 제28조 10항 1호에 따라 \n입주자를 선정하고 남은 주택을 선착순의 방법으로 공급받은 분양권등을 소유한 경우 (단, 해당 분양권등을 매수한 자는 제외)\n⑨ 매매 외 상속·증여 등의 사유로 분양권 등을 취득한 경우\n⑩ \n보유한 분양권등이 `18.12.11. 전에 입주자모집 승인, 「주택법」 제5조제2항에 따른 지역주택   \n조합의 사업계획승인, 「도시 및 주거환경정비법」 제74조에 따른 관리처분계획인가, 「빈집 및   \n소규모주택 정비에 관한 특례법」 제29조에 따른 가로주택정비사업이나 소규모재건축사업의\n    사업시행계획승인을 신청한 사업에 의한 것인 경우\n⑪ \n신청자가 임차인으로서 거주하던 임차주택을 취득한 경우로서 다음 각 목의 요건을 모두 갖춘 경우\n    가. 2024년 1월 1일부터 2024년 12월 31일까지 취득(생애 최초로 취득한 경우로 한정한다)한 주택(「주택법 시행령」 제2조 각 호 및 제3조제1항제2호ㆍ제3호에 따른 주택만 해당한다. 이하 이 호에서 같다)일 것\n    나. \n주거전용면적이 60제곱미터 이하인 주택으로서 그 취득가격(「부동산 거래신고 등에 관한 법률」\n \n        제3조에 따라 신고한 가격을 말한다)이 2억원(수도권은 3억원) 이하일 것\n    다. \n해당 주택의 취득일(건물 등기사항증명서 등기접수일 또는 건축물대장등본 처리일 중 빠른 날) 전날까지 1년 이상 \n해당 주택에 거주했을 것\n 자산보유기준 및 산정방법\n■ 자산보유기준\n • 「공공주택 특별법 시행규칙」 제13조에 의하여 별도로 제정․고시된 「공공주택 입주자 보유 자산 관련 업무처리기준」에 따라 \n세대구성원 전원의 보유자산 가액 합계(자동차는 개별자동차가액으로 판단)가 아래의 기준금액 이하\n이어야 합니다. \n구 분\n출산자녀수\n※\n0명\n1명\n2명 이상\n총자산가액\n345,000,000원 이하\n379,000,000원 이하\n413,000,000원 이하\n자동차가액\n45,420,000원 이하\n49,960,000원 이하\n54,510,000원 이하\n(\n※\n) \n출산자녀수는 ’23.3.28 이후 출산한 자녀(입양자녀 및 태아 포함)수를 의미\n하며, 기준일 이후 출산 자녀가\n 있는 경우\n에는 \n기준일 이전 출생한 기존 미성년자녀도 포함하여 최대 2자녀로 인정합니다. 자녀 1인당 10%(2자녀 이상은\n 20%)를 \n자산보유기준에 가산하여 자격검증을 실시합니다. (단, 주택공급 신청자 또는 동 배우자와 같은 세대별 주민등록표에 등재되어 있는 경우에 한함, 이하 동일)\n  - \n청년 계층의 보유 자산가액은 신청자 본인에 한하여 검증\n합니다. \n다만, 세대원이 있는 세대의 세대주인 \n경우에는 세대\n구성원 전체를 대상으로 검증\n합니다.\n  - \n예비신혼부부의 보유 자산가액은 혼인으로 구성될 세대의 세대구성원 모두를 대상으로 실시\n합니다.\n  - \n고령자 계층의 보유 자산가액은 세대구성원 전체를 대상으로\n 실시\n합니다.(혼인중이 아니면서 단독  \n세대주로 입주하려는 경우 포함)\n • \n자산정보는 사회보장정보시스템을 통하여 제공받으며, 이는 국가 또는 공공기관이 보유한 공적 자료\n입니다. 입주자격의 \n소명이 필요한 경우 관련 증빙서류를 제출받아 소명\n처리하며, 부적격사유에 대한 소명의무는 신청자에게 있습니다.\n • \n주택, 부동산, 자동차, 일반자산, 금융부채 외 부채의 산정시점은 입주자모집공고일이며, 금융자산 및 금융\n부채의 산정시점은 조사기준일입니다. 다만\n, 사업주체가 입주대상자 확정을 목적으로 사회보장정보시스템을 통해\n 확인한 입주자격은 해당 산정시점에 산정된 것으로 간주\n합니다.\n \n■ 산정방법\n(상세내용은\n 「16.사회보장정보시스템 제공 소득・재산 항목 설명 및 자료\n 출처」를 참고)\n구분\n산정방법\n총자산\n부동산\n• 사\n회보장정보시스템을 통해 조사된 세대구성원 전원이 소유하고 있는 부동산 가액\n• 건축물가액은 건축물의 공시가격으로 함\n - 건축물가액이 공시되지 아니한 경우에는 지자체장이 결정한 시가표준액 적용\n• \n토\n지가액은 해당세대가 소유하고 있는 모든 토지면적에 개별공시지가를 곱한 금액. 단, 건축물이나 토지가액을 산출할 때 아래의 부동산은 제외함\n - 「농지법」 제2조제1호에 따른 농지로서 동법 제49조에 따라 시ㆍ구ㆍ읍ㆍ면의 장이 관리하는 농지대장의 소유자와 농업인확인서 상 농업인이 일치하는 경 \n - \n「초지법」 제2조제1호에 따른 초지로서 소유자가「축산법」 제22조에 따른 축산업 허가를 받은 사람이며 축산업 허가증의 사업장 소재지와 동일한 주소인 경우\n \n - \n「산지관리법」 제4조에 따른 산지로서 소유자와 농업확인서 상 농업인이 일치하는 경우 \n - 공부상 도로, 구거, 하천 등 공공용지로 사용되고 있는 경우 \n - 종중소유 토지(건축물 포함) 또는 「국가유산기본법」 제3조에 따른 국가유산이 건\n립된 토지 등 해당 부동산의 사용, 처분 등이 금지되거나 현저히 제한을 받는 경우. 이 경우 입주(예정)자가 구체적인 사실관계를 입증하여야 한다.\n자동차\n• 사회보장정보시스템을 통해 조사된 보건복지부장관이 정하는 차량기준가액\n• \n총자산가액 산출시 적용하는 자동차 가액은 해당 세대가 보유한 모든 자동차의 가액을 합하여 산출\n하고 아래의 경우를 제외함.\n  - 「장애인 복지법」 제39조에 따른 장애인사용 자동차\n  - \n「국가유공자 등 예우와 지원에 관한 법률」에 따른 국가유공자로서 상이등급 1급 내지\n 7급에 해당\n하는 자의 보철용 차량\n• 자동차가액 산출 시 「대기환경보전법」제58조제3항에 따른 국가나 지방자치단체의 \n보조금을 받고 \n구입한 저공해자동차의 경우\n 보조금을 제외한 금액으로 함\n금융자산\n• \n보\n통예금, 저축예금, 자유저축예금, 외화예금 등 요구불예금 : 최근 3개월 이내 \n평균 잔액\n• 정기예금, 정기적금, 정기저축 등 저축성예금 : 예금의 잔액 또는 총납입액\n• 주식, 수익증권, 출자금, 출자지분, 부동산(연금)신탁 : 최종 시세가액\n• 채권, 어음, 수표, 채무증서, 신주인수권 증서, 양도성예금증서 : 액면가액\n• 예수금 : 잔액\n• 연금저축 : 잔액 또는 총납입액\n• 보험증권 : 해약하는 경우 지급받게 될 환급금 \n• 연금보험 : 해약하는 경우 지급받게 될 환급금\n기타자산\n• \n「지방세법」 제104조제4호 및 제5호에 따른 항공기 및 선박 : 「지방세법」 제4조제2항에 \n따른 시가\n표준액 등을 고려하여 보건복지부장관이 정하는 가액\n• 주택·상가 등에 대한 임차보증금(전세금 포함) : 임대차계약서상의 보증금 및 전세금\n• 「지\n방세법」 제6조제11호에 따른 입목 : 「지방세법 시행령」 제4조제1항제5호에 따른 시가표준액\n• \n「지\n방세법」 제6조제13호에 따른 어업권 : 「지방세법 시행령」 제4조제1항제8호에 \n따른 시가표준액\n• \n「지방세법」 제6조제14호부터 제18호까지의 규정에 따른 회원권 : 「지방세법 시행령」\n 제4조제1항제9호에 따른 시가표준액\n•  「소득세법」 제89조제2항에 따른 조합원입주권　:　다음 각 목의 구분에 따른 금액\n  가. \n청산금을 납부한 경우 : 「도시 및 주거환경정비법」 제48조에 따른 관리처분계획에   \n따라 정해진\n 가격(이하 \"기존건물평가액\"이라 한다)과 납부한 청산금을 합한 금액\n  나. 청산금을 지급받은 경우: 기존건물평가액에서 지급받은 청산금을 뺀 금액\n• \n건물이 완성되는 때에 그 건물과 이에 부수되는 토지를 취득할 수 있는 권리(위 조합원입주권은 제외)\n : 조사일 현재까지 납부한 금액\n총자산\n부채\n• 「금융실명거래 및 비밀보장에 관한 법률」 제2조제1호에 따른 금융회사 등으로부터 받은 대출금\n• 공공기관 대출금\n• 법에 근거한 공제회 대출금\n• 한국자산관리공사, 예금보험공사가 인수한 부실채권으로 공사가 증명한 부채 \n• 서민금융진흥원 대출금\n• 법원에 의하여(판결문, 화해·조정조서) 확인된 사채\n• 임대보증금(단, 해당 부동산가액 이하의 금액만 반영)\n자동차\n• 사회보장정보시스템을 통해 조사된 보건복지부장관이 정하는 차량기준가액. \n• 총자산가액으로 포함되는 자동차액과 별도로 「자동차 관리법」 시행규칙 제2조에서 \n정한 비영업용 승용자동차에 한하여 산출하고, 해당세대가 2대 이상의 자동차를\n \n소\n유한 경우에는 각각의 자동차 중 높은 차량가액을 기준으로 하며 아래의 경우는 제외\n - 「장애인 복지법」 제39조에 따른 장애인사용 자동차\n - \n「국가유공자 등 예우와 지원에 관한 법률」에 따른 국가유공자로서 상이등급 1급 내지 7급에 해당\n하는\n 자의 보철용 차량\n• 자동차 가액 산출 시 「대기환경보전법」제58조제3항에 따른 국가나 지방자치단체의 \n보조를 받고 \n구입한 저공해자동차의 경우 자동차가액에서 정부와 지방자치단체의\n 보조금을 제외한 금액으로 함.\n 소득기준 및 산정방법\n■ 소득기준\n • 소득금액은 입주자모집공고일을 기준으로 산정합니다. \n다만, 사업주체가 입주대상자 확정을 목적으로 사회보장정보시스템을 통해 확인한 입주자격은 해당 산정시점에 산정된 것으로 간주\n합니다.\n • \n소득금액은 \n세대구성원 전원의 월평균소득금액을 모두 합산한 세전 금액으로, 신청자 세대의\n \n월평균소득금액이 입주자격 구분별 소득기준 이하\n이어야 합니다. 자세한 \n소득기준금액은 「5.입주자격 구분별 신청자격」을 참고하시기\n 바랍니다.\n구 분\n출산자녀수\n0명(기준)\n1명(+10%)\n2명 이상(+20%)\n세대원수\n(태아 포함)\n1인(+20%)\n170%\n-\n-\n2인(+10%)\n160%\n170%\n-\n3인 이상 (기준)\n150%\n160%\n170%\n  - \n청년 계층의 소득금액은 신청자 본인에 한하여 검증\n합니다. \n다만, 세대원이 있는 세대의 세대주인 경우\n에는 세대\n구성원 전체를 대상으로 검증\n합니다.\n  - \n예비신혼부부의 소득금액은 혼인으로 구성될 세대의 세대구성원 모두를 대상으로 실시\n합니다.\n  - \n고령자 계층의 소득금액은 세대구성원 전체를 대상으로\n 실시\n합니다.(미혼이며 단독세대주로 입주\n하는 경우 포함)\n • \n가구원수는 세대구성원 전원\n을 의미하며, 외국인 배우자와 임신 중인 경우에는 태아를 포함합니다.\n • \n소득정보는 사회보장정보시스템을 통하여 제공받으며, 이는 국가 또는 공공기관이 보유한 공적자료\n입니다. \n • \n사회보장정보시스템을 통해 조회되지 않아 \n소명이 필요한 경우 관련 증빙서류를 제출받아 소명\n처리하며, 부적격사유에 대한 소명의무는 신청자에게 있습니다.\n■ 산정방법\n(상세내용은\n 「16.사회보장정보시스템 제공 소득・재산 항목 설명 및 자료\n 출처」를 참고)\n • \n사회보장정보시스템에서 제공되는 국가 또는 공공기관이 보유한 공적 소득자료를 근거로 세대\n구성원 전원의 아래 \n12\n가\n지 소득을 합산하여 월평균소득을 산정합니다.\n• 사업소득 (농업소득, 임업소득, 어업소득, 기타사업소득)  \n• \n근로소득 (상시근로소득, 일용근로소득, 자활근로소득, \n           공공일자리소득)\n• 재산소득 (임대소득, 이자소득, 연금소득)\n• 기타소득 (공적이전소득)\n 1세대 1주택 기준 공급\n • \n1세대 1주택 신청·공급원칙\n에 따라, \n1세대 내에서 중복 신청할 경우 전부 무효처리\n 됩니다.\n  - \n「부(세대주)+자(세대원)」인 세대에서 부와 자가 각각 고령자(부), 청년(자)의 자격으로 청약 신청 할\n \n경우 전부 무효처\n리 됩니다.\n  - \n다만, 세대주가 아닌 청년의 경우, 1세대 내에서 세대원인 청년계층이 각각 신청하실 수 있습니다.\n    (예 : 부(세대주) + 형(세대원) + 동생(세대원) → 청년(형), 청년(동생) 각각 신청 가능)\n • \n세대주가 아닌 청년, 혼인 중이 아닌 경우로서 단독세대주로 입주하려는 고령자, 예비신혼부부는 입주 시\n까지 세대를 분리한 후,\n 우리공사에\n 주민등록표를 제출하셔야 합니다.\n • \n임대주택에 기 거주중인 임차인의 배우자는 세대분리 하더라도 중복입주에 해당\n하므로 기 거주중인\n 임대주택을 당해주택에 입주하기 전까지 명도하여야 합니다. \n5\n입주자격 구분별 신청자격\n \n신청\n자격 및 신청서류 상에 기재된 자격서류의\n 발급 여부를 충분히 확인하시고 접수하시기 바라며,\n \n신\n청자격 미숙지, 착오 신청 등에 대해서는\n 신청자 본인에게 책임이 있으니 유의\n하시기 바랍니다.\n 일반 공급\n■ 신청가능 소득자산 기준\n \n• 소득기준\n : 기준 중위소득의 150% 이하 + @% (우대비율, 우대항목 중복 시 합산 적용)\n\n ① 신혼부부 맞벌이 우대비율 : 30% 가산\n  ※ \n\"신혼부부, 한부모가족\"의 입주자격으로 당첨된 자만 적용 (\"6세 이하 자녀를 둔 한부모가족\"은 적용 제외)\n  ※ \n맞벌이는 「소득세법」 제19조제1항에 따른 사업소득 또는 제20조제1항에 따른 근로소득이 있는 경우를 의미\n ② 세대원수 우대비율 : 1인 20%, 2인 10% 가산\n ③ 출산자녀수 우대비율 : 2인 이상 20%, 1인 10% 가산\n \n ※ \n출산자녀는 ’23.3.28 이후 출산한 자녀(입양자녀 및 태아 포함)를 의미하며, 기준일 이후 출산 자녀가 있는\n 경우에는 기준일 이전 출생한 기존 미성년자녀도 포함하여 최대 2자녀로 인정\n     \n(단, 신청자 또는 동 배우자와 같은 세대별 주민등록표에 등재되어 있는 경우에 한함, 이하 동일)\n \n•\n \n자산기준\n : \n총자산 345,000,000원 및 자동차 45,420,000원 이하 + @%\n  출산자녀수 우대비율 : 출산자녀 2인 이상 20%, 출산자녀 1인 10% 가산\n입주자격 구분\n우대항목\n최종 소득,자산기준 (한도)\n신혼 맞벌이\n세대원수\n출산자녀수\n(미성년자녀, 태아 포함)\n소득기준\n자산기준\n대분류\n소분류\n총자산가액\n자동차가액\n신혼부부,\n한부모가족\n6세 이하 자녀를 둔 한부모가족\n×\n2인\n0인\n160%\n345,000,000원\n45,420,000원\n1인\n170%\n379,000,000원\n49,960,000원\n3인 이상\n0인\n150%\n345,000,000원\n45,420,000원\n1인\n160%\n379,000,000원\n49,960,000원\n2인 이상\n170%\n413,000,000원\n54,510,000원\n그 외\n×\n2인\n0인\n160%\n345,000,000원\n45,420,000원\n3인\n0인\n150%\n345,000,000원\n45,420,000원\n1인\n160%\n379,000,000원\n49,960,000원\n4인 이상\n0인\n150%\n345,000,000원\n45,420,000원\n1인\n160%\n379,000,000원\n49,960,000원\n2인 이상\n170%\n413,000,000원\n54,510,000원\n○\n2인\n0인\n190%\n345,000,000원\n45,420,000원\n3인\n0인\n180%\n345,000,000원\n45,420,000원\n1인\n190%\n379,000,000원\n49,960,000원\n4인 이상\n0인\n180%\n345,000,000원\n45,420,000원\n1인\n190%\n379,000,000원\n49,960,000원\n2인 이상\n200%\n413,000,000원\n54,510,000원\n신혼부부, 한부모가족을 제외한 모든 계층\n×\n1인\n0인\n170%\n345,000,000원\n45,420,000원\n2인\n0인\n160%\n345,000,000원\n45,420,000원\n1인\n170%\n379,000,000원\n49,960,000원\n3인 이상\n0인\n150%\n345,000,000원\n45,420,000원\n1인\n160%\n379,000,000원\n49,960,000원\n2인 이상\n170%\n413,000,000원\n54,510,000원\n■ 세부 신청자격\n \n①\n 청년\n【유의사항】 \n① 세대주가 아닌 청년은 신청자 본인만 세대원수로 인정(1인) ② 청년계층의 소득 및 자산은\n \n신청자 본인에 한하여 검증. 다만, 세대원이 있는 세대의 세대주인 경우에는 세대구성원 전체를 대상으로 검증하되, 주택소유는 신청자 본인만 검증\n •\n \n무주택자로서 다음의 요건을 모두 갖춘 사람\n㉮ \n공급신청자(세대원이 있는 세대의 세대주인 경우에는 해당 세대)의 월평균소득이 「국민기초생활\n \n보장법」 \n제2조제11호에 따른 기준 중위소득의 150퍼센트\n(가구원\n 수가 1\n명인 경우\n에는 170퍼센트,\n 2명인 경우에는\n 160퍼센트)\n 이하일 것\n㉯ 18세 이상 39세 이하일 것\n㉰ 혼인 중이 아닐 것\n ②\n 신혼부부ㆍ한부모가족\n •\n \n다음의 요건을 모두 갖춘 사람\n(1) 다음의 어느 하나에 해당하는 사람\n  ㉮ 혼인 중인 사람으로서 혼인기간이 7년 이내인 사람 \n  ㉯ \n예비신혼부부 (혼인을 계획 중이며 해당 주택의 입주 전까지 혼인사실을 증명할 수 있는 사람)\n  ㉰ \n혼인 중인 사람으로서 6세 이하 자녀(태아 및 입양자녀 포함)를 둔 사람\n  ㉱ \n6세 이하 자녀(태아 및 입양자녀 포함)를 둔 한부모가족(자녀가 신청자와 동일 세대별 주민등록표에 등재된 경우에 한함)\n(2) \n무주택세대구성원(예비신혼부부의 경우 혼인으로 구성될 세대의 세대원 모두 무주택자인 경우)일 것\n(3) \n해당 세대의 월평균소득(예비신혼부부의 경우 혼인으로 구성될 세대의 세대구성원 월평균소득의 \n합계)이 기준\n 중위소득의 150퍼센트(맞벌이, 2인 가구 및 출산가구의 경우에는 우대비율을 가산\n) 이하일 것\n \n \n ③\n 고령자\n【유의사항】\n \n혼인 중이 아닌 경우로서 단독세대주로 입주하려는 경우에도 소득 및 자산은 세대구성원 전체를 대상으로 검증\n •\n \n무주택세대구성원(혼인 중이 아닌 경우로서 단독세대주로 입주하려는 사람의 경우에는 무주택자)으\n로서 다음의 요건을 모두 갖춘 사람\n㉮ \n해당 세대의 월평균소득이 기준 중위소득의 150퍼센트(1~2인 가구 및 출산가구의 경우에는 우대비율을 가산)\n 이하일 것\n㉯ 65세 이상일 것\n ④\n 일반\n •\n \n무주택세대구성원으로서 해당 세대의 월평균소득이 기준 중위소득의 150퍼센트\n(1~2인 가구 및 출산가구의 경우에는 우대비율을 가산)\n 이하일 것\n 주거약자용 주택공급\n■ 신청가능 소득  자산 기준\n \n• 소득기준\n : 기준 중위소득의 150% 이하 + @% (우대비율, 우대항목 중복 시 합산 적용)\n① 세대원수 우대비율 : 1인 20%, 2인 10% 가산\n② 출산자녀수 우대비율 : 2인 이상 20%, 1인 10% 가산\n  ※ \n출산자녀는 ’23. 3.28 이후 출산한 자녀(공고일 기준 태아 포함)를 의미하며, 기준일 이후 출산 자녀가        있는 경우에는\n 기준일 이전 출생한 기존 미성년자녀도 포함하여 최대 2자녀로 인정\n     (단, 주택공급 신청자 또는 동 배우자와 같은 세대별 주민등록표등본에 등재되어 있는 경우에 한함, \n      이하 동일)\n \n•\n \n자산기준\n : \n총자산 345,000,000원 및 자동차 45,420,000원 이하 + @%\n출산자녀수 우대비율 : 출산자녀 2인 이상 20%, 출산자녀 1인 10% 가\n산\n구분\n우대항목\n최종 소득,자산기준 (한도)\n세대원수\n출산자녀수\n(태아포함)\n소득기준\n자산기준\n총자산가액\n자동차가액\n주거약자용\n1인\n0인\n170%\n345,000,000원\n45,420,000원\n2인\n0인\n160%\n345,000,000원\n45,420,000원\n1인\n170%\n379,000,000원\n49,960,000원\n3인 이상\n0인\n150%\n345,000,000원\n45,420,000원\n1인\n160%\n379,000,000원\n49,960,000원\n2인 이상\n170%\n413,000,000원\n54,510,000원\n■ 세부 신청자격\n •\n \n주거약자용 주택은 아래에 해당하는 자 중, 무주택세대구성원으로서 해당 세대의 월평균소득이 기준 중위\n소득의 150퍼센트\n(1~2인 가구 및 출산가구의 경우에는 우대비율을 가산)\n 이하인 자에 한하여 신청이 가능합니다.\n㉮ 고령자(65세 이상인 자)\n㉯ 「장애인복지법」 제2조제2항에 해당하는 장애인\n㉰ \n「국가유공자 등 예우 및 지원에 관한 법률」에 따른 국가유공자로서 상이등급 1급부터 7급까지의 판정을 받은 자\n㉱ \n「보훈보상대상자 지원에 관한 법률」에 따른 보훈보상대상자로서 상이등급 1급부터 7급까지의 판정을 받은 자\n㉲ \n「5ㆍ18민주유공자예우에 관한 법률」에 따라 등록된 5ㆍ18민주화운동부상자로서 신체장해등급 1급부터 14급까지의 판정을 받은 자\n㉳ \n「고엽제후유의증 등 환자지원 및 단체설립에 관한 법률」에 따른 고엽제후유의증환자로서 경도(輕度) 장애 이상의 장애등급의 판정을 받은 자\n㉴ \n종전의 \n「국가유공자 등 예우 및 지원에 관한 법률」(법률 제11041호로 개정되기 전의 것을 말함) 제73조의2에 따라 \n국가\n유\n공자에 준하는 군경 등으로 등록된 사람(법률 제11041호 국가유공자 등 예우 및 지원에 관한 법률 일부개정법률\n 부칙 제12조제2항에 따라 등록된 사람을 포함)으로서 상이등급 1급부터 7급까지의 판정을 받은 사람\n6\n신청서류 \n[모집 공고일 이후 발급한 서류에 한함]\n・모든 제출서류는 \n입주자 모집 공고일 이후 발급한 서류에 한하여 신청이 가능\n합니다.\n・\n입주자 모집공고일로부터 입주 시까지 무주택세대구성원을 유지해야 하며\n, 이를 유지하지 않을 경우,\n 당첨 취소 또는 계약거절 등의 불이익을 받으실 수 있으니 이 점 유의하시기 \n바랍니다.\n・\n주민등록표등본, 주민등록표초본, 가족관계증명서 등 제출 시 \n주민등록번호 13자리 숫자 모두 표기\n되도록 발급받으셔야 합니다.\n・\n제출 서류는 일체 반환하지 않으며\n, 위･변조 등으로 허위임이 발견되는 때에는 당첨 및 계약이 취소됩니다.\n■ 신청 서류 (신청 접수 시 제출)\n구비서류\n비 고\n발급처\n본인 확인 서류\n・본인 신분증(주민등록증, 운전면허증, 여권만 인정) 사본 제출\n  \n※ 여권의 경우 생년월일만 기재 시 여권정보증명서 첨부시 인정\n  \n※ 대리인이 신청하는 경우 공고문 5페이지 참조\n-\n【필수】\n공급 신청서\n・신청주택, 신청인 정보 등 해당 내용 전부 기재\n  ※ 입주자격(무주택세대구성원, 소득 및 자산 산정기준 등) \n기준 및       기재항목은 공고문을 반드시 참고\n하시기 바랍니다.\n공사 양식\n【필수】\n개인정보수집․이용 및 제3자 제공 동의서\n・\n(대상자) 신청자를 포함한 세대구성원 전원\n  (\n예비신혼부부의 경우 혼인으로 구성될 세대 전원)\n  ※ 14세 미만의 세대구성원은 보호자(법정대리인)가 자필서명\n・(동의방법) 공고 시 첨부된 동의서에 대상자 전원이 서명\n ※ \n(주의) 동의서를 제출하지 않는 경우 신청・접수가 거부됩니다.\n공사 양식\n■ 서류제출대상자 공통 제출서류  \n・\n신청 접수 이후 \n서류제출 대상자로 확정된 경우, 서류 제출기간에 해당 서류를 제출해야 합니다.\n・\n자\n격검증을 위한 서류제출대상자 선정은 모집세대의 일정 배수를 선정함에 따라, \n서류제출 대상자로\n 선정되었다 하더라도 예비입주자로 선정되지 않을 수 있습니다.\n구비서류\n비 고\n발급처\n【필수】\n금융정보 등\n(금융·신용·보험정보)\n제공 동의서\n・\n(대상자) 신청자를 포함한 세대구성원 전원\n  (\n예비신혼부부의 경우 혼인으로 구성될 세대 전원)\n   ※ 14세 미만의 세대구성원은 보호자(법정대리인)가 자필서명\n・(동의방법) 공고 시 첨부된 동의서에 대상자 전원이 서명\n ※ \n(주의) 동의서를 제출하지 않는 경우 신청・접수가 거부됩니다.\n \n※ \n금융정보 등 제공동의서는 정자서명(흘림서명 금지) 또는 도장날인하여 제출\n공사 양식\n【필수】\n자산 보유\n사실확인서\n・공적자료로 확인이 불가한 임차보증금, 분양권, 임대보증금 내역을 기재하고 신청자가 서명하여 관련 증빙을 첨부하여 제출함\n  ※ 임차보증금 및 임대보증금 : 임대차계약서 사본\n     - 확정일자가 표시되어야 함\n     - 공사(제주특별자치도개발공사)임대주택의 임차보증금일 경우         제출 불필요\n  ※ 분양권 : 분양계약서 사본 및 분양대금 납부확인원\n  ※ \n비상장주식 : 증권사 조회내역, 주식보관증 등 종목, 수량 및\n                  가액을 증명할 수 있는 자료\n  ※ 출자금/출자지분 : 출자증서 사본\n  ※ \n장기카드대출(카드론) : 신용카드사가 발급한 증빙서류\n \n・\n신고 누락된 자산이 추후 확인되어 자산 보유 기준을 충족하지\n 않은 경우 계약해지 처리될 수 있음\n  \n※ \n보유재산이 없는 경우 ‘아니오’에 표시하여 정자 서명 후 제출\n공사 양식\n【필수】\n예비입주자중복선정 불가사항 확인서\n・\n내용 확인 후, 신청자가 자필 서명하여 제출\n ※ \n(주의)동의서 미체출시, 신청접수가 거부됩니다.\n공사 양식\n【필수】\n주민등록표등본\n・\n세대구성원과 세대주와의 관계, 세대주 및 세대\n구성원 전원의 주민등록번호, 전입일/변동일 등이 전부 표기되도록 발급\n받아 제출\n  ※ \n배우자와 주민등록표상 세대 분리되어 있는 경우에는 배우자 주민\n등록표등본 1통 추가 제출\n  \n※ 예비신혼부부의 경우, 예비배우자의 주민등록표 등본 추가 제출\n  ※ 입주자 모집공고일 이후 ‘입주자 모집공고일 현재의 세대주’와\n     주민등록표등본이 분리된 신청자는 ‘입주자 모집공고일 현재의 세대주'의 주민등록표등본 1통 추가 제출\n행정\n복지\n센터\n【필수】\n주민등록표초본\n※ \n반드시 과거 주소변동사항, 세대주 성명 및 관계 등이 전부 표기되도록 발급\n행정\n복지\n센터\n【필수】\n \n가족관계증명서\n ※ \n반드시 \n「가족관계증명서(상세)」\n로 발급\n ※ 예비신혼부부의 경우 혼인으로 구성될 세대에 신청자와 예비배우자 외의 사람을 포함하는 경우 \n해당 세대원과의 관계를 확인할 수 있는 예비배우자의 가족관계증명서 추가\n 제출\n행정\n복지\n센터\n【해당자만 제출】\n \n외국인등록증 사본 등\n【아래 해당자만 제출】\n・배우자가 외국인인 경우, 외국인등록증 사본 추가 제출\n행정\n복지\n센터\n【해당자만 제출】\n \n임신진단서\n【아래 해당자만 제출】\n※ 입주자모집공고일 이후 의료법에 의한 의료기관에서 발급받은 임신진단서\n・\n기준 중위소득 대비 소득구간 판정 시, 월평균소득기준의 가구원수 산정 시\n 태아를 인정받고자 하는 경우\n・\n주거약자용 주택 신청자 중 배점의 부양가족수, 미성년자녀수에\n서 태아를\n 인정받고자 하는 경우\n・\n신혼부부, 6세 이하의 자녀를 둔 한부모가정, 다자녀가구의 자격으로\n 주택을 신\n청하는 신청자 중 태아를 인정받고자 하는 경우\n의료\n법에 의한\n의료\n기관\n【해당자만 제출】\n \n입양관계 증명서\n・\n기준 중위소득의 가구원수 산정 및 소득자산 검증 시, 입양자녀를 인정받고자 하는 경우\n행정\n복지\n센터\n【해당자만 제출】\n감점 적용\n배제 관련 서류\n【아래 해당자만 제출】\n・\n주거약자용주택 신청자 중\n, 입주자가 출산, 사망 또는 노부모 부양 등의 사유로\n 가구원 수가 변동되어 다른 면적으로 재신청하는 경우\n  - \n출산 : 기본증명서 등 세대구성원의 출생사실을 확인할 수 있는 서류\n  - \n사망 : 기본증명서 등 세대구성원의 사망사실을 확인할 수 있는 서류\n  - \n노부모 부양 : 주민등록표등본\n행정\n복지\n센터\n■ 서류제출대상자 입주자격별 추가 제출서류 (해당하는 입주자격의 서류 제출)\n공급대상\n제출서류\n발급처\n【신혼부부】\n 혼인기간 7년 이내인 신혼부부\n혼인관계증명서(상세)\n행정복지센터\n혼인 중인 사람으로서 6세 이하 자녀(태아 포함)를\n 둔 자 중 자녀 또는 태아가 있는 경우\n(해당자) 입양관계증명서 \n/ \n임신진단서(모집공고일 이후 발급분)\n행정복지센터,\n의료법에 의한 의료기관\n【6세 이하 자녀를 둔 한부모가정】\n 이혼, 사별 등의 사유로 6세 이하 자녀를 둔 한부모가정\n혼인관계증명서\n(상세)\n(해당자)입양관계증명서/\n임신진단서(모집공고일 이후 발급분)\n행정복지센터,\n의료법에 의한\n의료기관\n【예비신혼부부】\n \n혼인을 계획 중이며 해당 주택의 입주 전까지\n 혼인사실을 증명할 수 있는 자\n※ \n현재 혼인 중이 아님을 확인하기 위해 ‘상세내역’을 포함하여 발급\n※ \n입주 시까지 혼인관계증명서 등 증빙을 추가 제출하여야 하며,\n 미제출 시 계약이 해제 또는 해지될 수 있습니다.\n예비신혼부부 신청 확인서,\n예비신혼부부 세대구성 확인서,\n혼인관계증명서(상세, 각자)\n대표신청자의 예비배우자\n 신분증 사본\n행정복지센터,\n공사 양식\n【주거약자용 주택 신청자】\n \n㉮～㉳ 중 해당하는 자격에 해당하는 경우\n㉮ 고령자(65세 이상인 자)\n㉯ 「장애인복지법」 제2조제2항에 해당하는 장애인\n㉰ \n「국가유공자 등 예우 및 지원에 관한 법률」에 따른 국가    \n유공자로서 상이등급 1급부터 7급까지의 판정을 받은 자\n㉱\n \n「보훈보상대상자 지원에 관한 법률」에 따른 보훈보상대상자    \n로서 상이등급 1급부터 7급까지의 판정을 받은 자\n㉲\n \n「5ㆍ18민주유공자예우에 관한 법률」에 따라 등록된 5ㆍ18\n     민주화운동부상자로서 신체장해등급 1급부터 14급까지의 판정을    받은 자\n㉳ \n「고엽제후유의증 등 환자지원 및 단체설립에 관한 법률」에\n    \n따른 고엽제후유의증환자로서 경도(輕度) 장애 이상의 장애     \n등\n급의\n 판정을 받은 자\n㉴ \n종전의 「국가유공자 등 예우 및 지원에 관한 법률」(법률 제11041호로 개정되기 전의 것을 말한다) 제73조의\n2에 따라 \n국가유공자에 준하는 군경 등으로 등록된 사람(법률 제11041호 국가유공자 등 예우 및 지원에 관한\n 법률 일부개정법률 부칙 제12조제2항에 따라 등록된 사람을 포함한다)으로서 상이등급 1급부터 7급까지의 판정을 받은 사람\n※ 장애가 있는 신청자는 ㉯에 따른 증빙서류 추가 제출\n※ \n사회취약계층(생계,의료급여 수급자 및 차상위계층에 속한 자)\n는\n 수급자 증명서 추가 제출\n㉮ 제출서류 없음\n㉯ \n장애인등록증,\n   장애인 복지카드 사본\n㉰ 국가유공자 확인원\n㉱\n ('12.7.1전 등록자)\n   지원대상자 확인원\n   \n(’12.7.1이후 등록자)\n   \n보훈보상대상자 확인원\n㉲ \n5‧18민주유공자 확인원\n㉳ \n고엽제법 적용 대상     확인원 \n㉴ 국가유공자에 준하는 군경 등 확인서(신청자 본인에 대한 증명내용, 상이등급 기재)\n㉮ -\n㉯ 행정복지     \n센터\n㉰ ~ \n㉴\n \n국가보훈부    \n(지방청)\n ※ 서류가 중첩될 경우 1부만 제출\n■ 임대조건 상한 대상자 증빙서류 \n[해당자만 제출]\n구분\n제출서류\n발급처\n「국민기초생활 보장법」 제7조제1항에 따른 생계 또는 의료급여 수급자\n 수급자 증명서\n행정복지센터\n생계 또는 의료급여 수급자에 해당하는 기준을 충족하는 국가유공자, 보훈보상대상자, 5・18민주화유공자, 특수임무유공자, 참전유공자 및 국가유공자에 준하는 군경 등으로 등록된 사람 또는 그 유족\n 국가유공자 등 확인원\n국가보훈부\n 수급자 증명서\n행정복지센터\n 소득인정액 산정결과서\n「일제하 일본군위안부 피해자에 대한 보호・지원 및 기념사업 등에 \n관한 법률」 제3조에 따른 일본군위안부 피해자\n 일본군위안부\n결정통지서 사본\n여성가족부\n 수급자 증명서\n행정복지센터\n「한부모가족지원법 시행규칙」 제3조에 따라 여성가족부장관이 정하는\n 기준에 해당하는 지원대상 한부모가족\n한부모가족 증명서\n행정복지센터\n수급자 증명서\n ※ \n미제출 시 임대조건 상한 대상에서 제외될 수 있음에 유의\n하시기 바랍니다.\n7\n입주자 선정 방법\n■ 일반공급 \n • \n「공공주택 특별법 시행규칙」 [별표5의2] 제3호에 따라, \n공급형별 총공급호수의 5% 범위\n에서 \n입주자격 구분\n(청년, 고령자, \n신혼\n부부 등, 일반)에 따른 구분없이 모든 신청자를 대상으로 \n입주자 모집공고일 현재 2세 미만(2세가 되는 날을 포함한다)의\n \n자녀가 있는 사람을 추첨의 방식으로 우선 선정\n하며, 잔여 물량에 대해서는 \n추첨으로 입주자를 \n선정합니다.\n■ 주거약자용 주택 공급\n • \n주거약자용 주택 배정호수 내에서 입주자를 선정하되, 경쟁 시 \n① 아래의 배점의 합계 점수가 높은 신청자 순\n으로 입주자를\n \n선정하되, 동점일 경우 \n② \n추첨\n으로 입주자를 선정\n합니다\n. \n배점항목\n3점\n2점\n1점\n󰊱 부양가족 수 \n   (신청자 본인 제외, 태아포함)\n3인 이상\n2인\n1인\n󰊲 \n해당주택건설지역(제주특별자치도)     \n연속 거주기간\n5년 이상\n3년 이상 5년 미만\n1년 이상 3년 미만\n󰊳 장애정도\n장애의 정도가\n심한 장애인\n-\n장애의 정도가\n심하지 않은 장애인\n󰊴 사회취약계층 (3점)\n‧\n「국민기초생활 보장법」 제7조제1항제1호‧제3호에 따른 생계‧의료   \n급여수급자\n‧「국민기초생활 보장법」 제2조제10호에 따른 차상위계층에 속한 자\n (생계‧의료급여 이외의 수급자 및 그 가구원 포함)\n󰊵 공사 통합공공임대주택에 과거 계약사실이 있는 경우 감점 산정기준\n  가. 최근 1년 이내에 계약한 사실이 있는 경우(-5점)\n  나. 최근 3년 이내에 계약한 사실이 있는 경우(-3점)\n   ※ \n(기간산정) 과거 공사 통합공공임대주택 계약일로부터 금회 공급하는 통합공공임대주택의 입주자 모집공고일\n   ※ 다수의 통합공공임대주택에 계약한 사실이 있는 경우에는 가장 최근 계약일 적용\n   ※ \n갱신계약은 제외하며, 입주자가 출산, 노부모부양, 사망 등의 사유로 가구원 수가 변동되어 다른 면적으로\n 재신청하는 경우 감점 적용을 배제\n  - \n 부양가족 수\n \n입주자 모집 공고일 현재 신청자를 제외한 \n세대구성원 전원(태아 포함)\n \n8"
+    }
+  ]
+}

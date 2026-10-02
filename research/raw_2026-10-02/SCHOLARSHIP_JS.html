@@ -1,0 +1,569 @@
+/**
+ * 장학재단 홈페이지 게시판용 스크립트
+ * 
+**/
+
+// 액션 폼
+var ACTION_FORM = "actForm";
+//검색 폼 아이디
+var SEARCH_FORM = "searchForm";
+
+//게시판
+$(function(){
+	
+	// 첨부파일 이미지 사이즈 조절
+	$(".view_cont img").each(function(){ 
+	    $(this).load(function(){ 
+	    	var maxWidth = 700; 
+	    	var maxHeight = $(this).height(); 
+	    	$(this).removeAttr("width").removeAttr("height");
+	    	var width = $(this).width(); 
+	    	var height = $(this).height(); 
+	    	if(width > height) { 
+	    		if(width > maxWidth){ 
+	    			var ratio = maxWidth / width; 
+	    			$(this).css("width", maxWidth); 
+	    			$(this).css("height", height * ratio); 
+	    			height = height * ratio; 
+	    			
+	    			// 원본보기 이벤트 할당
+	    			/*
+	    			$(this).css("cursor", "pointer").attr("alt", "클릭하시면 원본을 보실수 있습니다.").bind("click", function(){
+	    				window.open($(this).attr("src"));
+	    			});
+	    			*/
+	    		} 
+	    	}else{ 
+	    		if(height > maxHeight){ 
+	    			var ratio = maxHeight / height; 
+	    			$(this).css("height", maxHeight); 
+	    			$(this).css("width", width * ratio); 
+	    			width = width * ratio; 
+	    			
+	    			// 원본보기 이벤트 할당
+	    			/*
+	    			$(this).css("cursor", "pointer").attr("alt", "클릭하시면 원본을 보실수 있습니다.").bind("click", function(){
+	    				window.open($(this).attr("src"));
+	    			});
+	    			*/
+	    		} 
+	    	} 
+	    }); 
+	}); 
+
+	// faq show hide - 완료 
+	$(".faqBtn").click(function(){		
+		if(typeof(obj.$prevFaq) != "undefined") obj.$prevFaq.hide();
+		if(typeof(obj.$prevFaqTitle) != "undefined") obj.$prevFaqTitle.removeClass("on");
+		var currentDt = $(this).parent();
+		$(currentDt).addClass("on");
+		$faq = $("#" + $(this).attr("name"));
+		$faqAttach = $("#" + $(this).attr("name")+"_atch");
+		
+		$faq.show();
+		
+		obj.$prevFaqTitle = $(currentDt);
+		obj.$prevFaq = $faq;
+		
+		$.ajax({
+			type : "GET",
+			dataType : "xml",
+			url : "/ko/faq.attach.do",
+			data : {
+			seq : $(this).attr("name"),			
+			},
+			success:function(data){
+				// <total>6</total><code><name>대출한도</name><value>NODE0000000170</value></code>
+				$xml = $(data);
+				var total = $xml.find("total").text();
+				
+				if(total > 0){
+					$faqAttach.html("");
+					
+					$xml.find("attach").each(function(){
+						$faqAttach.append("<li class='bg_none'>");
+						$faqAttach.append("<img src='https://static.kosaf.go.kr/www/images/common/ico/ico_disk.jpg' alt='"+ $(this).find("name").text() +"' />");
+						$faqAttach.append("<a href=\"javascript:familySiteDown('"+ $(this).find("path").text() +"','"+$(this).find("name").text()+"');\">"+ $(this).find("name").text() +"</a>");
+						$faqAttach.append("</li>");						
+					});
+					$faqAttach.show();
+					
+				} else { 
+					$faqAttach.html("").hide();
+				}
+			}
+		});
+		
+		// hitup
+		$("#sendhide").attr("src", "/ko/faq.hit.do?seqNo=" + $(this).attr("name")); 
+		//
+		
+		return false;
+	});
+	
+	// 검색 클릭 - 완료
+	$(".searchBtn").click(function(){
+		$("#" + SEARCH_FORM).submit();
+		return false;
+	});
+
+	//고객센터 > 공지사항 탭
+	if($(".tab_area.notice").length > 0){
+		var currentAltValue = "";
+		var noticeTabArea = $("#noticeTabArea")[0];
+		var tabAreaNotice = $(".tab_area.notice");
+		var noticeTabLiArr = $(tabAreaNotice).find(">li");
+		var allNoticeLi = $(tabAreaNotice).find("li.first");
+		var tabAreaNoticeChildArr = $(allNoticeLi).find("ul");
+		for (var i = 0; i < noticeTabLiArr.length; i++) {
+			var tabAreaNoticeLi = noticeTabLiArr[i];
+			if($(tabAreaNoticeLi).hasClass("on")){
+				currentAltValue = $(tabAreaNoticeLi).attr("id");
+				$(tabAreaNoticeLi).find("> a").attr("title", "현재선택");
+				$(tabAreaNoticeLi).find("> ul > li.on > a").attr("title", "현재선택");
+			}
+		};
+		
+		$(noticeTabArea).mouseleave(function(){
+			for (var i = 0; i < noticeTabLiArr.length; i++) {
+				$("#csub_"+i).css("display", "none");
+			};
+			$("#csub"+currentAltValue).css("display", "block");
+			
+			/*
+			 * 
+			for (var i = 0; i < tabAreaNoticeChildArr.length; i++) {
+				var tabAreaNoticeChild = tabAreaNoticeChildArr[i];
+				$(tabAreaNoticeChild).css("display", "none");
+			};
+			var currentChildUl = $(allNoticeLi).find("#csub"+currentAltValue);
+			if($(currentChildUl).length>0) $(currentChildUl).css("display", "block");
+			*/
+		});
+	}
+
+	// 1카테고리 오버 - 완료
+	//$(".ctop").mouseover(function(){
+		//$(".child").hide();
+		//$("#csub"+$(this).attr("id")).show();
+	//});
+	
+	$(".ctop > a").bind('mouseover focusin', function(){
+		$(".child").hide();
+		$("#csub"+$(this).parent().attr("id")).show();
+    });
+	
+	// 1차카테고리 전체 오버
+	$(".ctop2").mouseover(function(){
+		//$(".child").hide();
+	});	
+	
+	// 1차 선택 - 완료
+	$("#ownCategory").change(function(){
+		if($(this).val() == ""){
+			$("#twoCategory").html("").hide();
+		}else{
+			$.ajax({
+				type : "GET",
+				dataType : "xml",
+				url : "/ko/q_category.do",
+				data : {
+				 code : $(this).val(),
+				 type : "SVQNA"
+				},
+				success:function(data){
+					// <total>6</total><code><name>대출한도</name><value>NODE0000000170</value></code>
+					$xml = $(data);
+					var total = $xml.find("total").text();
+					$selectBox = $("#twoCategory");
+					if(total > 0){
+						$selectBox.html("");
+						$selectBox.get(0).options.add(new Option("선택해주세요.", ""));
+						//$selectBox.append(new Option("선택해주세요.", ""));
+						$xml.find("code").each(function(){
+							//$selectBox.append(new Option($(this).find("name").text(), $(this).find("value").text()));
+							var o = new Option($(this).find("name").text(), $(this).find("value").text());
+							$selectBox.get(0).options.add(o);
+						});
+						$selectBox.show();
+					}else $selectBox.html("").hide();
+				}
+			});
+		}
+		$("#" + $(this).attr("alt")).val($(this).val());
+	});
+	
+	// 홈페이지 카테고리 선택.. - 완료
+	$("#ownCategory2").change(function(){
+		if($(this).val() == ""){
+			$("#twoCategory").html("").hide();
+		}else{
+			$.ajax({
+				type : "GET",
+				dataType : "xml",
+				url : "/ko/n_category.do",
+				data : {
+				 code : $(this).val(),
+				 type : "SVQNA"
+				},
+				success:function(data){
+					// <total>6</total><code><name>대출한도</name><value>NODE0000000170</value></code>
+					$xml = $(data);
+					var total = $xml.find("total").text();
+					$selectBox = $("#twoCategory");
+					if(total > 0){
+						$selectBox.html("");
+						$selectBox.get(0).options.add(new Option("선택해주세요.", ""));
+						//$selectBox.append(new Option("선택해주세요.", ""));
+						$xml.find("code").each(function(){
+							//$selectBox.append(new Option($(this).find("name").text(), $(this).find("value").text()));
+							var o = new Option($(this).find("name").text(), $(this).find("value").text());
+							$selectBox.get(0).options.add(o);
+						});
+						$selectBox.show();
+					}else $selectBox.html("").hide();
+				}
+			});
+		}
+		$("#" + $(this).attr("alt")).val($(this).val());
+	});
+	
+	// 관리자용  카테고리 선택 - 임시
+	//ajax.category.do
+	$("#ownCategory3").change(function(){
+		if($(this).val() == ""){
+			$("#twoCategory").html("").hide();
+		}else{
+			$.ajax({
+				type : "GET",
+				dataType : "xml",
+				url : "/admin/ajax.category.do",
+				data : {
+				 code : $(this).val(),
+				 bbcd : $("#bbcd").val()
+				},
+				success:function(data){
+					// <total>6</total><code><name>대출한도</name><value>NODE0000000170</value></code>
+					$xml = $(data);
+					var total = $xml.find("total").text();
+					$selectBox = $("#twoCategory");
+					if(total > 0){
+						$selectBox.html("");
+						$selectBox.get(0).options.add(new Option("선택해주세요", ""));
+						//$selectBox.append(new Option("선택해주세요", ""));
+						$xml.find("code").each(function(){
+							//$selectBox.append(new Option($(this).find("name").text(), $(this).find("value").text()));
+							var o = new Option($(this).find("name").text(), $(this).find("value").text());
+							$selectBox.get(0).options.add(o);
+						});
+						$selectBox.show();
+					}else $selectBox.html("").hide();
+				}
+			});
+		}
+		$("#" + $(this).attr("alt")).val($(this).val());
+	});
+		
+
+
+	// 이메일 선택 - 완료
+	$("#mailop").change(function(){
+		if($(this).val() == ""){
+			$("#realmail").val("").css("background", "#ffffff").attr("readonly", false);
+		}else{
+			//2011.10.17 modify by jc.choi 메일 selectbox 선택시 직접입력을 하면 메일 입력가능하도록 수정함
+			if( $(this).val() == "직접입력"){
+				$("#realmail").val("").css("background", "#ffffff").attr("readonly", false);
+			}else{				
+				$("#realmail").val($(this).val()).css("background", "#dbdbdb").attr("readonly", true);
+			}
+		}
+	});
+	// 이메일 2 - 완료
+	$("#mailop2").change(function(){
+		if($(this).val() == ""){
+			$("#realmail2").val("").css("background", "#ffffff").attr("readonly", false);
+		}else{
+			$("#realmail2").val($(this).val()).css("background", "#dbdbdb").attr("readonly", true);
+		}
+	});
+});
+
+
+//ctrid 로 로케이션 갱신
+function setectedCategory(t, val)
+{
+	window.location.href = "?" + t + "=" + val;
+	
+}
+
+//selectbox 값을 id 로 전달
+function valToset(str, id)
+{
+	$("#" + id).val(str);	
+}
+
+//게시판 이미지 사이즈 줄이기 - 이전 소스
+function imageSize(imgFile){
+	var width  = eval("document." + imgFile + ".width");
+	var height = eval("document." + imgFile + ".height");
+	var maxWidth = 600;
+	
+	if(width > maxWidth){
+		height = height/(width/maxWidth);
+		eval("document." + imgFile + ".width = maxWidth");
+		eval("document." + imgFile + ".height = height");	
+	}
+}
+//게시판 첨부파일 다운로드 - 이전소스
+function fileDown(saveKey, seq_No, file_No){
+	//document.getElementById("hiddenFrm").src = "/ko/download.do?pPath="+saveKey+"&pSeq_No="+seq_No+"&pFile_No="+file_No;
+	window.open("/ko/download.do?pPath="+saveKey+"&pSeq_No="+seq_No+"&pFile_No="+file_No,'_new');
+}
+function realFileDown(saveKey, seq_No, file_No){
+	window.open("https://www.kosaf.go.kr/ko/download.do?pPath="+saveKey+"&pSeq_No="+seq_No+"&pFile_No="+file_No,'_new');
+}
+
+function testFileDown(saveKey, seq_No, file_No){	
+	window.open("https://testkowww.kosaf.go.kr/ko/download.do?pPath="+saveKey+"&pSeq_No="+seq_No+"&pFile_No="+file_No,'_new');
+}
+
+function pdfRealFileDown(saveKey, seq_No, file_No){
+	var _win = window.open('','_new');
+	var _url = "https://www.kosaf.go.kr/ko/pdfDownload.do?pPath=kosafPdfDwn&pSeq_No="+seq_No+"&pFile_No="+file_No;
+	_win.location.href = _url;
+	_win.focus();
+}
+
+function pdfTestFileDown(saveKey, seq_No, file_No){	
+	var _win = window.open('','_new');
+	var _url = "https://testkowww.kosaf.go.kr/ko/pdfDownload.do?pPath=kosafPdfDwn&pSeq_No="+seq_No+"&pFile_No="+file_No;
+	_win.location.href = _url;
+	_win.focus();	
+}
+
+function fileDownSession(saveKey, seq_No, file_No){
+	//document.getElementById("hiddenFrm").src = "/ko/download.do?pPath="+saveKey+"&pSeq_No="+seq_No+"&pFile_No="+file_No;
+	window.open("/ko/downloadSession.do?pPath="+saveKey+"&pSeq_No="+seq_No+"&pFile_No="+file_No,'_new');
+}
+
+
+//==============파일 첨부하기 관련==============
+//인덱스
+var idx = 1;
+//이미지 클릭
+function fileSearch(){
+	if(idx > 2){
+		alert("더이상 파일을 등록하실수 없습니다.");
+	}else{
+		$("#fp" + idx).click();
+	}
+}
+//파일 선택
+function fileSelect(o){
+	var fName = o.value.split("\\");
+	fName = fName[fName.length-1];
+	var str = "<li id=\"fp_s_"+idx+"\">";
+	str += "<img src=\"/images/common/ico/ico_disk.jpg\" alt=\"파일\" />"; 
+	str += fName;
+	str += "<a href=\"#\" onclick=\"fileDelete("+idx+"); return false;\"><img src=\"/images/board/btn_delete01.gif\" alt=\"�뚯씪泥⑤� �쒓굅\" /></a>";
+	$("ul#file_lists").append(str);
+	idx++;
+}
+//파일 삭제
+function fileDelete(no){
+	if(idx > 1){
+		idx--;
+		var str = "<input type=\"file\" id=\"fp"+no+"\" name=\"file"+no+"\" onchange=\"fileSelect(this)\" />";
+		$("#file_"+no+"_sp").html(str);
+		// ul 에서 삭제..
+		var str1 = "";
+		$("ul#file_lists").children().each(function(){
+			if($(this).attr("id") != "fp_s_" + no){
+				 str1 += "<li id=\""+$(this).attr("id")+"\">" + $(this).html() + "</li>";
+			}
+		});
+		$("ul#file_lists").html(str1);
+	}
+}
+//==============파일 첨부하기 관련==============
+
+
+//=============글쓰기 같은 폼 체크 관련==========
+//기본 시스템 메세지  - 상속 가능함.
+var defaultMessage = {
+	required : "{s}은(는) 필수 요소입니다.",
+	minlength : "최소 {i}글자 이상 입력하세요.",
+	maxlength : "최대 {i}글자 이하 입력하세요.",
+	min : "최소 {i} 수치 이상 입력하세요.",
+	max : "최대 {i} 수치 이상 입력하세요.",
+	email : "올바른 이메일 형식이 아닙니다.",
+	ssn : "올바른 주민등록번호 형식이 아닙니다.",
+	equals : "두개의 값이 일치하지 않습니다.",
+	numberic : "숫자만 입력 가능합니다.",
+	notequals : "두개의 값이 일치합니다."
+}
+//=============글쓰기 같은 폼 체크 관련==========
+/**
+* 폼 유효성 체크
+* @param f 폼 객체
+* @param list 유효성 리스트(json 으로 규격대로 작성..)
+* @date 2011.03.15
+* @author 장현준
+* @comment
+*    - required = 빈공간 (true | false)
+*    - minlength = 최소길이 (integer)
+*    - maxlength = 최대 길이 (integer)
+*    - min = 최소 숫자 (integer)
+*    - max = 최대 숫자 (integer)
+*    - email = email 이면 이메일 유효성(true | false)
+*    - ssn = 주민번호  유효성(true | false)
+*    - equals = 같은값인지 비교한 객체 name(string)
+*    - notequals = 다른값인지 비교한 객체 name(string)
+*/
+function validate(f, list)
+{
+	// 오브젝트 일 경우에만.
+	if(typeof(list) == "object"){
+		// 요소 기준으로 반복 유효성에 걸리면 종료..
+		var ck = false;
+		for(var p in list.rules){
+			// 해당 유효성 룰의 이름으로 폼 name 객체 탐색
+			element = findElementName(f, p);
+			// 객체 못찾았으면 제외
+			if(typeof(element) == "undefined") continue;
+			// 요소의 유효성 조건으로 반복
+			var objval = $.trim(element.value);
+			for(var e in list.rules[p]){
+				switch(e){
+					// 필수 요소
+					case "required":
+						if(list.rules[p][e] && objval == "") ck = true;
+						break;
+					// 최소 길이
+					case "minlength":
+						if(objval.length < list.rules[p].minlength) ck = true;
+						break;
+					// 최대 길이
+					case "maxlength":
+						if(objval.length > list.rules[p].maxlength) ck = true;
+						break;
+					// 최소값
+					case "min":
+						if(objval < list.rules[p].min) ck = true;
+						break;
+					// 최대값
+					case "max":
+						if(objval > list.rules[p].max) ck = true;
+						break;
+					// 이메일 - 현재에서는 구분자를 따로 명시해주기 때문에 별도로 필요없을듯..
+					case "email":
+						if(list.rules[p][e]){
+							// 이메일 주소 형식 검사
+						}
+						break;
+					// 주민등록번호
+					case "ssn":
+						if(list.rules[p][e]) ck = isNotPersonNumber(objval);
+						break;
+					// 다른 필드와 동일한지
+					case "equals":
+						var ckobj = findElementName(f, list.rules[p][e]);
+						if(typeof(ckobj) != "undefined"){
+							if($.trim(ckobj.value) != objval) ck = true;
+						}
+						break;
+					// 숫자만 가능
+					case "numberic":
+						if(list.rules[p][e]){
+							var pattern = /(^[0-9]+$)/;
+							if(!pattern.test(objval)) ck = true;
+						}
+						break;
+					// 다른 필드와 동일하지 않은지.
+					case "notequals":
+						var ckobj = findElementName(f, list.rules[p][e]);
+						if(typeof(ckobj) != "undefined"){
+							if($.trim(ckobj.value) == objval) ck = true;
+						}
+						break;
+				}
+				if(ck){
+					// 메세지가 없으면 기본 메시지..
+					var msg = "";
+
+					if(typeof(msg) == "undefined" && typeof(element.title) != "undefined" || element.title != null) msg = element.title;
+					
+					if(typeof(list.message[p]) == "undefined" || list.message[p] == null || typeof(list.message[p][e]) == "undefined"){
+						msg = defaultMessage[e];
+						msg = msg.replace("{s}", element.title);
+						msg = msg.replace("{i}", list.rules[p][e]);
+					}else msg = list.message[p][e];
+					
+					alert(msg);
+					element.focus();
+					return true;
+					break;
+				}
+			}
+		}
+	}
+	return false;
+}
+/**
+ * 폼 요소들 중 name 으로 요소 검색 추출
+ * @param f 폼
+ * @param val 이름
+ * @return 검색된 요소
+ * @date 2011.03.15
+ * @author 장현준
+ */
+function findElementName(f, val)
+{
+	for(var i = 0; i < f.elements.length; i++){
+		if(f.elements[i].name == val){
+			return f.elements[i];
+		}
+	}
+	return undefined;
+}
+/**
+ * 주민번호 체크 루틴
+ * @param pNumber 주민번호
+ * @return 주민번호 유효성에 걸리면 true
+ * @date 2011.03.15
+ * @author 장현준
+ */
+function isNotPersonNumber(pNumber)
+{
+	
+	var pattern = /(^[0-9]{13}$)/;
+	if(!pattern.test(pNumber)){
+		return true;
+	}else{
+		var sum_1 = 0;
+		var sum_2 = 0;
+		var at = 0;
+		var juminno = pNumber;
+		sum_1 = (juminno.charAt(0)*2)+ (juminno.charAt(1)*3)+ (juminno.charAt(2)*4)+ (juminno.charAt(3)*5)+ (juminno.charAt(4)*6)+
+				(juminno.charAt(5)*7)+ (juminno.charAt(6)*8)+ (juminno.charAt(7)*9)+ (juminno.charAt(8)*2)+ (juminno.charAt(9)*3)+
+				(juminno.charAt(10)*4)+ (juminno.charAt(11)*5);
+		sum_2 = sum_1 % 11;
+
+		if(sum_2 == 0) at = 10;
+		else{
+			if(sum_2 == 1) at = 11;
+			else  at = sum_2;
+		}
+		att = 11 - at;
+		if(juminno.charAt(12) != att ||
+			juminno.substr(2,2) < '01' ||
+			juminno.substr(2,2) > '12' ||
+			juminno.substr(4,2) < '01' ||
+			juminno.substr(4,2) > '31' ||
+			juminno.charAt(6) > 4){
+				return true;
+		}
+	}
+}
+//=============글쓰기 같은 폼 체크 관련==========
