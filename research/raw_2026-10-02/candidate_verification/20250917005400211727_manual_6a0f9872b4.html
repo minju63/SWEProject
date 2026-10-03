@@ -1,0 +1,1653 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="title" content="경남바로서비스">
+    <meta name="keywords" content="경남바로서비스">
+    <meta name="description" content="경남바로서비스 홈페이지입니다.">
+	<meta property="og:title" content="경남바로서비스">
+	<meta property="og:description" content="경남바로서비스 홈페이지입니다.">
+	<meta property="og:image" content="/baro/css/images/common/ogimg.jpg">
+	<meta name="google-site-verification" content="Dk11Sib8rCcrTvbCKMCrOomKEJ7RJujb4mtrvugTIHo" />
+    <title>경남바로서비스</title>
+    <link rel="shortcut icon" href="/baro/css/images/common/favicon.ico" type="image/x-icon" />
+	<link rel="stylesheet" type="text/css" href="/baro/css/baro/common.css?v=2.0" media="all">
+	
+	<link rel="stylesheet" type="text/css" href="/baro/css/baro/contents.css?v=2.4" media="all">
+	<link rel="stylesheet" type="text/css" href="/baro/css/baro/contents2.css?v=2.0" media="all">
+	<link rel="stylesheet" type="text/css" href="/baro/css/baro/default.css?v=2.1" media="all">
+	<link rel="stylesheet" type="text/css" href="/baro/css/baro/guide.css?v=2.0" media="all">
+	<link rel="stylesheet" type="text/css" href="/baro/css/baro/layout.css?v=2.2" media="all">
+	<link rel="stylesheet" type="text/css" href="/baro/css/baro/main.css?v=2.0" media="all">
+	<link rel="stylesheet" type="text/css" href="/baro/css/baro/jquery-ui.css?v=1.0" media="all">
+	<link rel="stylesheet" type="text/css" href="/baro/css/baro/swiper.min.css?v=1.0" media="all">
+	<link rel="stylesheet" type="text/css" href="/baro/css/selfcheckTest.css?v=1.0" media="all">
+	<link rel="canonical" href="https://www.gyeongnam.go.kr/baro/index.es?sid=a1">
+	
+	<script type='text/javascript' src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+	<!-- <script type="text/javascript" src="/baro/js/baro/jquery-1.11.3.min.js"></script> -->
+	<script type="text/javascript" src="/baro/js/baro/jquery-ui.min.js"></script>
+	<script type="text/javascript" src="/baro/js/baro/c3.js"></script>
+	<script type="text/javascript" src="/baro/js/baro/carouFredSel.js?v=1.0"></script>
+	<script type="text/javascript" src="/baro/js/baro/common.js?v=1.1"></script>
+	<script type="text/javascript" src="/baro/js/baro/d3.js"></script>
+	<script type="text/javascript" src="/baro/js/baro/d3.v3.min.js"></script>
+	<script type="text/javascript" src="/baro/js/baro/html5shiv.js"></script>
+    <script type="text/javascript" src="/baro/js/baro/slick.js?v=1.0"></script>
+    <script type="text/javascript" src="/baro/js/baro/swiper-bundle.min.js"></script>
+    <script type="text/javascript" src="/baro/js/baro/gsap.min.js"></script>
+    <script type="text/javascript" src="/baro/js/baro/ScrollToPlugin.min.js"></script>
+    <script type="text/javascript" src="/baro/js/baro/ScrollTrigger.min.js"></script>
+
+	<script type="text/javascript" src="/baro/js/baro/lnb.js"></script>
+	<script type="text/javascript" src="/baro/js/baro/main.js?v=3.0"></script>
+	<script type="text/javascript" src="/baro/js/baro/openlayer.js"></script>
+	<script type="text/javascript" src="/baro/js/baro/respond.min.js"></script>
+	<script type="text/javascript" src="/baro/js/baro/tab.js"></script>
+
+	<script type="text/javascript" src="/baro/js/baro/calendar_main.js?v=1.0"></script>
+	
+	<script src="/baro/source/sEditorNew/js/service/HuskyEZCreator.js" charset="UTF-8"></script>
+	<script src="/baro/ease_src/js/board.js" charset="UTF-8"></script>
+
+	<!-- eDotXPress 전자점자--> 		
+    <script type="text/javascript" src="/EDotXPressHtml/js/edotxpress-html.min.js?t=20250407"></script>
+    <script type="text/javascript" src="/EDotXPressHtml/js/edotxpress-common.js?t=20250407"></script>
+    <script type="text/javascript" src="/EDotXPressHtml/js/edotxpress-config-gyeongnam.js?t=20250407"></script>
+
+	
+	<script>
+/*
+	$(function(){
+		if($(".depth1 .m5").html() == undefined){
+			$("#lnb .depth1 > li").css("padding", "0px 60px");
+		}else{
+			$("#lnb .depth1 > li").css("padding", "0px 40px");
+		}
+		$("#lnb .depth1 > li.m8").css("padding", "0");
+	});
+*/
+	</script>
+
+</head>
+<body>
+
+	<script>
+	function fn_logout(){
+		$.ajax({
+			url : 'https://www.gyeongnam.go.kr/j_spring_security_logout'
+			, async : false
+			, success : function(data){
+				location.href='/baro/logout.es?sid=a1&mid=a10704000000';
+			}
+			, error : function(){
+				location.href='/baro/logout.es?sid=a1&mid=a10704000000';
+			}
+		});
+	}
+	</script>
+    <div id="skipnavi">
+        <a href="#contents">본문 바로가기</a>
+    </div>
+    <!-- wrapper -->
+        
+    <div id="wrap" class="sub">
+
+        <!-- header -->
+    <header id="header">
+		<div class="header_inner">
+			<h1 class="logo"><a href="/baro/index.es?sid=a1"><img src="/baro/css/images/common/logo.png" alt="경남 바로 서비스" ></a></h1>
+			<nav id="lnb">
+				<ul class="depth1">
+					
+					<li><a href="/baro/menu.es?mid=a10200000000" target="_self">서비스신청</a>
+					
+						<div class="depth2_wrap">
+							<ul class="depth2">
+					
+							<li>
+								<a href="/baro/menu.es?mid=a10202000000" target="_self">서비스 신청하기
+								</a>
+								
+									<div class="depth3">
+										<ul>
+								
+										</ul>
+									</div>
+								
+							</li>
+					
+							</ul>
+						</div>
+					
+					</li>
+				
+					<li><a href="/baro/menu.es?mid=a10700000000" target="_self">지원정책 안내</a>
+					
+						<div class="depth2_wrap">
+							<ul class="depth2">
+					
+							<li>
+								<a href="/baro/menu.es?mid=a10703000000" target="_self">경상남도 지원정책
+								</a>
+								
+									<div class="depth3">
+										<ul>
+								
+										</ul>
+									</div>
+								
+							</li>
+					
+							<li>
+								<a href="/baro/menu.es?mid=a10704000000" target="_self">생애주기별저출생대응<br>지원정책
+								</a>
+								
+									<div class="depth3">
+										<ul>
+								
+										</ul>
+									</div>
+								
+							</li>
+					
+							<li>
+								<a href="/baro/menu.es?mid=a10701000000" target="_self">분야별 지원정책 플랫폼
+								</a>
+								
+									<div class="depth3">
+										<ul>
+								
+										</ul>
+									</div>
+								
+							</li>
+					
+							</ul>
+						</div>
+					
+					</li>
+				
+					<li><a href="/baro/menu.es?mid=a10300000000" target="_self">이용안내</a>
+					
+						<div class="depth2_wrap">
+							<ul class="depth2">
+					
+							<li>
+								<a href="/baro/menu.es?mid=a10306000000" target="_self">경남바로서비스 소개
+								</a>
+								
+									<div class="depth3">
+										<ul>
+								
+										</ul>
+									</div>
+								
+							</li>
+					
+							<li>
+								<a href="/baro/menu.es?mid=a10301000000" target="_self">공지사항
+								</a>
+								
+									<div class="depth3">
+										<ul>
+								
+										</ul>
+									</div>
+								
+							</li>
+					
+							<li>
+								<a href="/baro/menu.es?mid=a10302000000" target="_self">FAQ
+								</a>
+								
+									<div class="depth3">
+										<ul>
+								
+										</ul>
+									</div>
+								
+							</li>
+					
+							<li>
+								<a href="/baro/menu.es?mid=a10304000000" target="_self">장애 문의
+								</a>
+								
+									<div class="depth3">
+										<ul>
+								
+										</ul>
+									</div>
+								
+							</li>
+					
+							</ul>
+						</div>
+					
+					</li>
+				
+				        
+				</ul>
+				<div class="close_area">
+					<p class="home_btn"><a href="/baro/"><img src="/baro/css/images/common/m_logo.png" alt="경남 바로 서비스" ></a></p>
+					<p class="close"></p><span class="blind">닫기</span>
+					<div class="srh_box2_mo">
+						<form action="/baro/baroSearch.es" method="get" id="totalSearchForm_mo" onsubmit="return fn_totalSearchForm_mo();">
+							<fieldset>
+								<legend>통합 검색</legend>
+								<input type="hidden" name="mid" value="a10401000000">
+								<input type="hidden" name="pageType" value="list">
+								<label for="tkeyword" class="blind">검색어 입력</label>	
+								<input type="text" class="sword" name="keyword" title="검색어를 입력하세요" placeholder="검색어를 입력하세요">
+								<a href="javascript:$('#totalSearchForm_mo').submit();" class="all_sear_btn"><img src="/baro/css/images/common/search.png" alt="검색"></a>
+							</fieldset>
+						</form>
+					</div> 
+				</div>
+				 <ul class="lnb_btn_area">
+					<li><a href="/baro/menu.es?mid=a10500000000">사이트맵</a></li>
+					
+					
+					
+						<li><a href="/baro/menu.es?mid=a10607000000">로그인</a></li>
+					
+					
+				</ul> 
+			
+			</nav>
+				<ul class="nav_btn">
+						
+						
+						
+							<li><a href="/baro/menu.es?mid=a10607000000" class="login"></a></li>
+						
+						
+						<li class="search_drop">
+							<a href="javascript:void(0);" class="srh_btn"><span class="blind">검색</span></a>
+							<div class="srh_box2">
+								<form action="/baro/baroSearch.es" method="get" id="totalSearchForm" onsubmit="return fn_totalSearchForm();">
+									<fieldset>
+										<legend>통합 검색</legend>
+										<input type="hidden" name="mid" value="a10401000000">
+										<input type="hidden" name="pageType" value="list">
+										<label for="tkeyword" class="blind">검색어 입력</label>
+										<img src="/baro/css/images/common/srh_ico.png" alt="" class="mr_10">
+										<input type="text" name="keyword" class="sword" id="tkeyword" title="검색어를 입력하세요" placeholder="검색어를 입력하세요">
+										<a href="javascript:$('#totalSearchForm').submit();" class="all_sear_btn"><img src="/baro/css/images/common/search.png" alt="검색"></a>
+									</fieldset>
+								</form>
+							</div>
+						</li>
+						<li><a href="/baro/menu.es?mid=a10500000000" class="sitemap" title="사이트맵"></a></li>
+				</ul>
+			<div id="lnb_bg">
+				<div class="lnb_img"></div>
+			</div>
+			<script>
+				$(document).ready(function() {
+
+					/*통합검색*/
+					$( '.srh_btn' ).click( function() {
+					$( '.srh_box2' ).slideToggle(200);
+					$('header').toggleClass('on')
+					});
+
+				});
+
+				function fn_totalSearchForm(){
+					if($("#totalSearchForm [name=keyword]").val() == ""){
+						alert("검색어를 입력하여주시기 바랍니다.");
+						$("#totalSearchForm [name=keyword]").focus();
+						return false;
+					}else if($("#totalSearchForm [name=keyword]").val().length < 2){
+						alert("검색어를 2자 이상 입력하여주시기 바랍니다.");
+						$("#totalSearchForm [name=keyword]").focus();
+						return false;
+					}else{
+						return true;
+					}
+				}
+
+				function fn_totalSearchForm_mo(){
+					if($("#totalSearchForm_mo [name=keyword]").val() == ""){
+						alert("검색어를 입력하여주시기 바랍니다.");
+						$("#totalSearchForm_mo [name=keyword]").focus();
+						return false;
+					}else if($("#totalSearchForm_mo [name=keyword]").val().length < 2){
+						alert("검색어를 2자 이상 입력하여주시기 바랍니다.");
+						$("#totalSearchForm_mo [name=keyword]").focus();
+						return false;
+					}else{
+						return true;
+					}
+				}
+			</script>
+
+
+		</div>
+		<div id="lnb_btn2" class="lnb_btn_mo"><span class="blind">전체메뉴 열기</span></div>
+		<div id="lnb_mask"></div>
+	</header>
+
+<script>
+function fn_menuMove(val){
+	location.href=val;
+}
+</script>
+
+
+<!--
+		<ul class="depth1" style="display: inline-block;">
+	
+			<li><a href="/baro/menu.es?mid=a10703000000">경상남도 지원정책</a></li>
+	
+			<li><a href="/baro/menu.es?mid=a10701000000">분야별 지원정책 플랫폼</a></li>
+	
+			<li><a href="/baro/menu.es?mid=a10704000000">생애주기별저출생대응 지원정책</a></li>
+	
+		</ul>
+-->
+	
+	
+	
+
+        <!-- // header -->
+
+		
+        <!-- //sub visual -->
+		<div class="subVisual">
+	<h2 class="tit_1depth dv_wrap">지원정책 안내</h2>
+	<div class="loc">
+		<img src="/baro/css/images/common/ico_home_w.png" alt="홈" class="home">
+   		<img src="/baro/css/images/common/contit_ico_arr_w.gif" alt="▶">지원정책 안내
+   				
+         	<img src="/baro/css/images/common/contit_ico_arr_w.gif" alt="▶"><span class="current">생애주기별저출생대응 지원정책</span>
+     	
+       	
+       	
+ 	</div>
+
+
+	
+
+
+</div>
+
+<!-- container -->
+<div id="container">         
+  <div id="contents" class="dv_wrap">
+  
+		<div class="contit">
+			<h2>생애주기별저출생대응 지원정책</h2>
+			
+			
+			<div class="jumja">
+				<button type="button" onclick="exportBrl('brf', '생애주기별저출생대응 지원정책')"><img src="/baro/css/images/common/brf_2.png" alt="점자내려받기" title="점자내려받기" style="width:30px;height:30px;"></button>
+				<button type="button" onclick="openBrlViewer('생애주기별저출생대응 지원정책')"><img src="/baro/css/images/common/brf_1.png" alt="점자미리보기" title="점자미리보기" style="width:30px;height:30px;"></button>
+			</div>
+			
+		
+		</div>
+          <!-- 컨텐츠영역 -->
+	          
+
+		
+
+		
+
+
+
+<div class="depth5">
+  <ul class="tab-3 arrow-tab">
+      <li data-tab="tab1" class="on"><a href="javascript:;">청년・신혼부부</a></li>
+      <li data-tab="tab2" class=""><a href="javascript:;">임신・출산</a></li>
+      <!--<li data-tab="tab3" class=""><a href="javascript:;">출산지원금</a></li>-->
+      <li data-tab="tab4" class=""><a href="javascript:;">양육지원</a></li>
+  </ul><br />
+</div>
+
+
+
+
+<section id="tab1" class="tabcontent on">
+  <h3 class="bl_h3" data-brl-use="PH/H2">청년・신혼부부 지원정책</h3>
+<div class="boardSearch" data-brl-use="NO">
+    <div class="v1"><!-- v1 -->
+      <p class="page">총 :<span class="count-1">3</span>건의 청년・신혼부부 지원정책이 있습니다.</p>
+      
+    </div>	
+  </div>
+
+	<div class="boardWrap">
+		<div class="board">
+
+		<table class="basicList">
+			<caption>결혼장려금 지원 정책 시군, 금액 , 비고, 상세보기</caption>
+                            <colgroup>
+				<col style="width:20%;">
+                                <col style="width:auto;">
+				<col style="width:10%;">
+				<col style="width:13%;">
+			</colgroup>
+			<thead>
+				<tr>
+					<th scope="col">사업명</th>
+					<th scope="col">사업내용</th>
+					<th scope="col">담당부서</th>
+					<th scope="col">상세보기</th>
+				</tr>
+			</thead>
+
+
+<tbody>	
+				
+				
+	
+				<tr>
+          <td aria-label="분류">맞춤형임대주택 공급</td>
+          <td  class="left"> (공급계획) 청년 매입임대주택 ‘25년 30호 공급청년 일자리 연계 임대주택 ‘25~’27년 75호 공급<br/>
+            (지원대상) 무주택 저소득층 청년(만19~39세 이하) <br/>
+               (지원내용) 시중 임대료 50%이내, 청년 최대 6년간 
+          </td>
+          <td>주택과</td>
+          <td class="list4">
+            <a href="/baro/policyView.es?policy_no=1707&mid=a10703000000" class="btn_line color2">▶ 보기</a>
+          </td>
+        </tr>
+
+
+
+
+        <tr>
+          <td aria-label="분류">청년주택임차보증금이자지원사업</td>
+          <td  class="left">(지원대상) 경남 거주 무주택 청년(만19~39세 이하, 시군 조례에 따름)<br/>
+           (소득기준)<br/>- 대학원생, 취업준비생 등 : 부모합산 연소득 1억원 이하 <br/>-직장인, 사업자 등 : 본인 연소득 5천만원 이하<br/>-(청년)부부 : 부부합산 연소득 1억원 이하 <br/>
+         (주택기준) 전용면적 85㎡이하, 전세보증금 3억원이하(월세는 전세금 환산) <br/>
+(지원내용) 청년 전세자금 대출의 기납부한 이자액에 대하여 대출잔액 5천만원 한도의 이자 3% 이내(최대 150만원) 지원 <br/>
+※ 매년 신청 접수해야 하며, 지원자격 충족시 최장 6년간 지원
+         </td>
+       <td>주택과</td>
+          <td class="list4">
+            <a href="/baro/policyView.es?policy_no=1705&mid=a10703000000" class="btn_line color2">▶ 보기</a>
+          </td>
+        </tr>
+
+
+
+        <tr>
+          <td aria-label="분류">신혼부부 주택구입 대출이자 지원사업</td>
+          <td  class="left"> (지원대상) 경남도내 주택을 구입하여 거주하는, 1주택, 혼인기간 7년 이내 신혼부부<br/>
+             (소득기준) 부부합산 연소득 1억원 이하 <br/>
+             (주택기준) 전용면적 85㎡이하, 주택매입가격 6억원 이하, 혼인신고일 이후 7년 이내 또는 혼인신고일 이전 1년 이내 구입한 주택<br/>
+             (지원내용) 신혼부부 주택구입자금 대출의 기납부한 이자액에 대하여 대출잔액 5천만원 한도의 이자 3% 이내(최대 150만원) 지원<br/>
+            ※ 매년 신청 접수해야 하며, 지원자격 충족시 최장 5년간 지원</td>
+          <td>주택과</td>
+          <td class="list4">
+            <a href="/baro/policyView.es?policy_no=1706&mid=a10703000000" class="btn_line color2">▶ 보기</a>
+          </td>
+        </tr>
+
+		</tbody>
+	</table>
+		</div>
+</div>
+
+
+
+
+
+
+
+
+<!--
+			<colgroup>
+				<col style="width:10%;">
+				<col style="width:15%;">
+        <col style="width:auto;">
+				
+			</colgroup>
+			<thead>
+				<tr>
+					<th scope="col">시군</th>
+					<th scope="col">금액</th>
+					<th scope="col">사업내용</th>
+					
+				</tr>
+			</thead>
+
+
+
+			<tbody>				
+        <tr>
+          <td aria-label="분류">진주</td>
+          <td>50만원</td>
+          <td class="left">(자격요건)<br/>
+            - 혼인 신고일 기준 18~49세까지의 남녀<br/>
+            - 혼인당사자 1명 이상이 6개월 이상 진주시에 주민등록이 되어 있는 자<br/>
+            - 결혼축하금 지원 신청일 기준 부부 모두 진주시에 주민등록이 되어 있는 자<br/>
+          (신청기한):혼인신고일로부터2년이내<br/>
+          (지원내용):진주사랑상품권지급
+        </td>
+          
+        </tr>
+ 
+
+        <tr>
+          <td aria-label="분류">사천</td>
+          <td>100만원</td>
+          <td class="left">(지원대상) 2023. 1. 1. 이후 혼인신고자로서 혼인신고일 기준 부부 모두 19~49세 이하이며 6개월 이상 사천시에 주민등록을 두고 거주하는 시민<br/>
+            (지원내용) 한쌍당100만원<br/>
+            (신청기한) 혼인신고일로부터2년이내</td>
+          
+        </tr>
+      
+
+
+
+        <tr>
+          <td aria-label="분류">밀양</td>
+          <td>100만원</td>
+          <td class="left">(지원대상) 신청일 기준 6개월 이상 시에 주민등록을 두고 계속 거주중이며 2025.1.1. 이후 혼인신고한 부부<br/>
+            (지원내용) 혼인신고일기준19세~49세(부부모두)<br/>
+            (신청기한) 혼인신고일로부터2년이내신청</td>
+          
+        </tr>
+
+
+        <tr>
+          <td aria-label="분류">의령</td>
+          <td>150만원</td>
+          <td class="left">(지원대상)'25.1.1.이후혼인신고(1명이상내국인),혼인신고일기준18세이상49세이하(1명이상초혼)<br/>
+            (지원내용) 1차:50만원(혼인신고일로부터 1년이내신청)<br/>
+            2차:100만원(결혼장려금 최초신청일로부터 1년 경과 후)<br/>
+            의령사랑상품권지급(모바일)</td>
+          
+        </tr>
+
+
+        <tr>
+          <td aria-label="분류">창녕</td>
+          <td>100만원</td>
+          <td class="left">(지원대상)혼인신고일 기준으로 3개월 이상 계속하여 군내에 주민등록을 하고 있고 1년 이내 결혼축하금 신청(19-49세인 부부)<br/>
+             (지원내용) 부부1인당1백만원</td>
+          
+        </tr>
+        <tr>
+          <td aria-label="분류">고성</td>
+          <td>200만원</td>
+          <td class="left">(지원대상)혼인신고일 기준 19~49세까지 부부로 한 명의 주소지가 혼인신고일 기준 6개월이전부터 계속 고성군에 주민등록을 두고있어야하며, 신청일기준 부부 모두 고성군에 주민등록을 두고있어야함</td>
+          
+        </tr>
+        <tr>
+          <td aria-label="분류">남해</td>
+          <td>200만원</td>
+          <td class="left">3회 분할 연차 지급방식 (1회 100만원 2,3회 50만원)</td>
+          
+        </tr>
+        <tr>
+          <td aria-label="분류">하동</td>
+          <td>600만원</td>
+          <td class="left">(지원대상) 결혼당사자 중 한명이라도 혼인신고일 전 1년 이상 군에 주민등록을 두고 있으며, 혼인신고일 기준으로 부부 모두가 군에 주민등록을 두고 실제 거주한지 3개월 이상 된 경우<br/>
+            *여성의경우가임기(49세까지)여성에게만적용<br/>
+            (지급방법)3년간200만원씩분할,부부의혼인신고일이속한월에지급</td>
+          
+        </tr>
+        <tr>
+          <td aria-label="분류">산청</td>
+          <td>400만원</td>
+          <td class="left">(지원대상)청년(만19~49세) 결혼당사자 중 1명 이상이 혼인신고일 현재 6개월 이상 관내에 주민등록을 하고 혼인신고 후 부부 모두 관내에 주민등록을 두고 계속 거주하는 경우</td>
+          
+        </tr>
+        <tr>
+          <td aria-label="분류">함양</td>
+          <td>400만원</td>
+          <td class="left">(지원대상) -신청일 기준 부부 모두 19세 이상 49세 이하일 것<br/>
+            - 부부중 한명이라도 혼인신고일을 기준으로 6개월전부터 계속하여 관내에 주소를 두고 거주<br/>
+            - 부부중 1명이상이 초혼일것<br/>
+            - 2022년1월1일이후 혼인신고를 한 부부일 것<br/>
+            - 다문화가정인경우에는국적취득후주민등록을한경우일것<br/>
+              *다만 군으로부터 동종사업에 해당하는 보조받은 경우 제외<br/>
+            (지급내용)3년(회)분할지급(1차100,2차200,3차200)(차수별신청일로부터1년후신청가능)</td>
+         
+        </tr>
+        <tr>
+          <td aria-label="분류">거창</td>
+          <td>600만원</td>
+          <td class="left">(지원대상) 19세~45세 이하 관내 청년 신혼부부<br/>
+            (지원기준)<br/>
+             - 부부중 1명 이상이 초혼<br/>
+             - 혼인신고일 기준 부부 중 1명 이상 3개월 이상 군에 주소를 두고 거주<br/>
+             - 최초신청시 부부 모두 3개월 이상 군에 주소를 두고 거주<br/>
+            (지원내용)600만원(매년200만원씩3년간지급)<br/>
+            (신청장소)읍면행정복지센터</td>
+          
+        </tr>
+        <tr>
+          <td aria-label="분류">합천</td>
+          <td>500만원</td>
+          <td class="left">(지원대상)군에 주민등록을 두고 있으면서 합천군에 혼인신고를 한 부부<br/>
+            (1년경과300,2년경과100,3년경과100)</td>
+         
+        </tr>
+			</tbody>
+		</table>
+		</div>
+</div>
+	
+-->
+
+</section>
+
+<section id="tab2" class="tabcontent">
+  <h3 class="bl_h3" data-brl-use="PH/H2">임신・출산 지원정책</h3>
+
+  <div class="boardSearch" data-brl-use="NO">
+    <div class="v1"><!-- v1 -->
+      <p class="page">총 :<span class="count-1">20</span>건의 임신・출산 지원정책이 있습니다.</p>
+      
+    </div>	
+  </div>
+
+
+	
+	<div class="boardWrap">
+		<div class="board">
+
+		<table class="basicList">
+			<caption>결혼장려금 지원 정책 시군, 금액 , 비고, 상세보기</caption>
+			<colgroup>
+				<col style="width:20%;">
+        <col style="width:auto;">
+				<col style="width:10%;">
+				<col style="width:13%;">
+			</colgroup>
+			<thead>
+				<tr>
+					<th scope="col">사업명</th>
+					<th scope="col">사업내용</th>
+					<th scope="col">담당부서</th>
+					<th scope="col">상세보기</th>
+				</tr>
+			</thead>
+			<tbody>
+				
+				
+	<!--			
+        <tr>
+          <td aria-label="분류">출산지원금</td>
+          <td  class="left">출산지원금
+          </td>
+          <td>보육 정책과</td>
+          <td class="list4">
+            <a href="/baro/menu.es?mid=a10704010000" class="btn_line color2">▶ 보기</a>
+          </td>
+        </tr>
+-->
+
+				<tr>
+          <td aria-label="분류">임신사전건강 관리지원</td>
+          <td  class="left">(지원대상) 모든 20~49세 남녀 중 검사희망자<br/>
+             (지원내용) 필수검사 최대3회 지원<br/>
+              여성 : 난소기능검사, 부인과초음파<br/>
+              남성 : 정액검사(정자정밀형태검사)
+          </td>
+          <td>보육 정책과</td>
+          <td class="list4">
+            <a href="/baro/policyView.es?policy_no=1278&mid=a10703000000" class="btn_line color2">▶ 보기</a>
+          </td>
+        </tr>
+        <tr>
+          <td aria-label="분류">가임기 여성 및 임신부 풍진검진사업</td>
+          <td  class="left"> (지원대상) 가임여성(결혼이민자포함) 및 3개월 미만 임신부<br/>
+             (지원내용) 풍진 항원, 항체검사 실시</td>
+          <td>보육 정책과</td>
+          <td class="list4">
+            <a href="/baro/policyView.es?policy_no=1265&mid=a10703000000" class="btn_line color2">▶ 보기</a>
+          </td>
+        </tr>
+        <tr>
+          <td aria-label="분류">난임부부 시술비 지원</td>
+          <td  class="left"> (지원대상) 난임진단서 제출자(사실혼 포함<br/>
+              (지원내용)시술비 일부 본인부담금과 전액 본인부담금의 90%, 비급여 항목 중 배아동결(30만원), 착상유지(20만원), 유산방지(20만원) 지원 <br/>
+            · 출산당 25회 지원[체외수정 20회(신선배아·동결배아), 인공수정 5회]<br/>
+             · 연령구분없이 시술종류에 따라 차등지원(30~110만원)</td>
+          <td>보육 정책과</td>
+          <td class="list4">
+            <a href="/baro/policyView.es?policy_no=1259&mid=a10703000000" class="btn_line color2">▶ 보기</a>
+          </td>
+        </tr>
+        <tr>
+          <td aria-label="분류">난임부부 한의치료 지원</td>
+          <td class="left"> (지원대상) 도내 거주 난임부부로 난임검사상 기질적 이상소견 없는 자<br/>
+             (지원내용) 산전,산후검사, 침, 뜸 등 진료비 및 첩약 지원</td>
+          <td>보육 정책과</td>
+          <td class="list4">
+            <a href="/baro/policyView.es?policy_no=1263&mid=a10703000000" class="btn_line color2">▶ 보기</a>
+          </td>
+        </tr>
+        <tr>
+          <td aria-label="분류">난임부부 난임진단비 지원</td>
+          <td class="left"> (지원대상) 도내 거주 난임부부<br/>
+             (선정기준) 기초 혈액 검사 등 8종<br/>
+             (지원내용) 기초검사, 호르몬 검사 등 난임진단을 위한 검진비 일부 지원</td>
+          <td>보육 정책과</td>
+          <td class="list4">
+            <a href="/baro/policyView.es?policy_no=1264&mid=a10703000000" class="btn_line color2">▶ 보기</a>
+          </td>
+        </tr>
+        <tr>
+          <td aria-label="분류">영구적 불임예상 생식세포 동결보존 등 지원</td>
+          <td class="left"> (지원대상) 생식건강 손상으로 영구적 불임예상, 가임력 보존이 필요한 자<br/>
+             (지원내용) 생식세포(정자‧난자) 냉동 및 초기보관(1년) 비용 지원<br/>
+              ‧최대 남성30만원/여성200만원, 1회 지</td>
+          <td>보육 정책과</td>
+          <td class="list4">
+            <a href="/baro/policyView.es?policy_no=1477&mid=a10703000000" class="btn_line color2">▶ 보기</a>
+          </td>
+        </tr>
+        <!--tr>
+          <td aria-label="분류">냉동난자 사용 보조생식술 지원</td>
+          <td class="left"> (지원대상) 냉동한 난자를 사용하여 임신을 원하는 부부<br/>
+             (지원내용) 냉동난자 해동 및 보조생식술 비용 일부(회당 1백만원/부부당 2회)</td>
+          <td>보육 정책과</td>
+          <td class="list4">
+            <a href="/baro/policyView.es?policy_no=1276&mid=a10703000000" class="btn_line color2">▶ 보기</a>
+          </td>
+        </tr--!>
+        <tr>
+          <td aria-label="분류">생애초기 건강관리 시범사업</td>
+          <td class="left">(지원대상) 보건소에 등록, 서비스 신청한 임산부 및 만2세 미만 영아 가정<br/>
+             (지원내용) 영유아 건강간호사와 사회복지사가 가정을 방문하여 건강관리 서비스 제공</td>
+          <td>보육 정책과</td>
+          <td class="list4">
+            <a href="/baro/policyView.es?policy_no=1262&mid=a10703000000" class="btn_line color2">▶ 보기</a>
+          </td>
+        </tr>
+        <tr>
+          <td aria-label="분류">고위험 임산부 의료비 지원</td>
+          <td class="left"> (지원대상) 19대 고위험 임신질환으로 진단받고 입원치료 받은 임산부<br/>
+            * 19대 고위험 임신질환 : 조기진통, 분만관련 출혈, 중증임신중독증, 양막의 조기파열,<br/>
+              태반조기박리, 전치태반, 절박유산, 양수과다증, 양수과소증, 분만전 출혈, 자궁경부무력증,<br/>
+              고혈압, 다태임신, 당뇨병, 대사장애를 동반한 임산과다구토, 신질환, 심부전, 자궁내 성장제한, 자궁 및 자궁의 부속기 질환<br/>
+           (지원내용) 입원치료비의 급여 중 전액본인부담금 및 비급여 진료비 90% 지원</td>
+          <td>보육 정책과</td>
+          <td class="list4">
+            <a href="/baro/policyView.es?policy_no=1261&mid=a10703000000" class="btn_line color2">▶ 보기</a>
+          </td>
+        </tr>
+
+        <!--tr>
+          <td aria-label="분류">맘편한 임신 원스톱서비스</td>
+          <td class="left"> (지원대상) 임산부<br/>
+                             (지원내용) 임신부 대상 전국공통서비스(엽산제 지원등)과 자치단체별 서비스(임신증 주차증 등)를 통합안내→신청(정부24)</td>
+          <td>보육 정책과</td>
+          <td class="list4">
+            <a href="/policyView.es?policy_no=1482&mid=a10703000000" class="btn_line color2">▶ 보기</a>
+          </td>
+        </tr--!>
+        <tr>
+          <td aria-label="분류">임신‧출산 진료비지원</td>
+          <td class="left"> (지원대상) 임산부<br/>
+             (지원내용) 임신1회당 100만원(다태아140만원)   ※국민행복카드</td>
+          <td>보육 정책과</td>
+          <td class="list4">
+            <a href="/baro/policyView.es?policy_no=1479&mid=a10703000000" class="btn_line color2">▶ 보기</a>
+          </td>
+        </tr>
+        <tr>
+          <td aria-label="분류">첫만남 이용권</td>
+          <td class="left"> (지원대상) 출생신고되어 정상적으로 주민등록번호를 부여받은 아동<br/>
+             (지원내용) 출생아당 200만원 이상의 이용권, 첫째아 200만원, 둘째아 이상 300만원</td>
+          <td>보육 정책과</td>
+          <td class="list4">
+            <a href="/baro/policyView.es?policy_no=1267&mid=a10703000000" class="btn_line color2">▶ 보기</a>
+          </td>
+        </tr>
+        <tr>
+          <td aria-label="분류">산모신생아 건강관리사 지원</td>
+          <td class="left"> (지원대상) 도내 출산가정<br/>
+             (지원내용) 산모신생아 건강관리 서비스 비용 중 정부지원금 지원  *최소5일~40일</td>
+          <td>보육 정책과</td>
+          <td class="list4">
+            <a href="/baro/policyView.es?policy_no=1266&mid=a10703000000" class="btn_line color2">▶ 보기</a>
+          </td>
+        </tr>
+        <tr>
+          <td aria-label="분류">저소득층 기저귀‧조제분유 지원</td>
+          <td class="left"> (지원대상) 2세 미만의 영아를 둔 아래 저소득층 가구 대상으로 영아별로 지원<br/>
+             (지원내용) 기저귀 월 90천원, 조제분유 월 110천원, 기저귀·조제분유 월 200천원</td>
+          <td>보육 정책과</td>
+          <td class="list4">
+            <a href="/baro/policyView.es?policy_no=1268&mid=a10703000000" class="btn_line color2">▶ 보기</a>
+          </td>
+        </tr>
+        <tr>
+          <td aria-label="분류">공공산후조리원 설치‧운영</td>
+          <td class="left"> (서부권) 사천, (북부권) 거창 설치 추진<br/>
+             (동부권) 밀양 공공산후조리원 운영 (’22. 6월 개원)<br/>
+             (이용료)16만원/2주기준, 취약계층 감면료 70%지원</td>
+          <td>보육 정책과</td>
+          <td class="list4">
+            <a href="/baro/policyView.es?policy_no=1480&mid=a10703000000" class="btn_line color2">▶ 보기</a>
+          </td>
+        </tr>
+        <tr>
+          <td aria-label="분류">청소년 산모 의료비 지원</td>
+          <td class="left"> (지원대상) 19세이하 산모 중 신청자<br/>
+             (지원내용) 임산부 및 2세미만 영유아 의료비 및 약제‧치료비 중 본인부담금/ 임신1회당 120만원 이내</td>
+          <td>보육 정책과</td>
+          <td class="list4">
+            <a href="/baro/policyView.es?policy_no=1260&mid=a10703000000" class="btn_line color2">▶ 보기</a>
+          </td>
+        </tr>
+        <tr>
+          <td aria-label="분류">미숙아 및 선천성이상아 의료비 지원</td>
+          <td class="left"> (지원대상) 미숙아 및 선천성이상아 출산 가정<br/>
+            (지원내용) 체중별 의료비 차등 지원(300~15백만원 한도)</td>
+          <td>보육 정책과</td>
+          <td class="list4">
+            <a href="/baro/policyView.es?policy_no=1269&mid=a10703000000" class="btn_line color2">▶ 보기</a>
+          </td>
+        </tr>
+        <tr>
+          <td aria-label="분류">선천성대사이상 검사 및 환아관리</td>
+          <td class="left"> (지원대상) 선천성 대사이상 환아<br/>
+             (지원내용) 선별검사, 확진검사, 환아관리비 지원</td>
+          <td>보육 정책과</td>
+          <td class="list4">
+            <a href="/baro/policyView.es?policy_no=1270&mid=a10703000000" class="btn_line color2">▶ 보기</a>
+          </td>
+        </tr>
+        <tr>
+          <td aria-label="분류">선천성 난청검사 및 보청기 지원</td>
+          <td class="left"> (지원대상) 생후 1개월 이내 신생아 및 영아<br/>
+             (지원내용) 신생아 선천성 난청 조기발견을 위한 검사비 및 장애진단을 받지 못하는 난청아 보청기 지원</td>
+          <td>보육 정책과</td>
+          <td class="list4">
+            <a href="/baro/policyView.es?policy_no=1271&mid=a10703000000" class="btn_line color2">▶ 보기</a>
+          </td>
+        </tr>
+        <tr>
+          <td aria-label="분류">의료급여수급권자 영유아건강검진비 지원</td>
+          <td class="left"> (지원대상) 의료급여수급권자의 6세미만 영유아<br/>
+             (지원내용) 총12회 건강검진 비용 지원(334,140원)</td>
+          <td>보육 정책과</td>
+          <td class="list4">
+            <a href="/baro/policyView.es?policy_no=1272&mid=a10703000000" class="btn_line color2">▶ 보기</a>
+          </td>
+        </tr>
+        <tr>
+          <td aria-label="분류">영유아 발달장애 정밀검사비 지원</td>
+          <td class="left"> (지원대상) 영유아 검진결과 발달평가 ‘심화평가 권고’ 판정 영유아<br/>
+             (지원내용) 발달장애 정밀검사에 직접적으로 필요한 검사 및 진찰료 지원</td>
+          <td>보육 정책과</td>
+          <td class="list4">
+            <a href="/baro/policyView.es?policy_no=1273&mid=a10703000000" class="btn_line color2">▶ 보기</a>
+          </td>
+        </tr>
+        <tr>
+          <td aria-label="분류">찾아가는 산부인과 운영</td>
+          <td class="left"> (지원대상) 산부인과 병의원이 없거나 접근성이 떨어지는 지역<br/>
+             (지원내용) 임산부 산전진찰 및 여성 부인과 검진‧검사</td>
+          <td>보육 정책과</td>
+          <td class="list4">
+            <a href="/baro/policyView.es?policy_no=1481&mid=a10703000000" class="btn_line color2">▶ 보기</a>
+          </td>
+        </tr>
+        <!--tr>
+          <td aria-label="분류">영유아 친환경이유식영양꾸러미 지원사업</td>
+          <td class="left"> (지원대상) 고위험산모‧신생아<br/> 
+             (지원내용) 영유아 1인당 친환경 농축산물 60만원상당(자부담12만원)</td>
+          <td>보육 정책과</td>
+          <td class="list4">
+            <a href="/baro/policyView.es?policy_no=1277&mid=a10703000000" class="btn_line color2">▶ 보기</a>
+          </td>
+        </tr--!>
+			</tbody>
+		</table>
+		</div>
+  </div>
+  
+</section>
+
+<section id="tab3" class="tabcontent">
+  <h3 class="bl_h3" data-brl-use="PH/H2">출산지원금(첫째-둘째-셋째) 지원정책</h3>
+
+  <div class="boardSearch" data-brl-use="NO">
+    <div class="v1"><!-- v1 -->
+      <p class="page">총 :<span class="count-1">18</span>건의 출산지원금 지원정책이 있습니다.</p>
+      
+    </div>	
+  </div>
+
+
+	
+	<div class="boardWrap">
+		<div class="board">
+      <p class="left">(2025.1월 기준, 단위: 만원)</p>
+		<table class="basicList">
+			<caption>결혼장려금 지원 정책 시군, 금액 , 비고, 상세보기</caption>
+			<colgroup>
+				<col style="width:6%;">
+				<col style="width:6%;">
+        <col style="width:8%;">
+        <col style="width:6%;">
+        <col style="width:6%;">
+        <col style="width:6%;">
+        <col style="width:6%;">
+        <col style="width:6%;">
+        <col style="width:6%;">
+        <col style="width:6%;">
+        <col style="width:auto;">
+        <col style="width:13%;">
+			</colgroup>
+			<thead>
+				<tr>
+          <th rowspan="2" scope="col">연번</th>
+					<th rowspan="2" scope="col">시군</th>
+					<th rowspan="2" scope="col">사업명</th>
+          <th colspan="7" scope="col">출산장려금(축하금)</th>
+					<th rowspan="2" scope="col">출산용품 지원 내용<br/>
+            (기념품)</th>
+          <th rowspan="2" scope="col">상세보기</th>
+				</tr>
+        <tr>
+          <th>1아</th>
+          <th>2아</th>
+          <th>3아</th>
+          <th>4아</th>
+          <th>5아</th>
+          <th>쌍둥이</th>
+          <th>세<br/>쌍둥이</th>
+        </tr>
+			</thead>
+			<tbody>
+				
+				
+				
+	
+				<tr>
+          <td>1</td>
+          <td aria-label="분류">창원</td>
+          <td>출산축하금</td>
+          <td>50</td>
+          <td>200</td>
+          <td>200</td>
+          <td>200</td>
+          <td>200</td>
+          <td>-</td>
+          <td>-</td>
+          <td>-</td>
+          <td class="list4">
+            <a href="#" class="btn_line color2">▶ 보기</a>
+          </td>
+        </tr>
+        <tr>
+          <td>2</td>
+          <td aria-label="분류">진주</td>
+          <td>출산축하금</td>
+          <td>100</td>
+          <td>200</td>
+          <td>600</td>
+          <td>600</td>
+          <td>600</td>
+          <td>-</td>
+          <td>-</td>
+          <td>실크속싸개 이불지원 (9만원상당)</td>
+          <td class="list4">
+            <a href="#" class="btn_line color2">▶ 보기</a>
+          </td>
+        </tr>
+        <tr>
+          <td>3</td>
+          <td aria-label="분류">통영</td>
+          <td>출산지원금</td>
+          <td>100</td>
+          <td>200</td>
+          <td>300</td>
+          <td>300</td>
+          <td>300</td>
+          <td>300</td>
+          <td>600</td>
+          <td>출산용품(14만원 상당)</td>
+          <td class="list4">
+            <a href="#" class="btn_line color2">▶ 보기</a>
+          </td>
+        </tr>
+        <tr>
+          <td>4</td>
+          <td aria-label="분류">사천</td>
+          <td>출산지원금</td>
+          <td>100</td>
+          <td>200</td>
+          <td>800</td>
+          <td>800</td>
+          <td>800</td>
+          <td>-</td>
+          <td>-</td>
+          <td>임산축하용품<br/>
+            (튼살크림, 속싸개 등)</td>
+          <td class="list4">
+            <a href="#" class="btn_line color2">▶ 보기</a>
+          </td>
+        </tr>
+        <tr>
+          <td>5</td>
+          <td aria-label="분류">김해</td>
+          <td>출산축하금</td>
+          <td>50</td>
+          <td>100</td>
+          <td>100</td>
+          <td>100</td>
+          <td>100</td>
+          <td>-</td>
+          <td>-</td>
+          <td>-</td>
+          <td class="list4">
+            <a href="#" class="btn_line color2">▶ 보기</a>
+          </td>
+        <tr>
+          <td>6</td>
+          <td aria-label="분류">밀양</td>
+          <td>출산장려금</td>
+          <td>100</td>
+          <td>200</td>
+          <td>500</td>
+          <td>500</td>
+          <td>500</td>
+          <td>-</td>
+          <td>-</td>
+          <td>콧물흡입기, 인형 등</td>
+          <td class="list4">
+            <a href="#" class="btn_line color2">▶ 보기</a>
+          </td>
+        </tr>
+        <tr>
+          <td>7</td>
+          <td aria-label="분류">거제</td>
+          <td>출산장려금</td>
+          <td>100</td>
+          <td>300</td>
+          <td>800</td>
+          <td>800</td>
+          <td>800</td>
+          <td>-</td>
+          <td>-</td>
+          <td>출산용품(신생아 목도리, 담요 등 10만원 상당)</td>
+          <td class="list4">
+            <a href="#" class="btn_line color2">▶ 보기</a>
+          </td>
+        </tr>
+        <tr>
+          <td>8</td>
+          <td aria-label="분류">양산</td>
+          <td>출산장려금</td>
+          <td>50</td>
+          <td>100</td>
+          <td>200</td>
+          <td>200</td>
+          <td>200</td>
+          <td>-</td>
+          <td>-</td>
+          <td>양산사랑카드상품권 10만원 포인트 지급</td>
+          <td class="list4">
+            <a href="#" class="btn_line color2">▶ 보기</a>
+          </td>
+        </tr>
+        <tr>
+          <td>9</td>
+          <td aria-label="분류">의령</td>
+          <td>출산장려금</td>
+          <td>400</td>
+          <td>700</td>
+          <td>1,400</td>
+          <td>1,400</td>
+          <td>1,400</td>
+          <td>-</td>
+          <td>-</td>
+          <td>-</td>
+          <td class="list4">
+            <a href="#" class="btn_line color2">▶ 보기</a>
+          </td>
+        </tr>
+        <tr>
+          <td>10</td>
+          <td aria-label="분류">함안</td>
+          <td>출산지원금</td>
+          <td>100</td>
+          <td>300</td>
+          <td>1,000</td>
+          <td>1,000</td>
+          <td>1,000</td>
+          <td>-</td>
+          <td>-</td>
+          <td>신생아 목욕용품 등<br/>
+            (20만원 상당)</td>
+          <td class="list4">
+            <a href="#" class="btn_line color2">▶ 보기</a>
+          </td>
+        </tr>
+        <tr>
+          <td>11</td>
+          <td aria-label="분류">창녕</td>
+          <td>출산장려금</td>
+          <td>500</td>
+          <td>700</td>
+          <td>1,000</td>
+          <td>1,000</td>
+          <td>1,000</td>
+          <td>-</td>
+          <td>-</td>
+          <td>임신축하물품(5만원상당)</td>
+          <td class="list4">
+            <a href="#" class="btn_line color2">▶ 보기</a>
+          </td>
+        </tr>
+        <tr>
+          <td>12</td>
+          <td aria-label="분류">고성</td>
+          <td>출산장려금</td>
+          <td>100</td>
+          <td>200</td>
+          <td>500</td>
+          <td>500</td>
+          <td>500</td>
+          <td>-</td>
+          <td>-</td>
+          <td>한방첩약(셋째아이상)</td>
+          <td class="list4">
+            <a href="#" class="btn_line color2">▶ 보기</a>
+          </td>
+        </tr>
+        <tr>
+          <td>13</td>
+          <td aria-label="분류">남해</td>
+          <td>출산장려금</td>
+          <td>300</td>
+          <td>400</td>
+          <td>500</td>
+          <td>500</td>
+          <td>500</td>
+          <td>-</td>
+          <td>-</td>
+          <td>-</td>
+          <td class="list4">
+            <a href="#" class="btn_line color2">▶ 보기</a>
+          </td>
+        </tr>
+        <tr>
+          <td>14</td>
+          <td aria-label="분류">하동</td>
+          <td>출산장려금</td>
+          <td>440</td>
+          <td>1,100</td>
+          <td>1,700</td>
+          <td>3,000</td>
+          <td>-</td>
+          <td>100</td>
+          <td>200</td>
+          <td>출산용품(50만원 상당)</td>
+          <td class="list4">
+            <a href="#" class="btn_line color2">▶ 보기</a>
+          </td>
+        </tr>
+        <tr>
+          <td>15</td>
+          <td aria-label="분류">산청</td>
+          <td>출산장려금</td>
+          <td>290</td>
+          <td>410</td>
+          <td>1,250</td>
+          <td>1,250</td>
+          <td>1,250</td>
+          <td>-</td>
+          <td>-</td>
+          <td>출산용품(10만원 상당)</td>
+          <td class="list4">
+            <a href="#" class="btn_line color2">▶ 보기</a>
+          </td>
+        </tr>
+        <tr>
+          <td>16</td>
+          <td aria-label="분류">함양</td>
+          <td>출산장려금</td>
+          <td>100</td>
+          <td>200</td>
+          <td>1,000</td>
+          <td>1,000</td>
+          <td>1,000</td>
+          <td>300</td>
+          <td>1,300</td>
+          <td>출산용품(10만원 상당)</td>
+          <td class="list4">
+            <a href="#" class="btn_line color2">▶ 보기</a>
+          </td>
+        </tr>
+        <tr>
+          <td>17</td>
+          <td aria-label="분류">거창</td>
+          <td>출산축하금</td>
+          <td>500</td>
+          <td>500</td>
+          <td>500</td>
+          <td>500</td>
+          <td>500</td>
+          <td>-</td>
+          <td>-</td>
+          <td>출산용품(10만원 쿠폰)</td>
+          <td class="list4">
+            <a href="#" class="btn_line color2">▶ 보기</a>
+          </td>
+        </tr>
+        <tr>
+          <td>18</td>
+          <td aria-label="분류">합천</td>
+          <td>출산장려금</td>
+          <td>100</td>
+          <td>300</td>
+          <td>1,000</td>
+          <td>-</td>
+          <td>-</td>
+          <td>-</td>
+          <td>-</td>
+          <td>출산용품(30만원 상당)</td>
+          <td class="list4">
+            <a href="#" class="btn_line color2">▶ 보기</a>
+          </td>
+        </tr>
+			</tbody>
+		</table>
+		</div>
+</div>
+	
+</section>
+
+<section id="tab4" class="tabcontent">
+  <h3 class="bl_h3" data-brl-use="PH/H2">양육지원정책</h3>
+
+  <div class="boardSearch" data-brl-use="NO">
+    <div class="v1"><!-- v1 -->
+      <p class="page">총 :<span class="count-1">16</span>건의 양육지원정책이 있습니다.</p>
+      
+    </div>	
+  </div>
+
+	<div class="boardWrap">
+		<div class="board">
+
+		<table class="basicList">
+			<caption>양육지원정책 사업명, 사업내용 , 담당부서, 상세보기</caption>
+			<colgroup>
+				<col style="width:20%;">
+        <col style="width:auto;">
+				<col style="width:10%;">
+				<col style="width:13%;">
+			</colgroup>
+			<thead>
+				<tr>
+					<th scope="col">사업명</th>
+					<th scope="col">사업내용</th>
+					<th scope="col">담당부서</th>
+					<th scope="col">상세보기</th>
+				</tr>
+			</thead>
+			<tbody>
+				
+				
+				
+	
+				<tr>
+          <td aria-label="분류">부모급여지원</td>
+          <td  class="left"> (지원대상) 2세 미만의 아동<br/>
+             (지원내용) <br/>
+                - 0세 아동 양육 : 월 100만원   <br/>
+                -1세 아동 양육 : 월 50만원 지원
+          </td>
+          <td>보육 정책과</td>
+          <td class="list4">
+            <a href="/baro/policyView.es?policy_no=1708&mid=a10703000000" class="btn_line color2">▶ 보기</a>
+          </td>
+        </tr>
+        <tr>
+          <td aria-label="분류">가정 양육수당 지원</td>
+          <td  class="left"> (지원대상) 어린이집, 종일제 아이돌봄서비스 등을 이용하지 않고 가정에서<br/>
+            양육되는 영유아로서 24개월 이상~86개월 미만 아동<br/>
+          * 부모급여 도입에 따라 0~23개월 아동은 부모급여를 지원하고, 24개월 이상부터 가정양육수당 지원
+        (지원내용) 24~86개월 미만 아동에게 월10만원 지원<br/> (지원형태) 현금지원</td>
+       
+       <td>보육 정책과</td>
+          <td class="list4">
+            <a href="/baro/policyView.es?policy_no=1709&mid=a10703000000" class="btn_line color2">▶ 보기</a>
+          </td>
+        </tr>
+        <tr>
+          <td aria-label="분류">0~2세 보육료 지원</td>
+          <td  class="left"> (부모보육료) 모든 어린이집<br/>
+             (기관보육료) 0~2세 보육하는 정부 인건비 미지원 어린이집<br/>
+             (연장/야간연장보육료) 연장, 야간연장 보육 제공 어린이집<br/>
+             (24시간보육료) 24시간 지정 어린이집<br/>
+      (지원형태) 바우처카드</td>
+          <td>보육 정책과</td>
+          <td class="list4">
+            <a href="/baro/policyView.es?policy_no=1710&mid=a10703000000" class="btn_line color2">▶ 보기</a>
+          </td>
+        </tr>
+        <tr>
+          <td aria-label="분류">3~5세 누리과정 보육료지원</td>
+          <td  class="left"> (지원대상) 어린이집 이용 만3~5세<br/>
+             (지원내용) 3~5세 아동 1인당 (보육료) 월28만원<br/>
+      (지원형태) 바우처카드 </td>
+          <td>보육 정책과</td>
+          <td class="list4">
+            <a href="/baro/policyView.es?policy_no=1711&mid=a10703000000" class="btn_line color2">▶ 보기</a>
+          </td>
+        </tr>
+        <tr>
+          <td aria-label="분류">시간제 보육 지원</td>
+          <td  class="left"> (지원대상) 어린이집, 유지원 등을 이용하지 않고 부모급여 또는<br/>
+            양육수당을 수급 중인 영아(6개월~36개월)<br/>
+        (지원내용) 시간제 보육료 이용단가(시간당 5천원) 중 3천원 지원</td>
+          <td>보육 정책과</td>
+          <td class="list4">
+            <a href="/baro/policyView.es?policy_no=1712&mid=a10703000000" class="btn_line color2">▶ 보기</a>
+          </td>
+        </tr>
+        <tr>
+          <td aria-label="분류">방과후 보육료 지원</td>
+          <td  class="left"> (지원대상) 12세이하 취학아동 중 차상위 이하 계층<br/>
+             (지원내용) <br/>
+              - 일4시간 이상 이용시 월10만원(장애아월293천원)<br/>
+              - 방학 중 일8시간 이상 이용시 월20만원(일일계산)<br/>
+      (지원형태) 바우처카드</td>
+          <td>보육 정책과</td>
+          <td class="list4">
+            <a href="/baro/policyView.es?policy_no=1713&mid=a10703000000" class="btn_line color2">▶ 보기</a>
+          </td>
+        </tr>
+        <tr>
+          <td aria-label="분류">부모부담 보육료 지원</td>
+          <td  class="left"> (지원대상) 정부 인건비 미지원 어린이집 이용 3~5세<br/>
+             (지원내용) <br/>
+             - (20인초과)3세 77천원 ~ 4~5세 60천원(1인/월)<br/>
+             - (20인이하)3세 93천원 ~ 4~5세 85천원(1인/월)<br/>
+      (지원형태) 바우처카드</td>
+          <td>보육 정책과</td>
+          <td class="list4">
+            <a href="/baro/policyView.es?policy_no=1714&mid=a10703000000" class="btn_line color2">▶ 보기</a>
+          </td>
+        </tr>
+        <tr>
+          <td aria-label="분류">어린이집 안전보험료 지원</td>
+          <td  class="left"> (지원대상) 도내 어린이집을 이용하는 아동<br/>
+             (지원내용) 상해‧배상보험 가입비 지원<br/>
+              - 상해담보:치료비100%,배상책임:대인5억,대물5백만원한도,돌연사특약:1억</td>
+          <td>보육 정책과</td>
+          <td class="list4">
+            <a href="/baro/policyView.es?policy_no=1715&mid=a10703000000" class="btn_line color2">▶ 보기</a>
+          </td>
+        </tr>
+        <tr>
+          <td aria-label="분류">어린이집 필요경비 지원</td>
+          <td  class="left"> (지원대상) 도내 어린이집 이용 내국인 3~5세아<br/>
+             (지원내용) 부모부담 필요경비 5개(행사비, 현장학습비, 차량운영비, 시도특성화비, 특별활동비) 지원<br/>
+      (지원형태) 바우처카드</td>
+          <td>보육 정책과</td>
+          <td class="list4">
+            <a href="/baro/policyView.es?policy_no=1716&mid=a10703000000" class="btn_line color2">▶ 보기</a>
+          </td>
+        </tr>
+        
+        <tr>
+          <td aria-label="분류">외국인 보육료 지원</td>
+          <td  class="left"> (지원대상) 도내 거주 외국인 중 관내 어린이집 이용 3~5세<br/>
+             (지원내용) 외국인 유아부모보육료 중 월10만원 지원<br/>
+      (지원형태) 바우처카드</td>
+          <td>보육 정책과</td>
+          <td class="list4">
+            <a href="/baro/policyView.es?policy_no=1717&mid=a10703000000" class="btn_line color2">▶ 보기</a>
+          </td>
+        </tr>
+        <tr>
+          <td aria-label="분류">아동수당 지원</td>
+          <td  class="left"> (지원대상) 만 8세 미만 아동<br/>
+             (지원내용) 아동 1인당 월 10만원</td>
+          <td>보육 정책과</td>
+          <td class="list4">
+            <a href="/baro/policyView.es?policy_no=1718&mid=a10703000000" class="btn_line color2">▶ 보기</a>
+          </td>
+        </tr>
+        <tr>
+          <td aria-label="분류">경남 아이다누리카드</td>
+          <td  class="left"> (지원대상) 막내가 19세 미만인 2자녀 이상 가정(임신부 가능)<br/>
+            (지원내용) 온‧오프라인 가명점별 할인혜택 제공<br/>
+            (발급방법) NH농협은행 방문 신청(신용/체크카드)</td>
+          <td>보육 정책과</td>
+          <td class="list4">
+            <a href="/baro/policyView.es?policy_no=1475&mid=a10703000000" class="btn_line color2">▶ 보기</a>
+          </td>
+        </tr>
+        <tr>
+          <td aria-label="분류">아이돌봄 지원사업</td>
+          <td  class="left"> (지원대상) 양육공백이 발생한 가정의 3개월~12세 아동<br/>
+             (지원내용) 가정에 아이돌보미 방문하여 돌봄서비스 제공<br/>
+              ※ 서비스별, 소득기준별 차등요금 발생</td>
+          <td>여성 가족과</td>
+          <td class="list4">
+            <a href="/baro/policyView.es?policy_no=1647&mid=a10703000000" class="btn_line color2">▶ 보기</a>
+          </td>
+        </tr>
+        <tr>
+          <td aria-label="분류">아이돌봄서비스 본인부담금 추가지원</td>
+          <td  class="left"> (지원대상) 아이돌봄 서비스 이용가정<br/>
+             (지원내용) 아이돌보미 이용시 자부담 일부 추가지원(중위소득별10~40%)</td>
+          <td>여성 가족과</td>
+          <td class="list4">
+            <a href="/baro/policyView.es?policy_no=1719&mid=a10703000000" class="btn_line color2">▶ 보기</a>
+          </td>
+        </tr>
+        <tr>
+          <td aria-label="분류">손주돌봄 지원사업</td>
+          <td  class="left"> (지원대상) 부모 대신 손자녀 돌보는 (외)조부모<br/>
+             (지원내용) 2세 영아를 조부모가 월40시간 이상 돌봄시 월20만원 지급<br/>
+                        ※ 최대 12개월 지원</td>
+          <td>여성 가족과</td>
+          <td class="list4">
+            <a href="/baro/policyView.es?policy_no=1648&mid=a10703000000" class="btn_line color2">▶ 보기</a>
+          </td>
+        </tr>
+        <tr>
+          <td aria-label="분류">청소년부모 아동양육비 지원</td>
+          <td  class="left"> (지원대상) 기준 중위소득 63%이하 청소년부모 가구의 자녀<br/>
+             (지원내용) 청소년부모 가구 자녀 1명당 아동양육비 월 25만원 지원<br/>
+                        </td>
+          <td>여성 가족과</td>
+          <td class="list4">
+            <a href="/baro/policyView.es?policy_no=1121&mid=a10703000000" class="btn_line color2">▶ 보기</a>
+          </td>
+        </tr>
+			</tbody>
+		</table>
+		</div>
+  </div>
+  
+</section>
+
+<script type="text/javascript">
+  $(document).ready(function() {
+      //5depth 탭메뉴
+      $('.depth5 li').click(function() {
+          var activeTab = $(this).attr('data-tab');
+          $('.depth5 li').removeClass('on');
+          $('.tabcontent').removeClass('on');
+          $(this).addClass('on');
+          $('#' + activeTab).addClass('on');
+      });
+  });
+</script>
+
+
+
+	
+	
+	
+
+
+<!-- //컨텐츠영역 -->
+			</div><!--// content -->
+			
+				<div class="contents_info">
+					<article id="satisfy" class="item">
+						
+<script type="text/javascript">
+//<![CDATA[
+	function satisfy_confirm(){
+		var fm = document.s_form;
+		var selChk = document.getElementsByName("chk_point");
+		for(var i = 0 ; i < selChk.length ; i++){
+			if(selChk[i].checked == true){
+				fm.point.value = selChk[i].value;
+			}
+		}
+		fm.action = "/baro/satisfy.es?mid=a10704000000&act=ins";
+		fm.submit();
+	}
+//]]>
+</script>
+
+<fieldset>
+	<legend>콘텐츠 만족도 조사</legend>
+	<h2 class="title">
+		<span>콘텐츠 만족도 조사</span>
+		
+		<strong>이 페이지에서 제공하는 정보에 대하여 만족하십니까?</strong>
+		
+		<span class="txt">
+			<span>평균 <strong>.21</strong>점</span> 
+			<span><strong>47</strong>명 참여</span>
+		</span>
+	</h2>
+	<div class="cont">
+		
+		
+		
+		<form id="s_form" name="s_form" action="/baro/satisfy.es" method="post">
+		<input type="hidden" name="mid" value="a10704000000" />
+		<input type="hidden" name="act" value="ins" />
+		<input type="hidden" name="point" value="0" />
+		<ul class="list">
+			<li class="form_radio"><input type="radio" name="chk_point" id="q1" value="5" checked="checked" /><label for="q1"> 매우만족</label></li>
+			<li class="form_radio"><input type="radio" name="chk_point" id="q2" value="4" /><label for="q2"> 만족</label></li>
+			<li class="form_radio"><input type="radio" name="chk_point" id="q3" value="3" /><label for="q3"> 보통</label></li>
+			<li class="form_radio"><input type="radio" name="chk_point" id="q4" value="2" /><label for="q4"> 불만족</label></li>
+			<li class="form_radio"><input type="radio" name="chk_point" id="q5" value="1" /><label for="q5"> 매우불만족</label></li>
+		</ul>
+		<p class="form">
+			<input type="text" class="form_textbox" name="contents" id="opinionContents" onkeyup="insertContentsMax('opinionLength2', '100', document.s_form.contents); return false;" title="내용입력" placeholder="의견을 남겨주세요" />
+			<input type="submit" class="btn" onclick="satisfy_confirm(); return false;" value="의견등록"  />
+			<span class="length"><strong><span id="opinionLength2">0</span></strong>/100</span>
+		</p>
+		</form>
+		
+		
+	</div>
+</fieldset>
+
+					</article>
+				</div>
+			
+        </div><!--// container -->
+		<!-- footer -->
+        <footer>
+	<div class="footer-con clearfix">
+			<div class="footer_logo">
+				<img src="/baro/css/images/common/footer_logo.png" alt="경남바로서비스">
+			</div>
+			<div class="f_right">
+				<ul class="footer_Menu">
+					<li><a href="https://www.gyeongnam.go.kr/index.gyeong?menuCd=DOM_000000140002001000" target="_blank" title="새창"><span>개인정보처리방침</span></a></li>
+					<li><a href="https://www.gyeongnam.go.kr/index.gyeong?menuCd=DOM_000000140011000000" target="_blank" title="새창열림">저작권정책</a></li>
+					<li><a href="/baro/menu.es?mid=a10500000000" target="_blank" title="새창열림">사이트맵</a></li>
+				</ul>
+				<address>
+					<ul>
+						<li>경남도청(우 51154) 경상남도 창원시 의창구 중앙대로 300 <br><span class="tel">문의전화: 사업 담당부서(사업 상세화면 참조) | 시스템장애: 055-211-2681</span></li>
+					</ul>
+				 </address>
+				 <p class="copyright_txt">Copyright(C) Gyeongsangnamdo All Rights Reserved.</p>
+			 </div>
+		 </div>
+</footer>
+
+<!-- scroll top button -->
+<a href="#" class="cd-top cd-is-visible" title="위로가기">TOP</a>
+<script title="스크롤시 상단으로 가기">
+    // To Top - 페이지 상단으로
+    jQuery(document).ready(function($) {
+        var offset = 200,
+            offset_opacity = 1200,
+            scroll_top_duration = 700,
+            $back_to_top = $('.cd-top');
+
+        //hide or show the "back to top" link
+        $(window).scroll(function() {
+            ($(this).scrollTop() > offset) ? $back_to_top.addClass('cd-is-visible'): $back_to_top.removeClass('cd-is-visible cd-fade-out');
+            if ($(this).scrollTop() > offset_opacity) {
+                $back_to_top.addClass('cd-fade-out');
+            }
+        });
+
+        //smooth scroll to top
+        $back_to_top.on('click', function(event) {
+            event.preventDefault();
+            $('body,html').animate({
+                scrollTop: 0
+            }, scroll_top_duration);
+        });
+    });
+    $.ajax({ url:'/baro/logInsert.es?mid=a10704000000' });		// 로그기록
+</script>
+<!-- //TOP -->
+        <!-- // footer -->
+    </div><!--// wrapper -->
+</body>
+</html>
+
+

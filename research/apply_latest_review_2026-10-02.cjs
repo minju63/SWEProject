@@ -24,13 +24,18 @@ module.exports=function({audit,followups,raw}){
  };
  Object.assign(notes,read('remaining_review_decisions.json'));
  const pendingAssessments=read('pending_123_source_assessments.json');
+ const guideAssessments=fs.existsSync(path.join(dir,'guide_notice_assessments_2026-10-03.json'))?read('guide_notice_assessments_2026-10-03.json'):{};
  const comparisons=new Map(read('remaining_evidence_comparison_276.json').map(r=>[r.plcyNo,r]));
  for(const a of audit){if(!ids.has(a.plcyNo))continue;
   const records=logs.filter(r=>r.plcyNo===a.plcyNo),sources=[...records.flatMap(r=>[...(r.자료||[]),...(r.첨부||[])]),...manual.filter(r=>r.plcyNo===a.plcyNo)];
   const sf=['search_latest_','search_latest_short_','search_remaining_'].map(p=>p+a.plcyNo+'.json').filter(f=>fs.existsSync(path.join(dir,f)));
   a.재조사대상='최신성 미확정291건 원래 대상';
+  const ga=guideAssessments[a.plcyNo];
+  if(ga){a.안내계획공고대조일=ga.대조일;a.안내계획공고대조분류=ga.분류;a.안내계획공고대조결과=ga.결과;a.안내계획공고대조한계=ga.한계;a.안내계획공고검색어=ga.검색어;a.안내계획공고출처=ga.공식URL.join(';');a.안내계획공고증빙=[ga.검색증빙,...ga.본문파일].map(f=>'raw_2026-10-02/candidate_verification/'+f).join(';');}
   const pa=pendingAssessments[a.plcyNo];
-  if(pa){a.미대조후보점검일=pa.점검일;a.미대조후보점검분류=pa.점검분류;a.미대조후보점검결과=pa.결과;a.미대조후보점검한계=pa.검증한계;}
+  if(pa){a.미대조후보점검일=pa.점검일;a.미대조후보점검분류=pa.점검분류;a.미대조후보점검결과=pa.결과;a.미대조후보점검한계=pa.검증한계;
+   if(pa.추가73검색일){a.추가73검색일=pa.추가73검색일;a.추가73검색어=pa.추가73검색어;a.추가73검색증빙=pa.추가73검색증빙;}
+  }
   const fresh=rechecks.find(r=>r.plcyNo===a.plcyNo);
   if(fresh){
    a.공식자료재조회일=fresh.확인일;a.공식자료재조회한계=fresh.선택기준;a.공식자료재조회건수=(fresh.자료||[]).length;a.공식첨부재조회건수=(fresh.첨부||[]).length;
@@ -61,12 +66,14 @@ module.exports=function({audit,followups,raw}){
    a.개별본문대조일=n.본문대조일||'2026-10-02';
    a.모집공고대조결과=n.결과;a.확인접수기간=n.기간;a.확인회차진행상태=n.상태;a.최신성검증=n.수준;a.최신성미확정사유=n.사유;a.재조사대조단계='확보 자료 개별 해석;공고 여부·동일사업·최신성은 검증수준 참조';
    a.재조회미확정사유=n.사유;
+   if(n.공식URL)a.확인공고URL=n.공식URL;
    if(n.판정){a.판정=n.판정;a.사유+=';'+n.결과;}
-   const match=sourceRegistry.find(r=>r.textFile===n.파일||r.file+'.txt'===n.파일||r.file+'.document.txt'===n.파일);if(match)a.확인공고URL=match.URL;
+   const match=sourceRegistry.find(r=>r.textFile===n.파일||r.file+'.txt'===n.파일||r.file+'.document.txt'===n.파일);if(match&&!n.공식URL)a.확인공고URL=match.URL;
    a.전수검증증빙+=';'+[n.파일,...(n.추가파일||[])].map(f=>'raw_2026-10-02/candidate_verification/'+f).join(';');
   }
   const f=followups.find(x=>x.plcyNo===a.plcyNo);if(f)for(const k of['모집공고대조결과','확인접수기간','확인회차진행상태','최신성검증','최신성미확정사유','검색검증기록','재조사대조단계','추가첨부본문확보','공식자료재조회일','공식자료재조회한계','공식자료재조회건수','공식첨부재조회건수','공식자료재조회상세','개별본문대조일','확인공고URL'])f[k]=a[k];
-  if(f&&pa)for(const k of['미대조후보점검일','미대조후보점검분류','미대조후보점검결과','미대조후보점검한계'])f[k]=a[k];
+  if(f&&pa)for(const k of['미대조후보점검일','미대조후보점검분류','미대조후보점검결과','미대조후보점검한계','추가73검색일','추가73검색어','추가73검색증빙'])if(a[k]!==undefined)f[k]=a[k];
+  if(f&&ga)for(const k of['안내계획공고대조일','안내계획공고대조분류','안내계획공고대조결과','안내계획공고대조한계','안내계획공고검색어','안내계획공고출처','안내계획공고증빙'])f[k]=a[k];
  }
  return {대상:ids.size,기관지정검색:targets.filter(t=>fs.existsSync(path.join(dir,'search_latest_'+t.plcyNo+'.json'))).length,추가짧은검색:targets.filter(t=>fs.existsSync(path.join(dir,'search_latest_short_'+t.plcyNo+'.json'))).length,원문후보조회: new Set(logs.map(r=>r.plcyNo)).size,이번수동본문대조:Object.keys(notes).length,이번수동본문미대조:ids.size-Object.keys(notes).length,미대조123추가점검:{대상:Object.keys(pendingAssessments).length,분류:Object.values(pendingAssessments).reduce((a,p)=>(a[p.점검분류]=(a[p.점검분류]||0)+1,a),{})},주의:'후보 조회·첨부 추출은 동일사업 및 최신성 검증 완료가 아님'};
 };

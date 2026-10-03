@@ -1,0 +1,697 @@
+<!DOCTYPE html>
+<html lang="ko"><head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="Author" content="천안청년센터이음"/>
+<meta name="Keywords" content="천안청년센터이음"/>
+<meta name="Description" content="천안청년센터이음"/>
+<meta name="viewport" content="user-scalable=yes,initial-scale=1.0,maximum-scale=10.0,minimum-scale=1.0,width=device-width">
+<title>천안청년센터이음</title>
+
+
+<!-- 그누보드꺼 start -->
+<meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+<!--[if lte IE 8]>
+<script src="https://www.ch2030youth.kr/js/html5.js"></script>
+<![endif]-->
+
+
+<script>
+// 자바스크립트에서 사용하는 전역변수 선언
+var g5_url       = "https://www.ch2030youth.kr";
+var g5_bbs_url   = "https://www.ch2030youth.kr/bbs";
+var g5_is_member = "";
+var g5_is_admin  = "";
+var g5_is_mobile = "";
+var g5_bo_table  = "notice";
+var g5_sca       = "";
+var g5_editor    = "smarteditor2";
+var g5_cookie_domain = "";
+</script>
+<script src="https://www.ch2030youth.kr/js/jquery-1.8.3.min.js"></script>
+<script src="https://www.ch2030youth.kr/js/jquery.menu.js?ver=171222"></script>
+<script src="https://www.ch2030youth.kr/js/common.js?ver=171222"></script>
+<script src="https://www.ch2030youth.kr/js/wrest.js?ver=171222"></script>
+<script src="https://www.ch2030youth.kr/js/placeholders.min.js"></script>
+<link rel="stylesheet" href="https://www.ch2030youth.kr/js/font-awesome/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://www.ch2030youth.kr/css/default.css?ver=171222">
+<!--[if lte IE 8]>
+<script src="https://www.ch2030youth.kr/js/html5.js"></script>
+<![endif]-->
+<!-- 그누보드꺼 end -->
+
+
+<script type="text/javascript" src="https://www.ch2030youth.kr/sj/jquery-1.11.2.min.js"></script>
+<script type="text/javascript" src="https://www.ch2030youth.kr/sj/common.js"></script>
+<link rel="stylesheet" type="text/css" href="https://www.ch2030youth.kr/ssc/font.css" />
+<link rel="stylesheet" type="text/css" href="https://www.ch2030youth.kr/ssc/base.css" />
+<link rel="stylesheet" type="text/css" href="https://www.ch2030youth.kr/ssc/layout.css" />
+<link rel="stylesheet" type="text/css" href="https://www.ch2030youth.kr/ssc/sub.css" /> 
+
+
+<script type="text/javascript" src="https://www.ch2030youth.kr/sj/main.js"></script>
+<script type="text/javascript" src="https://www.ch2030youth.kr/sj/ui.js"></script>
+<script type="text/javascript" src="https://www.ch2030youth.kr/sj/sub_nav.js"></script>
+
+
+
+
+<!-- IE9 미만에서 HTML5 엘리먼트 지원 -->
+<!--[if lt IE 9]>
+<script src="https://www.ch2030youth.kr/sj/html5shiv.min.js"></script>
+<script type="text/javascript" src="https://www.ch2030youth.kr/sj/respond.min.js"></script>
+<script src="https://www.ch2030youth.kr/sj/IE9.js"></script>
+<![endif]-->
+</head>
+<body id="section3">
+<div id="wrap"> 
+  
+  <!--#header S--> 
+	<script type="text/javascript">
+/* 검색창 펼침 레이어 */
+function search_View(status){
+	eval('$("#search_box").' + status + '();');
+}
+</script>
+
+
+<dl id="skip-go">
+	<dt>바로가기</dt>
+	<dd><a href="#body_contents" >본문영역 바로가기</a></dd>
+</dl>
+<!-- header -->
+
+<header id="header" class="scrolled container-full"> 
+  <div id="shadow_device"></div>  
+  <div class="header_top">
+     <div class="header_topCon">   
+                 		
+        <div class="utilLink">      
+           <a href="https://www.ch2030youth.kr" class="h"><img src="https://www.ch2030youth.kr/gmi/cni/h.png" alt="홈" /></a>
+                		   <a href="https://www.ch2030youth.kr/bbs/login.php">로그인</a> 
+    		   <a href="https://www.ch2030youth.kr/bbs/register.php" class="last">회원가입</a>		   
+
+           
+           			<div class="util_site"><button type="button"></button></div>
+
+        </div><!--// utilLink -->
+
+
+     </div><!--// header_topCon -->
+
+
+
+	<!-- site_map_wrap -->
+	<div class="allmenu_wrap">
+		<span class="blind">전체메뉴 열림</span>
+		<div class="inner">
+			<h2 class="tit">전체메뉴</h2>
+
+
+			<div class="allmenu_box">
+				<h3 class="map_tit">센터소개</h3>
+				<ul class="allmenu_list">
+					<li><a href="https://www.ch2030youth.kr/lmth/01_info/info01.php">센터소개</a></li>
+					<li><a href="https://www.ch2030youth.kr/lmth/01_info/info02.php">인사말</a></li>
+					<li><a href="https://www.ch2030youth.kr/lmth/01_info/info03.php">함께하는 사람들</a></li>
+					<li><a href="https://www.ch2030youth.kr/lmth/01_info/info04.php">오시는 길</a></li>
+				</ul>
+			</div>
+			<div class="allmenu_box">
+				<h3 class="map_tit">공지사항</h3>
+				<ul class="allmenu_list">
+					<li><a href="https://www.ch2030youth.kr/bbs/board.php?bo_table=notice">공지사항</a></li>
+					<!-- <li><a href="https://www.ch2030youth.kr/bbs/board.php?bo_table=photo">포토갤러리</a></li> -->
+					<li><a href="https://www.ch2030youth.kr/bbs/board.php?bo_table=inquiry">문의게시판</a></li>
+				</ul>
+			</div>
+
+
+			<div class="allmenu_box">
+				<h3 class="map_tit">사업안내</h3>
+				<ul class="allmenu_list">
+					<li><a href="/bbs/board.php?bo_table=basic_type&wr_id=1">직업교육 혁신지구(학생용)</a></li>
+					<!-- 2026년 사업 추가 / 2026.04.18 -->
+					<li><a href="https://www.ch2030youth.kr/lmth/02_busi/busi08.php">2026년 사업 내용</a></li>
+					<!-- 2025년 사업 추가 / 2025.08.19 -->
+					<li><a href="https://www.ch2030youth.kr/lmth/02_busi/busi07.php">2025년 사업 내용</a></li>
+					<li><a href="https://www.ch2030youth.kr/lmth/02_busi/busi06.php">2024년 사업 내용</a></li>
+					<li><a href="https://www.ch2030youth.kr/lmth/02_busi/busi05.php">2023년 사업 내용</a></li>
+					<li><a href="https://www.ch2030youth.kr/lmth/02_busi/busi04.php">2022년 사업 내용</a></li>
+					<li><a href="https://www.ch2030youth.kr/lmth/02_busi/busi03.php">2021년 사업 내용</a></li>
+					<li><a href="https://www.ch2030youth.kr/lmth/02_busi/busi02.php">2020년 사업 내용</a></li>
+					<li><a href="https://www.ch2030youth.kr/lmth/02_busi/busi01.php">2019년 사업 내용</a></li>
+				</ul>
+			</div>
+
+	
+			<div class="allmenu_box">
+				<h3 class="map_tit">공간대관</h3>
+				<ul class="allmenu_list">
+					<li><a href="/bbs/board.php?bo_table=room_info02&wr_id=13">공간안내</a></li>
+					<li><a href="/lmth/06_guide/guide02_new.php">예약확인</a></li>
+					<li><a href="/bbs/board.php?bo_table=room_rent02">예약수정 및 삭제(불당)</a></li>
+					<li><a href="/bbs/board.php?bo_table=room_rent04">예약수정 및 삭제(안서)</a></li>
+				</ul>
+			</div>
+
+      <!-- 2022.02.03. 취업지원 -->
+      <!-- <div class="allmenu_box">
+				<h3 class="map_tit">취업지원</h3>
+				<ul class="allmenu_list">
+          <li><a href="https://www.ch2030youth.kr/lmth/08_job/job01.php">취업패키지지원</a></li>
+          <li><a href="/lmth/08_job/job02.php">기업정보소개</a></li>
+				</ul>
+			</div> -->
+
+			<div class="allmenu_box">
+				<h3 class="map_tit">청년활동</h3>
+				<ul class="allmenu_list">
+				   <li><a href="https://www.ch2030youth.kr/bbs/board.php?bo_table=edu_program">프로그램</a></li>
+					<li><a href="https://www.ch2030youth.kr/bbs/board.php?bo_table=consul_apply">개인상담</a></li>
+					<li><a href="/lmth/14_support/support.php">1인가구 지원</a></li>
+					<li><a href="https://www.ch2030youth.kr/lmth/08_job/job01.php">취업패키지</a></li>
+				</ul>
+			</div>
+
+
+			<div class="allmenu_box last">
+				<h3 class="map_tit">청년정보</h3>
+				<ul class="allmenu_list">
+					<li><a href="https://www.ch2030youth.kr/bbs/board.php?bo_table=press">언론보도</a></li>
+					<li><a href="https://www.ch2030youth.kr/bbs/board.php?bo_table=policy_pro">청년정책</a></li>
+					<li><a href="https://www.ch2030youth.kr/bbs/board.php?bo_table=youth_hire">청년채용정보</a></li>
+				</ul>
+			</div>
+
+
+			<button type="button" class="btn_close"><span class="blind">전체메뉴 닫기</span></button>
+		</div>
+	</div>
+	<!-- //site_map_wrap -->
+
+
+  </div><!--// header_top -->
+
+ 
+  <!-- gnb_area -->
+  <nav class="gnb_area">            
+     <h1 class="logo"><a href="https://www.ch2030youth.kr/index.php"><img src="https://www.ch2030youth.kr/gmi/cni/logo_eum02.png" alt="센터소개" /></a></h1>                  
+     <!-- gnb -->
+     <h2 class="skip">주메뉴</h2>
+     <ul class="gnb" id="gnb">
+        <li><a href="https://www.ch2030youth.kr/lmth/01_info/info01.php">센터소개</a>
+           <ul class="gnb_sub gnb_sub1">
+              <li><a href="https://www.ch2030youth.kr/lmth/01_info/info01.php">센터소개</a></li>
+              <li><a href="https://www.ch2030youth.kr/lmth/01_info/info02.php">인사말</a></li>
+			  <li><a href="https://www.ch2030youth.kr/lmth/01_info/info03.php">함께하는 사람들</a></li>
+			  <li><a href="https://www.ch2030youth.kr/lmth/01_info/info04.php">오시는 길</a></li>
+           </ul>
+        </li>
+
+        <li><a href="https://www.ch2030youth.kr/bbs/board.php?bo_table=notice">공지사항</a>
+           <ul class="gnb_sub gnb_sub2">
+              <li><a href="https://www.ch2030youth.kr/bbs/board.php?bo_table=notice">공지사항</a></li>
+              <!-- <li><a href="https://www.ch2030youth.kr/bbs/board.php?bo_table=photo">포토갤러리</a></li> -->
+	  		  <li><a href="https://www.ch2030youth.kr/bbs/board.php?bo_table=inquiry">문의게시판</a></li>
+           </ul>
+        </li>
+
+
+        <li><a href="/bbs/board.php?bo_table=basic_type&wr_id=1">사업안내</a>
+           <ul class="gnb_sub gnb_sub3">
+              <li><a href="/bbs/board.php?bo_table=basic_type&wr_id=1">직업교육 혁신지구(학생용)</a></li>
+              <!-- 2026년 사업 추가 / 2026.04.18 -->
+					<li><a href="https://www.ch2030youth.kr/lmth/02_busi/busi08.php">2026년 사업 내용</a></li>
+			  <!-- 2025년 사업 추가 / 2025.08.19 -->
+			  <li><a href="https://www.ch2030youth.kr/lmth/02_busi/busi07.php">2025년 사업 내용</a></li>
+			  <li><a href="https://www.ch2030youth.kr/lmth/02_busi/busi06.php">2024년 사업 내용</a></li>
+              <li><a href="https://www.ch2030youth.kr/lmth/02_busi/busi05.php">2023년 사업 내용</a></li>
+              <li><a href="https://www.ch2030youth.kr/lmth/02_busi/busi04.php">2022년 사업 내용</a></li>
+              <li><a href="https://www.ch2030youth.kr/lmth/02_busi/busi03.php">2021년 사업 내용</a></li>
+              <li><a href="https://www.ch2030youth.kr/lmth/02_busi/busi02.php">2020년 사업 내용</a></li>
+              <li><a href="https://www.ch2030youth.kr/lmth/02_busi/busi01.php">2019년 사업 내용</a></li>
+           </ul>
+        </li>
+
+        <!-- <li><a href="https://www.ch2030youth.kr/lmth/06_guide/guide01.php">공간대관</a> -->
+        <li><a class="alert_menu" href="/bbs/board.php?bo_table=room_info02&wr_id=13">공간대관</a>
+           <ul class="gnb_sub gnb_sub4">
+              <li><a href="/bbs/board.php?bo_table=room_info02&wr_id=13">공간안내</a></li>
+              <li><a href="/lmth/06_guide/guide02_new.php">예약확인</a></li>
+              <li><a href="/bbs/board.php?bo_table=room_rent02">예약수정 및 삭제(불당)</a></li>
+			  <li><a href="/bbs/board.php?bo_table=room_rent04">예약수정 및 삭제(안서)</a></li>
+           </ul>
+        </li>
+
+        <!-- 2022.02.03. 취업지원 -->
+        <!-- <li><a href="https://www.ch2030youth.kr/lmth/08_job/job01.php">취업지원</a>
+            <ul class="gnb_sub gnb_sub5">
+                <li><a href="https://www.ch2030youth.kr/lmth/08_job/job01.php">취업패키지지원</a></li>
+                <li><a href="javascript:void(0);"  onclick="alert('준비 중 입니다.');">기업정보소개</a></li>
+            </ul>
+      </li> -->
+
+
+        <li><a href="https://www.ch2030youth.kr/bbs/board.php?bo_table=edu_program">청년활동</a>
+           <ul class="gnb_sub gnb_sub5">
+            <li><a href="https://www.ch2030youth.kr/bbs/board.php?bo_table=edu_program">프로그램</a></li>
+            <li><a href="https://www.ch2030youth.kr/bbs/board.php?bo_table=consul_apply">개인상담</a></li>
+            <li><a href="/lmth/14_support/support.php">1인가구 지원</a></li>
+            <li><a href="https://www.ch2030youth.kr/lmth/08_job/job01.php">취업패키지</a></li>
+           </ul>
+        </li>
+
+
+        <li><a href="https://www.ch2030youth.kr/bbs/board.php?bo_table=press">청년정보</a>
+           <ul class="gnb_sub gnb_sub6">
+              <li><a href="https://www.ch2030youth.kr/bbs/board.php?bo_table=press">언론보도</a></li>
+              <li><a href="https://www.ch2030youth.kr/bbs/board.php?bo_table=policy_pro">청년정책</a></li>
+              <li><a href="https://www.ch2030youth.kr/bbs/board.php?bo_table=youth_hire">청년채용정보</a></li> 
+
+           </ul>
+        </li> 	
+
+
+
+     </ul>		
+
+    <!-- 모바일용 전체 메뉴 -->
+
+    <a href="javascript:;" class="btn_nav2 open"><img src="https://www.ch2030youth.kr/gmi/cni/moblie_menu.png" alt="전체 메뉴 열기" /></a>	
+    <!--// 모바일용 전체 메뉴-->			
+			
+  </nav><!--// gnb_area -->
+            
+     
+</header>
+<!--// header -->
+    
+    
+<!-- 모바일용 전체 메뉴 -->
+<header class="all_menu2" id="scroller">
+  
+  <div>	
+        
+     <p class="m-global_site">메뉴 닫기 
+       <a href="javascript:;" class="btn_nav2 close"><img src="https://www.ch2030youth.kr/gmi/cni/btn_close.png" alt="닫기" /></a>
+     </p>
+
+     
+     <p class="m_menu">
+                 <a href="https://www.ch2030youth.kr/bbs/login.php"><span>로그인</span></a> 
+         <a href="https://www.ch2030youth.kr/bbs/register.php"><span>회원가입</span></a> 
+          
+		 <!--
+		 <a href="#"><span>로그아웃</span></a> 
+         <a href="#" target="_salf" title="새창열림"><span>마이페이지</span></a> 
+		 -->
+
+     </p>
+
+     <ul class="all_menu2_con cl">
+        <li><a href="https://www.ch2030youth.kr/lmth/01_info/info01.php">센터소개</a>
+           <ul class="menu_sub">
+              <li><a href="https://www.ch2030youth.kr/lmth/01_info/info01.php">센터소개</a></li>
+              <li><a href="https://www.ch2030youth.kr/lmth/01_info/info02.php">인사말</a></li>
+              <li><a href="https://www.ch2030youth.kr/lmth/01_info/info03.php">함께하는 사람들</a></li>
+			  <li><a href="https://www.ch2030youth.kr/lmth/01_info/info04.php" class="last">오시는 길</a></li>
+           </ul>
+        </li>
+
+        <li><a href="https://www.ch2030youth.kr/bbs/board.php?bo_table=notice">공지사항</a>
+           <ul class="menu_sub">
+             <li><a href="https://www.ch2030youth.kr/bbs/board.php?bo_table=notice">공지사항</a></li>
+              <!-- <li><a href="https://www.ch2030youth.kr/bbs/board.php?bo_table=photo">포토갤러리</a></li> -->
+              <li><a href="https://www.ch2030youth.kr/bbs/board.php?bo_table=inquiry" class="last">문의게시판</a></li> 	  
+           </ul>
+        </li>
+
+        <li><a href="/bbs/board.php?bo_table=basic_type&wr_id=1">사업안내</a>
+           <ul class="menu_sub">
+              <li><a href="/bbs/board.php?bo_table=basic_type&wr_id=1">직업교육 혁신지구(학생용)</a></li>
+			  <!-- 2026년 사업 추가 / 2026.04.18 -->
+					<li><a href="https://www.ch2030youth.kr/lmth/02_busi/busi08.php">2026년 사업 내용</a></li>
+			  <!-- 2025년 사업 추가 / 2025.08.19 -->
+			  <li><a href="https://www.ch2030youth.kr/lmth/02_busi/busi07.php">2025년 사업 내용</a></li>
+              <li><a href="https://www.ch2030youth.kr/lmth/02_busi/busi06.php">2024년 사업 내용</a></li>
+              <li><a href="https://www.ch2030youth.kr/lmth/02_busi/busi05.php">2023년 사업 내용</a></li>
+              <li><a href="https://www.ch2030youth.kr/lmth/02_busi/busi04.php">2022년 사업 내용</a></li>
+              <li><a href="https://www.ch2030youth.kr/lmth/02_busi/busi03.php">2021년 사업 내용</a></li>
+              <li><a href="https://www.ch2030youth.kr/lmth/02_busi/busi02.php">2020년 사업 내용</a></li>
+              <li><a href="https://www.ch2030youth.kr/lmth/02_busi/busi01.php" class="last">2019년 사업 내용</a></li>
+           </ul>
+        </li>
+
+		<li><a class="alert_menu" href="/bbs/board.php?bo_table=room_info02&wr_id=13">공간대관</a>
+		<!-- <li><a href="https://www.ch2030youth.kr/lmth/06_guide/guide01.php">공간대관</a> -->
+           <ul class="menu_sub">
+              <li><a href="/bbs/board.php?bo_table=room_info02&wr_id=13">공간안내</a></li>
+              <li><a href="/lmth/06_guide/guide02_new.php">예약확인</a></li>
+              <li><a href="/bbs/board.php?bo_table=room_rent02">예약수정 및 삭제(불당)</a></li>
+			  <li><a href="/bbs/board.php?bo_table=room_rent04">예약수정 및 삭제(안서)</a></li>
+           </ul>
+        </li>	
+
+        <!-- 2022.02.03. 취업지원 -->
+        <!-- <li><a href="https://www.ch2030youth.kr/lmth/08_job/job01.php">취업지원</a>
+            <ul class="menu_sub">
+                <li><a href="https://www.ch2030youth.kr/lmth/08_job/job01.php">취업패키지지원</a></li>
+                <li><a href="javascript:void(0);"  onclick="alert('준비 중 입니다.');">기업정보소개</a></li>
+            </ul>
+      </li> -->
+
+
+        <li><a href="https://www.ch2030youth.kr/bbs/board.php?bo_table=edu_program">청년활동</a>
+           <ul class="menu_sub">
+			 <li><a href="https://www.ch2030youth.kr/bbs/board.php?bo_table=edu_program">프로그램</a></li>
+			 <li><a href="https://www.ch2030youth.kr/bbs/board.php?bo_table=consul_apply">개인상담</a></li>
+			 <li><a href="/lmth/14_support/support.php">1인가구 지원</a></li>
+       <li><a href="https://www.ch2030youth.kr/lmth/08_job/job01.php"  class="last">취업패키지</a></li>
+           </ul>
+        </li>
+
+
+
+        <li><a href="https://www.ch2030youth.kr/bbs/board.php?bo_table=press">청년정보</a>
+           <ul class="menu_sub">
+              <li><a href="https://www.ch2030youth.kr/bbs/board.php?bo_table=press">언론보도</a></li>
+              <li><a href="https://www.ch2030youth.kr/bbs/board.php?bo_table=policy_pro">청년정책</a></li>
+              <li><a href="https://www.ch2030youth.kr/bbs/board.php?bo_table=youth_hire" class="last">청년채용정보</a></li> 
+           </ul>
+        </li>	
+
+     </ul>
+     <!--// all_menu2_con --> 
+						
+		
+  </div>
+</header>
+<!--// 모바일용 전체 메뉴 -->	    
+
+  <!--#header E--> 
+
+
+  <div id="container"> 
+      <div id="svisual" class="svisual"><h2>공지사항</h2></div>
+
+   	    <div class="sub_nav pc s2">
+		<ul>
+			<li><a href="https://www.ch2030youth.kr/bbs/board.php?bo_table=notice">공지사항</a></li>
+			<!-- <li><a href="https://www.ch2030youth.kr/bbs/board.php?bo_table=photo">포토갤러리</a></li> -->
+            <li><a href="https://www.ch2030youth.kr/bbs/board.php?bo_table=inquiry">문의게시판</a></li> 	
+		</ul>		
+	</div>
+
+	<div class="sub_nav mobile">
+		<a href="javascript: void(0);" class="selected"><span class="txt"></span><span class="arrow"></span></a>
+		<ul>
+			<li><a href="https://www.ch2030youth.kr/bbs/board.php?bo_table=notice">공지사항</a></li>
+			<!-- <li><a href="https://www.ch2030youth.kr/bbs/board.php?bo_table=photo">포토갤러리</a></li> -->
+            <li><a href="https://www.ch2030youth.kr/bbs/board.php?bo_table=inquiry">문의게시판</a></li>
+		</ul>	
+	</div>
+
+
+	<script type="text/javascript">
+		$(document).ready(function(){
+			$(".sub_nav.pc ul li:eq(0)").addClass("on");
+		});
+	</script>
+
+
+ 	
+     <!-- #body_contents S-->
+     <section id="body_contents">
+
+	
+        <!--body_title S--> 
+		<div class="body_title">
+		   <h3>공지사항</h3>            
+		</div>
+		<!--body_title E-->   
+		
+		
+     
+      <!--// content_area S-->
+      <div class="content_area">
+	  <!-- start -->
+
+
+<link rel="stylesheet" type="text/css" href="https://www.ch2030youth.kr/skin/board/basic_notice/style.css" />
+
+<script src="https://www.ch2030youth.kr/js/viewimageresize.js"></script>
+
+<!-- 게시물 읽기 시작 { -->
+
+<article id="bo_v" style="width:100%">
+    <header>
+        <h2 id="bo_v_title">
+                        <span class="bo_v_tit">
+            2026년 천안시 청년 단기숙소 지원사업 '신청자 모집'</span>
+        </h2>
+    <section id="bo_v_info">
+        <h2>페이지 정보</h2>
+        <!--<span>작성자 : </span> <strong><span class="sv_member">관리자6</span></strong>-->
+        <!-- <span class="sound_only">댓글</span><strong><a href="#bo_vc"> <i class="fa fa-commenting-o" aria-hidden="true"></i> 0건</a></strong> -->
+        <!-- <span class="sound_only">조회</span><strong><i class="fa fa-eye" aria-hidden="true"></i> 22,210회</strong> -->
+        <strong class="if_date"><span class="sound_only">작성일</span><i class="fa fa-clock-o" aria-hidden="true"></i> 26-02-19 09:07</strong>
+
+    </section>
+    </header>
+
+
+
+    <section id="bo_v_atc">
+        <h2 id="bo_v_atc_title">본문</h2>
+
+        <div id="bo_v_img">
+</div>
+
+        <!-- 본문 내용 시작 { -->
+        <div id="bo_v_con"><p style="text-align:center;" align="center"><a href="https://www.ch2030youth.kr/bbs/view_image.php?fn=%2Fdata%2Feditor%2F2602%2F1076741a0750c0cee82534a7cee1d5c7_1771812709_3424.png" target="_blank" class="view_image"><img src="https://www.ch2030youth.kr/data/editor/2602/thumb-1076741a0750c0cee82534a7cee1d5c7_1771812709_3424_600x853.png" alt="1076741a0750c0cee82534a7cee1d5c7_1771812709_3424.png"/></a></p><p style="text-align:center;" align="center"><br /></p><p style="text-align:center;" align="center"><br /></p><p style="text-align:center;" align="center"><span style="font-family:'돋움체', DotumChe, AppleGothic;font-size:14pt;"><b>천안시 청년정책과는 타지역 청년의 취업 준비와 안정적인 지역 정착을 지원하기 위해</b></span></p><p style="text-align:center;" align="center"><span style="font-family:'돋움체', DotumChe, AppleGothic;font-size:14pt;"><b>취업 확정자 최대 3개월간 무료 숙소를 지원하는 「청년 단기숙소 지원사업」을 운영합니다.</b></span></p><p><br /></p><p><br /></p><p><br /></p><p><br /></p><p><br /></p><p><span style="font-family:'돋움체', DotumChe, AppleGothic;font-size:14pt;"><b>■ 지원기간: </b></span></p><p><br /></p><p><span style="font-family:'돋움체', DotumChe, AppleGothic;font-size:14pt;">- 2026년 2월 23일 ~ 사업 마감시까지 ( 별도 표기 예정 )</span></p><p><br /></p><p><span style="font-family:'돋움체', DotumChe, AppleGothic;font-size:14pt;">※ 사업 운영 기간 내 배정된 숙소 수 범위에서 지원</span></p><p><span style="font-family:'돋움체', DotumChe, AppleGothic;font-size:14pt;">※ 배정 물량 소진 시 조기 종료될 수 있음 </span></p><p><br /></p><p><br /></p><p><br /></p><p><span style="font-family:'돋움체', DotumChe, AppleGothic;font-size:11pt;"><span style="font-size:14pt;"><b>■ 지원대상: </b></span> </span></p><p><br /></p><p><span style="font-family:'돋움체', DotumChe, AppleGothic;font-size:14pt;">- 필수요건 <br />  ① 만 18세 이상 ~ 만 39세 이하 ( 1987. 1. 1.~ 2008. 12.31. 출생자) </span></p><p><span style="font-family:'돋움체', DotumChe, AppleGothic;font-size:18.6667px;">  ② 공고일 기준 주민등록상 주소지가 천안시 외 지역인 자<br />  ③ 천안시 소재 기업에 <br />    -<span style="color:rgb(0,0,0);"> </span><span style="color:rgb(255,0,0);"><span style="color:rgb(0,0,0);">면접이 예정되어 있거나 (면접숙소)</span><span style="color:rgb(0,0,0);">​ </span><span style="color:rgb(0,0,0);">﻿</span></span></span> </p><p><span style="font-family:'돋움체', DotumChe, AppleGothic;font-size:18.6667px;">    - 취업이 확정되었거나, 입사일 기준 6개월 이내인 자 (단기숙소)<br /></span></p><p><span style="font-family:'돋움체', DotumChe, AppleGothic;font-size:16px;"> </span></p><p><span style="font-family:'돋움체', DotumChe, AppleGothic;font-size:16px;">   ※ 1순위: 입사예정자 또는 입사 1개월 이내자, 2순위: 입사 3개월 이내자, 3순위 입사 6개월 이내자 </span></p><p><span style="font-family:'돋움체', DotumChe, AppleGothic;font-size:12pt;">   ※ 1986년생은 만 40세 도달 시 지원 불가</span></p><p><br /></p><p><br /></p><p><br /></p><p><span style="font-family:'돋움체', DotumChe, AppleGothic;font-size:14pt;"><b>■ 지원 제외 대상:  </b></span></p><p><br /></p><p><span style="font-family:'돋움체', DotumChe, AppleGothic;font-size:11pt;">- 천안시 내 거주자</span></p><p><span style="font-family:'돋움체', DotumChe, AppleGothic;font-size:11pt;">- 동일 사업으로 기 지원받은 자 (중복지원 불가)</span></p><p><span style="font-family:'돋움체', DotumChe, AppleGothic;font-size:11pt;">- 재직 중이나 전근, 파견 목적의 단순 숙박 이용자</span></p><p><span style="font-family:'돋움체', DotumChe, AppleGothic;font-size:11pt;">- 허위 세류 제출자 (확인 시 선정 취소)</span></p><p><br /></p><p><br /></p><p><br /></p><p><span style="font-family:'돋움체', DotumChe, AppleGothic;font-size:14pt;"><b>■ 선정 안내:  </b></span></p><p><br /></p><p><span style="font-family:'돋움체', DotumChe, AppleGothic;font-size:11pt;">- 배정 물량 내 내부 우선순위 규정에 따라 모집</span></p><p><span style="font-family:'돋움체', DotumChe, AppleGothic;font-size:11pt;">- 신청자 내부 요건 심사 후 개별 연락</span></p><p><br /></p><p><br /></p><p><br /></p><p><span style="font-family:'돋움체', DotumChe, AppleGothic;font-size:14pt;"><b>■ 지원 숙소 유형:  </b></span></p><p><br /></p><p><br /></p><p><span style="font-family:'돋움체', DotumChe, AppleGothic;font-size:11pt;">① 천안 내 기업에 취업이 확정된 타지역 청년 <br />  - 최대 3개월 무료 숙소 제공<br />  - 지정 숙소<br /><br />※ 숙소는 공실 상황을 고려하여 센터에서 배정하며, 개인 선택은 불가합니다. </span></p><p><br /></p><p><br /></p><p><span style="font-family:'돋움체', DotumChe, AppleGothic;font-size:14pt;"><b>■ 제출 서류:</b></span></p><p><br /></p><p><br /></p><p><span style="font-family:'돋움체', DotumChe, AppleGothic;font-size:11pt;">-취업자: ① 입사확인서 또는 재직증명서 </span></p><p><span style="font-family:'돋움체', DotumChe, AppleGothic;font-size:11pt;">         ② 주민등록초본(주소 이력 포함, 타지역 증빙)</span></p><p><br /></p><p><span style="font-family:'돋움체', DotumChe, AppleGothic;font-size:11pt;">※ 선택 제출: 천안 소재 대학 졸업(예정) 증명서 제출 시 가점 부여</span></p><p><br /></p><p><br /></p><p><b style="font-family:'돋움체', DotumChe, AppleGothic;font-size:18.6667px;">■ 면접자 1일 숙박 지원 신청서</b></p><p><span style="font-family:'돋움체', DotumChe, AppleGothic;"><span style="font-size:18.6667px;"><b><br /></b></span></span></p><p><a href="https://forms.gle/MJBRuJKdXHqgyHLW8" rel="nofollow"><span style="font-size:14pt;background-color:rgb(255,239,0);"><b>https://forms.gle/MJBRuJKdXHqgyHLW8</b></span></a> </p><p><br /></p><p><span style="font-family:'돋움체', DotumChe, AppleGothic;font-size:14pt;"><b>■ 취업확정자 단기숙소 지원 신청서</b></span></p><p><br /></p><p><span style="font-family:'돋움체', DotumChe, AppleGothic;font-size:14pt;background-color:rgb(255,239,0);"><a href="https://forms.gle/AMVeZkMdoV5EnYJK9" rel="nofollow"><b>https://forms.gle/AMVeZkMdoV5EnYJK9</b></a></span></p><p><br /></p><p><br /></p><p><br /></p><p><br /></p><p><span style="font-family:'돋움체', DotumChe, AppleGothic;font-size:14pt;"><b>■ 문의사항:</b></span></p><p><br /></p><p><span style="font-family:'돋움체', DotumChe, AppleGothic;font-size:11pt;">천안청년센터 이음</span></p><p><span style="font-family:'돋움체', DotumChe, AppleGothic;font-size:11pt;">전화: 041-900-2030 (내선 1번) 단기숙소 담당자</span></p><p><span style="font-family:'돋움체', DotumChe, AppleGothic;font-size:11pt;">카카오톡 채널: “천안청년센터이음” 검색 후 채널 추가 → 1:1 채팅 가능</span></p><p><br /></p><p><br /></p><p><br /></p><p><span style="font-family:'돋움체', DotumChe, AppleGothic;font-size:14pt;"><b>■ 유의사항:</b></span></p><p><br /></p><p><span style="font-family:'돋움체', DotumChe, AppleGothic;font-size:11pt;">- 숙소는 공실 상황에 따 배정되며 개인 선택은 불가합니다.</span></p><p><span style="font-family:'돋움체', DotumChe, AppleGothic;font-size:11pt;">- 숙소별 보증금이 발생할 수 있으며, 퇴실 시 환급됩니다.</span></p><p><span style="font-family:'돋움체', DotumChe, AppleGothic;font-size:11pt;">- 숙소 이용 시 관리비는 발생하지 않습니다.</span></p><p><span style="font-family:'돋움체', DotumChe, AppleGothic;font-size:11pt;">- 중도 퇴소시 1주일 전 센터에 통보하여야 합니다.</span></p><p><span style="font-family:'돋움체', DotumChe, AppleGothic;font-size:11pt;">- 3개월 이후 추가연장할 수 없으며, 숙소 측과 협의 하에 개인적으로 연장할 수 있습니다.</span></p><p><br /></p></div>
+                <!-- } 본문 내용 끝 -->
+
+        
+
+        <!--  추천 비추천 시작 { -->
+                <!-- }  추천 비추천 끝 -->
+    </section>
+
+<!--     <div id="bo_v_share">
+        
+            </div>
+ -->
+    
+    
+    
+    <!-- 게시물 상단 버튼 시작 { -->
+    <div id="bo_v_top">
+        
+        <ul class="bo_v_left">
+                                    <!--              -->
+                    </ul>
+
+        <ul class="bo_v_com">
+           <li><a href="./board.php?bo_table=notice&amp;page=" class="btn_b01 btn"><i class="fa fa-list" aria-hidden="true"></i> 목록</a></li>
+                    </ul>
+
+                <ul class="bo_v_nb">
+            <li class="btn_prv"><span class="nb_tit"><i class="fa fa-caret-up" aria-hidden="true"></i> 이전글</span><a href="./board.php?bo_table=notice&amp;wr_id=594">2026년 청년성장프로젝트 참여자 모집(~5/13)</a> <span class="nb_date">26.02.19</span></li>            <li class="btn_next"><span class="nb_tit"><i class="fa fa-caret-down" aria-hidden="true"></i> 다음글</span><a href="./board.php?bo_table=notice&amp;wr_id=592">★ 2026 청년커뮤니티지원사업 「청년방방」&「안서방방」참여 팀 모집 ⚽ (마감)</a>  <span class="nb_date">26.02.12</span></li>        </ul>
+                    </div>
+    <!-- } 게시물 상단 버튼 끝 -->
+
+    
+
+</article>
+<!-- } 게시판 읽기 끝 -->
+
+<script>
+
+function board_move(href)
+{
+    window.open(href, "boardmove", "left=50, top=50, width=500, height=550, scrollbars=1");
+}
+</script>
+
+<script>
+$(function() {
+    $("a.view_image").click(function() {
+        window.open(this.href, "large_image", "location=yes,links=no,toolbar=no,top=10,left=10,width=10,height=10,resizable=yes,scrollbars=no,status=no");
+        return false;
+    });
+
+    // 추천, 비추천
+    $("#good_button, #nogood_button").click(function() {
+        var $tx;
+        if(this.id == "good_button")
+            $tx = $("#bo_v_act_good");
+        else
+            $tx = $("#bo_v_act_nogood");
+
+        excute_good(this.href, $(this), $tx);
+        return false;
+    });
+
+    // 이미지 리사이즈
+    $("#bo_v_atc").viewimageresize();
+
+    //sns공유
+    $(".btn_share").click(function(){
+        $("#bo_v_sns").fadeIn();
+   
+    });
+
+    $(document).mouseup(function (e) {
+        var container = $("#bo_v_sns");
+        if (!container.is(e.target) && container.has(e.target).length === 0){
+        container.css("display","none");
+        }	
+    });
+});
+
+function excute_good(href, $el, $tx)
+{
+    $.post(
+        href,
+        { js: "on" },
+        function(data) {
+            if(data.error) {
+                alert(data.error);
+                return false;
+            }
+
+            if(data.count) {
+                $el.find("strong").text(number_format(String(data.count)));
+                if($tx.attr("id").search("nogood") > -1) {
+                    $tx.text("이 글을 비추천하셨습니다.");
+                    $tx.fadeIn(200).delay(2500).fadeOut(200);
+                } else {
+                    $tx.text("이 글을 추천하셨습니다.");
+                    $tx.fadeIn(200).delay(2500).fadeOut(200);
+                }
+            }
+        }, "json"
+    );
+}
+</script>
+<!-- } 게시글 읽기 끝 -->
+
+	  <!-- end -->
+
+       
+      
+      </div>
+      <!--// content_area E-->
+      
+             
+    
+      
+     </section>
+     <!--// body_contents E-->
+	</div>
+  
+  <!--#footer Start--> 
+	<!-- go_top S -->
+<div class="top">
+	<a href="#wrap"><span class="skip">위로 이동</span></a>
+</div>
+<!-- go_top E -->
+
+<!--footer S-->
+<footer class="footer"> 
+      <!--footer_con S-->
+      <section class="footer_con">
+
+	  <h2 class="skip">천안시2030청년복지센터</h2>
+			
+
+            <!--serviceLink S--> 
+            <div class="serviceLink">			 
+			  <ul>
+			  <!--
+			    <li><a href="https://www.ch2030youth.kr/lmth/07_etc/privacy.php" title="새창열림">개인정보처리방침</a></li>
+				-->
+				<li><a href="https://www.cheonan.go.kr/kor/sitemap_13_01.do" title="새창열림">개인정보처리방침</a></li>
+			    <li><a href="https://www.ch2030youth.kr/lmth/07_etc/email.php">이메일주소무단수집거부</a></li>
+			  </ul>    
+             </div> 
+            <!--//serviceLink E--> 		
+			
+         		
+
+
+
+	<div id="select_depart1">
+		<h3><a href="#selectbox_depart1" onclick="displayOn('selectbox_depart1'); return false;">패밀리사이트</a></h3>
+
+		<div id="selectbox_depart1" class="sbx" style="display: none;">
+			<h4 class="sel_title">패밀리사이트</h4>
+			<div class="wrap">
+				<ul>
+					<li><a href="https://www.cheonan.go.kr/" target="_blank" title="새창열림">천안시청</a></li>
+					<li><a href="http://www.moel.go.kr/local/cheonan/index.do" target="_blank" title="새창열림">고용노동부천안지청</a></li>
+					<li><a href="https://www.cheonan.go.kr/nanum.do" target="_blank" title="새창열림">천안시자원봉사센터</a></li>
+
+				</ul>
+			</div><!--//wrap End-->
+		<p>
+		<a href="#con_right" onclick="displayOff('selectbox_depart1'); obj=document.getElementById('select_depart1').getElementsByTagName('a')[0];obj.focus(); return false;" class="close"><img src="/gmi/cni/select_close.gif" alt="유관기관 홈페이지 목록 닫기" /></a></p>
+		</div><!--//selectbox_depart End -->
+
+
+	</div><!--//select_depart End -->
+
+
+
+
+
+
+
+
+
+			<div class="footer_inner">
+           <!--addr S-->
+			   <div class="f_logo"><img src="https://www.ch2030youth.kr/gmi/cni/f_logo_eum.png" alt="로고" /></div>
+			   <div class="addr">                
+					<address>우)31129 충청남도 천안시 동남구 은행길5-4, <span>천안청년몰 흥흥발전소 B1층</span></address>	<br />
+					<p class="tel">Tel. 041) 900-2030   Fax. 041) 900-2032, <em>E-mail. ch9002030@daum.net</em></p>
+					<p class="copyright">Copyright by ch2030youth.kr all rights reserved.</p>
+				</div>
+				<!--// addr E--> 
+				<ul class="f_sns">
+					<li class="fir"><a href="https://www.instagram.com/cheonan_youth/" target="_blank"><img src="/gmi/cni/f_instar.png" alt="instargram" /></a></li>
+					<li><a href="https://www.facebook.com/cn2030/" target="_blank"><img src="/gmi/cni/f_facebook.png" alt="facebook" /></a></li>
+					<li><a href="https://pf.kakao.com/_jyQJxb" target="_blank"><img src="/gmi/cni/f_kakao.png" alt="Kakaotalk" /></a></li>
+					<li><a href="https://blog.naver.com/ch9002030" target="_blank"><img src="/gmi/cni/f_blog.png" alt="blog" /></a></li>
+				</ul>
+			</div>
+			
+
+
+      </section>
+      <!--// footer_con -->   
+</footer>
+<!--// footer E--> 
+  <!--#footer End--> 
+  
+</div>
+<script>
+  const siteUrl = location.href;
+  const siteUrlSplit = siteUrl.split('e=');
+  const tabNavi = document.querySelectorAll('.tab_navi_line li a');
+  const siteUrlDSplit = siteUrlSplit[1].split('&')[2];
+  // console.log(siteUrlSplit[1].split('&')[2])
+
+  if(siteUrlSplit[1] == 'room_info02&wr_id=13' || siteUrlSplit[1] == 'room_rent02&room_id=13' || siteUrlDSplit == "room_id=13"){
+    tabNavi[0].style.backgroundImage = "url('/gmi/bus/eum_01_on.jpg')"
+  }else if(siteUrlSplit[1] == 'room_info02&wr_id=14' || siteUrlSplit[1] == 'room_rent02&room_id=14' || siteUrlDSplit == "room_id=14"){
+    tabNavi[1].style.backgroundImage = "url('/gmi/bus/eum_02_on.jpg')"
+  }else if(siteUrlSplit[1] == 'room_info02&wr_id=15' || siteUrlSplit[1] == 'room_rent02&room_id=15' || siteUrlDSplit == "room_id=15"){
+    tabNavi[2].style.backgroundImage = "url('/gmi/bus/eum_03_on.jpg')"
+  }else if(siteUrlSplit[1] == 'room_info02&wr_id=16' || siteUrlSplit[1] == 'room_rent02&room_id=16' || siteUrlDSplit == "room_id=16"){
+    tabNavi[3].style.backgroundImage = "url('/gmi/bus/eum_04_on.jpg')"
+  }
+</script>
+</body>
+</html>

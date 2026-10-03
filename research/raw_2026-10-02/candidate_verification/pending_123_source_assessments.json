@@ -1,41 +1,58 @@
 {
   "20260929005400213651": {
     "점검일": "2026-10-03",
-    "결과": "세종 홈페이지는 해석할 본문이 없고 복지로는 제목만 반환. 쉐어하우스 개별 모집·첨부 미확보.",
-    "검증한계": "공식 연결·확보자료의 적합성 점검. 최신 모집·정정·추가공고 및 모든 첨부 검증 완료를 의미하지 않음.",
+    "결과": "마이홈 pblancId12611은 2022-11-30 공고·12월12~16일 추가모집. 임대2년·2회갱신6년,입주후혼인시 추가연장20년 경로. 2026 후보의 최신공고로 대체하지 않음.",
+    "검증한계": "개별 본문 또는 자료 불일치를 확인. 후속 정정·추가모집 전체,현재 예산·공실·실접수는 미확정.",
     "증빙": [
       "https://www.sejong.go.kr/index.jsp",
-      "https://www.bokjiro.go.kr/ssis-tbu/twataa/wlfareInfo/moveTWAT52011M.do?wlfareInfoId=WLF00002657"
+      "https://www.bokjiro.go.kr/ssis-tbu/twataa/wlfareInfo/moveTWAT52011M.do?wlfareInfoId=WLF00002657",
+      "https://www.myhome.go.kr/hws/portal/sch/selectRsdtRcritNtcDetailView.do?pblancId=12611"
     ],
-    "점검분류": "해당 사업 본문 미확보·개별 해석 미완료"
+    "점검분류": "개별 회차 공고·게시물 해석",
+    "추가73검색일": "2026-10-03",
+    "추가73검색증빙": "pending73_search_batch_0.json",
+    "추가73검색어": "세종형 쉐어하우스 청년임대주택 운영 site:sejong.go.kr 모집 공고"
   },
   "20260922005400113549": {
     "점검일": "2026-10-03",
-    "결과": "농식품부 연결은 site move 안내만 반환. 조성사업 계획과 개인 입주자 모집을 구분할 원문 미확보.",
-    "검증한계": "공식 연결·확보자료의 적합성 점검. 최신 모집·정정·추가공고 및 모든 첨부 검증 완료를 의미하지 않음.",
+    "결과": "농식품부 자료집24쪽:40세미만 귀농귀촌청년·신혼부부 또는 가구주40세미만 자녀양육가정;임대최소2년·관리운영 최소임대료,단지30호내외. 2024~2025 조성계획이며 2026 개인 입주공고 아님.",
+    "검증한계": "개별 본문 또는 자료 불일치를 확인. 후속 정정·추가모집 전체,현재 예산·공실·실접수는 미확정.",
     "증빙": [
-      "https://mafra.go.kr"
+      "https://mafra.go.kr",
+      "https://www.mafra.go.kr/bbs/home/795/586675/download.do"
     ],
-    "점검분류": "해당 사업 본문 미확보·개별 해석 미완료"
+    "점검분류": "제도·서비스·계획 안내 해석",
+    "추가73검색일": "2026-10-03",
+    "추가73검색증빙": "pending73_search_batch_0.json",
+    "추가73검색어": "청년농촌보금자리조성 site:mafra.go.kr 모집 공고"
   },
   "20260922005400113539": {
     "점검일": "2026-10-03",
-    "결과": "마이홈 메인 메뉴만 확보. 이주비 패키지의 대상·이사비 신청 공고를 확인한 자료가 아님.",
-    "검증한계": "공식 연결·확보자료의 적합성 점검. 최신 모집·정정·추가공고 및 모든 첨부 검증 완료를 의미하지 않음.",
+    "결과": "제주 공식 주거복지센터:공공임대 이주선정계약자 또는 민간임대 이주확정자에게 이사비·생필품40만원. 국비교부일부터 예산소진까지라는 지역 시행안내. 전국 보증금·이주비 패키지 전체 및 부산시 실제 접수의 근거로 일반화하지 않음.",
+    "검증한계": "개별 본문 또는 자료 불일치를 확인. 후속 정정·추가모집 전체,현재 예산·공실·실접수는 미확정.",
     "증빙": [
-      "https://www.myhome.go.kr/hws/portal/main/getMgtMainPage.do"
+      "https://www.myhome.go.kr/hws/portal/main/getMgtMainPage.do",
+      "https://www.jejuhwc.co.kr/finance/cost-support/moving-expenses.htm"
     ],
-    "점검분류": "해당 사업 본문 미확보·개별 해석 미완료"
+    "점검분류": "제도·서비스·계획 안내 해석",
+    "추가73검색일": "2026-10-03",
+    "추가73검색증빙": "pending73_search_batch_0.json",
+    "추가73검색어": "고시원 등 거주청년 이주비용 패키지 지원 국토교통부 모집 공고"
   },
   "20260922005400113538": {
     "점검일": "2026-10-03",
-    "결과": "연결된 마이홈 안내는 여러 임대유형을 비교하는 일반 제도 안내. 주거상향·통합공공임대 청년 별도 입주모집의 접수기간 근거가 아님.",
-    "검증한계": "공식 연결·확보자료의 적합성 점검. 최신 모집·정정·추가공고 및 모든 첨부 검증 완료를 의미하지 않음.",
+    "결과": "주거상향 공식 안내:쪽방·고시원·여인숙·비닐하우스·노숙인시설·컨테이너·움막·PC방·만화방 등에 3개월 이상 거주 등 취약경로,주민센터/운영기관 신청. 제주 안내와 전국사업/부산실제공급은 구분.",
+    "검증한계": "개별 본문 또는 자료 불일치를 확인. 후속 정정·추가모집 전체,현재 예산·공실·실접수는 미확정.",
     "증빙": [
       "https://www.myhome.go.kr/hws/portal/main/getMgtMainPage.do",
-      "https://www.myhome.go.kr/hws/portal/cont/selectContRentalHouseView.do"
+      "https://www.myhome.go.kr/hws/portal/cont/selectContRentalHouseView.do",
+      "https://www.jejuhwc.co.kr/business/upward-support.htm",
+      "https://www.jejuhwc.co.kr/finance/housing-support/housingass.htm"
     ],
-    "점검분류": "해당 사업 본문 미확보·개별 해석 미완료"
+    "점검분류": "제도·서비스·계획 안내 해석",
+    "추가73검색일": "2026-10-03",
+    "추가73검색증빙": "pending73_search_batch_0.json",
+    "추가73검색어": "고시원 등 거주청년 주거상향 지원 국토교통부 모집 공고"
   },
   "20260922005400113535": {
     "점검일": "2026-10-03",
@@ -70,21 +87,32 @@
   },
   "20260922005400113528": {
     "점검일": "2026-10-03",
-    "결과": "국토부 원문 조회 실패. 허위매물 모니터링이라는 행정사업을 개인 신청 혜택으로 확정하지 않음.",
-    "검증한계": "공식 연결·확보자료의 적합성 점검. 최신 모집·정정·추가공고 및 모든 첨부 검증 완료를 의미하지 않음.",
+    "결과": "국무조정실 공개2026청년정책 시행계획 중앙 PDF 116~119쪽 개별대조: 허위광고 모니터링·행정조치 사업,2026 조사광고 목표1250건. 연령/소득무관 표시는 정책 설명이며 개인 지원금 모집이 아님. 계획자료이며 최신 개별 모집·정정·추가공고/전체첨부·실접수 검증은 미완료. 공식출처:https://www.opm.go.kr/opm/info/youth_implementation.do?articleNo=162111&mode=view",
+    "검증한계": "개별 본문 또는 자료 불일치를 확인. 후속 정정·추가모집 전체,현재 예산·공실·실접수는 미확정.",
     "증빙": [
-      "https://www.molit.go.kr/portal.do"
+      "https://www.molit.go.kr/portal.do",
+      "https://www.opm.go.kr/opm/info/youth_implementation.do?articleLimit=10&articleNo=162111&mode=view",
+      "https://www.opm.go.kr/opm/info/youth_implementation.do?mode=download&articleNo=162111&attachNo=153795",
+      "https://www.opm.go.kr/opm/info/youth_implementation.do?mode=download&articleNo=162111&attachNo=153796",
+      "https://www.opm.go.kr/opm/info/youth_implementation.do?mode=download&articleNo=162111&attachNo=154122"
     ],
-    "점검분류": "해당 사업 본문 미확보·개별 해석 미완료"
+    "점검분류": "제도·서비스·계획 안내 해석",
+    "추가73검색일": "2026-10-03",
+    "추가73검색증빙": "pending73_search_batch_4.json",
+    "추가73검색어": "대학가, 원룸촌 등 부동산 허위매물 등 수시모니터링 site:molit.go.kr 모집 공고"
   },
   "20260921005400113499": {
     "점검일": "2026-10-03",
-    "결과": "국토부 조회 실패. 공공분양의 청년특별공급 여부 및 단지별 접수·정정 원문 미확보.",
-    "검증한계": "공식 연결·확보자료의 적합성 점검. 최신 모집·정정·추가공고 및 모든 첨부 검증 완료를 의미하지 않음.",
+    "결과": "마이홈 선택형 공공주택 제도 본문 확인. 선택형의 계층별 특별/일반공급 및 기관추천 조건이고 모든 공공분양 또는 모든 청년의 청약자격을 대표하지 않음. 단지별 모집·청년공급 공고 별도.",
+    "검증한계": "개별 본문 또는 자료 불일치를 확인. 후속 정정·추가모집 전체,현재 예산·공실·실접수는 미확정.",
     "증빙": [
-      "https://www.molit.go.kr"
+      "https://www.molit.go.kr",
+      "https://m.myhome.go.kr/hws/portal/cont/selectNewHomeChoiceTypeView.do"
     ],
-    "점검분류": "해당 사업 본문 미확보·개별 해석 미완료"
+    "점검분류": "제도·서비스·계획 안내 해석",
+    "추가73검색일": "2026-10-03",
+    "추가73검색증빙": "pending73_search_batch_4.json",
+    "추가73검색어": "청년층 대상 공공분양주택 공급 site:molit.go.kr 모집 공고"
   },
   "20260921005400113469": {
     "점검일": "2026-10-03",
@@ -108,72 +136,99 @@
   },
   "20260921005400113465": {
     "점검일": "2026-10-03",
-    "결과": "마이홈 허브의 소개·콜센터 안내만 확보. 대기자 통합시스템 구축과 개인 입주 신청을 구분해야 함.",
-    "검증한계": "공식 연결·확보자료의 적합성 점검. 최신 모집·정정·추가공고 및 모든 첨부 검증 완료를 의미하지 않음.",
+    "결과": "국무조정실 공개2026청년정책 시행계획 중앙 PDF 31~34쪽 개별대조: 대기자통합시스템:2026 1차용역준공/2차계약,2027 시범운영·2028 운영 계획. 이미 개통된 개인신청서비스로 처리하지 않음. 계획자료이며 최신 개별 모집·정정·추가공고/전체첨부·실접수 검증은 미완료. 공식출처:https://www.opm.go.kr/opm/info/youth_implementation.do?articleNo=162111&mode=view",
+    "검증한계": "개별 본문 또는 자료 불일치를 확인. 후속 정정·추가모집 전체,현재 예산·공실·실접수는 미확정.",
     "증빙": [
-      "https://www.myhome.go.kr/hws/portal/main/getMgtMainHubPage.do"
+      "https://www.myhome.go.kr/hws/portal/main/getMgtMainHubPage.do",
+      "https://www.opm.go.kr/opm/info/youth_implementation.do?mode=download&articleNo=162111&attachNo=154122"
     ],
-    "점검분류": "해당 사업 본문 미확보·개별 해석 미완료"
+    "점검분류": "제도·서비스·계획 안내 해석",
+    "추가73검색일": "2026-10-03",
+    "추가73검색증빙": "pending73_search_batch_4.json",
+    "추가73검색어": "공공임대 대기자통합시스템 구축 국토교통부 주택토지실 주거복지정책관 모집 공고"
   },
   "20260921005400113460": {
     "점검일": "2026-10-03",
-    "결과": "청년·신혼부부 지원 페이지는 메뉴만 반환. 통합공공임대 개별 모집과 첨부 미확보.",
-    "검증한계": "공식 연결·확보자료의 적합성 점검. 최신 모집·정정·추가공고 및 모든 첨부 검증 완료를 의미하지 않음.",
+    "결과": "통합공공임대 공식 본문:일반·우선공급 경로를 분리. 우선청년18~39세 또는 시설/위탁/쉼터퇴소 경로,미혼·무주택·소득/자산 조건. 1·2인가구 소득가산과 지역 연속거주 가점은 필수거주기간과 다름. 부산단지 개별 모집은 미확정.",
+    "검증한계": "개별 본문 또는 자료 불일치를 확인. 후속 정정·추가모집 전체,현재 예산·공실·실접수는 미확정.",
     "증빙": [
       "https://www.myhome.go.kr/hws/portal/main/getMgtMainHubPage.do",
-      "https://www.myhome.go.kr/hws/portal/cont/selectYouthPolicyIntegratedPublicView.do#guide=RH112"
+      "https://www.myhome.go.kr/hws/portal/cont/selectYouthPolicyIntegratedPublicView.do#guide=RH112",
+      "https://m.myhome.go.kr/hws/portal/cont/selectIntegratedPubRentalHouseView.do"
     ],
-    "점검분류": "해당 사업 본문 미확보·개별 해석 미완료"
+    "점검분류": "제도·서비스·계획 안내 해석",
+    "추가73검색일": "2026-10-03",
+    "추가73검색증빙": "pending73_search_batch_4.json",
+    "추가73검색어": "청년 맞춤형 공적 임대주택 공급(통합공공임대) 국토교통부 주택토지실 주거복지정책관 모집 공고"
   },
   "20260908005400213382": {
     "점검일": "2026-10-03",
-    "결과": "대학 공식게시물에 2026 화순 1차분 홍보가 있으나 연결 압축첨부 본문 미해석. 조례 화면은 모집공고가 아님.",
-    "검증한계": "공식 연결·확보자료의 적합성 점검. 최신 모집·정정·추가공고 및 모든 첨부 검증 완료를 의미하지 않음.",
+    "결과": "화순2026-1차 HWP·서식:2월10일 공고,청년23호+예비5,18~49세(1977~2008년생),무주택세대·근로/사업소득 증빙·중위150%이하. 신청시화순주소 OR 입주일즉시전입예정자. 월1만원·2년·최장6년. 주거급여/중복주거지원·공무원/공무직·군복무 제외. 신규100호는 추후모집 명시;1차를 후속전체로 사용하지 않음.",
+    "검증한계": "개별 본문 또는 자료 불일치를 확인. 후속 정정·추가모집 전체,현재 예산·공실·실접수는 미확정.",
     "증빙": [
       "https://plus.gov.kr/",
       "https://www.hongik.ac.kr/kr/newscenter/event-contest.do?articleNo=148777&mode=view&title=%5B%ED%99%8D%EB%B3%B4%5D+2026%EB%85%84+%ED%99%94%EC%88%9C%EA%B5%B0+%EB%A7%8C%EC%9B%90%EC%9E%84%EB%8C%80%EC%A3%BC%ED%83%9D+1%EC%B0%A8%EB%B6%84+%EC%A7%80%EC%9B%90%EC%82%AC%EC%97%85",
       "https://www.law.go.kr/LSW/ordinInfoP.do?chrClsCd=010202&gubun=ELIS&ordinSeq=2006277",
       "https://www.hongik.ac.kr/kr/newscenter/event-contest.do?mode=download&articleNo=148777&attachNo=86473"
     ],
-    "점검분류": "해당 사업 본문 미확보·개별 해석 미완료"
+    "점검분류": "개별 회차 공고·게시물 해석",
+    "추가73검색일": "2026-10-03",
+    "추가73검색증빙": "pending73_search_batch_8.json",
+    "추가73검색어": "화순군 만원임대주택 지원 전남광주통합특별시 화순군 인구청년정책과 모집 공고"
   },
   "20260821005400213346": {
     "점검일": "2026-10-03",
-    "결과": "광주청년플랫폼 정책별 URL이 동일한 메뉴 화면을 반환. 지원대상·접수 상세가 반환되지 않음. 2025 길라잡이를 2026 개별 공고로 사용하지 않음.",
-    "검증한계": "공식 연결·확보자료의 적합성 점검. 최신 모집·정정·추가공고 및 모든 첨부 검증 완료를 의미하지 않음.",
+    "결과": "광산청년노동자 사업은 참여기업 모집:광산제조중소기업·고용보험5인이상. 노동자는주민 OR 협약6개월내전입·6개월내채용예정 경로,무기계약·고용보험·주28시간이상·중위150%이하·부모별거무주택. 월최대50만원2년·최장8년,보증금관리비제외. 화면15~39미만과 별도노동자 연령 원문은 첨부재대조 필요. 첨부 다운로드는 97바이트 오류안내로 본문미확보.",
+    "검증한계": "개별 본문 또는 자료 불일치를 확인. 후속 정정·추가모집 전체,현재 예산·공실·실접수는 미확정.",
     "증빙": [
-      "https://youth.gwangju.go.kr/www/50?siteId=www&policyId=1440&url=%2Fwww%2Fpolicy%2FgjYgPolicyView"
+      "https://youth.gwangju.go.kr/www/50?siteId=www&policyId=1440&url=%2Fwww%2Fpolicy%2FgjYgPolicyView",
+      "https://youth.gwangju.go.kr/www/policy/gjYgPolicyView?siteId=www&policyId=1440",
+      "https://www.gwangsan.go.kr/notView.do?pageId=www12&notSn=43787&searchNotSe=01"
     ],
-    "점검분류": "해당 사업 본문 미확보·개별 해석 미완료"
+    "점검분류": "개별 회차 공고·게시물 해석",
+    "추가73검색일": "2026-10-03",
+    "추가73검색증빙": "pending73_search_batch_8.json",
+    "추가73검색어": "청년 노동자 주거 지원사업 참여기업 모집 site:youth.gwangju.go.kr 모집 공고"
   },
   "20260806005400213321": {
     "점검일": "2026-10-03",
-    "결과": "광주청년플랫폼 정책별 URL이 동일한 메뉴 화면을 반환. 지원대상·접수 상세가 반환되지 않음. 2025 길라잡이를 2026 개별 공고로 사용하지 않음.",
-    "검증한계": "공식 연결·확보자료의 적합성 점검. 최신 모집·정정·추가공고 및 모든 첨부 검증 완료를 의미하지 않음.",
+    "결과": "서구천원복비:2026-07-01이후1억원이하 임대차·관내전입완료19~39이하무주택;월세환산은 월세×100+보증금. 최대30만원에서 본인1천원제외. 요약39미만과 상세39이하가 상충하여 최대연령단정불가. 예산소진조기종료;첨부는 오류안내여서 미확보.",
+    "검증한계": "개별 본문 또는 자료 불일치를 확인. 후속 정정·추가모집 전체,현재 예산·공실·실접수는 미확정.",
     "증빙": [
-      "https://youth.gwangju.go.kr/www/50?siteId=www&policyId=1416&url=%2Fwww%2Fpolicy%2FgjYgPolicyView"
+      "https://youth.gwangju.go.kr/www/50?siteId=www&policyId=1416&url=%2Fwww%2Fpolicy%2FgjYgPolicyView",
+      "https://youth.gwangju.go.kr/www/policy/gjYgPolicyView?siteId=www&policyId=1416"
     ],
-    "점검분류": "해당 사업 본문 미확보·개별 해석 미완료"
+    "점검분류": "개별 회차 공고·게시물 해석",
+    "추가73검색일": "2026-10-03",
+    "추가73검색증빙": "pending73_search_batch_8.json",
+    "추가73검색어": "서구 청년 천원 복비(부동산 중개보수) 지원사업 site:youth.gwangju.go.kr 모집 공고"
   },
   "20260722005400213279": {
     "점검일": "2026-10-03",
-    "결과": "광주청년플랫폼 정책별 URL이 동일한 메뉴 화면을 반환. 지원대상·접수 상세가 반환되지 않음. 2025 길라잡이를 2026 개별 공고로 사용하지 않음.",
-    "검증한계": "공식 연결·확보자료의 적합성 점검. 최신 모집·정정·추가공고 및 모든 첨부 검증 완료를 의미하지 않음.",
+    "결과": "광주 상세본문:5월15일 기준 보증금2.5억원·본인5천만원·부부8천만원으로 변경(부모7천만원). 보증은행신청일19~39세·5개구주소·본인/배우자무주택. 보증금90%최대1억원·이자2%·2년+1회연장4년. 신규임차 상하반기모집완료,갱신은9월1~10일 및11월1~10일,지원연장은만료45~30일전 별도전화. 화면접수예정과 본문 회차를 분리. 하반기첨부다운로드는 오류본문으로 소득예외 경로 미대조.",
+    "검증한계": "개별 본문 또는 자료 불일치를 확인. 후속 정정·추가모집 전체,현재 예산·공실·실접수는 미확정.",
     "증빙": [
       "https://youth.gwangju.go.kr/www/50?siteId=www&policyId=1241&url=%2Fwww%2Fpolicy%2FgjYgPolicyView",
       "https://www3.chosun.ac.kr/bbs/chosun/117/363114/download.do",
-      "https://youth.gwangju.go.kr/www/50?formSeq=46&mapngColumn=policy_id&mapngId=1241&url=%2Fwww%2Fform%2FapplFormView"
+      "https://youth.gwangju.go.kr/www/50?formSeq=46&mapngColumn=policy_id&mapngId=1241&url=%2Fwww%2Fform%2FapplFormView",
+      "https://youth.gwangju.go.kr/www/policy/gjYgPolicyView?siteId=www&policyId=1241"
     ],
-    "점검분류": "해당 사업 본문 미확보·개별 해석 미완료"
+    "점검분류": "제도·서비스·계획 안내 해석",
+    "추가73검색일": "2026-10-03",
+    "추가73검색증빙": "pending73_search_batch_8.json",
+    "추가73검색어": "청년맞춤형 주택임차보증금 이자지원 site:youth.gwangju.go.kr 모집 공고"
   },
   "20260506005400213142": {
     "점검일": "2026-10-03",
-    "결과": "API의 직접 공식 URL과 이번 재조회 원문 모두 미확보. 인천 개별 보증료 공고와 예산 상태 확인 필요.",
-    "검증한계": "공식 연결·확보자료의 적합성 점검. 최신 모집·정정·추가공고 및 모든 첨부 검증 완료를 의미하지 않음.",
+    "결과": "인천2026보증료 공식안내:연령제한없음·유효반환보증·인천주민·본인배우자무주택·보증금3억원. 청년18~39소득5천/청년외6천/혼인7년신혼7.5천 경로. 외국인·국내비거주재외국민·법인임차 제외. 사업1~12월은 신청기간아님;정부24 신청 및 예산확인 별도.",
+    "검증한계": "개별 본문 또는 자료 불일치를 확인. 후속 정정·추가모집 전체,현재 예산·공실·실접수는 미확정.",
     "증빙": [
       "https://youth.incheon.go.kr/dwelling/guarantee.jsp"
     ],
-    "점검분류": "해당 사업 본문 미확보·개별 해석 미완료"
+    "점검분류": "제도·서비스·계획 안내 해석",
+    "추가73검색일": "2026-10-03",
+    "추가73검색증빙": "pending73_search_batch_12.json",
+    "추가73검색어": "인천 전세보증금반환보증 보증료 지원 인천광역시 도시계획국 주택정책과 모집 공고"
   },
   "20260430005400212987": {
     "점검일": "2026-10-03",
@@ -199,13 +254,17 @@
   },
   "20260430005400212972": {
     "점검일": "2026-10-03",
-    "결과": "천안 1인가구 지원 메뉴에 보안캠 사업은 존재하나 개별 신청조건·현재 접수본문 미확보.",
-    "검증한계": "공식 연결·확보자료의 적합성 점검. 최신 모집·정정·추가공고 및 모든 첨부 검증 완료를 의미하지 않음.",
+    "결과": "천안2026안심보안캠 공식4월15일게시:3년내전입·실거주6개월이상1인가구100명,무작위추첨/예비충원. 지원2026-06~2027-06,재신청시최장2년. Wi-Fi필수·문구조제약·시내이전39000원·과실출동25000원본인부담. 본문접수중잔존과 날짜충돌:확보회차는마감.",
+    "검증한계": "개별 본문 또는 자료 불일치를 확인. 후속 정정·추가모집 전체,현재 예산·공실·실접수는 미확정.",
     "증빙": [
       "https://www.ch2030youth.kr/lmth/14_support/support.php",
-      "https://www.ch2030youth.kr"
+      "https://www.ch2030youth.kr",
+      "https://ch2030youth.kr/bbs/board.php?bo_table=notice&page=1&sod=asc&sop=and&sst=wr_datetime&wr_id=624"
     ],
-    "점검분류": "해당 사업 본문 미확보·개별 해석 미완료"
+    "점검분류": "개별 회차 공고·게시물 해석",
+    "추가73검색일": "2026-10-03",
+    "추가73검색증빙": "pending73_search_batch_12.json",
+    "추가73검색어": "전입 1인가구 안심보안캠설치 지원 site:ch2030youth.kr 모집 공고"
   },
   "20260430005400212968": {
     "점검일": "2026-10-03",
@@ -250,14 +309,18 @@
   },
   "20260422005400212846": {
     "점검일": "2026-10-03",
-    "결과": "정부24 서비스 주소는 메뉴만 반환. 외국인 서비스 이용설명 PDF는 해당 지원사업 첨부가 아니므로 배제.",
-    "검증한계": "공식 연결·확보자료의 적합성 점검. 최신 모집·정정·추가공고 및 모든 첨부 검증 완료를 의미하지 않음.",
+    "결과": "제주희망충전:부모별거무주택35~39세·중위60%이하·재산1.22억원이하·월20만원최대12개월. 공식페이지 상시접수 표시 확인. 별도연도공고·정정·실제접수 미확정;소득표금액은 해당연도 재대조 필요.",
+    "검증한계": "개별 본문 또는 자료 불일치를 확인. 후속 정정·추가모집 전체,현재 예산·공실·실접수는 미확정.",
     "증빙": [
       "https://plus.gov.kr/portal/benefitV2/benefitTotalSrvcList/benefitSrvcDtl?svcSeq=2130316&bnefType=all&svcId=650000001119",
       "https://plus.gov.kr/minwon/downloadConfirm/downloadConfirm",
-      "https://foreigner.gov.kr/foreignerService/for_guide/kor/UserGuideForeigners_ko.pdf"
+      "https://foreigner.gov.kr/foreignerService/for_guide/kor/UserGuideForeigners_ko.pdf",
+      "https://jeju.go.kr/lifecycle/policy/list.htm?act=view&seq=60"
     ],
-    "점검분류": "해당 사업 본문 미확보·개별 해석 미완료"
+    "점검분류": "제도·서비스·계획 안내 해석",
+    "추가73검색일": "2026-10-03",
+    "추가73검색증빙": "pending73_search_batch_12.json",
+    "추가73검색어": "제주 청년 희망충전 월세 지원 제주특별자치도 모집 공고"
   },
   "20260421005400212805": {
     "점검일": "2026-10-03",
@@ -296,34 +359,47 @@
   },
   "20260421005400212798": {
     "점검일": "2026-10-03",
-    "결과": "정부24 서비스 주소는 메뉴만 반환. 외국인 서비스 이용설명 PDF는 해당 지원사업 첨부가 아니므로 배제.",
-    "검증한계": "공식 연결·확보자료의 적합성 점검. 최신 모집·정정·추가공고 및 모든 첨부 검증 완료를 의미하지 않음.",
+    "결과": "제주센터2026중개수수료:19~39무주택청년 OR 무주택혼인7년신혼 OR 수급차상위 OR 한부모;제주주민·3억원이하매매/임대차·30만원이내·2년1회최대3회. 신청1월19~12월31,예산소진마감. 2026도계획PDF158쪽도 대조했으나 시행공고첨부와 잔여예산은 미확정.",
+    "검증한계": "개별 본문 또는 자료 불일치를 확인. 후속 정정·추가모집 전체,현재 예산·공실·실접수는 미확정.",
     "증빙": [
       "https://plus.gov.kr/portal/benefitV2/benefitTotalSrvcList/benefitSrvcDtl?svcSeq=2170966&bnefType=all&svcId=650000001138",
       "https://plus.gov.kr/minwon/downloadConfirm/downloadConfirm",
-      "https://foreigner.gov.kr/foreignerService/for_guide/kor/UserGuideForeigners_ko.pdf"
+      "https://foreigner.gov.kr/foreignerService/for_guide/kor/UserGuideForeigners_ko.pdf",
+      "https://www.jejuhwc.co.kr/finance/cost-support/brokerage-fees.htm",
+      "https://www.jeju.go.kr/lifecycle/notice/guide.htm?act=download&no=1&seq=2011964"
     ],
-    "점검분류": "해당 사업 본문 미확보·개별 해석 미완료"
+    "점검분류": "제도·서비스·계획 안내 해석",
+    "추가73검색일": "2026-10-03",
+    "추가73검색증빙": "pending73_search_batch_12.json",
+    "추가73검색어": "청년 및 주거취약계층 주택 중개수수료 지원사업 제주특별자치도 모집 공고"
   },
   "20260421005400212786": {
     "점검일": "2026-10-03",
-    "결과": "제주 일자리지원 플랫폼의 메뉴·로그인 안내만 확보. 근로자 개인과 기업 지원대상 및 최신 신청기간 미확정.",
-    "검증한계": "공식 연결·확보자료의 적합성 점검. 최신 모집·정정·추가공고 및 모든 첨부 검증 완료를 의미하지 않음.",
+    "결과": "제주 공식기업신청안내:무주택청년노동자 숙소임차/임차료지원하는 고용보험피보험자1인이상 도내중소기업이 신청. 숙소제공형임차료60% OR 노동자주거비지급형80%,각월최대30만원·결정일부터1년분기지급. 청년개인직접신청으로 표시하지 않음. 상반기표시뿐 정확한접수일·첨부 미확정.",
+    "검증한계": "개별 본문 또는 자료 불일치를 확인. 후속 정정·추가모집 전체,현재 예산·공실·실접수는 미확정.",
     "증빙": [
-      "https://www.jeju.go.kr/jejusupport/index.htm"
+      "https://www.jeju.go.kr/jejusupport/index.htm",
+      "https://www.jeju.go.kr/lifecycle/policy/list.htm?act=view&page=5&seq=58"
     ],
-    "점검분류": "해당 사업 본문 미확보·개별 해석 미완료"
+    "점검분류": "제도·서비스·계획 안내 해석",
+    "추가73검색일": "2026-10-03",
+    "추가73검색증빙": "pending73_search_batch_16.json",
+    "추가73검색어": "일하는 청년 보금자리 지원 사업 site:jeju.go.kr 모집 공고"
   },
   "20260420005400212770": {
     "점검일": "2026-10-03",
-    "결과": "광주청년플랫폼 정책별 URL이 동일한 메뉴 화면을 반환. 지원대상·접수 상세가 반환되지 않음. 2025 길라잡이를 2026 개별 공고로 사용하지 않음.",
-    "검증한계": "공식 연결·확보자료의 적합성 점검. 최신 모집·정정·추가공고 및 모든 첨부 검증 완료를 의미하지 않음.",
+    "결과": "광주 상세본문:5월15일 기준 보증금2.5억원·본인5천만원·부부8천만원으로 변경(부모7천만원). 보증은행신청일19~39세·5개구주소·본인/배우자무주택. 보증금90%최대1억원·이자2%·2년+1회연장4년. 신규임차 상하반기모집완료,갱신은9월1~10일 및11월1~10일,지원연장은만료45~30일전 별도전화. 화면접수예정과 본문 회차를 분리. 하반기첨부다운로드는 오류본문으로 소득예외 경로 미대조. API신규와현재연장공유policyId1241이므로 신규회차조건으로 날짜를복사하지 않음.",
+    "검증한계": "개별 본문 또는 자료 불일치를 확인. 후속 정정·추가모집 전체,현재 예산·공실·실접수는 미확정.",
     "증빙": [
       "https://youth.gwangju.go.kr/www/50?siteId=www&policyId=1241&url=%2Fwww%2Fpolicy%2FgjYgPolicyView",
       "https://www3.chosun.ac.kr/bbs/chosun/117/363114/download.do",
-      "https://gyeryong.go.kr/kr/html/sub05/051001.html?file_id=35684&mode=D&no=f14c528dd070ec25dc14326bd1ec425c"
+      "https://gyeryong.go.kr/kr/html/sub05/051001.html?file_id=35684&mode=D&no=f14c528dd070ec25dc14326bd1ec425c",
+      "https://youth.gwangju.go.kr/www/policy/gjYgPolicyView?siteId=www&policyId=1241"
     ],
-    "점검분류": "해당 사업 본문 미확보·개별 해석 미완료"
+    "점검분류": "제도·서비스·계획 안내 해석",
+    "추가73검색일": "2026-10-03",
+    "추가73검색증빙": "pending73_search_batch_16.json",
+    "추가73검색어": "청년맞춤형 주택임차보증금 이자지원 site:youth.gwangju.go.kr 모집 공고"
   },
   "20260409005400212655": {
     "점검일": "2026-10-03",
@@ -337,22 +413,30 @@
   },
   "20260408005400212633": {
     "점검일": "2026-10-03",
-    "결과": "광주 포털 참조ID는 청송군 보증료 사업20260325005400212269. 포털 주소의 광주를 신청범위로 해석하지 않음.",
-    "검증한계": "공식 연결·확보자료의 적합성 점검. 최신 모집·정정·추가공고 및 모든 첨부 검증 완료를 의미하지 않음.",
+    "결과": "참조주소 상세본문의 실제정책번호는20260325005400212269·기관청송군. 광주후보의 보증료 공고가 아닌 타기관 연결오류로 불채택. 청송신청기간·대상조건을 광주에 대입하지 않음.",
+    "검증한계": "개별 본문 또는 자료 불일치를 확인. 후속 정정·추가모집 전체,현재 예산·공실·실접수는 미확정.",
     "증빙": [
       "https://youth.gwangju.go.kr/www/51?siteId=www&plcyNo=20260325005400212269&url=%2Fwww%2Fpolicy%2FallYgPolicyView",
-      "https://www.gov.kr"
+      "https://www.gov.kr",
+      "https://youth.gwangju.go.kr/www/policy/allYgPolicyView?siteId=www&plcyNo=20260325005400212269"
     ],
-    "점검분류": "해당 사업 본문 미확보·개별 해석 미완료"
+    "점검분류": "다른 기관·사업·과거자료 불채택",
+    "추가73검색일": "2026-10-03",
+    "추가73검색증빙": "pending73_search_batch_16.json",
+    "추가73검색어": "전세보증금반환보증 보증료 지원 site:youth.gwangju.go.kr 모집 공고"
   },
   "20260408005400212631": {
     "점검일": "2026-10-03",
-    "결과": "광주청년플랫폼 정책별 URL이 동일한 메뉴 화면을 반환. 지원대상·접수 상세가 반환되지 않음. 2025 길라잡이를 2026 개별 공고로 사용하지 않음.",
-    "검증한계": "공식 연결·확보자료의 적합성 점검. 최신 모집·정정·추가공고 및 모든 첨부 검증 완료를 의미하지 않음.",
+    "결과": "광주분리지급:수급가구19~30미만미혼자녀·취학구직등부모별거·청년명의임대차/임차료지급/전입. 시군구다름원칙에 동일시군구보장기관인정예외. 부모주소지읍면동 또는복지로. 광주안내상상시;전국제도의 부산집행과 지역별급여액은 구분.",
+    "검증한계": "개별 본문 또는 자료 불일치를 확인. 후속 정정·추가모집 전체,현재 예산·공실·실접수는 미확정.",
     "증빙": [
-      "https://youth.gwangju.go.kr/www/50?siteId=www&policyId=1269&url=%2Fwww%2Fpolicy%2FgjYgPolicyView"
+      "https://youth.gwangju.go.kr/www/50?siteId=www&policyId=1269&url=%2Fwww%2Fpolicy%2FgjYgPolicyView",
+      "https://youth.gwangju.go.kr/www/policy/gjYgPolicyView?siteId=www&policyId=1269"
     ],
-    "점검분류": "해당 사업 본문 미확보·개별 해석 미완료"
+    "점검분류": "제도·서비스·계획 안내 해석",
+    "추가73검색일": "2026-10-03",
+    "추가73검색증빙": "pending73_search_batch_16.json",
+    "추가73검색어": "청년 주거급여 분리지급 site:youth.gwangju.go.kr 모집 공고"
   },
   "20260407005400212566": {
     "점검일": "2026-10-03",
@@ -399,13 +483,18 @@
   },
   "20260331005400212369": {
     "점검일": "2026-10-03",
-    "결과": "경북 K-U시티 보도자료 확보. 정주환경 조성계획과 개인의 주거지원 신청 모집을 구분해야 함.",
-    "검증한계": "공식 연결·확보자료의 적합성 점검. 최신 모집·정정·추가공고 및 모든 첨부 검증 완료를 의미하지 않음.",
+    "결과": "국무조정실 공개2026청년정책 시행계획 경북 PDF 235~238쪽 개별대조: K-U시티8개시군 정주인프라. 경주준공과 영주/영천/상주/안동 등의 설계·공사·준공계획을 구분;도전체 단일입주자격/접수기간 아님. 계획자료이며 최신 개별 모집·정정·추가공고/전체첨부·실접수 검증은 미완료. 공식출처:https://www.opm.go.kr/opm/info/youth_implementation.do?articleNo=162111&mode=view",
+    "검증한계": "개별 본문 또는 자료 불일치를 확인. 후속 정정·추가모집 전체,현재 예산·공실·실접수는 미확정.",
     "증빙": [
       "https://search.gb.go.kr/index.do?category=EMP&srchFd=all&reSrchFlag=false&xwd=&sitenm=KTips&endDate=&lang=ko&date=0&startDate=&preKwd=K-U&kwd=K-U&detailSearch=false&st=d&categy=CHIS&groupNm=&",
-      "https://www.gb.go.kr/Main/jpn/page.do?mnu_uid=6792&cmd=2&B_STEP=506114200"
+      "https://www.gb.go.kr/Main/jpn/page.do?mnu_uid=6792&cmd=2&B_STEP=506114200",
+      "https://www.gb.go.kr/Main/chi_b/page.do?BD_CODE=bbs_bodo&B_LEVEL=0&B_NUM=506114201&B_STEP=506114200&cmd=2&mnu_uid=6792",
+      "https://www.opm.go.kr/opm/info/youth_implementation.do?mode=download&articleNo=162111&attachNo=153796"
     ],
-    "점검분류": "해당 사업 본문 미확보·개별 해석 미완료"
+    "점검분류": "제도·서비스·계획 안내 해석",
+    "추가73검색일": "2026-10-03",
+    "추가73검색증빙": "pending73_search_batch_20.json",
+    "추가73검색어": "K-U시티 정주환경 조성 site:search.gb.go.kr 모집 공고"
   },
   "20260331005400212362": {
     "점검일": "2026-10-03",
@@ -420,13 +509,18 @@
   },
   "20260330005400212316": {
     "점검일": "2026-10-03",
-    "결과": "완주 생애주기 안내에 과거운영 정보·다른 농업사업 혼재. 메인의 타사업10월 접수를 귀농 행복주택 모집으로 쓰지 않음.",
-    "검증한계": "공식 연결·확보자료의 적합성 점검. 최신 모집·정정·추가공고 및 모든 첨부 검증 완료를 의미하지 않음.",
+    "결과": "국무조정실 공개2026청년정책 시행계획 전북 PDF 385쪽 개별대조: 완주 귀농행복주택:전입5년이내 초기귀농귀촌인,군임대건물 저렴한 임대료 지원. 바로 앞 다른 주거사업 월5만원을 본사업에 복사하지 않음. 계획자료이며 최신 개별 모집·정정·추가공고/전체첨부·실접수 검증은 미완료. 공식출처:https://www.opm.go.kr/opm/info/youth_implementation.do?articleNo=162111&mode=view",
+    "검증한계": "개별 본문 또는 자료 불일치를 확인. 후속 정정·추가모집 전체,현재 예산·공실·실접수는 미확정.",
     "증빙": [
       "https://www.wanju.go.kr/index.9is",
-      "https://www.wanju.go.kr/life/life_sub06.html"
+      "https://www.wanju.go.kr/life/life_sub06.html",
+      "https://youth.wanju.go.kr/board/view.wanju?boardId=BBS_0000021&dataSid=72628&menuCd=DOM_000000113001000000&orderBy=REGISTER_DATE+DESC&paging=ok&startPage=2",
+      "https://www.opm.go.kr/opm/info/youth_implementation.do?mode=download&articleNo=162111&attachNo=153796"
     ],
-    "점검분류": "해당 사업 본문 미확보·개별 해석 미완료"
+    "점검분류": "제도·서비스·계획 안내 해석",
+    "추가73검색일": "2026-10-03",
+    "추가73검색증빙": "pending73_search_batch_20.json",
+    "추가73검색어": "귀농 행복주택 조성 site:wanju.go.kr 모집 공고"
   },
   "20260326005400212299": {
     "점검일": "2026-10-03",
@@ -441,44 +535,61 @@
   },
   "20260326005400212297": {
     "점검일": "2026-10-03",
-    "결과": "익산 정책 종합안내는 확인했으나 다른 청년사업 접수와 혼재. 익산형 월세 개별 공고 및 연장·추가모집 미확정.",
-    "검증한계": "공식 연결·확보자료의 적합성 점검. 최신 모집·정정·추가공고 및 모든 첨부 검증 완료를 의미하지 않음.",
+    "결과": "검색된 익산2026-05-18게시물은 청년창업지원사업 창업매니저1명 채용. 익산형청년월세 지원 모집이 아니므로 접수5월19~26일을 월세에 적용하지 않음. 월세개별공고는 여전히미확보.",
+    "검증한계": "개별 본문 또는 자료 불일치를 확인. 후속 정정·추가모집 전체,현재 예산·공실·실접수는 미확정.",
     "증빙": [
       "https://youthforest.iksan.go.kr/index.iksan",
-      "https://youthforest.iksan.go.kr/index.iksan?menuCd=DOM_000000102003001000"
+      "https://youthforest.iksan.go.kr/index.iksan?menuCd=DOM_000000102003001000",
+      "https://youthforest.iksan.go.kr/board/view.iksan?boardId=BBS_0000029&dataSid=48963&menuCd=DOM_000000103001007000&paging=ok&startPage=1"
     ],
-    "점검분류": "해당 사업 본문 미확보·개별 해석 미완료"
+    "점검분류": "다른 기관·사업·과거자료 불채택",
+    "추가73검색일": "2026-10-03",
+    "추가73검색증빙": "pending73_search_batch_20.json",
+    "추가73검색어": "익산형 청년월세 지원사업 site:youthforest.iksan.go.kr 모집 공고"
   },
   "20260326005400212288": {
     "점검일": "2026-10-03",
-    "결과": "평택 홈페이지·자원봉사 교육/활동처 페이지는 청년중개료·월세 개별 모집 원문이 아님.",
-    "검증한계": "공식 연결·확보자료의 적합성 점검. 최신 모집·정정·추가공고 및 모든 첨부 검증 완료를 의미하지 않음.",
+    "결과": "국무조정실 공개2026청년정책 시행계획 경기 PDF 352~353쪽 개별대조: 평택 거주 OR 전입예정19~39 청년1인가구·전세/월세환산보증금1억원이하,협약중개사 법정수수료20%감면. 현금지급 아님;77업소는2025-12기준. 계획자료이며 최신 개별 모집·정정·추가공고/전체첨부·실접수 검증은 미완료. 공식출처:https://www.opm.go.kr/opm/info/youth_implementation.do?articleNo=162111&mode=view",
+    "검증한계": "개별 본문 또는 자료 불일치를 확인. 후속 정정·추가모집 전체,현재 예산·공실·실접수는 미확정.",
     "증빙": [
-      "https://www.pyeongtaek.go.kr/"
+      "https://www.pyeongtaek.go.kr/",
+      "https://www.opm.go.kr/opm/info/youth_implementation.do?mode=download&articleNo=162111&attachNo=153796"
     ],
-    "점검분류": "해당 사업 본문 미확보·개별 해석 미완료"
+    "점검분류": "제도·서비스·계획 안내 해석",
+    "추가73검색일": "2026-10-03",
+    "추가73검색증빙": "pending73_search_batch_20.json",
+    "추가73검색어": "평택시 청년 전월세 중개보수료 감면사업 site:pyeongtaek.go.kr 모집 공고"
   },
   "20260326005400212287": {
     "점검일": "2026-10-03",
-    "결과": "평택 홈페이지·자원봉사 교육/활동처 페이지는 청년중개료·월세 개별 모집 원문이 아님.",
-    "검증한계": "공식 연결·확보자료의 적합성 점검. 최신 모집·정정·추가공고 및 모든 첨부 검증 완료를 의미하지 않음.",
+    "결과": "국무조정실 공개2026청년정책 시행계획 경기 PDF 352쪽 개별대조: 평택 자체월세:19~39청년1인가구·중위120%·보증금9천만원/월세50만원이하,월20만원12개월생애1회·계획100명. 대출이자의중위180%와분리. 계획자료이며 최신 개별 모집·정정·추가공고/전체첨부·실접수 검증은 미완료. 공식출처:https://www.opm.go.kr/opm/info/youth_implementation.do?articleNo=162111&mode=view",
+    "검증한계": "개별 본문 또는 자료 불일치를 확인. 후속 정정·추가모집 전체,현재 예산·공실·실접수는 미확정.",
     "증빙": [
       "https://www.pyeongtaek.go.kr/",
       "https://www.pyeongtaek.go.kr/pt1365/contents.do?mid=0301000000",
-      "https://www.pyeongtaek.go.kr/pt1365/contents.do?mid=0204000000"
+      "https://www.pyeongtaek.go.kr/pt1365/contents.do?mid=0204000000",
+      "https://www.opm.go.kr/opm/info/youth_implementation.do?mode=download&articleNo=162111&attachNo=153796"
     ],
-    "점검분류": "해당 사업 본문 미확보·개별 해석 미완료"
+    "점검분류": "제도·서비스·계획 안내 해석",
+    "추가73검색일": "2026-10-03",
+    "추가73검색증빙": "pending73_search_batch_24.json",
+    "추가73검색어": "평택시 청년 월세 지원 site:pyeongtaek.go.kr 모집 공고"
   },
   "20260325005400212271": {
     "점검일": "2026-10-03",
-    "결과": "청년월세2026 제도와 제주도 공식 안내를 비교 가능. 복지로 직접 연결은 제목/빈 화면, 온통청년 연결은 인터뷰 메뉴. 다른 지역 회차와 후속 모집 전체 미확정.",
-    "검증한계": "공식 연결·확보자료의 적합성 점검. 최신 모집·정정·추가공고 및 모든 첨부 검증 완료를 의미하지 않음.",
+    "결과": "국무조정실 공개2026청년정책 시행계획 중앙 PDF 64~67쪽 개별대조: 청년월세2026계속사업:19~34 독립거주무주택·청년중위60%/원가구100%·월20만원24개월,매년3~5월접수계획. 청송개별공고/원가구예외·제외조건은 미확정. 계획자료이며 최신 개별 모집·정정·추가공고/전체첨부·실접수 검증은 미완료. 공식출처:https://www.opm.go.kr/opm/info/youth_implementation.do?articleNo=162111&mode=view",
+    "검증한계": "개별 본문 또는 자료 불일치를 확인. 후속 정정·추가모집 전체,현재 예산·공실·실접수는 미확정.",
     "증빙": [
       "https://www.bokjiro.go.kr",
       "https://blog.bokjiro.go.kr/1828",
-      "https://www.bokjiro.go.kr/ssis-tbu/cms/pc/common/download/2025%EB%85%84%20%EC%95%88%EB%82%B4%EC%B1%85%EC%9E%90%20%5B%ED%86%B5%ED%95%A9%EA%B6%8C%5D.pdf"
+      "https://www.bokjiro.go.kr/ssis-tbu/cms/pc/common/download/2025%EB%85%84%20%EC%95%88%EB%82%B4%EC%B1%85%EC%9E%90%20%5B%ED%86%B5%ED%95%A9%EA%B6%8C%5D.pdf",
+      "https://youth.gg.go.kr/gg/intro/notice.do?article.offset=10&articleLimit=10&articleNo=9242&mode=view",
+      "https://www.opm.go.kr/opm/info/youth_implementation.do?mode=download&articleNo=162111&attachNo=154122"
     ],
-    "점검분류": "해당 사업 본문 미확보·개별 해석 미완료"
+    "점검분류": "제도·서비스·계획 안내 해석",
+    "추가73검색일": "2026-10-03",
+    "추가73검색증빙": "pending73_search_batch_24.json",
+    "추가73검색어": "청년월세 지원사업 경상북도 청송군 기획감사실 모집 공고"
   },
   "20260325005400212266": {
     "점검일": "2026-10-03",
@@ -494,14 +605,18 @@
   },
   "20260319005400112218": {
     "점검일": "2026-10-03",
-    "결과": "청년월세2026 제도와 제주도 공식 안내를 비교 가능. 복지로 직접 연결은 제목/빈 화면, 온통청년 연결은 인터뷰 메뉴. 다른 지역 회차와 후속 모집 전체 미확정.",
-    "검증한계": "공식 연결·확보자료의 적합성 점검. 최신 모집·정정·추가공고 및 모든 첨부 검증 완료를 의미하지 않음.",
+    "결과": "국무조정실 공개2026청년정책 시행계획 중앙 PDF 64~67쪽 개별대조: 국토부월세2026계속사업:19~34 독립거주무주택·청년중위60%/원가구100%·월20만원24개월,매년3~5월접수계획. 일자를추정하지않음;세부예외/제외 미확정. 계획자료이며 최신 개별 모집·정정·추가공고/전체첨부·실접수 검증은 미완료. 공식출처:https://www.opm.go.kr/opm/info/youth_implementation.do?articleNo=162111&mode=view",
+    "검증한계": "개별 본문 또는 자료 불일치를 확인. 후속 정정·추가모집 전체,현재 예산·공실·실접수는 미확정.",
     "증빙": [
       "https://www.bokjiro.go.kr/ssis-tbu/ssis-tbu/twataa/wlfareInfo/moveTWAT52011M.do?wlfareInfoId=WLF00004661",
       "https://www.youthcenter.go.kr/bbs03View/10003/10455",
-      "https://bokjiro.go.kr"
+      "https://bokjiro.go.kr",
+      "https://www.opm.go.kr/opm/info/youth_implementation.do?mode=download&articleNo=162111&attachNo=154122"
     ],
-    "점검분류": "해당 사업 본문 미확보·개별 해석 미완료"
+    "점검분류": "제도·서비스·계획 안내 해석",
+    "추가73검색일": "2026-10-03",
+    "추가73검색증빙": "pending73_search_batch_24.json",
+    "추가73검색어": "26년 청년월세 지원사업 국토교통부 모집 공고"
   },
   "20260318005400212193": {
     "점검일": "2026-10-03",
@@ -516,13 +631,17 @@
   },
   "20260313005400212139": {
     "점검일": "2026-10-03",
-    "결과": "강진 개별 주거비 공고 본문 미확보. 고시목록·목록의 PDF는 사업별 접수·자격 첨부가 아님.",
-    "검증한계": "공식 연결·확보자료의 적합성 점검. 최신 모집·정정·추가공고 및 모든 첨부 검증 완료를 의미하지 않음.",
+    "결과": "국무조정실 공개2026청년정책 시행계획 전남 PDF 302쪽 개별대조: 강진품애:타시군1년이상거주후강진전입3개월이상,19~45무주택가구·중위60~160%,전세대출이자/월세월최대25만원최장3년. 이전지역과현재지역거주기간 분리. 계획자료이며 최신 개별 모집·정정·추가공고/전체첨부·실접수 검증은 미완료. 공식출처:https://www.opm.go.kr/opm/info/youth_implementation.do?articleNo=162111&mode=view",
+    "검증한계": "개별 본문 또는 자료 불일치를 확인. 후속 정정·추가모집 전체,현재 예산·공실·실접수는 미확정.",
     "증빙": [
       "https://www.gangjin.go.kr/www/government/notice/gosi",
-      "https://www.gangjin.go.kr/www/government/notice/gosi/screen_print.pdf?page=1"
+      "https://www.gangjin.go.kr/www/government/notice/gosi/screen_print.pdf?page=1",
+      "https://www.opm.go.kr/opm/info/youth_implementation.do?mode=download&articleNo=162111&attachNo=153796"
     ],
-    "점검분류": "해당 사업 본문 미확보·개별 해석 미완료"
+    "점검분류": "제도·서비스·계획 안내 해석",
+    "추가73검색일": "2026-10-03",
+    "추가73검색증빙": "pending73_search_batch_24.json",
+    "추가73검색어": "강진품애(愛) 청년 주거비 지원사업 site:gangjin.go.kr 모집 공고"
   },
   "20260313005400212124": {
     "점검일": "2026-10-03",
@@ -537,12 +656,16 @@
   },
   "20260311005400112113": {
     "점검일": "2026-10-03",
-    "결과": "행복청 홈페이지만 확보. 청년·신규공무원 주거방안은 실제 개인 모집 근거 미확보.",
-    "검증한계": "공식 연결·확보자료의 적합성 점검. 최신 모집·정정·추가공고 및 모든 첨부 검증 완료를 의미하지 않음.",
+    "결과": "행복청2025 자체평가보고서 PDF32~33쪽(인쇄30~31쪽) 개별대조:공동캠퍼스 행복기숙사 입주대상 확대·사회초년생 수요파악 및관계기관협업,저연차공무원주거대책·시세대비주거비절감 실적. 2026 공개된2025실적보고서이며2026 개인 모집공고 아님. 연령·소득·입주순위·모집일자를 평가실적으로 추정하지 않음.",
+    "검증한계": "개별 본문 또는 자료 불일치를 확인. 후속 정정·추가모집 전체,현재 예산·공실·실접수는 미확정.",
     "증빙": [
-      "https://naacc.go.kr/WEB/main/index.do"
+      "https://naacc.go.kr/WEB/main/index.do",
+      "https://www.evaluation.go.kr/upload2/atch/eval/20260608093307684.pdf"
     ],
-    "점검분류": "해당 사업 본문 미확보·개별 해석 미완료"
+    "점검분류": "제도·서비스·계획 안내 해석",
+    "추가73검색일": "2026-10-03",
+    "추가73검색증빙": "pending73_search_batch_28.json",
+    "추가73검색어": "청년·신규 공무원의 주거안정 방안 마련 site:naacc.go.kr 모집 공고"
   },
   "20260123005400112079": {
     "점검일": "2026-10-03",
@@ -557,13 +680,18 @@
   },
   "20251219005400212035": {
     "점검일": "2026-10-03",
-    "결과": "전남 만원주택 사이트는 점검안내. 고흥 업무계획은 입주 모집공고가 아니며 API추후확정 조건을 보완하지 못함.",
-    "검증한계": "공식 연결·확보자료의 적합성 점검. 최신 모집·정정·추가공고 및 모든 첨부 검증 완료를 의미하지 않음.",
+    "결과": "국무조정실 공개2026청년정책 시행계획 전남 PDF 165~167쪽 개별대조: 전남만원주택:18~45무주택취창업자·소득무관,청년최대6년/신혼최대10년·월임대료1만원.1000호는2035년까지조성목표;현재공실/입주모집 아님. 계획자료이며 최신 개별 모집·정정·추가공고/전체첨부·실접수 검증은 미완료. 공식출처:https://www.opm.go.kr/opm/info/youth_implementation.do?articleNo=162111&mode=view",
+    "검증한계": "개별 본문 또는 자료 불일치를 확인. 후속 정정·추가모집 전체,현재 예산·공실·실접수는 미확정.",
     "증빙": [
       "https://www.jeonnam.go.kr/housing/web/index.do",
-      "https://www.goheung.go.kr/home/www/down/www453/2026/%28%EC%B4%9D%EA%B4%84%292026%EB%85%84%EB%8F%84%20%EC%A3%BC%EC%9A%94%EC%97%85%EB%AC%B4%EA%B3%84%ED%9A%8D.pdf"
+      "https://www.goheung.go.kr/home/www/down/www453/2026/%28%EC%B4%9D%EA%B4%84%292026%EB%85%84%EB%8F%84%20%EC%A3%BC%EC%9A%94%EC%97%85%EB%AC%B4%EA%B3%84%ED%9A%8D.pdf",
+      "https://www.jeonnam.go.kr/M7116/boardView.do?menuId=jeonnam0202000000&seq=1958461",
+      "https://www.opm.go.kr/opm/info/youth_implementation.do?mode=download&articleNo=162111&attachNo=153796"
     ],
-    "점검분류": "해당 사업 본문 미확보·개별 해석 미완료"
+    "점검분류": "제도·서비스·계획 안내 해석",
+    "추가73검색일": "2026-10-03",
+    "추가73검색증빙": "pending73_search_batch_28.json",
+    "추가73검색어": "전남형 만원주택 site:jeonnam.go.kr 모집 공고"
   },
   "20251218005400212026": {
     "점검일": "2026-10-03",
@@ -580,36 +708,47 @@
   },
   "20251217005400212016": {
     "점검일": "2026-10-03",
-    "결과": "합천2025 임차보증금 개별게시물과 업무계획 후보 확보. 2026 업무계획은 실제 개인 모집·첨부가 아님.",
-    "검증한계": "공식 연결·확보자료의 적합성 점검. 최신 모집·정정·추가공고 및 모든 첨부 검증 완료를 의미하지 않음.",
+    "결과": "합천2026업무계획 PDF의 이자지원본문 확인:합천주소19~45무주택·최대150만원. 파일에는2025실적과2026계획이 함께 있어 연간추진시기를 개인신청일로 변환하지 않음. 원후보2025회차와2026공고·첨부는 별도.",
+    "검증한계": "개별 본문 또는 자료 불일치를 확인. 후속 정정·추가모집 전체,현재 예산·공실·실접수는 미확정.",
     "증빙": [
       "https://www.hc.go.kr/04923/04924/04948.web?amode=view&not_ancmt_mgt_no=40618&sstring=%EC%B2%AD%EB%85%84&stype=title",
       "https://www.hc.go.kr/_res/portal/data/pdf/h09773/2026_14.pdf",
       "https://www.hc.go.kr/_res/portal/data/pdf/h09113/2025_14.pdf",
       "https://www.hc.go.kr/DownloadEx.do?url=http%3A%2F%2Feminwon.hc.go.kr%2Femwp%2Fjsp%2Fofr%2FFileDown.jsp%3Fuser_file_nm%3D2025%EB%85%84+%EC%B2%AD%EB%85%84%EC%A3%BC%ED%83%9D+%EC%9E%84%EC%B0%A8%EB%B3%B4%EC%A6%9D%EA%B8%88+%EC%9D%B4%EC%9E%90+%EC%A7%80%EC%9B%90%EC%82%AC%EC%97%85+%EA%B3%B5%EA%B3%A0%28%ED%95%A9%EC%B2%9C%EA%B5%B0%29.hwp%26sys_file_nm%3D2025%EB%85%84+%EC%B2%AD%EB%85%84%EC%A3%BC%ED%83%9D+%EC%9E%84%EC%B0%A8%EB%B3%B4%EC%A6%9D%EA%B8%88+%EC%9D%B4%EC%9E%90+%EC%A7%80%EC%9B%90%EC%82%AC%EC%97%85+%EA%B3%B5%EA%B3%A0%28%ED%95%A9%EC%B2%9C%EA%B5%B0%29_ofr_ofr_I8Q1i_p1Vmx_sQBA_20250729224327665_1.hwp%26file_path%3D%2Fntishome%2Ffile%2Fupload%2Fofr%2Fofr%2F20250729&name=2025%EB%85%84+%EC%B2%AD%EB%85%84%EC%A3%BC%ED%83%9D+%EC%9E%84%EC%B0%A8%EB%B3%B4%EC%A6%9D%EA%B8%88+%EC%9D%B4%EC%9E%90+%EC%A7%80%EC%9B%90%EC%82%AC%EC%97%85+%EA%B3%B5%EA%B3%A0%28%ED%95%A9%EC%B2%9C%EA%B5%B0%29.hwp"
     ],
-    "점검분류": "해당 사업 본문 미확보·개별 해석 미완료"
+    "점검분류": "제도·서비스·계획 안내 해석",
+    "추가73검색일": "2026-10-03",
+    "추가73검색증빙": "pending73_search_batch_28.json",
+    "추가73검색어": "청년주택 임차보증금 이자 지원사업 site:hc.go.kr 모집 공고"
   },
   "20251217005400212010": {
     "점검일": "2026-10-03",
-    "결과": "합천 고시목록과 전주·타기관 청년월세 자료는 합천 자체 청년월세의2026 모집 근거가 아님.",
-    "검증한계": "공식 연결·확보자료의 적합성 점검. 최신 모집·정정·추가공고 및 모든 첨부 검증 완료를 의미하지 않음.",
+    "결과": "합천2026예산서 청년월세지원19.2백만원(월20만원×8명×12개월) 편성확인. 예산산식은 실제선발자격·개별지원확정·신청기간근거가 아님. 개인모집공고 미확보.",
+    "검증한계": "개별 본문 또는 자료 불일치를 확인. 후속 정정·추가모집 전체,현재 예산·공실·실접수는 미확정.",
     "증빙": [
       "https://www.hc.go.kr/04923/04924/04948.web",
       "https://www.jeonju.go.kr/planweb/board/view.9is?boardUid=9be517a7914528ce01930aa3ddc26cf0&contentUid=ff8080818990c349018b041a879f395a&dataUid=8aa6338ae6304106ae88067f231d9b80&page=53&subPath=&tmpField14=",
       "https://www.yeonsu.go.kr/etc/bbs/SearchView.asp?bbs_code=board_330&seq=45",
-      "https://www.jeonju.go.kr/planweb/board/download.9is?fileUid=3fdeb43d16534b45a4cb0d57d7042dee&boardUid=9be517a7914528ce01930aa3ddc26cf0"
+      "https://www.jeonju.go.kr/planweb/board/download.9is?fileUid=3fdeb43d16534b45a4cb0d57d7042dee&boardUid=9be517a7914528ce01930aa3ddc26cf0",
+      "https://www.hc.go.kr/_res/portal/data/pdf/h05010/2026/16.pdf"
     ],
-    "점검분류": "해당 사업 본문 미확보·개별 해석 미완료"
+    "점검분류": "제도·서비스·계획 안내 해석",
+    "추가73검색일": "2026-10-03",
+    "추가73검색증빙": "pending73_search_batch_28.json",
+    "추가73검색어": "청년월세 지원사업 site:hc.go.kr 모집 공고"
   },
   "20251211005400211972": {
     "점검일": "2026-10-03",
-    "결과": "충남 빈집 리모델링 후보는 포털 목록·충남 홈페이지만 확보. 소유주 사업신청과 청년 임차인 입주공고를 구분할 본문 미확보.",
-    "검증한계": "공식 연결·확보자료의 적합성 점검. 최신 모집·정정·추가공고 및 모든 첨부 검증 완료를 의미하지 않음.",
+    "결과": "국무조정실 공개2026청년정책 시행계획 충남 PDF 131~132쪽 개별대조: 빈집리모델링:저소득·귀농귀촌·청년·신혼·고령·장애·외국인근로자등,청년우선입주권고.2026 10동·11~12월임차인모집계획;청년전용/개인공사비지원으로바꾸지않음. 계획자료이며 최신 개별 모집·정정·추가공고/전체첨부·실접수 검증은 미완료. 공식출처:https://www.opm.go.kr/opm/info/youth_implementation.do?articleNo=162111&mode=view",
+    "검증한계": "개별 본문 또는 자료 불일치를 확인. 후속 정정·추가모집 전체,현재 예산·공실·실접수는 미확정.",
     "증빙": [
-      "https://youth.chungnam.go.kr/web/main/main"
+      "https://youth.chungnam.go.kr/web/main/main",
+      "https://www.opm.go.kr/opm/info/youth_implementation.do?mode=download&articleNo=162111&attachNo=153796"
     ],
-    "점검분류": "해당 사업 본문 미확보·개별 해석 미완료"
+    "점검분류": "제도·서비스·계획 안내 해석",
+    "추가73검색일": "2026-10-03",
+    "추가73검색증빙": "pending73_search_batch_32.json",
+    "추가73검색어": "빈집 리모델링 및 활용 지원 site:youth.chungnam.go.kr 모집 공고"
   },
   "20251211005400211971": {
     "점검일": "2026-10-03",
@@ -636,87 +775,134 @@
   },
   "20251121005400211922": {
     "점검일": "2026-10-03",
-    "결과": "그린대로 일반 신청안내·다른 상세를 충북 모든 마을의 최신 모집으로 일반화하지 않음.",
-    "검증한계": "공식 연결·확보자료의 적합성 점검. 최신 모집·정정·추가공고 및 모든 첨부 검증 완료를 의미하지 않음.",
+    "결과": "국무조정실 공개2026청년정책 시행계획 충북 PDF 89~91쪽 개별대조: 충북살아보기:귀농귀촌희망도시민·2~6개월주거연수,귀농/귀촌/프로젝트형.19마을11시군·3월참가자모집/3~11월운영계획. 현충북주민만으로제한하지않음. 계획자료이며 최신 개별 모집·정정·추가공고/전체첨부·실접수 검증은 미완료. 공식출처:https://www.opm.go.kr/opm/info/youth_implementation.do?articleNo=162111&mode=view",
+    "검증한계": "개별 본문 또는 자료 불일치를 확인. 후속 정정·추가모집 전체,현재 예산·공실·실접수는 미확정.",
     "증빙": [
       "https://www.greendaero.go.kr/svc/rfph/edc/live/front/guide.do",
-      "https://www.greendaero.go.kr/svc/rfph/cpif/front/vacantdetail.do"
+      "https://www.greendaero.go.kr/svc/rfph/cpif/front/vacantdetail.do",
+      "https://www.opm.go.kr/opm/info/youth_implementation.do?mode=download&articleNo=162111&attachNo=153796"
     ],
-    "점검분류": "해당 사업 본문 미확보·개별 해석 미완료"
+    "점검분류": "제도·서비스·계획 안내 해석",
+    "추가73검색일": "2026-10-03",
+    "추가73검색증빙": "pending73_search_batch_32.json",
+    "추가73검색어": "귀농귀촌 유치지원(충북에서 살아보기) site:greendaero.go.kr 모집 공고"
   },
   "20251112005400211854": {
     "점검일": "2026-10-03",
-    "결과": "충남 빈집 리모델링 후보는 포털 목록·충남 홈페이지만 확보. 소유주 사업신청과 청년 임차인 입주공고를 구분할 본문 미확보.",
-    "검증한계": "공식 연결·확보자료의 적합성 점검. 최신 모집·정정·추가공고 및 모든 첨부 검증 완료를 의미하지 않음.",
+    "결과": "국무조정실 공개2026청년정책 시행계획 충남 PDF 131~132쪽 개별대조: 빈집리모델링 동일도사업계획:취약계층등대상·청년우선입주권고,10동·11~12월모집계획. 두API후보각각의회차첨부검증완료로처리하지않음. 계획자료이며 최신 개별 모집·정정·추가공고/전체첨부·실접수 검증은 미완료. 공식출처:https://www.opm.go.kr/opm/info/youth_implementation.do?articleNo=162111&mode=view",
+    "검증한계": "개별 본문 또는 자료 불일치를 확인. 후속 정정·추가모집 전체,현재 예산·공실·실접수는 미확정.",
     "증빙": [
-      "https://www.chungnam.go.kr/main.do"
+      "https://www.chungnam.go.kr/main.do",
+      "https://www.opm.go.kr/opm/info/youth_implementation.do?mode=download&articleNo=162111&attachNo=153796"
     ],
-    "점검분류": "해당 사업 본문 미확보·개별 해석 미완료"
+    "점검분류": "제도·서비스·계획 안내 해석",
+    "추가73검색일": "2026-10-03",
+    "추가73검색증빙": "pending73_search_batch_32.json",
+    "추가73검색어": "빈집 리모델링 및 활용 지원 site:chungnam.go.kr 모집 공고"
   },
   "20251111005400211834": {
     "점검일": "2026-10-03",
-    "결과": "제주 일자리지원 플랫폼의 메뉴·로그인 안내만 확보. 근로자 개인과 기업 지원대상 및 최신 신청기간 미확정.",
-    "검증한계": "공식 연결·확보자료의 적합성 점검. 최신 모집·정정·추가공고 및 모든 첨부 검증 완료를 의미하지 않음.",
+    "결과": "제주 공식기업신청안내:무주택청년노동자 숙소임차/임차료지원하는 고용보험피보험자1인이상 도내중소기업이 신청. 숙소제공형임차료60% OR 노동자주거비지급형80%,각월최대30만원·결정일부터1년분기지급. 청년개인직접신청으로 표시하지 않음. 상반기표시뿐 정확한접수일·첨부 미확정. 2025후보와후속안내동일사업경로만비교,2025회차모집완료판정아님.",
+    "검증한계": "개별 본문 또는 자료 불일치를 확인. 후속 정정·추가모집 전체,현재 예산·공실·실접수는 미확정.",
     "증빙": [
-      "https://www.jeju.go.kr/jejusupport/info/info.htm"
+      "https://www.jeju.go.kr/jejusupport/info/info.htm",
+      "https://www.jeju.go.kr/lifecycle/policy/list.htm?act=view&page=5&seq=58"
     ],
-    "점검분류": "해당 사업 본문 미확보·개별 해석 미완료"
+    "점검분류": "제도·서비스·계획 안내 해석",
+    "추가73검색일": "2026-10-03",
+    "추가73검색증빙": "pending73_search_batch_32.json",
+    "추가73검색어": "일하는 청년 보금자리 지원사업 site:jeju.go.kr 모집 공고"
   },
   "20251107005400211817": {
     "점검일": "2026-10-03",
-    "결과": "경기도 홈페이지만 확보. 기숙사 확충 행정사업과 학생별 입사모집 미확정.",
-    "검증한계": "공식 연결·확보자료의 적합성 점검. 최신 모집·정정·추가공고 및 모든 첨부 검증 완료를 의미하지 않음.",
+    "결과": "국무조정실 공개2026청년정책 시행계획 경기 PDF 177~180쪽 개별대조: 경기푸른미래관:경기/서울대학진학도내대학생370명수용.학자금8~10구간제외·복지자격우선선발·가산/통학거리평가.기관서울주소를전국지원대상으로해석하지않음. 계획자료이며 최신 개별 모집·정정·추가공고/전체첨부·실접수 검증은 미완료. 공식출처:https://www.opm.go.kr/opm/info/youth_implementation.do?articleNo=162111&mode=view",
+    "검증한계": "개별 본문 또는 자료 불일치를 확인. 후속 정정·추가모집 전체,현재 예산·공실·실접수는 미확정.",
     "증빙": [
-      "https://www.gg.go.kr/"
+      "https://www.gg.go.kr/",
+      "https://www.opm.go.kr/opm/info/youth_implementation.do?mode=download&articleNo=162111&attachNo=153796"
     ],
-    "점검분류": "해당 사업 본문 미확보·개별 해석 미완료"
+    "점검분류": "제도·서비스·계획 안내 해석",
+    "추가73검색일": "2026-10-03",
+    "추가73검색증빙": "pending73_search_batch_36.json",
+    "추가73검색어": "대학기숙사 확충 site:gg.go.kr 모집 공고"
   },
   "20250917005400211732": {
     "점검일": "2026-10-03",
-    "결과": "경남 포털 메인과 합천 업무계획·인천 모집을 조회. 인천 대출추천 모집기간을 경남에 적용하지 않음.",
-    "검증한계": "공식 연결·확보자료의 적합성 점검. 최신 모집·정정·추가공고 및 모든 첨부 검증 완료를 의미하지 않음.",
+    "결과": "경남 공식2026안내:시군조례연령·대학/취준부모1억원 OR 직장/사업본인5천 OR 부부1억원,85㎡·보증금3억원;대출잔액5천만원의3%최대150만원. 창녕2026공고는19~49세·접수7월1~31일·매년최대6회로 도전체19~39일괄적용불가.",
+    "검증한계": "개별 본문 또는 자료 불일치를 확인. 후속 정정·추가모집 전체,현재 예산·공실·실접수는 미확정.",
     "증빙": [
       "https://youth.gyeongnam.go.kr/youth/",
       "https://www.hc.go.kr/_res/portal/data/pdf/h09773/2026_14.pdf",
-      "https://www.incheon.go.kr/IC010101/view?cntPerPage=50&curPage=3&nttNo=2045823&srchKey=srchSj&srchSiteRealmCode=&srchWord="
+      "https://www.incheon.go.kr/IC010101/view?cntPerPage=50&curPage=3&nttNo=2045823&srchKey=srchSj&srchSiteRealmCode=&srchWord=",
+      "https://youth.gyeongnam.go.kr/youth/menu.es?mid=a11104000000",
+      "https://baro.gyeongnam.go.kr/baro/serviceView.es?mid=a10202000000&service_no=531"
     ],
-    "점검분류": "해당 사업 본문 미확보·개별 해석 미완료"
+    "점검분류": "제도·서비스·계획 안내 해석",
+    "추가73검색일": "2026-10-03",
+    "추가73검색증빙": "pending73_search_batch_36.json",
+    "추가73검색어": "청년 주택 임차보증금 이자 지원 site:youth.gyeongnam.go.kr 모집 공고"
   },
   "20250917005400211730": {
     "점검일": "2026-10-03",
-    "결과": "경남 청년플랫폼 메인만 확보. 남명학사 운영비·보금자리 조성·일자리연계 주거 각각 개별 입주자 공고 미확보.",
-    "검증한계": "공식 연결·확보자료의 적합성 점검. 최신 모집·정정·추가공고 및 모든 첨부 검증 완료를 의미하지 않음.",
+    "결과": "남명학사창원2026-2학기수시공고 본문7월6~30일 확인. 서울1학기PDF는3월12~7월7일 별도회차;보호자경남1년+지원자입사전경남주소+수도권대학,휴학정학퇴학등제외. 서울/창원지역·회차조건분리. 창원2학기첨부는 추가대조 필요.",
+    "검증한계": "개별 본문 또는 자료 불일치를 확인. 후속 정정·추가모집 전체,현재 예산·공실·실접수는 미확정.",
     "증빙": [
-      "https://youth.gyeongnam.go.kr/youth/"
+      "https://youth.gyeongnam.go.kr/youth/",
+      "https://nmhs.or.kr/00001/00012.web",
+      "https://www.nmhs.or.kr/00029/00067/00102.web",
+      "https://www.nmhs.or.kr/00002/00018.web?gcode=1003&idx=600&amode=view&",
+      "https://www.gndamoa.or.kr/board/download.do?gcode=1001&name=%EB%82%A8%EB%AA%85%ED%95%99%EC%82%AC+%EC%84%9C%EC%9A%B8%EA%B4%80+2026%EB%85%84+1%ED%95%99%EA%B8%B0+%EC%88%98%EC%8B%9C+%EC%9E%85%EC%82%AC%EC%83%9D+%EB%AA%A8%EC%A7%91+%EA%B3%B5%EA%B3%A0_v4.pdf"
     ],
-    "점검분류": "해당 사업 본문 미확보·개별 해석 미완료"
+    "점검분류": "개별 회차 공고·게시물 해석",
+    "추가73검색일": "2026-10-03",
+    "추가73검색증빙": "pending73_search_batch_36.json",
+    "추가73검색어": "남명학사 운영비 지원 site:youth.gyeongnam.go.kr 모집 공고"
   },
   "20250917005400211729": {
     "점검일": "2026-10-03",
-    "결과": "경남 청년플랫폼 메인만 확보. 남명학사 운영비·보금자리 조성·일자리연계 주거 각각 개별 입주자 공고 미확보.",
-    "검증한계": "공식 연결·확보자료의 적합성 점검. 최신 모집·정정·추가공고 및 모든 첨부 검증 완료를 의미하지 않음.",
+    "결과": "경남공식mid=a11106000000 본문은 신혼·출산가구 주택구입 대출이자지원. 공공임대114호 건립의 경남청년보금자리 후보와 다른 사업이라 불채택. 2026도계획 청년농촌보금자리(농업정책과)도 인구정책담당관 원후보와 임의병합하지 않음. 인천공식포털 동일API정책번호 링크 재조회는시간초과. 해당사업 현재공고 미확보.",
+    "검증한계": "개별 본문 또는 자료 불일치를 확인. 후속 정정·추가모집 전체,현재 예산·공실·실접수는 미확정.",
     "증빙": [
-      "https://youth.gyeongnam.go.kr/youth/"
+      "https://youth.gyeongnam.go.kr/youth/",
+      "https://youth.gyeongnam.go.kr/youth/menu.es?mid=a11106000000",
+      "https://youth.incheon.go.kr/nationalpolicy/nationalpolicyDetail.do?pgno=18&plcyNo=20250917005400211729"
     ],
-    "점검분류": "해당 사업 본문 미확보·개별 해석 미완료"
+    "점검분류": "다른 기관·사업·과거자료 불채택",
+    "추가73검색일": "2026-10-03",
+    "추가73검색증빙": "pending73_search_batch_36.json",
+    "추가73검색어": "경남 청년 보금자리 조성 site:youth.gyeongnam.go.kr 모집 공고"
   },
   "20250917005400211727": {
     "점검일": "2026-10-03",
-    "결과": "경남 청년플랫폼 메인만 확보. 남명학사 운영비·보금자리 조성·일자리연계 주거 각각 개별 입주자 공고 미확보.",
-    "검증한계": "공식 연결·확보자료의 적합성 점검. 최신 모집·정정·추가공고 및 모든 첨부 검증 완료를 의미하지 않음.",
+    "결과": "경남바로서비스의 맞춤형임대공급:청년매입25년30호,일자리연계25~27년75호·무주택저소득19~39·시세50%이내최대6년. 공급계획이지 개별단지접수공고가 아님. 공급기관주소를지원범위로대체하지 않음.",
+    "검증한계": "개별 본문 또는 자료 불일치를 확인. 후속 정정·추가모집 전체,현재 예산·공실·실접수는 미확정.",
     "증빙": [
-      "https://youth.gyeongnam.go.kr/youth/"
+      "https://youth.gyeongnam.go.kr/youth/",
+      "https://baro.gyeongnam.go.kr/baro/menu.es?mid=a10704000000"
     ],
-    "점검분류": "해당 사업 본문 미확보·개별 해석 미완료"
+    "점검분류": "제도·서비스·계획 안내 해석",
+    "추가73검색일": "2026-10-03",
+    "추가73검색증빙": "pending73_search_batch_40.json",
+    "추가73검색어": "청년 일자리 연계 주거 지원 site:youth.gyeongnam.go.kr 모집 공고"
   },
   "20250903005400111595": {
     "점검일": "2026-10-03",
-    "결과": "경북주거복지 시스템 메뉴 또는 마이홈 메뉴만 확보. 서울·장수 주거비 및 과거 LH 매입임대 PDF를 경북 월세사업 모집으로 사용하지 않음.",
-    "검증한계": "공식 연결·확보자료의 적합성 점검. 최신 모집·정정·추가공고 및 모든 첨부 검증 완료를 의미하지 않음.",
+    "결과": "국무조정실 공개2026청년정책 시행계획 경북 PDF 246~248쪽 개별대조: 신혼월세:19~39청년신혼부부모두전입·무주택·보증금5천만원/월세80만원이하·부부연소득6천만원,소득별월최대30만원2년.혼인기간/제외·접수공고미확정. 계획자료이며 최신 개별 모집·정정·추가공고/전체첨부·실접수 검증은 미완료. 공식출처:https://www.opm.go.kr/opm/info/youth_implementation.do?articleNo=162111&mode=view",
+    "검증한계": "개별 본문 또는 자료 불일치를 확인. 후속 정정·추가모집 전체,현재 예산·공실·실접수는 미확정.",
     "증빙": [
-      "https://www.myhome.go.kr/hws/portal/dgn/selectSelfDiagnosisYouthHousResultView.do"
+      "https://www.myhome.go.kr/hws/portal/dgn/selectSelfDiagnosisYouthHousResultView.do",
+      "https://www.jangsu.go.kr/tour/board/view.jangsu?boardId=BBS_0000003&dataSid=572099&menuCd=DOM_000000402001001000&paging=ok&startPage=6",
+      "https://gwangyang.go.kr/boardDownload.es?bid=ATT&list_no=166791&seq=1",
+      "https://www.gbhome.kr/pages/layout/A_layout/A_type/download/support_2026.pdf",
+      "https://www.gbhome.kr/",
+      "https://www.gbhome.kr/?menu_code=114",
+      "https://www.gbhome.kr/pages/board/view.php?menu_code=26&board_sid=1&data_sid=65&page_num=&skey=&sval=&category_code1=",
+      "https://www.opm.go.kr/opm/info/youth_implementation.do?mode=download&articleNo=162111&attachNo=153796"
     ],
-    "점검분류": "해당 사업 본문 미확보·개별 해석 미완료"
+    "점검분류": "제도·서비스·계획 안내 해석",
+    "추가73검색일": "2026-10-03",
+    "추가73검색증빙": "pending73_search_batch_40.json",
+    "추가73검색어": "청년 신혼부부 월세 지원사업 미래전략과 모집 공고"
   },
   "20250903005400111592": {
     "점검일": "2026-10-03",
@@ -731,23 +917,32 @@
   },
   "20250901005400211565": {
     "점검일": "2026-10-03",
-    "결과": "경북경영자총협회 연결은 제목만 반환. 행복원룸 근로자 모집·기업 모집·첨부 미확보.",
-    "검증한계": "공식 연결·확보자료의 적합성 점검. 최신 모집·정정·추가공고 및 모든 첨부 검증 완료를 의미하지 않음.",
+    "결과": "국무조정실 공개2026청년정책 시행계획 경북 PDF 414쪽 개별대조: 구미행복원룸:19~39청년취업자·연소득5천만원이하무주택·전입인센티브월10만원24개월. 원룸소유자구미주소/공실률30%·도배장판비는별도경로. 계획자료이며 최신 개별 모집·정정·추가공고/전체첨부·실접수 검증은 미완료. 공식출처:https://www.opm.go.kr/opm/info/youth_implementation.do?articleNo=162111&mode=view",
+    "검증한계": "개별 본문 또는 자료 불일치를 확인. 후속 정정·추가모집 전체,현재 예산·공실·실접수는 미확정.",
     "증빙": [
-      "http://kbef.or.kr/"
+      "http://kbef.or.kr/",
+      "https://www.opm.go.kr/opm/info/youth_implementation.do?mode=download&articleNo=162111&attachNo=153796"
     ],
-    "점검분류": "해당 사업 본문 미확보·개별 해석 미완료"
+    "점검분류": "제도·서비스·계획 안내 해석",
+    "추가73검색일": "2026-10-03",
+    "추가73검색증빙": "pending73_search_batch_40.json",
+    "추가73검색어": "청년근로자 지역정착 행복원룸사업 site:kbef.or.kr 모집 공고"
   },
   "20250901005400211561": {
     "점검일": "2026-10-03",
-    "결과": "전주·원주·성북 보증료 안내는 확보됐으나 경북·청송·제주 해당 지자체 공고로 대체 불가. 청송2026-136호는 다른 후보에서 확보하여 별도 비교 가능.",
-    "검증한계": "공식 연결·확보자료의 적합성 점검. 최신 모집·정정·추가공고 및 모든 첨부 검증 완료를 의미하지 않음.",
+    "결과": "국무조정실 공개2026청년정책 시행계획 경북 PDF 232~234쪽 개별대조: 보증료2026도계획:유효HUG/HF/SGI·보증금3억·무주택·청년5천/청년외6천/신혼7.5천만원소득·최대40만원. 청송2025모집을도2026계획으로대체하지않음. 계획자료이며 최신 개별 모집·정정·추가공고/전체첨부·실접수 검증은 미완료. 공식출처:https://www.opm.go.kr/opm/info/youth_implementation.do?articleNo=162111&mode=view",
+    "검증한계": "개별 본문 또는 자료 불일치를 확인. 후속 정정·추가모집 전체,현재 예산·공실·실접수는 미확정.",
     "증빙": [
       "https://www.jeonju.go.kr/wansangu/planweb/board/view.9is?boardUid=ff8080818990c3490189ce861e350d87&contentUid=ff8080818990c349018acafad65b28fd&dataUid=9be517a89b212afa019d238869be0c11&page=35",
       "https://www.wonju.go.kr/www/selectBbsNttView.do?bbsNo=1&key=211&nttNo=491345",
-      "https://gimpocouncil.go.kr/upload/mnts/apndx/a08/20260112153914-453748.pdf"
+      "https://gimpocouncil.go.kr/upload/mnts/apndx/a08/20260112153914-453748.pdf",
+      "https://www.cs.go.kr/00002660/00002663/00002715.web",
+      "https://www.opm.go.kr/opm/info/youth_implementation.do?mode=download&articleNo=162111&attachNo=153796"
     ],
-    "점검분류": "해당 사업 본문 미확보·개별 해석 미완료"
+    "점검분류": "제도·서비스·계획 안내 해석",
+    "추가73검색일": "2026-10-03",
+    "추가73검색증빙": "pending73_search_batch_40.json",
+    "추가73검색어": "전세보증금반환보증 보증료 지원사업 기획감사실 모집 공고"
   },
   "20250718005400211418": {
     "점검일": "2026-10-03",
@@ -762,14 +957,18 @@
   },
   "20250718005400211407": {
     "점검일": "2026-10-03",
-    "결과": "인천 FAQ를 확인했으나 함평 업무계획은 타사업. 전입청년 이사비의 최신2026 시행공고·예산 별도확인.",
-    "검증한계": "공식 연결·확보자료의 적합성 점검. 최신 모집·정정·추가공고 및 모든 첨부 검증 완료를 의미하지 않음.",
+    "결과": "인천전입청년이사 공식FAQ본 문 확인. FAQ는 신청처리·증빙 안내이며 2026 시행회차공고/잔여예산전체 검증은 아니다. 타지역함평이사비계획을 인천모집근거로배제.",
+    "검증한계": "개별 본문 또는 자료 불일치를 확인. 후속 정정·추가모집 전체,현재 예산·공실·실접수는 미확정.",
     "증빙": [
       "https://youth.incheon.go.kr/",
       "https://www.hampyeong.go.kr/upload/file/work/2026/07.pdf",
-      "https://youth.incheon.go.kr/bbs/bbsMsgDetail.do?bcd=transfer_faq&msg_seq=20&pgno=2"
+      "https://youth.incheon.go.kr/bbs/bbsMsgDetail.do?bcd=transfer_faq&msg_seq=20&pgno=2",
+      "https://youth.incheon.go.kr/dwelling/transfer_faq.jsp"
     ],
-    "점검분류": "해당 사업 본문 미확보·개별 해석 미완료"
+    "점검분류": "제도·서비스·계획 안내 해석",
+    "추가73검색일": "2026-10-03",
+    "추가73검색증빙": "pending73_search_batch_44.json",
+    "추가73검색어": "전입청년 이사 지원사업 site:youth.incheon.go.kr 모집 공고"
   },
   "20250718005400211383": {
     "점검일": "2026-10-03",
@@ -784,45 +983,63 @@
   },
   "20250718005400211379": {
     "점검일": "2026-10-03",
-    "결과": "제주개발공사 메인의2026 소규모정비 후보지 공모는 매입임대 입주공고가 아님. 주금공 정책자료·LH PDF의 기관·회차 일치 미확정.",
-    "검증한계": "공식 연결·확보자료의 적합성 점검. 최신 모집·정정·추가공고 및 모든 첨부 검증 완료를 의미하지 않음.",
+    "결과": "제주센터 일반매입임대 제도본문:일반형의순위·소득/자산·거주와청년형별도유형구분. 개발공사의 개별다가구모집/정정·부산주민전입경로는 별도. 안내조회로현재공실·접수확정불가.",
+    "검증한계": "개별 본문 또는 자료 불일치를 확인. 후속 정정·추가모집 전체,현재 예산·공실·실접수는 미확정.",
     "증빙": [
       "https://www.jpdc.co.kr/index.htm",
       "https://researcher.hf.go.kr/researcher/sub02/sub02_05.do?articleNo=19619&attachNo=22896&mode=download",
-      "https://www.myhome.go.kr/hws/com/fms/cvplFileDownload.do?atchFileId=18acee25d2844&fileSn=1"
+      "https://www.myhome.go.kr/hws/com/fms/cvplFileDownload.do?atchFileId=18acee25d2844&fileSn=1",
+      "https://www.jejuhwc.co.kr/housing/housing/general.htm"
     ],
-    "점검분류": "해당 사업 본문 미확보·개별 해석 미완료"
+    "점검분류": "제도·서비스·계획 안내 해석",
+    "추가73검색일": "2026-10-03",
+    "추가73검색증빙": "pending73_search_batch_44.json",
+    "추가73검색어": "다가구 등 기존주택 매입임대사업 site:jpdc.co.kr 모집 공고"
   },
   "20250716005400211309": {
     "점검일": "2026-10-03",
-    "결과": "정부24 제목만 확보. 제주 희망충전2025 접수기간을2026 현재 모집으로 유지하지 않음.",
-    "검증한계": "공식 연결·확보자료의 적합성 점검. 최신 모집·정정·추가공고 및 모든 첨부 검증 완료를 의미하지 않음.",
+    "결과": "제주희망충전 최신조회공식안내의35~39·부모별거무주택·중위60%·재산1.22억원·월20만원12회 경로. 상시접수표시있으나2025후보회차와현재2026실제접수/정정은별도.",
+    "검증한계": "개별 본문 또는 자료 불일치를 확인. 후속 정정·추가모집 전체,현재 예산·공실·실접수는 미확정.",
     "증빙": [
-      "https://www.gov.kr"
+      "https://www.gov.kr",
+      "https://jeju.go.kr/lifecycle/policy/list.htm?act=view&seq=60"
     ],
-    "점검분류": "해당 사업 본문 미확보·개별 해석 미완료"
+    "점검분류": "제도·서비스·계획 안내 해석",
+    "추가73검색일": "2026-10-03",
+    "추가73검색증빙": "pending73_search_batch_44.json",
+    "추가73검색어": "제주 청년 희망충전 월세 지원 건설주택국 모집 공고"
   },
   "20250716005400111307": {
     "점검일": "2026-10-03",
-    "결과": "전주·원주·성북 보증료 안내는 확보됐으나 경북·청송·제주 해당 지자체 공고로 대체 불가. 청송2026-136호는 다른 후보에서 확보하여 별도 비교 가능.",
-    "검증한계": "공식 연결·확보자료의 적합성 점검. 최신 모집·정정·추가공고 및 모든 첨부 검증 완료를 의미하지 않음.",
+    "결과": "제주센터보증료본문은2025-01-13~12-15·예산소진조기마감으로명시. 유효반환보증/무주택·보증금3억원·청년5천/청년외6천/신혼7.5천경로. 공식사이트라도2026모집으로읽지 않음.",
+    "검증한계": "개별 본문 또는 자료 불일치를 확인. 후속 정정·추가모집 전체,현재 예산·공실·실접수는 미확정.",
     "증빙": [
       "https://www.gov.kr",
       "https://www.jeonju.go.kr/wansangu/planweb/board/view.9is?boardUid=ff8080818bad9295018bae4a18f609a7&contentUid=ff8080818990c349018b041a9b013a46&dataUid=9be517a89b212afa019d238869be0c11&page=10&subPath=%2Fwansangu",
-      "https://sb.go.kr/www/contents.do?key=7366"
+      "https://sb.go.kr/www/contents.do?key=7366",
+      "https://www.jejuhwc.co.kr/finance/finance-assistance/depositrent.htm"
     ],
-    "점검분류": "해당 사업 본문 미확보·개별 해석 미완료"
+    "점검분류": "제도·서비스·계획 안내 해석",
+    "추가73검색일": "2026-10-03",
+    "추가73검색증빙": "pending73_search_batch_44.json",
+    "추가73검색어": "전세보증금 반환보증 보증료 지원 주택토지실 모집 공고"
   },
   "20250716005400111306": {
     "점검일": "2026-10-03",
-    "결과": "청년월세2차 과거 회차와2026 신규사업은 구분. 경기도 종합계획·제주2024 인구계획·다른 지자체 게시물이 해당 후보의 최신 개별공고는 아님.",
-    "검증한계": "공식 연결·확보자료의 적합성 점검. 최신 모집·정정·추가공고 및 모든 첨부 검증 완료를 의미하지 않음.",
+    "결과": "국무조정실 공개2026청년정책 시행계획 제주 PDF 196~198쪽 개별대조: 제주월세:1·2차신청종료,기존지급2027-12/신규2026-3예정·19~34·중위60%/100%·재산1.22억/4.7억. 제주계획12개월과중앙24개월상충하여횟수단정불가. 계획자료이며 최신 개별 모집·정정·추가공고/전체첨부·실접수 검증은 미완료. 공식출처:https://www.opm.go.kr/opm/info/youth_implementation.do?articleNo=162111&mode=view",
+    "검증한계": "개별 본문 또는 자료 불일치를 확인. 후속 정정·추가모집 전체,현재 예산·공실·실접수는 미확정.",
     "증빙": [
       "https://www.bokjiro.go.kr/",
       "https://www.gg.go.kr/uploads/CONTENTS/site/gg/2025%EB%85%84%EB%8F%84%2B%EA%B2%BD%EA%B8%B0%EB%8F%84%2B%EC%A3%BC%EA%B1%B0%EC%A2%85%ED%95%A9%EA%B3%84%ED%9A%8D_v20250619.pdf",
-      "https://m.bokjiro.go.kr/ssis-tem/cms/mob/common/download/2025%EB%85%84%20%EC%95%88%EB%82%B4%EC%B1%85%EC%9E%90%20%5B%ED%86%B5%ED%95%A9%EA%B6%8C%5D.pdf"
+      "https://m.bokjiro.go.kr/ssis-tem/cms/mob/common/download/2025%EB%85%84%20%EC%95%88%EB%82%B4%EC%B1%85%EC%9E%90%20%5B%ED%86%B5%ED%95%A9%EA%B6%8C%5D.pdf",
+      "https://jeonju.go.kr/wansangu/planweb/board/view.9is?boardUid=ff8080818c7b4819018c7c2cb8960a1c&contentUid=ff8080818990c349018ad4e691472ddb&dataUid=9be517a89b212afa019d2898fdcd3bb0&keyword=&page=1&searchType=&subPath=%2Fwansangu",
+      "https://www.jejuhwc.co.kr/finance/cost-support/monthlyrent.htm",
+      "https://www.opm.go.kr/opm/info/youth_implementation.do?mode=download&articleNo=162111&attachNo=153796"
     ],
-    "점검분류": "해당 사업 본문 미확보·개별 해석 미완료"
+    "점검분류": "제도·서비스·계획 안내 해석",
+    "추가73검색일": "2026-10-03",
+    "추가73검색증빙": "pending73_search_batch_48.json",
+    "추가73검색어": "청년월세 한시 특별지원 주택토지실 모집 공고"
   },
   "20250716005400211289": {
     "점검일": "2026-10-03",
@@ -836,22 +1053,30 @@
   },
   "20250715005400211288": {
     "점검일": "2026-10-03",
-    "결과": "서산2025 업무계획과 개발공사 메인은 리브투게더 개인 모집 원문이 아님. 농촌·도시·지구별 모집 별도확인.",
-    "검증한계": "공식 연결·확보자료의 적합성 점검. 최신 모집·정정·추가공고 및 모든 첨부 검증 완료를 의미하지 않음.",
+    "결과": "국무조정실 공개2026청년정책 시행계획 충남 PDF 115~117쪽 개별대조: 농촌리브투게더:부여20호/공주19호기존모집완료·2026입주계획,금산준공/후속3지구착공. 사업대상15시군마을은조성대상지설명이며개인현재거주조건아님. 계획자료이며 최신 개별 모집·정정·추가공고/전체첨부·실접수 검증은 미완료. 공식출처:https://www.opm.go.kr/opm/info/youth_implementation.do?articleNo=162111&mode=view",
+    "검증한계": "개별 본문 또는 자료 불일치를 확인. 후속 정정·추가모집 전체,현재 예산·공실·실접수는 미확정.",
     "증빙": [
-      "https://www.seosan.go.kr/DATA/bbs/106/20241227013053819vF7rAI.pdf"
+      "https://www.seosan.go.kr/DATA/bbs/106/20241227013053819vF7rAI.pdf",
+      "https://www.opm.go.kr/opm/info/youth_implementation.do?mode=download&articleNo=162111&attachNo=153796"
     ],
-    "점검분류": "해당 사업 본문 미확보·개별 해석 미완료"
+    "점검분류": "제도·서비스·계획 안내 해석",
+    "추가73검색일": "2026-10-03",
+    "추가73검색증빙": "pending73_search_batch_48.json",
+    "추가73검색어": "충남형 농촌리브투게더 건축도시국 모집 공고"
   },
   "20250715005400211287": {
     "점검일": "2026-10-03",
-    "결과": "서산2025 업무계획과 개발공사 메인은 리브투게더 개인 모집 원문이 아님. 농촌·도시·지구별 모집 별도확인.",
-    "검증한계": "공식 연결·확보자료의 적합성 점검. 최신 모집·정정·추가공고 및 모든 첨부 검증 완료를 의미하지 않음.",
+    "결과": "국무조정실 공개2026청년정책 시행계획 충남 PDF 113~114쪽 개별대조: 도시리브투게더:6년임대분양전환·청년/신혼등무주택서민,첫사업준공/후속8지구승인계획.2022~2031사업기간은상시신청기간아님. 계획자료이며 최신 개별 모집·정정·추가공고/전체첨부·실접수 검증은 미완료. 공식출처:https://www.opm.go.kr/opm/info/youth_implementation.do?articleNo=162111&mode=view",
+    "검증한계": "개별 본문 또는 자료 불일치를 확인. 후속 정정·추가모집 전체,현재 예산·공실·실접수는 미확정.",
     "증빙": [
       "https://www.cndc.kr/index.do",
-      "https://www.seosan.go.kr/DATA/bbs/106/20250711094152576avMqjo.pdf"
+      "https://www.seosan.go.kr/DATA/bbs/106/20250711094152576avMqjo.pdf",
+      "https://www.opm.go.kr/opm/info/youth_implementation.do?mode=download&articleNo=162111&attachNo=153796"
     ],
-    "점검분류": "해당 사업 본문 미확보·개별 해석 미완료"
+    "점검분류": "제도·서비스·계획 안내 해석",
+    "추가73검색일": "2026-10-03",
+    "추가73검색증빙": "pending73_search_batch_48.json",
+    "추가73검색어": "충남형 도시리브투게더 site:cndc.kr 모집 공고"
   },
   "20250715005400211278": {
     "점검일": "2026-10-03",
@@ -878,10 +1103,15 @@
   },
   "20250715005400211239": {
     "점검일": "2026-10-03",
-    "결과": "이번 기관지정 검색·재조회에서 직접 공식본문 미확보. 사업없음 또는 신청불가로 판정하지 않고 개별 공고·첨부 확보 필요로 유지.",
-    "검증한계": "공식 연결·확보자료의 적합성 점검. 최신 모집·정정·추가공고 및 모든 첨부 검증 완료를 의미하지 않음.",
-    "증빙": [],
-    "점검분류": "해당 사업 본문 미확보·개별 해석 미완료"
+    "결과": "울산공식정책출력본문의굿파트너스항목은2025-03~12사업. 울산거주 OR 거주예정19~39청년 및외국인,예약1:1중개사·집보기동행·언어연계. 2026다른사업혼재표를근거로2026운영확정불가.",
+    "검증한계": "개별 본문 또는 자료 불일치를 확인. 후속 정정·추가모집 전체,현재 예산·공실·실접수는 미확정.",
+    "증빙": [
+      "https://www.ulsan.go.kr/s/ulsanyouth/contents.ulsan?mId=008001001002000000"
+    ],
+    "점검분류": "제도·서비스·계획 안내 해석",
+    "추가73검색일": "2026-10-03",
+    "추가73검색증빙": "pending73_search_batch_48.json",
+    "추가73검색어": "전월세 안심계약 굿 파트너스 사업 울산광역시 모집 공고"
   },
   "20250714005400111223": {
     "점검일": "2026-10-03",
@@ -896,30 +1126,44 @@
   },
   "20250714005400111222": {
     "점검일": "2026-10-03",
-    "결과": "울산 주거지원 메뉴만 확보. 월세·분리지급·신정동 주택건립 각각 실제 개별 접수근거로 사용하지 않음.",
-    "검증한계": "공식 연결·확보자료의 적합성 점검. 최신 모집·정정·추가공고 및 모든 첨부 검증 완료를 의미하지 않음.",
+    "결과": "국무조정실 공개2026청년정책 시행계획 울산 PDF 102~103쪽 개별대조: 울산월세:19~34무주택·청년중위60%/원가구100%·월20만원24개월.매월지급/변동관리와신규접수분리;2025한시와2026계속사업구분. 계획자료이며 최신 개별 모집·정정·추가공고/전체첨부·실접수 검증은 미완료. 공식출처:https://www.opm.go.kr/opm/info/youth_implementation.do?articleNo=162111&mode=view",
+    "검증한계": "개별 본문 또는 자료 불일치를 확인. 후속 정정·추가모집 전체,현재 예산·공실·실접수는 미확정.",
     "증빙": [
-      "https://www.ulsan.go.kr/s/house/main.ulsan"
+      "https://www.ulsan.go.kr/s/house/main.ulsan",
+      "https://www.ulsan.go.kr/s/house/bbs/view.ulsan?bbsId=BBS_0000000000000306&dataId=34595&mId=001003003000000000",
+      "https://www.jejuhwc.co.kr/finance/cost-support/monthlyrent.htm",
+      "https://www.opm.go.kr/opm/info/youth_implementation.do?mode=download&articleNo=162111&attachNo=153796"
     ],
-    "점검분류": "해당 사업 본문 미확보·개별 해석 미완료"
+    "점검분류": "제도·서비스·계획 안내 해석",
+    "추가73검색일": "2026-10-03",
+    "추가73검색증빙": "pending73_search_batch_52.json",
+    "추가73검색어": "청년월세 한시 특별지원사업 site:ulsan.go.kr 모집 공고"
   },
   "20250714005400111219": {
     "점검일": "2026-10-03",
-    "결과": "울산 주거지원 메뉴만 확보. 월세·분리지급·신정동 주택건립 각각 실제 개별 접수근거로 사용하지 않음.",
-    "검증한계": "공식 연결·확보자료의 적합성 점검. 최신 모집·정정·추가공고 및 모든 첨부 검증 완료를 의미하지 않음.",
+    "결과": "울산남구 공식분리지급안내:19~30미만미혼수급가구자녀·취학구직부모별거·실임차료한도. 2026선정기준1인가구1230834원·기준임대료247000원등 명시. 운영연중과신청기간공란을구분;남구의시행기관을전국제도대상지역으로대체불가.",
+    "검증한계": "개별 본문 또는 자료 불일치를 확인. 후속 정정·추가모집 전체,현재 예산·공실·실접수는 미확정.",
     "증빙": [
-      "https://www.ulsan.go.kr/s/house/main.ulsan"
+      "https://www.ulsan.go.kr/s/house/main.ulsan",
+      "https://www.ulsan.go.kr/s/ulsanyouth/bbs/view.do?bbsId=BBS_0000000000000316&dataId=56323&mId=008001001000000000"
     ],
-    "점검분류": "해당 사업 본문 미확보·개별 해석 미완료"
+    "점검분류": "제도·서비스·계획 안내 해석",
+    "추가73검색일": "2026-10-03",
+    "추가73검색증빙": "pending73_search_batch_52.json",
+    "추가73검색어": "청년 주거급여 분리지급 site:ulsan.go.kr 모집 공고"
   },
   "20250714005400111210": {
     "점검일": "2026-10-03",
-    "결과": "울산 주거지원 메뉴만 확보. 월세·분리지급·신정동 주택건립 각각 실제 개별 접수근거로 사용하지 않음.",
-    "검증한계": "공식 연결·확보자료의 적합성 점검. 최신 모집·정정·추가공고 및 모든 첨부 검증 완료를 의미하지 않음.",
+    "결과": "울산도시공사2025-15호신정동통합공공임대PDF25쪽. 공고1월22일,일반방문2월10~11일10~16시(점심제외). 공급유형·소득자산·청약가입입주전제출 조건. 신정동건립행정계획과이미입주자모집이실시된사실구분;2026예비/추가모집별도.",
+    "검증한계": "개별 본문 또는 자료 불일치를 확인. 후속 정정·추가모집 전체,현재 예산·공실·실접수는 미확정.",
     "증빙": [
-      "https://www.ulsan.go.kr/s/house/main.ulsan"
+      "https://www.ulsan.go.kr/s/house/main.ulsan",
+      "https://minwon.ulsan.go.kr/citynet/jsp/cmm/attach/download.jsp?mode=download&fid=%233ccb3862bd27952d9f66b68205fcb33186db55f7779f07b5d3b6b011bc3f4647&index=0&other=%23f4b42464d48b2be3d3a8f834d583531e21092d324a7e3e74c661d416cb8d8bed28e5269c4dc51117bd75fa5ff8a1f5ba"
     ],
-    "점검분류": "해당 사업 본문 미확보·개별 해석 미완료"
+    "점검분류": "개별 회차 공고·게시물 해석",
+    "추가73검색일": "2026-10-03",
+    "추가73검색증빙": "pending73_search_batch_52.json",
+    "추가73검색어": "신정동 청년희망주택 건립 site:ulsan.go.kr 모집 공고"
   },
   "20250618005400111008": {
     "점검일": "2026-10-03",
@@ -934,24 +1178,42 @@
   },
   "20250618005400111006": {
     "점검일": "2026-10-03",
-    "결과": "이번 기관지정 검색·재조회에서 직접 공식본문 미확보. 사업없음 또는 신청불가로 판정하지 않고 개별 공고·첨부 확보 필요로 유지.",
-    "검증한계": "공식 연결·확보자료의 적합성 점검. 최신 모집·정정·추가공고 및 모든 첨부 검증 완료를 의미하지 않음.",
-    "증빙": [],
-    "점검분류": "해당 사업 본문 미확보·개별 해석 미완료"
+    "결과": "국무조정실2024시행계획 중앙주거 PDF111~113쪽 개별대조:공유주택 펀드투자는 공유주택 운영스타트업/사회적기업에 장기자금투자하는 체계. 청년수혜대상 설명과 기업투자대상을 구분. 2024공급40호/2025~2028목표는 현재개별입주모집 아님. 2026해당운영계획/실제입주공고·후속첨부 미확정.",
+    "검증한계": "개별 본문 또는 자료 불일치를 확인. 후속 정정·추가모집 전체,현재 예산·공실·실접수는 미확정.",
+    "증빙": [
+      "https://www.opm.go.kr/opm/info/youth_implementation.do?articleNo=159017&attachNo=147916&mode=download"
+    ],
+    "점검분류": "제도·서비스·계획 안내 해석",
+    "추가73검색일": "2026-10-03",
+    "추가73검색증빙": "pending73_search_batch_52.json",
+    "추가73검색어": "공유주택 펀드투자 국토교통부 모집 공고"
   },
   "20250618005400111005": {
     "점검일": "2026-10-03",
-    "결과": "이번 기관지정 검색·재조회에서 직접 공식본문 미확보. 사업없음 또는 신청불가로 판정하지 않고 개별 공고·첨부 확보 필요로 유지.",
-    "검증한계": "공식 연결·확보자료의 적합성 점검. 최신 모집·정정·추가공고 및 모든 첨부 검증 완료를 의미하지 않음.",
-    "증빙": [],
-    "점검분류": "해당 사업 본문 미확보·개별 해석 미완료"
+    "결과": "국무조정실 공개2026청년정책 시행계획 중앙 PDF 142~145쪽 개별대조: 마이홈개선:국민정보제공기준조건없음·국토부/LH운영·AI자가진단컨설팅.830백만원은개인지원금아님;개발계획은혜택모집이아님. 계획자료이며 최신 개별 모집·정정·추가공고/전체첨부·실접수 검증은 미완료. 공식출처:https://www.opm.go.kr/opm/info/youth_implementation.do?articleNo=162111&mode=view",
+    "검증한계": "개별 본문 또는 자료 불일치를 확인. 후속 정정·추가모집 전체,현재 예산·공실·실접수는 미확정.",
+    "증빙": [
+      "https://www.opm.go.kr/opm/info/youth_implementation.do?mode=download&articleNo=162111&attachNo=154122"
+    ],
+    "점검분류": "제도·서비스·계획 안내 해석",
+    "추가73검색일": "2026-10-03",
+    "추가73검색증빙": "pending73_search_batch_56.json",
+    "추가73검색어": "주거포털 마이홈 개선 국토교통부 모집 공고"
   },
   "20250512005400210809": {
     "점검일": "2026-10-03",
-    "결과": "이번 기관지정 검색·재조회에서 직접 공식본문 미확보. 사업없음 또는 신청불가로 판정하지 않고 개별 공고·첨부 확보 필요로 유지. 추가 직접조회도 fetch failed. 웹색인 안내·추가모집 목록을 원공고·첨부 검증 완료로 계산하지 않음.",
-    "검증한계": "공식 연결·확보자료의 적합성 점검. 최신 모집·정정·추가공고 및 모든 첨부 검증 완료를 의미하지 않음.",
-    "증빙": [],
-    "점검분류": "해당 사업 본문 미확보·개별 해석 미완료"
+    "결과": "국무조정실 공개2026청년정책 시행계획 강원 PDF 262쪽 개별대조: 속초이사:18~45무주택청년가구·관외/관내전입,차량대여/운반/포장·중개비50만원실비생애1회.소득/거래금액·신청일자·모집첨부미확정. 계획자료이며 최신 개별 모집·정정·추가공고/전체첨부·실접수 검증은 미완료. 공식출처:https://www.opm.go.kr/opm/info/youth_implementation.do?articleNo=162111&mode=view",
+    "검증한계": "개별 본문 또는 자료 불일치를 확인. 후속 정정·추가모집 전체,현재 예산·공실·실접수는 미확정.",
+    "증빙": [
+      "https://sokcho.go.kr/bo/holic/article?hlmSn=1&sn=7",
+      "https://sokcho.go.kr/bo/holic/article?hlmSn=14&sn=293",
+      "https://www.sokcho.go.kr/bo/holic/article?hlmSn=14&sn=293",
+      "https://www.opm.go.kr/opm/info/youth_implementation.do?mode=download&articleNo=162111&attachNo=153796"
+    ],
+    "점검분류": "제도·서비스·계획 안내 해석",
+    "추가73검색일": "2026-10-03",
+    "추가73검색증빙": "pending73_search_batch_56.json",
+    "추가73검색어": "속초시 청년 이사비용 지원사업 속초시 모집 공고"
   },
   "20250502005400210775": {
     "점검일": "2026-10-03",
@@ -989,21 +1251,31 @@
   },
   "20250502005400110774": {
     "점검일": "2026-10-03",
-    "결과": "청년월세2차 과거 회차와2026 신규사업은 구분. 경기도 종합계획·제주2024 인구계획·다른 지자체 게시물이 해당 후보의 최신 개별공고는 아님.",
-    "검증한계": "공식 연결·확보자료의 적합성 점검. 최신 모집·정정·추가공고 및 모든 첨부 검증 완료를 의미하지 않음.",
+    "결과": "국무조정실 공개2026청년정책 시행계획 강원 PDF 188~190쪽 개별대조: 강원월세:19~34부모별거무주택·청년중위60%/원가구100%·월20만원24개월.기존2차지급2027년과신규접수별도;계속사업이상시신청아님. 계획자료이며 최신 개별 모집·정정·추가공고/전체첨부·실접수 검증은 미완료. 공식출처:https://www.opm.go.kr/opm/info/youth_implementation.do?articleNo=162111&mode=view",
+    "검증한계": "개별 본문 또는 자료 불일치를 확인. 후속 정정·추가모집 전체,현재 예산·공실·실접수는 미확정.",
     "증빙": [
       "https://www.gg.go.kr/uploads/CONTENTS/site/gg/2025%EB%85%84%EB%8F%84%2B%EA%B2%BD%EA%B8%B0%EB%8F%84%2B%EC%A3%BC%EA%B1%B0%EC%A2%85%ED%95%A9%EA%B3%84%ED%9A%8D_v20250619.pdf",
       "https://m.bokjiro.go.kr/ssis-tem/cms/mob/common/download/2025%EB%85%84%20%EC%95%88%EB%82%B4%EC%B1%85%EC%9E%90%20%5B%ED%86%B5%ED%95%A9%EA%B6%8C%5D.pdf",
-      "https://www.jeju.go.kr/lifecycle/notice/guide.htm?act=download&no=1&seq=1460334"
+      "https://www.jeju.go.kr/lifecycle/notice/guide.htm?act=download&no=1&seq=1460334",
+      "https://jeonju.go.kr/wansangu/planweb/board/view.9is?boardUid=ff8080818c7b4819018c7c2cb8960a1c&contentUid=ff8080818990c349018ad4e691472ddb&dataUid=9be517a89b212afa019d2898fdcd3bb0&keyword=&page=1&searchType=&subPath=%2Fwansangu",
+      "https://www.opm.go.kr/opm/info/youth_implementation.do?mode=download&articleNo=162111&attachNo=153796"
     ],
-    "점검분류": "해당 사업 본문 미확보·개별 해석 미완료"
+    "점검분류": "제도·서비스·계획 안내 해석",
+    "추가73검색일": "2026-10-03",
+    "추가73검색증빙": "pending73_search_batch_56.json",
+    "추가73검색어": "청년월세 한시 특별지원 국토교통부 모집 공고"
   },
   "20250316005400210633": {
     "점검일": "2026-10-03",
-    "결과": "이번 기관지정 검색·재조회에서 직접 공식본문 미확보. 사업없음 또는 신청불가로 판정하지 않고 개별 공고·첨부 확보 필요로 유지.",
-    "검증한계": "공식 연결·확보자료의 적합성 점검. 최신 모집·정정·추가공고 및 모든 첨부 검증 완료를 의미하지 않음.",
-    "증빙": [],
-    "점검분류": "해당 사업 본문 미확보·개별 해석 미완료"
+    "결과": "서울2026-04-29공식FAQ79:청년안심공공지원민간임대의임대보증금무이자지원과청년월세지원병행가능,공공임대형은월세사업제외. 일반장기안심주택지원금이나반환보증을동일사업으로대입하지 않음. 무이자지원전체자격·금액·접수공고첨부는 미확정.",
+    "검증한계": "개별 본문 또는 자료 불일치를 확인. 후속 정정·추가모집 전체,현재 예산·공실·실접수는 미확정.",
+    "증빙": [
+      "https://housing.seoul.go.kr/site/main/board/faq_mr/12587"
+    ],
+    "점검분류": "제도·서비스·계획 안내 해석",
+    "추가73검색일": "2026-10-03",
+    "추가73검색증빙": "pending73_search_batch_56.json",
+    "추가73검색어": "청년안심주택 공급활성화(임차보증금 무이자지원) 건축기획관 모집 공고"
   },
   "20250316005400210626": {
     "점검일": "2026-10-03",
@@ -1039,24 +1311,39 @@
   },
   "20250220005400210512": {
     "점검일": "2026-10-03",
-    "결과": "이번 기관지정 검색·재조회에서 직접 공식본문 미확보. 사업없음 또는 신청불가로 판정하지 않고 개별 공고·첨부 확보 필요로 유지.",
-    "검증한계": "공식 연결·확보자료의 적합성 점검. 최신 모집·정정·추가공고 및 모든 첨부 검증 완료를 의미하지 않음.",
-    "증빙": [],
-    "점검분류": "해당 사업 본문 미확보·개별 해석 미완료"
+    "결과": "괴산청년취업/농업주거비공식PDF는2022달라지는제도안내. 월10만원3년을2026최신금액으로채택불가.2026개별모집·조건·첨부미확보.",
+    "검증한계": "개별 본문 또는 자료 불일치를 확인. 후속 정정·추가모집 전체,현재 예산·공실·실접수는 미확정.",
+    "증빙": [
+      "https://goesan.go.kr/DATA/bbs/251/F4FEBF7D-4751-3862-21C1-4F6CE056AD29.pdf"
+    ],
+    "점검분류": "다른 기관·사업·과거자료 불채택",
+    "추가73검색일": "2026-10-03",
+    "추가73검색증빙": "pending73_search_batch_60.json",
+    "추가73검색어": "청년취업자 및 청년농업인 주거비 지원 괴산군 모집 공고"
   },
   "20250220005400210505": {
     "점검일": "2026-10-03",
-    "결과": "이번 기관지정 검색·재조회에서 직접 공식본문 미확보. 사업없음 또는 신청불가로 판정하지 않고 개별 공고·첨부 확보 필요로 유지.",
-    "검증한계": "공식 연결·확보자료의 적합성 점검. 최신 모집·정정·추가공고 및 모든 첨부 검증 완료를 의미하지 않음.",
-    "증빙": [],
-    "점검분류": "해당 사업 본문 미확보·개별 해석 미완료"
+    "결과": "국무조정실 공개2026청년정책 시행계획 충북 PDF 324쪽 개별대조: 음성자체월세:19~39부모별거무주택·중위150%·월15만원12개월.국토부19~34·중위60%·월20만원과합치지않음. 계획자료이며 최신 개별 모집·정정·추가공고/전체첨부·실접수 검증은 미완료. 공식출처:https://www.opm.go.kr/opm/info/youth_implementation.do?articleNo=162111&mode=view",
+    "검증한계": "개별 본문 또는 자료 불일치를 확인. 후속 정정·추가모집 전체,현재 예산·공실·실접수는 미확정.",
+    "증빙": [
+      "https://www.opm.go.kr/opm/info/youth_implementation.do?mode=download&articleNo=162111&attachNo=153796"
+    ],
+    "점검분류": "제도·서비스·계획 안내 해석",
+    "추가73검색일": "2026-10-03",
+    "추가73검색증빙": "pending73_search_batch_60.json",
+    "추가73검색어": "음성군 청년월세 지원사업 음성군 모집 공고"
   },
   "20250220005400210504": {
     "점검일": "2026-10-03",
-    "결과": "이번 기관지정 검색·재조회에서 직접 공식본문 미확보. 사업없음 또는 신청불가로 판정하지 않고 개별 공고·첨부 확보 필요로 유지.",
-    "검증한계": "공식 연결·확보자료의 적합성 점검. 최신 모집·정정·추가공고 및 모든 첨부 검증 완료를 의미하지 않음.",
-    "증빙": [],
-    "점검분류": "해당 사업 본문 미확보·개별 해석 미완료"
+    "결과": "국무조정실 공개2026청년정책 시행계획 충북 PDF 212~214쪽 개별대조: 충북국토부월세집행:19~34부모별거무주택·청년중위60%/원가구100%·실월세20만원한도24회.제천2025회차와도2026계획분리. 계획자료이며 최신 개별 모집·정정·추가공고/전체첨부·실접수 검증은 미완료. 공식출처:https://www.opm.go.kr/opm/info/youth_implementation.do?articleNo=162111&mode=view",
+    "검증한계": "개별 본문 또는 자료 불일치를 확인. 후속 정정·추가모집 전체,현재 예산·공실·실접수는 미확정.",
+    "증빙": [
+      "https://www.opm.go.kr/opm/info/youth_implementation.do?mode=download&articleNo=162111&attachNo=153796"
+    ],
+    "점검분류": "제도·서비스·계획 안내 해석",
+    "추가73검색일": "2026-10-03",
+    "추가73검색증빙": "pending73_search_batch_60.json",
+    "추가73검색어": "청년월세한시특별지원 제천시 모집 공고"
   },
   "20250219005400210458": {
     "점검일": "2026-10-03",
@@ -1069,10 +1356,15 @@
   },
   "20250219005400210457": {
     "점검일": "2026-10-03",
-    "결과": "이번 기관지정 검색·재조회에서 직접 공식본문 미확보. 사업없음 또는 신청불가로 판정하지 않고 개별 공고·첨부 확보 필요로 유지.",
-    "검증한계": "공식 연결·확보자료의 적합성 점검. 최신 모집·정정·추가공고 및 모든 첨부 검증 완료를 의미하지 않음.",
-    "증빙": [],
-    "점검분류": "해당 사업 본문 미확보·개별 해석 미완료"
+    "결과": "대구안방공식FAQ는청년희망주택대출이자와다른청년임차보증금지원의중복제외를설명. 본후보임대료지원의자격·금액·모집첨부가아니므로대출이자지원으로합치지 않음.",
+    "검증한계": "개별 본문 또는 자료 불일치를 확인. 후속 정정·추가모집 전체,현재 예산·공실·실접수는 미확정.",
+    "증빙": [
+      "https://anbang.daegu.go.kr/board/homeStability"
+    ],
+    "점검분류": "다른 기관·사업·과거자료 불채택",
+    "추가73검색일": "2026-10-03",
+    "추가73검색증빙": "pending73_search_batch_60.json",
+    "추가73검색어": "대구형 청년희망주택 임대료 지원 사업 주택과 모집 공고"
   },
   "20250117005400210326": {
     "점검일": "2026-10-03",
@@ -1087,10 +1379,13 @@
   },
   "20250117005400210321": {
     "점검일": "2026-10-03",
-    "결과": "이번 기관지정 검색·재조회에서 직접 공식본문 미확보. 사업없음 또는 신청불가로 판정하지 않고 개별 공고·첨부 확보 필요로 유지.",
-    "검증한계": "공식 연결·확보자료의 적합성 점검. 최신 모집·정정·추가공고 및 모든 첨부 검증 완료를 의미하지 않음.",
+    "결과": "통영2026인구정책안내서50쪽:타지역에서통영전입한1인가구청년에게생활가이드북+생활용품웰컴박스;기획예산실650-3163. 같은쪽교육지원20만원이나전입대학생20만원은다른사업,웰컴박스현금지원으로복사불가. 정확한접수·물량미확정.",
+    "검증한계": "개별 본문 또는 자료 불일치를 확인. 후속 정정·추가모집 전체,현재 예산·공실·실접수는 미확정.",
     "증빙": [],
-    "점검분류": "해당 사업 본문 미확보·개별 해석 미완료"
+    "점검분류": "제도·서비스·계획 안내 해석",
+    "추가73검색일": "2026-10-03",
+    "추가73검색증빙": "pending73_search_batch_64.json",
+    "추가73검색어": "통영전입청년 웰컴박스 지원사업 통영시 모집 공고"
   },
   "20250117005400210318": {
     "점검일": "2026-10-03",
@@ -1104,24 +1399,33 @@
   },
   "20250115005400110295": {
     "점검일": "2026-10-03",
-    "결과": "청년월세2차 과거 회차와2026 신규사업은 구분. 경기도 종합계획·제주2024 인구계획·다른 지자체 게시물이 해당 후보의 최신 개별공고는 아님.",
-    "검증한계": "공식 연결·확보자료의 적합성 점검. 최신 모집·정정·추가공고 및 모든 첨부 검증 완료를 의미하지 않음.",
+    "결과": "국무조정실 공개2026청년정책 시행계획 인천 PDF 215~217쪽 개별대조: 인천형월세:국토부19~34/시자체35~39·부모별거무주택·중위60%/100%·재산1.22억/4.7억·월20만원24개월.2차2024-2~2025-2/신규2026-3~5계획/기존지급2027-12분리.서구개별공고와타지역참조불일치미확정. 계획자료이며 최신 개별 모집·정정·추가공고/전체첨부·실접수 검증은 미완료. 공식출처:https://www.opm.go.kr/opm/info/youth_implementation.do?articleNo=162111&mode=view",
+    "검증한계": "개별 본문 또는 자료 불일치를 확인. 후속 정정·추가모집 전체,현재 예산·공실·실접수는 미확정.",
     "증빙": [
       "https://www.bokjiro.go.kr",
       "https://www.cheongju.go.kr/www/selectBbsNttView.do?bbsNo=40&key=279&nttNo=211833",
-      "https://www.jeju.go.kr/lifecycle/notice/guide.htm?act=download&no=1&seq=1460334"
+      "https://www.jeju.go.kr/lifecycle/notice/guide.htm?act=download&no=1&seq=1460334",
+      "https://www.cheongju.go.kr/cheongwon/selectBbsNttView.do?bbsNo=40&integrDeptCode=&key=1310&nttNo=228615&pageIndex=95&searchCnd=all&searchCtgry=&searchKrwd=",
+      "https://www.opm.go.kr/opm/info/youth_implementation.do?mode=download&articleNo=162111&attachNo=153796"
     ],
-    "점검분류": "해당 사업 본문 미확보·개별 해석 미완료"
+    "점검분류": "제도·서비스·계획 안내 해석",
+    "추가73검색일": "2026-10-03",
+    "추가73검색증빙": "pending73_search_batch_64.json",
+    "추가73검색어": "청년월세 특별지원(2차) 서구 모집 공고"
   },
   "20250115005400210279": {
     "점검일": "2026-10-03",
-    "결과": "청년월세2차 과거 회차와2026 신규사업은 구분. 경기도 종합계획·제주2024 인구계획·다른 지자체 게시물이 해당 후보의 최신 개별공고는 아님.",
-    "검증한계": "공식 연결·확보자료의 적합성 점검. 최신 모집·정정·추가공고 및 모든 첨부 검증 완료를 의미하지 않음.",
+    "결과": "국무조정실 공개2026청년정책 시행계획 인천 PDF 215~217쪽 개별대조: 인천형월세:국토부19~34/시자체35~39·부모별거무주택·중위60%/100%·월20만원24개월.2차접수종료와2026신규3~5월계획분리;남동구개별공고는미확정. 계획자료이며 최신 개별 모집·정정·추가공고/전체첨부·실접수 검증은 미완료. 공식출처:https://www.opm.go.kr/opm/info/youth_implementation.do?articleNo=162111&mode=view",
+    "검증한계": "개별 본문 또는 자료 불일치를 확인. 후속 정정·추가모집 전체,현재 예산·공실·실접수는 미확정.",
     "증빙": [
       "https://www.jeju.go.kr/lifecycle/notice/guide.htm?act=download&no=1&seq=1460334",
-      "https://www.hc.go.kr/_res/portal/data/pdf/h09113/2025_14.pdf"
+      "https://www.hc.go.kr/_res/portal/data/pdf/h09113/2025_14.pdf",
+      "https://www.opm.go.kr/opm/info/youth_implementation.do?mode=download&articleNo=162111&attachNo=153796"
     ],
-    "점검분류": "해당 사업 본문 미확보·개별 해석 미완료"
+    "점검분류": "제도·서비스·계획 안내 해석",
+    "추가73검색일": "2026-10-03",
+    "추가73검색증빙": "pending73_search_batch_64.json",
+    "추가73검색어": "청년월세 한시 지원사업 남동구 모집 공고"
   },
   "20250115005400210266": {
     "점검일": "2026-10-03",
@@ -1141,13 +1445,17 @@
   },
   "20250113005400210188": {
     "점검일": "2026-10-03",
-    "결과": "청년월세2차 과거 회차와2026 신규사업은 구분. 경기도 종합계획·제주2024 인구계획·다른 지자체 게시물이 해당 후보의 최신 개별공고는 아님.",
-    "검증한계": "공식 연결·확보자료의 적합성 점검. 최신 모집·정정·추가공고 및 모든 첨부 검증 완료를 의미하지 않음.",
+    "결과": "검색연결합천2025업무계획은창원국토부월세후보의2026개별접수공고가아님. 다른지역계획/다른자체월세기간과중앙2차회차를합치지 않음.",
+    "검증한계": "개별 본문 또는 자료 불일치를 확인. 후속 정정·추가모집 전체,현재 예산·공실·실접수는 미확정.",
     "증빙": [
       "https://www.gunsan.go.kr/main/m149/view/1445907",
-      "https://housing.gg.go.kr/jsp/selectSelfDiagnosisYouthHousView.do"
+      "https://housing.gg.go.kr/jsp/selectSelfDiagnosisYouthHousView.do",
+      "https://www.hc.go.kr/_res/portal/data/pdf/h09113/2025_14.pdf"
     ],
-    "점검분류": "해당 사업 본문 미확보·개별 해석 미완료"
+    "점검분류": "다른 기관·사업·과거자료 불채택",
+    "추가73검색일": "2026-10-03",
+    "추가73검색증빙": "pending73_search_batch_64.json",
+    "추가73검색어": "국토부 청년월세 한시 특별지원사업 창원시 모집 공고"
   },
   "20250113005400210184": {
     "점검일": "2026-10-03",
@@ -1165,40 +1473,70 @@
   },
   "20250109005400210132": {
     "점검일": "2026-10-03",
-    "결과": "강진 개별 주거비 공고 본문 미확보. 고시목록·목록의 PDF는 사업별 접수·자격 첨부가 아님.",
-    "검증한계": "공식 연결·확보자료의 적합성 점검. 최신 모집·정정·추가공고 및 모든 첨부 검증 완료를 의미하지 않음.",
-    "증빙": [],
-    "점검분류": "해당 사업 본문 미확보·개별 해석 미완료"
+    "결과": "국무조정실 공개2026청년정책 시행계획 전남 PDF 302쪽 개별대조: 강진품애:타시군1년이상거주후강진전입3개월이상·19~45무주택·중위60~160%,월세/전세이자월25만원3년.2025후보회차공고검증은별도. 계획자료이며 최신 개별 모집·정정·추가공고/전체첨부·실접수 검증은 미완료. 공식출처:https://www.opm.go.kr/opm/info/youth_implementation.do?articleNo=162111&mode=view",
+    "검증한계": "개별 본문 또는 자료 불일치를 확인. 후속 정정·추가모집 전체,현재 예산·공실·실접수는 미확정.",
+    "증빙": [
+      "https://www.opm.go.kr/opm/info/youth_implementation.do?mode=download&articleNo=162111&attachNo=153796"
+    ],
+    "점검분류": "제도·서비스·계획 안내 해석",
+    "추가73검색일": "2026-10-03",
+    "추가73검색증빙": "pending73_search_batch_68.json",
+    "추가73검색어": "강진품애 청년 주거비 지원 사업 전남광주통합특별시 강진군 인구정책과 모집 공고"
   },
   "20250109005400210120": {
     "점검일": "2026-10-03",
-    "결과": "제주2024 인구계획은2025~2026 중개수수료 사업 개별공고로 대체하지 않음.",
-    "검증한계": "공식 연결·확보자료의 적합성 점검. 최신 모집·정정·추가공고 및 모든 첨부 검증 완료를 의미하지 않음.",
+    "결과": "제주센터2026중개수수료:19~39무주택청년 OR 무주택혼인7년신혼 OR 수급차상위 OR 한부모;제주주민·3억원이하매매/임대차·30만원이내·2년1회최대3회. 신청1월19~12월31,예산소진마감. 2026도계획PDF158쪽도 대조했으나 시행공고첨부와 잔여예산은 미확정. 2025후보를2026현재안내와비교;과거회차공고검증완료를의미하지 않음.",
+    "검증한계": "개별 본문 또는 자료 불일치를 확인. 후속 정정·추가모집 전체,현재 예산·공실·실접수는 미확정.",
     "증빙": [
-      "https://www.jeju.go.kr/lifecycle/notice/guide.htm?act=download&no=1&seq=1460334"
+      "https://www.jeju.go.kr/lifecycle/notice/guide.htm?act=download&no=1&seq=1460334",
+      "https://www.jejuhwc.co.kr/finance/cost-support/brokerage-fees.htm",
+      "https://www.jeju.go.kr/lifecycle/notice/guide.htm?act=download&no=1&seq=2011964"
     ],
-    "점검분류": "해당 사업 본문 미확보·개별 해석 미완료"
+    "점검분류": "제도·서비스·계획 안내 해석",
+    "추가73검색일": "2026-10-03",
+    "추가73검색증빙": "pending73_search_batch_68.json",
+    "추가73검색어": "청년 및 주거취약계층 주택 중개수수료 지원 사업 제주특별자치도 모집 공고"
   },
   "20250108005400210075": {
     "점검일": "2026-10-03",
-    "결과": "이번 기관지정 검색·재조회에서 직접 공식본문 미확보. 사업없음 또는 신청불가로 판정하지 않고 개별 공고·첨부 확보 필요로 유지.",
-    "검증한계": "공식 연결·확보자료의 적합성 점검. 최신 모집·정정·추가공고 및 모든 첨부 검증 완료를 의미하지 않음.",
-    "증빙": [],
-    "점검분류": "해당 사업 본문 미확보·개별 해석 미완료"
+    "결과": "부산진구 청년1인가구 주거환경개선 프로그램:기관 지정 및 사업명 변형 공식검색에서 해당 최신 모집·첨부 본문 미확보. 국무조정실2026 부산시 계획의 부산진구 사업목록(PDF412~413쪽)에서 해당 사업명 미확인. 부산시 주거복지센터 사업·초읍동 봉사활동은 다른 대상/사업으로 대체하지 않음. 목록 미등재·검색 미확보는 폐지/미시행/신청불가의 증거가 아님.",
+    "검증한계": "해당 프로그램 시행기관의 직접 본문과 회차별 모집·정정·첨부 미확보. 개별본문대조일 공란 유지.",
+    "증빙": [
+      "https://www.opm.go.kr/opm/info/youth_implementation.do?mode=download&articleNo=162111&attachNo=153796",
+      "20260922005400113528_manual_238d9a9b29.zip_member_3627690.pdf.txt"
+    ],
+    "점검분류": "해당 사업 본문 미확보·개별 해석 미완료",
+    "추가73검색일": "2026-10-03",
+    "추가73검색증빙": "pending73_search_batch_68.json",
+    "추가73검색어": "부산진구 청년1인가구 주거환경개선 프로그램 부산진구 모집 공고"
   },
   "20250106005400210053": {
     "점검일": "2026-10-03",
-    "결과": "이번 기관지정 검색·재조회에서 직접 공식본문 미확보. 사업없음 또는 신청불가로 판정하지 않고 개별 공고·첨부 확보 필요로 유지.",
-    "검증한계": "공식 연결·확보자료의 적합성 점검. 최신 모집·정정·추가공고 및 모든 첨부 검증 완료를 의미하지 않음.",
-    "증빙": [],
-    "점검분류": "해당 사업 본문 미확보·개별 해석 미완료"
+    "결과": "국무조정실 공개2026청년정책 시행계획 전남 PDF 289쪽 개별대조: 곡성대출이자:19~49청년 OR 신혼·청년중위180% OR 신혼연소득8천만원·연100만원2년.월세지원1인가구/중위150%와다름. 계획자료이며 최신 개별 모집·정정·추가공고/전체첨부·실접수 검증은 미완료. 공식출처:https://www.opm.go.kr/opm/info/youth_implementation.do?articleNo=162111&mode=view",
+    "검증한계": "개별 본문 또는 자료 불일치를 확인. 후속 정정·추가모집 전체,현재 예산·공실·실접수는 미확정.",
+    "증빙": [
+      "https://www.gokseong.go.kr/document/kr/data/changes/2026.pdf",
+      "https://www.opm.go.kr/opm/info/youth_implementation.do?mode=download&articleNo=162111&attachNo=153796"
+    ],
+    "점검분류": "제도·서비스·계획 안내 해석",
+    "추가73검색일": "2026-10-03",
+    "추가73검색증빙": "pending73_search_batch_68.json",
+    "추가73검색어": "곡성군 청년, 신혼부부 주택자금 대출이자 지원사업 전남광주통합특별시 곡성군 인구정책과 모집 공고"
   },
   "20250106005400210052": {
     "점검일": "2026-10-03",
-    "결과": "이번 기관지정 검색·재조회에서 직접 공식본문 미확보. 사업없음 또는 신청불가로 판정하지 않고 개별 공고·첨부 확보 필요로 유지. 추가 직접조회도 fetch failed. 웹색인 안내·추가모집 목록을 원공고·첨부 검증 완료로 계산하지 않음.",
-    "검증한계": "공식 연결·확보자료의 적합성 점검. 최신 모집·정정·추가공고 및 모든 첨부 검증 완료를 의미하지 않음.",
-    "증빙": [],
-    "점검분류": "해당 사업 본문 미확보·개별 해석 미완료"
+    "결과": "국무조정실 공개2026청년정책 시행계획 전남 PDF 289쪽 개별대조: 곡성월세:19~49청년1인가구·중위150%·월10만원12개월1회.대출이자별도;추가모집검색단서있어계획만으로현재모집상태단정불가. 계획자료이며 최신 개별 모집·정정·추가공고/전체첨부·실접수 검증은 미완료. 공식출처:https://www.opm.go.kr/opm/info/youth_implementation.do?articleNo=162111&mode=view",
+    "검증한계": "개별 본문 또는 자료 불일치를 확인. 후속 정정·추가모집 전체,현재 예산·공실·실접수는 미확정.",
+    "증빙": [
+      "https://www.gokseong.go.kr/board/GosiList.do?menuNo=102001003000&pageIndex=1",
+      "https://www.gokseong.go.kr/youth/board/list.do?bbsId=BBS_000000000000722&menuNo=103001000000&searchCategory1=&searchCategory2=&searchCategory3=",
+      "https://www.gokseong.go.kr/youth/board/list.do?bbsId=BBS_000000000000722&menuNo=103001000000",
+      "https://www.opm.go.kr/opm/info/youth_implementation.do?mode=download&articleNo=162111&attachNo=153796"
+    ],
+    "점검분류": "제도·서비스·계획 안내 해석",
+    "추가73검색일": "2026-10-03",
+    "추가73검색증빙": "pending73_search_batch_72.json",
+    "추가73검색어": "곡성군 청년 월세 지원사업 전남광주통합특별시 곡성군 인구정책과 모집 공고"
   },
   "20250103005400210051": {
     "점검일": "2026-10-03",
