@@ -1,0 +1,2315 @@
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<meta charset="utf-8" />
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+	<title>주거종합포털 대구안방 - 대구광역시</title>
+	<meta property="og:title" content="주거종합포털 대구안방 - 대구광역시" />
+	<link rel="shortcut icon" type="image/x-icon" href="/resources/favicon.ico" />
+	
+	<meta name="naver-site-verification" content="d1a350a465a8dfcf583ac48d3b64ef1d12fa3751" />
+	<meta name="google-site-verification" content="rjRdgzgp5EgJ5izv6YBLR8OrayIr-IHsyZLO1UrJy50" />
+
+	<meta name="format-detection" content="telephone=no" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no" />
+	<meta name="_csrf_parameter" content="_csrf" /><meta name="_csrf_header" content="X-CSRF-TOKEN" /><meta name="_csrf" content="6c5b8290-2a53-4733-991e-c401ac4b46cd" />
+
+	<!-- css import -->
+	<link rel="stylesheet" type="text/css" href="/resources/user/css/reset.css" />
+	<link rel="stylesheet" type="text/css" href="/resources/user/css/font.css" />
+	<link rel="stylesheet" type="text/css" href="/resources/user/css/layout.css?no=260630" />
+	<link rel="stylesheet" type="text/css" href="/resources/user/css/style.css" />
+	<link rel="stylesheet" type="text/css" href="/resources/user/css/cont.css" />
+	
+	<style>
+		.blind {position:absolute !important;width:1px !important;height:1px !important;clip:rect(0,0,0,0) !important;margin:-1px !important;overflow:hidden !important;}
+	</style>
+	
+	<!-- script import -->
+	<link rel="stylesheet" type="text/css" href="/resources/cmmn/js/ckeditor/build/content-styles.css" />
+	<link rel="stylesheet" type="text/css" href="/resources/cmmn/js/jquery-ui/jquery-ui.min.css" />
+	<link rel="stylesheet" type="text/css" href="/resources/cmmn/js/jquery-plugins/jquery.datetimepicker.min.css" />
+	<link rel="stylesheet" type="text/css" href="/resources/cmmn/js/design/customScrollbar.css" />
+	<link rel="stylesheet" type="text/css" href="/resources/cmmn/js/design/slick.css" />
+	<link rel="stylesheet" type="text/css" href="/resources/cmmn/js/design/swiper.min.css" />
+	<script type="text/javascript" src="/resources/cmmn/js/jquery/dist/jquery.min.js"></script>
+	<script type="text/javascript" src="/resources/cmmn/js/jquery-ui/jquery-ui.min.js"></script>
+	<script type="text/javascript" src="/resources/cmmn/js/jquery-plugins/jquery.mtz.monthpicker.js"></script>
+	<script type="text/javascript" src="/resources/cmmn/js/jquery-plugins/jquery.datetimepicker.full.min.js"></script>
+	<script type="text/javascript" src="/resources/cmmn/js/jquery-plugins/jquery.bpopup.js"></script>
+	<script type="text/javascript" src="/resources/cmmn/js/jquery-plugins/jQuery.print.js"></script>
+	<script type="text/javascript" src="/resources/cmmn/js/moment/min/moment.min.js"></script>
+	<script type="text/javascript" src="/resources/cmmn/js/design/customScrollbar.min.js"></script>
+	<script type="text/javascript" src="/resources/cmmn/js/design/slick.min.js"></script>
+	<script type="text/javascript" src="/resources/cmmn/js/design/swiper.min.js"></script>
+
+	<script type="text/javascript" src="/resources/cmmn/js/utils/anbangUtils.js"></script>
+	<script type="text/javascript" src="/resources/user/js/design.js"></script>
+
+	<script type="text/javascript" charset="UTF-8" src="//t1.daumcdn.net/kas/static/kp.js"></script>
+	<script type="text/javascript">
+		kakaoPixel('9108214954614082425').pageView('Visti_home');
+	</script>
+	
+	<script>
+		var header = $("meta[name='_csrf_header']").attr("content");
+		var token = $("meta[name='_csrf']").attr("content");
+		
+		$.ajaxSetup({
+			beforeSend: function(xhr) {
+				xhr.setRequestHeader(header, token);
+			},
+			dataType: "json"
+		});
+	
+		$(document).ajaxComplete(function(event,xhr,options) {
+			if(!xhr.responseJSON) {
+				if(xhr.status === 401 || xhr.status === 403) {
+					alert("로그인이 필요합니다.");
+					location.href = "/join/login.do";
+				} else if(xhr.status === 200) {
+					if(!xhr.responseText) {
+						alert("응답 내용이 없습니다. 시스템 관리자에게 문의해주세요.");
+					} else if(xhr.responseText.indexOf("<!-- PAGE_TYPE_LOGIN -->") >= 0) {
+						alert("로그인이 필요합니다.");
+						location.href = "/join/login.do";
+					} else if(xhr.responseText.indexOf("SmartXFilter") >= 0) {
+						alert("개인정보유출차단솔루션에 의해 차단되었습니다. 시스템 관리자에게 문의해주세요.");
+					} else {
+						alert("알 수 없는 응답을 수신했습니다. 시스템 관리자에게 문의해주세요.");
+					}
+				}
+			} else {
+				if(xhr.status === 429) {
+					alert("짧은 시간 내 너무 많은 요청으로 로그아웃 처리되었습니다.");
+					location.href = "/";
+				}
+			}
+		});
+		
+		if(_isIE) {
+			$(document).on("click", "a[download]", function() {
+				event.preventDefault();
+				var filename = this.getAttribute("download");
+				var xhr = new XMLHttpRequest();
+				xhr.onloadstart = function () { xhr.responseType = "blob"; };
+				xhr.onload = function () { navigator.msSaveOrOpenBlob(xhr.response, filename); };
+				xhr.open("GET", this.href, true);
+				xhr.send();
+			});
+		}
+	</script>
+	<style>
+        @media print{ body{-webkit-print-color-adjust: exact;print-color-adjust: exact;} }
+        .ck-editor__editable{min-height:300px;}
+        .file-list input[type="file"]{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);border:0;}
+        .file-list li{display:block;}
+    </style>
+</head>
+<body>
+	
+	
+		<!-- Google Tag Manager -->
+		<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+		new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+		j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+		'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+		})(window,document,'script','dataLayer','GTM-KL2RPDP');</script>
+		<!-- Google Tag Manager (noscript) -->
+		<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KL2RPDP"
+		height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+	
+
+	
+
+
+<div id="skip">
+    <a href="#content">본문 바로가기</a>
+</div>
+<header id="header" class="">
+    <div class="header_inner">
+        <!-- header 상단-->
+        <div class="header__top">
+            <h1 class="logo">
+                <a href="/">대구안방</a>
+            </h1>
+            
+                <ul class="header__util logout">
+                    <li class="util__login util__loggo">
+                        <a href="/join/login.do"><span>로그인</span></a>
+                    </li>
+                    <li class="util__join">
+                        <a href="/join/signup01.do"><span>회원가입</span></a>
+                    </li>
+                </ul>
+            
+            
+            <button class="header__mbM--open nav-open-btn" title="네비게이션 열기">
+                <span class="line line1"></span><span class="line line2"></span><span class="line line3"></span>
+            </button>
+        </div>
+
+        <!-- header 하단-->
+        <div class="header__inside">
+            <h2 class="blind">주메뉴 영역</h2>
+            <nav class="header__nav">
+                <div class="header__nav-top">
+                </div>
+                <div class="login__nav">
+                    
+                        <h3><b>로그인</b>하세요! <a href="/join/login.do" class="login__nav--logout">로그인</a></h3>
+                    
+                    
+                </div>
+                <ul>
+                    <li class="depth1 bus_box"><a href="javascript:;">주거정책 소개</a>
+                        <div class="depth2">
+                            <div class="depth2_inner">
+                                <div class="mainMd_tle">
+                                    <p>주거정책 소개</p>
+                                    <span>대구시 청년, 신혼부부 주거지원<br>당신에게 필요한 정책은 무엇인가요?</span>
+                                </div>
+                                <ul>
+								    <li>
+								        <a href="/intro/policy/dgpolicy">주거정책 소개</a> 
+								        <ul>
+								            <li><a href="/intro/policy/dgpolicy">대구형 주거지원 정책</a></li>
+								            <li><a href="/intro/policy/aptbusiness">공동주택 지원사업</a></li>
+								            <li><a href="/intro/policy/ythpackage">청년주거안정 패키지</a></li>
+								        </ul>
+								    </li>
+
+								    <li>
+								        <a href="/board/houseAgcyInfo">주거관련 기관 정보</a>
+								        
+								    </li>
+								    <li>
+								        <a href="/board/promotion">홍보자료</a>
+								        
+								    </li>
+								</ul>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="depth1 bus_box"><a href="javascript:;">부동산 상담</a>
+                        <div class="depth2">
+                            <div class="depth2_inner">
+                                <div class="mainMd_tle">
+                                    <p>부동산 상담</p>
+                                    <span>법률 , 부동산임대&middot;거래 등<br>부동산 관련정보를 확인 할 수 있습니다.</span>
+                                </div>
+                                <ul>
+                                    <li>
+                                        <a href="/intro/estate/trade">부동산 관련정보 안내</a> 
+                                        <ul>
+                                            <li><a href="/intro/estate/trade">부동산 거래</a></li>
+                                            <li><a href="/intro/estate/trouble">주택임대차 분쟁</a></li>
+                                        </ul>
+                                    </li>
+                                    <li><a href="/intro/subscr">청약 관련정보 안내</a></li>
+                                    <li><a href="/board/realPropertyFaq">자주묻는 질문(FAQ)</a></li>
+                                    <li><a href="/board/realPropertyQna">부동산 상담 게시판</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="depth1 bus_box"><a href="javascript:;">지원사업 신청</a>
+                        <div class="depth2">
+                            <div class="depth2_inner">
+                                <div class="mainMd_tle">
+                                    <p>지원사업 신청</p>
+                                    <span>월세지원, 대출이자등 다양한<br>청년주거지원 상품을 확인 할 수 있습니다.</span>
+                                </div>
+                            <ul>
+                                
+                                <li><a href="javascript:;" onclick="$(this).parent().effect('highlight', 1000)">청년전세</a>
+                                    <ul>
+                                        <li><a href="/jeonseMonthly/businessOverView.do">청년 주택 임차보증금(전월세) 대출이자 지원 사업</a></li>
+                                        
+                                        <li><a href="/hopeHousing/businessOverView.do">청년 희망주택 대출이자 지원 사업</a></li>
+                                        <li><a href="/youthBeotim/businessOverView.do">청년전용 버팀목 전세자금 대출이자 지원</a></li>
+                                    </ul>
+                                </li>
+                                <li><a href="javascript:;" onclick="$(this).parent().effect('highlight', 1000)">전세보증금 반환보증</a>
+                                    <ul>
+                                        <li><a href="/jeonseReturn/businessOverView.do">전세보증금 반환보증료 지원</a></li>
+                                    </ul>
+                                </li>
+                                <li><a href="javascript:;" onclick="$(this).parent().effect('highlight', 1000)">신혼부부전세</a>
+                                    <ul>
+                                        <li><a href="/supportNewlyweds/businessOverView.do">신혼부부 전세자금 대출이자 지원</a></li>
+                                    </ul>
+                                </li>
+                                <li><a href="javascript:;" onclick="$(this).parent().effect('highlight', 1000)">공공임대주택</a>
+                                    <ul>
+                                        <li><a href="/rentalHousing/buyHouseOverView.do">매입 임대주택</a></li>
+                                        <li><a href="/rentalHousing/jeonseHouseOverView.do">전세 임대주택</a></li>
+                                        <li><a href="/rentalHousing/buildHouseOverView.do">건설형 임대주택</a></li>
+                                        <li><a href="/rentalHousing/rentHouseOverView.do">공공임대주택 찾기</a></li>
+                                    </ul>
+                                </li>
+                                <li>
+							        <a href="/board/homeStability">자주묻는 질문(FAQ)</a>
+							        
+							    </li>
+                            </ul>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="depth1"><a href="javascript:;">알림 및 소통</a>
+                        <div class="depth2">
+                            <div class="depth2_inner">
+                                <div class="mainMd_tle">
+                                    <p>알림 및 소통</p>
+                                    <span>대구안방의 공지사항,자료실등<br>확인 할 수 있습니다.</span>
+                                </div>
+                                <ul>
+                                    <li><a href="/board/notice">공지사항</a></li>
+                                    <li><a href="/board/data">자료실</a></li>
+                                    
+                                </ul>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+        <div class="mbM_bg"></div>
+    </div>
+</header>
+
+	
+
+
+
+<!-- container -->
+<div id="container">
+    <!-- CONT -->
+    <section class="content__top">
+        <div class="content__title">
+            <div class="content__title-inner">
+                <h3>주거정책 자주묻는 질문 (FAQ)</h3>
+            </div>
+        </div>
+    </section>
+
+
+    <section id="content" class="content__body">
+        <div class="cont">
+            <div class="tabWrap tab03 s3 tabReact-select wide">
+                
+				
+					
+				    
+				        
+				    
+				    
+				
+
+                
+                <div class="tab">
+                    <ul>
+                    
+                        <li class="on active">
+                            <a href="javascript:;" data-ntt="332">청년 주택 임차보증금(전월세) 대출이자 지원사업</a>
+                        </li>
+                    
+                        <li class="">
+                            <a href="javascript:;" data-ntt="333">전세보증금 반환보증료 지원 사업</a>
+                        </li>
+                    
+                        <li class="">
+                            <a href="javascript:;" data-ntt="336">청년 희망주택 대출이자 지원 사업</a>
+                        </li>
+                    
+                        <li class="">
+                            <a href="javascript:;" data-ntt="337">청년전용 버팀목 전세자금 대출이자 지원 사업</a>
+                        </li>
+                    
+                        <li class="">
+                            <a href="javascript:;" data-ntt="335">신혼부부 전용 전세자금 대출이자 지원 사업</a>
+                        </li>
+                    
+                    </ul>
+                </div>
+
+                
+                
+	                <div class="tabcont active " data-ntt="332">
+						<ul class=" qna on">
+	                        
+
+	                            
+	                                <li>
+	                                    <a href="javascript:;" data-ntt="3382" >추천서는 언제까지 유효한가요? 대출신청 기한이 정해져있나요?<span class="qnaMore"></span></a>
+	                                    <div class="qnaA ck-content">
+	                                        <p>추천서의 유효기간은 추천통보일로부터 4개월(120일) 이며, 이 기간 내 반드시 대출 실행이 완료되어야 합니다. 추천서의 유효기간은 연장이 불가합니다.</p>
+	                                    </div>
+	                                </li>
+	                            
+	                        
+
+	                            
+	                        
+
+	                            
+	                        
+
+	                            
+	                                <li>
+	                                    <a href="javascript:;" data-ntt="2553" >2년 만기 후 대출기간 연장은 가능한가요?<span class="qnaMore"></span></a>
+	                                    <div class="qnaA ck-content">
+	                                        <p>계약기간 만료일 전 대구광역시 주택과 및 은행에서 알림문자,&nbsp;우편서비스 등을 통해 안내 예정이며,&nbsp;조건 충족 시&nbsp;2년 이내&nbsp;1회 연장할 수 있습니다. 다만, 시 예산사정에 따라 연장 지원이 불가할 수 있습니다.</p><p>&nbsp;※&nbsp;연장 또는 변경은 물건지 계약기간과 지원 잔여기간에 따라 달라질 수 있으므로 은행과 사전에 상담이 필요합니다.</p>
+	                                    </div>
+	                                </li>
+	                            
+	                        
+
+	                            
+	                                <li>
+	                                    <a href="javascript:;" data-ntt="2552" >대출기간 도중에 이사를 하는 경우에는 어떻게 하나요?<span class="qnaMore"></span></a>
+	                                    <div class="qnaA ck-content">
+	                                        <p>대구시&nbsp;외의&nbsp;지역으로&nbsp;전출하거나,&nbsp;전세계약이&nbsp;종료되어 대출금을&nbsp;상환하는경우&nbsp;이자지원&nbsp;중단사유에&nbsp;해당되므로&nbsp;반드시&nbsp;은행에&nbsp;통지하여야 합니다.</p>
+	                                    </div>
+	                                </li>
+	                            
+	                        
+
+	                            
+	                                <li>
+	                                    <a href="javascript:;" data-ntt="2551" >중도상환이 가능한가요? 그럴 때 수수료가 있나요? 다른 불이익은 없을까요?<span class="qnaMore"></span></a>
+	                                    <div class="qnaA ck-content">
+	                                        <p>중도상환은&nbsp;가능하지만,&nbsp;중도상환 해약금이 발생할 수 있습니다.&nbsp;아울러 이자는&nbsp;대출금리 할인의 방식으로 지원되므로 중도상환 시 이자 지원도 종료됩니다(생애&nbsp;1회).&nbsp;중도상환 관련 자세한&nbsp;사항은 은행에&nbsp;문의해&nbsp;주시기&nbsp;바랍니다.</p>
+	                                    </div>
+	                                </li>
+	                            
+	                        
+
+	                            
+	                                <li>
+	                                    <a href="javascript:;" data-ntt="2550" >대출심사 신청 후, 은행 관련 직원이 집주인에게 연락을 하거나 임차주택을 방문하나요?<span class="qnaMore"></span></a>
+	                                    <div class="qnaA ck-content">
+	                                        <p>은행의&nbsp;대출심사&nbsp;과정에서&nbsp;은행이&nbsp;집주인에게 연락하거나,&nbsp;주택조사를&nbsp;위해방문할 수 있어 이 경우 집주인의&nbsp;협조가&nbsp;필요합니다.</p>
+	                                    </div>
+	                                </li>
+	                            
+	                        
+
+	                            
+	                                <li>
+	                                    <a href="javascript:;" data-ntt="2549" >신용등급에 상관없이 대출이 가능한가요?<span class="qnaMore"></span></a>
+	                                    <div class="qnaA ck-content">
+	                                        <p>개인의&nbsp;신용이&nbsp;매우&nbsp;낮을&nbsp;경우에는&nbsp;은행에서 대출이&nbsp;거절될&nbsp;수도&nbsp;있으니&nbsp;은행상담을&nbsp;먼저&nbsp;받으시기&nbsp;바랍니다.</p>
+	                                    </div>
+	                                </li>
+	                            
+	                        
+
+	                            
+	                                <li>
+	                                    <a href="javascript:;" data-ntt="2548" >대출관련 은행 상담은 어디에서 가능한가요?<span class="qnaMore"></span></a>
+	                                    <div class="qnaA ck-content">
+	                                        <p>대구시&nbsp;소재&nbsp;iM뱅크 또는 농협은행&nbsp;각&nbsp;영업점에서&nbsp;가능하며, 간단한 문의는&nbsp;iM뱅크 콜센터(☏1566-5050)&nbsp;및 농협은행 콜센터(☏1661-3000)를&nbsp;통해서도 가능합니다.</p><p>&nbsp;</p>
+	                                    </div>
+	                                </li>
+	                            
+	                        
+
+	                            
+	                                <li>
+	                                    <a href="javascript:;" data-ntt="2547" >은행에서 대출가능하다고 확인받았는데(대출가능여부 조회), 최종 대출심사에서 거절당할 수도 있나요?<span class="qnaMore"></span></a>
+	                                    <div class="qnaA ck-content">
+	                                        <p>○ 대출가능여부&nbsp;조회 시&nbsp;입력하신&nbsp;정보와&nbsp;제출하신&nbsp;서류(스크래핑&nbsp;서류포함) 상의&nbsp;내용이 다른&nbsp;경우&nbsp;대출가능&nbsp;한도가&nbsp;변경될&nbsp;수&nbsp;있으며,</p><p>○ 그 외 여러 가지 사유로 대출가능여부&nbsp;조회&nbsp;결과와&nbsp;최종&nbsp;대출심사 결과가&nbsp;다를&nbsp;수&nbsp;있습니다.&nbsp;따라서 주택을&nbsp;계약하시기&nbsp;전 주택조건(담보&nbsp;등)이나&nbsp;개인신용&nbsp;관련하여&nbsp;은행에&nbsp;사전 문의하시기 바랍니다.</p>
+	                                    </div>
+	                                </li>
+	                            
+	                        
+
+	                            
+	                                <li>
+	                                    <a href="javascript:;" data-ntt="2546" >추천서를 발급받고 임차계약을 마친 뒤에 만약 대출이 되지 않으면 어떻게 하지요?<span class="qnaMore"></span></a>
+	                                    <div class="qnaA ck-content">
+	                                        <p>자격요건에 맞으면 추천서가 발급되지만, 대구시 자격요건에 해당되어 선정되더라도 은행과 한국주택금융공사의 대출(보증) 심사 및 신용평가, 소득심사는 별도로 실시하며 그 결과에 따라 대출이 제한될 수 있으므로, 임대차계약 및 은행대출 신청 전 은행지점을 방문하셔서 자세한 상담을 받으시고 사전에 대출가능 여부를 면밀히 확인하시기 바랍니다.</p>
+	                                    </div>
+	                                </li>
+	                            
+	                        
+
+	                            
+	                                <li>
+	                                    <a href="javascript:;" data-ntt="2545" >대출심사에 소요되는 기간이 어떻게 되나요?<span class="qnaMore"></span></a>
+	                                    <div class="qnaA ck-content">
+	                                        <p>대구시 추천과는 별개로,&nbsp;해당은행에 대출관련 서류접수&nbsp;후&nbsp;약&nbsp;2주 정도가&nbsp;소요되나 은행 지점별로 상황에 따라 연장될 수 있으니 대출받고자 하는 영업점에 확인하시기 바랍니다.</p>
+	                                    </div>
+	                                </li>
+	                            
+	                        
+
+	                            
+	                                <li>
+	                                    <a href="javascript:;" data-ntt="2544" >은행 방문 시 필요한 서류는 어떤 것이 있을까요?<span class="qnaMore"></span></a>
+	                                    <div class="qnaA ck-content">
+	                                        <p>IM뱅크 콜센터(☏1566-5050)&nbsp;및 농협은행 콜센터(☏1661-3000)&nbsp;또는 해당 영업점으로 문의하시기 바랍니다.</p>
+	                                    </div>
+	                                </li>
+	                            
+	                        
+
+	                            
+	                                <li>
+	                                    <a href="javascript:;" data-ntt="2542" >대출금 지급 방식은 어떻게 되나요? 잔금일 이후에 대출실행이 되었는데 대출금은 누구에게 입금되나요?<span class="qnaMore"></span></a>
+	                                    <div class="qnaA ck-content">
+	                                        <p>○ 대출금은&nbsp;임대인(집주인)&nbsp;계좌로&nbsp;입금되는&nbsp;것이&nbsp;원칙이며,</p><p>○ 임대차 계약 사실과&nbsp;영수증으로&nbsp;잔금 납입 사실이&nbsp;확인된&nbsp;경우&nbsp;고객(임차인)&nbsp;계좌로&nbsp;입금 가능합니다.</p>
+	                                    </div>
+	                                </li>
+	                            
+	                        
+
+	                            
+	                                <li>
+	                                    <a href="javascript:;" data-ntt="2541" >신용 혹은 다른 이유로 인해, 대출금이 1억원까지 나오지 않을 수도 있나요?<span class="qnaMore"></span></a>
+	                                    <div class="qnaA ck-content">
+	                                        <p>추천서를&nbsp;발급&nbsp;받았더라도&nbsp;개인 신용도,&nbsp;소득,&nbsp;기 전세자금 등 대출보증 잔액,&nbsp;임차물건지 근저당설정 등 주택의 권리관계 등에 따라 대출가능 여부 및 금액이 결정되오니,&nbsp;반드시 사전에&nbsp;은행&nbsp;방문을&nbsp;통해 상담을&nbsp;받으시기를 권합니다.</p>
+	                                    </div>
+	                                </li>
+	                            
+	                        
+
+	                            
+	                                <li>
+	                                    <a href="javascript:;" data-ntt="2540" >입주권, 분양권이 있는 경우 신청이 가능한가요?<span class="qnaMore"></span></a>
+	                                    <div class="qnaA ck-content">
+	                                        <p>○ 입주권,&nbsp;분양권은&nbsp;주택보유수에&nbsp;포함되지&nbsp;않아 신청이&nbsp;가능하나,&nbsp;본인(배우자포함)&nbsp;명의&nbsp;소유권보존(이전)등기 또는&nbsp;잔금대출이&nbsp;확인되는&nbsp;분양권(입주권)&nbsp;등의 경우는 주택보유수에&nbsp;포함됨에&nbsp;따라&nbsp;신청이&nbsp;불가합니다.</p><p>○ 또한&nbsp;대출기간&nbsp;종료&nbsp;후&nbsp;연장&nbsp;시&nbsp;주택보유 여부를&nbsp;다시&nbsp;확인하게&nbsp;됩니다.</p><p>○ 이와&nbsp;관련사항은&nbsp;사전에&nbsp;반드시&nbsp;은행에&nbsp;확인하여&nbsp;주시기&nbsp;바랍니다.</p>
+	                                    </div>
+	                                </li>
+	                            
+	                        
+
+	                            
+	                                <li>
+	                                    <a href="javascript:;" data-ntt="2539" >신축아파트로 준공되고, 미등기 상태인 경우도 신청 가능한가요?<span class="qnaMore"></span></a>
+	                                    <div class="qnaA ck-content">
+	                                        <p>정당한&nbsp;임대인과의&nbsp;계약여부를&nbsp;확인하기 위해&nbsp;‘임대인&nbsp;분양계약서’,&nbsp;‘입주&nbsp;안내문’, ‘사용승인&nbsp;확인서’&nbsp;등을&nbsp;제출해야&nbsp;신청할&nbsp;수&nbsp;있습니다. 자세한&nbsp;사항은&nbsp;은행에&nbsp;문의하시기&nbsp;바랍니다.</p>
+	                                    </div>
+	                                </li>
+	                            
+	                        
+
+	                            
+	                                <li>
+	                                    <a href="javascript:;" data-ntt="2538" >주택을 소유하고 있고 그 주택을 처분할 계획이 없으면 무조건 지원이 불가능한가요?<span class="qnaMore"></span></a>
+	                                    <div class="qnaA ck-content">
+	                                        <p>소유&nbsp;중인&nbsp;주택이&nbsp;한국주택금융공사&nbsp;규정상&nbsp;주택보유수&nbsp;산정&nbsp;제외대상에&nbsp;해당되면,&nbsp;주택을&nbsp;소유하고&nbsp;있더라도&nbsp;무주택자로서 사업&nbsp;지원이&nbsp;가능합니다. 자세한&nbsp;사항은&nbsp;은행에&nbsp;문의하시기&nbsp;바랍니다.</p>
+	                                    </div>
+	                                </li>
+	                            
+	                        
+
+	                            
+	                                <li>
+	                                    <a href="javascript:;" data-ntt="2537" >대출기간 중 주택을 구입하면 어떻게 되나요?<span class="qnaMore"></span></a>
+	                                    <div class="qnaA ck-content">
+	                                        <p>대출약정기간 만료 및 임대차계약&nbsp;종료 등 중단 사유 발생 시&nbsp;이자지원이&nbsp;중단됩니다. 아울러,&nbsp;정부의&nbsp;부동산&nbsp;정책 등과&nbsp;관련하여 구입한&nbsp;주택의&nbsp;조건에&nbsp;따라&nbsp;전세&nbsp;대출&nbsp;즉시 상환&nbsp;대상이&nbsp;될&nbsp;수&nbsp;있으므로&nbsp;주택&nbsp;구입&nbsp;전 반드시&nbsp;은행에&nbsp;사전 상담을&nbsp;하시기&nbsp;바랍니다.</p>
+	                                    </div>
+	                                </li>
+	                            
+	                        
+
+	                            
+	                                <li>
+	                                    <a href="javascript:;" data-ntt="2536" >공동명의 계약도 가능한가요?<span class="qnaMore"></span></a>
+	                                    <div class="qnaA ck-content">
+	                                        <p>대구시 청년 임차보증금&nbsp;대출은&nbsp;지원 신청인(청년)의&nbsp;단독계약만&nbsp;가능하며,&nbsp;공동명의&nbsp;계약의&nbsp;경우 대출이&nbsp;불가능한&nbsp;점을&nbsp;반드시&nbsp;인지하시기&nbsp;바랍니다.</p>
+	                                    </div>
+	                                </li>
+	                            
+	                        
+
+	                            
+	                                <li>
+	                                    <a href="javascript:;" data-ntt="2535" >다중주택, 불법건축물은 신청이 불가한 것으로 알고 있는데, 계약할 때 어떻게 확인하면 될까요?<span class="qnaMore"></span></a>
+	                                    <div class="qnaA ck-content">
+	                                        <p>부동산등기사항전부증명서와&nbsp;건축물대장을 통해&nbsp;확인이&nbsp;가능합니다.</p><p>&nbsp;※&nbsp;주용도가&nbsp;'단독주택(다중주택)'이라고&nbsp;표기되어 있는&nbsp;주택은&nbsp;다중주택으로,&nbsp;지원대상 주택이&nbsp;아님에 유의하시기 바랍니다.</p>
+	                                    </div>
+	                                </li>
+	                            
+	                        
+
+	                            
+	                                <li>
+	                                    <a href="javascript:;" data-ntt="2534" >임대차계약 시 가족 간 거래도 가능한가요?<span class="qnaMore"></span></a>
+	                                    <div class="qnaA ck-content">
+	                                        <p>본인&nbsp;및&nbsp;배우자의&nbsp;직계존비속&nbsp;간&nbsp;거래는 보증규정상&nbsp;전세 대출이&nbsp;불가합니다.</p>
+	                                    </div>
+	                                </li>
+	                            
+	                        
+
+	                            
+	                                <li>
+	                                    <a href="javascript:;" data-ntt="2533" >전세(월세가 없는 경우)도 신청 가능한가요?<span class="qnaMore"></span></a>
+	                                    <div class="qnaA ck-content">
+	                                        <p>전세금&nbsp;2.5억원 이하 보증금만 있는 경우에도 신청 가능하며, 보증금 없이 월세만 있는 경우는 사업 대상에 해당되지 않습니다.</p>
+	                                    </div>
+	                                </li>
+	                            
+	                        
+
+	                            
+	                                <li>
+	                                    <a href="javascript:;" data-ntt="2532" >공고일 이전에 계약한 주택도 신청이 가능한가요?<span class="qnaMore"></span></a>
+	                                    <div class="qnaA ck-content">
+	                                        <p>공고일 이후 임차계약을 체결하였거나,&nbsp;계약 예정자만 가능합니다.&nbsp;또한 대구시의&nbsp;추천서가 발급되었다 하더라도 임차주택의 잔금지급일 또는 주민등록전입일&nbsp;등에 따라 은행의 대출 가능여부가 달라질 수 있으니 반드시 은행에 상담받으시기 바랍니다.</p>
+	                                    </div>
+	                                </li>
+	                            
+	                        
+
+	                            
+	                                <li>
+	                                    <a href="javascript:;" data-ntt="2531" >다가구주택도 지원을 받을 수 있나요?<span class="qnaMore"></span></a>
+	                                    <div class="qnaA ck-content">
+	                                        <p>다가구주택도 가능합니다.&nbsp;단,&nbsp;등기부등본상 임차 대상지에 근저당설정(기 대출금액,&nbsp;임차보증금 반환 순위)&nbsp;여부 등에 따라 대출이 제한될 수 있습니다. 반드시 등기부등본 등 권리관계를 확인하여 향후 보증금 반환 시 불이익이 없도록 주의하시기 바랍니다.</p>
+	                                    </div>
+	                                </li>
+	                            
+	                        
+
+	                            
+	                                <li>
+	                                    <a href="javascript:;" data-ntt="2530" >주택을 계약할 때 주의사항이 있을까요? 어떤 주택을 계약해야 하나요?<span class="qnaMore"></span></a>
+	                                    <div class="qnaA ck-content">
+	                                        <p>○ 대구시&nbsp;관내에&nbsp;위치한 주택(단독주택,&nbsp;다가구주택,&nbsp;다세대주택,&nbsp;연립주택,&nbsp;아파트)&nbsp;또는 주거용&nbsp;오피스텔이어야&nbsp;합니다.&nbsp;단,&nbsp;불법건축물,&nbsp;다중주택은 신청할&nbsp;수없으니 건축물&nbsp;대장을&nbsp;통해 실제 주택유형을&nbsp;확인하시기&nbsp;바랍니다.&nbsp;그&nbsp;외에도전세사기 피해 예방을 위해&nbsp;등기부등본&nbsp;등&nbsp;권리관계를&nbsp;반드시 확인하시기 바랍니다.&nbsp;</p><p>○ 주택&nbsp;계약&nbsp;전&nbsp;대출&nbsp;가능한&nbsp;주택인지 등기부&nbsp;등본,&nbsp;건축물대장&nbsp;등을&nbsp;지참하여&nbsp;은행에서 사전&nbsp;상담&nbsp;받으시기를&nbsp;권장합니다.</p>
+	                                    </div>
+	                                </li>
+	                            
+	                        
+
+	                            
+	                                <li>
+	                                    <a href="javascript:;" data-ntt="2529" >상담은 어디에서 가능한가요?<span class="qnaMore"></span></a>
+	                                    <div class="qnaA ck-content">
+	                                        <p>○ 이자지원 신청 및 추천서&nbsp;발급&nbsp;관련사항은&nbsp;‘대구安방(<a href="https://anbang.daegu.go.kr">https://anbang.daegu.go.kr</a>)’&nbsp;및 대구시 콜센터(☏053-120)로&nbsp;문의하시면&nbsp;됩니다.</p><p>○ 소득기준 및 대출심사 등 관련사항은&nbsp;IM뱅크 콜센터(☏1566-5050)&nbsp;및 농협은행&nbsp;콜센터(☏1661-3000)&nbsp;또는 각 은행 영업점으로 문의하시기 바랍니다.</p>
+	                                    </div>
+	                                </li>
+	                            
+	                        
+
+	                            
+	                                <li>
+	                                    <a href="javascript:;" data-ntt="2528" >보증방식은 어떻게 되나요?<span class="qnaMore"></span></a>
+	                                    <div class="qnaA ck-content">
+	                                        <p>한국주택금융공사의&nbsp;주택금융신용보증서를 이용하오니 이자지원 자격요건&nbsp;외에 해당 공사의 규정에도 적합하여야 하며,&nbsp;이는 은행 대출신청 시 동시에&nbsp;심사합니다.</p>
+	                                    </div>
+	                                </li>
+	                            
+	                        
+
+	                            
+	                                <li>
+	                                    <a href="javascript:;" data-ntt="2527" >대출금리는 변동금리인가요? 고정금리인가요?<span class="qnaMore"></span></a>
+	                                    <div class="qnaA ck-content">
+	                                        <p>대출금리는 고정금리이며,&nbsp;대출 시점에 따라 상이하므로 은행에 문의하시기 바랍니다.&nbsp;</p>
+	                                    </div>
+	                                </li>
+	                            
+	                        
+
+	                            
+	                                <li>
+	                                    <a href="javascript:;" data-ntt="2526" >대출실행 후 대출금 증액 또는 추가 대출이 가능한가요?<span class="qnaMore"></span></a>
+	                                    <div class="qnaA ck-content">
+	                                        <p>이자지원 상품의 최초 대출실행&nbsp;후&nbsp;대출금&nbsp;증액은&nbsp;불가하며,&nbsp;임차보증금&nbsp;증액등으로&nbsp;인해 추가대출이&nbsp;필요한 경우나&nbsp;다른&nbsp;상품으로&nbsp;추가&nbsp;대출&nbsp;가능유무 등&nbsp;상세사항은&nbsp;대출 은행에&nbsp;문의하시기&nbsp;바랍니다.&nbsp;따라서&nbsp;추가 대출금에&nbsp;대한&nbsp;이자는&nbsp;지원되지 않습니다.</p>
+	                                    </div>
+	                                </li>
+	                            
+	                        
+
+	                            
+	                                <li>
+	                                    <a href="javascript:;" data-ntt="2525" >대출금리 및 개인이 부담하는 금리는 어떻게 되나요?<span class="qnaMore"></span></a>
+	                                    <div class="qnaA ck-content">
+	                                        <p>대구시와 금융기관과의 협약에 따라 대출금리에서 사업대상자 본인이 대출금리의&nbsp;1.5%를 의무부담하며,&nbsp;남은 대출금리의 최대&nbsp;3.5%를 대구시에서 부담합니다. 또한 대출금리가&nbsp;5%를 초과할 경우,&nbsp;<strong>초과분은 사업대상자 본인이 부담</strong>하여야&nbsp;합니다. 사업대상자 부담금리는 대출 시점에 따라 상이하므로 은행에 문의하시기 바랍니다.</p><p>&nbsp;</p>
+	                                    </div>
+	                                </li>
+	                            
+	                        
+
+	                            
+	                                <li>
+	                                    <a href="javascript:;" data-ntt="2524" >대구시 이자지원 상품 대출 취급은행은 어디인가요?<span class="qnaMore"></span></a>
+	                                    <div class="qnaA ck-content">
+	                                        <p>iM뱅크(구.대구은행)&nbsp;또는 농협은행(영업점 명칭에 “은행”이 있는 농협은행)&nbsp;입니다.&nbsp;대구시 관내 해당 영업점으로 문의하시면 됩니다.</p>
+	                                    </div>
+	                                </li>
+	                            
+	                        
+
+	                            
+	                                <li>
+	                                    <a href="javascript:;" data-ntt="2523" >참여자 선발 시 최근년도 소득금액증명에 따라 배점표에 따른 점수 산정을 한다고 했는데, 연소득 점수는 어떻게 산정되나요?<span class="qnaMore"></span></a>
+	                                    <div class="qnaA ck-content">
+	                                        <p>근로소득은 수입금액으로 그 외 소득은 소득금액으로 확인합니다. 만약 종합소득세 신고대상자로서 근로소득과 사업소득이 동시에 발생하는&nbsp;사람의 경우에는 근로소득(수입금액)과 사업소득(소득금액)의 합계로 판단합니다. 1년 미만 근무자는 원천징수영수증 등 자료로 연환산 합니다.</p>
+	                                    </div>
+	                                </li>
+	                            
+	                        
+
+	                            
+	                                <li>
+	                                    <a href="javascript:;" data-ntt="2522" >세대주만 신청 가능한가요?<span class="qnaMore"></span></a>
+	                                    <div class="qnaA ck-content">
+	                                        <p>세대주 인정자도 신청 가능합니다.&nbsp;다만,&nbsp;이자지원 신청인과 임차 계약인 및 대출 신청인이 모두 동일해야 합니다. 기타 세대주 인정기준은 한국주택금융공사의 전세자금보증 업무 지침 등에 따릅니다.</p>
+	                                    </div>
+	                                </li>
+	                            
+	                        
+
+	                            
+	                                <li>
+	                                    <a href="javascript:;" data-ntt="2521" >재외국민도 신청이 가능한가요?<span class="qnaMore"></span></a>
+	                                    <div class="qnaA ck-content">
+	                                        <p>재외국민의&nbsp;경우&nbsp;한국주택금융공사&nbsp;규정&nbsp;상 신청이&nbsp;불가합니다.&nbsp;주민등록이&nbsp;되어 있는 재외국민도&nbsp;마찬가지로 신청이 불가합니다.</p>
+	                                    </div>
+	                                </li>
+	                            
+	                        
+
+	                            
+	                                <li>
+	                                    <a href="javascript:;" data-ntt="2520" >이자지원 서류 제출 시, 휴대폰으로 찍은 사진도 가능한가요?<span class="qnaMore"></span></a>
+	                                    <div class="qnaA ck-content">
+	                                        <p>선명하게&nbsp;촬영된&nbsp;경우에만&nbsp;가능합니다.&nbsp;내용&nbsp;분별이&nbsp;어려울&nbsp;경우&nbsp;‘반려(보완)’될 수 있습니다.</p>
+	                                    </div>
+	                                </li>
+	                            
+	                        
+
+	                            
+	                                <li>
+	                                    <a href="javascript:;" data-ntt="2519" >대구시 신혼부부 임차보증금 이자지원을 받고 있는데 청년 임차보증금대출을 추가로 받을 수 있나요?<span class="qnaMore"></span></a>
+	                                    <div class="qnaA ck-content">
+	                                        <p>대구시 신혼부부 임차보증금 이자지원,&nbsp;청년희망주택 임대료 지원 등의 경우&nbsp;주거비 지원을&nbsp;<strong>현재 받고 있으면</strong>,&nbsp;청년 주택임차보증금&nbsp;대출이자 지원&nbsp;신청이&nbsp;불가합니다.</p>
+	                                    </div>
+	                                </li>
+	                            
+	                        
+
+	                            
+	                                <li>
+	                                    <a href="javascript:;" data-ntt="2518" >청년 월세지원, 주거급여 대상자는 지원 신청이 불가능한가요?<span class="qnaMore"></span></a>
+	                                    <div class="qnaA ck-content">
+	                                        <p>주택도시기금 전세자금대출(버팀목 전세자금대출 등),&nbsp;주거급여,&nbsp;대구시 신혼부부 임차보증금 이자지원&nbsp;등 정부・지자체 주거비 지원을 받고 있는 경우,&nbsp;공공임대주택(행복주택,임대 · 매입주택 등) 및 공공주택사업자(중앙, 지자체, LH, 도시공사 등)가 공급 및 지원하는 주택은 청년 주택임차보증금&nbsp;대출이자 지원&nbsp;신청이&nbsp;불가합니다.&nbsp;단,&nbsp;청년월세 한시 특별지원사업(국토부)&nbsp;대상자는 신청 가능합니다.</p>
+	                                    </div>
+	                                </li>
+	                            
+	                        
+
+	                            
+	                                <li>
+	                                    <a href="javascript:;" data-ntt="2517" >연소득 기준은 세전인가요, 세후인가요?<span class="qnaMore"></span></a>
+	                                    <div class="qnaA ck-content">
+	                                        <p>세전&nbsp;연소득&nbsp;기준입니다.</p>
+	                                    </div>
+	                                </li>
+	                            
+	                        
+
+	                            
+	                                <li>
+	                                    <a href="javascript:;" data-ntt="2516" >소득이 없어도 추천서를 받으면 대출이 가능한가요? 어떤 서류를 제출해야 하나요?<span class="qnaMore"></span></a>
+	                                    <div class="qnaA ck-content">
+	                                        <p>소득기준은&nbsp;본인 연소득&nbsp;6천만원(부부합산&nbsp;8천만원)&nbsp;이하이므로 무소득자도지원신청 가능합니다. &nbsp;소득이 발생하지 않아 소득금액증명이 발급되지 않는 경우에는 ‘사실증명(신고사실 없음)’을 제출하시면 됩니다. 추천서를 발급받는다 하여 대출이 가능한 것은 아니며, 은행의 심사에 따라 대출가능 여부 및 금액이 결정되오니 은행에 상담받으시기 바랍니다.</p>
+	                                    </div>
+	                                </li>
+	                            
+	                        
+
+	                            
+	                                <li>
+	                                    <a href="javascript:;" data-ntt="2515" >보증부월세의 경우 임차보증금 2.5억원 이하(전월세 전환율 6.2% 적용) 주택 기준에 해당하는지 어떻게 알 수 있나요?<span class="qnaMore"></span></a>
+	                                    <div class="qnaA ck-content">
+	                                        <p>(예시)&nbsp;보증금&nbsp;1억원에 월세&nbsp;77만원을 내고 있는 경우,&nbsp;보증금액&nbsp;1억원에&nbsp;‘연간 월세액(77만원×12개월)을 전월세전환율(0.062)로 나눈&nbsp;1억 5천만원(월세환산보증금액)’을 더하면 임차보증금은&nbsp;2.5억원으로 대상주택 임차보증금 기준(2.5억원 이하)에 해당됩니다.</p>
+	                                    </div>
+	                                </li>
+	                            
+	                        
+
+	                            
+	                                <li>
+	                                    <a href="javascript:;" data-ntt="2514" >현재 만 39세이고 곧 만 40세가 되는데 추천서 발급이 가능한가요? 대출기간은 언제까지인가요?<span class="qnaMore"></span></a>
+	                                    <div class="qnaA ck-content">
+	                                        <p>추천서 발급은 가능하나,&nbsp;대출실행일&nbsp;기준&nbsp;만&nbsp;39세까지 대출&nbsp;가능합니다. 또한,&nbsp;만&nbsp;40세가 도래한 경우 대출기간 만료 이후의 이자지원 연장은 불가합니다.</p>
+	                                    </div>
+	                                </li>
+	                            
+	                        
+
+	                            
+	                                <li>
+	                                    <a href="javascript:;" data-ntt="2513" >만 19~39세 연령제한 기준일은 언제인가요?<span class="qnaMore"></span></a>
+	                                    <div class="qnaA ck-content">
+	                                        <p>은행의 대출실행일 기준입니다. 추천서 발급 신청일이 아님을 주의하시기 바랍니다. 따라서 대구시의 추천서가 발급되었다 하더라도 대출실행일에 연령 범위에 해당되지 않을 경우 은행에서 대출이 실행되지 않을 수 있습니다.</p>
+	                                    </div>
+	                                </li>
+	                            
+	                        
+
+	                            
+	                                <li>
+	                                    <a href="javascript:;" data-ntt="2512" >타지역 거주자(전입 예정자)도 신청 가능한가요?<span class="qnaMore"></span></a>
+	                                    <div class="qnaA ck-content">
+	                                        <p>임차(예정)&nbsp;물건(주택)이&nbsp;대구시&nbsp;관내에&nbsp;위치한다면 신청&nbsp;가능합니다.&nbsp;단,&nbsp;주택임대차보호법&nbsp;관련 대항력&nbsp;취득을&nbsp;위해&nbsp;입주일(잔금일)에&nbsp;즉시 전입신고 후 관련&nbsp;서류를&nbsp;대출 은행의 요청에&nbsp;따라&nbsp;제출하셔야&nbsp;합니다.</p>
+	                                    </div>
+	                                </li>
+	                            
+	                        
+
+	                            
+	                                <li>
+	                                    <a href="javascript:;" data-ntt="2511" >지원신청 심사결과가 ‘반려(보완)’인 경우는?<span class="qnaMore"></span></a>
+	                                    <div class="qnaA ck-content">
+	                                        <p>‘신청완료’&nbsp;후&nbsp;심사&nbsp;부적격&nbsp;사유&nbsp;발생&nbsp;시(기재정보 불일치,&nbsp;필요서류&nbsp;미첨부,보완&nbsp;서류&nbsp;필요&nbsp;등)&nbsp;‘반려(보완)’처리&nbsp;됩니다.&nbsp;심사&nbsp;결과가&nbsp;‘반려(보완)’시에는&nbsp;마이페이지에서&nbsp;‘수정’&nbsp;버튼을&nbsp;누른&nbsp;후&nbsp;반려사유를&nbsp;3일 내 보완하여야 합니다. 보완이 안될 시 심사 제외 처리될 수 있습니다.</p>
+	                                    </div>
+	                                </li>
+	                            
+	                        
+
+	                            
+	                                <li>
+	                                    <a href="javascript:;" data-ntt="2510" >신청 결과(추천서 발급)는 언제/어떻게 알 수 있나요?<span class="qnaMore"></span></a>
+	                                    <div class="qnaA ck-content">
+	                                        <p>대구안방 마이페이지&nbsp;내&nbsp;청년&nbsp;임차보증금&nbsp;지원현황에서&nbsp;신청확인,&nbsp;수정,&nbsp;신청취소,&nbsp;추천서&nbsp;<a href="http://housing.seoul.go.kr">출력</a> 등을&nbsp;하실&nbsp;수&nbsp;있습니다.&nbsp;</p>
+	                                    </div>
+	                                </li>
+	                            
+	                        
+
+	                            
+	                                <li>
+	                                    <a href="javascript:;" data-ntt="2509" >이자지원 및 대출 절차는 어떻게 되나요?<span class="qnaMore"></span></a>
+	                                    <div class="qnaA ck-content">
+	                                        <p>‘대구安방’(<a href="https://anbang.daegu.go.kr">https://anbang.daegu.go.kr</a>)에서 추천서 발급 신청&nbsp;→&nbsp;신청서 검토 및 추천서 발급(대구시) /&nbsp;대출 가능여부 및 한도 등 상담(은행) &nbsp;→&nbsp;대출 신청&nbsp;→&nbsp;대출 심사(보증)&nbsp;및 실행(은행,&nbsp;한국주택금융공사)</p>
+	                                    </div>
+	                                </li>
+	                            
+	                        
+
+	                            
+	                        
+
+	                            
+	                        
+
+	                            
+	                        
+
+	                            
+	                        
+
+	                            
+	                        
+
+	                            
+	                        
+
+	                            
+	                        
+
+	                            
+	                        
+
+	                            
+	                        
+
+	                            
+	                        
+
+	                            
+	                        
+
+	                            
+	                        
+
+	                            
+	                        
+
+	                            
+	                        
+
+	                            
+	                        
+
+	                            
+	                        
+
+	                            
+	                        
+
+	                            
+	                        
+
+	                            
+	                        
+
+	                            
+	                        
+
+	                            
+	                        
+
+	                            
+	                        
+
+	                            
+	                        
+
+	                            
+	                        
+
+	                            
+	                        
+
+	                            
+	                        
+
+	                            
+	                        
+
+	                            
+	                        
+
+	                            
+	                        
+
+	                            
+	                        
+
+	                            
+	                        
+
+	                            
+	                        
+
+	                            
+	                        
+
+	                            
+	                        
+
+	                            
+	                        
+
+	                            
+	                        
+
+	                            
+	                        
+
+	                            
+	                        
+						</ul>
+	                </div>
+                
+	                <div class="tabcont  " data-ntt="333">
+						<ul class=" qna ">
+	                        
+
+	                            
+	                        
+
+	                            
+	                        
+
+	                            
+	                        
+
+	                            
+	                        
+
+	                            
+	                        
+
+	                            
+	                        
+
+	                            
+	                        
+
+	                            
+	                        
+
+	                            
+	                        
+
+	                            
+	                        
+
+	                            
+	                        
+
+	                            
+	                        
+
+	                            
+	                        
+
+	                            
+	                        
+
+	                            
+	                        
+
+	                            
+	                        
+
+	                            
+	                        
+
+	                            
+	                        
+
+	                            
+	                        
+
+	                            
+	                        
+
+	                            
+	                        
+
+	                            
+	                        
+
+	                            
+	                        
+
+	                            
+	                        
+
+	                            
+	                        
+
+	                            
+	                        
+
+	                            
+	                        
+
+	                            
+	                        
+
+	                            
+	                        
+
+	                            
+	                        
+
+	                            
+	                        
+
+	                            
+	                        
+
+	                            
+	                        
+
+	                            
+	                        
+
+	                            
+	                        
+
+	                            
+	                        
+
+	                            
+	                        
+
+	                            
+	                        
+
+	                            
+	                        
+
+	                            
+	                        
+
+	                            
+	                        
+
+	                            
+	                        
+
+	                            
+	                        
+
+	                            
+	                        
+
+	                            
+	                        
+
+	                            
+	                        
+
+	                            
+	                        
+
+	                            
+	                        
+
+	                            
+	                        
+
+	                            
+	                                <li>
+	                                    <a href="javascript:;" data-ntt="1921" >오피스텔을 보유하고 있는 경우에도 유주택자로 지원이 제외되나요? <span class="qnaMore"></span></a>
+	                                    <div class="qnaA ck-content">
+	                                        <p><strong>오피스텔</strong>은&nbsp;<strong>준주택</strong>으로 주택이 아니므로 오피스텔만 보유하고 있다면&nbsp;<strong>무주택자</strong>로 인정받을 수 있습니다. (토지도 동일)</p>
+	                                    </div>
+	                                </li>
+	                            
+	                        
+
+	                            
+	                                <li>
+	                                    <a href="javascript:;" data-ntt="1920" >현재 형제·자매 또는 부모님과 함께 거주중인 경우 무주택 여부 판단은 어떻게 되나요? <span class="qnaMore"></span></a>
+	                                    <div class="qnaA ck-content">
+	                                        <p>주택소유여부는&nbsp;<strong>신청자 본인</strong>과&nbsp;<strong>배우자</strong>(기혼자의 경우)까지 조회하며,&nbsp;부모님·형제·자매 등은 조회대상에 포함되지 않습니다.&nbsp;주택소유여부는 국토교통부의 주택소유현황확인시스템으로 조회하며,&nbsp;주택(분양권, &nbsp;입주권 포함)을 보유하고 있는 경우 지원대상에 해당하지 않습니다.&nbsp;</p>
+	                                    </div>
+	                                </li>
+	                            
+	                        
+
+	                            
+	                                <li>
+	                                    <a href="javascript:;" data-ntt="1919" >신혼부부의 기준은 무엇인가요? <span class="qnaMore"></span></a>
+	                                    <div class="qnaA ck-content">
+	                                        <p>신청일을 기준으로&nbsp;<strong>혼인신고일로부터&nbsp;7년 이내</strong>인 경우를 말합니다.&nbsp;<br>예를 들어, ’24.9.1.&nbsp;신청하는 경우에는 혼인신고일이&nbsp;’17.9.1.~’24.9.1.인&nbsp;경우가 신혼부부이며, ’17.8.31.&nbsp;이전에 혼인신고한 경우에는 신혼부부에 해당하지 않습니다.&nbsp;</p>
+	                                    </div>
+	                                </li>
+	                            
+	                        
+
+	                            
+	                                <li>
+	                                    <a href="javascript:;" data-ntt="1918" >임대인이 임대보증금보증에 가입하여 보증료의 25%를 부담하였는데, 지원받을 수 있나요? <span class="qnaMore"></span></a>
+	                                    <div class="qnaA ck-content">
+	                                        <p>전세보증금반환보증 보증료 지원사업은 전세보증금반환보증을 대상으로 하고 있으므로 임대보증금보증 보증료는&nbsp;지원 대상이 아닙니다.&nbsp;</p>
+	                                    </div>
+	                                </li>
+	                            
+	                        
+
+	                            
+	                                <li>
+	                                    <a href="javascript:;" data-ntt="1917" >주택이 아닌 오피스텔을 임차한 경우 지원되나요<span class="qnaMore"></span></a>
+	                                    <div class="qnaA ck-content">
+	                                        <p>오피스텔을 임차하였더라도 보증보험에 가입하고, 소득 등 다른 지원요건을 모두 만족하는 경우 신청가능 합니다.</p>
+	                                    </div>
+	                                </li>
+	                            
+	                        
+
+	                            
+	                        
+
+	                            
+	                                <li>
+	                                    <a href="javascript:;" data-ntt="1483" >제출서류 발급시점은 어떻게 되나요?  <span class="qnaMore"></span></a>
+	                                    <div class="qnaA ck-content">
+	                                        <p>주민등록등본, 혼인관계증명서, 부동산등기사항전부증명서, 소득증빙서류는 신청일로부터 3개월 이내 발급만 인정됩니다.</p>
+	                                    </div>
+	                                </li>
+	                            
+	                        
+
+	                            
+	                                <li>
+	                                    <a href="javascript:;" data-ntt="1336" >민간임대주택 등록임대사업자의 임대주택에 거주하더라도 전세보증금반환보증에 가입할 수 있는데, 제외되는 이유는 무엇인가요?<span class="qnaMore"></span></a>
+	                                    <div class="qnaA ck-content">
+	                                        <p>등록임대사업자는 임대보증금보증 가입이 의무이며,&nbsp;</p><p>&nbsp;</p><p>임차인이&nbsp;전세보증금반환보증을 가입하는 경우에도 보증기관 또는 임대인에게 보증료 청구 가능하므로 보증금 지원 대상에서 제외합니다.&nbsp;</p>
+	                                    </div>
+	                                </li>
+	                            
+	                        
+
+	                            
+	                                <li>
+	                                    <a href="javascript:;" data-ntt="1335" >분양권이나 입주권은 주택으로 보나요?<span class="qnaMore"></span></a>
+	                                    <div class="qnaA ck-content">
+	                                        <p>분양권이나 입주권은 주택에 포함되며, 이를 소유하고 있는 경우에는 유주택자에 해당하여 지원대상에서 제외됩니다.</p>
+	                                    </div>
+	                                </li>
+	                            
+	                        
+
+	                            
+	                                <li>
+	                                    <a href="javascript:;" data-ntt="1334" >주민등록등본 주소지와 임차계약서상 주소지가 동일해야 하나요?<span class="qnaMore"></span></a>
+	                                    <div class="qnaA ck-content">
+	                                        <p>주민등록등본, 임차계약서, 보증서의 주소지가 모두 동일하여야 지원가능합니다</p>
+	                                    </div>
+	                                </li>
+	                            
+	                        
+
+	                            
+	                                <li>
+	                                    <a href="javascript:;" data-ntt="1333" >민간임대주택 등록임대사업자 여부는 어떻게 알 수 있나요? <span class="qnaMore"></span></a>
+	                                    <div class="qnaA ck-content">
+	                                        <p>등록임대사업자의 경우 본인의 물건지에 부기등기하여야 하므로</p><p>&nbsp;</p><p>신청서류인 ‘부동산 등기사항전부증명서’의 부기등기 내역을 통해 확인할 수 있습니다.&nbsp;</p>
+	                                    </div>
+	                                </li>
+	                            
+	                        
+
+	                            
+	                                <li>
+	                                    <a href="javascript:;" data-ntt="1332" >임차계약시 여러 보증료를 납부했는데 전부 지급되나요?<span class="qnaMore"></span></a>
+	                                    <div class="qnaA ck-content">
+	                                        <p>전세보증금 반환보증에 대한 보증료만 지원됩니다. 대출보증, 특약보증 등의 보증료는 지원되지 않습니다.</p><p>&nbsp;- 주택도시보증공사(HUG) : 전세보증금 반환보증서, 전세안심대출보증서</p><p>&nbsp;- 한국주택금융공사(HF) : 전세지킴보증서</p><p>&nbsp;- SGI 서울보증 : 전세금보장신용보험증권</p>
+	                                    </div>
+	                                </li>
+	                            
+	                        
+
+	                            
+	                                <li>
+	                                    <a href="javascript:;" data-ntt="1330" >신청 및 지급 절차가 어떻게 되나요?<span class="qnaMore"></span></a>
+	                                    <div class="qnaA ck-content">
+	                                        <p>① 보증기관에 전세반환보증 가입후 보증서 발급</p><p>&nbsp; &nbsp; &nbsp;* 보증기관 : 주택도시보증공사, &nbsp;한국주택금융공사, 서울보증보험</p><p>&nbsp;</p><p>② 정부24(www.gov.kr) 국토교통부 전세보증금반환보증 보증료 지원 신청(수시)</p><p>※ 주택도시보증공사 보증 가입자는 HUG안심전세포털(www.khug.or.kr/jeonse)에서도 신청 가능</p><p>&nbsp;</p><p>③ 심사 및 결과통지(30일 소요) → 통지일로부터 15일 이내 지급</p><p>&nbsp; &nbsp; * 심사기간은 필요시 15일 연장될 수 있음</p>
+	                                    </div>
+	                                </li>
+	                            
+	                        
+
+	                            
+	                        
+
+	                            
+	                        
+
+	                            
+	                        
+
+	                            
+	                        
+
+	                            
+	                        
+
+	                            
+	                        
+
+	                            
+	                        
+
+	                            
+	                        
+
+	                            
+	                        
+
+	                            
+	                        
+
+	                            
+	                        
+
+	                            
+	                        
+
+	                            
+	                        
+
+	                            
+	                        
+
+	                            
+	                        
+
+	                            
+	                        
+
+	                            
+	                        
+
+	                            
+	                        
+
+	                            
+	                        
+
+	                            
+	                        
+
+	                            
+	                        
+
+	                            
+	                        
+
+	                            
+	                        
+						</ul>
+	                </div>
+                
+	                <div class="tabcont  " data-ntt="336">
+						<ul class=" qna ">
+	                        
+
+	                            
+	                        
+
+	                            
+	                                <li>
+	                                    <a href="javascript:;" data-ntt="2734" >청년희망주택 대출이자 지원사업<span class="qnaMore"></span></a>
+	                                    <div class="qnaA ck-content">
+	                                        <p>&nbsp;</p><p><strong>□&nbsp;사업안내</strong></p><p>&nbsp;ㅇ 대구시가 청년층의 주거안정을 위해 주거공간과 서비스를 특화하여&nbsp;공급하는 대구형 청년희망주택의 입주자에게 표준임대보증금 대출이자를 지원하는 사업입니다.</p><p>&nbsp;</p><p><strong>□&nbsp;지원대상</strong></p><p>&nbsp;ㅇ&nbsp;<strong>대구형 청년희망주택 청년계층*&nbsp;입주자 중 전세자금 대출자**</strong></p><p>&nbsp;*&nbsp;<strong>청년계층&nbsp;:&nbsp;대학생,&nbsp;청년,&nbsp;신혼부부ㆍ한부모가족,&nbsp;산업단지근로자(19세~39세이하)</strong></p><p>&nbsp;**<strong>&nbsp;『소득세법 시행령』&nbsp;의거 주택임차자금 대출기관에서 전세자금 대출을 받은자</strong></p><p><strong>&nbsp;</strong></p><p>&nbsp;ㅇ 청년희망주택 계약자,&nbsp;전세자금 대출자,&nbsp;이자지원 신청자가 동일해야 함.</p><p>&nbsp;</p><p>&nbsp;※&nbsp;<strong>단,&nbsp;주거급여 수급자·월세지원·대출이자 지원 등 정부 및 우리 시 주거지원 혜택을 받고 있는 대상자는 지원대상에서 제외</strong></p><p>&nbsp;</p><p><strong>□&nbsp;지원내용</strong></p><p>&nbsp;ㅇ&nbsp;전세자금 대출자를 대상으로&nbsp;<strong>표준임대보증금 범위내에서 대출이자&nbsp;50%&nbsp;지원</strong></p><p>&nbsp;-&nbsp;임대보증금이 표준임대보증금을 초과할 경우&nbsp;<strong>표준임대보증금 부족분에 대한 &nbsp;지원대상 대출금액&nbsp;이자&nbsp;50%&nbsp;지원</strong></p><p>(단위&nbsp;:&nbsp;만원)</p><figure class="table"><table><tbody><tr><td><strong>구 분</strong></td><td><p><strong>표준임대보증금</strong></p><p><strong>(A)</strong></p></td><td><p><strong>임대보증금</strong></p><p><strong>(B)</strong></p></td><td><p><strong>대출금액</strong></p><p><strong>(C)</strong></p></td><td><p><strong>지원대상 대출금액</strong></p><p><strong>A-(B-C)</strong></p></td></tr><tr><td><strong>예시&nbsp;1</strong></td><td><strong>4,000</strong></td><td><strong>4,000</strong></td><td><strong>2,000</strong></td><td><strong>2,000</strong></td></tr><tr><td><strong>예시&nbsp;2</strong></td><td><strong>4,000</strong></td><td><strong>6,000</strong></td><td><strong>3,000</strong></td><td><strong>1,000</strong></td></tr><tr><td><strong>예시&nbsp;3</strong></td><td><strong>4,000</strong></td><td><strong>7,000</strong></td><td><strong>5,000</strong></td><td><strong>2,000</strong></td></tr></tbody></table></figure><p><strong>&nbsp;</strong></p><p>&nbsp;ㅇ&nbsp;<strong>이자지원 금리</strong>는 정부의 전세자금 대출상품인&nbsp;<strong>버팀목 전세자금 대출금리 적용</strong></p><p>&nbsp;※&nbsp;<strong>버팀목 외 대출자는 전세자금 대출금리와 버팀목 최대금리 중 낮은 금리 적용 &nbsp;</strong></p><p>&nbsp;ㅇ&nbsp;<strong>임대보증금 대출이자 지원금액 산정 예시</strong></p><figure class="table"><table><tbody><tr><td><p><strong>표준</strong></p><p><strong>임대보증금</strong></p></td><td><strong>임대보증금</strong></td><td><strong>대출금액</strong></td><td><p><strong>지원대상</strong></p><p><strong>대출금액</strong></p><p><strong>(A)</strong></p></td><td><p><strong>대출은행</strong></p><p><strong>금리</strong></p></td><td><p><strong>월&nbsp;</strong></p><p><strong>이자납부액</strong></p></td><td><p><strong>지원</strong></p><p><strong>금리</strong></p><p><strong>(B)</strong></p></td><td><p><strong>지원</strong></p><p><strong>비율</strong></p><p><strong>(C)</strong></p></td><td><p><strong>대구시 월&nbsp;</strong></p><p><strong>이자지원액</strong></p><p><strong>(A*B*C)/12</strong></p></td></tr><tr><td>4,000만원</td><td>6,000만원</td><td>3,000만원</td><td><strong>1,000만원</strong></td><td>6%</td><td>5만원</td><td><strong>3.1%</strong></td><td><strong>50%</strong></td><td><strong>12,910원</strong></td></tr></tbody></table></figure><p>&nbsp;-&nbsp;<strong>표준임대보증금은 입주자 모집공고문에서 확인,&nbsp;임대보증금은 임대차계약 시 보증금</strong></p><p>&nbsp;-&nbsp;<strong>대출은행 금리(6%)가 버팀목 금리보다 높을 경우 버팀목 최대금리(3.1%)를 지원금리로 적용</strong></p><p>&nbsp;-&nbsp;<strong>지원대상 대출금액에 버팀목 최대금리(3.1%)를 지원금리로 적용한 금액의&nbsp;50%&nbsp;지원</strong></p><p><strong>&nbsp;</strong></p><p><strong>□&nbsp;신청방법</strong></p><p>&nbsp;ㅇ 신청자가&nbsp;<strong>『대구安방』&nbsp;플랫폼(</strong><a href="https://anbang.daegu.go.kr"><strong>https://anbang.daegu.go.kr</strong></a><strong>)</strong>을 통해 지원 신청&nbsp;</p><p>&nbsp;ㅇ&nbsp;<strong>지급시기</strong>&nbsp;:&nbsp;<strong>증빙서류 확인 후 분기별 지급</strong>(3월, 6월, 9월, 12월)</p><figure class="table"><table><tbody><tr><td>신청기간</td><td>1/1~2/20</td><td>2/21~5/20</td><td>5/21~8/20</td><td>8/21~11/20</td></tr><tr><td>지 급 일</td><td>3월</td><td>6월</td><td>9월</td><td>12월</td></tr></tbody></table></figure><p>&nbsp;ㅇ 지원절차</p><figure class="table"><table><tbody><tr><td><strong>사업안내·홍보</strong></td><td rowspan="2">⇨</td><td><strong>이자지원 신청</strong></td><td rowspan="2">⇨</td><td><strong>정보 확인</strong></td><td rowspan="2">⇨</td><td><strong>지원금 지급</strong></td></tr><tr><td><strong>대구시</strong>,&nbsp;도시개발공사, LH</td><td>입주자→<strong>대구시</strong></td><td><strong>대구시</strong>,&nbsp;도시개발공사, LH</td><td><strong>대구시</strong>→입주자</td></tr></tbody></table></figure><p>&nbsp;ㅇ 대출시 유의사항</p><p>&nbsp;-&nbsp;버팀목 외 대출 시 금융거래확인서 상 대출 용도는&nbsp;`주택전세자금 대출`&nbsp;이어야 함</p><p>&nbsp;-&nbsp;신청자가 매 분기별&nbsp;`주택자금상환등증명서(해당 대출은행에서 발급)`를 제출해야 분기별 지원금이 지급됨.</p><p>&nbsp;</p><p><strong>□&nbsp;신청서류</strong></p><p>&nbsp;ㅇ 주민등록등본 &nbsp;-&nbsp;주민등록등본에서 주민등록번호의 생년월일 제외 뒷자리 삭제하여 제출</p><p>&nbsp;ㅇ 통장사본(이자지원을 받을 계좌)</p><p>&nbsp;ㅇ 금융거래확인서(대출용도&nbsp;:&nbsp;주택전세자금) &nbsp;-&nbsp;금융거래확인서는 은행에서 발급가능</p><p>&nbsp;ㅇ 주택자금상환등증명서(대출계좌표기) &nbsp;-&nbsp;주택자금상황등증명서는 은행에서 발급가능하며 신청 시 분기마다 갱신해야 함</p><p><strong>□&nbsp;주택자금상환등증명서 은행별 제출서류 안내</strong></p><figure class="table"><table><tbody><tr><td><strong>은행명</strong></td><td><strong>서류 이름</strong></td><td><strong>확인 가능한 필요 내용</strong><br><strong>(거래 일자 포함)</strong></td></tr><tr><td rowspan="2"><strong>신한은행&nbsp;1577-8000</strong></td><td><strong>대출이자납입확인서</strong></td><td><strong>대출계좌번호,&nbsp;월별이자납입내역</strong></td></tr><tr><td><strong>기간별대출금계산서</strong></td><td><strong>대출계좌번호,&nbsp;월별이자납입내역,&nbsp;이자계산기간</strong></td></tr><tr><td><strong>기업은행&nbsp;1588-2588</strong></td><td><strong>대출(이자)계산서</strong></td><td><strong>대출계좌번호,&nbsp;월별이자납입내역,&nbsp;이자계산일수</strong></td></tr><tr><td rowspan="2"><strong>국민은행&nbsp;1588-9999</strong></td><td><strong>대출계좌상세거래정보</strong></td><td><strong>대출계좌번호,&nbsp;월별이자납입내역,&nbsp;이자계산기간</strong></td></tr><tr><td><strong>여신거래내역서</strong></td><td><strong>대출계좌번호,&nbsp;월별이자납입내역</strong></td></tr><tr><td rowspan="2"><strong>농협은행&nbsp;1661-3000</strong></td><td><strong>대출거래내역조회</strong></td><td><strong>대출계좌번호,&nbsp;월별이자납입내역,&nbsp;이자계산기간</strong></td></tr><tr><td><strong>대출원리금납입증명서</strong></td><td><strong>대출계좌번호,&nbsp;월별이자납입내역</strong></td></tr><tr><td rowspan="3"><strong>하나은행&nbsp;1588-1111</strong></td><td><strong>이자납입내역서</strong></td><td><strong>대출계좌번호,&nbsp;월별이자납입내역</strong></td></tr><tr><td><strong>여신거래내역서</strong></td><td><strong>대출계좌번호,&nbsp;월별이자납입내역,&nbsp;이자계산기간</strong></td></tr><tr><td><strong>이자계산내역서</strong></td><td><strong>대출계좌번호,&nbsp;월별이자납입내역,&nbsp;이자계산기간</strong></td></tr><tr><td><strong>우리은행&nbsp;1588-5000</strong></td><td><strong>대출이자납입내역서</strong></td><td><strong>대출계좌번호,&nbsp;월별이자납입내역,&nbsp;이자최종이수일</strong></td></tr><tr><td rowspan="2"><strong>카카오뱅크&nbsp;1599-3333</strong></td><td><p><strong>주택임차차입금&nbsp;</strong></p><p><strong>원리금 상환증명서</strong></p></td><td><strong>대출계좌번호,&nbsp;월별이자납입내역</strong></td></tr><tr><td><p><strong>대출금 계산서</strong></p><p><strong>※&nbsp;월별 출력해야하는 서류임</strong></p></td><td><strong>대출계좌번호,&nbsp;이자납입내역,&nbsp;이자계산기간</strong></td></tr><tr><td><strong>기타 증권사,&nbsp;보험사 대출</strong></td><td><p><strong>대출이자납입확인서</strong></p><p><strong>대출원리금상환증명서</strong></p></td><td><p><strong>월별이자납입내역</strong></p><p><strong>증권사·보험사별로 확인할 수 있는 내용이 다름.&nbsp;</strong></p><p><strong>대출 번호 확인이 불가능하다면&nbsp;</strong></p><p><strong>금융거래확인서상에서 확인 바람.</strong></p></td></tr></tbody></table></figure><p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p>
+	                                    </div>
+	                                </li>
+	                            
+	                        
+
+	                            
+	                                <li>
+	                                    <a href="javascript:;" data-ntt="2624" >[기존 지원자] 갱신 서류 문의<span class="qnaMore"></span></a>
+	                                    <div class="qnaA ck-content">
+	                                        <p>신규 신청자가 아닌 기존 신청자(지원자)께서는</p><p><strong>아래 내용만 갱신 첨부</strong> 해주시면 됩니다.</p><p>&nbsp;</p><p>월별 이자납입확인서는 각 금융기관마다 명칭이 상이하나,&nbsp;서식에 대출자,&nbsp;대출상품명,&nbsp;거래일,&nbsp;대출잔고,&nbsp;월별 납입대출이자 등의 내용이 들어가는 서류면 명칭이 반드시 월별 이자납입확인서가 아니라도 제출가능합니다. 다만 모든 서류에는 은행명 및 직인이 들어가 있어야 증빙서류로서 효력이 있습니다.<strong> (발급은행명 및 직인 없는 서류 제출불가)</strong></p><p>&nbsp;</p><p>[참고]</p><p>대구은행(이자납입증명서), 하나은행(여신기간별거래내역), 국민은행(여신거래내역)</p><p>기업은행(대출금(이자)계산서), 우리은행(여신거래내역 조회, 여신원장사본 조회, 대출이자납입내역),&nbsp;</p><p>농협(대출거래내역 조회표/대출원리금납입증명서), 신한은행(대출이자납입확인서) 등</p><p>&nbsp;</p><p>그 밖의 서류는 최초 신청 시 첨부하였던 서류로 첨부해주시기 바랍니다.</p><p>기타 문의는 ☏053-803-6901로 연락주시기 바랍니다.</p>
+	                                    </div>
+	                                </li>
+	                            
+	                        
+
+	                            
+	                        
+
+	                            
+	                        
+
+	                            
+	                        
+
+	                            
+	                        
+
+	                            
+	                        
+
+	                            
+	                        
+
+	                            
+	                        
+
+	                            
+	                        
+
+	                            
+	                        
+
+	                            
+	                        
+
+	                            
+	                        
+
+	                            
+	                        
+
+	                            
+	                        
+
+	                            
+	                        
+
+	                            
+	                        
+
+	                            
+	                        
+
+	                            
+	                        
+
+	                            
+	                        
+
+	                            
+	                        
+
+	                            
+	                        
+
+	                            
+	                        
+
+	                            
+	                        
+
+	                            
+	                        
+
+	                            
+	                        
+
+	                            
+	                        
+
+	                            
+	                        
+
+	                            
+	                        
+
+	                            
+	                        
+
+	                            
+	                        
+
+	                            
+	                        
+
+	                            
+	                        
+
+	                            
+	                        
+
+	                            
+	                        
+
+	                            
+	                        
+
+	                            
+	                        
+
+	                            
+	                        
+
+	                            
+	                        
+
+	                            
+	                        
+
+	                            
+	                        
+
+	                            
+	                        
+
+	                            
+	                        
+
+	                            
+	                        
+
+	                            
+	                        
+
+	                            
+	                        
+
+	                            
+	                                <li>
+	                                    <a href="javascript:;" data-ntt="2398" >[개인정보유출솔루션] 차단되어 저장 오류 <span class="qnaMore"></span></a>
+	                                    <div class="qnaA ck-content">
+	                                        <p>pdf 파일의 개인정보가 있을 경우 개인정보유출솔루션에 의해 신청이 되지 않습니다.</p><p>해결방법은 pdf파일을 그림파일(jpg)나 압축파일(zip)으로 변환하셔서 첨부해주시기 바랍니다.</p><p>해당 방법으로 해결이 되지 않으실 경우 ☏053-803-6901로 연락바랍니다.&nbsp;</p>
+	                                    </div>
+	                                </li>
+	                            
+	                        
+
+	                            
+	                                <li>
+	                                    <a href="javascript:;" data-ntt="2397" >[주택자금상환 등 증명서] 은행별 첨부 파일<span class="qnaMore"></span></a>
+	                                    <div class="qnaA ck-content">
+	                                        <p>월별 이자납입확인서는 각 금융기관마다 명칭이 상이하나,&nbsp;서식에 대출자,&nbsp;대출상품명,&nbsp;거래일,&nbsp;대출잔고,&nbsp;월별 납입대출이자 등의 내용이 들어가는 서류면 명칭이 반드시 월별 이자납입확인서가 아니라도 제출가능합니다. 다만 모든 서류에는 은행명 및 직인이 들어가 있어야 증빙서류로서 효력이 있습니다.<strong> (발급은행명 및 직인 없는 서류 제출불가)</strong></p><p>&nbsp;</p><p>[참고]</p><p>대구은행(이자납입증명서), 하나은행(여신기간별거래내역), 국민은행(여신거래내역)</p><p>기업은행(대출금(이자)계산서), 우리은행(여신거래내역 조회, 여신원장사본 조회, 대출이자납입내역),&nbsp;</p><p>농협(대출거래내역 조회표/대출원리금납입증명서), 신한은행(대출이자납입확인서) 등</p><p>&nbsp;</p><p>기타 문의는 ☏053-803-6901로 연락주시기 바랍니다.</p>
+	                                    </div>
+	                                </li>
+	                            
+	                        
+
+	                            
+	                        
+
+	                            
+	                        
+
+	                            
+	                        
+
+	                            
+	                        
+
+	                            
+	                        
+
+	                            
+	                        
+
+	                            
+	                        
+
+	                            
+	                        
+
+	                            
+	                        
+
+	                            
+	                        
+
+	                            
+	                        
+
+	                            
+	                        
+
+	                            
+	                        
+
+	                            
+	                        
+
+	                            
+	                        
+
+	                            
+	                        
+
+	                            
+	                        
+
+	                            
+	                        
+
+	                            
+	                        
+
+	                            
+	                        
+
+	                            
+	                        
+
+	                            
+	                        
+
+	                            
+	                        
+
+	                            
+	                        
+
+	                            
+	                        
+
+	                            
+	                        
+
+	                            
+	                        
+
+	                            
+	                        
+
+	                            
+	                        
+
+	                            
+	                        
+
+	                            
+	                        
+
+	                            
+	                        
+
+	                            
+	                        
+
+	                            
+	                        
+
+	                            
+	                        
+
+	                            
+	                        
+						</ul>
+	                </div>
+                
+	                <div class="tabcont  " data-ntt="337">
+						<ul class=" qna ">
+	                        
+
+	                            
+	                        
+
+	                            
+	                        
+
+	                            
+	                        
+
+	                            
+	                        
+
+	                            
+	                        
+
+	                            
+	                        
+
+	                            
+	                        
+
+	                            
+	                        
+
+	                            
+	                        
+
+	                            
+	                        
+
+	                            
+	                        
+
+	                            
+	                        
+
+	                            
+	                        
+
+	                            
+	                        
+
+	                            
+	                        
+
+	                            
+	                        
+
+	                            
+	                        
+
+	                            
+	                        
+
+	                            
+	                        
+
+	                            
+	                        
+
+	                            
+	                        
+
+	                            
+	                        
+
+	                            
+	                        
+
+	                            
+	                        
+
+	                            
+	                        
+
+	                            
+	                        
+
+	                            
+	                        
+
+	                            
+	                        
+
+	                            
+	                        
+
+	                            
+	                        
+
+	                            
+	                        
+
+	                            
+	                        
+
+	                            
+	                        
+
+	                            
+	                        
+
+	                            
+	                        
+
+	                            
+	                        
+
+	                            
+	                        
+
+	                            
+	                        
+
+	                            
+	                        
+
+	                            
+	                        
+
+	                            
+	                        
+
+	                            
+	                        
+
+	                            
+	                        
+
+	                            
+	                        
+
+	                            
+	                        
+
+	                            
+	                        
+
+	                            
+	                        
+
+	                            
+	                        
+
+	                            
+	                        
+
+	                            
+	                        
+
+	                            
+	                        
+
+	                            
+	                        
+
+	                            
+	                        
+
+	                            
+	                        
+
+	                            
+	                                <li>
+	                                    <a href="javascript:;" data-ntt="1541" >[이자청구] 등본(혹은 초본)에는 어떤 내용이 들어가야 하나요?<span class="qnaMore"></span></a>
+	                                    <div class="qnaA ck-content">
+	                                        <p>대출실행일부터 대구시 거주중임을 확인하기 위해 필요하므로 전입일자 등이 나와야 하며, 등본만으로 대출실행일부터 대구시 거주중임이 확인되지 않는 경우에는 초본의 주소이력이 나오도록 발급해주시면 됩니다. 또한 사업대상자 승인 이후 개명 등으로 개인정보가 변경된 경우에도 초본(변경사항 포함)으로 발급받아 개명한 사실이 나오도록 해서 본인 확인이 가능하도록 해주세요.</p>
+	                                    </div>
+	                                </li>
+	                            
+	                        
+
+	                            
+	                        
+
+	                            
+	                        
+
+	                            
+	                        
+
+	                            
+	                        
+
+	                            
+	                        
+
+	                            
+	                        
+
+	                            
+	                        
+
+	                            
+	                        
+
+	                            
+	                        
+
+	                            
+	                        
+
+	                            
+	                        
+
+	                            
+	                        
+
+	                            
+	                                <li>
+	                                    <a href="javascript:;" data-ntt="1284" >[이자청구] 지급받을 계좌가 꼭 신청인 계좌여야 하나요?<span class="qnaMore"></span></a>
+	                                    <div class="qnaA ck-content">
+	                                        <p>신청인(대구시 이자지원 신청)-임차인(전세계약자)-대출자(은행과 해당 상품 대출계약)-신청계좌 예금주는 모두 동일인이어야 하며 신청인 명의 계좌 외에는 지원이 불가능합니다.</p>
+	                                    </div>
+	                                </li>
+	                            
+	                        
+
+	                            
+	                                <li>
+	                                    <a href="javascript:;" data-ntt="1283" >[이자청구]  ‘월별 이자납입확인서’는 어떤 서류인가요?<span class="qnaMore"></span></a>
+	                                    <div class="qnaA ck-content">
+	                                        <p>월별 이자납입확인서는 각 금융기관마다 명칭이 상이하나,&nbsp;서식에 대출자,&nbsp;대출상품명,&nbsp;거래일,&nbsp;대출잔고,&nbsp;월별 납입대출이자 등의 내용이 들어가는 서류면 명칭이 반드시 월별 이자납입확인서가 아니라도 제출가능합니다. 다만 모든 서류에는 은행명 및 직인이 들어가 있어야 증빙서류로서 효력이 있습니다.<strong> (발급은행명 및 직인 없는 서류 제출불가)</strong></p><p>&nbsp;</p><p>[참고]</p><p>대구은행(이자납입증명서), 하나은행(여신기간별거래내역), 국민은행(여신거래내역)</p><p>기업은행(대출금(이자)계산서), 우리은행(여신거래내역 조회, 여신원장사본 조회, 대출이자납입내역),&nbsp;</p><p>농협(대출거래내역 조회표/대출원리금납입증명서), 신한은행(대출이자납입확인서) 등</p><p>&nbsp;</p><p>&nbsp;</p>
+	                                    </div>
+	                                </li>
+	                            
+	                        
+
+	                            
+	                                <li>
+	                                    <a href="javascript:;" data-ntt="1282" >[이자청구] 이자지원금의 지급일은 언제인가요?<span class="qnaMore"></span></a>
+	                                    <div class="qnaA ck-content">
+	                                        <p>상·하반기&nbsp;4월/10월(1~15일 예정,&nbsp;변동시 대구安방 사이트 내 별도 공지)중 증빙서류를 제출해주시면, 5월/11월 말까지 신청인의 개인 계좌로 지급됩니다.</p><p>&nbsp;※ &nbsp;예산 등의 사정으로 청구 및 지급시기는 변동될 수 있습니다.</p>
+	                                    </div>
+	                                </li>
+	                            
+	                        
+
+	                            
+	                                <li>
+	                                    <a href="javascript:;" data-ntt="1281" >[이자청구] 대출은행에 이자를 납부하지 않아 연체중인 경우에도 청구 및 지원을 받을 수 있나요?<span class="qnaMore"></span></a>
+	                                    <div class="qnaA ck-content">
+	                                        <p>연체중인 이자 상환시에는 가능합니다.&nbsp;다만 이 경우에도 이자의 <strong>연체이자(본이자 외에 체납에 따라 가산되는 지연이자 개념)에 대한 지원은 불가</strong>합니다</p>
+	                                    </div>
+	                                </li>
+	                            
+	                        
+
+	                            
+	                                <li>
+	                                    <a href="javascript:;" data-ntt="1280" >[이자청구] 지원기간 중 타 시·도로 전출한 경우 지원금을 청구할 수 있나요?<span class="qnaMore"></span></a>
+	                                    <div class="qnaA ck-content">
+	                                        <p>대출기간 중 대구시에 거주한 기간(주민등록기준)을 기준으로 변동월 전월까지 월할 계산하여 지원합니다.</p><p>&nbsp;</p><p>&nbsp;예) ‘23. 10. 3일 타시도로 전출 &nbsp;→&nbsp;’23. 9월분까지 이자지원</p>
+	                                    </div>
+	                                </li>
+	                            
+	                        
+
+	                            
+	                                <li>
+	                                    <a href="javascript:;" data-ntt="1279" >[이자청구] 이자지원 청구 시 구비서류 및 제출방법은 어떻게 되나요?<span class="qnaMore"></span></a>
+	                                    <div class="qnaA ck-content">
+	                                        <p>대출사실확인서를 제출하여 대상자로 선정이 되시면,&nbsp;추후 지정된 기간(상·하반기 각1회, 4월/10월)에 은행에서 발급하는 월별 이자납입확인서(은행별 명칭 상이, 월별대출이자내역 및 대출잔액 등이 표시된 서류)를 발급 받은 후,&nbsp;주민등록등본(또는 초본,&nbsp;대출이후 주소변경 이력 증빙필요,&nbsp;주민번호 뒷자리 미표시)과 함께 사진 또는 스캔 파일로 저장하여&nbsp;「대구安방」사이트 내 이자청구 페이지에 업로드하여 제출하시면 됩니다.</p>
+	                                    </div>
+	                                </li>
+	                            
+	                        
+
+	                            
+	                                <li>
+	                                    <a href="javascript:;" data-ntt="1278" >[사업신청] 이전에 청년 임차보증금 이자지원 사업에서 지원을 받은 적이 있는데, 이번에 청년 전용 버팀목 전세자금 대출을 받게 되었습니다. 사업에 지원이 가능할까요?<span class="qnaMore"></span></a>
+	                                    <div class="qnaA ck-content">
+	                                        <p>대구시에서 시행중인 청년 전세 이자지원 사업(현재는&nbsp;‘청년 임차보증금 이자지원’사업&nbsp;1건)과 중복 수혜는 불가합니다.&nbsp;추후&nbsp;‘청년 임차보증금 이자지원’사업 외에 <strong>유사한 청년 전세 이자지원 사업에도 중복 수혜는 불가</strong>합니다.</p>
+	                                    </div>
+	                                </li>
+	                            
+	                        
+
+	                            
+	                                <li>
+	                                    <a href="javascript:;" data-ntt="1277" >[사업신청] 대상자로 선정되면 언제 지원을 해주나요?<span class="qnaMore"></span></a>
+	                                    <div class="qnaA ck-content">
+	                                        <p>대상자로 선정된 이후에도 별도의 이자청구가 필요하며,&nbsp;지정된 이자청구 기간(상·하반기 각1회, 4월/10월)에 구비서류를 제출해주시면 익월(5월/11월)말까지 개인별 계좌로 지급됩니다.&nbsp;단,&nbsp;시행 첫해인&nbsp;2023년도는 하반기(11월말) 1회만 지급될 예정입니다.</p>
+	                                    </div>
+	                                </li>
+	                            
+	                        
+
+	                            
+	                                <li>
+	                                    <a href="javascript:;" data-ntt="1276" >[사업신청] 이자지원을 신청하였습니다. 신청결과는 어떻게 확인하나요?<span class="qnaMore"></span></a>
+	                                    <div class="qnaA ck-content">
+	                                        <p>지원 신청의 경우 심사결과는&nbsp;「대구安방」내 마이페이지에서 확인하실 수 있습니다.</p>
+	                                    </div>
+	                                </li>
+	                            
+	                        
+
+	                            
+	                                <li>
+	                                    <a href="javascript:;" data-ntt="1275" >[사업신청] 추가대출 및 연장 시에도 새롭게 신청을 해야 하나요?<span class="qnaMore"></span></a>
+	                                    <div class="qnaA ck-content">
+	                                        <p>네.&nbsp;추가대출 및 연장 시에도 처음 신청 때와 동일하게 대출사실확인서를 발급받아 제출하여 신청을 해주셔야 이자를 청구하실 수 있습니다.</p>
+	                                    </div>
+	                                </li>
+	                            
+	                        
+
+	                            
+	                                <li>
+	                                    <a href="javascript:;" data-ntt="1274" >[사업신청, 이자청구] 서류 제출시, 휴대폰으로 찍은 사진도 가능한가요?<span class="qnaMore"></span></a>
+	                                    <div class="qnaA ck-content">
+	                                        <p>선명하게 촬영된 경우에만 가능합니다.&nbsp;내용 분별이 어려울 경우 승인거부될 수 있습니다.</p><p>※&nbsp;단,&nbsp;아이폰으로 촬영한&nbsp;jpg, jpeg, heic파일은 코덱오류로 인해 확인불가능하므로 다른 파일로 첨부바랍니다.</p>
+	                                    </div>
+	                                </li>
+	                            
+	                        
+
+	                            
+	                                <li>
+	                                    <a href="javascript:;" data-ntt="1273" >[사업신청] 대출사실확인서는 어떻게 발급 받을 수 있나요?<span class="qnaMore"></span></a>
+	                                    <div class="qnaA ck-content">
+	                                        <p>은행에서 별도 발급되지 않는 서류로,&nbsp;「대구安방」에서 해당서식을 다운받아 내용 작성 후 대출받은 은행의 해당지점을 방문하여 확인(지점장 직인 및 담당자 날인 등)받으셔야 합니다.&nbsp;대출 실행한 지점 외 다른 지점에서 발급한 확인서는 사용이 불가합니다.</p><p>&nbsp;</p><p>&nbsp;예)&nbsp;대출 실행한 은행 및 지점&nbsp;:&nbsp;대구은행&nbsp;‘성북교점’</p><p>&nbsp;→&nbsp;대구은행&nbsp;‘중앙로지점’에서 대출사실 확인<strong>(사용불가)</strong></p>
+	                                    </div>
+	                                </li>
+	                            
+	                        
+
+	                            
+	                                <li>
+	                                    <a href="javascript:;" data-ntt="1272" >[사업신청] 이자지원 신청은 어디에서 해야 하나요?<span class="qnaMore"></span></a>
+	                                    <div class="qnaA ck-content">
+	                                        <p>「대구安방」사이트 내&nbsp;‘청년전용 버팀목 전세자금 대출이자 지원’&nbsp;사업신청에서 신청하실 수 있습니다.</p>
+	                                    </div>
+	                                </li>
+	                            
+	                        
+
+	                            
+	                                <li>
+	                                    <a href="javascript:;" data-ntt="1271" >[사업신청] 이자지원금은 언제부터 받을 수 있나요?<span class="qnaMore"></span></a>
+	                                    <div class="qnaA ck-content">
+	                                        <p>‘23.1.1.이후 신규계약 대출 건으로 신청접수 이후,&nbsp;상·하반기 연2회(4월/10월)&nbsp;이자청구를 받아 익월(5월/11월)말까지 개인별 계좌로 지급됩니다.&nbsp;단,&nbsp;시행 첫해인&nbsp;2023년도는 하반기1회만(10월 청구신청-11월말 지급)&nbsp;지급될 예정입니다.&nbsp;</p><p>&nbsp;※ 예산 등의 사유로 이자청구 및 지급 시기는 변동될 수 있습니다.</p>
+	                                    </div>
+	                                </li>
+	                            
+	                        
+
+	                            
+	                                <li>
+	                                    <a href="javascript:;" data-ntt="1270" >[사업신청] 전세자금 이자지원 사업의 지원기간은 어떻게 되나요?<span class="qnaMore"></span></a>
+	                                    <div class="qnaA ck-content">
+	                                        <p>사업 시행일(‘23.1.1.)&nbsp;이후 신규 대출일로부터 기본&nbsp;2년이며,&nbsp;연장하여 최장&nbsp;4년간 지원이 가능합니다.</p>
+	                                    </div>
+	                                </li>
+	                            
+	                        
+
+	                            
+	                                <li>
+	                                    <a href="javascript:;" data-ntt="1269" >[사업신청] 이자지원 금리와 금액은 어떻게 되나요?<span class="qnaMore"></span></a>
+	                                    <div class="qnaA ck-content">
+	                                        <p>본인부담 대출금리의&nbsp;1/2에 대한 이자를 지원하며,&nbsp;이자지원액은 청구서류를 근거로 신청자가 매월 납입한 이자의&nbsp;1/2로 산정하고 원 단위는 절사하여 지급합니다.</p>
+	                                    </div>
+	                                </li>
+	                            
+	                        
+
+	                            
+	                                <li>
+	                                    <a href="javascript:;" data-ntt="1268" >[사업신청] 이자 지원 대상자는 어떻게 되나요?<span class="qnaMore"></span></a>
+	                                    <div class="qnaA ck-content">
+	                                        <p>대구시에 거주하는 무주택 세대주의 청년(만19~34세)이&nbsp;‘23.1.1.&nbsp;이후 지원대상 금융상품인&nbsp;「주택도시기금 청년전용 버팀목 전세자금」을 대출받은 신규(연장, 추가)계약 대출자만 해당이 됩니다.</p>
+	                                    </div>
+	                                </li>
+	                            
+	                        
+
+	                            
+	                                <li>
+	                                    <a href="javascript:;" data-ntt="1267" >[사업신청] 청년전용 버팀목 전세자금 대출이자 지원 사업은 무엇인가요? <span class="qnaMore"></span></a>
+	                                    <div class="qnaA ck-content">
+	                                        <p>사업 시행일(‘23.1.1.)&nbsp;이후 국토부&nbsp;「주택도시기금 청년전용 버팀목 전세자금」을 대출한 대구시 무주택 세대주 청년들에게 대출이자의&nbsp;1/2을 대구시가 지원하는 사업입니다.</p>
+	                                    </div>
+	                                </li>
+	                            
+	                        
+						</ul>
+	                </div>
+                
+	                <div class="tabcont  " data-ntt="335">
+						<ul class=" qna ">
+	                        
+
+	                            
+	                        
+
+	                            
+	                        
+
+	                            
+	                        
+
+	                            
+	                        
+
+	                            
+	                        
+
+	                            
+	                        
+
+	                            
+	                        
+
+	                            
+	                        
+
+	                            
+	                        
+
+	                            
+	                        
+
+	                            
+	                        
+
+	                            
+	                        
+
+	                            
+	                        
+
+	                            
+	                        
+
+	                            
+	                        
+
+	                            
+	                        
+
+	                            
+	                        
+
+	                            
+	                        
+
+	                            
+	                        
+
+	                            
+	                        
+
+	                            
+	                        
+
+	                            
+	                        
+
+	                            
+	                        
+
+	                            
+	                        
+
+	                            
+	                        
+
+	                            
+	                        
+
+	                            
+	                        
+
+	                            
+	                        
+
+	                            
+	                        
+
+	                            
+	                        
+
+	                            
+	                        
+
+	                            
+	                        
+
+	                            
+	                        
+
+	                            
+	                        
+
+	                            
+	                        
+
+	                            
+	                        
+
+	                            
+	                        
+
+	                            
+	                        
+
+	                            
+	                        
+
+	                            
+	                        
+
+	                            
+	                        
+
+	                            
+	                        
+
+	                            
+	                        
+
+	                            
+	                        
+
+	                            
+	                        
+
+	                            
+	                        
+
+	                            
+	                        
+
+	                            
+	                        
+
+	                            
+	                        
+
+	                            
+	                        
+
+	                            
+	                        
+
+	                            
+	                        
+
+	                            
+	                        
+
+	                            
+	                        
+
+	                            
+	                        
+
+	                            
+	                        
+
+	                            
+	                        
+
+	                            
+	                        
+
+	                            
+	                        
+
+	                            
+	                        
+
+	                            
+	                        
+
+	                            
+	                        
+
+	                            
+	                                <li>
+	                                    <a href="javascript:;" data-ntt="1321" >청구기간을 놓치면 이자지원을 받을 수 없나요?<span class="qnaMore"></span></a>
+	                                    <div class="qnaA ck-content">
+	                                        <p>지원신청이 승인완료되어 있는 대출약정일 기간 동안에</p><p>ex)&nbsp;지원신청 승인 약정대출기간&nbsp;23.1월~ 25.1월</p><p>&nbsp; &nbsp; &nbsp; 23년 상반기 청구기간(5.1.~5.15.)에 청구를 하지 못한 경우&nbsp;-&gt; 23년 하반기 청구기간(11.1.~11.15.)에 한꺼번에 청구할 수 있음 는 언제든지 소급하여 청구신청할 수 있습니다.&nbsp;</p>
+	                                    </div>
+	                                </li>
+	                            
+	                        
+
+	                            
+	                                <li>
+	                                    <a href="javascript:;" data-ntt="1320" >지원신청을 제때 못한 경우 소급기준은 어떻게 되나요?<span class="qnaMore"></span></a>
+	                                    <div class="qnaA ck-content">
+	                                        <p>지원신청일 기준&nbsp;1년간 소급 지원됩니다.</p>
+	                                    </div>
+	                                </li>
+	                            
+	                        
+
+	                            
+	                                <li>
+	                                    <a href="javascript:;" data-ntt="1319" >대출 계약후 출생(입양포함)한 자녀에 대해서도 추가 지원금리를 적용받을 수 있나요?<span class="qnaMore"></span></a>
+	                                    <div class="qnaA ck-content">
+	                                        <p>신규 또는 추가대출계약 후 출생(입양 포함)한 자녀에 따른 지원금리 변동은 출생월 기준으로 추가 금리를 적용하여 지원합니다.</p><p>※&nbsp;출생일 기준 해당 월 이자지원 비율 적용,&nbsp;쌍둥이 출산 시&nbsp;2자녀 기준적용</p><p>※&nbsp;구비서류&nbsp;:&nbsp;주민등록등본(전입일,&nbsp;출생년월일 확인)</p><p>&nbsp;</p>
+	                                    </div>
+	                                </li>
+	                            
+	                        
+
+	                            
+	                                <li>
+	                                    <a href="javascript:;" data-ntt="1318" >대출은행에 이자를 납부하지 않아 연체중인 경우에도 청구 및 지원을 받을 수 있나요?<span class="qnaMore"></span></a>
+	                                    <div class="qnaA ck-content">
+	                                        <p>연체이자 상환시에는 가능합니다.</p><p>대출자(신청자)가 대출이자를&nbsp;6개월 이상 연체 시 지급 유예하고,&nbsp;연체이자 상환 시 다음 청구월에 청구 가능하며 심사 후 지원합니다.</p>
+	                                    </div>
+	                                </li>
+	                            
+	                        
+
+	                            
+	                                <li>
+	                                    <a href="javascript:;" data-ntt="1317" >이자지원금의 지급일은 언제인가요?<span class="qnaMore"></span></a>
+	                                    <div class="qnaA ck-content">
+	                                        <p>상·하반기&nbsp;2번,<strong> 6월말~7월초, 12월말~다음해&nbsp;1월초에 청구인의 개인통장으로 입금</strong>됩니다.</p>
+	                                    </div>
+	                                </li>
+	                            
+	                        
+
+	                            
+	                        
+
+	                            
+	                        
+
+	                            
+	                        
+
+	                            
+	                        
+
+	                            
+	                        
+
+	                            
+	                        
+
+	                            
+	                        
+
+	                            
+	                        
+
+	                            
+	                        
+
+	                            
+	                        
+
+	                            
+	                        
+
+	                            
+	                        
+
+	                            
+	                        
+
+	                            
+	                        
+
+	                            
+	                        
+
+	                            
+	                        
+
+	                            
+	                        
+
+	                            
+	                        
+						</ul>
+	                </div>
+                
+            </div>
+        </div>
+    </section>
+    <!-- //CONT -->
+</div>
+<!-- //container -->
+
+<script>
+	$(function() {
+		$(".tabWrap > .tab > ul > li > a").each(function(index) {
+			var ntt = $(this).attr("data-ntt");
+			var nttId = '';
+			if(nttId !== null){
+				$(".tabcont[data-ntt='"+ntt+"']").find("ul > li > a[data-ntt='"+nttId+"']").click();
+				$(".qna").eq(index).addClass("on");
+			}
+
+			$(this).on("click", function() {
+
+				$(this).parent().siblings('li').removeClass("active");
+				$(this).parent().addClass("active");
+
+				//내용
+				$(this).parents('.tab').siblings(".tabcont").removeClass("active");
+				$(".tabcont[data-ntt='"+ntt+"']").addClass("active");
+
+
+				return false;
+			});
+		});
+
+		$('ul').each(function() {
+            var liCount = $(this).find('li').length;
+            if (liCount === 0) {
+                $(this).append('<li class="no-data"><a href="javascript:;">조회된 데이터가 없습니다.<span class="qnaMore"></span></a></li>');
+            }
+        });
+
+
+	});
+</script>
+	
+
+<footer id="footer">
+    <div class="foot_top">
+        <div class="footer__inner">
+            <ul>
+                <li>
+                    <a href="https://www.daegu.go.kr/index.do?menu_id=00050250" target="_blank">개인정보처리방침</a>
+                </li>
+                
+                
+            </ul>
+        </div>
+    </div>
+    <div class="foot_bot">
+        <div class="footer__inner">
+            <p class="foot_adress">
+                (41542) 대구광역시 북구 연암로 40 (대구광역시청 산격청사)<br>
+                <b>대표안내전화</b>
+                (053)120
+                <b>팩스</b>
+                (053)803-2879
+            </p>
+            <p class="foot_copyright">© DAEGU METROPOLITAN CITY ALL RIGHTS RESERVED.</p>
+        </div>
+    </div>
+</footer>
+
+</body>
+</html>

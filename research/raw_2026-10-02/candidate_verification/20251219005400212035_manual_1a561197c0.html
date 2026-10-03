@@ -1,0 +1,2892 @@
+
+
+
+
+
+
+	
+	
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<!-- <meta http-equiv="Cache-Control" content="no-cache" /> 
+	<meta http-equiv="Pragma" content="no-cache" /> -->
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=2.0">	
+		<meta property="og:url" content="https://www.jeonnam.go.kr/">
+				<meta property="og:site_name" content="전남광주통합특별시전라남도청">
+			  	<meta property="og:title" content="전남광주통합특별시(구)전라남도청 - 보도자료 | ">
+			  	<meta property="og:type" content="website">
+			  	<meta property="og:image" content="https://www.jeonnam.go.kr/opimage.jpg">
+			  	<meta property="og:description" content="">
+			  	<meta name="description" content="" />
+			  	
+		<meta name="format-detection" content="telephone=no, address=no, email=no">
+	<title>전남광주통합특별시(구)전라남도청 | 시정소식 | 보도자료</title>
+	<link rel="shortcut icon" href="/home/site/jeonnam/images/favicon.ico"> 
+	<link href="/home/site/jeonnam/css/default.css?ver=4.6" media="all and (min-width:769px)" rel="stylesheet">
+			<link href="/home/site/jeonnam/css/mobile.css" media="all and (min-width:769px)" rel="stylesheet">
+	<link href="/home/site/jeonnam/css/layout.css?ver=2.8" media="all and (max-width:768px)" rel="stylesheet">
+			<link href="/home/site/jeonnam/css/board.css" media="all and (min-width:769px)" rel="stylesheet">
+		<link href="/home/site/jeonnam/css/board_m.css" media="all and (max-width:768px)" rel="stylesheet">
+		<script src="/home/site/jeonnam/js/jquery-.min.js"></script>
+	<script src="/home/site/jeonnam/js/jquery-ui.js"></script>
+	<script src="/home/site/jeonnam/js/jquery.scroltable.min.js"></script>
+	<!-- <script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script> -->
+	<script src="/home/site/jeonnam/js/jquery.bxslider.min.js"></script>
+	<script src="/home/site/jeonnam/js/jquery.mCustomScrollbar.concat.min.js"></script>
+	<script src="/home/site/jeonnam/js/kakao.min.js"></script>
+	<script src="/home/site/jeonnam/js/siiru.js?v=1.03"></script>
+	<script src="/home/site/jeonnam/js/new_loginside.js"></script>
+
+	<script src="/home/site/jeonnam/newMain/js/slider2.js?ver=1.2"></script>
+	<script src="/home/site/jeonnam/newMain/js/common2.js?ver=1.5"></script>
+	
+
+
+	<!--[if lt IE 9]>
+		<link href="/home/site/jeonnam/css/default.css" rel="stylesheet" />
+		<link href="/home/site/jeonnam/css/board.css" rel="stylesheet" />
+		<script src="/home/site/jeonnam/js/html5shiv.min.js"></script>
+		<script src="/home/site/jeonnam/js/respond.min.js"></script>
+	<![endif]--> 
+
+	<!-- 2022.09 추가 -->
+	    <link rel="stylesheet" href="/home/site/jeonnam/newMain/css/2022/new_main.css?v=1.36">
+	    <script src="/home/site/jeonnam/newMain/js/2022/new_main.js?v=1.5"></script>
+	    <!-- // 2022.09 -->
+		<!-- 2022.09 추가 -->
+	    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@xpressengine/xeicon@2.3.3/xeicon.min.css">
+	    <link rel="stylesheet" href="/home/site/jeonnam/newMain/css/2022/swiper-bundle.min.css">
+	    <script src="/home/site/jeonnam/newMain/js/2022/swiper-bundle.min.js"></script>
+	    <!-- // 2022.09 -->
+		<meta name="googlebot" content="noindex">
+	<script type="application/ld+json">
+{
+"@context": "http://schema.org",
+"@type": "Organization",
+"name": "전남광주통합특별시(구)전라남도청",
+"url": "https://www.jeonnam.go.kr",
+"sameAs": [
+"https://www.youtube.com/user/greenjeonnam1896",
+"https://www.facebook.com/jngj.jeonnam",
+"https://x.com/jngj_jeonnam",
+"https://story.kakao.com/ch/jeollanamdo/feed",
+"https://www.instagram.com/jngj_jeonnam/",
+"https://pf.kakao.com/_NRYKG"
+]
+}
+</script>
+</head>
+<body>
+
+	<div id="temp"></div>
+
+
+
+    <script>
+        var anyidAdaptor = anyidAdaptor || {};
+
+
+
+
+
+
+
+        /*이용기관 수정 영역 Start*/
+          anyidAdaptor.orgLogin = function(data){
+            //정부 통합인증SDK_연계가이드 4.4.1.3 이용기관 로그인(토글 off) 참조
+            //제공되는 라이브러리 메소드로 인증데이터 decrypt 이후 자체 로그인 로직 개발
+            const params = new URLSearchParams(location.search);
+            var obj ={
+                ssob : data.ssob
+                , tag : params.get("tx")
+            }
+
+            var xhr = new XMLHttpRequest();
+            xhr.open("POST", "/orgLogin.do", true);
+            xhr.setRequestHeader("Content-Type", "application/json");
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState === 4 && xhr.status === 200) {
+                	debugger;
+                    var response = JSON.parse(xhr.responseText);
+                    if (response.status == "success") {
+                    	 window.location.href = "/main.do?site=jeonnam";
+                        console.log("response    >>>>>   ", JSON.stringify(response));
+                    } else {
+                    	console.log("알수없는 에러가 발생하였습니다.");
+                    }
+                }
+            };
+            xhr.send(JSON.stringify(obj));
+            
+        }
+        /*이용기관 문구수정 영역 End*/
+
+
+
+
+        anyidAdaptor.portalJoinUri = "null";
+        anyidAdaptor.certData = null;
+        anyidAdaptor.ssoByPass = "0";
+        anyidAdaptor.niRegYn = "null";
+        anyidAdaptor.agencyContextPath = "";
+
+
+        anyidAdaptor.success = function(data){
+            if(anyidAdaptor.ssoByPass != 0 || !data.useSso) {
+                anyidAdaptor.orgLogin(data);
+            } else {
+                anyidAdaptor.certData = data;
+                anyidAdaptor.userCheck();
+            }
+        }
+
+        anyidAdaptor.userCheck = function(){
+            var xhr = new XMLHttpRequest();
+            xhr.open("POST", anyidAdaptor.agencyContextPath + "/oidc/userCheck", true);
+            xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState === 4 && xhr.status === 200) {
+                    var response = JSON.parse(xhr.responseText);
+                    if (response.success) {
+                        anyidAdaptor.ssoLogin();
+                    } else {
+                        setTimeout(function() {
+                            anyidAdaptor.receiveAnyIdJoin(response.uri, response.data);
+                        }, 100);
+                    }
+                }
+            };
+
+            let jsonObject = new Object();
+            jsonObject.txId = anyidAdaptor.certData.txId;
+            jsonObject.ssob = anyidAdaptor.certData.ssob;
+            jsonObject.userSeCd = anyidAdaptor.certData.userSeCd;
+
+            let jsonStr = JSON.stringify(jsonObject);
+            let encodedString = btoa(jsonStr);
+
+            var data = "data=" + encodedString + "&txId=" + anyidAdaptor.certData.txId;
+            xhr.send(data);
+
+        }
+
+        //anyid가입
+        anyidAdaptor.receiveAnyIdJoin = function(portalJoinUri, memberData){
+
+            var url = portalJoinUri+encodeURIComponent(memberData);
+            anyidAdaptor.popup(url,"openAnyIdRegistUserIdv",700,740);
+
+            window.addEventListener("message", function(event) {
+                var result;
+                try {
+                    result = JSON.parse(event.data);
+                } catch (error) {
+                    console.error("Received message is not valid JSON:", error);
+                    return;
+                }
+
+                if(!result.funcName || (result.funcName !== "trmsAgreComplete" && result.funcName !== "registUserComplete")) {
+                    return;
+                }
+                if(result.status === "success") {
+                    if(result.trmsAgreYn == "Y"){
+                        anyidAdaptor.ssoLogin();
+                    }else{
+                        anyidAdaptor.orgLogin(anyidAdaptor.certData);
+                    }
+                }else{
+
+                    anyidAdaptor.orgLogin(anyidAdaptor.certData);
+                }
+
+            }, false);
+        }
+
+        // 팝업 호출
+        anyidAdaptor.popup = function(url, name, width, height){
+            let left = (screen.width) ? (screen.width-width)/2 : 0;
+            let top = (screen.height) ? (screen.height-height)/2 : 0;
+            let popup=window.open(url, name ,"resizable=yes,toolbar=no,scrollbars=yes,location=no,top="+top+"px,left="+left+"px,width="+width+"px,height="+height+"px");
+            if(popup){
+                popup.focus();
+            }
+        }
+
+        anyidAdaptor.ssoLogin = function(){
+            let jsonObject = new Object();
+            jsonObject.txId = anyidAdaptor.certData.txId;
+            jsonObject.ssob = anyidAdaptor.certData.ssob;
+            jsonObject.userSeCd = anyidAdaptor.certData.userSeCd;
+            jsonObject.afData = anyidAdaptor.certData.afData;
+            let jsonStr = JSON.stringify(jsonObject);
+
+            let encodedString = btoa(jsonStr);
+            var baseUrl = window.location.origin + anyidAdaptor.agencyContextPath + "/oidc/ssoLogin";
+            var urlWithParams = baseUrl + "?data=" + encodedString;
+            window.location.href = urlWithParams;
+
+        }
+
+        anyidAdaptor.ssoLoginPageSub = function(baseUrl, endPoint, acrValues){
+            var subUrl = "";
+
+            if (endPoint && endPoint.trim() !== "") {
+                subUrl = "?endPoint=" + encodeURIComponent(endPoint);
+            }
+
+            if (!acrValues && acrValues.trim() == "") {
+                acrValues = "3";
+            }
+
+            if (acrValues && acrValues.trim() !== "") {
+                if(subUrl == ""){
+                    subUrl = "?";
+                }else{
+                    subUrl = subUrl + "&";
+                }
+                subUrl = subUrl + "acrValues=" + acrValues;
+            }
+
+            window.location.replace(baseUrl+subUrl);
+        }
+
+        /**/
+        anyidAdaptor.ssoLogout = function(endPoint) {
+            endPoint = typeof endPoint !== 'undefined' ? endPoint : "/";
+            var baseUrl = "https://www.jeonnam.go.kr" + anyidAdaptor.agencyContextPath + "/oidc/ssoLogout";
+            baseUrl = baseUrl + "?endPoint=" + encodeURIComponent(endPoint);
+            window.location.replace(baseUrl);
+        }
+        /**/
+        anyidAdaptor.reAuthLevel = function(endPoint, acrValues){
+            endPoint = typeof endPoint !== 'undefined' ? endPoint : "/";
+            var baseUrl = window.location.origin + anyidAdaptor.agencyContextPath + "/oidc/reAuthLevel";
+            anyidAdaptor.ssoLoginPageSub(baseUrl, endPoint, acrValues);
+
+        }
+        /**/
+        anyidAdaptor.ssoLoginPage = function(endPoint, acrValues){
+            endPoint = typeof endPoint !== 'undefined' ? endPoint : "/";
+            var baseUrl = window.location.origin + anyidAdaptor.agencyContextPath + "/oidc/auth";
+            anyidAdaptor.ssoLoginPageSub(baseUrl, endPoint, acrValues);
+        }
+
+        /**/
+        anyidAdaptor.ssoSvcToSvc = function(url, endPoint){
+            var baseUrl = url + "/oidc/svcToSvc?endPoint=" + encodeURIComponent(endPoint);
+            window.open(baseUrl, "_blank");
+        }
+        
+        // 새로운 함수 추가
+        anyidAdaptor.ssoLoginPageForParent = function(endPoint, acrValues) {
+            // anyidAdaptor.ssoLoginPageSub가 리다이렉트할 URL을 계산
+            endPoint = typeof endPoint !== 'undefined' ? endPoint : "/";
+            var baseUrl = window.location.origin + anyidAdaptor.agencyContextPath + "/oidc/auth";
+            var subUrl = "";
+
+            if (endPoint && endPoint.trim() !== "") {
+                subUrl = "?endPoint=" + encodeURIComponent(endPoint);
+            }
+
+            // 'anyidAdaptor.ssoLoginPageSub' 함수 내의 acrValues 처리 로직 재현
+            if (!acrValues || acrValues.trim() === "") {
+                acrValues = "3";
+            }
+
+            if (acrValues && acrValues.trim() !== "") {
+                if (subUrl === "") {
+                    subUrl = "?";
+                } else {
+                    subUrl = subUrl + "&";
+                }
+                subUrl = subUrl + "acrValues=" + acrValues;
+            }
+
+            var redirectUrl = baseUrl + subUrl;
+
+            // 팝업을 연 부모창이 존재하면 부모창을 리다이렉트
+            if (window.opener) {
+                window.opener.location.href = redirectUrl;
+            }
+
+            // 현재 팝업창을 닫음
+            self.close();
+        }
+    // ---
+
+
+    </script>
+<script src="/home/site/jeonnam/js/jquery.zrssfeed.min.js"></script>
+<script src="/home/site/jeonnam/js/jquery.rwdImageMaps.min.js"></script>
+<script src="/home/site/jeonnam/js/ios-orientationchange-fix.min.js"></script>
+<script>
+  
+  var sesssionUserWorker = null;
+  var sesssionExtendCk = false; 
+  var brSize= 1;
+			
+function browserSize(size){
+    //if (jQuery.browser.mozilla) {                                     
+    brSize = brSize + size;         
+    $('body').css('transform','scale(' + (brSize) + ')');
+    $('body').css('transform-origin','top center');
+    //} 
+    if( brSize >= 1.5 ){
+        alert("더이상 확대하실 수 없습니다.");
+        $('body').css('transform','scale(1.4)');
+        $('body').css('transform-origin','top center0');
+        
+    }
+    if( brSize <= 0.6 ){
+        alert("더이상 축소하실 수 없습니다.");
+        $('body').css('transform','scale(0.6)');
+        $('body').css('transform-origin','top center');
+        
+    };  
+    $('#normal').click(function(){                  
+        brSize = 1;
+        $('body').css('transform','scale(1)');
+        $('body').css('transform-origin','top center');
+    });         
+}		
+  
+$(document).ready(function() 
+{
+   //반응형 웹에 이미지맵 적용
+	$('img[usemap]').rwdImageMaps();
+  
+   var openDialog = function(uri, name, options, closeCallback) {
+      var win = window.open(uri, name, options);
+      var interval = window.setInterval(function() {
+          try {
+              if (win == null || win.closed) {
+                  window.clearInterval(interval);
+                  closeCallback(win);
+              }
+          }
+          catch (e) {
+          }
+      }, 1000);
+      return win;
+  };
+  
+  $("#flagBrowser").on("click", function()
+  {
+      var uri = 'http://www.jeonnam.go.kr/mlogin.do?site=jeonnam';
+      var popupName = 'loginForm';
+      var options = 'location=no, directories=no,resizable=yes,status=no,toolbar=no,menubar=no, width=910,height=660,left=0, top=0, scrollbars=yes';
+    
+        openDialog(uri, popupName, options, function(win) 
+        {
+              //팝업창이 닫히게 될 때 실행 된 내용
+             location.reload();
+        });
+    });
+
+
+//   $('.pop_word').on('mouseover',function(){
+//   	$('.pop_word_all').show();
+//   })
+//   $('.pop_word .pop_word_list').on('focus',function(){
+//   	$('.pop_word_all').show();
+//   	$('.pop_word_all .pop_word_list').eq(0).focus();
+  	
+//   })
+
+//   $('*').on('focus',function(){
+//   	if(!$(this).hasClass('pop_word_list')){
+//   		$('.pop_word_all').hide();
+//   	}
+//   })
+
+//   $('.pop_word_all').mouseleave(function(){
+//   	$(this).hide();
+//   })
+
+  
+
+});
+  
+  $(document).click(function(e) {
+	if($("#tnb_btn_option1").css("display") == "block" || $("#tnb_btn_option2").css("display") == "block") {
+		if(!$(e.target).is(".tnb_btn, .tnb_btn > a, .tnb_btn > a > b, .tnb_btn_option, .tnb_btn_option > a")) {
+			$(".tnb_btn_option").hide();
+		}
+	}
+});
+
+   
+
+
+  //function to start the timer
+function startUserTimer()
+{
+    if (typeof(Worker)!=="undefined"){
+        // common.js에 선언
+        if (sesssionUserWorker==null){
+            sesssionUserWorker = new Worker("/home/site/jeonnam/js/sessionUserTimer.js");
+           sesssionExtendCk = true;
+         }
+
+      if(sesssionExtendCk){
+            sesssionUserWorker.postMessage('1200'); //20분
+            sesssionExtendCk = false;
+        }
+
+        sesssionUserWorker.onmessage = function (event) {
+            if(event.data =='5분'){
+                 $('#gb-popup-logout').show();
+                 $('#gb-popup-logout .remainUserTime').text(event.data);
+            }else if(event.data == '로그인 만료'){
+              $('#gb-popup-logout').hide();
+                alert('자동 로그아웃 되었습니다. 다시 로그인해 주세요.');
+                location.href='/mlogout.do';
+            }else if(event.data != '로그인 만료') {
+                $('.remainUserTime').text(event.data)
+            }
+        };
+   } else {
+       $('.remainUserTime').text("Sorry, your browser does not support Web Workers ...");
+   }
+}
+
+
+//로그인 연장
+function pf_extension(){
+
+    $.ajax({
+        type: "POST",
+        url: "/home/session/checkAjax.do",
+        success : function(data){
+           $('#gb-popup-logout').hide();
+                pf_loginSessionInit();
+                alert("연장되었습니다.");
+        },
+        error: function(jqXHR, textStatus, errorThrown){
+            alert(textStatus);
+            $('#gb-popup-logout').hide(); // 팝업 숨기기
+        }
+    });
+}
+
+
+function pf_loginSessionInit(){
+    if(sesssionUserWorker){
+        sesssionUserWorker.postMessage('end');  //로그인 시간 멈춤
+        //sesssionUserWorker = null;
+      sesssionExtendCk = true;
+        startUserTimer();
+    }
+}
+
+function copyUrl(){
+    navigator.clipboard.writeText(window.location.href).then(function(){
+        alert("주소가 복사되었습니다.");
+    });
+}
+
+
+</script>
+
+<div id="gb-popup-logout" style="display:none;">
+    <div class="inner">
+        <div class="title-box">자동 로그아웃 안내</div>
+        <div class="logout-box">
+            <div class="timer-box">
+                <font>자동 로그아웃 남은시간</font>
+                <div class="time">
+                    <span class="num remainUserTime">02:06</span>
+                </div>
+            </div>
+            <img class="icon-alarm" src="/home/site/jeonnam/newMain/img/icon/icon_alarm_01.svg" alt="">
+            <p class="info-box">
+                <font>개인정보 보호를 위해 </font> <span class="txt-01">5분</span><font> 후 자동으로 로그아웃 됩니다. 로그인 시간을 연장하시려면 </font>
+                <span class="txt-02">로그인 연장하기 버튼</span><font>을 클릭하여 주세요.</font> <br>
+                <br><font>로그인 시간을 연장하시겠습니까?</font>
+            </p>
+            <div class="btn-box">
+                <button type="button" class="type-01" onclick="pf_extension()">로그인 연장하기</button>
+                <button type="button" class="type-02" onclick="location.href='/mlogout.do'">지금 로그아웃</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- 20251216 팝업 위치 변경 시작 -->  
+<!-- 20251216 팝업 위치 변경 끝-->
+
+<ul id="skip_navi">
+	<li><a href="#container">본문 바로가기</a></li>
+	<li><a href="#gnb">메인메뉴 바로가기</a></li>
+	<li><a href="#lnb_Area">사이드메뉴 바로가기</a></li></ul>
+
+
+
+<!-- 230727 수정 -->
+      
+
+  <!-- 기존 id 사용 -->
+    <div id="bodyWrap">
+
+      <!--  <link rel="stylesheet" href="/home/siteData/jeonnam/include/main_top_banner.css?v=0.5" />
+        
+
+        <div class="topbanner" style="height: 84px;">
+            <div class="swiper mySwiper">
+                <div class="swiper-wrapper">
+                  
+                  	<div class="swiper-slide sy01" onclick="openNewTab('https://jeonnamsports.or.kr/53_sports/index.do')">
+                        <div class="ss_dday dg04 ss_dday1" style="width: 95%;">
+                            <p>D</p>
+                            <div>
+                                <span class="dday1_1"></span>
+                                <span class="dday1_2"></span>
+                                <span class="dday1_3"></span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+                <div class="swiper-button-next"><i class="xi-angle-right"></i></div>
+                <div class="swiper-button-prev"><i class="xi-angle-left"></i></div>
+            </div>
+        </div>  -->
+    	
+
+        <script>
+
+            // checkCurUrl();
+             
+            
+            $(document).ready(function() 
+            {
+             // _topBanner('dday1','2024-05-25','2024-05-28');
+              // _topBanner('dday2','2024-05-14','2024-05-17');
+              // _topBanner('dday3','2023-09-01','2023-10-31');
+              // _topBanner('dday4','2023-11-03','2023-11-08');
+
+              var swiper = new Swiper(".topbanner .mySwiper", {
+                slidesPerView: 1,
+                spaceBetween: 30,
+                loop: true,
+                centeredSlides: true,
+                autoplay: {
+                  delay: 9000,
+                  disableOnInteraction: false,
+                },
+                pagination: {
+                  el: ".topbanner .mySwiper .swiper-pagination",
+                  clickable: true,
+                },
+                navigation: {
+                  nextEl: ".topbanner .mySwiper .swiper-button-next",
+                  prevEl: ".topbanner .mySwiper .swiper-button-prev",
+                },
+              });
+
+            });
+
+            let _topBanner = (className, startDate, endDate) => {
+              let today = new Date();
+              
+              let sDay = _getDate(startDate);
+              let eDay = _getDate(endDate);
+              
+              let sgap = sDay.getTime() - today.getTime();
+              let egap = eDay.getTime() - today.getTime();
+              
+              let sResult = Math.ceil(sgap / (1000 * 60 * 60 * 24));
+              let eResult = egap;
+              
+              if (eResult < 0) {
+                let ssElement = document.querySelector('.ss_'+className)
+                if(ssElement) {
+                	ssElement.closest('.swiper-slide').remove();
+                }
+              }else {
+                let resultStr = sResult + "";
+                let resultArr = resultStr.split("");
+                
+                if(sResult >= 0) {
+  					       let targetP = document.querySelector('.ss_'+className+' p');
+                   if(targetP) {
+  					           targetP.style.display = 'unset';
+                    }
+                  for(let i = 1; i <= resultArr.length; i++) {
+                    $('.'+className+'_'+i).css('display', 'unset');
+                    $('.'+className+'_'+i).text(resultArr[i-1]);
+                  }
+                }else {
+                  $('.ss_'+className).hide();
+                }
+              }
+            }
+
+            let _getDate = (dateString) => {
+            	let paramDate = new Date(dateString);
+            	paramDate.setUTCHours(paramDate.getUTCHours() - 9);
+				return paramDate;
+            }
+            
+            function checkCurUrl() {
+              let currentUrl = document.URL;
+              if(currentUrl == 'https://www.jeonnam.go.kr/main.do?site=jeonnam' || currentUrl == 'https://www.jeonnam.go.kr/main.do') {
+                document.querySelector('.topbanner').style.display = 'block';
+              } 
+            }
+
+            function openNewTab(url) {
+              window.open(url, '_blank');
+            }
+            
+          </script>
+
+        <!-- // 230727 수정 -->
+
+
+        <!-- 기존 id 사용 -->
+        <header id="head">
+            <div id="n_hd_top">
+               <style>
+                    .govinfo {position:relative;width:100%;/*max-width: 1440px;*/max-width: 1500px;margin:0 auto;display:flex;margin-bottom:5px;align-items:center;}
+                    .govinfo img {padding-right:10px;align-items:center;}
+                    .link_taegugki {position:absolute;right:0;top:50%;margin-top:-9px;}
+                    .link_taegugki img {padding-right:0;vertical-align:top;}
+                    @media all and (max-width:768px){
+                        .link_taegugki {display:none;}
+                    }
+                </style>
+
+                 <span class="govinfo">
+                <img src="https://www.jeonnam.go.kr/home/site/jeonnam/imgs2019/main/eg_logo.gif" alt="정부공식 웹사이트">이 누리집은 대한민국 공식 전자정부 누리집입니다.
+                <a href="https://www.mois.go.kr/frt/sub/popup/p_taegugki_banner/screen.do" class="link_taegugki" title="국가상징 새창으로 열림" target="_blank">  <img src="https://www.jeonnam.go.kr/home/site/jeonnam/imgs2019/main/link_img250203.png" alt="국가상징 알아보기"></a>
+                </span>
+				<div class="new_wrap_box">
+	                <!-- 기존 이미지 사용 - 경로만 바꾸기 -->
+	                <h1>
+	                <a href="https://www.jeonnam.go.kr/" class="logo_box"><img src="https://www.jeonnam.go.kr/home/site/jeonnam/imgs2019/main/main_top_logo.png" alt="전남광주통합특별시(구)전라남도"></a></h1>
+	
+	                <div class="etc_box">
+	                    <ul class="site_box">
+	                        <!-- <li><a href="https://www.jnassembly.go.kr/" target="_blank" title="새창">전라남도의회</a></li> -->
+	                        <!-- 20240223 주석 <li><a href="http://www.namdokorea.com" target="_blank" title="새창">전남문화관광</a></li> -->
+	                        <!-- <li class="fam_site">
+	                            <a href="javascript:;">전남 SNS <img src="/home/site/jeonnam/newMain/img/main/2022/icon_blue_arrow_down.png" alt=""></a> 
+	                            <ul>
+                                  <li><a href="http://pf.kakao.com/_NRYKG" target="_blank" title="새창">카카오채널</a></li> 
+	                                <li><a href="https://www.youtube.com/user/greenjeonnam1896" target="_blank" title="새창">유튜브</a></li>
+	                                <li><a href="https://www.facebook.com/jeonnam.kr" target="_blank" title="새창">페이스북</a></li>
+	                                <li><a href="https://twitter.com/greenjeonnam" target="_blank" title="새창">트위터</a></li>
+	                                <li><a href="https://blog.naver.com/greenjeonnam" target="_blank" title="새창">네이버블로그</a></li>
+	                                <li><a href="https://post.naver.com/my.nhn?memberNo=2327118" target="_blank" title="새창">네이버포스트</a></li>
+	                                <li><a href="https://story.kakao.com/ch/jeollanamdo/feed" target="_blank" title="새창">카카오스토리</a></li>
+	                                <li><a href="https://www.instagram.com/jeonnam_official/" target="_blank" title="새창">인스타그램</a></li>
+	                            </ul>
+	                        </li> -->
+	                    </ul>	
+	
+	                    <ul class="log_lang_box">
+	                        <li>
+                                   <a href="javascript:anyidAdaptor.ssoLoginPage('','');">
+                                        <img src="/home/site/jeonnam/newMain/img/main/2022/icon_new_login.png" alt="" class="">
+                                        <p>로그인</p>
+                                    </a>
+                                </li> 
+		                        <li>
+		                            <a href="/join.do?menuId=jeonnam0805000000">
+		                                <img src="/home/site/jeonnam/newMain/img/main/2022/icon_sign_up.png" alt="" class="login_img">
+		                                <p>회원가입</p>
+		                            </a>
+		                        </li>
+	                        <li class="lang_box">
+	                            <a href="javascript:;" title="외국어페이지 종류 보기 버튼">
+	                                <img src="/home/site/jeonnam/newMain/img/main/2022/icon_language.png" alt="">
+	                                <p>language</p>
+	                            </a>
+	                            <ul>
+	                                <li><a href="https://www.jeonnam.go.kr/main.do?menuId=english0000000000" target="_blank" title="새창">ENGLISH</a></li>
+	                                <li><a href="https://www.jeonnam.go.kr/main.do?menuId=chinese0000000000" target="_blank" title="새창">中國語</a></li>
+	                                <li><a href="https://www.jeonnam.go.kr/main.do?menuId=japanese0000000000" target="_blank" title="새창">日本語</a></li>
+	                            </ul>
+	                        </li>
+	
+	                        <li class="btn_mob_menu">
+	                            <a href="javascript:;">
+	                                <span></span>
+	                                <span></span>
+	                                <span></span>
+	                            </a>
+	                        </li>
+	
+	                    </ul>
+	                </div>
+				</div>
+            </div>
+
+            <!-- <div class="pop_word" style="height:60px;">
+                <ol class="pop_word_roll">
+                    <li>
+                        <a href="javascript:;" title="새창" class="pop_word_list">
+                            <span class="pop_word_count">1</span>
+                            일자리 경제과
+                        </a>
+                    </li>
+                </ol>
+            </div> -->
+
+
+
+            <div id="n_hd_bot">
+                <div class="new_wrap_box">
+                    <a href="/cm/siteMapDataA.do?menuId=jeonnam0804000000" class="btn_move_siteMap" title="전체 메뉴 보기">
+                        <span class="line"></span>
+                        <span class="line"></span>
+                        <span class="line"></span>
+                    </a>
+
+                    <!-- 
+                        기존 pc 메뉴 그대로 이용,
+                        gnb 부모쪽 클래스만 바꿈 (wrapBox -> gnb_wrap) 
+                    -->
+                    <div class="gnb_wrap">
+                        <div id="gnb">
+                            <nav class="reDe clearb"> 
+                               <ul>
+	<li><a href="http://www.jeonnam.go.kr/M6698/boardList.do?menuId=jeonnam0101020000" class="dep1">참여와 소통</a>
+	<section>
+		<div class="gnb_sub_tit">
+			<div class="wrapBox">
+				<h2>참여와 소통</h2>
+				<p>시민들의 다양한 의견을 반영하여<br> 창의 시정을 이루어 나가겠습니다.</p>
+			</div>
+		</div>
+		<div class="wrapBox tbl">
+			<div class="tbl_tr">
+				<div>
+					<h3><a href="http://www.jeonnam.go.kr/M6698/boardList.do?menuId=jeonnam0101020000">시민의 소리</a></h3>
+					<ul>
+			<li><a href="/M6698/boardList.do?menuId=jeonnam0101020000">우리동네 숨은 선행방</a></li>
+			<li><a href="/M6690/boardList.do?menuId=jeonnam0101010000">자유발언대</a></li>
+			<li><a href="/M6706/boardList.do?menuId=jeonnam0101030000">시민 홍보방</a></li>
+			<li><a href="/pj/NoxiousInfo_Home.do?menuId=jeonnam0101060000">유해정보신고</a></li>
+			<li><a href="/M6745/boardList.do?menuId=jeonnam0101080000">표창대상자 공개검증</a></li>
+			<li><a href="https://yeosun1019.jeonnam.go.kr/www" target="_blank" title="새창열기" >여순 희생자·유족 지원시스템</a></li>
+			<li><a href="/M6697/boardList.do?menuId=jeonnam0101120400">광주·전남 행정통합 질의답변</a></li>
+			<li><a href="/M6694/boardList.do?menuId=jeonnam0101130100">20조 시민공동체 포럼</a></li>
+					</ul>
+				</div>
+				<div>
+					<h3><a href="http://www.jeonnam.go.kr/home/pj/reservationHomeInsertView.do?menuId=jeonnam0102010000">시민접견실예약</a></h3>
+					<ul>
+			<li><a href="/home/pj/reservationHomeInsertView.do?menuId=jeonnam0102010000">예약하기</a></li>
+			<li><a href="/home/pj/reservationHomeListAction.do?menuId=jeonnam0102020000">예약확인</a></li>
+					</ul>
+				</div>
+				<div>
+					<h3><a href="http://www.jeonnam.go.kr/contentsView.do?menuId=jeonnam0103010100">시민제안·참여</a></h3>
+					<ul>
+			<li><a href="http://www.jeonnam.go.kr/contentsView.do?menuId=jeonnam0103010100">시민제안</a></li>
+			<li><a href="/pj/pollMaster_set_SelectAllAction_Home.do?menuId=jeonnam0103020000">설문조사</a></li>
+			<li><a href="/M010404/boardList.do?menuId=jeonnam0103080000">정책연구용역</a></li>
+			<li><a href="http://namdo.jeonnam.go.kr/jamun/" target="_blank" title="새창열기" >전남광주통합특별시 정책자문위원회</a></li>
+			<li><a href="/contentsView.do?menuId=jeonnam0103101000">적극행정</a></li>
+			<li><a href="http://www.jeonnam.go.kr/contentsView.do?menuId=jeonnam0103140100">민원메신저</a></li>
+					</ul>
+				</div>
+				<div>
+					<h3><a href="/contentsView.do?menuId=jeonnam0105040000">(구)청렴 전남</a></h3>
+					<ul>
+			<li><a href="http://www.redwhistle.org/report/reportNew.asp?organ=1196" target="_blank" title="새창열기" >청렴신문고</a></li>
+			<li><a href="/contentsView.do?menuId=jeonnam0105040000">부정·부패 신고</a></li>
+			<li><a href="/T8636/boardList.do?menuId=jeonnam0105020000">감사결과 공개</a></li>
+			<li><a href="http://www.jeonnam.go.kr/contentsView.do?menuId=jeonnam0105030100">사전 컨설팅 감사</a></li>
+			<li><a href="/M1762686/boardList.do?menuId=jeonnam0105010000">청렴시책나눔방</a></li>
+			<li><a href="/T8637/boardList.do?menuId=jeonnam0105080000">청탁금지법 이해</a></li>
+			<li><a href="/contentsView.do?menuId=jeonnam0105101000">도민감사관</a></li>
+			<li><a href="/T8634/boardList.do?menuId=jeonnam0105050000">자료실(공직윤리제도)</a></li>
+					</ul>
+				</div>
+				<div>
+					<h3><a href="http://www.jeonnam.go.kr/contentsView.do?menuId=jeonnam0108010000">소통</a></h3>
+					<ul>
+			<li><a href="/contentsView.do?menuId=jeonnam0108010000">소셜허브</a></li>
+					</ul>
+				</div>
+				<div>
+					<h3><a href="/contentsView.do?menuId=jeonnam0116010000">도민 명예기자단</a></h3>
+					<ul>
+			<li><a href="/contentsView.do?menuId=jeonnam0116010000">도민명예기자</a></li>
+			<li><a href="/M11602/boardList.do?menuId=jeonnam0116020000">도민기자뉴스</a></li>
+					</ul>
+				</div>
+				<div>
+					<h3><a href="/contentsView.do?menuId=jeonnam0113020000">고향사랑기부제</a></h3>
+					<ul>
+			<li><a href="/contentsView.do?menuId=jeonnam0113020000">고향사랑기부제 소개</a></li>
+			<li><a href="/contentsView.do?menuId=jeonnam0113010000">고향사랑기부제 답례품</a></li>
+			<li><a href="/contentsView.do?menuId=jeonnam0113030000">고향사랑기부제 기부금액별 혜택 현황</a></li>
+			<li><a href="/contentsView.do?menuId=jeonnam0113040000">고향사랑기부제 문의처</a></li>
+			<li><a href="/home/pj/donation/listView.do?pageIndex=1&menuId=jeonnam0113050000&year=2026">고향사랑기부제 명예의 전당</a></li>
+			<li><a href="/T0113/boardList.do?menuId=jeonnam0113060000">고향사랑기부금 접수·운용 현황공개</a></li>
+			<li><a href="/T011307/boardList.do?menuId=jeonnam0113070000">고향사랑 365 기부 릴레이 캠페인</a></li>
+			<li><a href="https://love.jeonnam.go.kr/jns/main" target="_blank" title="새창열기" >전남광주 사랑애 서포터즈</a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</section>
+	</li>
+	<li><a href="/M7124/boardList.do?menuId=jeonnam0201000000" class="dep1">시정소식</a>
+	<section>
+		<div class="gnb_sub_tit">
+			<div class="wrapBox">
+				<h2>시정소식</h2>
+				<p>시민들이 알아야 할 시정소식을<br> 빠르고 정확하게 알려드리겠습니다.</p>
+			</div>
+		</div>
+		<div class="wrapBox dojung">
+			<div class="tbl_tr">
+				<div>
+					<h3><a href="/M7124/boardList.do?menuId=jeonnam0201000000" class="notice">공지사항</a></h3>
+				</div>
+				<div>
+					<h3><a href="/M7116/boardList.do?menuId=jeonnam0202000000" class="report">보도자료</a></h3>
+				</div>
+				<div>
+					<h3><a href="/M7117/boardList.do?menuId=jeonnam0210000000" class="explan">설명자료</a></h3>
+				</div>
+				<div>
+					<h3><a href="/NEWSLETTER/boardList.do?menuId=jeonnam0208000000" class="graphic">그래픽뉴스</a></h3>
+				</div>
+				<div>
+					<h3><a href="https://jntv.go.kr/main/main.do" target="_blank" title="새창열기" >시정뉴스</a></h3>
+				</div>
+				<div>
+					<h3><a href="/J0203/boardList.do?menuId=jeonnam0203000000" class="public_notice">고시/공고</a></h3>
+				</div>
+				<div>
+					<h3><a href="/J0204/boardList.do?menuId=jeonnam0204000000" class="jn_report">(구)전남도보</a></h3>
+				</div>
+				<div>
+					<h3><a href="http://namdo.jeonnam.go.kr/sihum/" class="exam" target="_blank" title="새창열기" >시험정보</a></h3>
+				</div>
+				<div>
+					<h3><a href="https://www.jeonnam-gwangju.go.kr/boardList.do?boardId=JG_00000104&pageId=jngj133" class="job" target="_blank" title="새창열기" >채용공고</a></h3>
+				</div>
+			</div>
+		</div>
+	</section>
+	</li>
+	<li><a href="/contentsView.do?menuId=jeonnam0300000000" class="dep1">정보공개</a>
+	<section>
+		<div class="gnb_sub_tit">
+			<div class="wrapBox">
+				<h2>정보공개</h2>
+				<p>시민들의 알 권리 충족을 위해<br> 모든 정보공개에 최선을 다하겠습니다.</p>
+			</div>
+		</div>
+		<div class="wrapBox tbl">
+			<div class="tbl_tr">
+				<div>
+					<h3><a href="http://www.jeonnam.go.kr/pj/pri_set_priInfoList.do?menuId=jeonnam0301010000">사전정보공표</a></h3>
+					<ul>
+			<li><a href="/pj/pri_set_priInfoList.do?menuId=jeonnam0301010000">사전정보공표(분야별)</a></li>
+			<li><a href="/J030101/boardList.do?menuId=jeonnam0301030000">사전정보공표(열람용)</a></li>
+			<li><a href="/pj/pri_set_priInfoList.do?menuId=jeonnam0301040000">사전정보공표(즐겨찾기)</a></li>
+			<li><a href="/J030102/boardList.do?menuId=jeonnam0301020000">정보공개 고객관리</a></li>
+					</ul>
+				</div>
+				<div>
+					<h3><a href="http://www.jeonnam.go.kr/contentsView.do?menuId=jeonnam0302010100">정보공개</a></h3>
+					<ul>
+			<li><a href="http://www.jeonnam.go.kr/contentsView.do?menuId=jeonnam0302010100">정보공개안내</a></li>
+			<li><a href="http://www.jeonnam.go.kr/contentsView.do?menuId=jeonnam0302010200">비공개 세부기준</a></li>
+			<li><a href="/T030208/boardList.do?menuId=jeonnam0302080000">정보목록</a></li>
+			<li><a href="https://www.open.go.kr/" target="_blank" title="새창열기" >정보공개청구 포털</a></li>
+			<li><a href="http://www.jeonnam.go.kr/contentsView.do?menuId=jeonnam0302040100">정책실명제안내</a></li>
+			<li><a href="/M1925005/boardList.do?menuId=jeonnam0302050100">업무추진비 공개</a></li>
+					</ul>
+				</div>
+				<div>
+					<h3><a href="http://www.jeonnam.go.kr/contentsView.do?menuId=jeonnam0303021200">주요시책</a></h3>
+					<ul>
+			<li><a href="/contentsView.do?menuId=jeonnam0303021200">주요업무계획</a></li>
+			<li><a href="/contentsView.do?menuId=jeonnam0303140100">2026년 달라지는 제도시책</a></li>
+			<li><a href="/contentsView.do?menuId=jeonnam0303150000">2025년 전라남도 주요 성과</a></li>
+			<li><a href="/contentsView.do?menuId=jeonnam0303041000">(구)도정백서</a></li>
+			<li><a href="/contentsView.do?menuId=jeonnam0303050000">(구)전남도정 10년사</a></li>
+					</ul>
+				</div>
+				<div>
+					<h3><a href="http://www.jeonnam.go.kr/contentsView.do?menuId=jeonnam0304010000">공공데이터 개방</a></h3>
+					<ul>
+			<li><a href="/contentsView.do?menuId=jeonnam0304010000">제공제도 안내</a></li>
+			<li><a href="/contentsView.do?menuId=jeonnam0304020000">제공목록 및 이용신청</a></li>
+					</ul>
+				</div>
+				<div>
+					<h3><a href="/contentsView.do?menuId=jeonnam0305012000">재정운영</a></h3>
+					<ul>
+			<li><a href="/contentsView.do?menuId=jeonnam0305012000">지방재정공시(결산자료)</a></li>
+			<li><a href="http://www.jeonnam.go.kr/contentsView.do?menuId=jeonnam0305021200">지방재정공시(예산자료)</a></li>
+			<li><a href="https://www.jeonnam.go.kr/contentsView.do?menuId=jeonnam0305031200">세입세출 예산</a></li>
+			<li><a href="/pj/FinanceSelectAll_Home.do?menuId=jeonnam0305041200&YYYY=2026&category=G">성인지 예산</a></li>
+			<li><a href="/M030511/boardList.do?menuId=jeonnam0305110000">성과계획서</a></li>
+			<li><a href="http://www.jeonnam.go.kr/contentsView.do?menuId=jeonnam0305120100">주민참여예산제</a></li>
+			<li><a href="http://www.jeonnam.go.kr/contentsView.do?menuId=jeonnam0305051600">세입세출결산</a></li>
+			<li><a href="/J030509/boardList.do?menuId=jeonnam0305090000">세입세출및공공시설 운영현황공개</a></li>
+			<li><a href="http://www.jeonnam.go.kr/contentsView.do?menuId=jeonnam0305062300">시군구 예산규모 비교</a></li>
+			<li><a href="/contentsView.do?menuId=jeonnam0305070000">시군재정공시</a></li>
+			<li><a href="http://www.jeonnam.go.kr/contentsView.do?menuId=jeonnam0305080400">지방공기업</a></li>
+					</ul>
+				</div>
+				<div>
+					<h3><a href="/M761894/boardList.do?menuId=jeonnam0311040000">기타정보공개</a></h3>
+					<ul>
+			<li><a href="https://gyeyak.jeonnam-gwangju.go.kr/ " target="_blank" title="새창열기" >계약정보공개</a></li>
+			<li><a href="/M761894/boardList.do?menuId=jeonnam0311040000">위반업소공개</a></li>
+			<li><a href="/M0310/boardList.do?menuId=jeonnam0311020000">정책연구용역공개</a></li>
+			<li><a href="/contentsView.do?menuId=jeonnam0311050000">공공저작물공개</a></li>
+			<li><a href="/M031106/boardList.do?menuId=jeonnam0311060000">상품권 구매 및 사용내역</a></li>
+			<li><a href="/M031107/boardList.do?menuId=jeonnam0311070000">훈련결과보고서</a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</section>
+	</li>
+	<li><a href="/contentsView.do?menuId=jeonnam0400000000" class="dep1">전자민원</a>
+	<section>
+		<div class="gnb_sub_tit">
+			<div class="wrapBox">
+				<h2>전자민원</h2>
+				<p>시민들의 신청민원에 대해 <br> 적극적으로 처리해 드리겠습니다.</p>
+			</div>
+		</div>
+		<div class="wrapBox tbl">
+			<div class="tbl_tr">
+				<div>
+					<h3><a href="http://www.jeonnam.go.kr/contentsView.do?menuId=jeonnam0401010000">인권상담·조사</a></h3>
+					<ul>
+			<li><a href="http://www.jeonnam.go.kr/contentsView.do?menuId=jeonnam0401010000">인권상담·조사</a></li>
+			<li><a href="/contentsView.do?menuId=jeonnam0401010000">인권이란?</a></li>
+			<li><a href="/contentsView.do?menuId=jeonnam0401020000">차별이란?</a></li>
+			<li><a href="/contentsView.do?menuId=jeonnam0401030000">(구)전라남도 인권보장제도</a></li>
+			<li><a href="/contentsView.do?menuId=jeonnam0401040000">인권 상담·조사 신청</a></li>
+			<li><a href="/contentsView.do?menuId=jeonnam0401050000">국내구제제도</a></li>
+			<li><a href="/contentsView.do?menuId=jeonnam0401060000">국제인권보장기구</a></li>
+			<li><a href="/contentsView.do?menuId=jeonnam0401070000">묻고 답하기</a></li>
+			<li><a href="/Y0001/boardList.do?menuId=jeonnam0401080000">자료실</a></li>
+					</ul>
+				</div>
+				<div>
+					<h3><a href="http://www.jeonnam.go.kr/contentsView.do?menuId=jeonnam0402010000">행복소통실</a></h3>
+					<ul>
+			<li><a href="/contentsView.do?menuId=jeonnam0402010000">행복소통실안내</a></li>
+			<li><a href="/contentsView.do?menuId=jeonnam0402020000">구술ㆍ전화민원 신청 </a></li>
+			<li><a href="/contentsView.do?menuId=jeonnam0402030000">민원후견인제</a></li>
+			<li><a href="/contentsView.do?menuId=jeonnam0402040000">사전심사 청구제</a></li>
+			<li><a href="/contentsView.do?menuId=jeonnam0402050000">어디서나 민원처리제</a></li>
+			<li><a href="/contentsView.do?menuId=jeonnam0402060000">무인민원 발급기 안내</a></li>
+			<li><a href="/contentsView.do?menuId=jeonnam0402070000">자격증 교부 안내</a></li>
+					</ul>
+				</div>
+				<div>
+					<h3><a href="/H0403/boardList.do?menuId=jeonnam0411010000">민원편람</a></h3>
+					<ul>
+			<li><a href="/H0403/boardList.do?menuId=jeonnam0411010000">전체</a></li>
+			<li><a href="/H0403/boardList.do?menuId=jeonnam0411020000&deptCode=001">대변인실</a></li>
+			<li><a href="/H0403/boardList.do?menuId=jeonnam0411030000&deptCode=002">행복소통실</a></li>
+			<li><a href="/H0403/boardList.do?menuId=jeonnam0411040000&deptCode=003">감사관</a></li>
+			<li><a href="/H0403/boardList.do?menuId=jeonnam0411050000&deptCode=004">여성가족정책관실</a></li>
+			<li><a href="/H0403/boardList.do?menuId=jeonnam0411070000&deptCode=006">기획조정실</a></li>
+			<li><a href="/H0403/boardList.do?menuId=jeonnam0411080000&deptCode=007">시민안전실</a></li>
+			<li><a href="/H0403/boardList.do?menuId=jeonnam0411090000&deptCode=008">에너지산업국</a></li>
+			<li><a href="/H0403/boardList.do?menuId=jeonnam0411100000&deptCode=009">관광체육국</a></li>
+			<li><a href="/H0403/boardList.do?menuId=jeonnam0411110000&deptCode=010">보건복지국</a></li>
+			<li><a href="/H0403/boardList.do?menuId=jeonnam0411120000&deptCode=011">농축산식품국</a></li>
+			<li><a href="/H0403/boardList.do?menuId=jeonnam0411130000&deptCode=012">해양수산국</a></li>
+			<li><a href="/H0403/boardList.do?menuId=jeonnam0411140000&deptCode=013">건설교통국</a></li>
+			<li><a href="/H0403/boardList.do?menuId=jeonnam0411150000&deptCode=014">자치행정국</a></li>
+			<li><a href="/H0403/boardList.do?menuId=jeonnam0411160000&deptCode=015">소방본부</a></li>
+			<li><a href="https://dongbu.jeonnam.go.kr/H0404/boardList.do?menuId=east1103030100">동부지역본부</a></li>
+					</ul>
+				</div>
+				<div>
+					<h3><a href="http://www.gov.kr" target="_blank" title="새창열기" >정부24</a></h3>
+					<ul>
+			<li><a href="http://www.gov.kr/portal/orgInfo?Mcode=11040" target="_blank" title="새창열기" >정부/지자체 조직도</a></li>
+					</ul>
+				</div>
+				<div>
+					<h3><a href="http://www.jeonnam.go.kr/contentsView.do?menuId=jeonnam0405010000">여권</a></h3>
+					<ul>
+			<li><a href="/contentsView.do?menuId=jeonnam0405010000">여권개요</a></li>
+			<li><a href="/contentsView.do?menuId=jeonnam0405020000">여권발급 및 재발급 안내</a></li>
+			<li><a href="https://www.passport.go.kr/home/kor/applicationForm/index.do?menuPos=42" target="_blank" title="새창열기" >여권민원서식</a></li>
+			<li><a href="https://www.passport.go.kr/home/kor/contents.do?menuPos=32" target="_blank" title="새창열기" >여권사진규정</a></li>
+			<li><a href="https://www.passport.go.kr/home/kor/contents.do?menuPos=11" target="_blank" title="새창열기" >온라인 여권 재발급 안내</a></li>
+			<li><a href="https://www.gov.kr/mw/mofa/pssptIsuStatSrch.do?capp_biz_cd=PG4CADM0406&selectedSeq=01&minwonFormSkipYn=Y" target="_blank" title="새창열기" >여권 발급 상태조회</a></li>
+			<li><a href="/contentsView.do?menuId=jeonnam0405060000">국제운전면허증 발급</a></li>
+					</ul>
+				</div>
+				<div>
+					<h3><a href="http://www.jeonnam.go.kr/contentsView.do?menuId=jeonnam0407030000">민원상담 신청</a></h3>
+					<ul>
+			<li><a href="/contentsView.do?menuId=jeonnam0407030000">나의민원조회</a></li>
+			<li><a href="/contentsView.do?menuId=jeonnam0407010000">민원상담 신청하기</a></li>
+			<li><a href="/M19169/boardList.do?menuId=jeonnam0407020000">민원사례/FAQ</a></li>
+					</ul>
+				</div>
+				<div>
+					<h3><a href="http://www.jeonnam.go.kr/contentsView.do?menuId=jeonnam0408200000">민원신고센터</a></h3>
+					<ul>
+			<li><a href="/contentsView.do?menuId=jeonnam0408200000">나의민원조회</a></li>
+			<li><a href="https://www.safetyreport.go.kr/" target="_blank" title="새창열기" >안전신고</a></li>
+			<li><a href="/contentsView.do?menuId=jeonnam0408060000">교통불편신고</a></li>
+			<li><a href="/contentsView.do?menuId=jeonnam0408070000">화물운송 불법신고</a></li>
+			<li><a href="/contentsView.do?menuId=jeonnam0408090000">불법어업신고</a></li>
+			<li><a href="/contentsView.do?menuId=jeonnam0408100000">식품안전관리 소비자 신고</a></li>
+			<li><a href="/contentsView.do?menuId=jeonnam0408110000">의료기관 불편신고</a></li>
+			<li><a href="/contentsView.do?menuId=jeonnam0408120000">청소년유해업소신고</a></li>
+			<li><a href="/contentsView.do?menuId=jeonnam0408130000">환경 신문고</a></li>
+			<li><a href="/contentsView.do?menuId=jeonnam0408140000">여성의 메아리</a></li>
+			<li><a href="/contentsView.do?menuId=jeonnam0408150000">보육시설 불편 신고</a></li>
+			<li><a href="/contentsView.do?menuId=jeonnam0408160000">부동산 불법거래 신고 센터</a></li>
+			<li><a href="/contentsView.do?menuId=jeonnam0408170100">예산낭비신고</a></li>
+			<li><a href="http://www.redwhistle.org/report/reportNew.asp?organ=1196" target="_blank" title="새창열기" >청렴신문고</a></li>
+			<li><a href="https://www.redwhistle.org/report/reportCheck.asp?organ=7753" target="_blank" title="새창열기" >갑질피해신고지원센터</a></li>
+			<li><a href="/contentsView.do?menuId=jeonnam0408210000">국무조정실 규제신문고</a></li>
+			<li><a href="/contentsView.do?menuId=jeonnam0408020000">공무원행동강령 신고</a></li>
+			<li><a href="/contentsView.do?menuId=jeonnam0408010000">공무원부조리 신고</a></li>
+			<li><a href="/contentsView.do?menuId=jeonnam0408030000">적극행정 면책신고상담</a></li>
+			<li><a href="https://www.moleg.go.kr/menu.es?mid=a10606050000" target="_blank" title="새창열기" >복지부정신고</a></li>
+			<li><a href="/contentsView.do?menuId=jeonnam0408050000">공익신고</a></li>
+			<li><a href="/contentsView.do?menuId=jeonnam0408230000">소극행정신고센터</a></li>
+					</ul>
+				</div>
+				<div>
+					<h3><a href="http://minwon.jeonnam.go.kr/" target="_blank" title="새창열기" >민원메신저</a></h3>
+				</div>
+				<div>
+					<h3><a href="/contentsView.do?menuId=jeonnam0410000000">(구)전라남도 행정서비스헌장</a></h3>
+				</div>
+			</div>
+		</div>
+	</section>
+	</li>
+	<li><a href="/contentsView.do?menuId=jeonnam0500000000" class="dep1">분야별 정보</a>
+	<section>
+		<div class="gnb_sub_tit">
+			<div class="wrapBox">
+				<h2>분야별 정보</h2>
+				<p>시민들이 필요로 하는 각종 정보를<br> 체계적으로 분류하여 제공해 드립니다.</p>
+			</div>
+		</div>
+		<div class="wrapBox tbl">
+			<div class="tbl_tr">
+				<div>
+					<h3><a href="http://www.jeonnam.go.kr/M5796/boardList.do?menuId=jeonnam0501010000">일자리ㆍ경제</a></h3>
+					<ul>
+			<li><a href="/M5796/boardList.do?menuId=jeonnam0501010000">경제동향</a></li>
+			<li><a href="/T190000/boardList.do?menuId=jeonnam0501190000">물가ㆍ착한가격업소</a></li>
+			<li><a href="/T1020000/boardList.do?menuId=jeonnam0501020000">소비자정보</a></li>
+			<li><a href="https://www.jeonnam.go.kr/M5918/boardList.do?menuId=jeonnam0501030100">기업지원</a></li>
+			<li><a href="https://www.jeonnam.go.kr/M5934/boardList.do?menuId=jeonnam0501040100">기업정보</a></li>
+			<li><a href="http://invest.jeonnam.go.kr/sites/invest/index.do" target="_blank" title="새창열기" >투자유치</a></li>
+			<li><a href="http://www.jeonnam.go.kr/contentsView.do?menuId=jeonnam0501060100">주력산업</a></li>
+			<li><a href="http://www.jeonnam.go.kr/contentsView.do?menuId=jeonnam0501070100">미래산업</a></li>
+			<li><a href="http://www.jexport.or.kr/" target="_blank" title="새창열기" >수출정보</a></li>
+			<li><a href="http://www.jeonnam.go.kr/contentsView.do?menuId=jeonnam0501090100">생활경제</a></li>
+			<li><a href="/contentsView.do?menuId=jeonnam0501100200">일자리종합지원</a></li>
+			<li><a href="/contentsView.do?menuId=jeonnam0501110100">창업정보</a></li>
+			<li><a href="/contentsView.do?menuId=jeonnam0501130100">창업시책 및 안내</a></li>
+			<li><a href="http://www.jeonnam.go.kr/contentsView.do?menuId=jeonnam0501120100">도로/교통</a></li>
+			<li><a href="/contentsView.do?menuId=jeonnam0501140100">마을 공동체</a></li>
+			<li><a href="/contentsView.do?menuId=jeonnam0501150100">협동조합</a></li>
+			<li><a href="/contentsView.do?menuId=jeonnam0501170100">사회적경제</a></li>
+			<li><a href="/contentsView.do?menuId=jeonnam0501180100">무안국제공항 활성화</a></li>
+					</ul>
+				</div>
+				<div>
+					<h3><a href="http://www.jeonnam.go.kr/M5417/boardList.do?menuId=jeonnam0502010100">농업ㆍ축산</a></h3>
+					<ul>
+			<li><a href="http://www.jeonnam.go.kr/M5417/boardList.do?menuId=jeonnam0502010100">농정뉴스</a></li>
+			<li><a href="http://www.jeonnam.go.kr/contentsView.do?menuId=jeonnam0502020100">농업통계</a></li>
+			<li><a href="http://www.jeonnam.go.kr/home/pj/WorkHandSelectAction.do?menuId=jeonnam0502030100&category=A">농촌일손돕기</a></li>
+			<li><a href="/contentsView.do?menuId=jeonnam0502110100">청년농업인정책</a></li>
+			<li><a href="http://www.jeonnam.go.kr/contentsView.do?menuId=jeonnam0502050100">녹색축산</a></li>
+			<li><a href="https://apms.epis.or.kr" target="_blank" title="새창열기" >동물사랑배움터</a></li>
+			<li><a href="http://www.jeonnam.go.kr/contentsView.do?menuId=jeonnam0502060100">안심먹을거리</a></li>
+			<li><a href="http://www.jeonnam.go.kr/contentsView.do?menuId=jeonnam0502070100">고소득 작목</a></li>
+			<li><a href="/contentsView.do?menuId=jeonnam0502120000">여성농업인정책</a></li>
+					</ul>
+				</div>
+				<div>
+					<h3><a href="http://www.jeonnam.go.kr/contentsView.do?menuId=jeonnam0506010100">환경ㆍ산림</a></h3>
+					<ul>
+			<li><a href="http://www.jeonnam.go.kr/contentsView.do?menuId=jeonnam0506010100">수질개선</a></li>
+			<li><a href="http://www.jeonnam.go.kr/contentsView.do?menuId=jeonnam0506020100">대기환경</a></li>
+			<li><a href="/contentsView.do?menuId=jeonnam0506030000">수질환경</a></li>
+			<li><a href="/contentsView.do?menuId=jeonnam0506040000">환경 수질 통계</a></li>
+			<li><a href="/contentsView.do?menuId=jeonnam0506050000">녹색생활의 지혜</a></li>
+			<li><a href="http://www.jeonnam.go.kr/contentsView.do?menuId=jeonnam0506060100">물 절약 운동</a></li>
+			<li><a href="http://www.jeonnam.go.kr/contentsView.do?menuId=jeonnam0506080200">산림정보</a></li>
+			<li><a href="http://www.jeonnam.go.kr/contentsView.do?menuId=jeonnam0506090400">산림녹지정보</a></li>
+			<li><a href="http://www.jeonnam.go.kr/contentsView.do?menuId=jeonnam0506101000">나무은행</a></li>
+			<li><a href="http://www.jeonnam.go.kr/contentsView.do?menuId=jeonnam0506110100">정원ㆍ수목원</a></li>
+			<li><a href="http://www.jeonnam.go.kr/contentsView.do?menuId=jeonnam0506120200">환경정책</a></li>
+					</ul>
+				</div>
+				<div>
+					<h3><a href="http://www.jeonnam.go.kr/M5551/boardList.do?menuId=jeonnam0503010000">해양수산</a></h3>
+					<ul>
+			<li><a href="/M5551/boardList.do?menuId=jeonnam0503010000">해양수산뉴스</a></li>
+			<li><a href="/contentsView.do?menuId=jeonnam0503020000">달라지는 해양수산제도</a></li>
+			<li><a href="/contentsView.do?menuId=jeonnam0503030000">해양수산통계</a></li>
+			<li><a href="http://www.jeonnam.go.kr/contentsView.do?menuId=jeonnam0503040100">(구)전남의 항구</a></li>
+			<li><a href="/contentsView.do?menuId=jeonnam0503050000">불법어업신고</a></li>
+			<li><a href="/contentsView.do?menuId=jeonnam0503070000">해양·수산물 방사능 안전정보</a></li>
+					</ul>
+				</div>
+				<div>
+					<h3><a href="/contentsView.do?menuId=jeonnam0504010201">시민복지</a></h3>
+					<ul>
+			<li><a href="/contentsView.do?menuId=jeonnam0504010201">사회복지정보</a></li>
+			<li><a href="/contentsView.do?menuId=jeonnam0504030101">장애인복지정보</a></li>
+			<li><a href="/contentsView.do?menuId=jeonnam0504040101">아동/청소년복지정보</a></li>
+			<li><a href="/contentsView.do?menuId=jeonnam0504020101">어르신복지정보</a></li>
+			<li><a href="/contentsView.do?menuId=jeonnam0504110101">장사정보</a></li>
+			<li><a href="/contentsView.do?menuId=jeonnam0504160100">출산지원정보</a></li>
+			<li><a href="https://www.jwomen.or.kr/?site=women" target="_blank" title="새창열기" >전남여성가족재단</a></li>
+			<li><a href="http://www.liveinkorea.kr/" target="_blank" title="새창열기" >다문화가족지원센터</a></li>
+			<li><a href="http://info.childcare.go.kr/" target="_blank" title="새창열기" >인증어린이집</a></li>
+			<li><a href="/contentsView.do?menuId=jeonnam0504060100">의료기관정보</a></li>
+			<li><a href="/M050407/boardList.do?menuId=jeonnam0504070000">감염병정보</a></li>
+			<li><a href="https://www.jeonnam.go.kr/contentsView.do?menuId=jeonnam0504150100">코로나19</a></li>
+			<li><a href="/M4941/boardList.do?menuId=jeonnam0504080000">부정/불량식품</a></li>
+			<li><a href="http://www.jeonnam.go.kr/contentsView.do?menuId=jeonnam0504090100">생활정보</a></li>
+			<li><a href="http://www.jeonnam.go.kr/contentsView.do?menuId=jeonnam0504100100">문화/체육정보</a></li>
+			<li><a href="https://brand.jeonnam.go.kr/" target="_blank" title="새창열기" >청년정책정보</a></li>
+					</ul>
+				</div>
+				<div>
+					<h3><a href="http://www.jeonnam.go.kr/M4996/boardList.do?menuId=jeonnam0505010000">부동산정보</a></h3>
+					<ul>
+			<li><a href="/M4996/boardList.do?menuId=jeonnam0505010000">알림사항</a></li>
+			<li><a href="/contentsView.do?menuId=jeonnam0505020000">개별공시지가조회</a></li>
+			<li><a href="/contentsView.do?menuId=jeonnam0505030000">주택공시가격조회</a></li>
+			<li><a href="/M5004/boardList.do?menuId=jeonnam0505040000">주택통계</a></li>
+			<li><a href="http://www.jeonnam.go.kr/contentsView.do?menuId=jeonnam0505050100">부동산개발업</a></li>
+			<li><a href="/contentsView.do?menuId=jeonnam0505060000">부동산중개업</a></li>
+			<li><a href="/contentsView.do?menuId=jeonnam0505070000">부동산 거래신고</a></li>
+			<li><a href="/contentsView.do?menuId=jeonnam0505080000">토지거래 허가제도</a></li>
+			<li><a href="http://www.juso.go.kr" target="_blank" title="새창열기" >도로명 주소</a></li>
+			<li><a href="/contentsView.do?menuId=jeonnam0505100000">조상땅 열람</a></li>
+			<li><a href="https://www.reb.or.kr/r-one/main.do" target="_blank" title="새창열기" >부동산 통계정보</a></li>
+			<li><a href="/contentsView.do?menuId=jeonnam0505110000">관련사이트</a></li>
+			<li><a href="/contentsView.do?menuId=jeonnam0505130000">지방세 미리계산</a></li>
+					</ul>
+				</div>
+				<div>
+					<h3><a href="/contentsView.do?menuId=jeonnam0509000000">법무정보</a></h3>
+					<ul>
+			<li><a href="http://www.elis.go.kr/newlaib/laibLaws/h1126/laws.jsp?regionId=46000" target="_blank" title="새창열기" >자치법규</a></li>
+			<li><a href="http://law.jeonnam.go.kr/" target="_blank" title="새창열기" >법무행정서비스</a></li>
+			<li><a href="/T1840601/boardList.do?menuId=jeonnam0509040400">행정규제개선</a></li>
+			<li><a href="https://law.jeonnam.go.kr/law/32/subview.do" target="_blank" title="새창열기" >무료법률상담</a></li>
+			<li><a href="http://www.simpan.go.kr" target="_blank" title="새창열기" >온라인 행정심판</a></li>
+			<li><a href="https://www.jeonnam.go.kr/contentsView.do?menuId=jeonnam0509060100">무료세무상담(마을세무사)</a></li>
+					</ul>
+				</div>
+				<div>
+					<h3><a href="http://www.jeonnam.go.kr/contentsView.do?menuId=jeonnam0507010100">재난·안전·중대재해예방</a></h3>
+					<ul>
+			<li><a href="http://www.jeonnam.go.kr/contentsView.do?menuId=jeonnam0507010100">전기안전</a></li>
+			<li><a href="http://www.jeonnam.go.kr/contentsView.do?menuId=jeonnam0507020100">가스안전</a></li>
+			<li><a href="https://www.jeonnam.go.kr/M10100/boardList.do?menuId=jeonnam0507110100">중대재해예방</a></li>
+			<li><a href="http://u-safe.jeonnam.go.kr/" target="_blank" title="새창열기" >재난재해</a></li>
+			<li><a href="/contentsView.do?menuId=jeonnam0507120000">시민안전공제보험</a></li>
+			<li><a href="http://www.jeonnam.go.kr/contentsView.do?menuId=jeonnam0507040100">풍수해 보험정보</a></li>
+			<li><a href="/contentsView.do?menuId=jeonnam0507100000">국가안전대진단</a></li>
+			<li><a href="/contentsView.do?menuId=jeonnam0507050000">시민안전점검청구제</a></li>
+			<li><a href="/contentsView.do?menuId=jeonnam0507060000">전세버스 교통안전정보 </a></li>
+			<li><a href="http://www.jeonnam.go.kr/contentsView.do?menuId=jeonnam0507070100">에너지절약</a></li>
+			<li><a href="https://www.safetv.go.kr/base/main/view" target="_blank" title="새창열기" >국민안전방송 안전한 TV</a></li>
+					</ul>
+				</div>
+				<div>
+					<h3><a href="http://www.jeonnam.go.kr/contentsView.do?menuId=jeonnam0508020000">통계정보</a></h3>
+					<ul>
+			<li><a href="/contentsView.do?menuId=jeonnam0508020000">(구)전남의 하루</a></li>
+			<li><a href="/M4695/boardList.do?menuId=jeonnam0508070000">주민등록ㆍ추계인구</a></li>
+			<li><a href="/M4604/boardList.do?menuId=jeonnam0508080000">시군별 지역내총생산</a></li>
+			<li><a href="/M4605/boardList.do?menuId=jeonnam0508060000">사회조사</a></li>
+			<li><a href="/M4687/boardList.do?menuId=jeonnam0508090000">통계연보</a></li>
+			<li><a href="/M4703/boardList.do?menuId=jeonnam0508010000">사업체조사</a></li>
+			<li><a href="/M4608/boardList.do?menuId=jeonnam0508040000">광업·제조업조사</a></li>
+			<li><a href="/M4711/boardList.do?menuId=jeonnam0508050000">동향통계</a></li>
+			<li><a href="/M4610/boardList.do?menuId=jeonnam0508100000">기타 통계</a></li>
+					</ul>
+				</div>
+				<div>
+					<h3><a href="https://www.jeonnam.go.kr/M5725/boardList.do?menuId=jeonnam0510100000">5·18</a></h3>
+					<ul>
+			<li><a href="/M5725/boardList.do?menuId=jeonnam0510100000">전라남도 5·18사적지</a></li>
+			<li><a href="/M5726/boardList.do?menuId=jeonnam0510200000">전라남도 5·18역사해설</a></li>
+					</ul>
+				</div>
+				<div>
+					<h3><a href="https://yeosun1019.jeonnam.go.kr/www" target="_blank" title="새창열기" >여순 10·19사건</a></h3>
+					<ul>
+			<li><a href="https://yeosun1019.jeonnam.go.kr/www" target="_blank" title="새창열기" >여수·순천 10·19사건</a></li>
+			<li><a href="https://map.jeonnam.go.kr/" target="_blank" title="새창열기" >여수·순천 10·19사건 역사유적지</a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</section>
+	</li>
+	<li><a href="/contentsView.do?menuId=jeonnam0600000000" class="dep1">(구)전남소개</a>
+	<section>
+		<div class="gnb_sub_tit">
+			<div class="wrapBox">
+				<h2>(구)전남소개</h2>
+				<p>(구)전남의 역사, 일반 현황, 발전 전략 등<br>소개해 드립니다.</p>
+			</div>
+		</div>
+		<div class="wrapBox tbl">
+			<div class="tbl_tr">
+				<div>
+					<h3><a href="/contentsView.do?menuId=jeonnam0601101000">시청안내</a></h3>
+					<ul>
+			<li><a href="https://www.jeonnam-gwangju.go.kr/contentsView.do?pageId=jngj14" target="_blank" title="새창열기" >조직도</a></li>
+			<li><a href="https://www.jeonnam-gwangju.go.kr/contentsView.do?pageId=jngj15" target="_blank" title="새창열기" >직원검색</a></li>
+			<li><a href="https://www.jeonnam-gwangju.go.kr/contentsView.do?pageId=jngj15" target="_blank" title="새창열기" >실과전화번호</a></li>
+			<li><a href="/contentsView.do?menuId=jeonnam0601101000">조직운영 정보</a></li>
+			<li><a href="https://www.jeonnam-gwangju.go.kr/contentsView.do?pageId=jngj93" target="_blank" title="새창열기" >청사소개</a></li>
+			<li><a href="https://www.jeonnam-gwangju.go.kr/contentsView.do?pageId=jngj94" target="_blank" title="새창열기" >청사배치도</a></li>
+			<li><a href="/M4748/boardList.do?menuId=jeonnam0601080000">청사갤러리</a></li>
+			<li><a href="https://www.jeonnam-gwangju.go.kr/contentsView.do?pageId=jngj96" target="_blank" title="새창열기" >찾아오시는 길</a></li>
+					</ul>
+				</div>
+				<div>
+					<h3><a href="http://www.jeonnam.go.kr/contentsView.do?menuId=jeonnam0602040000">일반현황</a></h3>
+					<ul>
+			<li><a href="https://www.jeonnam-gwangju.go.kr/contentsView.do?pageId=jngj8" target="_blank" title="새창열기" >위치 및 지형</a></li>
+			<li><a href="https://www.jeonnam-gwangju.go.kr/contentsView.do?pageId=jngj9" target="_blank" title="새창열기" >행정구역</a></li>
+			<li><a href="/contentsView.do?menuId=jeonnam0602040000">인구</a></li>
+			<li><a href="/contentsView.do?menuId=jeonnam0602050000">기후</a></li>
+			<li><a href="/contentsView.do?menuId=jeonnam0602060000">시군현황</a></li>
+					</ul>
+				</div>
+				<div>
+					<h3><a href="http://www.jeonnam.go.kr/contentsView.do?menuId=jeonnam0603010000">(구)전남의 상징</a></h3>
+					<ul>
+			<li><a href="/contentsView.do?menuId=jeonnam0603010000">도기</a></li>
+			<li><a href="/contentsView.do?menuId=jeonnam0603120000">도조</a></li>
+			<li><a href="/contentsView.do?menuId=jeonnam0603110000">도화</a></li>
+			<li><a href="/contentsView.do?menuId=jeonnam0603100000">도목</a></li>
+			<li><a href="/contentsView.do?menuId=jeonnam0603090000">도어</a></li>
+			<li><a href="/contentsView.do?menuId=jeonnam0603130000">도정비전과 방침</a></li>
+			<li><a href="/contentsView.do?menuId=jeonnam0603020000">슬로건(생명의땅 으뜸전남)</a></li>
+			<li><a href="/contentsView.do?menuId=jeonnam0603030000">캐릭터(남도와 남이)</a></li>
+			<li><a href="/contentsView.do?menuId=jeonnam0603080000">푸른전남체</a></li>
+			<li><a href="/contentsView.do?menuId=jeonnam0603070000">전용색상</a></li>
+			<li><a href="/M4719/boardList.do?menuId=jeonnam0603040000">CI 디자인 자료방</a></li>
+			<li><a href="/M4720/boardList.do?menuId=jeonnam0603140000">영문 도시브랜드(BI)  자료방</a></li>
+			<li><a href="/contentsView.do?menuId=jeonnam0603050000">도민헌장</a></li>
+			<li><a href="/contentsView.do?menuId=jeonnam0603060000">도민의 노래</a></li>
+					</ul>
+				</div>
+				<div>
+					<h3><a href="http://www.jeonnam.go.kr/contentsView.do?menuId=jeonnam0604010000">(구)전남의 역사</a></h3>
+					<ul>
+			<li><a href="/contentsView.do?menuId=jeonnam0604010000">연혁</a></li>
+			<li><a href="/contentsView.do?menuId=jeonnam0604020000">전라남도 유래</a></li>
+			<li><a href="/M4727/boardList.do?menuId=jeonnam0604030000">시군지명 유래</a></li>
+			<li><a href="/M4749/boardList.do?menuId=jeonnam0604040100&searchCate=2">전남 100년[사진]</a></li>
+			<li><a href="http://www.jeonnam.go.kr/contentsView.do?menuId=jeonnam0604050100">전라도 천년 유래</a></li>
+					</ul>
+				</div>
+				<div>
+					<h3><a href="http://www.jeonnam.go.kr/contentsView.do?menuId=jeonnam0605010100">(구)전남발전전략</a></h3>
+					<ul>
+			<li><a href="http://www.jeonnam.go.kr/contentsView.do?menuId=jeonnam0605010100">전남발전 비전전략</a></li>
+			<li><a href="http://www.jeonnam.go.kr/contentsView.do?menuId=jeonnam0605020300">추진중 대규모프로젝트</a></li>
+			<li><a href="/contentsView.do?menuId=jeonnam0605030000">전라남도종합계획</a></li>
+			<li><a href="/contentsView.do?menuId=jeonnam0605040000">남해안발전구상</a></li>
+			<li><a href="/contentsView.do?menuId=jeonnam0605050000">개발계획도</a></li>
+					</ul>
+				</div>
+				<div>
+					<h3><a href="/contentsView.do?menuId=jeonnam0606170300">시정홍보관</a></h3>
+					<ul>
+			<li><a href="/contentsView.do?menuId=jeonnam0606170300">연도별 수상실적</a></li>
+			<li><a href="/contentsView.do?menuId=jeonnam0606160000">(구)전라남도 애국가 영상</a></li>
+			<li><a href="https://photo.jeonnam.go.kr" target="_blank" title="새창열기" >전남 사진영상 기록원</a></li>
+			<li><a href="https://news.jeonnam.go.kr/main/index.php" target="_blank" title="새창열기" >전남광주새뜸</a></li>
+					</ul>
+				</div>
+				<div>
+					<h3><a href="/contentsView.do?menuId=jeonnam0609000000">e-book</a></h3>
+					<ul>
+			<li><a href="http://info.jeonnam.go.kr/M1863012/boardList.do?menuId=info0201000000" target="_blank" title="새창열기" >대하장편소설 이순신의 7년</a></li>
+			<li><a href="http://info.jeonnam.go.kr/M1893/boardList.do?menuId=info0304000000" target="_blank" title="새창열기" >역사기행문 전남역사이야기</a></li>
+			<li><a href="http://info.jeonnam.go.kr/M0501/boardList.do?menuId=info0501000000" target="_blank" title="새창열기" >현장취재 성공농업이야기</a></li>
+			<li><a href="http://info.jeonnam.go.kr/M0601/boardList.do?menuId=info0601000000" target="_blank" title="새창열기" >가현정 농부작가의 귀농이야기</a></li>
+			<li><a href="http://info.jeonnam.go.kr/M0701/boardList.do?menuId=info0701000000" target="_blank" title="새창열기" >금빛바다 이야기</a></li>
+			<li><a href="http://info.jeonnam.go.kr/M0606/boardList.do?menuId=info0801000000" target="_blank" title="새창열기" >으뜸인재 길라잡이</a></li>
+					</ul>
+				</div>
+				<div>
+					<h3><a href="http://www.jeonnam.go.kr/contentsView.do?menuId=jeonnam0608010000">해외교류 현황</a></h3>
+					<ul>
+			<li><a href="/contentsView.do?menuId=jeonnam0608010000">해외교류 지역</a></li>
+			<li><a href="/contentsView.do?menuId=jeonnam0608020000">교류협정체결현황</a></li>
+			<li><a href="/contentsView.do?menuId=jeonnam0608030000">해외호남 향우회</a></li>
+					</ul>
+				</div>
+				<div>
+					<h3><a href="http://www.jeonnam.go.kr/contentsView.do?menuId=jeonnam0610100000">명예도민</a></h3>
+					<ul>
+			<li><a href="/contentsView.do?menuId=jeonnam0610100000">명예도민 제도 소개</a></li>
+			<li><a href="/contentsView.do?menuId=jeonnam0610200000">명예도민 현황</a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</section>
+	</li>
+</ul>
+</nav>
+                        </div>
+                    </div>
+
+                      <ul class="right_banner">
+					  	<li><a href="http://www.jeonnam-gwangju.go.kr/" target="_blank" title="전남광주통합특별시 새창으로 열림"><img src="/home/site/jeonnam/newMain/img/main/2022/banner_jngj01.png" alt="전남광주통합특별시"></a></li>
+						<li><a href="https://tour.jeonnam-gwangju.go.kr/" target="_blank" title="VISIT 전남광주 새창으로 열림"><img src="/home/site/jeonnam/newMain/img/main/2022/banner_jngj02.png" alt="VISIT 전남광주"></a></li>
+						<li><a href="https://council.jeonnam-gwangju.go.kr/jngjassem/main" target="_blank" title="전남광주통합특별시의회 새창으로 열림"><img src="/home/site/jeonnam/newMain/img/main/2022/banner_jngj03.png" alt="전남광주통합특별시의회"></a></li>
+                    </ul>                    
+                </div>
+            </div>
+            
+            
+            <!-- 기존 모바일 헤더 제거-->
+            <!-- <div class="mobileHeaderTop">
+                <div class="wrapBox">
+                      <h1>
+                        <a href="http://www.jeonnam.go.kr/" class="gnb_logo"><img src="https://www.jeonnam.go.kr/home/site/jeonnam/imgs2019/main/main_top_logo.png" style="height: 36px;" alt="생명의땅으뜸전남 Land of Life, Best Jeonnam"></a>
+                    </h1>
+                    <span class="mav">
+                        <a href="#" class="t_gnba">전체메뉴보기</a>
+                        <a href="#" class="search_open">검색창열기</a>
+                        <a href="javascript:;" class="chageMainTypeM" onclick="changeMainType('typeA')">검색창열기</a>
+                    </span>
+                </div>
+                <form id="mobileSearchEngine" method="post" name="mobileSearchEngine" action="https://search.jeonnam.go.kr/RSA/front/Search.jsp" target="_blank" title="통합검색 페이지 새창" class="search_area">
+                    <select name="menu" title="검색범위">
+                        <option value="통합검색">통합검색</option>
+                        <option value="업무/직원">직원검색</option>
+                    </select>
+                    <label for="qt2" class="blind">검색어 입력</label>
+                    <input type="text" name="qt" id="qt2" placeholder="통합검색어를 입력하세요!" style="ime-mode: active;">
+                    <input type="submit" class="submit" value="검색">
+                    <a href="#" class="search_close">검색창 닫기</a>
+                </form>
+                <div class="scroltable-wrapper"><div class="scroltable-nav scroltable-nav-left" style="display: none;"></div><div class="scroltable-nav scroltable-nav-right" style="display: none;"></div><div class="scroltable-container"><div class="nav_mobile scroltable" style="">
+                    <ul>
+                        <li><a href="/M6690/boardList.do?menuId=jeonnam0101010000">참여와소통</a></li>
+                        <li><a href="/M7124/boardList.do?menuId=jeonnam0201000000">도정소식</a></li>
+                           <li><a href="/contentsView.do?menuId=jeonnam0300000000">정보공개</a></li>
+                        <li><a href="/contentsView.do?menuId=jeonnam0400000000">전자민원</a></li>
+                        <li><a href="/M5796/boardList.do?menuId=jeonnam0501010000">분야별정보</a></li>
+                        <li><a href="/contentsView.do?menuId=jeonnam0601010000">전남소개</a></li>
+                    </ul>
+                </div></div></div>
+                
+            </div> -->
+
+            <!--모바일 네비게이션-->
+            <nav class="m_nav clearb">
+                <ul>
+                    <li>시정소식</li>
+                    <li><a href="#">보도자료</a>
+                        <ul>
+	<li><a href="/M7124/boardList.do?menuId=jeonnam0201000000">공지사항</a></li>
+	<li><a href="/M7116/boardList.do?menuId=jeonnam0202000000">보도자료</a></li>
+	<li><a href="/M7117/boardList.do?menuId=jeonnam0210000000">설명자료</a></li>
+	<li><a href="/NEWSLETTER/boardList.do?menuId=jeonnam0208000000">그래픽뉴스</a></li>
+	<li><a href="https://jntv.go.kr/main/main.do" target="_blank" title="새창열기">시정뉴스</a></li>
+	<li><a href="/J0203/boardList.do?menuId=jeonnam0203000000">고시/공고</a></li>
+	<li><a href="/J0204/boardList.do?menuId=jeonnam0204000000">(구)전남도보</a></li>
+	<li><a href="http://namdo.jeonnam.go.kr/sihum/" target="_blank" title="새창열기">시험정보</a></li>
+	<li><a href="https://www.jeonnam-gwangju.go.kr/boardList.do?boardId=JG_00000104&pageId=jngj133" target="_blank" title="새창열기">채용공고</a></li>
+</ul>
+</li>
+                    </ul>
+            </nav>
+            </header>
+            <!-- 헤더 끝 -->
+
+        <!-- 모바일 메뉴 - 기존거 사용, 클래스 new_mob_menu 추가, 닫기 버튼 수정 -->
+        <div class="modal"></div>
+        <div class="m_menuAllmenu new_mob_menu">
+            <div class="etc_menu">
+               <a href="/" class="home">홈</a>
+               <a href="javascript:anyidAdaptor.ssoLoginPage('','');">
+                                        로그인
+                     </a> 
+                    <a href="/join.do?menuId=jeonnam0805000000">회원가입</a>
+               <a href="/cm/siteMapDataA.do?menuId=jeonnam0804000000">사이트맵</a>
+            </div>
+
+                <!-- 2022.09 수정 -->
+                <a href="#" class="close"><i class="xi-close"></i></a>
+                <!-- // 2022.09 -->
+                <div class="mobile_sns">
+                    <p class="m_social">(구)전라남도 대표 소셜미디어</p>
+                    <a href="https://www.facebook.com/jngj.jeonnam" target="_blank" title="새창"><img src="https://www.jeonnam.go.kr/home/site/jeonnam/imgs/common/icn_m_fb.png" alt="페이스북"></a>
+                    <a href="https://x.com/jngj_jeonnam" target="_blank" title="새창"><img src="/home/site/jeonnam/newMain/img/icon/icon_tx_ma_sns_twitter_new.png" alt="트위터"></a>
+                    <a href="https://www.youtube.com/user/greenjeonnam1896" target="_blank" title="새창"><img src="https://www.jeonnam.go.kr/home/site/jeonnam/imgs/common/icn_m_yt.png" alt="유투부"></a>
+                    <a href="http://blog.naver.com/greenjeonnam" target="_blank" title="새창"><img src="https://www.jeonnam.go.kr/home/site/jeonnam/imgs/common/icn_m_blog.png" alt="블로그"></a>
+                    <!-- <a href="https://post.naver.com/my.nhn?memberNo=2327118" target="_blank" title="새창"><img src="https://www.jeonnam.go.kr/home/site/jeonnam/imgs/common/icn_m_post.gif" alt="네이버포스트"></a> -->
+                    <a href="https://story.kakao.com/ch/jeollanamdo/feed" target="_blank" title="새창"><img src="https://www.jeonnam.go.kr/home/site/jeonnam/imgs/common/icn_m_ks.png" alt="카카오스토리"></a>
+                    <a href="https://www.instagram.com/jngj_jeonnam/" target="_blank" title="전라남도 인스타그램"><img src="https://www.jeonnam.go.kr/home/site/jeonnam/imgs/common/icn_m_insta.png" alt="전라남도 인스타그램"></a>
+                  </div>
+         
+                <form id="m_searchEngine" method="post" name="m_searchEngine" action="https://search.jeonnam.go.kr/RSA/front/Search.jsp" target="_blank" title="통합검색 페이지 새창" class="m_search">
+                    <input type="hidden" name="menu" value="통합검색">
+                    <input type="text" name="qt" placeholder="통합검색어를 입력하세요!" style="ime-mode:inactive;" title="검색어 입력">
+                    <input type="image" src="https://www.jeonnam.go.kr/home/site/jeonnam/imgs/common/icon_search_scope.gif" alt="검색">
+                </form>
+                <nav class="clearb">
+                    <dl>
+	<dt><a href="#">참여와 소통</a></dt>
+	<dd>
+		<h1><a href="#" class="dep2">시민의 소리</a></h1>
+		<ul>
+			<li><a href="/M6698/boardList.do?menuId=jeonnam0101020000">우리동네 숨은 선행방</a></li>
+			<li><a href="/M6690/boardList.do?menuId=jeonnam0101010000">자유발언대</a></li>
+			<li><a href="/M6706/boardList.do?menuId=jeonnam0101030000">시민 홍보방</a></li>
+			<li><a href="/pj/NoxiousInfo_Home.do?menuId=jeonnam0101060000">유해정보신고</a></li>
+			<li><a href="/M6745/boardList.do?menuId=jeonnam0101080000">표창대상자 공개검증</a></li>
+			<li><a href="https://yeosun1019.jeonnam.go.kr/www" target="_blank" title="새창열기" >여순 희생자·유족 지원시스템</a></li>
+			<li><a href="/M6697/boardList.do?menuId=jeonnam0101120400">광주·전남 행정통합 질의답변</a></li>
+			<li><a href="/M6694/boardList.do?menuId=jeonnam0101130100">20조 시민공동체 포럼</a></li>
+		</ul>
+		<h1><a href="#" class="dep2">시민접견실예약</a></h1>
+		<ul>
+			<li><a href="/home/pj/reservationHomeInsertView.do?menuId=jeonnam0102010000">예약하기</a></li>
+			<li><a href="/home/pj/reservationHomeListAction.do?menuId=jeonnam0102020000">예약확인</a></li>
+		</ul>
+		<h1><a href="#" class="dep2">시민제안·참여</a></h1>
+		<ul>
+			<li><a href="http://www.jeonnam.go.kr/contentsView.do?menuId=jeonnam0103010100">시민제안</a></li>
+			<li><a href="/pj/pollMaster_set_SelectAllAction_Home.do?menuId=jeonnam0103020000">설문조사</a></li>
+			<li><a href="/M010404/boardList.do?menuId=jeonnam0103080000">정책연구용역</a></li>
+			<li><a href="http://namdo.jeonnam.go.kr/jamun/" target="_blank" title="새창열기" >전남광주통합특별시 정책자문위원회</a></li>
+			<li><a href="/contentsView.do?menuId=jeonnam0103101000">적극행정</a></li>
+			<li><a href="http://www.jeonnam.go.kr/contentsView.do?menuId=jeonnam0103140100">민원메신저</a></li>
+		</ul>
+		<h1><a href="#" class="dep2">(구)청렴 전남</a></h1>
+		<ul>
+			<li><a href="http://www.redwhistle.org/report/reportNew.asp?organ=1196" target="_blank" title="새창열기" >청렴신문고</a></li>
+			<li><a href="/contentsView.do?menuId=jeonnam0105040000">부정·부패 신고</a></li>
+			<li><a href="/T8636/boardList.do?menuId=jeonnam0105020000">감사결과 공개</a></li>
+			<li><a href="http://www.jeonnam.go.kr/contentsView.do?menuId=jeonnam0105030100">사전 컨설팅 감사</a></li>
+			<li><a href="/M1762686/boardList.do?menuId=jeonnam0105010000">청렴시책나눔방</a></li>
+			<li><a href="/T8637/boardList.do?menuId=jeonnam0105080000">청탁금지법 이해</a></li>
+			<li><a href="/contentsView.do?menuId=jeonnam0105101000">도민감사관</a></li>
+			<li><a href="/T8634/boardList.do?menuId=jeonnam0105050000">자료실(공직윤리제도)</a></li>
+		</ul>
+		<h1><a href="#" class="dep2">소통</a></h1>
+		<ul>
+			<li><a href="/contentsView.do?menuId=jeonnam0108010000">소셜허브</a></li>
+		</ul>
+		<h1><a href="#" class="dep2">도민 명예기자단</a></h1>
+		<ul>
+			<li><a href="/contentsView.do?menuId=jeonnam0116010000">도민명예기자</a></li>
+			<li><a href="/M11602/boardList.do?menuId=jeonnam0116020000">도민기자뉴스</a></li>
+		</ul>
+		<h1><a href="#" class="dep2">고향사랑기부제</a></h1>
+		<ul>
+			<li><a href="/contentsView.do?menuId=jeonnam0113020000">고향사랑기부제 소개</a></li>
+			<li><a href="/contentsView.do?menuId=jeonnam0113010000">고향사랑기부제 답례품</a></li>
+			<li><a href="/contentsView.do?menuId=jeonnam0113030000">고향사랑기부제 기부금액별 혜택 현황</a></li>
+			<li><a href="/contentsView.do?menuId=jeonnam0113040000">고향사랑기부제 문의처</a></li>
+			<li><a href="/home/pj/donation/listView.do?pageIndex=1&menuId=jeonnam0113050000&year=2026">고향사랑기부제 명예의 전당</a></li>
+			<li><a href="/T0113/boardList.do?menuId=jeonnam0113060000">고향사랑기부금 접수·운용 현황공개</a></li>
+			<li><a href="/T011307/boardList.do?menuId=jeonnam0113070000">고향사랑 365 기부 릴레이 캠페인</a></li>
+			<li><a href="https://love.jeonnam.go.kr/jns/main" target="_blank" title="새창열기" >전남광주 사랑애 서포터즈</a></li>
+		</ul>
+	</dd>
+	<dt><a href="#">시정소식</a></dt>
+	<dd>
+		<h1><a href="/M7124/boardList.do?menuId=jeonnam0201000000">공지사항</a></h1>
+		<h1><a href="/M7116/boardList.do?menuId=jeonnam0202000000">보도자료</a></h1>
+		<h1><a href="/M7117/boardList.do?menuId=jeonnam0210000000">설명자료</a></h1>
+		<h1><a href="/NEWSLETTER/boardList.do?menuId=jeonnam0208000000">그래픽뉴스</a></h1>
+		<h1><a href="https://jntv.go.kr/main/main.do" target="_blank" title="새창열기" >시정뉴스</a></h1>
+		<h1><a href="/J0203/boardList.do?menuId=jeonnam0203000000">고시/공고</a></h1>
+		<h1><a href="/J0204/boardList.do?menuId=jeonnam0204000000">(구)전남도보</a></h1>
+		<h1><a href="http://namdo.jeonnam.go.kr/sihum/" target="_blank" title="새창열기" >시험정보</a></h1>
+		<h1><a href="https://www.jeonnam-gwangju.go.kr/boardList.do?boardId=JG_00000104&pageId=jngj133" target="_blank" title="새창열기" >채용공고</a></h1>
+	</dd>
+	<dt><a href="#">정보공개</a></dt>
+	<dd>
+		<h1><a href="#" class="dep2">사전정보공표</a></h1>
+		<ul>
+			<li><a href="/pj/pri_set_priInfoList.do?menuId=jeonnam0301010000">사전정보공표(분야별)</a></li>
+			<li><a href="/J030101/boardList.do?menuId=jeonnam0301030000">사전정보공표(열람용)</a></li>
+			<li><a href="/pj/pri_set_priInfoList.do?menuId=jeonnam0301040000">사전정보공표(즐겨찾기)</a></li>
+			<li><a href="/J030102/boardList.do?menuId=jeonnam0301020000">정보공개 고객관리</a></li>
+		</ul>
+		<h1><a href="#" class="dep2">정보공개</a></h1>
+		<ul>
+			<li><a href="http://www.jeonnam.go.kr/contentsView.do?menuId=jeonnam0302010100">정보공개안내</a></li>
+			<li><a href="http://www.jeonnam.go.kr/contentsView.do?menuId=jeonnam0302010200">비공개 세부기준</a></li>
+			<li><a href="/T030208/boardList.do?menuId=jeonnam0302080000">정보목록</a></li>
+			<li><a href="https://www.open.go.kr/" target="_blank" title="새창열기" >정보공개청구 포털</a></li>
+			<li><a href="http://www.jeonnam.go.kr/contentsView.do?menuId=jeonnam0302040100">정책실명제안내</a></li>
+			<li><a href="/M1925005/boardList.do?menuId=jeonnam0302050100">업무추진비 공개</a></li>
+		</ul>
+		<h1><a href="#" class="dep2">주요시책</a></h1>
+		<ul>
+			<li><a href="/contentsView.do?menuId=jeonnam0303021200">주요업무계획</a></li>
+			<li><a href="/contentsView.do?menuId=jeonnam0303140100">2026년 달라지는 제도시책</a></li>
+			<li><a href="/contentsView.do?menuId=jeonnam0303150000">2025년 전라남도 주요 성과</a></li>
+			<li><a href="/contentsView.do?menuId=jeonnam0303041000">(구)도정백서</a></li>
+			<li><a href="/contentsView.do?menuId=jeonnam0303050000">(구)전남도정 10년사</a></li>
+		</ul>
+		<h1><a href="#" class="dep2">공공데이터 개방</a></h1>
+		<ul>
+			<li><a href="/contentsView.do?menuId=jeonnam0304010000">제공제도 안내</a></li>
+			<li><a href="/contentsView.do?menuId=jeonnam0304020000">제공목록 및 이용신청</a></li>
+		</ul>
+		<h1><a href="#" class="dep2">재정운영</a></h1>
+		<ul>
+			<li><a href="/contentsView.do?menuId=jeonnam0305012000">지방재정공시(결산자료)</a></li>
+			<li><a href="http://www.jeonnam.go.kr/contentsView.do?menuId=jeonnam0305021200">지방재정공시(예산자료)</a></li>
+			<li><a href="https://www.jeonnam.go.kr/contentsView.do?menuId=jeonnam0305031200">세입세출 예산</a></li>
+			<li><a href="/pj/FinanceSelectAll_Home.do?menuId=jeonnam0305041200&YYYY=2026&category=G">성인지 예산</a></li>
+			<li><a href="/M030511/boardList.do?menuId=jeonnam0305110000">성과계획서</a></li>
+			<li><a href="http://www.jeonnam.go.kr/contentsView.do?menuId=jeonnam0305120100">주민참여예산제</a></li>
+			<li><a href="http://www.jeonnam.go.kr/contentsView.do?menuId=jeonnam0305051600">세입세출결산</a></li>
+			<li><a href="/J030509/boardList.do?menuId=jeonnam0305090000">세입세출및공공시설 운영현황공개</a></li>
+			<li><a href="http://www.jeonnam.go.kr/contentsView.do?menuId=jeonnam0305062300">시군구 예산규모 비교</a></li>
+			<li><a href="/contentsView.do?menuId=jeonnam0305070000">시군재정공시</a></li>
+			<li><a href="http://www.jeonnam.go.kr/contentsView.do?menuId=jeonnam0305080400">지방공기업</a></li>
+		</ul>
+		<h1><a href="#" class="dep2">기타정보공개</a></h1>
+		<ul>
+			<li><a href="https://gyeyak.jeonnam-gwangju.go.kr/ " target="_blank" title="새창열기" >계약정보공개</a></li>
+			<li><a href="/M761894/boardList.do?menuId=jeonnam0311040000">위반업소공개</a></li>
+			<li><a href="/M0310/boardList.do?menuId=jeonnam0311020000">정책연구용역공개</a></li>
+			<li><a href="/contentsView.do?menuId=jeonnam0311050000">공공저작물공개</a></li>
+			<li><a href="/M031106/boardList.do?menuId=jeonnam0311060000">상품권 구매 및 사용내역</a></li>
+			<li><a href="/M031107/boardList.do?menuId=jeonnam0311070000">훈련결과보고서</a></li>
+		</ul>
+	</dd>
+	<dt><a href="#">전자민원</a></dt>
+	<dd>
+		<h1><a href="#" class="dep2">인권상담·조사</a></h1>
+		<ul>
+			<li><a href="http://www.jeonnam.go.kr/contentsView.do?menuId=jeonnam0401010000">인권상담·조사</a></li>
+			<li><a href="/contentsView.do?menuId=jeonnam0401010000">인권이란?</a></li>
+			<li><a href="/contentsView.do?menuId=jeonnam0401020000">차별이란?</a></li>
+			<li><a href="/contentsView.do?menuId=jeonnam0401030000">(구)전라남도 인권보장제도</a></li>
+			<li><a href="/contentsView.do?menuId=jeonnam0401040000">인권 상담·조사 신청</a></li>
+			<li><a href="/contentsView.do?menuId=jeonnam0401050000">국내구제제도</a></li>
+			<li><a href="/contentsView.do?menuId=jeonnam0401060000">국제인권보장기구</a></li>
+			<li><a href="/contentsView.do?menuId=jeonnam0401070000">묻고 답하기</a></li>
+			<li><a href="/Y0001/boardList.do?menuId=jeonnam0401080000">자료실</a></li>
+		</ul>
+		<h1><a href="#" class="dep2">행복소통실</a></h1>
+		<ul>
+			<li><a href="/contentsView.do?menuId=jeonnam0402010000">행복소통실안내</a></li>
+			<li><a href="/contentsView.do?menuId=jeonnam0402020000">구술ㆍ전화민원 신청 </a></li>
+			<li><a href="/contentsView.do?menuId=jeonnam0402030000">민원후견인제</a></li>
+			<li><a href="/contentsView.do?menuId=jeonnam0402040000">사전심사 청구제</a></li>
+			<li><a href="/contentsView.do?menuId=jeonnam0402050000">어디서나 민원처리제</a></li>
+			<li><a href="/contentsView.do?menuId=jeonnam0402060000">무인민원 발급기 안내</a></li>
+			<li><a href="/contentsView.do?menuId=jeonnam0402070000">자격증 교부 안내</a></li>
+		</ul>
+		<h1><a href="#" class="dep2">민원편람</a></h1>
+		<ul>
+			<li><a href="/H0403/boardList.do?menuId=jeonnam0411010000">전체</a></li>
+			<li><a href="/H0403/boardList.do?menuId=jeonnam0411020000&deptCode=001">대변인실</a></li>
+			<li><a href="/H0403/boardList.do?menuId=jeonnam0411030000&deptCode=002">행복소통실</a></li>
+			<li><a href="/H0403/boardList.do?menuId=jeonnam0411040000&deptCode=003">감사관</a></li>
+			<li><a href="/H0403/boardList.do?menuId=jeonnam0411050000&deptCode=004">여성가족정책관실</a></li>
+			<li><a href="/H0403/boardList.do?menuId=jeonnam0411070000&deptCode=006">기획조정실</a></li>
+			<li><a href="/H0403/boardList.do?menuId=jeonnam0411080000&deptCode=007">시민안전실</a></li>
+			<li><a href="/H0403/boardList.do?menuId=jeonnam0411090000&deptCode=008">에너지산업국</a></li>
+			<li><a href="/H0403/boardList.do?menuId=jeonnam0411100000&deptCode=009">관광체육국</a></li>
+			<li><a href="/H0403/boardList.do?menuId=jeonnam0411110000&deptCode=010">보건복지국</a></li>
+			<li><a href="/H0403/boardList.do?menuId=jeonnam0411120000&deptCode=011">농축산식품국</a></li>
+			<li><a href="/H0403/boardList.do?menuId=jeonnam0411130000&deptCode=012">해양수산국</a></li>
+			<li><a href="/H0403/boardList.do?menuId=jeonnam0411140000&deptCode=013">건설교통국</a></li>
+			<li><a href="/H0403/boardList.do?menuId=jeonnam0411150000&deptCode=014">자치행정국</a></li>
+			<li><a href="/H0403/boardList.do?menuId=jeonnam0411160000&deptCode=015">소방본부</a></li>
+			<li><a href="https://dongbu.jeonnam.go.kr/H0404/boardList.do?menuId=east1103030100">동부지역본부</a></li>
+		</ul>
+		<h1><a href="#" class="dep2" target="_blank" title="새창열기" >정부24</a></h1>
+		<ul>
+			<li><a href="http://www.gov.kr/portal/orgInfo?Mcode=11040" target="_blank" title="새창열기" >정부/지자체 조직도</a></li>
+		</ul>
+		<h1><a href="#" class="dep2">여권</a></h1>
+		<ul>
+			<li><a href="/contentsView.do?menuId=jeonnam0405010000">여권개요</a></li>
+			<li><a href="/contentsView.do?menuId=jeonnam0405020000">여권발급 및 재발급 안내</a></li>
+			<li><a href="https://www.passport.go.kr/home/kor/applicationForm/index.do?menuPos=42" target="_blank" title="새창열기" >여권민원서식</a></li>
+			<li><a href="https://www.passport.go.kr/home/kor/contents.do?menuPos=32" target="_blank" title="새창열기" >여권사진규정</a></li>
+			<li><a href="https://www.passport.go.kr/home/kor/contents.do?menuPos=11" target="_blank" title="새창열기" >온라인 여권 재발급 안내</a></li>
+			<li><a href="https://www.gov.kr/mw/mofa/pssptIsuStatSrch.do?capp_biz_cd=PG4CADM0406&selectedSeq=01&minwonFormSkipYn=Y" target="_blank" title="새창열기" >여권 발급 상태조회</a></li>
+			<li><a href="/contentsView.do?menuId=jeonnam0405060000">국제운전면허증 발급</a></li>
+		</ul>
+		<h1><a href="#" class="dep2">민원상담 신청</a></h1>
+		<ul>
+			<li><a href="/contentsView.do?menuId=jeonnam0407030000">나의민원조회</a></li>
+			<li><a href="/contentsView.do?menuId=jeonnam0407010000">민원상담 신청하기</a></li>
+			<li><a href="/M19169/boardList.do?menuId=jeonnam0407020000">민원사례/FAQ</a></li>
+		</ul>
+		<h1><a href="#" class="dep2">민원신고센터</a></h1>
+		<ul>
+			<li><a href="/contentsView.do?menuId=jeonnam0408200000">나의민원조회</a></li>
+			<li><a href="https://www.safetyreport.go.kr/" target="_blank" title="새창열기" >안전신고</a></li>
+			<li><a href="/contentsView.do?menuId=jeonnam0408060000">교통불편신고</a></li>
+			<li><a href="/contentsView.do?menuId=jeonnam0408070000">화물운송 불법신고</a></li>
+			<li><a href="/contentsView.do?menuId=jeonnam0408090000">불법어업신고</a></li>
+			<li><a href="/contentsView.do?menuId=jeonnam0408100000">식품안전관리 소비자 신고</a></li>
+			<li><a href="/contentsView.do?menuId=jeonnam0408110000">의료기관 불편신고</a></li>
+			<li><a href="/contentsView.do?menuId=jeonnam0408120000">청소년유해업소신고</a></li>
+			<li><a href="/contentsView.do?menuId=jeonnam0408130000">환경 신문고</a></li>
+			<li><a href="/contentsView.do?menuId=jeonnam0408140000">여성의 메아리</a></li>
+			<li><a href="/contentsView.do?menuId=jeonnam0408150000">보육시설 불편 신고</a></li>
+			<li><a href="/contentsView.do?menuId=jeonnam0408160000">부동산 불법거래 신고 센터</a></li>
+			<li><a href="/contentsView.do?menuId=jeonnam0408170100">예산낭비신고</a></li>
+			<li><a href="http://www.redwhistle.org/report/reportNew.asp?organ=1196" target="_blank" title="새창열기" >청렴신문고</a></li>
+			<li><a href="https://www.redwhistle.org/report/reportCheck.asp?organ=7753" target="_blank" title="새창열기" >갑질피해신고지원센터</a></li>
+			<li><a href="/contentsView.do?menuId=jeonnam0408210000">국무조정실 규제신문고</a></li>
+			<li><a href="/contentsView.do?menuId=jeonnam0408020000">공무원행동강령 신고</a></li>
+			<li><a href="/contentsView.do?menuId=jeonnam0408010000">공무원부조리 신고</a></li>
+			<li><a href="/contentsView.do?menuId=jeonnam0408030000">적극행정 면책신고상담</a></li>
+			<li><a href="https://www.moleg.go.kr/menu.es?mid=a10606050000" target="_blank" title="새창열기" >복지부정신고</a></li>
+			<li><a href="/contentsView.do?menuId=jeonnam0408050000">공익신고</a></li>
+			<li><a href="/contentsView.do?menuId=jeonnam0408230000">소극행정신고센터</a></li>
+		</ul>
+		<h1><a href="http://minwon.jeonnam.go.kr/" target="_blank" title="새창열기" >민원메신저</a></h1>
+		<h1><a href="/contentsView.do?menuId=jeonnam0410000000">(구)전라남도 행정서비스헌장</a></h1>
+	</dd>
+	<dt><a href="#">분야별 정보</a></dt>
+	<dd>
+		<h1><a href="#" class="dep2">일자리ㆍ경제</a></h1>
+		<ul>
+			<li><a href="/M5796/boardList.do?menuId=jeonnam0501010000">경제동향</a></li>
+			<li><a href="/T190000/boardList.do?menuId=jeonnam0501190000">물가ㆍ착한가격업소</a></li>
+			<li><a href="/T1020000/boardList.do?menuId=jeonnam0501020000">소비자정보</a></li>
+			<li><a href="https://www.jeonnam.go.kr/M5918/boardList.do?menuId=jeonnam0501030100">기업지원</a></li>
+			<li><a href="https://www.jeonnam.go.kr/M5934/boardList.do?menuId=jeonnam0501040100">기업정보</a></li>
+			<li><a href="http://invest.jeonnam.go.kr/sites/invest/index.do" target="_blank" title="새창열기" >투자유치</a></li>
+			<li><a href="http://www.jeonnam.go.kr/contentsView.do?menuId=jeonnam0501060100">주력산업</a></li>
+			<li><a href="http://www.jeonnam.go.kr/contentsView.do?menuId=jeonnam0501070100">미래산업</a></li>
+			<li><a href="http://www.jexport.or.kr/" target="_blank" title="새창열기" >수출정보</a></li>
+			<li><a href="http://www.jeonnam.go.kr/contentsView.do?menuId=jeonnam0501090100">생활경제</a></li>
+			<li><a href="/contentsView.do?menuId=jeonnam0501100200">일자리종합지원</a></li>
+			<li><a href="/contentsView.do?menuId=jeonnam0501110100">창업정보</a></li>
+			<li><a href="/contentsView.do?menuId=jeonnam0501130100">창업시책 및 안내</a></li>
+			<li><a href="http://www.jeonnam.go.kr/contentsView.do?menuId=jeonnam0501120100">도로/교통</a></li>
+			<li><a href="/contentsView.do?menuId=jeonnam0501140100">마을 공동체</a></li>
+			<li><a href="/contentsView.do?menuId=jeonnam0501150100">협동조합</a></li>
+			<li><a href="/contentsView.do?menuId=jeonnam0501170100">사회적경제</a></li>
+			<li><a href="/contentsView.do?menuId=jeonnam0501180100">무안국제공항 활성화</a></li>
+		</ul>
+		<h1><a href="#" class="dep2">농업ㆍ축산</a></h1>
+		<ul>
+			<li><a href="http://www.jeonnam.go.kr/M5417/boardList.do?menuId=jeonnam0502010100">농정뉴스</a></li>
+			<li><a href="http://www.jeonnam.go.kr/contentsView.do?menuId=jeonnam0502020100">농업통계</a></li>
+			<li><a href="http://www.jeonnam.go.kr/home/pj/WorkHandSelectAction.do?menuId=jeonnam0502030100&category=A">농촌일손돕기</a></li>
+			<li><a href="/contentsView.do?menuId=jeonnam0502110100">청년농업인정책</a></li>
+			<li><a href="http://www.jeonnam.go.kr/contentsView.do?menuId=jeonnam0502050100">녹색축산</a></li>
+			<li><a href="https://apms.epis.or.kr" target="_blank" title="새창열기" >동물사랑배움터</a></li>
+			<li><a href="http://www.jeonnam.go.kr/contentsView.do?menuId=jeonnam0502060100">안심먹을거리</a></li>
+			<li><a href="http://www.jeonnam.go.kr/contentsView.do?menuId=jeonnam0502070100">고소득 작목</a></li>
+			<li><a href="/contentsView.do?menuId=jeonnam0502120000">여성농업인정책</a></li>
+		</ul>
+		<h1><a href="#" class="dep2">환경ㆍ산림</a></h1>
+		<ul>
+			<li><a href="http://www.jeonnam.go.kr/contentsView.do?menuId=jeonnam0506010100">수질개선</a></li>
+			<li><a href="http://www.jeonnam.go.kr/contentsView.do?menuId=jeonnam0506020100">대기환경</a></li>
+			<li><a href="/contentsView.do?menuId=jeonnam0506030000">수질환경</a></li>
+			<li><a href="/contentsView.do?menuId=jeonnam0506040000">환경 수질 통계</a></li>
+			<li><a href="/contentsView.do?menuId=jeonnam0506050000">녹색생활의 지혜</a></li>
+			<li><a href="http://www.jeonnam.go.kr/contentsView.do?menuId=jeonnam0506060100">물 절약 운동</a></li>
+			<li><a href="http://www.jeonnam.go.kr/contentsView.do?menuId=jeonnam0506080200">산림정보</a></li>
+			<li><a href="http://www.jeonnam.go.kr/contentsView.do?menuId=jeonnam0506090400">산림녹지정보</a></li>
+			<li><a href="http://www.jeonnam.go.kr/contentsView.do?menuId=jeonnam0506101000">나무은행</a></li>
+			<li><a href="http://www.jeonnam.go.kr/contentsView.do?menuId=jeonnam0506110100">정원ㆍ수목원</a></li>
+			<li><a href="http://www.jeonnam.go.kr/contentsView.do?menuId=jeonnam0506120200">환경정책</a></li>
+		</ul>
+		<h1><a href="#" class="dep2">해양수산</a></h1>
+		<ul>
+			<li><a href="/M5551/boardList.do?menuId=jeonnam0503010000">해양수산뉴스</a></li>
+			<li><a href="/contentsView.do?menuId=jeonnam0503020000">달라지는 해양수산제도</a></li>
+			<li><a href="/contentsView.do?menuId=jeonnam0503030000">해양수산통계</a></li>
+			<li><a href="http://www.jeonnam.go.kr/contentsView.do?menuId=jeonnam0503040100">(구)전남의 항구</a></li>
+			<li><a href="/contentsView.do?menuId=jeonnam0503050000">불법어업신고</a></li>
+			<li><a href="/contentsView.do?menuId=jeonnam0503070000">해양·수산물 방사능 안전정보</a></li>
+		</ul>
+		<h1><a href="#" class="dep2">시민복지</a></h1>
+		<ul>
+			<li><a href="/contentsView.do?menuId=jeonnam0504010201">사회복지정보</a></li>
+			<li><a href="/contentsView.do?menuId=jeonnam0504030101">장애인복지정보</a></li>
+			<li><a href="/contentsView.do?menuId=jeonnam0504040101">아동/청소년복지정보</a></li>
+			<li><a href="/contentsView.do?menuId=jeonnam0504020101">어르신복지정보</a></li>
+			<li><a href="/contentsView.do?menuId=jeonnam0504110101">장사정보</a></li>
+			<li><a href="/contentsView.do?menuId=jeonnam0504160100">출산지원정보</a></li>
+			<li><a href="https://www.jwomen.or.kr/?site=women" target="_blank" title="새창열기" >전남여성가족재단</a></li>
+			<li><a href="http://www.liveinkorea.kr/" target="_blank" title="새창열기" >다문화가족지원센터</a></li>
+			<li><a href="http://info.childcare.go.kr/" target="_blank" title="새창열기" >인증어린이집</a></li>
+			<li><a href="/contentsView.do?menuId=jeonnam0504060100">의료기관정보</a></li>
+			<li><a href="/M050407/boardList.do?menuId=jeonnam0504070000">감염병정보</a></li>
+			<li><a href="https://www.jeonnam.go.kr/contentsView.do?menuId=jeonnam0504150100">코로나19</a></li>
+			<li><a href="/M4941/boardList.do?menuId=jeonnam0504080000">부정/불량식품</a></li>
+			<li><a href="http://www.jeonnam.go.kr/contentsView.do?menuId=jeonnam0504090100">생활정보</a></li>
+			<li><a href="http://www.jeonnam.go.kr/contentsView.do?menuId=jeonnam0504100100">문화/체육정보</a></li>
+			<li><a href="https://brand.jeonnam.go.kr/" target="_blank" title="새창열기" >청년정책정보</a></li>
+		</ul>
+		<h1><a href="#" class="dep2">부동산정보</a></h1>
+		<ul>
+			<li><a href="/M4996/boardList.do?menuId=jeonnam0505010000">알림사항</a></li>
+			<li><a href="/contentsView.do?menuId=jeonnam0505020000">개별공시지가조회</a></li>
+			<li><a href="/contentsView.do?menuId=jeonnam0505030000">주택공시가격조회</a></li>
+			<li><a href="/M5004/boardList.do?menuId=jeonnam0505040000">주택통계</a></li>
+			<li><a href="http://www.jeonnam.go.kr/contentsView.do?menuId=jeonnam0505050100">부동산개발업</a></li>
+			<li><a href="/contentsView.do?menuId=jeonnam0505060000">부동산중개업</a></li>
+			<li><a href="/contentsView.do?menuId=jeonnam0505070000">부동산 거래신고</a></li>
+			<li><a href="/contentsView.do?menuId=jeonnam0505080000">토지거래 허가제도</a></li>
+			<li><a href="http://www.juso.go.kr" target="_blank" title="새창열기" >도로명 주소</a></li>
+			<li><a href="/contentsView.do?menuId=jeonnam0505100000">조상땅 열람</a></li>
+			<li><a href="https://www.reb.or.kr/r-one/main.do" target="_blank" title="새창열기" >부동산 통계정보</a></li>
+			<li><a href="/contentsView.do?menuId=jeonnam0505110000">관련사이트</a></li>
+			<li><a href="/contentsView.do?menuId=jeonnam0505130000">지방세 미리계산</a></li>
+		</ul>
+		<h1><a href="#" class="dep2">법무정보</a></h1>
+		<ul>
+			<li><a href="http://www.elis.go.kr/newlaib/laibLaws/h1126/laws.jsp?regionId=46000" target="_blank" title="새창열기" >자치법규</a></li>
+			<li><a href="http://law.jeonnam.go.kr/" target="_blank" title="새창열기" >법무행정서비스</a></li>
+			<li><a href="/T1840601/boardList.do?menuId=jeonnam0509040400">행정규제개선</a></li>
+			<li><a href="https://law.jeonnam.go.kr/law/32/subview.do" target="_blank" title="새창열기" >무료법률상담</a></li>
+			<li><a href="http://www.simpan.go.kr" target="_blank" title="새창열기" >온라인 행정심판</a></li>
+			<li><a href="https://www.jeonnam.go.kr/contentsView.do?menuId=jeonnam0509060100">무료세무상담(마을세무사)</a></li>
+		</ul>
+		<h1><a href="#" class="dep2">재난·안전·중대재해예방</a></h1>
+		<ul>
+			<li><a href="http://www.jeonnam.go.kr/contentsView.do?menuId=jeonnam0507010100">전기안전</a></li>
+			<li><a href="http://www.jeonnam.go.kr/contentsView.do?menuId=jeonnam0507020100">가스안전</a></li>
+			<li><a href="https://www.jeonnam.go.kr/M10100/boardList.do?menuId=jeonnam0507110100">중대재해예방</a></li>
+			<li><a href="http://u-safe.jeonnam.go.kr/" target="_blank" title="새창열기" >재난재해</a></li>
+			<li><a href="/contentsView.do?menuId=jeonnam0507120000">시민안전공제보험</a></li>
+			<li><a href="http://www.jeonnam.go.kr/contentsView.do?menuId=jeonnam0507040100">풍수해 보험정보</a></li>
+			<li><a href="/contentsView.do?menuId=jeonnam0507100000">국가안전대진단</a></li>
+			<li><a href="/contentsView.do?menuId=jeonnam0507050000">시민안전점검청구제</a></li>
+			<li><a href="/contentsView.do?menuId=jeonnam0507060000">전세버스 교통안전정보 </a></li>
+			<li><a href="http://www.jeonnam.go.kr/contentsView.do?menuId=jeonnam0507070100">에너지절약</a></li>
+			<li><a href="https://www.safetv.go.kr/base/main/view" target="_blank" title="새창열기" >국민안전방송 안전한 TV</a></li>
+		</ul>
+		<h1><a href="#" class="dep2">통계정보</a></h1>
+		<ul>
+			<li><a href="/contentsView.do?menuId=jeonnam0508020000">(구)전남의 하루</a></li>
+			<li><a href="/M4695/boardList.do?menuId=jeonnam0508070000">주민등록ㆍ추계인구</a></li>
+			<li><a href="/M4604/boardList.do?menuId=jeonnam0508080000">시군별 지역내총생산</a></li>
+			<li><a href="/M4605/boardList.do?menuId=jeonnam0508060000">사회조사</a></li>
+			<li><a href="/M4687/boardList.do?menuId=jeonnam0508090000">통계연보</a></li>
+			<li><a href="/M4703/boardList.do?menuId=jeonnam0508010000">사업체조사</a></li>
+			<li><a href="/M4608/boardList.do?menuId=jeonnam0508040000">광업·제조업조사</a></li>
+			<li><a href="/M4711/boardList.do?menuId=jeonnam0508050000">동향통계</a></li>
+			<li><a href="/M4610/boardList.do?menuId=jeonnam0508100000">기타 통계</a></li>
+		</ul>
+		<h1><a href="#" class="dep2">5·18</a></h1>
+		<ul>
+			<li><a href="/M5725/boardList.do?menuId=jeonnam0510100000">전라남도 5·18사적지</a></li>
+			<li><a href="/M5726/boardList.do?menuId=jeonnam0510200000">전라남도 5·18역사해설</a></li>
+		</ul>
+		<h1><a href="#" class="dep2" target="_blank" title="새창열기" >여순 10·19사건</a></h1>
+		<ul>
+			<li><a href="https://yeosun1019.jeonnam.go.kr/www" target="_blank" title="새창열기" >여수·순천 10·19사건</a></li>
+			<li><a href="https://map.jeonnam.go.kr/" target="_blank" title="새창열기" >여수·순천 10·19사건 역사유적지</a></li>
+		</ul>
+	</dd>
+	<dt><a href="#">(구)전남소개</a></dt>
+	<dd>
+		<h1><a href="#" class="dep2">시청안내</a></h1>
+		<ul>
+			<li><a href="https://www.jeonnam-gwangju.go.kr/contentsView.do?pageId=jngj14" target="_blank" title="새창열기" >조직도</a></li>
+			<li><a href="https://www.jeonnam-gwangju.go.kr/contentsView.do?pageId=jngj15" target="_blank" title="새창열기" >직원검색</a></li>
+			<li><a href="https://www.jeonnam-gwangju.go.kr/contentsView.do?pageId=jngj15" target="_blank" title="새창열기" >실과전화번호</a></li>
+			<li><a href="/contentsView.do?menuId=jeonnam0601101000">조직운영 정보</a></li>
+			<li><a href="https://www.jeonnam-gwangju.go.kr/contentsView.do?pageId=jngj93" target="_blank" title="새창열기" >청사소개</a></li>
+			<li><a href="https://www.jeonnam-gwangju.go.kr/contentsView.do?pageId=jngj94" target="_blank" title="새창열기" >청사배치도</a></li>
+			<li><a href="/M4748/boardList.do?menuId=jeonnam0601080000">청사갤러리</a></li>
+			<li><a href="https://www.jeonnam-gwangju.go.kr/contentsView.do?pageId=jngj96" target="_blank" title="새창열기" >찾아오시는 길</a></li>
+		</ul>
+		<h1><a href="#" class="dep2">일반현황</a></h1>
+		<ul>
+			<li><a href="https://www.jeonnam-gwangju.go.kr/contentsView.do?pageId=jngj8" target="_blank" title="새창열기" >위치 및 지형</a></li>
+			<li><a href="https://www.jeonnam-gwangju.go.kr/contentsView.do?pageId=jngj9" target="_blank" title="새창열기" >행정구역</a></li>
+			<li><a href="/contentsView.do?menuId=jeonnam0602040000">인구</a></li>
+			<li><a href="/contentsView.do?menuId=jeonnam0602050000">기후</a></li>
+			<li><a href="/contentsView.do?menuId=jeonnam0602060000">시군현황</a></li>
+		</ul>
+		<h1><a href="#" class="dep2">(구)전남의 상징</a></h1>
+		<ul>
+			<li><a href="/contentsView.do?menuId=jeonnam0603010000">도기</a></li>
+			<li><a href="/contentsView.do?menuId=jeonnam0603120000">도조</a></li>
+			<li><a href="/contentsView.do?menuId=jeonnam0603110000">도화</a></li>
+			<li><a href="/contentsView.do?menuId=jeonnam0603100000">도목</a></li>
+			<li><a href="/contentsView.do?menuId=jeonnam0603090000">도어</a></li>
+			<li><a href="/contentsView.do?menuId=jeonnam0603130000">도정비전과 방침</a></li>
+			<li><a href="/contentsView.do?menuId=jeonnam0603020000">슬로건(생명의땅 으뜸전남)</a></li>
+			<li><a href="/contentsView.do?menuId=jeonnam0603030000">캐릭터(남도와 남이)</a></li>
+			<li><a href="/contentsView.do?menuId=jeonnam0603080000">푸른전남체</a></li>
+			<li><a href="/contentsView.do?menuId=jeonnam0603070000">전용색상</a></li>
+			<li><a href="/M4719/boardList.do?menuId=jeonnam0603040000">CI 디자인 자료방</a></li>
+			<li><a href="/M4720/boardList.do?menuId=jeonnam0603140000">영문 도시브랜드(BI)  자료방</a></li>
+			<li><a href="/contentsView.do?menuId=jeonnam0603050000">도민헌장</a></li>
+			<li><a href="/contentsView.do?menuId=jeonnam0603060000">도민의 노래</a></li>
+		</ul>
+		<h1><a href="#" class="dep2">(구)전남의 역사</a></h1>
+		<ul>
+			<li><a href="/contentsView.do?menuId=jeonnam0604010000">연혁</a></li>
+			<li><a href="/contentsView.do?menuId=jeonnam0604020000">전라남도 유래</a></li>
+			<li><a href="/M4727/boardList.do?menuId=jeonnam0604030000">시군지명 유래</a></li>
+			<li><a href="/M4749/boardList.do?menuId=jeonnam0604040100&searchCate=2">전남 100년[사진]</a></li>
+			<li><a href="http://www.jeonnam.go.kr/contentsView.do?menuId=jeonnam0604050100">전라도 천년 유래</a></li>
+		</ul>
+		<h1><a href="#" class="dep2">(구)전남발전전략</a></h1>
+		<ul>
+			<li><a href="http://www.jeonnam.go.kr/contentsView.do?menuId=jeonnam0605010100">전남발전 비전전략</a></li>
+			<li><a href="http://www.jeonnam.go.kr/contentsView.do?menuId=jeonnam0605020300">추진중 대규모프로젝트</a></li>
+			<li><a href="/contentsView.do?menuId=jeonnam0605030000">전라남도종합계획</a></li>
+			<li><a href="/contentsView.do?menuId=jeonnam0605040000">남해안발전구상</a></li>
+			<li><a href="/contentsView.do?menuId=jeonnam0605050000">개발계획도</a></li>
+		</ul>
+		<h1><a href="#" class="dep2">시정홍보관</a></h1>
+		<ul>
+			<li><a href="/contentsView.do?menuId=jeonnam0606170300">연도별 수상실적</a></li>
+			<li><a href="/contentsView.do?menuId=jeonnam0606160000">(구)전라남도 애국가 영상</a></li>
+			<li><a href="https://photo.jeonnam.go.kr" target="_blank" title="새창열기" >전남 사진영상 기록원</a></li>
+			<li><a href="https://news.jeonnam.go.kr/main/index.php" target="_blank" title="새창열기" >전남광주새뜸</a></li>
+		</ul>
+		<h1><a href="#" class="dep2">e-book</a></h1>
+		<ul>
+			<li><a href="http://info.jeonnam.go.kr/M1863012/boardList.do?menuId=info0201000000" target="_blank" title="새창열기" >대하장편소설 이순신의 7년</a></li>
+			<li><a href="http://info.jeonnam.go.kr/M1893/boardList.do?menuId=info0304000000" target="_blank" title="새창열기" >역사기행문 전남역사이야기</a></li>
+			<li><a href="http://info.jeonnam.go.kr/M0501/boardList.do?menuId=info0501000000" target="_blank" title="새창열기" >현장취재 성공농업이야기</a></li>
+			<li><a href="http://info.jeonnam.go.kr/M0601/boardList.do?menuId=info0601000000" target="_blank" title="새창열기" >가현정 농부작가의 귀농이야기</a></li>
+			<li><a href="http://info.jeonnam.go.kr/M0701/boardList.do?menuId=info0701000000" target="_blank" title="새창열기" >금빛바다 이야기</a></li>
+			<li><a href="http://info.jeonnam.go.kr/M0606/boardList.do?menuId=info0801000000" target="_blank" title="새창열기" >으뜸인재 길라잡이</a></li>
+		</ul>
+		<h1><a href="#" class="dep2">해외교류 현황</a></h1>
+		<ul>
+			<li><a href="/contentsView.do?menuId=jeonnam0608010000">해외교류 지역</a></li>
+			<li><a href="/contentsView.do?menuId=jeonnam0608020000">교류협정체결현황</a></li>
+			<li><a href="/contentsView.do?menuId=jeonnam0608030000">해외호남 향우회</a></li>
+		</ul>
+		<h1><a href="#" class="dep2">명예도민</a></h1>
+		<ul>
+			<li><a href="/contentsView.do?menuId=jeonnam0610100000">명예도민 제도 소개</a></li>
+			<li><a href="/contentsView.do?menuId=jeonnam0610200000">명예도민 현황</a></li>
+		</ul>
+	</dd></dl>
+</nav>
+            </div>
+
+    <!-- pc 메뉴 보일때 검은 배경 -->
+    <div class="menu_bg_black"></div>
+
+	<div class="wrapBox clearb mcBox">
+		<a href="#" class="t_lnb"><img src="/home/site/jeonnam/imgs/common/btn_t_lnb.gif" alt="사이드 메뉴 보기"></a>
+		<div id="lnb_Area" tabindex="-1">
+		<nav>
+        <dl>
+	<dt>시정소식</dt>
+	<dd><a href="/M7124/boardList.do?menuId=jeonnam0201000000">공지사항</a></dd>
+	<dd class="on"><a href="/M7116/boardList.do?menuId=jeonnam0202000000">보도자료</a></dd>
+	<dd><a href="/M7117/boardList.do?menuId=jeonnam0210000000">설명자료</a></dd>
+	<dd><a href="/NEWSLETTER/boardList.do?menuId=jeonnam0208000000">그래픽뉴스</a></dd>
+	<dd><a href="https://jntv.go.kr/main/main.do" target="_blank" title="새창열기" >시정뉴스</a></dd>
+	<dd><a href="/J0203/boardList.do?menuId=jeonnam0203000000">고시/공고</a></dd>
+	<dd><a href="/J0204/boardList.do?menuId=jeonnam0204000000">(구)전남도보</a></dd>
+	<dd><a href="http://namdo.jeonnam.go.kr/sihum/" target="_blank" title="새창열기" >시험정보</a></dd>
+	<dd><a href="https://www.jeonnam-gwangju.go.kr/boardList.do?boardId=JG_00000104&amp;pageId=jngj133" target="_blank" title="새창열기" >채용공고</a></dd>
+</dl>
+</nav>
+		</div>
+		<!--컨텐츠-->
+		<div  id="container"  tabindex="-1">
+		<article class="container">
+			<!--sub title-->
+			<header>
+				<ul>
+                  	<li><a href="#" onClick="window.print();return false;" title="인쇄하기">인쇄하기</a></li>
+					<li>
+						<a href="#" class="shareSns">SNS퍼가기</a>
+						<ul id="snsShareList">
+                            <li><a id="linkCopy" class="snsShareBtn" data-sns-share="linkCopy" title="현재 페이지 주소를 복사합니다." href="javascript:copyUrl()">주소복사</a></li>
+							<li><a id="facebookShare" class="snsShareBtn" data-sns-share="facebook" title="페이스북에 현재 페이지를 공유합니다. 새창" href="#">페이스북</a></li>
+							<li><a id="twitterShare" class="snsShareBtn" data-sns-share="twitter" title="트위터에 현재 페이지를 공유합니다. 새창" href="#">트위터</a></li>
+							<li><a id="bandShare" class="snsShareBtn" data-sns-share="band" title="밴드에 현재 페이지를 공유합니다. 새창" href="#">밴드</a></li>
+							<li><a id="kakaotalkShare" class="btnKakaotalk" data-sns-share="kakaotalk" title="카카오톡 어플리케이션에 현재 페이지를 공유합니다. 모바일 환경에서만 사용가능합니다. 카카오톡 어플리케이션 호출 새창" href="#">카카오톡</a></li>
+							<!-- <li><a id="kakaostoryShare" class="snsShareBtn" data-sns-share="kakaostory" title="카카오스토리에 현재 페이지를 공유합니다. 새창" href="#">카카오스토리</a></li> -->
+
+						</ul>
+					</li>
+					
+				</ul>
+				<h1>
+	                보도자료</h1>
+          <span><a href="/main.do?site=jeonnam" title="메인화면으로 이동">HOME</a> >   <a href='/M7124/boardList.do?menuId=jeonnam0201000000'>시정소식</a> > <a href='/M7116/boardList.do?menuId=jeonnam0202000000'>보도자료</a></span>
+          
+				<p class="m_subtit_txt">소통을 통한 창의 도정을 이루겠습니다.</p>
+			</header>
+			<!--//sub title..-->
+			<section>
+				<h2 class="blind">본문 시작</h2>
+				<div class="contents">
+                
+	
+
+
+
+	
+	
+	<!-- 모든 합쳐진 플러그인을 포함하거나 (아래) 필요한 각각의 파일들을 포함하세요 -->
+	<script>
+
+
+	//document.domain="jeonnam.go.kr";
+	$(document).ready(function(){
+
+		
+
+
+		
+
+
+
+		var TK_isMobile = 'N';
+		var mobaDown = '';
+        var mobileKeyArr = new Array('iPhone', 'iPad', 'iPod', 'BlackBerry', 'Android', 'Windows CE', 'LG', 'MOT', 'SAMSUNG', 'SonyEricsson'); 
+        for (var word in mobileKeyArr ) {
+            if (navigator.userAgent.match(mobileKeyArr [word]) != null) { 
+                TK_isMobile = 'Y';
+                break; 
+            }
+        }
+
+        if(TK_isMobile == 'Y'){
+			$('.mobaDown').hide(); 
+        }
+		
+		console.log("이 JS 실행됨");
+
+		$("#btnDelete").click(function(){
+			var msg = confirm("게시글을 삭제하시겠습니까?");
+			if(msg){
+				$("#frm").attr("action", "/M7116/boardDelete.do").submit();
+			}
+		});
+
+		$(".btnCommentDelete").click(function(){
+			var msg = confirm("댓글을 삭제하시겠습니까?");
+			if(msg){
+				var commentSeq = $(this).attr("data-commentSeq");
+				$("#commentSeq").val(commentSeq);
+				$("#frmComment").attr("action", "/M7116/boardCommentDelete.do").submit();
+			}
+		});
+
+		$("#frmComment").submit(function(){
+			var bChk = true;// $.validate(document.frmComment);
+			if (bChk == true) {
+				
+			} else {
+				return false;
+			}
+		});
+		$("#frmCommentSave").on("click",function(){
+
+			var memberId = "";
+			var userCI = "";
+			var memberCI = "";
+			
+		/*	if(memberId == ''){
+				alert("공백");
+				alert(memberId);
+				alert(userCI);
+				alert(memberCI);
+			}
+			if(memberId == null){
+				alert("null");
+			}
+		*/
+			
+
+			if(memberId == ''){
+			
+				if (confirm("로그인이 필요합니다. 로그인창으로 이동합니다.") == true){    //확인
+					
+					var popUrl = "/mlogin.do?site=jeonnam&amp;returnUrl=%2FM7116%2FboardList.do%3FmenuId%3Djeonnam0202000000%26displayHeader%3D%26searchType%3D%26searchText%3D%26pageIndex%3D1";
+					var popOption = "width=910,height=750, left=0, top=0, resizable=no, scrollbars=no, status=no;";    //팝업창 옵션(optoin)
+
+					window.open(popUrl,"",popOption);
+
+					return false;
+
+				}else{   //취소
+					return;
+				}
+
+			}
+			var passWd = $("#passWd");
+			if($.trim($(passWd).val()) == ""){ alert("비밀번호를 입력하세요!"); $(passWd).focus(); return false; }
+
+			
+			
+
+			$("#frmComment").submit();
+		});
+		
+		/*
+		$(".fileSize").each(function(){
+			$(this).html(byteCalculation($(this).html()));
+		});*/
+
+		//var memodsHtml = $(".bbs_view_contnet").html();
+		//$(".bbs_view_contnet").html(RemoveHTMLTag(memodsHtml));
+
+
+	});
+	$(document).ready(function(){
+		$("div").removeClass("board board-wrap normal-list");		
+		
+	});
+	
+	
+	function pf_setNuri(){
+		var type = "" ;
+		var sOrgName = "전라남도청" ; //기관명은 필수입니다.
+
+
+		var sKoglTitle = "‘전남형 만원주택’, 곡성·장흥·강진·영암에도 혜택"; //게시판의 제목(저작물) 입력란의 id를 매칭시켜주세요.
+
+		var sInfoUrl = "";
+		var sInfoAlt = "";
+		var sImgUrl ;
+		var sLpadd ; 
+		if(type == "1" || !type){
+			sLpadd = 190;
+			sInfoAlt = "\"출처표시\"";
+			sInfoUrl = "<a href='https://www.kogl.or.kr/info/licenseType1.do' target='_blank'>"+sInfoAlt+"</a>";
+			sImgUrl ="'/home/bbs/img/new_img_opentype01.png' style='position:absolute;left:20px;top:12%;vertical-align:middle;width:149px;height:54px;'";
+		}else if(type == "2") {
+			sLpadd = 220;
+			sInfoAlt = "\"출처표시+상업적 이용금지\"";
+			sInfoUrl = "<a href='https://www.kogl.or.kr/info/licenseType2.do' target='_blank'>"+sInfoAlt+"</a>";
+			sImgUrl ="'/home/bbs/img/new_img_opentype02.png' style='position:absolute;left:20px;top:12%;vertical-align:middle;width:183px;height:54px;'";
+		}else if(type == "3") {
+			sLpadd = 220;
+			sInfoAlt = "\"출처표시+변경금지\"";
+			sInfoUrl = "<a href='https://www.kogl.or.kr/info/licenseType3.do' target='_blank'>"+sInfoAlt+"</a>";
+			sImgUrl ="'/home/bbs/img/new_img_opentype03.png' style='position:absolute;left:20px;top:12%;vertical-align:middle;width:183px;height:54px;'";
+		}else if(type == "4") {
+			sLpadd = 250;
+			sInfoAlt = "\"출처표시+상업적 이용금지+변경금지\"";
+			sInfoUrl = "<a href='https://www.kogl.or.kr/info/licenseType4.do' target='_blank'>"+sInfoAlt+"</a>";
+			sImgUrl ="'/home/bbs/img/new_img_opentype04.png' style='position:absolute;left:20px;top:12%;vertical-align:middle;width:219px;height:54px;'";
+		}else if(type == "5") {
+			sLpadd = 60;
+			sInfoAlt = "공공저작물 자유이용 허락표시 적용 안함";
+			sInfoUrl = "<a href='http://www.law.go.kr/lsInfoP.do?lsiSeq=148848&efYd=20140701#0000' target='_blank'>"+sInfoAlt+"</a>";
+			sImgUrl ="'/home/bbs/img/img_opencode0_1.jpg' style='position:absolute;left:20px;top:25%;vertical-align:middle;width:27px;height:27px;'";
+		}
+
+		//데이터 베이스에 등록되는 자유이용 스크립트 완성		
+		var koglHtml = "<div class='codeView0"+type+"' style='position:relative;margin:0;padding:0;margin-top:5px;background:#fff;border:1px solid #dbdbdb;padding:30px 15px 30px "+sLpadd+"px;font-size:12px;color:#292929;font-weight:bold;'>";
+		koglHtml += "<img src="+sImgUrl+" alt='"+sInfoAlt+"'/>";
+		if(type != "5") {
+			koglHtml += "<span>"+sOrgName+"</span>이(가) 창작한 <span>"+sKoglTitle+"</span> 저작물은 공공누리 ";
+		}
+		koglHtml += sInfoUrl;
+		if(type != "5") {
+			koglHtml += " 조건에 따라 이용할 수 있습니다. <br/> 단, 사진, 이미지, 일러스트 등 일부 자료는 반드시 해당 저작권자의 허락을 받으셔야 합니다.</div>";
+		}
+		alert('11')
+		
+		$("#nuri").html(koglHtml);
+		
+		
+	}
+	
+	
+	
+	function byteCalculation(bytes) {
+		var bytes = parseInt(bytes);
+		var s = ['bytes', 'KB', 'MB', 'GB', 'TB', 'PB'];
+		var e = Math.floor(Math.log(bytes)/Math.log(1024));
+		
+		if(e == "-Infinity") return "0 "+s[0]; 
+		else 
+		return (bytes/Math.pow(1024, Math.floor(e))).toFixed(2)+" "+s[e];
+	}
+
+	function RemoveHTMLTag(changeStr){
+	    if(changeStr != null && !changeStr == "" ){
+	    	//br도 replace 되어 주석처리
+	       //changeStr = changeStr.replace(/<(\/)?([a-zA-Z]*)(\s[a-zA-Z]*=[^>]*)?(\s)*(\/)?>/ig, "");
+	        changeStr = changeStr.replace("<a ", "<sapn ");
+	        changeStr = changeStr.replace("</a", "</sapn");
+	        changeStr = changeStr.replace("<A ", "<sapn ");
+	        changeStr = changeStr.replace("</A", "</sapn");
+	    }else{
+	        changeStr = "";
+	    }
+	    return changeStr;
+	}
+
+	function checkSpecial(str){
+		var special_pattern = /[`~!@#$%^&*|\\\'\";:\/?]/gi;
+		if (special_pattern.test(str) == true)
+		{
+			return true;
+		} else {
+			return false;
+		}
+	}
+	
+	$(document).ready(function(){
+		
+		$(".recommend").click(function(){
+			
+			var boardId = "M7116";
+			var seq = "1958461";
+			var thisvar = $(this).attr("id");
+			
+			var memberId = "";
+			//var idd = "";
+			//alert(memberId);
+			var type = "";
+			var typeText = "";
+			
+			if(thisvar == 'recommend'){
+				type = 'recommend';
+				typeText = '추천하였습니다.';
+			}else if(thisvar == 'oppose'){
+				type = 'oppose';
+				typeText = '반대하였습니다.'
+			}
+			
+			$.ajax({
+		        url : "/pj/recommendCount.do",
+		        dataType : "JSON",
+		        type : "POST",
+		        async : false,
+		        data : {'boardId':boardId,'seq':seq,'type':type},
+		        success:function(res){
+		        	if(res.errChk == 'N'){
+		        		alert(res.errMsg);
+						location.reload();
+		        	}else{
+						var text = res.errMsg;
+		        		if(text.indexOf('로그인이 필요합니다.') != -1){
+							text= "로그인이 필요합니다. 로그인창으로 이동합니다.";
+						}
+						alert(text);
+						if(text.indexOf('로그인') != -1){
+							var popUrl = "http://www.jeonnam.go.kr/mlogin.do?site=cyber&amp;returnUrl=%2FM7116%2FboardList.do%3FmenuId%3Djeonnam0202000000%26displayHeader%3D%26searchType%3D%26searchText%3D%26pageIndex%3D1";
+							var popOption = "width=910,height=750, left=0, top=0, resizable=no, scrollbars=no, status=no;";    //팝업창 옵션(optoin)
+							window.open(popUrl,"",popOption);
+						}
+		        	}
+		        }
+		    });
+		});
+		
+		
+		$(".replyRecommend").click(function(){
+			
+			var boardId = "M7116";
+			var seq = "1958461";
+			var thisvar = $(this).attr("id");
+			var commentSeq = $(this).attr("data-commentSeq");
+			var commentTp = $(this).attr("data-commentTp");
+			var type = "";
+			var typeText = "";
+			var thisRecommend = 'replyRecommend'+commentSeq;
+			var thisOppose = 'replyOppose'+commentSeq;
+			
+			if(thisvar == thisRecommend){
+				type = 'recommend';
+				typeText = '추천하였습니다.';
+			}else if(thisvar == thisOppose){
+				type = 'oppose';
+				typeText = '반대하였습니다.'
+			}
+			
+			$.ajax({
+		        url : "/pj/commentRecommendCount.do",
+		        dataType : "JSON",
+		        type : "POST",
+		        async : false,
+		        data : {'boardId':boardId,'seq':seq,'commentTp':commentTp,'commentSeq':commentSeq,'type':type},
+		        success:function(res){
+		        	if(res.errChk == 'N'){
+		        		alert(res.errMsg);
+						location.reload();
+		        	}else{
+		        		var text = res.errMsg;
+							
+						if(text.indexOf('로그인이 필요합니다.') != -1){
+							text= "로그인이 필요합니다. 로그인창으로 이동합니다.";
+						}
+						alert(text);
+						if(text.indexOf('로그인') != -1){
+							var popUrl = "http://www.jeonnam.go.kr/mlogin.do?site=cyber&amp;returnUrl=%2FM7116%2FboardList.do%3FmenuId%3Djeonnam0202000000%26displayHeader%3D%26searchType%3D%26searchText%3D%26pageIndex%3D1";
+							var popOption = "width=910,height=750, left=0, top=0, resizable=no, scrollbars=no, status=no;";    //팝업창 옵션(optoin)
+							window.open(popUrl,"",popOption);
+						}
+		        	}
+		        }
+		    });
+		});
+	});
+
+function pf_download(url){
+	location.href=url;
+	//setTimeout(pf_setFiledownCookie,500)
+	
+}
+
+
+function pf_checkFiledownCookie(){
+	var statusFiledown = pf_getFiledownCookie(); 
+	console.log(statusFiledown)
+	if(statusFiledown == 'end'){
+		cf_loading_out();	
+	}else{
+		setTimeout(pf_checkFiledownCookie,100)
+	}
+}
+
+function pf_setFiledownCookie() {
+	
+	if(pf_getFiledownCookie() != 'end'){
+		cf_loading();
+		var date = new Date();
+		date.setTime(date.getTime() + 60*60*1000);
+		document.cookie = 'filedown=wait;expires=' + date.toUTCString() + ';path=/';
+		setTimeout(pf_checkFiledownCookie,100)
+	}	
+	
+  
+}
+
+function pf_getFiledownCookie() {
+  var value = document.cookie.match('(^|;) ?filedown=([^;]*)(;|$)');
+  return value? value[2] : null;
+}
+</script>
+
+<section>
+
+	<div class="bbs_view">
+				<h3 class="view_title">‘전남형 만원주택’, 곡성·장흥·강진·영암에도 혜택</h3>
+									<div class="data">
+							<div>
+							
+							<span class="itemTitle">작성일</span>
+											<span class="name">2025-04-03</span>
+										<span class="itemTitle">담당부서</span>
+											<span class="name">건축개발과</span>
+											</div>	
+							
+							<!-- 
+								2022-03-03 
+								전라남도 방문의 해 홍보영상이 아닌 경우에만 파일 다운로드 표시
+							 -->
+							<div class="download fr">
+									<ul>
+													<li>
+															<span class="fileNM">‘전남형 만원주택’, 곡성·장흥·강진·영암에도 혜택.hwp</span>
+															<a class="mobileDownload" href="/boardDown.do?boardId=M7116&amp;seq=1958461&amp;fileLinkTp=F&amp;fileLinkSeq=1" title="‘전남형 만원주택’, 곡성·장흥·강진·영암에도 혜택.hwp 다운로드" >다운로드</a>
+															<span class="fileSize">241KB</span><span class="btn_white">
+															<a href="javascript:;"  onclick="pf_download('/boardDown.do?boardId=M7116&amp;seq=1958461&amp;fileLinkTp=F&amp;fileLinkSeq=1');" title="‘전남형 만원주택’, 곡성·장흥·강진·영암에도 혜택.hwp 다운로드" class="mobaDown">다운로드</a>
+																			
+																			<a href="javascript:void(0);"  onclick="previewAjax('/boardDown.do?boardId=M7116&amp;seq=1958461&amp;fileLinkTp=F&amp;fileLinkSeq=1','‘전남형 만원주택’, 곡성·장흥·강진·영암에도 혜택.hwp')" title="‘전남형 만원주택’, 곡성·장흥·강진·영암에도 혜택.hwp 미리보기(새 창)">미리보기</a>
+																					<a href="javascript:void(0);"  onclick="preListen('/boardDown.do?boardId=M7116&amp;seq=1958461&amp;fileLinkTp=F&amp;fileLinkSeq=1','‘전남형 만원주택’, 곡성·장흥·강진·영암에도 혜택.hwp')" title="‘전남형 만원주택’, 곡성·장흥·강진·영암에도 혜택.hwp 바로듣기(새 창)">바로듣기</a>
+													                                </span></li>
+													<li>
+															<span class="fileNM">만원주택- 현장조사.jpg</span>
+															<a class="mobileDownload" href="/boardDown.do?boardId=M7116&amp;seq=1958461&amp;fileLinkTp=F&amp;fileLinkSeq=2" title="만원주택- 현장조사.jpg 다운로드" >다운로드</a>
+															<span class="fileSize">2.98MB</span><span class="btn_white">
+															<a href="javascript:;"  onclick="pf_download('/boardDown.do?boardId=M7116&amp;seq=1958461&amp;fileLinkTp=F&amp;fileLinkSeq=2');" title="만원주택- 현장조사.jpg 다운로드" class="mobaDown">다운로드</a>
+																			
+																			<a href="javascript:void(0);"  onclick="previewAjax('/boardDown.do?boardId=M7116&amp;seq=1958461&amp;fileLinkTp=F&amp;fileLinkSeq=2','만원주택- 현장조사.jpg')" title="만원주택- 현장조사.jpg 미리보기(새 창)">미리보기</a>
+																					</span></li>
+													<li>
+															<span class="fileNM">만원주택- 주거정책심의회.jpg</span>
+															<a class="mobileDownload" href="/boardDown.do?boardId=M7116&amp;seq=1958461&amp;fileLinkTp=F&amp;fileLinkSeq=3" title="만원주택- 주거정책심의회.jpg 다운로드" >다운로드</a>
+															<span class="fileSize">1.86MB</span><span class="btn_white">
+															<a href="javascript:;"  onclick="pf_download('/boardDown.do?boardId=M7116&amp;seq=1958461&amp;fileLinkTp=F&amp;fileLinkSeq=3');" title="만원주택- 주거정책심의회.jpg 다운로드" class="mobaDown">다운로드</a>
+																			
+																			<a href="javascript:void(0);"  onclick="previewAjax('/boardDown.do?boardId=M7116&amp;seq=1958461&amp;fileLinkTp=F&amp;fileLinkSeq=3','만원주택- 주거정책심의회.jpg')" title="만원주택- 주거정책심의회.jpg 미리보기(새 창)">미리보기</a>
+																					</span></li>
+													</ul>			
+												</div><!-- //fr -->
+							</div><!-- //data -->
+				</div>
+
+
+			<!-- 2022-03-03 : 전라남도 방문의 해 홍보영상메뉴의 영상 -->
+			<div class="bbs_view_contnet">
+										<div class="preview_area" style="background-color: #ebf1f5;padding: 10px;margin-bottom: 10px;">
+													<iframe src="https://viewstory.net/previewAjax.do?apikey=2UZRDW4S988US1YSXAYZHA&cc=jn&url=http%3A%2F%2Fwww.jeonnam.go.kr%2FboardDown.do%3FboardId%3DM7116%26seq%3D1958461%26fileLinkTp%3DF%26fileLinkSeq%3D1%26dcKey%3D6d47b97b55cef9da75c36d67406ca535%26force%3DY&fileName=‘전남형 만원주택’, 곡성·장흥·강진·영암에도 혜택.hwp" style="height: 500px;"></iframe>
+													</div>
+												 ‘전남형 만원주택’, 곡성·장흥·강진·영암에도 혜택<br />- 전남도, 50호씩 일괄공급으로 청년·신혼부부 주거안정 기대 -<br />- 김영록 지사, 국가정책 반영 노력…맞춤형 시책 지속 발굴 -<br />【건축개발과장 조병섭 286-7710, 주거복지팀장 장영태 286-7720】<br /><br />(만원주택 사진 2장 첨부)<br />전라남도가 야심차게 선보인 ‘전남형 만원주택’ 사업이 지방소멸 위기 대응과 청년·신혼부부의 주거 안정을 동시에 겨냥한 인구 정책 혁신 모델로 자리매김하며 속도감 있게 추진되고 있다.<br /><br />전남도는 지난 2일 개최한 주거정책심의위원회에서 전남형 만원주택사업 2차 사업 대상지로 곡성, 장흥, 강진, 영암, 4개 군(207호)을 새롭게 선정, 2026년 착수해 2028년까지 준공하고, 향후 입주를 진행할 예정이다.<br /><br />지난해 고흥, 보성, 진도, 신안을 1차 대상지(210호)로 선정한 데 이은 후속 사업으로, 2035년까지 16개 군에 총 1천 호 공급을 목표로 하는 전남형 만원주택 사업이 차질 없이 진행되고 있다. <br /><br />이번에 선정된 4개 군에는 각 50호씩 200호를 도에서 일괄 공급하며, 군비를 투입하는 곡성군은 3호, 장흥군은 4호를 추가해 총 207호의 만원주택이 공급될 전망이다. 지난해 확정된 210호를 합하면 417호의 전남형 만원주택이 공급된다. 만원주택 도입 2년여 만에 1천호 공급 목표의 42%를 달성하며 청년·신혼부부의 주거 안정에 속도를 내고 있다. <br /><br />지역별 선정 사유는 ▲영암군은 지역특화 임대형 스마트팜, 영암읍 콤팩트시티 조성사업 추진 ▲곡성군은 금호타이어 공장 일자리 지속 창출 ▲장흥군은 장흥바이오산업단지의 대규모 기업 유치로 산단 활성화 기대 ▲강진군은 중국 기업 유치 확정 및 구(舊) 성화대 청년 글로컬 사업 등으로, 청년층의 유입 가능성이 높게 평가됐다.<br /><br />특히 이번 선정 지역은 1차 선정지와 같이 도심지에 위치하며, 초등학교, 보육시설, 병원 등 주민 편의시설 등이 밀집해 있어, 입주하는 청년·신혼부부의 정주 여건 향상에 크게 기여할 것으로 보인다.<br /><br />김영록 전남도지사는 “전국 최초로 시행한 농어민 공익수당과 도 단위 전국 최초 바우처택시 도입 등이 국가정책으로 선정돼 전국적으로 확산된 사례를 보듯 전남형 만원주택도 더 많은 청년·신혼부부가 혜택을 누리도록 국가정책 반영을 위해 노력하겠다”며 “앞으로도 청년층 목소리에 귀 기울여 맞춤형 시책을 지속해서 발굴해 추진하겠다”고 말했다.<br /><br />전남형 만원주택 사업은 신혼부부를 위한 전용면적 85㎡ 이하의 주택과 청년을 위한 전용면적 60㎡ 이하의 주택을 보증금 없이 월 1만 원의 임대료로 최장 10년간 거주 가능토록 신축 아파트를 공급하는 사업이다. 전남도는 ‘청년 주거안정 및 한옥 기금’을 조성해 만원주택의 원활한 운영 기반을 마련했으며, ‘전라남도 주거복지센터’를 통해 입주 상담부터 준공 후 운영관리까지 원스톱 서비스를 할 계획이다.<br /><br />지난해 선정된 전남형 만원주택 사업은 진도군에서 3월 착공을 시작으로 고흥 6월, 보성, 신안은 10월 순차적으로 착공할 계획이다. 2026년 상반기 첫 입주를 시작해 2026년 말까지 210호를 모두 공급할 계획으로, 청년·신혼부부의 주거 안정에 큰 도움이 될 것으로 예상된다.<!-- 공공누리 추가-->
+						<div id="nuri">
+							
+							
+						</div>
+						<!--1유형 -->
+						<div style="position: relative;bottom:0;right:0;overflow:hidden;padding-top:30px;text-align:right;">
+							<div>
+								<a href='https://www.kogl.or.kr/info/licenseType1.do' target='_blank' title="새창으로 열림">
+									<img alt='공공누리 공공저작물 자유이용허락' src='/home/bbs/img/new_img_opentype01.png' class="nuri_img"/>
+								</a>
+							</div>
+							<div style="color:#000;font-size:0.9em;text-align:right;"> 본 저작물은 "공공누리" 
+								<a href='https://www.kogl.or.kr/info/licenseType1.do' target='_blank' title="새창으로 열림">제1유형:출처표시</a> 조건에 따라 이용 할 수 있습니다.
+							</div>
+						</div>
+						<!--//1유형 --> 
+						<div class="bbs_inventory mt20">
+		<div class="prev_list">
+			<span>다음글</span>
+				<p><a href="/M7116/boardView.do?infoReturn=&amp;displayHeader=&amp;seq=1958462&amp;menuId=jeonnam0202000000&amp;searchType=&amp;searchText=&amp;pageIndex=1">전남도, 청렴문화 확산 위한 공직자 반부패 교육</a></p>
+				<p class="data">2025-04-04</p>
+		</div>		
+		<div class="next_list">
+			<span>이전글</span>
+				<p><a href="/M7116/boardView.do?infoReturn=&amp;displayHeader=&amp;seq=1958460&amp;menuId=jeonnam0202000000&amp;searchType=&amp;searchText=&amp;pageIndex=1">전남도, 철강산업 위기극복 민관 협력체계 본격 가동</a></p>
+				<p class="data">2025-04-03</p>
+		</div>
+		</div>
+	<!-- 게시판 글쓰기 및 버튼 -->
+	<div class="bbs_btn  mt30">
+		<!--<span class="btn_white"><a href="/M7116/boardList.do?infoReturn=&amp;displayHeader=&amp;menuId=jeonnam0202000000&amp;searchType=&amp;searchText=&amp;pageIndex=1">리스트</a></span>-->
+		<span class="btn_white">
+			<a href="#" onclick="window.print();return false;" title="인쇄하기(새 창)">인쇄</a>
+		</span>
+		<span class="btn_white"><a href="/M7116/boardList.do?infoReturn=&amp;displayHeader=&amp;menuId=jeonnam0202000000&amp;searchType=&amp;searchText=&amp;pageIndex=1">목록</a></span>
+			</div>
+
+	<form id="frm" name="frm" action="/M7116/boardView.do?menuId=jeonnam0202000000&amp;seq=1958461" method="post"><input type="hidden" name="infoReturn" value="" />
+	<input type="hidden" name="menuId" value="jeonnam0202000000" />
+	<input type="hidden" id="searchCate" name="searchCate" value="" />
+	<input type="hidden" id="searchType" name="searchType" value="" />
+	<input type="hidden" id="searchText" name="searchText" value="" />
+	<input type="hidden" id="pageIndex" name="pageIndex" value="1" />
+	<input type="hidden" name="displayHeader" value="" />
+	<input type="hidden" id="boardId" name="boardId" value="M7116" />
+	<input type="hidden" id="bbsId" name="bbsId" value="M7116" />
+	<input type="hidden" id="seq" name="seq" value="1958461" />
+	</form></div>
+</section>
+
+<!-- 뷰어스토리 적용 -->
+<script>
+// file_url : 파일경로
+// file_name: 파일명 - 파일경로에서 파일명을 추출할 수 없는 경우 파일명을 입력해주십시오.
+function previewAjax(file_url, file_name) {
+var apiKey = "2UZRDW4S988US1YSXAYZHA";
+var cc = "jn";
+var fileUrl = encodeURIComponent("https://www.jeonnam.go.kr"+file_url);
+var fileName = encodeURIComponent(file_name);
+window.open("https://viewstory.net/previewAjax.do?apikey={0}&cc={1}&url={2}&fileName={3}".format(apiKey, cc, fileUrl, fileName),"a", "width=1200, height=1000, left=100, top=50");}
+function preListen(file_url, file_name) {
+var apiKey = "2UZRDW4S988US1YSXAYZHA";
+var cc = "jn";
+var fileUrl = encodeURIComponent("https://www.jeonnam.go.kr"+file_url);
+var fileName = encodeURIComponent(file_name);
+window.open("https://viewstory.net/voiceOverAjax.do?apikey={0}&cc={1}&url={2}&fileName={3}".format(apiKey, cc, fileUrl, fileName), "a", "width=1200, height=1000, left=100, top=50");}
+String.prototype.format = function() {
+var formatted = this;
+for( var arg in arguments ) {
+formatted = formatted.replace("{" +arg + "}", arguments[arg]);}
+return formatted;
+};
+</script>
+
+
+
+
+<!-- FOOT START -->
+
+	
+	
+
+
+
+<!-- FOOT START -->
+
+<script>
+
+var setCookie = function(name, value, exp) {
+	var date = new Date();
+	date.setTime(date.getTime() + exp*24*60*60*1000);
+	document.cookie = name + '=' + value + ';expires=' + date.toUTCString() + ';path=/';
+};
+
+var getCookie = function(name) {
+	var value = document.cookie.match('(^|;) ?' + name + '=([^;]*)(;|$)');
+	return value? value[2] : null;
+};
+
+
+function changeMainType(type){
+	setCookie("mainType",type,1);
+	location.reload();
+}
+
+$(function(){
+    var filter = "win16|win32|win64|mac";
+	if(navigator.platform){
+		if(0 > filter.indexOf(navigator.platform.toLowerCase())){
+			$('.viewport').show();
+		}
+	}
+  })
+  
+  
+function pf_goToPc(type){
+  $.ajax({
+    url : "/viewport.do",
+    type : "get",                                         
+    data : {"viewport":type},
+    success : function(data) {
+      location.reload();                    
+    }
+  });
+}
+
+</script>
+
+
+	
+	
+</div>
+<!-- 페이지 만족도 평가 -->
+				<div class="contact_us mt100">
+					<ul>
+                      <li><strong>콘텐츠 관리부서</strong>
+                      홍보지원담당관 (<a href="tel:061-286-2191">061-286-2191</a>)
+                          </li>
+                      <!--
+						<li><strong>콘텐츠 관리부서</strong>홍보지원담당관 (061-286-2191)</li>
+-->
+                      	</ul>
+				</div>
+				<div class="appraisal">
+					<input type="hidden" name="menuId" value="jeonnam0202000000">
+					<div class="top">
+						<p><strong>Q. 현재 페이지에서 제공되는 서비스에 대하여 만족하십니까?</strong></p>
+						<p class="mt5">현재 페이지의 만족도를 평가해 주십시오. 의견을 수렴하여 빠른 시일 내에 반영하겠습니다.</p>
+					</div>
+					<div class="bottom">
+						<ul>
+							<li>
+								<input name="satisfaction" class="checkbox" id="satisfaction5" type="radio" value="5" checked="checked">
+								<label for="satisfaction5">매우 만족</label>
+							</li>
+							<li>
+								<input name="satisfaction" class="checkbox" id="satisfaction4" type="radio" value="4">
+								<label for="satisfaction4">만족</label>
+							</li>
+							<li>
+								<input name="satisfaction" class="checkbox" id="satisfaction3" type="radio" value="3">
+								<label for="satisfaction3">보통</label>
+							</li>
+							<li>
+								<input name="satisfaction" class="checkbox" id="satisfaction2" type="radio" value="2">
+								<label for="satisfaction2">불만족</label>
+							</li>
+							<li>
+								<input name="satisfaction" class="checkbox" id="satisfaction1" type="radio" value="1">
+								<label for="satisfaction1">매우 불만족</label>
+							</li>
+						</ul>
+						<p class="wrt_box">
+							<textarea name="satisfactionDs" title="의견을 적습니다." maxlength="100"></textarea>
+							<span class="btn_black"><a href="#" id="satisfactionSubmit">의견등록</a></span>
+						</p>
+					</div>
+				</div>
+				<!-- 페이지 만족도 평가 끝 -->
+			</section>
+		</article>
+		</div>
+		</div>
+	</div>
+	<!-- FOOTER - id,class 그대로 사용 --->
+        <footer id="footer" class="fp-auto-height">
+        
+            <!-- 유관기관 - 기존것 그대로 사용 (클래스 new_rela만 추가)-->
+            <div class="bn-rela-box new_rela">
+                <ul class="main-ul">
+                   <!-- <li>
+                        <a href="javascript:;" class="a1">실과 누리집</a>
+                        <dl style="display: none; z-index: 500;">
+                            <dt>실과 누리집</dt>
+                            <dd>
+                                <a href="https://www.jeonnam.go.kr/pj/StaffInfoListAction_Home.do?menuId=jeonnam0903020000&deptCd=6460005&pageIndex=1">감사관실</a>
+                                <a href="https://www.jeonnam.go.kr/pj/StaffInfoListAction_Home.do?menuId=jeonnam0912060100&deptCd=6461383&pageIndex=1">감염병관리과</a>
+                                <a href="https://www.jeonnam.go.kr/pj/StaffInfoListAction_Home.do?menuId=jeonnam0912030200&deptCd=6461212&pageIndex=1">건강증진과</a>
+                                <a href="https://www.jeonnam.go.kr/pj/StaffInfoListAction_Home.do?menuId=jeonnam0915030200&deptCd=6461222&pageIndex=1">건축개발과</a>
+                                <a href="https://www.jeonnam.go.kr/pj/StaffInfoListAction_Home.do?menuId=jeonnam0916060100&deptCd=6460937&pageIndex=1">고향사랑과</a>
+                                <a href="https://www.jeonnam.go.kr/pj/StaffInfoListAction_Home.do?menuId=jeonnam0911060100&deptCd=6461494&pageIndex=1">관광개발과</a>
+                                <a href="https://www.jeonnam.go.kr/pj/StaffInfoListAction_Home.do?menuId=jeonnam0911010200&deptCd=6460869&pageIndex=1">관광과</a>
+                                <a href="https://www.jeonnam.go.kr/pj/StaffInfoListAction_Home.do?menuId=jeonnam0915050100&deptCd=6461224&pageIndex=1">교통행정과</a>
+                                <a href="https://www.jeonnam.go.kr/pj/StaffInfoListAction_Home.do?menuId=jeonnam0906020000&deptCd=6461489&pageIndex=1">국제협력관</a>
+                                <a href="https://www.jeonnam.go.kr/pj/StaffInfoListAction_Home.do?menuId=jeonnam0908070100&deptCd=6461490&pageIndex=1">균형성과담당관</a>
+                                <a href="https://www.jeonnam.go.kr/pj/StaffInfoListAction_Home.do?menuId=jeonnam0910010200&deptCd=6461394&pageIndex=1">기반산업과</a>
+                                <a href="https://www.jeonnam.go.kr/pj/StaffInfoListAction_Home.do?menuId=jeonnam0907060000&deptCd=6460830&pageIndex=1">기업도시담당관</a>
+                                <a href="https://dongbu.jeonnam.go.kr/pj/StaffInfoListAction_Home.do?menuId=east0803010000&deptCd=6461484&pageIndex=1" target="_blank" title="새창">기획홍보담당관</a>
+                                <a href="https://dongbu.jeonnam.go.kr/pj/StaffInfoListAction_Home.do?menuId=east0804030100&deptCd=6461539&pageIndex=1" target="_blank" title="새창">기후대기과</a>
+                                <a href="https://www.jeonnam.go.kr/pj/StaffInfoListAction_Home.do?menuId=jeonnam0912020200&deptCd=6461273&pageIndex=1">노인복지과</a>
+                                <a href="https://www.jeonnam.go.kr/pj/StaffInfoListAction_Home.do?menuId=jeonnam0913030200&deptCd=6461215&pageIndex=1">농식품유통과</a>
+                                <a href="https://www.jeonnam.go.kr/pj/StaffInfoListAction_Home.do?menuId=jeonnam0913010200&deptCd=6461213&pageIndex=1">농업정책과</a>
+                                <a href="https://www.jeonnam.go.kr/pj/StaffInfoListAction_Home.do?menuId=jeonnam0901040100&deptCd=6461574&pageIndex=1">홍보기획담당관</a>
+                                <a href="https://www.jeonnam.go.kr/pj/StaffInfoListAction_Home.do?menuId=jeonnam0901050100&deptCd=6461575&pageIndex=1">홍보지원담당관</a>
+                                <a href="https://www.jeonnam.go.kr/pj/StaffInfoListAction_Home.do?menuId=jeonnam0931020100&deptCd=6461550&pageIndex=1">대학정책과</a>
+                                <a href="https://www.jeonnam.go.kr/pj/StaffInfoListAction_Home.do?menuId=jeonnam0915020200&deptCd=6461221&pageIndex=1">도로정책과</a>
+                                <a href="https://www.jeonnam.go.kr/pj/StaffInfoListAction_Home.do?menuId=jeonnam0902020000&deptCd=6461182&pageIndex=1">도민행복소통실</a>
+                                <a href="https://www.jeonnam.go.kr/pj/StaffInfoListAction_Home.do?menuId=jeonnam0913070200&deptCd=6461217&pageIndex=1">동물방역과</a>
+                                <a href="https://dongbu.jeonnam.go.kr/pj/StaffInfoListAction_Home.do?menuId=east0805020100&deptCd=6461537&pageIndex=1" target="_blank" title="새창">문화산업과</a>
+                                <a href="https://dongbu.jeonnam.go.kr/pj/StaffInfoListAction_Home.do?menuId=east0805010100&deptCd=6461501&pageIndex=1" target="_blank" title="새창">문화예술과</a>
+                                <a href="https://dongbu.jeonnam.go.kr/pj/StaffInfoListAction_Home.do?menuId=east0805030100&deptCd=6461502&pageIndex=1">문화자원과</a>
+                                <a href="https://www.jeonnam.go.kr/pj/StaffInfoListAction_Home.do?menuId=jeonnam0905040100&deptCd=6461492&pageIndex=1">미래에너지산업과</a>
+                                <a href="https://www.jeonnam.go.kr/pj/StaffInfoListAction_Home.do?menuId=jeonnam0908040200&deptCd=6461184&pageIndex=1">법무담당관</a>
+                                <a href="https://www.jeonnam.go.kr/pj/StaffInfoListAction_Home.do?menuId=jeonnam0912010200&deptCd=6460873&pageIndex=1">사회복지과</a>
+                                <a href="https://www.jeonnam.go.kr/pj/StaffInfoListAction_Home.do?menuId=jeonnam0909020200&deptCd=6460922&pageIndex=1">사회재난과</a>
+                                <a href="https://www.jeonnam.go.kr/pj/StaffInfoListAction_Home.do?menuId=jeonnam0922020200&deptCd=6461203&pageIndex=1">사회적경제과</a>
+                                <a href="https://dongbu.jeonnam.go.kr/pj/StaffInfoListAction_Home.do?menuId=east0802040100&deptCd=6461549&pageIndex=1" target="_blank" title="새창">산단개발과</a>
+                                <a href="https://dongbu.jeonnam.go.kr/pj/StaffInfoListAction_Home.do?menuId=east0804020100&deptCd=6461541&pageIndex=1" target="_blank" title="새창">산림자원과</a>
+                                <a href="https://dongbu.jeonnam.go.kr/pj/StaffInfoListAction_Home.do?menuId=east0804050100&deptCd=6461543&pageIndex=1" target="_blank" title="새창">산림휴양과</a>
+                                <a href="https://www.jeonnam.go.kr/pj/StaffInfoListAction_Home.do?menuId=jeonnam0914040300&deptCd=6461219&pageIndex=1">섬해양정책과</a>
+                                <a href="https://www.jeonnam.go.kr/pj/StaffInfoListAction_Home.do?menuId=jeonnam0916030200&deptCd=6460982&pageIndex=1">세정과</a>
+                                <a href="https://www.jnsobang.go.kr/jnsobang/center/group/group_table/" target="_blank" title="새창">소방본부</a>
+                                <a href="https://www.jeonnam.go.kr/pj/StaffInfoListAction_Home.do?menuId=jeonnam0914030200&deptCd=6460844&pageIndex=1">수산유통가공과</a>
+                                <a href="https://dongbu.jeonnam.go.kr/pj/StaffInfoListAction_Home.do?menuId=east0804040100&deptCd=6461540&pageIndex=1" target="_blank" title="새창">수자원관리과</a>
+                                <a href="https://www.jeonnam.go.kr/pj/StaffInfoListAction_Home.do?menuId=jeonnam0908050200&deptCd=6461185&pageIndex=1">스마트정보담당관</a>
+                                <a href="https://www.jeonnam.go.kr/pj/StaffInfoListAction_Home.do?menuId=jeonnam0911040200&deptCd=6460872&pageIndex=1">스포츠산업과</a>
+                                <a href="https://www.jeonnam.go.kr/pj/StaffInfoListAction_Home.do?menuId=jeonnam0913040200&deptCd=6461274&pageIndex=1">식량원예과</a>
+                                <a href="https://www.jeonnam.go.kr/pj/StaffInfoListAction_Home.do?menuId=jeonnam0912040200&deptCd=6460981&pageIndex=1">식품의약과</a>
+                                <a href="/pj/StaffInfoListAction_Home.do?menuId=jeonnam0910030200&deptCd=6461395&pageIndex=1">우주신산업과</a>
+                                <a href="https://www.jeonnam.go.kr/pj/StaffInfoListAction_Home.do?menuId=jeonnam0909010200&deptCd=6460921&pageIndex=1">안전정책과</a>
+                                <a href="https://www.jeonnam.go.kr/pj/StaffInfoListAction_Home.do?menuId=jeonnam0905060100&deptCd=6461491&pageIndex=1">에너지정책과</a>
+                                <a href="https://www.jeonnam.go.kr/pj/StaffInfoListAction_Home.do?menuId=jeonnam0904020000&deptCd=6460828&pageIndex=1">여성가족정책관</a>
+                                <a href="https://dongbu.jeonnam.go.kr/pj/StaffInfoListAction_Home.do?menuId=east0806010000&deptCd=6461483&pageIndex=1" target="_blank" title="새창">여순사건지원단</a>
+                                <a href="/pj/StaffInfoListAction_Home.do?menuId=jeonnam0910050200&deptCd=6461396&pageIndex=1">연구바이오산업과</a>
+                                <a href="https://www.jeonnam.go.kr/pj/StaffInfoListAction_Home.do?menuId=jeonnam0908020200&deptCd=6460578&pageIndex=1">예산담당관</a>
+                                <a href="https://www.jeonnam.go.kr/pj/StaffInfoListAction_Home.do?menuId=jeonnam0912070100&deptCd=6461000&pageIndex=1">의대설립추진단</a>
+                                <a href="https://www.jeonnam.go.kr/pj/StaffInfoListAction_Home.do?menuId=jeonnam0923030100&deptCd=6461547&pageIndex=1">이민정책과</a>
+                                <a href="https://www.jeonnam.go.kr/pj/StaffInfoListAction_Home.do?menuId=jeonnam0923020100&deptCd=6461545&pageIndex=1">인구정책과</a>
+                                <a href="https://dongbu.jeonnam.go.kr/pj/StaffInfoListAction_Home.do?menuId=east0802010100&deptCd=6461390&pageIndex=1" target="_blank" title="새창">일자리경제과</a>
+                                <a href="https://www.jeonnam.go.kr/pj/StaffInfoListAction_Home.do?menuId=jeonnam0909030200&deptCd=6460923&pageIndex=1">자연재난과</a>
+                                <a href="https://www.jeonnam.go.kr/pj/StaffInfoListAction_Home.do?menuId=jeonnam0916020200&deptCd=6461287&pageIndex=1">자치행정과</a>
+                                <a href="https://www.jeonnam.go.kr/pj/StaffInfoListAction_Home.do?menuId=jeonnam0912050300&deptCd=6461211&pageIndex=1">장애인복지과</a>
+                                <a href="https://www.jeonnam.go.kr/pj/StaffInfoListAction_Home.do?menuId=jeonnam0908010200&deptCd=6460577&pageIndex=1">정책기획관</a>
+                                <a href="https://dongbu.jeonnam.go.kr/pj/StaffInfoListAction_Home.do?menuId=east0802020100&deptCd=6461392&pageIndex=1" target="_blank" title="새창">중소벤처기업과</a>
+                                <a href="https://www.jeonnam.go.kr/pj/StaffInfoListAction_Home.do?menuId=jeonnam0915010200&deptCd=6461275&pageIndex=1">지역계획과</a>
+                                <a href="https://www.jeonnam.go.kr/pj/StaffInfoListAction_Home.do?menuId=jeonnam0923010100&deptCd=6461546&pageIndex=1">청년희망과</a>
+                                <a href="https://www.jeonnam.go.kr/pj/StaffInfoListAction_Home.do?menuId=jeonnam0916010200&deptCd=6461286&pageIndex=1">총무과</a>
+                                <a href="https://www.jeonnam.go.kr/pj/StaffInfoListAction_Home.do?menuId=jeonnam0913060200&deptCd=6461216&pageIndex=1">축산정책과</a>
+                                <a href="https://www.jeonnam.go.kr/pj/StaffInfoListAction_Home.do?menuId=jeonnam0913020200&deptCd=6461214&pageIndex=1">친환경농업과</a>
+                                <a href="https://www.jeonnam.go.kr/pj/StaffInfoListAction_Home.do?menuId=jeonnam0914020200&deptCd=6461497&pageIndex=1">친환경수산과</a>
+                                <a href="https://www.jeonnam.go.kr/pj/StaffInfoListAction_Home.do?menuId=jeonnam0915040200&deptCd=6461223&pageIndex=1">토지관리과</a>
+                                <a href="https://dongbu.jeonnam.go.kr/pj/StaffInfoListAction_Home.do?menuId=east0802030100&deptCd=6461393&pageIndex=1" target="_blank" title="새창">투자유치과</a>
+                                <a href="https://www.jeonnam.go.kr/pj/StaffInfoListAction_Home.do?menuId=jeonnam0905050100&deptCd=6461398&pageIndex=1">해상풍력산업과</a>
+                                <a href="https://www.jeonnam.go.kr/pj/StaffInfoListAction_Home.do?menuId=jeonnam0914010200&deptCd=6461218&pageIndex=1">해운항만과</a>
+                                <a href="https://dongbu.jeonnam.go.kr/pj/StaffInfoListAction_Home.do?menuId=east0804010100&deptCd=6461538&pageIndex=1" target="_blank" title="새창">환경정책과</a>
+                                <a href="https://www.jeonnam.go.kr/pj/StaffInfoListAction_Home.do?menuId=jeonnam0916040200&deptCd=6460936&pageIndex=1">회계과</a>
+                                <a href="https://www.jeonnam.go.kr/pj/StaffInfoListAction_Home.do?menuId=jeonnam0916050200&deptCd=6461226&pageIndex=1">희망인재육성과</a>
+                                </dd>
+                        </dl>
+                    </li>-->
+                    <li>
+                        <a href="javascript:;" class="a1">직속/사업소/공사출연기관</a>
+                        <dl style="display: none; z-index: 500;">
+                            <dt>직속/사업소/공사출연기관</dt>
+                            <dd>
+                                <a href="https://jnyouth.or.kr/" target="_blank" title="새창">전라남도청소년미래재단</a>
+                                    <a href="http://loti.jeonnam.go.kr" target="_blank" title="새창">인재개발원</a>
+                                    <a href="http://www.gfez.go.kr " target="_blank" title="새창">광양만권경제자유구역청</a>
+                                    <a href="http://innocity.bitgaram.go.kr" target="_blank" title="새창">혁신도시빛가람</a>
+                                    <a href="http://www.iae.or.kr/" target="_blank" title="새창">국제농업박람회</a>
+                                    <a href="https://namdogallery.or.kr" target="_blank" title="새창">남도사이버갤러리</a>
+                                    <a href="http://www.ndhs.or.kr " target="_blank" title="새창">남도학숙</a>
+                                    <a href="http://www.gei.re.kr" target="_blank" title="새창">녹색에너지연구원</a>
+                                    <a href="http://www.jares.go.kr" target="_blank" title="새창">농업기술원</a>
+                                    <a href="http://www.jam.go.kr" target="_blank" title="새창">농업박물관</a>
+                                    <a href="http://road.jeonnam.go.kr" target="_blank" title="새창">도로관리사업소</a>
+                                    <a href="http://jnhs.kr/" target="_blank" title="새창">전남광주학숙</a>
+                                    <a href="http://www.jnvsl.go.kr/" target="_blank" title="새창">동물위생시험소</a>
+                                    <a href="http://dongbu.jeonnam.go.kr" target="_blank" title="새창">동부지역본부</a>
+                                    <a href="http://www.jihe.go.kr" target="_blank" title="새창">보건환경연구원</a>
+                                    <a href="http://jnforest.jeonnam.go.kr " target="_blank" title="새창">산림자원연구소</a>
+                                    <a href="http://sjfish.jeonnam.go.kr/" target="_blank" title="새창">섬진강어류생태관</a>
+                                    <a href="https://jngjsobang.go.kr/" target="_blank" title="새창">소방본부</a>
+                                    <a href="https://jnforest.jeonnam.go.kr/content/view.do?menuCd=FOREST009001001" target="_blank" title="새창">완도수목원</a>
+                                    <a href="http://www.jndc.co.kr " target="_blank" title="새창">전남개발공사</a>
+                                    <a href="http://www.jpg.or.kr " target="_blank" title="새창">전남도립국악단</a>
+                                    <a href="https://damyang.mokpo.ac.kr/rep/index.do" target="_blank" title="새창">국립목포대학교</a>
+                                    <a href="https://artmuseum.jeonnam.go.kr/www" target="_blank" title="새창">전남미술관</a>
+                                    <a href="https://www.jni.re.kr" target="_blank" title="새창">전남연구원</a>
+                                    <a href="http://www.jncsw.or.kr" target="_blank" title="새창">전라남도사회복지협의회</a>
+                                    <a href="http://www.jbf.kr" target="_blank" title="새창">전남바이오진흥원</a>
+                                    <a href="http://www.jnsinbo.or.kr " target="_blank" title="새창">전남신용보증재단</a>
+                                    <a href="http://www.jwomen.or.kr" target="_blank" title="새창">전남여성가족재단</a>
+                                    <a href="http://www.jcia.or.kr" target="_blank" title="새창">전남정보문화산업진흥원</a>
+                                    <a href="http://www.jntp.or.kr " target="_blank" title="새창">전남테크노파크</a>
+                                    <a href="http://www.gjmed.or.kr" target="_blank" title="새창">전라남도 강진의료원</a>
+                                    <a href="http://www.jtei.or.kr/" target="_blank" title="새창">전라남도 교통연수원</a>
+                                    <a href="http://jsmc.or.kr" target="_blank" title="새창">전라남도 순천의료원</a>
+                                    <a href="http://www.jnsad.or.kr" target="_blank" title="새창">전라남도 장애인체육회</a>
+                                    <a href="https://lib.jeonnam.go.kr" target="_blank" title="새창">전라남도립도서관</a>
+                                    <a href="http://jncf.or.kr/jact/index.do" target="_blank" title="새창">전라남도문화재단</a>
+                                    <a href="http://www.jepa.kr" target="_blank" title="새창">중소기업일자리경제진흥원</a>
+                                    <a href="http://www.jnsports.or.kr" target="_blank" title="새창">전라남도체육회</a>
+                                    <a href="http://www.jeipi.or.kr" target="_blank" title="새창">전라남도환경산업진흥원</a>
+                                    <a href="https://www.jntle.kr" target="_blank" title="새창">전남인재평생교육진흥원</a>
+                                    <a href="http://www.jmfsm.or.kr " target="_blank" title="새창">해양수산과학관</a>
+                                    <a href="http://ofsi.jeonnam.go.kr" target="_blank" title="새창">해양수산과학원</a>
+                                    <a href="https://www.jeonnam.go.kr/jnapc/web/index.do" target="_blank" title="새창">전남자치경찰위원회</a>
+                                    <a href="https://namdomarket.or.kr/" target="_blank" title="새창">남도장터</a>
+                                    <a href="http://www.jnrise.or.kr" target="_blank" title="새창">전라남도앵커센터</a>
+                                    </dd>
+                        </dl>
+                    </li>
+                    <li>
+                        <a href="javascript:;" class="a1">시·군바로가기(22)</a>
+                        <dl style="display: none; z-index: 500;">
+                            <dt>시·군바로가기(22)</dt>
+                            <dd>
+                                <a href="http://www.gangjin.go.kr/" target="_blank" title="새창">강진군</a>
+                                    <a href="http://www.goheung.go.kr/" target="_blank" title="새창">고흥군</a>
+                                    <a href="http://www.gokseong.go.kr/" target="_blank" title="새창">곡성군</a>
+                                    <a href="http://www.gwangyang.go.kr" target="_blank" title="새창">광양시</a>
+                                    <a href="https://www.gurye.go.kr/" target="_blank" title="새창">구례군</a>
+                                    <a href="http://www.naju.go.kr/" target="_blank" title="새창">나주시</a>
+                                    <a href="http://www.damyang.go.kr/" target="_blank" title="새창">담양군</a>
+                                    <a href="http://www.mokpo.go.kr/" target="_blank" title="새창">목포시</a>
+                                    <a href="http://www.muan.go.kr/" target="_blank" title="새창">무안군</a>
+                                    <a href="http://www.boseong.go.kr/" target="_blank" title="새창">보성군</a>
+                                    <a href="http://www.suncheon.go.kr/kr/" target="_blank" title="새창">순천시</a>
+                                    <a href="http://www.shinan.go.kr/" target="_blank" title="새창">신안군</a>
+                                    <a href="http://www.yeosu.go.kr/" target="_blank" title="새창">여수시</a>
+                                    <a href="http://www.yeonggwang.go.kr/" target="_blank" title="새창">영광군</a>
+                                    <a href="http://www.yeongam.go.kr/" target="_blank" title="새창">영암군</a>
+                                    <a href="http://www.wando.go.kr/" target="_blank" title="새창">완도군</a>
+                                    <a href="http://www.jangseong.go.kr/" target="_blank" title="새창">장성군</a>
+                                    <a href="http://www.jangheung.go.kr/" target="_blank" title="새창">장흥군</a>
+                                    <a href="http://www.jindo.go.kr/" target="_blank" title="새창">진도군</a>
+                                    <a href="http://www.hampyeong.go.kr/" target="_blank" title="새창">함평군</a>
+                                    <a href="http://www.haenam.go.kr/" target="_blank" title="새창">해남군</a>
+                                    <a href="https://www.hwasun.go.kr/" target="_blank" title="새창">화순군</a>
+                                    </dd>
+                        </dl>
+                    </li>
+                    <li>
+                        <a href="javascript:;" class="a1">관련 누리집</a>
+                        <dl style="display: none; z-index: 500;">
+                            <dt>관련 누리집</dt>
+                            <dd>
+                                <a href="http://www.jnyouthcenter.kr" target="_blank" title="새창">청년센터</a>
+                                    <a href="https://gyeyak.jeonnam-gwangju.go.kr/ " target="_blank" title="새창">계약정보공개시스템</a>
+                                    <a href="http://jnfarm.jeonnam.go.kr" target="_blank" title="새창">귀농산어촌 종합지원센터</a>
+                                    <a href=" https://www.bokjiro.go.kr" target="_blank" title="새창">복지로</a>
+                                    <a href="http://www.namdokorea.com" target="_blank" title="새창">남도여행길잡이</a>
+                                    <a href="http://minwon.jeonnam.go.kr" target="_blank" title="새창">민원메신저</a>
+                                    <a href="http://law.jeonnam.go.kr" target="_blank" title="새창">법무행정서비스</a>
+                                    <a href="http://job.jeonnam.go.kr" target="_blank" title="새창"> 일자리통합정보망</a>
+                                    <a href="http://u-safe.jeonnam.go.kr" target="_blank" title="새창">재난안전대책본부</a>
+                                    <a href="http://jnbeach.jeonnam.go.kr/  " target="_blank" title="새창">해수욕장</a>
+                                    <a href="https://www.namdokorea.com/tour/info/thema/island/islandList.do?menuCd=T002004001" target="_blank" title="새창">전남가고싶은섬</a>
+                                    <a href="http://blog.naver.com/namdokorea" target="_blank" title="새창">관광블로그</a>
+                                    <a href="http://www.jnfarmtour.com" target="_blank" title="새창">농촌체험여행</a>
+                                    <a href="http://news.jeonnam.go.kr" target="_blank" title="새창">전남광주새뜸</a>
+                                    <a href="http://office.jnsobang.go.kr" target="_blank" title="새창">소방본부 안전터</a>
+                                    <a href="http://jeinet.jnsp.re.kr" target="_blank" title="새창">연구장비정보망</a>
+                                    <a href="http://map.jeonnam.go.kr" target="_blank" title="새창">공간정보참여마당</a>
+                                    <a href="http://blog.naver.com/greenjeonnam" target="_blank" title="새창">블로그(네이버)</a>
+                                    <a href="http://namdo.jeonnam.go.kr/sihum/" target="_blank" title="새창">구)전라남도 시험정보</a>
+                                    <a href="http://www.youtube.com/user/greenjeonnam1896" target="_blank" title="새창">유튜브</a>
+                                    <a href=" http://jnvc1365.or.kr" target="_blank" title="새창">자원봉사센터</a>
+                                    <a href="https://www.facebook.com/jngj.jeonnam" target="_blank" title="새창">페이스북</a>
+                                    <a href="https://kras.jeonnam.go.kr/" target="_blank" title="새창">부동산정보조회 시스템</a>
+                                    <a href="http://www.jexport.or.kr" target="_blank" title="새창">전남광주통합특별시 수출e음</a>
+                                    <a href="http://www.jntv.go.kr" target="_blank" title="새창">인터넷방송</a>
+                                    <a href="http://namdo.jeonnam.go.kr/jamun/" target="_blank" title="새창">정책자문위원회</a>
+                                    <a href="http://solarsalt.jeonnam.go.kr" target="_blank" title="새창">천일염</a>
+                                    <a href="http://invest.jeonnam.go.kr/sites/invest/index.do" target="_blank" title="새창">투자유치</a>
+                                    <a href="http://islands.jeonnam.go.kr/" target="_blank" title="새창">about 전남 섬</a>
+                                    <a href="https://www.gaok.or.kr/" target="_blank" title="새창">대한민국시도지사협의회</a>
+                                    </dd>
+                        </dl>
+                    </li>
+                    <li>
+                        <a href="javascript:;" class="a1">e-쇼핑</a>
+                        <dl style="display: none; z-index: 500;">
+                            <dt>e-쇼핑</dt>
+                            <dd>
+                                <a href="http://jnmall.kr/" target="_blank" title="새창">남도장터</a>
+                                    <a href="https://www.invil.co.kr/mall/main/home.do" target="_blank" title="새창">정보화마을</a>
+                                    <a href="http://greenanum.co.kr/" target="_blank" title="새창">녹색나눔</a>
+                                    </dd>
+                        </dl>
+                    </li>
+                    <li>
+                        <a href="javascript:;" class="a1">혁신도시이전기관</a>
+                        <dl style="display: none; z-index: 500;">
+                            <dt>혁신도시이전 기관</dt>
+                            <dd>
+                                <a href="http://rra.go.kr/index.jsp" target="_blank" title="새창">국립전파연구원</a>
+                                    <a href="http://www.ipet.re.kr/ " target="_blank" title="새창">농림수산식품기술기획평가원</a>
+                                    <a href="http://www.ati.go.kr/" target="_blank" title="새창">농식품인재개발원</a>
+                                    <a href="http://kpic.koreapost.go.kr" target="_blank" title="새창">우정정보관리원</a>
+                                    <a href="https://www.kdn.com/" target="_blank" title="새창">한전KDN</a>
+                                    <a href="http://www.kps.co.kr" target="_blank" title="새창">한전KPS</a>
+                                    <a href="http://www.at.or.kr/" target="_blank" title="새창">한국농수산식품유통공사</a>
+                                    <a href="http://www.ekr.or.kr/Kkrpub/index.krc" target="_blank" title="새창">한국농어촌공사</a>
+                                    <a href="http://www.krei.re.kr " target="_blank" title="새창">한국농촌경제연구원</a>
+                                    <a href="http://www.arko.or.kr/" target="_blank" title="새창">한국문화예술위원회</a>
+                                    <a href="http://www.kca.kr/" target="_blank" title="새창">한국방송통신전파진흥원</a>
+                                    <a href="http://www.kisa.or.kr" target="_blank" title="새창">한국인터넷진흥원</a>
+                                    <a href="http://www.kpx.or.kr/" target="_blank" title="새창">한국전력거래소</a>
+                                    <a href="https://www.kepco.co.kr/" target="_blank" title="새창">한국전력공사</a>
+                                    <a href="http://www.kocca.kr/" target="_blank" title="새창">한국콘텐츠진흥원</a>
+                                    </dd>
+                        </dl>
+                    </li>
+                    <li>
+                        <a href="javascript:;" class="a1">유용한정보</a>
+                        <dl style="display: none; z-index: 500;">
+                            <dt>유용한정보</dt>
+                            <dd>
+                                <a href="http://www.gojobs.go.kr/" target="_blank" title="새창">인사혁신처 나라일터</a>
+                                    <a href="http://www.nhis.or.kr/" target="_blank" title="새창">국민건강보험</a>
+                                    <a href="https://www.jeonnam.go.kr/M5409/boardList.do?menuId=jeonnam0502010200">최신 농업동향</a>
+                                    <a href="http://www.airkorea.or.kr/index" target="_blank" title="새창">대기오염공개시스템</a>
+                                    <a href="https://www.seantour.kr/" target="_blank" title="새창">바다여행</a>
+                                    <a href="/M4941/boardList.do?menuId=jeonnam0504080000">부정불량식품</a>
+                                    <a href="https://spam.kisa.or.kr/spam/main.do" target="_blank" title="새창">불법스팸대응센터</a>
+                                    <a href="/contentsView.do?menuId=jeonnam0812000000">뷰어프로그램</a>
+                                    <a href="http://www.safemap.go.kr" target="_blank" title="새창">생활안전지도</a>
+                                    <a href="http://www.sunfull.or.kr/page/main.php" target="_blank" title="새창">선플운동</a>
+                                    <a href="http://www.kamis.co.kr/customer/main/main.do" target="_blank" title="새창">농산물유통정보</a>
+                                    <a href="/contentsView.do?menuId=jeonnam0603010000">(구)전남상징</a>
+                                    <a href="https://ccei.creativekorea.or.kr/jeonnam/main.do" target="_blank" title="새창">전남창조경제혁신센터</a>
+                                    <a href="https://www.easylaw.go.kr/" target="_blank" title="새창">찾기쉬운 생활법령정보</a>
+                                    <a href="/M5551/boardList.do?menuId=jeonnam0503010000">해양수산뉴스</a>
+                                    </dd>
+                        </dl>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- 하단 내용 -->
+            <div class="ft_bot_ctt">
+                <div class="new_wrap_box2">
+                    <div class="tb">
+                        <ul class="policy_box">
+                            <li><a href="/contentsView.do?menuId=jeonnam0801000000">이용안내</a></li>
+                            <li><a href="/contentsView.do?menuId=jeonnam0809010000"><strong style="font-weight: bold;color: blue;">개인정보 처리방침</strong></a></li>
+                            <li><a href="/contentsView.do?menuId=jeonnam0816000000">저작권정책</a></li>
+                            <li><a href="/contentsView.do?menuId=jeonnam0812000000">뷰어다운로드</a></li>
+                            <li><a href="https://www.mois.go.kr/frt/sub/popup/p_taegugki_banner/screen.do" title="국가상징 새창으로 열림" target="_blank">국가상징</a></li>
+                            <li><a href="/contentsView.do?menuId=jeonnam0601090000">찾아오시는 길</a></li>
+                        </ul>
+						<!-- 기존 이미지 사용 - 경로만 바꿔주기 -->
+                        <!-- <ul class="sns_box">
+                            
+                           <li><a href="http://pf.kakao.com/_NRYKG" target="_blank" title="카카오 채널"><img src="https://www.jeonnam.go.kr/home/site/jeonnam/newMain/img/icon/icon_ft_sns_kakaoChannel.png" alt=""></a></li>
+
+                            <li><a href="https://www.youtube.com/user/greenjeonnam1896" target="_blank" title="전라남도 유튜브"><img src="https://www.jeonnam.go.kr/home/site/jeonnam/newMain/img/icon/icon_ft_sns_youtube.png" alt=""></a></li>
+                            <li><a href="https://www.facebook.com/jeonnam.kr" target="_blank" title="전라남도 페이스북"><img src="https://www.jeonnam.go.kr/home/site/jeonnam/newMain/img/icon/icon_ft_sns_facebook.png" alt=""></a></li>
+                            <li><a href="https://twitter.com/greenjeonnam" target="_blank" title="전라남도 트위터"><img src="https://www.jeonnam.go.kr/home/site/jeonnam/newMain/img/icon/icon_ft_sns_twitter_new.png" alt=""></a></li>
+                            <li><a href="http://blog.naver.com/greenjeonnam" target="_blank" title="전라남도 네이버 블로그"><img src="https://www.jeonnam.go.kr/home/site/jeonnam/newMain/img/icon/icon_ft_sns_blog.png" alt=""></a></li>
+                            <li><a href="https://post.naver.com/my.nhn?memberNo=2327118" target="_blank" title="전라남도 네이버 포스트"><img src="https://www.jeonnam.go.kr/home/site/jeonnam/newMain/img/icon/icon_ft_sns_naver.png" alt=""></a></li>
+                            <li><a href="https://story.kakao.com/ch/jeollanamdo/feed" target="_blank" title="전라남도 카카오"><img src="https://www.jeonnam.go.kr/home/site/jeonnam/newMain/img/icon/icon_ft_sns_kakao.png" alt=""></a></li>
+                            <li><a href="https://www.instagram.com/jeonnam_official/" target="_blank" title="전라남도 인스타그램"><img src="https://www.jeonnam.go.kr/home/site/jeonnam/newMain/img/icon/icon_ft_sns_insta.png" alt=""></a></li>
+                        </ul> -->
+                    </div>
+    
+                    <div class="bb">
+                        <div class="info_box">
+                            <div class="ft_logo"><img src="/home/site/jeonnam/newMain/img/main/2022/footer_logo_img.png" alt="전남광주통합특별시(구)전라남도"></div>
+                            <div>
+                                <address>(우58564) 전남광주통합특별시 무안군 삼향읍 오룡길 1 <br>대표전화 : 061-287-0011 (평일 09:00~18:00, 근무시간 외(야간, 토·공휴일) 당직실 연결)</address>
+                                <p class="copyright">Copyright ⓒ 2022 Jeonnam-Gwangju Special Metropolitan City. All Rights Reserved.</p>
+                            </div>
+                        </div>
+    
+                        <!-- 기존이미지 사용 - 경로만 바꿔주기 -->
+                        <div class="a11y_box">                            
+                            <div class="left_img_box">
+                                <a href="https://www.jeonnam.go.kr/contentsView.do?menuId=jeonnam0817000000" target="_blank"><img src="https://www.jeonnam.go.kr/home/site/jeonnam/newMain/img/icon/icn_bnb_wa_2024.png" alt="과학기술정보통신부 WEB ACCESSIBILITY 마크(웹 접근성 품질인증 마크)" title="국가 공인 인증기관 : 웹와치 새창열기"></a>
+                            </div>
+                            <div class="right_img_box">
+                                <img src="https://www.jeonnam.go.kr/home/site/jeonnam/newMain/img/icon/icn_bnb_qr.png" alt="QR코드, 전남도청 사이트로 이동 https://www.jeonnam.go.kr/">
+                            </div>                            
+                            <a href="http://www.kogl.or.kr" target="_blank" title="공공누리 사이트 새 창 열림"><img src="https://www.jeonnam.go.kr/home/site/jeonnam/newMain/img/icon/footer_open.png" alt="OPEN"></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        
+        </footer>
+    
+            <div class="txTopBtn_box" style="display: none;">
+                <button type="button" class="txTopBtn hidden" title="위로 가기">
+                    <span class="img-s"><img src="/home/site/jeonnam/imgs2019/icon/arrow_top_btn_01.png" alt=""></span>
+                    <span class="txt">TOP</span>
+                </button>
+            </div>
+
+
+
+
+    <!--//Footer-->	
+	
+
+<div class="loading_box">
+	<div class="bg"></div>
+	<img src="/home/site/jeonnam/imgs/common/loading/loading.gif" title="Loading.." alt="로딩중">
+</div>
+<!-- AceCounter Log Gathering Script V.8.0.AMZ2019080601 -->
+<script language='javascript'>
+	var _AceGID=(function(){var Inf=['gtp10.acecounter.com','8080','AH2A44537282909','AW','0','NaPm,Ncisy','ALL','0']; var _CI=(!_AceGID)?[]:_AceGID.val;var _N=0;var _T=new Image(0,0);if(_CI.join('.').indexOf(Inf[3])<0){ _T.src ="https://"+ Inf[0] +'/?cookie'; _CI.push(Inf);  _N=_CI.length; } return {o: _N,val:_CI}; })();
+	var _AceCounter=(function(){var G=_AceGID;var _sc=document.createElement('script');var _sm=document.getElementsByTagName('script')[0];if(G.o!=0){var _A=G.val[G.o-1];var _G=(_A[0]).substr(0,_A[0].indexOf('.'));var _C=(_A[7]!='0')?(_A[2]):_A[3];var _U=(_A[5]).replace(/\,/g,'_');_sc.src='https:'+'//cr.acecounter.com/Web/AceCounter_'+_C+'.js?gc='+_A[2]+'&py='+_A[4]+'&gd='+_G+'&gp='+_A[1]+'&up='+_U+'&rd='+(new Date().getTime());_sm.parentNode.insertBefore(_sc,_sm);return _sc.src;}})();
+</script>
+<!-- AceCounter Log Gathering Script End -->
+
+</body>
+</html>
+	

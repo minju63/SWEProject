@@ -1,0 +1,593 @@
+(function ($) {
+ $.fn.serializeObject = function () {
+ 'use strict';
+ const result = {};
+ const extend = function (i, element) {
+ const node = result[element.name];
+ if ('undefined' !== typeof node && node !== null) {
+ if ($.isArray(node)) node.push(element.value);
+ else result[element.name] = [node, element.value];
+ } else result[element.name] = element.value;
+ }
+ $.each(this.serializeArray(), extend);
+ return result;
+ }
+})(jQuery);
+const cf_window = {};
+(function ($) {
+ 'use strict';
+ cf_window['open'] = function (url) {
+ window.open(url);
+ };
+})(jQuery);
+const cf_validate = {};
+(function ($) {
+ 'use strict';
+ cf_validate['isFunction'] = function (obj) {
+ return typeof obj === 'function' && typeof obj.nodeType !== 'number' && typeof obj.item !== 'function';
+ };
+ cf_validate['isEmpty'] = function (obj) {
+ return (obj === undefined || obj === 'undefined' || obj === null || obj === '' || obj === 'null');
+ };
+ cf_validate['convertEmpty'] = function (src, repl) {
+ if (cf_validate.isEmpty(src)) return repl;
+ return src;
+ };
+ cf_validate['isJson'] = function (str) {
+ try {
+ return (typeof JSON.parse(str) === 'object');
+ } catch (e) {
+ return false;
+ }
+ };
+})(jQuery);
+const cf_data = {};
+(function ($) {
+ 'use strict';
+ cf_data['tree'] = function (arrayList, rootId) {
+ const nodesMap = {};
+ const rootNodes = [];
+ arrayList.forEach(item => {
+ nodesMap[item.id] = { ...item, children: [] };
+ });
+ arrayList.forEach(item => {
+ if (item.parentId === rootId) {
+ rootNodes.push(nodesMap[item.id]);
+ } else if (nodesMap[item.parentId]) {
+ nodesMap[item.parentId].children.push(nodesMap[item.id]);
+ }
+ });
+ return rootNodes;
+ };
+ cf_data['extension'] = function (filename) {
+ if (cf_validate.isEmpty(filename)) return '';
+ return filename.substring(filename.lastIndexOf('.') + 1, filename.length).toLowerCase();
+ };
+ cf_data['number'] = function (obj = '', allowedArr = []) {
+ const text = (typeof obj === 'string') ? obj : String(obj);
+ const arr = text.split('');
+ const outArr = [];
+ for (let cnt = 0; cnt currentUrl.searchParams.append(key, data[key]));
+ if (!currentUrl.searchParams.has('url')) currentUrl.searchParams.append('url', url);
+ if (window.location.href !== currentUrl.toString()) history.pushState(null, '', currentUrl.toString());
+ }
+ callback(responseData, textStatus, jqXHR);
+ },
+ error: function (jqXHR, textStatus, errorThrown) {
+ if (jqXHR.getResponseHeader('errorCd') === 'E999') {
+ console.log(decodeURIComponent(jqXHR.getResponseHeader('message')));
+ pf_toast.error(null, decodeURIComponent(jqXHR.getResponseHeader('message')));
+ } else {
+ console.log('error occurred during data processing\n' + jqXHR.status + ' ' + textStatus + '\n' + errorThrown);
+ pf_toast.error(jqXHR.status + ' ' + textStatus, 'error occurred during data processing');
+ }
+ },
+ complete: function (xhr, status) {
+ const redirect = xhr.getResponseHeader('redirect');
+ //console.log(redirect);
+ if (redirect !== null) {
+ location.href = redirect;
+ }
+ pf_loading.stop(elem);
+ }
+ });
+ };
+ });
+ // popstate 이벤트를 처리하여 뒤로 가기 구현
+ $(window).on('popstate', function (event) {
+ location.reload();
+ });
+})(jQuery);
+const cf_modal = {};
+(function ($) {
+ 'use strict';
+ cf_modal['close'] = function (elem) {
+ const $modal = $(elem).closest('.modal');
+ $modal.modal('hide').on('hidden.bs.modal', function () {
+ $(this).remove();
+ });
+ };
+})(jQuery);
+const cf_elem = {};
+(function ($) {
+ 'use strict';
+ cf_elem['checked'] = function (elemId) {
+ $('#' + elemId).prop('checked', true);
+ };
+ cf_elem['checkAll'] = function (elem) {
+ const isChecked = $(elem).is(':checked');
+ $(elem).closest('table').find('tbody :checkbox').not(':disabled').prop('checked', isChecked);
+ };
+ cf_elem['check'] = function (elem) {
+ const isChecked = $(elem).is(':checked');
+ let isAll = false;
+ if (isChecked) {
+ const checkboxCnt = $(elem).closest('tbody').find(':checkbox').not(':disabled').length;
+ const checkedCnt = $(elem).closest('tbody').find(':checkbox').filter(':checked').length;
+ if (checkboxCnt === checkedCnt) isAll = true;
+ }
+ $(elem).closest('table').find('thead :checkbox').prop('checked', isAll);
+ };
+})(jQuery);
+const cf_cmmFile = {};
+(function ($) {
+ 'use strict';
+ cf_cmmFile['download'] = function (fileId, fileMaskNm) {
+ if (cf_validate.isEmpty(fileId) || cf_validate.isEmpty(fileMaskNm)) {
+ alert('올바르지 않은 요청입니다.');
+ return;
+ }
+ //const progress = document.getElementById('progress');
+ //const progressCtx = progress.getContext('2d');
+ /*function showPer(per) {
+ progressCtx.clearRect(0, 0, 400, 400);
+ //바깥쪽 써클 그리기
+ progressCtx.strokeStyle = '#f66';
+ progressCtx.lineWidth = 10;
+ progressCtx.beginPath();
+ progressCtx.arc(60, 60, 50, 0, Math.PI * 2 * per / 100);
+ progressCtx.stroke();
+ //숫자 올리기
+ progressCtx.font = '32px serif';
+ progressCtx.fillStyle = '#000';
+ progressCtx.textAlign = 'center';
+ progressCtx.textBaseline = 'middle';
+ progressCtx.fillText(per + '%', 60, 60);
+ }*/
+ $.ajax({
+ type: 'post',
+ url: ctx + '/cmmfile/download/' + fileId,
+ data: {fileMaskNm: fileMaskNm},
+ xhrFields: {
+ withCredentials: true,
+ responseType: 'blob' // to avoid binary data being mangled on charset conversion
+ },
+ beforeSend: function () { // ajax 호출전 progress 초기화
+ pf_loading.start('body');
+ //showPer(0);
+ //progress.style.display = 'block';
+ },
+ //xhr: function () { // XMLHttpRequest 재정의 가능
+ //const xhr = $.ajaxSettings.xhr();
+ //xhr.onprogress = function (e) {
+ //showPer(Math.floor(e.loaded / e.total * 100));
+ //console.log(Math.floor(e.loaded / e.total * 100));
+ //};
+ //return xhr;
+ //},
+ success: function (blob, status, xhr) {
+ if (!(blob instanceof Blob)) {
+ pf_toast.error(null, decodeURIComponent(xhr.getResponseHeader('message')));
+ return false;
+ }
+ // check for a filename
+ let filename = '';
+ const disposition = xhr.getResponseHeader('Content-Disposition');
+ if (disposition && disposition.indexOf('attachment') !== -1) {
+ const filenameRegex = /filename[^;=\n]*=((['"]).*?\2|[^;\n]*)/;
+ const matches = filenameRegex.exec(disposition);
+ if (matches != null && matches[1]) filename = matches[1].replace(/['"]/g, '');
+ }
+ if (typeof window.navigator.msSaveBlob !== 'undefined') {
+ // IE workaround for "HTML7007: One or more blob URLs were revoked by closing the blob for which they were created. These URLs will no longer resolve as the data backing the URL has been freed."
+ window.navigator.msSaveBlob(blob, filename);
+ } else {
+ const URL = window.URL || window.webkitURL;
+ const downloadUrl = URL.createObjectURL(blob);
+ if (filename) {
+ // use HTML5 a[download] attribute to specify filename
+ const a = document.createElement('a');
+ // safari doesn't support this yet
+ if (typeof a.download === 'undefined') {
+ window.location.href = downloadUrl;
+ } else {
+ a.href = downloadUrl;
+ a.download = decodeURIComponent(filename);
+ document.body.appendChild(a);
+ a.click();
+ }
+ } else {
+ window.location.href = downloadUrl;
+ }
+ setTimeout(function () {
+ URL.revokeObjectURL(downloadUrl);
+ }, 100); // cleanup
+ }
+ /*}*/
+ },
+ complete: function () {
+ pf_loading.stop('body');
+ //progress.style.display = 'none';
+ }
+ });
+ };
+ cf_cmmFile['reasondownload'] = function (fileId, fileMaskNm) {
+ if (cf_validate.isEmpty(fileId) || cf_validate.isEmpty(fileMaskNm)) {
+ alert('올바르지 않은 요청입니다.');
+ return;
+ }
+ //const progress = document.getElementById('progress');
+ //const progressCtx = progress.getContext('2d');
+ /*function showPer(per) {
+ progressCtx.clearRect(0, 0, 400, 400);
+ //바깥쪽 써클 그리기
+ progressCtx.strokeStyle = '#f66';
+ progressCtx.lineWidth = 10;
+ progressCtx.beginPath();
+ progressCtx.arc(60, 60, 50, 0, Math.PI * 2 * per / 100);
+ progressCtx.stroke();
+ //숫자 올리기
+ progressCtx.font = '32px serif';
+ progressCtx.fillStyle = '#000';
+ progressCtx.textAlign = 'center';
+ progressCtx.textBaseline = 'middle';
+ progressCtx.fillText(per + '%', 60, 60);
+ }*/
+ pf_swal.prompt("파일을 다운로드하는 이유를 입력해주세요:", "사유를 입력하세요", function(downloadReason) {
+ if (cf_validate.isEmpty(downloadReason)) {
+ alert("다운로드 사유를 입력해야 합니다.");
+ return;
+ }
+ $.ajax({
+ type: 'post',
+ // url: ctx + '/cmmfile/reasondownload/' + fileId,
+ url: ctx + '/cmmfile/markanyDownload/' + fileId,
+ data: {fileMaskNm: fileMaskNm, downloadReason:downloadReason},
+ xhrFields: {
+ withCredentials: true,
+ responseType: 'blob' // to avoid binary data being mangled on charset conversion
+ },
+ beforeSend: function () { // ajax 호출전 progress 초기화
+ pf_loading.start('body');
+ //showPer(0);
+ //progress.style.display = 'block';
+ },
+ //xhr: function () { // XMLHttpRequest 재정의 가능
+ //const xhr = $.ajaxSettings.xhr();
+ //xhr.onprogress = function (e) {
+ //showPer(Math.floor(e.loaded / e.total * 100));
+ //console.log(Math.floor(e.loaded / e.total * 100));
+ //};
+ //return xhr;
+ //},
+ success: function (blob, status, xhr) {
+ if (!(blob instanceof Blob)) {
+ pf_toast.error(null, decodeURIComponent(xhr.getResponseHeader('message')));
+ return false;
+ }
+ // check for a filename
+ let filename = '';
+ const disposition = xhr.getResponseHeader('Content-Disposition');
+ if (disposition && disposition.indexOf('attachment') !== -1) {
+ const filenameRegex = /filename[^;=\n]*=((['"]).*?\2|[^;\n]*)/;
+ const matches = filenameRegex.exec(disposition);
+ if (matches != null && matches[1]) filename = matches[1].replace(/['"]/g, '');
+ }
+ if (typeof window.navigator.msSaveBlob !== 'undefined') {
+ // IE workaround for "HTML7007: One or more blob URLs were revoked by closing the blob for which they were created. These URLs will no longer resolve as the data backing the URL has been freed."
+ window.navigator.msSaveBlob(blob, filename);
+ } else {
+ const URL = window.URL || window.webkitURL;
+ const downloadUrl = URL.createObjectURL(blob);
+ if (filename) {
+ // use HTML5 a[download] attribute to specify filename
+ const a = document.createElement('a');
+ // safari doesn't support this yet
+ if (typeof a.download === 'undefined') {
+ window.location.href = downloadUrl;
+ } else {
+ a.href = downloadUrl;
+ a.download = decodeURIComponent(filename);
+ document.body.appendChild(a);
+ a.click();
+ }
+ } else {
+ window.location.href = downloadUrl;
+ }
+ setTimeout(function () {
+ URL.revokeObjectURL(downloadUrl);
+ }, 100); // cleanup
+ }
+ /*}*/
+ },
+ complete: function () {
+ pf_loading.stop('body');
+ //progress.style.display = 'none';
+ }
+ });
+ });
+ };
+ cf_cmmFile['downloadAll'] = function (downloadFileIdArr, fileNm) {
+ if (!downloadFileIdArr) {
+ alert('올바르지 않은 요청입니다.');
+ return;
+ }
+ //const progress = document.getElementById('progress');
+ //const progressCtx = progress.getContext('2d');
+ /*function showPer(per) {
+ progressCtx.clearRect(0, 0, 400, 400);
+ //바깥쪽 써클 그리기
+ progressCtx.strokeStyle = '#f66';
+ progressCtx.lineWidth = 10;
+ progressCtx.beginPath();
+ progressCtx.arc(60, 60, 50, 0, Math.PI * 2 * per / 100);
+ progressCtx.stroke();
+ //숫자 올리기
+ progressCtx.font = '32px serif';
+ progressCtx.fillStyle = '#000';
+ progressCtx.textAlign = 'center';
+ progressCtx.textBaseline = 'middle';
+ progressCtx.fillText(per + '%', 60, 60);
+ }*/
+ pf_swal.prompt("파일을 다운로드하는 이유를 입력해주세요:", "사유를 입력하세요", function(downloadReason) {
+ if (cf_validate.isEmpty(downloadReason)) {
+ alert("다운로드 사유를 입력해야 합니다.");
+ return;
+ }
+ $.ajax({
+ type: 'post',
+ url: ctx + '/cmmfile/download',
+ data: {downloadFileIdArr: downloadFileIdArr, downloadReason: downloadReason, fileNm: fileNm},
+ xhrFields: {
+ withCredentials: true,
+ responseType: 'blob' // to avoid binary data being mangled on charset conversion
+ },
+ beforeSend: function () { // ajax 호출전 progress 초기화
+ pf_loading.start('body');
+ //showPer(0);
+ //progress.style.display = 'block';
+ },
+ //xhr: function () { // XMLHttpRequest 재정의 가능
+ //const xhr = $.ajaxSettings.xhr();
+ //xhr.onprogress = function (e) {
+ //showPer(Math.floor(e.loaded / e.total * 100));
+ //console.log(Math.floor(e.loaded / e.total * 100));
+ //};
+ //return xhr;
+ //},
+ success: function (blob, status, xhr) {
+ if (!(blob instanceof Blob)) {
+ pf_toast.error(null, decodeURIComponent(xhr.getResponseHeader('message')));
+ return false;
+ }
+ // check for a filename
+ let filename = '';
+ const disposition = xhr.getResponseHeader('Content-Disposition');
+ if (disposition && disposition.indexOf('attachment') !== -1) {
+ const filenameRegex = /filename[^;=\n]*=((['"]).*?\2|[^;\n]*)/;
+ const matches = filenameRegex.exec(disposition);
+ if (matches != null && matches[1]) filename = matches[1].replace(/['"]/g, '');
+ }
+ if (typeof window.navigator.msSaveBlob !== 'undefined') {
+ // IE workaround for "HTML7007: One or more blob URLs were revoked by closing the blob for which they were created. These URLs will no longer resolve as the data backing the URL has been freed."
+ window.navigator.msSaveBlob(blob, filename);
+ } else {
+ const URL = window.URL || window.webkitURL;
+ const downloadUrl = URL.createObjectURL(blob);
+ if (filename) {
+ // use HTML5 a[download] attribute to specify filename
+ const a = document.createElement('a');
+ // safari doesn't support this yet
+ if (typeof a.download === 'undefined') {
+ window.location.href = downloadUrl;
+ } else {
+ a.href = downloadUrl;
+ a.download = decodeURIComponent(filename);
+ document.body.appendChild(a);
+ a.click();
+ }
+ } else {
+ window.location.href = downloadUrl;
+ }
+ setTimeout(function () {
+ URL.revokeObjectURL(downloadUrl);
+ }, 100); // cleanup
+ }
+ /*}*/
+ },
+ complete: function () {
+ pf_loading.stop('body');
+ //progress.style.display = 'none';
+ }
+ });
+ });
+ };
+ cf_cmmFile['markanyDownload'] = function (fileId, fileMaskNm) {
+ if (cf_validate.isEmpty(fileId) || cf_validate.isEmpty(fileMaskNm)) {
+ alert('올바르지 않은 요청입니다.');
+ return;
+ }
+ //const progress = document.getElementById('progress');
+ //const progressCtx = progress.getContext('2d');
+ /*function showPer(per) {
+ progressCtx.clearRect(0, 0, 400, 400);
+ //바깥쪽 써클 그리기
+ progressCtx.strokeStyle = '#f66';
+ progressCtx.lineWidth = 10;
+ progressCtx.beginPath();
+ progressCtx.arc(60, 60, 50, 0, Math.PI * 2 * per / 100);
+ progressCtx.stroke();
+ //숫자 올리기
+ progressCtx.font = '32px serif';
+ progressCtx.fillStyle = '#000';
+ progressCtx.textAlign = 'center';
+ progressCtx.textBaseline = 'middle';
+ progressCtx.fillText(per + '%', 60, 60);
+ }*/
+ $.ajax({
+ type: 'post',
+ url: ctx + '/cmmfile/markanyDownload/' + fileId,
+ data: {fileMaskNm: fileMaskNm},
+ xhrFields: {
+ withCredentials: true,
+ responseType: 'blob' // to avoid binary data being mangled on charset conversion
+ },
+ beforeSend: function () { // ajax 호출전 progress 초기화
+ pf_loading.start('body');
+ //showPer(0);
+ //progress.style.display = 'block';
+ },
+ //xhr: function () { // XMLHttpRequest 재정의 가능
+ //const xhr = $.ajaxSettings.xhr();
+ //xhr.onprogress = function (e) {
+ //showPer(Math.floor(e.loaded / e.total * 100));
+ //console.log(Math.floor(e.loaded / e.total * 100));
+ //};
+ //return xhr;
+ //},
+ success: function (blob, status, xhr) {
+ if (!(blob instanceof Blob)) {
+ pf_toast.error(null, decodeURIComponent(xhr.getResponseHeader('message')));
+ return false;
+ }
+ // check for a filename
+ let filename = '';
+ const disposition = xhr.getResponseHeader('Content-Disposition');
+ if (disposition && disposition.indexOf('attachment') !== -1) {
+ const filenameRegex = /filename[^;=\n]*=((['"]).*?\2|[^;\n]*)/;
+ const matches = filenameRegex.exec(disposition);
+ if (matches != null && matches[1]) filename = matches[1].replace(/['"]/g, '');
+ }
+ if (typeof window.navigator.msSaveBlob !== 'undefined') {
+ // IE workaround for "HTML7007: One or more blob URLs were revoked by closing the blob for which they were created. These URLs will no longer resolve as the data backing the URL has been freed."
+ window.navigator.msSaveBlob(blob, filename);
+ } else {
+ const URL = window.URL || window.webkitURL;
+ const downloadUrl = URL.createObjectURL(blob);
+ if (filename) {
+ // use HTML5 a[download] attribute to specify filename
+ const a = document.createElement('a');
+ // safari doesn't support this yet
+ if (typeof a.download === 'undefined') {
+ window.location.href = downloadUrl;
+ } else {
+ a.href = downloadUrl;
+ a.download = decodeURIComponent(filename);
+ document.body.appendChild(a);
+ a.click();
+ }
+ } else {
+ window.location.href = downloadUrl;
+ }
+ setTimeout(function () {
+ URL.revokeObjectURL(downloadUrl);
+ }, 100); // cleanup
+ }
+ /*}*/
+ },
+ complete: function () {
+ pf_loading.stop('body');
+ //progress.style.display = 'none';
+ }
+ });
+ };
+})(jQuery);
+const cf_form = {};
+(function ($) {
+ 'use strict';
+ cf_form['reset'] = function (formElem) {
+ formElem.reset();
+ };
+ cf_form['clear'] = function (formElem) {
+ const $form = $(formElem);
+ $form.find('input, select').each(function (i, el) {
+ let tagName = $(el).prop('tagName');
+ if (tagName === 'INPUT') {
+ if ($(el).is(':text')) $(el).val('');
+ else if ($(el).is(':checkbox')) $(el).prop('checked', false);
+ } else if (tagName === 'SELECT') $(el).find('option:eq(0)').prop('selected', true);
+ });
+ pf_select2.init();
+ };
+})(jQuery);
+const cf_format = {};
+(function ($) {
+ 'use strict';
+ cf_format['number'] = function (val, elem) {
+ const replVal = val.replace(/[^0-9]/g, '');
+ if (elem === undefined) return replVal;
+ else elem.value = replVal;
+ };
+ cf_format['phone'] = function (val, elem) {
+ const replVal = cf_format.number(val).replace(/(^02|^0505|^1[0-9]{3}|^0[0-9]{2})([0-9]+)?([0-9]{4})$/, '$1-$2-$3').replace('--', '-');
+ if (elem === undefined) return replVal;
+ else elem.value = replVal;
+ };
+ cf_format['birth'] = function (val, elem) {
+ const replVal = cf_format.number(val).replace(/(^19[0-9]{2}|^20[0-9]{2})(0[0-9]|1[0-2])?(0[1-9]|[1-2][0-9]|3[0-1])$/, '$1.$2.$3').replace('..', '.');
+ if (elem === undefined) return replVal;
+ else elem.value = replVal;
+ };
+ cf_format['birth2'] = function (val, elem) {
+ const replVal = cf_format.number(val).replace(/(^19[0-9]{2}|^20[0-9]{2})(0[0-9]|1[0-2])?(0[1-9]|[1-2][0-9]|3[0-1])$/, '$1-$2-$3').replace('--', '-');
+ if (elem === undefined) return replVal;
+ else elem.value = replVal;
+ };
+})(jQuery);
+let fontSize = 16;
+const cf_fontSize = {};
+(function ($) {
+ 'use strict';
+ cf_fontSize['up'] = function (elem) {
+ fontSize++;
+ if (fontSize > 20) fontSize = 20;
+ cf_fontSize.change(elem);
+ };
+ cf_fontSize['down'] = function (elem) {
+ fontSize--;
+ if (fontSize < 12) fontSize = 12;
+ cf_fontSize.change(elem);
+ };
+ cf_fontSize['init'] = function (elem) {
+ fontSize = 16;
+ cf_fontSize.change(elem);
+ };
+ cf_fontSize['change'] = function (elem) {
+ $(elem).css('font-size', fontSize);
+ };
+})(jQuery);
+var chatWindow;
+var checkPopupInterval;
+function openChat() {
+ var chat_popup_w = 460; //팝업창의 가로크기
+ var chat_popup_h = 780; //팝업창의 세로크기
+ if (chatWindow === undefined || chatWindow.closed) {
+ var chat_popup_x = screen.availWidth - chat_popup_w; //팝업창의 가로위치
+ var chat_popup_y = screen.availHeight - chat_popup_h; //팝업창의 세로위치 (상단에 띄우려면 0)
+ var url = "https://jnjob.hgit.info/wise/chatbot.do";
+ chatWindow = window.open("", "openForm", 'width=' + chat_popup_w + 'px, height=' + chat_popup_h + 'px, left=' + chat_popup_x + ', top=' + chat_popup_y + ', status=no, location=no, toolbar=no, menubar=no, scrollbars=no, resizable=yes');
+ var myForm = document.openForm;
+ myForm.action = url;
+ myForm.method = "post";
+ myForm.target = "openForm";
+ myForm.submit();
+ checkPopupInterval = setInterval(function() {
+ if (chatWindow.closed) {
+ clearInterval(checkPopupInterval);
+ chatWindow = undefined;
+ }
+ }, 1000);
+ } else {
+ chatWindow.focus();
+ }
+}

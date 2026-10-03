@@ -1,0 +1,4 @@
+const fs=require('node:fs'),path=require('node:path');const d=path.join(__dirname,'raw_2026-10-02/candidate_verification');let t=JSON.parse(fs.readFileSync(path.join(d,'pending_73_fetch_targets.json'),'utf8'));const rs=JSON.parse(fs.readFileSync(path.join(d,'manual_checks.json'),'utf8'));function add(id,URL){t.push({id,URL});}
+for(const r of rs.filter(r=>r.plcyNo==='20250917005400211730'&&r.status===200))for(const l of r.links||[])if(/idx=600|\.pdf|\.hwpx?|fileDown|download|file\/\d+/i.test(l.URL))add(r.plcyNo,l.URL);
+add('20260821005400213346','https://www.gwangsan.go.kr/notView.do?pageId=www12&notSn=43787&searchNotSe=01');
+t=[...new Map(t.map(x=>[x.id+'|'+x.URL,x])).values()];fs.writeFileSync(path.join(d,'pending_73_fetch_targets.json'),JSON.stringify(t,null,2));console.log('Targets '+t.length);

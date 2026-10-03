@@ -1,0 +1,263 @@
+
+<script type="text/javascript">var G_CONTEXT_PATH = "";</script>
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+<meta name="keywords" content="" />
+<meta property="og:image" content="/images/mobile/gongju_icon.png" />
+<base target="_self" /> 
+<title>군민소통시스템</title>
+<script type="text/javascript">var G_CONTEXT_PATH = "";</script>
+<script type="text/javascript" src="/dwr/engine.js"></script>
+<script type="text/javascript" src="/dwr/util.js"></script>
+<script type="text/javascript" src="/dwr/interface/DwrCommonService.js"></script>
+<link rel="stylesheet" href="/css/mobile/all.css">
+<script type="text/javascript" src="/js/mobile/jquery-1.7.1.min.js"></script><!--전체메뉴-->
+<script type="text/javascript" src="/js/mobile/jquery.easing.1.3.js" ></script><!--전체메뉴-->
+<script type="text/javascript" src="/js/mobile/mobTnav.js" ></script><!--전체메뉴-->
+</head>
+<body>
+<div id="wrap">
+    
+<script type="text/javascript">var G_CONTEXT_PATH = "";</script>
+<script>
+function exit() {
+	if(confirm('종료하시겠습니까?')) {
+		MainActivity.appExit();
+	}
+	return false;
+}
+
+function autoLoginStartCheck() {
+	var save = window.localStorage.getItem('saveLogin');
+	if(save == 'Y') {
+		window.localStorage.setItem('start', 'Y');
+	} else {
+		window.localStorage.setItem('start', 'N');
+	}
+}
+function actionLogout() {
+	window.localStorage.setItem('start', 'N');
+	if(window.G_CONTEXT_PATH != null) {
+		location.href = G_CONTEXT_PATH + '/actionLogout2.do';
+	}else{
+		location.href = '/actionLogout2.do';
+	}	
+
+	return false;
+}
+autoLoginStartCheck();
+
+ function actionLogin() {
+	window.localStorage.setItem('firstNmain','Y');
+	 if (window.G_CONTEXT_PATH != null) {
+         location.href = G_CONTEXT_PATH + '/login.do?isMobile=1';
+     } else {
+         location.href = '/login.do?isMobile=1';
+     }
+
+     return false;
+ }
+
+</script>
+<div id="menu">
+    <div class="menu-box">
+    <div class="menu-wrap"></div>
+    	<div class="gnb_mobile_bg">
+        <p><a href="#" class="btn_all_close close">닫기</a></p>
+        <div class="gnb_mobile">
+            
+         	<dl>
+                <dt>로그인해주세요</dt>
+                <dd>
+                	<a href="#" class="login_icon" onclick="return actionLogin();">로그인</a>
+                	
+					
+               	</dd>
+            </dl>
+         	
+        </div>
+        </div>
+        <ul class="menu">			
+        	   
+            
+            
+            	<li><a href="/mobile/contents/mobile/alm/02/alm.01.001.motion?bmode=newList"><span class="mal_icon_03">새소식</span></a></li>
+	            <li><a href="/mobile/contents/mobile/alm/03/alm.01.001.motion?bmode=bodoList"><span class="mal_icon_04">보도자료</span></a></li>
+	            <li><a href="/mobile/contents/mobile/alm/04/alm.01.001.motion?bmode=gosiList"><span class="mal_icon_05">고시공고</span></a></li>
+            
+        </ul>
+    </div>
+</div>
+<div class="wrap-over"></div><!-- 메뉴가 열릴 때 본문 덮는 화면-->
+
+    <div class="wrap">
+    	
+
+
+	
+
+<script type="text/javascript">var G_CONTEXT_PATH = "";</script><script src="/js/admin/dmsNewIjAllim.js;jsessionid=6A11BB69615EDC4308F8E5ED8F9DC215" type="text/javascript"></script>
+<script src="/js/mobile/kakao.min.js"></script>
+
+<style>
+	.newsImg img{width:100% !important;}
+	.newsImg {white-space: pre-line !important;}
+</style>
+
+<div class="header_wrap_s">
+ 	<span class="btn_top_prev"><a href="#list" onclick="return fn_egov_selectList();"><img src="/images/mobile/btn_top_prev.png" alt="이전" /></a></span>
+ 	<h1>
+ 		
+ 		
+ 		고시공고
+ 	</h1>
+ 	<div class="tmenuvoew"><!-- <a href="#" title="전체메뉴보기" class="list">전체메뉴보기</a> --><a href="/mobile/contents/mobile/main.motion">홈</a></div>
+</div>
+
+<div class="contents">
+	<div class="title_h4">
+		<h4>
+			
+				2026년 청년주택 임차보증금 이자 지원사업 신청 공고
+				
+			
+		</h4>
+	</div>
+	<div class="con_padd">
+		<div class="view_tit">
+			<div style="padding:0px 0px 10px;" class="newsImg">
+				
+					자세한 내용은 붙임 파일을 참고하시기 바랍니다.
+					
+				
+			</div>			
+			<table class="table_view mt5">
+     		<colgroup>
+     			<col style="width:30%">
+  				<col style="width:*">
+      		</colgroup>
+      		<tbody>
+          	
+          	<tr>
+		  		<th>작성자</th>
+		  		<td>
+		  			
+		  				송은수
+		  				
+		  			
+		  		</td>
+		  	</tr>
+		  	<tr>
+		  		<th>작성일</th>
+		  		<td>
+					
+						20260701	
+						
+						  		
+		  		</td>
+		  	</tr>
+      		</tbody>
+     		</table>
+  		</div>
+  		
+  			
+	  			<div class="file_down">
+				    <p class="icon_file">첨부파일</p>
+				    
+				    	<div>
+		  					<a href="#fileDown" onclick="docPreview2('http://eminwon.hc.go.kr/emwp/jsp/ofr/FileDown.jsp?user_file_nm=2026년 청년주택 임차보증금 이자 지원사업 공고(합천군).hwpx&sys_file_nm=2026년 청년주택 임차보증금 이자 지원사업 공고(합천군)_ofr_ofr_kkX6Yv0jEzCKnQBe_20260629204256157_1.hwpx&file_path=/ntishome/file/upload/ofr/ofr/20260629&name=2026년 청년주택 임차보증금 이자 지원사업 공고(합천군).hwpx','43920', '2026년 청년주택 임차보증금 이자 지원사업 공고(합천군).hwpx');">
+		  						2026년 청년주택 임차보증금 이자 지원사업 공고(합천군).hwpx
+		  					</a>
+		  				<a href="#fileDown" onclick="fileDown('http://eminwon.hc.go.kr/emwp/jsp/ofr/FileDown.jsp?user_file_nm=2026년 청년주택 임차보증금 이자 지원사업 공고(합천군).hwpx&sys_file_nm=2026년 청년주택 임차보증금 이자 지원사업 공고(합천군)_ofr_ofr_kkX6Yv0jEzCKnQBe_20260629204256157_1.hwpx&file_path=/ntishome/file/upload/ofr/ofr/20260629&name=2026년 청년주택 임차보증금 이자 지원사업 공고(합천군).hwpx');" class="btn_search_lightgray_a04">내려받기</a><br>
+	  					</div>
+  						
+				</div>
+  			
+  			
+  		
+		<div class="mt10 tC" title="">
+			<span class="btn_type_gray"><a href="#list" onclick="return fn_egov_selectList();">목록</a></span>
+		</div>
+	</div>               
+</div>
+<form id="detailForm" name="detailForm" action="/mobile/contents/mobile/alm/04/alm.01.001.motion" method="post">
+<input id="bmode" name="bmode" type="hidden" value="gosiDetail"/>
+<input id="ijAllimSeq" name="ijAllimSeq" type="hidden" value="43920"/>
+<input id="searchCondition" name="searchCondition" type="hidden" value=""/>
+<input id="searchKeyword" name="searchKeyword" type="hidden" value=""/>
+<input id="pageIndex" name="pageIndex" type="hidden" value="1"/>
+</form>
+
+<script type="text/javaScript">
+function docPreview(url, fileName) {
+	var useragent = 'node'
+	if(fileName == '' || fileName.lastIndexOf('.') < 0) {
+	alert('파일명이올바르지않습니다.');
+	return false;
+	}
+
+	var ext = (fileName.substring(fileName.lastIndexOf('.') + 1, fileName.length)).toLowerCase();
+	if(ext != 'hwp' && ext != 'xls' && ext != 'xlsx' && ext != 'doc' && ext != 'docx' && ext != 'ppt' && ext != 'pptx' && ext != 'pdf'
+	&& ext != 'txt' && ext != 'png' && ext != 'jpg' && ext != 'jpeg' && ext != 'gif') {
+	alert('미리보기형식이아닙니다.'+ext);
+	return false;
+	}
+	url = url.replace("null=","&fileSn=");
+	var fileUrl = url;
+	fileUrl = encodeURI(encodeURIComponent(fileUrl));
+	fileName = encodeURI(encodeURIComponent(fileName));
+	location.href="/api/docPreview.do?fileUrl="+fileUrl+"&fileName="+fileName;
+	/*window.open('/api/docPreview.do?fileUrl='+fileUrl+'&fileName='+fileName, 'popup');*/
+	/* if(useragent.indexOf("iphone") > -1 || useragent.indexOf("ipod") > -1 || useragent.indexOf("ipad") > -1){
+		window.open('/api/docPreview.do?fileUrl='+fileUrl+'&fileName='+fileName, 'popup'); 
+	}else {
+		MainActivity.viewImage(fileName, fileUrl, ext);
+	} */
+	return false;
+}
+
+function docPreview2(url, fileSeq, fileName) {
+	var useragent = 'node'
+	if(fileName == '' || fileName.lastIndexOf('.') < 0) {
+	alert('파일명이올바르지않습니다.');
+	return false;
+	}
+
+	var ext = (fileName.substring(fileName.lastIndexOf('.') + 1, fileName.length)).toLowerCase();
+	if(ext != 'hwp' && ext != 'xls' && ext != 'xlsx' && ext != 'doc' && ext != 'docx' && ext != 'ppt' && ext != 'pptx' && ext != 'pdf'
+	&& ext != 'txt' && ext != 'png' && ext != 'jpg' && ext != 'jpeg' && ext != 'gif') {
+	alert('미리보기형식이아닙니다.'+ext);
+	return false;
+	}
+	url = url.replace("null=","&fileSn=");
+	var fileUrl = url;
+	fileUrl = encodeURI(encodeURIComponent(fileUrl));
+	fileName = encodeURI(encodeURIComponent(fileName));
+	location.href="/api/docPreview.do?fileUrl="+fileUrl+"&fileName="+fileName+"&fileSeq="+fileSeq;
+	/*window.open('/api/docPreview.do?fileUrl='+fileUrl+'&fileName='+fileName, 'popup');*/
+	/* if(useragent.indexOf("iphone") > -1 || useragent.indexOf("ipod") > -1 || useragent.indexOf("ipad") > -1){
+		window.open('/api/docPreview.do?fileUrl='+fileUrl+'&fileName='+fileName, 'popup'); 
+	}else {
+		MainActivity.viewImage(fileName, fileUrl, ext);
+	} */
+	return false;
+}
+
+function fileDown(url){
+	if(url){
+		//window.open(url);
+		location.href=url;
+	}	
+}
+</script>
+		
+
+		
+    </div>
+</div>
+</body>
+</html>
