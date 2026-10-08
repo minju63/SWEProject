@@ -1,0 +1,2527 @@
+[
+  {
+    "policy_id": "4731b410-21e8-5e73-a861-ec7934b30769",
+    "title": "미소금융 청년 미래이음 대출",
+    "category_id": null,
+    "collection_domain": "장학·금융",
+    "target_summary": "사회진입을 위한 자금이 필요한 미취업 또는 취업 초기 청년(19세 이상 34세 이하, 취˙창업 1년 이내)이면서 다음 하나의 요건을 충족한 자\n\n1. 개인신용평점이 하위 100분의 20에 해당하는 자\n2. 기초생활수급자 및 차상위계층 이하 자\n3. 근로장려금 신청자격 요건에 해당하는 자",
+    "support_content": "1. 대출한도: 최대 5백만원\n2. 대출금리: 연 4.5% 이내\n3. 대출기간: 최대 11년(거치기간 6년 이내, 상환기간 5년 이내)\n4. 상환방법: 원리금균등분할상환",
+    "benefit_type": "대출·융자",
+    "min_age": 19,
+    "max_age": 34,
+    "income_condition": null,
+    "application_start_date": null,
+    "application_end_date": null,
+    "recruitment_status": "기간 미정",
+    "application_method": "미소금융 전국 지점 방문 (하단 참고사이트2 참고)",
+    "application_url": null,
+    "official_url": "https://www.kinfa.or.kr/financialProduct/youngFutureLinkLoan.do",
+    "eligibility_conditions": {
+      "verification": "확인필요",
+      "logic": "UNVERIFIED",
+      "required": [
+        {
+          "operator": "RAW",
+          "text": "사회진입을 위한 자금이 필요한 미취업 또는 취업 초기 청년(19세 이상 34세 이하, 취˙창업 1년 이내)이면서 다음 하나의 요건을 충족한 자\n\n1. 개인신용평점이 하위 100분의 20에 해당하는 자\n2. 기초생활수급자 및 차상위계층 이하 자\n3. 근로장려금 신청자격 요건에 해당하는 자"
+        }
+      ],
+      "exclusions": [],
+      "structured_hints": {
+        "age": {
+          "min": 19,
+          "max": 34
+        },
+        "region_scope": "전국",
+        "current_status": "취업준비생|직장인|자영업자",
+        "special_targets": "기초생활수급자|차상위계층"
+      },
+      "source_url": "https://www.kinfa.or.kr/financialProduct/youngFutureLinkLoan.do",
+      "note": "조건 원문 보관용. AND·OR 완전성과 제외조건은 미검증; 백엔드 신청가능 확정 금지"
+    },
+    "eligibility_verified": false,
+    "application_process": [
+      "미소금융 전국 지점 방문 (하단 참고사이트2 참고)"
+    ],
+    "required_documents": null,
+    "classification_method": "규칙 기반",
+    "classification_status": "확정",
+    "last_verified_at": null,
+    "last_collected_at": "2026-10-09T06:01:27+09:00",
+    "updated_at": "2026-10-09T06:01:27+09:00"
+  },
+  {
+    "policy_id": "ebb1f58e-1ef4-5db4-a98c-146e00a7b97c",
+    "title": "청년 자산형성 지원(청년도약계좌)",
+    "category_id": null,
+    "collection_domain": "장학·금융",
+    "target_summary": "□ (금융소득종합과세) 가입일이 속한 과세기간의 직전 3개년도 중 1회 이상 금융소득종합과세 대상자에 해당하지 않는 자",
+    "support_content": "□ 청년도약계좌는 매월 가입신청할 수 있도록 운영 (청년도약계좌의 비과세 혜택이 '25.12.31일부로 일몰됨에 따라 상품 신규 가입신청 중단)\n□ 가입자의 소득구간 및 월 납입액에 따라 최대 6%까지 정부기여금을 지원\n□ 본인이 납입한 금액에 비례하여 정부기여금 지원 및 이자소득 등에 대한 비과세 혜택(만기·특별중도해지시)\n※ 전년도 소득 확정 전, 가입자의 경우 모두 비과세 인정(24년 1월 이전에 가입하였더라도 해당)\n□ 저소득층 청년 대상 일정수준의 우대금리 제공 (명칭 : 소득+우대금리)\n※ 육아휴직급여(육아휴직수당 포함) 및 군장병급여만 있는 경우, 정부기여금 매칭비율 6% 적용",
+    "benefit_type": "저축·자산형성",
+    "min_age": 19,
+    "max_age": 34,
+    "income_condition": "□ (개인소득요건) 직전 과세기간의 총급여액이 7,500만원 이하이며, 종합소득과세표준에 합산되는 종합소득금액이 6,300만원 이하인 경우 (단, 육아휴직급여(육아휴직수당), 군 장병급여 외에 비과세 소득만 있는 경우는 제외) ※ 직전 과세기간의 소득이 확정되지 않은 기간에 소득을 확인한 경우 전전년도 소득으로 인정 □ (가구소득요건) 가구원 수에 따른 기준 중위소득 250% 이하에 해당하는 자 ※ 직전 과세기간의 소득이 확정되지 않은 기간에 소득을 확인한 경우 전전년도 소득으로 인정 가구원은 청년 본인과 본인의 주민등록표 등본상 배우자, 부모, 자녀, 형제·자매(미성년자)를 기준으로 판단",
+    "application_start_date": "2025-01-02",
+    "application_end_date": "2025-12-05",
+    "recruitment_status": "마감",
+    "application_method": null,
+    "application_url": "https://fill4young.kinfa.or.kr/yla/main",
+    "official_url": "https://www.kinfa.or.kr/financialProduct/youthLeapAccount.do",
+    "eligibility_conditions": {
+      "verification": "확인필요",
+      "logic": "UNVERIFIED",
+      "required": [
+        {
+          "operator": "RAW",
+          "text": "□ (금융소득종합과세) 가입일이 속한 과세기간의 직전 3개년도 중 1회 이상 금융소득종합과세 대상자에 해당하지 않는 자"
+        }
+      ],
+      "exclusions": [
+        {
+          "operator": "NOT",
+          "condition": {
+            "operator": "RAW",
+            "text": "현재 청년희망적금을 가입 유지하고 있는 경우 가입 불가능"
+          }
+        }
+      ],
+      "structured_hints": {
+        "age": {
+          "min": 19,
+          "max": 34
+        },
+        "region_scope": "전국"
+      },
+      "source_url": "https://www.kinfa.or.kr/financialProduct/youthLeapAccount.do",
+      "note": "조건 원문 보관용. AND·OR 완전성과 제외조건은 미검증; 백엔드 신청가능 확정 금지"
+    },
+    "eligibility_verified": false,
+    "application_process": null,
+    "required_documents": null,
+    "classification_method": "규칙 기반",
+    "classification_status": "확정",
+    "last_verified_at": null,
+    "last_collected_at": "2026-10-09T06:01:27+09:00",
+    "updated_at": "2026-10-09T06:01:27+09:00"
+  },
+  {
+    "policy_id": "1252a15f-88f7-5365-9a28-5aeb1bf4e318",
+    "title": "청년 전월세 대출보증",
+    "category_id": null,
+    "collection_domain": "장학·금융",
+    "target_summary": ": 아래 요건을 모두 충족하는 자 / 신청일 기준 만 34세 이하인 무주택자 / 본인과 배우자 합산 연소득이 70백만원 이하 / 보증한도 / : 최대 200백만원 / 선순위요건 및 채권보전조치 / : 필수 / 다자녀가구 / 특례사항 / : 상환능력별 보증한도 및 CSS평가 생략",
+    "support_content": "ㅁ대상: 연소득 7천만원 이하인 만 19~34세 무주택 청년\n ㅇ (전세) 보증금 수도권 7억원 이하, 지방 5억원 이하\n ㅇ (월세) 보증금 1억원 이하 및 월세 70만원 이하\nㅁ보증한도*: (전세) 최대 2억원, (월세) 최대 1,200만원\n *대출한도와 동일(임차보증금, 소득 등에 따라 결정)\nㅁ기타조건: 기타 상세조건은 시중은행 또는 한국주택금융공사를 통해 확인하여 주시기 바랍니다.",
+    "benefit_type": "대출·융자",
+    "min_age": 19,
+    "max_age": 34,
+    "income_condition": "본인 및 배우자 합산 연소득 7,000만원 이하",
+    "application_start_date": null,
+    "application_end_date": null,
+    "recruitment_status": "기간 미정",
+    "application_method": null,
+    "application_url": null,
+    "official_url": "https://hf.go.kr/ko/sub02/sub02_01_04.do",
+    "eligibility_conditions": {
+      "verification": "확인필요",
+      "logic": "UNVERIFIED",
+      "required": [
+        {
+          "operator": "RAW",
+          "text": ": 아래 요건을 모두 충족하는 자 / 신청일 기준 만 34세 이하인 무주택자 / 본인과 배우자 합산 연소득이 70백만원 이하 / 보증한도 / : 최대 200백만원 / 선순위요건 및 채권보전조치 / : 필수 / 다자녀가구 / 특례사항 / : 상환능력별 보증한도 및 CSS평가 생략"
+        }
+      ],
+      "exclusions": [],
+      "structured_hints": {
+        "age": {
+          "min": 19,
+          "max": 34
+        },
+        "region_scope": "전국",
+        "home_ownership": "무주택"
+      },
+      "source_url": "https://hf.go.kr/ko/sub02/sub02_01_04.do",
+      "note": "조건 원문 보관용. AND·OR 완전성과 제외조건은 미검증; 백엔드 신청가능 확정 금지"
+    },
+    "eligibility_verified": false,
+    "application_process": null,
+    "required_documents": null,
+    "classification_method": "규칙 기반",
+    "classification_status": "확정",
+    "last_verified_at": null,
+    "last_collected_at": "2026-10-09T06:01:27+09:00",
+    "updated_at": "2026-10-09T06:01:27+09:00"
+  },
+  {
+    "policy_id": "d0e41518-e4d7-5e3d-9490-a6c495f3232b",
+    "title": "청년미래적금",
+    "category_id": null,
+    "collection_domain": "장학·금융",
+    "target_summary": "만 19세~34세 / 총급여 7,500만원 이하 소득자 또는 연매출 3억원 이하 소상공인 / 가구 중위소득 200% 이하 등",
+    "support_content": "청년미래적금 납입시 은행이자+이자소득 비과세 혜택+정부기여금 지급(납입금액에 비례해 일반형 6%, 우대형 12%)",
+    "benefit_type": "저축·자산형성",
+    "min_age": 19,
+    "max_age": 34,
+    "income_condition": "총급여 7,500만원 이하 또는 연매출 3억원 이하 소상공인 중 가구중위소득 200% 이하인 청년",
+    "application_start_date": "2026-10-07",
+    "application_end_date": "2026-10-16",
+    "recruitment_status": "모집 중",
+    "application_method": "취급 금융기관 앱·웹에서 신청",
+    "application_url": null,
+    "official_url": "https://www.fill4young.kinfa.or.kr",
+    "eligibility_conditions": {
+      "verification": "확인필요",
+      "logic": "UNVERIFIED",
+      "required": [
+        {
+          "operator": "RAW",
+          "text": "만 19세~34세 / 총급여 7,500만원 이하 소득자 또는 연매출 3억원 이하 소상공인 / 가구 중위소득 200% 이하 등"
+        }
+      ],
+      "exclusions": [],
+      "structured_hints": {
+        "age": {
+          "min": 19,
+          "max": 34
+        },
+        "region_scope": "전국",
+        "current_status": "직장인|자영업자"
+      },
+      "source_url": "https://www.fill4young.kinfa.or.kr",
+      "note": "조건 원문 보관용. AND·OR 완전성과 제외조건은 미검증; 백엔드 신청가능 확정 금지"
+    },
+    "eligibility_verified": false,
+    "application_process": [
+      "취급금융기관(App)을 통해 가입 신청"
+    ],
+    "required_documents": null,
+    "classification_method": "규칙 기반",
+    "classification_status": "확정",
+    "last_verified_at": null,
+    "last_collected_at": "2026-10-09T06:01:27+09:00",
+    "updated_at": "2026-10-09T06:01:27+09:00"
+  },
+  {
+    "policy_id": "0b00032d-6512-50f6-8e54-7763d4e4ed02",
+    "title": "청년전용 보증부 월세대출",
+    "category_id": null,
+    "collection_domain": "장학·금융",
+    "target_summary": "대출 신청일 현재 만 19세 이상~만 34세 이하 청년 단독세대주(예비세대주 포함)",
+    "support_content": "□ 대출금리\n(보증금) 연 1.3%,(월세금) 연0%(20만원 한도), 1.0% (20만원 초과)\n※ 자산심사 부적격자의 경우 가산금리 부과\n□ 대출한도\n(보증금) 최대 4,500만원 이내 (월세금) 최대 1,200만원 (24개월 기준 월 50만원 이내) \n□ 대출기간\n25개월 만기 일시상환(최장 10년 5개월 이용가능)",
+    "benefit_type": "대출·융자",
+    "min_age": 19,
+    "max_age": 34,
+    "income_condition": "소득최대금액=5000",
+    "application_start_date": null,
+    "application_end_date": null,
+    "recruitment_status": "기간 미정",
+    "application_method": "□ 온라인 신청: 기금e든든 홈페이지(https://enhuf.molit.go.kr)에서 가능\n□ 은행 방문 신청: 기금 수탁은행인 우리, 신한, 국민, 농협, 하나은행에서 가능\n※ 이용 가능 지점은 은행 상황에 따라 다를 수 있습니다.",
+    "application_url": null,
+    "official_url": "https://nhuf.molit.go.kr/FP/FP05/FP0502/FP05020701.jsp",
+    "eligibility_conditions": {
+      "verification": "확인필요",
+      "logic": "UNVERIFIED",
+      "required": [
+        {
+          "operator": "RAW",
+          "text": "대출 신청일 현재 만 19세 이상~만 34세 이하 청년 단독세대주(예비세대주 포함)"
+        }
+      ],
+      "exclusions": [],
+      "structured_hints": {
+        "age": {
+          "min": 19,
+          "max": 34
+        },
+        "region_scope": "전국",
+        "home_ownership": "무주택"
+      },
+      "source_url": "https://nhuf.molit.go.kr/FP/FP05/FP0502/FP05020701.jsp",
+      "note": "조건 원문 보관용. AND·OR 완전성과 제외조건은 미검증; 백엔드 신청가능 확정 금지"
+    },
+    "eligibility_verified": false,
+    "application_process": [
+      "기금e든든으로 비대면 신청한 경우 신청하신 수탁은행 영업점에 방문하여 신청, 수탁은행 대면 신청의 경우 대출 신청시 보증 동시 신청",
+      "보증 신청 기한",
+      "HUG 전세금안심대출보증",
+      "임대차 계약 신규 : “전세계약 체결일” ∼ “잔금지급일과 전입신고일 중 빠른 날로부터 3개월” 이내",
+      "HF 전세자금보증",
+      "임대차 계약 신규 : 임대차계약서상 잔금지급일과 주민등록전입일 중 빠른 날 기준 3개월 이내",
+      "임대차 계약 갱신 : 계약갱신일 기준 3개월 이내(주민등록전입일로부터 3개월 이상 경과해야함), 묵시적 갱신의 경우 연장개시일로부터 3개월 이내",
+      "※ 자세한 보증 요건 및 기한은 신청 수탁은행에 문의 필요",
+      "임차보증금",
+      "보증금 6.5천만원, 월세금 70만원 이하",
+      "대출한도",
+      "호당대출한도",
+      "보증금 대출은 최대 4,500만원, 월세금 대출은 최대 1,200만원(24개월 기준 월 최대 50만원 이내)",
+      "소요자금에 대한 대출비율",
+      "보증금 대출금과 월세금 대출금(24개월 환산금액)의 합계액이 전세금액의 80% 이내(단 보증금 대출금은 전세금액의 70% 이내)",
+      "보증금 대출금은 보증금 증액금액 이내에서 증액후 보증금액의 70% 이내, 월세금 대출금은 1,200만원 한도 이내",
+      "담보별 대출한도",
+      "주택도시보증공사 전세금안심대출보증 : 해당 보증 규정에 따름",
+      "※ 1년미만 재직자의 경우 대출한도가 2천만원 이하로 제한될 수 있음",
+      "대출금리",
+      "(보증금) 연 1.3% (월세금) 연0% (20만원 한도), 1.0%(연 20만원 초과)"
+    ],
+    "required_documents": null,
+    "classification_method": "규칙 기반",
+    "classification_status": "확정",
+    "last_verified_at": null,
+    "last_collected_at": "2026-10-09T06:01:27+09:00",
+    "updated_at": "2026-10-09T06:01:27+09:00"
+  },
+  {
+    "policy_id": "f7e1b9d6-e0b1-52f9-a597-13efd3e889da",
+    "title": "청년전용 저리대출상품 운영",
+    "category_id": null,
+    "collection_domain": "장학·금융",
+    "target_summary": "□ 대상주택\n○ 임차 전용면적: 임차 전용면적 85㎡ 이하 주택(주거용 오피스텔 포함) 및 채권양도협약기관 소유의 기숙사(호수가 구분되어 있고 전입신고가 가능한 경우에 한함)\n(단, 만25세미만 단독세대주인 경우 60㎡ 이하 주택)\n※ 단, 쉐어하우스(채권양도협약기관 소유주택에 한함)에 입주하는 경우 예외적으로 면적 제한 없음",
+    "support_content": "□ 대출금리 : 연 2.2~3.3%\n※ 지방소재 주택은 0.2%p 인하\n\n□ 대출한도 \n ○ 호당대출한도: 1.5억원 이하(단, 만25세미만 단독세대주인 경우 1.2억원 이하)\n ○ 소요자금에 대한 대출비율\n - 신규계약 : 전세금액의 80% 이내\n - 갱신계약 : 증액금액 이내에서 증액 후 총 보증금의 80% 이내\n\n□ 대출기간 : 최초 2년(최장 10년 이용가능)\n ○ 주택도시보증공사 전세금안심대출 보증서 : 최대 2년 1개월(최장 10년 5개월 가능)",
+    "benefit_type": "대출·융자",
+    "min_age": 19,
+    "max_age": 34,
+    "income_condition": "소득최대금액=5000",
+    "application_start_date": null,
+    "application_end_date": null,
+    "recruitment_status": "기간 미정",
+    "application_method": "□ 기금 e든든 사이트(enhuf.molit.go.kr) 및 은행 영업점에 방문하여 신청접수 \n□ 전화상담이 필요한 경우 담당자한테 문의 \n - 대출 심사 관련한 상담 우리은행(1599-0800), 국민은행(1599-1771), 하나은행(1599-1111), 신한은행(1599-8000), 농협은행(1599-1771), iM뱅크(1566-5050), 부산은행(1800-1333)\n - 자산 심사 관련한 상담 주택도시보증공사 콜센터 1566-9009",
+    "application_url": "https://enhuf.molit.go.kr/",
+    "official_url": "https://nhuf.molit.go.kr/FP/FP05/FP0502/FP05020301.jsp",
+    "eligibility_conditions": {
+      "verification": "확인필요",
+      "logic": "UNVERIFIED",
+      "required": [
+        {
+          "operator": "RAW",
+          "text": "□ 대상주택\n○ 임차 전용면적: 임차 전용면적 85㎡ 이하 주택(주거용 오피스텔 포함) 및 채권양도협약기관 소유의 기숙사(호수가 구분되어 있고 전입신고가 가능한 경우에 한함)\n(단, 만25세미만 단독세대주인 경우 60㎡ 이하 주택)\n※ 단, 쉐어하우스(채권양도협약기관 소유주택에 한함)에 입주하는 경우 예외적으로 면적 제한 없음"
+        }
+      ],
+      "exclusions": [],
+      "structured_hints": {
+        "age": {
+          "min": 19,
+          "max": 34
+        },
+        "region_scope": "전국",
+        "home_ownership": "무주택"
+      },
+      "source_url": "https://nhuf.molit.go.kr/FP/FP05/FP0502/FP05020301.jsp",
+      "note": "조건 원문 보관용. AND·OR 완전성과 제외조건은 미검증; 백엔드 신청가능 확정 금지"
+    },
+    "eligibility_verified": false,
+    "application_process": null,
+    "required_documents": null,
+    "classification_method": "규칙 기반",
+    "classification_status": "확정",
+    "last_verified_at": null,
+    "last_collected_at": "2026-10-09T06:01:27+09:00",
+    "updated_at": "2026-10-09T06:01:27+09:00"
+  },
+  {
+    "policy_id": "431362f0-652a-5a44-afe2-c8ddbded1121",
+    "title": "청년주택드림청약통장",
+    "category_id": null,
+    "collection_domain": "장학·금융",
+    "target_summary": "나이: 만 19세 이상 ∼ 만 34세 이하 / (병역증명서에 의한 병역 이행기간이 증명되는 경우 현재 연령에서 병역 이행 기간(최대 6년)을 빼고 계산한 연령이 만 34세 이하인 사람 포함) / 소득: 직전년도 또는 전전년도 신고소득이 있는 자로 연소득 5천만 원 이하인 근로, 사업, 기타소득자로 소득세 신고·납부 이행 등이 증빙된 자* / (근로기간 1년 미만으로 직전년도 또는 전전년도 신고소득이 없는 근로소득자에 한해 당해 급여명세표 등으로 연소득 환산 후 가입 가능) / * 단, 비과세 소득만 있는 군인(현역병, 사회복무요원 등), 군 복무기간 비과세 소득만 있었던 전역자(직전 과세기간 중 복무한 기간이 1일 이상 포함된 경우) 는 가입 가능 / ※ 이자소득 비과세 대상 소득기준은 일부 상이(하단 참조) / 주택 소유 여부: 주택을 소유하지 않은 무주택자(주택 소유 여보는 \"「청년 주택드림 청약통장」 가이드라인\"(아래)의 '④ 무주택 판단 기준' 참조) / ※ 세부적인 가입 대상 요건은 \"「청년 주택드림 청약통장」 가이드라인\"(아래) 참조 / 가입시 제출 서류 / 소득증빙 / 소득확인증명서(청년우대형 주택청약종합저축 가입 및 과세특례 신청용) / ※ 국세청 홈텍스( / www.hometax.go.kr / ), 행정복지센터(주민센터) 등에서 발급가능",
+    "support_content": "□ 이자율: 최대 4.5%\n□ 소득기준: 연 5,000만원(직전년도 신고소득이 있는 자 기준), 무주택자\n□ 납입한도: 월 100만원\n□ 소득공제 : 현 주택청약종합저축과 동일(무주택세대주에 대해 연 300만원 한도로 40%까지 소득공제 제공) \n□ 주택청약에 당첨된 경우 청년주택드림 대출 연계\n ㅇ 청년주택드림 청약통장 1년 이상 가입\n ㅇ 통장요건 : 가입(전환) 후 1년 이상, 1,000만원 이상 납입(예외 인정 가능)\n ㅇ 당첨 시 분양가 80%까지 대출\n ㅇ 금리 : 2.4% ~ 4.15% (소득·만기 등 차등)\\\n ㅇ 한도 : 미혼 3억원, 신혼 4억원 이내(LTV 70%, 생애최초 80%, DTI 60% 이내)\n ㅇ 대상주택 : 분양가 6억원 이하, 전용 85㎡ 이하(읍·면 일부 100㎡)\n ㅇ 생애주기별 금리 인하: 결혼 0.1%p 인하, 첫째 출산: 0.5%p 인하, 다자녀: 0.2%p 인하\n (하한선 : 연 1.5%p 미만으로는 1.5% 적용)",
+    "benefit_type": "저축·자산형성",
+    "min_age": 19,
+    "max_age": 34,
+    "income_condition": "소득최대금액=5000",
+    "application_start_date": null,
+    "application_end_date": null,
+    "recruitment_status": "기간 미정",
+    "application_method": null,
+    "application_url": null,
+    "official_url": "https://www.molit.go.kr/2024dreamaccount/main.jsp",
+    "eligibility_conditions": {
+      "verification": "확인필요",
+      "logic": "UNVERIFIED",
+      "required": [
+        {
+          "operator": "RAW",
+          "text": "나이: 만 19세 이상 ∼ 만 34세 이하 / (병역증명서에 의한 병역 이행기간이 증명되는 경우 현재 연령에서 병역 이행 기간(최대 6년)을 빼고 계산한 연령이 만 34세 이하인 사람 포함) / 소득: 직전년도 또는 전전년도 신고소득이 있는 자로 연소득 5천만 원 이하인 근로, 사업, 기타소득자로 소득세 신고·납부 이행 등이 증빙된 자* / (근로기간 1년 미만으로 직전년도 또는 전전년도 신고소득이 없는 근로소득자에 한해 당해 급여명세표 등으로 연소득 환산 후 가입 가능) / * 단, 비과세 소득만 있는 군인(현역병, 사회복무요원 등), 군 복무기간 비과세 소득만 있었던 전역자(직전 과세기간 중 복무한 기간이 1일 이상 포함된 경우) 는 가입 가능 / ※ 이자소득 비과세 대상 소득기준은 일부 상이(하단 참조) / 주택 소유 여부: 주택을 소유하지 않은 무주택자(주택 소유 여보는 \"「청년 주택드림 청약통장」 가이드라인\"(아래)의 '④ 무주택 판단 기준' 참조) / ※ 세부적인 가입 대상 요건은 \"「청년 주택드림 청약통장」 가이드라인\"(아래) 참조 / 가입시 제출 서류 / 소득증빙 / 소득확인증명서(청년우대형 주택청약종합저축 가입 및 과세특례 신청용) / ※ 국세청 홈텍스( / www.hometax.go.kr / ), 행정복지센터(주민센터) 등에서 발급가능"
+        }
+      ],
+      "exclusions": [],
+      "structured_hints": {
+        "age": {
+          "min": 19,
+          "max": 34
+        },
+        "region_scope": "전국",
+        "home_ownership": "무주택"
+      },
+      "source_url": "https://www.molit.go.kr/2024dreamaccount/main.jsp",
+      "note": "조건 원문 보관용. AND·OR 완전성과 제외조건은 미검증; 백엔드 신청가능 확정 금지"
+    },
+    "eligibility_verified": false,
+    "application_process": null,
+    "required_documents": null,
+    "classification_method": "규칙 기반",
+    "classification_status": "확정",
+    "last_verified_at": null,
+    "last_collected_at": "2026-10-09T06:01:27+09:00",
+    "updated_at": "2026-10-09T06:01:27+09:00"
+  },
+  {
+    "policy_id": "767e8586-fb4f-5107-87fa-8d90ec1d36eb",
+    "title": "2026학년도 2학기 AI학업장려 학자금대출",
+    "category_id": null,
+    "collection_domain": "장학·금융",
+    "target_summary": "- 성적기준: 직전학기 이수학점 12학점 이상\n ※ 장애인, 신입생군, 졸업학년 학부생은 이수학점 기준 제외",
+    "support_content": "ㅇ AI학업장려비: AI·SW분야 학업 수행에 필요한 수강료, 도서·교재비 등 비용 지원\nㅇ 대출금리: 연 1.7% 변동금리\nㅇ 대출한도: 연간 200만 원 이내\n ※ 개인 총 한도 1,000만 원 이내 대출 가능\n ※ 등록금·생활비 대출과 별도 한도로 이용 가능",
+    "benefit_type": "장학금",
+    "min_age": null,
+    "max_age": null,
+    "income_condition": null,
+    "application_start_date": "2026-07-01",
+    "application_end_date": "2026-11-17",
+    "recruitment_status": "모집 중",
+    "application_method": "한국장학재단 누리집(www.kosaf.go.kr) 및 모바일 앱에서 신청",
+    "application_url": null,
+    "official_url": "https://www.kosaf.go.kr/ko/tuition.do?pg=tuition19",
+    "eligibility_conditions": {
+      "verification": "확인필요",
+      "logic": "UNVERIFIED",
+      "required": [
+        {
+          "operator": "RAW",
+          "text": "- 성적기준: 직전학기 이수학점 12학점 이상\n ※ 장애인, 신입생군, 졸업학년 학부생은 이수학점 기준 제외"
+        }
+      ],
+      "exclusions": [],
+      "structured_hints": {
+        "region_scope": "전국",
+        "current_status": "대학생(재학|휴학)",
+        "special_targets": "장애인"
+      },
+      "source_url": "https://www.kosaf.go.kr/ko/tuition.do?pg=tuition19",
+      "note": "조건 원문 보관용. AND·OR 완전성과 제외조건은 미검증; 백엔드 신청가능 확정 금지"
+    },
+    "eligibility_verified": false,
+    "application_process": [
+      "한국장학재단 누리집(www.kosaf.go.kr) 및 모바일 앱에서 신청"
+    ],
+    "required_documents": null,
+    "classification_method": "규칙 기반",
+    "classification_status": "확정",
+    "last_verified_at": null,
+    "last_collected_at": "2026-10-09T06:01:27+09:00",
+    "updated_at": "2026-10-09T06:01:27+09:00"
+  },
+  {
+    "policy_id": "716c18ec-868b-50af-acc5-4caab33ebb99",
+    "title": "고교 취업연계 장려금 지원",
+    "category_id": null,
+    "collection_domain": "장학·금융",
+    "target_summary": "아래 3가지 요건을 모두 충족한 자\n(1) 기본요건 : 대한민국 국적자로 고교 취업연계 장려금을 신청한 자\n(2) 학력요건 : 직업계고 3학년 및 일반고 3학년 中 직업교육 위탁과정 6개월(180일) 이상 참여 학생 (미졸업시 전액 반환)\n(3) 재직요건 : 중소·중견 기업에 취업(재직)이 확인된 자로 근무시간이 주 15시간 이상인 자(고용보험 가입이력 정보로만 심사)\n※ 1차 지급 시 3개월 재직 이력, 2차 지급 시 추가 9개월 간 재직이력 확인",
+    "support_content": "2026학년도 직업계고, 일반고 직업교육 위탁과정 참여 고등학교 3학년 학생이 졸업후 중소·중견 기업에 취업한 경우, 재직기간에 따라 1인 500만원 분할 지급\n- (1차) 사업기준일(2026.10.1.)로 부터 1년 이내 3개월 재직 시 200만원 지급\n- (2차) 사업기준일(2026.10.1.)로 부터 30개월 이내 추가 9개월(총 1년) 재직 시 300만원 추가 지급",
+    "benefit_type": "지원금·장려금",
+    "min_age": null,
+    "max_age": null,
+    "income_condition": null,
+    "application_start_date": "2026-09-01",
+    "application_end_date": "2026-12-31",
+    "recruitment_status": "모집 중",
+    "application_method": "한국장학재단 홈페이지 또는 모바일 앱을 통해 회원가입 및 신청완료\n- (신청경로) 한국장학재단 홈페이지(www.kosaf.go.kr) 또는 모바일앱 → 서비스 이용자 등록(회원가입) 및 로그인 → '장학금 - 국가근로 및 취업연계 장학금 - 고교 취업연계 장학금 - 고교 취업연계 장려금' 메뉴 접속 → '신청하기' 버튼 클릭\n- (신청절차) 취업연계 장려금 수혜 주요 의무사항 확인 → 신청약관 동의·신청 정보 작성 → 사전교육 이수 → 신청 완료",
+    "application_url": "http://as82.kr/ggoomgil/",
+    "official_url": "https://www.hifive.go.kr/",
+    "eligibility_conditions": {
+      "verification": "확인필요",
+      "logic": "UNVERIFIED",
+      "required": [
+        {
+          "operator": "RAW",
+          "text": "아래 3가지 요건을 모두 충족한 자\n(1) 기본요건 : 대한민국 국적자로 고교 취업연계 장려금을 신청한 자\n(2) 학력요건 : 직업계고 3학년 및 일반고 3학년 中 직업교육 위탁과정 6개월(180일) 이상 참여 학생 (미졸업시 전액 반환)\n(3) 재직요건 : 중소·중견 기업에 취업(재직)이 확인된 자로 근무시간이 주 15시간 이상인 자(고용보험 가입이력 정보로만 심사)\n※ 1차 지급 시 3개월 재직 이력, 2차 지급 시 추가 9개월 간 재직이력 확인"
+        }
+      ],
+      "exclusions": [
+        {
+          "operator": "NOT",
+          "condition": {
+            "operator": "RAW",
+            "text": "학생이 취업한 기업이 아래에 해당할 경우 장려금을 지급할 수 없습니다.\n\n기업 규모: 중소기업 및 중견기업이 아닌 대기업, 공공기관, 국가 및 지방자치단체, 공기업\n제외 업종: 부적격 업종(유흥, 사행성 업종, 무점포 소매업, 다단계 판매 등)\n특수 관계: 기업의 대표자가 학생의 부모인 경우"
+          }
+        }
+      ],
+      "structured_hints": {
+        "region_scope": "전국",
+        "current_status": "고등학생"
+      },
+      "source_url": "https://www.hifive.go.kr/",
+      "note": "조건 원문 보관용. AND·OR 완전성과 제외조건은 미검증; 백엔드 신청가능 확정 금지"
+    },
+    "eligibility_verified": false,
+    "application_process": [
+      "한국장학재단 홈페이지 또는 모바일 앱을 통해 회원가입 및 신청완료",
+      "(신청경로) 한국장학재단 홈페이지(www.kosaf.go.kr) 또는 모바일앱",
+      "서비스 이용자 등록(회원가입) 및 로그인",
+      "'신청하기' 버튼 클릭",
+      "(신청절차) 취업연계 장려금 수혜 주요 의무사항 확인",
+      "신청약관 동의·신청 정보 작성",
+      "사전교육 이수",
+      "신청 완료"
+    ],
+    "required_documents": null,
+    "classification_method": "규칙 기반",
+    "classification_status": "확정",
+    "last_verified_at": null,
+    "last_collected_at": "2026-10-09T06:01:27+09:00",
+    "updated_at": "2026-10-09T06:01:27+09:00"
+  },
+  {
+    "policy_id": "7aa4f4d7-8158-533f-8afd-6e7af3acae53",
+    "title": "다자녀 국가장학금",
+    "category_id": null,
+    "collection_domain": "장학·금융",
+    "target_summary": "대한민국 국적을 소지한 국내대학의 학자금 지원 9구간 이하 다자녀 가정의 미혼 대학생 / 다자녀 가구는 대한민국 국적 자녀 3명 이상 / 2023-2학기 이후 신·편입생은 입학 당시 만 39세 이하 조건",
+    "support_content": "다자녀 가구의 등록금 부담 경감을 위한 국가장학금",
+    "benefit_type": "장학금",
+    "min_age": null,
+    "max_age": null,
+    "income_condition": "학자금 지원구간 9구간 이하",
+    "application_start_date": "2026-08-12",
+    "application_end_date": "2026-09-09",
+    "recruitment_status": "마감",
+    "application_method": null,
+    "application_url": null,
+    "official_url": "https://www.kosaf.go.kr/ko/scholar.do?pg=scholarship05_12_10",
+    "eligibility_conditions": {
+      "verification": "확인필요",
+      "logic": "UNVERIFIED",
+      "required": [
+        {
+          "operator": "RAW",
+          "text": "대한민국 국적을 소지한 국내대학의 학자금 지원 9구간 이하 다자녀 가정의 미혼 대학생 / 다자녀 가구는 대한민국 국적 자녀 3명 이상 / 2023-2학기 이후 신·편입생은 입학 당시 만 39세 이하 조건"
+        }
+      ],
+      "exclusions": [],
+      "structured_hints": {
+        "region_scope": "전국",
+        "current_status": "대학생(재학|휴학)",
+        "special_targets": "다자녀가구",
+        "marital_status": "미혼"
+      },
+      "source_url": "https://www.kosaf.go.kr/ko/scholar.do?pg=scholarship05_12_10",
+      "note": "조건 원문 보관용. AND·OR 완전성과 제외조건은 미검증; 백엔드 신청가능 확정 금지"
+    },
+    "eligibility_verified": false,
+    "application_process": null,
+    "required_documents": null,
+    "classification_method": "규칙 기반",
+    "classification_status": "확정",
+    "last_verified_at": null,
+    "last_collected_at": "2026-10-09T06:01:27+09:00",
+    "updated_at": "2026-10-09T06:01:27+09:00"
+  },
+  {
+    "policy_id": "a188e03e-a2fb-502f-8b51-5e3e8691b347",
+    "title": "복권기금 꿈사다리 장학사업",
+    "category_id": null,
+    "collection_domain": "장학·금융",
+    "target_summary": null,
+    "support_content": "매월 학업장려비 지급 및 별도 교육 프로그램 지원\n* 학업장려비: 초 15만원, 중 25만원, 고 35만원, 대 45만원 상당의 카드 포인트 지급\n* 교육프로그램: 교사와 1:1 멘토링, 선배 장학생과의 멘토링, 특별활동 지원, 맞춤형 컨설팅, 복권기금 꿈사다리 페스티벌",
+    "benefit_type": "장학금",
+    "min_age": null,
+    "max_age": null,
+    "income_condition": "기초생활수급자 · 법정 차상위계층 · 한부모가족 지원대상자",
+    "application_start_date": "2025-04-07",
+    "application_end_date": "2025-04-30",
+    "recruitment_status": "마감",
+    "application_method": "학교별로 한국장학재단 사이트를 통해 학생 추천",
+    "application_url": null,
+    "official_url": "https://www.kosaf.go.kr/ko/notice.do?mode=view&naviParam=DN%2C08%2C01%2C00&seqNo=20721",
+    "eligibility_conditions": {
+      "verification": "확인필요",
+      "logic": "UNVERIFIED",
+      "required": [],
+      "exclusions": [],
+      "structured_hints": {
+        "region_scope": "전국",
+        "current_status": "고등학생",
+        "special_targets": "기초생활수급자|차상위계층|한부모가정"
+      },
+      "source_url": "https://www.kosaf.go.kr/ko/notice.do?mode=view&naviParam=DN%2C08%2C01%2C00&seqNo=20721",
+      "note": "조건 원문 보관용. AND·OR 완전성과 제외조건은 미검증; 백엔드 신청가능 확정 금지"
+    },
+    "eligibility_verified": false,
+    "application_process": null,
+    "required_documents": null,
+    "classification_method": "규칙 기반",
+    "classification_status": "확정",
+    "last_verified_at": null,
+    "last_collected_at": "2026-10-09T06:01:27+09:00",
+    "updated_at": "2026-10-09T06:01:27+09:00"
+  },
+  {
+    "policy_id": "07cfa3da-cb88-50eb-a4a9-b246c3b49fa0",
+    "title": "생활안정자금 융자사업",
+    "category_id": null,
+    "collection_domain": "장학·금융",
+    "target_summary": null,
+    "support_content": "1. 융자종목 및 한도액\n - 의료비, 장례비 : 1,000만원\n - 혼례비 : 1,250만원\n - 노부모부양비 : 2,000만원 범위 내 (조)부모 1인당 500만원\n - 자녀양육비 : 2,000만원 범위 내 7세 미만 1자녀당 500만원\n - 소액생계비 : 200만원\n* 단, 2종목 이상 융자 신청 시 신청인 1인당 총 한도액 2,000만원\n\n2. 융자조건\n- 이율 : 연 1.5퍼센트\n- 상환 : 1년 거치 3년 또는 4년 원금균등분할상환 중 선택\n* 거치기간 및 상환기간 변경 불가, 조기상환 가능 (조기상환 수수료 없음)\n- 보증방법 : 근로자신용보증지원제도 이용 (신용보증료 연 0.9퍼센트 별도 부담)\n- 대행금융기관 : IBK 기업은행",
+    "benefit_type": "대출·융자",
+    "min_age": null,
+    "max_age": null,
+    "income_condition": null,
+    "application_start_date": "2025-01-06",
+    "application_end_date": "2025-12-31",
+    "recruitment_status": "마감",
+    "application_method": "1. 융자신청서 접수(인터넷 또는 방문)\n2. 구비서류 제출\n3. 융자신청서 적격여부 확인(소득요건 등 융자 대상자 여부 및 오류내용 확인)\n4. 융자예정자 선정\n5. 신용보증신청서 적격여부 확인(예비선정일로부터 7일 이내)\n6. 보증서 발행 및 통보\n7. 대출실행(기업은행 인터넷뱅킹, 모바일 I_ONE뱅크)\n* 융자대상자는 융자약정 체결기간(융자결정일로부터 15일)이내 대출 신청",
+    "application_url": null,
+    "official_url": "https://welfare.comwel.or.kr/default/index.do",
+    "eligibility_conditions": {
+      "verification": "확인필요",
+      "logic": "UNVERIFIED",
+      "required": [],
+      "exclusions": [
+        {
+          "operator": "NOT",
+          "condition": {
+            "operator": "RAW",
+            "text": "ㅇ한국신용정보원 연체 등 정보 등록자(연체,회생,파산,신용회복 등)\nㅇ외국인\nㅇ재외동포\nㅇ융자대행금융지관에 연체정보, 채무조정, 특수채권 잔액이 있는 경우"
+          }
+        }
+      ],
+      "structured_hints": {
+        "region_scope": "전국",
+        "current_status": "직장인|자영업자"
+      },
+      "source_url": "https://welfare.comwel.or.kr/default/index.do",
+      "note": "조건 원문 보관용. AND·OR 완전성과 제외조건은 미검증; 백엔드 신청가능 확정 금지"
+    },
+    "eligibility_verified": false,
+    "application_process": [
+      "융자신청서 접수(인터넷 또는 방문)",
+      "구비서류 제출",
+      "융자신청서 적격여부 확인(소득요건 등 융자 대상자 여부 및 오류내용 확인)",
+      "융자예정자 선정",
+      "신용보증신청서 적격여부 확인(예비선정일로부터 7일 이내)",
+      "보증서 발행 및 통보",
+      "대출실행(기업은행 인터넷뱅킹, 모바일 I_ONE뱅크)",
+      "융자대상자는 융자약정 체결기간(융자결정일로부터 15일)이내 대출 신청"
+    ],
+    "required_documents": null,
+    "classification_method": "규칙 기반",
+    "classification_status": "확정",
+    "last_verified_at": null,
+    "last_collected_at": "2026-10-09T06:01:27+09:00",
+    "updated_at": "2026-10-09T06:01:27+09:00"
+  },
+  {
+    "policy_id": "e9875bdb-5997-54ce-b557-88ac36f9b2c6",
+    "title": "일반 상환 학자금대출",
+    "category_id": null,
+    "collection_domain": "장학·금융",
+    "target_summary": "국내 고등교육기관 학부생, 전문대의 전문기술석사 및 대학원생(재학생 및 입학·복학예정자 포함)인 대한민국 국민 등 공식 지원자격",
+    "support_content": "학부생 및 대학원생에게 등록금·생활비 학자금대출을 지원하고 대출기간 동안 원리금을 분할 상환",
+    "benefit_type": "대출·융자",
+    "min_age": null,
+    "max_age": 55,
+    "income_condition": "학부생·대학원생 학자금 지원구간 제한 없음",
+    "application_start_date": "2026-07-01",
+    "application_end_date": "2026-11-17",
+    "recruitment_status": "모집 중",
+    "application_method": null,
+    "application_url": null,
+    "official_url": "https://www.kosaf.go.kr/ko/tuition.do?pg=tuition04_02_02p",
+    "eligibility_conditions": {
+      "verification": "확인필요",
+      "logic": "UNVERIFIED",
+      "required": [
+        {
+          "operator": "RAW",
+          "text": "국내 고등교육기관 학부생, 전문대의 전문기술석사 및 대학원생(재학생 및 입학·복학예정자 포함)인 대한민국 국민 등 공식 지원자격"
+        }
+      ],
+      "exclusions": [
+        {
+          "operator": "NOT",
+          "condition": {
+            "operator": "RAW",
+            "text": "중복지원, 부실자료 제출, 등록금 및 대출 차액 미상환자 등 공식 대출제한 대상"
+          }
+        }
+      ],
+      "structured_hints": {
+        "age": {
+          "min": null,
+          "max": 55
+        },
+        "region_scope": "전국",
+        "current_status": "대학생(재학|휴학)|대학원생"
+      },
+      "source_url": "https://www.kosaf.go.kr/ko/tuition.do?pg=tuition04_02_02p",
+      "note": "조건 원문 보관용. AND·OR 완전성과 제외조건은 미검증; 백엔드 신청가능 확정 금지"
+    },
+    "eligibility_verified": false,
+    "application_process": null,
+    "required_documents": null,
+    "classification_method": "규칙 기반",
+    "classification_status": "확정",
+    "last_verified_at": null,
+    "last_collected_at": "2026-10-09T06:01:27+09:00",
+    "updated_at": "2026-10-09T06:01:27+09:00"
+  },
+  {
+    "policy_id": "618dfa75-9306-5c0f-9965-93ee56fd2e8e",
+    "title": "주거안정장학금",
+    "category_id": null,
+    "collection_domain": "장학·금융",
+    "target_summary": "□ 학생 지원자격\n○ 대한민국 국적을 소지하고 재학 중인 대학생(대학원생 제외)\n○ 당해연도 1월 1일 기준 만 39세 이하(‘85.1.1.이후 출생)로 미혼인 자\n○ 당해 학기 학자금 지원구간 산정 시, 기초생활수급자 또는 차상위계층으로 확인된 자 (자격 기준은 학자금 지원구간 산정지침에 따름)\n○ 부모의 주민등록정보 확인을 위한 가구원 동의를 완료한 자\n○ 신청 대학생 부모 모두의 주민등록상 주소지가 신청 대학생 소속 대학을 기준으로 통학이 어려운 원거리 지역에 해당하는 자\n\n□ 대상대학\n○ 국내대학 중 당해연도 사업참여를 신청하고, 재단이 승인한 대학\n○ 2025학년도 학자금 지원 제한 대학의 ’25년도 신·편입 학생은 지원 제외\n○ 2025학년도 주거안정장학금 지원가능 대학 및 지원 불가 지역 확인\n※ 소속대학이 본교만 검색되고 실제 소속 캠퍼스가 조회되지 않는 경우, [지원 불가 지역]은 소속학교에 문의하시기 바랍니다.",
+    "support_content": "□ 지원금액: 월 최대 20만 원\n※ 단, 방학 중(7~8월, 1~2월)에는 지원하지 않으며, 계절학기를 수강하는 경우에는 방학 중에도 장학금 지원 가능\n\n□ 지원범위: 월 20만 원 한도 내 학생이 지출한 주거 관련 비용 포괄 지원\n- 주거 관련 비용 : 임차료*(전‧월세, 보증금** 등), 주거 유지‧관리비(수선유지비, 공동주택관리비 등), 수도‧연료비(상하수도, 전기, 가스, 열, 등유, 연탄 등), 주택임차‧저당차입금 이자상환액 등\n※ 단, 보증금 월환산차임은 주택임차차입금 이자와 중복 청구할 수 없음 (월세 대출 이자는 가능)\n* 임차료는 주택, 기숙사, 고시원 등 유형을 불문하고 거주를 목적으로 지급하는 사용료 모두 해당\n** 보증금의 경우 「주거급여 실시에 관한 고시」 제7조제3항에 따른 보증금의 환산율(연 4%)을 준용하여 월 환산 후 월 차임으로 산정함",
+    "benefit_type": "장학금",
+    "min_age": null,
+    "max_age": 39,
+    "income_condition": "기초생활수급자 또는 차상위계층",
+    "application_start_date": "2026-08-12",
+    "application_end_date": "2026-09-09",
+    "recruitment_status": "마감",
+    "application_method": "한국장학재단 홈페이지 또는 모바일 앱에서 신청",
+    "application_url": null,
+    "official_url": "https://www.kosaf.go.kr/ko/notice.do?mode=view&naviParam=DN%2C08%2C01%2C00&seqNo=20886",
+    "eligibility_conditions": {
+      "verification": "확인필요",
+      "logic": "UNVERIFIED",
+      "required": [
+        {
+          "operator": "RAW",
+          "text": "□ 학생 지원자격\n○ 대한민국 국적을 소지하고 재학 중인 대학생(대학원생 제외)\n○ 당해연도 1월 1일 기준 만 39세 이하(‘85.1.1.이후 출생)로 미혼인 자\n○ 당해 학기 학자금 지원구간 산정 시, 기초생활수급자 또는 차상위계층으로 확인된 자 (자격 기준은 학자금 지원구간 산정지침에 따름)\n○ 부모의 주민등록정보 확인을 위한 가구원 동의를 완료한 자\n○ 신청 대학생 부모 모두의 주민등록상 주소지가 신청 대학생 소속 대학을 기준으로 통학이 어려운 원거리 지역에 해당하는 자\n\n□ 대상대학\n○ 국내대학 중 당해연도 사업참여를 신청하고, 재단이 승인한 대학\n○ 2025학년도 학자금 지원 제한 대학의 ’25년도 신·편입 학생은 지원 제외\n○ 2025학년도 주거안정장학금 지원가능 대학 및 지원 불가 지역 확인\n※ 소속대학이 본교만 검색되고 실제 소속 캠퍼스가 조회되지 않는 경우, [지원 불가 지역]은 소속학교에 문의하시기 바랍니다."
+        }
+      ],
+      "exclusions": [
+        {
+          "operator": "NOT",
+          "condition": {
+            "operator": "RAW",
+            "text": "대학원생 제외"
+          }
+        }
+      ],
+      "structured_hints": {
+        "age": {
+          "min": null,
+          "max": 39
+        },
+        "region_scope": "전국",
+        "current_status": "대학생(재학|휴학)",
+        "special_targets": "기초생활수급자|차상위계층",
+        "marital_status": "미혼"
+      },
+      "source_url": "https://www.kosaf.go.kr/ko/notice.do?mode=view&naviParam=DN%2C08%2C01%2C00&seqNo=20886",
+      "note": "조건 원문 보관용. AND·OR 완전성과 제외조건은 미검증; 백엔드 신청가능 확정 금지"
+    },
+    "eligibility_verified": false,
+    "application_process": null,
+    "required_documents": null,
+    "classification_method": "규칙 기반",
+    "classification_status": "확정",
+    "last_verified_at": null,
+    "last_collected_at": "2026-10-09T06:01:27+09:00",
+    "updated_at": "2026-10-09T06:01:27+09:00"
+  },
+  {
+    "policy_id": "177bcc42-9c8b-5277-8102-2047ed315fdb",
+    "title": "청년 주택드림 디딤돌 대출",
+    "category_id": null,
+    "collection_domain": "장학·금융",
+    "target_summary": "대출 대상주택*을 구입하고자 하는 자로서 아래의 요건을 모두 충족하는 자\n* 대상주택 : 주거 전용면적이 85㎡(수도권을 제외한 도시지역이 아닌 읍 또는 면 지역 100㎡) 이하 주택으로, 대출 접수일 현재 담보주택의 평가액이 6억원 이하인 주택\n\n□ 청년 주택드림 통장 청약 당첨자\n입주자모집공고일 이전 보유한 청년 주택드림 통장으로 청약 당첨(당첨시 만39세 이하)되어 분양계약을 체결하고, \n아래 조건을 모두 충족하여 청년 주택드림 통장과 연계하여 디딤돌 대출을 신청하는 자 (상속, 증여, 재산분할로 주택을 취득하는 경우 불가) \n\n 가. 청년 주택드림 통장 가입일(전환일)로부터 대출접수일까지 1년 이상 가입\n 나. 대출접수일 기준 1천만원 이상 납입\n (단, 월 납입실적은 최대 100만원까지만 인정하며, 담보목적물(해당주택)의 계약금 납입 목적으로 1회에 한하여 청년 주택드림 통장 납입금액을 인출한 경우에는 대출접수일 기준 1천만원 이상 잔고가 확인되어야 함)\n\n <청년 주택드림 통장 월 납입실적 예외사항>\n (1) 후분양 등의 사유로 월 100만원 납입만으로는 1천만원 이상 납입요건 충족이 어려운 경우 부족분만큼 대출 신청 전 일시납하는 금액 인정\n (2) 종합저축에서 청년 주택드림 통장으로 전환가입한 경우 기존 통장의 잔고는 최대 500만원까지 인정(단, 청년우대형 종합저축에서 청년 주택드림 통장으로 전환된 경우 기존 잔고 모두 인정)\n (3) 청년도약계좌, 청년희망적금, 군장병 내일적금 등 만기 일시납액을 청년 주택드림 통장으로 예치한 경우 최대 500만원까지 인정\n (4) 이 기준에서 달리 정하고 있지 않은 사항에 대해서는 별도로 정한 지침에 따름\n\n□ 세대주 : 대출접수일 현재 민법상 성년인 세대주\n\n□ 무주택 : 세대주를 포함한 세대원 전원이 무주택인 자\n - 분양권 및 조합원 입주권도 주택 보유로 간주\n\n□ 중복대출 금지 : 주택도시기금대출 및 은행재원 주택담보대출 미이용자 등\n - (주택도시기금대출) 성년인 세대원 전원이 기금 대출을 이용 중이면 대출 불가\n 단, 기금의 전세자금 대출을 받은 경우에는 실행일 당일 상환조건부로 대출 가능\n - (주택담보대출) 차주 및 배우자(결혼예정 또는 분리된 배우자 포함)가 다른 목적물로 주택담보(중도금)대출을 이용 중이면 대출 불가\n\n□ 소득 : 미혼인 경우 연간 총소득 7천만원, 신혼가구인 경우 대출신청인과 배우자의 합산 총소득이 연간 1억원 이하인 자\n\n□ 자산 : 대출신청인 및 배우자의 합산 순자산 가액이 통계청에서 발표하는 최근년도 가계금융복지조사의 ‘소득 5분위별 자산 및 부채현황’ 중 소득 4분위 전체가구 평균값 이하(십만원 단위에서 반올림)인 자→2026년도 기준 5.11억원\n\n□ 신용도 : 아래 요건을 모두 충족하는 자\n - 신용정보회사의 개인신용평가가 일정점수 이상인 경우\n - 신청인이 한국신용정보원 “신용정보관리규약”에서 정하는 아래의 신용정보 및 해제 정보가 남아있는 경우 대출 불가능\n 1) 연체, 대위변제·대지급, 부도, 관련인 정보\n 2) 금융질서문란정보, 공공기록정보, 특수기록정보\n 3) 신용회복지원등록정보\n - 그 외, 부부에 대하여 대출취급기관 내규로 대출을 제한하고 있는 경우에는 대출 불가능",
+    "support_content": "□ 대출금리 : 2.4% ~ 4.15%\n□ 대출한도 : 다음 중 작은 금액으로 산정\n - 미혼 3억원, 신혼 4억원 이내(LTV 70%, 생애최초 주택구입자는 LTV 80%, DTI 60% 이내)\n - 분양가격 이내로 하되, 대출총액은 (본건 내집마련 디딤돌 대출 + 국민주택건설자금 + 중도금대출 + 기금대출)은 매매가격 초과 불가\n - 대출금액 = [(담보주택 평가액 × LTV) – 선순위채권 – 임대보증금 및 최우선변제소액임차보증금]\n□ 대출기간 : 10년, 15년, 20년, 30년(연소득 4천만원 이하는 만기 40년 이용 가능)(거치 1년 또는 비거치)",
+    "benefit_type": "대출·융자",
+    "min_age": null,
+    "max_age": 39,
+    "income_condition": "소득최대금액=7000",
+    "application_start_date": null,
+    "application_end_date": null,
+    "recruitment_status": "기간 미정",
+    "application_method": "□ 신청시기 : 소유권이전등기를 하기 전에 신청. 단, 소유권이전등기를 한 경우에는 이전등기 접수일로부터 3개월 이내까지 신청\n□ 신청방법\n ○ 온라인 신청 : 기금e든든 홈페이지(https://enhuf.molit.go.kr)\n - 이용 가능 은행 : 우리, 신한, 국민, 농협, 하나은행\n ○ 은행 방문 신청 : 기금 수탁은행인 우리, 신한, 국민, 농협, 하나은행에서 가능\n - 이용 가능 지점은 은행 상황에 따라 다를 수 있습니다.",
+    "application_url": "https://enhuf.molit.go.kr",
+    "official_url": "https://nhuf.molit.go.kr/FP/FP05/FP0503/FP05030901.jsp",
+    "eligibility_conditions": {
+      "verification": "확인필요",
+      "logic": "UNVERIFIED",
+      "required": [
+        {
+          "operator": "RAW",
+          "text": "대출 대상주택*을 구입하고자 하는 자로서 아래의 요건을 모두 충족하는 자\n* 대상주택 : 주거 전용면적이 85㎡(수도권을 제외한 도시지역이 아닌 읍 또는 면 지역 100㎡) 이하 주택으로, 대출 접수일 현재 담보주택의 평가액이 6억원 이하인 주택\n\n□ 청년 주택드림 통장 청약 당첨자\n입주자모집공고일 이전 보유한 청년 주택드림 통장으로 청약 당첨(당첨시 만39세 이하)되어 분양계약을 체결하고, \n아래 조건을 모두 충족하여 청년 주택드림 통장과 연계하여 디딤돌 대출을 신청하는 자 (상속, 증여, 재산분할로 주택을 취득하는 경우 불가) \n\n 가. 청년 주택드림 통장 가입일(전환일)로부터 대출접수일까지 1년 이상 가입\n 나. 대출접수일 기준 1천만원 이상 납입\n (단, 월 납입실적은 최대 100만원까지만 인정하며, 담보목적물(해당주택)의 계약금 납입 목적으로 1회에 한하여 청년 주택드림 통장 납입금액을 인출한 경우에는 대출접수일 기준 1천만원 이상 잔고가 확인되어야 함)\n\n <청년 주택드림 통장 월 납입실적 예외사항>\n (1) 후분양 등의 사유로 월 100만원 납입만으로는 1천만원 이상 납입요건 충족이 어려운 경우 부족분만큼 대출 신청 전 일시납하는 금액 인정\n (2) 종합저축에서 청년 주택드림 통장으로 전환가입한 경우 기존 통장의 잔고는 최대 500만원까지 인정(단, 청년우대형 종합저축에서 청년 주택드림 통장으로 전환된 경우 기존 잔고 모두 인정)\n (3) 청년도약계좌, 청년희망적금, 군장병 내일적금 등 만기 일시납액을 청년 주택드림 통장으로 예치한 경우 최대 500만원까지 인정\n (4) 이 기준에서 달리 정하고 있지 않은 사항에 대해서는 별도로 정한 지침에 따름\n\n□ 세대주 : 대출접수일 현재 민법상 성년인 세대주\n\n□ 무주택 : 세대주를 포함한 세대원 전원이 무주택인 자\n - 분양권 및 조합원 입주권도 주택 보유로 간주\n\n□ 중복대출 금지 : 주택도시기금대출 및 은행재원 주택담보대출 미이용자 등\n - (주택도시기금대출) 성년인 세대원 전원이 기금 대출을 이용 중이면 대출 불가\n 단, 기금의 전세자금 대출을 받은 경우에는 실행일 당일 상환조건부로 대출 가능\n - (주택담보대출) 차주 및 배우자(결혼예정 또는 분리된 배우자 포함)가 다른 목적물로 주택담보(중도금)대출을 이용 중이면 대출 불가\n\n□ 소득 : 미혼인 경우 연간 총소득 7천만원, 신혼가구인 경우 대출신청인과 배우자의 합산 총소득이 연간 1억원 이하인 자\n\n□ 자산 : 대출신청인 및 배우자의 합산 순자산 가액이 통계청에서 발표하는 최근년도 가계금융복지조사의 ‘소득 5분위별 자산 및 부채현황’ 중 소득 4분위 전체가구 평균값 이하(십만원 단위에서 반올림)인 자→2026년도 기준 5.11억원\n\n□ 신용도 : 아래 요건을 모두 충족하는 자\n - 신용정보회사의 개인신용평가가 일정점수 이상인 경우\n - 신청인이 한국신용정보원 “신용정보관리규약”에서 정하는 아래의 신용정보 및 해제 정보가 남아있는 경우 대출 불가능\n 1) 연체, 대위변제·대지급, 부도, 관련인 정보\n 2) 금융질서문란정보, 공공기록정보, 특수기록정보\n 3) 신용회복지원등록정보\n - 그 외, 부부에 대하여 대출취급기관 내규로 대출을 제한하고 있는 경우에는 대출 불가능"
+        }
+      ],
+      "exclusions": [],
+      "structured_hints": {
+        "age": {
+          "min": null,
+          "max": 39
+        },
+        "region_scope": "전국",
+        "home_ownership": "무주택"
+      },
+      "source_url": "https://nhuf.molit.go.kr/FP/FP05/FP0503/FP05030901.jsp",
+      "note": "조건 원문 보관용. AND·OR 완전성과 제외조건은 미검증; 백엔드 신청가능 확정 금지"
+    },
+    "eligibility_verified": false,
+    "application_process": null,
+    "required_documents": null,
+    "classification_method": "규칙 기반",
+    "classification_status": "확정",
+    "last_verified_at": null,
+    "last_collected_at": "2026-10-09T06:01:27+09:00",
+    "updated_at": "2026-10-09T06:01:27+09:00"
+  },
+  {
+    "policy_id": "5c89896e-9e82-55ac-b816-ed1ecd04e0ea",
+    "title": "청년내일저축계좌",
+    "category_id": null,
+    "collection_domain": "장학·금융",
+    "target_summary": "□ 연령·소득기준·가구소득 3가지를 모두 충족한 청년을 지원합니다.\n1. 가입연령 : 신청 당시 만 15세~만 39세\n※ 신청 월의 전월에 만 15세가 된 자 ~ 신청 월에 만 40세가 되는 자\n2. 근로·사업소득 : 근로, 사업소득이 월 10만원 이상 발생\n3. 가구소득 : 소득인정액 기준 중위소득 100% 이하",
+    "support_content": "□ 매월 본인 저축 납입자에 한하여 본인저축액 10만원 이상(매월 전월 23일 ~ 현월 22일 입금마감일 이전) 대비 정부지원금을 정액 매칭합니다.\n ○ 중위소득 50%초과 ~ 100%이하: 10만원 정액 매칭\n ○ 중위소득 50%이하: 30만원 정액 매칭(3년간 통장유지, 근로활동 지속, 교육이수, 자금사용계획서 제출시 적립금 전액 지급)\n\n□ 정책대상별 추가지원금(근로소득공제금(생계급여 수급 청년), 탈수급장려금, 내일키움장려금, 내일키움수익금 등) 지급이 가능합니다.",
+    "benefit_type": "저축·자산형성",
+    "min_age": 15,
+    "max_age": 39,
+    "income_condition": "근로, 사업 소득이 월 10만원 이상 발생, 가구소득이 소득인정액 기준 중위소득 50% 이하",
+    "application_start_date": "2026-05-04",
+    "application_end_date": "2026-05-20",
+    "recruitment_status": "마감",
+    "application_method": "□ 읍면동 주민센터 방문접수 및 복지로(www.bokjiro.go.kr)를 통한 온라인 신청이 가능합니다.\n ○ 복지로 온라인 신청 경로: 복지로 로그인 > 서비스 신청 > 복지서비스 신청 > 복지급여 신청 > 저소득층 > 자산형성지원(청년내일저축계좌)\n ○ 주소지가 아니더라도, 동일 시군구내 모든 주민센터에서 접수 가능",
+    "application_url": "https://hope.welfareinfo.or.kr/myservice/eduYoungSpcReqstInfo.do",
+    "official_url": "https://hope.welfareinfo.or.kr/main/main.do",
+    "eligibility_conditions": {
+      "verification": "확인필요",
+      "logic": "UNVERIFIED",
+      "required": [
+        {
+          "operator": "RAW",
+          "text": "□ 연령·소득기준·가구소득 3가지를 모두 충족한 청년을 지원합니다.\n1. 가입연령 : 신청 당시 만 15세~만 39세\n※ 신청 월의 전월에 만 15세가 된 자 ~ 신청 월에 만 40세가 되는 자\n2. 근로·사업소득 : 근로, 사업소득이 월 10만원 이상 발생\n3. 가구소득 : 소득인정액 기준 중위소득 100% 이하"
+        }
+      ],
+      "exclusions": [],
+      "structured_hints": {
+        "age": {
+          "min": 15,
+          "max": 39
+        },
+        "region_scope": "전국",
+        "current_status": "직장인|자영업자",
+        "special_targets": "기초생활수급자|차상위계층"
+      },
+      "source_url": "https://hope.welfareinfo.or.kr/main/main.do",
+      "note": "조건 원문 보관용. AND·OR 완전성과 제외조건은 미검증; 백엔드 신청가능 확정 금지"
+    },
+    "eligibility_verified": false,
+    "application_process": [
+      "읍면동 주민센터 방문접수 및 복지로(www.bokjiro.go.kr)를 통한 온라인 신청이 가능합니다",
+      "복지로 온라인 신청 경로: 복지로 로그인 > 서비스 신청 > 복지서비스 신청 > 복지급여 신청 > 저소득층 > 자산형성지원(청년내일저축계좌)",
+      "주소지가 아니더라도, 동일 시군구내 모든 주민센터에서 접수 가능"
+    ],
+    "required_documents": null,
+    "classification_method": "규칙 기반",
+    "classification_status": "확정",
+    "last_verified_at": null,
+    "last_collected_at": "2026-10-09T06:01:27+09:00",
+    "updated_at": "2026-10-09T06:01:27+09:00"
+  },
+  {
+    "policy_id": "985b3aec-2356-5160-b33e-f36dbdcb0e48",
+    "title": "청년일자리 도약장려금",
+    "category_id": null,
+    "collection_domain": "장학·금융",
+    "target_summary": "2026년 청년일자리도약장려금 유형Ⅱ로 참여하고 6개월 이상 근속한 청년(개인)",
+    "support_content": "ㅇ (유형Ⅰ) 5인 이상 우선지원대상기업에서 취업애로청년을 정규직으로 채용시 1년간 최대 720만원 지원\n * 취업애로청년: 만 15~34세의 ▴4개월 이상 실업, ▴고졸 이하 청년 등 \nㅇ(유형Ⅱ) 5인 이상의 제조업 등 빈일자리 업종 중소기업에서 청년을 정규직으로 채용시 1년간 최대 720만원 지원 및 해당 기업에 취업 후 18개월 이상 재직한 청년 근로자에게 최대 480만원 지원(18.24개월차 각 240만원)",
+    "benefit_type": "지원금·장려금",
+    "min_age": 15,
+    "max_age": 34,
+    "income_condition": "(기업)매출액 기준 (청년)소득조건 제한없음",
+    "application_start_date": "2026-01-26",
+    "application_end_date": null,
+    "recruitment_status": "기간 미정",
+    "application_method": "신청방법 및 지원절차\n(참여신청) 기업이 운영기관에 채용계획 제출(전산시스템 활용)-> 운영기관의 검토 및 승인-> 운영기관-기업 간 지원협약 체결\n(채용) 기업은 청년 채용 후 운영기관에 채용명단 제출, 6개월 간 고용 유지하며 임금지급\n(장려금 신청) 최소 근속기간 도래 후 운영기관에 장려금 신청 \nㅇ (유형Ⅰ_기업지원금) 6개월 이상 고용유지시 기업지원금 신청\nㅇ (유형Ⅱ_기업지원금) 6개월 이상 고용유지시 기업지원금 신청\nㅇ (유형Ⅱ_청년인센티브)186개월 이상 근속시 청년 장기근속인센티브 신청\n(지원금 지급) 운영기관은 사전 심사 후 고용센터에 지급 검토보고서 제출, 고용센터에서 최종 심사 후 기업에 지원금 지급",
+    "application_url": null,
+    "official_url": "https://www.work24.go.kr/wk/k/h/1200/retrieveYngJumpIndivSptfndIntro.do",
+    "eligibility_conditions": {
+      "verification": "확인필요",
+      "logic": "UNVERIFIED",
+      "required": [
+        {
+          "operator": "RAW",
+          "text": "2026년 청년일자리도약장려금 유형Ⅱ로 참여하고 6개월 이상 근속한 청년(개인)"
+        }
+      ],
+      "exclusions": [
+        {
+          "operator": "NOT",
+          "condition": {
+            "operator": "RAW",
+            "text": "사업주의 배우자, 직계 존비속, 외국인, 중앙부처 또는 지방자치단체로부터 다른 인건비 지원을 받는 청년, 채용일 기준 고등학교 또는 대학교재학 중인자 등은 지원 제외\n* 구체적인 요건 및 자격은 운영지침 반드시 확인필요"
+          }
+        }
+      ],
+      "structured_hints": {
+        "age": {
+          "min": 15,
+          "max": 34
+        },
+        "region_scope": "전국",
+        "current_status": "직장인"
+      },
+      "source_url": "https://www.work24.go.kr/wk/k/h/1200/retrieveYngJumpIndivSptfndIntro.do",
+      "note": "조건 원문 보관용. AND·OR 완전성과 제외조건은 미검증; 백엔드 신청가능 확정 금지"
+    },
+    "eligibility_verified": false,
+    "application_process": [
+      "고용24 홈페이지(온라인) 통해 신청할 수 있습니다"
+    ],
+    "required_documents": null,
+    "classification_method": "규칙 기반",
+    "classification_status": "확정",
+    "last_verified_at": null,
+    "last_collected_at": "2026-10-09T06:01:27+09:00",
+    "updated_at": "2026-10-09T06:01:27+09:00"
+  },
+  {
+    "policy_id": "73792a88-f3e0-502c-868b-6a9e770e49a5",
+    "title": "청년창업농장학금",
+    "category_id": null,
+    "collection_domain": "장학·금융",
+    "target_summary": null,
+    "support_content": "[지원내용] 학기당 등록금 + 학업장려금 250만원\n\n[지원대상]\n (공통): 대한민국 국적자\n (학년) : 대학교 3학년 이상(선발학기 기준, 3학년 1학기 진학 예정자 포함) 또는 전문대 및 농업계대학 농식품계열학과 1학년 2학기 이상\n(선발학기 기준 1학년 2학기 진학 예정자 포함)\n*전문대의 경우 동일 대학 내 전공심화과정(학기) 진학 시 인정\n (나이) : 재학생 중 시행연도(2026.1.1.) 기준 만40세 미만인 자(1986.1.1.이후 출생자) ※ 계속장학생은 40세 이상도 가능\n* 단, 미성년자의 경우, 성년도래 시점에 보증보험에 가입하겠다는 ‘보증보험 가입약정(법정대리인 공증(친권자, 후견인))’ 후 선발 가능\n(공증비용은 장학생 개인 부담)\n* 장학금 신청자 연령은 재단 장학시스템 회원가입 시 휴대폰 본인확인 또는 아이핀 인증으로 확인\n\n [신청자격요건 직전학기 기준]\n- 학점 : 12학점 이상 이수\n- 성적 : 70점 이상 (*대학 학칙에 따라 산출한 백분위 점수)",
+    "benefit_type": "장학금",
+    "min_age": null,
+    "max_age": null,
+    "income_condition": null,
+    "application_start_date": "2026-06-01",
+    "application_end_date": "2026-06-30",
+    "recruitment_status": "마감",
+    "application_method": "한국농어촌희망재단 누리집을 통해 학생본인 온라인 신청 후 심사를 통해 선발\n(신청, 학교 장학생 확인, 서류심사, 보증보험가입, 장학생 선발, 장학금 지급)",
+    "application_url": null,
+    "official_url": "https://www.rhof.or.kr",
+    "eligibility_conditions": {
+      "verification": "확인필요",
+      "logic": "UNVERIFIED",
+      "required": [],
+      "exclusions": [],
+      "structured_hints": {
+        "region_scope": "전국",
+        "current_status": "대학생(재학|휴학)"
+      },
+      "source_url": "https://www.rhof.or.kr",
+      "note": "조건 원문 보관용. AND·OR 완전성과 제외조건은 미검증; 백엔드 신청가능 확정 금지"
+    },
+    "eligibility_verified": false,
+    "application_process": [
+      "한국농어촌희망재단 누리집을 통해 학생본인 온라인 신청 후 심사를 통해 선발",
+      "(신청, 학교 장학생 확인, 서류심사, 보증보험가입, 장학생 선발, 장학금 지급)"
+    ],
+    "required_documents": null,
+    "classification_method": "규칙 기반",
+    "classification_status": "확정",
+    "last_verified_at": null,
+    "last_collected_at": "2026-10-09T06:01:27+09:00",
+    "updated_at": "2026-10-09T06:01:27+09:00"
+  },
+  {
+    "policy_id": "4bf91e3f-669e-5f2c-ae0f-d662c9422326",
+    "title": "취업 후 상환 학자금대출",
+    "category_id": null,
+    "collection_domain": "장학·금융",
+    "target_summary": "국내 협약 고등교육기관 학부생·대학원생·전문기술석사 등",
+    "support_content": "학자금지원구간에 따라 대학(원)생에게 학자금(등록금, 생활비)을 대출해주고 취업 등 소득이 발생한 시점부터 소득수준에 따라 원리금을 상환하는 대출 / 등록금대출 / 생활비대출: 2026. / 9시부터 17시까지 실행 가능(단, 등록금대출은 대학 및 은행별 수납 마감기간 / 시간 내 실행 필수) / 등록금대출과 생활비대출로 구성 / 등록금: 대학에서 고지한 수납금액을 대출신청금액으로 확정하여",
+    "benefit_type": "대출·융자",
+    "min_age": null,
+    "max_age": 40,
+    "income_condition": "일정 / 신청 / 등록금대출 / 생활비대출: 2026. 7. 1.(수) 9시 ~ 11. 17.(화) 18시 / 9시부터 24시까지 신청가능(단, 신청마감 당일은 18시까지) / 주말 및 공휴일 신청 가능",
+    "application_start_date": "2026-07-01",
+    "application_end_date": "2026-11-17",
+    "recruitment_status": "모집 중",
+    "application_method": null,
+    "application_url": null,
+    "official_url": "https://www.kosaf.go.kr/ko/tuition.do?naviParam=HD&pg=tuition04_01_01",
+    "eligibility_conditions": {
+      "verification": "확인필요",
+      "logic": "UNVERIFIED",
+      "required": [
+        {
+          "operator": "RAW",
+          "text": "국내 협약 고등교육기관 학부생·대학원생·전문기술석사 등"
+        }
+      ],
+      "exclusions": [],
+      "structured_hints": {
+        "age": {
+          "min": null,
+          "max": 40
+        },
+        "region_scope": "전국",
+        "current_status": "대학생(재학|휴학)|대학원생",
+        "special_targets": "자립준비청년"
+      },
+      "source_url": "https://www.kosaf.go.kr/ko/tuition.do?naviParam=HD&pg=tuition04_01_01",
+      "note": "조건 원문 보관용. AND·OR 완전성과 제외조건은 미검증; 백엔드 신청가능 확정 금지"
+    },
+    "eligibility_verified": false,
+    "application_process": null,
+    "required_documents": null,
+    "classification_method": "규칙 기반",
+    "classification_status": "확정",
+    "last_verified_at": null,
+    "last_collected_at": "2026-10-09T06:01:27+09:00",
+    "updated_at": "2026-10-09T06:01:27+09:00"
+  },
+  {
+    "policy_id": "4fd591ac-7e25-51b5-b6c5-db6819cced0d",
+    "title": "취업 후 상환 학자금대출_생활비대출",
+    "category_id": null,
+    "collection_domain": "장학·금융",
+    "target_summary": "학부생 만35세 이하(선취업 후학습자의 경우 만45세까지)\n대학원생 만40세이하까지 지원 가능\n직전학기 12학점 이상 이수(또는 소속대학의 학기당 최소 이수학점 이상 이수)",
+    "support_content": "교육부 또는 재단과 협약을 체결한 국내 고등교육기관 학부생, 전문기술석사 및 대학원생(학점은행제 교육기관, 외국대학 제외)이 학기 중 필요한 숙식비, 교재비, 교통비 등을 위해 학기당 200만원('26년 2학기 기준)까지 대출 가능하며, 취업 등 소득이 발생한 시점부터 소득수준에 따라 원리금을 상환하는 제도",
+    "benefit_type": "대출·융자",
+    "min_age": null,
+    "max_age": null,
+    "income_condition": "학부생 학자금지원8구간 이하(긴급생계곤란자는 9구간 이하), 대학원생 학자금지원6구간이하",
+    "application_start_date": "2026-07-01",
+    "application_end_date": "2026-11-17",
+    "recruitment_status": "모집 중",
+    "application_method": "한국장학재단 누리집 및 모바일 앱에서 신청\n1. 대출준비 : 학자금대출 신청을 위해 본인 명의의 전자서명수단 발급\n2. 대출신청 : 일반/취업후/농촌 학자금대출 신청서 작성\n3. 금융교육 : 학자금대출 신청 시 온라인 금융교육 이수(필수)\n4. 신청완료 : 학부생 및 학자금지원구간 산정에 동의한 대학원생의 경우 학자금 지원구간 확인을 위해 가구원 정보제공 동의 필요\n5. 서류제출 : 학자금 지원구간 파악을 위한 가족정보 관련 서류 제출(필요 시 제출)\n6. 대출승인 : 대출심사 결과 확인 및 심사요건미달자 특별승인\n7. 대출실행 : 전자서명을 통해 등록금/생활비 대출금 개별 지급실행",
+    "application_url": null,
+    "official_url": "https://www.kosaf.go.kr/ko/tuition.do?pg=tuition04_01_01",
+    "eligibility_conditions": {
+      "verification": "확인필요",
+      "logic": "UNVERIFIED",
+      "required": [
+        {
+          "operator": "RAW",
+          "text": "학부생 만35세 이하(선취업 후학습자의 경우 만45세까지)\n대학원생 만40세이하까지 지원 가능\n직전학기 12학점 이상 이수(또는 소속대학의 학기당 최소 이수학점 이상 이수)"
+        }
+      ],
+      "exclusions": [
+        {
+          "operator": "NOT",
+          "condition": {
+            "operator": "RAW",
+            "text": "2026학년도 2학기 취업 후 상환 학자금대출의 자격요건 등에 관한 고시 제9조에 따른 대출제한 대상"
+          }
+        }
+      ],
+      "structured_hints": {
+        "region_scope": "전국",
+        "current_status": "대학원생|대학생(재학|휴학)"
+      },
+      "source_url": "https://www.kosaf.go.kr/ko/tuition.do?pg=tuition04_01_01",
+      "note": "조건 원문 보관용. AND·OR 완전성과 제외조건은 미검증; 백엔드 신청가능 확정 금지"
+    },
+    "eligibility_verified": false,
+    "application_process": [
+      "한국장학재단 누리집 및 모바일 앱에서 신청",
+      "대출준비 : 학자금대출 신청을 위해 본인 명의의 전자서명수단 발급",
+      "대출신청 : 일반/취업후/농촌 학자금대출 신청서 작성",
+      "금융교육 : 학자금대출 신청 시 온라인 금융교육 이수(필수)",
+      "신청완료 : 학부생 및 학자금지원구간 산정에 동의한 대학원생의 경우 학자금 지원구간 확인을 위해 가구원 정보제공 동의 필요",
+      "서류제출 : 학자금 지원구간 파악을 위한 가족정보 관련 서류 제출(필요 시 제출)",
+      "대출승인 : 대출심사 결과 확인 및 심사요건미달자 특별승인",
+      "대출실행 : 전자서명을 통해 등록금/생활비 대출금 개별 지급실행"
+    ],
+    "required_documents": null,
+    "classification_method": "규칙 기반",
+    "classification_status": "확정",
+    "last_verified_at": null,
+    "last_collected_at": "2026-10-09T06:01:27+09:00",
+    "updated_at": "2026-10-09T06:01:27+09:00"
+  },
+  {
+    "policy_id": "ccb63755-26a5-58e0-8799-2520972dd0df",
+    "title": "국가근로장학금",
+    "category_id": null,
+    "collection_domain": "장학·금융",
+    "target_summary": "- 직전학기 성적 70점/100점(C학점) 이상\n※ 단, 학생이 장애인, 자립준비청년(구. 보호종료아동)인 경우 성적기준 적용 제외 가능\n- 학자금 지원구간 9구간 이하\n※ 단, 학부모 실·폐업 등 긴급 경제적 위기가구 학생, 봉사유형 및 취업연계유형 근로학생은 학자금 지원구간 적용 제외 가능",
+    "support_content": "2026년 2학기 2차 국가근로장학금 안내\nㅇ 신청대상: 대한민국 국적으로 국내 대학의 재학생\nㅇ 선발요건\n- 직전학기 성적 70점/100점(C학점) 이상\n※ 단, 학생이 장애인, 자립준비청년(구. 보호종료아동)인 경우 성적기준 적용 제외 가능\n- 학자금 지원구간 9구간 이하\n※ 단, 학부모 실·폐업 등 긴급 경제적 위기가구 학생, 봉사유형 및 취업연계유형 근로학생은 학자금 지원구간 적용 제외 가능\nㅇ 신청방법\n - 한국장학재단 누리집(www.kosaf.go.kr) 및 모바일 앱에서 신청\nㅇ 신청기간\n - (학생신청) '26. 8. 12.(수) 9시 ~ '26. 9. 9.(수) 18시\n - (서류제출 및 가구원 동의) '26. 8. 12.(수) 9시 ~ '26. 9. 16.(수) 18시\n ※ 주말 및 공휴일 포함 신청기간 내 24시간 신청 가능 (단, 마감일 제외)\nㅇ 장학금 시급\n - 교내근로: 10,320원\n - 교외근로: 12,790원\n ※ 단, 장애대학생 봉사유형에 한하여 교외근로 시급 적용: 12,790원(대학 대응투자 20% 이상)\nㅇ 문의처: 한국장학재단 상담센터(1599-2290)",
+    "benefit_type": "장학금",
+    "min_age": null,
+    "max_age": null,
+    "income_condition": null,
+    "application_start_date": "2026-08-12",
+    "application_end_date": "2026-09-09",
+    "recruitment_status": "마감",
+    "application_method": "- 한국장학재단 누리집(www.kosaf.go.kr) 혹은 모바일 앱에서 신청(반드시 학생 본인이 신청)\n- 사용 가능한 전자서명수단 한 가지 준비\n- 신청 2~3일 후 한국장학재단 누리집 및 모바일 앱에서 제출 필요 서류 확인",
+    "application_url": null,
+    "official_url": "https://www.kosaf.go.kr/",
+    "eligibility_conditions": {
+      "verification": "확인필요",
+      "logic": "UNVERIFIED",
+      "required": [
+        {
+          "operator": "RAW",
+          "text": "- 직전학기 성적 70점/100점(C학점) 이상\n※ 단, 학생이 장애인, 자립준비청년(구. 보호종료아동)인 경우 성적기준 적용 제외 가능\n- 학자금 지원구간 9구간 이하\n※ 단, 학부모 실·폐업 등 긴급 경제적 위기가구 학생, 봉사유형 및 취업연계유형 근로학생은 학자금 지원구간 적용 제외 가능"
+        }
+      ],
+      "exclusions": [],
+      "structured_hints": {
+        "region_scope": "전국",
+        "current_status": "대학생(재학|휴학)",
+        "special_targets": "장애인|자립준비청년"
+      },
+      "source_url": "https://www.kosaf.go.kr/",
+      "note": "조건 원문 보관용. AND·OR 완전성과 제외조건은 미검증; 백엔드 신청가능 확정 금지"
+    },
+    "eligibility_verified": false,
+    "application_process": [
+      "한국장학재단 누리집(www.kosaf.go.kr) 혹은 모바일 앱에서 신청(반드시 학생 본인이 신청)",
+      "신청 2~3일 후 한국장학재단 누리집 및 모바일 앱에서 제출 필요 서류 확인"
+    ],
+    "required_documents": null,
+    "classification_method": "규칙 기반",
+    "classification_status": "확정",
+    "last_verified_at": null,
+    "last_collected_at": "2026-10-09T06:01:27+09:00",
+    "updated_at": "2026-10-09T06:01:27+09:00"
+  },
+  {
+    "policy_id": "8fee07b9-69ca-51c6-9004-59388c784a99",
+    "title": "국가장학금 지원",
+    "category_id": null,
+    "collection_domain": "장학·금융",
+    "target_summary": "○ 12학점, B학점(80/100점) 이상 충족한 자\n※ 단, 기초･차상위 학생은 C학점 이상, 장애인･자립준비청년은 성적기준 미적용",
+    "support_content": "학자금 지원구간별로 해당 학기 등록금 필수경비(입학금, 수업료)를 초과하지 않는 범위 내에서 차등지원\n- 기초/차상위: 학기별 최대지원금액(전액), 연간 최대지원금액(전액)\n- 1~3구간: 학기별 최대지원금액(300만원), 연간 최대지원금액(600만원)\n- 4~6구간: 학기별 최대지원금액(220만원), 연간 최대지원금액(440만원)\n- 7~8구간: 학기별 최대지원금액(180만원), 연간 최대지원금액(360만원)\n- 9구간: 학기별 최대지원금액(50만원), 연간 최대지원금액(100만원)\n* 등록금 범위 내 필수경비(입학금, 수업료)",
+    "benefit_type": "장학금",
+    "min_age": null,
+    "max_age": null,
+    "income_condition": "학자금 지원구간 9구간 이하",
+    "application_start_date": "2026-08-12",
+    "application_end_date": "2026-09-09",
+    "recruitment_status": "마감",
+    "application_method": "한국장학재단 누리집 및 모바일 앱에서 신청\n※ 전자서명수단 준비(공동인증서, 금융인증서, 간편인증)",
+    "application_url": null,
+    "official_url": "https://www.kosaf.go.kr/ko/scholar.do?pg=scholarship05_12_01_01&ttab1=0",
+    "eligibility_conditions": {
+      "verification": "확인필요",
+      "logic": "UNVERIFIED",
+      "required": [
+        {
+          "operator": "RAW",
+          "text": "○ 12학점, B학점(80/100점) 이상 충족한 자\n※ 단, 기초･차상위 학생은 C학점 이상, 장애인･자립준비청년은 성적기준 미적용"
+        }
+      ],
+      "exclusions": [],
+      "structured_hints": {
+        "region_scope": "전국",
+        "special_targets": "차상위계층|장애인|자립준비청년"
+      },
+      "source_url": "https://www.kosaf.go.kr/ko/scholar.do?pg=scholarship05_12_01_01&ttab1=0",
+      "note": "조건 원문 보관용. AND·OR 완전성과 제외조건은 미검증; 백엔드 신청가능 확정 금지"
+    },
+    "eligibility_verified": false,
+    "application_process": [
+      "한국장학재단 누리집 및 모바일 앱에서 신청",
+      "※ 전자서명수단 준비(공동인증서, 금융인증서, 간편인증)"
+    ],
+    "required_documents": null,
+    "classification_method": "규칙 기반",
+    "classification_status": "확정",
+    "last_verified_at": null,
+    "last_collected_at": "2026-10-09T06:01:27+09:00",
+    "updated_at": "2026-10-09T06:01:27+09:00"
+  },
+  {
+    "policy_id": "a0f8bc76-67c9-5c92-a25b-93f162385fad",
+    "title": "국가장학금Ⅰ유형",
+    "category_id": null,
+    "collection_domain": "장학·금융",
+    "target_summary": "신입생 · 편입생 · 재입학생 · 복학생 · 재학생 등 모든 학적 / ※ 재학생은 원칙적으로 1차 신청 기간에만 신청 가능하며, 2차 신청자는 재학 중 2회에 한하여 구제신청 자동 적용 및 심사 후 지원 가능(구제신청 적용 여부 선택 불가) / 서류제출 : / 2026. 8. 12.(수) 9시 ~ 9. 16.(수) 18시 / 가구원동의 : / ※ 단, 국가장학사업의 경우 2026. 8. 18.(화) 18시 이후 서류완료 및 가구원 정보제공 동의가 이루어질 경우 최신화 신청 기간이 부족하거나, 최신화 신청 자체가 불가할 수 있음 / ※ 각 항목을 클릭하시면 자세한 내용을 보실 수 있습니다.",
+    "support_content": "국가장학금Ⅰ유형(학생직접지원형) / 소득수준에 연계하여 경제적으로 어려운 학생들에게 보다 많은 혜택이 주어지도록 설계된 장학금 / 지원금액 / 국가장학금Ⅰ유형(학생직접지원형) 지원금액 / 지원금액표",
+    "benefit_type": "장학금",
+    "min_age": null,
+    "max_age": null,
+    "income_condition": "별로 해당 학기 등록금 필수경비 / (입학금, 수업료)를 초과하지 않는 / 범위 내에서 차등지원",
+    "application_start_date": "2026-08-12",
+    "application_end_date": "2026-09-09",
+    "recruitment_status": "마감",
+    "application_method": null,
+    "application_url": null,
+    "official_url": "https://www.kosaf.go.kr/ko/scholar.do?pg=scholarship05_12_01_01_02p",
+    "eligibility_conditions": {
+      "verification": "확인필요",
+      "logic": "UNVERIFIED",
+      "required": [
+        {
+          "operator": "RAW",
+          "text": "신입생 · 편입생 · 재입학생 · 복학생 · 재학생 등 모든 학적 / ※ 재학생은 원칙적으로 1차 신청 기간에만 신청 가능하며, 2차 신청자는 재학 중 2회에 한하여 구제신청 자동 적용 및 심사 후 지원 가능(구제신청 적용 여부 선택 불가) / 서류제출 : / 2026. 8. 12.(수) 9시 ~ 9. 16.(수) 18시 / 가구원동의 : / ※ 단, 국가장학사업의 경우 2026. 8. 18.(화) 18시 이후 서류완료 및 가구원 정보제공 동의가 이루어질 경우 최신화 신청 기간이 부족하거나, 최신화 신청 자체가 불가할 수 있음 / ※ 각 항목을 클릭하시면 자세한 내용을 보실 수 있습니다."
+        }
+      ],
+      "exclusions": [],
+      "structured_hints": {
+        "region_scope": "전국",
+        "current_status": "대학생(재학|휴학)"
+      },
+      "source_url": "https://www.kosaf.go.kr/ko/scholar.do?pg=scholarship05_12_01_01_02p",
+      "note": "조건 원문 보관용. AND·OR 완전성과 제외조건은 미검증; 백엔드 신청가능 확정 금지"
+    },
+    "eligibility_verified": false,
+    "application_process": null,
+    "required_documents": null,
+    "classification_method": "규칙 기반",
+    "classification_status": "확정",
+    "last_verified_at": null,
+    "last_collected_at": "2026-10-09T06:01:27+09:00",
+    "updated_at": "2026-10-09T06:01:27+09:00"
+  },
+  {
+    "policy_id": "067eeaac-f6e0-5b2e-829a-61ee2a4c52b1",
+    "title": "신생아 특례 구입·전세대출",
+    "category_id": null,
+    "collection_domain": "장학·금융",
+    "target_summary": "ㅇ (소득) 대출 신청일 기준 부부합산 연소득 1.3억원 이하 (단, 맞벌이 가구는 2억원 이하)\n\nㅇ (순자산) '26년 기준 구입: 5.11억원, 전세: 3.45억원 이하\n\nㅇ (주택가격, 보증금) 구입: 대상 주택 가액 9억원 이하, 전세: 보증금 5억원(지방 4억원 이하)",
+    "support_content": "□ 대출대상자 : 대출접수일 기준 출산 2년 내 무주택 출산가구\n\n□ 대출 한도\n ㅇ (구입자금) 최대 4억원(LTV 70%, DTI 60% 이내)\n ㅇ (전세자금) 최대 2.4억원(보증금 80% 이내)",
+    "benefit_type": "대출·융자",
+    "min_age": null,
+    "max_age": null,
+    "income_condition": "소득최대금액=20000",
+    "application_start_date": null,
+    "application_end_date": null,
+    "recruitment_status": "기간 미정",
+    "application_method": null,
+    "application_url": null,
+    "official_url": "https://nhuf.molit.go.kr/FP/FP05/FP0502/FP05021401.jsp",
+    "eligibility_conditions": {
+      "verification": "확인필요",
+      "logic": "UNVERIFIED",
+      "required": [
+        {
+          "operator": "RAW",
+          "text": "ㅇ (소득) 대출 신청일 기준 부부합산 연소득 1.3억원 이하 (단, 맞벌이 가구는 2억원 이하)\n\nㅇ (순자산) '26년 기준 구입: 5.11억원, 전세: 3.45억원 이하\n\nㅇ (주택가격, 보증금) 구입: 대상 주택 가액 9억원 이하, 전세: 보증금 5억원(지방 4억원 이하)"
+        }
+      ],
+      "exclusions": [],
+      "structured_hints": {
+        "region_scope": "전국",
+        "special_targets": "신생아·영유아 가구",
+        "home_ownership": "무주택"
+      },
+      "source_url": "https://nhuf.molit.go.kr/FP/FP05/FP0502/FP05021401.jsp",
+      "note": "조건 원문 보관용. AND·OR 완전성과 제외조건은 미검증; 백엔드 신청가능 확정 금지"
+    },
+    "eligibility_verified": false,
+    "application_process": null,
+    "required_documents": null,
+    "classification_method": "규칙 기반",
+    "classification_status": "확정",
+    "last_verified_at": null,
+    "last_collected_at": "2026-10-09T06:01:27+09:00",
+    "updated_at": "2026-10-09T06:01:27+09:00"
+  },
+  {
+    "policy_id": "feaeeb75-195b-569d-946f-c3d09fa67720",
+    "title": "우수학생 국가장학금(예술체육비전 장학금)",
+    "category_id": null,
+    "collection_domain": "장학·금융",
+    "target_summary": null,
+    "support_content": "□ Ⅰ유형: 매학기 등록금 전액, 생활비(250만 원/학기)\n□ Ⅱ유형: 매학기 등록금 전액\n ○ 등록금 범위: 입학금, 수업료로 명시된 항목만 지원\n ※ 등록금 일부를 지원받는 국가유공자, 보훈대상자, 탈북대학생 등의 경우 학생 부담분만 지원\n ○ 생활비(I유형): 선발 후 최초 학기는 별도 기준 없이 생활비를 지원하고, 차학기부터 계속지원 기준 \n 충족자 중 직전학기 성적 백분위 92점 이상 취득 시 지원\n\n□ 기초생활수급자 추가 지원(생활비 250만 원/학기)",
+    "benefit_type": "장학금",
+    "min_age": null,
+    "max_age": null,
+    "income_condition": null,
+    "application_start_date": "2026-03-06",
+    "application_end_date": "2026-03-25",
+    "recruitment_status": "마감",
+    "application_method": "1. 대학/학생\n- [대학] 사업참여 신청(재단 대학/기관관리자 학자금지원시스템)\n- [학생] 희망자 사전신청(재단홈페이지 필수서류 제출)\n\n2. 한국장학재단 : 대학별 배정인원 안내\n\n3. 대학/학생\n- [대학] 자체선발기준에 의거 장학생 선발·추천\n- [학생] 추천대상자 추가신청(재단 홈페이지 필수서류 제출)\n※ 대상 : 대학 자체선발기준에 따라 장학생으로 추천된 자 중 사전신청기간 내 미신청자\n\n4. 한국장학재단\n- 대학추천자 자격심사\n- 장학생 최종 선정 및 발표\n- 장학금 지원(소속대학으로 일괄 지급)",
+    "application_url": null,
+    "official_url": "https://www.kosaf.go.kr",
+    "eligibility_conditions": {
+      "verification": "확인필요",
+      "logic": "UNVERIFIED",
+      "required": [],
+      "exclusions": [],
+      "structured_hints": {
+        "region_scope": "전국",
+        "current_status": "대학생(재학|휴학)",
+        "special_targets": "기초생활수급자"
+      },
+      "source_url": "https://www.kosaf.go.kr",
+      "note": "조건 원문 보관용. AND·OR 완전성과 제외조건은 미검증; 백엔드 신청가능 확정 금지"
+    },
+    "eligibility_verified": false,
+    "application_process": [
+      "대학] 사업참여 신청(재단 대학/기관관리자 학자금지원시스템)",
+      "학생] 희망자 사전신청(재단홈페이지 필수서류 제출)",
+      "대학] 자체선발기준에 의거 장학생 선발·추천",
+      "학생] 추천대상자 추가신청(재단 홈페이지 필수서류 제출)",
+      "※ 대상 : 대학 자체선발기준에 따라 장학생으로 추천된 자 중 사전신청기간 내 미신청자",
+      "대학추천자 자격심사",
+      "장학생 최종 선정 및 발표",
+      "장학금 지원(소속대학으로 일괄 지급)"
+    ],
+    "required_documents": null,
+    "classification_method": "규칙 기반",
+    "classification_status": "확정",
+    "last_verified_at": null,
+    "last_collected_at": "2026-10-09T06:01:27+09:00",
+    "updated_at": "2026-10-09T06:01:27+09:00"
+  },
+  {
+    "policy_id": "21831ce3-f303-55fc-9ecf-faaee99316da",
+    "title": "우수학생 국가장학금(인문 100년 장학금)",
+    "category_id": null,
+    "collection_domain": "장학·금융",
+    "target_summary": null,
+    "support_content": "□ 신규장학생\n ○ 전공탐색 : 인문사회계열 학과(부) 1학년 재학생(신입생) \n - Ⅰ유형 : 최대 4년간 장학금(등록금 전액, 생활비(250만 원/학기))\n - Ⅱ유형 : 최대 4년간 장학금(등록금 전액)\n ○ 전공확립 : 인문사회계열 학과(부) 3학년 재학생\n - Ⅰ유형 : 최대 2년간 장학금(등록금 전액, 생활비(250만 원/학기))\n - Ⅱ유형 : 최대 2년간 장학금(등록금 전액)\n\n□ 공통지원\n - Ⅰ유형 : 매학기 등록금 전액, 생활비(250만 원/학기)\n - Ⅱ유형 : 매학기 등록금 전액\n - 등록금 범위: 입학금, 수업료로 명시된 항목만 지원\n ※ 등록금 일부를 지원받는 국가유공자, 보훈대상자, 탈북대학생 등의 경우 학생 부담분만 지원\n - 생활비(I유형): 선발 후 최초 학기는 별도 기준 없이 생활비를 지원하고, 차학기부터 계속지원 기준 \n 충족자 중 직전학기 성적 백분위 92점 이상 취득 시 지원\n\n□ 기초생활수급자 추가지원\n ○ Ⅰ유형 : 생활비(250만 원/학기)\n ○ Ⅱ유형 : 생활비(250만 원/학기)\n - 기초생활수급자 범위: 생계급여 일반수급자, 생계급여 조건부 수급자, 의료급여 수급자, 보장시설 \n 수급자\n ※ 보건복지부 연계 확인 불가 시, 심사기간 내 수급자증명서 제출 필요(서류제출일 기준 1개월 이내 \n 발급된 본인 명의 서류만 인정, 공문 제출)\n\n※ 장학생으로 확정된 연도의 지원내용 및 금액 적용(소급적용 불가)",
+    "benefit_type": "장학금",
+    "min_age": null,
+    "max_age": null,
+    "income_condition": null,
+    "application_start_date": "2026-03-06",
+    "application_end_date": "2026-03-25",
+    "recruitment_status": "마감",
+    "application_method": "□ 사전신청\n ○ 신청대상 : 대한민국 국적의 인문사회계역 학과(부)에 재학 중인 1학년 신입생(전공탐색유형) 또는 3학년(전공확립유형)\n ○ 신청방법 : 한국장학재단 홈페이지에서 학생 사전신청기간 내 온라인 신청 및 필수서류 제출\n\n□ 추가신청\n ○ 신청대상 : 대학 내 자체선발기준에 따른 심사 후, 신규장학생 추천대상자로 선발된 학생(단, 사전신청기간 내 신청완료자 제외)\n ○ 신청방법 : 한국장학재단 홈페이지에서 추천대상자 추가 신청기간 내 온라인 신청 및 필수서류 제출",
+    "application_url": null,
+    "official_url": "https://www.kosaf.go.kr",
+    "eligibility_conditions": {
+      "verification": "확인필요",
+      "logic": "UNVERIFIED",
+      "required": [],
+      "exclusions": [],
+      "structured_hints": {
+        "region_scope": "전국",
+        "current_status": "대학생(재학|휴학)",
+        "special_targets": "기초생활수급자"
+      },
+      "source_url": "https://www.kosaf.go.kr",
+      "note": "조건 원문 보관용. AND·OR 완전성과 제외조건은 미검증; 백엔드 신청가능 확정 금지"
+    },
+    "eligibility_verified": false,
+    "application_process": null,
+    "required_documents": null,
+    "classification_method": "규칙 기반",
+    "classification_status": "확정",
+    "last_verified_at": null,
+    "last_collected_at": "2026-10-09T06:01:27+09:00",
+    "updated_at": "2026-10-09T06:01:27+09:00"
+  },
+  {
+    "policy_id": "12a7abe3-53bd-55cb-8c84-e3e8692a1c78",
+    "title": "이공계 연구생활장려금",
+    "category_id": null,
+    "collection_domain": "장학·금융",
+    "target_summary": "2026년 이공계 연구생활장려금 참여대학의 이공계 대학원생",
+    "support_content": "이공계 전일제 대학원생에게 매월 일정금액 이상의 학생지원금 보장 및 학생연구자 지원구조 보강",
+    "benefit_type": "지원금·장려금",
+    "min_age": null,
+    "max_age": null,
+    "income_condition": null,
+    "application_start_date": null,
+    "application_end_date": null,
+    "recruitment_status": "기간 미정",
+    "application_method": null,
+    "application_url": null,
+    "official_url": "https://www.nrf.re.kr/biz/info/notice/view?menu_no=378&page=&nts_no=234580&biz_no=645&target=&biz_not_gubn=notice&search_type=NTS_TITLE&search_keyword1=",
+    "eligibility_conditions": {
+      "verification": "확인필요",
+      "logic": "UNVERIFIED",
+      "required": [
+        {
+          "operator": "RAW",
+          "text": "2026년 이공계 연구생활장려금 참여대학의 이공계 대학원생"
+        }
+      ],
+      "exclusions": [],
+      "structured_hints": {
+        "region_scope": "전국",
+        "current_status": "대학원생"
+      },
+      "source_url": "https://www.nrf.re.kr/biz/info/notice/view?menu_no=378&page=&nts_no=234580&biz_no=645&target=&biz_not_gubn=notice&search_type=NTS_TITLE&search_keyword1=",
+      "note": "조건 원문 보관용. AND·OR 완전성과 제외조건은 미검증; 백엔드 신청가능 확정 금지"
+    },
+    "eligibility_verified": false,
+    "application_process": null,
+    "required_documents": null,
+    "classification_method": "규칙 기반",
+    "classification_status": "확인필요",
+    "last_verified_at": null,
+    "last_collected_at": "2026-10-09T06:01:27+09:00",
+    "updated_at": "2026-10-09T06:01:27+09:00"
+  },
+  {
+    "policy_id": "72a96fee-6409-514d-8f61-d94f8985dec2",
+    "title": "이공계 우수학생 국가장학금",
+    "category_id": null,
+    "collection_domain": "장학·금융",
+    "target_summary": "(지원자격)",
+    "support_content": "우수 이공계 대학(원)생이 학비 등 부담 없이 학업·연구에 몰입할 수 있도록 장학금 지원\n- 국가우수장학금(이공계), 석사우수장학금(이공계), 박사우수장학금(이공계), 대통령과학장학금, 대학원대통령과학장학금 등 지원",
+    "benefit_type": "장학금",
+    "min_age": null,
+    "max_age": null,
+    "income_condition": null,
+    "application_start_date": "2026-07-27",
+    "application_end_date": "2026-08-20",
+    "recruitment_status": "마감",
+    "application_method": "한국장학재단 온라인 신청접수 및 소속 대학 증빙서류 제출 등을 통해 신청",
+    "application_url": null,
+    "official_url": "https://www.kosaf.go.kr/ko/scholar.do?pg=scholarship05_06_01&ttab1=1",
+    "eligibility_conditions": {
+      "verification": "확인필요",
+      "logic": "UNVERIFIED",
+      "required": [
+        {
+          "operator": "RAW",
+          "text": "(지원자격)"
+        }
+      ],
+      "exclusions": [],
+      "structured_hints": {
+        "region_scope": "전국",
+        "current_status": "대학생(재학|휴학)"
+      },
+      "source_url": "https://www.kosaf.go.kr/ko/scholar.do?pg=scholarship05_06_01&ttab1=1",
+      "note": "조건 원문 보관용. AND·OR 완전성과 제외조건은 미검증; 백엔드 신청가능 확정 금지"
+    },
+    "eligibility_verified": false,
+    "application_process": [
+      "한국장학재단 온라인 신청접수 및 소속 대학 증빙서류 제출 등을 통해 신청"
+    ],
+    "required_documents": null,
+    "classification_method": "규칙 기반",
+    "classification_status": "확정",
+    "last_verified_at": null,
+    "last_collected_at": "2026-10-09T06:01:27+09:00",
+    "updated_at": "2026-10-09T06:01:27+09:00"
+  },
+  {
+    "policy_id": "9985ba35-6829-59c0-91b2-0f8129359c39",
+    "title": "장기간부 도약적금",
+    "category_id": null,
+    "collection_domain": "장학·금융",
+    "target_summary": "* 가입대상 : 관련법령 시행(26.2.3) 이후 중·장기복무 확정/선발자부터 가입가능\n(가입 적용 특례) 25.12.1일 이후 장기복무 선발(임명)된 자부터 가입 가능\n ① 임관시 중·장기복무 확정자(장교, 부사관)\n임관 시 최소 6~10년 의무복무 확정자[단, 군가산복무지원금(군 장학금) 수령자 제외]\n단기복무로 임관하는 3사관학교, 간호사관학교 졸업자가 장기복무에 선발되더라도 26년 1월 1일 이후 임관자부터 가입대상으로 적용함 (3사관학교 및 간호사관학교의 경우 장기복무선발을 기준으로 가입자격이 부여되지 않고 , 임관과 동시에 졸업생 전원에게 가입자격을 부여함)\n항공과학고등학교 졸업 후 임관한 부사관, 임관시 장기복무 부사관으로 선발되어 임관한 부사관\n ② 단기복무자 중 장기복무선발자(장교, 부사관)\n군 가산복무지원금 수령자도 장기복무 선발 시 가입 가능",
+    "support_content": "ㅇ가입대상 : 관련법령 시행(26.2.3) 이후 중·장기복무 확정/선발자부터 가입가능\n(가입 적용 특례) 25.12.1일 이후 장기복무 선발(임명)된 자부터 가입 가능\n 1. 임관시 중·장기복무 확정자(장교, 부사관)\n - 임관 시 최소 6~10년 의무복무 확정자[단, 군가산복무지원금(군 장학금) 수령자 제외]\n단기복무로 임관하는 3사관학교, 간호사관학교 졸업자가 장기복무에 선발되더라도 26년 1월 1일 이후 임관자부터 가입대상으로 적용함 (3사관학교 및 간호사관학교의 경우 장기복무선발을 기준으로 가입자격이 부여되지 않고 , 임관과 동시에 졸업생 전원에게 가입자격을 부여함)\n항공과학고등학교 졸업 후 임관한 부사관, 임관시 장기복무 부사관으로 선발되어 임관한 부사관\n 2. 단기복무자 중 장기복무선발자(장교, 부사관)\n - 군 가산복무지원금 수령자도 장기복무 선발 시 가입 가능\nㅇ 가입 기간 및 가입 가능 기한 : 36 개월\n - 장기복무 명령 발령 해당 일부터 다음 월의(12일)까지만 가입 가능\n ex) 26. 3. 1. 임관자는 26. 3. 1.~ 12. / 26. 4. 1. ~ 12. 가입가능\nㅇ 가입한도 : 1인 1계좌, 최소 10만원 ~ 월 최대 30만원(1만원 단위 납입 가능)\nㅇ 가입혜택 : 기본금리 5.5% 과세 (은행 및 군인공제회 우대금리 별도) + 재정지원금(원금의 100% 지원)\n - 매월 개인 적금계정으로 본인 납입금의 100% 매칭한 재정지원금이 적립되며,적립된 재정지원금에서 발생하는 이자를 포함하여 만기 시 개인에게 지급",
+    "benefit_type": "저축·자산형성",
+    "min_age": null,
+    "max_age": null,
+    "income_condition": null,
+    "application_start_date": null,
+    "application_end_date": null,
+    "recruitment_status": "기간 미정",
+    "application_method": "ㅇ 가입방법(군인공제회는 3.3.부터, IBK기업은행은 4.1.부터, 신한은행은 4.3.부터, 그외 금융기관은 26.5월부터 비대면가입 가능)\n ① 비대면 가입 : iMND복지포털 접속 가입자격확인서 발급→금융기관 앱 접속 후 적금 가입\n ② 대면 가입 : iMND복지포털 접속 가입자격확인서 발급→금융기관 방문 후 적금 가입\n군인공제회 회원 자격자만(회원퇴직급여 1구좌 1회 이상 납부한 사람) 가입 가능\nㅇ 대리가입\n - 대리자 : 가족관계증명서 상 가족 중 1명\n - 지참서류 : 가족관계증명서(주민번호 13자리 포함), 방문자 신분증, 가입자격확인서\n※ 가입자격확인서는 대상자가 직접 발행받아 가족에게 PDF파일 또는 출력본을 전달해야 합니다.",
+    "application_url": "https://www.imnd.or.kr/user/main/userMain.go",
+    "official_url": "https://www.imnd.or.kr/user/ltogs/check.go",
+    "eligibility_conditions": {
+      "verification": "확인필요",
+      "logic": "UNVERIFIED",
+      "required": [
+        {
+          "operator": "RAW",
+          "text": "* 가입대상 : 관련법령 시행(26.2.3) 이후 중·장기복무 확정/선발자부터 가입가능\n(가입 적용 특례) 25.12.1일 이후 장기복무 선발(임명)된 자부터 가입 가능\n ① 임관시 중·장기복무 확정자(장교, 부사관)\n임관 시 최소 6~10년 의무복무 확정자[단, 군가산복무지원금(군 장학금) 수령자 제외]\n단기복무로 임관하는 3사관학교, 간호사관학교 졸업자가 장기복무에 선발되더라도 26년 1월 1일 이후 임관자부터 가입대상으로 적용함 (3사관학교 및 간호사관학교의 경우 장기복무선발을 기준으로 가입자격이 부여되지 않고 , 임관과 동시에 졸업생 전원에게 가입자격을 부여함)\n항공과학고등학교 졸업 후 임관한 부사관, 임관시 장기복무 부사관으로 선발되어 임관한 부사관\n ② 단기복무자 중 장기복무선발자(장교, 부사관)\n군 가산복무지원금 수령자도 장기복무 선발 시 가입 가능"
+        }
+      ],
+      "exclusions": [],
+      "structured_hints": {
+        "region_scope": "전국",
+        "current_status": "직장인",
+        "special_targets": "군인"
+      },
+      "source_url": "https://www.imnd.or.kr/user/ltogs/check.go",
+      "note": "조건 원문 보관용. AND·OR 완전성과 제외조건은 미검증; 백엔드 신청가능 확정 금지"
+    },
+    "eligibility_verified": false,
+    "application_process": [
+      "ㅇ 가입방법(군인공제회는 3.3.부터, IBK기업은행은 4.1.부터, 신한은행은 4.3.부터, 그외 금융기관은 26.5월부터 비대면가입 가능)",
+      "비대면 가입 : iMND복지포털 접속 가입자격확인서 발급",
+      "금융기관 앱 접속 후 적금 가입",
+      "대면 가입 : iMND복지포털 접속 가입자격확인서 발급",
+      "금융기관 방문 후 적금 가입",
+      "군인공제회 회원 자격자만(회원퇴직급여 1구좌 1회 이상 납부한 사람) 가입 가능",
+      "ㅇ 대리가입",
+      "지참서류 : 가족관계증명서(주민번호 13자리 포함), 방문자 신분증, 가입자격확인서",
+      "※ 가입자격확인서는 대상자가 직접 발행받아 가족에게 PDF파일 또는 출력본을 전달해야 합니다"
+    ],
+    "required_documents": [
+      "대리 가입 시: 가족관계증명서(주민번호 13자리 포함)",
+      "대리 가입 시: 방문자 신분증",
+      "대리 가입 시: 가입자격확인서"
+    ],
+    "classification_method": "규칙 기반",
+    "classification_status": "확정",
+    "last_verified_at": null,
+    "last_collected_at": "2026-10-09T06:01:27+09:00",
+    "updated_at": "2026-10-09T06:01:27+09:00"
+  },
+  {
+    "policy_id": "d3a4cbc8-94f9-505f-abf6-2ed442597408",
+    "title": "장병내일준비적금 지원",
+    "category_id": null,
+    "collection_domain": "장학·금융",
+    "target_summary": "* 지원대상은 현역 병사에 준하는 급여를 지급받는 병역의무수행자입니다.\n - (국방부) 현역병, 상근예비역, (병무청) 사회복무요원, (법무부) 대체복무요원",
+    "support_content": "ㅇ 가입대상 : 국방부(현역, 상근예비역), 법무부(대체복무요원), 병무청(사회복무요원)\n * 병 급여 및 복무관리 체계를 적용받는 자로 한정함\nㅇ 가입기간 : 복무기간별 최대 가입기간 적용\n - 육군·해병대·상근예비역(~18개월), 해군(~20개월), 공군·사회복무요원(~21개월), 대체복무요원(~24개월)\n - 적금 최소가입기간(잔여복무기간)은 최소 6개월 이상부터 가입이 가능하며, ’24. 6월부터는 최소 1개월 이상부터 가입 가능\nㅇ 月 적립한도\n[2024년 12월까지] 1인 2계좌(동일은행 불가), 각 계좌별 최대 월 20만원, 개인별 최대 월 40만원\n[2025년 1월부터] 1인 2계좌(동일은행 불가), 각 계좌별 최대 월 30만원, 개인별 최대 월 55만원\n납입한도는 5만원 단위로 가능(납입한도 중도 변경 불가)\nㅇ 이자 : 5% 수준 은행이자(비과세)\n - 기초생활수급자 대상 추가 우대금리(3.0%) : 2개 은행 (IBK기업은행, 국민은행)\n - 제출서류 : 가입/해지 시 본인의 “사회보장급여 중지 통지서”를 은행에 제출 (제도 시행 이전 가입자도 적금 해지 시 증명서 제츨을 통해 우대금리 적용 가능 단, 국민은행은 만기일 전전월까지 증빙서류 제출 필요)\nㅇ 정부지원 : 병역의무 이행자가 전역(소집해제)으로 적금 만기 해지 시 지원금 지원\n(~23년) 적금 원리금(원금+은행이자(5%)+국가지원이자(1%))에 추가하여 원리금의 연도별 매칭비율(’22년 33%, ’23년 71%)에 해당하는 매칭지원금을 지원\n(24년~) 적금 납입금의 은행이자(5%)에 추가하여 원금의 100%에 해당하는 매칭지원금을 지원",
+    "benefit_type": "저축·자산형성",
+    "min_age": null,
+    "max_age": null,
+    "income_condition": null,
+    "application_start_date": null,
+    "application_end_date": null,
+    "recruitment_status": "기간 미정",
+    "application_method": "ㅇ (입영 전)\n 1. 입영 전 가입할 은행(2개 이상) 계좌 개설 및 은행 앱 설치(사전 로그인)\n 2. 가입자격확인서 발급 앱 ‘나라사랑포털’ 설치(가입자격확인서는 입영 후 발급 가능)\n 3. 입영 시 신분증, 나라사랑카드 휴대 필요\n\nㅇ (입영 후) 4가지 방법 중 선택\n 1. 신병교육기관 교육 중 협약은행에서 부대방문 후 가입절차 진행\n 2. 교육 종료 후 자대 전입 후 휴가/외출 시 은행 방문 후 대면 가입\n * 현역, 상근예비역 : 국방인사정보체계에서 “가입자격확인서” 발급\n * 사회복무요원 : (온라인) 사회복무포털에서 신청, (오프라인) 소속 복무기관 담당자가 발급\n * 대체복무요원 : 소속 복무기관 담당자가 발급\n * 2개 은행 가입 시 : 확인서 2부 필요\n 3. 현역, 상근예비역 비대면 가입 - 나라사랑포털 APP 접속 비대면 가입\n 4. 대리자(부모님) 가입 - 가족관계증명서(주민번호 13자리 반드시 포함), 부모님 신분증, 가입자격확인서 지참 후 은행 방문 가입",
+    "application_url": "https://www.narasarang.or.kr/#/",
+    "official_url": "https://www.mnd.go.kr/mbshome/mbs/mnd/subview.jsp?id=mnd_011302000000",
+    "eligibility_conditions": {
+      "verification": "확인필요",
+      "logic": "UNVERIFIED",
+      "required": [
+        {
+          "operator": "RAW",
+          "text": "* 지원대상은 현역 병사에 준하는 급여를 지급받는 병역의무수행자입니다.\n - (국방부) 현역병, 상근예비역, (병무청) 사회복무요원, (법무부) 대체복무요원"
+        }
+      ],
+      "exclusions": [],
+      "structured_hints": {
+        "region_scope": "전국",
+        "current_status": "기타",
+        "special_targets": "군인"
+      },
+      "source_url": "https://www.mnd.go.kr/mbshome/mbs/mnd/subview.jsp?id=mnd_011302000000",
+      "note": "조건 원문 보관용. AND·OR 완전성과 제외조건은 미검증; 백엔드 신청가능 확정 금지"
+    },
+    "eligibility_verified": false,
+    "application_process": [
+      "입영 전 가입할 은행(2개 이상) 계좌 개설 및 은행 앱 설치(사전 로그인)",
+      "가입자격확인서 발급 앱 ‘나라사랑포털’ 설치(가입자격확인서는 입영 후 발급 가능)",
+      "신병교육기관 교육 중 협약은행에서 부대방문 후 가입절차 진행",
+      "교육 종료 후 자대 전입 후 휴가/외출 시 은행 방문 후 대면 가입",
+      "현역, 상근예비역 : 국방인사정보체계에서 “가입자격확인서” 발급",
+      "사회복무요원 : (온라인) 사회복무포털에서 신청, (오프라인) 소속 복무기관 담당자가 발급",
+      "대체복무요원 : 소속 복무기관 담당자가 발급",
+      "2개 은행 가입 시 : 확인서 2부 필요",
+      "현역, 상근예비역 비대면 가입 - 나라사랑포털 APP 접속 비대면 가입",
+      "대리자(부모님) 가입 - 가족관계증명서(주민번호 13자리 반드시 포함), 부모님 신분증, 가입자격확인서 지참 후 은행 방문 가입"
+    ],
+    "required_documents": null,
+    "classification_method": "규칙 기반",
+    "classification_status": "확정",
+    "last_verified_at": null,
+    "last_collected_at": "2026-10-09T06:01:27+09:00",
+    "updated_at": "2026-10-09T06:01:27+09:00"
+  },
+  {
+    "policy_id": "93a25dc3-6bcf-5e6b-85b4-6936ce1e18d8",
+    "title": "전문기술인재 장학금 지원",
+    "category_id": null,
+    "collection_domain": "장학·금융",
+    "target_summary": "대한민국 국적 소지자로서 사업 참여 전문대학 재학생 중 종합적 취업 역량 개발 노력과 성취가 우수한 학생",
+    "support_content": "□ Ⅰ유형: 등록금 전액 및 생활비 학기당 250만원\n□ Ⅱ유형: 등록금 전액\n○ 등록금 범위 내 필수경비만 지원\n※ 수업료로 명시된 항목만 지원(실습비, 실습수업료 등 기타 징수금 제외)\n○ 대상학교 : 고등교육법 제2조제4호에 해당하는 전문대학\n○ 지원대상 : 사업 참여대학 재학생 중 취업 역량 개발 노력과 성취가 우수한 학생",
+    "benefit_type": "장학금",
+    "min_age": null,
+    "max_age": null,
+    "income_condition": null,
+    "application_start_date": "2026-07-01",
+    "application_end_date": null,
+    "recruitment_status": "기간 미정",
+    "application_method": "1. 대학\n- [대학] ‘사업참여’ 신청(재단 대학/기관관리자 학자금지원시스템)\n\n2. 한국장학재단 : 대학별 배정인원 안내\n\n3. 대학/학생\n- [대학] 자체선발기준에 의거 장학생 선발·추천\n- [학생] 대상자 신청\n\n4. 한국장학재단\n- 대학추천자 자격심사\n- 장학생 최종 선정 및 발표\n- 장학금 지원(소속대학으로 일괄 지급)",
+    "application_url": null,
+    "official_url": "https://www.kosaf.go.kr/ko/scholar.do?pg=scholarship05_12_01",
+    "eligibility_conditions": {
+      "verification": "확인필요",
+      "logic": "UNVERIFIED",
+      "required": [
+        {
+          "operator": "RAW",
+          "text": "대한민국 국적 소지자로서 사업 참여 전문대학 재학생 중 종합적 취업 역량 개발 노력과 성취가 우수한 학생"
+        }
+      ],
+      "exclusions": [
+        {
+          "operator": "NOT",
+          "condition": {
+            "operator": "RAW",
+            "text": "전문기술석사학위 과정 대학원생, 동일 학기 한국장학재단 타 우수·취업연계 장학금 수혜자 등 공식 선발 제외대상"
+          }
+        }
+      ],
+      "structured_hints": {
+        "region_scope": "전국",
+        "current_status": "대학생(재학|휴학)"
+      },
+      "source_url": "https://www.kosaf.go.kr/ko/scholar.do?pg=scholarship05_12_01",
+      "note": "조건 원문 보관용. AND·OR 완전성과 제외조건은 미검증; 백엔드 신청가능 확정 금지"
+    },
+    "eligibility_verified": false,
+    "application_process": [
+      "대학] ‘사업참여’ 신청(재단 대학/기관관리자 학자금지원시스템)",
+      "대학] 자체선발기준에 의거 장학생 선발·추천",
+      "학생] 대상자 신청",
+      "대학추천자 자격심사",
+      "장학생 최종 선정 및 발표",
+      "장학금 지원(소속대학으로 일괄 지급)"
+    ],
+    "required_documents": null,
+    "classification_method": "규칙 기반",
+    "classification_status": "확정",
+    "last_verified_at": null,
+    "last_collected_at": "2026-10-09T06:01:27+09:00",
+    "updated_at": "2026-10-09T06:01:27+09:00"
+  },
+  {
+    "policy_id": "6e5635a1-4c39-5467-bcdc-a3c77c6ce481",
+    "title": "전문대학 글로벌 현장학습",
+    "category_id": null,
+    "collection_domain": "장학·금융",
+    "target_summary": "전문대 2학기 이상을 이수한 재학생",
+    "support_content": "참가학생 1인당 500~900만원 내외 지원\n* 항공료, 비자발급비, 인턴십 관리운영비, 보험료 등",
+    "benefit_type": null,
+    "min_age": null,
+    "max_age": null,
+    "income_condition": null,
+    "application_start_date": null,
+    "application_end_date": null,
+    "recruitment_status": "기간 미정",
+    "application_method": "(대학선발) 각 대학 사업계획서 서면평가를 통해 선발학생 TO 배분\n(학생선발) 대학이 배정된 예산·인원 범위 내에서 자체기준에 따라 선발",
+    "application_url": null,
+    "official_url": "https://www.kcce.or.kr/web/majorBusiness/webInternationExchange.do",
+    "eligibility_conditions": {
+      "verification": "확인필요",
+      "logic": "UNVERIFIED",
+      "required": [
+        {
+          "operator": "RAW",
+          "text": "전문대 2학기 이상을 이수한 재학생"
+        }
+      ],
+      "exclusions": [],
+      "structured_hints": {
+        "region_scope": "전국",
+        "current_status": "대학생(재학|휴학)"
+      },
+      "source_url": "https://www.kcce.or.kr/web/majorBusiness/webInternationExchange.do",
+      "note": "조건 원문 보관용. AND·OR 완전성과 제외조건은 미검증; 백엔드 신청가능 확정 금지"
+    },
+    "eligibility_verified": false,
+    "application_process": [
+      "신청서 접수",
+      "대학선정",
+      "신청결과",
+      "대학통보",
+      "한-아세안 고등직업교육기관 간 파트너십 기반 조성 및 전문기술분야의 글로벌 전문기술인재 양성 도모",
+      "한-아세안 쌍방향 인적교류를 통한 전문기술교육분야 협력 기반 조성 및 지역전문가 양성"
+    ],
+    "required_documents": null,
+    "classification_method": "규칙 기반",
+    "classification_status": "확정",
+    "last_verified_at": null,
+    "last_collected_at": "2026-10-09T06:01:27+09:00",
+    "updated_at": "2026-10-09T06:01:27+09:00"
+  },
+  {
+    "policy_id": "f4740009-6352-5a12-b3a5-1ee999726f13",
+    "title": "주거안정월세대출",
+    "category_id": null,
+    "collection_domain": "장학·금융",
+    "target_summary": null,
+    "support_content": "□ 대출금리\n(우대형) 연 1.3% (일반형) 연 1.8%\n\n□ 대출한도: 다음 중 작은 금액으로 산정\n○ 호당대출한도: 최대 1,440만원 (매월 최대 60만원 이내)\n※ 주거급여 수급자의 경우 대출한도에서 주거급여 수급액 금액만큼 제외\n○ 담보별 대출한도: 한국주택금융공사 전세대출보증 : 해당 보증 규정에 따름\n\n□ 대출기간: 2년(최장 10년 이용 가능)",
+    "benefit_type": "대출·융자",
+    "min_age": null,
+    "max_age": null,
+    "income_condition": "소득최대금액=5000",
+    "application_start_date": null,
+    "application_end_date": null,
+    "recruitment_status": "기간 미정",
+    "application_method": "□ 온라인 신청: 기금e든든 홈페이지(https://enhuf.molit.go.kr)에서 가능\n□ 은행 방문 신청 기금 수탁은행인 우리, 신한, 국민, 농협, 하나은행에서 가능\n ※ 이용 가능 지점은 은행 상황에 따라 다를 수 있음",
+    "application_url": "https://enhuf.molit.go.kr/",
+    "official_url": "https://nhuf.molit.go.kr/FP/FP05/FP0502/FP05020201.jsp",
+    "eligibility_conditions": {
+      "verification": "확인필요",
+      "logic": "UNVERIFIED",
+      "required": [],
+      "exclusions": [
+        {
+          "operator": "NOT",
+          "condition": {
+            "operator": "RAW",
+            "text": "대출접수일 현재 공공임대주택에 입주하고 있는 경우 불가\n※ 대출신청 물건지가 해당 목적물인 경우 또는 대출신청인 및 배우자가 퇴거하는 경우 대출가능"
+          }
+        }
+      ],
+      "structured_hints": {
+        "region_scope": "전국",
+        "home_ownership": "무주택"
+      },
+      "source_url": "https://nhuf.molit.go.kr/FP/FP05/FP0502/FP05020201.jsp",
+      "note": "조건 원문 보관용. AND·OR 완전성과 제외조건은 미검증; 백엔드 신청가능 확정 금지"
+    },
+    "eligibility_verified": false,
+    "application_process": [
+      "온라인 신청: 기금e든든 홈페이지(https://enhuf.molit.go.kr)에서 가능",
+      "은행 방문 신청 기금 수탁은행인 우리, 신한, 국민, 농협, 하나은행에서 가능"
+    ],
+    "required_documents": null,
+    "classification_method": "규칙 기반",
+    "classification_status": "확정",
+    "last_verified_at": null,
+    "last_collected_at": "2026-10-09T06:01:27+09:00",
+    "updated_at": "2026-10-09T06:01:27+09:00"
+  },
+  {
+    "policy_id": "9320f32f-c42b-518d-ba1d-4bd2a7d4c820",
+    "title": "청년층 학자금 대출자 상환부담 완화",
+    "category_id": null,
+    "collection_domain": "장학·금융",
+    "target_summary": null,
+    "support_content": "ㅇ(상환유예) 근로소득 또는 사업소득이 발생하여 상환의무를 부담하게 된 채무자가 일정한 사유에 해당하는 경우 상환을 유예\n※ 상환유예 신청요건 및 유예기간 \n① 신청요건\n-(대학(원)생)대학(원) 재학\n-(폐업 등으로 경제적 사정이 곤란한 경우) 폐업·실(퇴)직·육아휴직자, 재난사태·특별재난지역으로 선포된 지역의 거주자(선포된 이후 2년이내 거주자만 가능)\n② 유예 기간\n-(대학(원)생) 신청일부터 4년이 되는 날이 속하는 해의 12월 31일까지\n-(폐업 등으로 경제적 사정이 곤란한 경우) 신청일부터 2년이 되는 날이 속하는 해의 12월 31일까지\n * 폐업 등으로 경제적 사정이 곤란한 경우 : 상환유예 기간에 발생하는 이자 면제(취업 후 학자금상환 특별법 제16조의2 제4항)\n\nㅇ(상환유예 신청 간소화) 폐업 및 실·퇴직 사유로 상환유예 신청시 폐업(퇴직)증명서 등의 증빙서류 제출없이 상환유예 신청이 가능하도록 개선\n ⇒ 국세청 폐업자료, 건강보험공단 자격상실자료를 활용하여 신청인의 폐업 및 실·퇴직 여부를 자동으로 확인\n\nㅇ(상환유예 사전안내) 의무상환 대상자 중 재학생·퇴직자·재난피해자 정보를 미리 수집하여 상환유예 신청안내문을 발송하는 등 선제적으로 안내",
+    "benefit_type": null,
+    "min_age": null,
+    "max_age": null,
+    "income_condition": null,
+    "application_start_date": null,
+    "application_end_date": null,
+    "recruitment_status": "기간 미정",
+    "application_method": "국세청 취업 후 학자금상환 홈페이지 또는 관할 세무서로 방문･우편신청",
+    "application_url": "https://www.icl.go.kr",
+    "official_url": "https://www.icl.go.kr",
+    "eligibility_conditions": {
+      "verification": "확인필요",
+      "logic": "UNVERIFIED",
+      "required": [],
+      "exclusions": [],
+      "structured_hints": {
+        "region_scope": "전국"
+      },
+      "source_url": "https://www.icl.go.kr",
+      "note": "조건 원문 보관용. AND·OR 완전성과 제외조건은 미검증; 백엔드 신청가능 확정 금지"
+    },
+    "eligibility_verified": false,
+    "application_process": [
+      "국세청 취업 후 학자금상환 홈페이지 또는 관할 세무서로 방문･우편신청"
+    ],
+    "required_documents": null,
+    "classification_method": "규칙 기반",
+    "classification_status": "확정",
+    "last_verified_at": null,
+    "last_collected_at": "2026-10-09T06:01:27+09:00",
+    "updated_at": "2026-10-09T06:01:27+09:00"
+  },
+  {
+    "policy_id": "56d2a9b3-bdf5-5f27-a314-20d2f1807f22",
+    "title": "푸른등대 기부장학금",
+    "category_id": null,
+    "collection_domain": "장학·금융",
+    "target_summary": "신청자격 등은 기부자별로 상이하므로 각 기부자별 사업 계획서 확인 후 신청",
+    "support_content": "2026년 2학기 푸른등대 기부장학금 안내\nㅇ 푸른등대 기부장학금: 법인, 개인 기부금으로 다양한 분야의 저소득층 우수 대학생에게 생활비를 지원하는 장학금\nㅇ 지원 대상: 대한민국 국적의 국내 대학교 재학생\n※ 단, 신청자격은 기부자별로 상이하므로 각 기부자별 사업 계획서 확인 후 신청\nㅇ 선발 규모: 총 1,065명 선발(총 22억 700만 원 지원 예정)\nㅇ 지원 금액: 1인당 생활비 장학금 150만 원 ~ 400만 원 지급\nㅇ 신청 기간: 2026. 8. 26.(수) 9시 ~ 9. 10.(목) 18시\n※ 주말 및 공휴일 포함 신청기간 내 24시간 신청 가능 (단, 마감일 제외)\nㅇ 신청 방법: 한국장학재단 누리집(www.kosaf.go.kr) 또는 모바일 앱\nㅇ 신청 문의: 1599-2290(한국장학재단 상담센터)\nㅇ 결과 발표: 2026년 10월 말 예정",
+    "benefit_type": "장학금",
+    "min_age": null,
+    "max_age": null,
+    "income_condition": null,
+    "application_start_date": "2026-08-26",
+    "application_end_date": "2026-09-10",
+    "recruitment_status": "마감",
+    "application_method": "한국장학재단 누리집(www.kosaf.go.kr) 또는 모바일 앱",
+    "application_url": null,
+    "official_url": "https://www.kosaf.go.kr/",
+    "eligibility_conditions": {
+      "verification": "확인필요",
+      "logic": "UNVERIFIED",
+      "required": [
+        {
+          "operator": "RAW",
+          "text": "신청자격 등은 기부자별로 상이하므로 각 기부자별 사업 계획서 확인 후 신청"
+        }
+      ],
+      "exclusions": [],
+      "structured_hints": {
+        "region_scope": "전국",
+        "current_status": "대학생(재학|휴학)"
+      },
+      "source_url": "https://www.kosaf.go.kr/",
+      "note": "조건 원문 보관용. AND·OR 완전성과 제외조건은 미검증; 백엔드 신청가능 확정 금지"
+    },
+    "eligibility_verified": false,
+    "application_process": null,
+    "required_documents": null,
+    "classification_method": "규칙 기반",
+    "classification_status": "확정",
+    "last_verified_at": null,
+    "last_collected_at": "2026-10-09T06:01:27+09:00",
+    "updated_at": "2026-10-09T06:01:27+09:00"
+  },
+  {
+    "policy_id": "f25f3514-af60-5cd8-9bb9-ca093d7a4740",
+    "title": "희망사다리장학금 1유형(중소기업 취업연계)",
+    "category_id": null,
+    "collection_domain": "장학·금융",
+    "target_summary": "대한민국 국적자로 사업 참여대학에 재학 중인 자 / 일반대 3학년 이상 또는 전문대 2학년 이상 / 중소·중견기업 취업 또는 창업 희망자·기취창업자 등 유형별 요건",
+    "support_content": "대한민국 국적자로 대학 3학년 이상, 전문대학 2학년 이상 재학중인 대학생 중 중소·중견기업 취업 또는 창업을 희망하는 자에게 등록금 및 취창업장려금 지원",
+    "benefit_type": "장학금",
+    "min_age": null,
+    "max_age": null,
+    "income_condition": null,
+    "application_start_date": "2026-09-01",
+    "application_end_date": "2026-09-18",
+    "recruitment_status": "마감",
+    "application_method": "재단 홈페이지 신청 (온라인사전교육 및 진단평가 이수 필수) / 2026년도 2학기 중소기업 취업연계 장학금(희망사다리Ⅰ유형) 참여대학 신청기간 / 2026. 8. 26 (수) ~ 2026. 9. 2. (화), 18:00까지 / ※ 참여대학 신청이 완료되어야 소속학교 학생이 장학 신청 가능 / 보증보험 동의 / 장학금 수혜학기마다 보증보험 개인정보 제공동의 필수 (※ 미동의 시 해당학기 장학금 선발절차에서 최종 탈락됨에 유의) / 보증보험 동의는 장학금 수혜 이후 환수사유 발생 시 재단에서 직접 채권을 회수하기 위함이며, 보증보험사에 환수대상금액에 대한 대위변제 청구를 통해 채권 회수 절차 진행",
+    "application_url": null,
+    "official_url": "https://www.kosaf.go.kr/ko/scholar.do?pg=scholarship05_14_01",
+    "eligibility_conditions": {
+      "verification": "확인필요",
+      "logic": "UNVERIFIED",
+      "required": [
+        {
+          "operator": "RAW",
+          "text": "대한민국 국적자로 사업 참여대학에 재학 중인 자 / 일반대 3학년 이상 또는 전문대 2학년 이상 / 중소·중견기업 취업 또는 창업 희망자·기취창업자 등 유형별 요건"
+        }
+      ],
+      "exclusions": [],
+      "structured_hints": {
+        "region_scope": "전국",
+        "current_status": "대학생(재학|휴학)"
+      },
+      "source_url": "https://www.kosaf.go.kr/ko/scholar.do?pg=scholarship05_14_01",
+      "note": "조건 원문 보관용. AND·OR 완전성과 제외조건은 미검증; 백엔드 신청가능 확정 금지"
+    },
+    "eligibility_verified": false,
+    "application_process": [
+      "재단 홈페이지 신청 (온라인사전교육 및 진단평가 이수 필수)",
+      "2026년도 2학기 중소기업 취업연계 장학금(희망사다리Ⅰ유형) 참여대학 신청기간",
+      "※ 참여대학 신청이 완료되어야 소속학교 학생이 장학 신청 가능",
+      "보증보험 동의",
+      "장학금 수혜학기마다 보증보험 개인정보 제공동의 필수 (※ 미동의 시 해당학기 장학금 선발절차에서 최종 탈락됨에 유의)",
+      "보증보험 동의는 장학금 수혜 이후 환수사유 발생 시 재단에서 직접 채권을 회수하기 위함이며, 보증보험사에 환수대상금액에 대한 대위변제 청구를 통해 채권 회수 절차 진행",
+      "(장학생 의무사항) 보증보험 동의 안내 문자(알림톡)를 포함한 장학사업 관련 문자(알림톡) 정상 수신을 위해 연락처 변경 시 재단 홈페이지 내 개인정보 최신화(업데이트) 필수",
+      "※ 개인정보(연락처 등)를 최신화 하지 않아서 생기는 불이익(보증보험 문자 미수신으로 인한 장학생 선발 탈락 등)에 대해서는 책임지지 않음에 유의"
+    ],
+    "required_documents": null,
+    "classification_method": "규칙 기반",
+    "classification_status": "확정",
+    "last_verified_at": null,
+    "last_collected_at": "2026-10-09T06:01:27+09:00",
+    "updated_at": "2026-10-09T06:01:27+09:00"
+  },
+  {
+    "policy_id": "4c574be8-c8d9-55bc-bfb2-5b9163c991fe",
+    "title": "희망사다리장학금 2유형(고졸 후학습자)",
+    "category_id": null,
+    "collection_domain": "장학·금융",
+    "target_summary": "대한민국 국적의 대학 재학생 / 최종학력이 고졸인 자 / 직전학기 백분위 70점 이상 / 2026-07-01 기준 재직기간 2년 이상(중소·중견기업 재직자는 1년 이상) 등",
+    "support_content": "대한민국 국적자로 고등학교 졸업 후 재직 중 진학하여 재학 중인 자 등에게 (장학금) 정규학기(계절학기 제외) 등록금 지원\n(중소·중견기업 재직: 전액)\n(비영리기관·대기업 재직: 50%)",
+    "benefit_type": "장학금",
+    "min_age": null,
+    "max_age": null,
+    "income_condition": null,
+    "application_start_date": "2026-09-01",
+    "application_end_date": "2026-09-30",
+    "recruitment_status": "마감",
+    "application_method": "한국장학재단 홈페이지에서 신규장학생 신청 접수(학기별 접수)\n- 계속장학생은 신청절차를 간소화하고 한국장학재단에서 요건충족 여부 확인",
+    "application_url": null,
+    "official_url": "https://www.kosaf.go.kr/ko/notice.do?ctgrId1=0000000002&ctgrId2=0000000014&mode=view&page=1&searchStr=&searchType=&seqNo=21320",
+    "eligibility_conditions": {
+      "verification": "확인필요",
+      "logic": "UNVERIFIED",
+      "required": [
+        {
+          "operator": "RAW",
+          "text": "대한민국 국적의 대학 재학생 / 최종학력이 고졸인 자 / 직전학기 백분위 70점 이상 / 2026-07-01 기준 재직기간 2년 이상(중소·중견기업 재직자는 1년 이상) 등"
+        }
+      ],
+      "exclusions": [],
+      "structured_hints": {
+        "region_scope": "전국",
+        "current_status": "대학생(재학|휴학)|직장인",
+        "final_education": "고등학교 졸업",
+        "special_targets": "중소·중견기업 재직자"
+      },
+      "source_url": "https://www.kosaf.go.kr/ko/notice.do?ctgrId1=0000000002&ctgrId2=0000000014&mode=view&page=1&searchStr=&searchType=&seqNo=21320",
+      "note": "조건 원문 보관용. AND·OR 완전성과 제외조건은 미검증; 백엔드 신청가능 확정 금지"
+    },
+    "eligibility_verified": false,
+    "application_process": [
+      "한국장학재단 홈페이지에서 신규장학생 신청 접수(학기별 접수)",
+      "계속장학생은 신청절차를 간소화하고 한국장학재단에서 요건충족 여부 확인"
+    ],
+    "required_documents": null,
+    "classification_method": "규칙 기반",
+    "classification_status": "확정",
+    "last_verified_at": null,
+    "last_collected_at": "2026-10-09T06:01:27+09:00",
+    "updated_at": "2026-10-09T06:01:27+09:00"
+  },
+  {
+    "policy_id": "a8c12910-623b-5e26-99f2-6985684349dd",
+    "title": "부산 청년 신용회복 지원",
+    "category_id": null,
+    "collection_domain": "장학·금융",
+    "target_summary": "※ 신청일 기준 주민등록상 부산시 거주\r\n ※ 연체예방비용 지원: 최근 3개월 월 평균 소득 50만원 이상, 연체가능성이 있거나 최근 3개월 이내 연체이력이 있는 청년",
+    "support_content": "○ 지원내용\r\n - 1:1 맞춤형 재무상담 지원\r\n - 채무조정 및 연체예방 비용 지원\r\n - 청년 맞춤형 경제교육 지원",
+    "benefit_type": "신용·채무 지원",
+    "min_age": 18,
+    "max_age": 39,
+    "income_condition": null,
+    "application_start_date": null,
+    "application_end_date": null,
+    "recruitment_status": "기간 미정",
+    "application_method": "부산신용보증재단 상담 후 신청",
+    "application_url": "https://xn--660b26n03cj7dpsuwgp.kr/main/",
+    "official_url": "https://young.busan.go.kr/index.nm?menuCd=54",
+    "eligibility_conditions": {
+      "verification": "확인필요",
+      "logic": "UNVERIFIED",
+      "required": [
+        {
+          "operator": "RAW",
+          "text": "※ 신청일 기준 주민등록상 부산시 거주\r\n ※ 연체예방비용 지원: 최근 3개월 월 평균 소득 50만원 이상, 연체가능성이 있거나 최근 3개월 이내 연체이력이 있는 청년"
+        }
+      ],
+      "exclusions": [
+        {
+          "operator": "NOT",
+          "condition": {
+            "operator": "RAW",
+            "text": "자 / 한국장학재단 학자금대출 신용회복지원 사업, 학자금대출 성실상환자 조기상환지원 사업 참여자 / 최초 상담 시 신용회복위원회 채무조정 및 개인회생, 새출발기금 등 채무조정을 이미 신청한 경우 / 맞춤형 교육 / 금융기초, 신용관리, 진로탐색, 대인관계 관리법 등 청년세대의 관심분야에 대한 맞춤형 교육 제공 / 집합교육 : 주제선정 후 강사 초청, 소규모 토론 참여형 교육 / 온라인교육 : 신용회복위원회 신용교육원 회원가입 후 수강 / 이야기 소모임 : 관심 있는 공통주제 선정하여 정보공유 및 지식확장 / 찾아가는 재무상담·금융교육 : 직접 찾아가는 1:1 재무상담, 금융교육 / 상담비용 : / 전액무료"
+          }
+        }
+      ],
+      "structured_hints": {
+        "age": {
+          "min": 18,
+          "max": 39
+        },
+        "region_scope": "부산"
+      },
+      "source_url": "https://young.busan.go.kr/index.nm?menuCd=54",
+      "note": "조건 원문 보관용. AND·OR 완전성과 제외조건은 미검증; 백엔드 신청가능 확정 금지"
+    },
+    "eligibility_verified": false,
+    "application_process": null,
+    "required_documents": [
+      "신청당일 주민등록등(초)본 1부"
+    ],
+    "classification_method": "규칙 기반",
+    "classification_status": "확정",
+    "last_verified_at": null,
+    "last_collected_at": "2026-10-09T06:01:27+09:00",
+    "updated_at": "2026-10-09T06:01:27+09:00"
+  },
+  {
+    "policy_id": "8d651974-47aa-57e9-946f-aee951fb53f3",
+    "title": "부산 청년 임차보증금 대출 및 대출이자 지원(머물자리론)",
+    "category_id": null,
+    "collection_domain": "장학·금융",
+    "target_summary": "- 주민등록상 부산거주 무주택 청년 세대주\r\n - 주택기준 : 임차보증금 2억원 이하 \r\n - 임대차계약을 체결하고 임차보증금 5% 이상을 지불한 자",
+    "support_content": "임차보증금 최대 1억원 이내(임차보증금의 90% 범위) 대출 / 부산시 이자지원: 소득기준에 따라 2.0~3.0% 지원",
+    "benefit_type": "이자·보증료 지원",
+    "min_age": 19,
+    "max_age": 39,
+    "income_condition": "본인 연소득 6,000만원 이하 / 부부합산 연소득 1억원 이하",
+    "application_start_date": null,
+    "application_end_date": null,
+    "recruitment_status": "기간 미정",
+    "application_method": "부산청년플랫폼 누리집 온라인 신청",
+    "application_url": null,
+    "official_url": "https://young.busan.go.kr/index.nm?menuCd=0",
+    "eligibility_conditions": {
+      "verification": "확인필요",
+      "logic": "UNVERIFIED",
+      "required": [
+        {
+          "operator": "RAW",
+          "text": "- 주민등록상 부산거주 무주택 청년 세대주\r\n - 주택기준 : 임차보증금 2억원 이하 \r\n - 임대차계약을 체결하고 임차보증금 5% 이상을 지불한 자"
+        }
+      ],
+      "exclusions": [
+        {
+          "operator": "NOT",
+          "condition": {
+            "operator": "RAW",
+            "text": "- 신혼부부 (혼인신고일 기준 7년이내) \r\n - 기초생활(생계,주거)수급자\r\n - 부·모, 배우자의 부·모와 임대차계약한 자 \r\n ※ 유사사업 참여 중 이거나 수혜이력이 있는 자 등"
+          }
+        }
+      ],
+      "structured_hints": {
+        "age": {
+          "min": 19,
+          "max": 39
+        },
+        "region_scope": "부산",
+        "home_ownership": "무주택"
+      },
+      "source_url": "https://young.busan.go.kr/index.nm?menuCd=0",
+      "note": "조건 원문 보관용. AND·OR 완전성과 제외조건은 미검증; 백엔드 신청가능 확정 금지"
+    },
+    "eligibility_verified": false,
+    "application_process": [
+      "부산청년플랫폼 누리집 온라인 신청"
+    ],
+    "required_documents": null,
+    "classification_method": "규칙 기반",
+    "classification_status": "확정",
+    "last_verified_at": null,
+    "last_collected_at": "2026-10-09T06:01:27+09:00",
+    "updated_at": "2026-10-09T06:01:27+09:00"
+  },
+  {
+    "policy_id": "601c5c0b-0e88-5614-88cd-eb58bfc61051",
+    "title": "부산 청년 자산형성 지원(부산청년 기쁨두배통장)",
+    "category_id": null,
+    "collection_domain": "장학·금융",
+    "target_summary": "※ 사업자의 경우 본인 명의 사업자등록증 \r\n ※ 공고일 기준 주민등록상 부산시 거주",
+    "support_content": "○ 지원내용 : 청년 10만원 저축시 1:1 市 매칭 지원, 금융교육\r\n ※ 저축기간 24개월 또는 36개월",
+    "benefit_type": "저축·자산형성",
+    "min_age": 18,
+    "max_age": 39,
+    "income_condition": "기준중위소득 150%이하(월 소득 3,847천원 이하) / 건강보험료로 판단 : 직장가입자 138,780원 지역가입자 68,641원",
+    "application_start_date": "2026-08-10",
+    "application_end_date": "2026-08-21",
+    "recruitment_status": "마감",
+    "application_method": "'부산청년 기쁨두배 통장' 홈페이지 온라인 신청 / '부산청년 기쁨두배 통장' 바로가기",
+    "application_url": "http://www.boogi2.kr",
+    "official_url": "https://young.busan.go.kr/index.nm?menuCd=53",
+    "eligibility_conditions": {
+      "verification": "확인필요",
+      "logic": "UNVERIFIED",
+      "required": [
+        {
+          "operator": "RAW",
+          "text": "※ 사업자의 경우 본인 명의 사업자등록증 \r\n ※ 공고일 기준 주민등록상 부산시 거주"
+        }
+      ],
+      "exclusions": [
+        {
+          "operator": "NOT",
+          "condition": {
+            "operator": "RAW",
+            "text": "※ 유사사업 참여 중 이거나 수혜이력이 있는 자, 본인 명의 통장개설이 불가능한 자 등"
+          }
+        }
+      ],
+      "structured_hints": {
+        "age": {
+          "min": 18,
+          "max": 39
+        },
+        "region_scope": "부산",
+        "current_status": "직장인|자영업자"
+      },
+      "source_url": "https://young.busan.go.kr/index.nm?menuCd=53",
+      "note": "조건 원문 보관용. AND·OR 완전성과 제외조건은 미검증; 백엔드 신청가능 확정 금지"
+    },
+    "eligibility_verified": false,
+    "application_process": [
+      "'부산청년 기쁨두배 통장' 홈페이지 온라인 신청",
+      "추첨으로 선정"
+    ],
+    "required_documents": null,
+    "classification_method": "규칙 기반",
+    "classification_status": "확정",
+    "last_verified_at": null,
+    "last_collected_at": "2026-10-09T06:01:27+09:00",
+    "updated_at": "2026-10-09T06:01:27+09:00"
+  },
+  {
+    "policy_id": "bbc2824a-3f90-5d48-b45e-733ca336127c",
+    "title": "학자금 대출 성실상환자 조기상환 지원",
+    "category_id": null,
+    "collection_domain": "장학·금융",
+    "target_summary": "신청일 기준 주민등록상 부산광역시에 주소를 둔 만 18~34세 이하 청년 중 한국장학재단 학자금대출 분할상환약정 체결 후 1년 이상 경과, 약정금액 50% 이상 상환, 연체 93일 미만 요건을 충족하는 자",
+    "support_content": "사업대상 : / 신청일 기준 주민등록상 부산광역시에 주소를 둔 만18~34세 이하 청년 중 아래 기준을 충족하는 자 / 학자금대출 6개월 이상 장기연체자 중 / 한국장학재단 학자금대출 분할상환약정체결일로부터 1년 이상 경과 / 분할상환약정금액 50% 이상 상환 / 연체 93일 미만 / ※ 신청 전 분할상환약정 체결 현황 등 상세 내용 확인 → 한국장학재단 신용회복지원상담센터 ☎1599-2250 / ※ 타 지방자치단체에서 학자금대출 성실상환자 조기상환지원과 유사한 지원을 받은 경우 지원 불가",
+    "benefit_type": "신용·채무 지원",
+    "min_age": 18,
+    "max_age": 34,
+    "income_condition": null,
+    "application_start_date": "2023-03-13",
+    "application_end_date": "2023-04-11",
+    "recruitment_status": "마감",
+    "application_method": "청년정책플랫폼 온라인 신청서 작성·제출",
+    "application_url": null,
+    "official_url": "https://young.busan.go.kr/index.nm?menuCd=184",
+    "eligibility_conditions": {
+      "verification": "확인필요",
+      "logic": "UNVERIFIED",
+      "required": [
+        {
+          "operator": "RAW",
+          "text": "신청일 기준 주민등록상 부산광역시에 주소를 둔 만 18~34세 이하 청년 중 한국장학재단 학자금대출 분할상환약정 체결 후 1년 이상 경과, 약정금액 50% 이상 상환, 연체 93일 미만 요건을 충족하는 자"
+        }
+      ],
+      "exclusions": [
+        {
+          "operator": "NOT",
+          "condition": {
+            "operator": "RAW",
+            "text": "타 지방자치단체에서 유사한 학자금대출 성실상환자 조기상환 지원을 받은 경우 지원 불가"
+          }
+        }
+      ],
+      "structured_hints": {
+        "age": {
+          "min": 18,
+          "max": 34
+        },
+        "region_scope": "부산"
+      },
+      "source_url": "https://young.busan.go.kr/index.nm?menuCd=184",
+      "note": "조건 원문 보관용. AND·OR 완전성과 제외조건은 미검증; 백엔드 신청가능 확정 금지"
+    },
+    "eligibility_verified": false,
+    "application_process": [
+      "청년정책플랫폼 온라인 신청서 작성·제출"
+    ],
+    "required_documents": [
+      "주민등록등본(신청일 기준 1개월 이내 발급, 주민등록번호 뒷자리 미포함 발급)"
+    ],
+    "classification_method": "규칙 기반",
+    "classification_status": "확정",
+    "last_verified_at": null,
+    "last_collected_at": "2026-10-09T06:01:27+09:00",
+    "updated_at": "2026-10-09T06:01:27+09:00"
+  },
+  {
+    "policy_id": "09743638-3d7d-551f-8665-f0f57073eee5",
+    "title": "학자금 대출 신용도판단 정보등록자 신용회복",
+    "category_id": null,
+    "collection_domain": "장학·금융",
+    "target_summary": "만 18~34세 이하 한국장학재단 학자금대출 신용도판단정보 등록 부산거주 청년",
+    "support_content": "사업대상 : / 만18세~34세 이하 한국장학재단에 학자금 대출 신용도판단정보 등록된 부산거주 청년 / ※ 사업신청 전 신용도판단정보 등록 여부 반드시 확인(한국장학재단 신용회복지원상담센터 ☎ 1599-2250) / ※ 타 지자체에서 유사한 학자금 대출 신용회복 지원을 받은 경우 중복 지원 불가 / ※ 신용회복위원회 통합채무조정 신청자 지원 불가 / 지원기준 / 부산광역시 : 학자금 대출 분할상환약정 체결을 위한 초입금(채무금액의 5%) 지원 / 한국장학재단 : 분할상환약정 체결을 통한 신용도판단정보 등록 해제, 지연배상금 전액 감면 등",
+    "benefit_type": "신용·채무 지원",
+    "min_age": 18,
+    "max_age": 34,
+    "income_condition": null,
+    "application_start_date": "2023-01-16",
+    "application_end_date": "2023-12-17",
+    "recruitment_status": "마감",
+    "application_method": "청년정책플랫폼 온라인 신청서 작성·제출",
+    "application_url": null,
+    "official_url": "https://young.busan.go.kr/index.nm?menuCd=50",
+    "eligibility_conditions": {
+      "verification": "확인필요",
+      "logic": "UNVERIFIED",
+      "required": [
+        {
+          "operator": "RAW",
+          "text": "만 18~34세 이하 한국장학재단 학자금대출 신용도판단정보 등록 부산거주 청년"
+        }
+      ],
+      "exclusions": [
+        {
+          "operator": "NOT",
+          "condition": {
+            "operator": "RAW",
+            "text": "타 지자체 유사 학자금대출 신용회복 지원 수혜자 / 신용회복위원회 통합채무조정 신청자"
+          }
+        }
+      ],
+      "structured_hints": {
+        "age": {
+          "min": 18,
+          "max": 34
+        },
+        "region_scope": "부산"
+      },
+      "source_url": "https://young.busan.go.kr/index.nm?menuCd=50",
+      "note": "조건 원문 보관용. AND·OR 완전성과 제외조건은 미검증; 백엔드 신청가능 확정 금지"
+    },
+    "eligibility_verified": false,
+    "application_process": [
+      "청년정책플랫폼 온라인 신청서 작성·제출"
+    ],
+    "required_documents": [
+      "주민등록등본(신청일 기준 1개월 이내 발급, 주민등록번호 뒷자리 미포함 발급)"
+    ],
+    "classification_method": "규칙 기반",
+    "classification_status": "확정",
+    "last_verified_at": null,
+    "last_collected_at": "2026-10-09T06:01:27+09:00",
+    "updated_at": "2026-10-09T06:01:27+09:00"
+  },
+  {
+    "policy_id": "25783b4b-3ed2-5162-8b97-052fb5b0ff37",
+    "title": "부산 전세보증금 반환보증 보증료 지원",
+    "category_id": null,
+    "collection_domain": "장학·금융",
+    "target_summary": "소득요건 : 연소득 (청년) 5천만원, (청년 외) 6천만원, (신혼부부) 7.5천만원 이하\r\n - 청년: 18세~39세(부산시 청년 기본조례)\r\n - 신혼부부: 혼인신고일 7년 이내, 신혼부부 유형으로 보증료 할인 받은 경우 등 연령 무관",
+    "support_content": "전세보증금 반환보증 가입을 유도하여 전세사기 피해 예방\r\n- (사업기간) 26. 1. 1. ~ 예산 소진 시까지\r\n- (추진기관) 국토교통부, 부산시, 16개 구군\r\n- (사 업 비) 1,238,000천원(국 50%, 시 50%) \r\n- (지원대상) 지원기준을 모두 충족하는 주민등록상 부산 거주 시민\r\n ▹신청인 기준 보증 효력이 유효한 전세보증금반환보증에 가입\r\n ▹임차보증금 3억원 이하\r\n ▹연소득 (청년) 5천만원, (청년 외) 6천만원, (신혼부부) 7.5천만원 이하\r\n ▹무주택 ※ 본인, 배우자 모두 무주택 / 분양권, 입주권 주택 포함\r\n- (지원내용) 전세보증금 반환보증 보증료 전부 또는 일부 지원(최대 40만원)\r\n- (지원인원) 약 4,000명",
+    "benefit_type": "이자·보증료 지원",
+    "min_age": null,
+    "max_age": null,
+    "income_condition": "신청자격요건 참조",
+    "application_start_date": "2026-01-01",
+    "application_end_date": null,
+    "recruitment_status": "기간 미정",
+    "application_method": "보증보험 가입(신청자) → 신청(정부24, 안심전세포털 등) → 접수(구군)",
+    "application_url": "https://www.gov.kr/portal/rcvfvrSvc/dtlEx/161300000103",
+    "official_url": "https://www.busan.go.kr/depart/reguarantee",
+    "eligibility_conditions": {
+      "verification": "확인필요",
+      "logic": "UNVERIFIED",
+      "required": [
+        {
+          "operator": "RAW",
+          "text": "소득요건 : 연소득 (청년) 5천만원, (청년 외) 6천만원, (신혼부부) 7.5천만원 이하\r\n - 청년: 18세~39세(부산시 청년 기본조례)\r\n - 신혼부부: 혼인신고일 7년 이내, 신혼부부 유형으로 보증료 할인 받은 경우 등 연령 무관"
+        }
+      ],
+      "exclusions": [
+        {
+          "operator": "NOT",
+          "condition": {
+            "operator": "RAW",
+            "text": "신청인 기준 보증효력이 유효한 전세보증금반환보증에 가입\r\n 임차보증금 3억원 이하, 무주택"
+          }
+        }
+      ],
+      "structured_hints": {
+        "region_scope": "부산",
+        "special_targets": "신혼부부",
+        "home_ownership": "무주택"
+      },
+      "source_url": "https://www.busan.go.kr/depart/reguarantee",
+      "note": "조건 원문 보관용. AND·OR 완전성과 제외조건은 미검증; 백엔드 신청가능 확정 금지"
+    },
+    "eligibility_verified": false,
+    "application_process": [
+      "보증보험 가입(신청자)",
+      "신청(정부24, 안심전세포털 등)",
+      "접수(구군)"
+    ],
+    "required_documents": null,
+    "classification_method": "규칙 기반",
+    "classification_status": "확정",
+    "last_verified_at": null,
+    "last_collected_at": "2026-10-09T06:01:27+09:00",
+    "updated_at": "2026-10-09T06:01:27+09:00"
+  },
+  {
+    "policy_id": "424a8bdf-fa74-555d-8964-fa98abc104c8",
+    "title": "부산 전세피해 임차인 버팀목 전세자금 대출이자 지원사업",
+    "category_id": null,
+    "collection_domain": "장학·금융",
+    "target_summary": "ㅇ 아래 요건을 모두 충족하는 자\n - 특별법에 따라 전세사기피해자(등)으로 결정된 자\n * 전세사기피해자(등)으로 결정된 날부터 3년이내 신청(법14조의2)\n - 신청일 현재, 부산광역시에 주민등록이 되어있는 무주택자\n - '23년 이후『전세피해 임차인 버팀목 전세대출*』실행자\n * 기금 저리대출, 대환 대출, 최우선변제금 버팀목 대출(무이자 초과분)\n - 전세피해 주택과 버팀목 전세대출의 주택이 부산광역시에 소재할 것\n - 피해주택 임대차계약서의 임차인과 버팀목 전세대출의 명의자 및 본 사업 신청자가 모두 피해자 본인일 것",
+    "support_content": "ㅇ전세피해 임차인 버팀목 전세대출 이자 지원\n- 지원대상: 특별법에 따른 전세사기피해자(등) 결정자로서, 「전세피해 임차인 버팀목 전세대출」을 실행한 자 [*기금 저리대출, 대환 대출, 최우선변제금 버팀목 대출(무이자초과분)]\n- 지원내용: 대출이자 실비 지원(월 최대 40만원 한도)\n- 지원기간: 선정월로부터 2년간(최대 24회차 납입분까지)\n- 지원방법: 신청인이 이자 先납부, 부산시에서 신청인 계좌로 後입금",
+    "benefit_type": "이자·보증료 지원",
+    "min_age": null,
+    "max_age": null,
+    "income_condition": null,
+    "application_start_date": null,
+    "application_end_date": null,
+    "recruitment_status": "기간 미정",
+    "application_method": "① 대출 신청\n② 대출 실행\n③ 이자지원 신청 및 이자상환내역 제출 (매월 말까지)\n④ 지원대상 적합여부 및 구비서류 검토\n⑤ 이자 지원\n⑥ 사후 관리",
+    "application_url": null,
+    "official_url": "https://www.busan.go.kr/depart/charterdamage001/1662197",
+    "eligibility_conditions": {
+      "verification": "확인필요",
+      "logic": "UNVERIFIED",
+      "required": [
+        {
+          "operator": "RAW",
+          "text": "ㅇ 아래 요건을 모두 충족하는 자\n - 특별법에 따라 전세사기피해자(등)으로 결정된 자\n * 전세사기피해자(등)으로 결정된 날부터 3년이내 신청(법14조의2)\n - 신청일 현재, 부산광역시에 주민등록이 되어있는 무주택자\n - '23년 이후『전세피해 임차인 버팀목 전세대출*』실행자\n * 기금 저리대출, 대환 대출, 최우선변제금 버팀목 대출(무이자 초과분)\n - 전세피해 주택과 버팀목 전세대출의 주택이 부산광역시에 소재할 것\n - 피해주택 임대차계약서의 임차인과 버팀목 전세대출의 명의자 및 본 사업 신청자가 모두 피해자 본인일 것"
+        }
+      ],
+      "exclusions": [
+        {
+          "operator": "NOT",
+          "condition": {
+            "operator": "RAW",
+            "text": "① (지원제외) 아래 1가지 이상 해당하는 자는 지원 대상에서 제외\n - 전세사기피해자가 거주주택을 경락받거나 신규주택을 구입하고 주택구입자금 대출에 대한 이자를 신청하는 경우\n - 「전세피해 임차인 버팀목 대출」 외 다른 전세대출 상품 이자를 신청하는 경우\n - 「긴급복지지원법」에 의한 긴급복지지원을 받고 있는 경우\n - 정부 및 지자체의 전세피해자 대상 대출이자 지원사업 참여자\n * 국민기초생활수급자 중 주거급여 수급자\n * 국토부에서 피해자 결정이 철회 또는 취소된 자(피해액 전액 회수 등)\n ② (지원종료) 아래 1가지 이상 해당하는 자는 지원종료\n - 대출기간 만료 또는 중도 상환\n - 대출 실행 후 주택취득이 확인된 경우\n - 정부 및 지자체의 전세피해자 대상 대출이자 지원사업 참여가 사후 확인된 경우\n - 관외 전출할 경우, 전출일이 속하는 달부터 지원종료\n ③ (지원중단) 대상자로 선정되었으나, 사유 없이 이자 상환내역 등 증빙자료 제출하지 않은 월에 한하여 해당월 납입분 미지급(횟수차감)\n ④ (선정취소) 거짓이나 그 밖의 부정한 방법으로 지원받은 경우 지원 전액 환수"
+          }
+        }
+      ],
+      "structured_hints": {
+        "region_scope": "부산",
+        "special_targets": "전세사기 피해자",
+        "home_ownership": "무주택"
+      },
+      "source_url": "https://www.busan.go.kr/depart/charterdamage001/1662197",
+      "note": "조건 원문 보관용. AND·OR 완전성과 제외조건은 미검증; 백엔드 신청가능 확정 금지"
+    },
+    "eligibility_verified": false,
+    "application_process": [
+      "대출 신청",
+      "대출 실행",
+      "이자지원 신청 및 이자상환내역 제출 (매월 말까지)"
+    ],
+    "required_documents": null,
+    "classification_method": "규칙 기반",
+    "classification_status": "확정",
+    "last_verified_at": null,
+    "last_collected_at": "2026-10-09T06:01:27+09:00",
+    "updated_at": "2026-10-09T06:01:27+09:00"
+  },
+  {
+    "policy_id": "71a48781-76b5-5ffc-ac20-75c1ffcb5201",
+    "title": "부산 청년내일저축계좌",
+    "category_id": null,
+    "collection_domain": "장학·금융",
+    "target_summary": null,
+    "support_content": "○ 근 거\r\n - 「국민기초생활보장법」제18조의8(자산형성지원)\r\n○ 사업내용\r\n - 3년간 매월 본인 저축액 저축 시 근로소득장려금 등 적립·지원\r\n - 본인저축액(월 10만원 이상 ~ 50만원 이하) 납입 시 30만원 적립\r\n○ 가입대상\r\n - 일하는 기준중위소득 50%이하 청년(15세~39세)\r\n○ 시행주체\r\n - 16개 구·군\r\n *재원부담: 국 90 시 7 구군 3\r\n○ 지원조건\r\n - 3년간 통장유지, 자립역량교육 이수 및 자금 사용계획서 제출 등",
+    "benefit_type": "저축·자산형성",
+    "min_age": 15,
+    "max_age": 39,
+    "income_condition": "가구소득 : 기준 중위소득 50% 이하, 근로기준 : 월 10만원 이상 근로사업소득 발생",
+    "application_start_date": "2026-05-05",
+    "application_end_date": "2026-05-20",
+    "recruitment_status": "마감",
+    "application_method": "온라인 신청 : 복지로 사이트\r\n방문 신청 : 읍면동 주민센터(주소지가 아니더라도, 동일 시군구내 모든 주민센터 신청 가능)",
+    "application_url": "https://www.bokjiro.go.kr/ssis-tbu/twataa/wlfareInfo/moveTWAT52011M.do?wlfareInfoId=WLF00000060",
+    "official_url": "https://young.busan.go.kr/index.nm?menuCd=48",
+    "eligibility_conditions": {
+      "verification": "확인필요",
+      "logic": "UNVERIFIED",
+      "required": [],
+      "exclusions": [
+        {
+          "operator": "NOT",
+          "condition": {
+            "operator": "RAW",
+            "text": "부산청년 기쁨두배통장 등 유사자산형성사업과 중복 신청 불가\r\n금융위원회 청년희망적금, 청년도약계좌는 중복 대상사업에 해당되지 않음에 따라 동시 신청 가능"
+          }
+        }
+      ],
+      "structured_hints": {
+        "age": {
+          "min": 15,
+          "max": 39
+        },
+        "region_scope": "부산"
+      },
+      "source_url": "https://young.busan.go.kr/index.nm?menuCd=48",
+      "note": "조건 원문 보관용. AND·OR 완전성과 제외조건은 미검증; 백엔드 신청가능 확정 금지"
+    },
+    "eligibility_verified": false,
+    "application_process": [
+      "온라인 신청 : 복지로 사이트",
+      "방문 신청 : 읍면동 주민센터(주소지가 아니더라도, 동일 시군구내 모든 주민센터 신청 가능)"
+    ],
+    "required_documents": null,
+    "classification_method": "규칙 기반",
+    "classification_status": "확정",
+    "last_verified_at": null,
+    "last_collected_at": "2026-10-09T06:01:27+09:00",
+    "updated_at": "2026-10-09T06:01:27+09:00"
+  },
+  {
+    "policy_id": "c8824fa0-83f9-58d1-99db-37c1138326df",
+    "title": "부산 지역인재 장학금 지원",
+    "category_id": null,
+    "collection_domain": "장학·금융",
+    "target_summary": "부산 소재 대학교 IT 및 상경 분야 재학생 중 선발 기준을 충족하는 자 / 인 원: 하반기 총 230명 / 장학금 예산 및 선발 규모 / 전체 예산 규모: 총 690,000천원 (※ 2026년 하반기 배정 예산: 345,000천원) / 하반기 선발 인원: 총 230명 (1인당 1,500천원 정액 지급) / ※ 기부기관 및 지원분야별 배정 인원 / 기부처 의견 및 부산혁신도시 전략분야(IT·상경)를 고려한 지정 공모 방식 적용 / 기부기관별 지정 조건에 따른 하반기 분야별 선발 예정 인원 / 구분, 주택도시보증공사, 한국예탁결제원, 한국주택금융공사, 합계 순으로 나열된 표 / 구분 / 주택도시보증공사 / 한국예탁결제원 / 한국주택금융공사 / 합계 / IT 분야",
+    "support_content": "① 생활장학금 지급\n - 1인당 1학기 150만원 지급(최대 4학기 이내) ※ 전문대학 2학기\n② 취업장려금 지급\n - 생활장학금 수령자 중 졸업 후 부산 지역기업에 취업시 150만원 지급(1회)",
+    "benefit_type": "장학금",
+    "min_age": null,
+    "max_age": null,
+    "income_condition": null,
+    "application_start_date": "2026-10-14",
+    "application_end_date": "2026-10-28",
+    "recruitment_status": "모집 예정",
+    "application_method": "부산청년플랫폼을 통한 온라인 접수(※ 방문, 우편 및 이메일 접수 불가)",
+    "application_url": null,
+    "official_url": "https://young.busan.go.kr/index.nm?menuCd=164",
+    "eligibility_conditions": {
+      "verification": "확인필요",
+      "logic": "UNVERIFIED",
+      "required": [
+        {
+          "operator": "RAW",
+          "text": "부산 소재 대학교 IT 및 상경 분야 재학생 중 선발 기준을 충족하는 자 / 인 원: 하반기 총 230명 / 장학금 예산 및 선발 규모 / 전체 예산 규모: 총 690,000천원 (※ 2026년 하반기 배정 예산: 345,000천원) / 하반기 선발 인원: 총 230명 (1인당 1,500천원 정액 지급) / ※ 기부기관 및 지원분야별 배정 인원 / 기부처 의견 및 부산혁신도시 전략분야(IT·상경)를 고려한 지정 공모 방식 적용 / 기부기관별 지정 조건에 따른 하반기 분야별 선발 예정 인원 / 구분, 주택도시보증공사, 한국예탁결제원, 한국주택금융공사, 합계 순으로 나열된 표 / 구분 / 주택도시보증공사 / 한국예탁결제원 / 한국주택금융공사 / 합계 / IT 분야"
+        }
+      ],
+      "exclusions": [
+        {
+          "operator": "NOT",
+          "condition": {
+            "operator": "RAW",
+            "text": "(아래 사항에 해당되는 경우는 신청이 불가함) / 학제 유형: 대학원, 계약학과, 산업체위탁학과, 평생교육원, 원격대학 (사이버대학교·방송통신대학교), 학점은행제 과정생 / 학적 상태: 공고일 현재 휴학생, 자퇴생, 제적생, 정규학기 초과자(초과학기생), 졸업유예(유보·보류)자 / 성적 미산출: 군입대·질병 휴학 등으로 직전학기(2026. 1학기) 성적이 없는 자 / ※ 단, 본교 성적이 없는 신규 편입생 중 전적 대학교의 직전학기 성적표 제출이 가능한 자는 신청 가능"
+          }
+        }
+      ],
+      "structured_hints": {
+        "region_scope": "부산",
+        "current_status": "대학생(재학|휴학)",
+        "special_targets": "지역인재"
+      },
+      "source_url": "https://young.busan.go.kr/index.nm?menuCd=164",
+      "note": "조건 원문 보관용. AND·OR 완전성과 제외조건은 미검증; 백엔드 신청가능 확정 금지"
+    },
+    "eligibility_verified": false,
+    "application_process": [
+      "부산청년플랫폼을 통한 온라인 접수(※ 방문, 우편 및 이메일 접수 불가)"
+    ],
+    "required_documents": null,
+    "classification_method": "규칙 기반",
+    "classification_status": "확정",
+    "last_verified_at": null,
+    "last_collected_at": "2026-10-09T06:01:27+09:00",
+    "updated_at": "2026-10-09T06:01:27+09:00"
+  },
+  {
+    "policy_id": "cec4d95a-3a06-5171-9183-14c4358aa440",
+    "title": "부산 학자금 대출이자 지원",
+    "category_id": null,
+    "collection_domain": "장학·금융",
+    "target_summary": "○ 지원대상 : 한국장학재단의 학자금대출을 받은 부산시 소재 대학교 대학생·대학원생 및 대학교 졸업생 중 아래 요건에 해당하는 자\n ▸ 대학(원)생 : 공고일 기준 부산지역 소재 대학(원)에 재학, 휴학 중인 자\n ▸ 대학교 졸업생(2가지 요건)\n ❶ 공고일 기준 주민등록상 부산시 거주자\n ❷ 공고일 기준 부산시 소재 대학교 졸업 후 2년 이내 미취업자",
+    "support_content": "한국장학재단 학자금대출의 2025년 7월~2026년 6월까지 발생이자(1년분) 지원 / 발생이자 금액만큼 대출계좌별 원리금에서 상환(차감) 처리",
+    "benefit_type": "이자·보증료 지원",
+    "min_age": null,
+    "max_age": null,
+    "income_condition": "공고문 확인",
+    "application_start_date": "2026-07-06",
+    "application_end_date": "2026-08-28",
+    "recruitment_status": "마감",
+    "application_method": "□ 신청기간 : 2025. 7. ~ 8월(예정)",
+    "application_url": null,
+    "official_url": "https://young.busan.go.kr/index.nm?menuCd=49",
+    "eligibility_conditions": {
+      "verification": "확인필요",
+      "logic": "UNVERIFIED",
+      "required": [
+        {
+          "operator": "RAW",
+          "text": "○ 지원대상 : 한국장학재단의 학자금대출을 받은 부산시 소재 대학교 대학생·대학원생 및 대학교 졸업생 중 아래 요건에 해당하는 자\n ▸ 대학(원)생 : 공고일 기준 부산지역 소재 대학(원)에 재학, 휴학 중인 자\n ▸ 대학교 졸업생(2가지 요건)\n ❶ 공고일 기준 주민등록상 부산시 거주자\n ❷ 공고일 기준 부산시 소재 대학교 졸업 후 2년 이내 미취업자"
+        }
+      ],
+      "exclusions": [
+        {
+          "operator": "NOT",
+          "condition": {
+            "operator": "RAW",
+            "text": "대학원 졸업생은 지원대상 제외\n대학 제적 또는 건강보험자격득실확인서 상 공고일 기준 건강보험 ‘직장가입자’인 졸업생은 지원대상 제외\n한국장학재단 홈페이지를 통하여 본인의 대출잔액 또는 이자 면제 여부 확인 후 신청"
+          }
+        }
+      ],
+      "structured_hints": {
+        "region_scope": "부산",
+        "current_status": "대학생(재학|휴학)|대학원생|취업준비생"
+      },
+      "source_url": "https://young.busan.go.kr/index.nm?menuCd=49",
+      "note": "조건 원문 보관용. AND·OR 완전성과 제외조건은 미검증; 백엔드 신청가능 확정 금지"
+    },
+    "eligibility_verified": false,
+    "application_process": [
+      "부산청년플랫폼에서 온라인 신청"
+    ],
+    "required_documents": null,
+    "classification_method": "규칙 기반",
+    "classification_status": "확정",
+    "last_verified_at": null,
+    "last_collected_at": "2026-10-09T06:01:27+09:00",
+    "updated_at": "2026-10-09T06:01:27+09:00"
+  },
+  {
+    "policy_id": "2d4b71af-026c-5648-892e-fe72b8bf8213",
+    "title": "취업장려금",
+    "category_id": null,
+    "collection_domain": "장학·금융",
+    "target_summary": null,
+    "support_content": null,
+    "benefit_type": null,
+    "min_age": null,
+    "max_age": null,
+    "income_condition": null,
+    "application_start_date": null,
+    "application_end_date": null,
+    "recruitment_status": "기간 미정",
+    "application_method": null,
+    "application_url": null,
+    "official_url": "https://young.busan.go.kr/index.nm?menuCd=230",
+    "eligibility_conditions": {
+      "verification": "확인필요",
+      "logic": "UNVERIFIED",
+      "required": [],
+      "exclusions": [],
+      "structured_hints": {
+        "region_scope": "부산",
+        "current_status": "직장인",
+        "final_education": "대학교 졸업-(2년제|4년제)",
+        "special_targets": "지역인재"
+      },
+      "source_url": "https://young.busan.go.kr/index.nm?menuCd=230",
+      "note": "조건 원문 보관용. AND·OR 완전성과 제외조건은 미검증; 백엔드 신청가능 확정 금지"
+    },
+    "eligibility_verified": false,
+    "application_process": null,
+    "required_documents": null,
+    "classification_method": "규칙 기반",
+    "classification_status": "확정",
+    "last_verified_at": null,
+    "last_collected_at": "2026-10-09T06:01:27+09:00",
+    "updated_at": "2026-10-09T06:01:27+09:00"
+  },
+  {
+    "policy_id": "5545a4eb-46bc-5c1b-987b-8efa8cc8d600",
+    "title": "(재)부산진구장학회 대학생 장학금",
+    "category_id": null,
+    "collection_domain": "장학·금융",
+    "target_summary": "보호자가 부산진구에 공고일 현재 3년 이상 계속 거주 / 전문대·4년제 대학생 / 재학생 평균성적 3.5/4.5 이상 등",
+    "support_content": "일반 대학생 350만원 / 지역인재 대학생 500만원",
+    "benefit_type": null,
+    "min_age": null,
+    "max_age": null,
+    "income_condition": "전국 가구 월평균소득(4인 기준) 이상인 자 제외 / 부모 부동산 3억5천만원 이상 소유자 제외",
+    "application_start_date": "2026-01-05",
+    "application_end_date": "2026-01-16",
+    "recruitment_status": "마감",
+    "application_method": "온라인 신청 없음 — 부산진구장학회 사무국 방문접수",
+    "application_url": null,
+    "official_url": "https://busanjinsf.kr/",
+    "eligibility_conditions": {
+      "verification": "확인필요",
+      "logic": "UNVERIFIED",
+      "required": [
+        {
+          "operator": "RAW",
+          "text": "보호자가 부산진구에 공고일 현재 3년 이상 계속 거주 / 전문대·4년제 대학생 / 재학생 평균성적 3.5/4.5 이상 등"
+        }
+      ],
+      "exclusions": [
+        {
+          "operator": "NOT",
+          "condition": {
+            "operator": "RAW",
+            "text": "전국 가구 월평균소득(4인 기준) 이상인 자 / 부모 부동산 3억5천만원 이상 소유자"
+          }
+        }
+      ],
+      "structured_hints": {
+        "region_scope": "부산진구",
+        "current_status": "대학생(재학|휴학)"
+      },
+      "source_url": "https://busanjinsf.kr/",
+      "note": "조건 원문 보관용. AND·OR 완전성과 제외조건은 미검증; 백엔드 신청가능 확정 금지"
+    },
+    "eligibility_verified": false,
+    "application_process": null,
+    "required_documents": null,
+    "classification_method": "규칙 기반",
+    "classification_status": "확정",
+    "last_verified_at": null,
+    "last_collected_at": "2026-10-09T06:01:27+09:00",
+    "updated_at": "2026-10-09T06:01:27+09:00"
+  },
+  {
+    "policy_id": "3e61c1f7-9df3-5035-ba0d-2f8ae0b4c567",
+    "title": "(재)사하구장학회 저소득 대학생 장학",
+    "category_id": null,
+    "collection_domain": "장학·금융",
+    "target_summary": "세대주 또는 보호자가 사하구에 신청일 현재 1년 이상 계속 거주 / 자립준비청년 등 저소득 대학생",
+    "support_content": "연간 학업보조비를 원칙으로 하며 수익·이사회 결정에 따라 지급",
+    "benefit_type": null,
+    "min_age": null,
+    "max_age": null,
+    "income_condition": "시행세칙상 '생활이 어려운', '저소득 대학생'으로 규정 / 구체적 소득금액 기준 공식자료 미표기",
+    "application_start_date": null,
+    "application_end_date": null,
+    "recruitment_status": "기간 미정",
+    "application_method": "온라인 신청 없음 — 복지정책과장·동장 등 추천·서류 제출 방식",
+    "application_url": null,
+    "official_url": "https://friend.saha.go.kr/portal/contents.do?mId=0507040000",
+    "eligibility_conditions": {
+      "verification": "확인필요",
+      "logic": "UNVERIFIED",
+      "required": [
+        {
+          "operator": "RAW",
+          "text": "세대주 또는 보호자가 사하구에 신청일 현재 1년 이상 계속 거주 / 자립준비청년 등 저소득 대학생"
+        }
+      ],
+      "exclusions": [],
+      "structured_hints": {
+        "region_scope": "사하구",
+        "current_status": "대학생(재학|휴학)",
+        "special_targets": "자립준비청년"
+      },
+      "source_url": "https://friend.saha.go.kr/portal/contents.do?mId=0507040000",
+      "note": "조건 원문 보관용. AND·OR 완전성과 제외조건은 미검증; 백엔드 신청가능 확정 금지"
+    },
+    "eligibility_verified": false,
+    "application_process": null,
+    "required_documents": null,
+    "classification_method": "규칙 기반",
+    "classification_status": "확정",
+    "last_verified_at": null,
+    "last_collected_at": "2026-10-09T06:01:27+09:00",
+    "updated_at": "2026-10-09T06:01:27+09:00"
+  }
+]
