@@ -6551,6 +6551,7 @@ def reprocess_saved_csv_v13(path: Path, out_dir: Path) -> tuple[list[dict[str, A
             row['비고'] = as_joined([row.get('비고'), 'v13오프라인검수=' + ', '.join(changes)])
     results, merged = _same_policy_dedupe_v13(source_rows)
     for row in results:
+        improve_extracts_v14(row)
         apply_profile_columns(row)
         apply_post_dedupe_v12(row)
     results.sort(key=lambda r: (clean_text(r.get('신청범위')), clean_text(r.get('정책명'))))
@@ -6614,22 +6615,867 @@ def run_extension_tests_v12() -> None:
 
 def _write_reprocessed_v13(out_dir: Path, results: list[dict[str, Any]], merged: list[dict[str,str]]) -> None:
     write_csv(out_dir / '01_장학금융_정책수집결과.csv', results, OUTPUT_COLUMNS)
-    write_csv(out_dir / '02_공식출처목록.csv', sources_from(results),
-              ['정책명','원문URL','신청URL','수집방식','최종확인일'])
+    write_csv(out_dir / '02_공식출처목록.csv', v16_sources_from(results),
+              ['정책명','원문URL','신청URL','수집방식','최종확인일','공식검증일'])
     write_csv(out_dir / '03_확인필요항목.csv', unresolved_from(results),
               ['data_id','정책명','확인필요_항목','비고','원문URL'])
     (out_dir / '06_JSONB_정책데이터.json').write_text(
         json.dumps([policy_to_db_v12(r) for r in results], ensure_ascii=False, indent=2), encoding='utf-8')
-    write_csv(out_dir / '09_품질검증.csv', quality_audit_v13(results),
+    write_csv(out_dir / '09_품질검증.csv', quality_audit_v16(results),
               ['정책명','지역','확인필요','신청절차항목수','신청준비물항목수'])
     write_csv(out_dir / '10_중복명칭_정리.csv', merged,
               ['대표정책','병합된명칭','지역','조치'])
 
 
+
+# =============================================================================
+# v14: 과제 제출용 실패사유 자동기록 + 수집품질 방어 규칙
+# =============================================================================
+
+FAILURE_COLS_V14 = [
+    '정책명_로그기준', '실패URL', '실패유형_로그근거', '원본오류메시지',
+    '제외여부', '제외사유', '권장확인방법', '해당필드누락의_직접원인확정',
+]
+MISSING_COLS_V14 = [
+    '정책명', '확인필요_항목', '접근실패_동일정책명_로그존재',
+    '로그에_명시된_접근실패유형', '로그에_명시된_실패URL',
+    '원인기록_판정', '검증방법', '원문URL',
+]
+
+
+def classify_fetch_issue_v14(message: str) -> tuple[str, str]:
+    """명시적 로그에 근거한 분류만. 실패를 동적 페이지/로그인 문제로 추정하지 않는다."""
+    x = clean_text(message).lower()
+    if 'robots.txt' in x or 'disallow' in x and 'robots' in x:
+        return 'robots.txt 크롤링 제한', '차단 우회 금지; 허용된 공식 API·대체 공고 또는 공식 공개 자료로 확인'
+    if any(t in x for t in ('hostname mismatch', 'certificate is not valid for', 'certificate_verify_failed', 'sslcertverificationerror')):
+        return 'SSL 인증서 검증 오류', '공식 도메인/인증서 확인, 대체 공식 출처 확인; SSL 검증 우회 금지'
+    if 'nameresolutionerror' in x or 'getaddrinfo failed' in x or 'name or service not known' in x:
+        return 'DNS 주소 해석 실패', '공식 사이트에서 도메인 및 최신 링크 확인'
+    if 'timed out' in x or 'timeout' in x:
+        return '네트워크 응답 시간 초과', '공식 사이트 부하를 고려해 재시도, 대체 공식 페이지 확인'
+    if re.search(r'\b429\b|too many requests|rate.?limit', x):
+        return '호출 제한(HTTP 429)', '공식 호출 제한과 갱신 주기 확인 후 재시도'
+    if re.search(r'\b500\b|internal server error', x):
+        return '서버 오류(HTTP 500)', '서버 오류 메시지를 보존하고 일정 시간 후 재시도'
+    if re.search(r'\b(502|503|504)\b|bad gateway|service unavailable', x):
+        return '서버 일시 오류(502/503/504)', '서비스 상태 확인 후 재시도'
+    if re.search(r'\b401\b|unauthorized|로그인\s*필요|로그인해야|login required', x):
+        return '인증/로그인 필요(근거 있음)', '합법적인 공개 API 또는 공식 공개 공고 활용; 자격증명 수집·우회 금지'
+    if re.search(r'\b403\b|forbidden|access denied|접근\s*거부', x):
+        return '접근 제한(HTTP 403 등)', '접근정책 확인 및 허용된 공식 대체 출처 검토'
+    if re.search(r'javascript (?:is )?required|enable javascript|동적\s*렌더링\s*필요', x):
+        return '동적 페이지(명시적 근거 있음)', '공식 공개 API·정적 대체 페이지가 있는지 확인'
+    if 'api' in x and ('키가 없어' in x or 'api 키' in x or 'api 탐색 실패' in x or 'api 오류' in x):
+        return 'API 호출 실패/미설정(원문 확인)', 'API 승인·키 설정·응답 형식·호출 제한 확인'
+    return '기타 오류(원본 로그 확인 필요)', '로그 원문 확인 후 실제 실패 원인을 조사하여 기록'
+
+
+def _log_entries_v14(log_row: dict[str, Any]) -> list[dict[str, str]]:
+    """기존 04 파일에서 URL별 오류를 나눠서 저장. 기존 로그 내용은 훼손하지 않음."""
+    out = []
+    for col in ('크롤링오류', '기타오류'):
+        blob = clean_text(log_row.get(col))
+        if not blob or blob in SENTINELS_V12:
+            continue
+        # 수집기 기존 포맷: '크롤링 오류 URL: 에러 | 크롤링 오류 URL: 에러'
+        parts = re.split(r'\s*\|\s*(?=크롤링 오류\s+https?://|API 오류\s*:|API 탐색 실패\s*:)', blob)
+        for part in parts:
+            piece = part.strip()
+            if not piece:
+                continue
+            m = re.match(r'^크롤링 오류\s+(https?://.+?):\s+(.+)$', piece, flags=re.S)
+            if m:
+                url, reason = m.group(1), m.group(2)
+            else:
+                urlmatch = re.search(r'for url:\s*(https?://[^\s)]+)', piece)
+                url, reason = (urlmatch.group(1) if urlmatch else ''), piece
+            category, guide = classify_fetch_issue_v14(reason)
+            out.append({
+                '정책명_로그기준': clean_text(log_row.get('정책명')),
+                '실패URL': url, '실패유형_로그근거': category,
+                '원본오류메시지': reason,
+                '제외여부': clean_text(log_row.get('제외여부')),
+                '제외사유': clean_text(log_row.get('제외사유')),
+                '권장확인방법': guide,
+                '해당필드누락의_직접원인확정': '아니오(접근실패와 필드누락의 직접 인과관계는 미검증)',
+            })
+    return out
+
+
+def report_missing_v14(results: list[dict[str, Any]], failures: list[dict[str,str]],
+                      *, log_available: bool) -> list[dict[str, str]]:
+    """누락은 확인필요. 접근 실패는 정황 증거로만 연결하고 인과관계를 단정하지 않는다."""
+    from collections import defaultdict
+    by_name = defaultdict(list)
+    # v13의 알려진 단일 별칭 외 임의 추정 매칭은 하지 않음.
+    for err in failures:
+        name = clean_text(err.get('정책명_로그기준'))
+        by_name[norm_name(name)].append(err)
+        canonical = KNOWN_SAME_POLICY_V13.get(norm_name(name))
+        if canonical:
+            by_name[norm_name(canonical)].append(err)
+    rows = []
+    for item in unresolved_from(results):
+        related = by_name.get(norm_name(item['정책명']), [])
+        types = list(dict.fromkeys(x['실패유형_로그근거'] for x in related))
+        urls = list(dict.fromkeys(x['실패URL'] for x in related if x['실패URL']))
+        # 부정 추론 금지: 같은 정책명으로 오류가 있어도 어떤 필드에 직접 영향을 주었는지는 불명.
+        if related:
+            status = '동일 정책 접근 실패 로그 확인; 개별 필드 누락과의 직접 관련성은 미확정'
+        elif not log_available:
+            status = '로그 미제공(오프라인 재검수); 미수집 원인 확인 불가'
+        else:
+            status = '동일 정책 접근 실패 기록 없음; 원문 미기재/동적 페이지/파싱 실패 등 원인 미확정'
+        rows.append({
+            '정책명': item['정책명'], '확인필요_항목': item['확인필요_항목'],
+            '접근실패_동일정책명_로그존재': '예' if related else '아니오',
+            '로그에_명시된_접근실패유형': '|'.join(types),
+            '로그에_명시된_실패URL': '|'.join(urls),
+            '원인기록_판정': status,
+            '검증방법': '공식 원문에 항목 표시 여부·로그인 요구·정적/동적 렌더링·파서 추출 실패 여부를 직접 확인 후 확정',
+            '원문URL': item['원문URL'],
+        })
+    return rows
+
+
+def write_failure_reports_v14(out_dir: Path, results: list[dict[str,Any]],
+                              log_rows: list[dict[str, Any]] | None) -> tuple[int,int]:
+    errors = []
+    for log in log_rows or []:
+        errors.extend(_log_entries_v14(log))
+    missing = report_missing_v14(results, errors, log_available=log_rows is not None)
+    # 오류가 0건이어도 헤더만 있는 11 CSV를 저장한다(매 실행 파일 존재 보장).
+    write_csv(out_dir / '11_수집접근실패원인_정리.csv', errors, FAILURE_COLS_V14)
+    write_csv(out_dir / '12_미수집항목_원인추적.csv', missing, MISSING_COLS_V14)
+    return len(errors), len(missing)
+
+
+def find_reprocess_log_v14(source_csv: Path, explicit: str) -> tuple[list[dict[str,str]] | None,str]:
+    """--logs-csv를 우선 사용하고, 기존 01과 날짜가 일치하는 04만 자동 연결."""
+    if explicit:
+        path = Path(explicit)
+        if not path.is_file():
+            raise FileNotFoundError(f'수집로그 파일을 찾을 수 없음: {path}')
+    else:
+        same_dir = source_csv.resolve().parent
+        tag = re.search(r'\d{8}-\d{6}', source_csv.name)
+        matching = list(same_dir.glob('04_수집로그*.csv'))
+        if tag:
+            matching = [x for x in matching if tag.group() in x.name]
+        if len(matching) != 1:
+            return None, '연결할 수집로그를 특정하지 못함(오프라인 모드에서 접근 실패 원인은 미확정)'
+        path = matching[0]
+    with path.open('r', encoding='utf-8-sig', newline='') as f:
+        return list(csv.DictReader(f)), f'기존 수집로그 연결: {path.name}'
+
+
+def improve_extracts_v14(row: dict[str,Any]) -> list[str]:
+    """명백한 필드 오염만 제거. 공식 근거 없는 결측치 채움/신규 값 추정 금지."""
+    changed = []
+    target = clean_text(row.get('지원대상_원문'))
+    if target and (
+        re.fullmatch(r'[\s()\[\]【】]*(?:지원자격|지원대상|대상자|신청자격|사업대상)[\s()\[\]【】]*', target)
+        or ('서류제출 :' in target and ('가구원동의' in target or '항목을 클릭' in target))
+    ):
+        row['지원대상_원문'] = EMPTY_UNKNOWN
+        changed.append('지원대상_원문:표제어·신청일정 오추출 차단')
+    income = clean_text(row.get('소득조건'))
+    if income and income not in SENTINELS_V12:
+        looks_like_calendar = (any(word in income for word in ('신청기간','접수기간','신청마감','대출실행','주말 및 공휴일'))
+                               and not re.search(r'연소득|월소득|가구소득|급여|중위소득|학자금\s*지원구간|소득금액', income))
+        looks_like_benefit = ('등록금 필수경비' in income or '범위 내에서 차등지원' in income) and not re.search(r'소득.{0,12}\d|\d\s*구간',income)
+        if looks_like_calendar or looks_like_benefit:
+            row['소득조건'] = EMPTY_UNKNOWN
+            changed.append('소득조건:신청일정·지원금 설명 오추출 차단')
+    exclude = clean_text(row.get('제외대상'))
+    if exclude not in SENTINELS_V12 and exclude:
+        for term in ('/ 맞춤형 교육 /', '/ 집합교육 :', '/ 온라인교육 :', '/ 찾아가는 재무상담', '/ 상담비용 :'):
+            if term in exclude:
+                # 제외 근거 앞부분만 보존; 첫 단어가 문장 중간이면 전체가 불명확해 원문 재확인 필요.
+                exclude = exclude.split(term, 1)[0].strip(' /')
+                row['제외대상'] = exclude if len(exclude) >= 15 and not exclude.startswith('자 /') else EMPTY_UNKNOWN
+                changed.append('제외대상:서비스 설명 혼입 제거')
+                break
+    proc = _json_col_v12(row.get('application_process'))
+    if isinstance(proc, list) and proc:
+        keep = []
+        for item in proc:
+            st = clean_text(item)
+            # 절차 한 줄에 결합된 대출상품 조건/금액은 신청행동이 아니다.
+            if re.match(r'^(?:대출금리|대출한도|호당대출한도|담보별 대출한도|소요자금에 대한 대출비율|대상주택|임차보증금|사업목적|사업 목적|목표)\b', st) or re.search(r'글로벌 전문기술인재 양성 도모|협력 기반 조성 및 지역전문가 양성', st):
+                continue
+            if not _process_valid_v13(st):
+                continue
+            if st not in keep:
+                keep.append(st)
+        if len(keep) != len(proc):
+            row['application_process'] = _field_json_v12(keep) if keep else ''
+            if not keep:
+                row['신청절차_근거URL'] = ''
+            changed.append('application_process:신청 아닌 상품조건/사업소개 제외')
+    # 구버전 결과에 API 신청방법 원문이 남아 있는 경우, 명시적인 대리 가입 서류만 복구.
+    if _json_col_v12(row.get('required_documents')) is None:
+        docs = explicit_inline_documents_v13(row)
+        if docs:
+            row['required_documents'] = _field_json_v12(docs)
+            row['신청준비물_근거URL'] = (API_URL if 'API' in clean_text(row.get('수집방식'))
+                                         else (normalize_source_url(row.get('원문URL')) or ''))
+            changed.append('required_documents:명시된 조건부 제출서류 반영')
+    # 자동 판별 과정에서 바뀐 값은 감사 추적에만 기록한다.
+    if changed:
+        row['비고'] = as_joined([row.get('비고'), 'v14정제=' + ', '.join(changed)])
+    return changed
+
+
+
+
+# 신청행동과 무관한 단독 제목·금리·보증요건은 신청절차에서 제외한다.
+_process_valid_original_v14 = _process_valid_v13
+
+def _process_valid_v13(item: str) -> bool:
+    text = _plain_line_v13(clean_text(item), 'process')
+    if re.fullmatch(r'(?:보증\s*신청\s*기한|신청\s*결과|대학\s*선정|대학\s*통보|신청\s*기간|'
+                    r'전세자금보증|HUG\s*전세금안심대출보증|HF\s*전세자금보증|보증보험\s*동의\s*안내)', text):
+        return False
+    if re.match(r'^(?:임대차\s*계약\s*(?:신규|갱신)|보증금\s*[0-9]|보증금\s*대출|'
+                r'보증금\s*대출금|대출금리|대출한도|호당대출한도|담보별\s*대출한도|'
+                r'소요자금에\s*대한\s*대출비율|대상주택|임차보증금|사업목적|사업\s*목적|목표)', text):
+        return False
+    if re.search(r'(?:문의\s*필요|문의하(?:여|세요)|문의처|콜센터|'
+                 r'보증\s*규정에\s*따름|연\s*\d+(?:\.\d+)?\s*%|\d+\s*만원\s*이하|'
+                 r'보증금액의\s*\d+\s*%|장학금\s*수혜\s*이후\s*환수사유|'
+                 r'정보\s*최신화.*불이익|본인\s*명의\s*통장\s*개설이\s*불가능)', text):
+        return False
+    if re.search(r'(?:글로벌\s*전문기술인재\s*양성|협력\s*기반\s*조성)', text):
+        return False
+    if re.search(r'^(?:※\s*)?(?:1년\s*미만|\d+년미만).*대출한도', text):
+        return False
+    if re.search(r'(?:참여대학\s*신청기간|신청기간\s*안내|개인정보\s*최신화|\b연락처\s*변경\s*시|'
+                 r'정보를\s*최신화\s*하지\s*않아서|문자\s*\(알림톡\).*불이익)', text):
+        return False
+    if re.search(r'^\d+개\s*은행\s*가입\s*시.*\d+부\s*필요', text):
+        return False
+    return _process_valid_original_v14(item)
+
+
+_benefit_type_original_v14 = benefit_type_v13
+
+def benefit_type_v13(row: dict[str, Any]) -> str | None:
+    # 'AI학업장려 학자금대출'을 장학금으로 판단하던 분류 순서 수정.
+    name, body = clean_text(row.get('정책명')), clean_text(row.get('지원내용'))
+    if '학자금대출' in name and re.search(r'대출|금리|융자|상환', body):
+        return '대출·융자'
+    return _benefit_type_original_v14(row)
+
+
+_explicit_inline_docs_original_v14 = explicit_inline_documents_v13
+
+def explicit_inline_documents_v13(row: dict[str,Any]) -> list[str] | None:
+    items = list(_explicit_inline_docs_original_v14(row) or [])
+    method = clean_text(row.get('신청방법'))
+    # 장병내일준비적금 등에서 원문에 직접 명시된 '대리자(부모님) 가입 - ... 지참' 목록.
+    if re.search(r'대리자\s*\(부모님\)\s*가입\s*[-:]', method):
+        for line in method.splitlines():
+            if not re.search(r'대리자\s*\(부모님\)\s*가입\s*[-:]', line):
+                continue
+            match = re.search(r'가입\s*[-:]\s*(.*?)\s*지참\s*후', line)
+            if not match:
+                continue
+            for piece in _split_commas_outside_parentheses_v13(match.group(1)):
+                candidate = clean_text(piece)
+                if _document_valid_v13(candidate):
+                    value = '부모님 대리 가입 시: ' + candidate
+                    if value not in items:
+                        items.append(value)
+    return items or None
+
+def quality_audit_v14(rows: list[dict[str,Any]]) -> list[dict[str,str]]:
+    report = quality_audit_v13(rows)
+    for item, row in zip(report, rows):
+        notes = [x for x in item['확인필요'].split('|') if x]
+        txt = clean_text(row.get('신청방법'))
+        if re.search(r'(?<!\d)186개월\s*이상\s*근속', txt):
+            notes.append('신청방법의 비정상 근속 개월 수 공식 원문 대조 필요')
+        if re.search(r'^(?:대출금리|대출한도|호당대출한도)', clean_text(row.get('application_process'))):
+            notes.append('신청 절차 오추출 점검 필요')
+        if clean_text(row.get('지원대상_원문')) == EMPTY_UNKNOWN:
+            notes.append('지원대상 미확인')
+        item['확인필요'] = '|'.join(dict.fromkeys(notes))
+    return report
+
+
+def run_extension_tests_v14() -> None:
+    example = [
+        {'정책명':'부산 전세피해 지원','크롤링오류':'크롤링 오류 https://www.busan.go.kr/page?x=1: robots.txt에서 크롤링을 허용하지 않음: https://www.busan.go.kr/page | 크롤링 오류 https://www.kinfa.or.kr/app: Read timed out. (read timeout=25)', '기타오류':'', '제외여부':'아니오', '제외사유':''},
+    ]
+    errors = _log_entries_v14(example[0])
+    assert len(errors) == 2 and 'robots.txt' in errors[0]['실패유형_로그근거'] and errors[1]['실패URL'].endswith('/app'), errors
+    assert classify_fetch_issue_v14('HTTP 401 Unauthorized')[0].startswith('인증/')
+    assert classify_fetch_issue_v14('JavaScript is required')[0].startswith('동적 페이지')
+    assert '동적' not in classify_fetch_issue_v14('500 Server Error')[0]
+    rows=[{'정책명':'부산 전세피해 지원','data_id':'1','신청범위':'부산','원문URL':'https://www.busan.go.kr/page','신청URL':EMPTY_UNKNOWN,'application_process':'','required_documents':'','시행기관':EMPTY_UNKNOWN,'지원내용':'제도 안내','지원대상_원문':'신청자','신청시작일':EMPTY_UNKNOWN,'신청마감일':EMPTY_UNKNOWN,'세부분류':'주거금융','비고':''}]
+    missing=report_missing_v14(rows, errors, log_available=True)
+    assert len(missing)==1 and missing[0]['접근실패_동일정책명_로그존재']=='예'
+    assert '직접' in missing[0]['원인기록_판정']
+    no_logs=report_missing_v14(rows, [], log_available=False)
+    assert '로그 미제공' in no_logs[0]['원인기록_판정']
+    row={'정책명':'국가장학금Ⅰ유형','지원대상_원문':'신청일정 / 서류제출 : / 2026.8.12 / 가구원동의 : / 항목을 클릭하시면','소득조건':'별로 해당 학기 등록금 필수경비 / 범위 내에서 차등지원', '신청방법':'','신청범위':'전국'}
+    changed=improve_extracts_v14(row)
+    assert len(changed)>=2 and row['소득조건']==EMPTY_UNKNOWN and row['지원대상_원문']==EMPTY_UNKNOWN
+    row2={'application_process':_field_json_v12(['온라인 신청','대출금리','대출한도','임차보증금','서류 심사','한-아세안 협력 기반 조성 및 지역전문가 양성']), '신청범위':'전국'}
+    improve_extracts_v14(row2)
+    assert _json_col_v12(row2['application_process'])==['온라인 신청','서류 심사'], row2
+    assert not _process_valid_v13('보증금 대출은 최대 4,500만원, 월세금 대출은 최대 1,200만원')
+    assert not _process_valid_v13('HF 전세자금보증')
+    assert _process_valid_v13('온라인 신청')
+    assert benefit_type_v13({'정책명':'2026학년도 2학기 AI학업장려 학자금대출', '지원내용':'학자금대출 연 1.7% 금리'}) == '대출·융자'
+    parent = {'신청방법': 'ㅇ (입영 후) 4가지 방법 중 선택\n4. 대리자(부모님) 가입 - 가족관계증명서(주민번호 13자리 포함), 부모님 신분증, 가입자격확인서 지참 후 은행 방문 가입'}
+    parent_docs = explicit_inline_documents_v13(parent)
+    assert len(parent_docs)==3, parent_docs
+    print('[V14 TEST] PASS 자동 실패보고서/원인불확정/접근오류 분류/오추출 제거/학자금대출 구분/부모님 대리 서류')
+
+
+# =============================================================================
+# v15: 증거 기반 자격조건 방어, 누락 사유 항목별 설명, 명시 서류 보강
+# =============================================================================
+
+MISSING_DETAIL_COLS_V15 = [
+    '정책명', '확인필요_항목', '항목별_원인판정', '같은_수집행의_근거',
+    '접근실패_동일정책명_로그존재', '로그에_명시된_접근실패유형',
+    '로그에_명시된_실패URL', '원인기록_판정', '검증방법', '원문URL'
+]
+
+
+def _v15_record(row: dict[str, Any], changes: list[str], change: str) -> None:
+    if change not in changes:
+        changes.append(change)
+
+
+def _v15_income_pct(text: str) -> set[str]:
+    return set(re.findall(r'(?:중위\s*소득|중위소득)\s*(\d{1,3})\s*%', text))
+
+
+def _v15_doc_from_explicit_text(row: dict[str, Any]) -> list[str]:
+    """수집한 동일 정책 본문에 서류명과 제출상황이 분명한 경우만 반환."""
+    added = []
+    target = clean_text(row.get('지원대상_원문'))
+    if re.search(r'가입\s*시\s*제출\s*서류', target):
+        after = re.split(r'가입\s*시\s*제출\s*서류', target, maxsplit=1)[-1]
+        for match in re.finditer(r'소득확인증명서\([^()]{5,110}\)', after):
+            doc = match.group(0)
+            if _document_valid_v13(doc) and doc not in added:
+                added.append(doc)
+    # 대상 섹션 속 '사업자의 경우 ... 사업자등록증'은 신청요건 문장이 아니라
+    # 조건부 서류 지시다. 명시된 원문이 있는 정책에 한해서만 분리한다.
+    if re.search(r'사업자의\s*경우\s*본인\s*명의\s*사업자등록증', target):
+        added.append('사업자의 경우: 본인 명의 사업자등록증')
+    content = clean_text(row.get('지원내용'))
+    if (re.search(r'기초생활수급자.{0,50}추가\s*우대금리', content, re.S)
+            and re.search(r'제출\s*서류\s*:\s*가입\s*/\s*해지\s*시.{0,50}사회보장급여\s*중지\s*통지서', content, re.S)):
+        doc = '기초생활수급자 우대금리 가입/해지 시: 사회보장급여 중지 통지서'
+        if doc not in added:
+            added.append(doc)
+    if (re.search(r'보건복지부\s*연계\s*확인\s*불가\s*시', content)
+            and re.search(r'수급자증명서\s*제출\s*필요', content)):
+        doc = '보건복지부 연계 확인 불가 시: 수급자증명서'
+        if doc not in added:
+            added.append(doc)
+    return added
+
+
+def improve_extracts_v15(row: dict[str, Any]) -> list[str]:
+    """확정된 동일 행 증거에 근거한 오염 방지. 외부 원문 추정·무근거 값 채움 금지."""
+    changes: list[str] = []
+    name = clean_text(row.get('정책명'))
+    target = clean_text(row.get('지원대상_원문'))
+    income = clean_text(row.get('소득조건'))
+    support = clean_text(row.get('지원내용'))
+    exclude = clean_text(row.get('제외대상'))
+    method = clean_text(row.get('신청방법'))
+
+    # (1) 실제 필수자격인 무주택·보증 유효 조건이 제외대상으로 역전된 경우.
+    # 일반적인 긍정 문장을 섣불리 조건으로 만들지 않고 공식 모집행에 지원요건으로
+    # 동시 표기되어 있을 때만 근거 원문 그대로 required 쪽으로 이전한다.
+    positive_guarantee = (
+        _present_v13(exclude)
+        and bool(re.search(r'신청인\s*기준\s*보증\s*효력', exclude))
+        and '무주택' in exclude and '임차보증금' in exclude
+        and '전세보증금반환보증' in support and '무주택' in support
+        and not re.search(r'지원\s*제외|신청\s*불가|대상\s*아님|보증\s*미가입|무주택자가\s*아닌', exclude)
+    )
+    if positive_guarantee:
+        # 지원대상에서 이미 설명한 사항을 중복하지 않는다.
+        if _present_v13(target):
+            row['지원대상_원문'] = target + '\n' + exclude
+        else:
+            row['지원대상_원문'] = exclude
+        row['제외대상'] = EMPTY_UNKNOWN
+        _v15_record(row, changes, '제외대상:공식 지원내용과 대조해 긍정 요건을 필수조건 원문으로 이동')
+        target = clean_text(row['지원대상_원문'])
+
+    # (2) 청년내일저축계좌: 대상요건의 100%와 지원금 매칭구간의 50%를 혼동한 경우.
+    # 공식 출처로 저장된 동일 행의 소득 요건을 원문 그대로 사용한다.
+    if ('청년내일저축계좌' in norm_name(name)
+            and '100' in _v15_income_pct(target)
+            and '50' in _v15_income_pct(income)
+            and ('50%' in support and '100%' in support)
+            and '가구소득' in target):
+        target_lines = [clean_text(v) for v in target.splitlines()]
+        recognized = []
+        for line in target_lines:
+            if ('근로·사업소득' in line or '근로·사업소득 :' in line
+                    or ('근로' in line and '소득' in line and '월 10만원' in line)):
+                recognized.append(re.sub(r'^\s*\d+[.)]\s*', '', line))
+            elif '가구소득' in line and '중위소득 100%' in line:
+                recognized.append(re.sub(r'^\s*\d+[.)]\s*', '', line))
+        if len(recognized) == 2:
+            row['소득조건'] = ' / '.join(recognized)
+            _v15_record(row, changes, '소득조건:자격 100%와 정부 매칭지원 50% 구간 혼동 수정(동일 수집 원문 대조)')
+            income = clean_text(row['소득조건'])
+
+    # (2-1) '신청자격요건 참조'는 소득 조건으로 활용할 수 없다.
+    # 같은 수집행의 지원대상 섹션에 명시된 소득구간 문장이 있는 경우에만
+    # 그 원문을 소득조건으로 복사한다(연령·혼인별 금액을 단일값으로 축약 금지).
+    if (re.fullmatch(r'신청\s*자격\s*요건\s*참조', income)
+            and _present_v13(target)):
+        income_lines = [line.strip(' -\t') for line in target.splitlines()
+                        if re.match(r'^\s*(?:[-▪ㅇ○]?\s*)?소득\s*요건\s*[:：]', line)]
+        if income_lines and re.search(r'연소득.{0,130}(?:만원|억원)', income_lines[0]):
+            row['소득조건'] = income_lines[0]
+            income = income_lines[0]
+            _v15_record(row, changes, '소득조건:참조 문구 대신 동일 행에 명시된 소득 요건 원문 보관')
+
+    # (3) 기타 일반 정책에서 자격 원문/소득조건의 중위소득 한도 충돌은
+    # 확정 보정하지 않고 수치 충돌로 표시하여 잘못된 자동 필터링을 방지한다.
+    target_limits = _v15_income_pct(target)
+    income_limits = _v15_income_pct(income)
+    if (target_limits and income_limits and target_limits.isdisjoint(income_limits)
+            and '청년내일저축계좌' not in norm_name(name)):
+        row['소득조건'] = EMPTY_UNKNOWN
+        _v15_record(row, changes,
+                    '소득조건:지원대상 원문과 중위소득 수치 불일치 -> 자동 사용 보류·공식검증 필요')
+
+    # (4) 출생연도·만나이 충돌. 임의로 올바른 출생연도를 계산해 넣지 않는다.
+    # 현재 2026년 모집분을 다루는 정보에서 만 39세와 1985년 출생 기준이
+    # 같이 들어 있으면 이전 회차의 문구일 가능성 -> 의심되는 괄호만 보류.
+    if (clean_text(row.get('신청시작일')).startswith('2026')
+            and re.search(r'만\s*39세\s*이하', target)
+            and re.search(r'[‘\'\"]?85\s*[.]\s*1\s*[.]\s*1\s*[.]?\s*이후\s*출생', target)):
+        revised = re.sub(r'\(\s*[‘\'\"]?85\s*[.]\s*1\s*[.]\s*1\s*[.]?\s*이후\s*출생\s*\)', '', target)
+        if revised != target:
+            row['지원대상_원문'] = revised
+            _v15_record(row, changes, '연령원문:2026 회차에서 출생연도 1985 문구 충돌·해당 괄호 표시보류(원문 85.1.1.)')
+            target = revised
+
+    # (5) 잘못된 근속기간 186개월: 18개월 등으로 임의 변환하지 않는다.
+    if re.search(r'(?<!\d)186\s*개월\s*이상\s*근속', method):
+        filtered = [line for line in method.splitlines() if not re.search(r'(?<!\d)186\s*개월\s*이상\s*근속', line)]
+        row['신청방법'] = '\n'.join(filtered) if filtered else EMPTY_UNKNOWN
+        _v15_record(row, changes, '신청방법:186개월 비정상 문구 제거(수정값 추정 금지·원문 재확인)')
+
+    # (6) 지원대상 안에 뒤섞인 준비물 섹션을 분리한다.
+    extra_docs = _v15_doc_from_explicit_text(row)
+    if re.search(r'가입\s*시\s*제출\s*서류', target):
+        initial, trailing = re.split(r'가입\s*시\s*제출\s*서류', target, maxsplit=1)
+        # 뒤쪽이 문서 안내임을 확실히 확인한 경우에만 구역 분리.
+        if extra_docs and re.search(r'(?:증명서|서류|소득증빙)', trailing):
+            row['지원대상_원문'] = initial.strip(' /\n')
+            _v15_record(row, changes, '지원대상:별도 제출서류 영역 분리')
+    if any('사업자의 경우: 본인 명의 사업자등록증' == d for d in extra_docs):
+        target_value = clean_text(row.get('지원대상_원문'))
+        target_lines = [ln for ln in target_value.splitlines()
+                        if not re.search(r'사업자의\s*경우\s*본인\s*명의\s*사업자등록증', ln)]
+        if target_lines and len(target_lines) < len(target_value.splitlines()):
+            row['지원대상_원문'] = '\n'.join(target_lines)
+            _v15_record(row, changes, '지원대상:사업자 조건부 제출서류 분리')
+    if extra_docs:
+        current = _json_col_v12(row.get('required_documents'))
+        documents = list(current or [])
+        for doc in extra_docs:
+            if doc not in documents:
+                documents.append(doc)
+        if documents != (current or []):
+            row['required_documents'] = _field_json_v12(documents)
+            row['신청준비물_근거URL'] = (normalize_source_url(row.get('원문URL')) or '')
+            _v15_record(row, changes, 'required_documents:수집된 동일 정책 원문에 명시된 서류·조건부 서류 반영')
+
+    # 필수 서류를 신청 절차에도 설명 문장으로 넣었다면 별도 행으로 분리하되
+    # 실제 활동단계까지 삭제하지는 않는다.
+    processes = _json_col_v12(row.get('application_process'))
+    if isinstance(processes, list) and processes:
+        cleaned = [s for s in processes if not re.fullmatch(r'\s*ㅇ?\s*대리가입\s*', clean_text(s))]
+        if len(cleaned) != len(processes):
+            row['application_process'] = _field_json_v12(cleaned) if cleaned else ''
+            _v15_record(row, changes, '신청절차:단독 구역 제목 제거')
+
+    if changes:
+        note = 'v15정제=' + ', '.join(changes)
+        if note not in clean_text(row.get('비고')):
+            row['비고'] = as_joined([row.get('비고'), note])
+    return changes
+
+
+def _v15_missing_why(row: dict[str, Any], field: str) -> tuple[str, str, str]:
+    """관찰 가능한 동일 행 증거와 모르는 원인을 분리한다."""
+    content = clean_text(row.get('지원내용'))
+    target = clean_text(row.get('지원대상_원문'))
+    method = clean_text(row.get('신청방법'))
+    note = clean_text(row.get('비고'))
+    if field == '지원대상_원문':
+        if re.search(r'\[지원대상\]|지원대상\s*:', content):
+            return ('동일 행 지원내용에 지원대상 안내 있으나 대상 컬럼 미추출',
+                    '지원내용 필드의 [지원대상]/지원대상: 문구',
+                    '본문 구획 파싱을 재확인하고 동일 정책 공식 원문과 대조')
+        if '지원대상_원문:표제어' in note:
+            return ('지원대상 후보가 제목·신청일정 등으로 판정되어 오염값 제거',
+                    '정제 메모에 표제어·신청일정 오추출 기록',
+                    '정책별 공식 자격 섹션 재확인')
+    if field == '소득조건':
+        if '소득조건:지원대상 원문과 중위소득 수치 불일치' in note:
+            return ('자격 원문과 소득조건 수치 충돌로 자동 사용 보류',
+                    '지원대상·소득조건 수치 충돌 감지',
+                    '동일 신청회차 공식 공고와 소득 요건 대조')
+        if '소득조건:' in note and '오추출' in note:
+            return ('신청일정·지원내용 오추출로 소득조건 무효화',
+                    '정제 메모의 소득조건 오추출 기록',
+                    '공식 소득·학자금 지원구간 표 재추출')
+    if field == 'required_documents':
+        if re.search(r'(?:제출\s*서류|구비\s*서류|증빙\s*서류|증명서\s*제출)',
+                     ' '.join([target, method, content])):
+            return ('관련 서류 표현은 있으나 조건·서류명 목록을 신뢰성 있게 구성하지 못함',
+                    '다른 수집 필드에 제출/증빙서류 언급 있음',
+                    '제출 대상과 필수·조건부 구분, 공고 첨부파일·표를 확인')
+        return ('신청 준비물 상세 목록이 수집된 행에서 확인되지 않음',
+                'required_documents 미수집; 서류 없음으로 확정할 수 없음',
+                '공식 신청 안내·첨부 공고의 필요 서류 항목을 확인')
+    if field == 'application_process':
+        if _present_v13(method):
+            return ('신청방법은 확보했으나 상세 절차 JSONB로 구조화하지 못함',
+                    '신청방법 컬럼에 원문 내용 있음',
+                    '신청 단계·신청경로·기한 문장을 분리하여 검증')
+        return ('신청방법과 절차 모두 명시적으로 확인되지 않음',
+                '신청방법 및 application_process 빈 값',
+                '공식 신청 페이지에서 단계별 절차 확인')
+    if field == '신청URL':
+        if _present_v13(method):
+            return ('신청 방법 안내는 있지만 실제 신청 전용 URL은 확인되지 않음',
+                    '신청방법 컬럼에 신청 안내 있음',
+                    '로그인 페이지·공지·신청 폼의 역할을 구분하여 공식 URL 검증')
+        return ('직접 신청 링크 미확인(공지·홈페이지와 구별 필요)',
+                '신청URL 미수집',
+                '공식 신청 시스템의 실제 신청 경로 확인')
+    if field in ('신청시작일', '신청마감일'):
+        if re.search(r'(?:사업기간|운영기간|운영시작)',content):
+            return ('사업·운영기간은 있으나 해당 회차 신청기간은 확정되지 않음',
+                    '지원내용에 사업·운영기간 언급',
+                    '운영기간과 신청기간을 구별하여 최신 공고 확인')
+        return ('신청 기간이 수집된 행에서 확인되지 않음',
+                '신청 날짜 필드 빈 값',
+                '상시모집인지 기간미정인지 최신 공식 공고 대조')
+    if field == '시행기관':
+        return ('시행기관이 공식 확인값으로 확정되지 않음',
+                '시행기관 컬럼 미수집',
+                '운영기관과 시행기관을 구분해 정책 담당 공식 안내 확인')
+    if field == '세부분류':
+        return ('정책 내용만으로 세부분류를 규칙 확정하지 못함',
+                '분류 상태 확인필요',
+                '정해 둔 장학·금융 분류 기준에 따라 관리자 검토')
+    return ('수집 결과에서 해당 필드 누락; 직접 원인 미확정',
+            '해당 정책 수집 필드 미확인',
+            '원문 기재 여부·API 응답·파서 추출·접근 제한을 순서대로 확인')
+
+
+def report_missing_v15(results: list[dict[str, Any]], failures: list[dict[str, str]],
+                       *, log_available: bool) -> list[dict[str, str]]:
+    """기존 정책별 1행 대신 누락 필드별 1행: 추측 아닌 관찰 사실을 근거로 작성."""
+    from collections import defaultdict
+    by_name = defaultdict(list)
+    for err in failures:
+        name = norm_name(err.get('정책명_로그기준'))
+        by_name[name].append(err)
+        canonical = KNOWN_SAME_POLICY_V13.get(name)
+        if canonical:
+            by_name[norm_name(canonical)].append(err)
+    output = []
+    for row in results:
+        missing_info = unresolved_from([row])
+        if not missing_info:
+            continue
+        fields = [f.strip() for f in missing_info[0].get('확인필요_항목','').split(',') if f.strip()]
+        if not fields:
+            continue
+        related = by_name.get(norm_name(row.get('정책명')), [])
+        types = '|'.join(dict.fromkeys(x.get('실패유형_로그근거','') for x in related if x.get('실패유형_로그근거')))
+        urls = '|'.join(dict.fromkeys(x.get('실패URL','') for x in related if x.get('실패URL')))
+        for field in fields:
+            reason, proof, guide = _v15_missing_why(row, field)
+            if related:
+                link_status = '접근 실패 로그 존재(이 필드 누락의 직접 원인 여부는 미확정)'
+            elif not log_available:
+                link_status = '수집로그 미제공(접근 문제 발생 여부 확인 불가)'
+            else:
+                link_status = '일치하는 접근 실패 로그 없음(접근 성공·원문 부재를 뜻하지 않음)'
+            output.append({
+                '정책명': clean_text(row.get('정책명')),
+                '확인필요_항목': field,
+                '항목별_원인판정': reason,
+                '같은_수집행의_근거': proof,
+                '접근실패_동일정책명_로그존재': '예' if related else '아니오',
+                '로그에_명시된_접근실패유형': types,
+                '로그에_명시된_실패URL': urls,
+                '원인기록_판정': link_status,
+                '검증방법': guide,
+                '원문URL': clean_text(row.get('원문URL')),
+            })
+    return output
+
+
+def write_failure_reports_v15(out_dir: Path, results: list[dict[str,Any]],
+                              log_rows: list[dict[str,Any]] | None) -> tuple[int,int]:
+    errors = [v for log in log_rows or [] for v in _log_entries_v14(log)]
+    missing = report_missing_v15(results, errors, log_available=log_rows is not None)
+    write_csv(out_dir / '11_수집접근실패원인_정리.csv', errors, FAILURE_COLS_V14)
+    write_csv(out_dir / '12_미수집항목_원인추적.csv', missing, MISSING_DETAIL_COLS_V15)
+    return len(errors), len(missing)
+
+
+def quality_audit_v15(rows: list[dict[str, Any]]) -> list[dict[str,str]]:
+    report = quality_audit_v14(rows)
+    for result, row in zip(report, rows):
+        notes = [x for x in result['확인필요'].split('|') if x]
+        target = clean_text(row.get('지원대상_원문'))
+        income = clean_text(row.get('소득조건'))
+        exclude = clean_text(row.get('제외대상'))
+        note = clean_text(row.get('비고'))
+        if _v15_income_pct(target) and _v15_income_pct(income) and _v15_income_pct(target).isdisjoint(_v15_income_pct(income)):
+            notes.append('지원대상·소득기준 수치 충돌:공식공고 검증필요')
+        if re.search(r'신청인\s*기준\s*보증\s*효력',exclude) and '무주택' in exclude:
+            notes.append('긍정 필수요건이 제외대상으로 분류됐을 가능성')
+        if '지원대상:사업자 조건부 제출서류 분리' in note:
+            notes.append('지원대상 일부만 확보:전체 자격요건 공식 공고 대조필요')
+        if '연령원문:2026 회차에서 출생연도' in note:
+            notes.append('연령 기준·출생연도:공식 2026 회차 대조필요')
+        if '186개월 비정상' in note:
+            notes.append('잘못된 근속기간 186개월:원문 재확인필요')
+        if not _present_v13(target) and '[지원대상]' in clean_text(row.get('지원내용')):
+            notes.append('지원대상 본문 추출 실패 의심')
+        if '수급자증명서' in clean_text(row.get('지원내용')) and not _json_col_v12(row.get('required_documents')):
+            notes.append('지원내용의 조건부 증빙서류 미추출')
+        result['확인필요'] = '|'.join(dict.fromkeys(notes))
+    return report
+
+
+def run_extension_tests_v15() -> None:
+    # 2026년 최근 수집 결과에서 직접 재현한 고장 유형.
+    a={'정책명':'청년내일저축계좌',
+       '지원대상_원문':'1. 근로·사업소득 : 월 10만원 이상 발생\n2. 가구소득 : 소득인정액 기준 중위소득 100% 이하',
+       '소득조건':'가구소득이 기준 중위소득 50% 이하',
+       '지원내용':'중위소득 50%초과 ~ 100%이하 10만원 지원; 중위소득 50%이하 30만원 지원'}
+    improve_extracts_v15(a)
+    assert '100%' in a['소득조건'] and '50%' not in a['소득조건'], a
+    b={'정책명':'부산 전세보증금 반환보증 보증료 지원',
+       '지원대상_원문':'부산 청년',
+       '지원내용':'전세보증금반환보증 가입 요건, 임차보증금 3억원 이하 및 무주택 신청인 지원',
+       '제외대상':'신청인 기준 보증효력이 유효한 전세보증금반환보증에 가입 / 임차보증금 3억원 이하, 무주택'}
+    improve_extracts_v15(b)
+    assert b['제외대상']==EMPTY_UNKNOWN and '무주택' in b['지원대상_원문']
+    cc,verified=build_eligibility_v12(b)
+    assert not cc['exclusions'] and not verified and '무주택' in cc['required'][0]['text']
+    c={'정책명':'청년주택드림청약통장',
+       '지원대상_원문':'만 19세부터 만 34세. 가입시 제출 서류 / 소득증빙 / 소득확인증명서(청년우대형 주택청약종합저축 가입 및 과세특례 신청용) / 국세청',
+       'required_documents':'','원문URL':'https://www.molit.go.kr/2024dreamaccount/main.jsp'}
+    improve_extracts_v15(c)
+    assert _json_col_v12(c['required_documents'])==['소득확인증명서(청년우대형 주택청약종합저축 가입 및 과세특례 신청용)']
+    assert '가입시 제출 서류' not in c['지원대상_원문']
+    d={'정책명':'청년일자리 도약장려금', '신청방법':'기업 신청\nㅇ (청년인센티브)186개월 이상 근속시 청년 장기근속인센티브 신청', '지원내용':'18개월 근속자 대상'}
+    improve_extracts_v15(d)
+    assert '186' not in d['신청방법'] and '186개월' in d['비고']
+    e={'정책명':'주거안정장학금', '신청시작일':'2026-08-12',
+       '지원대상_원문':'당해연도 1월 1일 기준 만 39세 이하(‘85.1.1.이후 출생)로 미혼인 자'}
+    improve_extracts_v15(e)
+    assert '85.1.1' not in e['지원대상_원문'] and '39세' in e['지원대상_원문']
+    docs={'정책명':'장병내일준비적금', '지원내용':'기초생활수급자 대상 추가 우대금리(3.0%) : 2개 은행 - 제출서류 : 가입/해지 시 본인의 “사회보장급여 중지 통지서”를 은행에 제출'}
+    improve_extracts_v15(docs)
+    assert '사회보장급여 중지 통지서' in docs['required_documents']
+    miss=[{'정책명':'테스트','data_id':'a','신청범위':'전국','신청방법':'온라인 신청 안내',
+       '신청URL':EMPTY_UNKNOWN,'application_process':'', 'required_documents':'',
+       '원문URL':'https://example.org','시행기관':EMPTY_UNKNOWN,'비고':'',
+       '신청시작일':EMPTY_UNKNOWN, '신청마감일':EMPTY_UNKNOWN}]
+    reasons=report_missing_v15(miss, [], log_available=True)
+    assert len(reasons)>=3 and '항목별_원인판정' in reasons[0]
+    assert len({x['확인필요_항목'] for x in reasons}) == len(reasons)
+    print('[V15 TEST] PASS 필수/제외 역전·소득 50/100 기준·명시서류·연령연도 충돌·186개월 제거·항목별 원인')
+
+
+# =============================================================================
+# v16: 조건별 소득 원문 유지 / 누락된 자격 섹션 분리 / 회차 검토 / 날짜 의미 구분
+# =============================================================================
+
+# 구버전 CSV 열을 삭제하거나 이름을 바꾸지 않고 검증일을 별도 출력한다.
+# '수집일', '최종확인일'은 실제 응답/접근 기록이며 지원자격 검증 완료를 뜻하지 않는다.
+if '공식검증일' not in OUTPUT_COLUMNS:
+    OUTPUT_COLUMNS.append('공식검증일')
+if '공식검증일' not in ROW_COLUMNS:
+    ROW_COLUMNS.append('공식검증일')
+
+V16_CHANGE_COLS = ['정책명','수정필드','수정전','수정후','수정이유','기존수집원문_근거','원문URL']
+
+
+def _v16_evidence_income(row: dict[str, Any]) -> str | None:
+    """수집된 같은 정책의 자격 원문에서 조건부 소득 구절을 추출. 금액 추측 불가."""
+    name = norm_name(clean_text(row.get('정책명')))
+    target = clean_text(row.get('지원대상_원문'))
+    if not _present_v13(target):
+        return None
+    if '청년주택드림디딤돌대출' in name:
+        for line in target.splitlines():
+            if ('소득' in line and '미혼' in line and '신혼' in line
+                    and re.search(r'7\s*천만\s*원',line)
+                    and re.search(r'1\s*억\s*원',line)):
+                return re.sub(r'^\s*[□ㅇ○-]+\s*', '', line).strip()
+    if '신생아특례구입' in name and '전세대출' in name:
+        for line in target.splitlines():
+            if ('소득' in line and '맞벌이' in line
+                    and re.search(r'1\s*[.]\s*3\s*억\s*원',line)
+                    and re.search(r'2\s*억\s*원',line)):
+                return re.sub(r'^\s*[□ㅇ○-]+\s*', '', line).strip()
+    return None
+
+
+def _v16_add_change(row: dict[str, Any], changes: list[dict[str, str]],
+                    field: str, before: Any, after: Any, why: str, evidence: str) -> None:
+    if clean_text(before) == clean_text(after):
+        return
+    changes.append({
+        '정책명':clean_text(row.get('정책명')),'수정필드':field,
+        '수정전':clean_text(before),'수정후':clean_text(after),
+        '수정이유':why,'기존수집원문_근거':evidence[:1200],
+        '원문URL':clean_text(row.get('원문URL')),
+    })
+
+
+def improve_extracts_v16(row: dict[str, Any]) -> list[dict[str, str]]:
+    """미검증 금액·자격 추측 금지. 동일 행에서 증거가 있을 때만 필드 교정."""
+    changes: list[dict[str,str]] = []
+    name = clean_text(row.get('정책명'))
+    income_old = clean_text(row.get('소득조건'))
+    conditional = _v16_evidence_income(row)
+    if conditional and (re.fullmatch(r'소득최대금액\s*=\s*\d+', income_old)
+                        or not _present_v13(income_old)):
+        row['소득조건'] = conditional
+        _v16_add_change(row, changes, '소득조건', income_old, conditional,
+            '혼인·맞벌이별 소득상한을 단일 숫자로 축약한 값 교정',
+            clean_text(row.get('지원대상_원문')))
+
+    # 지원내용에 `[지원대상]`이 명시적으로 포함된 동일 정책의 섹션만 분리.
+    # 개별 정책의 외부 설명이나 이름 비슷한 다른 장학금에 조건을 전용하지 않는다.
+    support = clean_text(row.get('지원내용'))
+    target = clean_text(row.get('지원대상_원문'))
+    if ('청년창업농장학금' in norm_name(name) and not _present_v13(target)
+            and '[지원대상]' in support and '[지원내용]' in support):
+        head, elig = support.split('[지원대상]', 1)
+        eligibility = elig.strip()
+        if ('대한민국 국적' in eligibility and '만40세 미만' in eligibility
+                and '계속장학생' in eligibility and '학점' in eligibility
+                and '성적' in eligibility):
+            before = row.get('지원대상_원문')
+            row['지원대상_원문'] = eligibility
+            _v16_add_change(row, changes, '지원대상_원문', before, eligibility,
+                '같은 공식 수집행 지원내용의 명시적인 [지원대상] 섹션 이동',support)
+            clean_support = head.replace('[지원내용]', '', 1).strip()
+            if clean_support:
+                previous = row.get('지원내용')
+                row['지원내용'] = clean_support
+                _v16_add_change(row, changes, '지원내용', previous, clean_support,
+                    '지원자격 내용과 지원 혜택을 분리', support)
+            # 예외('계속장학생 40세 이상 가능') 때문에 max_age=39 등 확정 불가.
+            age_line = next((ln.strip() for ln in eligibility.splitlines()
+                             if '(나이)' in ln and '계속장학생' in ln), '')
+            if age_line:
+                former = row.get('연령조건_원문')
+                row['연령조건_원문'] = age_line
+                _v16_add_change(row, changes, '연령조건_원문', former, age_line,
+                    '만 40세 미만 신규 신청자와 40세 이상 계속장학생 예외 유지',eligibility)
+                for key in ('최소연령','최대연령'):
+                    old = row.get(key)
+                    if clean_text(old) == '제한없음':
+                        row[key] = EMPTY_UNKNOWN
+                        _v16_add_change(row, changes, key, old, EMPTY_UNKNOWN,
+                            '연령 무제한은 잘못된 값이며 예외 있는 수치 기준은 확정 정규화 금지',age_line)
+
+    # 원문을 확보했다는 사실은 공식 자격 검증을 의미하지 않는다. DB에는 이미
+    # last_verified_at=NULL이며, CSV에도 그 의미를 독립된 칼럼으로 남긴다.
+    if not _present_v13(row.get('공식검증일')):
+        row['공식검증일'] = EMPTY_UNKNOWN
+    return changes
+
+
+def quality_audit_v16(rows: list[dict[str, Any]]) -> list[dict[str,str]]:
+    report = quality_audit_v15(rows)
+    for audit, row in zip(report, rows):
+        issues = [x for x in audit['확인필요'].split('|') if x]
+        name = norm_name(clean_text(row.get('정책명')))
+        target = clean_text(row.get('지원대상_원문'))
+        income = clean_text(row.get('소득조건'))
+        start = clean_text(row.get('신청시작일'))
+        end = clean_text(row.get('신청마감일'))
+        if ('청년주택드림디딤돌대출' in name or '신생아특례구입' in name) and re.fullmatch(r'소득최대금액\s*=\s*\d+', income):
+            issues.append('단일 소득상한으로 축약:대상별 소득 차등 기준 확인필요')
+        if '청년창업농장학금' in name and (not _present_v13(target) or '계속장학생' not in target):
+            issues.append('지원자격 영역 미확인:공식 자격 상세·연령 예외 확인필요')
+        if ('주거안정장학금' in name and start.startswith('2026')
+                and re.search(r'2025\s*학년도|[’\']25\s*년도', target)):
+            issues.append('2026 모집기간에 2025학년도 대학 제한조건 포함:해당 연도 공고 검증필요')
+        if end and end[:4].isdigit() and int(end[:4]) <= 2024:
+            issues.append(f'과거 {end[:4]}년 모집공고:2026 신규 회차·사업 존속 여부 재확인')
+        if not _present_v13(row.get('공식검증일')):
+            issues.append('공식 자격 검증일 미기록:수집일·URL 접근일과 별도 관리')
+        audit['확인필요'] = '|'.join(dict.fromkeys(issues))
+    return report
+
+
+def v16_sources_from(rows: list[dict[str, Any]]) -> list[dict[str,str]]:
+    result = sources_from(rows)
+    by_name = {clean_text(r.get('정책명')): clean_text(r.get('공식검증일')) or EMPTY_UNKNOWN for r in rows}
+    for item in result:
+        item['공식검증일'] = by_name.get(clean_text(item.get('정책명')), EMPTY_UNKNOWN)
+    return result
+
+
+def run_extension_tests_v16() -> None:
+    one={'정책명':'청년 주택드림 디딤돌 대출', '소득조건':'소득최대금액=7000',
+      '지원대상_원문':'□ 소득 : 미혼인 경우 연간 총소득 7천만원, 신혼가구인 경우 대출신청인과 배우자의 합산 총소득이 연간 1억원 이하인 자'}
+    assert len(improve_extracts_v16(one))==1
+    assert '7천만원' in one['소득조건'] and '1억원' in one['소득조건']
+    two={'정책명':'신생아 특례 구입·전세대출','소득조건':'소득최대금액=20000',
+     '지원대상_원문':'ㅇ (소득) 대출 신청일 기준 부부합산 연소득 1.3억원 이하 (단, 맞벌이 가구는 2억원 이하)'}
+    assert len(improve_extracts_v16(two))==1
+    assert '1.3억원' in two['소득조건'] and '맞벌이' in two['소득조건']
+    bad={'정책명':'청년 주택드림 디딤돌 대출','소득조건':'소득최대금액=7000',
+     '지원대상_원문':'미혼 7천만원 신혼 1억원 지원'}
+    assert not improve_extracts_v16(bad), bad # 정식 요건 문장이 아니면 미수정
+    farmer={'정책명':'청년창업농장학금','지원대상_원문':'확인필요',
+      '지원내용':'[지원내용] 등록금 전액\n\n[지원대상]\n(공통) 대한민국 국적자\n(학년) 대학 재학\n(나이) 만40세 미만, 계속장학생 40세 이상도 가능\n[신청자격요건] 학점 12이상, 성적 70점',
+      '연령조건_원문':'연령제한 없음','최소연령':'제한없음','최대연령':'제한없음'}
+    improve_extracts_v16(farmer)
+    assert '대한민국' in farmer['지원대상_원문'] and '학점' in farmer['지원대상_원문']
+    assert '학년' not in farmer['지원내용'] and farmer['최대연령']==EMPTY_UNKNOWN
+    assert farmer['공식검증일']==EMPTY_UNKNOWN
+    once=(farmer['지원대상_원문'],farmer['지원내용'])
+    assert not improve_extracts_v16(farmer) and once==(farmer['지원대상_원문'],farmer['지원내용'])
+    stale={'정책명':'주거안정장학금', '신청시작일':'2026-08-12', '신청마감일':'2026-09-09',
+      '지원대상_원문':'2025학년도 학자금 지원 제한 대학의 신편입생 제외', '공식검증일':EMPTY_UNKNOWN}
+    assert '2025학년도' in stale['지원대상_원문']
+    audit=quality_audit_v16([stale])[0]['확인필요']
+    assert '2026 모집기간에 2025학년도' in audit, audit
+    print('[V16 TEST] PASS 조건부 소득·미확정 보호·장학금 지원대상 분리·연령예외·회차 검토·검증일 구분')
+
+
 def main() -> None:
     load_dotenv()
     parser = argparse.ArgumentParser(
-        description="청해 - 장학·금융 API·크롤링 자동 수집기 v13"
+        description="청해 - 장학·금융 API·크롤링 자동 수집기 v16"
     )
     parser.add_argument("--out-dir", default="output", help="CSV 출력 폴더 (기본: output)")
     parser.add_argument("--no-api", action="store_true", help="온통청년 API 없이 공식사이트 크롤링만 수행")
@@ -6637,6 +7483,7 @@ def main() -> None:
     parser.add_argument("--max-pages", type=int, default=6, help="API 검색어별 최대 페이지 수 (기본: 6)")
     parser.add_argument("--self-test", action="store_true", help="네트워크/API 없이 핵심 정규화·fallback·중복 규칙 테스트 후 종료")
     parser.add_argument('--reprocess-csv', default='', help='기존 01 CSV를 네트워크 없이 재정제')
+    parser.add_argument('--logs-csv', default='', help='--reprocess-csv와 함께 사용할 기존 04_수집로그.csv 경로(접근실패 원인 근거)')
     parser.add_argument("--sync-db", action="store_true", help="출력 후 Supabase PostgreSQL 공통 policy 테이블로 저장 (서버 환경변수 필요)")
     parser.add_argument(
         "--region", default="",
@@ -6648,6 +7495,9 @@ def main() -> None:
     if args.self_test:
         run_self_tests()
         run_extension_tests_v13()
+        run_extension_tests_v14()
+        run_extension_tests_v15()
+        run_extension_tests_v16()
         return
 
     out_dir = Path(args.out_dir)
@@ -6667,6 +7517,7 @@ def main() -> None:
     elif not args.no_api:
         print("[안내] YOUTHCENTER_POLICY_API_KEY가 없어 API 탐색을 건너뜁니다.")
 
+    v16_changes: list[dict[str,str]] = []
     if args.reprocess_csv:
         if args.sync_db:
             parser.error('기존 CSV 오프라인 재검수 결과는 새 수집 이력이 없으므로 --sync-db를 동시에 사용할 수 없습니다. 신규 수집 후 --sync-db 실행하세요.')
@@ -6676,9 +7527,18 @@ def main() -> None:
         if not csv_path.is_file():
             parser.error(f'기존 CSV 파일을 찾을 수 없음: {csv_path}')
         results, quality_merged_v13 = reprocess_saved_csv_v13(csv_path, out_dir)
+        for row in results:
+            improve_extracts_v15(row)
+            v16_changes.extend(improve_extracts_v16(row))
+            apply_profile_columns(row)
+            apply_post_dedupe_v12(row)
         out_dir.mkdir(parents=True, exist_ok=True)
         _write_reprocessed_v13(out_dir, results, quality_merged_v13)
-        print(f'[v13 오프라인 재검수] 정책 {len(results)}건 / 동일사업 별칭 통합 {len(quality_merged_v13)}건')
+        write_csv(out_dir / "13_정제변경이력.csv", v16_changes, V16_CHANGE_COLS)
+        log_rows, log_note = find_reprocess_log_v14(csv_path, args.logs_csv)
+        error_n, missing_n = write_failure_reports_v15(out_dir, results, log_rows)
+        print(f'[실패 사유 자동 보고서] 접근오류 {error_n}건, 미수집 항목 {missing_n}건; {log_note}')
+        print(f'[v16 오프라인 재검수] 정책 {len(results)}건 / 동일사업 별칭 통합 {len(quality_merged_v13)}건')
         return
 
     # 0) 수집계획 저장
@@ -6690,6 +7550,8 @@ def main() -> None:
 
     results: list[dict[str, str]] = []
     logs: list[dict[str, Any]] = []
+    if not args.no_api and not policy_api_key:
+        logs.append({"seed": "온통청년 청년정책 API", "errors": ["API 키가 없어 자동 탐색 생략(YOUTHCENTER_POLICY_API_KEY 미설정)"], "method": [], "excluded": False})
 
     # 1) 온통청년 청년정책API 자동 탐색
     if api:
@@ -6712,6 +7574,7 @@ def main() -> None:
                 logs.append(log)
             except Exception as e:
                 print(f"  -> 수집 실패: {e}")
+                logs.append({"seed": clean_text(api_obj.get("plcyNm")) or "API 개별정책", "errors": [f"API 개별정책 처리 오류: {type(e).__name__}: {e}"], "method": [], "excluded": False})
 
     # 2) 부산 공식 정책 인덱스에서 API 누락 가능성이 있는 금융·장학 정책 추가 탐색
     if not args.no_local_index and (not args.region or args.region == "부산"):
@@ -6720,6 +7583,7 @@ def main() -> None:
                 links = discover_index_finance_links(session, index_url)
             except Exception as e:
                 print(f"[공식 인덱스 경고] {index_url}: {e}")
+                logs.append({"seed": f"공식 인덱스 {scope}", "errors": [f"크롤링 오류 {index_url}: {type(e).__name__}: {e}"], "method": [], "excluded": False})
                 continue
             print(f"[공식 인덱스] {index_url}: 관련 링크 {len(links)}건")
             for name, url in links:
@@ -6750,6 +7614,12 @@ def main() -> None:
     if args.region:
         results = [r for r in results if r.get("신청범위") == args.region]
 
+    # v14: API/크롤링 후 최종단계에서 분명한 필드 오염 제거 및 감사 메모 기록
+    for row in results:
+        improve_extracts_v14(row)
+        improve_extracts_v15(row)
+        v16_changes.extend(improve_extracts_v16(row))
+
     # v11.8: 최종 수집·검증·중복제거 결과를 기준으로 확정 선택형 프로필 컬럼 생성
     for row in results:
         apply_profile_columns(row)
@@ -6767,8 +7637,8 @@ def main() -> None:
     write_csv(out_dir / "01_장학금융_정책수집결과.csv", results, OUTPUT_COLUMNS)
     write_csv(
         out_dir / "02_공식출처목록.csv",
-        sources_from(results),
-        ["정책명", "원문URL", "신청URL", "수집방식", "최종확인일"],
+        v16_sources_from(results),
+        ["정책명", "원문URL", "신청URL", "수집방식", "최종확인일", "공식검증일"],
     )
     write_csv(
         out_dir / "03_확인필요항목.csv",
@@ -6813,6 +7683,12 @@ def main() -> None:
         ],
     )
 
+    # v14: 04 원본 로그를 자동 분석해 실패URL별 기록 및 필드누락 추적 생성.
+    with (out_dir / '04_수집로그.csv').open('r', encoding='utf-8-sig', newline='') as log_file:
+        log_export_rows = list(csv.DictReader(log_file))
+    failure_count, missing_count = write_failure_reports_v15(out_dir, results, log_export_rows)
+    print(f'[v16 원인추적] 접근실패 {failure_count}건 / 미수집 항목 {missing_count}건 (11·12 자동 생성)')
+
     # 과제 보고서용 집계
     counts: dict[tuple[str, str], int] = {}
     for r in results:
@@ -6834,10 +7710,11 @@ def main() -> None:
         json.dumps([policy_to_db_v12(r) for r in results], ensure_ascii=False, indent=2),
         encoding="utf-8",
     )
-    write_csv(out_dir / '09_품질검증.csv', quality_audit_v13(results),
+    write_csv(out_dir / '09_품질검증.csv', quality_audit_v16(results),
               ['정책명','지역','확인필요','신청절차항목수','신청준비물항목수'])
     write_csv(out_dir / '10_중복명칭_정리.csv', quality_merged_v13,
               ['대표정책','병합된명칭','지역','조치'])
+    write_csv(out_dir / "13_정제변경이력.csv", v16_changes, V16_CHANGE_COLS)
     if args.sync_db:
         sync_result = sync_supabase_v12(results, logs, out_dir)
         print(f"[Supabase 동기화] 성공 {sync_result['success']} / 오류 {sync_result['failed']} / 수동값 충돌 {sync_result['conflicts']}")
@@ -6853,6 +7730,7 @@ def main() -> None:
         "05_지역_청년대상구분_집계.csv",
         "06_JSONB_정책데이터.json",
         "09_품질검증.csv", "10_중복명칭_정리.csv",
+        "11_수집접근실패원인_정리.csv", "12_미수집항목_원인추적.csv", "13_정제변경이력.csv",
     ]:
         print(f"- {out_dir / name}")
 
