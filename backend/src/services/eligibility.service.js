@@ -12,6 +12,7 @@
 //   "exclude": [ { "text": "기존 수혜자 제외" } ]   // 문장형 제외 조건은 UNKNOWN 처리
 // }
 // 조건 = { "field": "age", "op": "between", "value": [19, 34] }
+//        { "field": "region", "op": "starts_with", "value": "26" }  (부산 거주)
 //        field 는 아래 PROFILE_FIELDS 키, op 는 OPERATORS 키
 
 export const RESULT = { ELIGIBLE: 'ELIGIBLE', CHECK: 'CHECK', INELIGIBLE: 'INELIGIBLE' };
@@ -52,6 +53,8 @@ const OPERATORS = {
   gte: (v, x) => v >= x,
   lte: (v, x) => v <= x,
   contains: (arr, x) => Array.isArray(arr) && arr.includes(x),
+  // 지역코드 앞자리 비교: '26' = 부산 전체, '26380' = 사하구
+  starts_with: (v, x) => String(v).startsWith(x),
 };
 
 function judgeCondition(cond, profile) {

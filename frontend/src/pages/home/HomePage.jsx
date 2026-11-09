@@ -14,7 +14,7 @@ export default function HomePage() {
 
   return (
     <>
-      <PageHeader title="청해" />
+      <PageHeader brand title="청해" subtitle="부산 청년 혜택, 한눈에 · AI 생활 비서" />
       <p className="server-status">
         API 서버: {health.isLoading ? '확인 중' : health.error ? '연결 안 됨' : '연결됨'}
       </p>

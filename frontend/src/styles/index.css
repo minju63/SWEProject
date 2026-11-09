@@ -3,12 +3,13 @@
   --primary-bg: #eaf1fe;
   --text: #191f28;
   --sub: #6b7684;
+  --muted: #8b95a1;
   --border: #e5e8eb;
   --bg: #f9fafb;
   --ok: #12b76a;
   --check: #f79009;
   --no: #f04438;
-  --tabbar-h: 60px;
+  --tabbar-h: 64px;
   font-family:
     'Pretendard',
     system-ui,
@@ -46,8 +47,10 @@ button {
   padding: 16px 20px calc(var(--tabbar-h) + env(safe-area-inset-bottom) + 24px);
 }
 
+/* ---------- 하단 탭바 ---------- */
 .tabbar {
   position: fixed;
+  z-index: 20;
   bottom: 0;
   left: 50%;
   transform: translateX(-50%);
@@ -59,30 +62,120 @@ button {
   padding-bottom: env(safe-area-inset-bottom);
 }
 .tab {
+  position: relative;
   flex: 1;
   height: var(--tabbar-h);
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 2px;
-  font-size: 12px;
-  color: var(--sub);
+  gap: 4px;
+  font-size: 11px;
+  color: var(--muted);
+}
+.tab svg {
+  width: 22px;
+  height: 22px;
 }
 .tab-active {
   color: var(--primary);
   font-weight: 600;
 }
+.tab-active::after {
+  content: '';
+  position: absolute;
+  bottom: 6px;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: var(--primary);
+}
 
+/* ---------- 상단 헤더 ---------- */
 .page-header {
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: flex-start;
+  margin: 8px 0 16px;
 }
 .page-header h1 {
   font-size: 22px;
-  margin: 8px 0 16px;
+  margin: 0;
 }
+.page-header h1.brand {
+  font-size: 28px;
+  font-weight: 800;
+  color: var(--primary);
+  letter-spacing: -0.5px;
+}
+.page-subtitle {
+  margin: 4px 0 0;
+  font-size: 13px;
+  color: var(--sub);
+}
+.page-header-right {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.bell {
+  position: relative;
+  display: flex;
+  border: 0;
+  background: none;
+  padding: 4px;
+  color: var(--text);
+}
+.bell-badge {
+  position: absolute;
+  top: 0;
+  right: 0;
+  min-width: 16px;
+  height: 16px;
+  padding: 0 4px;
+  border-radius: 999px;
+  background: var(--no);
+  color: #fff;
+  font-size: 10px;
+  font-weight: 700;
+  line-height: 16px;
+}
+
+/* ---------- AI 비서 Dr.부 (탭바 위 오른쪽에 떠 있음) ---------- */
+.assistant {
+  position: fixed;
+  z-index: 10;
+  right: max(16px, calc(50% - 240px + 16px));
+  bottom: calc(var(--tabbar-h) + env(safe-area-inset-bottom) + 16px);
+}
+.assistant-face {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  border: 3px solid #fff;
+  background: linear-gradient(135deg, #5b9bff, var(--primary));
+  color: #fff;
+  font-size: 13px;
+  font-weight: 800;
+  box-shadow: 0 6px 16px rgba(47, 123, 245, 0.35);
+}
+.assistant-close {
+  position: absolute;
+  top: -4px;
+  right: -4px;
+  width: 20px;
+  height: 20px;
+  padding: 0;
+  border-radius: 50%;
+  border: 2px solid #fff;
+  background: #4e5968;
+  color: #fff;
+  font-size: 12px;
+  line-height: 14px;
+}
+
+/* ---------- 섹션·카드 ---------- */
 .section {
   margin-top: 24px;
 }
@@ -153,6 +246,7 @@ button {
   color: #fff;
 }
 
+/* ---------- 입력·버튼 ---------- */
 .search-bar {
   display: flex;
   gap: 8px;
@@ -183,13 +277,16 @@ button {
 .back {
   border: 0;
   background: none;
-  color: var(--sub);
   padding: 0;
+  color: var(--sub);
 }
 .back {
-  margin-bottom: 12px;
+  display: flex;
+  margin: 4px 0 12px -4px;
+  color: var(--text);
 }
 
+/* ---------- 자격 뱃지 ---------- */
 .badge {
   display: inline-block;
   padding: 4px 10px;
@@ -210,6 +307,7 @@ button {
   color: var(--no);
 }
 
+/* ---------- 정책 상세 ---------- */
 .detail-title {
   font-size: 21px;
   margin: 4px 0 12px;
@@ -224,6 +322,7 @@ button {
   white-space: pre-line;
 }
 
+/* ---------- 상태 메시지 ---------- */
 .state {
   color: var(--sub);
   text-align: center;
