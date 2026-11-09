@@ -4,6 +4,7 @@ import { fetchPolicy, fetchEligibility } from '../../api/policies';
 import { useAuthStore } from '../../store/authStore';
 import { ELIGIBILITY_LABEL, dDayText } from '../../utils/format';
 import StateMessage from '../../components/StateMessage.jsx';
+import { BackIcon } from '../../components/icons.jsx';
 
 export default function PolicyDetailPage() {
   const { policyId } = useParams();
@@ -23,8 +24,8 @@ export default function PolicyDetailPage() {
 
   return (
     <>
-      <button className="back" onClick={() => navigate(-1)}>
-        ‹ 뒤로
+      <button className="back" aria-label="뒤로" onClick={() => navigate(-1)}>
+        <BackIcon />
       </button>
       <div className="card-top">
         <span className="chip">{p.recruitment_status}</span>

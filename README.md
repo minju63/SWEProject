@@ -91,6 +91,8 @@ npm run dev              # http://localhost:5173
 
 DB는 팀 공용 Supabase를 쓰므로 로컬에 설치할 필요가 없습니다. 홈 화면 상단에 "API 서버: 연결됨"이 보이면 정상입니다.
 
+> **샘플 데이터:** 화면 작업용 가짜 정책 16건이 DB에 들어 있습니다 (`backend/supabase/seed.sql`). 실제 정책이 아니며, 실제 수집 데이터가 들어오면 seed.sql 상단의 삭제 쿼리로 한 번에 지웁니다.
+
 ## 4. 환경 변수
 
 값은 Supabase 대시보드 → SWproject → Project Settings → API 에서 확인합니다. 실제 `.env`는 **절대 커밋하지 않고** 팀 비공개 채널로 공유합니다.
