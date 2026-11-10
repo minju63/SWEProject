@@ -174,9 +174,13 @@ function writePreview(opt, b) {
     b.all.flatMap((x) => x.regions)
   );
   // 좌표·원본행은 미리보기에서 뺀다 (좌표 출력 금지 규칙)
+  const HIDDEN = new Set(['lat', 'lng', 'raw_data']);
   w(
     'place.json',
-    b.placeRows.map(({ lat, lng, raw_data, ...rest }) => ({ ...rest, has_coord: lat != null }))
+    b.placeRows.map((p) => ({
+      ...Object.fromEntries(Object.entries(p).filter(([k]) => !HIDDEN.has(k))),
+      has_coord: p.lat != null,
+    }))
   );
 
   const cm = b.cultureMapped;
