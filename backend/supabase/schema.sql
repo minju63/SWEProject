@@ -79,20 +79,7 @@ create table policy_region (
   primary key (policy_id, region_code)
 );
 
--- 모집 상태·D-day 는 저장하지 않고 계산
-create view v_policy_status as
-select
-  p.policy_id,
-  case
-    when p.is_always_open then '상시'
-    when p.application_start_date is null and p.application_end_date is null then '기간 미정'
-    when p.application_start_date > current_date then '모집 예정'
-    when p.application_end_date < current_date then '마감'
-    else '모집 중'
-  end as recruitment_status,
-  case when p.application_end_date is not null and not p.is_always_open
-       then p.application_end_date - current_date end as d_day
-from policy p;
+-- 모집 상태·D-day 는 저장하지 않고 계산 (culture_detail 생성 뒤로 옮김, 아래 2-1 참고)
 
 -- ---------------------------------------------------------------------
 -- 2. 파트별 상세 (policy 와 1:1)
@@ -147,15 +134,56 @@ create table finance_detail (        -- 장학·금융 (서여경)
   duplicate_allowed    boolean
 );
 
+-- 지도 장소 (김대환, 2026-11-11 추가: migrations/20261111_culture_place.sql)
+create table place (
+  place_id           uuid primary key default gen_random_uuid(),
+  place_key          text not null unique,         -- 원본 장소 키 (CUL-FC000178, LIB-xxxx, OPN-xxxx, YSP-xxxx)
+  name               text not null,
+  place_type         text not null check (place_type in ('공연장','전시공간','도서관','체육시설','청년공간','공공시설')),
+  region_code        text references region(region_code),
+  address            text,
+  road_address       text,
+  jibun_address      text,
+  lat                numeric(10,7),
+  lng                numeric(10,7),
+  coord_status       text check (coord_status in ('verified','fixed','review','coord_only')),
+  tel                text,
+  homepage_url       text,
+  open_hours_text    text,
+  closed_days_text   text,
+  fee_text           text,
+  is_free            boolean,
+  reservation_url    text,
+  capacity           integer,
+  is_active          boolean not null default true,
+  image_url          text,                         -- 사진 URL (공공 API·기관 공식 페이지, 링크만 저장)
+  image_source       text,                         -- 사진 출처 페이지
+  description        text,                         -- 소개문 원문
+  source_name        text,
+  source_id          text,
+  raw_data           jsonb,
+  last_collected_at  timestamptz,
+  last_verified_at   timestamptz,
+  created_at         timestamptz not null default now(),
+  updated_at         timestamptz not null default now(),
+  check ((lat is null) = (lng is null))
+);
+create index place_region_idx on place(region_code);
+create index place_type_idx on place(place_type);
+
 create table culture_detail (        -- 문화 (김대환)
   policy_id             uuid primary key references policy(policy_id) on delete cascade,
-  culture_type          text check (culture_type in ('문화프로그램','전시','공연','문화할인')),
-  place_id              uuid,          -- TODO: 지도 장소 테이블 확정 후 FK 연결
+  culture_type          text check (culture_type in ('공연','전시','문화프로그램','문화할인','문화비지원','창작지원','교육·인력양성','청년공간')),
+  genre                 text,          -- 장르 (클래식, 뮤지컬, 연극, 전시 ...)
+  place_id              uuid references place(place_id) on delete set null,
   venue_text            text,
   event_start_at        timestamptz,
   event_end_at          timestamptz,
   schedule_text         text,
-  price                 integer,       -- 0 = 무료
+  price                 integer,       -- 0 = 무료, 등급별 요금이면 최저가
+  price_text            text,          -- 관람료 원문
+  support_amount        integer,       -- 1인당 지원 금액(원)
+  support_amount_text   text,          -- 지원 금액 원문
   discount_rate         numeric(5,2),
   discount_text         text,
   reservation_required  boolean,
@@ -163,6 +191,37 @@ create table culture_detail (        -- 문화 (김대환)
   capacity              integer,
   age_rating            text
 );
+create index culture_detail_place_idx on culture_detail(place_id);
+
+-- ---------------------------------------------------------------------
+-- 2-1. 모집 상태·D-day 뷰 (migrations/20261112_event_status_view.sql)
+--   정책: 상시·기간 미정·모집 예정·모집 중·마감 (신청 기간 기준)
+--   행사(EVENT): 예정·진행 중·종료·기간 미정 (culture_detail.event_* 기준, d_day 는 종료일 한국 시간)
+-- ---------------------------------------------------------------------
+create view v_policy_status as
+select p.policy_id,
+  case
+    when p.item_type = 'EVENT' then
+      case
+        when cd.event_start_at is null and cd.event_end_at is null then '기간 미정'
+        when cd.event_start_at > now() then '예정'
+        when cd.event_end_at   < now() then '종료'
+        else '진행 중'
+      end
+    when p.is_always_open then '상시'
+    when p.application_start_date is null and p.application_end_date is null then '기간 미정'
+    when p.application_start_date > current_date then '모집 예정'
+    when p.application_end_date   < current_date then '마감'
+    else '모집 중'
+  end as recruitment_status,
+  case
+    when p.item_type = 'EVENT' then
+      (cd.event_end_at at time zone 'Asia/Seoul')::date - (now() at time zone 'Asia/Seoul')::date
+    when p.application_end_date is not null and not p.is_always_open
+      then p.application_end_date - current_date
+  end as d_day
+from policy p
+left join culture_detail cd using (policy_id);
 
 -- ---------------------------------------------------------------------
 -- 3. 데이터 수집·관리
@@ -397,7 +456,7 @@ declare t text;
 begin
   foreach t in array array['policy_category','policy_subcategory','region','policy',
     'policy_subcategory_map','policy_region','job_detail','housing_detail',
-    'finance_detail','culture_detail','popular_search_keyword']
+    'finance_detail','culture_detail','place','popular_search_keyword']
   loop
     execute format('alter table %I enable row level security', t);
     execute format('create policy "public read" on %I for select using (true)', t);
