@@ -1,0 +1,380 @@
+/**
+ *
+ * @file : STORY CMS 게시판 공통 common.js (HHCommon.js에 의존성을 가지고 있으므로 반드시 로드되어야 사용가능)
+ * @author : Shin-Hyunho
+ * @date : 2017/04/17
+ * @see : 공통 
+ **/
+(function() {
+ HHBbs = {
+ /**
+ * 레벨별 카테고리 목록 OPTION 태그 생성
+ * 
+ */ 
+ categoryLevelList: function(url, mId, bbsId, categoryLevel, categoryCode, el, optionDefaultVal) {
+ var sendUrl = HHCommon.MenuIdRpc(url, mId);
+ var data = {bbsId: bbsId, categoryLevel: categoryLevel, categoryCode: categoryCode};
+ var jqxhr = HHCommon.Ajax('POST', sendUrl, data, 'text');
+ jqxhr.done(function(data) {
+ var parseData = $.parseJSON(data);
+ if ((parseData.flag == 'success')) {
+ var createOption = "" + optionDefaultVal + "";
+ if (parseData.result) {
+ createOption += parseData.result;
+ $(el).html(createOption);
+ } else { 
+ $(el).html(createOption);
+ }
+ } else {
+ alert('카테고리정보를 가져오는중 오류가 발생하였습니다!.'); 
+ }
+ }); 
+ },
+ /**
+ * 계층별 카테고리 목록 OPTION 태그 생성
+ */
+ categoryHierarchyList: function(url, mId, bbsId, categoryCode, el, optionDefaultVal) {
+ var sendUrl = HHCommon.MenuIdRpc(url, mId);
+ var data = {bbsId: bbsId, categoryCode: categoryCode};
+ var jqxhr = HHCommon.Ajax('POST', sendUrl, data, 'text');
+ jqxhr.done(function(data) {
+ var parseData = $.parseJSON(data);
+ if ((parseData.flag == 'success')) {
+ // 하위 selectbox 초기화처리
+ $(el).val('').change();
+ var createOption = "" + optionDefaultVal + "";
+ if (parseData.result) {
+ createOption += parseData.result;
+ $(el).html(createOption);
+ } else { 
+ $(el).html(createOption);
+ }
+ } else {
+ alert('카테고리정보를 가져오는중 오류가 발생하였습니다!.'); 
+ }
+ }); 
+ },
+ /**
+ * 첨부파일 선택후 확장자 체크 및 대체텍스트 입력폼 활성화
+ * (fileExtList를 가진 객체안의 TEXT를 구하여 확인)
+ */
+ AtchFileSelect: function(el) {
+ // 첨부된 파일정보
+ var atchFilePath = $(el).val();
+ var atchFileName = "";
+ var atchFileExt = "";
+ // 확장자 체크
+ if (atchFilePath) {
+ atchFileName = atchFilePath.substring(atchFilePath.lastIndexOf("\\") + 1);
+ atchFileExt = atchFileName.substring(atchFileName.lastIndexOf(".") + 1).toLowerCase();
+ if ($('#fileExtList').length > 0) {
+ var fileExtList = $('#fileExtList').text();
+ var fileExtArr = fileExtList.split(',');
+ var acceptNo = 0;
+ var unAcceptNo = 0;
+ for (var i=0;i 0) { 
+ alert(atchFileExt + ' 확장자는 첨부할 수 없습니다!.\n첨부가능한 확장자를 확인하시기 바랍니다.'); 
+ $(el).val(''); 
+ $(el).parent().find('div').remove(); 
+ return false;
+ } 
+ } else {
+ alert("확장자 체크 리스트가 없습니다!.");
+ $(el).val(''); 
+ $(el).parent().find('div').remove(); 
+ return false;
+ } 
+ } 
+ // 대체텍스트 입력폼 활성화
+ /*$(el).parent().find('div').remove();
+ if ($(el).val()) { 
+ if (atchFileExt == "jpg" || atchFileExt == "jpeg" || atchFileExt == "png" || atchFileExt == "gif" || atchFileExt == "bmp") {
+ var fileHtml = '';
+ fileHtml += '';
+ fileHtml += '첨부파일이 이미지일경우 대체텍스트를 입력하시면 접근성이 향상됩니다.';
+ fileHtml += '
+';
+ } else {
+ var fileHtml = '';
+ }
+ $(el).parent().append(fileHtml);
+ }*/
+ // 입력된 파일명 display 처리 (입력요소에 default file input이 사용되지 않고 디자인 요소적으로 input file을 없애고 사용할때 필요하므로 디자인적 요소에 맞게 변경하여 사용하세요.)
+ if (!atchFileName) {
+ $(el).parent().find('label').html($(el).parent().find('label > span').detach());
+ }
+ else {
+ $(el).parent().find('label').html($(el).parent().find('label>span').clone());
+ $(el).parent().find('label').append(atchFileName);
+ }
+ },
+ /**
+ * 첨부파일 다운로드
+ */
+ DownFile: function(contextPath, bbsId, atchFileId, fileSn) {
+ window.open(contextPath + "/bbs/FileDown.do?bbsId=" + bbsId + "&atchFileId="+encodeURIComponent(atchFileId)+"&fileSn="+encodeURIComponent(fileSn));
+ },
+ /**
+ * 첨부파일 삭제처리
+ */
+ DeleteFileInf: function(fileListId, contextPath, dataId, bbsId, atchFileId, streFileNm, fileSn) {
+ var sendUrl = contextPath + '/bbs/deleteFileInfs.do';
+ var data = {dataId: dataId, bbsId: bbsId, atchFileId: atchFileId, streFileNm: streFileNm, fileSn: fileSn};
+ var jqxhr = HHCommon.Ajax('POST', sendUrl, data, 'text');
+ jqxhr.done(function(data) {
+ var parseData = $.parseJSON(data); 
+ if ((parseData.flag == 'success')) {
+ $('#'+fileListId).remove(); 
+ var isFileAttachFormNo = $('#fileAttachForm').children().length;
+ var copyFileInput = $('#fileAttachForm').children().first().clone();
+ // copy할 첨부파일 html이 없을때 약속된 html 형태로 생성 (디자인요소에 따라 수정필요)
+ if (isFileAttachFormNo == 0) {
+ /*copyFileInput = "";
+ copyFileInput += "";
+ copyFileInput += "파일첨부";
+ copyFileInput += "";
+ copyFileInput += "
+";
+ copyFileInput += ""; 
+ copyFileInput += "첨부설명";
+ copyFileInput += "";
+ copyFileInput += "
+";
+ copyFileInput += "
+";*/ 
+ copyFileInput = "";
+ copyFileInput += "";
+ copyFileInput += "";
+ copyFileInput += "파일첨부";
+ copyFileInput += "";
+ copyFileInput += "
+";
+ copyFileInput += "";
+ copyFileInput += "첨부설명";
+ copyFileInput += "";
+ copyFileInput += "
+";
+ copyFileInput += "";
+ copyFileInput += "
+"; 
+ }
+ // 동적으로 생성된 객체의 file name과 id값을 변경처리 (디자인요소에 따라 수정필요)
+ $(copyFileInput).find('label[for^="file"]').attr('for', 'file_' + (isFileAttachFormNo+1));
+ $(copyFileInput).find('input[type="file"]').attr('name', 'file_' + (isFileAttachFormNo+1)).attr('id', 'file_' + (isFileAttachFormNo+1));
+ $(copyFileInput).find('input[type="text"]').attr('id', 'file_cn_' + (isFileAttachFormNo+1));
+ $('#fileAttachForm').append(copyFileInput);
+ } else {
+ alert(parseData.resultMsg); 
+ }
+ }); 
+ },
+ /**
+ * 비밀번호 인증폼 validator
+ */
+ PwdFormValidator: function(form) {
+ if (!form.boardPassword.value) {
+ alert("비밀번호를 입력하세요!.");
+ form.boardPassword.focus();
+ return false;
+ }
+ return true;
+ },
+ /**
+ * 댓글(코멘트) 입력처리
+ */
+ CommentInsertProc: function(url, mId, bbsId, dataId) { 
+ if (url && bbsId && dataId) {
+ if ($('#commentContent').val()) {
+ var sendUrl = HHCommon.MenuIdRpc(url, mId);
+ var data = {bbsId: bbsId, dataId: dataId, commentContent: $('#commentContent').val()};
+ var jqxhr = HHCommon.Ajax('POST', sendUrl, data, 'text');
+ jqxhr.done(function(data) {
+ var parseData = $.parseJSON(data);
+ if ((parseData.flag == 'success')) {
+ window.location.reload(); 
+ } 
+ else {
+ alert(parseData.msg.replace('\\n', '\n')); 
+ }
+ }); 
+ }
+ else {
+ alert('댓글 내용을 입력하세요!.');
+ }
+ }
+ },
+ /**
+ * 댓글(코멘트) 수정 확인
+ */
+ CommentUpdate: function(url, mId, commentId, el_id) {
+ if (url && mId && commentId) {
+ var sendUrl = HHCommon.MenuIdRpc(url, mId);
+ var data = {commentId: commentId, commentContent: $('#commentContent').val()};
+ var jqxhr = HHCommon.Ajax('POST', sendUrl, data, 'text');
+ jqxhr.done(function(data) {
+ var parseData = $.parseJSON(data);
+ if ((parseData.flag == 'success')) { 
+ var cmt_txt = $('#'+el_id).find('.cmt_txt').html().trim().replace('
+','\n'); 
+ $('#'+el_id).find('.cmt_txt').remove(); 
+ var insertTag = ''+cmt_txt+'';
+ $('#'+el_id).find('.replay_cmt').append(insertTag);
+ $('#'+el_id).find('.replay_btn').find('button[onclick^="HHBbs.CommentUpdate"]').attr('onclick', "HHBbs.CommentUpdateProc('./commentUpdateProc.do','" + mId + "','" + commentId + "', '" + el_id + "');").html('저장'); 
+ } 
+ else {
+ alert(parseData.msg.replace('\\n', '\n')); 
+ }
+ }); 
+ }
+ },
+ /**
+ * 댓글(코멘트) 수정 처리
+ */
+ CommentUpdateProc: function(url, mId, commentId, el_id) {
+ if (url && mId && commentId) {
+ if ($('#'+el_id).find('textarea').val()) {
+ var sendUrl = HHCommon.MenuIdRpc(url, mId);
+ var data = {commentId: commentId, commentContent: $('#'+el_id).find('textarea').val()};
+ var jqxhr = HHCommon.Ajax('POST', sendUrl, data, 'text');
+ jqxhr.done(function(data) {
+ var parseData = $.parseJSON(data);
+ if ((parseData.flag == 'success')) { 
+ window.location.reload();
+ } 
+ else {
+ alert(parseData.msg.replace('\\n', '\n')); 
+ }
+ }); 
+ }
+ else {
+ alert('댓글 내용을 입력하세요!.');
+ }
+ }
+ },
+ /**
+ * 댓글(코멘트) 삭제 처리
+ */
+ CommentDeleteProc: function(url, mId, commentId, el_id) {
+ if (url && mId && commentId) {
+ var sendUrl = HHCommon.MenuIdRpc(url, mId);
+ var data = {commentId: commentId};
+ var jqxhr = HHCommon.Ajax('POST', sendUrl, data, 'text');
+ jqxhr.done(function(data) {
+ var parseData = $.parseJSON(data); 
+ if ((parseData.flag == 'success')) {
+ window.location.reload(); 
+ } 
+ else {
+ alert(parseData.msg.replace('\\n', '\n')); 
+ }
+ });
+ }
+ },
+ /**
+ * 댓글(코멘트) 작성자 이름 클릭후 코멘트 작성
+ */
+ CommentTo: function(commentName) { 
+ if (!$('#commentContent').prop('disabled')) { 
+ $('#commentContent').val('[' + commentName + '] ');
+ $('#commentContent').focus(); 
+ }
+ }, 
+ /**
+ * 게시판 영역 인쇄
+ */
+ Print: function() {
+ window.print();
+ return false;
+ },
+ /**
+ * SimpleChacha 자동방지문자열 새로고침
+ */
+ CaptchaImgRefresh: function(el, srcUrl) {
+ $(el).attr("src", srcUrl + "?id=" + Math.random());
+ },
+ /**
+ * SimpleChacha 자동방지문자열 오디오 새로고침
+ */
+ CapchaLoadAudio: function(capchaId, supportId, audioUrl) {
+ var uAgent = navigator.userAgent;
+ //var audioUrl = '${pageContext.request.contextPath}/captcha/CaptChaAudio.${storyCmsActionExtension}';
+ if (uAgent.indexOf('Trident') > -1 || uAgent.indexOf('MSIE') > -1) {
+ $(capchaId).html('');
+ } 
+ else if (!!document.createElement('audio').canPlayType) {
+ try { 
+ new Audio(audioUrl).play(); 
+ } catch(e) { 
+ winPlayer(audioUrl); 
+ }
+ } 
+ else {
+ window.open(audioUrl, '', 'width=1,height=1');
+ }
+ /*document.getElementById(capchaId).src = audioUrl + "?bogus=" + new Date().getTime();
+ document.getElementById(supportId).innerHTML = document.createElement('audio').canPlayType("audio/wav");
+ document.getElementById(capchaId).play();*/
+ },
+ /**
+ * SimpleChacha 자동방지문자열 오디오 다시듣기
+ */
+ CapchaReplayAudio: function(capchaId) {
+ const audioCaptcha = document.getElementById(capchaId);
+ audioCaptcha.play();
+ },
+ /**
+ * 본인인증
+ */
+ CertAuthorization: function() {
+ },
+ /**
+ * 게시판 파일 미리보기
+ */
+ FilePreivew: function(atchFileId, fileSn) {
+ $.ajax({
+ dataType : "json", 
+ type : "POST",
+ url : "/u/comm/preview/boardFile.do",
+ data : {
+ "atchFileId" : atchFileId,
+ "fileSn" : fileSn
+ },
+ beforeSend: function() {
+ HoldOn.open({ 
+ theme : 'sk-cube-grid',
+ //backgroundColor:"#1847B1",
+ textColor:"white",
+ message : '잠시만 기다려주세요.
+미리보기를 위해 파일을 변환하고 있습니다.
+파일 변환이 완료되면 새창으로 미리보기가 실행됩니다.
+파일의 용량에 따라 다소 시간이 걸릴수 있습니다.
+'
+ });
+ }, 
+ complete: function() { },
+ success: function(resultMap) {
+ if(resultMap) {
+ // 문서 변환 성공
+ if(resultMap.resultCode == 0) {
+ window.open(resultMap.resultPage);
+ }
+ else if(resultMap.resultCode == 999) {
+ alert("첨부파일이 존재하지 않습니다.");
+ }
+ else {
+ alert("지원하지 않는 파일입니다. [resultCode=" + resultMap.resultCode + "]");
+ }
+ }
+ else {
+ alert("문서변환중 오류가 발생하였습니다.");
+ }
+ HoldOn.close();
+ },
+ error: function() {
+ alert("문서변환 실행중 오류가 발생하였습니다.");
+ HoldOn.close();
+ }
+ });
+ }
+ }
+})();

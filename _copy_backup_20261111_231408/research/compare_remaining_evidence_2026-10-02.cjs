@@ -1,0 +1,32 @@
+const fs=require('node:fs'),path=require('node:path');
+const dir=path.join(__dirname,'raw_2026-10-02/candidate_verification');
+const read=f=>fs.existsSync(path.join(dir,f))?JSON.parse(fs.readFileSync(path.join(dir,f),'utf8').replace(/^\uFEFF/,'')):[];
+const targets=read('remaining_review_targets_276.json'),notes=read('remaining_review_decisions.json');
+const logs=['checks.json','search_checks.json','latest_checks.json','latest_short_checks.json','remaining_checks.json','recheck_2026-10-03.json'].flatMap(read);
+const manual=read('manual_checks.json');
+const norm=s=>String(s||'').replace(/202\d년?|청년|모집|공고|지원사업|지원|사업|[^가-힣a-z0-9]/gi,'');
+const host=u=>{try{return new URL(u).hostname.replace(/^www\./,'');}catch{return '';}};
+const rows=targets.map(t=>{
+ const sources=[...new Map(logs.filter(c=>c.plcyNo===t.plcyNo).flatMap(c=>[...(c.자료||[]),...(c.첨부||[])]).concat(manual.filter(c=>c.plcyNo===t.plcyNo)).map(r=>[r.URL,r])).values()];
+ const details=sources.map(r=>{
+  const f=[r.file&&r.file+'.document.txt',r.file&&r.file+'.txt',r.textFile].filter(Boolean).find(f=>fs.existsSync(path.join(dir,f)));
+  const body=f?fs.readFileSync(path.join(dir,f),'utf8'):'';
+  const lines=body.split(/\r?\n/).map(s=>s.trim()).filter(Boolean);
+  const title=String(r.검색제목||r.title||r.첨부제목||'').replace(/\s+/g,' ').trim().slice(0,500);
+  const stem=norm(t.정책명),pairs=new Set(Array.from({length:Math.max(stem.length-1,0)},(_,i)=>stem.slice(i,i+2)));
+  const nameScore=[...pairs].filter(s=>norm(title).includes(s)).length/Math.max(pairs.size,1);
+  const notice=lines.filter(s=>/공고\s*제|모집\s*공고|정정\s*공고|수정\s*공고|추가\s*모집/.test(s)).filter(s=>s.length<260).slice(0,5);
+  const periods=[];for(let i=0;i<lines.length;i++)if(/신청기간|접수기간|모집기간|모집일정/.test(lines[i]))periods.push(lines.slice(Math.max(0,i-1),i+4).join(' ').slice(0,400));
+  const evidence=r.error?'조회실패':r.status!==200?'HTTP오류':r.errorPage?'오류안내본문':!body?'본문미확보':'본문확보';
+  const flags=[];if(host(t.공식참고URL)&&host(r.URL)!==host(t.공식참고URL))flags.push('API참고호스트와상이(기관연관성별도판정)');
+  if(nameScore<0.55)flags.push('제목일치근거부족');
+  if(notice.some(s=>/202[0-5]/.test(s))&&!notice.some(s=>/2026/.test(s)))flags.push('공고표제에과거연도검출');
+  if(/본 공고문에 대한 수정 공고문이 있습니다/.test(body))flags.push('후속정정안내검출;목록/정정공고확인필요');
+  if(!periods.length)flags.push('접수기간표제미검출(상시판정근거아님)');
+  return {URL:r.URL,제목:title,응답:r.status||r.error||'확인필요',본문파일:f||'미확보',본문확보:evidence,표제대조:notice,접수문구:periods.slice(0,4),기계검출주의:flags};
+ });
+ return {...t,대조일:'2026-10-03',검색증빙:['search_latest_','search_latest_short_','search_remaining_'].map(p=>p+t.plcyNo+'.json').filter(f=>fs.existsSync(path.join(dir,f))),원문대조자료:details,본문해석:notes[t.plcyNo]||null,최종단계:notes[t.plcyNo]?'본문개별해석기록있음;최신성은별도수준참조':'출처·본문확보·공고표제·접수문구기계대조;동일사업및최신성해석미완료',확정모집조건:'기계검출만으로변경하지않음'};
+});
+fs.writeFileSync(path.join(dir,'remaining_evidence_comparison_276.json'),JSON.stringify(rows,null,2));
+console.log(JSON.stringify({대상:rows.length,검색3종확보:rows.filter(r=>r.검색증빙.length===3).length,원문후보있음:rows.filter(r=>r.원문대조자료.length).length,응답성공본문있음:rows.filter(r=>r.원문대조자료.some(s=>s.본문확보==='본문확보')).length,추가개별해석:rows.filter(r=>r.본문해석).length,개별해석미완료:rows.filter(r=>!r.본문해석).length},null,2));
+if(process.argv.includes('--inspect'))for(const r of rows.slice(Number(process.argv[2]||0),Number(process.argv[2]||0)+Number(process.argv[3]||20)))console.log(JSON.stringify({id:r.plcyNo,name:r.정책명,ref:r.공식참고URL,s:r.원문대조자료.map(s=>({t:s.제목,p:s.표제대조,f:s.기계검출주의})).slice(0,4)}));

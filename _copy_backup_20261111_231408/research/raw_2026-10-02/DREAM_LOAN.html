@@ -1,0 +1,3781 @@
+
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+<html lang="ko">
+	<head>
+		
+
+
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<!-- 운영에 배포할 때 아래 http-equiv 주석처리 제거하고 반영해야 함 (해당 태그는 HTTP에서 HTTPS로 자동 변환해줌) -->
+<meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, target-densityDpi=medium-dpi">
+<meta name="robots" content="noindex, follow">
+<!--구글등록-->
+<meta name="google-site-verification" content="943vs5RmVFLIm58KOpipc_2L2iYEf9ZFbzcfeyji2YI" />
+<!--네이버등록-->
+<meta property="og:type" content="website">
+<meta property="og:title" content="주택도시기금">
+<meta property="og:description" content="주택도시기금 소개, 주택구입(내집마련디딤돌 등), 전세자금, 월세대출, 국민주택채권, 주택청약, 신혼부부대출">
+<meta name="description" content="주택도시기금 소개, 주택구입(내집마련디딤돌 등), 전세자금, 월세대출, 국민주택채권, 주택청약, 신혼부부대출">
+<meta property="og:image" content="http://nhuf.molit.go.kr/common/images/main/kakao.png">
+<meta property="og:url" content="http://nhuf.molit.go.kr/">
+<!--//네이버등록-->
+<!--트위터등록-->
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="주택도시기금">
+<meta name="twitter:description" content="주택도시기금 소개, 주택구입(내집마련디딤돌 등), 전세자금, 월세대출, 국민주택채권, 주택청약, 신혼부부대출">
+<meta name="twitter:image" content="http://nhuf.molit.go.kr/">
+<meta name="twitter:domain" content="주택도시기금">
+<!--//트위터등록-->	
+<link rel="canonical" href="http://nhuf.molit.go.kr/">
+<!-- 웹마스터도구 페이지와 연동되는 모바일 앱 링크-->
+<meta property="al:ios:url" content="applinks://docs">
+<meta property="al:ios:app_store_id" content="12345">
+<meta property="al:ios:app_name" content="App Links">
+<meta property="al:android:url" content="applinks://docs">
+<meta property="al:android:app_name" content="App Links">
+<meta property="al:android:package" content="org.applinks">
+<meta property="al:web:url" content="http://applinks.org/documentation">
+<!--// 웹마스터도구 페이지와 연동되는 모바일 앱 링크-->
+
+
+
+<link rel="stylesheet" href="/common/css/style.css?v=0">
+<link rel="shortcut icon" type="image/x-icon" href="/common/images/32.ico">
+<link rel="icon" type="image/x-icon" href="/common/images/32.png">
+<link rel="apple-touch-icon" href="/common/images/128.png">
+<link rel="apple-touch-icon-precomposed" href="/common/images/128.png" />
+<!--
+<script>
+if(window.location.protocol=="https:"){
+
+   location.href="http://nhuf.molit.go.kr";
+}
+</script>
+-->
+<script src="/common/js/jquery-1.10.2.min.js"></script>
+<script src="/common/js/jquery.mobile-1.4.5.js"></script>
+<script src="/common/js/jquery-ui.min.js"></script>
+
+
+
+<script src="/common/js/onlypub.js"></script>
+<script src="/common/js/common.js"></script>
+<script src="/common/js/base.js"></script>
+	
+<!-- 20180820 중소기업취업청년 대기업중소기업분류추가 -->
+
+<!--
+<!—[if lt IE 8]>
+<script type="text/javascript" src="/common/js/Uint8ArrayIE8.js"></script>
+<![endif]—> 
+-->
+
+<script type="text/javascript" src="/common/js/shim.min.js"></script>
+<!--<script type="text/javascript" src="/common/js/xlsx.full.min.js"></script> -->
+<script type="text/javascript" src="/common/js/xlsx.bundle.js"></script>
+<script type="text/javascript" src="/common/js/FileSaver.min.js"></script>
+<script>
+function businessNumCheck(){
+	var b_str = document.getElementById("businessNum").value;
+	var url ="./non_small_20190503.xlsx";
+	var req = new XMLHttpRequest();
+	req.open("GET", url, true);
+	req.responseType = "arraybuffer";
+
+	req.onload = function(e) {
+	  /* parse the data when it is received */
+		var data = new Uint8Array(req.response);
+		var workbook = XLSX.read(data, {type:"array"});
+		/* DO SOMETHING WITH workbook HERE */
+		var first_sheet_name = workbook.SheetNames[0];
+		var address_of_cell = "E";
+		var num = 2;
+		var worksheet = workbook.Sheets[first_sheet_name];
+		var desired_cell = worksheet[address_of_cell+String(num)];	
+		var check_flag = false;
+		while(true){
+			var desired_value = (desired_cell ? desired_cell.v : undefined);
+			
+			if(desired_value == undefined){
+				var desired_value_1 = (worksheet[address_of_cell+String(num+1)] ? true : false);
+				var desired_value_2 = (worksheet[address_of_cell+String(num)+2] ? true : false);
+				
+				if(desired_value_1 || desired_value_1){
+					num++;
+					desired_cell = worksheet[address_of_cell+String(num)];
+				}else{
+					break;
+				}
+				
+			}
+			
+			if(b_str == desired_cell.v){
+				check_flag = true;
+				break;
+			}
+			
+			num++;
+			desired_cell = worksheet[address_of_cell+String(num)];
+			break_flag = false;
+		}
+		
+		if(b_str.length ==13)
+		{
+			if(check_flag){
+				alertPopup("0");
+			}else{
+				alertPopup("1");
+			}
+		}
+		else
+		{
+			alertPopup("2");
+		}
+	}
+	req.send();
+}
+function alertPopup(alertId) {
+	var msg = "";
+	if (alertId == "0"){
+		msg = "[기업 규모 조건]을 [미충족]";
+		
+	}
+	else if (alertId == "1"){
+		msg = "[기업 규모 조건]을 [충족]";
+		
+	}
+	else if (alertId == "2"){
+		msg = "법인번호 13자리를 확인해주세요."
+	}
+	$("#alert_message").html(msg);
+	$("#helpLayer").show();
+}
+</script>        
+<script>
+$(document).ready(function() {
+		//마법사 helpLayer 경고창 닫기
+		$('.btnClose_layer').click(function() {
+			$('#helpLayer').fadeOut();
+		});
+	});
+</script>
+<!--20180820 중소기업취업청년 대기업중소기업분류추가-->
+
+<script src="/common/js/jquery.bxslider.min.js"></script> <!-- 2015-09-15 js 추가 -->
+<link rel="stylesheet" href="/common/css/contents.css?v=0">
+                
+<!-- AceCounter Log Gathering Script V.71.2010011401 -->
+<!-- <script>
+if(typeof _GUL == 'undefined'){
+var _GUL = 'khgc.loginside.co.kr';var _GPT='80'; var _SGPT='443';var _AIMG = new Image(); var _bn=navigator.appName; var _PR = location.protocol=="https:"?"https://"+_GUL+":"+_SGPT:"http://"+_GUL+":"+_GPT;if( _bn.indexOf("Netscape") > -1 || _bn=="Mozilla"){ setTimeout("_AIMG.src = _PR+'/?cookie';",1); } else{ _AIMG.src = _PR+'/?cookie'; };
+document.writeln("<scr"+"ipt language='javascript' src='/common/js/acecounter_V70.js'></scr"+"ipt>");
+} 
+</script>
+<noscript><img src='http://khgc.loginside.co.kr:80/?uid=2&je=n&' style="border:0; width:0; height:0;" alt="로그분석 이미지"></noscript> -->
+<!-- AceCounter Log Gathering Script End -->
+		<title>일반대출 안내 < 청년 주택드림 디딤돌 대출 < 주택구입자금대출 < 개인상품 | 주택도시기금 </title>
+<script type="text/javascript">
+var NODEID = "1124";
+var NODEID1 = "23";
+</script>
+	</head>
+
+	<body class="bulNone">
+		<!-- 본문 바로가기 -->
+		<div id="skipToContent">
+			<a href="#contArea">본문 바로가기</a>
+		</div>
+		<!-- //본문 바로가기 -->
+		<div id="wrap">
+			<!-- header 영역 -->
+			 
+
+
+<div id="topAd" >
+
+</div>
+<script>	
+    // 공지사항 게시판  바로가기 링크 걸기
+	$(document).ready(function(){	
+	$("a[href*='apt2you.com']").attr("target",  "_blank");
+
+	$("a[href*='articleId=497']").attr("target",  "_blank");
+	$("a[href*='articleId=497']").attr("href",    "http://jipjuin.molit.go.kr/");        
+	$("a[href*='articleId=498']").attr("target",  "_blank");
+	$("a[href*='articleId=498']").attr("href",    "http://www.ifhf.or.kr/");
+	$("a[href*='articleId=522']").attr("target",  "_blank");
+	$("a[href*='articleId=522']").attr("href",    "http://www.ifhf.or.kr");
+
+    //$("a[href*='articleId=505']").html("임대리츠(기업형·특화형) 기금출자업무 안내서");  
+
+    //if($(".gray > span > span").length > 0) {
+    //    console.log($(".gray > span > span").html());
+    //    if(($(".gray > span > span").html()).indexOf("기업형 임대리츠 기금출자업무 안내서") >=0){
+    //        $(".gray > span > span").html("임대리츠(기업형·특화형) 기금출자업무 안내서");
+    //    }
+    //}
+    // 12343567
+
+    //$(".menu02 > div > ul > li:eq(1) > ul > li:eq(1) > a").text("전세보증금반환보증");
+
+
+   	if("/FP/FP05/FP0503/FP05030901.jsp".indexOf("FP0602") >=0 ) {
+    	var tab01Children = $(".tab01").children();
+        console.log(tab01Children.length);
+        var tabArray = [];
+               
+        $.each(tab01Children, function(i, v){
+        	tabArray.push($(this).clone());
+        });
+
+        $(".tab01").empty();
+        $(".tab01").append(tabArray[0]);   
+        $(".tab01").append(tabArray[2]);
+        $(".tab01").append(tabArray[1]);
+	}
+
+
+	//버팀목전세자금대출 > 역전세 세입자 지원 Tab 우리은행만 남기고 나머지 은행 감춤
+    if("/FP/FP05/FP0503/FP05030901.jsp".indexOf("FP05020106.jsp") >=0 ) {
+    	//$(".bankList").eq(0).prev().hide();
+        //$(".bankList").eq(0).hide();
+   	} else if("/FP/FP05/FP0503/FP05030901.jsp".indexOf("FP05030101.jsp") >=0 ) {
+        $(".bankList").eq(0).prev().empty();
+        $(".bankList").eq(0).prev().html("인터넷신청(유한책임대출은 제외)");
+    }
+
+  	if("/FP/FP05/FP0503/FP05030901.jsp".indexOf("FP07050101.jsp") >=0 ) {
+        $(".bondInfo.type02 > li ul").css("min-height", "200px");
+   	}
+  	
+ 	if("/FP/FP05/FP0503/FP05030901.jsp".indexOf("FP0810") >=0 ) {		
+        $('#lnb ul > li > a').removeClass('on');
+        $.each($('#lnb ul > li > a'), function(i, v){
+		
+        	if($(this).prop('href').indexOf("board.do") >=0 ) {
+    			if($(this).parent().prop('class').indexOf('an') >=0){
+        	    	$(this).prop('class', 'on').change();
+     			} else {
+        			$(this).prop('class', 'active').change();
+        			$(this).next().css('display', 'block').change();
+                }
+    			return false;
+			}
+        });
+	}
+});
+</script>
+
+
+
+
+
+
+
+
+<header>
+	<div class="gnbWrap" id="gnb_23">
+		<div class="gnbArea">
+			<span class="gnbOverLine"></span>
+			<h1><a href="/"><img src="/common/images/common/logo.png" alt="주택도시기금"></a></h1>
+			<!-- 상단 메뉴 -->
+			<nav>
+				<ul>
+
+					<li class="menu01"><a href="#none">기금안내</a>
+						<div class="innerWrap">
+
+
+								<ul>
+
+									<li class="baseOn"><a href="#none"  class="depth2y">주택도시기금소개</a>
+
+										<ul>
+
+											<li class="baseOn"><a href="/FP/FP04/FP0401/FP040101.jsp" >개편방향</a></li>
+
+											<li class=""><a href="/FP/FP04/FP0401/FP040102.jsp" >기금의 역할</a></li>
+
+											<li class=""><a href="/FP/FP04/FP0401/FP040103.jsp" >조성재원 및 용도</a></li>
+
+											<li class=""><a href="/FP/FP04/FP0401/FP040104.jsp" >주택도시기금 연혁</a></li>
+
+											<li class=""><a href="/FP/FP04/FP0406/FP040603.jsp" >주택도시기금 재무현황</a></li>
+
+										</ul>
+	
+									</li>
+
+									<li class=""><a href="#none"  class="depth2y">기금업무체계</a>
+
+										<ul>
+
+											<li class="baseOn"><a href="/FP/FP04/FP0403/FP0403.jsp" >기금업무체계</a></li>
+
+											<li class=""><a href="/FP/FP04/FP0403/FP040302.jsp?mode=L" >수탁은행평가결과</a></li>
+
+										</ul>
+	
+									</li>
+
+									<li class=""><a href="/FP/FP04/FP0404/FP0404.jsp" class="depth2n">주거복지사업</a>
+	
+									</li>
+
+									<li class=""><a href="#none"  class="depth2y">여유자금운용</a>
+
+										<ul>
+
+											<li class="baseOn"><a href="/FP/FP04/FP0406/FP040601.jsp" >여유자금운용 개요</a></li>
+
+											<li class=""><a href="/FP/FP04/FP0406/FP040604.jsp" >여유자금운용 정책</a></li>
+
+											<li class=""><a href="/FP/FP04/FP0406/FP040602.jsp?mode=L" >여유자금운용 성과</a></li>
+
+										</ul>
+	
+									</li>
+
+									<li class=""><a href="#none"  class="depth2y">주택도시보증공사소개</a>
+
+										<ul>
+
+											<li class="baseOn"><a href="/FP/FP04/FP0402/FP040201.jsp" >공사개요</a></li>
+
+											<li class=""><a href="/FP/FP04/FP0402/FP040202.jsp" >경영전략</a></li>
+
+										</ul>
+	
+									</li>
+
+
+								</ul>
+
+						</div>
+					</li>
+
+					<li class="menu02"><a href="#none">개인상품</a>
+						<div class="innerWrap">
+
+
+								<ul>
+
+									<li class="baseOn"><a href="/FP/FP05/FP0501/FP0501.jsp" class="depth2n">개인상품 전체보기</a>
+	
+									</li>
+
+									<li class=""><a href="#none"  class="depth2y">주택전세자금대출</a>
+
+										<ul>
+
+											<li class="baseOn"><a href="/FP/FP05/FP0502/FP05020701.jsp" >청년전용 보증부월세대출</a></li>
+
+											<li class=""><a href=" /FP/FP05/FP0502/FP05020301.jsp " >청년전용 버팀목전세자금</a></li>
+
+											<li class=""><a href="/FP/FP05/FP0502/FP05021401.jsp" >신생아 특례 버팀목대출 </a></li>
+
+											<li class=""><a href="/FP/FP05/FP0502/FP05021101.jsp" >주거취약계층 이주지원 버팀목전세자금</a></li>
+
+											<li class=""><a href="/FP/FP05/FP0502/FP05021201.jsp" >전세피해 임차인 버팀목전세자금</a></li>
+
+											<li class=""><a href="/FP/FP05/FP0505/050510001.jsp" >전세피해임차인대상 버팀목전세대출대환</a></li>
+
+											<li class=""><a href="/FP/FP05/FP0506/050560001.jsp" >전세사기피해자 최우선변제금 버팀목 전세자금 대출</a></li>
+
+											<li class=""><a href="/FP/FP05/FP0502/FP05020201.jsp" >주거안정월세대출</a></li>
+
+											<li class=""><a href=" /FP/FP05/FP0502/FP05020401.jsp " >신혼부부전용 전세자금</a></li>
+
+											<li class=""><a href="/FP/FP05/FP0502/FP05020101.jsp" >버팀목전세자금</a></li>
+
+											<li class=""><a href="/FP/FP05/FP0502/FP05021001.jsp" >갱신만료 임차인 지원 버팀목전세자금 </a></li>
+
+											<li class=""><a href="https://www.khug.or.kr/hug/web/ig/dl/igdl000001.jsp" target="_blank" title="개인상품 메뉴 새창 열림">전세금안심대출보증</a></li>
+
+											<li class=""><a href="/FP/FP08/FP0813/FP081303.jsp" >이의제기 처리방법</a></li>
+
+										</ul>
+	
+									</li>
+
+									<li class=""><a href="#none"  class="depth2y">주택구입자금대출</a>
+
+										<ul>
+
+											<li class="baseOn"><a href="/FP/FP05/FP0503/FP05030601.jsp" >신혼부부전용 구입자금</a></li>
+
+											<li class=""><a href="/FP/FP05/FP0503/FP05030701.jsp" >신혼희망타운전용 주택담보장기대출</a></li>
+
+											<li class=""><a href="/FP/FP05/FP0503/FP05030101.jsp" >내집마련디딤돌대출</a></li>
+
+											<li class=""><a href="/FP/FP05/FP0507/FP05070001.jsp" >전세사기피해자 전용 디딤돌 대출</a></li>
+
+											<li class=""><a href="/FP/FP05/FP0503/FP05030801.jsp" >신생아 특례 디딤돌대출</a></li>
+
+											<li class=""><a href="/FP/FP05/FP0503/FP05030901.jsp" >청년 주택드림 디딤돌 대출</a></li>
+
+											<li class=""><a href="/FP/FP05/FP0503/FP05030201.jsp" >수익공유형모기지</a></li>
+
+											<li class=""><a href="/FP/FP05/FP0503/FP05030301.jsp" >손익공유형모기지</a></li>
+
+											<li class=""><a href="/FP/FP05/FP0503/FP05030501.jsp" >오피스텔구입자금</a></li>
+
+											<li class=""><a href="/FP/FP05/FP0504/FP05040401.jsp" >재해주택복구 및 구입자금</a></li>
+
+										</ul>
+	
+									</li>
+
+									<li class=""><a href="#none"  class="depth2y">기타주택자금대출</a>
+
+										<ul>
+
+											<li class="baseOn"><a href="/FP/FP05/FP0504/FP05040101.jsp" >부도임대주택경락자금</a></li>
+
+											<li class=""><a href="/FP/FP05/FP0504/FP05040301.jsp" >부도임대주택퇴거자전세자금</a></li>
+
+											<li class=""><a href="/FP/FP05/FP0504/FP05040201.jsp" >사업자대출입주자앞대환</a></li>
+
+										</ul>
+	
+									</li>
+
+
+								</ul>
+
+						</div>
+					</li>
+
+					<li class="menu03"><a href="#none">기업상품</a>
+						<div class="innerWrap">
+
+
+								<ul>
+
+									<li class="baseOn"><a href="/FP/FP06/FP0601/FP0601.jsp" class="depth2n">기업상품 전체보기</a>
+	
+									</li>
+
+									<li class=""><a href="#none"  class="depth2y">임대주택건설지원</a>
+
+										<ul>
+
+											<li class="baseOn"><a href="/FP/FP06/FP0602/FP06020101.jsp" >공공임대주택자금</a></li>
+
+											<li class=""><a href="/FP/FP06/FP0602/FP06020501.jsp" >민간임대주택건설자금</a></li>
+
+											<li class=""><a href="/FP/FP06/FP0602/FP06020601.jsp" >민간임대주택매입자금</a></li>
+
+											<li class=""><a href=" /FP/FP06/FP0602/FP06021001.jsp" >사회임대주택건설자금</a></li>
+
+											<li class=""><a href="/FP/FP06/FP0602/FP06021101.jsp" >사회임대주택매입자금</a></li>
+
+										</ul>
+	
+									</li>
+
+									<li class=""><a href="#none"  class="depth2y">분양주택건설지원</a>
+
+										<ul>
+
+											<li class="baseOn"><a href="/FP/FP06/FP0603/FP06030101.jsp" >공공분양주택자금</a></li>
+
+											<li class=""><a href="/FP/FP06/FP0603/FP06030201.jsp" >후분양주택자금</a></li>
+
+											<li class=""><a href="/FP/FP06/FP0603/FP06030301.jsp" >도시형생활주택자금</a></li>
+
+											<li class=""><a href="/FP/FP06/FP0604/FP06040101.jsp" >다세대주택건설자금</a></li>
+
+											<li class=""><a href="/FP/FP06/FP0604/FP06040201.jsp" >다가구주택건설자금</a></li>
+
+										</ul>
+	
+									</li>
+
+									<li class=""><a href="#none"  class="depth2y">주거환경 개선지원 및 기타</a>
+
+										<ul>
+
+											<li class="baseOn"><a href="/FP/FP06/FP0602/FP06020901.jsp" >집주인융자형임대주택자금</a></li>
+
+										</ul>
+	
+									</li>
+
+
+								</ul>
+
+						</div>
+					</li>
+
+					<li class="menu04"><a href="#none">청약/채권</a>
+						<div class="innerWrap">
+
+
+								<ul>
+
+									<li class="baseOn"><a href="#none"  class="depth2y">주택청약상품</a>
+
+										<ul>
+
+											<li class="baseOn"><a href="/FP/FP07/FP0701/FP07010101.jsp" >주택청약종합저축상품</a></li>
+
+											<li class=""><a href="/FP/FP07/FP0701/FP07010401.jsp" >청약예금・청약부금 등 주택청약종합저축 전환</a></li>
+
+											<li class=""><a href="/FP/FP07/FP0701/FP07010301.jsp" >청년 주택드림 청약통장 상품</a></li>
+
+											<li class=""><a href="/FP/FP07/FP0701/FP07010201.jsp" >청약저축(신규가입중단)</a></li>
+
+										</ul>
+	
+									</li>
+
+									<li class=""><a href="#none"  class="depth2y">청약가이드</a>
+
+										<ul>
+
+											<li class="baseOn"><a href="/FP/FP07/FP0702/FP070211.jsp" >청약주택안내</a></li>
+
+											<li class=""><a href="/FP/FP07/FP0702/FP070203.jsp" >청약면적변경</a></li>
+
+											<li class=""><a href="/FP/FP07/FP0702/FP070212.jsp" >청약가점제안내</a></li>
+
+											<li class=""><a href="/FP/FP07/FP0702/FP070213.jsp" >청약방법등</a></li>
+
+											<li class=""><a href="/FP/FP07/FP0702/FP070214.jsp" >당첨자선정</a></li>
+
+										</ul>
+	
+									</li>
+
+									<li class=""><a href="/FP/FP07/FP0704/FP0704.jsp" class="depth2n">국민주택채권안내</a>
+	
+									</li>
+
+									<li class=""><a href="/FP/FP07/FP0705/FP070509.jsp" class="depth2n">셀프 채권매입 도우미</a>
+	
+									</li>
+
+									<li class=""><a href="#none"  class="depth2y">제1종국민주택채권</a>
+
+										<ul>
+
+											<li class="baseOn"><a href="/FP/FP07/FP0705/FP07050101.jsp" >개요</a></li>
+
+											<li class=""><a href="/FP/FP07/FP0705/FP07050103.jsp" >중도상환</a></li>
+
+											<li class=""><a href="/FP/FP07/FP0705/FP070502.jsp" >매입의무면제기준</a></li>
+
+											<li class=""><a href="/FP/FP07/FP0705/FP070503.jsp" >채권매도단가/수익률/할인율</a></li>
+
+											<li class=""><a href="/FP/FP07/FP0705/FP070504.jsp" >매입대상금액조회</a></li>
+
+											<li class=""><a href="/FP/FP07/FP0705/FP070505.jsp" >고객부담금조회</a></li>
+
+											<li class=""><a href="/FP/FP07/FP0705/FP070506.jsp" >국민주택채권매입</a></li>
+
+											<li class=""><a href="/FP/FP07/FP0705/FP070507.jsp" >국민주택채권매입내역조회</a></li>
+
+											<li class=""><a href="/FP/FP07/FP0705/FP070508.jsp" >소멸시효안내</a></li>
+
+										</ul>
+	
+									</li>
+
+									<li class=""><a href="#none"  class="depth2y">제2종국민주택채권(발행폐지)</a>
+
+										<ul>
+
+											<li class="baseOn"><a href="/FP/FP07/FP0706/FP070601.jsp" >채권매도단가/수익률/할인율</a></li>
+
+											<li class=""><a href="/FP/FP07/FP0706/FP070602.jsp" >예상손실률조회</a></li>
+
+											<li class=""><a href="/FP/FP07/FP0706/FP070603.jsp" >소멸시효안내</a></li>
+
+										</ul>
+	
+									</li>
+
+
+								</ul>
+
+						</div>
+					</li>
+
+					<li class="menu05"><a href="#none">고객서비스</a>
+						<div class="innerWrap">
+
+
+								<ul>
+
+									<li class="baseOn"><a href="#none"  class="depth2y">내집마련마법사</a>
+
+										<ul>
+
+											<li class="baseOn"><a href="/FP/FP08/FP0801/FP08010101.jsp" >주택전세자금계산마법사</a></li>
+
+											<li class=""><a href="/FP/FP08/FP0801/FP08010201.jsp" >주택구입자금계산마법사</a></li>
+
+											<li class=""><a href="/FP/FP08/FP0801/FP08010301.jsp" >오피스텔구입자금계산마법사</a></li>
+
+											<li class=""><a href="/FP/FP08/FP0801/FP08010601.jsp" >보증부월세계산마법사</a></li>
+
+										</ul>
+	
+									</li>
+
+									<li class=""><a href="#none"  class="depth2y">내집마련123</a>
+
+										<ul>
+
+											<li class="baseOn"><a href="/FP/FP08/FP0802/FP080201.jsp" >사전준비</a></li>
+
+											<li class=""><a href="/FP/FP08/FP0802/FP08020201.jsp" >정보수집</a></li>
+
+											<li class=""><a href="/FP/FP08/FP0802/FP08020301.jsp" >계약</a></li>
+
+											<li class=""><a href="/FP/FP08/FP0802/FP080204.jsp" >소유권이전등기</a></li>
+
+											<li class=""><a href="/FP/FP08/FP0802/FP080205.jsp" >이사하기</a></li>
+
+										</ul>
+	
+									</li>
+
+									<li class=""><a href="#none"  class="depth2y">부동산정보</a>
+
+										<ul>
+
+											<li class="baseOn"><a href="/FP/FP08/FP0803/FP080301.jsp" >분양정보</a></li>
+
+											<li class=""><a href="/FP/FP08/FP0803/FP080302.jsp" >매물정보찾기</a></li>
+
+											<li class=""><a href="http://rt.molit.go.kr/" target="_blank" title="고객서비스 메뉴 새창 열림">주택 실거래가 조회</a></li>
+
+										</ul>
+	
+									</li>
+
+									<li class=""><a href="#none"  class="depth2y">도시재생 안내</a>
+
+										<ul>
+
+											<li class="baseOn"><a href="/FP/FP08/FP0811/FP081104.jsp" >도시재생 소식</a></li>
+
+											<li class=""><a href="https://enhuf.molit.go.kr/fur/pp/pm/POPPM009M01.jsp?scrnId=POPPM009M01&scrnNm=도시재생기금지도" target="_blank" title="고객서비스 메뉴 새창 열림">도시재생기금지도</a></li>
+
+										</ul>
+	
+									</li>
+
+									<li class=""><a href="/FP/FP08/FP0804/FP080402.jsp?mode=L" class="depth2n">공지사항</a>
+	
+									</li>
+
+									<li class=""><a href="/FP/FP08/FP0805/FP080501.jsp?mode=L" class="depth2n">보도자료</a>
+	
+									</li>
+
+									<li class=""><a href="/FP/FP08/FP0807/FP08070401.jsp" class="depth2n">홍보자료</a>
+	
+									</li>
+
+									<li class=""><a href="/FP/FP08/FP0809/FP0809.jsp" class="depth2n">자주하는질문</a>
+	
+									</li>
+
+									<li class=""><a href="#none"  class="depth2y">개인정보처리방침</a>
+
+										<ul>
+
+											<li class="baseOn"><a href="/FP/FP08/FP0812/FP081201.jsp" >개인정보처리방침</a></li>
+
+											<li class=""><a href="/FP/FP08/FP0812/FP081202.jsp?mode=L" >이전 개인정보처리방침</a></li>
+
+										</ul>
+	
+									</li>
+
+									<li class=""><a href="#none"  class="depth2y">자산심사 및 금리안내</a>
+
+										<ul>
+
+											<li class="baseOn"><a href="/FP/FP08/FP0813/FP081301.jsp?id=20&mode=S&currentPage=1&articleId=1160" >자산 심사 안내</a></li>
+
+											<li class=""><a href="/FP/FP08/FP0813/FP081303.jsp?mode=L" >이의 신청 안내</a></li>
+
+											<li class=""><a href="/FP/FP08/FP0813/FP081302.jsp" >가산 금리 안내</a></li>
+
+										</ul>
+	
+									</li>
+
+									<li class=""><a href="/FP/FP08/FP0808/FP080801.jsp?mode=L" class="depth2n">자료실</a>
+	
+									</li>
+
+
+								</ul>
+
+						</div>
+					</li>
+
+				</ul>
+			</nav>
+			<!-- //상단 메뉴 -->
+
+			<!-- 20180308 청년의견 게시판 메뉴 추가 -->
+			<!-- 20180911 도시재생상품 메뉴 추가
+			<style>
+			   #wrap header .gnbArea nav > ul > li { margin:0 8px; }
+			   #wrap header .gnbArea .navEtc { display:block; position:absolute; top:34px; right:330px; width:144px; height:24px; background:url(/common/images/common/bg/mn_young_noti.gif) no-repeat 0 0;  }
+			   #wrap header .gnbArea .navEtc a { display:block; height:100%; text-indent:-9999px; }  
+
+			   @media only screen and (max-width:1190px)  {
+				   #wrap header .gnbArea .navEtc { display: none; }
+				}
+			   @media only screen and (min-width:768px) and (max-width:1023px)  {
+					#wrap header .gnbArea nav > ul { margin-left:150px; }		
+					#wrap header .gnbArea .navEtc { display: block; top:37px; right:70px; width:127px; height:24px; background-position:0 -40px;   }
+			   }
+			   @media only screen and (max-width:850px) {
+				#wrap header .gnbArea .navEtc { display:none; }
+				#wrap header .gnbArea nav > ul > li { margin:0 10px; }
+			   }
+			   .mobileMenu .navEtc { display:block; margin:10px auto 0; width:140px; height:30px; background:url(/common/images/common/bg/mn_young_noti.gif) no-repeat 0 -80px;  }
+			   .mobileMenu .navEtc a { display:block; height:100%; text-indent:-9999px; }    
+
+			</style>
+			 
+			 <span class="navEtc">
+			 <a href="/board.do">청년의견 게시판</a>
+			 </span>
+			 20180308 청년의견 게시판 메뉴 추가 -->
+
+
+			<!-- [시]전체메뉴 & 검색영역 -->
+			<p><button type="button">전체메뉴</button></p>
+			<span><button type="button" class="mSrchBtn">검색</button></span>
+			<form class="search mSrchForm" name="frm_topSearch" id="frm_topSearch" target="_self" method="post" action="/FP/FP03/FP0301.jsp"><input type="hidden" name="ptSignature" value="tacYDD1oL3nYwr40c86elEE2HzZrfFADeOUaH6B5FBz0couq/G0kqC/unM3oGOC0NpGm+Sd4tfOS3rzlU0OY7iUxZiLfkkn0bl7//jU2vnQ=" />
+
+				<fieldset>
+					<legend>통합검색 폼</legend>
+
+					<select id="searchGubun" name="searchGubun" title="검색구분">
+						<option value="all"  >전체검색</option>
+						<option value="menu" >메뉴검색</option>
+						<option value="faq"  >질문검색</option>
+					</select>
+
+					<label for="searchWord" class="hidden">검색어 입력</label>
+					<p>
+						<input type="text" name="searchWord" id="searchWord" autocomplete="off" value="" onkeydown="doEnterEvent();" title="통합검색어 입력"  style="ime-mode:active;"
+>
+						<input type="hidden" name="searchMenu" id="searchMenu" value="">
+						<input type="button" value="검색" id="topsearchbtn" onclick="topSearch();" title="검색" >
+						<input type="text" name="searchGubun_hidden" title="이전검색구분" style="display: none;">
+					</p>
+				</fieldset>
+				<script type="text/javascript">
+					function topSearch(searchMenu){
+						//[0]메뉴 클릭 이벤트 처리
+						if(searchMenu && searchMenu != null){
+							$("#searchMenu").val(searchMenu);
+						}else{
+							$("#searchMenu").val("");
+						}
+						//[1]입력유효성 검사
+						if($.trim($("#searchWord").val()) == ""){
+							$("#searchWord").focus();
+							alert("검색어를 입력해 주십시요");
+							return false;
+						}else{
+							//[2]입력문자 검사
+							if(!checkCharacter($("#searchWord"))) return false;
+							if(!checkWord($("#searchWord"))) return false;
+							$("#frm_topSearch").submit();										
+						}
+					}
+					function doEnterEvent() {
+						var keyCode = event.keyCode ? event.keyCode : event.which ? event.which : event.charCode;
+						if( keyCode == 13 ) topSearch();
+						return;
+					}						
+				</script>	
+			</form>
+			<!-- [끝]전체메뉴 & 검색영역 -->
+
+
+		</div>
+	</div>
+	
+
+               <div id="popupArea">
+		<div class="demo0" id="demo0"></div>
+		<div class="demo1" id="demo1"></div>
+		<div class="demo2" id="demo2"></div>
+		<div class="demo3" id="demo3"></div>
+		<div class="demo4" id="demo4"></div>
+		<div class="demo5" id="demo5"></div>
+	</div>
+	
+	<script type="text/javascript">
+                                // 쿠키 생성
+	               function setCookie(cName, cValue, cDay){
+		   var expire = new Date();
+		   expire.setDate(expire.getDate() + cDay);
+		   cookies = cName + '=' + escape(cValue) + '; path=/ '; // 한글 깨짐을 막기위해 escape(cValue)를 합니다.
+		   if(typeof cDay != 'undefined') cookies += ';expires=' + expire.toGMTString() + ';';
+		   document.cookie = cookies;
+	               }
+
+	              // 쿠키 가져오기
+	              function getCookie(cName) {
+		    cName = cName + '=';
+		    var cookieData = document.cookie;
+		    var start = cookieData.indexOf(cName);
+		    var cValue = '';
+		    if(start != -1){
+		           start += cName.length;
+		           var end = cookieData.indexOf(';', start);
+		           if(end == -1)end = cookieData.length;
+	                           cValue = cookieData.substring(start, end);
+		     }
+		    return unescape(cValue);
+	               }
+
+                                //체크 상태에 따라 쿠키 생성과 소멸을 제어하는 함수
+                                function controlCookie(elemnt) {
+	                    if ($("#"+elemnt).is(":checked")) {
+		        //체크 박스를 선택했을 경우 쿠키 생성 함수 호출
+		        setCookie(elemnt,"true", 1);
+	                    } else {
+		        //체크 박스를 해제했을 경우 쿠키 소멸 함수 호출
+		        setCookie(elemnt,"", -1);
+	                    }
+                                }
+
+
+                               function getCookie( name ){
+		     var nameOfCookie = name + "=";
+		     var x = 0;
+
+		     while ( x <= document.cookie.length ) {
+		           var y = (x+nameOfCookie.length);
+		           if ( document.cookie.substring( x, y ) == nameOfCookie ) {
+			if ( (endOfCookie=document.cookie.indexOf( ";", y )) == -1 ) {
+  			    endOfCookie = document.cookie.length;
+                                                }
+			return unescape( document.cookie.substring( y, endOfCookie ) );
+                   	           }
+
+		           x = document.cookie.indexOf( " ", x ) + 1;
+
+		          if ( x == 0 ) break;
+		      }
+
+		      return "";
+
+	                }
+
+		$(function() {
+			$("button[id='btnPop']").click(function() {
+                                                      debugger;
+                                                      controlCookie($(this).parent().parent().attr("id")+"_notice_check");
+                                                      $(this).parent().parent().hide();
+                                                });
+		});
+
+		$(function() {
+			$("div[class*='demo']").draggable().resizable();
+		});
+	</script>
+
+	<!-- 전체메뉴 -->
+	<div class="allMenuWrap">
+		<div class="allMenu"> 
+			<div class="tit"><span>전체메뉴</span></div>
+			<div>
+				 <ul> 
+
+					<li><a href="/FP/FP04/FP0401/FP040101.jsp">기금안내</a> 
+
+						<ul>
+
+							<li><a href="/FP/FP04/FP0401/FP040101.jsp" >주택도시기금소개</a>
+
+								<ul>
+
+									<li><a href="/FP/FP04/FP0401/FP040101.jsp" >개편방향</a></li>
+
+									<li><a href="/FP/FP04/FP0401/FP040102.jsp" >기금의 역할</a></li>
+
+									<li><a href="/FP/FP04/FP0401/FP040103.jsp" >조성재원 및 용도</a></li>
+
+									<li><a href="/FP/FP04/FP0401/FP040104.jsp" >주택도시기금 연혁</a></li>
+
+									<li><a href="/FP/FP04/FP0406/FP040603.jsp" >주택도시기금 재무현황</a></li>
+
+								</ul>
+
+							</li>
+
+							<li><a href="/FP/FP04/FP0403/FP0403.jsp" >기금업무체계</a>
+
+								<ul>
+
+									<li><a href="/FP/FP04/FP0403/FP0403.jsp" >기금업무체계</a></li>
+
+									<li><a href="/FP/FP04/FP0403/FP040302.jsp?mode=L" >수탁은행평가결과</a></li>
+
+								</ul>
+
+							</li>
+
+							<li><a href="/FP/FP04/FP0404/FP0404.jsp" >주거복지사업</a>
+
+							</li>
+
+							<li><a href="/FP/FP04/FP0406/FP040601.jsp" >여유자금운용</a>
+
+								<ul>
+
+									<li><a href="/FP/FP04/FP0406/FP040601.jsp" >여유자금운용 개요</a></li>
+
+									<li><a href="/FP/FP04/FP0406/FP040604.jsp" >여유자금운용 정책</a></li>
+
+									<li><a href="/FP/FP04/FP0406/FP040602.jsp?mode=L" >여유자금운용 성과</a></li>
+
+								</ul>
+
+							</li>
+
+							<li><a href="/FP/FP04/FP0402/FP040201.jsp" >주택도시보증공사소개</a>
+
+								<ul>
+
+									<li><a href="/FP/FP04/FP0402/FP040201.jsp" >공사개요</a></li>
+
+									<li><a href="/FP/FP04/FP0402/FP040202.jsp" >경영전략</a></li>
+
+								</ul>
+
+							</li>
+
+							
+						</ul>
+
+					</li> 
+
+					<li><a href="/FP/FP05/FP0501/FP0501.jsp">개인상품</a> 
+
+						<ul>
+
+							<li><a href="/FP/FP05/FP0501/FP0501.jsp" >개인상품 전체보기</a>
+
+							</li>
+
+							<li><a href="/FP/FP05/FP0502/FP05020701.jsp" >주택전세자금대출</a>
+
+								<ul>
+
+									<li><a href="/FP/FP05/FP0502/FP05020701.jsp" >청년전용 보증부월세대출</a></li>
+
+									<li><a href=" /FP/FP05/FP0502/FP05020301.jsp " >청년전용 버팀목전세자금</a></li>
+
+									<li><a href="/FP/FP05/FP0502/FP05021401.jsp" >신생아 특례 버팀목대출 </a></li>
+
+									<li><a href="/FP/FP05/FP0502/FP05021101.jsp" >주거취약계층 이주지원 버팀목전세자금</a></li>
+
+									<li><a href="/FP/FP05/FP0502/FP05021201.jsp" >전세피해 임차인 버팀목전세자금</a></li>
+
+									<li><a href="/FP/FP05/FP0505/050510001.jsp" >전세피해임차인대상 버팀목전세대출대환</a></li>
+
+									<li><a href="/FP/FP05/FP0506/050560001.jsp" >전세사기피해자 최우선변제금 버팀목 전세자금 대출</a></li>
+
+									<li><a href="/FP/FP05/FP0502/FP05020201.jsp" >주거안정월세대출</a></li>
+
+									<li><a href=" /FP/FP05/FP0502/FP05020401.jsp " >신혼부부전용 전세자금</a></li>
+
+									<li><a href="/FP/FP05/FP0502/FP05020101.jsp" >버팀목전세자금</a></li>
+
+									<li><a href="/FP/FP05/FP0502/FP05021001.jsp" >갱신만료 임차인 지원 버팀목전세자금 </a></li>
+
+									<li><a href="https://www.khug.or.kr/hug/web/ig/dl/igdl000001.jsp" >전세금안심대출보증</a></li>
+
+									<li><a href="/FP/FP08/FP0813/FP081303.jsp" >이의제기 처리방법</a></li>
+
+								</ul>
+
+							</li>
+
+							<li><a href="/FP/FP05/FP0503/FP05030601.jsp" >주택구입자금대출</a>
+
+								<ul>
+
+									<li><a href="/FP/FP05/FP0503/FP05030601.jsp" >신혼부부전용 구입자금</a></li>
+
+									<li><a href="/FP/FP05/FP0503/FP05030701.jsp" >신혼희망타운전용 주택담보장기대출</a></li>
+
+									<li><a href="/FP/FP05/FP0503/FP05030101.jsp" >내집마련디딤돌대출</a></li>
+
+									<li><a href="/FP/FP05/FP0507/FP05070001.jsp" >전세사기피해자 전용 디딤돌 대출</a></li>
+
+									<li><a href="/FP/FP05/FP0503/FP05030801.jsp" >신생아 특례 디딤돌대출</a></li>
+
+									<li><a href="/FP/FP05/FP0503/FP05030901.jsp" >청년 주택드림 디딤돌 대출</a></li>
+
+									<li><a href="/FP/FP05/FP0503/FP05030201.jsp" >수익공유형모기지</a></li>
+
+									<li><a href="/FP/FP05/FP0503/FP05030301.jsp" >손익공유형모기지</a></li>
+
+									<li><a href="/FP/FP05/FP0503/FP05030501.jsp" >오피스텔구입자금</a></li>
+
+									<li><a href="/FP/FP05/FP0504/FP05040401.jsp" >재해주택복구 및 구입자금</a></li>
+
+								</ul>
+
+							</li>
+
+							<li><a href="/FP/FP05/FP0504/FP05040101.jsp" >기타주택자금대출</a>
+
+								<ul>
+
+									<li><a href="/FP/FP05/FP0504/FP05040101.jsp" >부도임대주택경락자금</a></li>
+
+									<li><a href="/FP/FP05/FP0504/FP05040301.jsp" >부도임대주택퇴거자전세자금</a></li>
+
+									<li><a href="/FP/FP05/FP0504/FP05040201.jsp" >사업자대출입주자앞대환</a></li>
+
+								</ul>
+
+							</li>
+
+							
+						</ul>
+
+					</li> 
+
+					<li><a href="/FP/FP06/FP0601/FP0601.jsp">기업상품</a> 
+
+						<ul>
+
+							<li><a href="/FP/FP06/FP0601/FP0601.jsp" >기업상품 전체보기</a>
+
+							</li>
+
+							<li><a href="/FP/FP06/FP0602/FP06020101.jsp" >임대주택건설지원</a>
+
+								<ul>
+
+									<li><a href="/FP/FP06/FP0602/FP06020101.jsp" >공공임대주택자금</a></li>
+
+									<li><a href="/FP/FP06/FP0602/FP06020501.jsp" >민간임대주택건설자금</a></li>
+
+									<li><a href="/FP/FP06/FP0602/FP06020601.jsp" >민간임대주택매입자금</a></li>
+
+									<li><a href=" /FP/FP06/FP0602/FP06021001.jsp" >사회임대주택건설자금</a></li>
+
+									<li><a href="/FP/FP06/FP0602/FP06021101.jsp" >사회임대주택매입자금</a></li>
+
+								</ul>
+
+							</li>
+
+							<li><a href="/FP/FP06/FP0603/FP06030101.jsp" >분양주택건설지원</a>
+
+								<ul>
+
+									<li><a href="/FP/FP06/FP0603/FP06030101.jsp" >공공분양주택자금</a></li>
+
+									<li><a href="/FP/FP06/FP0603/FP06030201.jsp" >후분양주택자금</a></li>
+
+									<li><a href="/FP/FP06/FP0603/FP06030301.jsp" >도시형생활주택자금</a></li>
+
+									<li><a href="/FP/FP06/FP0604/FP06040101.jsp" >다세대주택건설자금</a></li>
+
+									<li><a href="/FP/FP06/FP0604/FP06040201.jsp" >다가구주택건설자금</a></li>
+
+								</ul>
+
+							</li>
+
+							<li><a href="/FP/FP06/FP0602/FP06020701.jsp" >주거환경 개선지원 및 기타</a>
+
+								<ul>
+
+									<li><a href="/FP/FP06/FP0602/FP06020901.jsp" >집주인융자형임대주택자금</a></li>
+
+								</ul>
+
+							</li>
+
+							
+						</ul>
+
+					</li> 
+
+					<li><a href="/FP/FP07/FP0701/FP07010101.jsp">청약/채권</a> 
+
+						<ul>
+
+							<li><a href="/FP/FP07/FP0701/FP07010101.jsp" >주택청약상품</a>
+
+								<ul>
+
+									<li><a href="/FP/FP07/FP0701/FP07010101.jsp" >주택청약종합저축상품</a></li>
+
+									<li><a href="/FP/FP07/FP0701/FP07010401.jsp" >청약예금・청약부금 등 주택청약종합저축 전환</a></li>
+
+									<li><a href="/FP/FP07/FP0701/FP07010301.jsp" >청년 주택드림 청약통장 상품</a></li>
+
+									<li><a href="/FP/FP07/FP0701/FP07010201.jsp" >청약저축(신규가입중단)</a></li>
+
+								</ul>
+
+							</li>
+
+							<li><a href="/FP/FP07/FP0702/FP070201.jsp" >청약가이드</a>
+
+								<ul>
+
+									<li><a href="/FP/FP07/FP0702/FP070211.jsp" >청약주택안내</a></li>
+
+									<li><a href="/FP/FP07/FP0702/FP070203.jsp" >청약면적변경</a></li>
+
+									<li><a href="/FP/FP07/FP0702/FP070212.jsp" >청약가점제안내</a></li>
+
+									<li><a href="/FP/FP07/FP0702/FP070213.jsp" >청약방법등</a></li>
+
+									<li><a href="/FP/FP07/FP0702/FP070214.jsp" >당첨자선정</a></li>
+
+								</ul>
+
+							</li>
+
+							<li><a href="/FP/FP07/FP0704/FP0704.jsp" >국민주택채권안내</a>
+
+							</li>
+
+							<li><a href="/FP/FP07/FP0705/FP070509.jsp" >셀프 채권매입 도우미</a>
+
+							</li>
+
+							<li><a href="/FP/FP07/FP0705/FP07050101.jsp" >제1종국민주택채권</a>
+
+								<ul>
+
+									<li><a href="/FP/FP07/FP0705/FP07050101.jsp" >개요</a></li>
+
+									<li><a href="/FP/FP07/FP0705/FP07050103.jsp" >중도상환</a></li>
+
+									<li><a href="/FP/FP07/FP0705/FP070502.jsp" >매입의무면제기준</a></li>
+
+									<li><a href="/FP/FP07/FP0705/FP070503.jsp" >채권매도단가/수익률/할인율</a></li>
+
+									<li><a href="/FP/FP07/FP0705/FP070504.jsp" >매입대상금액조회</a></li>
+
+									<li><a href="/FP/FP07/FP0705/FP070505.jsp" >고객부담금조회</a></li>
+
+									<li><a href="/FP/FP07/FP0705/FP070506.jsp" >국민주택채권매입</a></li>
+
+									<li><a href="/FP/FP07/FP0705/FP070507.jsp" >국민주택채권매입내역조회</a></li>
+
+									<li><a href="/FP/FP07/FP0705/FP070508.jsp" >소멸시효안내</a></li>
+
+								</ul>
+
+							</li>
+
+							<li><a href="/FP/FP07/FP0706/FP070601.jsp" >제2종국민주택채권(발행폐지)</a>
+
+								<ul>
+
+									<li><a href="/FP/FP07/FP0706/FP070601.jsp" >채권매도단가/수익률/할인율</a></li>
+
+									<li><a href="/FP/FP07/FP0706/FP070602.jsp" >예상손실률조회</a></li>
+
+									<li><a href="/FP/FP07/FP0706/FP070603.jsp" >소멸시효안내</a></li>
+
+								</ul>
+
+							</li>
+
+							
+						</ul>
+
+					</li> 
+
+					<li><a href="/FP/FP08/FP0801/FP08010101.jsp">고객서비스</a> 
+
+						<ul>
+
+							<li><a href="/FP/FP08/FP0801/FP08010101.jsp" >내집마련마법사</a>
+
+								<ul>
+
+									<li><a href="/FP/FP08/FP0801/FP08010101.jsp" >주택전세자금계산마법사</a></li>
+
+									<li><a href="/FP/FP08/FP0801/FP08010201.jsp" >주택구입자금계산마법사</a></li>
+
+									<li><a href="/FP/FP08/FP0801/FP08010301.jsp" >오피스텔구입자금계산마법사</a></li>
+
+									<li><a href="/FP/FP08/FP0801/FP08010601.jsp" >보증부월세계산마법사</a></li>
+
+								</ul>
+
+							</li>
+
+							<li><a href="/FP/FP08/FP0802/FP080201.jsp" >내집마련123</a>
+
+								<ul>
+
+									<li><a href="/FP/FP08/FP0802/FP080201.jsp" >사전준비</a></li>
+
+									<li><a href="/FP/FP08/FP0802/FP08020201.jsp" >정보수집</a></li>
+
+									<li><a href="/FP/FP08/FP0802/FP08020301.jsp" >계약</a></li>
+
+									<li><a href="/FP/FP08/FP0802/FP080204.jsp" >소유권이전등기</a></li>
+
+									<li><a href="/FP/FP08/FP0802/FP080205.jsp" >이사하기</a></li>
+
+								</ul>
+
+							</li>
+
+							<li><a href="/FP/FP08/FP0803/FP080301.jsp" >부동산정보</a>
+
+								<ul>
+
+									<li><a href="/FP/FP08/FP0803/FP080301.jsp" >분양정보</a></li>
+
+									<li><a href="/FP/FP08/FP0803/FP080302.jsp" >매물정보찾기</a></li>
+
+									<li><a href="http://rt.molit.go.kr/" >주택 실거래가 조회</a></li>
+
+								</ul>
+
+							</li>
+
+							<li><a href="/FP/FP08/FP0811/FP081103.jsp" >도시재생 안내</a>
+
+								<ul>
+
+									<li><a href="/FP/FP08/FP0811/FP081104.jsp" >도시재생 소식</a></li>
+
+									<li><a href="https://enhuf.molit.go.kr/fur/pp/pm/POPPM009M01.jsp?scrnId=POPPM009M01&scrnNm=도시재생기금지도" >도시재생기금지도</a></li>
+
+								</ul>
+
+							</li>
+
+							<li><a href="/FP/FP08/FP0804/FP080402.jsp?mode=L" >공지사항</a>
+
+							</li>
+
+							<li><a href="/FP/FP08/FP0805/FP080501.jsp?mode=L" >보도자료</a>
+
+							</li>
+
+							<li><a href="/FP/FP08/FP0807/FP08070401.jsp" >홍보자료</a>
+
+							</li>
+
+							<li><a href="/FP/FP08/FP0809/FP0809.jsp" >자주하는질문</a>
+
+							</li>
+
+							<li><a href="/FP/FP08/FP0812/FP081201.jsp" >개인정보처리방침</a>
+
+								<ul>
+
+									<li><a href="/FP/FP08/FP0812/FP081201.jsp" >개인정보처리방침</a></li>
+
+									<li><a href="/FP/FP08/FP0812/FP081202.jsp?mode=L" >이전 개인정보처리방침</a></li>
+
+								</ul>
+
+							</li>
+
+							<li><a href="/FP/FP08/FP0813/FP081301.jsp?id=20&mode=S&currentPage=1&articleId=1160" >자산심사 및 금리안내</a>
+
+								<ul>
+
+									<li><a href="/FP/FP08/FP0813/FP081301.jsp?id=20&mode=S&currentPage=1&articleId=1160" >자산 심사 안내</a></li>
+
+									<li><a href="/FP/FP08/FP0813/FP081303.jsp?mode=L" >이의 신청 안내</a></li>
+
+									<li><a href="/FP/FP08/FP0813/FP081302.jsp" >가산 금리 안내</a></li>
+
+								</ul>
+
+							</li>
+
+							<li><a href="/FP/FP08/FP0808/FP080801.jsp?mode=L" >자료실</a>
+
+							</li>
+
+							
+						</ul>
+
+					</li> 
+
+
+				</ul>
+				<!-- <span class="navEtc"><a href="/board.do">청년의견 게시판</a></span>  20180308 청년의견 게시판 메뉴 추가 -->
+				<p><button type="button">닫기</button></p>	
+			</div>  
+		</div>  
+	</div>
+	<!-- //전체메뉴 -->
+</header>
+			<!-- //header 영역 -->
+
+			<div id="container">
+				<!-- lnb 영역 -->
+				  
+
+
+
+
+
+
+
+
+<section id="lnb">
+
+
+
+
+	<h2>개인상품</h2>
+
+	<ul>
+
+		<li class="an"><a href="/FP/FP05/FP0501/FP0501.jsp"  class="">개인상품 전체보기</a>
+
+		</li>
+
+		<li class="active"><a href="/FP/FP05/FP0502/FP05020701.jsp"  class="">주택전세자금대출</a>
+
+			<ul >
+
+	
+
+			<li class=""><a href="/FP/FP05/FP0502/FP05020701.jsp" >청년전용 보증부월세대출</a></li>
+
+
+
+	
+
+			<li class=""><a href=" /FP/FP05/FP0502/FP05020301.jsp " >청년전용 버팀목전세자금</a></li>
+
+
+
+	
+
+			<li class=""><a href="/FP/FP05/FP0502/FP05021401.jsp" >신생아 특례 버팀목대출 </a></li>
+
+
+
+	
+
+			<li class=""><a href="/FP/FP05/FP0502/FP05021101.jsp" >주거취약계층 이주지원 버팀목전세자금</a></li>
+
+
+
+	
+
+			<li class=""><a href="/FP/FP05/FP0502/FP05021201.jsp" >전세피해 임차인 버팀목전세자금</a></li>
+
+
+
+	
+
+			<li class=""><a href="/FP/FP05/FP0505/050510001.jsp" >전세피해임차인대상 버팀목전세대출대환</a></li>
+
+
+
+	
+
+			<li class=""><a href="/FP/FP05/FP0506/050560001.jsp" >전세사기피해자 최우선변제금 버팀목 전세자금 대출</a></li>
+
+
+
+	
+
+			<li class=""><a href="/FP/FP05/FP0502/FP05020201.jsp" >주거안정월세대출</a></li>
+
+
+
+	
+
+			<li class=""><a href=" /FP/FP05/FP0502/FP05020401.jsp " >신혼부부전용 전세자금</a></li>
+
+
+
+	
+
+			<li class=""><a href="/FP/FP05/FP0502/FP05020101.jsp" >버팀목전세자금</a></li>
+
+
+
+	
+
+			<li class=""><a href="/FP/FP05/FP0502/FP05021001.jsp" >갱신만료 임차인 지원 버팀목전세자금 </a></li>
+
+
+
+	
+
+			<li class=""><a href="https://www.khug.or.kr/hug/web/ig/dl/igdl000001.jsp" target="_blank" title="전세금안심대출보증 메뉴 새창 열림">전세금안심대출보증</a></li>
+
+
+
+	
+
+			<li class=""><a href="/FP/FP08/FP0813/FP081303.jsp" >이의제기 처리방법</a></li>
+
+
+
+			</ul>
+
+		</li>
+
+		<li class="active"><a href="/FP/FP05/FP0503/FP05030601.jsp"  class="active">주택구입자금대출</a>
+
+			<ul style='display:block'>
+
+	
+
+			<li class=""><a href="/FP/FP05/FP0503/FP05030601.jsp" >신혼부부전용 구입자금</a></li>
+
+
+
+	
+
+			<li class=""><a href="/FP/FP05/FP0503/FP05030701.jsp" >신혼희망타운전용 주택담보장기대출</a></li>
+
+
+
+	
+
+			<li class=""><a href="/FP/FP05/FP0503/FP05030101.jsp" >내집마련디딤돌대출</a></li>
+
+
+
+	
+
+			<li class=""><a href="/FP/FP05/FP0507/FP05070001.jsp" >전세사기피해자 전용 디딤돌 대출</a></li>
+
+
+
+	
+
+			<li class=""><a href="/FP/FP05/FP0503/FP05030801.jsp" >신생아 특례 디딤돌대출</a></li>
+
+
+
+	
+
+			<li class="active"><a href="/FP/FP05/FP0503/FP05030901.jsp" >청년 주택드림 디딤돌 대출</a></li>
+
+
+
+	
+
+			<li class=""><a href="/FP/FP05/FP0503/FP05030201.jsp" >수익공유형모기지</a></li>
+
+
+
+	
+
+			<li class=""><a href="/FP/FP05/FP0503/FP05030301.jsp" >손익공유형모기지</a></li>
+
+
+
+	
+
+			<li class=""><a href="/FP/FP05/FP0503/FP05030501.jsp" >오피스텔구입자금</a></li>
+
+
+
+	
+
+			<li class=""><a href="/FP/FP05/FP0504/FP05040401.jsp" >재해주택복구 및 구입자금</a></li>
+
+
+
+			</ul>
+
+		</li>
+
+		<li class="active"><a href="/FP/FP05/FP0504/FP05040101.jsp"  class="">기타주택자금대출</a>
+
+			<ul >
+
+	
+
+			<li class=""><a href="/FP/FP05/FP0504/FP05040101.jsp" >부도임대주택경락자금</a></li>
+
+
+
+	
+
+			<li class=""><a href="/FP/FP05/FP0504/FP05040301.jsp" >부도임대주택퇴거자전세자금</a></li>
+
+
+
+	
+
+			<li class=""><a href="/FP/FP05/FP0504/FP05040201.jsp" >사업자대출입주자앞대환</a></li>
+
+
+
+			</ul>
+
+		</li>
+
+	
+	</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	<aside id="bankSearch">
+		<h3><span>은행영업점찾기</span></h3>
+		<ul>
+
+
+			
+			<li>
+				<a href="https://spot.wooribank.com/pot/Dream?withyou=CMCOM0153" target="_blank" title="우리은행 새창열림"><img src="/init/include/338_image1_1.png" alt="우리은행"></a>
+				<span>1599-0800</span>
+			</li>
+
+
+
+			
+			<li>
+				<a href="https://omoney.kbstar.com/quics?page=C016505" target="_blank" title="KB국민은행 새창열림"><img src="/init/include/338_image1_2.png" alt="KB국민은행"></a>
+				<span>1599-1771</span>
+			</li>
+
+
+
+			
+			<li>
+				<a href="https://nonghyup.ttmap.co.kr/main.jsp" target="_blank" title="NHBank 새창열림"><img src="/init/include/338_image1_4.png" alt="NHBank"></a>
+				<span>1588-2100</span>
+			</li>
+
+
+
+			
+			<li>
+				<a href="https://www.shinhan.com/webzine/index.jsp?w2xPath=/hpe/bank_introduce/BI07/internal01_type01.xml" target="_blank" title="신한은행 새창열림"><img src="/init/include/338_image1_5.png" alt="신한은행"></a>
+				<span>1599-8000</span>
+			</li>
+
+
+
+			
+			<li>
+				<a href="https://www.kebhana.com/cont/util/util04/util0401/index.jsp" target="_blank" title="KEB하나은행 새창열림"><img src="/init/include/338_image1_6.png" alt="KEB하나은행"></a>
+				<span>1599-1111</span>
+			</li>
+
+
+
+			
+			<li>
+				<a href="https://www.dgb.co.kr/com_ebz_dgi_main.act" target="_blank" title="IM뱅크 새창열림"><img src="/init/include/338_image1_7.png" alt="IM뱅크"></a>
+				<span>1588-0956</span>
+			</li>
+
+
+
+			
+			<li>
+				<a href="https://www.busanbank.co.kr/ib20/mnu/BHPHUG0010001" target="_blank" title="BNK 부산은행 새창열림"><img src="/init/include/338_image1_8.png" alt="BNK 부산은행"></a>
+				<span>1800-1333</span>
+			</li>
+
+
+
+		</ul>
+
+	</aside>
+
+
+</section>
+				<!-- //lnb 영역 -->
+				
+				<!-- 본문 영역 -->
+				<div id="contArea">
+					<!-- 타이틀 영역:타블릿 & pc -->
+					<div class="hgroupW">
+						<h2>
+							청년 주택드림 디딤돌 대출
+
+							<span>청년의 주거사다리 지원을 위해 청년 주택드림 통장으로 청약 당첨 시 주택구입자금을 대출해드립니다.</span>
+
+						</h2>
+						<div class="location">
+							<ul>
+						
+
+						<li><a href="/">홈</a></li> 
+
+						
+
+												<li><a href="/FP/FP05/FP0501/FP0501.jsp" >개인상품</a></li>
+
+						
+
+												<li><a href="/FP/FP05/FP0503/FP05030601.jsp" >주택구입자금대출</a></li>
+
+						
+												<li>청년 주택드림 디딤돌 대출</li> 
+														
+							</ul>
+							
+<div>
+	<button type="button" onclick="window.print();">인쇄</button>
+</div>
+						</div>
+													
+							
+					</div>
+					<!-- //타이틀 영역:타블릿 & pc -->
+				
+					<!-- 타이틀 영역:모바일 -->
+					<div class="mhgroupW">
+						<h2><a href="#">청년 주택드림 디딤돌 대출</a>
+						
+													<span>청년의 주거사다리 지원을 위해 청년 주택드림 통장으로 청약 당첨 시 주택구입자금을 대출해드립니다.</span>
+						
+												</h2>
+												
+
+
+
+
+
+
+
+	<ul class="mhgroup">
+
+
+
+
+
+		<li class="an "><a href="/FP/FP05/FP0501/FP0501.jsp"  class="">개인상품 전체보기</a>
+
+		</li>
+
+		<li class="active "><a href="/FP/FP05/FP0502/FP05020701.jsp"  class="">주택전세자금대출</a>
+
+
+			<ul >
+
+
+
+
+				<li class=""><a href="/FP/FP05/FP0502/FP05020701.jsp" >청년전용 보증부월세대출</a></li> 	 
+
+
+
+
+
+				<li class=""><a href=" /FP/FP05/FP0502/FP05020301.jsp " >청년전용 버팀목전세자금</a></li> 	 
+
+
+
+
+
+				<li class=""><a href="/FP/FP05/FP0502/FP05021401.jsp" >신생아 특례 버팀목대출 </a></li> 	 
+
+
+
+
+
+				<li class=""><a href="/FP/FP05/FP0502/FP05021101.jsp" >주거취약계층 이주지원 버팀목전세자금</a></li> 	 
+
+
+
+
+
+				<li class=""><a href="/FP/FP05/FP0502/FP05021201.jsp" >전세피해 임차인 버팀목전세자금</a></li> 	 
+
+
+
+
+
+				<li class=""><a href="/FP/FP05/FP0505/050510001.jsp" >전세피해임차인대상 버팀목전세대출대환</a></li> 	 
+
+
+
+
+
+				<li class=""><a href="/FP/FP05/FP0506/050560001.jsp" >전세사기피해자 최우선변제금 버팀목 전세자금 대출</a></li> 	 
+
+
+
+
+
+				<li class=""><a href="/FP/FP05/FP0502/FP05020201.jsp" >주거안정월세대출</a></li> 	 
+
+
+
+
+
+				<li class=""><a href=" /FP/FP05/FP0502/FP05020401.jsp " >신혼부부전용 전세자금</a></li> 	 
+
+
+
+
+
+				<li class=""><a href="/FP/FP05/FP0502/FP05020101.jsp" >버팀목전세자금</a></li> 	 
+
+
+
+
+
+				<li class=""><a href="/FP/FP05/FP0502/FP05021001.jsp" >갱신만료 임차인 지원 버팀목전세자금 </a></li> 	 
+
+
+
+
+
+				<li class=""><a href="https://www.khug.or.kr/hug/web/ig/dl/igdl000001.jsp" target="_blank" title="개인상품 메뉴 새창 열림">전세금안심대출보증</a></li> 	 
+
+
+
+
+
+				<li class=""><a href="/FP/FP08/FP0813/FP081303.jsp" >이의제기 처리방법</a></li> 	 
+
+
+		
+			</ul>
+
+		</li>
+
+		<li class="active "><a href="/FP/FP05/FP0503/FP05030601.jsp"  class="active">주택구입자금대출</a>
+
+
+			<ul style='display:block'>
+
+
+
+
+				<li class=""><a href="/FP/FP05/FP0503/FP05030601.jsp" >신혼부부전용 구입자금</a></li> 	 
+
+
+
+
+
+				<li class=""><a href="/FP/FP05/FP0503/FP05030701.jsp" >신혼희망타운전용 주택담보장기대출</a></li> 	 
+
+
+
+
+
+				<li class=""><a href="/FP/FP05/FP0503/FP05030101.jsp" >내집마련디딤돌대출</a></li> 	 
+
+
+
+
+
+				<li class=""><a href="/FP/FP05/FP0507/FP05070001.jsp" >전세사기피해자 전용 디딤돌 대출</a></li> 	 
+
+
+
+
+
+				<li class=""><a href="/FP/FP05/FP0503/FP05030801.jsp" >신생아 특례 디딤돌대출</a></li> 	 
+
+
+
+
+
+				<li class="active"><a href="/FP/FP05/FP0503/FP05030901.jsp" >청년 주택드림 디딤돌 대출</a></li> 	 
+
+
+
+
+
+				<li class=""><a href="/FP/FP05/FP0503/FP05030201.jsp" >수익공유형모기지</a></li> 	 
+
+
+
+
+
+				<li class=""><a href="/FP/FP05/FP0503/FP05030301.jsp" >손익공유형모기지</a></li> 	 
+
+
+
+
+
+				<li class=""><a href="/FP/FP05/FP0503/FP05030501.jsp" >오피스텔구입자금</a></li> 	 
+
+
+
+
+
+				<li class=""><a href="/FP/FP05/FP0504/FP05040401.jsp" >재해주택복구 및 구입자금</a></li> 	 
+
+
+		
+			</ul>
+
+		</li>
+
+		<li class="active "><a href="/FP/FP05/FP0504/FP05040101.jsp"  class="">기타주택자금대출</a>
+
+
+			<ul >
+
+
+
+
+				<li class=""><a href="/FP/FP05/FP0504/FP05040101.jsp" >부도임대주택경락자금</a></li> 	 
+
+
+
+
+
+				<li class=""><a href="/FP/FP05/FP0504/FP05040301.jsp" >부도임대주택퇴거자전세자금</a></li> 	 
+
+
+
+
+
+				<li class=""><a href="/FP/FP05/FP0504/FP05040201.jsp" >사업자대출입주자앞대환</a></li> 	 
+
+
+		
+			</ul>
+
+		</li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	</ul>
+						
+							
+							
+					</div>
+					<!-- //타이틀 영역:모바일 -->
+					
+					<!-- CMS 영역 -->
+
+					<div class="contents">
+						<!--20190315 서브제목추가-->
+						<h2 style="margin-bottom: 20px; font-size: 18px; font-weight: bold;">
+							
+									※ 자세한 내용은 가까운 기금수탁은행을 방문하여 확인하실 수 있습니다.
+							
+						</h2>
+						<!--//20190315 서브제목추가-->
+						<div class="goodsInfo">
+							<div>
+								<div class="img"><img src="/FP/FP05/FP0503/2332_image1_1.png" alt="청년 주택드림 디딤돌 대출"></div>
+								<div class="cnt">
+									<p class="info">청년 주택드림 디딤돌 대출</p>
+									<!-- 신생아특례 디딤돌 대출 상품요약 -->
+<ul>
+    <li><span class="tit">대출대상</span> <span class="txt">입주자모집공고일 이전 보유한 청년 주택드림 통장으로 청약 당첨(청약 당첨시 만39세 이하)되어 해당 청년 주택드림 통장과 연계하여 디딤돌 대출을 신청하는 자<br />
+    (단, 대출접수일 기준 1년 이상 가입 및 1천만원 이상 납입 요건 충족 필요)<br />
+    미혼가구 연소득 7천만원, 신혼가구 부부합산 연소득 1억원 이하<br />
+    '26년 기준 순자산가액 5.11억원 이하 무주택 세대주</span> <br />
+    </li>
+    <li><span class="tit">대출금리</span> <span class="txt">2.4% ~ 4.15% </span></li>
+    <li><span class="tit">대출한도</span> <span class="txt">미혼 3억원, 신혼 4억원 이내(LTV 70%, DTI 60% 이내. 단, 생애최초 주택구입자는 LTV 80% 적용하되, 수도권&middot;규제지역 소재 주택 구입시 LTV 70% 적용)</span></li>
+    <li><span class="tit">대출기간</span> <span class="txt">10년, 15년, 20년, 30년(연소득 4천만원 이하는 만기 40년 이용 가능)<br />
+    (거치 1년 또는 비거치)</span></li>
+</ul>
+								</div>
+								
+								<div class="btnRelated"><a id="loanBtn" title="대출신청 새창열림" class="btnMd btGo" href="javascript:goEnhuf();"><span>대출신청</span></a></div>
+							</div>
+						</div>
+
+
+								
+
+				
+					
+						
+				
+
+
+
+
+
+
+
+
+
+
+
+
+<ul class="tab01">
+
+	<li class='on'><a href="/FP/FP05/FP0503/FP05030901.jsp" title='선택됨'>일반대출 안내</a></li>
+
+	<li ><a href="/FP/FP05/FP0503/FP05030902.jsp" >유한책임대출 안내</a></li>
+
+	<li ><a href="/FP/FP05/FP0503/FP05030903.jsp" >원금상환유예제도안내</a></li>
+
+	<li ><a href="/FP/FP05/FP0503/FP05030904.jsp" >이용절차 및 제출서류</a></li>
+
+	<li ><a href="/FP/FP05/FP0503/FP05030905.jsp" >자주하는 질문</a></li>
+
+</ul>						
+
+
+								
+												<h3 class="hidden">청년 주택드림 디딤돌 대출 일반대출 안내</h3>
+<h4 class="titType1">대출 대상</h4>
+<h5 class="titType2">대출 대상주택을 구입하고자 하는 자로서 아래의 요건을 모두 충족하는 자</h5>
+<ul class="listBulDot1">
+    <li style="display: inline-flex">
+    <div>1.&nbsp;</div>
+    <div>(청년 주택드림 통장 청약 당첨자)&nbsp;입주자모집공고일 이전 보유한 청년 주택드림 통장으로 청약 당첨(당첨시 만39세 이하)되어 분양계약을 체결하고, 아래 조건을 모두 충족하여 해당 청년&nbsp;주택드림 통장과 연계하여 디딤돌 대출을 신청하는 자 (상속, 증여, 재산분할로 주택을 취득하는 경우&nbsp;불가)&nbsp;&nbsp;</div>
+    </li>
+    <li style="margin-left: 15px">가. 청년 주택드림 통장 가입일(전환일)로부터 대출접수일까지 1년 이상 가입</li>
+    <li style="margin-left: 15px">나. 대출접수일 기준 1천만원 이상 납입<br />
+    <p style="margin-left: 25px">(단, 월 납입실적은 최대 100만원까지만 인정하며, 담보목적물(해당주택)의 계약금 납입 목적으로 1회에 한하여 청년 주택드림 통장 납입금액을 인출한 경우에는 대출접수일 기준 1천만원 이상 잔고가 확인되어야 함)</p>
+    <div class="box02" style="margin-bottom: 20px; margin-top: 10px; padding-bottom: 0px; padding-top: 5px; padding-left: 0px">
+    <ul class="listBulDot" style="margin-bottom: 5px">
+        <li class="ex">&lt;청년 주택드림 통장 월 납입실적 예외사항&gt;
+        <ul>
+            <li>(1) 후분양 등의 사유로 월 100만원 납입만으로는 1천만원 이상 납입요건 충족이 어려운 경우 부족분만큼 대출 신청 전 일시납하는 금액 인정</li>
+            <li>(2) 종합저축에서 청년 주택드림 통장으로 전환가입한 경우 기존 통장의 잔고는 최대 500만원까지 인정(단, 청년우대형 종합저축에서 청년 주택드림 통장으로 전환된 경우 기존 잔고 모두 인정)</li>
+            <li>(3) 청년도약계좌, 청년희망적금, 군장병 내일적금 등 만기 일시납액을 청년 주택드림 통장으로 예치한 경우 최대 500만원까지 인정</li>
+            <li>(4) 이 기준에서 달리 정하고 있지 않은 사항에 대해서는 별도로 정한 지침에 따름</li>
+        </ul>
+        </li>
+    </ul>
+    </div>
+    </li>
+    <li>
+    <div class="helpArea" style="display: inline">2.&nbsp;(세대주) 대출접수일 현재 민법상 성년인&nbsp;<a id="help1_1" class="btnHelp" style="vertical-align: baseline; background: none transparent scroll repeat 0% 0%"><u>세대주</u></a></div>
+    <br />
+    </li>
+    <li>
+    <div style="display: inline-flex">
+    <div>3.&nbsp;</div>
+    <div>(무주택) 세대주를 포함한 세대원 전원이 무주택인 자&nbsp;<a class="highlight" href="/FP/FP05/FP0503/FP05030905.jsp?searchKey=무주택">[자주하는 질문 바로가기-'무주택' 검색]</a></div>
+    </div>
+    <br />
+    <p class="listDash" style="margin-left: 15px">분양권 및 조합원 입주권도 주택 보유로 간주</p>
+    </li>
+    <li>
+    <div style="display: inline-flex">
+    <div>4.&nbsp;</div>
+    <div>(중복대출 금지) 주택도시기금대출 및 은행재원 주택담보대출 미이용자 등</div>
+    </div>
+    <div>
+    <ul class="listDash" style="margin-bottom: 15px">
+        <li class="helpArea" style="display: inline">(주택도시기금대출) 성년인 <a id="help1_2" class="btnHelp" style="vertical-align: baseline; background: none transparent scroll repeat 0% 0%"><u>세대원 전원</u></a>이 기금 대출을 이용 중이면 대출 불가<br />
+        <span style="color: #3366ff; margin-left: 10px">단, 기금의 전세자금 대출을 받은 경우에는 실행일 당일 상환조건부로 대출 가능</span><br />
+        </li>
+        <li>(주택담보대출) 차주 및 배우자(결혼예정 또는 분리된 배우자 포함)가 다른 목적물로 주택담보(중도금)대출을 이용 중이면 대출 불가</li>
+    </ul>
+    </div>
+    </li>
+    <li class="helpAreaBfLi">
+    <div class="helpArea" style="display: inline">5.&nbsp;(소득) 미혼인 경우 연간 총소득 7천만원, <a id="help1_3" class="btnHelp" style="vertical-align: baseline; background: none transparent scroll repeat 0% 0%"><u>신혼가구</u></a>인 경우 대출신청인과 배우자의 합산 총소득이 연간 1억원 이하인 자<br />
+    </div>
+    <div>
+    <ul class="txtRefer">
+        <li style="margin-left: 20px">단, 토지임대부 분양주택 대출 신청자는 청약 소득요건을 충족하였으므로 소득 초과 시에도 대출 신청 가능</li>
+        <li style="margin-left: 20px">근로소득자는 건강보험자격득실확인서, 사업소득자는 사업자등록증(또는 사업자등록증명원)의 확인을 통해 현재 재직 중인 직장 또는 현재 영위 중인 사업을 기준으로 소득 산정</li>
+    </ul>
+    </div>
+    <br />
+    </li>
+    <li>
+    <div style="display: inline-flex">
+    <div>6.&nbsp;</div>
+    <div>(자산) 대출신청인 및 배우자의 합산 순자산 가액이 통계청에서 발표하는 최근년도 가계금융복지조사의 &lsquo;소득 5분위별 자산 및 부채현황&rsquo; 중 소득 4분위 전체가구 평균값 이하(십만원 단위에서 반올림)인 자&rarr;<span style="color: #3366ff">2026년도 기준 5.11억원</span></div>
+    </div>
+    <div>
+    <ul class="txtRefer">
+        <li style="margin-left: 20px">단, 토지임대부 분양주택 사전청약 당첨자는 자산요건을 갖춘 것으로 봄</li>
+    </ul>
+    </div>
+    <div>
+    <ul class="listDash" style="margin-bottom: 15px">
+        <li>자산심사 관련 자세한 사항 [<a href="/FP/FP08/FP0813/FP081301.jsp"><span style="color: #0000ff">바로가기</span></a>]</li>
+    </ul>
+    </div>
+    </li>
+    <li>
+    <div style="display: inline-flex">
+    <div>7.&nbsp;</div>
+    <div>(신용도) 아래 요건을 모두 충족하는 자</div>
+    </div>
+    <div>
+    <ul class="listDash" style="margin-bottom: 15px">
+        <li>신용정보회사의 개인신용평가가 일정점수 이상인 경우</li>
+        <li>신청인이 한국신용정보원 &ldquo;신용정보관리규약&rdquo;에서 정하는 아래의 신용정보 및 해제 정보가 남아있는 경우 대출 불가능
+        <div>
+        <ul>
+            <li>1) 연체, 대위변제&middot;대지급, 부도, 관련인 정보</li>
+            <li>2) 금융질서문란정보, 공공기록정보, 특수기록정보</li>
+            <li>3) 신용회복지원등록정보</li>
+        </ul>
+        </div>
+        </li>
+        <li>그 외, 부부에 대하여 대출취급기관 내규로 대출을 제한하고 있는 경우에는 대출 불가능</li>
+    </ul>
+    </div>
+    </li>
+</ul>
+<h4 class="titType1">신청시기</h4>
+<ul class="listBulDot">
+    <li>소유권이전등기를 하기 전에 신청. 단, 소유권이전등기를 한 경우에는 이전등기 접수일로부터 3개월 이내까지 신청</li>
+</ul>
+<h4 class="titType1">대상주택</h4>
+<ul class="listBulDot">
+    <li>주거 전용면적이 85㎡(수도권을 제외한 도시지역이 아닌 읍 또는 면 지역 100㎡) 이하 주택으로, 대출 접수일 현재 담보주택의 평가액이 6억원 이하인 주택
+    <div>
+    <ul class="txtRefer">
+        <li style="margin-left: 20px">단, 토지임대부 분양주택 대출 신청자 중 사전청약 당첨자는 담보주택 평가액 초과 시에도 대출 신청 가능</li>
+    </ul>
+    </div>
+    </li>
+</ul>
+<h4 class="titType1">대출 한도</h4>
+<h5 class="titType2">다음 중 작은 금액으로 산정</h5>
+<ul class="listBulDot1">
+    <li>
+    <div style="display: inline-flex">
+    <div>1.&nbsp;</div>
+    <div>최고 3억원(신혼가구 4억원) 이내(LTV, DTI 적용)</div>
+    </div>
+    <div>
+    <ul class="listDash" style="margin-bottom: 15px">
+        <li>DTI : 60% 이내</li>
+        <li>LTV : 70%(생애최초 주택구입자 LTV 80%. 단, 수도권&middot;규제지역 소재 주택은 LTV 70%, 토지임대부 분양주택은 LTV 60%) 이내</li>
+    </ul>
+    </div>
+    </li>
+    <li>
+    <div style="display: inline-flex">
+    <div>2.&nbsp;</div>
+    <div>분양가격 이내로 하되, 대출총액은 (본건 내집마련 디딤돌 대출 + 국민주택건설자금 + 중도금대출 + 기금대출)은 매매가격 초과 불가</div>
+    </div>
+    </li>
+    <li>
+    <div style="display: inline-flex">
+    <div>3.&nbsp;</div>
+    <div>대출금액 = [(담보주택 평가액 &times; LTV) &ndash; 선순위채권 &ndash; 임대보증금 및 최우선변제소액임차보증금]</div>
+    </div>
+    <p class="txtRefer">단, 토지임대부 분양주택 대출 신청자 중 사전청약 당첨자는 호당 대출한도 5억원 이내, LTV 80% 이내 적용</p>
+    </li>
+</ul>
+<h4 class="titType1">대출금리</h4>
+<p class="tbTop"><span>[고정금리, 10년 고정 후 변동금리, 5년 단위 변동금리 또는 변동금리(국토교통부 고시)]</span></p>
+<div class="tableScroll" style="margin-bottom: 0px">
+<div class="tableStyle01" style="width: auto">
+<table>
+    <caption>소득수준별 10년, 15년, 20년, 30년 대출 금리</caption><colgroup><col style="width: 15%" /><col style="width: 15%" /><col style="width: 15%" /><col style="width: 15%" /><col style="width: 15%" /><col style="width: 15%" /></colgroup>
+    <thead>
+        <tr>
+            <th colspan="2" scope="col">소득수준</th>
+            <th scope="col">10년</th>
+            <th scope="col">15년</th>
+            <th scope="col">20년</th>
+            <th scope="col">30년</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <th rowspan="3" scope="row">미혼</th>
+            <th scope="row">~ 2천만원 이하</th>
+            <td id="LOANRATE"></td>
+            <td id="LOANRATE1"></td>
+            <td id="LOANRATE2"></td>
+            <td id="LOANRATE3"></td>
+        </tr>
+        <tr>
+            <th scope="row">2천만원 초과 ~ 4천만원 이하</th>
+            <td id="LOANRATE4"></td>
+            <td id="LOANRATE5"></td>
+            <td id="LOANRATE6"></td>
+            <td id="LOANRATE7"></td>
+        </tr>
+        <tr>
+            <th scope="row">4천만원 초과 ~ 7천만원 이하</th>
+            <td id="LOANRATE8"></td>
+            <td id="LOANRATE9"></td>
+            <td id="LOANRATE10"></td>
+            <td id="LOANRATE11"></td>
+        </tr>
+        <tr>
+            <th rowspan="2" scope="row">신혼가구</th>
+            <th scope="row">7천만원 초과 ~ 8.5천만원 이하</th>
+            <td id="LOANRATE12"></td>
+            <td id="LOANRATE13"></td>
+            <td id="LOANRATE14"></td>
+            <td id="LOANRATE15"></td>
+        </tr>
+        <tr>
+            <th scope="row">8.5천만원 초과 ~ 1억원 이하</th>
+            <td id="LOANRATE16"></td>
+            <td id="LOANRATE17"></td>
+            <td id="LOANRATE18"></td>
+            <td id="LOANRATE19"></td>
+        </tr>
+    </tbody>
+</table>
+</div>
+</div>
+<p class="txtRefer" style="margin-top: 10px">대출대상주택이 지방 소재인 경우 0.2%p 인하<br />
+</p>
+<p class="txtRefer2" style="margin-top: 10px">5년 단위 변동금리 선택 시 0.1%p, 고정금리 10년 선택 시 0.2%p, 순수 고정 금리 0.3%p 가산<br />
+</p>
+<p class="txtRefer3" style="margin-top: 10px">4천만원 이하는 만기 40년 이용 가능하되 30년 금리에서 0.1%p 금리가산<br />
+</p>
+<p class="txtRefer" style="margin-top: 10px">토지임대부 분양주택 대출 신청자의 소득이 최고 소득구간을 초과하는 경우 0.3%p 가산(단, 사전청약 당첨자는 최고 소득구간을 초과하더라도 최고 소득구간 금리 적용)<br />
+</p>
+<br />
+<ul class="listDash" style="margin-left: 0px">
+    <li>금리우대<span style="color: #3366ff">(중복 적용 가능)</span>
+    <div>
+    <ul>
+        <li style="display: inline-flex">
+        <div>①</div>
+        <div>대출실행일 이후 결혼한 경우 0.1%p. 단, 적용일로부터 5년간 적용</div>
+        </li>
+        <li style="display: inline-flex">
+        <div>②</div>
+        <div>대출실행일 이후 최초 출산한 경우 0.5%p, 추가 출산한 경우 자녀 1명당 0.2%p 추가우대 (출산 우대금리는 적용일로부터 자녀 1명당 5년간 적용, 최대 15년 가능)</div>
+        </li>
+    </ul>
+    <p style="margin-left: 15px">※ 우대금리는 최대 1%p까지 가능하며, 우대금리 적용 후 최종금리가 연 1.5% 미만인 경우에는 연 1.5%를 적용</p>
+    <p style="margin-left: 15px">※ 자산심사 부적격자의 경우 가산금리가 부과</p>
+    <p style="margin-left: 15px">※ 최종 우대금리의 적용은 수탁은행의 서류 심사 결과에 따라 결정되오니, 수탁은행 상담 필요</p>
+    </div>
+    </li>
+</ul>
+<h4 class="titType1">이용기간</h4>
+<ul class="listBulDot">
+    <li>10년, 15년, 20년, 30년(연소득 4천만원 이하는 만기 40년 이용 가능하되, 30년 만기 금리에서 0.1%p 금리 가산)</li>
+</ul>
+<h4 class="titType1">상환방법</h4>
+<ul class="listBulDot">
+    <li>비거치 또는 1년 거치 원리금균등분할상환, 원금균등분할상환 또는 체증식상환</li>
+</ul>
+<h4 class="titType1">담보취득</h4>
+<ul class="listBulDot">
+    <li>대출 대상주택에 <span style="color: #3366ff">대출실행일 이전에 제1순위 근저당권설정</span></li>
+</ul>
+<h4 class="titType1">담보평가</h4>
+<ul class="listBulDot">
+    <li>대출접수일(또는 대출승인일) 현재의 &quot;분양가격&quot;을 우선적으로 적용하며, 분양가격 적용 불가 시 &ldquo;가격정보&rdquo;, &ldquo;국토교통부에서 제공하는 공시가격&rdquo;, &ldquo;감정가액&rdquo; 순서로 평가<br />
+    <a class="highlight" href="/FP/FP05/FP0503/FP05030905.jsp?searchKey=담보평가">[자주하는 질문 바로가기-'담보평가' 검색]</a></li>
+</ul>
+<h4 class="titType1">고객부담비용</h4>
+<ul class="listBulDot">
+    <li>인지세 : 고객/은행 각 50% 부담</li>
+    <li>근저당권설정비 : 은행부담(단, 국민주택채권매입 비용은 고객부담)</li>
+    <li>감정비용 : 분양가격을 적용할 수 없는 경우에 해당되어 감정하는 경우는 기금이 부담</li>
+</ul>
+<h4 class="titType1">중도상환수수료</h4>
+<ul class="listBulDot">
+    <li>중도상환수수료는 3년 이내에 중도상환된 원금에 대하여 대출실행일로부터 경과일수 별로 0.6% 한도 내에서 부과</li>
+    <li>중도상환수수료 = 중도상환원금 x 중도상환수수료율(0.6%) x [(3년-대출경과일수)/3년]<br />
+    <p class="ex" style="margin-left: 5px">※ 대출계약을 철회한 경우 중도상환수수료 면제</p>
+    <p class="ex" style="margin-left: 5px">※ 2024년 8월 12일부터 2026년 12월 31일까지 중도상환된 원금에 대해 중도상환수수료 면제</p>
+    </li>
+</ul>
+<h4 class="titType1">대출계약 철회</h4>
+<ul class="listBulDot">
+    <li>아래의 기일 중 늦을 날로부터 <strong>14일 이내</strong>에 대출계약 철회 가능 <br />
+    <div>
+    <ul class="listBulDot1" style="margin-bottom: 15px; margin-top: 15px">
+        <li style="margin-left: -7px">1) 대출계약서류를 제공받은 날</li>
+        <li style="margin-left: -7px">2) 대출계약체결일</li>
+        <li style="margin-left: -7px">3) 대출실행일</li>
+        <li style="margin-left: -7px">4) 사후자산심사결과 부적격 확정통지일</li>
+        <li>&nbsp;- 대출계약 철회는 채무자가 철회기한 이내에 원금과 이자 및 부대비용을 전액 반환한 때에 효력이 발생</li>
+    </ul>
+    </div>
+    </li>
+    <li>대출계약 철회권의 효력이 발생한 이후에는 철회권 행사 취소 불가</li>
+</ul>
+<h4 class="titType1">납입일 변경</h4>
+<ul class="listBulDot">
+    <li>연도별 1회 약정납입일 변경이 가능</li>
+</ul>
+<h4 class="titType1">유의사항</h4>
+<ul class="listBulDot">
+    <li>실거주 의무 제도
+    <ul>
+        <p><span style="font-weight: bold">(대상) </span>: 청년 주택드림 디딤돌 대출 차주</p>
+        <p><span style="font-weight: bold">(내용) </span>: 실거주의무 대상자는 대출받은 날로부터 1개월 내에 대출받은 주택에 전입 후 2년이상 실거주 유지(단, 정당한 사유없이 1개월 이내 전입하지 않고 2년 이상 실거주하지 않는 경우 기한이익이 상실되고 대출금을 상환해야 함)</p>
+        <p><span style="font-weight: bold">(유예) </span>: 기존임차인의 퇴거지연, 집수리 등 1개월 이내 전입이 어려운 경우 사유서를 제출하면 2개월 전입 연장 가능하며, 질병치료, 타(他) 시도로 근무지 이전 등 불가피하게 실거주 못하는 사유가 대출접수일(분양계약자의 경우 분양계약 체결일) 이후 발생시 최대 3년동안 실거주 적용 유예 인정(단, 실거주 유예기간 종료 후 3개월 내 미전입시 기한이익이 상실되고 대출금을 상환해야 함)&nbsp;</p>
+    </ul>
+    <p class="ex">※ 주택도시기금대출은 「금융소비자보호법」의 위법계약해지권 적용대상이 아님</p>
+    </li>
+    <li>1주택 유지 의무
+    <ul>
+        <p><span style="font-weight: bold">(대상)</span> : 세대주(차주) 및 세대원 전원, 분리된 배우자 및 그 배우자와 동일한 세대를 이루고 있는 직계비속, 세대주로 인정되는 자의 민법상 미성년인 형제&middot;자매, 공동명의 담보제공자</p>
+        <p><span style="font-weight: bold">(내용)</span> : 대출기간 중 1주택 유지 <br />
+        <span style="margin-left: 5.5%">대출실행 이후 본건 담보주택 외에 추가주택 취득이 확인된 경우 6개월 이내 추가주택 미처분 시 대출금 회수</span></p>
+        <p><span style="font-weight: bold">(예외)</span> : ① <span class="txtbold">무주택으로 보는 경우</span><a class="highlight" href="/FP/FP05/FP0503/FP05030905.jsp?searchKey=무주택">[자주하는 질문 바로가기-'무주택' 검색]</a> <br />
+        </p>
+        <div style="margin-left: 5.5%">② 아래와 같이 부득이하게 추가주택을 취득하게 된 경우로서 각 처분기한 내 처분한 경우 <span style="font-family: 맑은고딕"><br />
+        &middot; <span class="txtbold">상속으로 인하여 공유지분을 취득한 경우</span> 국토교통부로부터 회신받은 날로부터 <span class="txtbold">3개월</span> 이내에 처분한 경우(공매진행 중인 경우 그 기간만큼 처분기간 유예) <br />
+        &middot; <span class="txtbold">상속으로 인하여 단독으로 주택을 취득한 경우</span> 국토교통부로부터 회신받은 날로부터 <span class="txtbold">6개월</span> 이내에 처분한 경우(공매진행 중인 경우 그 기간만큼 처분기간 유예) <br />
+        &middot; <span class="txtbold">혼인신고 전에 배우자가 주택을 소유한 경우</span>로서 혼인신고를 통해 합가하여 추가주택을 취득한 자가 국토교통부로부터 확인받은 날로부터 <span class="txtbold">3년</span> 이내에 처분한 경우 <br />
+        &middot; 「전세사기피해자 지원 및 주거안정에 관한 특별법」에 따라 <span class="txtbold">전세사기피해주택을 낙찰받은 자</span>가 국토교통부로부터 회신받은 날로부터 <span class="txtbold">3년</span> 이내에 처분한 경우 <br />
+        &middot;<span class="txtbold"> 분양권(조합원 입주권 포함)을 취득</span>한 경우 국토교통부로부터 회신받은 날로부터 <span class="txtbold">3년</span> 이내 처분한 경우 </span></div>
+        <p></p>
+    </ul>
+    </li>
+    <li>기금의 구입 또는 전월세자금대출 이용 중 주택도시기금 대출거래약정서를 위반하여 기한의 이익이 상실된 이력이 있는 경우 이용 불가(다만, 접수일 현재 해당 기한이익상실일로부터 3년이 경과된 자는 가능)</li>
+    <li>대출 취급 후 기금중복대출 여부를 위반한 경우에는 본 대출금을 상환하여야 함(점검 대상 :&nbsp;세대주 및 세대원 전원, 결혼예정 배우자, 분리된 배우자 및 자녀, 배우자의 직계존속과 동거세대를 구성하는 경우 배우자의 직계존속 포함)</li>
+    <li>상기 이외 사항은 내집마련디딤돌대출 기준을 따름 <a href="http://nhuf.molit.go.kr/FP/FP05/FP0503/FP05030101.jsp"><span style="color: #3366ff"><u>[바로가기]</u></span></a></li>
+</ul>
+<h4 class="titType1">상담문의</h4>
+<ul class="listBulDot">
+    <li>대출 심사 관련한 상담은 주택도시보증공사 콜센터 1566-9009 및&nbsp;기금 수탁은행 지점에서 가능합니다.</li>
+    <li>자산심사 관련한 상담은 자산심사 전용 상담센터 1551-3119 및 심사 진행 중 안내된 담당자 번호로 문의바랍니다.</li>
+</ul>
+<style type="text/css">
+	
+	.highlight{background-color:#ccff99;}
+	.highlight-txtbold{background-color:#ccff99;font-weight:bold}
+	.blue{color:blue}
+	.txtbold{font-weight:bold}
+	.txtboldblue{font-weight:bold;color:blue}
+	.helpArea .helpTooltip{padding: 10px; top: -13px; left: 370px; width: 500px; background: #f1f1f1;}
+	.listDash .helpArea .helpTooltip{left: 300px;}
+	.helpAreaBfLi .helpArea .helpTooltip{left: 386px;}
+	.helpBox{background: none; border: none; margin-bottom: 0px;}
+	.helpTooltip:before{background: url(/common/images/common/bul/blt_tooltip_gray.png) no-repeat 0 0;}
+	</style><script>
+
+	$(document).ready(function(){
+		// 도움말 호출
+		$('.btnHelp').click(function() {
+			if ($(this).parent().hasClass("on")) {
+			} else {
+				$(this).parent().addClass('on');
+				$(this).parent().append('<div class="helpTooltip"><div class="layer_pop_message"></div><button type="button" class="btnClose">창닫기</button></div>');
+				
+				var Id = $(this).attr("id").substring(4, 7);
+
+				helpPopup(Id);
+			}
+		});
+		
+		$( document ).on( "click", ".btnClose", function() {
+			$(this).parent().parent().attr('tabindex','0').focus();
+			$(this).parent().parent().removeClass('on');
+			$(this).parent().remove();
+		});
+		
+		// helpLayer 창 닫기
+		$('.btnClose_layer').click(function(){
+			$('#helpLayer').fadeOut();
+			alertClose(id);
+		});
+
+		getNewRateList();
+
+	});
+
+	
+		function getNewRateList() {
+		var arr;
+		
+		$.ajax({
+			url : "/init/include/NewBabyGetInform.jsp",
+			data : {"newBabyGetBuySelect" : "newMearryHouse", "productgb" : "Y"},
+			async : false,
+			dataType : "json",
+			type : "POST",
+			success : function(data) {				
+			},
+			complete : function(data) {
+				
+				arr = eval($.trim(data.responseText));
+							$("#ReciveSelectMonth").empty();
+							$.each(arr, function(index, json) {
+								
+
+								for(key in json){
+			
+								console.log('key==='+key+ "value[" + json[key] +"]");
+								$("#"+key).text("연 "+json[key]+"%");
+			
+								}	
+							});						
+			
+			}
+			, error : function(request, status, error) {
+			//alert("code :" + request.status + "\n" + "message : " + request.responseText + "\n" + "error :" + error)
+			}
+		});
+	}
+	
+		
+	function helpPopup_msg(helpId,msg) {	
+		layer_open_help('layerPopup_help'); /* 열고자 하는 것의 아이디를 입력 */
+		$('#layerPopup_help').fadeIn();
+		$("#layerPopup_help").focus();
+		tempId = helpId;		// 레이어 팝업 포커스 이동에 사용
+		$("#layer_pop_message").html(msg);
+	}
+		
+	
+				function helpPopup(helpId) {
+					var msg = "";
+					if (helpId == "1_1") {
+						msg = "<div class='helpBox' style='margin-bottom: 10px; padding-bottom: 0px; padding-top: 5px; padding-left: 0px'><ul class='listBulDot' style='margin-bottom: 5px'><li class='ex'>※ 세대주의 정의<ul><li>세대별 주민등록상에 배우자, 직계존속(배우자의 직계존속) 또는 직계 비속인 세대원으로 이루어진 세대의 세대주 <span style='color: #3366ff;'>(형제·자매는 세대원에 미포함)</span> 다만, 다음에 해당하는 자도 세대주로 간주</li><li>1) 세대주의 배우자</li><li>2) 주민등록표상에 세대원으로 등록된 자가 <span style='color: #3366ff;'>대출접수일 현재 3개월 이내에 결혼</span>으로 세대주로 예정된 자</li><li>3) 토지임대부 분양주택 대출 신청자로서 대출접수일 현재 세대원인 자</li></ul></li></ul></div>";
+
+					$("#help"+helpId).next().find(".layer_pop_message").html(msg);
+			} else if (helpId == "1_2") {
+						msg = "<div class='helpBox' style='margin-bottom: 10px; padding-bottom: 0px; padding-top: 5px; padding-left: 0px'><ul class='listBulDot' style='margin-bottom: 5px'><li class='ex'>세대가 분리된 배우자 및 자녀, 결혼예정 배우자, 배우자의 직계존속과 동거세대를 구성하는 경우 배우자의 직계존속 포함</li></ul></div>";
+
+					$("#help"+helpId).next().next().next().next().find(".layer_pop_message").html(msg);
+			} else if (helpId == "1_3") {
+						msg = "<div class='helpBox' style='margin-bottom: 10px; padding-bottom: 0px; padding-top: 5px; padding-left: 0px'><ul class='listBulDot' style='margin-bottom: 5px'><li class='ex'>혼인관계증명서상 신청인과 그의 현재 배우자와의 혼인기간(동일한 배우자와 최초 혼인 후 재혼한 경우 최초 혼인일로부터)이 7년 이내인 가구 또는 3개월 이내 결혼을 예정하여 세대 구성이 예정된 가구</li></ul></div>";
+
+					$("#help"+helpId).next().find(".layer_pop_message").html(msg);
+			}
+					
+
+				}
+
+		
+
+	
+	
+</script>
+						
+						
+											<h4 class="titType1">업무취급은행</h4>
+											
+
+
+
+<div class="bankList etc listNum5n">
+	
+<ul>
+
+		<li>
+			<a href="https://spot.wooribank.com/pot/Dream?withyou=CMCOM0153" title="새창 이동" target="_blank" class="loanApp_btn"><img src="/cms/dummy/16_image1_1.png" alt="우리은행"></a>
+	<!--
+	
+				<div class="loanApp_layer">
+					<a href="https://spot.wooribank.com/pot/Dream?withyou=CMCOM0153" target="_blank" title="새창 이동" class="btnIcon">영업점</a>
+					<a href="https://spib.wooribank.com/pib/Dream?withyou=PSLON0137&PRD_CD=34121#none" target="_blank" title="새창 이동" class="btnIcon">인터넷</a>
+				</div>
+	
+	-->
+			<span>1599-0800</span>
+		</li>
+
+		<li>
+			<a href="https://www.shinhan.com/webzine/index.jsp?w2xPath=/hpe/bank_introduce/BI07/internal01_type01.xml" title="새창 이동" target="_blank" class="loanApp_btn"><img src="/cms/dummy/12_image1_1.png" alt="신한은행"></a>
+	<!--
+	
+				<div class="loanApp_layer">
+					<a href="https://www.shinhan.com/webzine/index.jsp?w2xPath=/hpe/bank_introduce/BI07/internal01_type01.xml" target="_blank" title="새창 이동" class="btnIcon">영업점</a>
+					<a href="https://www.shinhan.com/webzine/index.jsp?w2xPath=/hpe/bank_introduce/BI07/internal01_type01.xml" target="_blank" title="새창 이동" class="btnIcon">인터넷</a>
+				</div>
+	
+	-->
+			<span>1599-8000</span>
+		</li>
+
+		<li>
+			<a href="https://omoney.kbstar.com/quics?page=C016505" title="새창 이동" target="_blank" class="loanApp_btn"><img src="/cms/dummy/15_image1_1.png" alt="KB 국민은행"></a>
+	<!--
+	
+				<div class="loanApp_layer">
+					<a href="https://omoney.kbstar.com/quics?page=C016505" target="_blank" title="새창 이동" class="btnIcon">영업점</a>
+					<a href="https://obank.kbstar.com/quics?page=C041715" target="_blank" title="새창 이동" class="btnIcon">인터넷</a>
+				</div>
+	
+	-->
+			<span>1599-1771</span>
+		</li>
+
+		<li>
+			<a href="https://nonghyup.ttmap.co.kr/main.jsp" title="새창 이동" target="_blank" class="loanApp_btn"><img src="/cms/dummy/13_image1_1.png" alt="NHBank"></a>
+	<!--
+	
+				<div class="loanApp_layer">
+					<a href="https://nonghyup.ttmap.co.kr/main.jsp" target="_blank" title="새창 이동" class="btnIcon">영업점</a>
+					<a href="https://smartmarket.nonghyup.com/servlet/SFSL0070R.view" target="_blank" title="새창 이동" class="btnIcon">인터넷</a>
+				</div>
+	
+	-->
+			<span>1588-2100</span>
+		</li>
+
+		<li>
+			<a href="https://www.kebhana.com/cont/util/util04/util0401/index.jsp" title="새창 이동" target="_blank" class="loanApp_btn"><img src="/cms/dummy/11_image1_1.png" alt="하나은행"></a>
+	<!--
+	
+				<div class="loanApp_layer">
+					<a href="https://www.kebhana.com/cont/util/util04/util0401/index.jsp" target="_blank" title="새창 이동" class="btnIcon">영업점</a>
+					<a href="https://www.kebhana.com/cont/util/util04/util0401/index.jsp" target="_blank" title="새창 이동" class="btnIcon">인터넷</a>
+				</div>
+	
+	-->
+			<span>1599-1111</span>
+		</li>
+
+
+	</ul>
+
+</div>
+						
+					</div> 
+					<!-- //CMS 영역 -->
+					
+					<!-- 만족도 조사 -->
+                         
+<!--
+  - pageID   : comment
+  - pageTitle: 만족도 조사
+  - 작 성 자 : 박미연
+  - 일 자    : 2015-05-10
+  - 설 명    :
+  - 버 젼    : 2015-05-10 최초 작성
+-->   
+<form name="form_comment" id="form_comment" onsubmit="return commentValidate(this)" action="javascript:commentSubmit();"><input type="hidden" name="ptSignature" value="y75SG3GCSqdhJnj87n+84eC7f9eJyZA/XZZRmQaEkoSa+ehoa83p3TC0CEwAlCuAGqeTI7TObipo27WrI+0CVHe9kY65fLGWvCX/cTfFz54VCBxsjENwyDAG+XLXLNDVpeCkcgVFFdg7lRkfsZNuBNoQHzeyIVmFrsuuk9w5xGo=" />
+ 
+	<script type="text/javascript">		
+		var check_Boolean = false; //만족도 등록여부
+		function commentValidate(t) {
+			if(check_Boolean){
+				alert("이미 만족도 의견을 등록하셨습니다.");
+				return false;
+			}
+			if($.trim($("#comments").val()) == "" && ( $("input[name=valuation]:checked").val()=="1" || $("input[name=valuation]:checked").val()=="2" || $("input[name=valuation]:checked").val()=="3")) {
+				alert("고객님의 의견을 10자 이상 입력해주세요.");
+				$("#comments").focus();
+				return false;
+			}
+			$("#comments").val($.trim($("#comments").val()));
+			if(!checkCharacter_comment($("#comments"))) return false;
+			if(!checkWord($("#comments"))) return false;
+			return true;
+		}
+		function commentSubmit(){
+			try{
+				if(!NODEID || NODEID==""){
+					alert("메뉴ID가 존재하지 않습니다.(관리자에게 문의하십시요)");
+					return;
+				}
+			}catch(e){
+				alert("메뉴ID가 존재하지 않습니다.(관리자에게 문의하십시요)");
+				return;				
+			}
+			$.ajax({
+				 //url: "/common/CommonController.do?gubun=commentSubmit&NODEID="+NODEID
+				 url: "/init/include/commonController.jsp?gubun=commentSubmit&NODEID="+NODEID		 
+				,data: $("#form_comment").serialize()
+				,async: false
+				,type: "POST"
+				,success: function(data) {
+					if(data.RESULT_CD=="00000"){
+						check_Boolean = true;
+						$("#comments").val("");
+						alert("정상적으로 등록되었습니다.");
+					}else{}
+				}
+			});
+		}
+		
+		/**
+		 * if(!checkCharacter($("#comments"))) return false;
+		 * @param obj
+		 * @returns {Boolean}
+		 */
+		function checkCharacter_comment(obj) {
+		    //var RegExp = /[\{\}\[\]\/;:|\)*~`^\-_+┼<>@#$%&\'\"\\\(\=]/gi;
+		    var RegExp = /[\{\}\[\]\/;:|\)*~`!^\┼<>@#$%&\'\"\\\(\=]/gi;
+		    var ch;
+			
+			var ch1 = document.getElementById("valuation5").checked;
+			var ch2 = document.getElementById("valuation4").checked;
+			var ch3 = document.getElementById("valuation3").checked;
+			
+			var str = document.getElementById("comments").value;
+			var str2 = str.replace(/\s/g, '');
+			
+		    for(var i=0; i<obj.val().length; i++) {
+		    	ch = obj.val().substring(i,i+1);
+		    	if(RegExp.test(ch)) {
+		    		alert("특수문자 [" + ch + "]는 입력하실 수 없습니다.");
+			        return false;
+		    	}
+				if(ch1 || ch2 || ch3){
+					if(str2.length<10){
+						alert("고객님의 의견을 10자 이상 입력해주세요.");
+					return false;
+					}
+				}
+		    }
+		    return true;
+		}
+		
+	</script>	
+	<div id="dis_comment" class="areaPoll">
+		<dl>
+			<dt><b>만족도 조사</b>
+				현재 페이지에 대한 만족도를 선택해 주세요.
+				의견을 남겨주시면 최대한 반영하도록 하겠습니다.</dt>
+			<dd> 
+				<span><input type="radio" name="valuation" id="valuation1" value="5" checked="checked"><label for="valuation1">매우만족</label></span>
+				<span><input type="radio" name="valuation" id="valuation2" value="4" class="cbr-type"><label for="valuation2">만족</label></span>
+				<span><input type="radio" name="valuation" id="valuation3" value="3" class="cbr-type"><label for="valuation3">보통</label></span>
+				<span><input type="radio" name="valuation" id="valuation4" value="2" class="cbr-type"><label for="valuation4">불만족</label></span>
+				<span><input type="radio" name="valuation" id="valuation5" value="1" class="cbr-type"><label for="valuation5">매우불만족</label></span>
+			</dd>
+			<dd>
+				<label for="comments" onclick="labelCheck(this,'comments');" class="hidden">의견쓰기</label>
+				<p class="txtRefer blue">의견 작성시 특수문자는 입력하실 수 없습니다.</p>
+				<input type="text" name="comments" style="ime-mode:active;" id="comments" title="의견을 입력해 주세요." maxlength="2000">
+				<input type="image" src="/common/images/common/btn/btn_poll.png" alt="의견등록하기"> 
+			</dd>
+		</dl> 
+	</div>
+</form>
+
+<!-- [시] hitLog insert 처리 ==================== -->
+<script type="text/javascript">
+	try{
+		$.ajax({
+			 url: "/init/include/commonController.jsp?gubun=hit_log_insert&NODEID="+NODEID+"&NODEID1="+NODEID1	 
+			,data: ""
+			,async: false
+			,type: "POST"
+			,success: function(data) {	
+				if(data.COMMENT_DIS_YN =="N") {
+					try{$('#dis_comment').hide();}catch(e){}
+				}
+			}
+		});
+	}catch(e){}
+</script>
+<!-- [끝] hitLog insert 처리 ==================== -->
+					<!-- //만족도 조사 -->
+				
+				</div>
+				<!-- //본문 영역 -->
+			</div>
+			<!-- //container -->
+			
+			<!-- footer 영역 -->
+			
+<footer>
+<div class="sectionN01"><!-- 수정된 부분 -->
+<ul class="padd_right">
+    <li><a style="color: blue" href="/FP/FP08/FP0812/FP081201.jsp">개인정보처리방침</a></li>
+    <li><a href="/FP/FP09/FP0901.jsp">이메일무단수집거부</a></li>
+    <li><a href="/FP/FP09/FP0902.jsp">저작권정책</a></li>
+    <li><a href="/FP/FP09/FP0903.jsp">뷰어프로그램</a></li>
+</ul>
+<div class="banner">
+<div class="banner_wrap">
+<div class="item"><a title="새창 이동" target="_blank" href="https://사전청약.kr"><img id="pre_sub" alt="뉴:홈으로 해결" style="width: 18%" src="/common/images/banner/pre_subscription.png" /></a> <a title="새창 이동" target="_blank" href="https://1398.acrc.go.kr"><img alt="공익신고 링크" src="/common/images/banner/4.png" /></a> <a title="새창 이동" target="_blank" href="https://www.myhome.go.kr/"><img alt="마이홈 링크" src="/common/images/banner/2.png" /></a></div>
+</div>
+</div>
+<ul>
+    <li class="icon_fb"><a title="새창 이동" target="_blank" href="http://www.facebook.com/landkorea">국토부 페이스북</a></li>
+    <li class="icon_tw"><a title="새창 이동" target="_blank" href="http://twitter.com/korea_land">국토부 트위터</a></li>
+    <li class="icon_bl"><a title="새창 이동" target="_blank" href="http://korealand.tistory.com/">국토부 블로그</a></li>
+    <li class="icon_yt"><a title="새창 이동" target="_blank" href="http://www.youtube.com/user/korealand">국토부 유튜브</a></li>
+</ul>
+<!-- 수정된 부분 --></div>
+<div class="sectionN02">
+<div class="markW"><a title="WA 품질인증 마크, 웹와치(WebWatch) 2026.7.3 ~ 2027.7.2 새창 이동" target="_blank" href="http://www.webwatch.or.kr"><img alt="과학기술정보통신부 WA(WEB접근성) 품질인증 마크, 웹와치(WebWatch) 2026.7.3 ~ 2027.7.2" width="106" height="70" src="/init/include/WA_Mark.png" /></a></div>
+<div class="selectW">
+<form class="linkForm" method="post" onsubmit="window.open($('#footer_bank').val()); return false;" name="form">
+    <fieldset><legend>국민주택기금 업무취급은행 바로가기</legend><select id="footer_bank" title="국민주택기금 업무취급은행 선택" class="sel_link" name="bank">
+    <option value="" selected="selected">업무취급은행</option>
+    <option value="https://svc.wooribank.com/svc/Dream?withyou=hb">우리은행</option>
+    <option value="https://okbfex.kbstar.com/quics?page=onhouse">KB국민은행</option>
+    <option value="https://mybank.ibk.co.kr/uib/jsp/guest/ntr/ntr70/ntr7010/PNTR701025_m.jsp?APLY_EFNC_MENU_ID=P0104050000&amp;SCRE_ID=PNTR701025_m&amp;MENU_DIV=GNB">IBK기업은행</option>
+    <option value="http://banking.nonghyup.com/index_house.html">NH농협은행</option>
+    <option value="http://www.shinhan.com/websquare/websquare_contents.jsp?w2xPath=/contents/finance_service/house/finance_service_housemain.xml&amp;cid=B00419">신한은행</option>
+    <option value="https://www.kebhana.com/cont/houd/index.jsp">하나은행</option>
+    <option value="https://www.dgb.co.kr/com_ebz_fsv_main.act">iM 뱅크</option>
+    <option value="https://www.busanbank.co.kr/ib20/mnu/BHPHUG0010001">부산은행</option>
+    <option value="https://www.knbank.co.kr/ib20/mnu/FPMDPT020109000">경남은행</option>
+    </select> <input alt="선택된 업무취급은행 이동_새창" src="/common/images/common/btn/btn_move.png" type="image" /> </fieldset>
+</form>
+<form class="linkForm" method="post" onsubmit="window.open($('#footer_familySite').val()); return false;" name="form1">
+    <fieldset><legend>관련사이트 바로가기</legend><select id="footer_familySite" title="관련사이트 선택" class="sel_link" name="familySite">
+    <option value="" selected="selected">관련사이트</option>
+    <optgroup label="- 정부기관">
+    <option value="http://www.molit.go.kr">국토교통부</option>
+    <option value="https://seereal.lh.or.kr">씨:리얼 부동산정보포털</option>
+    <option value="https://www.gov.kr/">정부24</option>
+    </optgroup> <optgroup label="- 전담운용기관">
+    <option value="http://www.khug.or.kr">주택도시보증공사</option>
+    </optgroup> <optgroup label="- 업무관련기관">
+    <option value="http://www.lh.or.kr">한국토지주택공사</option>
+    <option value="https://www.applyhome.co.kr/co/coa/selectMainView.do">한국부동산원 청약홈</option>
+    <option value="http://www.hf.go.kr">한국주택금융공사</option>
+    <option value="http://jeonse.lh.or.kr">전세임대포털</option>
+    <option value="http://www.i-sh.co.kr">SH공사</option>
+    </optgroup></select> <input alt="선택된 관련사이트 이동_새창" src="/common/images/common/btn/btn_move.png" type="image" /> </fieldset>
+</form>
+</div>
+<div class="txt">
+<div><img alt="주택도시기금" style="width: 73%; margin-top: 3%" src="/common/images/common/logo.png" /></div>
+<p>국토교통부와 주택도시보증공사는 주택도시기금포털의 원활한 운영을 위해 최선을 다하고 있습니다.<br />
+<span><b>담당기관</b> 국토교통부 주택기금과</span><br />
+<span><b>국토교통부 콜센터</b> 1599-0001</span> <span class="sm"><b>포털내용관련</b> 주택도시보증공사 1566-9009</span></p>
+<p class="copy">Copyright ⓒ MOLIT. Ltd All rights reserved.&nbsp;</p>
+</div>
+</div>
+<button class="topBtn">위로</button></footer> <script>
+window.onload = function(){	if (window.innerWidth > 768) {	
+			$('#pre_sub').css('width','18%')		} else {		$('#pre_sub').css('width','28%')	}}
+</script>
+			<!-- //footer 영역 -->
+		</div>
+		
+		<!-- 모바일 전체 메뉴 -->
+		
+
+
+
+
+
+
+<div class="mobileMenu">
+	<div>전체메뉴</div>
+	<ul> 
+
+
+		
+
+		<li class="menu01"><a href="/FP/FP04/FP0401/FP040101.jsp">기금안내</a> 
+		
+		
+
+			<ul>
+
+				
+
+				<li class="plus"><a href="/FP/FP04/FP0401/FP040101.jsp" >주택도시기금소개</a>
+
+				
+
+
+	
+					<ul>
+
+
+						
+
+						<li><a href="/FP/FP04/FP0401/FP040101.jsp" >개편방향</a></li>  
+						
+						
+
+
+						
+
+						<li><a href="/FP/FP04/FP0401/FP040102.jsp" >기금의 역할</a></li>  
+						
+						
+
+
+						
+
+						<li><a href="/FP/FP04/FP0401/FP040103.jsp" >조성재원 및 용도</a></li>  
+						
+						
+
+
+						
+
+						<li><a href="/FP/FP04/FP0401/FP040104.jsp" >주택도시기금 연혁</a></li>  
+						
+						
+
+
+						
+
+						<li><a href="/FP/FP04/FP0406/FP040603.jsp" >주택도시기금 재무현황</a></li>  
+						
+						
+
+					</ul>
+
+				</li>
+
+				
+
+				<li class="plus"><a href="/FP/FP04/FP0403/FP0403.jsp" >기금업무체계</a>
+
+				
+
+
+	
+					<ul>
+
+
+						
+
+						<li><a href="/FP/FP04/FP0403/FP0403.jsp" >기금업무체계</a></li>  
+						
+						
+
+
+						
+
+						<li><a href="/FP/FP04/FP0403/FP040302.jsp?mode=L" >수탁은행평가결과</a></li>  
+						
+						
+
+					</ul>
+
+				</li>
+
+				
+
+				<li class="disPlus"><a href="/FP/FP04/FP0404/FP0404.jsp" >주거복지사업</a>
+
+				
+
+
+
+				</li>
+
+				
+
+				<li class="plus"><a href="/FP/FP04/FP0406/FP040601.jsp" >여유자금운용</a>
+
+				
+
+
+	
+					<ul>
+
+
+						
+
+						<li><a href="/FP/FP04/FP0406/FP040601.jsp" >여유자금운용 개요</a></li>  
+						
+						
+
+
+						
+
+						<li><a href="/FP/FP04/FP0406/FP040604.jsp" >여유자금운용 정책</a></li>  
+						
+						
+
+
+						
+
+						<li><a href="/FP/FP04/FP0406/FP040602.jsp?mode=L" >여유자금운용 성과</a></li>  
+						
+						
+
+					</ul>
+
+				</li>
+
+				
+
+				<li class="plus"><a href="/FP/FP04/FP0402/FP040201.jsp" >주택도시보증공사소개</a>
+
+				
+
+
+	
+					<ul>
+
+
+						
+
+						<li><a href="/FP/FP04/FP0402/FP040201.jsp" >공사개요</a></li>  
+						
+						
+
+
+						
+
+						<li><a href="/FP/FP04/FP0402/FP040202.jsp" >경영전략</a></li>  
+						
+						
+
+					</ul>
+
+				</li>
+
+			</ul>
+
+		</li> 
+
+
+		
+
+		<li class="menu02"><a href="/FP/FP05/FP0501/FP0501.jsp">개인상품</a> 
+		
+		
+
+			<ul>
+
+				
+
+				<li class="disPlus"><a href="/FP/FP05/FP0501/FP0501.jsp" >개인상품 전체보기</a>
+
+				
+
+
+
+				</li>
+
+				
+
+				<li class="plus"><a href="/FP/FP05/FP0502/FP05020701.jsp" >주택전세자금대출</a>
+
+				
+
+
+	
+					<ul>
+
+
+						
+
+						<li><a href="/FP/FP05/FP0502/FP05020701.jsp" >청년전용 보증부월세대출</a></li>  
+						
+						
+
+
+						
+
+						<li><a href=" /FP/FP05/FP0502/FP05020301.jsp " >청년전용 버팀목전세자금</a></li>  
+						
+						
+
+
+						
+
+						<li><a href="/FP/FP05/FP0502/FP05021401.jsp" >신생아 특례 버팀목대출 </a></li>  
+						
+						
+
+
+						
+
+						<li><a href="/FP/FP05/FP0502/FP05021101.jsp" >주거취약계층 이주지원 버팀목전세자금</a></li>  
+						
+						
+
+
+						
+
+						<li><a href="/FP/FP05/FP0502/FP05021201.jsp" >전세피해 임차인 버팀목전세자금</a></li>  
+						
+						
+
+
+						
+
+						<li><a href="/FP/FP05/FP0505/050510001.jsp" >전세피해임차인대상 버팀목전세대출대환</a></li>  
+						
+						
+
+
+						
+
+						<li><a href="/FP/FP05/FP0506/050560001.jsp" >전세사기피해자 최우선변제금 버팀목 전세자금 대출</a></li>  
+						
+						
+
+
+						
+
+						<li><a href="/FP/FP05/FP0502/FP05020201.jsp" >주거안정월세대출</a></li>  
+						
+						
+
+
+						
+
+						<li><a href=" /FP/FP05/FP0502/FP05020401.jsp " >신혼부부전용 전세자금</a></li>  
+						
+						
+
+
+						
+
+						<li><a href="/FP/FP05/FP0502/FP05020101.jsp" >버팀목전세자금</a></li>  
+						
+						
+
+
+						
+
+						<li><a href="/FP/FP05/FP0502/FP05021001.jsp" >갱신만료 임차인 지원 버팀목전세자금 </a></li>  
+						
+						
+
+
+						
+
+						<li><a href="https://www.khug.or.kr/hug/web/ig/dl/igdl000001.jsp" target="_blank" title="전세금안심대출보증 메뉴 새창 열림">전세금안심대출보증</a></li>  
+						
+						
+
+
+						
+
+
+						
+
+						<li><a href="/FP/FP08/FP0813/FP081303.jsp" >이의제기 처리방법</a></li>  
+						
+						
+
+					</ul>
+
+				</li>
+
+				
+
+				<li class="plus"><a href="/FP/FP05/FP0503/FP05030601.jsp" >주택구입자금대출</a>
+
+				
+
+
+	
+					<ul>
+
+
+						
+
+						<li><a href="/FP/FP05/FP0503/FP05030601.jsp" >신혼부부전용 구입자금</a></li>  
+						
+						
+
+
+						
+
+						<li><a href="/FP/FP05/FP0503/FP05030701.jsp" >신혼희망타운전용 주택담보장기대출</a></li>  
+						
+						
+
+
+						
+
+						<li><a href="/FP/FP05/FP0503/FP05030101.jsp" >내집마련디딤돌대출</a></li>  
+						
+						
+
+
+						
+
+						<li><a href="/FP/FP05/FP0507/FP05070001.jsp" >전세사기피해자 전용 디딤돌 대출</a></li>  
+						
+						
+
+
+						
+
+						<li><a href="/FP/FP05/FP0503/FP05030801.jsp" >신생아 특례 디딤돌대출</a></li>  
+						
+						
+
+
+						
+
+						<li><a href="/FP/FP05/FP0503/FP05030901.jsp" >청년 주택드림 디딤돌 대출</a></li>  
+						
+						
+
+
+						
+
+						<li><a href="/FP/FP05/FP0503/FP05030201.jsp" >수익공유형모기지</a></li>  
+						
+						
+
+
+						
+
+						<li><a href="/FP/FP05/FP0503/FP05030301.jsp" >손익공유형모기지</a></li>  
+						
+						
+
+
+						
+
+						<li><a href="/FP/FP05/FP0503/FP05030501.jsp" >오피스텔구입자금</a></li>  
+						
+						
+
+
+						
+
+						<li><a href="/FP/FP05/FP0504/FP05040401.jsp" >재해주택복구 및 구입자금</a></li>  
+						
+						
+
+					</ul>
+
+				</li>
+
+				
+
+				<li class="plus"><a href="/FP/FP05/FP0504/FP05040101.jsp" >기타주택자금대출</a>
+
+				
+
+
+	
+					<ul>
+
+
+						
+
+						<li><a href="/FP/FP05/FP0504/FP05040101.jsp" >부도임대주택경락자금</a></li>  
+						
+						
+
+
+						
+
+						<li><a href="/FP/FP05/FP0504/FP05040301.jsp" >부도임대주택퇴거자전세자금</a></li>  
+						
+						
+
+
+						
+
+						<li><a href="/FP/FP05/FP0504/FP05040201.jsp" >사업자대출입주자앞대환</a></li>  
+						
+						
+
+					</ul>
+
+				</li>
+
+			</ul>
+
+		</li> 
+
+
+		
+
+		<li class="menu03"><a href="/FP/FP06/FP0601/FP0601.jsp">기업상품</a> 
+		
+		
+
+			<ul>
+
+				
+
+				<li class="disPlus"><a href="/FP/FP06/FP0601/FP0601.jsp" >기업상품 전체보기</a>
+
+				
+
+
+
+				</li>
+
+				
+
+				<li class="plus"><a href="/FP/FP06/FP0602/FP06020101.jsp" >임대주택건설지원</a>
+
+				
+
+
+	
+					<ul>
+
+
+						
+
+						<li><a href="/FP/FP06/FP0602/FP06020101.jsp" >공공임대주택자금</a></li>  
+						
+						
+
+
+						
+
+						<li><a href="/FP/FP06/FP0602/FP06020501.jsp" >민간임대주택건설자금</a></li>  
+						
+						
+
+
+						
+
+						<li><a href="/FP/FP06/FP0602/FP06020601.jsp" >민간임대주택매입자금</a></li>  
+						
+						
+
+
+						
+
+						<li><a href=" /FP/FP06/FP0602/FP06021001.jsp" >사회임대주택건설자금</a></li>  
+						
+						
+
+
+						
+
+						<li><a href="/FP/FP06/FP0602/FP06021101.jsp" >사회임대주택매입자금</a></li>  
+						
+						
+
+					</ul>
+
+				</li>
+
+				
+
+				<li class="plus"><a href="/FP/FP06/FP0603/FP06030101.jsp" >분양주택건설지원</a>
+
+				
+
+
+	
+					<ul>
+
+
+						
+
+						<li><a href="/FP/FP06/FP0603/FP06030101.jsp" >공공분양주택자금</a></li>  
+						
+						
+
+
+						
+
+						<li><a href="/FP/FP06/FP0603/FP06030201.jsp" >후분양주택자금</a></li>  
+						
+						
+
+
+						
+
+						<li><a href="/FP/FP06/FP0603/FP06030301.jsp" >도시형생활주택자금</a></li>  
+						
+						
+
+
+						
+
+						<li><a href="/FP/FP06/FP0604/FP06040101.jsp" >다세대주택건설자금</a></li>  
+						
+						
+
+
+						
+
+						<li><a href="/FP/FP06/FP0604/FP06040201.jsp" >다가구주택건설자금</a></li>  
+						
+						
+
+					</ul>
+
+				</li>
+
+				
+
+				<li class="plus"><a href="/FP/FP06/FP0602/FP06020701.jsp" >주거환경 개선지원 및 기타</a>
+
+				
+
+
+	
+					<ul>
+
+
+						
+
+						<li><a href="/FP/FP06/FP0602/FP06020901.jsp" >집주인융자형임대주택자금</a></li>  
+						
+						
+
+					</ul>
+
+				</li>
+
+			</ul>
+
+		</li> 
+
+
+		
+
+		<li class="menu04"><a href="/FP/FP07/FP0701/FP07010101.jsp">청약/채권</a> 
+		
+		
+
+			<ul>
+
+				
+
+				<li class="plus"><a href="/FP/FP07/FP0701/FP07010101.jsp" >주택청약상품</a>
+
+				
+
+
+	
+					<ul>
+
+
+						
+
+						<li><a href="/FP/FP07/FP0701/FP07010101.jsp" >주택청약종합저축상품</a></li>  
+						
+						
+
+
+						
+
+						<li><a href="/FP/FP07/FP0701/FP07010401.jsp" >청약예금・청약부금 등 주택청약종합저축 전환</a></li>  
+						
+						
+
+
+						
+
+						<li><a href="/FP/FP07/FP0701/FP07010301.jsp" >청년 주택드림 청약통장 상품</a></li>  
+						
+						
+
+
+						
+
+						<li><a href="/FP/FP07/FP0701/FP07010201.jsp" >청약저축(신규가입중단)</a></li>  
+						
+						
+
+					</ul>
+
+				</li>
+
+				
+
+				<li class="plus"><a href="/FP/FP07/FP0702/FP070201.jsp" >청약가이드</a>
+
+				
+
+
+	
+					<ul>
+
+
+						
+
+						<li><a href="/FP/FP07/FP0702/FP070211.jsp" >청약주택안내</a></li>  
+						
+						
+
+
+						
+
+						<li><a href="/FP/FP07/FP0702/FP070203.jsp" >청약면적변경</a></li>  
+						
+						
+
+
+						
+
+						<li><a href="/FP/FP07/FP0702/FP070212.jsp" >청약가점제안내</a></li>  
+						
+						
+
+
+						
+
+						<li><a href="/FP/FP07/FP0702/FP070213.jsp" >청약방법등</a></li>  
+						
+						
+
+
+						
+
+						<li><a href="/FP/FP07/FP0702/FP070214.jsp" >당첨자선정</a></li>  
+						
+						
+
+					</ul>
+
+				</li>
+
+				
+
+				<li class="disPlus"><a href="/FP/FP07/FP0704/FP0704.jsp" >국민주택채권안내</a>
+
+				
+
+
+
+				</li>
+
+				
+
+				<li class="disPlus"><a href="/FP/FP07/FP0705/FP070509.jsp" >셀프 채권매입 도우미</a>
+
+				
+
+
+
+				</li>
+
+				
+
+				<li class="plus"><a href="/FP/FP07/FP0705/FP07050101.jsp" >제1종국민주택채권</a>
+
+				
+
+
+	
+					<ul>
+
+
+						
+
+						<li><a href="/FP/FP07/FP0705/FP07050101.jsp" >개요</a></li>  
+						
+						
+
+
+						
+
+						<li><a href="/FP/FP07/FP0705/FP07050103.jsp" >중도상환</a></li>  
+						
+						
+
+
+						
+
+						<li><a href="/FP/FP07/FP0705/FP070502.jsp" >매입의무면제기준</a></li>  
+						
+						
+
+
+						
+
+						<li><a href="/FP/FP07/FP0705/FP070503.jsp" >채권매도단가/수익률/할인율</a></li>  
+						
+						
+
+
+						
+
+						<li><a href="/FP/FP07/FP0705/FP070504.jsp" >매입대상금액조회</a></li>  
+						
+						
+
+
+						
+
+						<li><a href="/FP/FP07/FP0705/FP070505.jsp" >고객부담금조회</a></li>  
+						
+						
+
+
+						
+
+						<li><a href="/FP/FP07/FP0705/FP070506.jsp" >국민주택채권매입</a></li>  
+						
+						
+
+
+						
+
+						<li><a href="/FP/FP07/FP0705/FP070507.jsp" >국민주택채권매입내역조회</a></li>  
+						
+						
+
+
+						
+
+						<li><a href="/FP/FP07/FP0705/FP070508.jsp" >소멸시효안내</a></li>  
+						
+						
+
+					</ul>
+
+				</li>
+
+				
+
+				<li class="plus"><a href="/FP/FP07/FP0706/FP070601.jsp" >제2종국민주택채권(발행폐지)</a>
+
+				
+
+
+	
+					<ul>
+
+
+						
+
+						<li><a href="/FP/FP07/FP0706/FP070601.jsp" >채권매도단가/수익률/할인율</a></li>  
+						
+						
+
+
+						
+
+						<li><a href="/FP/FP07/FP0706/FP070602.jsp" >예상손실률조회</a></li>  
+						
+						
+
+
+						
+
+						<li><a href="/FP/FP07/FP0706/FP070603.jsp" >소멸시효안내</a></li>  
+						
+						
+
+					</ul>
+
+				</li>
+
+			</ul>
+
+		</li> 
+
+
+		
+
+		<li class="menu05"><a href="/FP/FP08/FP0801/FP08010101.jsp">고객서비스</a> 
+		
+		
+
+			<ul>
+
+				
+
+				<li class="plus"><a href="/FP/FP08/FP0801/FP08010101.jsp" >내집마련마법사</a>
+
+				
+
+
+	
+					<ul>
+
+
+						
+
+						<li><a href="/FP/FP08/FP0801/FP08010101.jsp" >주택전세자금계산마법사</a></li>  
+						
+						
+
+
+						
+
+						<li><a href="/FP/FP08/FP0801/FP08010201.jsp" >주택구입자금계산마법사</a></li>  
+						
+						
+
+
+						
+
+						<li><a href="/FP/FP08/FP0801/FP08010301.jsp" >오피스텔구입자금계산마법사</a></li>  
+						
+						
+
+
+						
+
+						<li><a href="/FP/FP08/FP0801/FP08010601.jsp" >보증부월세계산마법사</a></li>  
+						
+						
+
+					</ul>
+
+				</li>
+
+				
+
+				<li class="plus"><a href="/FP/FP08/FP0802/FP080201.jsp" >내집마련123</a>
+
+				
+
+
+	
+					<ul>
+
+
+						
+
+						<li><a href="/FP/FP08/FP0802/FP080201.jsp" >사전준비</a></li>  
+						
+						
+
+
+						
+
+						<li><a href="/FP/FP08/FP0802/FP08020201.jsp" >정보수집</a></li>  
+						
+						
+
+
+						
+
+						<li><a href="/FP/FP08/FP0802/FP08020301.jsp" >계약</a></li>  
+						
+						
+
+
+						
+
+						<li><a href="/FP/FP08/FP0802/FP080204.jsp" >소유권이전등기</a></li>  
+						
+						
+
+
+						
+
+						<li><a href="/FP/FP08/FP0802/FP080205.jsp" >이사하기</a></li>  
+						
+						
+
+					</ul>
+
+				</li>
+
+				
+
+				<li class="plus"><a href="/FP/FP08/FP0803/FP080301.jsp" >부동산정보</a>
+
+				
+
+
+	
+					<ul>
+
+
+						
+
+						<li><a href="/FP/FP08/FP0803/FP080301.jsp" >분양정보</a></li>  
+						
+						
+
+
+						
+
+						<li><a href="/FP/FP08/FP0803/FP080302.jsp" >매물정보찾기</a></li>  
+						
+						
+
+
+						
+
+						<li><a href="http://rt.molit.go.kr/" target="_blank" title="주택 실거래가 조회 메뉴 새창 열림">주택 실거래가 조회</a></li>  
+						
+						
+
+					</ul>
+
+				</li>
+
+				
+
+				<li class="plus"><a href="/FP/FP08/FP0811/FP081103.jsp" >도시재생 안내</a>
+
+				
+
+
+	
+					<ul>
+
+
+						
+
+						<li><a href="/FP/FP08/FP0811/FP081104.jsp" >도시재생 소식</a></li>  
+						
+						
+
+
+						
+
+						<li><a href="https://enhuf.molit.go.kr/fur/pp/pm/POPPM009M01.jsp?scrnId=POPPM009M01&scrnNm=도시재생기금지도" target="_blank" title="도시재생기금지도 메뉴 새창 열림">도시재생기금지도</a></li>  
+						
+						
+
+					</ul>
+
+				</li>
+
+				
+
+				<li class="disPlus"><a href="/FP/FP08/FP0804/FP080402.jsp?mode=L" >공지사항</a>
+
+				
+
+
+
+				</li>
+
+				
+
+				<li class="disPlus"><a href="/FP/FP08/FP0805/FP080501.jsp?mode=L" >보도자료</a>
+
+				
+
+
+
+				</li>
+
+				
+
+				<li class="disPlus"><a href="/FP/FP08/FP0807/FP08070401.jsp" >홍보자료</a>
+
+				
+
+
+
+				</li>
+
+				
+
+				<li class="disPlus"><a href="/FP/FP08/FP0809/FP0809.jsp" >자주하는질문</a>
+
+				
+
+
+
+				</li>
+
+				
+
+				<li class="plus"><a href="/FP/FP08/FP0812/FP081201.jsp" >개인정보처리방침</a>
+
+				
+
+
+	
+					<ul>
+
+
+						
+
+						<li><a href="/FP/FP08/FP0812/FP081201.jsp" >개인정보처리방침</a></li>  
+						
+						
+
+
+						
+
+						<li><a href="/FP/FP08/FP0812/FP081202.jsp?mode=L" >이전 개인정보처리방침</a></li>  
+						
+						
+
+					</ul>
+
+				</li>
+
+				
+
+				<li class="plus"><a href="/FP/FP08/FP0813/FP081301.jsp?id=20&mode=S&currentPage=1&articleId=1160" >자산심사 및 금리안내</a>
+
+				
+
+
+	
+					<ul>
+
+
+						
+
+						<li><a href="/FP/FP08/FP0813/FP081301.jsp?id=20&mode=S&currentPage=1&articleId=1160" >자산 심사 안내</a></li>  
+						
+						
+
+
+						
+
+						<li><a href="/FP/FP08/FP0813/FP081303.jsp?mode=L" >이의 신청 안내</a></li>  
+						
+						
+
+
+						
+
+						<li><a href="/FP/FP08/FP0813/FP081302.jsp" >가산 금리 안내</a></li>  
+						
+						
+
+					</ul>
+
+				</li>
+
+				
+
+				<li class="disPlus"><a href="/FP/FP08/FP0808/FP080801.jsp?mode=L" >자료실</a>
+
+				
+
+
+
+				</li>
+
+			</ul>
+
+		</li> 
+
+	</ul>
+	
+	<!--<span class="navEtc"><a href="/board.do">청년의견 게시판</a></span>  20180308 청년의견 게시판 메뉴 추가 -->
+	<button type="button">닫기</button>
+</div>
+		<!-- //모바일 메뉴 -->
+	</body>
+</html>

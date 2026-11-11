@@ -1,0 +1,743 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script src="/build/site/www/js/contents.js"></script>
+<script>
+
+    $(document).ready(function () {
+        window.scrollTo(0, 0);
+        // Slick 초기화
+        reloadSlick();
+
+        /* ** 스크롤 값 체크 ** */
+        let scrollY = window.scrollY;
+        let scrollH = document.body.scrollHeight;
+
+        function scrollVal() {
+            scrollY = window.scrollY;
+            scrollH = document.body.scrollHeight;
+        }
+
+        /* ** 스크롤 네비게이션 ** */
+        const winHeight = window.innerHeight;
+        const quickIndicators = document.querySelectorAll('.quick-list');
+
+        const quickNav = {
+            init: () => {
+                if (quickIndicators.length > 0) { // quick-list가 있을 때만 실행
+                    quickNav.linkNav();
+                    quickNav.navHighlight(); // 초기 활성화
+                }
+            },
+            reset: () => { // 초기화
+                quickIndicators.forEach(e => {
+                    const locationList = e.querySelectorAll('a');
+                    locationList.forEach(ele => {
+                        ele.classList.remove('active');
+                    });
+                });
+            },
+            linkNav: () => { // 퀵 네비게이션 클릭 시 스크롤 이동
+                quickIndicators.forEach(e => {
+                    const locationList = e.querySelectorAll('a');
+                    locationList.forEach(ele => {
+                        const targetSelector = ele.getAttribute('href');
+                        const target = document.querySelector(targetSelector);
+
+                        // target이 존재하지 않을 경우 return
+                        if (!target) return;
+
+                        ele.addEventListener('click', (ev) => {
+                            ev.preventDefault(); // 기본 동작 막기
+                            scrollVal(); // 스크롤 값 최신화
+
+                            const offsetY = target.getBoundingClientRect().top + window.scrollY;
+
+                            window.scrollTo({
+                                left: 0,
+                                top: offsetY,
+                                behavior: 'smooth',
+                            });
+                        });
+                    });
+                });
+            },
+            navHighlight: () => { // 페이지 스크롤 시 퀵 네비게이션 해당 메뉴 active
+                if (quickIndicators.length > 0) {
+                    const sectionArea = document.querySelectorAll('.section-link');
+                    if (sectionArea.length === 0) return; // section-link가 없으면 실행 중지
+
+                    const topHeight = Math.ceil(winHeight / 5);
+                    const firstSecTop = document.querySelector('.scroll-check .section-link')?.offsetTop || 0;
+
+                    sectionArea.forEach(current => {
+                        const sectionHeight = current.offsetHeight;
+                        const sectionTop = current.offsetTop - topHeight;
+                        const sectionId = current.getAttribute("id");
+
+                        // 첫번째 섹션 위
+                        if (scrollY <= firstSecTop) {
+                            quickNav.reset();
+                            const firstLink = document.querySelector(".conts-area > .quick-nav-area .quick-list li:first-of-type a");
+                            if (firstLink) firstLink.classList.add("active");
+                        }
+                        // 마지막 섹션 아래
+                        else if (scrollY + winHeight >= scrollH) {
+                            quickNav.reset();
+                            const lastLink = document.querySelector(".conts-area > .quick-nav-area .quick-list li:last-of-type a");
+                            if (lastLink) lastLink.classList.add("active");
+                        }
+                        // 현재 섹션
+                        else {
+                            if (scrollY > sectionTop && scrollY <= sectionTop + sectionHeight) {
+                                quickNav.reset();
+                                const activeLink = document.querySelector('.conts-area > .quick-nav-area a[href*="' + sectionId + '"]');
+                                if (activeLink) activeLink.classList.add("active");
+                            }
+                        }
+                    });
+                }
+            },
+        };
+
+        // 초기화 실행
+        quickNav.init();
+
+        // 스크롤 이벤트 추가
+        window.addEventListener('scroll', () => {
+            scrollVal(); // 스크롤 값 최신화
+            quickNav.navHighlight();
+        });
+    });
+
+    function reloadSlick() {
+        const slickElement = $(".box-list-wrap");
+
+        if (slickElement.hasClass("slick-initialized")) {
+            slickElement.slick("unslick");
+        }
+
+        // 슬라이더 초기화
+        const slideCount = slickElement.children().length; // 슬라이드 개수 확인
+        if (slideCount > 1) { // 슬라이드가 1개 이상일 때만 슬라이더 활성화
+            slickElement.slick({
+                dots: false,
+                infinite: slideCount > 3, // 슬라이드가 3개 이상일 때만 무한 루프
+                autoplay: false,
+                arrows: true,
+                autoplaySpeed: 2000,
+                slidesToShow: Math.min(slideCount, 3), // 슬라이드 개수가 3개 미만이면 그 개수만큼 표시
+                slidesToScroll: 1,
+                responsive: [
+                    {
+                        breakpoint: 1024,
+                        settings: {
+                            slidesToShow: Math.min(slideCount, 2), // 슬라이드 개수가 2개 미만이면 그 개수만큼 표시
+                            slidesToScroll: 1,
+                        },
+                    },
+                    {
+                        breakpoint: 768,
+                        settings: {
+                            slidesToShow: 1,
+                            slidesToScroll: 1,
+                        },
+                    },
+                ],
+            });
+            slickElement.removeClass("non-slider");
+        } else {
+            // 슬라이드가 1개 이하일 때 스타일 유지
+            slickElement.addClass("non-slider");
+        }
+    }
+
+    // 관심 정책 등록
+    function policyBookmark(plcyNo){
+        $.ajax({
+            type: 'get',
+            url: `/www/bookmark/ajax/updateBookmark`,
+            data: { mapngId: plcyNo,
+                mapngColumn: 'plcy_no'
+            },
+            success: function (resp) {
+                const button = $('button[onclick="policyBookmark(\'' + plcyNo + '\')"]');
+                if(resp.status === '400'){
+                    pf_swal.alert(resp.message, null, function() {
+                        location.href = '/www/42'
+                    });
+                    return false;
+                }else if(resp.status === '100'){
+                    pf_swal.alert(resp.message);
+                    button.addClass('active');
+                }else if(resp.status === '200'){
+                    pf_swal.alert(resp.message);
+                    button.removeClass('active');
+                }
+
+            },
+            error: function() {
+                alert("error");
+            }
+        });
+    }
+
+    function policyView(plcyNo) {
+        const $searchForm = $('#searchForm');
+        const data = {
+            mapngColumn : 'plcy_no',
+            plcyNo : plcyNo,
+            ...$searchForm.serializeObject()
+        };
+        cf_ajax.get($com_bbs[0], '/www/policy/allYgPolicyView', data, function (html) {
+            $com_bbs.html(html);
+        });
+    }
+    function policyList(no, unit) {
+        const $searchForm = $('#searchForm');
+        if (no !== undefined) $searchForm.find('[name=pageIndex]').val(no);
+        if (unit !== undefined) $searchForm.find('[name=pageUnit3]').val(unit);
+        cf_ajax.get($com_bbs[0], '/www/policy/allYgPolicyList', $searchForm.serializeObject(), function (html) {
+            $com_bbs.html(html);
+        });
+    }
+</script>
+<style>
+    .non-slider {
+        display: flex;
+        align-items: center;
+        overflow: hidden; /* 레이아웃 깨짐 방지 */
+        width: 100%; /* 슬라이더와 동일한 크기 */
+    }
+
+    .box-list-wrap .box-list {
+        width: calc(100% / 3 - 15px);
+        position: relative;
+    }
+    .slider .slick-list {
+        margin:0 -20px;
+    }
+    .slick-slide {
+        margin:0 20px;
+    }
+
+</style>
+<!-- 컨텐츠 영역 -->
+
+
+
+
+<form id="searchForm" onsubmit="return false;">
+    <input type="hidden" name="pageIndex" id="pageIndex" value="1">
+    <input type="hidden" name="pageUnit" id="pageUnit" value="10">
+    <input type="hidden" name="order" id="order" value="">
+    <input type="hidden" name="srchLocation" id="srchLocation" value="">
+    <input type="hidden" name="srchPolicyTy" id="srchPolicyTy" value="">
+    <input type="hidden" name="keyword" id="keyword" value="">
+    <input type="hidden" name="tabType" id="tabType" value="">
+</form>
+<div class="conts-area quick-nav-type">
+    <!-- quick link -->
+    <div class="quick-nav-area">
+        <nav class="quick-list">
+            <ul>
+                <li><a href="#section_01" class="active">기본정보</a></li>
+                <li><a href="#section_02">신청자격</a></li>
+                <li><a href="#section_03">신청방법</a></li>
+                <li><a href="#section_04">기타</a></li>
+                
+                    <li><a href="#section_05">동일분야 청년정책</a></li>
+                
+            </ul>
+        </nav>
+    </div>
+    <!-- //quick link -->
+
+    <div class="conts-detail-wrap">
+        <!-- real contents -->
+        <div class="conts-wrap scroll-check">
+            <div class="conts-wrap section-link" id="section_01">
+
+                <div class="detail-policy">
+                    
+                    <div class="detail-info">
+                        <div class="detail-into-top">
+                            <div class="tag">
+                                <span class="badge type04">교육</span>
+                                <span class="badge type07">경상북도 청송군 기획감사실</span>
+                            </div>
+                        </div>
+
+                        <div class="dt-tit">2026년 전세보증금반환보증 보증료 지원사업</div>
+                        <p class="dt-desc">청년, 신혼부부, 저소득층 등 주거 취약계층의 전세보증금반환보증 가입을 지원하여 전세사기 피해를 예방하고 안정적인 주거환경 조성에 기여</p>
+                        <div class="dt-list">
+                            <dl>
+                                <dt>정책번호</dt>
+                                <dd>20260325005400212269</dd>
+                            </dl>
+                            <dl>
+                                <dt>지원내용</dt>
+                                <dd>ㅇ 신청인이 기납부한 전세보증금반환보증 보증료에 대해 전부 또는 일부(최대 40만원*)를 환급하는 방식으로 지자체가 신청인 본인 계좌로 이체</dd>
+                            </dl>
+                            <dl>
+                                <dt>사업기간</dt>
+                                <dd>
+                                    
+                                        
+                                            20260101 ~ 20261231
+                                        
+                                        
+                                    
+                                </dd>
+                            </dl>
+                            <dl>
+                                <dt>신청기간</dt>
+                                <dd>
+                                    
+                                        20260101 ~ 20261231
+                                        
+                                    
+                                </dd>
+                            </dl>
+                        </div>
+                        
+                    </div>
+                    <button type="button" class="check-btn star-mark " onclick="policyBookmark('20260325005400212269')">
+                        <i></i>
+                        <span>관심정책 등록</span>
+                    </button>
+                </div>
+            </div>
+            <div class="conts-wrap section-link" id="section_02">
+                <h3 class="h3-title">신청자격</h3>
+                <div class="tbl-div">
+                    <div>
+                        <dl>
+                            <dt>연령</dt>
+                            <dd>
+                                
+                                    
+                                    제한없음
+                                
+                            </dd>
+                        </dl>
+                    </div>
+                    <div>
+                        <dl>
+                            <dt>소득</dt>
+                            <dd>
+                                
+                                    
+                                        5000 ~ 7500
+                                    
+                                    
+                                
+                            </dd>
+                        </dl>
+                    </div>
+                    <div>
+                        <dl>
+                            <dt>학력</dt>
+                            <dd></dd>
+                        </dl>
+                    </div>
+                    <div>
+                        <dl>
+                            <dt>전공</dt>
+                            <dd>제한없음</dd>
+                        </dl>
+                    </div>
+                    <div>
+                        <dl>
+                            <dt>취업상태</dt>
+                            <dd>제한없음</dd>
+                        </dl>
+                    </div>
+                    <div>
+                        <dl>
+                            <dt>특화분야</dt>
+                            <dd>제한없음</dd>
+                        </dl>
+                    </div>
+                    <div>
+                        <dl>
+                            <dt>추가사항</dt>
+                            <dd>ㅇ 지원대상 : 전세보증금반환보증(HUG, HF, SGI)에 가입한 임차보증금 3억원 이하, 
+                   연소득 (청년) 5천만원, (청년외) 6천만원, (신혼부부) 7.5천만원 이하
+                   무주택 임차인</dd>
+                        </dl>
+                    </div>
+                    <div>
+                        <dl>
+                            <dt>참여제한 대상</dt>
+                            <dd></dd>
+                        </dl>
+                    </div>
+                </div>
+            </div>
+            <div class="conts-wrap section-link" id="section_03">
+                <h3 class="h3-title">신청방법</h3>
+                <div class="tbl-div">
+                    <div>
+                        <dl>
+                            <dt>신청절차</dt>
+                            <dd>
+                                <ul class="list1">
+                                    ㅇ (온라인신청) 정부24 또는 HUG 안심전세포털을 통해 신청
+ㅇ (오프라인신청) 신청인 본인(또는 배우자)이 거주 중인 주소지(청송군)에 방문신청
+ㅇ 반환보증 가입 시 제3자 개인정보 제공 동의하여 신청
+                                </ul>
+                            </dd>
+                        </dl>
+                    </div>
+                    <div>
+                        <dl>
+                            <dt>신청 사이트</dt>
+                            <dd>
+                            
+                                
+                                    <a href="https://www.khug.or.kr/jeonse/web/s05/s050601.jsp" class="btn-confirm" target="_blank" rel="noopener noreferrer">https://www.khug.or.kr/jeonse/web/s05/s050601.jsp</a>
+                                
+                                
+                            
+                            </dd>
+                        </dl>
+                    </div>
+                    <div>
+                        <dl>
+                            <dt>제출서류</dt>
+                            <dd>
+                                <ul class="list1">
+                                    □ 방문 신청 시 제출서류
+ㅇ 보증료 지원 신청서, 서약서, 지급받을 계좌의 통장 사본
+ㅇ 전세보증금반환보증 보증서, 보증료 납부 증빙서류*(납부액 기재)
+* HUG와 SGI의 경우 보증서에 보증료 기재되어 있으므로 별도 증빙서류 불필요
+ㅇ 임대차계약서, 부동산 등기사항 전부증명서
+ㅇ 주민등록등본, 혼인관계증명서
+ㅇ 소득금액증명(최근년도 근로소득 원천징수영수증, 급여명세표, 소득금액증명원 등)
+- 소득이 발생하지 않아 소득금액증명이 발급되지 않는 경우에는 ‘사실증명(신고사실없음)’ 제출
+- 기혼자는 배우자의 소득증빙 서류도 필수 제출
+ㅇ 대리신청의 경우 위임장, 대리인 신분증, 본인-대리인 관계 증명서류 추가 제출
+                                </ul>
+                            </dd>
+                        </dl>
+                    </div>
+                </div>
+            </div>
+            <div class="conts-wrap section-link" id="section_04">
+                <h3 class="h3-title">기타</h3>
+                <div class="tbl-div">
+                    <div>
+                        <dl>
+                            <dt>기타 정보</dt>
+                            <dd>
+                                ㅇ 지원대상 : 전세보증금반환보증(HUG, HF, SGI)에 가입한 임차보증금 3억원 이하, 
+                   연소득 (청년) 5천만원, (청년외) 6천만원, (신혼부부) 7.5천만원 이하
+                   무주택 임차인
+                            </dd>
+                        </dl>
+                    </div>
+                    <div>
+                        <dl>
+                            <dt>주관 기관</dt>
+                            <dd>
+                                경상북도 청송군 기획감사실
+                            </dd>
+                        </dl>
+                    </div>
+                    <div>
+                        <dl>
+                            <dt>운영 기관</dt>
+                            <dd>
+                                
+                            </dd>
+                        </dl>
+                    </div>
+                    <div>
+                        <dl>
+                            <dt>참고 사이트1</dt>
+                            <dd>
+                                <ul class="list1">
+                                  <a href="https://www.cs.go.kr/news/00002679/00006203.web?amode=view&amp;not_ancmt_mgt_no=28408&amp;cpage=1&amp;sstring=%EC%A0%84%EC%84%B8%EB%B3%B4%EC%A6%9D&amp;stype=title&amp;upunit=10" target="_blank" rel="noopener noreferrer" class="a-blank">참고 사이트1 바로가기</a>
+                                </ul>
+                            </dd>
+                        </dl>
+                    </div>
+                    <div>
+                        <dl>
+                            <dt>참고 사이트2</dt>
+                            <dd>
+                                <ul class="list1">
+                                    <a href="" target="_blank" rel="noopener noreferrer" class="a-blank">참고 사이트2 바로가기</a>
+                                </ul>
+                            </dd>
+                        </dl>
+                    </div>
+                </div>
+            </div>
+            <div class="btn-wrap"><a role="button" onclick="policyList(1)" class="btn tertiary xlg">목록</a></div>
+            
+            <div class="conts-wrap section-link" id="section_05">
+                <h4 class="h4-title"><span class="text-primary">"2026년 전세보증금반환보증 보증료 지원사업”</span> 과 동일분야 청년정책</h4>
+                <div class="slider box-list-wrap">
+                    
+                        <div class="box-list">
+                            <div class="item">
+                                <div class="list-hd">
+                                        
+                                    <span class="badge type04">교육</span>
+                                </div>
+                                <div class="list-body">
+                                    <a role="button" onclick="policyView('20260923005400113571')">
+                                        <div class="tit">
+                                            <b>기숙사 청년친화 시설 개선</b>
+                                            <span>교육부</span>
+                                        </div>
+                                        <ul class="list2">
+                                            <li>신청기간 : </li>
+                                            <li>지원내용 : 기숙사 리모델링 시 주거 환경의 질적 수준 향상 및 지역과 상생하는 연합기숙사 조성</li>
+                                        </ul>
+                                    </a>
+                                </div>
+                                <div class="list-ft">
+                                    <a role="button" onclick="policyView('20260923005400113571')">상세보기</a>
+                                    
+                                </div>
+                                <button type="button" class="check-btn star-mark " onclick="policyBookmark('20260923005400113571')">
+                                    <i></i>
+                                    <span>관심정책 등록</span>
+                                </button>
+                            </div>
+                        </div>
+                    
+                        <div class="box-list">
+                            <div class="item">
+                                <div class="list-hd">
+                                        
+                                    <span class="badge type04">교육</span>
+                                </div>
+                                <div class="list-body">
+                                    <a role="button" onclick="policyView('20260923005400113558')">
+                                        <div class="tit">
+                                            <b>대학생 주거부담 경감(대학기숙사 확충)</b>
+                                            <span>교육부</span>
+                                        </div>
+                                        <ul class="list2">
+                                            <li>신청기간 : </li>
+                                            <li>지원내용 : 다양한 유형의 기숙사 확충을 통해 대학생 주거 부담 완화</li>
+                                        </ul>
+                                    </a>
+                                </div>
+                                <div class="list-ft">
+                                    <a role="button" onclick="policyView('20260923005400113558')">상세보기</a>
+                                    
+                                </div>
+                                <button type="button" class="check-btn star-mark " onclick="policyBookmark('20260923005400113558')">
+                                    <i></i>
+                                    <span>관심정책 등록</span>
+                                </button>
+                            </div>
+                        </div>
+                    
+                        <div class="box-list">
+                            <div class="item">
+                                <div class="list-hd">
+                                        
+                                    <span class="badge type04">교육</span>
+                                </div>
+                                <div class="list-body">
+                                    <a role="button" onclick="policyView('20260922005400113539')">
+                                        <div class="tit">
+                                            <b>고시원 등 거주청년 이주비용 패키지 지원</b>
+                                            <span>국토교통부</span>
+                                        </div>
+                                        <ul class="list2">
+                                            <li>신청기간 : </li>
+                                            <li>지원내용 : 열악한 환경에 거주하는 주거취약계층이 공공임대주택으로 이주할 수 있도록 보증금·이사비 등 이주비용 지원</li>
+                                        </ul>
+                                    </a>
+                                </div>
+                                <div class="list-ft">
+                                    <a role="button" onclick="policyView('20260922005400113539')">상세보기</a>
+                                    
+                                </div>
+                                <button type="button" class="check-btn star-mark " onclick="policyBookmark('20260922005400113539')">
+                                    <i></i>
+                                    <span>관심정책 등록</span>
+                                </button>
+                            </div>
+                        </div>
+                    
+                        <div class="box-list">
+                            <div class="item">
+                                <div class="list-hd">
+                                        
+                                    <span class="badge type04">교육</span>
+                                </div>
+                                <div class="list-body">
+                                    <a role="button" onclick="policyView('20260922005400113538')">
+                                        <div class="tit">
+                                            <b>고시원 등 거주청년 주거상향 지원</b>
+                                            <span>국토교통부</span>
+                                        </div>
+                                        <ul class="list2">
+                                            <li>신청기간 : </li>
+                                            <li>지원내용 : 열악한 환경에 거주하는 주거취약계층이 공공임대주택으로 이주할 수 있도록 우선공급제도 운영</li>
+                                        </ul>
+                                    </a>
+                                </div>
+                                <div class="list-ft">
+                                    <a role="button" onclick="policyView('20260922005400113538')">상세보기</a>
+                                    
+                                </div>
+                                <button type="button" class="check-btn star-mark " onclick="policyBookmark('20260922005400113538')">
+                                    <i></i>
+                                    <span>관심정책 등록</span>
+                                </button>
+                            </div>
+                        </div>
+                    
+                        <div class="box-list">
+                            <div class="item">
+                                <div class="list-hd">
+                                        
+                                    <span class="badge type04">교육</span>
+                                </div>
+                                <div class="list-body">
+                                    <a role="button" onclick="policyView('20260922005400113528')">
+                                        <div class="tit">
+                                            <b>대학가, 원룸촌 등 부동산 허위매물 등 수시모니터링</b>
+                                            <span>국토교통부</span>
+                                        </div>
+                                        <ul class="list2">
+                                            <li>신청기간 : </li>
+                                            <li>지원내용 : 온라인 상 부동산 광고 내 명시 의무정보 누락 , 거래불가 중개대상물 광고 등에 대한 모니터링 실시 후 규정 위반 의심 광고에 대해 과태료 부과</li>
+                                        </ul>
+                                    </a>
+                                </div>
+                                <div class="list-ft">
+                                    <a role="button" onclick="policyView('20260922005400113528')">상세보기</a>
+                                    
+                                </div>
+                                <button type="button" class="check-btn star-mark " onclick="policyBookmark('20260922005400113528')">
+                                    <i></i>
+                                    <span>관심정책 등록</span>
+                                </button>
+                            </div>
+                        </div>
+                    
+                        <div class="box-list">
+                            <div class="item">
+                                <div class="list-hd">
+                                        
+                                    <span class="badge type04">교육</span>
+                                </div>
+                                <div class="list-body">
+                                    <a role="button" onclick="policyView('20260921005400113469')">
+                                        <div class="tit">
+                                            <b>찾아가는 청년주거 상담소</b>
+                                            <span>국토교통부</span>
+                                        </div>
+                                        <ul class="list2">
+                                            <li>신청기간 : </li>
+                                            <li>지원내용 : 국토부 및 LH, HUG 등 유관기관이 협업해 청년 맞춤형 주거정책 서비스 및 상담 서비스 제공</li>
+                                        </ul>
+                                    </a>
+                                </div>
+                                <div class="list-ft">
+                                    <a role="button" onclick="policyView('20260921005400113469')">상세보기</a>
+                                    
+                                        <a href="https://www.nysc.or.kr/nysc/" class="btn-confirm" target="_blank" rel="noopener noreferrer">신청하기</a>
+                                    
+                                </div>
+                                <button type="button" class="check-btn star-mark " onclick="policyBookmark('20260921005400113469')">
+                                    <i></i>
+                                    <span>관심정책 등록</span>
+                                </button>
+                            </div>
+                        </div>
+                    
+                        <div class="box-list">
+                            <div class="item">
+                                <div class="list-hd">
+                                        
+                                    <span class="badge type04">교육</span>
+                                </div>
+                                <div class="list-body">
+                                    <a role="button" onclick="policyView('20260921005400113466')">
+                                        <div class="tit">
+                                            <b>[마이홈포털] 온라인 기반 주거 정보 전달 및 상담서비스 제공</b>
+                                            <span>국토교통부</span>
+                                        </div>
+                                        <ul class="list2">
+                                            <li>신청기간 : </li>
+                                            <li>지원내용 : 청년을 포함한 국민이 다양한 주거수요를 반영한 맞춤형 주거지원정보를 한 눈에 모아볼 수 있는 서비스 제공정책(마이홈포털)</li>
+                                        </ul>
+                                    </a>
+                                </div>
+                                <div class="list-ft">
+                                    <a role="button" onclick="policyView('20260921005400113466')">상세보기</a>
+                                    
+                                        <a href="https://www.myhome.go.kr" class="btn-confirm" target="_blank" rel="noopener noreferrer">신청하기</a>
+                                    
+                                </div>
+                                <button type="button" class="check-btn star-mark " onclick="policyBookmark('20260921005400113466')">
+                                    <i></i>
+                                    <span>관심정책 등록</span>
+                                </button>
+                            </div>
+                        </div>
+                    
+                        <div class="box-list">
+                            <div class="item">
+                                <div class="list-hd">
+                                        
+                                    <span class="badge type04">교육</span>
+                                </div>
+                                <div class="list-body">
+                                    <a role="button" onclick="policyView('20260921005400113465')">
+                                        <div class="tit">
+                                            <b>공공임대 대기자통합시스템 구축</b>
+                                            <span>국토교통부</span>
+                                        </div>
+                                        <ul class="list2">
+                                            <li>신청기간 : </li>
+                                            <li>지원내용 : 국민의 쉽고 빠른 공공임대 입주를 위한 시스템</li>
+                                        </ul>
+                                    </a>
+                                </div>
+                                <div class="list-ft">
+                                    <a role="button" onclick="policyView('20260921005400113465')">상세보기</a>
+                                    
+                                </div>
+                                <button type="button" class="check-btn star-mark " onclick="policyBookmark('20260921005400113465')">
+                                    <i></i>
+                                    <span>관심정책 등록</span>
+                                </button>
+                            </div>
+                        </div>
+                    
+                </div>
+            </div>
+            
+        </div>
+        <!-- //real contents -->
+    </div>
+</div>
+<!-- //컨텐츠 영역 -->

@@ -1,0 +1,792 @@
+[
+  {
+    "source_id": "S01",
+    "file": "S01.html",
+    "sha256": "ffb48e12e0837ce64679324c28ad15505812156d4a6474a76051bd28112bba27"
+  },
+  {
+    "source_id": "S02",
+    "file": "S02.html",
+    "sha256": "e8ea37add4a9bf6dd6f665c1e50263c65afe173d2a24c8d23dbc5fd289d3f8cb"
+  },
+  {
+    "source_id": "S03",
+    "file": "S03.html",
+    "sha256": "4419ba146c360eb0879626c509c7030aa2c2fcb293a0f108aec59bb3755000c3"
+  },
+  {
+    "source_id": "S04",
+    "file": "S04.html",
+    "sha256": "ac4a3b9f44ab788eac7ef3365231ab887ddcd80b4c69461fc45106339782a995"
+  },
+  {
+    "source_id": "S05",
+    "file": "S05.html",
+    "sha256": "c620622919eb716cf9ef61498d15cd526fbb2df2b92905218fe4b03ea83d4f6e"
+  },
+  {
+    "source_id": "S06",
+    "file": "S06.html",
+    "sha256": "3a657ac4b00be74f16746a9c06185a02dac37af643ccc13d0e01b814c8699b93"
+  },
+  {
+    "source_id": "S07",
+    "file": "S07.html",
+    "sha256": "75ecd42168d6148e5a87b08ebe36e8b61d81688ff914b48b0efe817d9a6c6558"
+  },
+  {
+    "source_id": "S08",
+    "file": "S08.html",
+    "sha256": "2751d96436b7099150ce8b1f32e090a0da9bec19070c3fdeeb533d5d4a73a115"
+  },
+  {
+    "source_id": "S09",
+    "file": "S09.html",
+    "sha256": "959726312f1d8acb4023fa7f6474307044dddac985c4f5210ae8290619b08b96"
+  },
+  {
+    "source_id": "S10",
+    "file": "S10.html",
+    "sha256": "3948d915e2fcf65506585a2b827fc2bea0a157168453b50ab2526682bfe65e56"
+  },
+  {
+    "source_id": "S12",
+    "file": "S12.html",
+    "sha256": "8900fe4b4efe215fac8821be6bf4aadaf84e8c6fd8919eae2269653ce0f9eb3b"
+  },
+  {
+    "source_id": "S13",
+    "file": "S13.html",
+    "sha256": "fd792b53491dc2d08d08ab25da3c7ad35b1cf8fe2e8fa84fd0015ffeee248f1a"
+  },
+  {
+    "source_id": "S17",
+    "file": "S17.html",
+    "sha256": "365e8c5d35d54a9bb1654726c9a40d8830d4ddd8ac60e2b78394992ad1f20880"
+  },
+  {
+    "source_id": "S18",
+    "file": "S18.html",
+    "sha256": "01ad3acb02ebd78b844f2dd9422014cfe48982da3daa9b5eabf9e500d43913e2"
+  },
+  {
+    "source_id": "S19",
+    "file": "S19.html",
+    "sha256": "a6a2fb131af8caf9a505821cfa455da5f9a81e1f99235a2c651c7eabdcbc6821"
+  },
+  {
+    "source_id": "S20",
+    "file": "S20.html",
+    "sha256": "2b8a326fd388880ca3564f81bd7eb91cef8b9960a1bc43369684ad6a054d0a50"
+  },
+  {
+    "source_id": "S21",
+    "file": "S21.html",
+    "sha256": "152db5c76ef87493d20f529af4cf7a1fe1fa4dbd5c1411c2f1b112fefb695195"
+  },
+  {
+    "source_id": "S22",
+    "file": "S22.html",
+    "sha256": "72648bf43b215d486c828faae868e7c83d8f38888e55eeffe7de5e614794d576"
+  },
+  {
+    "source_id": "S23",
+    "file": "S23.html",
+    "sha256": "8c5ca3e05a8b1ff8374a4aa0f9f02168f535befd2042c833a0c9fdcc12da2799"
+  },
+  {
+    "source_id": "S24",
+    "file": "S24.bin",
+    "sha256": "b05c9d7ce9989229bb73450ec2ee6dbd2ecb095a2b6ea0a30103757f56ca2c0e"
+  },
+  {
+    "source_id": "S25",
+    "file": "S25.html",
+    "sha256": "50607a40238421131759ce017ad22e400e7ea58ff1454b88aa393bd6730de9d0"
+  },
+  {
+    "source_id": "S26",
+    "file": "S26.html",
+    "sha256": "aa5b1561b3a93262ad2d3b76138e8b5fc01bb0bca8d0cc08b3b296e9273737ce"
+  },
+  {
+    "source_id": "S27",
+    "file": "S27.html",
+    "sha256": "f4cd498096e7902086b672665f70b4cbd04e5c6cf5af7a6f96801f07ac68c749"
+  },
+  {
+    "source_id": "S28",
+    "file": "S28.html",
+    "sha256": "8965e74e1dc898a79058d175b8a951ac8a390c20ab3b45aee92b595617c50296"
+  },
+  {
+    "source_id": "S29",
+    "file": "S29.html",
+    "sha256": "05c518062aef888fc4d2c7cbffdd4a8dcd55190873c2bdb60911cd545b5bd6c1"
+  },
+  {
+    "source_id": "S30",
+    "file": "S30.html",
+    "sha256": "e24e39352005fd22b3634e64837fef756cafbe31d7a3082e29acc6c32df343d1"
+  },
+  {
+    "source_id": "S31",
+    "file": "S31.html",
+    "sha256": "12b3bb3048c2d317ff8db0452fc5945ff46e12a47b1fde0e37cbf0efc2b8b529"
+  },
+  {
+    "source_id": "S33",
+    "file": "S33.bin",
+    "sha256": "75fbbbd8ee7fa2376325b18010d87c287ba16bd8fc3ab891d3db2a9859667a96"
+  },
+  {
+    "source_id": "S34",
+    "file": "S34.html",
+    "sha256": "ee1953ef4bc17a416812fee0809387bcd6d2f5e2e01a9578c6ca63f91c81a070"
+  },
+  {
+    "source_id": "S35",
+    "file": "S35.html",
+    "sha256": "9c3c1fc8aa5325aaa011a765bcaf29762439998d9bdece54a2885937efe42869"
+  },
+  {
+    "source_id": "S36",
+    "file": "S36.html",
+    "sha256": "c14000d19fda3f3f9932d9c20fa079612e2f5ce9e6cefb299ec3f2847aae1533"
+  },
+  {
+    "source_id": "S37",
+    "file": "S37.html",
+    "sha256": "3b8e707db6788657cd8a6c5e63ea0fbdd6a248ffc6329504ce315859a2c0e233"
+  },
+  {
+    "source_id": "NEW_MOVING",
+    "file": "NEW_MOVING.html",
+    "sha256": "de67d7bb7292c89f2049db20bb6f300d8368a37dfe79a8025b4ab0b721f249e0"
+  },
+  {
+    "source_id": "NEW_HOUSING",
+    "file": "NEW_HOUSING.html",
+    "sha256": "db0b159eaf6a9724a243ee3fba6d14e4ae5fc2b921a93fab4aabec39c4628ef9"
+  },
+  {
+    "source_id": "NEW_CENTER",
+    "file": "NEW_CENTER.html",
+    "sha256": "23e59611a6575a00ed6b7aaf90e4c9ebdf154f962f6184c67860468fc0e5a863"
+  },
+  {
+    "source_id": "NEW_ENERGY",
+    "file": "NEW_ENERGY.html",
+    "sha256": "75ecd42168d6148e5a87b08ebe36e8b61d81688ff914b48b0efe817d9a6c6558"
+  },
+  {
+    "source_id": "NEW_ALLOWANCE",
+    "file": "NEW_ALLOWANCE.html",
+    "sha256": "fdbded4a4c8d5509a237ce061146e6676f3d77f5e097286b56acb93bb3a07910"
+  },
+  {
+    "source_id": "NEW_BMC",
+    "file": "NEW_BMC.html",
+    "sha256": "ea1010e1f6004c8fb9c39a242e6b28eb63daafaabae2e26b8944b5d1444008f7"
+  },
+  {
+    "source_id": "NEW_BUSANJIN",
+    "file": "NEW_BUSANJIN.html",
+    "sha256": "f806c0cbb0e449d89e9f8e6dcd397ef9b8485e2e09cdf667c56e4ce2a98a7730"
+  },
+  {
+    "source_id": "API_HOUSING_1",
+    "file": "API_HOUSING_1.json",
+    "sha256": "ab11aa38ceb9136599894fb7be650aae30b107fa5d13707598d6feb8e79a4ff8"
+  },
+  {
+    "source_id": "API_HOUSING_2",
+    "file": "API_HOUSING_2.json",
+    "sha256": "cf84d19738584d07680e66bb4cb2fee99f7246a0264a0243e36c88fb5819d7e4"
+  },
+  {
+    "source_id": "API_HOUSING_3",
+    "file": "API_HOUSING_3.json",
+    "sha256": "ced1995b199ad1e9261f889b99baa667f7005072bfdfc444243fc5129d2855fe"
+  },
+  {
+    "source_id": "API_HOUSING_4",
+    "file": "API_HOUSING_4.json",
+    "sha256": "2bd9c2d6518e53c2c06e50f5c0e7eb39119e7cd5b1bc822a68bed000b718aa14"
+  },
+  {
+    "source_id": "API_TRANSPORT",
+    "file": "API_TRANSPORT.json",
+    "sha256": "0e4b991cf09788b0e3ee1d90cc01934c3baf39c1ef80f6794a418c34f69783ca"
+  },
+  {
+    "source_id": "API_BUSANJIN",
+    "file": "API_BUSANJIN.json",
+    "sha256": "154965a26823fa6e32e9591eb9c80511d20059464ecf8368dbbcbaa8c2e9730d"
+  },
+  {
+    "source_id": "API_SAHA",
+    "file": "API_SAHA.json",
+    "sha256": "fccfe6abb8f60d83177f862937193570bde3742d87eaf63a75cc8fd6d659d4b0"
+  },
+  {
+    "source_id": "LH_LIST",
+    "file": "LH_LIST.html",
+    "sha256": "4a25efe0de0330b08e1989e32a6543c1b945c614b5ef1efda6e3a7c1f358172f"
+  },
+  {
+    "source_id": "DREAM",
+    "file": "DREAM.html",
+    "sha256": "3de0fc0d1375e820e241d356ca3e08f997fe9293076e4472eee151a24c4d94bb"
+  },
+  {
+    "source_id": "LUCKY",
+    "file": "LUCKY.html",
+    "sha256": "47fcc3f2f69ffd8758726ba21a4dcbc15fa7522d0bf98dfaf8b08e9b289fcdeb"
+  },
+  {
+    "source_id": "HAPPY_BUSAN",
+    "file": "HAPPY_BUSAN.html",
+    "sha256": "5c0b3b3bb4b13628353329fcc365fdef3953bcc9dfff3e66f1a001e0e1e5ea73"
+  },
+  {
+    "source_id": "BMC_LIST",
+    "file": "BMC_LIST.html",
+    "sha256": "2ff5a09691c2654bf5703eb6332929af8b16a2a55f9ae06f21ad721dfd6e3dec"
+  },
+  {
+    "source_id": "SAHA_PLAN",
+    "file": "SAHA_PLAN.bin",
+    "sha256": "d3dfb386f005a8ae84242c10cad53655c52bac134c490f3a58deaabb094f61fd"
+  },
+  {
+    "source_id": "CENTER_MOVING",
+    "file": "CENTER_MOVING.html",
+    "sha256": "8a482f2271a42c5f54c96e816a84340a6f2357a5b81f927d07d00788f5140a41"
+  },
+  {
+    "source_id": "DREAM_LOAN",
+    "file": "DREAM_LOAN.html",
+    "sha256": "cc615b67ddfd8e3073b99d6700667c71cf408193e3abcbda7973bbaed6362c21"
+  },
+  {
+    "source_id": "DREAM_ACCOUNT",
+    "file": "DREAM_ACCOUNT.html",
+    "sha256": "0d3bb2fd59ec0b37d2f37524cb0eb0f61551b1775f02d9584ec05fb7bf43b0df"
+  },
+  {
+    "source_id": "RENT_LOAN",
+    "file": "RENT_LOAN.html",
+    "sha256": "865e8d255ff308b07143452a473b88dda12790048136e95178689bbf69fb51fb"
+  },
+  {
+    "source_id": "SCHOLARSHIP",
+    "file": "SCHOLARSHIP.html",
+    "sha256": "a0b2387557a2368c82f351d011e507f7a10cae480fee3b12d7bf978223b2796c"
+  },
+  {
+    "source_id": "HF",
+    "file": "HF.html",
+    "sha256": "93084626cc97b5841e7e8fe669d4f8e19fc548d12797c8555c9d685f3450cf7b"
+  },
+  {
+    "source_id": "HF_SPECIAL",
+    "file": "HF_SPECIAL.html",
+    "sha256": "bde899897dbb261240b1882b27c43d10ab8af09b31f826bd957188ff67f84885"
+  },
+  {
+    "source_id": "HF_MONTH",
+    "file": "HF_MONTH.html",
+    "sha256": "8abdf8601925df7e04fe4e196ec6631e78afd043b183f2c59e94de993921fc15"
+  },
+  {
+    "source_id": "LUCKY_CORRECTION",
+    "file": "LUCKY_CORRECTION.html",
+    "sha256": "245f8b81bdc2d989a72688f80a923654e96b55037575949ff2b3cad807da4fda"
+  },
+  {
+    "source_id": "LUCKY_2026",
+    "file": "LUCKY_2026.html",
+    "sha256": "3cd3b01c6ad9aa2ce463c7311fb5b01a775a5c3d1f986dc0de68caf0bd5e9d09"
+  },
+  {
+    "source_id": "JIN_NOTICE",
+    "file": "JIN_NOTICE.html",
+    "sha256": "338d15718ff1509f3949da87441b19ac02ece863dfe4fffe56e97d847a6fbdfa"
+  },
+  {
+    "source_id": "JIN_BOKJI",
+    "file": "JIN_BOKJI.html",
+    "sha256": "a318b816cae68f9fbe9ca81f568a71e3da7f37e6ff36788c5198ae4ecaca7f55"
+  },
+  {
+    "source_id": "UTILITY_DISABILITY",
+    "file": "UTILITY_DISABILITY.html",
+    "sha256": "046b6185285287737dbd0c8d7376b101ccc74a095bd4b6b81301e7a3b6f32e1f"
+  },
+  {
+    "source_id": "UTILITY_FAMILY",
+    "file": "UTILITY_FAMILY.html",
+    "sha256": "a3fe673ec7dbb569b4a00b394b177741ba7d2ac5bbcd6cb9a3ec7e4f25ee5bf2"
+  },
+  {
+    "source_id": "UTILITY_BRIEF",
+    "file": "UTILITY_BRIEF.html",
+    "sha256": "d7daecd73e22fef5ddf495989409db276b5e0b7a27d097802d2875ee67f64ef2"
+  },
+  {
+    "source_id": "GAS_MAIN",
+    "file": "GAS_MAIN.html",
+    "sha256": "0fe416df7749238b35187b2956f9f8a8a755e094141dab307f8c991c80b95ccb"
+  },
+  {
+    "source_id": "WATER_MAIN",
+    "file": "WATER_MAIN.html",
+    "sha256": "ba75564f75b0c4cbc217ba1d955882a663c7974fc28ebe4a390d7ff53caa1fdc"
+  },
+  {
+    "source_id": "SELF_ALL",
+    "file": "SELF_ALL.html",
+    "sha256": "f1a65cb4b8e5108e2247817fb872ed5253ab87060df01d02f4b12e6ec489f45e"
+  },
+  {
+    "source_id": "SCHOLARSHIP_JS",
+    "file": "SCHOLARSHIP_JS.html",
+    "sha256": "50db9ecff3132543d352b6ccb465e232c10babfa9506b21361eedca7779db5f4"
+  },
+  {
+    "source_id": "SCHOLARSHIP_COMMON",
+    "file": "SCHOLARSHIP_COMMON.html",
+    "sha256": "2442ef71fba4d1807a6470e91a821fedfe9eea82547a9b765db0008acb3b46ed"
+  },
+  {
+    "source_id": "NEWBORN_RENT",
+    "file": "NEWBORN_RENT.html",
+    "sha256": "bc9f37fbb10175c2a20d4ece3ac95a9b76083ac55326097ddb07f26c58a644a7"
+  },
+  {
+    "source_id": "NEWLY_RENT",
+    "file": "NEWLY_RENT.html",
+    "sha256": "c6a8f9c8f54b5f94fa8f7824b41845954d95c8aa2cdcfd9b5e1c643e946b2846"
+  },
+  {
+    "source_id": "BUSAN_LIST",
+    "file": "BUSAN_LIST.html",
+    "sha256": "a6a2fb131af8caf9a505821cfa455da5f9a81e1f99235a2c651c7eabdcbc6821"
+  },
+  {
+    "source_id": "UNION_DORM",
+    "file": "UNION_DORM.html",
+    "sha256": "c981bf71765eae744dc7368972e794a3c0345018bcd8a7d8cd2f4e66fb2e3a87"
+  },
+  {
+    "source_id": "LUCKY_HWPX",
+    "file": "LUCKY_HWPX.zip",
+    "sha256": "4cfd043555f18bfb1698fffab39293d982ad66164525d13b6dd5557828746583"
+  },
+  {
+    "source_id": "SCHOLARSHIP_ZIP",
+    "file": "SCHOLARSHIP_ZIP.zip",
+    "sha256": "e80a255e47ad3fb208c33c1ede258882a526dcf2432e8026fc9a39ea93081834"
+  },
+  {
+    "source_id": "GAS_DISCOUNT",
+    "file": "GAS_DISCOUNT.html",
+    "sha256": "abed6b8d55822c4efc5d3205b1af939a6a5608bf96ec1074f019f1c3c8df0df5"
+  },
+  {
+    "source_id": "WATER_DISCOUNT",
+    "file": "WATER_DISCOUNT.html",
+    "sha256": "0ca1e051d2fef2fc8ab445db0f55cb8fbe89beebb2f02e0453bae01db075fcbe"
+  },
+  {
+    "source_id": "WATER_RATES",
+    "file": "WATER_RATES.html",
+    "sha256": "a9a3d6dcdabda4cd4b9c5aa8df97a9a72533b3867316af395d12f3aa65f1d983"
+  },
+  {
+    "source_id": "INTEGRATED",
+    "file": "INTEGRATED.html",
+    "sha256": "531e5a2b502f2e6f96cfd58417f977b11920603e3de98f879e77dd791827c228"
+  },
+  {
+    "source_id": "LH_YOUTH_PDF",
+    "file": "LH_YOUTH_PDF.pdf",
+    "sha256": "2ddad192a7bc7d82e4772ab9fde5c765d8c5fdcf02c8e83ee112ec661bf32d9b"
+  },
+  {
+    "source_id": "SCHOLARSHIP_DETAIL",
+    "file": "SCHOLARSHIP_DETAIL.html",
+    "sha256": "88a0bdd562dde7312ac2180d4bc0ba0c282c81dd8f043082c45904cc4b90296c"
+  },
+  {
+    "source_id": "BUY_GUIDE",
+    "file": "BUY_GUIDE.html",
+    "sha256": "1dad1d0b9e881ba8513f6931356123d0b8369b93476e31a2d01469c3b1feb551"
+  },
+  {
+    "source_id": "DORM_PUBLIC",
+    "file": "DORM_PUBLIC.html",
+    "sha256": "e88b6025f16784d03e8341fa8165c4be45835d27ba4642a9e1e44acef41c3968"
+  },
+  {
+    "source_id": "BMC_HOME",
+    "file": "BMC_HOME.html",
+    "sha256": "ea1010e1f6004c8fb9c39a242e6b28eb63daafaabae2e26b8944b5d1444008f7"
+  },
+  {
+    "source_id": "NATIONAL_YOUTH",
+    "file": "NATIONAL_YOUTH.html",
+    "sha256": "ed80aa062ff756e17e48e3e581d56228dde76d8559a5531ed35cf6b84a47b56b"
+  },
+  {
+    "source_id": "YOUTH_BUY",
+    "file": "YOUTH_BUY.html",
+    "sha256": "a49d9c5a8005456eafbb4a5777333e74835ddf631aa09ef831420c9e07dbe7b6"
+  },
+  {
+    "source_id": "PUBLIC_PRIVATE",
+    "file": "PUBLIC_PRIVATE.html",
+    "sha256": "bdb8f37e7bf27a7ccf75ab42a01886997337e0d62e0afd891562ecd0ceb2b225"
+  },
+  {
+    "source_id": "PROTECT_END",
+    "file": "PROTECT_END.html",
+    "sha256": "dcfaed4d646ac24e28e312d3189dd7e18c0b47ac9c97963bc625c804b3e8a4b2"
+  },
+  {
+    "source_id": "WEAK_HOUSING",
+    "file": "WEAK_HOUSING.html",
+    "sha256": "4aef492d0defef36043d55fafb4e4a61955156540cb6c4f94e5c406e318ff370"
+  },
+  {
+    "source_id": "EMERGENCY_HOUSING",
+    "file": "EMERGENCY_HOUSING.html",
+    "sha256": "48d10725648f0a6116e5983134a23322936b45b8c465cf9f65d1faf2e643dcff"
+  },
+  {
+    "source_id": "SCHOLARSHIP_SUPPORT",
+    "file": "SCHOLARSHIP_SUPPORT.html",
+    "sha256": "72a4c610425aca811c97c7272ae9ab5566667ffbc549a6e7583ff60c8212aae9"
+  },
+  {
+    "source_id": "SCHOLARSHIP_REVIEW",
+    "file": "SCHOLARSHIP_REVIEW.html",
+    "sha256": "7ca85d2322a3646333187c267321292850b36f3ea36704dd757fefd00baf5ee5"
+  },
+  {
+    "source_id": "BUSAN_NEWLY",
+    "file": "BUSAN_NEWLY.html",
+    "sha256": "d45ccb269f32b2ba50eb56a0285420e1087bad3ed18779c9679104a5261b9f7e"
+  },
+  {
+    "source_id": "MAMACALL",
+    "file": "MAMACALL.html",
+    "sha256": "f59ff84e189199331901ff972327aacc8774d344faf949ce46989781020e54a6"
+  },
+  {
+    "source_id": "BUSAN_BRIEF_2026",
+    "file": "BUSAN_BRIEF_2026.html",
+    "sha256": "5eba275f57f4b52cd8b1d863b47e2c6a781bfdfe5107334a20a67a47ea0ebb10"
+  },
+  {
+    "source_id": "YOUTH_BUY_BODY",
+    "file": "YOUTH_BUY_BODY.html",
+    "sha256": "8e2c05f5734cb480deba1d29f3d26e7d002bee07a303beb7cbb4fd77a17fd86b"
+  },
+  {
+    "source_id": "PUBLIC_PRIVATE_BODY",
+    "file": "PUBLIC_PRIVATE_BODY.html",
+    "sha256": "bac144e05a807c66a065a035548690c130d09e1aeb5bb177322a9b7ae2c3ccb4"
+  },
+  {
+    "source_id": "PROTECT_END_BODY",
+    "file": "PROTECT_END_BODY.html",
+    "sha256": "b25013db9aaba0e8702ae4f410f6502d6319e1fa227ef2625cf6818eba3d1101"
+  },
+  {
+    "source_id": "WEAK_HOUSING_BODY",
+    "file": "WEAK_HOUSING_BODY.html",
+    "sha256": "14fa74444ca1176ac58e15954e23835985f60617ef73766263c8526c3fd8ed5b"
+  },
+  {
+    "source_id": "EMERGENCY_BODY",
+    "file": "EMERGENCY_BODY.html",
+    "sha256": "570ec8b0e3670bc01f6f9c8cfcdae851b8540f6f2e1d4621ccea15026df9be02"
+  },
+  {
+    "source_id": "BUSAN_NEWLY_PDF",
+    "file": "BUSAN_NEWLY_PDF.pdf",
+    "sha256": "f446e7bba00733e7cc5d9859ce26935cd1183c22d409a4c8aeb13540bdfd0ece"
+  },
+  {
+    "source_id": "BUSAN_NEWLY_FAQ",
+    "file": "BUSAN_NEWLY_FAQ.pdf",
+    "sha256": "5ea1d85934ea928d7cd576d43f7b6075a4e7207706e91370636f2c9c5f1a969b"
+  },
+  {
+    "source_id": "BMC_BUY_MENU",
+    "file": "BMC_BUY_MENU.html",
+    "sha256": "7ccce5dd4fc845fc9fa264d2d79000691c20540ba26d27d10c40936a3bf42eb6"
+  },
+  {
+    "source_id": "BMC_2026_RESULT",
+    "file": "BMC_2026_RESULT.html",
+    "sha256": "46cf9c539d14efbc9e7a05328ea002b49a74bd3bc7eb852b590a3feae095bb8f"
+  },
+  {
+    "source_id": "KORAIL_CURRENT",
+    "file": "KORAIL_CURRENT.html",
+    "sha256": "5db7502b73485f691fd7a567fe14aa9f84bcd09ff52a48b3b4a8a6d28762f975"
+  },
+  {
+    "source_id": "LH_BUSAN_BUY",
+    "file": "LH_BUSAN_BUY.html",
+    "sha256": "eb94aa12886a54833afad94b555db7a74f778f92df026f56c11b73fe62e928d1"
+  },
+  {
+    "source_id": "BMC_APPLICATION",
+    "file": "BMC_APPLICATION.html",
+    "sha256": "c7e4064c426af1ef470aef4f2e3cdc307b590e196d93a01aeb8740501becb48f"
+  },
+  {
+    "source_id": "NYSC_COUNSEL",
+    "file": "NYSC_COUNSEL.html",
+    "sha256": "462cd18c9ca4f0e12d7281172d46e7c1ab8efc12aa08a728670e8bd44b55dd46"
+  },
+  {
+    "source_id": "LH_MUNHYEON",
+    "file": "LH_MUNHYEON.html",
+    "sha256": "5bc2f8304a753aac696855339cb152513d8c2395b6e2ff5cdac4842b40d96f8b"
+  },
+  {
+    "source_id": "LH_BUY_PDF",
+    "file": "LH_BUY_PDF.pdf",
+    "sha256": "cd6dc1c768e51592b0e24933790d6aab64f800c0815aece8f9b9841f364b4cd9"
+  },
+  {
+    "source_id": "LH_MUNHYEON_PDF",
+    "file": "LH_MUNHYEON_PDF.pdf",
+    "sha256": "e136daadbbc10ded1d3664121e7676832cf2faa8b34994ccb88131196e5cbea9"
+  },
+  {
+    "source_id": "BMC_RENT_LIST",
+    "file": "BMC_RENT_LIST.html",
+    "sha256": "dc194465d8edb0790e48e4674ab8cdef539ef42d5b16662a3d4729a2ae6224da"
+  },
+  {
+    "source_id": "BMC_YOUTH_DETAIL",
+    "file": "BMC_YOUTH_DETAIL.html",
+    "sha256": "180c543409bdb090c467fef1d3a43c473b35b3a8e3c07f9326a941b3661a7ea4"
+  },
+  {
+    "source_id": "BMC_NEWLY_DETAIL",
+    "file": "BMC_NEWLY_DETAIL.html",
+    "sha256": "73c9440847d0f10d579ee713b94fd250a9c6fcea62f83765ca958cdd113eca0a"
+  },
+  {
+    "source_id": "BMC_NEWLY_PDF",
+    "file": "BMC_NEWLY_PDF.pdf",
+    "sha256": "e99e2ee625d587ce70b74a8792267f9bbef7e94ec1f1b711cfb45fcbd4156dfe"
+  },
+  {
+    "source_id": "BMC_YOUTH_PDF",
+    "file": "BMC_YOUTH_PDF.pdf",
+    "sha256": "001a6802fc83dba53436ae38e166ee2098a5681f1acd1468e78a8090728b3871"
+  },
+  {
+    "source_id": "HF_MORTGAGE",
+    "file": "HF_MORTGAGE.html",
+    "sha256": "138b4a7ba6c00aedddf9deadc7ccb6cf664f624b26b2fe755222c62a80443e54"
+  },
+  {
+    "source_id": "DAMAGE_REPAIR",
+    "file": "DAMAGE_REPAIR.html",
+    "sha256": "4bd51d18433fe0f63be4063fa1232ca9855d64903cde95215ed24d410cafaa25"
+  },
+  {
+    "source_id": "DAMAGE_REPAIR_HWPX",
+    "file": "DAMAGE_REPAIR_HWPX.zip",
+    "sha256": "f8216f8414b9272db50289ec6b0859cb2186fdd279400b892c5adb281da413c1"
+  },
+  {
+    "source_id": "LH_RENT_GUIDE",
+    "file": "LH_RENT_GUIDE.html",
+    "sha256": "3a5dbb3d515668b0ea21a50ceac087fa92cf539f878a9ebfe31c422f5d275450"
+  },
+  {
+    "source_id": "LH_USER_LINK",
+    "file": "LH_USER_LINK.html",
+    "sha256": "ce2d12a0c9a160b6065ed8ca564d8b35f2e1deb807007784b15c1b468bfb59ed"
+  },
+  {
+    "source_id": "DREAM_RULE",
+    "file": "DREAM_RULE.pdf",
+    "sha256": "ada428f4ccc370d482d62d84a25fa15a9f44b43e691131ce4a620d80e11ec767"
+  },
+  {
+    "source_id": "LH_DORM_2026",
+    "file": "LH_DORM_2026.html",
+    "sha256": "0adbb15fa0f8edfa3da0307856b506b8be4b0ac3c0940dd179acf6b984e5c261"
+  },
+  {
+    "source_id": "LH_DORM_PDF",
+    "file": "LH_DORM_PDF.pdf",
+    "sha256": "a5bce7b83f14615253be4c946e4ea0546d4d38eac1682a687bf7e8349e440683"
+  },
+  {
+    "source_id": "NEWBORN_BUY",
+    "file": "NEWBORN_BUY.html",
+    "sha256": "82ee499e745c04afc3f6ca2a2e08470bf589b331f1c987030879083b22dbdf96"
+  },
+  {
+    "source_id": "MYHOME_COUNSEL",
+    "file": "MYHOME_COUNSEL.html",
+    "sha256": "99453204a053549253230c314c11ddb5c781687a4dce370126e53129c339f926"
+  },
+  {
+    "source_id": "MYHOME_INFO",
+    "file": "MYHOME_INFO.html",
+    "sha256": "ad63ebf32b3cf591aa08acb96a1e9827c21c81da800c55c969b83cc75833a1b4"
+  },
+  {
+    "source_id": "UNION_DORM_LATEST",
+    "file": "UNION_DORM_LATEST.html",
+    "sha256": "b829d9b736d3f5080ecb4b833812bd84e86cbdcba119baa8a651906fd205e139"
+  },
+  {
+    "source_id": "UNION_DORM_LIST",
+    "file": "UNION_DORM_LIST.html",
+    "sha256": "2a535c8b5f9e25c453de9181df40cad129806714b5057f1077f247a247db9852"
+  },
+  {
+    "source_id": "JPDC_GUIDE",
+    "file": "JPDC_GUIDE.html",
+    "sha256": "4de81ab17cab0801bd18124ed4f77ad0cd342e926cff9edf2ec6feab35fccdde"
+  },
+  {
+    "source_id": "JPDC_LIST",
+    "file": "JPDC_LIST.html",
+    "sha256": "8dde4d4e913acf3b8440b0a161ebcf8515c30f2e5a0fbfee26d6e4b32a4c4af0"
+  },
+  {
+    "source_id": "USC_LIST",
+    "file": "USC_LIST.html",
+    "sha256": "65ed663d590bb0283bb0582993cfe9a6ff55d93b5f6c88e537abc2599cd85df4"
+  },
+  {
+    "source_id": "BUFS_COUNSEL_LIST",
+    "file": "BUFS_COUNSEL_LIST.html",
+    "sha256": "6009a188e6f995b6ad7f682d9a0f19196c9a9289e257a1bb54f2b1fbabd0bfe3"
+  },
+  {
+    "source_id": "CKU_COUNSEL",
+    "file": "CKU_COUNSEL.html",
+    "sha256": "b536628dd1b797a127a2fd7c6462af1e097f79837146fae2e71b48723d46af2a"
+  },
+  {
+    "source_id": "NATIONAL_ASSET_PLAN",
+    "file": "NATIONAL_ASSET_PLAN.html",
+    "sha256": "a5afeb55c68f212f1cdb603a02eb3bbe666749b6a289241d21cac19c84c4cd72"
+  },
+  {
+    "source_id": "NEWBORN_REFINANCE",
+    "file": "NEWBORN_REFINANCE.html",
+    "sha256": "f730e6735f9a157872124d462694e58c8bdca6946bfadf9c3afd48284728916f"
+  },
+  {
+    "source_id": "USC_SPACE",
+    "file": "USC_SPACE.html",
+    "sha256": "0525a5d31406a28084ae8c4ca27295fb393062f3258e0bf90fbb4ad412ef8b07"
+  },
+  {
+    "source_id": "JPDC_RECIPIENT",
+    "file": "JPDC_RECIPIENT.html",
+    "sha256": "0b7af9aadaa71619752929c189fb526adbbb66833f8d7381b48ba7e3c1e40f7c"
+  },
+  {
+    "source_id": "JPDC_SEARCH",
+    "file": "JPDC_SEARCH.html",
+    "sha256": "28f3ae322b9c39d475ef14f98ff3048206a7cbd318291ccbdb8aa2a12902fa74"
+  },
+  {
+    "source_id": "BUFS_COUNSEL",
+    "file": "BUFS_COUNSEL.html",
+    "sha256": "b3331069bcb3398f4c13014bad6c5af1ba4ef0e7ed212734e7378c5277607b12"
+  },
+  {
+    "source_id": "HAMAN_COUNSEL",
+    "file": "HAMAN_COUNSEL.html",
+    "sha256": "44d1865f6c26ebd0eed05861f3468faaa79dc5ae66ea3cde5285b8a9f9785555"
+  },
+  {
+    "source_id": "BUSAN_ECO_PLAN",
+    "file": "BUSAN_ECO_PLAN.html",
+    "sha256": "2bc2bf2a36f2450f23753c6935ce5c97adeee802efe71fb37525d381a6b3c26a"
+  },
+  {
+    "source_id": "MIRYANG_RURAL_LIST",
+    "file": "MIRYANG_RURAL_LIST.html",
+    "sha256": "7487983799c41b9eea5e10e2ccbd14ec4d2601d8ae6e8d5901e8d1b5713e7044"
+  },
+  {
+    "source_id": "JPDC_FILTERED",
+    "file": "JPDC_FILTERED.html",
+    "sha256": "81a4366b300fe2844b7fb890ad624f3b1697e992a8223de6b28aa9a0ee34e996"
+  },
+  {
+    "source_id": "GANGWON_PLAN",
+    "file": "GANGWON_PLAN.html",
+    "sha256": "1ba753d92e5d32812b39e97e866d8e22866f612993948eee93f77a2158ba7075"
+  },
+  {
+    "source_id": "COMWEL_SCOPE",
+    "file": "COMWEL_SCOPE.html",
+    "sha256": "9229e8ce387d0dd27711a4a0f46745b06e48d5ec0132e70d0cc6672e8ed8c633"
+  },
+  {
+    "source_id": "RURAL_GUIDELINES",
+    "file": "RURAL_GUIDELINES.pdf",
+    "sha256": "b1af621f0da400d050adfed190c498114714cd0a65547d70a10a536087db0279"
+  },
+  {
+    "source_id": "BUFS_COUNSEL_POSTER",
+    "file": "BUFS_COUNSEL_POSTER.html",
+    "sha256": "2426dd56b5c4c534283014255b255ab922c2fcf7ae6a5f6b800e95c3f15ed945"
+  },
+  {
+    "source_id": "MIRYANG_FILTERED",
+    "file": "MIRYANG_FILTERED.html",
+    "sha256": "2e22e4676569fdae87401edb4b4335d6ac4b2a6c8dd6c605900c7843c7fc27aa"
+  },
+  {
+    "source_id": "JPDC_NOTICE",
+    "file": "JPDC_NOTICE.html",
+    "sha256": "19c55f5136cf5bef52f6ae1b560841655366c063d9a93d90547f6b9abd8ba3ee"
+  },
+  {
+    "source_id": "JPDC_NOTICE_PDF",
+    "file": "JPDC_NOTICE_PDF.zip",
+    "sha256": "e6b077f6e3c55247e775d2e549f70a24d372e5e58223507940b4a1d7276ca706"
+  },
+  {
+    "source_id": "JPDC_JOB_NOTICE",
+    "file": "JPDC_JOB_NOTICE.html",
+    "sha256": "5e0cd4597bd00662008132db1b277de59b1cd77625ebbf0abba2b5fb3ba71824"
+  },
+  {
+    "source_id": "JPDC_JOB_PDF",
+    "file": "JPDC_JOB_PDF.zip",
+    "sha256": "50c934a9a1bce3afd0f02db855054070687901bb4b9a315369c88963ff640365"
+  },
+  {
+    "source_id": "MIRYANG_RURAL_NOTICE",
+    "file": "MIRYANG_RURAL_NOTICE.html",
+    "sha256": "d60e97e540de62a8b1a52d560270275afff13a6285ba80a60f25aa93895bed35"
+  },
+  {
+    "source_id": "MIRYANG_RURAL_HWPX",
+    "file": "MIRYANG_RURAL_HWPX.zip",
+    "sha256": "723e8fa62ee0c0cfa478af4447ca246570b7c105de3ba5d11ed0a5f41b708be7"
+  }
+]
