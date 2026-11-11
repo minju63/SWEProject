@@ -312,10 +312,9 @@ async function precheck(db, b) {
       .limit(1),
     'culture_detail 새 컬럼 확인(마이그레이션을 먼저 실행하세요)'
   );
-  must(
-    await db.from('place').select('image_url, image_source, description').limit(1),
-    'place 사진 컬럼 확인(20261112_place_image.sql 을 먼저 실행하세요)'
-  );
+  // 사진 컬럼(20261112_place_image.sql)은 없어도 진행한다. 없으면 사진·소개문만 빼고 넣는다.
+  const imageCols = await db.from('place').select('image_url, image_source, description').limit(1);
+  const hasImageCols = !imageCols.error;
 
   const cats = must(
     await db.from('policy_category').select('category_id, category_name'),
@@ -359,7 +358,7 @@ async function precheck(db, b) {
   if (conflicts.length)
     throw new Error(`다른 정책에 연결된 출처 키가 있어 중단: ${conflicts.join(', ')}`);
 
-  return catId;
+  return { catId, hasImageCols };
 }
 
 // 내 행이 DB에 몇 건 있는지 (재실행이면 갱신 대상)
@@ -391,16 +390,13 @@ async function countMine(db, b) {
 }
 
 // DB의 place 와 새로 만든 행을 비교한다. 좌표는 값 대신 "바뀜/생김/없어짐"만 보여 준다.
-async function diffPlaces(db, b) {
+async function diffPlaces(db, b, hasImageCols) {
+  const cols =
+    'place_id, place_type, coord_status, lat, lng' +
+    (hasImageCols ? ', image_url, description' : '');
   const cur = new Map();
   for (const part of chunk(b.placeRows.map((p) => p.place_id))) {
-    const rows = must(
-      await db
-        .from('place')
-        .select('place_id, place_type, coord_status, lat, lng, image_url, description')
-        .in('place_id', part),
-      'place 조회'
-    );
+    const rows = must(await db.from('place').select(cols).in('place_id', part), 'place 조회');
     for (const r of rows) cur.set(r.place_id, r);
   }
   const out = [];
@@ -414,9 +410,11 @@ async function diffPlaces(db, b) {
     if (c.place_type !== p.place_type) d.push(`place_type ${c.place_type} → ${p.place_type}`);
     if (c.coord_status !== p.coord_status)
       d.push(`coord_status ${c.coord_status} → ${p.coord_status}`);
-    if ((c.image_url ?? null) !== p.image_url) d.push(p.image_url ? '사진 추가' : '사진 없어짐');
-    if ((c.description ?? null) !== p.description)
-      d.push(p.description ? '소개문 추가' : '소개문 없어짐');
+    if (hasImageCols) {
+      if ((c.image_url ?? null) !== p.image_url) d.push(p.image_url ? '사진 추가' : '사진 없어짐');
+      if ((c.description ?? null) !== p.description)
+        d.push(p.description ? '소개문 추가' : '소개문 없어짐');
+    }
     const had = c.lat != null;
     const has = p.lat != null;
     if (!had && has) d.push('좌표 생김');
@@ -477,10 +475,19 @@ if (opt.only && opt.only !== 'place') {
 if (opt.apply || opt.check) {
   try {
     const db = await connect();
-    const catId = await precheck(db, b);
+    const { catId, hasImageCols } = await precheck(db, b);
     console.log('\n사전 점검 통과 (마이그레이션 적용됨, 분류·지역 코드 있음, 출처 키 충돌 없음)');
+    if (!hasImageCols) {
+      console.log(
+        '주의: place 사진 컬럼이 없습니다(20261112_place_image.sql 미실행). 사진·소개문은 빼고 진행합니다.'
+      );
+      const IMAGE_KEYS = ['image_url', 'image_source', 'description'];
+      b.placeRows = b.placeRows.map((p) =>
+        Object.fromEntries(Object.entries(p).filter(([k]) => !IMAGE_KEYS.includes(k)))
+      );
+    }
     console.log('DB에 이미 있는 내 행:', await countMine(db, b));
-    const diff = await diffPlaces(db, b);
+    const diff = await diffPlaces(db, b, hasImageCols);
     console.log(
       `\nDB와 달라지는 장소 ${diff.length}곳${diff.length ? ':\n  ' + diff.join('\n  ') : ''}`
     );
