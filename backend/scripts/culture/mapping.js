@@ -449,6 +449,17 @@ function toCoord(lat, lng) {
   return [a, b];
 }
 
+// 공연장 목록 API(BusanCulturePerformPlaceService)에서 왔고 원본 장르가 '종합'이라 공연장으로 분류됐지만
+// 이름·성격이 갤러리인 곳 (PR #2 리뷰, 2026-11-11)
+export const PLACE_TYPE_OVERRIDE = {
+  'CUL-BCP00376': '전시공간', // 갤러리라함
+  'CUL-BCP00383': '전시공간', // 부산시민공원 예술촌갤러리2
+  'CUL-BCP00384': '전시공간', // 부산시민공원 다솜갤러리
+  'CUL-BCP00401': '전시공간', // 갤러리 인터페이스
+  'CUL-FC002803': '전시공간', // 부산갤러리
+  'CUL-FC004877': '전시공간', // 초읍동새마을금고 본점 우리동네MG갤러리
+};
+
 export function mapPlaceRow(p) {
   const [lat, lng] = toCoord(p.lat, p.lng);
   const flag = { 1: true, 0: false };
@@ -456,7 +467,7 @@ export function mapPlaceRow(p) {
     place_id: placeIdOf(p.place_id),
     place_key: p.place_id,
     name: p.name.trim(),
-    place_type: p.place_type,
+    place_type: PLACE_TYPE_OVERRIDE[p.place_id] ?? p.place_type,
     region_code: REGION_CODE[p.sigungu] ?? null,
     address: clean(p.addr),
     road_address: clean(p.addr_road),

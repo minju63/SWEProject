@@ -10,6 +10,7 @@
 //   --raw-dir <dir>    API 원본 위치: detail/*.json, youth/raw/*.json (기본: ../busan-culture-api/data)
 //   --out <dir>        미리보기 저장 위치 (기본: <data-dir>/db_load_preview)
 //   --today YYYY-MM-DD 이 날짜보다 먼저 끝난 행사는 제외 (기본: 오늘, KST)
+//   --only place       place 테이블만 갱신 (정책·행사는 건드리지 않음)
 //
 // 적재 전 Supabase SQL Editor에서 supabase/migrations/20261111_culture_place.sql 을 먼저 실행해야 한다.
 // 좌표 값은 콘솔과 미리보기 파일에 출력하지 않는다.
@@ -33,6 +34,7 @@ function args() {
   return {
     apply: a.includes('--apply'),
     check: a.includes('--check'),
+    only: get('--only') ?? null,
     dataDir,
     rawDir: path.resolve(
       get('--raw-dir') ?? path.join(repoRoot, '..', 'busan-culture-api', 'data')
@@ -372,11 +374,47 @@ async function countMine(db, b) {
   };
 }
 
-async function apply(db, b, catId) {
+// DB의 place 와 새로 만든 행을 비교한다. 좌표는 값 대신 "바뀜/생김/없어짐"만 보여 준다.
+async function diffPlaces(db, b) {
+  const cur = new Map();
+  for (const part of chunk(b.placeRows.map((p) => p.place_id))) {
+    const rows = must(
+      await db
+        .from('place')
+        .select('place_id, place_type, coord_status, lat, lng')
+        .in('place_id', part),
+      'place 조회'
+    );
+    for (const r of rows) cur.set(r.place_id, r);
+  }
+  const out = [];
+  for (const p of b.placeRows) {
+    const c = cur.get(p.place_id);
+    if (!c) {
+      out.push(`${p.place_key} ${p.name}: 새 장소`);
+      continue;
+    }
+    const d = [];
+    if (c.place_type !== p.place_type) d.push(`place_type ${c.place_type} → ${p.place_type}`);
+    if (c.coord_status !== p.coord_status)
+      d.push(`coord_status ${c.coord_status} → ${p.coord_status}`);
+    const had = c.lat != null;
+    const has = p.lat != null;
+    if (!had && has) d.push('좌표 생김');
+    else if (had && !has) d.push('좌표 없어짐');
+    else if (had && (Math.abs(c.lat - p.lat) > 1e-7 || Math.abs(c.lng - p.lng) > 1e-7))
+      d.push('좌표 바뀜');
+    if (d.length) out.push(`${p.place_key} ${p.name}: ${d.join(', ')}`);
+  }
+  return out;
+}
+
+async function apply(db, b, catId, only) {
   // 같은 policy_id/place_id 로 다시 실행하면 갱신된다
   const now = new Date().toISOString();
   for (const part of chunk(b.placeRows.map((p) => ({ ...p, updated_at: now }))))
     must(await db.from('place').upsert(part, { onConflict: 'place_id' }), 'place 적재');
+  if (only === 'place') return;
 
   const policies = b.all.map(({ policy: { _category_name, ...p } }) => ({
     ...p,
@@ -413,14 +451,23 @@ if (b.issues.length) {
   console.error(`\n검증 문제 ${b.issues.length}건이 있어 적재하지 않습니다.`);
   process.exit(1);
 }
+if (opt.only && opt.only !== 'place') {
+  console.error(`\n--only 는 place 만 지원합니다: ${opt.only}`);
+  process.exit(1);
+}
 if (opt.apply || opt.check) {
   try {
     const db = await connect();
     const catId = await precheck(db, b);
     console.log('\n사전 점검 통과 (마이그레이션 적용됨, 분류·지역 코드 있음, 출처 키 충돌 없음)');
     console.log('DB에 이미 있는 내 행:', await countMine(db, b));
+    const diff = await diffPlaces(db, b);
+    console.log(
+      `\nDB와 달라지는 장소 ${diff.length}곳${diff.length ? ':\n  ' + diff.join('\n  ') : ''}`
+    );
+    if (opt.only) console.log(`(--only ${opt.only}: place 만 갱신, 정책·행사는 건드리지 않음)`);
     if (opt.apply) {
-      await apply(db, b, catId);
+      await apply(db, b, catId, opt.only);
       console.log('\n적재 완료. DB 건수:', await countMine(db, b));
     } else {
       console.log('\n--check 라 DB에는 쓰지 않았습니다. 적재하려면 --apply');
