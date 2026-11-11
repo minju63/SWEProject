@@ -79,20 +79,7 @@ create table policy_region (
   primary key (policy_id, region_code)
 );
 
--- 모집 상태·D-day 는 저장하지 않고 계산
-create view v_policy_status as
-select
-  p.policy_id,
-  case
-    when p.is_always_open then '상시'
-    when p.application_start_date is null and p.application_end_date is null then '기간 미정'
-    when p.application_start_date > current_date then '모집 예정'
-    when p.application_end_date < current_date then '마감'
-    else '모집 중'
-  end as recruitment_status,
-  case when p.application_end_date is not null and not p.is_always_open
-       then p.application_end_date - current_date end as d_day
-from policy p;
+-- 모집 상태·D-day 는 저장하지 않고 계산 (culture_detail 생성 뒤로 옮김, 아래 2-1 참고)
 
 -- ---------------------------------------------------------------------
 -- 2. 파트별 상세 (policy 와 1:1)
@@ -202,6 +189,36 @@ create table culture_detail (        -- 문화 (김대환)
   age_rating            text
 );
 create index culture_detail_place_idx on culture_detail(place_id);
+
+-- ---------------------------------------------------------------------
+-- 2-1. 모집 상태·D-day 뷰 (migrations/20261112_event_status_view.sql)
+--   정책: 상시·기간 미정·모집 예정·모집 중·마감 (신청 기간 기준)
+--   행사(EVENT): 예정·진행 중·종료·기간 미정 (culture_detail.event_* 기준, d_day 는 종료일 한국 시간)
+-- ---------------------------------------------------------------------
+create view v_policy_status as
+select p.policy_id,
+  case
+    when p.item_type = 'EVENT' then
+      case
+        when cd.event_start_at is null and cd.event_end_at is null then '기간 미정'
+        when cd.event_start_at > now() then '예정'
+        when cd.event_end_at   < now() then '종료'
+        else '진행 중'
+      end
+    when p.is_always_open then '상시'
+    when p.application_start_date is null and p.application_end_date is null then '기간 미정'
+    when p.application_start_date > current_date then '모집 예정'
+    when p.application_end_date   < current_date then '마감'
+    else '모집 중'
+  end as recruitment_status,
+  case
+    when p.item_type = 'EVENT' then
+      (cd.event_end_at at time zone 'Asia/Seoul')::date - (now() at time zone 'Asia/Seoul')::date
+    when p.application_end_date is not null and not p.is_always_open
+      then p.application_end_date - current_date
+  end as d_day
+from policy p
+left join culture_detail cd using (policy_id);
 
 -- ---------------------------------------------------------------------
 -- 3. 데이터 수집·관리
