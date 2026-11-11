@@ -65,8 +65,12 @@ function build(opt) {
   const events = readCsv(path.join(opt.dataDir, 'events.csv'));
   const places = readCsv(path.join(opt.dataDir, 'places.csv'));
 
-  // 장소
-  const placeRows = places.map(mapPlaceRow);
+  // 장소 (사진: data/place_images.csv, 없으면 사진 없이)
+  const imageFile = path.join(opt.dataDir, 'place_images.csv');
+  const images = fs.existsSync(imageFile)
+    ? new Map(readCsv(imageFile).map((r) => [r.place_id, r]))
+    : new Map();
+  const placeRows = places.map((p) => mapPlaceRow(p, images));
   const placeByKey = new Map(placeRows.map((p) => [p.place_key, p]));
   const placeKeys = new Set(placeByKey.keys());
 
@@ -222,6 +226,14 @@ function writePreview(opt, b) {
     `- 장소 좌표 있음 ${b.placeRows.filter((p) => p.lat != null).length} / 없음 ${b.placeRows.filter((p) => p.lat == null).length}; coord_status ${JSON.stringify(count(b.placeRows, (p) => p.coord_status))}`
   );
   L(
+    `- 장소 사진 ${b.placeRows.filter((p) => p.image_url).length}곳 ${JSON.stringify(
+      count(
+        b.placeRows.filter((p) => p.image_url),
+        (p) => p.place_type
+      )
+    )}, 소개문 ${b.placeRows.filter((p) => p.description).length}곳`
+  );
+  L(
     `- 행사 장소 연결(place_id) ${em.filter((x) => x.detail.place_id).length}건, venue_text만 ${em.filter((x) => !x.detail.place_id && x.detail.venue_text).length}건, 장소 없음 ${em.filter((x) => !x.detail.place_id && !x.detail.venue_text).length}건`
   );
   L(
@@ -299,6 +311,10 @@ async function precheck(db, b) {
       .select('genre, price_text, support_amount, support_amount_text')
       .limit(1),
     'culture_detail 새 컬럼 확인(마이그레이션을 먼저 실행하세요)'
+  );
+  must(
+    await db.from('place').select('image_url, image_source, description').limit(1),
+    'place 사진 컬럼 확인(20261112_place_image.sql 을 먼저 실행하세요)'
   );
 
   const cats = must(
@@ -381,7 +397,7 @@ async function diffPlaces(db, b) {
     const rows = must(
       await db
         .from('place')
-        .select('place_id, place_type, coord_status, lat, lng')
+        .select('place_id, place_type, coord_status, lat, lng, image_url, description')
         .in('place_id', part),
       'place 조회'
     );
@@ -398,6 +414,9 @@ async function diffPlaces(db, b) {
     if (c.place_type !== p.place_type) d.push(`place_type ${c.place_type} → ${p.place_type}`);
     if (c.coord_status !== p.coord_status)
       d.push(`coord_status ${c.coord_status} → ${p.coord_status}`);
+    if ((c.image_url ?? null) !== p.image_url) d.push(p.image_url ? '사진 추가' : '사진 없어짐');
+    if ((c.description ?? null) !== p.description)
+      d.push(p.description ? '소개문 추가' : '소개문 없어짐');
     const had = c.lat != null;
     const has = p.lat != null;
     if (!had && has) d.push('좌표 생김');

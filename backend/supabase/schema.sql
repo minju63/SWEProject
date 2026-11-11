@@ -156,6 +156,9 @@ create table place (
   reservation_url    text,
   capacity           integer,
   is_active          boolean not null default true,
+  image_url          text,                         -- 사진 URL (공공 API·기관 공식 페이지, 링크만 저장)
+  image_source       text,                         -- 사진 출처 페이지
+  description        text,                         -- 소개문 원문
   source_name        text,
   source_id          text,
   raw_data           jsonb,

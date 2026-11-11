@@ -460,9 +460,18 @@ export const PLACE_TYPE_OVERRIDE = {
   'CUL-FC004877': '전시공간', // 초읍동새마을금고 본점 우리동네MG갤러리
 };
 
-export function mapPlaceRow(p) {
+// 소개문: 청년플랫폼 공간 목록의 소개 원문. 앞부분이 잘린 채 게시된 원문(수집 메모가 붙은 것)은 쓰지 않는다.
+function placeDescription(extra) {
+  const intro = clean(extra.intro);
+  return intro && !/페이지 원문이/.test(intro) ? intro : null;
+}
+
+// images: place_key → { image_url, image_source } (data/place_images.csv, 사진 URL 확인을 마친 것만)
+export function mapPlaceRow(p, images = new Map()) {
   const [lat, lng] = toCoord(p.lat, p.lng);
   const flag = { 1: true, 0: false };
+  const extra = JSON.parse(p.extra_json || '{}');
+  const img = images.get(p.place_id);
   return {
     place_id: placeIdOf(p.place_id),
     place_key: p.place_id,
@@ -484,9 +493,12 @@ export function mapPlaceRow(p) {
     reservation_url: toUrl(p.reservation_url),
     capacity: toInt(p.capacity),
     is_active: p.active !== '0',
+    image_url: toUrl(img?.image_url),
+    image_source: clean(img?.image_source),
+    description: placeDescription(extra),
     source_name: clean(p.source_api),
     source_id: clean(p.source_id),
-    raw_data: { ...p, extra_json: JSON.parse(p.extra_json || '{}') },
+    raw_data: { ...p, extra_json: extra },
     last_collected_at: kstStart(toDate(p.collected_at)),
     last_verified_at: kstStart(toDate(p.fee_checked_at)),
   };
