@@ -18,7 +18,12 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { parseCsv } from './csv.js';
-import { CULTURE_SUBCATEGORY, mapCultureRow, mapEventRow, mapPlaceRow } from './mapping.js';
+import {
+  CULTURE_SUBCATEGORY,
+  mapCultureRow,
+  mapEventRow,
+  mapPlaceRow,
+} from '../../src/jobs/culture/mapping.js';
 
 const here = path.dirname(fileURLToPath(import.meta.url));
 const repoRoot = path.resolve(here, '../../..');
@@ -389,10 +394,10 @@ async function countMine(db, b) {
 }
 
 // DB의 place 와 새로 만든 행을 비교한다. 좌표는 값 대신 "바뀜/생김/없어짐"만 보여 준다.
-// 마이그레이션 순서대로 생긴 선택 컬럼 (20261112_place_image.sql, 20261113_map_support.sql)
+// 마이그레이션 순서대로 생긴 선택 컬럼 (20261112_place_image.sql, 20261113_map_support.sql, 20261114_culture_sync.sql)
 const OPTIONAL_COLUMNS = {
   place: ['image_url', 'image_source', 'description', 'fee_type'],
-  culture_detail: ['runtime', 'organizer', 'casting', 'crew'],
+  culture_detail: ['runtime', 'organizer', 'casting', 'crew', 'detail_fetched'],
 };
 
 async function missingColumns(db) {

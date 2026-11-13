@@ -163,6 +163,8 @@ create table place (
   source_name        text,
   source_id          text,
   raw_data           jsonb,
+  source_values      jsonb,                        -- 마지막으로 받은 공공데이터 원본 값 (하루 1회 갱신의 비교 기준, 좌표 제외)
+  source_checked_at  timestamptz,
   last_collected_at  timestamptz,
   last_verified_at   timestamptz,
   created_at         timestamptz not null default now(),
@@ -171,6 +173,24 @@ create table place (
 );
 create index place_region_idx on place(region_code);
 create index place_type_idx on place(place_type);
+
+-- 장소 문제 목록 (migrations/20261114_culture_sync.sql): 하루 1회 갱신이 기록, 지도 화면은 읽지 않음
+create table place_issues (
+  issue_id       uuid primary key default gen_random_uuid(),
+  issue_type     text not null check (issue_type in ('source_differs','source_changed','place_missing_in_source',
+                   'new_place_candidate','event_place_unmatched','event_missing_in_source')),
+  ref_type       text not null check (ref_type in ('place','venue','event')),
+  ref_key        text not null,
+  place_id       uuid references place(place_id) on delete set null,
+  name           text,
+  detail         text,
+  status         text not null default '미처리' check (status in ('미처리','확인','해결','무시')),
+  first_seen_at  timestamptz not null default now(),
+  last_seen_at   timestamptz not null default now(),
+  resolved_at    timestamptz,
+  unique (issue_type, ref_key)
+);
+create index place_issues_status_idx on place_issues (status, issue_type);
 
 -- 지도 분류표 (migrations/20261113_map_support.sql): 장소 세부 유형 → 지도 카테고리
 create table map_category (
@@ -206,7 +226,8 @@ create table culture_detail (        -- 문화 (김대환)
   runtime               text,          -- 러닝타임 (행사 상세 원문)
   organizer             text,          -- 주최·기획
   casting               text,          -- 출연
-  crew                  text           -- 제작진
+  crew                  text,          -- 제작진
+  detail_fetched        boolean        -- 행사 상세 API 응답을 받았는지 (정책 행은 NULL)
 );
 create index culture_detail_place_idx on culture_detail(place_id);
 
@@ -530,6 +551,7 @@ create policy "read own role" on user_role for select using (user_id = auth.uid(
 alter table policy_source enable row level security;
 alter table collection_run enable row level security;
 alter table collection_error enable row level security;
+alter table place_issues enable row level security;
 alter table policy_field_verification enable row level security;
 alter table security_audit_log enable row level security;
 alter table ai_execution_log enable row level security;

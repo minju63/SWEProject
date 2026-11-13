@@ -1,4 +1,5 @@
 // 문화 파트 수집 데이터(culture.csv, events.csv, places.csv) → DB 행 변환 규칙
+// 처음 적재(scripts/culture/loadCulture.js)와 하루 1회 갱신(syncCulture.js)이 함께 쓴다.
 // DB 안내 규칙:
 //   1. 정책명·신청기간·신청URL·지원내용 → policy / 분야별 정보 → culture_detail
 //   2. 자격 조건 → policy.eligibility_conditions(JSON)
@@ -313,6 +314,7 @@ export function mapCultureRow(r, { rawItem, placeKeys }) {
     organizer: null,
     casting: null,
     crew: null,
+    detail_fetched: null,
   };
 
   const source = {
@@ -417,6 +419,7 @@ export function mapEventRow(e, { detailItem, placeByKey }) {
     organizer: clean(detailItem?.enterprise ?? extra.enterprise),
     casting: clean(detailItem?.casting ?? extra.casting),
     crew: clean(detailItem?.crew ?? extra.crew),
+    detail_fetched: !!detailItem, // 상세 API 응답을 받았는지 (DP-MAP-01)
   };
 
   // 원본: 상세 API 응답. 없으면 수집 행(카카오 매칭 흔적인 place_match는 뺀다).
