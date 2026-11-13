@@ -1,4 +1,4 @@
-// 공공데이터포털(data.go.kr) 호출. 키는 backend/.env 의 DATA_GO_KR_KEY.
+// 공공데이터포털(data.go.kr) 호출. 키는 backend/.env 의 DATA_GO_API_KEY.
 // 키 값은 오류 메시지·로그 어디에도 남기지 않는다.
 import { XMLParser } from 'fast-xml-parser';
 
@@ -9,7 +9,7 @@ const xml = new XMLParser({ parseTagValue: false, trimValues: true }); // 값은
 // 호출 한도 초과·인증 문제: 더 불러도 소용없으므로 그 자리에서 멈춘다
 export class QuotaError extends Error {}
 
-const apiKey = () => process.env.DATA_GO_KR_KEY ?? '';
+const apiKey = () => process.env.DATA_GO_API_KEY ?? '';
 export const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
 function mask(text) {
@@ -43,7 +43,7 @@ function itemsOf(body) {
 // 한 쪽 조회 → { items, total }
 export async function getPage(url, params) {
   const key = apiKey();
-  if (!key) throw new QuotaError('backend/.env 에 DATA_GO_KR_KEY 가 없습니다.');
+  if (!key) throw new QuotaError('backend/.env 에 DATA_GO_API_KEY 가 없습니다.');
   const query = new URLSearchParams({ serviceKey: key, ...params });
   let lastError;
   for (let attempt = 0; attempt <= RETRIES; attempt++) {

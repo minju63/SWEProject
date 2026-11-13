@@ -103,7 +103,7 @@ PORT=4000
 SUPABASE_URL=
 SUPABASE_SERVICE_ROLE_KEY=     # 서버 전용, 절대 공개 금지
 CLIENT_URL=http://localhost:5173
-DATA_GO_KR_KEY=                # 공공데이터포털 인증키 (지도 장소·행사 갱신용)
+DATA_GO_API_KEY=               # 공공데이터포털 인증키 (지도 장소·행사 갱신용)
 CULTURE_SYNC_ENABLED=false     # 지도 데이터 하루 1회 자동 갱신. 운영 서버 한 곳에서만 true
 ```
 
