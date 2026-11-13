@@ -4,6 +4,10 @@ export const SERVICE_DISTRICTS = ['부산진구', '사하구'];
 const REGION_DISTRICT = { 26230: '부산진구', 26380: '사하구' };
 export const districtOfRegion = (code) => REGION_DISTRICT[code] ?? null;
 
+// DB 시각(UTC 로 옴) → 한국 날짜 YYYY-MM-DD. 문자열을 그냥 자르면 KST 자정 값이 하루 전 날짜가 된다
+const kstDate = (iso) =>
+  iso ? new Date(new Date(iso).getTime() + 9 * 3600e3).toISOString().slice(0, 10) : '';
+
 // API 응답(snake_case) → 화면용 장소
 export function toPlace(p) {
   return {
@@ -32,14 +36,11 @@ export function toPlace(p) {
     imageSource: p.image_source ?? '',
     description: p.description ?? '',
     sourceName: p.source_name ?? '',
-    collectedAt: (p.last_collected_at ?? '').slice(0, 10),
+    collectedAt: kstDate(p.last_collected_at),
     liveEventCount: p.live_event_count ?? 0,
     nextEventStatus: p.next_event_status ?? null,
   };
 }
-
-const kstDate = (iso) =>
-  iso ? new Date(new Date(iso).getTime() + 9 * 3600e3).toISOString().slice(0, 10) : '';
 
 // API 응답 → 화면용 행사
 export function toEvent(e) {
@@ -59,7 +60,7 @@ export function toEvent(e) {
     enterprise: e.organizer ?? '',
     casting: e.casting ?? '',
     crew: e.crew ?? '',
-    collectedAt: (e.collected_at ?? '').slice(0, 10),
+    collectedAt: kstDate(e.collected_at),
   };
 }
 
