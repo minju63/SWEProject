@@ -23,6 +23,7 @@ const PLACE_SOURCES = [
   ['CUL', 'performPlaces'],
   ['LIB', 'libraries'],
   ['OPN', 'publicFacilities'],
+  ['YSP', 'youthSpaces'],
 ];
 const DETAIL_GIVE_UP = 3; // 상세 API 가 연속 3번 실패하면 남은 행사는 지난번 상세 응답을 쓴다
 const BUSAN_GIVE_UP = 2; // 부산 문화 API 가 연속 2번 응답하지 않으면 남은 목록 호출을 건너뛴다

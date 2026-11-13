@@ -9,7 +9,7 @@
  */
 import { createHash } from 'node:crypto';
 import { clean } from './mapping.js';
-import { TARGET_DISTRICTS, normName, parseDistrict, text } from './normalize.js';
+import { TARGET_DISTRICTS, normAddr, normName, parseDistrict, text } from './normalize.js';
 
 export const AUTO_FIELDS = [
   'tel',
@@ -17,6 +17,7 @@ export const AUTO_FIELDS = [
   'open_hours_text',
   'closed_days_text',
   'capacity',
+  'description',
 ];
 export const WATCH_FIELDS = ['name', 'address', 'fee_text'];
 const LABEL = {
@@ -25,16 +26,18 @@ const LABEL = {
   open_hours_text: '운영시간',
   closed_days_text: '휴관일',
   capacity: '정원',
+  description: '소개',
   name: '이름',
   address: '주소',
   fee_text: '요금',
 };
 
-// 자동 수집하는 출처 (place_key 접두어). 청년공간(YSP)은 웹페이지라 수동
+// 자동 수집하는 출처 (place_key 접두어)
 export const SOURCE_LABEL = {
   CUL: '공연장·전시공간 목록',
   LIB: '전국도서관표준데이터',
   OPN: '전국공공시설개방정보',
+  YSP: '청년공간 웹페이지',
 };
 
 const md5 = (s) => createHash('md5').update(String(s)).digest('hex');
@@ -55,8 +58,14 @@ const joined = (pairs) =>
     .join(' / ') || null;
 
 // 원본 행 → { key, prefix, name, district, values }. 장소 키는 처음 적재할 때(places.csv)와 같은 규칙
-export function placeSources({ performPlaces = [], libraries = [], publicFacilities = [] }) {
+export function placeSources({
+  performPlaces = [],
+  libraries = [],
+  publicFacilities = [],
+  youthSpaces = [], // youthSpaces.js 가 이미 같은 모양으로 만든 행
+}) {
   const out = new Map();
+  for (const row of youthSpaces) out.set(row.key, row);
   for (const x of performPlaces) {
     const address = val(x.addr);
     out.set(`CUL-${x.placeId}`, {
@@ -198,17 +207,24 @@ export function planPlaceSync(places, sources, checked) {
   }
 
   // 서비스 지역의 새 장소 후보 (이름이 같은 장소가 이미 있으면 후보에서 뺀다)
+  // 주소가 같은 장소는 합치지 않고 후보 설명에 적는다 (DP-MAP-02)
   const names = new Set(places.map((p) => normName(p.name)));
+  const byAddress = new Map(places.filter((p) => p.address).map((p) => [normAddr(p.address), p]));
   for (const src of sources.values()) {
     if (!checked.has(src.prefix) || known.has(src.key)) continue;
     if (!TARGET_DISTRICTS.includes(src.district) || names.has(normName(src.values.name))) continue;
+    const sameAddress = src.values.address ? byAddress.get(normAddr(src.values.address)) : null;
     issues.push({
       ref_type: 'place',
       ref_key: src.key,
       place_id: null,
       name: src.values.name,
       issue_type: 'new_place_candidate',
-      detail: `${SOURCE_LABEL[src.prefix]}의 ${src.district} 장소: ${show(src.values.address)} (좌표 검증·분류·요금 확인 후 추가)`,
+      detail:
+        `${SOURCE_LABEL[src.prefix]}의 ${src.district} 장소: ${show(src.values.address)}` +
+        (sameAddress
+          ? ` · 주소가 같은 기존 장소 ${sameAddress.place_key} ${sameAddress.name} (같은 곳이면 무시)`
+          : ' (좌표 검증·분류·요금 확인 후 추가)'),
     });
   }
   return { updates, issues };

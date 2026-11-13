@@ -32,6 +32,14 @@ export const normName = (s) =>
     .replace(/[\s()[\]·.,\-_/]/g, '')
     .toLowerCase();
 
+// 주소 비교용: 괄호 내용·'부산광역시'·공백·기호 제거
+export const normAddr = (s) =>
+  String(s ?? '')
+    .normalize('NFC')
+    .replace(/\([^)]*\)/g, '')
+    .replace(/부산광역시|부산시|부산/g, '')
+    .replace(/[\s,.-]/g, '');
+
 // 주소에서 부산 구·군 읽기. 못 읽으면 null
 export function parseDistrict(addr) {
   if (!addr) return null;

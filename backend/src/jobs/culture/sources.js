@@ -1,10 +1,11 @@
 // 지도 탭 데이터 수집 원천 (SRS DP-MAP-01, DATA-MAP-01~05)
 //   행사: 부산 문화 행사 목록 API 9개 장르 + 테마 API(장소 번호) + 장르별 상세 API
 //   장소: 공연장·전시공간 목록 API(두 목록은 내용이 같아 공연장 목록만 받는다), 전국도서관표준데이터, 전국공공시설개방정보
-//   청년공간(웹페이지)은 자동 수집하지 않는다.
+//   청년공간: 부산청년플랫폼·사하구 청년창업 웹페이지 (youthSpaces.js)
 import fs from 'node:fs';
 import path from 'node:path';
 import { getAll, getPage, sleep } from './dataGoKr.js';
+import { crawlYouthSpaces } from './youthSpaces.js';
 
 const BUSAN = 'https://apis.data.go.kr/6260000';
 const busanUrl = (svc) => `${BUSAN}/${svc}/get${svc.replace(/Service$/, '')}`;
@@ -48,6 +49,7 @@ export const apiSource = {
     });
     return all.filter(isBusan);
   },
+  youthSpaces: crawlYouthSpaces,
 };
 
 // 저장해 둔 응답으로 실행 (API 장애·호출 한도 때 변환 점검용). busan-culture-api/data 폴더 구조
@@ -71,5 +73,8 @@ export function cacheSource(dir) {
     performPlaces: async () => read('list', 'performPlace.json'),
     libraries: async () => read('facility', 'lbrry_busan.json'),
     publicFacilities: async () => read('facility', 'pblfclt_busan.json').filter(isBusan),
+    youthSpaces: async () => {
+      throw new Error('청년공간 웹페이지는 저장된 응답이 없음');
+    },
   };
 }

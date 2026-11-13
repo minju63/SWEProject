@@ -35,6 +35,7 @@ export async function loadPlaces(withBaseline) {
     'closed_days_text',
     'capacity',
     'fee_text',
+    'description',
     'merged_from:raw_data->extra_json->merged_from', // 다른 출처와 합친 장소의 옛 키
   ];
   if (withBaseline) columns.push('source_values');
