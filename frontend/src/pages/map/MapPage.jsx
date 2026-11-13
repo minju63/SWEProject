@@ -112,10 +112,14 @@ export default function MapPage() {
   const defaultView = useMemo(() => {
     if (entryPlace) return { lat: entryPlace.lat, lng: entryPlace.lng, level: START_LEVEL + 1 };
     const home = centerOf(places.filter((p) => p.district === homeDistrict));
-    const all = centerOf(places);
-    return { ...(home ?? all ?? BUSAN_CITY_HALL), level: START_LEVEL };
+    if (home) return { ...home, level: START_LEVEL };
+    // 거주 구를 모르면(비로그인) 두 구가 다 보이게 넓게 연다
+    return { ...(centerOf(places) ?? BUSAN_CITY_HALL), level: MAP_MIN_LEVEL };
   }, [entryPlace, places, homeDistrict]);
   const viewport = viewportState ?? defaultView;
+  // 지도는 초기 중심을 정할 수 있을 때(장소 + 로그인 시 거주 구) 만든다.
+  // 먼저 만들면 지도가 보고한 임시 중심이 기본 중심을 덮어쓴다.
+  const mapReady = (placesQuery.isSuccess || loadError) && !(user && profile.isLoading);
 
   const searchablePlaces = useMemo(() => {
     if (loadError) return [];
@@ -351,24 +355,27 @@ export default function MapPage() {
       </header>
 
       <main ref={regionRef} className="relative min-h-0 flex-1 overflow-hidden">
-        <KakaoMap
-          viewport={viewport}
-          onViewportChange={setViewport}
-          markers={visiblePlaces.map(({ place }) => ({
-            id: place.id,
-            lat: place.lat,
-            lng: place.lng,
-            label: place.name,
-            color: place.color,
-            kind: place.category,
-            saved: saved.includes(place.id),
-          }))}
-          selectedId={selectedId}
-          onSelectMarker={selectFromMarker}
-          myLocation={myLocation}
-          bottomInset={bottomInset}
-          topInset={BAR_HEIGHT}
-        />
+        {!mapReady && <div className="absolute inset-0 z-0 bg-[#eceef4]" />}
+        {mapReady && (
+          <KakaoMap
+            viewport={viewport}
+            onViewportChange={setViewport}
+            markers={visiblePlaces.map(({ place }) => ({
+              id: place.id,
+              lat: place.lat,
+              lng: place.lng,
+              label: place.name,
+              color: place.color,
+              kind: place.category,
+              saved: saved.includes(place.id),
+            }))}
+            selectedId={selectedId}
+            onSelectMarker={selectFromMarker}
+            myLocation={myLocation}
+            bottomInset={bottomInset}
+            topInset={BAR_HEIGHT}
+          />
+        )}
 
         {!loadError && (
           <ChipBar
@@ -383,7 +390,7 @@ export default function MapPage() {
 
         {showBanner && (
           <div
-            className="absolute inset-x-2.5 z-20 flex flex-col items-start gap-2"
+            className="absolute inset-x-2.5 z-[25] flex flex-col items-start gap-2"
             style={{ top: BAR_HEIGHT }}
           >
             <section

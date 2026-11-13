@@ -7,9 +7,9 @@ import { CategoryBadge, CategoryPin } from './mapIcons.jsx';
  * - 카카오는 지도 그림·좌표 변환만 맡고, 마커·클러스터·말풍선은 이 컴포넌트가 지도 위 층에 그린다.
  *   (클러스터는 카카오 결과가 아니라 우리 DB 좌표로 만든다: FR-MAP-003)
  * - 지도 영역은 하단 시트 위까지만 둔다 → 카카오 로고·저작권 표기가 가려지지 않는다 (NFR-MAP-022).
- * - viewport.level 은 Figma 단계(0 넓게 ~ 6 가깝게). 카카오 레벨 = 8 - 단계.
+ * - viewport.level 은 Figma 단계(-1 가장 넓게 ~ 6 가깝게). 카카오 레벨 = 8 - 단계.
  */
-export const MAP_MIN_LEVEL = 0;
+export const MAP_MIN_LEVEL = -1; // 한 단계 더 넓게: 작은 화면에서도 두 구가 다 보이게
 export const MAP_MAX_LEVEL = 6;
 const KAKAO_LEVEL_BASE = 8;
 const CLUSTER_RADIUS = 46; // 화면 중심 간격 46px 미만이면 묶는다 (FR-MAP-003)
@@ -256,7 +256,16 @@ export default function KakaoMap({
       const diameter = 34 + Math.min(popup.ids.length, 9) * 2;
       const width = 220;
       const left = clamp(p.x - width / 2, 8, Math.max(8, box.width - width - 8));
-      popupInfo = { group, left, top: p.y + diameter / 2 + 8, width, arrowX: p.x - left };
+      // 기본은 클러스터 아래. 아래 공간이 모자라면 위로 연다 (지도 영역이 시트 위까지라 아래가 잘릴 수 있음)
+      // 둘 다 모자라면 더 넓은 쪽에 열고 목록 높이를 그 공간에 맞춘다
+      const want = Math.min(180, group.length * 36) + 8;
+      const below = p.y + diameter / 2 + 8;
+      const roomBelow = box.height - below - 8;
+      const roomAbove = p.y - diameter / 2 - 16 - topInset; // 상단 칩 줄에 가리지 않게
+      const flip = roomBelow < want && roomAbove > roomBelow;
+      const height = Math.max(60, Math.min(want, flip ? roomAbove : roomBelow));
+      const top = flip ? p.y - diameter / 2 - 8 - height : below;
+      popupInfo = { group, left, top, flip, width, listMax: height - 8, arrowX: p.x - left };
     }
   }
 
@@ -332,10 +341,10 @@ export default function KakaoMap({
             onClick={(event) => event.stopPropagation()}
           >
             <span
-              className="absolute -top-1.5 size-3 rotate-45 bg-white"
+              className={`absolute size-3 rotate-45 bg-white ${popupInfo.flip ? '-bottom-1.5' : '-top-1.5'}`}
               style={{ left: clamp(popupInfo.arrowX, 14, popupInfo.width - 14) - 6 }}
             />
-            <ul className="relative max-h-[180px] overflow-y-auto">
+            <ul className="relative overflow-y-auto" style={{ maxHeight: popupInfo.listMax }}>
               {popupInfo.group.map((m) => (
                 <li key={m.id}>
                   <button
