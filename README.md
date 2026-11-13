@@ -110,7 +110,10 @@ CLIENT_URL=http://localhost:5173
 VITE_API_BASE_URL=http://localhost:4000/api/v1
 VITE_SUPABASE_URL=
 VITE_SUPABASE_ANON_KEY=        # 로그인용 공개 키
+VITE_KAKAO_JS_KEY=             # 지도 탭 카카오맵 JavaScript 키
 ```
+
+> 카카오맵은 카카오 개발자 콘솔에 등록한 도메인에서만 열립니다. 현재 `http://localhost:5173`이 등록되어 있으니 프론트는 5173 포트로 실행하세요. 키가 없거나 도메인이 다르면 지도 대신 안내 문구가 나오고, 장소 목록은 그대로 동작합니다.
 
 ## 5. API
 
@@ -127,6 +130,8 @@ VITE_SUPABASE_ANON_KEY=        # 로그인용 공개 키
 | GET / PUT | `/me/profile` | ✓ | 내 정보 조회·수정 |
 | GET / POST | `/me/bookmarks` | ✓ | 찜 목록 / 찜하기 (`{ policyId }`) |
 | DELETE | `/me/bookmarks/:policyId` | ✓ | 찜 취소 |
+| GET | `/places` | | 지도 장소 전체 (카테고리·진행 중 행사 수 포함). 사용자 위치는 받지 않음 |
+| GET | `/places/:placeId` | | 장소 상세 + 진행·예정 행사 |
 
 **응답 형식**
 ```json
