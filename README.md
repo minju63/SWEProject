@@ -103,6 +103,8 @@ PORT=4000
 SUPABASE_URL=
 SUPABASE_SERVICE_ROLE_KEY=     # 서버 전용, 절대 공개 금지
 CLIENT_URL=http://localhost:5173
+DATA_GO_KR_KEY=                # 공공데이터포털 인증키 (지도 장소·행사 갱신용)
+CULTURE_SYNC_ENABLED=false     # 지도 데이터 하루 1회 자동 갱신. 운영 서버 한 곳에서만 true
 ```
 
 **frontend/.env**
@@ -151,6 +153,18 @@ VITE_KAKAO_JS_KEY=             # 지도 탭 카카오맵 JavaScript 키
 4. 금액은 원 단위 정수, 공식 자료에서 못 찾은 값은 0이 아니라 `NULL`.
 5. 모집 상태·D-day는 저장하지 않고 `v_policy_status` 뷰에서 계산합니다.
 6. 테이블·컬럼을 바꿀 때는 Supabase SQL Editor에서 실행한 SQL을 `schema.sql`에도 반영해 커밋합니다.
+
+### 지도 장소·행사 갱신 (하루 1회)
+
+`backend/src/jobs/culture/`가 공공데이터에서 행사(9개 장르)와 장소(공연장·도서관·공공시설)를 받아, 적재 전 무결성 점검을 통과할 때만 반영합니다. 사람이 고친 장소 값은 덮어쓰지 않고, 연결 못 한 행사 장소와 새 장소 후보는 `place_issues`에, 실행 결과는 `collection_run`·`collection_error`에 남깁니다.
+
+```bash
+cd backend
+npm run sync:culture             # 미리보기 (DB에 쓰지 않음)
+npm run sync:culture -- --apply  # 적재
+```
+
+자동 실행은 `CULTURE_SYNC_ENABLED=true`인 서버에서만 매일 04:00(한국 시간)에 돕니다. 공용 DB에 쓰므로 각자 PC에서는 켜지 마세요.
 
 ## 7. 협업 규칙
 
