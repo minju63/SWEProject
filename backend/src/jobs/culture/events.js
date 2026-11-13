@@ -14,8 +14,13 @@ function freeFlag(payAt, price) {
   return amount || payAt === 'Y' ? '0' : '';
 }
 
-// 목록 → 진행 중·예정 행사. res_no 중복은 앞 장르, 날짜가 비정상이거나 끝난 행사는 뺀다 (DP-MAP-01)
-export function liveEvents(lists, today) {
+/*
+ * 목록 → 진행 중·예정 행사. 날짜가 비정상이거나 끝난 행사는 뺀다 (DP-MAP-01)
+ * 같은 res_no 가 여러 장르에 있으면 DB 에 이미 있는 장르, 없으면 앞 장르로 본다.
+ * (행사 번호에 장르가 들어가므로, 앞 장르 목록을 못 받은 날 다른 번호로 한 번 더 들어가지 않게)
+ * knownGenre: res_no → DB 에 있는 행사의 장르
+ */
+export function liveEvents(lists, today, knownGenre = new Map()) {
   const seen = new Set();
   const live = [];
   let skipped = 0;
@@ -23,6 +28,8 @@ export function liveEvents(lists, today) {
     for (const item of lists[genre] ?? []) {
       const resNo = String(item.res_no);
       if (seen.has(resNo)) continue;
+      const known = knownGenre.get(resNo);
+      if (known && known !== genre) continue; // DB 의 장르 목록에서 다시 만나면 그때 쓴다
       seen.add(resNo);
       const start = String(item.op_st_dt ?? '');
       const end = String(item.op_ed_dt ?? '');
@@ -80,7 +87,15 @@ function unmatchedReason(venue, name) {
  * 장소 연결 순서: 테마·상세 API 의 장소 번호 → 장소명이 하나만 같은 장소.
  * 장소 번호가 공연장 목록에 있는데 우리 장소(서비스 지역)가 아니면 이름으로 다시 찾지 않는다.
  */
-export function buildEventRows({ live, themes, details, places, performPlaces, today }) {
+export function buildEventRows({
+  live,
+  themes,
+  details,
+  places,
+  performPlaces,
+  previousPlace = new Map(),
+  today,
+}) {
   const themeByRes = new Map();
   for (const t of themes)
     if (!themeByRes.has(String(t.res_no))) themeByRes.set(String(t.res_no), t);
@@ -89,7 +104,7 @@ export function buildEventRows({ live, themes, details, places, performPlaces, t
 
   const rows = [];
   const unmatched = new Map();
-  const stat = { byId: 0, byName: 0, unmatched: 0 };
+  const stat = { byId: 0, byName: 0, previous: 0, unmatched: 0 };
   for (const { genre, resNo, item: e, start, end } of live) {
     const t = themeByRes.get(resNo);
     const d = details.get(`${genre}-${resNo}`) ?? null;
@@ -100,12 +115,18 @@ export function buildEventRows({ live, themes, details, places, performPlaces, t
     let place = pid ? byKey.get(`CUL-${pid}`) : null;
     let how = place ? 'id' : '';
     const knownVenue = pid ? venues.byId.get(pid) : null;
+    // 테마·상세를 받지 못해 장소 번호가 없는 날은 이미 있던 연결을 그대로 둔다
+    if (!place && !pid && previousPlace.has(`${genre}-${resNo}`)) {
+      place = previousPlace.get(`${genre}-${resNo}`);
+      how = 'previous';
+    }
     if (!place && !knownVenue && venueName) {
       place = only(byName.get(normName(venueName)));
       if (place) how = 'name';
     }
     if (how === 'id') stat.byId += 1;
     else if (how === 'name') stat.byName += 1;
+    else if (how === 'previous') stat.previous += 1;
 
     const extra = {};
     if (t) {

@@ -55,9 +55,12 @@ function print(r) {
     `- 상세: 오늘 받음 ${r.events.detail.api}, 지난번 응답 ${r.events.detail.previous}, 없음 ${r.events.detail.none}`
   );
   L(
-    `- 장소 연결: 장소 번호 ${r.events.linked.byId}, 장소명 ${r.events.linked.byName}, 연결 못 함 ${r.events.linked.none}`
+    `- 장소 연결: 장소 번호 ${r.events.linked.byId}, 장소명 ${r.events.linked.byName}, 기존 연결 유지 ${r.events.linked.previous}, 연결 못 함 ${r.events.linked.none}`
   );
   L(`- 적재 대상: 새 행사 ${r.events.new}, 갱신 ${r.events.updated}`);
+  L(`- 이미 있던 행사의 장소 연결 변경 ${r.events.relinked.length}건`);
+  for (const x of r.events.relinked)
+    L(`  - ${x.id} ${x.title}: ${x.linked ? '장소 연결됨' : '연결 끊김'}`);
   L(
     `\n## 무결성 점검 ${r.problems.length ? `실패 ${r.problems.length}건 → 장소·행사 적재 안 함` : '통과'}`
   );

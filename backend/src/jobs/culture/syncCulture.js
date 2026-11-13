@@ -144,11 +144,17 @@ export async function runCultureSync({
     });
     log(`  건너뜀: ${busanSkipped.join(', ')}`);
   }
-  const { live, skipped } = liveEvents(lists, today);
+  const known = await db.loadEventSources();
+  const knownGenre = new Map(
+    known
+      .map((r) => r.external_id?.match(/^([a-z]+)-(\d+)$/))
+      .filter(Boolean)
+      .map(([, genre, resNo]) => [resNo, genre])
+  );
+  const { live, skipped } = liveEvents(lists, today, knownGenre);
 
   // 상세 API: 진행 중·예정 행사마다 호출. 실패하면 지난번 상세 응답을 쓴다
   log(`상세 수집 (진행 중·예정 ${live.length}건)`);
-  const known = await db.loadEventSources();
   const previous = new Map(
     known
       .filter((r) => /DetailService$/.test(r.source_name ?? '') && r.raw_data)
@@ -179,12 +185,19 @@ export async function runCultureSync({
   }
 
   const placeByKey = new Map(activePlaces.map((p) => [p.place_key, p]));
+  const placeById = new Map(activePlaces.map((p) => [p.place_id, p]));
+  const previousPlace = new Map(
+    known
+      .filter((r) => placeById.has(r.place_id))
+      .map((r) => [r.external_id, placeById.get(r.place_id)])
+  );
   const built = buildEventRows({
     live,
     themes,
     details,
     places: activePlaces,
     performPlaces: raw.performPlaces ?? [],
+    previousPlace,
     today,
   });
   const mapped = built.rows.map(({ row, detail }) =>
@@ -234,6 +247,19 @@ export async function runCultureSync({
   const collected = live.length > 0 || checked.size > 0;
   const status = problems.length || !collected ? '실패' : errors.length ? '부분 성공' : '성공';
   const existingIds = new Set(known.map((r) => r.policy_id));
+  // 이미 있던 행사 중 장소 연결이 바뀌는 것 (끊기면 지도 상세에서 빠진다)
+  const prevPlace = new Map(known.map((r) => [r.policy_id, r.place_id]));
+  const relinked = mapped
+    .filter(
+      (x) =>
+        prevPlace.has(x.policy.policy_id) &&
+        (prevPlace.get(x.policy.policy_id) ?? null) !== (x.detail.place_id ?? null)
+    )
+    .map((x) => ({
+      id: x.meta.id,
+      title: x.policy.title,
+      linked: !!x.detail.place_id,
+    }));
   const placeChanges = placePlan.updates.filter((u) => Object.keys(u.changes).length);
 
   const report = {
@@ -260,9 +286,15 @@ export async function runCultureSync({
       live: live.length,
       skippedEndedOrInvalid: skipped,
       detail: detailStat,
-      linked: { byId: built.stat.byId, byName: built.stat.byName, none: built.stat.unmatched },
+      linked: {
+        byId: built.stat.byId,
+        byName: built.stat.byName,
+        previous: built.stat.previous,
+        none: built.stat.unmatched,
+      },
       new: mapped.filter((x) => !existingIds.has(x.policy.policy_id)).length,
       updated: mapped.filter((x) => existingIds.has(x.policy.policy_id)).length,
+      relinked,
     },
     issues: countBy(issues, (i) => i.issue_type),
     issueList: issues,

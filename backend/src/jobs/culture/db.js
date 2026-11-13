@@ -51,15 +51,22 @@ export async function loadEventSources() {
       .like('source_name', '부산광역시 문화 API%'),
     'policy_source 조회'
   );
-  const ends = new Map();
+  const details = new Map();
   for (const part of chunk(rows.map((r) => r.policy_id))) {
-    const details = must(
-      await supabase.from('culture_detail').select('policy_id, event_end_at').in('policy_id', part),
+    const found = must(
+      await supabase
+        .from('culture_detail')
+        .select('policy_id, event_end_at, place_id')
+        .in('policy_id', part),
       'culture_detail 조회'
     );
-    for (const d of details) ends.set(d.policy_id, d.event_end_at);
+    for (const d of found) details.set(d.policy_id, d);
   }
-  return rows.map((r) => ({ ...r, event_end_at: ends.get(r.policy_id) ?? null }));
+  return rows.map((r) => ({
+    ...r,
+    event_end_at: details.get(r.policy_id)?.event_end_at ?? null,
+    place_id: details.get(r.policy_id)?.place_id ?? null,
+  }));
 }
 
 export async function loadReferences() {
