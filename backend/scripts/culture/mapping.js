@@ -309,6 +309,10 @@ export function mapCultureRow(r, { rawItem, placeKeys }) {
     reservation_url: null,
     capacity: null,
     age_rating: null,
+    runtime: null,
+    organizer: null,
+    casting: null,
+    crew: null,
   };
 
   const source = {
@@ -408,6 +412,11 @@ export function mapEventRow(e, { detailItem, placeByKey }) {
     reservation_url: null,
     capacity: null,
     age_rating: rating,
+    // 행사 상세 원문 (상세 API 응답 우선, 없으면 수집 행의 extra_json)
+    runtime: clean(detailItem?.runtime ?? extra.runtime),
+    organizer: clean(detailItem?.enterprise ?? extra.enterprise),
+    casting: clean(detailItem?.casting ?? extra.casting),
+    crew: clean(detailItem?.crew ?? extra.crew),
   };
 
   // 원본: 상세 API 응답. 없으면 수집 행(카카오 매칭 흔적인 place_match는 뺀다).
@@ -460,6 +469,8 @@ export const PLACE_TYPE_OVERRIDE = {
   'CUL-FC004877': '전시공간', // 초읍동새마을금고 본점 우리동네MG갤러리
 };
 
+const FEE_TYPES = ['free', 'paid', 'per_program', 'unknown'];
+
 // 소개문: 청년플랫폼 공간 목록의 소개 원문. 앞부분이 잘린 채 게시된 원문(수집 메모가 붙은 것)은 쓰지 않는다.
 function placeDescription(extra) {
   const intro = clean(extra.intro);
@@ -490,6 +501,8 @@ export function mapPlaceRow(p, images = new Map()) {
     closed_days_text: clean(p.closed_days_raw),
     fee_text: clean(p.fee_raw),
     is_free: flag[p.is_free] ?? null,
+    // 요금 구분: 근거를 확인 못 한 장소는 unknown (SRS FR-MAP-031)
+    fee_type: FEE_TYPES.includes(p.fee_type) ? p.fee_type : 'unknown',
     reservation_url: toUrl(p.reservation_url),
     capacity: toInt(p.capacity),
     is_active: p.active !== '0',

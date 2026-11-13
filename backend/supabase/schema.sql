@@ -153,6 +153,7 @@ create table place (
   closed_days_text   text,
   fee_text           text,
   is_free            boolean,
+  fee_type           text check (fee_type in ('free','paid','per_program','unknown')),  -- 요금 구분
   reservation_url    text,
   capacity           integer,
   is_active          boolean not null default true,
@@ -170,6 +171,18 @@ create table place (
 );
 create index place_region_idx on place(region_code);
 create index place_type_idx on place(place_type);
+
+-- 지도 분류표 (migrations/20261113_map_support.sql): 장소 세부 유형 → 지도 카테고리
+create table map_category (
+  category_code  text primary key,
+  category_name  text not null unique,
+  sort_order     smallint not null,
+  color          text not null
+);
+create table place_type_map (
+  place_type     text primary key,
+  category_code  text not null references map_category(category_code)
+);
 
 create table culture_detail (        -- 문화 (김대환)
   policy_id             uuid primary key references policy(policy_id) on delete cascade,
@@ -189,7 +202,11 @@ create table culture_detail (        -- 문화 (김대환)
   reservation_required  boolean,
   reservation_url       text,
   capacity              integer,
-  age_rating            text
+  age_rating            text,
+  runtime               text,          -- 러닝타임 (행사 상세 원문)
+  organizer             text,          -- 주최·기획
+  casting               text,          -- 출연
+  crew                  text           -- 제작진
 );
 create index culture_detail_place_idx on culture_detail(place_id);
 
@@ -222,6 +239,26 @@ select p.policy_id,
   end as d_day
 from policy p
 left join culture_detail cd using (policy_id);
+
+-- 지도 표시 대상 장소 (migrations/20261113_map_support.sql)
+--   사용 중 + 좌표 있음 + 분류표에 있는 유형. review 는 표시하고 화면에서 '위치 확인 필요'를 붙인다
+create view v_map_places with (security_invoker = true) as
+select
+  p.place_id, p.place_key, p.name, p.place_type,
+  c.category_code, c.category_name, c.sort_order, c.color,
+  p.region_code, r.region_name as district,
+  p.address, p.lat, p.lng, p.coord_status,
+  p.tel, p.homepage_url, p.open_hours_text, p.closed_days_text,
+  p.fee_text, p.is_free, p.fee_type, p.reservation_url, p.capacity,
+  p.image_url, p.image_source, p.description,
+  p.source_name, p.last_collected_at
+from place p
+join place_type_map t on t.place_type = p.place_type
+join map_category c on c.category_code = t.category_code
+left join region r on r.region_code = p.region_code
+where p.is_active
+  and p.lat is not null and p.lng is not null
+  and p.coord_status in ('verified', 'fixed', 'coord_only', 'review');
 
 -- ---------------------------------------------------------------------
 -- 3. 데이터 수집·관리
@@ -456,7 +493,7 @@ declare t text;
 begin
   foreach t in array array['policy_category','policy_subcategory','region','policy',
     'policy_subcategory_map','policy_region','job_detail','housing_detail',
-    'finance_detail','culture_detail','place','popular_search_keyword']
+    'finance_detail','culture_detail','place','map_category','place_type_map','popular_search_keyword']
   loop
     execute format('alter table %I enable row level security', t);
     execute format('create policy "public read" on %I for select using (true)', t);
@@ -503,3 +540,11 @@ alter table ai_execution_log enable row level security;
 insert into policy_category (category_name, is_search_enabled, sort_order) values
   ('취업·진로', true, 1), ('주거·생활', true, 2), ('장학·금융', true, 3),
   ('문화', true, 4), ('공간·시설', false, 5);
+
+insert into map_category (category_code, category_name, sort_order, color) values
+  ('culture', '문화시설', 1, '#8b63d0'), ('library', '도서관', 2, '#3f8ad8'),
+  ('sports', '체육시설', 3, '#e0587a'), ('public_facility', '공공시설', 4, '#35a276'),
+  ('youth_space', '청년공간', 5, '#e8863a');
+insert into place_type_map (place_type, category_code) values
+  ('공연장', 'culture'), ('전시공간', 'culture'), ('도서관', 'library'),
+  ('체육시설', 'sports'), ('공공시설', 'public_facility'), ('청년공간', 'youth_space');
