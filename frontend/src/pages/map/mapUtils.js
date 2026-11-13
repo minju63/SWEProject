@@ -1,9 +1,5 @@
 // 지도 탭 계산·변환 함수 (Figma data/places.ts, data/events.ts, MapScreen.tsx 에서 옮김)
 
-export const SERVICE_DISTRICTS = ['부산진구', '사하구'];
-const REGION_DISTRICT = { 26230: '부산진구', 26380: '사하구' };
-export const districtOfRegion = (code) => REGION_DISTRICT[code] ?? null;
-
 // DB 시각(UTC 로 옴) → 한국 날짜 YYYY-MM-DD. 문자열을 그냥 자르면 KST 자정 값이 하루 전 날짜가 된다
 const kstDate = (iso) =>
   iso ? new Date(new Date(iso).getTime() + 9 * 3600e3).toISOString().slice(0, 10) : '';
@@ -18,6 +14,7 @@ export function toPlace(p) {
     category: p.category_code,
     categoryName: p.category_name,
     color: p.color,
+    regionCode: p.region_code,
     district: p.district,
     address: p.address ?? '',
     lat: Number(p.lat),
@@ -89,6 +86,12 @@ export function formatDistance(meters) {
 // 길찾기: 목적지(장소)만 담는다. 사용자 위치는 넣지 않는다 (FR-MAP-013)
 export const kakaoLink = (place) =>
   `https://map.kakao.com/link/to/${encodeURIComponent(place.name)},${place.lat},${place.lng}`;
+
+// 장소 데이터에 있는 구 (필터 시트의 지역 선택지)
+export const districtsOf = (places) =>
+  [...new Set(places.map((p) => p.district).filter(Boolean))].sort((a, b) =>
+    a.localeCompare(b, 'ko')
+  );
 
 export function centerOf(list) {
   if (!list.length) return null;

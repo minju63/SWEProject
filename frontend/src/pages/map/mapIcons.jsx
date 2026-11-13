@@ -6,7 +6,7 @@ function pinGlyph(kind) {
       return <path d="M4 20h16M6 20V10l6-6 6 6v10M10 20v-5h4v5" />;
     case 'library':
       return (
-        <path d="M4 5.5C7 4.5 10 5 12 7c2-2 5-2.500 8-1.500V19c-3-1-6-.5-8 1.500-2-2-5-2.500-8-1.500zM12 7v13" />
+        <path d="M4 5.5C7 4.5 10 5 12 7c2-2 5-2.5 8-1.5V19c-3-1-6-.5-8 1.5-2-2-5-2.5-8-1.5zM12 7v13" />
       );
     case 'sports':
       return (
@@ -21,8 +21,8 @@ function pinGlyph(kind) {
       return (
         <>
           <circle cx="9" cy="9" r="3" />
-          <circle cx="17" cy="10" r="2.200" />
-          <path d="M3.500 19c.5-3.500 2.700-5 5.500-5s5 1.500 5.500 5M15.500 14.500c2.500 0 4.300 1.200 5 4" />
+          <circle cx="17" cy="10" r="2.2" />
+          <path d="M3.5 19c.5-3.5 2.7-5 5.5-5s5 1.5 5.5 5M15.5 14.5c2.5 0 4.3 1.2 5 4" />
         </>
       );
     default:
@@ -74,9 +74,6 @@ export function CategoryBadge({ kind, color, className }) {
 }
 
 const GLYPHS = {
-  phone: (
-    <path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2Z" />
-  ),
   plus: <path d="M12 5v14M5 12h14" />,
   minus: <path d="M5 12h14" />,
   locate: (

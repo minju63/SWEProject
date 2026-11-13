@@ -1,5 +1,5 @@
 // 지도 탭 화면 조각 (Figma MapScreen.tsx 에서 옮김, 데이터는 API)
-import { Fragment, useRef, useState } from 'react';
+import { Fragment, memo, useRef, useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { fetchPlace } from '../../api/places';
 import { CategoryBadge, Glyph } from './mapIcons.jsx';
@@ -98,17 +98,26 @@ export function HeartButton({ place, saved, onToggle, className = 'size-10' }) {
   );
 }
 
-export function PlaceRow({ place, distance, selected, saved, onSelect, onToggleSaved, cardRef }) {
+// 목록 한 줄. 지도를 움직일 때마다 112줄을 다시 그리지 않도록 값이 바뀐 줄만 다시 그린다
+export const PlaceRow = memo(function PlaceRow({
+  place,
+  distance,
+  selected,
+  saved,
+  onSelect,
+  onToggleSaved,
+  registerCard,
+}) {
   return (
     <div
-      ref={cardRef}
+      ref={(el) => registerCard(place.id, el)}
       role="button"
       tabIndex={0}
-      onClick={onSelect}
+      onClick={() => onSelect(place)}
       onKeyDown={(event) => {
         if (event.key === 'Enter' || event.key === ' ') {
           event.preventDefault();
-          onSelect();
+          onSelect(place);
         }
       }}
       className={`flex cursor-pointer items-center gap-3 border-b border-black/[0.06] px-5 py-3.5 transition ${
@@ -129,10 +138,10 @@ export function PlaceRow({ place, distance, selected, saved, onSelect, onToggleS
           {formatDistance(distance)}
         </span>
       )}
-      <HeartButton place={place} saved={saved} onToggle={onToggleSaved} />
+      <HeartButton place={place} saved={saved} onToggle={() => onToggleSaved(place.id)} />
     </div>
   );
-}
+});
 
 export function PlaceSummary({ place, distance, saved, onToggleSaved, onOpen, onClose }) {
   return (

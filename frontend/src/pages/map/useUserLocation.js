@@ -12,6 +12,8 @@ const TIMEOUT_MS = 10000; // 10초 안에 못 얻으면 실패 (FR-MAP-016)
  *   ok        위치 얻음
  *   denied    권한 거부
  *   failed    시간 초과·위치 없음·기기 미지원
+ * locate(request) 로 요청하면 위치를 얻었을 때 onLocated(position, request) 로 그 값을 돌려준다
+ * (사용자가 버튼으로 요청했는지 화면이 구분할 때 쓴다).
  */
 export function useUserLocation({ onLocated } = {}) {
   const [state, setState] = useState({ status: 'checking', position: null });
@@ -20,7 +22,7 @@ export function useUserLocation({ onLocated } = {}) {
     onLocatedRef.current = onLocated;
   });
 
-  const locate = useCallback(() => {
+  const locate = useCallback((request = null) => {
     if (!('geolocation' in navigator)) {
       setState({ status: 'failed', position: null });
       return;
@@ -30,7 +32,7 @@ export function useUserLocation({ onLocated } = {}) {
       (pos) => {
         const position = { lat: pos.coords.latitude, lng: pos.coords.longitude };
         setState({ status: 'ok', position });
-        onLocatedRef.current?.(position);
+        onLocatedRef.current?.(position, request);
       },
       (err) => setState({ status: err.code === 1 ? 'denied' : 'failed', position: null }),
       { enableHighAccuracy: false, timeout: TIMEOUT_MS, maximumAge: 60000 }

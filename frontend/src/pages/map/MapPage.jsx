@@ -1,12 +1,12 @@
 // 지도 탭 (김대환). Figma MapScreen.tsx 를 옮기고, 가짜 데이터·가짜 위치를 API·브라우저 위치로 바꿨다.
 // 기준: SRS v0.6 FR-MAP-001~028, SDD COMP-MAP-01~08
-import { useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
-import { useSearchParams } from 'react-router-dom';
+import { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
+import { useLocation } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
 import { fetchPlaces } from '../../api/places';
 import { fetchProfile } from '../../api/me';
 import { useAuthStore } from '../../store/authStore';
-import KakaoMap, { MAP_MAX_LEVEL, MAP_MIN_LEVEL } from './KakaoMap.jsx';
+import KakaoMap, { MAX_ZOOM, MIN_ZOOM } from './KakaoMap.jsx';
 import MapHeader from './MapHeader.jsx';
 import MapFilterSheet from './MapFilterSheet.jsx';
 import { ChipBar, PlaceDetail, PlaceRow, PlaceSummary } from './MapParts.jsx';
@@ -15,7 +15,7 @@ import { useUserLocation } from './useUserLocation.js';
 import {
   centerOf,
   distanceMeters,
-  districtOfRegion,
+  districtsOf,
   insideArea,
   isOpenNow,
   matchesFee,
@@ -29,8 +29,11 @@ const STOPS = ['collapsed', 'mid', 'full'];
 const COLLAPSED_HEIGHT = 88;
 const BAR_HEIGHT = 56;
 const CARD_HEIGHT = 244;
-const START_LEVEL = 2;
+const START_ZOOM = 2; // 거주 구 중심으로 열 때
+const FOCUS_ZOOM = START_ZOOM + 1; // 장소·내 위치로 옮길 때
 const BUSAN_CITY_HALL = { lat: 35.1798, lng: 129.075 }; // 장소를 못 불러왔을 때만 쓰는 기본 중심
+const OUTSIDE_NOTICE = '서비스 지역(사하구·부산진구) 밖이에요';
+const LOGIN_NOTICE = '찜은 로그인 후 사용할 수 있어요';
 
 function sheetHeights(regionHeight) {
   const full = Math.max(regionHeight - BAR_HEIGHT, COLLAPSED_HEIGHT + 160);
@@ -39,10 +42,15 @@ function sheetHeights(regionHeight) {
 }
 
 export default function MapPage() {
-  const [params] = useSearchParams();
+  const { search, key: navKey } = useLocation();
   const user = useAuthStore((s) => s.user);
-  const profile = useQuery({ queryKey: ['profile'], queryFn: fetchProfile, enabled: !!user });
-  const homeDistrict = districtOfRegion(profile.data?.region_code);
+  // 마이 탭 정보 중 거주 구만 읽는다 (FR-MY-017, NFR-MAP-011)
+  const homeRegion = useQuery({
+    queryKey: ['profile'],
+    queryFn: fetchProfile,
+    enabled: !!user,
+    select: (profile) => profile?.region_code ?? null,
+  });
 
   const placesQuery = useQuery({ queryKey: ['places'], queryFn: fetchPlaces });
   const loadError = !!placesQuery.error;
@@ -55,12 +63,13 @@ export default function MapPage() {
         .map((c) => ({ code: c.category_code, label: c.category_name, color: c.color })),
     [placesQuery.data, places]
   );
+  const districtOptions = useMemo(() => districtsOf(places), [places]);
   const area = useMemo(() => serviceArea(places), [places]);
 
   // ---------- 화면 상태 ----------
   const [notice, setNotice] = useState('');
   const [dismissed, setDismissed] = useState(null);
-  const [category, setCategory] = useState(() => params.get('category') ?? 'all');
+  const [category, setCategory] = useState('all');
   const [fee, setFee] = useState('all');
   const [openNow, setOpenNow] = useState(false);
   const [radius, setRadius] = useState(null);
@@ -69,57 +78,61 @@ export default function MapPage() {
   const [filterOpen, setFilterOpen] = useState(false);
   const [savedOnly, setSavedOnly] = useState(false);
   const [saved, setSaved] = useState([]);
-  const [searchTerm, setSearchTerm] = useState(() => params.get('q') ?? '');
-  const [selectedState, setSelectedId] = useState(undefined); // undefined: 아직 아무것도 고르지 않음
+  const [searchTerm, setSearchTerm] = useState('');
+  const [selectedId, setSelectedId] = useState(null);
   const [detailId, setDetailId] = useState(null);
   const [sheet, setSheet] = useState('mid');
   const [regionHeight, setRegionHeight] = useState(560);
+  // null: 아직 아무도 지도를 옮기지 않음 → 기본 중심(거주 구)을 따라간다
   const [viewportState, setViewport] = useState(null);
+  const [headerKey, setHeaderKey] = useState(0);
+  const [appliedNav, setAppliedNav] = useState(null);
+  const [mapStarted, setMapStarted] = useState(false);
   const regionRef = useRef(null);
   const listRef = useRef(null);
   const cardRefs = useRef({});
   const handleStart = useRef(null);
 
+  // 다른 화면에서 넘긴 조건으로 연다 (FR-MAP-028). 지도 탭에 있을 때 다시 넘어와도 주소가 바뀔 때마다 적용한다
+  if (placesQuery.isSuccess && appliedNav !== navKey) {
+    setAppliedNav(navKey);
+    applyEntry(new URLSearchParams(search));
+  }
+
+  // 지도는 첫 중심을 정할 수 있을 때(장소, 로그인했으면 거주 구까지) 만든다
+  const waitingProfile = !!user && homeRegion.isLoading;
+  if (!mapStarted && (placesQuery.isSuccess || loadError) && !waitingProfile) setMapStarted(true);
+
   // ---------- 위치 (메모리에만 둔다) ----------
-  const areaRef = useRef(area);
+  const latest = useRef({ area });
   useLayoutEffect(() => {
-    areaRef.current = area;
+    latest.current = { area };
   });
   const location = useUserLocation({
-    onLocated: (pos) => {
-      if (!insideArea(areaRef.current, pos)) {
-        setNotice('서비스 지역(사하구·부산진구) 밖이에요');
+    onLocated: (pos, request) => {
+      if (!insideArea(latest.current.area, pos)) {
+        setNotice(OUTSIDE_NOTICE);
         return;
       }
-      setSelectedId(null);
-      setViewport((cur) => ({
-        lat: pos.lat,
-        lng: pos.lng,
-        level: Math.max(cur?.level ?? START_LEVEL, START_LEVEL + 1),
-      }));
+      // 버튼으로 요청했거나 아직 아무도 지도를 옮기지 않았을 때만 내 위치로 옮긴다
+      const force = !!request?.byUser;
+      if (force) setSelectedId(null);
+      setViewport((cur) =>
+        cur && !force ? cur : { ...pos, zoom: Math.max(cur?.zoom ?? START_ZOOM, FOCUS_ZOOM) }
+      );
     },
   });
-  const inside = location.status === 'ok' && insideArea(area, location.position);
-  const myLocation = inside ? location.position : null;
-  const sortOrigin = myLocation;
+  const myLocation =
+    location.status === 'ok' && insideArea(area, location.position) ? location.position : null;
 
-  // 다른 화면에서 place 로 들어오면 그 장소 카드로 연다 (FR-MAP-028)
-  const entryKey = params.get('place');
-  const entryPlace = entryKey ? places.find((p) => p.key === entryKey || p.id === entryKey) : null;
-  const selectedId = selectedState === undefined ? (entryPlace?.id ?? null) : selectedState;
-
-  // 초기 중심: 들어온 장소 → (위치는 onLocated 에서) → 거주 구 장소 평균 → 전체 장소 평균 (FR-MAP-005)
+  // 초기 중심: 내 위치(onLocated) → 거주 구 장소 평균 → 전체 장소 평균 (FR-MAP-005)
   const defaultView = useMemo(() => {
-    if (entryPlace) return { lat: entryPlace.lat, lng: entryPlace.lng, level: START_LEVEL + 1 };
-    const home = centerOf(places.filter((p) => p.district === homeDistrict));
-    if (home) return { ...home, level: START_LEVEL };
+    const home = centerOf(places.filter((p) => p.regionCode === homeRegion.data));
+    if (home) return { ...home, zoom: START_ZOOM };
     // 거주 구를 모르면(비로그인) 두 구가 다 보이게 넓게 연다
-    return { ...(centerOf(places) ?? BUSAN_CITY_HALL), level: MAP_MIN_LEVEL };
-  }, [entryPlace, places, homeDistrict]);
+    return { ...(centerOf(places) ?? BUSAN_CITY_HALL), zoom: MIN_ZOOM };
+  }, [places, homeRegion.data]);
   const viewport = viewportState ?? defaultView;
-  // 지도는 초기 중심을 정할 수 있을 때(장소 + 로그인 시 거주 구) 만든다.
-  // 먼저 만들면 지도가 보고한 임시 중심이 기본 중심을 덮어쓴다.
-  const mapReady = (placesQuery.isSuccess || loadError) && !(user && profile.isLoading);
 
   const searchablePlaces = useMemo(() => {
     if (loadError) return [];
@@ -138,7 +151,7 @@ export default function MapPage() {
   const visiblePlaces = useMemo(() => {
     const list = searchablePlaces
       .filter((place) => placeMatchesTerm(place, searchTerm))
-      .map((place) => ({ place, distance: sortOrigin ? distanceMeters(sortOrigin, place) : null }))
+      .map((place) => ({ place, distance: myLocation ? distanceMeters(myLocation, place) : null }))
       .filter(({ distance }) => radius === null || distance === null || distance <= radius);
     list.sort((a, b) =>
       a.distance !== null && b.distance !== null
@@ -146,7 +159,21 @@ export default function MapPage() {
         : a.place.name.localeCompare(b.place.name, 'ko')
     );
     return list;
-  }, [searchablePlaces, searchTerm, radius, sortOrigin]);
+  }, [searchablePlaces, searchTerm, radius, myLocation]);
+
+  const markers = useMemo(
+    () =>
+      visiblePlaces.map(({ place }) => ({
+        id: place.id,
+        lat: place.lat,
+        lng: place.lng,
+        label: place.name,
+        color: place.color,
+        kind: place.category,
+        saved: saved.includes(place.id),
+      })),
+    [visiblePlaces, saved]
+  );
 
   const allowedIds = useMemo(() => new Set(searchablePlaces.map((p) => p.id)), [searchablePlaces]);
   const heights = sheetHeights(regionHeight);
@@ -155,6 +182,7 @@ export default function MapPage() {
   const sheetHeight = cardMode ? CARD_HEIGHT : heights[sheet];
   const bottomInset = cardMode ? CARD_HEIGHT : Math.min(heights[sheet], heights.mid);
   const detailPlace = detailId ? (places.find((p) => p.id === detailId) ?? null) : null;
+  const distanceTo = (place) => (myLocation ? distanceMeters(myLocation, place) : null);
 
   useLayoutEffect(() => {
     const el = regionRef.current;
@@ -186,40 +214,66 @@ export default function MapPage() {
     return () => window.clearTimeout(timer);
   }, [selectedId, sheet]);
 
-  function focusOn(lat, lng) {
-    setViewport((cur) => ({
-      lat,
-      lng,
-      level: Math.max((cur ?? defaultView).level, START_LEVEL + 1),
-    }));
+  // place: 장소 번호(place_id) 또는 장소 키, category: 카테고리 코드, q: 검색어
+  function applyEntry(params) {
+    const key = params.get('place');
+    const code = params.get('category');
+    const q = params.get('q')?.trim() ?? '';
+    if (!key && !code && !q) return;
+    resetFilter();
+    setDetailId(null);
+    setHeaderKey((k) => k + 1);
+    const place = key ? places.find((p) => p.id === key || p.key === key) : null;
+    if (key && !place) setNotice('장소 정보를 찾을 수 없어요');
+    setSelectedId(place?.id ?? null);
+    setSearchTerm(place ? '' : q);
+    if (place) setViewport({ lat: place.lat, lng: place.lng, zoom: FOCUS_ZOOM });
+    else if (categories.some((c) => c.code === code)) setCategory(code);
   }
+
+  // 목록 줄(PlaceRow)에 넘기는 함수는 값이 바뀔 때만 새로 만든다 → 바뀌지 않은 줄은 다시 그리지 않는다
+  const focusOn = useCallback(
+    ({ lat, lng }) =>
+      setViewport((cur) => ({ lat, lng, zoom: Math.max((cur ?? defaultView).zoom, FOCUS_ZOOM) })),
+    [defaultView]
+  );
+
+  const selectFromCard = useCallback(
+    (place) => {
+      setSelectedId(place.id);
+      focusOn(place);
+    },
+    [focusOn]
+  );
 
   function selectFromMarker(id) {
     setSelectedId(id);
-    if (!id) return;
-    const place = places.find((p) => p.id === id);
-    if (place) focusOn(place.lat, place.lng);
-  }
-
-  function selectFromCard(place) {
-    setSelectedId(place.id);
-    focusOn(place.lat, place.lng);
+    const place = id ? places.find((p) => p.id === id) : null;
+    if (place) focusOn(place);
   }
 
   // 찜 (P2): 아직 서버 저장 없음. 로그인 확인 후 이 화면 안에서만 유지 (FR-MAP-018~020)
-  function toggleSaved(id) {
-    if (!user) {
-      setNotice('찜은 로그인 후 사용할 수 있어요');
-      return;
-    }
-    const wasSaved = saved.includes(id);
-    setSaved((cur) => (wasSaved ? cur.filter((x) => x !== id) : [...cur, id]));
-    setNotice(wasSaved ? '찜을 해제했어요' : '찜했어요');
-  }
+  const toggleSaved = useCallback(
+    (id) => {
+      if (!user) {
+        setNotice(LOGIN_NOTICE);
+        return;
+      }
+      const wasSaved = saved.includes(id);
+      setSaved(wasSaved ? saved.filter((x) => x !== id) : [...saved, id]);
+      setNotice(wasSaved ? '찜을 해제했어요' : '찜했어요');
+    },
+    [user, saved]
+  );
+
+  const registerCard = useCallback((id, el) => {
+    if (el) cardRefs.current[id] = el;
+    else delete cardRefs.current[id];
+  }, []);
 
   function toggleSavedOnly() {
     if (!user) {
-      setNotice('찜은 로그인 후 사용할 수 있어요');
+      setNotice(LOGIN_NOTICE);
       return;
     }
     setSavedOnly((v) => !v);
@@ -242,10 +296,7 @@ export default function MapPage() {
   function zoom(delta) {
     setViewport((cur) => {
       const base = cur ?? defaultView;
-      return {
-        ...base,
-        level: Math.min(MAP_MAX_LEVEL, Math.max(MAP_MIN_LEVEL, base.level + delta)),
-      };
+      return { ...base, zoom: Math.min(MAX_ZOOM, Math.max(MIN_ZOOM, base.zoom + delta)) };
     });
   }
 
@@ -279,15 +330,17 @@ export default function MapPage() {
     }
   }
 
+  const requestLocation = () => location.locate({ byUser: true });
+
   // 내 위치 버튼 (FR-MAP-006)
   function locateMe() {
     if (myLocation) {
       setSelectedId(null);
-      focusOn(myLocation.lat, myLocation.lng);
+      focusOn(myLocation);
     } else if (location.status === 'ok') {
-      setNotice('서비스 지역(사하구·부산진구) 밖이에요');
+      setNotice(OUTSIDE_NOTICE);
     } else {
-      location.locate();
+      requestLocation();
     }
   }
 
@@ -308,7 +361,7 @@ export default function MapPage() {
           key: 'prompt',
           text: '가까운 순으로 보여주려고 현재 위치를 사용해요',
           action: '위치 사용',
-          onAction: location.locate,
+          onAction: requestLocation,
           closeLabel: '나중에',
           onClose: location.skip,
         }
@@ -324,7 +377,7 @@ export default function MapPage() {
               key: 'failed',
               text: '현재 위치를 가져오지 못했어요',
               action: '다시 시도',
-              onAction: location.locate,
+              onAction: requestLocation,
             }
           : null;
   const showBanner = banner && dismissed !== banner.key;
@@ -336,14 +389,16 @@ export default function MapPage() {
     (radius !== null ? 1 : 0) +
     districts.length +
     (reservableOnly ? 1 : 0);
+  const listTitle =
+    loadError || placesQuery.isLoading
+      ? '주변 장소'
+      : `${savedOnly ? '찜한 장소' : myLocation ? '주변 장소' : '장소'} ${visiblePlaces.length}곳`;
 
   return (
-    <div
-      className="map-root fixed inset-x-0 top-0 z-10 mx-auto flex max-w-[480px] flex-col overflow-hidden bg-[#f7f8fb] text-[#171923]"
-      style={{ bottom: 'calc(var(--tabbar-h) + env(safe-area-inset-bottom))' }}
-    >
+    <div className="map-root">
       <header className="relative z-[60] shrink-0 border-b border-black/[0.05] bg-white/95 backdrop-blur-xl">
         <MapHeader
+          key={headerKey}
           places={places}
           allowedIds={allowedIds}
           onPick={selectFromCard}
@@ -355,26 +410,19 @@ export default function MapPage() {
       </header>
 
       <main ref={regionRef} className="relative min-h-0 flex-1 overflow-hidden">
-        {!mapReady && <div className="absolute inset-0 z-0 bg-[#eceef4]" />}
-        {mapReady && (
+        {mapStarted ? (
           <KakaoMap
             viewport={viewport}
             onViewportChange={setViewport}
-            markers={visiblePlaces.map(({ place }) => ({
-              id: place.id,
-              lat: place.lat,
-              lng: place.lng,
-              label: place.name,
-              color: place.color,
-              kind: place.category,
-              saved: saved.includes(place.id),
-            }))}
+            markers={markers}
             selectedId={selectedId}
             onSelectMarker={selectFromMarker}
             myLocation={myLocation}
             bottomInset={bottomInset}
             topInset={BAR_HEIGHT}
           />
+        ) : (
+          <div className="absolute inset-0 z-0 bg-[#eceef4]" />
         )}
 
         {!loadError && (
@@ -389,44 +437,40 @@ export default function MapPage() {
         )}
 
         {showBanner && (
-          <div
-            className="absolute inset-x-2.5 z-[25] flex flex-col items-start gap-2"
+          <section
+            aria-label="위치 안내"
+            className="absolute inset-x-2.5 z-[25] flex items-center gap-2.5 rounded-xl bg-white py-2.5 pl-3.5 pr-1.5 shadow-[0_6px_20px_rgba(23,25,35,0.14)]"
             style={{ top: BAR_HEIGHT }}
           >
-            <section
-              className="flex w-full items-center gap-2.5 rounded-xl bg-white py-2.5 pl-3.5 pr-1.5 shadow-[0_6px_20px_rgba(23,25,35,0.14)]"
-              aria-label="위치 안내"
+            <p className="min-w-0 flex-1 text-[13px] font-semibold leading-snug text-black/75">
+              {banner.text}
+            </p>
+            <button
+              type="button"
+              onClick={banner.onAction}
+              className="shrink-0 rounded-lg border border-[#6678c8] px-2.5 py-1.5 text-xs font-extrabold text-[#6678c8]"
             >
-              <p className="min-w-0 flex-1 text-[13px] font-semibold leading-snug text-black/75">
-                {banner.text}
-              </p>
+              {banner.action}
+            </button>
+            {banner.closeLabel ? (
               <button
                 type="button"
-                onClick={banner.onAction}
-                className="shrink-0 rounded-lg border border-[#6678c8] px-2.5 py-1.5 text-xs font-extrabold text-[#6678c8]"
+                onClick={banner.onClose}
+                className="shrink-0 px-2 py-1.5 text-xs font-extrabold text-black/40"
               >
-                {banner.action}
+                {banner.closeLabel}
               </button>
-              {banner.closeLabel ? (
-                <button
-                  type="button"
-                  onClick={banner.onClose}
-                  className="shrink-0 px-2 py-1.5 text-xs font-extrabold text-black/40"
-                >
-                  {banner.closeLabel}
-                </button>
-              ) : (
-                <button
-                  type="button"
-                  onClick={() => setDismissed(banner.key)}
-                  aria-label="안내 닫기"
-                  className="grid size-10 shrink-0 place-items-center text-black/40"
-                >
-                  <Glyph name="close" className="size-4" />
-                </button>
-              )}
-            </section>
-          </div>
+            ) : (
+              <button
+                type="button"
+                onClick={() => setDismissed(banner.key)}
+                aria-label="안내 닫기"
+                className="grid size-10 shrink-0 place-items-center text-black/40"
+              >
+                <Glyph name="close" className="size-4" />
+              </button>
+            )}
+          </section>
         )}
 
         {notice && (
@@ -467,13 +511,13 @@ export default function MapPage() {
               label: '지도 확대',
               icon: 'plus',
               onClick: () => zoom(1),
-              disabled: viewport.level >= MAP_MAX_LEVEL,
+              disabled: viewport.zoom >= MAX_ZOOM,
             },
             {
               label: '지도 축소',
               icon: 'minus',
               onClick: () => zoom(-1),
-              disabled: viewport.level <= MAP_MIN_LEVEL,
+              disabled: viewport.zoom <= MIN_ZOOM,
             },
             {
               label: myLocation ? '내 위치로 이동' : '위치 다시 요청',
@@ -505,7 +549,7 @@ export default function MapPage() {
               <span className="mx-auto mb-3 mt-2.5 block h-1 w-10 shrink-0 rounded-full bg-black/15" />
               <PlaceSummary
                 place={selectedPlace}
-                distance={sortOrigin ? distanceMeters(sortOrigin, selectedPlace) : null}
+                distance={distanceTo(selectedPlace)}
                 saved={saved.includes(selectedPlace.id)}
                 onToggleSaved={() => toggleSaved(selectedPlace.id)}
                 onOpen={() => setDetailId(selectedPlace.id)}
@@ -531,14 +575,10 @@ export default function MapPage() {
               >
                 <span className="mx-auto block h-1 w-10 rounded-full bg-black/15" />
                 <div className="mt-3.5 flex items-center justify-between">
-                  <h2 className="text-[15px] font-black tracking-[-0.03em]">
-                    {loadError || placesQuery.isLoading
-                      ? '주변 장소'
-                      : `${savedOnly ? '찜한 장소' : sortOrigin ? '주변 장소' : '장소'} ${visiblePlaces.length}곳`}
-                  </h2>
+                  <h2 className="text-[15px] font-black tracking-[-0.03em]">{listTitle}</h2>
                   {!loadError && !placesQuery.isLoading && (
                     <span className="text-[12px] font-bold text-black/40">
-                      {sortOrigin ? '거리순' : '이름순'}
+                      {myLocation ? '거리순' : '이름순'}
                     </span>
                   )}
                 </div>
@@ -554,34 +594,26 @@ export default function MapPage() {
                   </p>
                 )}
                 {loadError && (
-                  <div className="px-6 py-10 text-center">
-                    <p className="text-[14px] font-black tracking-[-0.03em]">
-                      장소를 불러오지 못했어요
-                    </p>
-                    <button
-                      type="button"
-                      onClick={() => placesQuery.refetch()}
-                      className="mt-4 rounded-lg border border-[#6678c8] px-4 py-2 text-[13px] font-extrabold text-[#6678c8]"
-                    >
-                      다시 시도
-                    </button>
-                  </div>
+                  <EmptyState
+                    title="장소를 불러오지 못했어요"
+                    action="다시 시도"
+                    onAction={() => placesQuery.refetch()}
+                  />
                 )}
                 {!loadError && !placesQuery.isLoading && visiblePlaces.length === 0 && (
-                  <div className="px-6 py-10 text-center">
-                    <p className="text-[14px] font-black tracking-[-0.03em]">
-                      {savedOnly && saved.length === 0
+                  <EmptyState
+                    title={
+                      savedOnly && saved.length === 0
                         ? '찜한 장소가 없어요'
-                        : '조건에 맞는 장소가 없어요'}
-                    </p>
-                    <button
-                      type="button"
-                      onClick={resetFilter}
-                      className="mt-4 rounded-lg border border-[#6678c8] px-4 py-2 text-[13px] font-extrabold text-[#6678c8]"
-                    >
-                      {savedOnly && saved.length === 0 ? '전체 보기' : '필터 초기화'}
-                    </button>
-                  </div>
+                        : '조건에 맞는 장소가 없어요'
+                    }
+                    action={savedOnly && saved.length === 0 ? '전체 보기' : '필터 초기화'}
+                    onAction={() => {
+                      resetFilter();
+                      setSearchTerm('');
+                      setHeaderKey((k) => k + 1);
+                    }}
+                  />
                 )}
                 {visiblePlaces.map(({ place, distance }) => (
                   <PlaceRow
@@ -590,9 +622,9 @@ export default function MapPage() {
                     distance={distance}
                     selected={place.id === selectedId}
                     saved={saved.includes(place.id)}
-                    onSelect={() => selectFromCard(place)}
-                    onToggleSaved={() => toggleSaved(place.id)}
-                    cardRef={(el) => (cardRefs.current[place.id] = el)}
+                    onSelect={selectFromCard}
+                    onToggleSaved={toggleSaved}
+                    registerCard={registerCard}
                   />
                 ))}
                 {!placesQuery.isLoading && !loadError && (
@@ -608,7 +640,7 @@ export default function MapPage() {
         {detailPlace && (
           <PlaceDetail
             place={detailPlace}
-            distance={sortOrigin ? distanceMeters(sortOrigin, detailPlace) : null}
+            distance={distanceTo(detailPlace)}
             saved={saved.includes(detailPlace.id)}
             onToggleSaved={() => toggleSaved(detailPlace.id)}
             onClose={() => setDetailId(null)}
@@ -627,7 +659,8 @@ export default function MapPage() {
           onOpenNow={setOpenNow}
           radius={radius}
           onRadius={setRadius}
-          hasLocation={!!sortOrigin}
+          hasLocation={!!myLocation}
+          districtOptions={districtOptions}
           districts={districts}
           onDistricts={setDistricts}
           reservableOnly={reservableOnly}
@@ -637,6 +670,21 @@ export default function MapPage() {
           onClose={() => setFilterOpen(false)}
         />
       )}
+    </div>
+  );
+}
+
+function EmptyState({ title, action, onAction }) {
+  return (
+    <div className="px-6 py-10 text-center">
+      <p className="text-[14px] font-black tracking-[-0.03em]">{title}</p>
+      <button
+        type="button"
+        onClick={onAction}
+        className="mt-4 rounded-lg border border-[#6678c8] px-4 py-2 text-[13px] font-extrabold text-[#6678c8]"
+      >
+        {action}
+      </button>
     </div>
   );
 }

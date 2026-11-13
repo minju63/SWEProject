@@ -1,5 +1,7 @@
 // 지도 헤더: 제목, 장소 검색(제안 최대 20곳, Enter 로 결과 목록), 필터 버튼, 알림 (FR-MAP-021·022·023)
 // 검색어는 기기 안에서만 처리하고 서버로 보내지 않는다.
+// 팀 공통 헤더 버튼(알림, Dr.부 숨김 시 얼굴 버튼 FR-A06)은 맨 끝 NotificationBell 옆에 둔다.
+// 검색창이 남는 폭을 차지하므로 버튼이 늘면 검색창이 줄어든다.
 import { useMemo, useState } from 'react';
 import NotificationBell from '../../components/NotificationBell.jsx';
 import { CategoryBadge, Glyph } from './mapIcons.jsx';
@@ -14,7 +16,8 @@ export default function MapHeader({
   searchTerm,
   onSearchTerm,
 }) {
-  const [query, setQuery] = useState('');
+  // 다른 화면에서 검색어를 받아 열리면(FR-MAP-028) 그 검색어를 검색창에 넣어 둔다
+  const [query, setQuery] = useState(searchTerm);
   const [open, setOpen] = useState(false);
   const [resultsOpen, setResultsOpen] = useState(false);
   const q = query.trim();

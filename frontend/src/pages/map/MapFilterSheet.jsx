@@ -1,7 +1,7 @@
 // 필터 시트: 분류, 요금, 거리 반경, 지역, 기타(운영 중, 예약 가능). 모두 AND (FR-MAP-023~027)
 import { CategoryBadge, Glyph } from './mapIcons.jsx';
 import { FilterChip, FilterGroup } from './MapParts.jsx';
-import { SERVICE_DISTRICTS, toggleIn } from './mapUtils.js';
+import { toggleIn } from './mapUtils.js';
 
 const FEES = [
   ['all', '전체'],
@@ -71,7 +71,7 @@ export default function MapFilterSheet(props) {
             )}
           </FilterGroup>
           <FilterGroup title="지역">
-            {SERVICE_DISTRICTS.map((d) => (
+            {props.districtOptions.map((d) => (
               <FilterChip
                 key={d}
                 active={props.districts.includes(d)}
