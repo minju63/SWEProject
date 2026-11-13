@@ -2,10 +2,11 @@
  * 지도 탭 장소·행사 하루 1회 갱신 (SRS FR-MAP-029, DP-MAP-01·02)
  *   1. 장소 원본 3종을 받아 DB 장소와 비교한다 (places.js: 사람이 고친 값은 그대로 둔다)
  *   2. 행사 9개 장르 + 테마 + 상세를 받아 정제하고 장소에 연결한다 (events.js)
- *   3. 적재 전 무결성 점검. 하나라도 걸리면 장소·행사를 적재하지 않고 실패로 기록한다
+ *   3. 온통청년 문화 정책을 받아 DB 문화 정책과 비교한다 (policies.js: 사람이 고친 값은 그대로 둔다)
+ *   4. 적재 전 무결성 점검. 하나라도 걸리면 장소·행사를 적재하지 않고 실패로 기록한다
  *        장소 키 중복 0건, 행사가 가리키는 장소가 모두 DB 에 있음,
  *        행사 번호·출처 키 중복 0건, 다른 정책과 출처 키 충돌 0건, 날짜 역전 0건, 분류·지역 코드 있음
- *   4. apply 일 때만 DB 에 쓴다: 장소 원본 값, 행사, place_issues, collection_run·collection_error
+ *   5. apply 일 때만 DB 에 쓴다: 장소 원본 값, 행사, 문화 정책, place_issues, collection_run·collection_error
  * 공공데이터 일부를 받지 못하면 받은 것만 반영하고(나머지는 기존 값 유지) '부분 성공'으로 남긴다.
  * 끝난 행사는 적재하지 않으며 DB 에서 지우지도 않는다(지도 API 가 종료일로 거른다).
  */
@@ -14,6 +15,7 @@ import * as db from './db.js';
 import { buildEventRows, liveEvents } from './events.js';
 import { mapEventRow } from './mapping.js';
 import { SOURCE_LABEL, planPlaceSync, placeSources } from './places.js';
+import { planPolicySync } from './policies.js';
 import { EVENT_GENRES, apiSource } from './sources.js';
 
 export const kstToday = () => new Date(Date.now() + 9 * 3600e3).toISOString().slice(0, 10);
@@ -77,7 +79,7 @@ export async function runCultureSync({
 
   const schema = await db.schemaReady();
   if (apply && !schema.all)
-    throw new Error('supabase/migrations/20261114_culture_sync.sql 을 먼저 실행하세요.');
+    throw new Error(`supabase/migrations 의 ${schema.missing.join(', ')} 을 먼저 실행하세요.`);
   const places = await db.loadPlaces(schema.baseline);
   const activePlaces = places.filter((p) => p.is_active);
 
@@ -205,7 +207,15 @@ export async function runCultureSync({
     mapEventRow(row, { detailItem: detail, placeByKey })
   );
 
-  // ---------- 3. 무결성 점검 ----------
+  // ---------- 3. 문화 정책 (온통청년) ----------
+  log('문화 정책 수집 (온통청년)');
+  const policyItems = await other('culturePolicies', () => source.culturePolicies());
+  const policyPlan = policyItems
+    ? planPolicySync(await db.loadCulturePolicies(), policyItems, today)
+    : { updates: [], issues: [], stat: null };
+  if (policyItems) log(`  문화 정책 ${policyItems.length}건`);
+
+  // ---------- 4. 무결성 점검 ----------
   const refs = await db.loadReferences();
   const problems = [
     ...checkIntegrity({ places, mapped, refs }),
@@ -213,7 +223,7 @@ export async function runCultureSync({
   ];
 
   // ---------- place_issues ----------
-  const issues = [...placePlan.issues];
+  const issues = [...placePlan.issues, ...policyPlan.issues];
   for (const v of built.unmatched)
     issues.push({
       issue_type: 'event_place_unmatched',
@@ -244,6 +254,8 @@ export async function runCultureSync({
     autoResolve.add('place_missing_in_source').add('new_place_candidate');
   if (allLists && themesOk) autoResolve.add('event_place_unmatched');
   if (allLists) autoResolve.add('event_missing_in_source');
+  if (policyItems)
+    autoResolve.add('policy_new_candidate').add('policy_missing_in_source').add('policy_unlinked');
 
   const collected = live.length > 0 || checked.size > 0;
   const status = problems.length || !collected ? '실패' : errors.length ? '부분 성공' : '성공';
@@ -262,12 +274,13 @@ export async function runCultureSync({
       linked: !!x.detail.place_id,
     }));
   const placeChanges = placePlan.updates.filter((u) => Object.keys(u.changes).length);
+  const policyChanges = policyPlan.updates.filter((u) => Object.keys(u.changes).length);
 
   const report = {
     today,
     source: source.name,
     apply,
-    schemaReady: schema.all,
+    missingMigrations: schema.missing,
     status,
     places: {
       fetched: Object.fromEntries(PLACE_SOURCES.map(([p, fn]) => [p, raw[fn]?.length ?? null])),
@@ -297,6 +310,15 @@ export async function runCultureSync({
       updated: mapped.filter((x) => existingIds.has(x.policy.policy_id)).length,
       relinked,
     },
+    policies: {
+      fetched: policyItems?.length ?? null,
+      linked: policyPlan.stat,
+      changes: policyChanges.map((u) => ({
+        external_id: u.external_id,
+        title: u.title,
+        changes: u.changes,
+      })),
+    },
     issues: countBy(issues, (i) => i.issue_type),
     issueList: issues,
     problems,
@@ -308,6 +330,7 @@ export async function runCultureSync({
   if (!problems.length) {
     await db.updatePlaces(placePlan.updates, now);
     await db.upsertEvents(mapped, refs.categoryId, now);
+    await db.updatePolicies(policyPlan.updates, now);
   }
   report.issueChanges = await db.saveIssues(issues, autoResolve, now);
   report.runId = await db.saveRun(
@@ -318,8 +341,10 @@ export async function runCultureSync({
       started_at: startedAt,
       finished_at: new Date().toISOString(),
       status,
-      collected_count: live.length + sources.size,
-      updated_count: problems.length ? 0 : mapped.length + placeChanges.length,
+      collected_count: live.length + sources.size + (policyItems?.length ?? 0),
+      updated_count: problems.length
+        ? 0
+        : mapped.length + placeChanges.length + policyChanges.length,
       failed_count: errors.length + problems.length,
     },
     [

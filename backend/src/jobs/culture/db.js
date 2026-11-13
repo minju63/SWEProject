@@ -11,14 +11,19 @@ const chunk = (arr, n = 100) =>
 
 const exists = async (table, column) => !(await supabase.from(table).select(column).limit(1)).error;
 
-// 갱신 작업용 컬럼·테이블 (migrations/20261114_culture_sync.sql)
+// 갱신 작업용 컬럼·테이블 (migrations/20261114_culture_sync.sql, 20261115_culture_policy_sync.sql)
 export async function schemaReady() {
-  const [baseline, detailFetched, issues] = await Promise.all([
+  const [baseline, detailFetched, issues, policyIssues] = await Promise.all([
     exists('place', 'source_values'),
     exists('culture_detail', 'detail_fetched'),
     exists('place_issues', 'issue_id'),
+    exists('place_issues', 'policy_id'),
   ]);
-  return { baseline, detailFetched, issues, all: baseline && detailFetched && issues };
+  const missing = [
+    ...(baseline && detailFetched && issues ? [] : ['20261114_culture_sync.sql']),
+    ...(policyIssues ? [] : ['20261115_culture_policy_sync.sql']),
+  ];
+  return { baseline, missing, all: missing.length === 0 };
 }
 
 export async function loadPlaces(withBaseline) {
@@ -103,6 +108,56 @@ export async function sourceKeyConflicts(sources) {
   return conflicts;
 }
 
+// 온통청년에서 온 문화 정책 (data_id YCU-xxx). 비교할 DB 값과 지난번 원본(raw_data)
+const POLICY_COLUMNS =
+  'policy_id, title, application_start_date, application_end_date, application_url, ' +
+  'official_url, support_content, application_method';
+
+export async function loadCulturePolicies() {
+  const sources = must(
+    await supabase
+      .from('policy_source')
+      .select('policy_id, external_id, raw_data')
+      .like('external_id', 'YCU-%'),
+    'policy_source 조회'
+  );
+  const ids = sources.map((s) => s.policy_id);
+  const policies = new Map();
+  const details = new Map();
+  for (const part of chunk(ids)) {
+    const rows = must(
+      await supabase.from('policy').select(POLICY_COLUMNS).in('policy_id', part),
+      'policy 조회'
+    );
+    for (const r of rows) policies.set(r.policy_id, r);
+    const ds = must(
+      await supabase
+        .from('culture_detail')
+        .select('policy_id, event_start_at, event_end_at')
+        .in('policy_id', part),
+      'culture_detail 조회'
+    );
+    for (const d of ds) details.set(d.policy_id, d);
+  }
+  return sources
+    .filter((s) => policies.has(s.policy_id))
+    .map((s) => {
+      const { policy_id, title, ...values } = policies.get(s.policy_id);
+      const d = details.get(policy_id);
+      return {
+        policy_id,
+        external_id: s.external_id,
+        title,
+        raw: s.raw_data,
+        values: {
+          ...values,
+          'detail.event_start_at': d?.event_start_at ?? null,
+          'detail.event_end_at': d?.event_end_at ?? null,
+        },
+      };
+    });
+}
+
 export async function loadIssues() {
   return must(
     await supabase.from('place_issues').select('issue_id, issue_type, ref_key, status'),
@@ -111,6 +166,39 @@ export async function loadIssues() {
 }
 
 // ---------------------------------------------------------------- 쓰기
+
+// 문화 정책: 바뀐 항목만 고치고, 원본(raw_data)과 확인 시각은 늘 갱신한다
+export async function updatePolicies(updates, now) {
+  for (const u of updates) {
+    const policy = {};
+    const detail = {};
+    for (const [field, value] of Object.entries(u.changes)) {
+      if (field.startsWith('detail.')) detail[field.slice(7)] = value;
+      else policy[field] = value;
+    }
+    if (Object.keys(policy).length)
+      must(
+        await supabase
+          .from('policy')
+          .update({ ...policy, last_collected_at: now, updated_at: now })
+          .eq('policy_id', u.policy_id),
+        `policy 갱신 ${u.external_id}`
+      );
+    if (Object.keys(detail).length)
+      must(
+        await supabase.from('culture_detail').update(detail).eq('policy_id', u.policy_id),
+        `culture_detail 갱신 ${u.external_id}`
+      );
+    must(
+      await supabase
+        .from('policy_source')
+        .update({ raw_data: u.raw, last_checked_at: now })
+        .eq('policy_id', u.policy_id)
+        .eq('external_id', u.external_id),
+      `policy_source 갱신 ${u.external_id}`
+    );
+  }
+}
 
 // 바뀐 항목과 원본 기준값만 고친다 (좌표·요금 구분·사진은 건드리지 않음)
 export async function updatePlaces(updates, now) {
@@ -165,6 +253,7 @@ export async function saveIssues(found, autoResolve, now) {
     ref_type: f.ref_type,
     ref_key: f.ref_key,
     place_id: f.place_id ?? null,
+    policy_id: f.policy_id ?? null,
     name: f.name ?? null,
     detail: f.detail ?? null,
     last_seen_at: now,

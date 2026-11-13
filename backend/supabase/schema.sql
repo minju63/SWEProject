@@ -174,14 +174,17 @@ create table place (
 create index place_region_idx on place(region_code);
 create index place_type_idx on place(place_type);
 
--- 장소 문제 목록 (migrations/20261114_culture_sync.sql): 하루 1회 갱신이 기록, 지도 화면은 읽지 않음
+-- 장소 문제 목록 (migrations/20261114_culture_sync.sql, 20261115_culture_policy_sync.sql)
+--   하루 1회 갱신이 장소·행사·문화 정책 문제를 기록, 지도 화면은 읽지 않음
 create table place_issues (
   issue_id       uuid primary key default gen_random_uuid(),
   issue_type     text not null check (issue_type in ('source_differs','source_changed','place_missing_in_source',
-                   'new_place_candidate','event_place_unmatched','event_missing_in_source')),
-  ref_type       text not null check (ref_type in ('place','venue','event')),
+                   'new_place_candidate','event_place_unmatched','event_missing_in_source',
+                   'policy_unlinked','policy_missing_in_source','policy_new_candidate')),
+  ref_type       text not null check (ref_type in ('place','venue','event','policy')),
   ref_key        text not null,
   place_id       uuid references place(place_id) on delete set null,
+  policy_id      uuid references policy(policy_id) on delete set null,
   name           text,
   detail         text,
   status         text not null default '미처리' check (status in ('미처리','확인','해결','무시')),

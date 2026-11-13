@@ -32,6 +32,9 @@ const ISSUE_LABEL = {
   new_place_candidate: '서비스 지역 새 장소 후보',
   event_place_unmatched: '장소에 연결 못 한 행사 장소',
   event_missing_in_source: '목록 API 에서 사라진 행사',
+  policy_unlinked: '온통청년 원본과 연결 못 한 정책',
+  policy_missing_in_source: '온통청년에서 사라진 정책',
+  policy_new_candidate: '새 문화 정책 후보',
 };
 
 function print(r) {
@@ -61,8 +64,18 @@ function print(r) {
   L(`- 이미 있던 행사의 장소 연결 변경 ${r.events.relinked.length}건`);
   for (const x of r.events.relinked)
     L(`  - ${x.id} ${x.title}: ${x.linked ? '장소 연결됨' : '연결 끊김'}`);
+  L(`\n## 문화 정책 (온통청년)`);
+  const p = r.policies;
+  if (p.linked) {
+    L(
+      `- 원본 ${p.fetched}건, DB 정책 연결: 정책 번호 ${p.linked.number}, 정책명 ${p.linked.title}, 연결 못 함 ${p.linked.unlinked}`
+    );
+    L(`- 자동 반영 ${p.changes.length}건`);
+    for (const c of p.changes)
+      L(`  - ${c.external_id} ${c.title}: ${Object.keys(c.changes).join(', ')}`);
+  } else L('- 받지 못함');
   L(
-    `\n## 무결성 점검 ${r.problems.length ? `실패 ${r.problems.length}건 → 장소·행사 적재 안 함` : '통과'}`
+    `\n## 무결성 점검 ${r.problems.length ? `실패 ${r.problems.length}건 → 장소·행사·정책 적재 안 함` : '통과'}`
   );
   for (const p of r.problems.slice(0, 20)) L(`- ${p}`);
   L(`\n## place_issues ${r.issueList.length}건`);
@@ -77,10 +90,8 @@ function print(r) {
   }
   if (r.apply)
     L(`\n기록: collection_run ${r.runId}, place_issues ${JSON.stringify(r.issueChanges)}`);
-  else if (!r.schemaReady)
-    L(
-      '\n참고: migrations/20261114_culture_sync.sql 실행 전이라 원본 기준값이 없는 첫 비교로 계산했습니다.'
-    );
+  else if (r.missingMigrations.length)
+    L(`\n참고: 아직 실행하지 않은 SQL ${r.missingMigrations.join(', ')} (적재 전에 실행 필요)`);
   if (!r.apply) L('\ndry-run 이라 DB 에는 쓰지 않았습니다. 적재는 --apply');
 }
 

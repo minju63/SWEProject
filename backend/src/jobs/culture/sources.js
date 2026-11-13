@@ -2,9 +2,11 @@
 //   행사: 부산 문화 행사 목록 API 9개 장르 + 테마 API(장소 번호) + 장르별 상세 API
 //   장소: 공연장·전시공간 목록 API(두 목록은 내용이 같아 공연장 목록만 받는다), 전국도서관표준데이터, 전국공공시설개방정보
 //   청년공간: 부산청년플랫폼·사하구 청년창업 웹페이지 (youthSpaces.js)
+//   문화 정책: 온통청년 청년정책 API 대분류 문화 (youthCenter.js, SRS DATA-SRCH-01)
 import fs from 'node:fs';
 import path from 'node:path';
 import { getAll, getPage, sleep } from './dataGoKr.js';
+import { getPolicies } from './youthCenter.js';
 import { crawlYouthSpaces } from './youthSpaces.js';
 
 const BUSAN = 'https://apis.data.go.kr/6260000';
@@ -50,11 +52,12 @@ export const apiSource = {
     return all.filter(isBusan);
   },
   youthSpaces: crawlYouthSpaces,
+  culturePolicies: () => getPolicies({ lclsfNm: '문화' }),
 };
 
 // 저장해 둔 응답으로 실행 (API 장애·호출 한도 때 변환 점검용). busan-culture-api/data 폴더 구조
 //   list/{장르}.json, list/theme.json, list/performPlace.json, detail/{장르}_{res_no}.json,
-//   facility/lbrry_busan.json, facility/pblfclt_busan.json
+//   facility/lbrry_busan.json, facility/pblfclt_busan.json, youth/raw/youth_policy_culture_*.json
 export function cacheSource(dir) {
   const read = (...p) => {
     const file = path.join(dir, ...p);
@@ -75,6 +78,14 @@ export function cacheSource(dir) {
     publicFacilities: async () => read('facility', 'pblfclt_busan.json').filter(isBusan),
     youthSpaces: async () => {
       throw new Error('청년공간 웹페이지는 저장된 응답이 없음');
+    },
+    culturePolicies: async () => {
+      const files = fs
+        .readdirSync(path.join(dir, 'youth', 'raw'))
+        .filter((f) => /^youth_policy_culture_.*\.json$/.test(f))
+        .sort();
+      if (!files.length) throw new Error('저장된 온통청년 응답 없음');
+      return read('youth', 'raw', files.at(-1)).items;
     },
   };
 }
