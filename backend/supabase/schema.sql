@@ -79,20 +79,7 @@ create table policy_region (
   primary key (policy_id, region_code)
 );
 
--- 모집 상태·D-day 는 저장하지 않고 계산
-create view v_policy_status as
-select
-  p.policy_id,
-  case
-    when p.is_always_open then '상시'
-    when p.application_start_date is null and p.application_end_date is null then '기간 미정'
-    when p.application_start_date > current_date then '모집 예정'
-    when p.application_end_date < current_date then '마감'
-    else '모집 중'
-  end as recruitment_status,
-  case when p.application_end_date is not null and not p.is_always_open
-       then p.application_end_date - current_date end as d_day
-from policy p;
+-- 모집 상태·D-day 는 저장하지 않고 계산 (culture_detail 생성 뒤로 옮김, 아래 2-1 참고)
 
 -- ---------------------------------------------------------------------
 -- 2. 파트별 상세 (policy 와 1:1)
@@ -147,22 +134,175 @@ create table finance_detail (        -- 장학·금융 (서여경)
   duplicate_allowed    boolean
 );
 
+-- 지도 장소 (김대환, 2026-11-11 추가: migrations/20261111_culture_place.sql)
+create table place (
+  place_id           uuid primary key default gen_random_uuid(),
+  place_key          text not null unique,         -- 원본 장소 키 (CUL-FC000178, LIB-xxxx, OPN-xxxx, YSP-xxxx)
+  name               text not null,
+  place_type         text not null check (place_type in ('공연장','전시공간','도서관','체육시설','청년공간','공공시설','강의실·강당','회의실')),
+  region_code        text references region(region_code),
+  is_target          boolean not null default false,  -- 서비스 지역(사하구·부산진구) 장소 (migrations/20261117_map_srs_strict.sql, DP-MAP-02)
+  address            text,
+  road_address       text,
+  jibun_address      text,
+  lat                numeric(10,7),
+  lng                numeric(10,7),
+  lat_src            numeric(10,7),                -- 원본 좌표 (migrations/20261116_map_srs_fixes.sql)
+  lng_src            numeric(10,7),
+  coord_status       text check (coord_status in ('verified','fixed','review','coord_only','missing')),
+  coord_source       text check (coord_source in ('source','mois_juso')),  -- lat·lng 출처. mois_juso 는 fixed 만
+  coord_distance_m   integer,                      -- 원본 좌표와 행안부 좌표의 거리(m)
+  tel                text,
+  homepage_url       text,
+  open_hours_text    text,
+  closed_days_text   text,
+  fee_text           text,
+  is_free            boolean,
+  fee_type           text check (fee_type in ('free','paid','per_program','unknown')),  -- 요금 구분
+  fee_basis          text check (fee_basis in ('user_provided','rule','source','web')),  -- 요금 구분 근거
+  fee_source_url     text,
+  fee_checked_at     date,
+  reservation_url    text,
+  capacity           integer,
+  is_active          boolean not null default true,
+  image_url          text,                         -- 사진 URL (공공 API·기관 공식 페이지, 링크만 저장)
+  image_source       text,                         -- 사진 출처 페이지
+  description        text,                         -- 소개문 원문
+  source_name        text,
+  source_id          text,
+  raw_data           jsonb,
+  source_values      jsonb,                        -- 마지막으로 받은 공공데이터 원본 값 (하루 1회 갱신의 비교 기준, 좌표 제외)
+  source_checked_at  timestamptz,
+  last_collected_at  timestamptz,
+  last_verified_at   timestamptz,
+  created_at         timestamptz not null default now(),
+  updated_at         timestamptz not null default now(),
+  check ((lat is null) = (lng is null))
+);
+create index place_region_idx on place(region_code);
+create index place_type_idx on place(place_type);
+create index place_is_target_idx on place(is_target);
+
+-- 장소 문제 목록 (migrations/20261114_culture_sync.sql, 20261115_culture_policy_sync.sql)
+--   하루 1회 갱신이 장소·행사·문화 정책 문제를 기록, 지도 화면은 읽지 않음
+create table place_issues (
+  issue_id       uuid primary key default gen_random_uuid(),
+  issue_type     text not null check (issue_type in ('source_differs','source_changed','place_missing_in_source',
+                   'new_place_candidate','merge_candidate','event_place_unmatched','event_missing_in_source',
+                   'policy_unlinked','policy_missing_in_source','policy_new_candidate',
+                   'policy_page_changed','policy_notice_candidate','coord_review','api_error')),
+  ref_type       text not null check (ref_type in ('place','venue','event','policy','api')),
+  ref_key        text not null,
+  place_id       uuid references place(place_id) on delete set null,
+  policy_id      uuid references policy(policy_id) on delete set null,
+  name           text,
+  detail         text,
+  status         text not null default '미처리' check (status in ('미처리','확인','해결','무시')),
+  first_seen_at  timestamptz not null default now(),
+  last_seen_at   timestamptz not null default now(),
+  resolved_at    timestamptz,
+  unique (issue_type, ref_key)
+);
+create index place_issues_status_idx on place_issues (status, issue_type);
+
+-- 찜한 장소 (migrations/20261116_map_srs_fixes.sql, FR-MAP-019): 본인 행만, 탈퇴하면 함께 삭제
+create table user_saved_places (
+  user_id   uuid not null references auth.users(id) on delete cascade,
+  place_id  uuid not null references place(place_id) on delete cascade,
+  saved_at  timestamptz not null default now(),
+  primary key (user_id, place_id)
+);
+
+-- 지도 분류표 (migrations/20261113_map_support.sql): 장소 세부 유형 → 지도 카테고리
+create table map_category (
+  category_code  text primary key,
+  category_name  text not null unique,
+  sort_order     smallint not null,
+  color          text not null
+);
+create table place_type_map (
+  place_type     text primary key,
+  category_code  text not null references map_category(category_code)
+);
+
 create table culture_detail (        -- 문화 (김대환)
   policy_id             uuid primary key references policy(policy_id) on delete cascade,
-  culture_type          text check (culture_type in ('문화프로그램','전시','공연','문화할인')),
-  place_id              uuid,          -- TODO: 지도 장소 테이블 확정 후 FK 연결
+  culture_type          text check (culture_type in ('공연','전시','문화프로그램','문화할인','문화비지원','창작지원','교육·인력양성','청년공간')),
+  genre                 text,          -- 장르 (클래식, 뮤지컬, 연극, 전시 ...)
+  place_id              uuid references place(place_id) on delete set null,
   venue_text            text,
   event_start_at        timestamptz,
   event_end_at          timestamptz,
   schedule_text         text,
-  price                 integer,       -- 0 = 무료
+  price                 integer,       -- 0 = 무료, 등급별 요금이면 최저가
+  price_text            text,          -- 관람료 원문
+  support_amount        integer,       -- 1인당 지원 금액(원)
+  support_amount_text   text,          -- 지원 금액 원문
   discount_rate         numeric(5,2),
   discount_text         text,
   reservation_required  boolean,
   reservation_url       text,
   capacity              integer,
-  age_rating            text
+  age_rating            text,
+  runtime               text,          -- 러닝타임 (행사 상세 원문)
+  organizer             text,          -- 주최·기획
+  casting               text,          -- 출연
+  crew                  text,          -- 제작진
+  detail_fetched        boolean        -- 행사 상세 API 응답을 받았는지 (정책 행은 NULL)
 );
+create index culture_detail_place_idx on culture_detail(place_id);
+
+-- ---------------------------------------------------------------------
+-- 2-1. 모집 상태·D-day 뷰 (migrations/20261112_event_status_view.sql)
+--   정책: 상시·기간 미정·모집 예정·모집 중·마감 (신청 기간 기준)
+--   행사(EVENT): 예정·진행 중·종료·기간 미정 (culture_detail.event_* 기준, d_day 는 종료일 한국 시간)
+-- ---------------------------------------------------------------------
+create view v_policy_status as
+select p.policy_id,
+  case
+    when p.item_type = 'EVENT' then
+      case
+        when cd.event_start_at is null and cd.event_end_at is null then '기간 미정'
+        when cd.event_start_at > now() then '예정'
+        when cd.event_end_at   < now() then '종료'
+        else '진행 중'
+      end
+    when p.is_always_open then '상시'
+    when p.application_start_date is null and p.application_end_date is null then '기간 미정'
+    when p.application_start_date > current_date then '모집 예정'
+    when p.application_end_date   < current_date then '마감'
+    else '모집 중'
+  end as recruitment_status,
+  case
+    when p.item_type = 'EVENT' then
+      (cd.event_end_at at time zone 'Asia/Seoul')::date - (now() at time zone 'Asia/Seoul')::date
+    when p.application_end_date is not null and not p.is_always_open
+      then p.application_end_date - current_date
+  end as d_day
+from policy p
+left join culture_detail cd using (policy_id);
+
+-- 지도 표시 대상 장소 (migrations/20261113_map_support.sql, 20261117_map_srs_strict.sql, FR-MAP-001)
+--   사용 중 + 서비스 지역 + 좌표 있음 + 좌표 검증 verified·fixed·coord_only + 분류표에 있는 유형
+create view v_map_places with (security_invoker = true) as
+select
+  p.place_id, p.place_key, p.name, p.place_type,
+  c.category_code, c.category_name, c.sort_order, c.color,
+  p.region_code, r.region_name as district,
+  p.address, p.lat, p.lng, p.coord_status,
+  p.tel, p.homepage_url, p.open_hours_text, p.closed_days_text,
+  p.fee_text, p.is_free, p.fee_type, p.reservation_url, p.capacity,
+  p.image_url, p.image_source, p.description,
+  p.source_name, p.last_collected_at,
+  p.source_checked_at
+from place p
+join place_type_map t on t.place_type = p.place_type
+join map_category c on c.category_code = t.category_code
+left join region r on r.region_code = p.region_code
+where p.is_active
+  and p.is_target
+  and p.lat is not null and p.lng is not null
+  and p.coord_status in ('verified', 'fixed', 'coord_only');
 
 -- ---------------------------------------------------------------------
 -- 3. 데이터 수집·관리
@@ -397,7 +537,7 @@ declare t text;
 begin
   foreach t in array array['policy_category','policy_subcategory','region','policy',
     'policy_subcategory_map','policy_region','job_detail','housing_detail',
-    'finance_detail','culture_detail','popular_search_keyword']
+    'finance_detail','culture_detail','place','map_category','place_type_map','popular_search_keyword']
   loop
     execute format('alter table %I enable row level security', t);
     execute format('create policy "public read" on %I for select using (true)', t);
@@ -410,7 +550,7 @@ declare t text;
 begin
   foreach t in array array['user_profile','user_bookmark','user_application',
     'user_document_check','user_recent_view','search_history','alarm_preference',
-    'notification','push_subscription']
+    'notification','push_subscription','user_saved_places']
   loop
     execute format('alter table %I enable row level security', t);
     execute format('create policy "own rows" on %I for all using (user_id = auth.uid()) with check (user_id = auth.uid())', t);
@@ -434,6 +574,7 @@ create policy "read own role" on user_role for select using (user_id = auth.uid(
 alter table policy_source enable row level security;
 alter table collection_run enable row level security;
 alter table collection_error enable row level security;
+alter table place_issues enable row level security;
 alter table policy_field_verification enable row level security;
 alter table security_audit_log enable row level security;
 alter table ai_execution_log enable row level security;
@@ -444,3 +585,11 @@ alter table ai_execution_log enable row level security;
 insert into policy_category (category_name, is_search_enabled, sort_order) values
   ('취업·진로', true, 1), ('주거·생활', true, 2), ('장학·금융', true, 3),
   ('문화', true, 4), ('공간·시설', false, 5);
+
+insert into map_category (category_code, category_name, sort_order, color) values
+  ('culture', '문화시설', 1, '#8b63d0'), ('library', '도서관', 2, '#3f8ad8'),
+  ('sports', '체육시설', 3, '#e0587a'), ('public_facility', '공공시설', 4, '#35a276'),
+  ('youth_space', '청년공간', 5, '#e8863a');
+insert into place_type_map (place_type, category_code) values
+  ('공연장', 'culture'), ('전시공간', 'culture'), ('도서관', 'library'),
+  ('체육시설', 'sports'), ('공공시설', 'public_facility'), ('청년공간', 'youth_space');

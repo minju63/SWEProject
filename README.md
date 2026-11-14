@@ -103,6 +103,9 @@ PORT=4000
 SUPABASE_URL=
 SUPABASE_SERVICE_ROLE_KEY=     # 서버 전용, 절대 공개 금지
 CLIENT_URL=http://localhost:5173
+DATA_GO_API_KEY=               # 공공데이터포털 인증키 (지도 장소·행사 갱신용)
+YOUTHCENTER_API_KEY=           # 온통청년 Open API 인증키 (문화 정책 갱신용)
+CULTURE_SYNC_ENABLED=false     # 지도 데이터 하루 1회 자동 갱신. 운영 서버 한 곳에서만 true
 ```
 
 **frontend/.env**
@@ -110,7 +113,10 @@ CLIENT_URL=http://localhost:5173
 VITE_API_BASE_URL=http://localhost:4000/api/v1
 VITE_SUPABASE_URL=
 VITE_SUPABASE_ANON_KEY=        # 로그인용 공개 키
+VITE_KAKAO_JS_KEY=             # 지도 탭 카카오맵 JavaScript 키
 ```
+
+> 카카오맵은 카카오 개발자 콘솔에 등록한 도메인에서만 열립니다. 현재 `http://localhost:5173`이 등록되어 있으니 프론트는 5173 포트로 실행하세요. 키가 없거나 도메인이 다르면 지도 대신 안내 문구가 나오고, 장소 목록은 그대로 동작합니다.
 
 ## 5. API
 
@@ -127,6 +133,8 @@ VITE_SUPABASE_ANON_KEY=        # 로그인용 공개 키
 | GET / PUT | `/me/profile` | ✓ | 내 정보 조회·수정 |
 | GET / POST | `/me/bookmarks` | ✓ | 찜 목록 / 찜하기 (`{ policyId }`) |
 | DELETE | `/me/bookmarks/:policyId` | ✓ | 찜 취소 |
+| GET | `/places` | | 지도 장소 전체 (카테고리·진행 중 행사 수 포함). 사용자 위치는 받지 않음 |
+| GET | `/places/:placeId` | | 장소 상세 + 진행·예정 행사 |
 
 **응답 형식**
 ```json
@@ -146,6 +154,18 @@ VITE_SUPABASE_ANON_KEY=        # 로그인용 공개 키
 4. 금액은 원 단위 정수, 공식 자료에서 못 찾은 값은 0이 아니라 `NULL`.
 5. 모집 상태·D-day는 저장하지 않고 `v_policy_status` 뷰에서 계산합니다.
 6. 테이블·컬럼을 바꿀 때는 Supabase SQL Editor에서 실행한 SQL을 `schema.sql`에도 반영해 커밋합니다.
+
+### 지도 장소·행사 갱신 (하루 1회)
+
+`backend/src/jobs/culture/`가 행사(공공데이터 9개 장르), 장소(공연장·도서관·공공시설 API, 청년공간 웹페이지), 문화 정책(온통청년 API)을 받아, 적재 전 무결성 점검을 통과할 때만 반영합니다. 장소는 부산 전체를 `place`에 두고 사하구·부산진구만 `is_target`이 참입니다. 모든 장소의 좌표를 행안부 API로 검증하며, 지도(`v_map_places`)에는 서비스 지역이면서 좌표 검증이 `verified`·`fixed`·`coord_only`인 장소만 나옵니다(SRS FR-MAP-001). 사람이 고친 값은 덮어쓰지 않고, 연결 못 한 행사 장소·병합 후보·새 정책 후보·원본 변경은 `place_issues`에, 실행 결과는 `collection_run`·`collection_error`에 남깁니다. 문화 정책은 공식 기관 페이지(SRS DATA-MAP-16)와 부산진구청 공지사항도 확인해 원문 주소·최종 확인일을 `policy_source`(CRAWL)에 남깁니다. 웹페이지는 수집기 이름을 밝히고 robots.txt를 지키며 하루 한 번만 읽습니다(robots.txt가 막은 사하구청 게시판·청년문화예술패스는 읽지 않음).
+
+```bash
+cd backend
+npm run sync:culture             # 미리보기 (DB에 쓰지 않음)
+npm run sync:culture -- --apply  # 적재
+```
+
+자동 실행은 `CULTURE_SYNC_ENABLED=true`인 서버에서만 매일 04:00(한국 시간)에 돕니다. 공용 DB에 쓰므로 각자 PC에서는 켜지 마세요.
 
 ## 7. 협업 규칙
 
