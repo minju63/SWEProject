@@ -141,6 +141,9 @@ export function placeSources({
 
 const same = (a, b) => (a ?? null) === (b ?? null);
 const show = (v) => (v === null || v === undefined || v === '' ? '(없음)' : String(v));
+// 원본 기준값이 같은지 항목별로 본다 (DB jsonb 는 키 순서를 바꿔 저장하므로 문자열 비교는 늘 다르게 나온다)
+const sameValues = (a, b) =>
+  !!a && [...new Set([...Object.keys(a), ...Object.keys(b)])].every((k) => same(a[k], b[k]));
 const fieldsOf = (values) => [...AUTO_FIELDS, ...WATCH_FIELDS].filter((f) => f in values);
 
 /*
@@ -198,7 +201,7 @@ export function planPlaceSync(places, sources, checked) {
       });
     if (kept.length)
       issues.push({ ...ref, issue_type: 'source_changed', detail: kept.join(' / ') });
-    if (Object.keys(changes).length || JSON.stringify(base) !== JSON.stringify(src.values))
+    if (Object.keys(changes).length || !sameValues(base, src.values))
       updates.push({
         place_id: p.place_id,
         place_key: p.place_key,
