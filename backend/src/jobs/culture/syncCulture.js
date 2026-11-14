@@ -1,12 +1,13 @@
 /*
  * 지도 탭 장소·행사 하루 1회 갱신 (SRS FR-MAP-029, DP-MAP-01·02)
- *   1. 장소 원본 3종을 받아 DB 장소와 비교한다 (places.js: 사람이 고친 값은 그대로 둔다)
+ *   1. 장소 원본 4종을 받아 DB 장소와 비교하고, 새 부산 장소는 추가한다 (places.js: 사람이 고친 값은 그대로 둔다)
+ *      모든 장소(기존 + 새 장소)의 좌표를 행안부 API 로 검증한다 (coords.js, FR-MAP-030)
  *   2. 행사 9개 장르 + 테마 + 상세를 받아 정제하고 장소에 연결한다 (events.js)
  *   3. 온통청년 문화 정책을 받아 DB 문화 정책과 비교한다 (policies.js: 사람이 고친 값은 그대로 둔다)
  *   4. 적재 전 무결성 점검. 하나라도 걸리면 장소·행사를 적재하지 않고 실패로 기록한다
  *        장소 키 중복 0건, 행사가 가리키는 장소가 모두 DB 에 있음,
  *        행사 번호·출처 키 중복 0건, 다른 정책과 출처 키 충돌 0건, 날짜 역전 0건, 분류·지역 코드 있음
- *   5. apply 일 때만 DB 에 쓴다: 장소 원본 값, 행사, 문화 정책, place_issues, collection_run·collection_error
+ *   5. apply 일 때만 DB 에 쓴다: 새 장소, 장소 원본 값·좌표, 행사, 문화 정책, place_issues, collection_run·collection_error
  * 공공데이터 일부를 받지 못하면 받은 것만 반영하고(나머지는 기존 값 유지) '부분 성공'으로 남긴다.
  * 끝난 행사는 적재하지 않으며 DB 에서 지우지도 않는다(지도 API 가 종료일로 거른다).
  */
@@ -81,8 +82,9 @@ export async function runCultureSync({
   const schema = await db.schemaReady();
   if (apply && !schema.all)
     throw new Error(`supabase/migrations 의 ${schema.missing.join(', ')} 을 먼저 실행하세요.`);
-  const places = await db.loadPlaces(schema.baseline, schema.coords);
+  const places = await db.loadPlaces(schema.baseline, schema.coords, schema.target);
   const activePlaces = places.filter((p) => p.is_active);
+  const refs = await db.loadReferences();
 
   // 부산 문화 API(행사·공연장)는 제공기관 서버가 멈추는 날이 있다.
   // 연속 2번 응답하지 않으면 남은 호출은 건너뛰고 기존 데이터를 둔다 (호출마다 재시도로 수십 분 걸리지 않게)
@@ -124,19 +126,31 @@ export async function runCultureSync({
     log(`  ${SOURCE_LABEL[prefix]} ${result.length}건`);
   }
   const sources = placeSources(raw);
-  const placePlan = planPlaceSync(activePlaces, sources, checked);
+  const placePlan = planPlaceSync(places, sources, checked, {
+    regions: refs.districtCode,
+    now: startedAt,
+    today,
+  });
+  const additions = placePlan.additions;
+  log(
+    `  새 장소 ${additions.length}곳 (서비스 지역 ${additions.filter((p) => p.is_target).length}곳)`
+  );
 
   // 좌표 검증 (행안부). 오류가 나면 이번 검증은 쓰지 않는다
-  log('좌표 검증 (행안부)');
+  // 주소가 이번에 바뀌는 장소는 새 주소로 검증한다
+  const codeName = new Map([...refs.districtCode].map(([name, code]) => [code, name]));
+  const patched = new Map(placePlan.updates.map((u) => [u.place_id, u.changes]));
+  const toVerify = [
+    ...activePlaces.map((p) => ({ ...p, ...(patched.get(p.place_id) ?? {}) })),
+    ...additions,
+  ].map((p) => ({
+    ...p,
+    address: p.road_address ?? p.address,
+    district: codeName.get(p.region_code),
+  }));
+  log(`좌표 검증 (행안부, ${toVerify.length}곳)`);
   const coordPlan = schema.coords
-    ? await verifyCoords(
-        activePlaces.map((p) => ({
-          ...p,
-          address: p.road_address ?? p.address,
-          district: p.region?.region_name,
-        })),
-        log
-      )
+    ? await verifyCoords(toVerify, log)
     : {
         updates: [],
         issues: [],
@@ -151,6 +165,14 @@ export async function runCultureSync({
       retry_count: 0,
     });
     log(`  ${coordPlan.error}`);
+  }
+  // 새 장소는 검증 결과를 넣을 행에 바로 반영하고, 기존 장소만 좌표 갱신 목록에 남긴다
+  const additionById = new Map(additions.map((p) => [p.place_id, p]));
+  const coordUpdates = [];
+  for (const u of coordPlan.updates) {
+    const row = additionById.get(u.place_id);
+    if (row) Object.assign(row, u.changes);
+    else coordUpdates.push(u);
   }
 
   // ---------- 2. 행사 ----------
@@ -215,8 +237,9 @@ export async function runCultureSync({
     } else detailStat.none += 1;
   }
 
-  const placeByKey = new Map(activePlaces.map((p) => [p.place_key, p]));
-  const placeById = new Map(activePlaces.map((p) => [p.place_id, p]));
+  const linkable = [...activePlaces, ...additions.filter((p) => p.is_active)]; // 행사 장소 연결 대상 (서비스 지역 밖 장소 포함, DP-MAP-02)
+  const placeByKey = new Map(linkable.map((p) => [p.place_key, p]));
+  const placeById = new Map(linkable.map((p) => [p.place_id, p]));
   const previousPlace = new Map(
     known
       .filter((r) => placeById.has(r.place_id))
@@ -226,7 +249,7 @@ export async function runCultureSync({
     live,
     themes,
     details,
-    places: activePlaces,
+    places: linkable,
     performPlaces: raw.performPlaces ?? [],
     previousPlace,
     today,
@@ -244,9 +267,8 @@ export async function runCultureSync({
   if (policyItems) log(`  문화 정책 ${policyItems.length}건`);
 
   // ---------- 4. 무결성 점검 ----------
-  const refs = await db.loadReferences();
   const problems = [
-    ...checkIntegrity({ places, mapped, refs }),
+    ...checkIntegrity({ places: [...places, ...additions], mapped, refs }),
     ...(await db.sourceKeyConflicts(mapped.map((x) => x.source))),
   ];
 
@@ -288,7 +310,7 @@ export async function runCultureSync({
   // 이번에 빠짐없이 점검한 종류만 자동 해결 대상
   const autoResolve = new Set();
   if (checked.size === PLACE_SOURCES.length)
-    autoResolve.add('place_missing_in_source').add('new_place_candidate');
+    autoResolve.add('place_missing_in_source').add('new_place_candidate').add('merge_candidate');
   if (allLists && themesOk) autoResolve.add('event_place_unmatched');
   if (allLists) autoResolve.add('event_missing_in_source');
   if (policyItems)
@@ -313,6 +335,8 @@ export async function runCultureSync({
       linked: !!x.detail.place_id,
     }));
   const placeChanges = placePlan.updates.filter((u) => Object.keys(u.changes).length);
+  const addedTarget = additions.filter((p) => p.is_target);
+  const hiddenTypes = new Set(['강의실·강당', '회의실']); // 분류표(place_type_map)에 없는 세부 유형
   const policyChanges = policyPlan.updates.filter((u) => Object.keys(u.changes).length);
 
   const report = {
@@ -323,8 +347,8 @@ export async function runCultureSync({
     status,
     coords: {
       checked: coordPlan.checked,
-      // 좌표 값은 남기지 않고 바뀐 항목 이름만
-      changes: coordPlan.updates.map((u) => ({
+      // 좌표 값은 남기지 않고 바뀐 항목 이름만 (기존 장소)
+      changes: coordUpdates.map((u) => ({
         place_key: u.place_key,
         name: u.name,
         fields: Object.keys(u.changes),
@@ -341,6 +365,29 @@ export async function runCultureSync({
         changes: u.changes,
       })),
       baselines: placePlan.updates.length,
+      added: {
+        total: additions.length,
+        byPrefix: countBy(additions, (p) => p.place_key.slice(0, 3)),
+        target: addedTarget.length,
+        // 서비스 지역 새 장소: 지도에 나오는지 (좌표 검증 verified·fixed·coord_only + 분류표에 있는 유형)
+        targetList: addedTarget.map((p) => ({
+          place_key: p.place_key,
+          name: p.name,
+          place_type: p.place_type,
+          coord_status: p.coord_status,
+          fee_type: p.fee_type,
+          is_active: p.is_active,
+          onMap:
+            p.is_active &&
+            ['verified', 'fixed', 'coord_only'].includes(p.coord_status) &&
+            !hiddenTypes.has(p.place_type),
+        })),
+        coordStatus: countBy(additions, (p) => p.coord_status),
+        placeType: countBy(additions, (p) => p.place_type),
+        merged: placePlan.stat.merged,
+        outsideBusan: placePlan.stat.outsideBusan,
+        noType: placePlan.stat.noType,
+      },
     },
     events: {
       lists: Object.fromEntries(
@@ -378,13 +425,18 @@ export async function runCultureSync({
 
   const now = new Date().toISOString();
   if (!problems.length) {
+    await db.insertPlaces(additions, now);
     await db.touchPlaces(placePlan.checkedIds, now);
     await db.updatePlaces(placePlan.updates, now);
-    await db.updateCoords(coordPlan.updates, now);
+    await db.updateCoords(coordUpdates, now);
     await db.upsertEvents(mapped, refs.categoryId, now);
     await db.updatePolicies(policyPlan.updates, now);
   }
-  report.issueChanges = await db.saveIssues(issues, autoResolve, now);
+  // 적재를 멈췄으면 새 장소가 DB 에 없으므로 문제 목록의 장소 연결을 비운다
+  const saved = problems.length
+    ? issues.map((i) => (additionById.has(i.place_id) ? { ...i, place_id: null } : i))
+    : issues;
+  report.issueChanges = await db.saveIssues(saved, autoResolve, now);
   report.runId = await db.saveRun(
     {
       collection_type: 'API',
@@ -396,7 +448,11 @@ export async function runCultureSync({
       collected_count: live.length + sources.size + (policyItems?.length ?? 0),
       updated_count: problems.length
         ? 0
-        : mapped.length + placeChanges.length + policyChanges.length + coordPlan.updates.length,
+        : additions.length +
+          mapped.length +
+          placeChanges.length +
+          policyChanges.length +
+          coordUpdates.length,
       failed_count: errors.length + problems.length,
     },
     [

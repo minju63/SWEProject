@@ -23,32 +23,36 @@ async function exists(table, column) {
   throw new Error(`DB 확인 실패 ${table}.${column}: ${last.message}`);
 }
 
-// 갱신 작업용 컬럼·테이블 (migrations/20261114_culture_sync.sql, 20261115_culture_policy_sync.sql)
+// 갱신 작업용 컬럼·테이블 (supabase/migrations 의 20261114~20261117)
 export async function schemaReady() {
-  const [baseline, detailFetched, issues, policyIssues, coords, saved] = await Promise.all([
+  const [baseline, detailFetched, issues, policyIssues, coords, saved, target] = await Promise.all([
     exists('place', 'source_values'),
     exists('culture_detail', 'detail_fetched'),
     exists('place_issues', 'issue_id'),
     exists('place_issues', 'policy_id'),
     exists('place', 'lat_src'),
     exists('user_saved_places', 'place_id'),
+    exists('place', 'is_target'),
   ]);
   const missing = [
     ...(baseline && detailFetched && issues ? [] : ['20261114_culture_sync.sql']),
     ...(policyIssues ? [] : ['20261115_culture_policy_sync.sql']),
     ...(coords && saved ? [] : ['20261116_map_srs_fixes.sql']),
+    ...(target ? [] : ['20261117_map_srs_strict.sql']),
   ];
-  return { baseline, coords, missing, all: missing.length === 0 };
+  return { baseline, coords, target, missing, all: missing.length === 0 };
 }
 
-export async function loadPlaces(withBaseline, withCoords) {
+export async function loadPlaces(withBaseline, withCoords, withTarget) {
   const columns = [
     'place_id',
     'place_key',
     'name',
+    'place_type',
     'region_code',
     'is_active',
     'address',
+    'jibun_address',
     'tel',
     'homepage_url',
     'open_hours_text',
@@ -59,6 +63,7 @@ export async function loadPlaces(withBaseline, withCoords) {
     'merged_from:raw_data->extra_json->merged_from', // 다른 출처와 합친 장소의 옛 키
   ];
   if (withBaseline) columns.push('source_values');
+  if (withTarget) columns.push('is_target');
   // 좌표 검증용 (값은 메모리에서만 쓰고 출력하지 않는다)
   if (withCoords)
     columns.push(
@@ -72,7 +77,20 @@ export async function loadPlaces(withBaseline, withCoords) {
       'coord_distance_m',
       'region:region_code (region_name)'
     );
-  return must(await supabase.from('place').select(columns.join(', ')), 'place 조회');
+  // 장소가 1,000곳 가까이 되므로 나눠 읽는다 (Supabase 한 번 응답 상한 1,000행)
+  const rows = [];
+  for (let from = 0; ; from += 1000) {
+    const part = must(
+      await supabase
+        .from('place')
+        .select(columns.join(', '))
+        .order('place_key')
+        .range(from, from + 999),
+      'place 조회'
+    );
+    rows.push(...part);
+    if (part.length < 1000) return rows;
+  }
 }
 
 // 부산 문화 API 에서 온 행사 출처 + 종료 시각 (지난번 상세 응답 재사용, 원본에서 사라진 행사 확인)
@@ -108,10 +126,19 @@ export async function loadReferences() {
     await supabase.from('policy_category').select('category_id, category_name'),
     'policy_category 조회'
   );
-  const regions = must(await supabase.from('region').select('region_code'), 'region 조회');
+  const regions = must(
+    await supabase.from('region').select('region_code, region_name, parent_region_code'),
+    'region 조회'
+  );
   return {
     categoryId: categories.find((c) => c.category_name === '문화')?.category_id ?? null,
     regions: new Set(regions.map((r) => r.region_code)),
+    // 부산 구·군 이름 → region_code
+    districtCode: new Map(
+      regions
+        .filter((r) => r.parent_region_code === '26')
+        .map((r) => [r.region_name, r.region_code])
+    ),
   };
 }
 
@@ -187,10 +214,19 @@ export async function loadCulturePolicies() {
 }
 
 export async function loadIssues() {
-  return must(
-    await supabase.from('place_issues').select('issue_id, issue_type, ref_key, status'),
-    'place_issues 조회'
-  );
+  const rows = [];
+  for (let from = 0; ; from += 1000) {
+    const part = must(
+      await supabase
+        .from('place_issues')
+        .select('issue_id, issue_type, ref_key, status')
+        .order('issue_id')
+        .range(from, from + 999),
+      'place_issues 조회'
+    );
+    rows.push(...part);
+    if (part.length < 1000) return rows;
+  }
 }
 
 // ---------------------------------------------------------------- 쓰기
@@ -247,6 +283,12 @@ export async function updateCoords(updates, now) {
         .eq('place_id', u.place_id),
       `place 좌표 갱신 ${u.place_key}`
     );
+}
+
+// 새 장소 (좌표 검증을 마친 행). 같은 place_id 가 있으면 덮어쓴다
+export async function insertPlaces(rows, now) {
+  for (const part of chunk(rows.map(({ _new, merged_from: _mergedFrom, ...r }) => ({ ...r, updated_at: now }))))
+    must(await supabase.from('place').upsert(part, { onConflict: 'place_id' }), 'place 추가');
 }
 
 // 바뀐 항목과 원본 기준값만 고친다 (좌표·요금 구분·사진은 건드리지 않음)

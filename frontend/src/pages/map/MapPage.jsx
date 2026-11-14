@@ -103,10 +103,12 @@ export default function MapPage() {
     queryFn: fetchSavedPlaces,
     enabled: !!user,
   });
-  const saved = useMemo(
-    () => (user ? (savedQuery.data?.placeIds ?? []) : []),
-    [user, savedQuery.data]
-  );
+  // 지도에서 빠진 장소(좌표 확인 필요로 바뀐 곳)의 찜은 세지 않는다 (DB 에는 남는다)
+  const saved = useMemo(() => {
+    if (!user) return [];
+    const shown = new Set(places.map((p) => p.id));
+    return (savedQuery.data?.placeIds ?? []).filter((id) => shown.has(id));
+  }, [user, savedQuery.data, places]);
 
   // 다른 화면에서 넘긴 조건으로 연다 (FR-MAP-028). 지도 탭에 있을 때 다시 넘어와도 주소가 바뀔 때마다 적용한다
   if (placesQuery.isSuccess && appliedNav !== navKey) {

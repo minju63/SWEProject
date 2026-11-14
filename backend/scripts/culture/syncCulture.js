@@ -3,6 +3,7 @@
 // 실행 (backend 폴더에서):
 //   npm run sync:culture                      # dry-run: 공공데이터를 받아 비교만 하고 DB 에는 쓰지 않는다
 //   npm run sync:culture -- --apply           # 적재 (점검 통과 시 장소·행사, 항상 place_issues·수집 기록)
+// 장소 전체(부산 약 1,000곳)의 좌표를 행안부 API 로 검증하므로 10분 남짓 걸린다.
 //
 // 옵션:
 //   --today YYYY-MM-DD  이 날짜보다 먼저 끝난 행사는 제외 (기본: 오늘, KST)
@@ -29,7 +30,8 @@ const ISSUE_LABEL = {
   source_differs: '처음 비교: 원본과 DB 값이 다름 (확인용)',
   source_changed: '원본 변경, 반영 안 함',
   place_missing_in_source: '원본에서 사라진 장소',
-  new_place_candidate: '서비스 지역 새 장소 후보',
+  new_place_candidate: '추가하지 못한 새 장소',
+  merge_candidate: '병합 후보 (이름만 같거나 주소만 같음)',
   event_place_unmatched: '장소에 연결 못 한 행사 장소',
   event_missing_in_source: '목록 API 에서 사라진 행사',
   policy_unlinked: '온통청년 원본과 연결 못 한 정책',
@@ -49,13 +51,23 @@ function print(r) {
   L(`- 원본 건수: ${JSON.stringify(r.places.fetched)} (null = 받지 못함)`);
   L(`- 비교한 장소 ${r.places.compared}곳, 원본 기준값 저장·갱신 ${r.places.baselines}곳`);
   L(`- 자동 반영 ${r.places.changes.length}곳`);
-  for (const c of r.places.changes)
+  for (const c of r.places.changes.slice(0, 30))
     L(`  - ${c.place_key} ${c.name}: ${Object.keys(c.changes).join(', ')}`);
+  const a = r.places.added;
+  L(
+    `- 새 장소 ${a.total}곳 ${JSON.stringify(a.byPrefix)}, 그중 서비스 지역 ${a.target}곳` +
+      ` (이름·주소가 같아 합친 행 ${a.merged}, 부산 밖·구 미상 ${a.outsideBusan}, 유형 미상 ${a.noType})`
+  );
+  L(`  - 좌표 판정 ${JSON.stringify(a.coordStatus)}, 세부 유형 ${JSON.stringify(a.placeType)}`);
+  for (const x of a.targetList)
+    L(
+      `  - ${x.place_key} ${x.name} (${x.place_type}, ${x.coord_status}, 요금 ${x.fee_type}${x.is_active ? '' : ', 사용 안 함'}): 지도 ${x.onMap ? '표시' : '안 나옴'}`
+    );
   L(`\n## 좌표 검증 (행안부)`);
   if (r.coords.error) L(`- ${r.coords.error}`);
   else {
     L(`- 판정한 장소 ${r.coords.checked}곳, 바뀌는 장소 ${r.coords.changes.length}곳`);
-    for (const c of r.coords.changes)
+    for (const c of r.coords.changes.slice(0, 50))
       L(`  - ${c.place_key} ${c.name}: ${c.fields.join(', ')}${c.status ? ` → ${c.status}` : ''}`);
   }
   L(`\n## 행사`);

@@ -113,6 +113,7 @@ function parseYoungList(html, district) {
       key: youthKey(name),
       prefix: 'YSP',
       district: parseDistrict(address) ?? district,
+      source_name: 'young.busan.go.kr/space',
       values: {
         name,
         address,
@@ -142,6 +143,7 @@ function parseSahaPage(html) {
     key: youthKey(name),
     prefix: 'YSP',
     district: parseDistrict(address) ?? '사하구',
+    source_name: 'saha.go.kr/startup',
     values: {
       name,
       address,

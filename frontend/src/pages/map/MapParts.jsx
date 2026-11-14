@@ -69,16 +69,6 @@ export function CategoryTag({ place }) {
   );
 }
 
-// 좌표 검증 상태가 review 인 장소 (2026-11-13 결정: 숨기지 않고 표시)
-export function ReviewTag({ place }) {
-  if (place.coordStatus !== 'review') return null;
-  return (
-    <span className="inline-flex items-center rounded-md bg-[#fff4e5] px-2 py-0.5 text-[11px] font-extrabold text-[#b26a00]">
-      위치 확인 필요
-    </span>
-  );
-}
-
 export function HeartButton({ place, saved, onToggle, className = 'size-10' }) {
   return (
     <button
@@ -151,7 +141,6 @@ export function PlaceSummary({ place, distance, saved, onToggleSaved, onOpen, on
           <div className="flex flex-wrap items-center gap-2">
             <CategoryTag place={place} />
             <EventChip status={place.nextEventStatus} />
-            <ReviewTag place={place} />
           </div>
           <h3 className="mt-2 text-[18px] font-black tracking-[-0.03em]">{place.name}</h3>
         </div>
@@ -242,7 +231,6 @@ export function PlaceDetail({ place, distance, saved, onToggleSaved, onClose }) 
         <div className="flex flex-wrap items-center gap-2 text-[12px] font-medium text-black/50">
           <CategoryTag place={place} />
           <span>{place.placeType}</span>
-          <ReviewTag place={place} />
           {distance !== null && (
             <span className="font-extrabold text-[#a0672a]">{formatDistance(distance)}</span>
           )}

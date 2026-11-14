@@ -139,8 +139,9 @@ create table place (
   place_id           uuid primary key default gen_random_uuid(),
   place_key          text not null unique,         -- 원본 장소 키 (CUL-FC000178, LIB-xxxx, OPN-xxxx, YSP-xxxx)
   name               text not null,
-  place_type         text not null check (place_type in ('공연장','전시공간','도서관','체육시설','청년공간','공공시설')),
+  place_type         text not null check (place_type in ('공연장','전시공간','도서관','체육시설','청년공간','공공시설','강의실·강당','회의실')),
   region_code        text references region(region_code),
+  is_target          boolean not null default false,  -- 서비스 지역(사하구·부산진구) 장소 (migrations/20261117_map_srs_strict.sql, DP-MAP-02)
   address            text,
   road_address       text,
   jibun_address      text,
@@ -180,13 +181,14 @@ create table place (
 );
 create index place_region_idx on place(region_code);
 create index place_type_idx on place(place_type);
+create index place_is_target_idx on place(is_target);
 
 -- 장소 문제 목록 (migrations/20261114_culture_sync.sql, 20261115_culture_policy_sync.sql)
 --   하루 1회 갱신이 장소·행사·문화 정책 문제를 기록, 지도 화면은 읽지 않음
 create table place_issues (
   issue_id       uuid primary key default gen_random_uuid(),
   issue_type     text not null check (issue_type in ('source_differs','source_changed','place_missing_in_source',
-                   'new_place_candidate','event_place_unmatched','event_missing_in_source',
+                   'new_place_candidate','merge_candidate','event_place_unmatched','event_missing_in_source',
                    'policy_unlinked','policy_missing_in_source','policy_new_candidate','coord_review','api_error')),
   ref_type       text not null check (ref_type in ('place','venue','event','policy','api')),
   ref_key        text not null,
@@ -279,8 +281,8 @@ select p.policy_id,
 from policy p
 left join culture_detail cd using (policy_id);
 
--- 지도 표시 대상 장소 (migrations/20261113_map_support.sql)
---   사용 중 + 좌표 있음 + 분류표에 있는 유형. review 는 표시하고 화면에서 '위치 확인 필요'를 붙인다
+-- 지도 표시 대상 장소 (migrations/20261113_map_support.sql, 20261117_map_srs_strict.sql, FR-MAP-001)
+--   사용 중 + 서비스 지역 + 좌표 있음 + 좌표 검증 verified·fixed·coord_only + 분류표에 있는 유형
 create view v_map_places with (security_invoker = true) as
 select
   p.place_id, p.place_key, p.name, p.place_type,
@@ -297,8 +299,9 @@ join place_type_map t on t.place_type = p.place_type
 join map_category c on c.category_code = t.category_code
 left join region r on r.region_code = p.region_code
 where p.is_active
+  and p.is_target
   and p.lat is not null and p.lng is not null
-  and p.coord_status in ('verified', 'fixed', 'coord_only', 'review');
+  and p.coord_status in ('verified', 'fixed', 'coord_only');
 
 -- ---------------------------------------------------------------------
 -- 3. 데이터 수집·관리

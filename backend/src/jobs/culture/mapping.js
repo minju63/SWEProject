@@ -494,6 +494,7 @@ export function mapPlaceRow(p, images = new Map()) {
     name: p.name.trim(),
     place_type: PLACE_TYPE_OVERRIDE[p.place_id] ?? p.place_type,
     region_code: REGION_CODE[p.sigungu] ?? null,
+    is_target: p.is_target === '1', // 서비스 지역(사하구·부산진구) 장소 (DP-MAP-02)
     address: clean(p.addr),
     road_address: clean(p.addr_road),
     jibun_address: clean(p.addr_jibun),

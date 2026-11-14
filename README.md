@@ -157,7 +157,7 @@ VITE_KAKAO_JS_KEY=             # 지도 탭 카카오맵 JavaScript 키
 
 ### 지도 장소·행사 갱신 (하루 1회)
 
-`backend/src/jobs/culture/`가 행사(공공데이터 9개 장르), 장소(공연장·도서관·공공시설 API, 청년공간 웹페이지), 문화 정책(온통청년 API)을 받아, 적재 전 무결성 점검을 통과할 때만 반영합니다. 사람이 고친 값은 덮어쓰지 않고, 연결 못 한 행사 장소·새 장소와 새 정책 후보·원본 변경은 `place_issues`에, 실행 결과는 `collection_run`·`collection_error`에 남깁니다. 웹페이지는 수집기 이름을 밝히고 robots.txt를 지키며 하루 한 번만 읽습니다.
+`backend/src/jobs/culture/`가 행사(공공데이터 9개 장르), 장소(공연장·도서관·공공시설 API, 청년공간 웹페이지), 문화 정책(온통청년 API)을 받아, 적재 전 무결성 점검을 통과할 때만 반영합니다. 장소는 부산 전체를 `place`에 두고 사하구·부산진구만 `is_target`이 참입니다. 모든 장소의 좌표를 행안부 API로 검증하며, 지도(`v_map_places`)에는 서비스 지역이면서 좌표 검증이 `verified`·`fixed`·`coord_only`인 장소만 나옵니다(SRS FR-MAP-001). 사람이 고친 값은 덮어쓰지 않고, 연결 못 한 행사 장소·병합 후보·새 정책 후보·원본 변경은 `place_issues`에, 실행 결과는 `collection_run`·`collection_error`에 남깁니다. 웹페이지는 수집기 이름을 밝히고 robots.txt를 지키며 하루 한 번만 읽습니다.
 
 ```bash
 cd backend

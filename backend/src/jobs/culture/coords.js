@@ -2,10 +2,11 @@
  * 장소 좌표 검증·보정 (SRS FR-MAP-030, DP-MAP-03, NFR-MAP-020·025, UC-MAP-008 5단계)
  *   1. 주소를 행안부 도로명주소 검색 API(DORO_KEY)로 찾는다. 검색어와 정확히 같은 주소 후보만 센다.
  *   2. 후보가 1건이면 행정코드로 좌표제공 API(COORDINATE_KEY)를 불러 UTM-K 좌표를 WGS84 위경도로 바꾼다.
- *   3. 판정 (처음 정제 busan-culture-api/cleanup/bundleB.js 와 같은 규칙)
- *        원본 좌표를 쓸 수 있고 행안부 좌표가 있음: 거리 300m 이내 verified, 넘으면 review (lat·lng 는 원본)
+ *   3. 판정 (DP-MAP-03 (3)(4) 그대로)
+ *        원본 좌표를 쓸 수 있고 행안부 좌표가 있음: 거리 300m 이내 verified, 넘으면 review
  *        원본 좌표를 쓸 수 없고 행안부 좌표가 있음: fixed (lat·lng 를 행안부 좌표로, coord_source mois_juso)
- *        후보가 여러 개: review (단, 이미 판정한 장소는 그대로 두고 확인 대상으로만 기록) / 행안부 좌표 없음: 원본이 있으면 coord_only, 없으면 missing
+ *        후보가 2건 이상: review / 행안부 좌표 없음: 원본이 있으면 coord_only, 없으면 missing
+ *      fixed 가 아니면 lat·lng 는 쓸 수 있는 원본 좌표, 없으면 빈 값이다. review·missing 은 지도에 나오지 않는다(FR-MAP-001).
  * 행안부 좌표는 fixed 장소의 lat·lng 로만 저장하고 그 밖에는 거리 계산에만 쓴다. 행정코드는 저장하지 않는다.
  * 좌표 값은 로그·보고에 남기지 않는다. 행안부 API 가 오류를 내면 이번 검증을 건너뛰고 기존 값을 둔다 (5C).
  */
@@ -205,6 +206,10 @@ async function moisCoord(address, district, state) {
 
 function judge(place, mois) {
   const srcOk = usable(Number(place.lat_src), Number(place.lng_src));
+  // fixed 가 아니면 lat·lng 는 원본 좌표 그대로 (쓸 수 없으면 빈 값)
+  const src = srcOk
+    ? { lat: Number(place.lat_src), lng: Number(place.lng_src) }
+    : { lat: null, lng: null };
   if (mois.lat !== undefined) {
     if (!srcOk)
       return {
@@ -221,6 +226,7 @@ function judge(place, mois) {
       coord_status: d <= THRESHOLD_M ? 'verified' : 'review',
       coord_source: 'source',
       coord_distance_m: d,
+      ...src,
       reason:
         d <= THRESHOLD_M ? null : `원본 좌표와 행안부 좌표가 ${d}m 차이 (기준 ${THRESHOLD_M}m)`,
     };
@@ -230,12 +236,12 @@ function judge(place, mois) {
       coord_status: 'review',
       coord_source: srcOk ? 'source' : null,
       coord_distance_m: null,
-      ambiguous: true,
-      reason: '주소와 일치하는 행안부 후보가 여러 개',
+      ...src,
+      reason: '주소와 일치하는 행안부 후보가 2건 이상',
     };
   return srcOk
-    ? { coord_status: 'coord_only', coord_source: 'source', coord_distance_m: null }
-    : { coord_status: 'missing', coord_source: null, coord_distance_m: null };
+    ? { coord_status: 'coord_only', coord_source: 'source', coord_distance_m: null, ...src }
+    : { coord_status: 'missing', coord_source: null, coord_distance_m: null, ...src };
 }
 
 const sameCoord = (a, b) => a != null && b != null && Math.abs(Number(a) - Number(b)) < 1e-7;
@@ -281,32 +287,16 @@ export async function verifyCoords(places, log = () => {}) {
   places.forEach((place, i) => {
     const r = results[i];
     if (!r) return;
-    // 후보가 여러 개면 자동으로 판정할 수 없을 뿐 좌표가 틀렸다는 근거는 아니다.
-    // 이전에 판정한 장소(사람이 확인한 곳 포함)는 그대로 두고 확인 대상으로만 기록한다
-    if (r.ambiguous && ['verified', 'fixed', 'coord_only'].includes(place.coord_status)) {
-      issues.push({
-        issue_type: 'coord_review',
-        ref_type: 'place',
-        ref_key: place.place_key,
-        place_id: place.place_id,
-        name: place.name,
-        detail: `${r.reason} (같은 주소에 건물이 여러 개). 지난 판정 ${place.coord_status} 유지, 위치가 맞는지 확인`,
-      });
-      return;
-    }
     const changes = {};
     for (const k of ['coord_status', 'coord_source', 'coord_distance_m'])
       if ((place[k] ?? null) !== (r[k] ?? null)) changes[k] = r[k] ?? null;
-    if (
-      r.coord_status === 'fixed' &&
-      !(sameCoord(place.lat, r.lat) && sameCoord(place.lng, r.lng))
-    ) {
+    const sameLatLng =
+      r.lat == null
+        ? place.lat == null && place.lng == null
+        : sameCoord(place.lat, r.lat) && sameCoord(place.lng, r.lng);
+    if (!sameLatLng) {
       changes.lat = r.lat;
       changes.lng = r.lng;
-    }
-    if (r.coord_status === 'missing' && place.lat != null) {
-      changes.lat = null;
-      changes.lng = null;
     }
     if (Object.keys(changes).length)
       updates.push({

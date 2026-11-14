@@ -394,7 +394,7 @@ async function countMine(db, b) {
 }
 
 // DB의 place 와 새로 만든 행을 비교한다. 좌표는 값 대신 "바뀜/생김/없어짐"만 보여 준다.
-// 마이그레이션 순서대로 생긴 선택 컬럼 (20261112_place_image.sql, 20261113_map_support.sql, 20261114_culture_sync.sql, 20261116_map_srs_fixes.sql)
+// 마이그레이션 순서대로 생긴 선택 컬럼 (20261112_place_image.sql, 20261113_map_support.sql, 20261114_culture_sync.sql, 20261116_map_srs_fixes.sql, 20261117_map_srs_strict.sql)
 const OPTIONAL_COLUMNS = {
   place: [
     'image_url',
@@ -408,6 +408,7 @@ const OPTIONAL_COLUMNS = {
     'fee_basis',
     'fee_source_url',
     'fee_checked_at',
+    'is_target',
   ],
   culture_detail: ['runtime', 'organizer', 'casting', 'crew', 'detail_fetched'],
 };
