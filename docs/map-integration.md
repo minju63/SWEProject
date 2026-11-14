@@ -79,7 +79,7 @@ navigate('/map');                                                    // 홈 공�
       }
     ],
     "categories": [{ "category_code": "culture", "category_name": "문화시설", "sort_order": 1, "color": "#8b63d0" }],
-    "totalCount": 108,
+    "totalCount": 107,
     "sync": { "last_success_at": "...", "next_run_at": null }
   }
 }
@@ -157,7 +157,7 @@ SQL 실행 순서 (`backend/supabase/migrations`, 실행은 대환이 합니다)
 | 파일 | 실행 |
 |---|---|
 | `20261111_culture_place.sql` ~ `20261116_map_srs_fixes.sql` | 완료 |
-| `20261117_map_srs_strict.sql` | 예정 (`place.is_target`, 문제 종류 추가, `v_map_places` 조건) |
+| `20261117_map_srs_strict.sql` | 완료 (2026-11-14, `place.is_target`, 문제 종류 추가, `v_map_places` 조건) |
 
 ## 8. 실행·배포
 
