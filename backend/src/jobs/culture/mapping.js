@@ -473,6 +473,8 @@ export const PLACE_TYPE_OVERRIDE = {
 };
 
 const FEE_TYPES = ['free', 'paid', 'per_program', 'unknown'];
+const FEE_BASES = ['user_provided', 'rule', 'source', 'web'];
+const COORD_SOURCES = ['source', 'mois_juso'];
 
 // 소개문: 청년플랫폼 공간 목록의 소개 원문. 앞부분이 잘린 채 게시된 원문(수집 메모가 붙은 것)은 쓰지 않는다.
 function placeDescription(extra) {
@@ -497,7 +499,14 @@ export function mapPlaceRow(p, images = new Map()) {
     jibun_address: clean(p.addr_jibun),
     lat,
     lng,
+    // 원본 좌표·좌표 출처·행안부 좌표와의 거리 (DP-MAP-03). 행안부 좌표는 fixed 의 lat·lng 로만 둔다
+    lat_src: toCoord(p.lat_src, p.lng_src)[0],
+    lng_src: toCoord(p.lat_src, p.lng_src)[1],
     coord_status: clean(p.coord_status),
+    coord_source: COORD_SOURCES.includes(p.coord_source) ? p.coord_source : null,
+    coord_distance_m: /^\d+(\.\d+)?$/.test(p.coord_distance_m ?? '')
+      ? Math.round(Number(p.coord_distance_m))
+      : null,
     tel: clean(p.tel),
     homepage_url: toUrl(p.homepage),
     open_hours_text: clean(p.open_hours_raw),
@@ -506,6 +515,12 @@ export function mapPlaceRow(p, images = new Map()) {
     is_free: flag[p.is_free] ?? null,
     // 요금 구분: 근거를 확인 못 한 장소는 unknown (SRS FR-MAP-031)
     fee_type: FEE_TYPES.includes(p.fee_type) ? p.fee_type : 'unknown',
+    // 요금 구분 근거 (DP-MAP-04). 'web(공식)' 처럼 괄호 설명이 붙은 값은 앞부분만
+    fee_basis: FEE_BASES.includes((p.fee_basis ?? '').split('(')[0])
+      ? p.fee_basis.split('(')[0]
+      : null,
+    fee_source_url: toUrl(p.fee_source_url),
+    fee_checked_at: toDate(p.fee_checked_at),
     reservation_url: toUrl(p.reservation_url),
     capacity: toInt(p.capacity),
     is_active: p.active !== '0',

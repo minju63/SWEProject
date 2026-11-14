@@ -185,7 +185,7 @@ function writePreview(opt, b) {
     b.all.flatMap((x) => x.regions)
   );
   // 좌표·원본행은 미리보기에서 뺀다 (좌표 출력 금지 규칙)
-  const HIDDEN = new Set(['lat', 'lng', 'raw_data']);
+  const HIDDEN = new Set(['lat', 'lng', 'lat_src', 'lng_src', 'raw_data']);
   w(
     'place.json',
     b.placeRows.map((p) => ({
@@ -394,9 +394,21 @@ async function countMine(db, b) {
 }
 
 // DB의 place 와 새로 만든 행을 비교한다. 좌표는 값 대신 "바뀜/생김/없어짐"만 보여 준다.
-// 마이그레이션 순서대로 생긴 선택 컬럼 (20261112_place_image.sql, 20261113_map_support.sql, 20261114_culture_sync.sql)
+// 마이그레이션 순서대로 생긴 선택 컬럼 (20261112_place_image.sql, 20261113_map_support.sql, 20261114_culture_sync.sql, 20261116_map_srs_fixes.sql)
 const OPTIONAL_COLUMNS = {
-  place: ['image_url', 'image_source', 'description', 'fee_type'],
+  place: [
+    'image_url',
+    'image_source',
+    'description',
+    'fee_type',
+    'lat_src',
+    'lng_src',
+    'coord_source',
+    'coord_distance_m',
+    'fee_basis',
+    'fee_source_url',
+    'fee_checked_at',
+  ],
   culture_detail: ['runtime', 'organizer', 'casting', 'crew', 'detail_fetched'],
 };
 

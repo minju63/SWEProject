@@ -33,7 +33,8 @@ export function toPlace(p) {
     imageSource: p.image_source ?? '',
     description: p.description ?? '',
     sourceName: p.source_name ?? '',
-    collectedAt: kstDate(p.last_collected_at),
+    // 데이터 기준일: 하루 1회 갱신이 원본과 마지막으로 맞춰 본 날 (없으면 처음 수집일)
+    collectedAt: kstDate(p.source_checked_at ?? p.last_collected_at),
     liveEventCount: p.live_event_count ?? 0,
     nextEventStatus: p.next_event_status ?? null,
   };

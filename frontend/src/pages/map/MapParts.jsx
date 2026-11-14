@@ -466,3 +466,75 @@ export function ChipBar({ categories, category, onCategory, fee, onFee, height }
     </DragScroll>
   );
 }
+
+// 위치 권한 켜는 방법 (FR-MAP-016). 웹은 기기 설정을 직접 열 수 없어 브라우저별 방법을 보여준다
+const GUIDES = [
+  {
+    id: 'ios',
+    label: 'iPhone·iPad Safari',
+    steps:
+      '주소창의 가가(aA) → 웹 사이트 설정 → 위치 → 허용. 그래도 안 되면 설정 앱 → 개인정보 보호 및 보안 → 위치 서비스 → Safari 웹 사이트 → 앱을 사용하는 동안',
+  },
+  { id: 'android', label: 'Android Chrome', steps: '주소창 왼쪽 아이콘 → 권한 → 위치 → 허용' },
+  {
+    id: 'desktop',
+    label: 'PC Chrome·Edge',
+    steps: '주소창 왼쪽 사이트 정보 아이콘 → 위치 → 허용 → 새로고침',
+  },
+  {
+    id: 'mac',
+    label: 'Mac Safari',
+    steps: 'Safari 메뉴 → 설정 → 웹 사이트 → 위치 → 이 사이트 허용',
+  },
+];
+
+function browserGuide() {
+  const ua = navigator.userAgent;
+  if (/iPhone|iPad|iPod/.test(ua)) return 'ios';
+  if (/Android/.test(ua)) return 'android';
+  if (/Macintosh/.test(ua) && /Safari/.test(ua) && !/Chrome|Edg/.test(ua)) return 'mac';
+  return 'desktop';
+}
+
+export function LocationGuide({ top, onRetry, onClose }) {
+  const mine = browserGuide();
+  const list = [...GUIDES.filter((g) => g.id === mine), ...GUIDES.filter((g) => g.id !== mine)];
+  return (
+    <section
+      role="dialog"
+      aria-label="위치 권한 켜는 방법"
+      className="absolute inset-x-2.5 z-[26] rounded-xl bg-white p-4 shadow-[0_6px_20px_rgba(23,25,35,0.18)]"
+      style={{ top }}
+    >
+      <div className="flex items-start justify-between">
+        <h2 className="text-[14px] font-black">위치 권한 켜는 방법</h2>
+        <button
+          type="button"
+          onClick={onClose}
+          aria-label="닫기"
+          className="-m-2 grid size-10 place-items-center text-black/40"
+        >
+          <Glyph name="close" className="size-4" />
+        </button>
+      </div>
+      <ul className="mt-2 space-y-2">
+        {list.map((g, i) => (
+          <li key={g.id} className={i === 0 ? '' : 'opacity-60'}>
+            <p className="text-[12px] font-extrabold">
+              {g.label}
+              {i === 0 && <span className="ml-1 text-[#6678c8]">지금 쓰는 브라우저</span>}
+            </p>
+            <p className="text-[12px] font-medium leading-snug text-black/60">{g.steps}</p>
+          </li>
+        ))}
+      </ul>
+      <button
+        type="button"
+        onClick={onRetry}
+        className="mt-3 h-10 w-full rounded-lg border border-[#6678c8] text-[13px] font-extrabold text-[#6678c8]"
+      >
+        권한을 켰어요, 다시 시도
+      </button>
+    </section>
+  );
+}

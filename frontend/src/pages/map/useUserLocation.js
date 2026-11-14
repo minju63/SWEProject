@@ -42,10 +42,12 @@ export function useUserLocation({ onLocated } = {}) {
   useEffect(() => {
     let cancelled = false;
     const ask = () => !cancelled && setState({ status: 'prompt', position: null });
-    const query = navigator.permissions?.query?.({ name: 'geolocation' });
-    if (!query) {
-      Promise.resolve().then(ask);
-    } else {
+    const start = () => {
+      const query = navigator.permissions?.query?.({ name: 'geolocation' });
+      if (!query) {
+        Promise.resolve().then(ask);
+        return;
+      }
       query
         .then((p) => {
           if (cancelled) return;
@@ -54,9 +56,18 @@ export function useUserLocation({ onLocated } = {}) {
           else ask();
         })
         .catch(ask);
-    }
+    };
+    // 지도 탭이 화면에 보일 때만 위치를 읽는다 (NFR-MAP-007). 숨겨진 채로 열렸으면 보일 때까지 기다린다
+    const onVisible = () => {
+      if (document.visibilityState !== 'visible') return;
+      document.removeEventListener('visibilitychange', onVisible);
+      start();
+    };
+    if (document.visibilityState === 'visible') start();
+    else document.addEventListener('visibilitychange', onVisible);
     return () => {
       cancelled = true;
+      document.removeEventListener('visibilitychange', onVisible);
     };
   }, [locate]);
 

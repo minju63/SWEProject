@@ -14,6 +14,7 @@ import { QuotaError } from './dataGoKr.js';
 import * as db from './db.js';
 import { buildEventRows, liveEvents } from './events.js';
 import { mapEventRow } from './mapping.js';
+import { verifyCoords } from './coords.js';
 import { SOURCE_LABEL, planPlaceSync, placeSources } from './places.js';
 import { planPolicySync } from './policies.js';
 import { EVENT_GENRES, apiSource } from './sources.js';
@@ -80,7 +81,7 @@ export async function runCultureSync({
   const schema = await db.schemaReady();
   if (apply && !schema.all)
     throw new Error(`supabase/migrations 의 ${schema.missing.join(', ')} 을 먼저 실행하세요.`);
-  const places = await db.loadPlaces(schema.baseline);
+  const places = await db.loadPlaces(schema.baseline, schema.coords);
   const activePlaces = places.filter((p) => p.is_active);
 
   // 부산 문화 API(행사·공연장)는 제공기관 서버가 멈추는 날이 있다.
@@ -124,6 +125,33 @@ export async function runCultureSync({
   }
   const sources = placeSources(raw);
   const placePlan = planPlaceSync(activePlaces, sources, checked);
+
+  // 좌표 검증 (행안부). 오류가 나면 이번 검증은 쓰지 않는다
+  log('좌표 검증 (행안부)');
+  const coordPlan = schema.coords
+    ? await verifyCoords(
+        activePlaces.map((p) => ({
+          ...p,
+          address: p.road_address ?? p.address,
+          district: p.region?.region_name,
+        })),
+        log
+      )
+    : {
+        updates: [],
+        issues: [],
+        checked: 0,
+        error: '20261116_map_srs_fixes.sql 실행 전이라 좌표 검증을 건너뜀',
+      };
+  if (coordPlan.error) {
+    errors.push({
+      error_type: 'API',
+      source_url: 'juso.go.kr',
+      error_message: coordPlan.error,
+      retry_count: 0,
+    });
+    log(`  ${coordPlan.error}`);
+  }
 
   // ---------- 2. 행사 ----------
   log('행사 수집');
@@ -223,7 +251,16 @@ export async function runCultureSync({
   ];
 
   // ---------- place_issues ----------
-  const issues = [...placePlan.issues, ...policyPlan.issues];
+  const issues = [...placePlan.issues, ...coordPlan.issues, ...policyPlan.issues];
+  // 외부 API 오류도 문제 목록에 남긴다 (UC-MAP-008 2A). 다음 실행에서 성공하면 '해결'
+  for (const e of errors)
+    issues.push({
+      issue_type: 'api_error',
+      ref_type: 'api',
+      ref_key: e.source_url,
+      name: null,
+      detail: e.error_message,
+    });
   for (const v of built.unmatched)
     issues.push({
       issue_type: 'event_place_unmatched',
@@ -256,6 +293,8 @@ export async function runCultureSync({
   if (allLists) autoResolve.add('event_missing_in_source');
   if (policyItems)
     autoResolve.add('policy_new_candidate').add('policy_missing_in_source').add('policy_unlinked');
+  if (!coordPlan.error) autoResolve.add('coord_review');
+  autoResolve.add('api_error');
 
   const collected = live.length > 0 || checked.size > 0;
   const status = problems.length || !collected ? '실패' : errors.length ? '부분 성공' : '성공';
@@ -282,6 +321,17 @@ export async function runCultureSync({
     apply,
     missingMigrations: schema.missing,
     status,
+    coords: {
+      checked: coordPlan.checked,
+      // 좌표 값은 남기지 않고 바뀐 항목 이름만
+      changes: coordPlan.updates.map((u) => ({
+        place_key: u.place_key,
+        name: u.name,
+        fields: Object.keys(u.changes),
+        status: u.changes.coord_status ?? null,
+      })),
+      error: coordPlan.error,
+    },
     places: {
       fetched: Object.fromEntries(PLACE_SOURCES.map(([p, fn]) => [p, raw[fn]?.length ?? null])),
       compared: activePlaces.filter((p) => checked.has(p.place_key.slice(0, 3))).length,
@@ -328,7 +378,9 @@ export async function runCultureSync({
 
   const now = new Date().toISOString();
   if (!problems.length) {
+    await db.touchPlaces(placePlan.checkedIds, now);
     await db.updatePlaces(placePlan.updates, now);
+    await db.updateCoords(coordPlan.updates, now);
     await db.upsertEvents(mapped, refs.categoryId, now);
     await db.updatePolicies(policyPlan.updates, now);
   }
@@ -344,7 +396,7 @@ export async function runCultureSync({
       collected_count: live.length + sources.size + (policyItems?.length ?? 0),
       updated_count: problems.length
         ? 0
-        : mapped.length + placeChanges.length + policyChanges.length,
+        : mapped.length + placeChanges.length + policyChanges.length + coordPlan.updates.length,
       failed_count: errors.length + problems.length,
     },
     [

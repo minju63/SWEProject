@@ -150,6 +150,7 @@ const fieldsOf = (values) => [...AUTO_FIELDS, ...WATCH_FIELDS].filter((f) => f i
  */
 export function planPlaceSync(places, sources, checked) {
   const updates = [];
+  const checkedIds = []; // 원본과 맞춰 본 장소 (확인 일시를 남긴다)
   const issues = [];
   const known = new Set();
   for (const p of places) {
@@ -170,6 +171,7 @@ export function planPlaceSync(places, sources, checked) {
       });
       continue;
     }
+    checkedIds.push(p.place_id);
     const base = p.source_values;
     const changes = {};
     const firstDiffs = [];
@@ -227,5 +229,5 @@ export function planPlaceSync(places, sources, checked) {
           : ' (좌표 검증·분류·요금 확인 후 추가)'),
     });
   }
-  return { updates, issues };
+  return { updates, issues, checkedIds };
 }

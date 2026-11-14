@@ -2,14 +2,14 @@
 // 기준: SRS v0.6 FR-MAP-001~028, SDD COMP-MAP-01~08
 import { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
 import { useLocation } from 'react-router-dom';
-import { useQuery } from '@tanstack/react-query';
-import { fetchPlaces } from '../../api/places';
+import { useQuery, useQueryClient } from '@tanstack/react-query';
+import { fetchPlaces, fetchSavedPlaces, savePlace, unsavePlace } from '../../api/places';
 import { fetchProfile } from '../../api/me';
 import { useAuthStore } from '../../store/authStore';
 import KakaoMap, { MAX_ZOOM, MIN_ZOOM } from './KakaoMap.jsx';
 import MapHeader from './MapHeader.jsx';
 import MapFilterSheet from './MapFilterSheet.jsx';
-import { ChipBar, PlaceDetail, PlaceRow, PlaceSummary } from './MapParts.jsx';
+import { ChipBar, LocationGuide, PlaceDetail, PlaceRow, PlaceSummary } from './MapParts.jsx';
 import { Glyph } from './mapIcons.jsx';
 import { useUserLocation } from './useUserLocation.js';
 import {
@@ -67,7 +67,8 @@ export default function MapPage() {
   const area = useMemo(() => serviceArea(places), [places]);
 
   // ---------- 화면 상태 ----------
-  const [notice, setNotice] = useState('');
+  const [notice, setNotice] = useState(null); // { text, ms }
+  const [guideOpen, setGuideOpen] = useState(false);
   const [dismissed, setDismissed] = useState(null);
   const [category, setCategory] = useState('all');
   const [fee, setFee] = useState('all');
@@ -77,7 +78,6 @@ export default function MapPage() {
   const [reservableOnly, setReservableOnly] = useState(false);
   const [filterOpen, setFilterOpen] = useState(false);
   const [savedOnly, setSavedOnly] = useState(false);
-  const [saved, setSaved] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedId, setSelectedId] = useState(null);
   const [detailId, setDetailId] = useState(null);
@@ -86,12 +86,27 @@ export default function MapPage() {
   // null: 아직 아무도 지도를 옮기지 않음 → 기본 중심(거주 구)을 따라간다
   const [viewportState, setViewport] = useState(null);
   const [headerKey, setHeaderKey] = useState(0);
+  const [entrySearch, setEntrySearch] = useState({ q: '', results: false }); // 다른 화면이 넘긴 검색어
   const [appliedNav, setAppliedNav] = useState(null);
   const [mapStarted, setMapStarted] = useState(false);
   const regionRef = useRef(null);
   const listRef = useRef(null);
   const cardRefs = useRef({});
   const handleStart = useRef(null);
+  // 안내 문구: 기본 3초, 찜 안내는 약 2초 (FR-MAP-016·018)
+  const say = useCallback((text, ms = 3000) => setNotice({ text, ms }), []);
+
+  // 찜 (FR-MAP-018~020): 로그인한 사용자의 찜을 서버(user_saved_places)에 둔다
+  const queryClient = useQueryClient();
+  const savedQuery = useQuery({
+    queryKey: ['savedPlaces', user?.id],
+    queryFn: fetchSavedPlaces,
+    enabled: !!user,
+  });
+  const saved = useMemo(
+    () => (user ? (savedQuery.data?.placeIds ?? []) : []),
+    [user, savedQuery.data]
+  );
 
   // 다른 화면에서 넘긴 조건으로 연다 (FR-MAP-028). 지도 탭에 있을 때 다시 넘어와도 주소가 바뀔 때마다 적용한다
   if (placesQuery.isSuccess && appliedNav !== navKey) {
@@ -111,7 +126,7 @@ export default function MapPage() {
   const location = useUserLocation({
     onLocated: (pos, request) => {
       if (!insideArea(latest.current.area, pos)) {
-        setNotice(OUTSIDE_NOTICE);
+        say(OUTSIDE_NOTICE);
         return;
       }
       // 버튼으로 요청했거나 아직 아무도 지도를 옮기지 않았을 때만 내 위치로 옮긴다
@@ -194,7 +209,7 @@ export default function MapPage() {
 
   useEffect(() => {
     if (!notice) return;
-    const timer = window.setTimeout(() => setNotice(''), 3000);
+    const timer = window.setTimeout(() => setNotice(null), notice.ms);
     return () => window.clearTimeout(timer);
   }, [notice]);
 
@@ -223,10 +238,17 @@ export default function MapPage() {
     resetFilter();
     setDetailId(null);
     setHeaderKey((k) => k + 1);
-    const place = key ? places.find((p) => p.id === key || p.key === key) : null;
-    if (key && !place) setNotice('장소 정보를 찾을 수 없어요');
+    // 검색어가 장소 1곳과 일치하면 그 장소 카드를 연다 (FR-MAP-022 확인과 같은 동작)
+    const matches = !key && q ? places.filter((p) => placeMatchesTerm(p, q)) : [];
+    const place = key
+      ? places.find((p) => p.id === key || p.key === key)
+      : matches.length === 1
+        ? matches[0]
+        : null;
+    if (key && !place) say('장소 정보를 찾을 수 없어요');
     setSelectedId(place?.id ?? null);
     setSearchTerm(place ? '' : q);
+    setEntrySearch({ q: key ? '' : q, results: matches.length > 1 });
     if (place) setViewport({ lat: place.lat, lng: place.lng, zoom: FOCUS_ZOOM });
     else if (categories.some((c) => c.code === code)) setCategory(code);
   }
@@ -252,18 +274,27 @@ export default function MapPage() {
     if (place) focusOn(place);
   }
 
-  // 찜 (P2): 아직 서버 저장 없음. 로그인 확인 후 이 화면 안에서만 유지 (FR-MAP-018~020)
+  // 찜 담기·해제: 화면에 먼저 반영하고 서버에 저장, 실패하면 되돌린다
   const toggleSaved = useCallback(
-    (id) => {
+    async (id) => {
       if (!user) {
-        setNotice(LOGIN_NOTICE);
+        say(LOGIN_NOTICE);
         return;
       }
+      const key = ['savedPlaces', user.id];
       const wasSaved = saved.includes(id);
-      setSaved(wasSaved ? saved.filter((x) => x !== id) : [...saved, id]);
-      setNotice(wasSaved ? '찜을 해제했어요' : '찜했어요');
+      queryClient.setQueryData(key, {
+        placeIds: wasSaved ? saved.filter((x) => x !== id) : [...saved, id],
+      });
+      say(wasSaved ? '찜을 해제했어요' : '찜했어요', 2000);
+      try {
+        await (wasSaved ? unsavePlace(id) : savePlace(id));
+      } catch {
+        queryClient.setQueryData(key, { placeIds: saved });
+        say('찜을 저장하지 못했어요. 다시 시도해 주세요');
+      }
     },
-    [user, saved]
+    [user, saved, queryClient, say]
   );
 
   const registerCard = useCallback((id, el) => {
@@ -273,7 +304,7 @@ export default function MapPage() {
 
   function toggleSavedOnly() {
     if (!user) {
-      setNotice(LOGIN_NOTICE);
+      say(LOGIN_NOTICE);
       return;
     }
     setSavedOnly((v) => !v);
@@ -338,7 +369,7 @@ export default function MapPage() {
       setSelectedId(null);
       focusOn(myLocation);
     } else if (location.status === 'ok') {
-      setNotice(OUTSIDE_NOTICE);
+      say(OUTSIDE_NOTICE);
     } else {
       requestLocation();
     }
@@ -370,7 +401,7 @@ export default function MapPage() {
             key: 'denied',
             text: '위치 권한이 꺼져 있어요. 켜면 가까운 순으로 볼 수 있어요',
             action: '권한 켜는 방법',
-            onAction: () => setNotice('주소창 왼쪽 사이트 설정에서 위치를 허용해 주세요'),
+            onAction: () => setGuideOpen(true), // 웹은 기기 설정을 열 수 없어 브라우저별 방법을 안내
           }
         : location.status === 'failed'
           ? {
@@ -406,6 +437,8 @@ export default function MapPage() {
           onFilter={() => setFilterOpen(true)}
           searchTerm={searchTerm}
           onSearchTerm={setSearchTerm}
+          initialQuery={entrySearch.q || searchTerm}
+          initialResults={entrySearch.results}
         />
       </header>
 
@@ -473,13 +506,32 @@ export default function MapPage() {
           </section>
         )}
 
+        {guideOpen && (
+          <LocationGuide
+            top={BAR_HEIGHT}
+            onRetry={() => {
+              setGuideOpen(false);
+              requestLocation();
+            }}
+            onClose={() => setGuideOpen(false)}
+          />
+        )}
+
         {notice && (
           <div
             role="status"
-            className="absolute left-1/2 z-50 -translate-x-1/2 whitespace-nowrap rounded-full bg-[#171923]/90 px-4 py-2 text-xs font-bold text-white shadow-lg"
+            className="absolute left-1/2 z-50 flex -translate-x-1/2 items-center gap-1 whitespace-nowrap rounded-full bg-[#171923]/90 py-1 pl-4 pr-1 text-xs font-bold text-white shadow-lg"
             style={{ bottom: sheetHeight + 16 }}
           >
-            {notice}
+            {notice.text}
+            <button
+              type="button"
+              onClick={() => setNotice(null)}
+              aria-label="안내 닫기"
+              className="grid size-7 place-items-center rounded-full text-white/70"
+            >
+              <Glyph name="close" className="size-3.5" />
+            </button>
           </div>
         )}
 
@@ -611,6 +663,7 @@ export default function MapPage() {
                     onAction={() => {
                       resetFilter();
                       setSearchTerm('');
+                      setEntrySearch({ q: '', results: false });
                       setHeaderKey((k) => k + 1);
                     }}
                   />
@@ -628,9 +681,7 @@ export default function MapPage() {
                   />
                 ))}
                 {!placesQuery.isLoading && !loadError && (
-                  <p className="px-5 pb-5 pt-3 text-center text-[10px] font-medium text-black/25">
-                    찜은 아직 이 화면을 나가면 초기화돼요.
-                  </p>
+                  <SyncNote sync={placesQuery.data?.sync} checkedAt={placesQuery.dataUpdatedAt} />
                 )}
               </div>
             </>
@@ -686,5 +737,27 @@ function EmptyState({ title, action, onAction }) {
         {action}
       </button>
     </div>
+  );
+}
+
+// 데이터 최신성 (NFR-006): 마지막 갱신과 다음 예정. 하루 1회 주기를 넘기면 늦어진다고 알린다
+const STALE_MS = 36 * 3600e3;
+const kstText = (iso) => {
+  const d = new Date(new Date(iso).getTime() + 9 * 3600e3).toISOString();
+  return `${d.slice(0, 10)} ${Number(d.slice(11, 13))}시`;
+};
+
+// checkedAt: 장소 목록을 받은 시각 (그 시점 기준으로 늦었는지 본다)
+function SyncNote({ sync, checkedAt }) {
+  const last = sync?.last_success_at;
+  const stale = !last || checkedAt - new Date(last).getTime() > STALE_MS;
+  return (
+    <p
+      className={`px-5 pb-5 pt-3 text-center text-[11px] font-medium ${stale ? 'text-[#b26a00]' : 'text-black/35'}`}
+    >
+      {last ? `데이터 갱신 ${kstText(last)}` : '데이터 갱신 기록이 없어요'}
+      {stale && last && ' · 갱신이 늦어지고 있어요'}
+      {sync?.next_run_at && ` · 다음 갱신 ${kstText(sync.next_run_at)}`}
+    </p>
   );
 }

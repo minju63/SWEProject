@@ -9,24 +9,39 @@ const must = ({ data, error }, what) => {
 const chunk = (arr, n = 100) =>
   Array.from({ length: Math.ceil(arr.length / n) }, (_, i) => arr.slice(i * n, i * n + n));
 
-const exists = async (table, column) => !(await supabase.from(table).select(column).limit(1)).error;
+// 컬럼·테이블이 있는지. '없음' 오류(42703 컬럼, 42P01·PGRST205 테이블, PGRST204 캐시)만 없음으로 보고,
+// 그 밖의 오류(일시 네트워크 오류)는 한 번 더 확인한 뒤 실패로 알린다
+const MISSING = new Set(['42703', '42P01', 'PGRST204', 'PGRST205']);
+async function exists(table, column) {
+  let last;
+  for (let attempt = 0; attempt < 2; attempt++) {
+    const { error } = await supabase.from(table).select(column).limit(1);
+    if (!error) return true;
+    if (MISSING.has(error.code)) return false;
+    last = error;
+  }
+  throw new Error(`DB 확인 실패 ${table}.${column}: ${last.message}`);
+}
 
 // 갱신 작업용 컬럼·테이블 (migrations/20261114_culture_sync.sql, 20261115_culture_policy_sync.sql)
 export async function schemaReady() {
-  const [baseline, detailFetched, issues, policyIssues] = await Promise.all([
+  const [baseline, detailFetched, issues, policyIssues, coords, saved] = await Promise.all([
     exists('place', 'source_values'),
     exists('culture_detail', 'detail_fetched'),
     exists('place_issues', 'issue_id'),
     exists('place_issues', 'policy_id'),
+    exists('place', 'lat_src'),
+    exists('user_saved_places', 'place_id'),
   ]);
   const missing = [
     ...(baseline && detailFetched && issues ? [] : ['20261114_culture_sync.sql']),
     ...(policyIssues ? [] : ['20261115_culture_policy_sync.sql']),
+    ...(coords && saved ? [] : ['20261116_map_srs_fixes.sql']),
   ];
-  return { baseline, missing, all: missing.length === 0 };
+  return { baseline, coords, missing, all: missing.length === 0 };
 }
 
-export async function loadPlaces(withBaseline) {
+export async function loadPlaces(withBaseline, withCoords) {
   const columns = [
     'place_id',
     'place_key',
@@ -44,6 +59,19 @@ export async function loadPlaces(withBaseline) {
     'merged_from:raw_data->extra_json->merged_from', // 다른 출처와 합친 장소의 옛 키
   ];
   if (withBaseline) columns.push('source_values');
+  // 좌표 검증용 (값은 메모리에서만 쓰고 출력하지 않는다)
+  if (withCoords)
+    columns.push(
+      'road_address',
+      'lat',
+      'lng',
+      'lat_src',
+      'lng_src',
+      'coord_status',
+      'coord_source',
+      'coord_distance_m',
+      'region:region_code (region_name)'
+    );
   return must(await supabase.from('place').select(columns.join(', ')), 'place 조회');
 }
 
@@ -198,6 +226,27 @@ export async function updatePolicies(updates, now) {
       `policy_source 갱신 ${u.external_id}`
     );
   }
+}
+
+// 원본과 맞춰 본 장소의 확인 일시 (바뀐 것이 없어도 '데이터 기준일'이 오늘이 되게)
+export async function touchPlaces(placeIds, now) {
+  for (const part of chunk(placeIds))
+    must(
+      await supabase.from('place').update({ source_checked_at: now }).in('place_id', part),
+      'place 확인 일시'
+    );
+}
+
+// 좌표 검증 결과 (상태·출처·거리, fixed 장소의 lat·lng)
+export async function updateCoords(updates, now) {
+  for (const u of updates)
+    must(
+      await supabase
+        .from('place')
+        .update({ ...u.changes, updated_at: now })
+        .eq('place_id', u.place_id),
+      `place 좌표 갱신 ${u.place_key}`
+    );
 }
 
 // 바뀐 항목과 원본 기준값만 고친다 (좌표·요금 구분·사진은 건드리지 않음)

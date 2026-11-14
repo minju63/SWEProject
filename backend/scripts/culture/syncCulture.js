@@ -35,6 +35,8 @@ const ISSUE_LABEL = {
   policy_unlinked: '온통청년 원본과 연결 못 한 정책',
   policy_missing_in_source: '온통청년에서 사라진 정책',
   policy_new_candidate: '새 문화 정책 후보',
+  coord_review: '좌표 확인 필요',
+  api_error: '외부 API 오류',
 };
 
 function print(r) {
@@ -49,6 +51,13 @@ function print(r) {
   L(`- 자동 반영 ${r.places.changes.length}곳`);
   for (const c of r.places.changes)
     L(`  - ${c.place_key} ${c.name}: ${Object.keys(c.changes).join(', ')}`);
+  L(`\n## 좌표 검증 (행안부)`);
+  if (r.coords.error) L(`- ${r.coords.error}`);
+  else {
+    L(`- 판정한 장소 ${r.coords.checked}곳, 바뀌는 장소 ${r.coords.changes.length}곳`);
+    for (const c of r.coords.changes)
+      L(`  - ${c.place_key} ${c.name}: ${c.fields.join(', ')}${c.status ? ` → ${c.status}` : ''}`);
+  }
   L(`\n## 행사`);
   L(`- 목록: ${JSON.stringify(r.events.lists)}, 테마 ${r.events.themes ?? '받지 못함'}`);
   L(

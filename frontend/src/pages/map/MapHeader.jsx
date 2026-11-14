@@ -15,11 +15,13 @@ export default function MapHeader({
   onFilter,
   searchTerm,
   onSearchTerm,
+  initialQuery = '',
+  initialResults = false,
 }) {
-  // 다른 화면에서 검색어를 받아 열리면(FR-MAP-028) 그 검색어를 검색창에 넣어 둔다
-  const [query, setQuery] = useState(searchTerm);
+  // 다른 화면에서 검색어를 받아 열리면(FR-MAP-028) 검색창에 넣고, 여러 곳이 맞으면 결과 목록을 연다
+  const [query, setQuery] = useState(initialQuery);
   const [open, setOpen] = useState(false);
-  const [resultsOpen, setResultsOpen] = useState(false);
+  const [resultsOpen, setResultsOpen] = useState(initialResults);
   const q = query.trim();
 
   const hits = useMemo(() => {

@@ -146,7 +146,11 @@ create table place (
   jibun_address      text,
   lat                numeric(10,7),
   lng                numeric(10,7),
-  coord_status       text check (coord_status in ('verified','fixed','review','coord_only')),
+  lat_src            numeric(10,7),                -- 원본 좌표 (migrations/20261116_map_srs_fixes.sql)
+  lng_src            numeric(10,7),
+  coord_status       text check (coord_status in ('verified','fixed','review','coord_only','missing')),
+  coord_source       text check (coord_source in ('source','mois_juso')),  -- lat·lng 출처. mois_juso 는 fixed 만
+  coord_distance_m   integer,                      -- 원본 좌표와 행안부 좌표의 거리(m)
   tel                text,
   homepage_url       text,
   open_hours_text    text,
@@ -154,6 +158,9 @@ create table place (
   fee_text           text,
   is_free            boolean,
   fee_type           text check (fee_type in ('free','paid','per_program','unknown')),  -- 요금 구분
+  fee_basis          text check (fee_basis in ('user_provided','rule','source','web')),  -- 요금 구분 근거
+  fee_source_url     text,
+  fee_checked_at     date,
   reservation_url    text,
   capacity           integer,
   is_active          boolean not null default true,
@@ -180,8 +187,8 @@ create table place_issues (
   issue_id       uuid primary key default gen_random_uuid(),
   issue_type     text not null check (issue_type in ('source_differs','source_changed','place_missing_in_source',
                    'new_place_candidate','event_place_unmatched','event_missing_in_source',
-                   'policy_unlinked','policy_missing_in_source','policy_new_candidate')),
-  ref_type       text not null check (ref_type in ('place','venue','event','policy')),
+                   'policy_unlinked','policy_missing_in_source','policy_new_candidate','coord_review','api_error')),
+  ref_type       text not null check (ref_type in ('place','venue','event','policy','api')),
   ref_key        text not null,
   place_id       uuid references place(place_id) on delete set null,
   policy_id      uuid references policy(policy_id) on delete set null,
@@ -194,6 +201,14 @@ create table place_issues (
   unique (issue_type, ref_key)
 );
 create index place_issues_status_idx on place_issues (status, issue_type);
+
+-- 찜한 장소 (migrations/20261116_map_srs_fixes.sql, FR-MAP-019): 본인 행만, 탈퇴하면 함께 삭제
+create table user_saved_places (
+  user_id   uuid not null references auth.users(id) on delete cascade,
+  place_id  uuid not null references place(place_id) on delete cascade,
+  saved_at  timestamptz not null default now(),
+  primary key (user_id, place_id)
+);
 
 -- 지도 분류표 (migrations/20261113_map_support.sql): 장소 세부 유형 → 지도 카테고리
 create table map_category (
@@ -275,7 +290,8 @@ select
   p.tel, p.homepage_url, p.open_hours_text, p.closed_days_text,
   p.fee_text, p.is_free, p.fee_type, p.reservation_url, p.capacity,
   p.image_url, p.image_source, p.description,
-  p.source_name, p.last_collected_at
+  p.source_name, p.last_collected_at,
+  p.source_checked_at
 from place p
 join place_type_map t on t.place_type = p.place_type
 join map_category c on c.category_code = t.category_code
@@ -530,7 +546,7 @@ declare t text;
 begin
   foreach t in array array['user_profile','user_bookmark','user_application',
     'user_document_check','user_recent_view','search_history','alarm_preference',
-    'notification','push_subscription']
+    'notification','push_subscription','user_saved_places']
   loop
     execute format('alter table %I enable row level security', t);
     execute format('create policy "own rows" on %I for all using (user_id = auth.uid()) with check (user_id = auth.uid())', t);
