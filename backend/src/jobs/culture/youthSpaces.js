@@ -64,11 +64,31 @@ const blocked = (rules, path) =>
     return new RegExp(`^${body}${anchored ? '$' : ''}`).test(path);
   });
 
-async function fetchPage(link, robots) {
+export class RobotsBlocked extends Error {}
+
+// 응답 글자 인코딩: 헤더 → <meta charset> 순서로 보고, 없으면 UTF-8 (관공서 페이지 일부는 EUC-KR)
+async function decode(res) {
+  const buf = Buffer.from(await res.arrayBuffer());
+  const head = buf.subarray(0, 4096).toString('latin1');
+  const charset = (
+    res.headers.get('content-type')?.match(/charset=([\w-]+)/i)?.[1] ??
+    head.match(/<meta[^>]+charset=["']?([\w-]+)/i)?.[1] ??
+    'utf-8'
+  ).toLowerCase();
+  try {
+    return new TextDecoder(charset === 'ks_c_5601-1987' ? 'euc-kr' : charset).decode(buf);
+  } catch {
+    return buf.toString('utf8');
+  }
+}
+
+// 페이지 하나를 읽는다. robots.txt 가 막으면 RobotsBlocked, 응답 오류는 status 가 붙은 Error
+// robots: origin → 규칙 (한 번 실행 동안 같은 사이트의 robots.txt 는 한 번만 받는다)
+export async function fetchPage(link, robots) {
   const { origin, pathname, search } = new URL(link);
   if (!robots.has(origin)) robots.set(origin, await robotsRules(origin));
   if (blocked(robots.get(origin), pathname + search))
-    throw new Error(`robots.txt 가 허용하지 않음: ${link}`);
+    throw new RobotsBlocked(`robots.txt 가 허용하지 않음: ${link}`);
   let lastError;
   for (let attempt = 0; attempt < 3; attempt++) {
     try {
@@ -77,17 +97,18 @@ async function fetchPage(link, robots) {
         signal: AbortSignal.timeout(TIMEOUT_MS),
       });
       if (res.ok) {
-        const html = await res.text();
+        const html = await decode(res);
         await sleep(DELAY_MS);
         return html;
       }
-      lastError = new Error(`HTTP ${res.status}: ${link}`);
+      lastError = Object.assign(new Error(`HTTP ${res.status}: ${link}`), { status: res.status });
       if (res.status !== 429 && res.status < 500) break; // 차단·없는 페이지는 다시 시도하지 않는다
     } catch (e) {
       lastError = new Error(`${e.name === 'TimeoutError' ? '응답 없음' : e.message}: ${link}`);
     }
     await sleep(2000 * 2 ** attempt);
   }
+  await sleep(DELAY_MS);
   throw lastError;
 }
 

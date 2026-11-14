@@ -4,6 +4,7 @@
  *      모든 장소(기존 + 새 장소)의 좌표를 행안부 API 로 검증한다 (coords.js, FR-MAP-030)
  *   2. 행사 9개 장르 + 테마 + 상세를 받아 정제하고 장소에 연결한다 (events.js)
  *   3. 온통청년 문화 정책을 받아 DB 문화 정책과 비교한다 (policies.js: 사람이 고친 값은 그대로 둔다)
+ *      문화 정책의 공식 기관 페이지와 부산진구청 공지사항을 확인한다 (policyPages.js, DATA-MAP-16)
  *   4. 적재 전 무결성 점검. 하나라도 걸리면 장소·행사를 적재하지 않고 실패로 기록한다
  *        장소 키 중복 0건, 행사가 가리키는 장소가 모두 DB 에 있음,
  *        행사 번호·출처 키 중복 0건, 다른 정책과 출처 키 충돌 0건, 날짜 역전 0건, 분류·지역 코드 있음
@@ -18,6 +19,7 @@ import { mapEventRow } from './mapping.js';
 import { verifyCoords } from './coords.js';
 import { SOURCE_LABEL, planPlaceSync, placeSources } from './places.js';
 import { planPolicySync } from './policies.js';
+import { checkPolicyPages } from './policyPages.js';
 import { EVENT_GENRES, apiSource } from './sources.js';
 
 export const kstToday = () => new Date(Date.now() + 9 * 3600e3).toISOString().slice(0, 10);
@@ -261,10 +263,34 @@ export async function runCultureSync({
   // ---------- 3. 문화 정책 (온통청년) ----------
   log('문화 정책 수집 (온통청년)');
   const policyItems = await other('culturePolicies', () => source.culturePolicies());
+  const culturePolicies = await db.loadCulturePolicies();
   const policyPlan = policyItems
-    ? planPolicySync(await db.loadCulturePolicies(), policyItems, today)
+    ? planPolicySync(culturePolicies, policyItems, today)
     : { updates: [], issues: [], stat: null };
   if (policyItems) log(`  문화 정책 ${policyItems.length}건`);
+
+  // 공식 웹사이트 (원문 주소·최종 확인일, 날짜 변경, 부산진구청 공지사항)
+  log('문화 정책 공식 페이지 확인');
+  const pageSources = await db.loadPolicyPageSources();
+  const pagePlan = source.policyPages
+    ? await source.policyPages(culturePolicies, pageSources, log)
+    : await checkPolicyPages(
+        culturePolicies.map((p) => ({
+          policy_id: p.policy_id,
+          external_id: p.external_id,
+          title: p.title,
+          official_url: p.values.official_url,
+          previous: pageSources.get(p.policy_id)?.raw_data ?? null,
+        })),
+        { log }
+      );
+  for (const e of pagePlan.errors)
+    errors.push({
+      error_type: 'CRAWL',
+      source_url: e.where,
+      error_message: e.message,
+      retry_count: 2,
+    });
 
   // ---------- 4. 무결성 점검 ----------
   const problems = [
@@ -273,7 +299,12 @@ export async function runCultureSync({
   ];
 
   // ---------- place_issues ----------
-  const issues = [...placePlan.issues, ...coordPlan.issues, ...policyPlan.issues];
+  const issues = [
+    ...placePlan.issues,
+    ...coordPlan.issues,
+    ...policyPlan.issues,
+    ...pagePlan.issues,
+  ];
   // 외부 API 오류도 문제 목록에 남긴다 (UC-MAP-008 2A). 다음 실행에서 성공하면 '해결'
   for (const e of errors)
     issues.push({
@@ -416,6 +447,7 @@ export async function runCultureSync({
         changes: u.changes,
       })),
     },
+    policyPages: pagePlan.stat,
     issues: countBy(issues, (i) => i.issue_type),
     issueList: issues,
     problems,
@@ -431,6 +463,7 @@ export async function runCultureSync({
     await db.updateCoords(coordUpdates, now);
     await db.upsertEvents(mapped, refs.categoryId, now);
     await db.updatePolicies(policyPlan.updates, now);
+    await db.savePolicyPageChecks(pagePlan.checks, now);
   }
   // 적재를 멈췄으면 새 장소가 DB 에 없으므로 문제 목록의 장소 연결을 비운다
   const saved = problems.length

@@ -4,7 +4,9 @@
 --      원천 4종에서 받은 부산 장소를 모두 place 에 두고, 사하구·부산진구 장소만 참으로 둔다
 --   2. place.place_type 허용 값에 공공시설개방 세부 유형 '강의실·강당', '회의실' 추가
 --      분류표(place_type_map)에 없는 유형이라 지도에는 나오지 않는다      FR-MAP-031
---   3. place_issues 종류 추가: merge_candidate (이름만 같거나 주소만 같은 장소) DP-MAP-02
+--   3. place_issues 종류 추가                                              DP-MAP-02, DATA-MAP-16
+--      merge_candidate (이름만 같거나 주소만 같은 장소), policy_page_changed (문화 정책 공식 페이지의 날짜 변경·없어짐),
+--      policy_notice_candidate (부산진구청 공지사항의 청년·문화 글)
 --   4. v_map_places: 서비스 지역 + 좌표 검증 verified·fixed·coord_only 만     FR-MAP-001, DP-MAP-03
 --      review(수동 확인 대상)·missing(좌표 없음) 장소는 지도에 나오지 않는다
 --      (2026-11-11 '위치 확인 필요' 표시 결정을 SRS 대로 되돌림)
@@ -32,6 +34,8 @@ alter table place_issues add constraint place_issues_issue_type_check check (iss
   'merge_candidate',  -- 이름만 같거나 주소만 같은 장소 (병합하지 않음)
   'event_place_unmatched', 'event_missing_in_source',
   'policy_unlinked', 'policy_missing_in_source', 'policy_new_candidate',
+  'policy_page_changed',      -- 문화 정책 공식 페이지의 날짜가 바뀌었거나 페이지가 없어짐
+  'policy_notice_candidate',  -- 구청 공지사항의 청년·문화 글 (새 정책 후보)
   'coord_review', 'api_error'));
 
 -- 4. 지도 표시 대상 장소 (컬럼은 20261116 과 같고 조건만 바뀐다)
@@ -60,7 +64,7 @@ commit;
 -- rollback (서비스 지역 밖 장소를 먼저 지워야 한다. 그 장소에 연결된 행사는 장소 연결만 끊긴다)
 -- begin;
 -- (v_map_places 는 20261116_map_srs_fixes.sql 의 정의로 다시 만든다)
--- delete from place_issues where issue_type = 'merge_candidate';
+-- delete from place_issues where issue_type in ('merge_candidate', 'policy_page_changed', 'policy_notice_candidate');
 -- (place_issues 제약은 20261116_map_srs_fixes.sql 의 정의로 되돌린다)
 -- delete from place where not is_target;
 -- alter table place drop constraint if exists place_place_type_check;

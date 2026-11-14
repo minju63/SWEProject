@@ -213,6 +213,36 @@ export async function loadCulturePolicies() {
     });
 }
 
+// 문화 정책 공식 페이지 확인 기록 (policy_source, source_type CRAWL, external_id 'WEB-정책번호')
+export async function loadPolicyPageSources() {
+  const rows = must(
+    await supabase
+      .from('policy_source')
+      .select('policy_id, external_id, raw_data, last_checked_at')
+      .eq('source_type', 'CRAWL')
+      .like('external_id', 'WEB-%'),
+    'policy_source 조회'
+  );
+  return new Map(rows.map((r) => [r.policy_id, r]));
+}
+
+export async function savePolicyPageChecks(checks, now) {
+  const rows = checks.map((c) => ({
+    policy_id: c.policy_id,
+    source_type: 'CRAWL',
+    source_name: c.source_name,
+    external_id: `WEB-${c.external_id}`,
+    source_url: c.source_url,
+    raw_data: c.raw,
+    last_checked_at: now,
+  }));
+  for (const part of chunk(rows))
+    must(
+      await supabase.from('policy_source').upsert(part, { onConflict: 'source_type,external_id' }),
+      'policy_source 공식 페이지 기록'
+    );
+}
+
 export async function loadIssues() {
   const rows = [];
   for (let from = 0; ; from += 1000) {
@@ -287,7 +317,9 @@ export async function updateCoords(updates, now) {
 
 // 새 장소 (좌표 검증을 마친 행). 같은 place_id 가 있으면 덮어쓴다
 export async function insertPlaces(rows, now) {
-  for (const part of chunk(rows.map(({ _new, merged_from: _mergedFrom, ...r }) => ({ ...r, updated_at: now }))))
+  for (const part of chunk(
+    rows.map(({ _new, merged_from: _mergedFrom, ...r }) => ({ ...r, updated_at: now }))
+  ))
     must(await supabase.from('place').upsert(part, { onConflict: 'place_id' }), 'place 추가');
 }
 

@@ -79,6 +79,8 @@ export function cacheSource(dir) {
     youthSpaces: async () => {
       throw new Error('청년공간 웹페이지는 저장된 응답이 없음');
     },
+    // 공식 웹사이트도 저장된 응답이 없어 확인하지 않는다
+    policyPages: async () => ({ checks: [], issues: [], errors: [], stat: null }),
     culturePolicies: async () => {
       const files = fs
         .readdirSync(path.join(dir, 'youth', 'raw'))

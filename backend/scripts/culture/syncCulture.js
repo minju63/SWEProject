@@ -37,6 +37,8 @@ const ISSUE_LABEL = {
   policy_unlinked: '온통청년 원본과 연결 못 한 정책',
   policy_missing_in_source: '온통청년에서 사라진 정책',
   policy_new_candidate: '새 문화 정책 후보',
+  policy_page_changed: '문화 정책 공식 페이지 변경',
+  policy_notice_candidate: '구청 공지사항 청년·문화 글',
   coord_review: '좌표 확인 필요',
   api_error: '외부 API 오류',
 };
@@ -95,6 +97,12 @@ function print(r) {
     for (const c of p.changes)
       L(`  - ${c.external_id} ${c.title}: ${Object.keys(c.changes).join(', ')}`);
   } else L('- 받지 못함');
+  const g = r.policyPages;
+  if (g)
+    L(
+      `- 공식 페이지 (DATA-MAP-16): 대상 ${g.target}곳, 확인 ${g.checked}, robots 불허 ${g.robots}, 실패 ${g.failed}, 날짜 바뀜 ${g.changed}, SRS 목록 밖 ${g.outside} · 부산진구청 공지사항 청년·문화 글 ${g.notices}건`
+    );
+  else L('- 공식 페이지: 확인하지 않음 (저장된 응답으로 실행)');
   L(
     `\n## 무결성 점검 ${r.problems.length ? `실패 ${r.problems.length}건 → 장소·행사·정책 적재 안 함` : '통과'}`
   );
