@@ -1,0 +1,33 @@
+{
+  "timezone": "Asia/Seoul",
+  "api": {"endpoint":"https://www.youthcenter.go.kr/go/ythip/getPlcy","pageSize":50,"maxPages":50,"queries":[{"lclsfNm":"주거"},{"plcyNm":"주택개조"},{"plcyNm":"주거급여"},{"plcyNm":"공과금"},{"plcyNm":"교통비"}]},
+  "maxNewApiSources": 25,
+  "noticeListPages": 2,
+  "maxNewNoticeSources": 15,
+  "concurrency": 3,
+  "maxSourceBytes": 25000000,
+  "allowedHosts": ["youthcenter.go.kr","busan.go.kr","busanjin.go.kr","saha.go.kr","myhome.go.kr","lh.or.kr","molit.go.kr","bmc.busan.kr","hf.go.kr","energyv.or.kr","bokjiro.go.kr","kosaf.go.kr","korea.kr","skens.com","hug.or.kr","kepco.co.kr","mogef.go.kr","mohw.go.kr","110.go.kr"],
+  "seeds": [
+    {"key":"guide:long-term-jeonse","title":"장기전세주택","url":"https://www.myhome.go.kr/hws/portal/cont/selectlongTermLeaseHouseView.do","scope_hint":"KR","subcategory":"공공임대","kind":"GUIDE","terms":["장기전세","20년","80%"]},
+    {"key":"guide:general-jeonse-rental","title":"일반 기존주택 전세임대","url":"https://www.myhome.go.kr/hws/portal/cont/selectCharterRentalHouseView.do","scope_hint":"KR","subcategory":"공공임대","kind":"GUIDE","terms":["전세임대","입주자격","수급"]},
+    {"key":"guide:owner-housing-benefit","title":"주거급여 수선유지급여(자가가구)","url":"https://www.myhome.go.kr/hws/portal/cont/selectSupSelfHouseholdsView.do","scope_hint":"KR","subcategory":"기타","kind":"GUIDE","terms":["수선유지급여","경보수","중보수"]},
+    {"key":"guide:tenant-housing-benefit","title":"주거급여 임차급여(일반 임차가구)","url":"https://www.myhome.go.kr/hws/portal/cont/selectRentalHouseholdSupView.do","scope_hint":"KR","subcategory":"월세 지원","kind":"GUIDE","terms":["임차급여","48%","2026"],"note":"기존 청년 분리지급의 상위 제도. 공유 URL을 별도 지원사업으로 중복 계산하지 않도록 수동 관계 검토."},
+    {"key":"guide:permanent-rental","title":"영구임대주택","url":"https://www.myhome.go.kr/hws/portal/cont/selectPermanentRHView.do","scope_hint":"KR","subcategory":"공공임대","kind":"GUIDE","terms":["영구임대","50년","30%"]},
+    {"key":"guide:national-rental","title":"국민임대주택","url":"https://www.myhome.go.kr/hws/portal/cont/selectNationalRentalHouseView.do","scope_hint":"KR","subcategory":"공공임대","kind":"GUIDE","terms":["국민임대","30년","60~80%"]},
+    {"key":"guide:general-purchased-rental","title":"일반 기존주택 매입임대","url":"https://apply.lh.or.kr/lhapply/cm/cntnts/cntntsView.do?cntntsId=1030&mi=1153","scope_hint":"KR","subcategory":"공공임대","kind":"GUIDE","terms":["매입임대","입주자격","수급"]},
+    {"key":"nhuf:damaged-tenant-refinance","title":"전세피해임차인대상 버팀목전세대출대환","url":"https://nhuf.molit.go.kr/FP/FP05/FP0505/050510001.jsp","scope_hint":"KR","subcategory":"전세·보증금 대출","kind":"GUIDE","terms":["전세피해","대출대상","대출한도"]},
+    {"key":"nhuf:priority-repayment-jeonse","title":"전세사기피해자 최우선변제금 버팀목 전세자금 대출","url":"https://nhuf.molit.go.kr/FP/FP05/FP0506/050560001.jsp","scope_hint":"KR","subcategory":"전세·보증금 대출","kind":"GUIDE","terms":["최우선변제금","대출대상","대출한도"]},
+    {"key":"nhuf:renewal-expiry","title":"갱신만료 임차인 지원 버팀목전세자금","url":"https://nhuf.molit.go.kr/FP/FP05/FP0502/FP05021001.jsp","scope_hint":"KR","subcategory":"전세·보증금 대출","kind":"GUIDE","terms":["갱신만료","대출대상","대출한도"]},
+    {"key":"nhuf:newlywed-purchase","title":"신혼부부전용 구입자금","url":"https://nhuf.molit.go.kr/FP/FP05/FP0503/FP05030601.jsp","scope_hint":"KR","subcategory":"기타","kind":"GUIDE","terms":["신혼부부","대출대상","대출한도"]},
+    {"key":"nhuf:hope-town-mortgage","title":"신혼희망타운전용 주택담보장기대출","url":"https://nhuf.molit.go.kr/FP/FP05/FP0503/FP05030701.jsp","scope_hint":"KR","subcategory":"기타","kind":"GUIDE","terms":["신혼희망타운","대출대상","대출한도"]},
+    {"key":"nhuf:profit-sharing","title":"수익공유형모기지","url":"https://nhuf.molit.go.kr/FP/FP05/FP0503/FP05030201.jsp","scope_hint":"KR","subcategory":"기타","kind":"GUIDE","terms":["수익공유형","대출대상","대출한도"]},
+    {"key":"nhuf:risk-sharing","title":"손익공유형모기지","url":"https://nhuf.molit.go.kr/FP/FP05/FP0503/FP05030301.jsp","scope_hint":"KR","subcategory":"기타","kind":"GUIDE","terms":["손익공유형","대출대상","대출한도"]},
+    {"key":"nhuf:officetel-purchase","title":"오피스텔구입자금","url":"https://nhuf.molit.go.kr/FP/FP05/FP0503/FP05030501.jsp","scope_hint":"KR","subcategory":"기타","kind":"GUIDE","terms":["오피스텔","대출대상","대출한도"]},
+    {"key":"nhuf:disaster-housing","title":"재해주택복구 및 구입자금","url":"https://nhuf.molit.go.kr/FP/FP05/FP0504/FP05040401.jsp","scope_hint":"KR","subcategory":"기타","kind":"GUIDE","terms":["재해","대출대상","대출한도"]},
+    {"key":"nhuf:newhome-land-lease","title":"뉴홈 전용 디딤돌(토지임대부 분양주택) 대출","url":"https://nhuf.molit.go.kr/FP/FP05/FP0503/FP05031101.jsp","scope_hint":"KR","subcategory":"기타","kind":"GUIDE","terms":["토지임대부","대출대상","대출한도"]},
+    {"key":"nhuf:bankrupt-rental-auction","title":"부도임대주택경락자금","url":"https://nhuf.molit.go.kr/FP/FP05/FP0504/FP05040101.jsp","scope_hint":"KR","subcategory":"기타","kind":"GUIDE","terms":["경락","대출대상","대출한도"]},
+    {"key":"nhuf:bankrupt-rental-relocation","title":"부도임대주택퇴거자전세자금","url":"https://nhuf.molit.go.kr/FP/FP05/FP0504/FP05040301.jsp","scope_hint":"KR","subcategory":"전세·보증금 대출","kind":"GUIDE","terms":["퇴거","대출대상","대출한도"]},
+    {"key":"nhuf:builder-loan-refinance","title":"사업자대출입주자앞대환","url":"https://nhuf.molit.go.kr/FP/FP05/FP0504/FP05040201.jsp","scope_hint":"KR","subcategory":"기타","kind":"GUIDE","terms":["입주자","대출대상","대출한도"]},
+    {"key":"busan:disability-housing-improvement","title":"장애인 주택개조사업(부산)","url":"https://www.busan.go.kr/expdetail/view?schDbiz=6260000202330413&schYear=2026","scope_hint":"26","subcategory":"기타","kind":"BUDGET_ONLY","terms":["장애인 주택 개조사업","2026"],"note":"예산 자료만으로 개인 신청조건을 확정하지 않음. 실제 구군 모집·사업지침 필요."}
+  ]
+}
