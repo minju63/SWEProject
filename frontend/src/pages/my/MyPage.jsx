@@ -46,7 +46,9 @@ export default function MyPage() {
         />
         <ul className="plain-list">
           {bookmarks.data?.map((b) => (
-            <li key={b.bookmark_id}>{b.policy?.title}</li>
+            <li key={b.bookmark_id}>{b.policy?.title}
+              {b.policy?.support_summary?.trim() && <small className="bookmark-summary">{b.policy.support_summary.trim()}</small>}
+            </li>
           ))}
         </ul>
       </section>

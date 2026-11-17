@@ -1,38 +1,15 @@
-// 신청 자격 판정 (규칙 기반, AI 사용 안 함)
-//
-// 조건 하나하나를 SATISFIED / UNSATISFIED / UNKNOWN 으로 판정한 뒤 합친다.
-//   - 하나라도 UNSATISFIED → INELIGIBLE (대상 아님)
-//   - UNSATISFIED 없이 UNKNOWN 이 있으면 → CHECK (확인 필요)
-//   - 모두 SATISFIED → ELIGIBLE (신청 가능)
-// 정책 조건이 검증되지 않았거나(eligibility_verified = false) 비어 있으면 CHECK.
-//
-// policy.eligibility_conditions 형식
-// {
-//   "all": [ 조건 | { "any": [조건, ...] } ],
-//   "exclude": [ { "text": "기존 수혜자 제외" } ]   // 문장형 제외 조건은 UNKNOWN 처리
-// }
-// 조건 = { "field": "age", "op": "between", "value": [19, 34] }
-//        { "field": "region", "op": "starts_with", "value": "26" }  (부산 거주)
-//        field 는 아래 PROFILE_FIELDS 키, op 는 OPERATORS 키
+// 저장된 필수 조건만 판정한다. 원문 및 검증되지 않은 규칙은 자동 판정하지 않는다.
+import { kstDateParts } from './policy-status.service.js';
 
 export const RESULT = { ELIGIBLE: 'ELIGIBLE', CHECK: 'CHECK', INELIGIBLE: 'INELIGIBLE' };
-const S = { OK: 'SATISFIED', NO: 'UNSATISFIED', UNKNOWN: 'UNKNOWN' };
-
-function ageFrom(birthDate, today = new Date()) {
-  if (!birthDate) return null;
-  const b = new Date(birthDate);
-  let age = today.getFullYear() - b.getFullYear();
-  const beforeBirthday =
-    today.getMonth() < b.getMonth() ||
-    (today.getMonth() === b.getMonth() && today.getDate() < b.getDate());
-  if (beforeBirthday) age -= 1;
-  return age;
-}
-
-// 조건 field 이름 → 사용자 프로필 값
+export const CONDITION_STATUS = {
+  SATISFIED: 'SATISFIED', UNSATISFIED: 'UNSATISFIED',
+  UNKNOWN: 'UNKNOWN', NOT_APPLICABLE: 'NOT_APPLICABLE',
+};
+const S = CONDITION_STATUS;
 const PROFILE_FIELDS = {
-  age: (p) => Number.isInteger(p.age) && p.age >= 0 && p.age <= 120 ? p.age : ageFrom(p.birth_date),
   region: (p) => p.region_code,
+  region_code: (p) => p.region_code,
   residence_months: (p) => p.residence_months,
   final_education: (p) => p.final_education,
   current_status: (p) => p.current_status,
@@ -45,66 +22,146 @@ const PROFILE_FIELDS = {
   housing_benefit_status: (p) => p.housing_benefit_status,
   special_targets: (p) => p.special_targets,
 };
+const PRIVATE_VALUES = new Set(['marital_status', 'housing_benefit_status', 'special_targets']);
 
-const OPERATORS = {
-  eq: (v, x) => v === x,
-  in: (v, xs) => xs.includes(v),
-  between: (v, [min, max]) => (min == null || v >= min) && (max == null || v <= max),
-  gte: (v, x) => v >= x,
-  lte: (v, x) => v <= x,
-  contains: (arr, x) => Array.isArray(arr) && arr.includes(x),
-  // 지역코드 앞자리 비교: '26' = 부산 전체, '26380' = 사하구
-  starts_with: (v, x) => String(v).startsWith(x),
-};
-
-function judgeCondition(cond, profile) {
-  if (cond.any) {
-    const results = cond.any.map((c) => judgeCondition(c, profile));
-    if (results.some((r) => r.status === S.OK)) return { status: S.OK, children: results };
-    if (results.some((r) => r.status === S.UNKNOWN))
-      return { status: S.UNKNOWN, children: results };
-    return { status: S.NO, children: results };
-  }
-
-  const getValue = PROFILE_FIELDS[cond.field];
-  const operator = OPERATORS[cond.op];
-  if (!getValue || !operator) return { ...cond, status: S.UNKNOWN, reason: '판정할 수 없는 조건' };
-
-  const value = profile ? getValue(profile) : null;
-  const empty = value == null || (Array.isArray(value) && value.length === 0);
-  // contains 는 "해당 특화대상이 아님"도 판정할 수 있지만, 입력하지 않았으면 확인 필요
-  if (empty) return { ...cond, status: S.UNKNOWN, reason: '사용자 정보 없음' };
-
-  return { ...cond, status: operator(value, cond.value) ? S.OK : S.NO };
+function ageFrom(profile, now) {
+  if (Number.isInteger(profile?.age) && profile.age >= 0 && profile.age <= 120) return profile.age;
+  const match = /^(\d{4})-(\d{2})-(\d{2})$/.exec(profile?.birth_date ?? '');
+  if (!match) return null;
+  const [, year, month, day] = match.map(Number);
+  const birth = new Date(Date.UTC(year, month - 1, day));
+  if (birth.getUTCFullYear() !== year || birth.getUTCMonth() !== month - 1 || birth.getUTCDate() !== day) return null;
+  const today = kstDateParts(now);
+  let age = today.year - year;
+  if (today.month < month || (today.month === month && today.day < day)) age -= 1;
+  return age >= 0 && age <= 120 ? age : null;
 }
 
-function combine(statuses) {
-  if (statuses.includes(S.NO)) return RESULT.INELIGIBLE;
-  if (statuses.includes(S.UNKNOWN)) return RESULT.CHECK;
-  return RESULT.ELIGIBLE;
+function profileValue(field, profile, now) {
+  if (field === 'age') return ageFrom(profile, now);
+  return PROFILE_FIELDS[field]?.(profile) ?? null;
 }
 
-export function judge(policy, profile) {
-  const conditions = policy.eligibility_conditions;
-  const all = [...(conditions?.all ?? [])];
+function compare(op, actual, expected) {
+  if (expected == null) return null;
+  if (Array.isArray(expected) && expected.length === 0) return null;
+  if (op === 'between' && Array.isArray(expected) && expected.every((value) => value == null)) return null;
+  if (op === 'starts_with' && expected === '') return null;
+  if (op === 'eq' && (Array.isArray(expected) || typeof expected === 'object')) return null;
+  if (op === 'eq') return Array.isArray(actual) ? actual.includes(expected) : actual === expected;
+  if (op === 'in' && Array.isArray(expected)) return Array.isArray(actual)
+    ? actual.some((value) => expected.includes(value)) : expected.includes(actual);
+  if (op === 'between' && typeof actual === 'number' && Array.isArray(expected) && expected.length === 2 &&
+    expected.every((value) => value == null || typeof value === 'number'))
+    return (expected[0] == null || actual >= expected[0]) && (expected[1] == null || actual <= expected[1]);
+  if (op === 'gte' && typeof actual === 'number' && typeof expected === 'number') return actual >= expected;
+  if (op === 'lte' && typeof actual === 'number' && typeof expected === 'number') return actual <= expected;
+  if (op === 'contains' && Array.isArray(actual)) return actual.includes(expected);
+  if (op === 'starts_with' && typeof actual === 'string' && typeof expected === 'string')
+    return actual.startsWith(expected);
+  return null;
+}
 
-  // JSON 조건이 비어 있으면 기본 나이 컬럼이라도 쓴다
-  if (all.length === 0 && (policy.min_age != null || policy.max_age != null)) {
-    all.push({ field: 'age', op: 'between', value: [policy.min_age, policy.max_age] });
+function combine(statuses, kind) {
+  if (kind === 'OR') {
+    if (statuses.includes(S.SATISFIED)) return S.SATISFIED;
+    if (statuses.includes(S.UNKNOWN)) return S.UNKNOWN;
+    if (statuses.includes(S.UNSATISFIED)) return S.UNSATISFIED;
+    return S.NOT_APPLICABLE;
   }
+  if (statuses.includes(S.UNSATISFIED)) return S.UNSATISFIED;
+  if (statuses.includes(S.UNKNOWN)) return S.UNKNOWN;
+  if (statuses.includes(S.SATISFIED)) return S.SATISFIED;
+  return S.NOT_APPLICABLE;
+}
 
-  const results = all.map((c) => judgeCondition(c, profile));
-  const excludes = (conditions?.exclude ?? []).map((e) => ({
-    ...e,
-    status: S.UNKNOWN,
-    reason: '제외 조건 확인 필요',
-  }));
+function childrenOf(node) {
+  if (Array.isArray(node?.any)) return { kind: 'OR', key: 'any', nodes: node.any };
+  if (Array.isArray(node?.all)) return { kind: 'AND', key: 'all', nodes: node.all };
+  const op = String(node?.op ?? node?.operator ?? '').toUpperCase();
+  if (['AND', 'OR'].includes(op) && Array.isArray(node.conditions))
+    return { kind: op, key: 'conditions', nodes: node.conditions };
+  return null;
+}
 
-  const statuses = [...results, ...excludes].map((r) => r.status);
-  let result = combine(statuses);
-  if (result === RESULT.ELIGIBLE && (!policy.eligibility_verified || all.length === 0)) {
-    result = RESULT.CHECK;
+function hasField(nodes, field) {
+  return nodes.some((node) => node?.field === field ||
+    (childrenOf(node) ? hasField(childrenOf(node).nodes, field) : false));
+}
+
+function judgeCondition(node, profile, context, path) {
+  const evidence = { source: path, source_url: context.sourceUrl };
+  if (!node || typeof node !== 'object')
+    return { status: S.UNKNOWN, reason: '정책 조건 형식을 확인할 수 없습니다.', evidence };
+  if (node.applicable === false || node.status === S.NOT_APPLICABLE)
+    return { ...node, status: S.NOT_APPLICABLE, reason: '해당하지 않는 조건입니다.', evidence };
+
+  const group = childrenOf(node);
+  if (group) {
+    const children = group.nodes.map((child, index) =>
+      judgeCondition(child, profile, context, `${path}.${group.key}[${index}]`));
+    const status = context.verified ? combine(children.map((item) => item.status), group.kind) : S.UNKNOWN;
+    return { ...node, status, children, reason: !context.verified ? '정책 신청 조건이 검증되지 않았습니다.'
+      : status === S.UNKNOWN ? '일부 조건을 확인할 수 없습니다.' : '하위 조건을 비교했습니다.', evidence };
   }
+  if (!context.verified)
+    return { ...node, status: S.UNKNOWN, reason: '정책 신청 조건이 검증되지 않았습니다.', evidence };
 
-  return { result, conditions: [...results, ...excludes] };
+  const op = String(node.op ?? node.operator ?? '').toLowerCase();
+  if (!(node.field === 'age' || Object.hasOwn(PROFILE_FIELDS, node.field)) ||
+    !['eq', 'in', 'between', 'gte', 'lte', 'contains', 'starts_with'].includes(op))
+    return { ...node, status: S.UNKNOWN, reason: '자동 판정할 수 없는 정책 조건입니다.', evidence };
+
+  const actual = profile ? profileValue(node.field, profile, context.now) : null;
+  if (actual == null || actual === '' || (Array.isArray(actual) && actual.length === 0))
+    return { ...node, status: S.UNKNOWN, reason: '사용자 정보가 없어 확인할 수 없습니다.',
+      evidence: { ...evidence, policy_value: node.value } };
+  const matched = compare(op, actual, node.value);
+  if (matched == null)
+    return { ...node, status: S.UNKNOWN, reason: '정책 조건의 값 또는 형식을 확인할 수 없습니다.', evidence };
+  return { ...node, status: matched ? S.SATISFIED : S.UNSATISFIED,
+    reason: matched ? '저장된 정책 조건을 충족합니다.' : '저장된 정책 조건을 충족하지 않습니다.',
+    evidence: { ...evidence, policy_value: node.value,
+      ...(!PRIVATE_VALUES.has(node.field) ? { profile_value: actual } : {}) } };
+}
+
+function judgeExclusion(node, profile, context, path) {
+  const condition = node?.operator === 'NOT' && node.condition ? node.condition : node;
+  const checked = judgeCondition(condition, profile, context, path);
+  const status = checked.status === S.SATISFIED ? S.UNSATISFIED
+    : checked.status === S.UNSATISFIED ? S.NOT_APPLICABLE : checked.status;
+  return { ...checked, status, reason: status === S.UNSATISFIED ? '정책의 제외 조건에 해당합니다.'
+    : status === S.NOT_APPLICABLE ? '정책의 제외 조건에 해당하지 않습니다.' : checked.reason };
+}
+
+export function judge(policy, profile, now = new Date()) {
+  const stored = policy.eligibility_conditions;
+  const verified = policy.eligibility_verified === true &&
+    stored?.engine_projection?.automatic_eligibility_ready !== false;
+  const context = { verified, sourceUrl: stored?.source_url ?? policy.official_url ?? null, now };
+  const useAll = Array.isArray(stored?.all) &&
+    (stored.all.length > 0 || !Array.isArray(stored?.required) || stored.required.length === 0);
+  const requiredKey = useAll ? 'all' : 'required';
+  const required = Array.isArray(stored?.[requiredKey]) ? stored[requiredKey] : [];
+  const excludedKey = requiredKey === 'all' ? 'exclude' : 'exclusions';
+  const excluded = Array.isArray(stored?.[excludedKey]) ? stored[excludedKey] : [];
+  const conditions = required.map((node, index) =>
+    judgeCondition(node, profile, context, `policy.eligibility_conditions.${requiredKey}[${index}]`));
+
+  if (!hasField(required, 'age') && (policy.min_age != null || policy.max_age != null))
+    conditions.push(judgeCondition({ field: 'age', op: 'between', value: [policy.min_age, policy.max_age] },
+      profile, context, 'policy.min_age/max_age'));
+  if (policy.income_condition && !hasField(required, 'income'))
+    conditions.push(judgeCondition({ field: 'income', op: 'text', value: policy.income_condition },
+      profile, context, 'policy.income_condition'));
+  conditions.push(...excluded.map((node, index) =>
+    judgeExclusion(node, profile, context, `policy.eligibility_conditions.${excludedKey}[${index}]`)));
+
+  const statuses = conditions.map((item) => item.status);
+  const result = !verified || conditions.length === 0 ? RESULT.CHECK
+    : statuses.includes(S.UNSATISFIED) ? RESULT.INELIGIBLE
+      : statuses.includes(S.UNKNOWN) ? RESULT.CHECK : RESULT.ELIGIBLE;
+  return { result, reason: result === RESULT.CHECK ? '정책 조건 또는 사용자 정보를 추가로 확인해야 합니다.'
+    : result === RESULT.INELIGIBLE ? '확인된 필수 조건을 충족하지 않습니다.'
+      : '확인된 필수 조건을 모두 충족합니다.', conditions };
 }

@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 import { dDayText } from '../utils/format';
 
 export default function PolicyCard({ policy }) {
+  const supportSummary = policy.support_summary?.trim();
   return (
     <Link to={`/policies/${policy.policy_id}`} className="card">
       <div className="card-top">
@@ -9,7 +10,7 @@ export default function PolicyCard({ policy }) {
         <span className="dday">{dDayText(policy.d_day, policy.recruitment_status)}</span>
       </div>
       <strong className="card-title">{policy.title}</strong>
-      {policy.support_content && <p className="card-desc">{policy.support_content}</p>}
+      {supportSummary && <p className="card-desc">{supportSummary}</p>}
     </Link>
   );
 }

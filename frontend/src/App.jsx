@@ -1,3 +1,4 @@
+import { lazy, Suspense } from 'react';
 import { Routes, Route, useLocation } from 'react-router-dom';
 import TabBar from './components/TabBar.jsx';
 import AssistantButton from './components/AssistantButton.jsx';
@@ -7,12 +8,18 @@ import MapPage from './pages/map/MapPage.jsx';
 import CalendarPage from './pages/calendar/CalendarPage.jsx';
 import MyPage from './pages/my/MyPage.jsx';
 import PolicyDetailPage from './pages/common/PolicyDetailPage.jsx';
+import PolicyComparePage from './pages/common/PolicyComparePage.jsx';
 import NotFoundPage from './pages/common/NotFoundPage.jsx';
+
+const DevLoginPage = import.meta.env.DEV
+  ? lazy(() => import('./pages/dev/DevLoginPage.jsx'))
+  : null;
 
 export default function App() {
   const pathname = useLocation().pathname;
   const isSearch = pathname === '/search';
-  const isDetail = /^\/policies\/[^/]+$/.test(pathname);
+  const isDetail = /^\/policies\/[^/]+(?:\/compare\/[^/]+)?$/.test(pathname);
+  const isDevLogin = import.meta.env.DEV && pathname === '/dev/login';
   return (
     <div className={`app${isSearch ? ' app--search' : ''}${isDetail ? ' app--detail' : ''}`}>
       <main className="page">
@@ -23,11 +30,15 @@ export default function App() {
           <Route path="/calendar" element={<CalendarPage />} />
           <Route path="/my" element={<MyPage />} />
           <Route path="/policies/:policyId" element={<PolicyDetailPage />} />
+          <Route path="/policies/:policyId/compare/:comparisonId" element={<PolicyComparePage />} />
+          {DevLoginPage && <Route path="/dev/login" element={
+            <Suspense fallback={null}><DevLoginPage /></Suspense>
+          } />}
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </main>
-      {!isSearch && !isDetail && <AssistantButton />}
-      <TabBar />
+      {!isSearch && !isDetail && !isDevLogin && <AssistantButton />}
+      {!isDevLogin && <TabBar />}
     </div>
   );
 }

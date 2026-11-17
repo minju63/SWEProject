@@ -1,10 +1,12 @@
 import { useEffect, useState } from 'react';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { useNavigate, useSearchParams } from 'react-router-dom';
-import { fetchCategories, fetchPolicies, fetchSearchFilters } from '../../api/policies';
+import { fetchPolicies, fetchPopularSearchKeywords, fetchSearchFilters } from '../../api/policies';
 import { addBookmark, fetchBookmarks, fetchProfile, removeBookmark } from '../../api/me';
 import { useAuthStore } from '../../store/authStore';
 import { dDayText } from '../../utils/format';
+import SelectMenu from '../../components/SelectMenu.jsx';
+import PolicyAutocomplete from '../../components/PolicyAutocomplete.jsx';
 import {
   ArtIcon, BackIcon, BriefcaseIcon, ClockIcon, CoinIcon,
   HealthIcon, HeartIcon, HomeIcon, SearchIcon,
@@ -13,16 +15,24 @@ import SearchFilters from './SearchFilters.jsx';
 import { emptyFilters } from './searchFilterData';
 
 const categoryItems = [
-  { label: '취업·진로', Icon: BriefcaseIcon, color: 'pink' },
   { label: '주거·생활', Icon: HomeIcon, color: 'blue' },
+  { label: '취업·진로', Icon: BriefcaseIcon, color: 'pink' },
   { label: '장학·금융', Icon: CoinIcon, color: 'yellow' },
   { label: '문화', Icon: ArtIcon, color: 'green' },
   { label: '복지·건강', Icon: HealthIcon, color: 'purple' },
 ];
-const popularTerms = ['청년 월세 지원', '국가장학금', '청년 적금'];
 const recentKey = 'cheonghae-recent-policy-searches';
 const previousDemoTerms = ['대학생 장학금', '청년 월세 지원', '사하구 지원금'];
 const categoryLabel = (name) => name === '문화·예술' ? '문화' : name;
+const categoryTagTone = {
+  '주거·생활': 'blue', '취업·진로': 'pink', '장학·금융': 'purple',
+  문화: 'green', '문화·예술': 'green', '복지·건강': 'purple',
+};
+const eligibilityTags = {
+  ELIGIBLE: { text: '✓ 신청 가능', tone: 'eligible' },
+  CHECK: { text: '확인 필요', tone: 'check' },
+  INELIGIBLE: { text: '신청 불가', tone: 'ineligible' },
+};
 
 function readRecentTerms() {
   try {
@@ -35,28 +45,15 @@ function readRecentTerms() {
   }
 }
 
-function SearchStatusBar() {
-  return (
-    <div className="search-status-bar" aria-label="기기 상태">
-      <span>9:41</span>
-      <span className="search-status-icons" aria-hidden="true">
-        <svg viewBox="0 0 18 12" fill="currentColor"><rect x="1" y="7" width="3" height="4" rx="1" /><rect x="6" y="5" width="3" height="6" rx="1" /><rect x="11" y="2" width="3" height="9" rx="1" /></svg>
-        <svg viewBox="0 0 18 12" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round"><path d="M2 4.5a10 10 0 0 1 14 0" /><path d="M5 7.2a5.8 5.8 0 0 1 8 0" /><path d="M8 10a1.5 1.5 0 0 1 2 0" /></svg>
-        <svg viewBox="0 0 26 12" fill="none"><rect x="1" y="1" width="21" height="10" rx="3" stroke="currentColor" strokeWidth="1.4" /><rect x="3" y="3" width="16" height="6" rx="1.5" fill="currentColor" /><path d="M24 4v4" stroke="currentColor" strokeWidth="2" strokeLinecap="round" /></svg>
-      </span>
-    </div>
-  );
-}
-
-function SearchForm({ value, onChange, onSubmit }) {
-  return (
-    <form className="policy-search-form" onSubmit={(event) => { event.preventDefault(); onSubmit(); }}>
+function SearchForm({ value, onChange, onSubmit, onSelectPolicy }) {
+  return <PolicyAutocomplete value={value} onChange={onChange} onSearch={onSubmit}
+    onSelectPolicy={onSelectPolicy} renderInput={(inputProps, submit) =>
+      <form className="policy-search-form" onSubmit={(event) => { event.preventDefault(); submit(); }}>
       <SearchIcon />
-      <input value={value} onChange={(event) => onChange(event.target.value)}
+      <input {...inputProps}
         placeholder="정책명 또는 키워드를 입력해주세요" aria-label="정책 검색어" />
       <button type="submit">검색</button>
-    </form>
-  );
+      </form>} />;
 }
 
 function periodText(policy) {
@@ -85,26 +82,26 @@ export default function SearchPage() {
   const input = draftInput ?? routeQuery;
   const categoryName = searchParams.get('category') ?? '';
   const hasSearch = searchParams.has('q') || searchParams.has('category') || searchParams.has('results');
-  const categories = useQuery({ queryKey: ['categories'], queryFn: fetchCategories });
-  const searchFilters = useQuery({ queryKey: ['search-filters'], queryFn: fetchSearchFilters });
+  const searchFilters = useQuery({ queryKey: ['search-filters'], queryFn: fetchSearchFilters,
+    enabled: Boolean(user) });
+  const popularSearchKeywords = useQuery({ queryKey: ['popular-search-keywords'],
+    queryFn: fetchPopularSearchKeywords, enabled: !hasSearch && Boolean(user) });
   const filterCategories = searchFilters.data?.categories ?? [];
   const filterRegions = searchFilters.data?.regions ?? [];
   const subcategories = Object.fromEntries(filterCategories.map((category) => [category.display_name,
     category.subcategories.map((sub) => sub.subcategory_name)]));
-  const profile = useQuery({ queryKey: ['profile'], queryFn: fetchProfile, enabled: Boolean(user && hasSearch) });
+  const profile = useQuery({ queryKey: ['profile', user?.id], queryFn: fetchProfile, enabled: Boolean(user && hasSearch) });
   const categoryIds = applied.categories.map((name) => filterCategories.find(
     (category) => category.display_name === name,
   )?.category_id).filter(Boolean);
   const unmatchedCategory = Boolean(applied.categories.length && searchFilters.isSuccess && !categoryIds.length);
   function makeParams(filters, currentPage = 1, currentSize = 20) {
-    const interestCategories = filters.myConditionsOnly ? profile.data?.interest_categories : filters.conditions.interest_categories;
-    const selectedCategories = (filters.categories.length ? filters.categories : interestCategories ?? [])
+    const selectedCategories = filters.categories
       .map(categoryLabel).filter((name) => filterCategories.some((category) => category.display_name === name));
     const ids = selectedCategories.map((name) => filterCategories.find(
       (category) => category.display_name === name || category.category_name === name,
     )?.category_id).filter(Boolean);
-    const selectedDetails = filters.categories.length ? filters.details
-      : filters.myConditionsOnly ? [] : filters.conditions.interest_details ?? [];
+    const selectedDetails = filters.details;
     const partialDetails = selectedCategories.flatMap((name) => {
       const subs = subcategories[name] ?? [];
       const chosen = subs.filter((value) => selectedDetails.includes(value));
@@ -128,9 +125,9 @@ export default function SearchPage() {
     size: currentSize,
     };
   }
-  const params = makeParams(applied, page);
+  const params = { ...makeParams(applied, page), includeEligibility: Boolean(user) };
   const policies = useQuery({
-    queryKey: ['policies', params],
+    queryKey: ['policies', user?.id ?? null, params],
     queryFn: () => fetchPolicies(params),
     enabled: hasSearch && !unmatchedCategory && searchFilters.isSuccess,
   });
@@ -143,13 +140,13 @@ export default function SearchPage() {
     enabled: filterOpen && searchFilters.isSuccess && draftCategoryMatched,
   });
   const bookmarks = useQuery({
-    queryKey: ['bookmarks'],
+    queryKey: ['bookmarks', user?.id],
     queryFn: fetchBookmarks,
     enabled: Boolean(user && hasSearch),
   });
   const bookmarkMutation = useMutation({
     mutationFn: ({ policyId, saved }) =>
-      saved ? removeBookmark(policyId) : addBookmark(policyId, 'search'),
+      saved ? removeBookmark(policyId) : addBookmark(policyId, 'SEARCH'),
     onSuccess: () => {
       setBookmarkError('');
       queryClient.invalidateQueries({ queryKey: ['bookmarks'] });
@@ -232,15 +229,16 @@ export default function SearchPage() {
 
   return (
     <div className="search-page">
-      <SearchStatusBar />
       <header className={`search-header${hasSearch ? ' search-header--results' : ''}`}>
         <div className="search-header-row">
-          <button className="search-back" type="button" aria-label="뒤로 가기"
-            onClick={() => { setDraftInput(null); navigate(hasSearch ? '/search' : '/'); }}><BackIcon /></button>
+          {hasSearch && <button className="search-back" type="button" aria-label="뒤로 가기"
+            onClick={() => { setDraftInput(null); navigate('/search'); }}><BackIcon /></button>}
           {!hasSearch && <h1>정책 찾기</h1>}
-          {hasSearch && <SearchForm value={input} onChange={setDraftInput} onSubmit={submitSearch} />}
+          {hasSearch && <SearchForm value={input} onChange={setDraftInput} onSubmit={submitSearch}
+            onSelectPolicy={(policy) => navigate(`/policies/${policy.policy_id}`)} />}
         </div>
-        {!hasSearch && <SearchForm value={input} onChange={setDraftInput} onSubmit={submitSearch} />}
+        {!hasSearch && <SearchForm value={input} onChange={setDraftInput} onSubmit={submitSearch}
+          onSelectPolicy={(policy) => navigate(`/policies/${policy.policy_id}`)} />}
       </header>
 
       {!hasSearch ? (
@@ -257,8 +255,11 @@ export default function SearchPage() {
                 ))}
               </div>
               {searchFilters.isError && <p className="search-state search-state--error">카테고리를 불러오지 못했어요.</p>}
+              {!user && <p className="search-state">로그인 후 정책을 검색할 수 있어요.</p>}
             </section>
+          </div>
 
+          <div className="search-landing-card">
             {recentTerms.length > 0 && (
               <section className="search-landing-section">
                 <div className="search-section-heading">
@@ -280,7 +281,7 @@ export default function SearchPage() {
             <section className="search-landing-section">
               <h2>지금 많이 찾는 검색어</h2>
               <div className="search-popular-terms">
-                {popularTerms.map((term) => (
+                {(popularSearchKeywords.data ?? []).map((term) => (
                   <button type="button" key={term} onClick={() => submitSearch(term)}>{term}</button>
                 ))}
               </div>
@@ -303,24 +304,20 @@ export default function SearchPage() {
           <section className="search-result-content">
             <div className="search-result-heading">
               <h2>검색 결과 <span>{unmatchedCategory ? 0 : (policies.data?.totalCount ?? 0)}건</span></h2>
-              <label className="search-sort-label">
-                <span className="sr-only">정렬 순서</span>
-                <select value={sort} onChange={(event) => { setSort(event.target.value); setPage(1); }}>
-                  <option value="recommended">추천순</option>
-                  <option value="deadline">마감 임박순</option>
-                  <option value="latest">최신순</option>
-                </select>
-              </label>
+              <SelectMenu label="정렬 순서" value={sort} className="search-sort-menu" menuMinWidth={148}
+                options={[{ value: 'recommended', label: '추천순' }, { value: 'deadline', label: '마감 임박순' }, { value: 'latest', label: '최신순' }]}
+                onChange={(next) => { setSort(next); setPage(1); }} />
             </div>
             {(searchFilters.isLoading || policies.isLoading) && !unmatchedCategory && <p className="search-state">정책을 불러오는 중이에요…</p>}
             {searchFilters.isError && <p className="search-state search-state--error">검색 필터를 불러오지 못했어요. 다시 시도해주세요.</p>}
-            {categories.error && categoryName && <p className="search-state search-state--error">카테고리를 불러오지 못했어요.</p>}
+            {!user && <p className="search-state">로그인 후 정책을 검색할 수 있어요.</p>}
             {policies.error && <p className="search-state search-state--error">정책을 불러오지 못했어요. 다시 시도해주세요.</p>}
             {bookmarkError && <p className="search-bookmark-error" role="alert">{bookmarkError}</p>}
             {policies.data?.items?.length > 0 && (
               <div className="search-result-list">
                 {policies.data.items.map((policy) => {
-                  const policyCategory = categories.data?.find((item) => item.category_id === policy.category_id);
+                  const policyCategory = filterCategories.find((item) => item.category_id === policy.category_id);
+                  const eligibilityTag = eligibilityTags[policy.eligibility_result];
                   const saved = savedIds.has(policy.policy_id);
                   return (
                     <article className="search-policy-card" key={policy.policy_id} role="link" tabIndex={0}
@@ -328,8 +325,9 @@ export default function SearchPage() {
                       onKeyDown={(event) => { if (event.key === 'Enter') navigate(`/policies/${policy.policy_id}`); }}>
                       <div className="search-policy-top">
                         <div className="search-policy-tags">
-                          {policyCategory && <span>{policyCategory.category_name}</span>}
-                          {policy.region_codes?.length > 0 && <span>{policy.region_codes.includes('KR') ? '전국' : policy.region_codes.includes('26') ? '부산광역시' : filterRegions.find((region) => policy.region_codes.includes(region.region_code))?.region_name ?? '부산광역시'}</span>}
+                          {eligibilityTag && <span className={`search-policy-tag--${eligibilityTag.tone}`}>{eligibilityTag.text}</span>}
+                          {policyCategory && <span className={`search-policy-tag--${categoryTagTone[policyCategory.category_name] ?? 'blue'}`}>{policyCategory.category_name}</span>}
+                          {policy.region_codes?.length > 0 && <span className="search-policy-tag--region">{policy.region_codes.includes('KR') ? '전국' : policy.region_codes.includes('26') ? '부산광역시' : filterRegions.find((region) => policy.region_codes.includes(region.region_code))?.region_name ?? '부산광역시'}</span>}
                           {['마감', '종료'].includes(policy.recruitment_status) && <span className="search-policy-tag--closed">마감</span>}
                         </div>
                         <button type="button" className={`search-save-button${saved ? ' is-saved' : ''}`}
@@ -341,10 +339,10 @@ export default function SearchPage() {
                       </div>
                       <div className="search-policy-main">
                         <h3>{policy.title}</h3>
-                        {(policy.target_summary || policy.support_content) && <p>{policy.target_summary || policy.support_content}</p>}
+                        {policy.support_summary?.trim() && <p>{policy.support_summary.trim()}</p>}
                       </div>
                       <div className="search-policy-bottom">
-                        <span>신청기간 {periodText(policy)}</span>
+                        <span>신청기간 {periodText(policy)} · {policy.recruitment_status}</span>
                         <strong>{dDayText(policy.d_day, policy.recruitment_status)}</strong>
                       </div>
                     </article>

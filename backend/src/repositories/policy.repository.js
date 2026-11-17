@@ -1,5 +1,7 @@
 import { supabase } from '../lib/supabase.js';
 import { SEARCH_SUBCATEGORIES, searchSubcategories } from '../constants/policySubcategories.js';
+import { policyStatus } from '../services/policy-status.service.js';
+import { compareRecommendedPolicies } from '../services/policy-search-sort.service.js';
 
 const DETAIL_TABLE = {
   JOB: 'job_detail',
@@ -31,22 +33,22 @@ async function allRows(table, columns, configure = (query) => query) {
 }
 
 export async function findPolicies({ categoryId, categoryIds = [], details = [], categoryDetails = [], regions = [], statuses = [],
-  dateStart, dateEnd, includeAlways, keyword, sort, page, size, profile }) {
+  dateStart, dateEnd, includeAlways, keyword, sort, page, size, assess, onlyEligible, interests = [], includeEligibility }) {
   const advanced = sort === 'recommended' || Boolean(keyword) || categoryIds.length || details.length || categoryDetails.length ||
-    regions.length || statuses.length || dateStart || dateEnd || profile;
+    regions.length || statuses.length || dateStart || dateEnd || onlyEligible;
   if (advanced) {
     const ids = categoryIds.length ? categoryIds : categoryId ? [categoryId] : [];
     const items = await allRows('policy',
-      'policy_id,title,category_id,collection_domain,item_type,target_summary,support_content,application_start_date,application_end_date,is_always_open,created_at,min_age,max_age,eligibility_conditions,eligibility_verified',
+      'policy_id,title,category_id,collection_domain,item_type,target_summary,support_summary,support_content,benefit_type,application_start_date,application_end_date,is_always_open,created_at,min_age,max_age,income_condition,eligibility_conditions,eligibility_verified',
       (query) => {
         if (ids.length) query = query.in('category_id', ids);
-        return query.order('policy_id');
+        return query.eq('item_type', 'POLICY').order('policy_id');
       });
     const policyIds = items.map((item) => item.policy_id);
     if (!policyIds.length) return { items: [], totalCount: 0 };
-    const hasDetailFilter = details.length || categoryDetails.length;
+    const hasDetailFilter = details.length || categoryDetails.length || Boolean(keyword);
     const domains = new Set(items.map((item) => item.collection_domain));
-    const [statusRows, regionRows, detailRows, housingRows, financeRows, cultureRows] = await Promise.all([
+    const [statusRows, regionRows, detailRows, housingRows, financeRows, cultureRows, categoryRows] = await Promise.all([
       allRows('v_policy_status', 'policy_id,recruitment_status,d_day', (query) => query.order('policy_id')),
       allRows('policy_region', 'policy_id,region_code', (query) => query.order('policy_id').order('region_code')),
       hasDetailFilter && (domains.has('JOB') || domains.has('HOUSING'))
@@ -55,8 +57,12 @@ export async function findPolicies({ categoryId, categoryIds = [], details = [],
       hasDetailFilter && domains.has('HOUSING') ? allRows('housing_detail', 'policy_id,housing_support_type') : Promise.resolve([]),
       hasDetailFilter && domains.has('FINANCE') ? allRows('finance_detail', 'policy_id,finance_type') : Promise.resolve([]),
       hasDetailFilter && domains.has('CULTURE') ? allRows('culture_detail', 'policy_id,culture_type') : Promise.resolve([]),
+      findCategories(),
     ]);
-    const statusById = new Map(statusRows.map((row) => [row.policy_id, row]));
+    const categoryById = new Map(categoryRows.map((row) => [row.category_id, row.category_name]));
+    const viewStatusById = new Map(statusRows.map((row) => [row.policy_id, row]));
+    const statusById = new Map(items.map((item) => [item.policy_id,
+      policyStatus(item, viewStatusById.get(item.policy_id))]));
     const regionsById = new Map();
     for (const row of regionRows) {
       if (!regionsById.has(row.policy_id)) regionsById.set(row.policy_id, []);
@@ -74,8 +80,8 @@ export async function findPolicies({ categoryId, categoryIds = [], details = [],
       const itemDetails = hasDetailFilter
         ? searchSubcategories(item, detailsById.get(item.policy_id) ?? [], domainDetails.get(item.policy_id))
         : [];
-      const searchText = `${item.title} ${item.target_summary ?? ''} ${item.support_content ?? ''} ${itemDetails.join(' ')}`.toLocaleLowerCase();
-      if (keyword && !keyword.toLocaleLowerCase().trim().split(/\s+/).some((word) => searchText.includes(word))) return false;
+      const searchText = `${item.title} ${item.target_summary ?? ''} ${item.support_content ?? ''} ${item.benefit_type ?? ''} ${categoryById.get(item.category_id) ?? ''} ${itemDetails.join(' ')}`.toLocaleLowerCase();
+      if (keyword && !keyword.toLocaleLowerCase().trim().split(/\s+/).every((word) => searchText.includes(word))) return false;
       if (regions.length && !itemRegions.some((code) => code === 'KR' || code === '26' || regions.includes(code))) return false;
       if (statuses.length && !statuses.some((value) => {
         if (value === '7일 내 마감') return status?.recruitment_status === '모집 중' && status.d_day >= 0 && status.d_day <= 7;
@@ -95,23 +101,24 @@ export async function findPolicies({ categoryId, categoryIds = [], details = [],
       if (selectedDetails.length) {
         if (!selectedDetails.some((value) => itemDetails.includes(value))) return false;
       }
-      if (profile && profile.judge(item).result === 'INELIGIBLE') return false;
+      if (onlyEligible && assess(item).result === 'INELIGIBLE') return false;
       return true;
     }).map((item) => ({ ...item, ...statusById.get(item.policy_id),
-      region_codes: regionsById.get(item.policy_id) ?? [] }));
-    const rank = (item) => ['모집 중', '진행 중'].includes(item.recruitment_status) ? 0
-      : item.recruitment_status === '상시' ? 1 : ['모집 예정', '예정'].includes(item.recruitment_status) ? 2 : 3;
+      category_name: categoryById.get(item.category_id) ?? null,
+      region_codes: regionsById.get(item.policy_id) ?? [],
+      eligibility_result: assess(item).result }));
     filtered.sort((a, b) => sort === 'latest'
       ? b.created_at.localeCompare(a.created_at) || a.policy_id.localeCompare(b.policy_id)
       : sort === 'recommended'
-        ? rank(a) - rank(b) || (a.d_day ?? 9999) - (b.d_day ?? 9999) || a.policy_id.localeCompare(b.policy_id)
+        ? compareRecommendedPolicies(a, b, interests)
         : (a.application_end_date ?? '9999').localeCompare(b.application_end_date ?? '9999') || a.policy_id.localeCompare(b.policy_id));
     return { items: filtered.slice((page - 1) * size, page * size), totalCount: filtered.length };
   }
+  const columns = 'policy_id, title, category_id, item_type, target_summary, support_summary, support_content, benefit_type, application_start_date, application_end_date, is_always_open';
   let query = supabase
     .from('policy')
     .select(
-      'policy_id, title, category_id, item_type, target_summary, support_content, application_start_date, application_end_date, is_always_open',
+      includeEligibility ? `${columns}, min_age, max_age, income_condition, eligibility_conditions, eligibility_verified` : columns,
       { count: 'exact' }
     );
 
@@ -121,6 +128,7 @@ export async function findPolicies({ categoryId, categoryIds = [], details = [],
   query = query.order('policy_id').range((page - 1) * size, page * size - 1);
 
   if (categoryId) query = query.eq('category_id', categoryId);
+  query = query.eq('item_type', 'POLICY');
   if (keyword) query = query.ilike('title', `%${keyword}%`);
 
   const { data, count, error } = await query;
@@ -142,37 +150,96 @@ export async function findPolicyById(policyId) {
   if (!data) return null;
 
   const detailTable = DETAIL_TABLE[data.collection_domain];
-  const [detailResult, categoryResult, regionsResult, sourceResult, relatedResult] = await Promise.all([
-    supabase.from(detailTable).select('*').eq('policy_id', policyId).maybeSingle(),
+  const [detailResult, categoryResult, regionsResult, subcategoryResult, sourceResult] = await Promise.all([
+    detailTable
+      ? supabase.from(detailTable).select('*').eq('policy_id', policyId).maybeSingle()
+      : Promise.resolve({ data: null, error: null }),
     data.category_id
       ? supabase.from('policy_category').select('category_name').eq('category_id', data.category_id).maybeSingle()
       : Promise.resolve({ data: null, error: null }),
     supabase.from('policy_region').select('region_code, region:region_code(region_name)').eq('policy_id', policyId),
-    data.collection_domain === 'CULTURE' && data.item_type === 'POLICY'
-      ? supabase.from('policy_source').select('last_checked_at, source_url')
-        .eq('policy_id', policyId).eq('source_type', 'CRAWL').like('external_id', 'WEB-%')
-        .order('last_checked_at', { ascending: false }).limit(1).maybeSingle()
-      : Promise.resolve({ data: null, error: null }),
-    data.category_id
-      ? supabase.from('policy').select('policy_id, title, target_summary, support_content, application_end_date, category_id')
-        .eq('category_id', data.category_id).eq('item_type', 'POLICY').neq('policy_id', policyId)
-        .order('created_at', { ascending: false }).limit(2)
-      : Promise.resolve({ data: [], error: null }),
+    supabase.from('policy_subcategory_map')
+      .select('policy_subcategory(subcategory_name)').eq('policy_id', policyId),
+    supabase.from('policy_source').select('source_id, source_name, last_checked_at, source_url')
+      .eq('policy_id', policyId).order('last_checked_at', { ascending: false, nullsFirst: false })
+      .limit(1).maybeSingle(),
   ]);
-  for (const result of [detailResult, categoryResult, regionsResult, sourceResult, relatedResult]) {
+  for (const result of [detailResult, categoryResult, regionsResult, subcategoryResult, sourceResult]) {
     if (result.error) throw result.error;
   }
+
+  const storedSubcategories = subcategoryResult.data
+    .map((row) => row.policy_subcategory?.subcategory_name).filter(Boolean);
+  const subcategories = searchSubcategories(data, storedSubcategories, detailResult.data ?? {});
 
   return {
     ...data,
     original_link_url: originalLinkFromText(data.support_content),
     detail: detailResult.data ?? null,
     category_name: categoryResult.data?.category_name ?? null,
+    subcategories: subcategories.length ? subcategories : storedSubcategories,
     regions: regionsResult.data.map((row) => row.region?.region_name ?? row.region_code),
     source_checked_at: sourceResult.data?.last_checked_at ?? null,
     source_url: sourceResult.data?.source_url ?? null,
-    related_policies: relatedResult.data,
+    source_name: sourceResult.data?.source_name ?? null,
+    source_id: sourceResult.data?.source_id ?? null,
   };
+}
+
+let similarityIndex;
+let similarityIndexExpiresAt = 0;
+let similarityIndexRequest;
+
+export async function findSimilarityIndex() {
+  if (similarityIndex && Date.now() < similarityIndexExpiresAt) return similarityIndex;
+  if (similarityIndexRequest) return similarityIndexRequest;
+  similarityIndexRequest = (async () => {
+    const [policies, categories, mapped, regions, housing, finance, culture] = await Promise.all([
+      allRows('policy', 'policy_id,title,category_id,collection_domain,item_type,target_summary,support_summary,support_content,benefit_type,min_age,max_age,income_condition,eligibility_conditions,eligibility_verified,application_start_date,application_end_date,is_always_open',
+        (query) => query.eq('item_type', 'POLICY').order('policy_id')),
+      findCategories(),
+      allRows('policy_subcategory_map', 'policy_id,policy_subcategory(subcategory_name)'),
+      allRows('policy_region', 'policy_id,region_code,region:region_code(region_name)'),
+      allRows('housing_detail', 'policy_id,housing_support_type'),
+      allRows('finance_detail', 'policy_id,finance_type'),
+      allRows('culture_detail', 'policy_id,culture_type'),
+    ]);
+    const categoryById = new Map(categories.filter((item) => item.is_search_enabled)
+      .map((item) => [item.category_id, item.category_name]));
+    const namesById = new Map();
+    for (const row of mapped) {
+      if (!namesById.has(row.policy_id)) namesById.set(row.policy_id, []);
+      if (row.policy_subcategory?.subcategory_name)
+        namesById.get(row.policy_id).push(row.policy_subcategory.subcategory_name);
+    }
+    const regionsById = new Map();
+    for (const row of regions) {
+      if (!regionsById.has(row.policy_id)) regionsById.set(row.policy_id, []);
+      regionsById.get(row.policy_id).push(row);
+    }
+    const detailById = new Map([...housing, ...finance, ...culture].map((row) => [row.policy_id, row]));
+    return policies.filter((policy) => categoryById.has(policy.category_id)).map((policy) => ({
+      ...policy,
+      category_name: categoryById.get(policy.category_id),
+      subcategories: searchSubcategories(policy, namesById.get(policy.policy_id) ?? [], detailById.get(policy.policy_id)),
+      region_codes: (regionsById.get(policy.policy_id) ?? []).map((row) => row.region_code),
+      regions: (regionsById.get(policy.policy_id) ?? []).map((row) => row.region?.region_name ?? row.region_code),
+    }));
+  })();
+  try {
+    similarityIndex = await similarityIndexRequest;
+    similarityIndexExpiresAt = Date.now() + 30_000;
+    return similarityIndex;
+  } finally {
+    similarityIndexRequest = null;
+  }
+}
+
+export async function policyExists(policyId) {
+  const { data, error } = await supabase.from('policy')
+    .select('policy_id').eq('policy_id', policyId).maybeSingle();
+  if (error) throw error;
+  return Boolean(data);
 }
 
 export async function findStatuses(policyIds) {
@@ -207,4 +274,57 @@ export async function findSearchFilters() {
     })),
     regions,
   };
+}
+
+export async function findPopularSearchKeywords() {
+  const { data, error } = await supabase.from('popular_search_keyword')
+    .select('keyword').order('search_count', { ascending: false })
+    .order('last_searched_at', { ascending: false }).limit(10);
+  if (error) throw error;
+  return data.map((row) => row.keyword);
+}
+
+let suggestionIndex;
+let suggestionIndexExpiresAt = 0;
+let suggestionIndexRequest;
+
+export async function findSuggestionIndex() {
+  if (suggestionIndex && Date.now() < suggestionIndexExpiresAt) return suggestionIndex;
+  if (suggestionIndexRequest) return suggestionIndexRequest;
+  suggestionIndexRequest = (async () => {
+    const [policies, categories, mapped, housing, finance, culture] = await Promise.all([
+      allRows('policy', 'policy_id,title,category_id,collection_domain,item_type,target_summary,support_content,benefit_type',
+        (query) => query.eq('item_type', 'POLICY').order('policy_id')),
+      findCategories(),
+      allRows('policy_subcategory_map', 'policy_id,policy_subcategory(subcategory_name)'),
+      allRows('housing_detail', 'policy_id,housing_support_type'),
+      allRows('finance_detail', 'policy_id,finance_type'),
+      allRows('culture_detail', 'policy_id,culture_type'),
+    ]);
+    const categoryById = new Map(categories.filter((item) => item.is_search_enabled)
+      .map((item) => [item.category_id, item.category_name]));
+    const namesById = new Map();
+    for (const row of mapped) {
+      if (!namesById.has(row.policy_id)) namesById.set(row.policy_id, []);
+      if (row.policy_subcategory?.subcategory_name)
+        namesById.get(row.policy_id).push(row.policy_subcategory.subcategory_name);
+    }
+    const domainDetailById = new Map([...housing, ...finance, ...culture]
+      .map((row) => [row.policy_id, row]));
+    return policies.filter((policy) => categoryById.has(policy.category_id)).map((policy) => ({
+      policy_id: policy.policy_id,
+      title: policy.title,
+      category_name: categoryById.get(policy.category_id),
+      keywords: [policy.target_summary, policy.support_content, policy.benefit_type].filter(Boolean),
+      subcategories: searchSubcategories(policy, namesById.get(policy.policy_id) ?? [],
+        domainDetailById.get(policy.policy_id)),
+    }));
+  })();
+  try {
+    suggestionIndex = await suggestionIndexRequest;
+    suggestionIndexExpiresAt = Date.now() + 30_000;
+    return suggestionIndex;
+  } finally {
+    suggestionIndexRequest = null;
+  }
 }

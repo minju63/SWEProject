@@ -1,15 +1,33 @@
 import { useState } from 'react';
+import SelectMenu from '../../components/SelectMenu.jsx';
 import { STATUSES, toggle } from './searchFilterData';
 
 const CONDITION_FIELDS = ['age', 'birth_date', 'region_code', 'residence_months', 'final_education', 'current_status', 'interest_categories', 'housing_type', 'household_type', 'lives_separately', 'marital_status', 'home_ownership', 'household_role', 'housing_benefit_status', 'special_targets'];
 const SPECIAL_TARGETS = ['다자녀가구', '중소·중견기업 재직자', '차상위계층', '기초생활수급자', '한부모가정', '장애인', '농업인', '군인', '지역인재', '신생아·영유아 가구', '자립준비청년', '주거취약계층'];
 const EDUCATIONS = ['중학교 졸업 이하', '고등학교 졸업', '대학교 졸업 (2년제)', '대학교 졸업 (4년제)', '대학원 졸업 (석사)', '대학원 졸업 (박사)'];
 const CURRENT_STATUSES = ['고등학생', '대학생(재학)', '대학생(휴학)', '대학원생', '취업준비생', '직장인', '자영업자', '창업준비생', '기타'];
-const INTEREST_CATEGORIES = ['취업·진로', '주거·생활', '장학·금융', '문화'];
+const INTEREST_CATEGORIES = ['주거·생활', '취업·진로', '장학·금융', '문화'];
 const displayCategory = (name) => name === '문화·예술' ? '문화' : name;
+const categoryOrder = (name) => {
+  const index = INTEREST_CATEGORIES.indexOf(displayCategory(name));
+  return index === -1 ? INTEREST_CATEGORIES.length : index;
+};
 const displayCondition = (field, value) => field === 'age' ? `만 ${value}세`
   : field === 'lives_separately' ? (value ? '부모와 별도 거주' : '부모와 함께 거주')
     : Array.isArray(value) ? value.map(displayCategory).join(', ') : String(value);
+const choices = (labels) => labels.map((label, index) => ({ value: index ? label : '', label }));
+
+function CheckMark() {
+  return <svg viewBox="0 0 16 16" aria-hidden="true" focusable="false">
+    <path d="M3.5 8.2 6.6 11l5.9-6.5" />
+  </svg>;
+}
+
+function FieldSelect({ label, value, options, onChange }) {
+  return <div className="search-condition-field"><span>{label}</span>
+    <SelectMenu label={label} value={value} options={options} onChange={onChange} className="search-condition-menu" />
+  </div>;
+}
 
 function Chips({ options, selected, onToggle }) {
   return <div className="search-choice-list">{options.map((option) => <button type="button" key={option}
@@ -44,42 +62,41 @@ function ConditionFields({ value, onChange, categories, regions }) {
         ? [...new Set([...interests, category])] : interests.filter((item) => item !== category) });
   }
   return <div className="search-condition-fields">
-    <h4>기본 정보</h4>
-    <label>만 나이<select value={value.age ?? ''} onChange={(event) => onChange({ ...value, age: event.target.value === '' ? null : Number(event.target.value), birth_date: undefined })}>
-      <option value="">선택해주세요</option>{Array.from({ length: 121 }, (_, age) => <option value={age} key={age}>만 {age}세</option>)}
-    </select></label>
-    <label>거주 지역<select value={value.region_code ?? ''} onChange={(event) => change('region_code', event.target.value)}>
-      <option value="">선택해주세요</option><option value="26">부산 전체</option>
-      {regions.map(({ region_name: name, region_code: code }) => <option key={code} value={code}>{name}</option>)}
-    </select></label>
-    <label>최종 학력<select value={value.final_education ?? ''} onChange={(event) => change('final_education', event.target.value)}>
-      <option value="">선택해주세요</option>{EDUCATIONS.map((label) => <option value={label} key={label}>{label}</option>)}
-    </select></label>
-    <label>현재 상태<select value={value.current_status ?? ''} onChange={(event) => change('current_status', event.target.value)}>
-      <option value="">선택해주세요</option>{CURRENT_STATUSES.map((label) => <option value={label} key={label}>{label}</option>)}
-    </select></label>
+    <div className="search-condition-heading"><h4>기본 정보</h4>
+      <button type="button" onClick={() => onChange({})}>전체 해제</button></div>
+    <FieldSelect label="만 나이" value={value.age ?? ''}
+      options={[{ value: '', label: '선택해주세요' }, ...Array.from({ length: 121 }, (_, age) => ({ value: age, label: `만 ${age}세` }))]}
+      onChange={(next) => onChange({ ...value, age: next === '' ? null : Number(next), birth_date: undefined })} />
+    <FieldSelect label="거주 지역" value={value.region_code ?? ''}
+      options={[{ value: '', label: '선택해주세요' }, { value: '26', label: '부산 전체' },
+        ...regions.map(({ region_name: name, region_code: code }) => ({ value: code, label: name }))]}
+      onChange={(next) => change('region_code', next)} />
+    <FieldSelect label="최종 학력" value={value.final_education ?? ''}
+      options={choices(['선택해주세요', ...EDUCATIONS])} onChange={(next) => change('final_education', next)} />
+    <FieldSelect label="현재 상태" value={value.current_status ?? ''}
+      options={choices(['선택해주세요', ...CURRENT_STATUSES])} onChange={(next) => change('current_status', next)} />
     <h4>거주 및 가구 정보</h4>
-    <label>현재 주거 형태<select value={value.housing_type ?? ''} onChange={(event) => change('housing_type', event.target.value)}>
-      {['선택해주세요', '월세', '전세', '기숙사·생활관', '공공임대', '자가'].map((label, index) => <option value={index ? label : ''} key={label}>{label}</option>)}
-    </select></label>
-    <label>가구 형태<select value={value.household_type ?? ''} onChange={(event) => change('household_type', event.target.value)}>
-      {['선택해주세요', '1인가구', '가족가구', '기타'].map((label, index) => <option value={index ? label : ''} key={label}>{label}</option>)}
-    </select></label>
-    <label>부모와 별도 거주 여부<select value={value.lives_separately == null ? '' : String(value.lives_separately)} onChange={(event) => change('lives_separately', event.target.value === '' ? null : event.target.value === 'true')}>
-      <option value="">선택해주세요</option><option value="true">예</option><option value="false">아니요</option>
-    </select></label>
-    <label>혼인 상태<select value={value.marital_status ?? ''} onChange={(event) => change('marital_status', event.target.value)}>
-      {['선택해주세요', '미혼', '기혼'].map((label, index) => <option value={index ? label : ''} key={label}>{label}</option>)}
-    </select></label>
-    <label>주택 소유 여부<select value={value.home_ownership ?? ''} onChange={(event) => change('home_ownership', event.target.value)}>
-      {['선택해주세요', '무주택', '유주택'].map((label, index) => <option value={index ? label : ''} key={label}>{label}</option>)}
-    </select></label>
-    <label>세대주 여부<select value={value.household_role ?? ''} onChange={(event) => change('household_role', event.target.value)}>
-      {['선택해주세요', '세대주', '예비세대주', '세대원'].map((label, index) => <option value={index ? label : ''} key={label}>{label}</option>)}
-    </select></label>
-    <label>주거급여 수급 여부<select value={value.housing_benefit_status ?? ''} onChange={(event) => change('housing_benefit_status', event.target.value)}>
-      {['선택해주세요', '수급 중', '수급하지 않음'].map((label, index) => <option value={index ? label : ''} key={label}>{label}</option>)}
-    </select></label>
+    <FieldSelect label="현재 주거 형태" value={value.housing_type ?? ''}
+      options={choices(['선택해주세요', '월세', '전세', '기숙사·생활관', '공공임대', '자가'])} onChange={(next) => change('housing_type', next)} />
+    <FieldSelect label="가구 형태" value={value.household_type ?? ''}
+      options={choices(['선택해주세요', '1인가구', '가족가구', '기타'])} onChange={(next) => change('household_type', next)} />
+    <FieldSelect label="부모와 별도 거주 여부" value={value.lives_separately == null ? '' : String(value.lives_separately)}
+      options={[{ value: '', label: '선택해주세요' }, { value: 'true', label: '예' }, { value: 'false', label: '아니요' }]}
+      onChange={(next) => change('lives_separately', next === '' ? null : next === 'true')} />
+    <FieldSelect label="주택 소유 여부" value={value.home_ownership ?? ''}
+      options={choices(['선택해주세요', '무주택', '유주택'])} onChange={(next) => change('home_ownership', next)} />
+    <FieldSelect label="세대주 여부" value={value.household_role ?? ''}
+      options={choices(['선택해주세요', '세대주', '예비세대주', '세대원'])} onChange={(next) => change('household_role', next)} />
+    <FieldSelect label="주거급여 수급 여부" value={value.housing_benefit_status ?? ''}
+      options={choices(['선택해주세요', '수급 중', '수급하지 않음'])} onChange={(next) => change('housing_benefit_status', next)} />
+    <div className="search-condition-wide search-condition-marital"><span>혼인 상태</span>
+      <div className="search-condition-marital-choices" role="group" aria-label="혼인 상태">
+        {['미혼', '기혼'].map((status) => <button type="button" key={status}
+          className={value.marital_status === status ? 'is-selected' : ''}
+          aria-pressed={value.marital_status === status}
+          onClick={() => change('marital_status', value.marital_status === status ? '' : status)}>{status}</button>)}
+      </div>
+    </div>
     <div className="search-condition-wide search-condition-section"><div className="search-condition-section-title"><b>특화대상</b><span>여러 개 선택</span></div>
       <div className="search-special-grid">{SPECIAL_TARGETS.map((item) => <label key={item}>
         <input type="checkbox" checked={(value.special_targets ?? []).includes(item)}
@@ -92,7 +109,7 @@ function ConditionFields({ value, onChange, categories, regions }) {
         const all = subs.length ? selected.length === subs.length : interests.includes(category);
         return <div className={`search-interest-item${interests.includes(category) ? ' is-active' : ''}`} key={category}>
           <div className="search-interest-main"><button type="button" className="search-interest-check" aria-label={`${category} 전체 선택`}
-            aria-pressed={all} onClick={() => toggleInterest(category)}>{selected.length && !all ? '−' : '✓'}</button>
+            aria-pressed={all} onClick={() => toggleInterest(category)}>{selected.length && !all ? '−' : <CheckMark />}</button>
             <button type="button" className="search-interest-expand" aria-expanded={openInterest === category}
               onClick={() => setOpenInterest(openInterest === category ? '' : category)}><b>{category}</b><strong>{openInterest === category ? '⌃' : '⌄'}</strong></button></div>
           {openInterest === category && subs.length > 0 && <div className="search-interest-details"><p>세부 분류는 여러 개 선택할 수 있어요</p>
@@ -130,6 +147,7 @@ export default function SearchFilters({ draft, setDraft, count, countLoading, pr
   const [appliedOpen, setAppliedOpen] = useState(false);
   const subcategories = Object.fromEntries(categories.map((category) => [category.display_name,
     category.subcategories.map((sub) => sub.subcategory_name)]));
+  const orderedCategories = [...categories].sort((a, b) => categoryOrder(a.display_name) - categoryOrder(b.display_name));
   const categorySummary = (category) => (subcategories[category] ?? []).filter((item) => draft.details.includes(item));
   function toggleCategory(category) {
     setDraft((current) => {
@@ -158,12 +176,12 @@ export default function SearchFilters({ draft, setDraft, count, countLoading, pr
       </div></div>
       <div className="search-filter-body">
         <section><h3>분야</h3><div className="search-interest-list">
-          {categories.map(({ display_name: category }) => {
+          {orderedCategories.map(({ display_name: category }) => {
             const selected = categorySummary(category);
             const all = (subcategories[category] ?? []).length ? selected.length === subcategories[category].length : draft.categories.includes(category);
             return <div className={`search-interest-item${draft.categories.includes(category) ? ' is-active' : ''}`} key={category}>
               <div className="search-interest-main"><button type="button" className="search-interest-check" aria-label={`${category} 전체 선택`} aria-pressed={all}
-                onClick={() => toggleCategory(category)}>{selected.length && !all ? '−' : '✓'}</button>
+                onClick={() => toggleCategory(category)}>{selected.length && !all ? '−' : <CheckMark />}</button>
                 <button type="button" className="search-interest-expand" aria-expanded={openCategory === category}
                   onClick={() => setOpenCategory(openCategory === category ? '' : category)}><span><b>{category}</b>
                     {selected.length > 0 && <small>세부분류 {selected.length}개 선택</small>}</span><strong>⌄</strong></button></div>
@@ -187,8 +205,8 @@ export default function SearchFilters({ draft, setDraft, count, countLoading, pr
           </button>}
           <button type="button" className="search-condition-expand" disabled={draft.myConditionsOnly}
             onClick={() => setConditionsOpen((open) => !open)}>조건 직접 설정 <span>{conditionsOpen ? '⌃' : '⌄'}</span></button>
-          {conditionsOpen && !draft.myConditionsOnly && <><ConditionFields value={draft.conditions} categories={categories} regions={regions} onChange={(conditions) => setDraft((current) => ({ ...current, conditions }))} />
-            <p className="search-condition-note">이번 검색에만 적용돼요. 프로필은 바뀌지 않아요.</p></>}
+          <p className="search-condition-note search-condition-expand-note">이번 검색에만 적용돼요. 프로필은 바뀌지 않아요.</p>
+          {conditionsOpen && !draft.myConditionsOnly && <ConditionFields value={draft.conditions} categories={categories} regions={regions} onChange={(conditions) => setDraft((current) => ({ ...current, conditions }))} />}
         </section>
       </div>
       <div className="search-filter-actions"><button type="button" onClick={onReset}>초기화</button>

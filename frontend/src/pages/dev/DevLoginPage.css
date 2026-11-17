@@ -1,0 +1,58 @@
+.dev-login {
+  max-width: 360px;
+  margin: 48px auto;
+}
+
+.dev-login h1 {
+  margin: 0 0 12px;
+  font-size: 24px;
+}
+
+.dev-login p {
+  color: var(--sub);
+  line-height: 1.5;
+}
+
+.dev-login form,
+.dev-login__actions {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 24px;
+}
+
+.dev-login label {
+  font-weight: 600;
+}
+
+.dev-login input {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  font: inherit;
+}
+
+.dev-login button,
+.dev-login__primary {
+  padding: 12px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: #fff;
+  text-align: center;
+}
+
+.dev-login .dev-login__primary {
+  border-color: var(--primary);
+  background: var(--primary);
+  color: #fff;
+}
+
+.dev-login button:disabled {
+  cursor: wait;
+  opacity: 0.6;
+}
+
+.dev-login .dev-login__error {
+  color: var(--no);
+}
