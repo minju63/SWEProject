@@ -269,15 +269,15 @@ select p.policy_id,
       end
     when p.is_always_open then '상시'
     when p.application_start_date is null and p.application_end_date is null then '기간 미정'
-    when p.application_start_date > current_date then '모집 예정'
-    when p.application_end_date   < current_date then '마감'
+    when p.application_start_date > (now() at time zone 'Asia/Seoul')::date then '모집 예정'
+    when p.application_end_date   < (now() at time zone 'Asia/Seoul')::date then '마감'
     else '모집 중'
   end as recruitment_status,
   case
     when p.item_type = 'EVENT' then
       (cd.event_end_at at time zone 'Asia/Seoul')::date - (now() at time zone 'Asia/Seoul')::date
     when p.application_end_date is not null and not p.is_always_open
-      then p.application_end_date - current_date
+      then p.application_end_date - (now() at time zone 'Asia/Seoul')::date
   end as d_day
 from policy p
 left join culture_detail cd using (policy_id);
