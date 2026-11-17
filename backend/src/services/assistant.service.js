@@ -4,7 +4,7 @@
 // 질문의 조건은 그 답변의 판정에만 쓰고 저장하지 않는다(FR-A10).
 import * as homeRepo from '../repositories/home.repository.js';
 import * as placeRepo from '../repositories/place.repository.js';
-import { findTerm } from '../data/glossary.js';
+import { findTerm, findTermByName } from '../data/glossary.js';
 import { askJson, askText, isLlmEnabled } from '../lib/llm.js';
 import { RESULT } from './eligibility.service.js';
 import { isOpen, judged, loadContext, sortRecommended, toCard } from './recommend.service.js';
@@ -163,15 +163,33 @@ export async function recommend({ userId, categoryId }) {
   };
 }
 
+// "소득인정액" + 이/가 처럼 받침에 맞는 조사를 붙인다
+const withJosa = (word, [withFinal, withoutFinal]) => {
+  const ch = word.replace(/\)$/, '').slice(-1).charCodeAt(0);
+  const hasFinal = ch >= 0xac00 && ch <= 0xd7a3 && (ch - 0xac00) % 28 !== 0;
+  return `${word}${hasFinal ? withFinal : withoutFinal}`;
+};
+
+// 관련 용어 칩(설명 속 어려운 말로 이어지는 질문) + 모자라면 기본 칩 (FR-A12, FR-A16)
+export function termSuggestions(term) {
+  const chips = term.related
+    .filter((name) => findTermByName(name))
+    .slice(0, 3)
+    .map((name) => `${withJosa(name, ['이', '가'])} 뭐야?`);
+  if (chips.length < 3) chips.push('나한테 맞는 정책 추천해줘');
+  return chips.slice(0, 3);
+}
+
 async function answerTerm(term, ctx, userId) {
-  // 그 조건이 걸린 내 맞춤 혜택 (소득·중위소득이면 소득 조건이 있는 정책)
+  // 그 조건이 걸린 내 맞춤 혜택 (소득 조건 문구에 그 용어가 들어간 정책)
   const bookmarked = await bookmarkSet(userId);
+  const keys = [term.term, ...term.aliases].map((k) => k.replace(/\s+/g, ''));
   const related = sortRecommended(
     judged(ctx.policies, ctx.profile).filter(
       (p) =>
         isOpen(p) &&
         p.eligibility.result !== RESULT.INELIGIBLE &&
-        (p.income_condition ?? '').includes(term.term.replace('기준 ', ''))
+        keys.some((k) => (p.income_condition ?? '').replace(/\s+/g, '').includes(k))
     ),
     ctx.profile,
     ctx.categories
@@ -182,10 +200,46 @@ async function answerTerm(term, ctx, userId) {
     message: null,
     cards: related.map((p) => cardWithConditions(p, bookmarked)),
     cardsTitle: related.length ? '이 조건이 있는 내 맞춤 혜택' : null,
-    sources: [{ title: term.source, url: term.url, collected_at: term.updated, glossary: true }],
-    suggestions: ['확정일자는 뭐야?', '나한테 맞는 정책 추천해줘'],
+    sources: [
+      {
+        title: `${term.term} 안내`,
+        organization: term.source.organization,
+        url: term.source.url,
+        collected_at: term.updated, // 확인한 날짜가 없으면 null → 화면에 날짜를 표시하지 않는다
+        glossary: true,
+      },
+    ],
+    suggestions: termSuggestions(term),
   };
 }
+
+// 사전에 없는 용어를 LLM 이 쉬운 말로 설명한다 (B안). 사전 답변과 구분해 AI 설명임을 화면에 표시한다.
+// 정책 자격·금액·날짜를 단정하지 않게 하고, 확실하지 않으면 답하지 않는다.
+async function explainTermWithLlm(text, remaining) {
+  const out = await askJson(
+    `부산 청년 정책 앱의 용어 설명기다. ${INJECTION_GUARD} ` +
+      '질문에서 뜻을 묻는 용어를 찾아 중학생도 이해할 쉬운 말로 2~3문장으로 설명한다. ' +
+      '특정 정책의 신청 자격·금액·날짜를 단정하지 말고, 확실하지 않거나 용어를 묻는 질문이 아니면 known 을 false 로 한다. ' +
+      'JSON 으로만 답한다: {"known":true,"term":"용어","explanation":"설명"}',
+    text,
+    Math.min(remaining(), 5000)
+  );
+  const explanation = typeof out?.explanation === 'string' ? out.explanation.trim() : '';
+  if (!out?.known || !explanation || explanation.length > 500) return null;
+  return {
+    type: 'term',
+    ai_generated: true,
+    term: { name: String(out.term ?? '').slice(0, 30) || '용어', summary: explanation },
+    message: null,
+    cards: [],
+    sources: [],
+    contacts: FALLBACK_CONTACTS,
+    suggestions: ['나한테 맞는 정책 추천해줘', '중위소득이 뭐야?'],
+  };
+}
+
+export const isTermQuestion = (text) =>
+  /뭐야|뭔가|뭐지|뭐예요|무엇|뜻|의미|무슨\s*말|설명|이란|란\s*뭐/.test(text);
 
 async function answerPolicy(policy, message, ctx, userId) {
   const profile = profileWithQuestion(message, ctx.profile, ctx.regions);
@@ -354,9 +408,10 @@ async function route({ userId, message, context, remaining }) {
 
   const ctx = await loadContext(userId);
 
-  // 1) 용어
+  // 1) 용어: 정책명과 같이 물었다면 "뭐야?" 같은 용어 질문 형태일 때만 사전으로 답한다
   const term = findTerm(text);
-  if (term) return answerTerm(term, ctx, userId);
+  const mentionedPolicy = findMentionedPolicy(text, ctx.policies);
+  if (term && (isTermQuestion(text) || !mentionedPolicy)) return answerTerm(term, ctx, userId);
 
   // 2) 장소
   if (
@@ -370,7 +425,7 @@ async function route({ userId, message, context, remaining }) {
 
   // 3) 특정 정책 (자격 질문·서류)
   const wantsDocs = /서류|준비물|제출/.test(text);
-  const mentioned = findMentionedPolicy(text, ctx.policies);
+  const mentioned = mentionedPolicy;
   const contextPolicy = context?.policyId
     ? ctx.policies.find((p) => p.policy_id === context.policyId)
     : null;
@@ -385,7 +440,13 @@ async function route({ userId, message, context, remaining }) {
     return recommend({ userId, categoryId });
   }
 
-  // 5) 규칙으로 못 알아본 질문만 LLM 으로 의도를 한 번 더 본다
+  // 5) 사전에 없는 용어 질문은 LLM 이 설명한다 (B안). LLM 이 꺼져 있거나 못 답하면 아래로 넘어간다
+  if (isTermQuestion(text)) {
+    const explained = await explainTermWithLlm(text, remaining);
+    if (explained) return explained;
+  }
+
+  // 6) 규칙으로 못 알아본 질문만 LLM 으로 의도를 한 번 더 본다
   const llm = await classifyWithLlm(text, remaining);
   if (llm?.intent === 'recommend') {
     const categoryId = ctx.categories.find((c) => c.category_name === llm.category)?.category_id;

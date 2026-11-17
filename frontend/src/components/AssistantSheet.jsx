@@ -360,7 +360,9 @@ function ChatSheet() {
                 {m.tag && <span className="chat-tag">✦ {m.tag}</span>}
                 {m.answer.term && (
                   <div className="chat-bot">
-                    <span className="term-label">용어</span> <strong>{m.answer.term.name}</strong>
+                    <span className="term-label">용어</span>{' '}
+                    {m.answer.ai_generated && <span className="ai-label">AI 설명</span>}{' '}
+                    <strong>{m.answer.term.name}</strong>
                     <RichText text={m.answer.term.summary} />
                   </div>
                 )}
@@ -380,6 +382,12 @@ function ChatSheet() {
                 ))}
                 {m.answer.places && (
                   <PlaceCards answer={m.answer} position={position} onOpen={openMap} />
+                )}
+                {m.answer.ai_generated && (
+                  <p className="ai-caution">
+                    우리 용어 사전에 없어서 AI가 일반적인 뜻을 설명했어요. 정확하지 않을 수 있으니
+                    중요한 내용은 공식 사이트에서 꼭 확인해 주세요.
+                  </p>
                 )}
                 {m.answer.contacts && (
                   <ul className="chat-sources">

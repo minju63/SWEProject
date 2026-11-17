@@ -446,3 +446,20 @@
 .chat-suggest button {
   min-height: 44px;
 }
+
+/* ---------- AI가 설명한 용어 (사전 밖, B안) ---------- */
+.ai-label {
+  padding: 2px 8px;
+  border-radius: 6px;
+  background: #fff0cf;
+  color: #8a5a00;
+  font-size: 12px;
+  font-weight: 700;
+}
+.ai-caution {
+  margin: 0;
+  padding: 0 4px;
+  font-size: 12px;
+  line-height: 1.5;
+  color: #8a5a00;
+}
