@@ -4,6 +4,8 @@
 --   (예: 마감일 당일 오전에 '마감'으로 보이거나 D-day 가 하루 어긋남)
 --   행사(EVENT) 계산은 이미 한국 시간이라 그대로다. 컬럼 이름·개수·타입은 바뀌지 않는다.
 --   마감 시각이 따로 없는 정책은 마감일 23:59 까지 '모집 중'이다.
+--   행사(EVENT)인데 culture_detail 시각이 없으면(예: JOB 분야 행사) policy 의 신청 시작일·마감일을 대신 쓴다.
+--   그 전에는 이런 행사가 날짜가 있어도 '기간 미정'으로 나왔다.
 -- 실행: Supabase 대시보드 → SQL Editor 에 붙여넣고 Run
 -- 되돌리기: 맨 아래 주석의 rollback 블록
 -- =====================================================================
@@ -13,9 +15,9 @@ select p.policy_id,
   case
     when p.item_type = 'EVENT' then
       case
-        when cd.event_start_at is null and cd.event_end_at is null then '기간 미정'
-        when cd.event_start_at > now() then '예정'
-        when cd.event_end_at   < now() then '종료'
+        when e.ev_start is null and e.ev_end is null then '기간 미정'
+        when e.ev_start > now() then '예정'
+        when e.ev_end   < now() then '종료'
         else '진행 중'
       end
     when p.is_always_open then '상시'
@@ -26,12 +28,19 @@ select p.policy_id,
   end as recruitment_status,
   case
     when p.item_type = 'EVENT' then
-      (cd.event_end_at at time zone 'Asia/Seoul')::date - (now() at time zone 'Asia/Seoul')::date
+      (e.ev_end at time zone 'Asia/Seoul')::date - (now() at time zone 'Asia/Seoul')::date
     when p.application_end_date is not null and not p.is_always_open
       then p.application_end_date - (now() at time zone 'Asia/Seoul')::date
   end as d_day
 from policy p
-left join culture_detail cd using (policy_id);
+left join culture_detail cd using (policy_id)
+cross join lateral (
+  select
+    coalesce(cd.event_start_at,
+             p.application_start_date::timestamp at time zone 'Asia/Seoul') as ev_start,
+    coalesce(cd.event_end_at,
+             (p.application_end_date + 1)::timestamp at time zone 'Asia/Seoul' - interval '1 second') as ev_end
+) e;
 
 -- ---------------------------------------------------------------------
 -- 확인 (실행 후 날짜가 한국 시간과 같은지)

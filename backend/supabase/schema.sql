@@ -262,9 +262,9 @@ select p.policy_id,
   case
     when p.item_type = 'EVENT' then
       case
-        when cd.event_start_at is null and cd.event_end_at is null then '기간 미정'
-        when cd.event_start_at > now() then '예정'
-        when cd.event_end_at   < now() then '종료'
+        when e.ev_start is null and e.ev_end is null then '기간 미정'
+        when e.ev_start > now() then '예정'
+        when e.ev_end   < now() then '종료'
         else '진행 중'
       end
     when p.is_always_open then '상시'
@@ -275,12 +275,19 @@ select p.policy_id,
   end as recruitment_status,
   case
     when p.item_type = 'EVENT' then
-      (cd.event_end_at at time zone 'Asia/Seoul')::date - (now() at time zone 'Asia/Seoul')::date
+      (e.ev_end at time zone 'Asia/Seoul')::date - (now() at time zone 'Asia/Seoul')::date
     when p.application_end_date is not null and not p.is_always_open
       then p.application_end_date - (now() at time zone 'Asia/Seoul')::date
   end as d_day
 from policy p
-left join culture_detail cd using (policy_id);
+left join culture_detail cd using (policy_id)
+cross join lateral (
+  select
+    coalesce(cd.event_start_at,
+             p.application_start_date::timestamp at time zone 'Asia/Seoul') as ev_start,
+    coalesce(cd.event_end_at,
+             (p.application_end_date + 1)::timestamp at time zone 'Asia/Seoul' - interval '1 second') as ev_end
+) e;
 
 -- 지도 표시 대상 장소 (migrations/20261113_map_support.sql, 20261117_map_srs_strict.sql, FR-MAP-001)
 --   사용 중 + 서비스 지역 + 좌표 있음 + 좌표 검증 verified·fixed·coord_only + 분류표에 있는 유형
