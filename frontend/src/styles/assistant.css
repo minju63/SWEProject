@@ -364,7 +364,7 @@
 /* ---------- 아래 가운데 숨기기 영역 (드래그 중에만 보임, FR-A04) ---------- */
 .drop-zone {
   position: fixed;
-  z-index: 45;
+  z-index: 30; /* 끌고 있는 Dr.부(40)가 원 위에 보이도록 */
   left: 50%;
   bottom: calc(var(--tabbar-h) + env(safe-area-inset-bottom) + 16px);
   transform: translateX(-50%);
@@ -462,4 +462,19 @@
   font-size: 12px;
   line-height: 1.5;
   color: #8a5a00;
+}
+
+/* ---------- Dr.부 이미지 ---------- */
+.shark-img {
+  display: block;
+  border-radius: 50%;
+  object-fit: cover;
+  background: #fff;
+  pointer-events: none; /* 길게 눌러도 이미지 메뉴가 뜨지 않게 */
+  -webkit-user-drag: none;
+  -webkit-touch-callout: none;
+  user-select: none;
+}
+.assistant-face {
+  -webkit-touch-callout: none;
 }

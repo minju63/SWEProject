@@ -9,6 +9,7 @@ import SharkAvatar from './SharkAvatar.jsx';
 const SIZE = 60;
 const MARGIN = 12;
 const LONG_PRESS_MS = 350;
+const DRAG_START_PX = 10;
 const TAB_H = 64;
 const HEADER_H = 56;
 const BUBBLE_KEY = 'chunghae.bubbleShown';
@@ -68,6 +69,8 @@ export default function AssistantButton() {
     const rect = e.currentTarget.getBoundingClientRect();
     press.current = {
       id: e.pointerId,
+      startX: e.clientX,
+      startY: e.clientY,
       dx: e.clientX - rect.left,
       dy: e.clientY - rect.top,
       dragging: false,
@@ -86,8 +89,11 @@ export default function AssistantButton() {
     const p = press.current;
     if (!p) return;
     if (!p.dragging) {
-      // 길게 누르기 전에 손가락이 많이 움직이면 드래그 의도가 아님
-      return;
+      // 길게 누르지 않아도 끌기 시작하면(10px 이상) 바로 이동 모드로 들어간다
+      if (Math.hypot(e.clientX - p.startX, e.clientY - p.startY) < DRAG_START_PX) return;
+      clearTimeout(p.timer);
+      p.dragging = true;
+      setBubble(null);
     }
     e.preventDefault();
     setDrag({ x: e.clientX - p.dx, y: e.clientY - p.dy });
@@ -156,6 +162,7 @@ export default function AssistantButton() {
           onPointerMove={onPointerMove}
           onPointerUp={onPointerUp}
           onPointerCancel={onPointerUp}
+          onContextMenu={(e) => e.preventDefault()}
           onKeyDown={(e) => e.key === 'Enter' && openChat({ mode: 'free' })}
         >
           <SharkAvatar size={SIZE} />
