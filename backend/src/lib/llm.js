@@ -3,14 +3,14 @@
 // 사용자 질문은 개인정보를 가린 뒤에만 보낸다 (assistant.service 의 maskPersonalInfo).
 
 const ENDPOINT = 'https://api.openai.com/v1/chat/completions';
-const TIMEOUT_MS = 8000; // 늦으면 대체 결과로 답한다 (AI-REQ-02)
+// 질문 하나에 쓸 수 있는 LLM 시간은 assistant.service 가 정한다 (AI 응답 95%가 10초 이내, NFR-001·AI-REQ-02)
 
 export const isLlmEnabled = () => Boolean(process.env.OPENAI_API_KEY && process.env.OPENAI_MODEL);
 
-async function complete(messages, { json = false, maxTokens = 400 } = {}) {
+async function complete(messages, { json = false, maxTokens = 400, timeoutMs } = {}) {
   const res = await fetch(ENDPOINT, {
     method: 'POST',
-    signal: AbortSignal.timeout(TIMEOUT_MS),
+    signal: AbortSignal.timeout(timeoutMs),
     headers: {
       'Content-Type': 'application/json',
       Authorization: `Bearer ${process.env.OPENAI_API_KEY}`,
@@ -28,8 +28,8 @@ async function complete(messages, { json = false, maxTokens = 400 } = {}) {
 }
 
 // 실패하거나 꺼져 있으면 null 을 돌려줘서 호출한 쪽이 규칙 기반 결과로 대신하게 한다
-export async function askJson(system, user) {
-  if (!isLlmEnabled()) return null;
+export async function askJson(system, user, timeoutMs) {
+  if (!isLlmEnabled() || timeoutMs < 500) return null;
   try {
     return JSON.parse(
       await complete(
@@ -37,7 +37,7 @@ export async function askJson(system, user) {
           { role: 'system', content: system },
           { role: 'user', content: user },
         ],
-        { json: true }
+        { json: true, timeoutMs }
       )
     );
   } catch (err) {
@@ -46,8 +46,8 @@ export async function askJson(system, user) {
   }
 }
 
-export async function askText(system, user) {
-  if (!isLlmEnabled()) return null;
+export async function askText(system, user, timeoutMs) {
+  if (!isLlmEnabled() || timeoutMs < 500) return null;
   try {
     return (
       (

@@ -360,3 +360,89 @@
 .sheet-input button:disabled {
   background: #b7cdf7;
 }
+
+/* ---------- 아래 가운데 숨기기 영역 (드래그 중에만 보임, FR-A04) ---------- */
+.drop-zone {
+  position: fixed;
+  z-index: 45;
+  left: 50%;
+  bottom: calc(var(--tabbar-h) + env(safe-area-inset-bottom) + 16px);
+  transform: translateX(-50%);
+  width: 112px;
+  height: 112px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  border-radius: 50%;
+  background: rgba(25, 31, 40, 0.55);
+  color: #fff;
+  pointer-events: none;
+  transition:
+    transform 0.15s,
+    background 0.15s;
+}
+.drop-zone span {
+  font-size: 26px;
+  line-height: 1;
+}
+.drop-zone em {
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 700;
+}
+.drop-zone-on {
+  background: var(--no);
+  transform: translateX(-50%) scale(1.15);
+}
+
+/* ---------- 외부 AI 전송 고지 (NFR-023) ---------- */
+.ai-notice {
+  padding: 12px 14px;
+  border-radius: 14px;
+  background: #fff8e6;
+  font-size: 12.5px;
+  line-height: 1.5;
+  color: #6b5200;
+}
+.ai-notice p {
+  margin: 0 0 8px;
+}
+.ai-notice button {
+  border: 0;
+  border-radius: 8px;
+  padding: 8px 14px;
+  background: #f3b72f;
+  font-weight: 700;
+  color: #3b2d00;
+}
+
+/* ---------- 터치 영역 44×44px 이상 (NFR-011) ---------- */
+.assistant-close::after,
+.heart::after {
+  content: '';
+  position: absolute;
+  inset: -11px;
+}
+.heart::after {
+  inset: -5px;
+}
+.heart-sm::after {
+  inset: -8px;
+}
+.drbu-face {
+  width: 44px;
+  height: 44px;
+  align-items: center;
+  justify-content: center;
+}
+.sheet-close {
+  width: 44px;
+  height: 44px;
+}
+.sheet-input input,
+.chat-card-actions button,
+.chat-suggest button {
+  min-height: 44px;
+}

@@ -12,6 +12,17 @@ const LONG_PRESS_MS = 350;
 const TAB_H = 64;
 const HEADER_H = 56;
 const BUBBLE_KEY = 'chunghae.bubbleShown';
+const ZONE_RADIUS = 56; // 아래 가운데 숨기기 영역 (FR-A04)
+
+// 숨기기 영역의 화면 좌표 중심
+const zoneCenter = () => ({
+  x: window.innerWidth / 2,
+  y: window.innerHeight - TAB_H - 72,
+});
+const inZone = (x, y) => {
+  const c = zoneCenter();
+  return Math.hypot(x - c.x, y - c.y) < ZONE_RADIUS;
+};
 
 // 모든 탭에 떠 있는 Dr.부 (FR-A01~A07)
 export default function AssistantButton() {
@@ -19,6 +30,7 @@ export default function AssistantButton() {
   const showToast = useToastStore((s) => s.show);
   const { pathname } = useLocation();
   const [drag, setDrag] = useState(null); // { x, y } 드래그 중 화면 좌표(왼쪽 위)
+  const [overZone, setOverZone] = useState(false);
   const press = useRef(null);
 
   // 말풍선: 접속 후 처음 홈에 들어왔을 때 1번, 5초 (FR-A02)
@@ -79,6 +91,7 @@ export default function AssistantButton() {
     }
     e.preventDefault();
     setDrag({ x: e.clientX - p.dx, y: e.clientY - p.dy });
+    setOverZone(inZone(e.clientX, e.clientY));
   };
 
   const onPointerUp = (e) => {
@@ -88,6 +101,13 @@ export default function AssistantButton() {
     press.current = null;
     if (!p.dragging) {
       openChat({ mode: 'free' });
+      return;
+    }
+    setOverZone(false);
+    // 아래 숨기기 영역에 놓으면 숨기고, 되돌리기 토스트를 띄운다 (FR-A04, FR-A05)
+    if (e.type === 'pointerup' && inZone(e.clientX, e.clientY)) {
+      setDrag(null);
+      hideWithUndo();
       return;
     }
     // 놓으면 가까운 좌우 가장자리에 붙고, 헤더·하단 탭을 가리지 않는 높이로 맞춘다
@@ -103,7 +123,7 @@ export default function AssistantButton() {
   };
 
   const hideWithUndo = (e) => {
-    e.stopPropagation();
+    e?.stopPropagation();
     hide();
     showToast('Dr.부를 숨겼어요', { action: { label: '되돌리기', onClick: show }, duration: 5000 });
   };
@@ -116,31 +136,39 @@ export default function AssistantButton() {
       };
 
   return (
-    <div className={`assistant${drag ? ' assistant-dragging' : ''}`} style={style}>
-      {bubble && !drag && (
-        <div className={`assistant-bubble assistant-bubble-${side}`}>{bubble}</div>
+    <>
+      {drag && (
+        <div className={`drop-zone${overZone ? ' drop-zone-on' : ''}`} aria-hidden="true">
+          <span>✕</span>
+          <em>숨기기</em>
+        </div>
       )}
-      <div
-        className="assistant-face"
-        role="button"
-        tabIndex={0}
-        aria-label="Dr.부와 대화하기"
-        onPointerDown={onPointerDown}
-        onPointerMove={onPointerMove}
-        onPointerUp={onPointerUp}
-        onPointerCancel={onPointerUp}
-        onKeyDown={(e) => e.key === 'Enter' && openChat({ mode: 'free' })}
-      >
-        <SharkAvatar size={SIZE} />
+      <div className={`assistant${drag ? ' assistant-dragging' : ''}`} style={style}>
+        {bubble && !drag && (
+          <div className={`assistant-bubble assistant-bubble-${side}`}>{bubble}</div>
+        )}
+        <div
+          className="assistant-face"
+          role="button"
+          tabIndex={0}
+          aria-label="Dr.부와 대화하기"
+          onPointerDown={onPointerDown}
+          onPointerMove={onPointerMove}
+          onPointerUp={onPointerUp}
+          onPointerCancel={onPointerUp}
+          onKeyDown={(e) => e.key === 'Enter' && openChat({ mode: 'free' })}
+        >
+          <SharkAvatar size={SIZE} />
+        </div>
+        <button
+          type="button"
+          className="assistant-close"
+          aria-label="Dr.부 숨기기"
+          onClick={hideWithUndo}
+        >
+          ×
+        </button>
       </div>
-      <button
-        type="button"
-        className="assistant-close"
-        aria-label="Dr.부 숨기기"
-        onClick={hideWithUndo}
-      >
-        ×
-      </button>
-    </div>
+    </>
   );
 }

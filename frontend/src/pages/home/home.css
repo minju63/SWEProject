@@ -337,7 +337,7 @@
   color: var(--no);
 }
 .heart-sm {
-  position: static;
+  position: relative;
   width: 28px;
   height: 28px;
   font-size: 15px;

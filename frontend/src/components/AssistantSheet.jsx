@@ -11,6 +11,15 @@ import SharkAvatar from './SharkAvatar.jsx';
 
 const MARK = { ok: '✓', no: '✕', check: '?' };
 
+const NOTICE_KEY = 'chunghae.aiNoticeAck';
+const noticeAcked = () => {
+  try {
+    return localStorage.getItem(NOTICE_KEY) === '1';
+  } catch {
+    return false;
+  }
+};
+
 function distanceKm(a, b) {
   const rad = (d) => (d * Math.PI) / 180;
   const h =
@@ -156,6 +165,7 @@ function ChatSheet() {
   const [messages, setMessages] = useState([]); // { role: 'user'|'bot', text?, answer? }
   const [input, setInput] = useState('');
   const [busy, setBusy] = useState(isRecommend);
+  const [notice, setNotice] = useState(() => !noticeAcked()); // 국외 AI 전송 고지 (NFR-023)
   const [position, setPosition] = useState(null); // 현재 위치는 이 화면 메모리에만 둔다
   const [context, setContext] = useState(null);
   const bodyRef = useRef(null);
@@ -310,6 +320,27 @@ function ChatSheet() {
         </header>
 
         <div className="sheet-body" ref={bodyRef}>
+          {notice && (
+            <div className="ai-notice" role="note">
+              <p>
+                질문은 전화·이메일·주민번호 등 개인정보를 가린 뒤, 국외에 서버가 있는 외부 AI
+                서비스(OpenAI)로 전송돼요. 현재 위치는 보내지 않아요.
+              </p>
+              <button
+                type="button"
+                onClick={() => {
+                  try {
+                    localStorage.setItem(NOTICE_KEY, '1');
+                  } catch {
+                    // 저장 실패 시 이번 화면에서만 닫는다
+                  }
+                  setNotice(false);
+                }}
+              >
+                확인했어요
+              </button>
+            </div>
+          )}
           {messages.length === 0 && !busy && (
             <div className="chat-bot">
               <RichText
