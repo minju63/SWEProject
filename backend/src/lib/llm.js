@@ -18,7 +18,6 @@ async function complete(messages, { json = false, maxTokens = 400 } = {}) {
     body: JSON.stringify({
       model: process.env.OPENAI_MODEL,
       messages,
-      temperature: 0.2,
       max_completion_tokens: maxTokens,
       ...(json ? { response_format: { type: 'json_object' } } : {}),
     }),
