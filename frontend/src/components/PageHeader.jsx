@@ -1,4 +1,5 @@
 import NotificationBell from './NotificationBell.jsx';
+import DrBuFaceButton from './DrBuFaceButton.jsx';
 
 // 탭 화면 공통 헤더: 왼쪽 제목(+부제), 오른쪽 알림 아이콘
 // 홈은 brand 를 켜서 파란 "청해" 로고로 표시
@@ -11,6 +12,7 @@ export default function PageHeader({ title, subtitle, brand = false, right }) {
       </div>
       <div className="page-header-right">
         {right}
+        <DrBuFaceButton />
         <NotificationBell />
       </div>
     </header>

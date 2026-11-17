@@ -106,6 +106,8 @@ CLIENT_URL=http://localhost:5173
 DATA_GO_API_KEY=               # 공공데이터포털 인증키 (지도 장소·행사 갱신용)
 YOUTHCENTER_API_KEY=           # 온통청년 Open API 인증키 (문화 정책 갱신용)
 CULTURE_SYNC_ENABLED=false     # 지도 데이터 하루 1회 자동 갱신. 운영 서버 한 곳에서만 true
+OPENAI_API_KEY=                # AI 비서 Dr.부 (OpenAI). 비워 두면 규칙 기반으로만 답함
+OPENAI_MODEL=                  # 사용할 모델명. 키와 모델이 모두 있어야 LLM이 켜짐
 ```
 
 **frontend/.env**
@@ -133,6 +135,9 @@ VITE_KAKAO_JS_KEY=             # 지도 탭 카카오맵 JavaScript 키
 | GET / PUT | `/me/profile` | ✓ | 내 정보 조회·수정 |
 | GET / POST | `/me/bookmarks` | ✓ | 찜 목록 / 찜하기 (`{ policyId }`) |
 | DELETE | `/me/bookmarks/:policyId` | ✓ | 찜 취소 |
+| GET | `/home` | 선택 | 홈 데이터 (맞춤 그래프·분야별 미리보기·AI 추천 문구·찜 마감 임박) |
+| GET | `/assistant/recommend?categoryId=` | 선택 | Dr.부 AI 맞춤 추천 TOP 3 (첫 메시지) |
+| POST | `/assistant/chat` | 선택 | Dr.부 질문 (`{ message, context }`) — 자격·추천·용어·서류·장소 |
 | GET | `/places` | | 지도 장소 전체 (카테고리·진행 중 행사 수 포함). 사용자 위치는 받지 않음 |
 | GET | `/places/:placeId` | | 장소 상세 + 진행·예정 행사 |
 

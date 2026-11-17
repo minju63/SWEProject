@@ -1,6 +1,8 @@
 import { Routes, Route } from 'react-router-dom';
 import TabBar from './components/TabBar.jsx';
 import AssistantButton from './components/AssistantButton.jsx';
+import AssistantSheet from './components/AssistantSheet.jsx';
+import Toast from './components/Toast.jsx';
 import HomePage from './pages/home/HomePage.jsx';
 import SearchPage from './pages/search/SearchPage.jsx';
 import MapPage from './pages/map/MapPage.jsx';
@@ -24,6 +26,8 @@ export default function App() {
         </Routes>
       </main>
       <AssistantButton />
+      <AssistantSheet />
+      <Toast />
       <TabBar />
     </div>
   );

@@ -1,0 +1,362 @@
+/* ---------- Dr.부 (탭바 위에 떠 있음) ---------- */
+.assistant {
+  position: fixed;
+  z-index: 10;
+  touch-action: none;
+  user-select: none;
+  -webkit-user-select: none;
+}
+.assistant-dragging {
+  z-index: 40;
+  filter: drop-shadow(0 8px 16px rgba(47, 123, 245, 0.4));
+}
+.assistant-face {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  border: 3px solid #fff;
+  background: #fff;
+  box-shadow: 0 6px 16px rgba(47, 123, 245, 0.35);
+  cursor: pointer;
+  overflow: hidden;
+}
+.assistant-face svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+.assistant-close {
+  position: absolute;
+  top: -4px;
+  right: -4px;
+  width: 22px;
+  height: 22px;
+  padding: 0;
+  border-radius: 50%;
+  border: 2px solid #fff;
+  background: #4e5968;
+  color: #fff;
+  font-size: 13px;
+  line-height: 16px;
+}
+.assistant-bubble {
+  position: absolute;
+  bottom: 68px;
+  width: max-content;
+  max-width: 220px;
+  padding: 9px 12px;
+  border-radius: 12px;
+  background: #fff;
+  box-shadow: 0 4px 14px rgba(25, 31, 40, 0.18);
+  font-size: 13px;
+  font-weight: 600;
+}
+.assistant-bubble-right {
+  right: 0;
+}
+.assistant-bubble-left {
+  left: 0;
+}
+
+.drbu-face {
+  display: flex;
+  border: 0;
+  padding: 0;
+  border-radius: 50%;
+  background: none;
+}
+
+/* ---------- 토스트 ---------- */
+.toast {
+  position: fixed;
+  z-index: 60;
+  left: 50%;
+  bottom: calc(var(--tabbar-h) + env(safe-area-inset-bottom) + 84px);
+  transform: translateX(-50%);
+  width: calc(100% - 40px);
+  max-width: 440px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 18px;
+  border-radius: 12px;
+  background: #1f2937;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 600;
+}
+.toast button {
+  border: 0;
+  background: none;
+  color: #6ea6ff;
+  font-weight: 700;
+}
+
+/* ---------- 대화창 시트 ---------- */
+.sheet-dim {
+  position: fixed;
+  z-index: 50;
+  inset: 0;
+  background: rgba(25, 31, 40, 0.4);
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}
+.sheet {
+  width: 100%;
+  max-width: 480px;
+  height: 88svh;
+  display: flex;
+  flex-direction: column;
+  border-radius: 20px 20px 0 0;
+  background: #f4f7fd;
+  animation: sheet-up 0.22s ease-out;
+}
+@keyframes sheet-up {
+  from {
+    transform: translateY(40%);
+    opacity: 0;
+  }
+}
+.sheet-handle {
+  display: flex;
+  justify-content: center;
+  padding: 10px 0 4px;
+  touch-action: none;
+}
+.sheet-handle span {
+  width: 40px;
+  height: 4px;
+  border-radius: 2px;
+  background: #d1d6db;
+}
+.sheet-head {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 6px 16px 12px;
+}
+.sheet-head > div {
+  flex: 1;
+}
+.sheet-head strong {
+  font-size: 18px;
+}
+.sheet-head p {
+  margin: 2px 0 0;
+  font-size: 12px;
+  color: var(--sub);
+}
+.dot-on,
+.dot-off {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  margin-right: 2px;
+}
+.dot-on {
+  background: var(--ok);
+}
+.dot-off {
+  background: var(--muted);
+}
+.sheet-close {
+  width: 36px;
+  height: 36px;
+  border: 0;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 0 1px 4px rgba(25, 31, 40, 0.12);
+}
+.sheet-body {
+  flex: 1;
+  overflow-y: auto;
+  padding: 4px 16px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.chat-turn {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.chat-user {
+  align-self: flex-end;
+  max-width: 82%;
+  padding: 12px 16px;
+  border-radius: 16px 16px 4px 16px;
+  background: var(--primary);
+  color: #fff;
+  font-size: 15px;
+}
+.chat-bot {
+  padding: 14px 16px;
+  border-radius: 16px;
+  background: #fff;
+  font-size: 14.5px;
+  line-height: 1.55;
+}
+.chat-bot p {
+  margin: 0 0 6px;
+}
+.chat-bot p:last-child {
+  margin: 0;
+}
+.chat-typing {
+  color: var(--sub);
+}
+.chat-tag {
+  align-self: flex-start;
+  padding: 5px 10px;
+  border-radius: 8px;
+  background: var(--primary-bg);
+  color: var(--primary);
+  font-size: 12px;
+  font-weight: 700;
+}
+.term-label {
+  padding: 2px 8px;
+  border-radius: 6px;
+  background: #8c6fe0;
+  color: #fff;
+  font-size: 12px;
+  font-weight: 700;
+}
+.chat-cards-title {
+  margin: 4px 0 0;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--sub);
+}
+.chat-card {
+  padding: 14px 16px;
+  border-radius: 16px;
+  background: #fff;
+}
+.chat-card-top {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 6px;
+}
+.chat-card > strong {
+  font-size: 17px;
+}
+.chat-conds {
+  list-style: none;
+  margin: 8px 0 0;
+  padding: 0;
+  font-size: 13px;
+  font-weight: 600;
+}
+.cond-ok {
+  color: var(--ok);
+}
+.cond-no {
+  color: var(--no);
+}
+.cond-check {
+  color: var(--check);
+}
+.chat-card-actions {
+  display: flex;
+  gap: 8px;
+  margin-top: 12px;
+}
+.chat-card-actions button {
+  flex: 1;
+  padding: 12px;
+  border: 0;
+  border-radius: 12px;
+  font-weight: 700;
+}
+.btn-heart {
+  background: #fdecea;
+  color: var(--no);
+}
+.btn-heart.on {
+  background: var(--no);
+  color: #fff;
+}
+.btn-detail {
+  background: #eef1f4;
+  color: var(--text);
+}
+.chat-sources {
+  list-style: none;
+  margin: 0;
+  padding: 0 4px;
+  font-size: 12px;
+  color: var(--sub);
+}
+.chat-sources a {
+  color: var(--primary);
+}
+.chat-suggest {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.chat-suggest button {
+  padding: 9px 14px;
+  border: 1px solid #cfe0fb;
+  border-radius: 999px;
+  background: #fff;
+  color: var(--primary);
+  font-size: 13px;
+  font-weight: 600;
+}
+.chat-card-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.chat-place {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 12px 16px;
+  border: 0;
+  border-radius: 14px;
+  background: #fff;
+  text-align: left;
+}
+.chat-place span {
+  font-size: 13px;
+  color: var(--sub);
+}
+.chat-more {
+  align-self: flex-end;
+  border: 0;
+  background: none;
+  color: var(--primary);
+  font-weight: 700;
+}
+.sheet-input {
+  display: flex;
+  gap: 10px;
+  padding: 10px 16px calc(14px + env(safe-area-inset-bottom));
+}
+.sheet-input input {
+  flex: 1;
+  min-width: 0;
+  padding: 14px 18px;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: #fff;
+  font-size: 15px;
+}
+.sheet-input button {
+  width: 48px;
+  height: 48px;
+  border: 0;
+  border-radius: 50%;
+  background: var(--primary);
+  color: #fff;
+  font-size: 20px;
+}
+.sheet-input button:disabled {
+  background: #b7cdf7;
+}
