@@ -262,7 +262,7 @@ async function answerPolicy(policy, message, ctx, userId) {
     } 조건은 정보가 없거나 공고에서 확인이 필요해요.`;
   }
   if (isOpen(policy) && policy.application_end_date && !policy.is_always_open)
-    message_ += ` 마감은 ${policy.application_end_date}예요.`;
+    message_ += ` 마감은 ${policy.application_end_date.slice(5).replace('-', '.')} 23:59예요.`;
 
   return {
     type: 'policy',

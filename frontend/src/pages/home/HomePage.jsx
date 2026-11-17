@@ -280,7 +280,7 @@ export default function HomePage() {
                       </button>
                     </div>
                     <p className="closing-meta">
-                      {shortDate(c.application_end_date)}
+                      {shortDate(c.application_end_date)} 23:59
                       {c.region_names[0] && ` · ${c.region_names[0]}`}
                       {c.docs_total > 0 && (
                         <b className="docs">
