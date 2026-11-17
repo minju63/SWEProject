@@ -1,0 +1,211 @@
+import { useState } from 'react';
+import { STATUSES, toggle } from './searchFilterData';
+
+const CONDITION_FIELDS = ['age', 'birth_date', 'region_code', 'residence_months', 'final_education', 'current_status', 'interest_categories', 'housing_type', 'household_type', 'lives_separately', 'marital_status', 'home_ownership', 'household_role', 'housing_benefit_status', 'special_targets'];
+const SPECIAL_TARGETS = ['다자녀가구', '중소·중견기업 재직자', '차상위계층', '기초생활수급자', '한부모가정', '장애인', '농업인', '군인', '지역인재', '신생아·영유아 가구', '자립준비청년', '주거취약계층'];
+const EDUCATIONS = ['중학교 졸업 이하', '고등학교 졸업', '대학교 졸업 (2년제)', '대학교 졸업 (4년제)', '대학원 졸업 (석사)', '대학원 졸업 (박사)'];
+const CURRENT_STATUSES = ['고등학생', '대학생(재학)', '대학생(휴학)', '대학원생', '취업준비생', '직장인', '자영업자', '창업준비생', '기타'];
+const INTEREST_CATEGORIES = ['취업·진로', '주거·생활', '장학·금융', '문화'];
+const displayCategory = (name) => name === '문화·예술' ? '문화' : name;
+const displayCondition = (field, value) => field === 'age' ? `만 ${value}세`
+  : field === 'lives_separately' ? (value ? '부모와 별도 거주' : '부모와 함께 거주')
+    : Array.isArray(value) ? value.map(displayCategory).join(', ') : String(value);
+
+function Chips({ options, selected, onToggle }) {
+  return <div className="search-choice-list">{options.map((option) => <button type="button" key={option}
+    aria-pressed={selected.includes(option)} className={selected.includes(option) ? 'is-selected' : ''}
+    onClick={() => onToggle(option)}>{option}</button>)}</div>;
+}
+
+function SummaryRow({ label, value, onClick }) {
+  return <button type="button" className="search-filter-summary-row" onClick={onClick}>
+    <b>{label}</b><span>{value}</span><strong aria-hidden="true">›</strong>
+  </button>;
+}
+
+function ConditionFields({ value, onChange, categories, regions }) {
+  const [openInterest, setOpenInterest] = useState('');
+  function change(field, next) { onChange({ ...value, [field]: next }); }
+  const interests = (value.interest_categories ?? []).map(displayCategory);
+  const interestDetails = value.interest_details ?? [];
+  const subcategories = Object.fromEntries(categories.map((category) => [displayCategory(category.display_name),
+    category.subcategories?.map((sub) => sub.subcategory_name) ?? []]));
+  function toggleInterest(category) {
+    const subs = subcategories[category] ?? [];
+    const selected = interests.includes(category);
+    onChange({ ...value, interest_categories: toggle(interests, category),
+      interest_details: selected ? interestDetails.filter((detail) => !subs.includes(detail)) : [...new Set([...interestDetails, ...subs])] });
+  }
+  function toggleInterestDetail(category, detail) {
+    const details = toggle(interestDetails, detail);
+    const subs = subcategories[category] ?? [];
+    onChange({ ...value, interest_details: details,
+      interest_categories: subs.some((item) => details.includes(item))
+        ? [...new Set([...interests, category])] : interests.filter((item) => item !== category) });
+  }
+  return <div className="search-condition-fields">
+    <h4>기본 정보</h4>
+    <label>만 나이<select value={value.age ?? ''} onChange={(event) => onChange({ ...value, age: event.target.value === '' ? null : Number(event.target.value), birth_date: undefined })}>
+      <option value="">선택해주세요</option>{Array.from({ length: 121 }, (_, age) => <option value={age} key={age}>만 {age}세</option>)}
+    </select></label>
+    <label>거주 지역<select value={value.region_code ?? ''} onChange={(event) => change('region_code', event.target.value)}>
+      <option value="">선택해주세요</option><option value="26">부산 전체</option>
+      {regions.map(({ region_name: name, region_code: code }) => <option key={code} value={code}>{name}</option>)}
+    </select></label>
+    <label>최종 학력<select value={value.final_education ?? ''} onChange={(event) => change('final_education', event.target.value)}>
+      <option value="">선택해주세요</option>{EDUCATIONS.map((label) => <option value={label} key={label}>{label}</option>)}
+    </select></label>
+    <label>현재 상태<select value={value.current_status ?? ''} onChange={(event) => change('current_status', event.target.value)}>
+      <option value="">선택해주세요</option>{CURRENT_STATUSES.map((label) => <option value={label} key={label}>{label}</option>)}
+    </select></label>
+    <h4>거주 및 가구 정보</h4>
+    <label>현재 주거 형태<select value={value.housing_type ?? ''} onChange={(event) => change('housing_type', event.target.value)}>
+      {['선택해주세요', '월세', '전세', '기숙사·생활관', '공공임대', '자가'].map((label, index) => <option value={index ? label : ''} key={label}>{label}</option>)}
+    </select></label>
+    <label>가구 형태<select value={value.household_type ?? ''} onChange={(event) => change('household_type', event.target.value)}>
+      {['선택해주세요', '1인가구', '가족가구', '기타'].map((label, index) => <option value={index ? label : ''} key={label}>{label}</option>)}
+    </select></label>
+    <label>부모와 별도 거주 여부<select value={value.lives_separately == null ? '' : String(value.lives_separately)} onChange={(event) => change('lives_separately', event.target.value === '' ? null : event.target.value === 'true')}>
+      <option value="">선택해주세요</option><option value="true">예</option><option value="false">아니요</option>
+    </select></label>
+    <label>혼인 상태<select value={value.marital_status ?? ''} onChange={(event) => change('marital_status', event.target.value)}>
+      {['선택해주세요', '미혼', '기혼'].map((label, index) => <option value={index ? label : ''} key={label}>{label}</option>)}
+    </select></label>
+    <label>주택 소유 여부<select value={value.home_ownership ?? ''} onChange={(event) => change('home_ownership', event.target.value)}>
+      {['선택해주세요', '무주택', '유주택'].map((label, index) => <option value={index ? label : ''} key={label}>{label}</option>)}
+    </select></label>
+    <label>세대주 여부<select value={value.household_role ?? ''} onChange={(event) => change('household_role', event.target.value)}>
+      {['선택해주세요', '세대주', '예비세대주', '세대원'].map((label, index) => <option value={index ? label : ''} key={label}>{label}</option>)}
+    </select></label>
+    <label>주거급여 수급 여부<select value={value.housing_benefit_status ?? ''} onChange={(event) => change('housing_benefit_status', event.target.value)}>
+      {['선택해주세요', '수급 중', '수급하지 않음'].map((label, index) => <option value={index ? label : ''} key={label}>{label}</option>)}
+    </select></label>
+    <div className="search-condition-wide search-condition-section"><div className="search-condition-section-title"><b>특화대상</b><span>여러 개 선택</span></div>
+      <div className="search-special-grid">{SPECIAL_TARGETS.map((item) => <label key={item}>
+        <input type="checkbox" checked={(value.special_targets ?? []).includes(item)}
+          onChange={() => change('special_targets', toggle(value.special_targets ?? [], item))} /><span>{item}</span>
+      </label>)}</div></div>
+    <div className="search-condition-wide search-condition-section"><div className="search-condition-section-title"><b>관심 분야</b><span>여러 개 선택</span></div>
+      <div className="search-interest-list search-condition-interest-list">{INTEREST_CATEGORIES.map((category) => {
+        const subs = subcategories[category] ?? [];
+        const selected = subs.filter((item) => interestDetails.includes(item));
+        const all = subs.length ? selected.length === subs.length : interests.includes(category);
+        return <div className={`search-interest-item${interests.includes(category) ? ' is-active' : ''}`} key={category}>
+          <div className="search-interest-main"><button type="button" className="search-interest-check" aria-label={`${category} 전체 선택`}
+            aria-pressed={all} onClick={() => toggleInterest(category)}>{selected.length && !all ? '−' : '✓'}</button>
+            <button type="button" className="search-interest-expand" aria-expanded={openInterest === category}
+              onClick={() => setOpenInterest(openInterest === category ? '' : category)}><b>{category}</b><strong>{openInterest === category ? '⌃' : '⌄'}</strong></button></div>
+          {openInterest === category && subs.length > 0 && <div className="search-interest-details"><p>세부 분류는 여러 개 선택할 수 있어요</p>
+            <Chips options={subs} selected={interestDetails} onToggle={(detail) => toggleInterestDetail(category, detail)} /></div>}
+        </div>;
+      })}</div></div>
+  </div>;
+}
+
+function SubSheet({ type, draft, setDraft, onClose, regions }) {
+  const titles = { region: '지역', status: '모집 상태', date: '신청 기간' };
+  return <div className="search-filter-overlay search-filter-overlay--sub" onClick={onClose}>
+    <div className="search-sub-sheet" role="dialog" aria-modal="true" aria-label={titles[type]} onClick={(event) => event.stopPropagation()}>
+      <div className="search-filter-handle" /><div className="search-sub-header"><h2>{titles[type]}</h2>
+        <button type="button" aria-label="닫기" onClick={onClose}>×</button></div>
+      {type === 'region' && <><h3>부산 지역을 선택해주세요</h3><Chips options={regions.map((region) => region.region_name)}
+        selected={draft.regions.map((code) => regions.find((region) => region.region_code === code)?.region_name)}
+        onToggle={(name) => { const code = regions.find((region) => region.region_name === name)?.region_code; setDraft((current) => ({ ...current, regions: toggle(current.regions, code) })); }} /></>}
+      {type === 'status' && <><h3>모집 상태를 선택해주세요</h3><Chips options={STATUSES} selected={draft.statuses}
+        onToggle={(value) => setDraft((current) => ({ ...current, statuses: toggle(current.statuses, value) }))} /></>}
+      {type === 'date' && <div className="search-date-grid">
+        <label>시작일<input type="date" value={draft.dateStart} onChange={(event) => setDraft((current) => ({ ...current, dateStart: event.target.value }))} /></label>
+        <label>종료일<input type="date" value={draft.dateEnd} onChange={(event) => setDraft((current) => ({ ...current, dateEnd: event.target.value }))} /></label>
+        <label className="search-date-check"><input type="checkbox" checked={draft.includeAlways} onChange={(event) => setDraft((current) => ({ ...current, includeAlways: event.target.checked }))} />상시 모집 포함</label>
+      </div>}
+      <button type="button" className="search-sub-done" onClick={onClose}>선택 완료</button>
+    </div>
+  </div>;
+}
+
+export default function SearchFilters({ draft, setDraft, count, countLoading, profile, categories, regions, onReset, onApply, onClose }) {
+  const [openCategory, setOpenCategory] = useState('');
+  const [subFilter, setSubFilter] = useState(null);
+  const [conditionsOpen, setConditionsOpen] = useState(false);
+  const [appliedOpen, setAppliedOpen] = useState(false);
+  const subcategories = Object.fromEntries(categories.map((category) => [category.display_name,
+    category.subcategories.map((sub) => sub.subcategory_name)]));
+  const categorySummary = (category) => (subcategories[category] ?? []).filter((item) => draft.details.includes(item));
+  function toggleCategory(category) {
+    setDraft((current) => {
+      const subs = subcategories[category] ?? [];
+      const all = subs.length ? subs.every((item) => current.details.includes(item)) : current.categories.includes(category);
+      return { ...current, categories: all ? current.categories.filter((item) => item !== category) : [...new Set([...current.categories, category])],
+        details: all ? current.details.filter((item) => !subs.includes(item)) : [...new Set([...current.details, ...subs])] };
+    });
+  }
+  function toggleDetail(category, detail) {
+    setDraft((current) => {
+      const details = toggle(current.details, detail);
+      return { ...current, details, categories: (subcategories[category] ?? []).some((item) => details.includes(item))
+        ? [...new Set([...current.categories, category])] : current.categories.filter((item) => item !== category) };
+    });
+  }
+  const regionSummary = draft.regions.length ? `${regions.find((region) => region.region_code === draft.regions[0])?.region_name}${draft.regions.length > 1 ? ` 외 ${draft.regions.length - 1}` : ''}` : '부산 전체';
+  const statusSummary = draft.statuses.length ? `${draft.statuses[0]}${draft.statuses.length > 1 ? ` 외 ${draft.statuses.length - 1}` : ''}` : '전체';
+  const conditionValues = Object.entries(draft.myConditionsOnly ? profile ?? {} : draft.conditions)
+    .filter(([key, value]) => CONDITION_FIELDS.includes(key) && value !== '' && value != null && (!Array.isArray(value) || value.length));
+  return <div className="search-filter-overlay" onClick={onClose}>
+    <div className="search-filter-sheet" role="dialog" aria-modal="true" aria-labelledby="search-filter-title" onClick={(event) => event.stopPropagation()}>
+      <div className="search-filter-top"><div className="search-filter-handle" /><div className="search-filter-title-row">
+        <div><h2 id="search-filter-title">필터</h2><p>필요한 조건만 간단히 설정해보세요.</p></div>
+        <button type="button" aria-label="필터 닫기" onClick={onClose}>×</button>
+      </div></div>
+      <div className="search-filter-body">
+        <section><h3>분야</h3><div className="search-interest-list">
+          {categories.map(({ display_name: category }) => {
+            const selected = categorySummary(category);
+            const all = (subcategories[category] ?? []).length ? selected.length === subcategories[category].length : draft.categories.includes(category);
+            return <div className={`search-interest-item${draft.categories.includes(category) ? ' is-active' : ''}`} key={category}>
+              <div className="search-interest-main"><button type="button" className="search-interest-check" aria-label={`${category} 전체 선택`} aria-pressed={all}
+                onClick={() => toggleCategory(category)}>{selected.length && !all ? '−' : '✓'}</button>
+                <button type="button" className="search-interest-expand" aria-expanded={openCategory === category}
+                  onClick={() => setOpenCategory(openCategory === category ? '' : category)}><span><b>{category}</b>
+                    {selected.length > 0 && <small>세부분류 {selected.length}개 선택</small>}</span><strong>⌄</strong></button></div>
+              {openCategory === category && <div className="search-interest-details"><p>{(subcategories[category] ?? []).length ? '세부분류는 여러 개 선택할 수 있어요.' : '등록된 세부분류가 없어요.'}</p>
+                {(subcategories[category] ?? []).length > 0 && <Chips options={subcategories[category]} selected={draft.details} onToggle={(detail) => toggleDetail(category, detail)} />}</div>}
+            </div>;
+          })}</div></section>
+        <div className="search-filter-summary">
+          <SummaryRow label="지역" value={regionSummary} onClick={() => setSubFilter('region')} />
+          <SummaryRow label="모집 상태" value={statusSummary} onClick={() => setSubFilter('status')} />
+          <SummaryRow label="신청 기간" value={draft.dateStart || draft.dateEnd ? `${draft.dateStart || '시작일'} ~ ${draft.dateEnd || '종료일'}${draft.includeAlways ? ' · 상시 포함' : ''}` : '전체 기간'} onClick={() => setSubFilter('date')} />
+        </div>
+        <section className="search-my-conditions"><h3>내 조건</h3><p>{profile?.region_code ? regions.find((region) => region.region_code === profile.region_code)?.region_name ?? '부산 전체' : '부산 전체'} · {conditionValues.length ? `${conditionValues.length}개 조건 설정됨` : '설정된 조건 없음'}</p>
+          <div className="search-condition-toggle"><b>내 조건에 맞는 정책만 보기</b><button type="button" role="switch" aria-checked={draft.myConditionsOnly}
+            disabled={!profile} className={draft.myConditionsOnly ? 'is-on' : ''} onClick={() => setDraft((current) => ({ ...current, myConditionsOnly: !current.myConditionsOnly }))}><span /></button></div>
+          {!profile && <p className="search-condition-note">로그인 후 프로필 조건으로 검색할 수 있어요.</p>}
+          {conditionValues.length > 0 && <button type="button" className="search-condition-strip" onClick={() => setAppliedOpen(true)}>
+            <span className="search-condition-strip-icon">{draft.myConditionsOnly ? '♙' : '☷'}</span>
+            <span><b>{draft.myConditionsOnly ? '내 조건 적용 중' : `직접 설정 조건 ${conditionValues.length}개 적용 중`}</b>
+              <small>{conditionValues.slice(0, 3).map(([field, value]) => displayCondition(field, value)).join(' · ')}</small></span><strong>›</strong>
+          </button>}
+          <button type="button" className="search-condition-expand" disabled={draft.myConditionsOnly}
+            onClick={() => setConditionsOpen((open) => !open)}>조건 직접 설정 <span>{conditionsOpen ? '⌃' : '⌄'}</span></button>
+          {conditionsOpen && !draft.myConditionsOnly && <><ConditionFields value={draft.conditions} categories={categories} regions={regions} onChange={(conditions) => setDraft((current) => ({ ...current, conditions }))} />
+            <p className="search-condition-note">이번 검색에만 적용돼요. 프로필은 바뀌지 않아요.</p></>}
+        </section>
+      </div>
+      <div className="search-filter-actions"><button type="button" onClick={onReset}>초기화</button>
+        <button type="button" onClick={onApply}>{countLoading ? '결과 확인 중…' : `결과 ${count ?? 0}건 보기`}</button></div>
+    </div>
+    {subFilter && <SubSheet type={subFilter} draft={draft} setDraft={setDraft} regions={regions} onClose={() => setSubFilter(null)} />}
+    {appliedOpen && <div className="search-filter-overlay search-filter-overlay--sub" onClick={() => setAppliedOpen(false)}>
+      <div className="search-applied-sheet" role="dialog" aria-modal="true" aria-label="적용 중인 조건" onClick={(event) => event.stopPropagation()}>
+        <div className="search-filter-handle" /><div className="search-sub-header"><div><h2>적용 중인 조건</h2>
+          <p>{draft.myConditionsOnly ? '프로필에 저장된 내 조건이에요.' : '이번 검색에만 적용돼요. 프로필은 바뀌지 않아요.'}</p></div>
+          <button type="button" aria-label="닫기" onClick={() => setAppliedOpen(false)}>×</button></div>
+        <div className="search-applied-list"><h3>지역</h3><span>{regions.find((region) => region.region_code === (draft.myConditionsOnly ? profile?.region_code : draft.conditions.region_code))?.region_name ?? '부산 전체'}</span>
+          {conditionValues.length > 0 && <><h3>설정한 조건</h3>{conditionValues.map(([field, value]) => <span key={field}>{displayCondition(field, value)}</span>)}</>}
+        </div>
+        <button type="button" className="search-sub-done" onClick={() => { setAppliedOpen(false); if (!draft.myConditionsOnly) setConditionsOpen(true); }}>
+          {draft.myConditionsOnly ? '확인' : '조건 수정하기'}</button>
+      </div>
+    </div>}
+  </div>;
+}

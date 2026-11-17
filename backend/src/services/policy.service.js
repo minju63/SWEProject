@@ -10,9 +10,25 @@ async function attachStatus(items) {
 }
 
 export async function listPolicies(params) {
-  const { items, totalCount } = await policyRepo.findPolicies(params);
+  let categoryDetails = [];
+  if (params.categoryDetails && params.categoryDetails.length < 4000) {
+    try {
+      const parsed = JSON.parse(params.categoryDetails);
+      if (Array.isArray(parsed)) categoryDetails = parsed.filter((entry) =>
+        typeof entry.categoryId === 'string' && Array.isArray(entry.details));
+    } catch { /* Ignore malformed filter input. */ }
+  }
+  let conditionProfile = null;
+  if (params.myConditionsOnly && params.userId) conditionProfile = await userRepo.findProfile(params.userId);
+  else if (params.conditions && params.conditions.length < 4000) {
+    try { conditionProfile = JSON.parse(params.conditions); } catch { /* Ignore an invalid temporary filter. */ }
+  }
+  const { items, totalCount } = await policyRepo.findPolicies({ ...params, categoryDetails,
+    profile: conditionProfile ? { judge: (policy) => judge(policy, conditionProfile) } : null,
+  });
+  const hasAdvancedStatus = items.every((item) => item.recruitment_status);
   return {
-    items: await attachStatus(items),
+    items: hasAdvancedStatus ? items : await attachStatus(items),
     page: params.page,
     size: params.size,
     totalCount,
@@ -34,3 +50,4 @@ export async function getEligibility(policyId, userId) {
 }
 
 export const listCategories = () => policyRepo.findCategories();
+export const listSearchFilters = () => policyRepo.findSearchFilters();

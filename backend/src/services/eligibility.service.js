@@ -31,7 +31,7 @@ function ageFrom(birthDate, today = new Date()) {
 
 // 조건 field 이름 → 사용자 프로필 값
 const PROFILE_FIELDS = {
-  age: (p) => ageFrom(p.birth_date),
+  age: (p) => Number.isInteger(p.age) && p.age >= 0 && p.age <= 120 ? p.age : ageFrom(p.birth_date),
   region: (p) => p.region_code,
   residence_months: (p) => p.residence_months,
   final_education: (p) => p.final_education,

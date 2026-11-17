@@ -13,3 +13,8 @@ export async function requireAuth(req, _res, next) {
   req.user = data.user;
   next();
 }
+
+export async function optionalAuth(req, _res, next) {
+  if (req.query.myConditionsOnly !== 'true' || !req.headers.authorization) return next();
+  return requireAuth(req, _res, next);
+}

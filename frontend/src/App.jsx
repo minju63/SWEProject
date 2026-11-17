@@ -1,4 +1,4 @@
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, useLocation } from 'react-router-dom';
 import TabBar from './components/TabBar.jsx';
 import AssistantButton from './components/AssistantButton.jsx';
 import HomePage from './pages/home/HomePage.jsx';
@@ -10,8 +10,11 @@ import PolicyDetailPage from './pages/common/PolicyDetailPage.jsx';
 import NotFoundPage from './pages/common/NotFoundPage.jsx';
 
 export default function App() {
+  const pathname = useLocation().pathname;
+  const isSearch = pathname === '/search';
+  const isDetail = /^\/policies\/[^/]+$/.test(pathname);
   return (
-    <div className="app">
+    <div className={`app${isSearch ? ' app--search' : ''}${isDetail ? ' app--detail' : ''}`}>
       <main className="page">
         <Routes>
           <Route path="/" element={<HomePage />} />
@@ -23,7 +26,7 @@ export default function App() {
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </main>
-      <AssistantButton />
+      {!isSearch && !isDetail && <AssistantButton />}
       <TabBar />
     </div>
   );

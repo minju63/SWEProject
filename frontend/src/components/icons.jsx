@@ -58,3 +58,44 @@ export const BackIcon = () => (
     <path d="m15 5-7 7 7 7" />
   </svg>
 );
+
+export const BriefcaseIcon = () => (
+  <svg {...base}>
+    <rect x="3" y="7" width="18" height="13" rx="2" />
+    <path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2M3 12h18" />
+  </svg>
+);
+
+export const CoinIcon = () => (
+  <svg {...base}>
+    <circle cx="12" cy="12" r="9" />
+    <path d="M8 9h8M8 12h8M10 9l1.5 7M14 9l-1.5 7" />
+  </svg>
+);
+
+export const ArtIcon = () => (
+  <svg {...base}>
+    <path d="M12 3a9 9 0 0 0 0 18c1.5 0 2-1 1.6-2-.5-1.2.2-2.5 1.6-2.5H17a4 4 0 0 0 4-4C21 6.9 17 3 12 3Z" />
+    <path d="M7.5 11h.01M10 7.5h.01M14.5 7.5h.01M17 11h.01" />
+  </svg>
+);
+
+export const HealthIcon = () => (
+  <svg {...base}>
+    <path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1.1-1.1a5.5 5.5 0 0 0-7.8 7.8l1.1 1.1L12 21l7.8-7.5 1.1-1.1a5.5 5.5 0 0 0-.1-7.8Z" />
+    <path d="M12 9v5M9.5 11.5h5" />
+  </svg>
+);
+
+export const ClockIcon = () => (
+  <svg {...base}>
+    <circle cx="12" cy="12" r="9" />
+    <path d="M12 7v5l3 2" />
+  </svg>
+);
+
+export const HeartIcon = () => (
+  <svg {...base}>
+    <path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1.1-1.1a5.5 5.5 0 0 0-7.8 7.8l1.1 1.1L12 21l7.8-7.5 1.1-1.1a5.5 5.5 0 0 0-.1-7.8Z" />
+  </svg>
+);
