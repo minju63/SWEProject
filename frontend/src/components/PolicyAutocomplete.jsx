@@ -10,8 +10,9 @@ function Highlight({ text, match }) {
   return <>{text.slice(0, start)}<mark>{text.slice(start, start + match.length)}</mark>{text.slice(start + match.length)}</>;
 }
 
-export default function PolicyAutocomplete({ value, onChange, onSearch, onSelectPolicy,
-  context = 'search', basePolicyId, renderInput }) {
+export default function PolicyAutocomplete({ value, onChange, onSearch, onSelectPolicy, onSelectTerm,
+  context = 'search', basePolicyId, renderInput, liveSuggestions = false, inlineSuggestions = false,
+  alwaysOpen = false }) {
   const user = useAuthStore((state) => state.user);
   const wrapper = useRef(null);
   const listId = useId();
@@ -20,12 +21,14 @@ export default function PolicyAutocomplete({ value, onChange, onSearch, onSelect
   const [active, setActive] = useState(-1);
   const [composing, setComposing] = useState(false);
   const query = value.trim();
+  const suggestionQuery = liveSuggestions ? query : debounced;
+  const minLength = liveSuggestions ? 1 : 2;
 
   useEffect(() => {
-    if (composing || [...query].length < 2) return;
+    if (liveSuggestions || composing || [...query].length < 2) return;
     const timer = window.setTimeout(() => setDebounced(query), 250);
     return () => window.clearTimeout(timer);
-  }, [query, composing]);
+  }, [query, composing, liveSuggestions]);
 
   useEffect(() => {
     const closeOnOutside = (event) => {
@@ -36,15 +39,17 @@ export default function PolicyAutocomplete({ value, onChange, onSearch, onSelect
   }, []);
 
   const suggestions = useQuery({
-    queryKey: ['policy-suggestions', user?.id, context, basePolicyId, debounced],
-    queryFn: ({ signal }) => fetchPolicySuggestions({ q: debounced, context,
+    queryKey: ['policy-suggestions', user?.id, context, basePolicyId, suggestionQuery],
+    queryFn: ({ signal }) => fetchPolicySuggestions({ q: suggestionQuery, context,
       ...(context === 'compare' ? { basePolicyId } : {}) }, signal),
-    enabled: Boolean(user && !composing && [...query].length >= 2 && debounced === query),
+    enabled: Boolean(user && (liveSuggestions || !composing) && [...query].length >= minLength && suggestionQuery === query),
     staleTime: 30_000,
     retry: false,
   });
-  const visible = open && Boolean(user) && !composing && [...query].length >= 2 && debounced === query;
-  const entries = visible ? [
+  const ready = suggestionQuery === query;
+  const visible = (open || alwaysOpen) && Boolean(user) && (liveSuggestions || !composing) &&
+    [...query].length >= minLength && (liveSuggestions || ready);
+  const entries = visible && ready ? [
     ...(suggestions.data?.relatedSearches ?? []).map((item) => ({ ...item, type: 'term' })),
     ...(suggestions.data?.policies ?? []).map((item) => ({ ...item, type: 'policy' })),
   ] : [];
@@ -53,6 +58,7 @@ export default function PolicyAutocomplete({ value, onChange, onSearch, onSelect
     setOpen(false);
     setActive(-1);
     if (entry.type === 'policy') onSelectPolicy(entry);
+    else if (onSelectTerm) onSelectTerm(entry.text);
     else onSearch(entry.text);
   }
 
@@ -66,16 +72,21 @@ export default function PolicyAutocomplete({ value, onChange, onSearch, onSelect
     value,
     role: 'combobox',
     'aria-autocomplete': 'list',
-    'aria-expanded': visible && entries.length > 0,
-    'aria-controls': visible && entries.length ? listId : undefined,
-    'aria-activedescendant': active >= 0 && visible ? `${listId}-${active}` : undefined,
+    'aria-expanded': visible,
+    'aria-controls': visible ? listId : undefined,
+    'aria-activedescendant': active >= 0 && entries.length ? `${listId}-${active}` : undefined,
     onChange: (event) => {
       onChange(event.target.value);
-      if ([...event.target.value.trim()].length < 2) setDebounced('');
+      if (!liveSuggestions && [...event.target.value.trim()].length < 2) setDebounced('');
       setActive(-1); setOpen(true);
     },
     onFocus: () => setOpen(true),
-    onCompositionStart: () => { setComposing(true); setDebounced(''); setOpen(false); },
+    onClick: () => setOpen(true),
+    onCompositionStart: () => {
+      setComposing(true);
+      if (!liveSuggestions) { setDebounced(''); setOpen(false); }
+      else setOpen(true);
+    },
     onCompositionEnd: (event) => { setComposing(false); onChange(event.currentTarget.value); setOpen(true); },
     onKeyDown: (event) => {
       if (composing || event.nativeEvent.isComposing || event.keyCode === 229) return;
@@ -94,13 +105,13 @@ export default function PolicyAutocomplete({ value, onChange, onSearch, onSelect
     },
   };
 
-  return <div className="policy-autocomplete" ref={wrapper}>
+  return <div className={`policy-autocomplete${inlineSuggestions ? ' policy-autocomplete--inline' : ''}`} ref={wrapper}>
     {renderInput(inputProps, submit)}
     {visible && <div className="policy-suggestions" id={listId} role="listbox" aria-label="정책 자동완성">
-      {suggestions.isPending && <p className="policy-suggestions-state">관련 제안을 찾는 중이에요…</p>}
-      {suggestions.isError && <p className="policy-suggestions-state">제안을 불러오지 못했어요. Enter로 검색할 수 있어요.</p>}
-      {suggestions.isSuccess && entries.length === 0 && <p className="policy-suggestions-state">관련 제안이 없어요. Enter로 검색해 보세요.</p>}
-      {suggestions.isSuccess && entries.map((entry, index) => <div key={`${entry.type}-${entry.policy_id ?? entry.text}`}
+      {(!ready || suggestions.isPending) && <p className="policy-suggestions-state">관련 제안을 찾는 중이에요…</p>}
+      {ready && suggestions.isError && <p className="policy-suggestions-state">제안을 불러오지 못했어요. Enter로 검색할 수 있어요.</p>}
+      {ready && suggestions.isSuccess && entries.length === 0 && <p className="policy-suggestions-state">관련 제안이 없어요. Enter로 검색해 보세요.</p>}
+      {ready && suggestions.isSuccess && entries.map((entry, index) => <div key={`${entry.type}-${entry.policy_id ?? entry.text}`}
         className="policy-suggestions-entry" role="presentation">
         {(index === 0 || entries[index - 1].type !== entry.type) &&
           <div className="policy-suggestions-group">{entry.type === 'term' ? '관련 검색어' : '실제 정책'}</div>}

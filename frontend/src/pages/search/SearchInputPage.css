@@ -1,0 +1,15 @@
+.search-input-page {
+  min-height: 100svh;
+  padding-bottom: calc(80px + env(safe-area-inset-bottom));
+  background: linear-gradient(180deg, #eaf2ff 0, #f2f6fc 430px);
+  color: #171923;
+  font-family: 'Noto Sans KR', sans-serif;
+}
+.search-input-page .policy-search-form input:focus-visible { outline: none; }
+.search-input-header .search-input-clear { display: grid; flex: none; place-items: center; width: 32px; height: 32px; padding: 0; border-radius: 50%; background: transparent; color: #7b8ca3; font-size: 20px; line-height: 1; }
+.search-input-page .policy-suggestions { padding: 0 20px 24px; }
+.search-input-page .policy-suggestions-group { padding: 18px 0 8px; font-size: 12px; }
+.search-input-page .policy-suggestions-entry button { min-height: 44px; padding: 12px 0; border-bottom: 1px solid #e0e7f0; border-radius: 0; background: transparent; font-size: 13px; }
+.search-input-page .policy-suggestions-entry button:hover,
+.search-input-page .policy-suggestions-entry button.is-active { background: #edf4ff; }
+.search-input-page .policy-suggestions-state { padding: 18px 0; }

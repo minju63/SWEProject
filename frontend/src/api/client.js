@@ -16,5 +16,9 @@ api.interceptors.request.use(async (config) => {
 // 응답 형식 { success, data, message } 에서 data만 꺼낸다
 api.interceptors.response.use(
   (res) => res.data.data,
-  (err) => Promise.reject(new Error(err.response?.data?.message ?? err.message))
+  (err) => {
+    const error = new Error(err.response?.data?.message ?? err.message);
+    error.code = err.response?.data?.code ?? null;
+    return Promise.reject(error);
+  }
 );

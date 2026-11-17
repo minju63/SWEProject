@@ -6,7 +6,8 @@ process.env.SUPABASE_SERVICE_ROLE_KEY = 'test-key';
 
 const { candidateAiInput, validateCandidateRecommendations } =
   await import('../src/services/policy-compare-candidates-ai.service.js');
-const { comparisonAiInput, validateComparisonSummary } =
+const { comparisonAiInput, comparisonNarrativeInput, fallbackComparisonSummary,
+  validateComparisonSummary } =
   await import('../src/services/policy-compare-summary-ai.service.js');
 const { requestStructuredAI } = await import('../src/services/ai-common.service.js');
 const { POLICY_COMPARE_CANDIDATES_SYSTEM_PROMPT } =
@@ -98,6 +99,37 @@ test('비교 요약의 가짜 금액·날짜·판정·근거를 제거하고 검
   assert.equal(result.differences[0].policy_b, '부산 구직 청년');
   assert.deepEqual(result.differences[0].evidence_ids.slice(0, 2), [ids[0], ids[1]]);
   assert.ok(result.additional_checks.includes('기준 정책: 신청 자격 추가 확인 필요'));
+  assert.ok(!result.summary.includes('차이가 확인됩니다'));
+  assert.ok(!result.summary.includes('분야:'));
+});
+
+test('AI에는 간결한 핵심 사실만 보내고 긴 신청 조건을 요약문으로 복사하지 않는다', () => {
+  const longTarget = `□ 만 19~34세, 소득 기준 충족, ${'추가 신청 조건 '.repeat(12)}`;
+  const input = comparisonAiInput({ base: { ...base, target_summary: longTarget },
+    comparison: candidates[0], eligibility: { base: { result: 'CHECK' },
+      comparison: { result: 'ELIGIBLE' } } });
+  const narrative = comparisonNarrativeInput(input);
+  assert.equal(narrative.policy_a.target_summary, null);
+  assert.ok(!JSON.stringify(narrative).includes(longTarget));
+  assert.ok(!JSON.stringify(narrative).includes('policy_conditions'));
+  assert.ok(!JSON.stringify(narrative).includes('분야:'));
+  const fallback = fallbackComparisonSummary(input);
+  assert.ok(!fallback.includes(longTarget));
+  assert.ok(!fallback.includes('□'));
+  assert.ok(!fallback.includes('차이가 확인됩니다'));
+});
+
+test('검증된 두 정책의 자연스러운 AI 요약은 유지하고 원본 나열은 대체한다', () => {
+  const input = comparisonAiInput({ base, comparison: candidates[0],
+    eligibility: { base: { result: 'CHECK' }, comparison: { result: 'ELIGIBLE' } } });
+  const raw = { common_points: [], differences: [],
+    summary: '청년 취업 교육과 청년 직무 교육은 모두 교육을 지원합니다. 청년 취업 교육은 부산 청년을, 청년 직무 교육은 부산 구직 청년을 대상으로 합니다.',
+    additional_checks: [] };
+  const valid = validateComparisonSummary(raw, input);
+  assert.equal(valid.summary, raw.summary);
+  const copied = validateComparisonSummary({ ...raw,
+    summary: '청년 취업 교육과 청년 직무 교육은 분야: 취업·진로 · 세부분류: 취업 지원입니다. 지원 대상에서 차이가 확인됩니다.' }, input);
+  assert.equal(copied.summary, fallbackComparisonSummary(input));
 });
 
 test('두 AI 기능은 실제 시스템 프롬프트와 JSON 스키마로 호출하고 사용자별 호출 수를 제한한다', async () => {

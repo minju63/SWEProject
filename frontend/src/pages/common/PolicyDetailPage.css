@@ -109,23 +109,20 @@
 .policy-detail-summary > div:last-child { padding-bottom: 0; border-bottom: 0; }
 .policy-detail-summary dt { color: rgba(0, 0, 0, .4); font-size: 11px; font-weight: 800; }
 .policy-detail-summary dd { margin: 0; color: rgba(0, 0, 0, .7); font-size: 12px; font-weight: 700; line-height: 1.65; white-space: pre-line; overflow-wrap: anywhere; }
-.policy-detail-summary dd a, .policy-detail-condition a { color: #2f7bf5; text-decoration: underline; text-underline-offset: 2px; }
+.policy-detail-summary dd a { color: #2f7bf5; text-decoration: underline; text-underline-offset: 2px; }
 .policy-detail-ai-placeholder, .policy-detail-empty { margin: 12px 0 0; padding: 12px 16px; border-radius: 12px; background: #f7f8fb; color: rgba(0, 0, 0, .4); font-size: 12px; font-weight: 600; line-height: 1.65; }
 .policy-detail-empty p { margin: 0; }
 .policy-detail-empty a { display: inline-block; margin-top: 8px; color: #2f7bf5; font-size: 11px; font-weight: 900; }
 .policy-detail-muted { margin: 12px 0 0; color: rgba(0, 0, 0, .45); font-size: 12px; line-height: 1.6; }
-.policy-detail-conditions { display: grid; gap: 12px; margin-top: 16px; }
-.policy-detail-condition { padding-bottom: 12px; border-bottom: 1px solid rgba(0, 0, 0, .06); }
-.policy-detail-condition:last-child { padding-bottom: 0; border-bottom: 0; }
-.policy-detail-condition-row { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; }
-.policy-detail-condition-row > span { min-width: 0; color: rgba(0, 0, 0, .65); font-size: 12px; font-weight: 800; line-height: 1.6; }
-.policy-detail-condition p { margin: 5px 0 0; color: rgba(0, 0, 0, .55); font-size: 11px; line-height: 1.6; overflow-wrap: anywhere; }
-.policy-detail-condition p strong { color: rgba(0, 0, 0, .7); }
-.policy-detail-condition a { display: inline-block; margin-top: 5px; font-size: 11px; }
-.policy-detail-conditions b { flex: none; padding: 6px 10px; border-radius: 999px; background: #fff3e2; color: #b76c00; font-size: 10px; font-weight: 900; }
+.policy-detail-conditions { display: grid; gap: 8px; margin-top: 12px; }
+.policy-detail-condition-row { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+.policy-detail-condition-row > span { min-width: 0; color: rgba(0, 0, 0, .65); font-size: 12px; font-weight: 800; line-height: 1.6; overflow-wrap: anywhere; }
+.policy-detail-conditions b { flex: none; padding: 4px 8px; border-radius: 6px; background: #fff3e2; color: #b76c00; font-size: 10px; font-weight: 900; }
 .policy-detail-conditions .status-satisfied { background: #e7f8f0; color: #078b52; }
 .policy-detail-conditions .status-unsatisfied { background: #fdecea; color: #d43d36; }
+.policy-detail-source-link { display: inline-block; margin-top: 10px; color: #2f7bf5; font-size: 11px; font-weight: 800; text-decoration: underline; text-underline-offset: 2px; }
 .policy-detail-more { margin-top: 16px; padding: 0; border: 0; background: transparent; color: #2f7bf5; font-size: 12px; font-weight: 900; }
+.policy-detail-muted .policy-detail-more { display: inline; margin: 0 0 0 4px; }
 .policy-detail-steps { display: grid; gap: 16px; margin: 16px 0 0; padding: 0; list-style: none; }
 .policy-detail-steps li { display: flex; align-items: flex-start; gap: 12px; }
 .policy-detail-steps li > span { display: grid; flex: none; place-items: center; width: 28px; height: 28px; border-radius: 50%; background: #eaf2fe; color: #2f7bf5; font-size: 11px; font-weight: 900; }

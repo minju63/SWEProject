@@ -40,9 +40,9 @@ function policyMatch(row, query, synonyms) {
   return synonym ? { rank: 5, match: synonym } : null;
 }
 
-export function rankPolicySuggestions(records, rawQuery, { basePolicyId = null, limit = 8 } = {}) {
+export function rankPolicySuggestions(records, rawQuery, { basePolicyId = null, limit = 8, minLength = 2 } = {}) {
   const query = normalize(rawQuery);
-  if ([...query].length < 2) return { relatedSearches: [], policies: [] };
+  if ([...query].length < minLength) return { relatedSearches: [], policies: [] };
   const baseTitle = basePolicyId ? normalizedPolicyTitle(records.find((row) => row.policy_id === basePolicyId)?.title) : '';
   const synonyms = expandedTerms(query, records);
   const terms = [...new Set([...SEARCH_PHRASES, ...Object.values(SEARCH_SUBCATEGORIES).flat()])];
@@ -86,7 +86,8 @@ export async function suggestPolicies({ q, context = 'search', basePolicyId }) {
   if (context === 'compare' && basePolicyId &&
     !/^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/iu.test(basePolicyId))
     throw new AppError(400, 'INVALID_POLICY_ID', '기준 정책을 확인해 주세요.');
-  if ([...q.trim()].length < 2) return { relatedSearches: [], policies: [] };
+  if ([...q.trim()].length < 1)
+    return { relatedSearches: [], policies: [] };
   return rankPolicySuggestions(await findSuggestionIndex(), q,
-    { basePolicyId: context === 'compare' ? basePolicyId : null });
+    { basePolicyId: context === 'compare' ? basePolicyId : null, minLength: 1 });
 }

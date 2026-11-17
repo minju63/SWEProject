@@ -132,21 +132,17 @@ function PolicyCompareView({ policyId, comparisonId }) {
   });
 
   useEffect(() => { window.scrollTo(0, 0); }, [comparisonId]);
-  useEffect(() => {
-    const timer = window.setTimeout(() => setKeyword(search.trim()), 250);
-    return () => window.clearTimeout(timer);
-  }, [search]);
 
   const basePolicy = choosing ? base.data : compared.data?.base;
   const resultPolicy = compared.data?.comparison;
   const baseTitle = normalizeTitle(basePolicy?.title);
-  const searching = Boolean(search.trim());
-  const searchReady = keyword === search.trim();
-  const allOptions = searching ? (searchReady ? candidates.data?.items ?? [] : [])
+  const searching = Boolean(keyword) && keyword === search.trim();
+  const typing = Boolean(search.trim()) && !searching;
+  const allOptions = typing ? [] : searching ? candidates.data?.items ?? []
     : aiCandidates.data?.items ?? similar.data?.items ?? [];
-  const optionsLoading = searching ? !searchReady || candidates.isLoading
+  const optionsLoading = typing ? false : searching ? candidates.isLoading
     : !aiCandidates.data && !similar.data && (aiCandidates.isLoading || similar.isLoading);
-  const optionsError = searching ? (searchReady ? candidates.error : null)
+  const optionsError = typing ? null : searching ? candidates.error
     : aiCandidates.error && similar.error;
   const available = allOptions.filter((item) => item.policy_id !== policyId &&
     normalizeTitle(item.title) !== baseTitle && item.item_type !== 'PLACE');
@@ -183,22 +179,24 @@ function PolicyCompareView({ policyId, comparisonId }) {
           <strong>{basePolicy.title}</strong>
           <small>기준 정책은 바꿀 수 없어요</small>
         </div>
-        <PolicyAutocomplete value={search} context="compare" basePolicyId={policyId}
-          onChange={setSearch}
-          onSearch={setSearch}
+        <PolicyAutocomplete value={search} context="compare" basePolicyId={policyId} liveSuggestions
+          onChange={(value) => { setSearch(value); setKeyword(''); setSelectedPolicy(null); }}
+          onSearch={(value) => { setSearch(value.trim()); setKeyword(value.trim()); setSelectedPolicy(null); }}
           onSelectPolicy={(policy) => {
             if (policy.policy_id === policyId || normalizeTitle(policy.title) === baseTitle) return;
             setSearch(policy.title);
+            setKeyword('');
             setSelectedPolicy(policy);
           }}
-          renderInput={(inputProps) => <label className="policy-compare-search"><SearchIcon />
+          renderInput={(inputProps, submit) => <div className="policy-compare-search"><SearchIcon />
             <input {...inputProps} placeholder="비교할 정책을 검색해 보세요" aria-label="비교할 정책 검색" />
-          </label>} />
-        <div className="policy-compare-list-title"><span aria-hidden="true">✦</span><h2>{searching ? '검색 결과' : aiCandidates.data?.status === 'ok' ? 'AI 추천 비교 후보' : '관련 비교 후보'}</h2><small>{visibleOptions.length}건</small></div>
+            <button type="button" className="policy-compare-search-button" onClick={submit}>검색</button>
+          </div>} />
+        {!typing && <div className="policy-compare-list-title"><span aria-hidden="true">✦</span><h2>{searching ? '검색 결과' : 'AI 추천 비교 후보'}</h2><small>{visibleOptions.length}건</small></div>}
         {optionsLoading && <StateMessage isLoading />}
         {optionsError && <StateMessage error={optionsError} />}
-        {!optionsLoading && !optionsError && !visibleOptions.length && <StateMessage isEmpty emptyText="비교할 정책을 찾지 못했어요." />}
-        <div className="policy-compare-options">{visibleOptions.map((item) => <div key={item.policy_id}
+        {!typing && !optionsLoading && !optionsError && !visibleOptions.length && <StateMessage isEmpty emptyText="비교할 정책을 찾지 못했어요." />}
+        <div className={`policy-compare-options${typing ? ' policy-compare-options--typing' : ''}`}>{visibleOptions.map((item) => <div key={item.policy_id}
           className={`policy-compare-option${selected?.policy_id === item.policy_id ? ' is-selected' : ''}`}>
           <button type="button" className="policy-compare-option-select" aria-pressed={selected?.policy_id === item.policy_id}
             aria-label={`${item.title} 비교 후보 선택`} onClick={() => setSelectedPolicy(item)}>
@@ -211,7 +209,7 @@ function PolicyCompareView({ policyId, comparisonId }) {
           <button type="button" className="policy-compare-option-detail" aria-label={`${item.title} 정책 상세 보기`}
             onClick={() => navigate(`/policies/${item.policy_id}`)}>›</button>
         </div>)}</div>
-        {!searching && similar.data && allOptions.length >= 3 && <p className="policy-compare-search-hint">다른 정책은 위 검색창에서 찾을 수 있어요.</p>}
+        {!typing && !searching && similar.data && allOptions.length >= 3 && <p className="policy-compare-search-hint">다른 정책은 위 검색창에서 찾을 수 있어요.</p>}
       </div>
       <div className="policy-compare-bottom"><button type="button" disabled={!selected}
         onClick={() => navigate(`/policies/${policyId}/compare/${selected.policy_id}`)}>이 정책과 비교하기</button></div>
@@ -248,17 +246,9 @@ function PolicyCompareView({ policyId, comparisonId }) {
               <section className="policy-compare-summary" aria-label="AI 정책 비교 요약">
                 <h2><span aria-hidden="true">✦</span>AI 비교 요약</h2>
                 {aiSummary.isLoading ? <p>두 정책의 확인된 정보를 비교하고 있어요.</p>
-                  : aiSummary.isError || aiSummary.data?.status !== 'ok'
+                  : aiSummary.isError || !aiSummary.data?.summary?.summary
                     ? <p>AI 비교 요약을 불러오지 못했어요. 위 비교표에서 실제 정책 정보를 확인해 주세요.</p>
-                    : <>
-                      <p>{aiSummary.data.summary.summary}</p>
-                      {aiSummary.data.summary.common_points.length > 0 &&
-                        <p><strong>공통점</strong> {aiSummary.data.summary.common_points.join(' · ')}</p>}
-                      {aiSummary.data.summary.differences.map((item) =>
-                        <p key={item.topic}><strong>{item.topic}</strong> {item.policy_a} / {item.policy_b}. {item.explanation}</p>)}
-                      {aiSummary.data.summary.additional_checks.length > 0 &&
-                        <p><strong>추가 확인</strong> {aiSummary.data.summary.additional_checks.join(' · ')}</p>}
-                    </>}
+                    : <p>{aiSummary.data.summary.summary}</p>}
               </section>
               <p className="policy-compare-footnote">정책 정보는 변경될 수 있어요. 신청 전 공식 공고를 확인해 주세요.</p>
             </div>}

@@ -1,5 +1,7 @@
 import { useState } from 'react';
 import SelectMenu from '../../components/SelectMenu.jsx';
+import { UserIcon } from '../../components/icons.jsx';
+import { ageFromBirthDate } from '../../utils/format';
 import { STATUSES, toggle } from './searchFilterData';
 
 const CONDITION_FIELDS = ['age', 'birth_date', 'region_code', 'residence_months', 'final_education', 'current_status', 'interest_categories', 'housing_type', 'household_type', 'lives_separately', 'marital_status', 'home_ownership', 'household_role', 'housing_benefit_status', 'special_targets'];
@@ -12,9 +14,18 @@ const categoryOrder = (name) => {
   const index = INTEREST_CATEGORIES.indexOf(displayCategory(name));
   return index === -1 ? INTEREST_CATEGORIES.length : index;
 };
-const displayCondition = (field, value) => field === 'age' ? `만 ${value}세`
-  : field === 'lives_separately' ? (value ? '부모와 별도 거주' : '부모와 함께 거주')
-    : Array.isArray(value) ? value.map(displayCategory).join(', ') : String(value);
+const displayCondition = (field, value, regions) => {
+  if (field === 'age') return `만 ${value}세`;
+  if (field === 'birth_date') {
+    const age = ageFromBirthDate(value);
+    return age == null ? '나이 확인 필요' : `만 ${age}세`;
+  }
+  if (field === 'region_code') return value === '26' ? '부산 전체' : value === 'KR' ? '전국'
+    : regions.find((region) => region.region_code === value)?.region_name ?? '지역 확인 필요';
+  if (field === 'residence_months') return `거주 ${value}개월`;
+  if (field === 'lives_separately') return value ? '부모와 별도 거주' : '부모와 함께 거주';
+  return Array.isArray(value) ? value.map(displayCategory).join(', ') : String(value);
+};
 const choices = (labels) => labels.map((label, index) => ({ value: index ? label : '', label }));
 
 function CheckMark() {
@@ -199,9 +210,9 @@ export default function SearchFilters({ draft, setDraft, count, countLoading, pr
             disabled={!profile} className={draft.myConditionsOnly ? 'is-on' : ''} onClick={() => setDraft((current) => ({ ...current, myConditionsOnly: !current.myConditionsOnly }))}><span /></button></div>
           {!profile && <p className="search-condition-note">로그인 후 프로필 조건으로 검색할 수 있어요.</p>}
           {conditionValues.length > 0 && <button type="button" className="search-condition-strip" onClick={() => setAppliedOpen(true)}>
-            <span className="search-condition-strip-icon">{draft.myConditionsOnly ? '♙' : '☷'}</span>
+            <span className="search-condition-strip-icon">{draft.myConditionsOnly ? <UserIcon /> : '☷'}</span>
             <span><b>{draft.myConditionsOnly ? '내 조건 적용 중' : `직접 설정 조건 ${conditionValues.length}개 적용 중`}</b>
-              <small>{conditionValues.slice(0, 3).map(([field, value]) => displayCondition(field, value)).join(' · ')}</small></span><strong>›</strong>
+              <small>{conditionValues.slice(0, 3).map(([field, value]) => displayCondition(field, value, regions)).join(' · ')}</small></span><strong>›</strong>
           </button>}
           <button type="button" className="search-condition-expand" disabled={draft.myConditionsOnly}
             onClick={() => setConditionsOpen((open) => !open)}>조건 직접 설정 <span>{conditionsOpen ? '⌃' : '⌄'}</span></button>
@@ -219,7 +230,7 @@ export default function SearchFilters({ draft, setDraft, count, countLoading, pr
           <p>{draft.myConditionsOnly ? '프로필에 저장된 내 조건이에요.' : '이번 검색에만 적용돼요. 프로필은 바뀌지 않아요.'}</p></div>
           <button type="button" aria-label="닫기" onClick={() => setAppliedOpen(false)}>×</button></div>
         <div className="search-applied-list"><h3>지역</h3><span>{regions.find((region) => region.region_code === (draft.myConditionsOnly ? profile?.region_code : draft.conditions.region_code))?.region_name ?? '부산 전체'}</span>
-          {conditionValues.length > 0 && <><h3>설정한 조건</h3>{conditionValues.map(([field, value]) => <span key={field}>{displayCondition(field, value)}</span>)}</>}
+          {conditionValues.length > 0 && <><h3>설정한 조건</h3>{conditionValues.map(([field, value]) => <span key={field}>{displayCondition(field, value, regions)}</span>)}</>}
         </div>
         <button type="button" className="search-sub-done" onClick={() => { setAppliedOpen(false); if (!draft.myConditionsOnly) setConditionsOpen(true); }}>
           {draft.myConditionsOnly ? '확인' : '조건 수정하기'}</button>

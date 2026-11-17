@@ -1,11 +1,12 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
-import { useNavigate, useSearchParams } from 'react-router-dom';
+import { useLocation, useNavigate, useSearchParams } from 'react-router-dom';
 import { fetchPolicies, fetchPopularSearchKeywords, fetchSearchFilters } from '../../api/policies';
 import { addBookmark, fetchBookmarks, fetchProfile, removeBookmark } from '../../api/me';
 import { useAuthStore } from '../../store/authStore';
 import { dDayText } from '../../utils/format';
 import SelectMenu from '../../components/SelectMenu.jsx';
+import NotificationBell from '../../components/NotificationBell.jsx';
 import PolicyAutocomplete from '../../components/PolicyAutocomplete.jsx';
 import {
   ArtIcon, BackIcon, BriefcaseIcon, ClockIcon, CoinIcon,
@@ -13,6 +14,7 @@ import {
 } from '../../components/icons.jsx';
 import SearchFilters from './SearchFilters.jsx';
 import { emptyFilters } from './searchFilterData';
+import { recordConfirmedSearch } from './recordConfirmedSearch';
 
 const categoryItems = [
   { label: '주거·생활', Icon: HomeIcon, color: 'blue' },
@@ -45,15 +47,37 @@ function readRecentTerms() {
   }
 }
 
-function SearchForm({ value, onChange, onSubmit, onSelectPolicy }) {
-  return <PolicyAutocomplete value={value} onChange={onChange} onSearch={onSubmit}
-    onSelectPolicy={onSelectPolicy} renderInput={(inputProps, submit) =>
-      <form className="policy-search-form" onSubmit={(event) => { event.preventDefault(); submit(); }}>
-      <SearchIcon />
-      <input {...inputProps}
-        placeholder="정책명 또는 키워드를 입력해주세요" aria-label="정책 검색어" />
-      <button type="submit">검색</button>
-      </form>} />;
+function SearchEntry({ value, onOpen, editableOnType = false, onInput }) {
+  const inputRef = useRef(null);
+  const composing = useRef(false);
+  const opening = useRef(false);
+
+  function handleInput(next) {
+    onInput?.(next);
+    if (next.trim() && !composing.current && !opening.current) {
+      opening.current = true;
+      onOpen(next);
+    }
+  }
+
+  return <div className="policy-search-form" onClick={editableOnType ? undefined : () => onOpen()}>
+    <SearchIcon />
+    <input ref={inputRef} value={value} readOnly={!editableOnType}
+      onChange={editableOnType ? (event) => handleInput(event.target.value) : undefined}
+      onCompositionStart={editableOnType ? () => { composing.current = true; } : undefined}
+      onCompositionUpdate={editableOnType ? (event) => { onInput?.(event.currentTarget.value); } : undefined}
+      onCompositionEnd={editableOnType ? (event) => {
+        composing.current = false;
+        handleInput(event.currentTarget.value);
+      } : undefined}
+      onKeyDown={(event) => {
+        if (event.key !== 'Enter' || event.nativeEvent.isComposing || event.keyCode === 229) return;
+        if (!editableOnType || value.trim()) onOpen(value);
+      }}
+      placeholder="정책명 또는 키워드를 입력해주세요"
+      aria-label={editableOnType ? '정책 검색어' : '정책 검색어 입력 화면 열기'} />
+    <button type="button" onClick={editableOnType ? () => inputRef.current?.focus() : undefined}>검색</button>
+  </div>;
 }
 
 function periodText(policy) {
@@ -62,18 +86,41 @@ function periodText(policy) {
   return `${policy.application_start_date ?? '시작일 미정'} ~ ${policy.application_end_date ?? '종료일 미정'}`;
 }
 
+function restoreSearchView(saved, searchParams) {
+  const defaults = emptyFilters();
+  const candidate = saved?.applied;
+  const applied = candidate && typeof candidate === 'object' && !Array.isArray(candidate)
+    ? {
+      ...defaults,
+      ...Object.fromEntries(['categories', 'details', 'regions', 'statuses'].map((key) =>
+        [key, Array.isArray(candidate[key]) ? candidate[key].filter((value) => typeof value === 'string') : []])),
+      dateStart: typeof candidate.dateStart === 'string' ? candidate.dateStart : '',
+      dateEnd: typeof candidate.dateEnd === 'string' ? candidate.dateEnd : '',
+      includeAlways: candidate.includeAlways === true,
+      myConditionsOnly: candidate.myConditionsOnly === true,
+      conditions: candidate.conditions && typeof candidate.conditions === 'object' && !Array.isArray(candidate.conditions)
+        ? candidate.conditions : {},
+    }
+    : { ...defaults, categories: searchParams.get('category') ? [categoryLabel(searchParams.get('category'))] : [] };
+  return {
+    applied,
+    sort: ['recommended', 'deadline', 'latest'].includes(saved?.sort) ? saved.sort : 'recommended',
+    page: Number.isSafeInteger(saved?.page) && saved.page > 0 ? saved.page : 1,
+  };
+}
+
 export default function SearchPage() {
   const navigate = useNavigate();
+  const location = useLocation();
   const [searchParams, setSearchParams] = useSearchParams();
+  const [initialView] = useState(() => restoreSearchView(location.state?.searchView, searchParams));
   const [draftInput, setDraftInput] = useState(null);
   const [recentTerms, setRecentTerms] = useState(readRecentTerms);
   const [filterOpen, setFilterOpen] = useState(false);
-  const [applied, setApplied] = useState(() => ({ ...emptyFilters(),
-    categories: searchParams.get('category') ? [categoryLabel(searchParams.get('category'))] : [],
-  }));
+  const [applied, setApplied] = useState(initialView.applied);
   const [draft, setDraft] = useState(emptyFilters);
-  const [sort, setSort] = useState('recommended');
-  const [page, setPage] = useState(1);
+  const [sort, setSort] = useState(initialView.sort);
+  const [page, setPage] = useState(initialView.page);
   const [bookmarkError, setBookmarkError] = useState('');
   const user = useAuthStore((state) => state.user);
   const queryClient = useQueryClient();
@@ -82,6 +129,7 @@ export default function SearchPage() {
   const input = draftInput ?? routeQuery;
   const categoryName = searchParams.get('category') ?? '';
   const hasSearch = searchParams.has('q') || searchParams.has('category') || searchParams.has('results');
+  const previewingInput = hasSearch && !routeQuery.trim() && Boolean(draftInput?.trim());
   const searchFilters = useQuery({ queryKey: ['search-filters'], queryFn: fetchSearchFilters,
     enabled: Boolean(user) });
   const popularSearchKeywords = useQuery({ queryKey: ['popular-search-keywords'],
@@ -129,7 +177,8 @@ export default function SearchPage() {
   const policies = useQuery({
     queryKey: ['policies', user?.id ?? null, params],
     queryFn: () => fetchPolicies(params),
-    enabled: hasSearch && !unmatchedCategory && searchFilters.isSuccess,
+    enabled: hasSearch && !unmatchedCategory && searchFilters.isSuccess &&
+      (!location.state?.searchView?.userId || location.state.searchView.userId === user?.id),
   });
   const draftParams = makeParams(draft, 1, 1);
   const draftCategoryMatched = !draft.categories.length || draft.categories.some((name) =>
@@ -177,12 +226,36 @@ export default function SearchPage() {
     }
   }, [recentTerms]);
 
+  useEffect(() => {
+    if (!hasSearch || !user?.id) return;
+    const previous = location.state?.searchView;
+    if (previous?.userId && previous.userId !== user.id) {
+      const reset = restoreSearchView(null, searchParams);
+      setApplied(reset.applied);
+      setSort(reset.sort);
+      setPage(reset.page);
+      navigate(`${location.pathname}${location.search}`, { replace: true,
+        state: { ...location.state, searchView: { userId: user.id, ...reset } }, preventScrollReset: true });
+      return;
+    }
+    const view = { userId: user.id, applied, sort, page };
+    if (JSON.stringify(previous) !== JSON.stringify(view))
+      navigate(`${location.pathname}${location.search}`, { replace: true,
+        state: { ...location.state, searchView: view }, preventScrollReset: true });
+  }, [applied, hasSearch, location.pathname, location.search, location.state, navigate, page, searchParams, sort, user?.id]);
+
   function submitSearch(term = input) {
     const query = term.trim();
     if (query) setRecentTerms((current) => [query, ...current.filter((item) => item !== query)].slice(0, 10));
+    recordConfirmedSearch(query, user, queryClient);
     setDraftInput(null);
     setPage(1);
     setSearchParams(query ? { results: '1', q: query } : { results: '1' });
+  }
+
+  function openSearchInput(nextTerm = input) {
+    navigate('/search/input', { state: { fromSearch: true, term: nextTerm,
+      searchView: hasSearch ? { userId: user?.id, applied, sort, page } : null } });
   }
 
   function browseCategory(name) {
@@ -231,17 +304,24 @@ export default function SearchPage() {
     <div className="search-page">
       <header className={`search-header${hasSearch ? ' search-header--results' : ''}`}>
         <div className="search-header-row">
-          {hasSearch && <button className="search-back" type="button" aria-label="뒤로 가기"
+          {hasSearch && !previewingInput && <button className="search-back" type="button" aria-label="뒤로 가기"
             onClick={() => { setDraftInput(null); navigate('/search'); }}><BackIcon /></button>}
-          {!hasSearch && <h1>정책 찾기</h1>}
-          {hasSearch && <SearchForm value={input} onChange={setDraftInput} onSubmit={submitSearch}
-            onSelectPolicy={(policy) => navigate(`/policies/${policy.policy_id}`)} />}
+          <h1>{hasSearch && !previewingInput ? '검색 결과' : '정책 찾기'}</h1>
+          <div className="search-header-notification"><NotificationBell unreadCount={2} /></div>
         </div>
-        {!hasSearch && <SearchForm value={input} onChange={setDraftInput} onSubmit={submitSearch}
-          onSelectPolicy={(policy) => navigate(`/policies/${policy.policy_id}`)} />}
+        <SearchEntry value={input} onOpen={openSearchInput}
+          editableOnType={hasSearch && !routeQuery.trim()} onInput={setDraftInput} />
       </header>
 
-      {!hasSearch ? (
+      {previewingInput ? (
+        <div className="search-input-preview">
+          <PolicyAutocomplete value={input} onChange={setDraftInput} onSearch={submitSearch}
+            onSelectTerm={submitSearch}
+            onSelectPolicy={(policy) => navigate(`/policies/${policy.policy_id}`)}
+            liveSuggestions inlineSuggestions alwaysOpen renderInput={() => null} />
+          {!user && <p className="search-state">로그인 후 정책을 검색할 수 있어요.</p>}
+        </div>
+      ) : !hasSearch ? (
         <div className="search-landing">
           <div className="search-landing-card">
             <section>
@@ -260,13 +340,13 @@ export default function SearchPage() {
           </div>
 
           <div className="search-landing-card">
-            {recentTerms.length > 0 && (
-              <section className="search-landing-section">
+            <section className="search-landing-section">
                 <div className="search-section-heading">
                   <h2>최근 검색어</h2>
-                  <button type="button" onClick={() => setRecentTerms([])}>전체 삭제</button>
+                  {recentTerms.length > 0 && <button type="button" onClick={() => setRecentTerms([])}>전체 삭제</button>}
                 </div>
                 <div className="search-recent-list">
+                  {recentTerms.length === 0 && <p className="search-state">없음</p>}
                   {recentTerms.slice(0, 3).map((term, index) => (
                     <button type="button" key={term} onClick={() => submitSearch(term)}>
                       <ClockIcon />
@@ -276,7 +356,6 @@ export default function SearchPage() {
                   ))}
                 </div>
               </section>
-            )}
 
             <section className="search-landing-section">
               <h2>지금 많이 찾는 검색어</h2>

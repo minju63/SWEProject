@@ -4,6 +4,7 @@ import { useAuthStore } from '../../store/authStore';
 import { fetchBookmarks } from '../../api/me';
 import PageHeader from '../../components/PageHeader.jsx';
 import StateMessage from '../../components/StateMessage.jsx';
+import ProfileEditor from './ProfileEditor.jsx';
 
 export default function MyPage() {
   const user = useAuthStore((s) => s.user);
@@ -35,6 +36,8 @@ export default function MyPage() {
         }
       />
       <p>{user.email ?? '로그인됨'}</p>
+
+      <ProfileEditor userId={user.id} />
 
       <section className="section">
         <h2>찜한 혜택</h2>

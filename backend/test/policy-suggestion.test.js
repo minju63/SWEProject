@@ -21,6 +21,7 @@ test('자동완성은 실제 정책의 직접 일치, 키워드, 분야, 검증�
   assert.ok(result.relatedSearches.some((item) => item.text === '취업 지원'));
   assert.equal(new Set(result.policies.map((item) => item.title)).size, result.policies.length);
   assert.equal(rankPolicySuggestions(records, '일').policies.length, 0);
+  assert.ok(rankPolicySuggestions(records, '일', { minLength: 1 }).policies.length > 0);
   assert.equal(rankPolicySuggestions(records, "' OR 1=1 --").policies.length, 0);
 });
 
@@ -33,7 +34,7 @@ test('비교 자동완성은 기준 정책을 제외하고 최대 8개만 반환
 });
 
 test('빈 검색어와 잘못된 문맥·기준 ID는 DB 조회 전에 처리한다', async () => {
-  assert.deepEqual(await suggestPolicies({ q: '일' }), { relatedSearches: [], policies: [] });
+  assert.deepEqual(await suggestPolicies({ q: '' }), { relatedSearches: [], policies: [] });
   await assert.rejects(suggestPolicies({ q: '일자리', context: 'unknown' }),
     (error) => error.status === 400);
   await assert.rejects(suggestPolicies({ q: '일자리', context: 'compare', basePolicyId: 'bad-id' }),

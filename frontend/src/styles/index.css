@@ -391,6 +391,29 @@ button {
   font-weight: 900;
   letter-spacing: -0.03em;
 }
+.search-header-notification {
+  flex: none;
+  margin-left: auto;
+}
+.search-header-notification .bell {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 0 2px 8px rgba(23, 41, 68, .1);
+  color: #40516a;
+}
+.search-header-notification .bell svg {
+  width: 21px;
+  height: 21px;
+}
+.search-header-notification .bell-badge {
+  top: -2px;
+  right: -2px;
+}
 .search-back {
   display: grid;
   flex: none;
@@ -420,12 +443,6 @@ button {
   border-radius: 14px;
   background: #fff;
 }
-.search-header--results .policy-search-form {
-  margin-top: 0;
-}
-.policy-search-form:focus-within {
-  box-shadow: 0 0 0 2px #2f7bf5;
-}
 .policy-search-form > svg {
   flex: none;
   width: 20px;
@@ -442,6 +459,9 @@ button {
   color: #171923;
   font-size: 13px;
   font-weight: 600;
+}
+.search-page .policy-search-form input:focus-visible {
+  outline: none;
 }
 .policy-search-form input::placeholder {
   color: rgba(0, 0, 0, 0.3);
@@ -495,6 +515,10 @@ button {
   font-size: 14px;
   font-weight: 900;
 }
+.search-page .search-category {
+  font-size: 14px;
+  font-weight: 900;
+}
 .search-category-icon {
   display: grid;
   place-items: center;
@@ -515,6 +539,17 @@ button {
   margin-top: 8px;
   font-weight: 400;
 }
+.search-input-preview { padding: 0 20px 24px; }
+.search-input-preview .policy-suggestions-group { padding: 18px 0 8px; font-size: 12px; }
+.search-input-preview .policy-suggestions-entry button {
+  min-height: 44px;
+  padding: 12px 0;
+  border-bottom: 1px solid #e0e7f0;
+  border-radius: 0;
+  background: transparent;
+  font-size: 13px;
+}
+.search-input-preview .policy-suggestions-state { padding: 18px 0; }
 .search-landing-section {
   margin-top: 0;
 }
@@ -975,6 +1010,7 @@ button {
 .search-condition-toggle button.is-on span { left: 24px; }
 .search-condition-strip { display: flex; align-items: center; gap: 12px; width: 100%; margin-top: 14px; padding: 12px 14px; border: 1px solid #d6e6fd; border-radius: 16px; background: #f2f7ff; color: #1f63d6; text-align: left; }
 .search-condition-strip-icon { display: grid; flex: none; place-items: center; width: 32px; height: 32px; border-radius: 50%; background: #fff; font-size: 16px; }
+.search-condition-strip-icon svg { width: 19px; height: 19px; }
 .search-condition-strip > span:nth-child(2) { flex: 1; min-width: 0; }
 .search-condition-strip b { display: block; font-size: 12px; font-weight: 900; }
 .search-condition-strip small { display: block; overflow: hidden; margin-top: 2px; color: rgba(0,0,0,.45); font-size: 11px; text-overflow: ellipsis; white-space: nowrap; }

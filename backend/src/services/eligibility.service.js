@@ -48,21 +48,44 @@ function compare(op, actual, expected) {
   if (op === 'between' && Array.isArray(expected) && expected.every((value) => value == null)) return null;
   if (op === 'starts_with' && expected === '') return null;
   if (op === 'eq' && (Array.isArray(expected) || typeof expected === 'object')) return null;
-  if (op === 'eq') return Array.isArray(actual) ? actual.includes(expected) : actual === expected;
+  if (op === 'eq') return Array.isArray(actual)
+    ? actual.every((value) => typeof value === typeof expected) ? actual.includes(expected) : null
+    : typeof actual === typeof expected ? actual === expected : null;
   if (op === 'in' && Array.isArray(expected)) return Array.isArray(actual)
-    ? actual.some((value) => expected.includes(value)) : expected.includes(actual);
+    ? actual.every((value) => expected.every((candidate) => typeof candidate === typeof value))
+      ? actual.some((value) => expected.includes(value)) : null
+    : expected.every((value) => typeof value === typeof actual) ? expected.includes(actual) : null;
   if (op === 'between' && typeof actual === 'number' && Array.isArray(expected) && expected.length === 2 &&
     expected.every((value) => value == null || typeof value === 'number'))
     return (expected[0] == null || actual >= expected[0]) && (expected[1] == null || actual <= expected[1]);
   if (op === 'gte' && typeof actual === 'number' && typeof expected === 'number') return actual >= expected;
   if (op === 'lte' && typeof actual === 'number' && typeof expected === 'number') return actual <= expected;
-  if (op === 'contains' && Array.isArray(actual)) return actual.includes(expected);
+  if (op === 'contains' && Array.isArray(actual)) return actual.every((value) => typeof value === typeof expected)
+    ? actual.includes(expected) : null;
   if (op === 'starts_with' && typeof actual === 'string' && typeof expected === 'string')
     return actual.startsWith(expected);
   return null;
 }
 
+function compareRegion(op, actual, expected) {
+  if (typeof actual !== 'string' || !/^(KR|\d{2,5})$/u.test(actual)) return null;
+  if (actual === 'KR' && (op === 'in' ? !expected.includes('KR') : expected !== 'KR')) return null;
+  const matches = (code) => code === 'KR' || actual === code ||
+    (code.length === 2 && actual.startsWith(code));
+  if (op === 'starts_with' || op === 'eq') {
+    if (actual.length === 2 && expected.length > 2 && actual.startsWith(expected.slice(0, 2))) return null;
+    return matches(expected);
+  }
+  if (op === 'in') {
+    if (expected.some(matches)) return true;
+    if (actual.length === 2 && expected.some((code) => code.startsWith(actual))) return null;
+    return false;
+  }
+  return null;
+}
+
 function combine(statuses, kind) {
+  if (statuses.length === 0) return S.UNKNOWN;
   if (kind === 'OR') {
     if (statuses.includes(S.SATISFIED)) return S.SATISFIED;
     if (statuses.includes(S.UNKNOWN)) return S.UNKNOWN;
@@ -72,7 +95,7 @@ function combine(statuses, kind) {
   if (statuses.includes(S.UNSATISFIED)) return S.UNSATISFIED;
   if (statuses.includes(S.UNKNOWN)) return S.UNKNOWN;
   if (statuses.includes(S.SATISFIED)) return S.SATISFIED;
-  return S.NOT_APPLICABLE;
+  return S.UNKNOWN;
 }
 
 function childrenOf(node) {
@@ -82,11 +105,6 @@ function childrenOf(node) {
   if (['AND', 'OR'].includes(op) && Array.isArray(node.conditions))
     return { kind: op, key: 'conditions', nodes: node.conditions };
   return null;
-}
-
-function hasField(nodes, field) {
-  return nodes.some((node) => node?.field === field ||
-    (childrenOf(node) ? hasField(childrenOf(node).nodes, field) : false));
 }
 
 function judgeCondition(node, profile, context, path) {
@@ -108,15 +126,25 @@ function judgeCondition(node, profile, context, path) {
     return { ...node, status: S.UNKNOWN, reason: '정책 신청 조건이 검증되지 않았습니다.', evidence };
 
   const op = String(node.op ?? node.operator ?? '').toLowerCase();
+  // 다른 가족 구성원이나 신청일 기준 조건을 현재 사용자 값으로 대체하지 않는다.
+  if ((node.subject && !['applicant', 'user'].includes(node.subject)) ||
+    (node.anchor && !['today', 'current_date'].includes(node.anchor)))
+    return { ...node, status: S.UNKNOWN, reason: '신청 시점 또는 대상자의 추가 확인이 필요합니다.', evidence };
   if (!(node.field === 'age' || Object.hasOwn(PROFILE_FIELDS, node.field)) ||
     !['eq', 'in', 'between', 'gte', 'lte', 'contains', 'starts_with'].includes(op))
     return { ...node, status: S.UNKNOWN, reason: '자동 판정할 수 없는 정책 조건입니다.', evidence };
+
+  if (['region', 'region_code'].includes(node.field) &&
+    (!['eq', 'in', 'starts_with'].includes(op) ||
+      ![node.value].flat().every((value) => typeof value === 'string' && /^(KR|\d{2,5})$/u.test(value))))
+    return { ...node, status: S.UNKNOWN, reason: '정책 지역 형식을 확인할 수 없습니다.', evidence };
 
   const actual = profile ? profileValue(node.field, profile, context.now) : null;
   if (actual == null || actual === '' || (Array.isArray(actual) && actual.length === 0))
     return { ...node, status: S.UNKNOWN, reason: '사용자 정보가 없어 확인할 수 없습니다.',
       evidence: { ...evidence, policy_value: node.value } };
-  const matched = compare(op, actual, node.value);
+  const matched = ['region', 'region_code'].includes(node.field)
+    ? compareRegion(op, actual, node.value) : compare(op, actual, node.value);
   if (matched == null)
     return { ...node, status: S.UNKNOWN, reason: '정책 조건의 값 또는 형식을 확인할 수 없습니다.', evidence };
   return { ...node, status: matched ? S.SATISFIED : S.UNSATISFIED,
@@ -137,31 +165,38 @@ function judgeExclusion(node, profile, context, path) {
 export function judge(policy, profile, now = new Date()) {
   const stored = policy.eligibility_conditions;
   const verified = policy.eligibility_verified === true &&
+    stored?.logic !== 'UNVERIFIED' && !['확인필요', 'UNVERIFIED'].includes(stored?.verification) &&
     stored?.engine_projection?.automatic_eligibility_ready !== false;
-  const context = { verified, sourceUrl: stored?.source_url ?? policy.official_url ?? null, now };
-  const useAll = Array.isArray(stored?.all) &&
-    (stored.all.length > 0 || !Array.isArray(stored?.required) || stored.required.length === 0);
-  const requiredKey = useAll ? 'all' : 'required';
+  const context = { verified, sourceUrl: stored?.source_url ?? policy.official_url ?? policy.source_url ?? null, now };
+  // 수집 데이터의 all은 짧은 안내 문구일 수 있다. 상세 required가 있으면 이를 우선한다.
+  const requiredKey = Array.isArray(stored?.required) && stored.required.length ? 'required' : 'all';
   const required = Array.isArray(stored?.[requiredKey]) ? stored[requiredKey] : [];
-  const excludedKey = requiredKey === 'all' ? 'exclude' : 'exclusions';
+  const excludedKey = requiredKey === 'required' && Array.isArray(stored?.exclusions)
+    ? 'exclusions' : 'exclude';
   const excluded = Array.isArray(stored?.[excludedKey]) ? stored[excludedKey] : [];
   const conditions = required.map((node, index) =>
     judgeCondition(node, profile, context, `policy.eligibility_conditions.${requiredKey}[${index}]`));
-
-  if (!hasField(required, 'age') && (policy.min_age != null || policy.max_age != null))
-    conditions.push(judgeCondition({ field: 'age', op: 'between', value: [policy.min_age, policy.max_age] },
-      profile, context, 'policy.min_age/max_age'));
-  if (policy.income_condition && !hasField(required, 'income'))
-    conditions.push(judgeCondition({ field: 'income', op: 'text', value: policy.income_condition },
-      profile, context, 'policy.income_condition'));
   conditions.push(...excluded.map((node, index) =>
     judgeExclusion(node, profile, context, `policy.eligibility_conditions.${excludedKey}[${index}]`)));
 
   const statuses = conditions.map((item) => item.status);
-  const result = !verified || conditions.length === 0 ? RESULT.CHECK
+  const result = !verified || required.length === 0 ? RESULT.CHECK
     : statuses.includes(S.UNSATISFIED) ? RESULT.INELIGIBLE
-      : statuses.includes(S.UNKNOWN) ? RESULT.CHECK : RESULT.ELIGIBLE;
-  return { result, reason: result === RESULT.CHECK ? '정책 조건 또는 사용자 정보를 추가로 확인해야 합니다.'
-    : result === RESULT.INELIGIBLE ? '확인된 필수 조건을 충족하지 않습니다.'
-      : '확인된 필수 조건을 모두 충족합니다.', conditions };
+      : required.every((_, index) => conditions[index].status === S.SATISFIED) &&
+        excluded.every((_, index) => conditions[required.length + index].status === S.NOT_APPLICABLE)
+        ? RESULT.ELIGIBLE : RESULT.CHECK;
+  const missingProfileFields = new Set();
+  const collectMissing = (item) => {
+    if (item.reason === '사용자 정보가 없어 확인할 수 없습니다.' && item.field)
+      missingProfileFields.add(item.field);
+    item.children?.forEach(collectMissing);
+  };
+  conditions.forEach(collectMissing);
+  const reason = !required.length ? '저장된 신청 자격 정보가 없어 공식 공고 확인이 필요합니다.'
+    : !verified ? '신청 자격 정보가 검증되지 않아 공식 공고 확인이 필요합니다.'
+      : result === RESULT.CHECK ? '정책 조건 또는 사용자 정보를 추가로 확인해야 합니다.'
+        : result === RESULT.INELIGIBLE ? '확인된 필수 조건을 충족하지 않습니다.'
+          : '확인된 필수 조건을 모두 충족합니다.';
+  return { result, reason, conditions,
+    profile_missing: !profile, missing_profile_fields: [...missingProfileFields] };
 }

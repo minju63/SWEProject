@@ -24,11 +24,13 @@
 .policy-compare-search svg { flex: none; width: 17px; height: 17px; color: #9aa8b7; }
 .policy-compare-search input { min-width: 0; flex: 1; padding: 0; border: 0; outline: 0; background: transparent; color: #182334; font-size: 12px; }
 .policy-compare-search input::placeholder { color: #99a5b4; }
+.policy-compare-search-button { flex: none; padding: 6px 12px; border: 0; border-radius: 8px; background: #2f7bf5; color: #fff; font-size: 11px !important; font-weight: 800 !important; cursor: pointer; }
 .policy-compare-list-title { display: flex; align-items: center; gap: 6px; margin: 18px 0 10px; }
 .policy-compare-list-title > span { color: #2f7bf5; font-size: 17px; }
 .policy-compare-list-title h2 { margin: 0; font-size: 14px; font-weight: 900; }
 .policy-compare-list-title small { color: #9aa8b7; font-size: 10px; font-weight: 700; }
 .policy-compare-options { display: grid; gap: 8px; }
+.policy-compare-options--typing { margin-top: 12px; }
 .policy-compare-option { display: flex; align-items: center; gap: 8px; width: 100%; min-height: 88px; padding: 12px 13px; border: 1.5px solid transparent; border-radius: 17px; background: #fff; box-shadow: 0 4px 13px rgba(35, 67, 109, .035); }
 .policy-compare-option.is-selected { border-color: #2f7bf5; }
 .policy-compare-option-select { display: flex; flex: 1; align-items: center; gap: 12px; min-width: 0; padding: 0; border: 0; background: transparent; text-align: left; cursor: pointer; }

@@ -5,9 +5,12 @@ import { getPolicyComparison } from '../services/policy-compare.service.js';
 import { getPolicyExplanation } from '../services/policy-explanation.service.js';
 import { getAiCompareCandidates } from '../services/policy-compare-candidates-ai.service.js';
 import { getAiComparisonSummary } from '../services/policy-compare-summary-ai.service.js';
-import { ok } from '../utils/response.js';
+import { ok, AppError } from '../utils/response.js';
 
 export async function list(req, res) {
+  if (req.query.q !== undefined &&
+    (typeof req.query.q !== 'string' || [...req.query.q].length > 200))
+    throw new AppError(400, 'INVALID_QUERY', '검색어는 200자 이내로 입력해 주세요.');
   // Express 5: req.query 는 읽기 전용이라 기본값은 따로 받는다
   const page = Math.max(Number(req.query.page) || 1, 1);
   const size = Math.min(Math.max(Number(req.query.size) || 20, 1), 100);
@@ -82,4 +85,15 @@ export async function searchFilters(req, res) {
 
 export async function popularSearchKeywords(req, res) {
   ok(res, await policyService.listPopularSearchKeywords());
+}
+
+export async function recordPopularSearchKeyword(req, res) {
+  const keyword = req.body?.keyword;
+  if (typeof keyword !== 'string')
+    throw new AppError(400, 'INVALID_KEYWORD', '검색어를 확인해 주세요.');
+  const normalized = keyword.replace(/\s+/g, ' ').trim();
+  if ([...normalized].length < 2 || [...normalized].length > 80)
+    throw new AppError(400, 'INVALID_KEYWORD', '검색어를 2~80자로 입력해 주세요.');
+  await policyService.recordPopularSearchKeyword(normalized);
+  ok(res, null);
 }

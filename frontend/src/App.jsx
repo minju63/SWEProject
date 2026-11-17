@@ -4,6 +4,7 @@ import TabBar from './components/TabBar.jsx';
 import AssistantButton from './components/AssistantButton.jsx';
 import HomePage from './pages/home/HomePage.jsx';
 import SearchPage from './pages/search/SearchPage.jsx';
+import SearchInputPage from './pages/search/SearchInputPage.jsx';
 import MapPage from './pages/map/MapPage.jsx';
 import CalendarPage from './pages/calendar/CalendarPage.jsx';
 import MyPage from './pages/my/MyPage.jsx';
@@ -17,7 +18,7 @@ const DevLoginPage = import.meta.env.DEV
 
 export default function App() {
   const pathname = useLocation().pathname;
-  const isSearch = pathname === '/search';
+  const isSearch = pathname === '/search' || pathname === '/search/input';
   const isDetail = /^\/policies\/[^/]+(?:\/compare\/[^/]+)?$/.test(pathname);
   const isDevLogin = import.meta.env.DEV && pathname === '/dev/login';
   return (
@@ -26,6 +27,7 @@ export default function App() {
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/search" element={<SearchPage />} />
+          <Route path="/search/input" element={<SearchInputPage />} />
           <Route path="/map" element={<MapPage />} />
           <Route path="/calendar" element={<CalendarPage />} />
           <Route path="/my" element={<MyPage />} />

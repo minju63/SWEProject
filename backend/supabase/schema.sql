@@ -367,7 +367,7 @@ create table user_profile (
   region_code             text references region(region_code),
   residence_months        smallint,
   final_education         text,
-  current_status          text,
+  current_status          text[],
   interest_categories     text[],
   housing_type            text,
   household_type          text,
@@ -454,6 +454,22 @@ create table popular_search_keyword (
   last_searched_at  timestamptz,
   updated_at        timestamptz not null default now()
 );
+
+create or replace function public.record_popular_search_keyword(p_keyword text)
+returns void
+language sql
+security invoker
+set search_path = ''
+as $$
+  insert into public.popular_search_keyword as popular (keyword, search_count, last_searched_at, updated_at)
+  values (p_keyword, 1, now(), now())
+  on conflict (keyword) do update
+    set search_count = popular.search_count + 1,
+        last_searched_at = now(),
+        updated_at = now();
+$$;
+revoke all on function public.record_popular_search_keyword(text) from public, anon, authenticated;
+grant execute on function public.record_popular_search_keyword(text) to service_role;
 
 -- ---------------------------------------------------------------------
 -- 5. 알림

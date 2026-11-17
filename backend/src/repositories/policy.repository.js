@@ -186,6 +186,14 @@ export async function findPolicyById(policyId) {
   };
 }
 
+export async function findPolicyEligibility(policyId) {
+  const { data, error } = await supabase.from('policy')
+    .select('policy_id,eligibility_conditions,eligibility_verified,official_url')
+    .eq('policy_id', policyId).maybeSingle();
+  if (error) throw error;
+  return data;
+}
+
 let similarityIndex;
 let similarityIndexExpiresAt = 0;
 let similarityIndexRequest;
@@ -282,6 +290,11 @@ export async function findPopularSearchKeywords() {
     .order('last_searched_at', { ascending: false }).limit(10);
   if (error) throw error;
   return data.map((row) => row.keyword);
+}
+
+export async function incrementPopularSearchKeyword(keyword) {
+  const { error } = await supabase.rpc('record_popular_search_keyword', { p_keyword: keyword });
+  if (error) throw error;
 }
 
 let suggestionIndex;

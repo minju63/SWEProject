@@ -53,11 +53,13 @@ export async function listPolicies(params) {
 }
 
 export async function getPolicy(policyId, userId) {
-  const policy = await policyRepo.findPolicyById(policyId);
+  const [policy, statuses, bookmarkedIds] = await Promise.all([
+    policyRepo.findPolicyById(policyId),
+    policyRepo.findStatuses([policyId]),
+    userId ? userRepo.findBookmarkedPolicyIds(userId, [policyId]) : Promise.resolve(new Set()),
+  ]);
   if (!policy) throw new AppError(404, 'POLICY_NOT_FOUND', '정책을 찾을 수 없습니다.');
-  const [withStatus] = await attachStatus([policy]);
-  const bookmarkedIds = userId
-    ? await userRepo.findBookmarkedPolicyIds(userId, [policyId]) : new Set();
+  const withStatus = { ...policy, ...policyStatus(policy, statuses[0]) };
   return {
     ...withStatus,
     is_bookmarked: bookmarkedIds.has(policyId),
@@ -81,12 +83,17 @@ export async function recordRecentView(policyId, userId) {
 }
 
 export async function getEligibility(policyId, userId) {
-  const policy = await policyRepo.findPolicyById(policyId);
+  let policy;
+  try { policy = await policyRepo.findPolicyEligibility(policyId); }
+  catch { throw new AppError(503, 'POLICY_LOOKUP_FAILED', '정책 신청 자격을 불러오지 못했습니다.'); }
   if (!policy) throw new AppError(404, 'POLICY_NOT_FOUND', '정책을 찾을 수 없습니다.');
-  const profile = await userRepo.findProfile(userId);
+  let profile;
+  try { profile = await userRepo.findProfile(userId); }
+  catch { throw new AppError(503, 'PROFILE_LOOKUP_FAILED', '내 정보를 불러오지 못했습니다.'); }
   return judge(policy, profile);
 }
 
 export const listCategories = () => policyRepo.findCategories();
 export const listSearchFilters = () => policyRepo.findSearchFilters();
 export const listPopularSearchKeywords = () => policyRepo.findPopularSearchKeywords();
+export const recordPopularSearchKeyword = (keyword) => policyRepo.incrementPopularSearchKeyword(keyword);
