@@ -122,6 +122,19 @@ button {
   padding: 4px;
   color: var(--text);
 }
+.bell svg {
+  width: 22px;
+  height: 22px;
+}
+.bell-dot {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--primary);
+}
 .bell-badge {
   position: absolute;
   top: 0;
@@ -347,6 +360,7 @@ button {
 }
 .search-header-row h1 {
   margin: 0;
+  font-family: Pretendard, system-ui, -apple-system, "Apple SD Gothic Neo", sans-serif; /* 마이 탭과 같은 글꼴 */
   font-size: 23px; /* 마이 탭 제목과 같은 크기·굵기 */
   font-weight: 900;
   letter-spacing: -0.7px;
@@ -354,25 +368,6 @@ button {
 .search-header-notification {
   flex: none;
   margin-left: auto;
-}
-.search-header-notification .bell {
-  display: grid;
-  place-items: center;
-  width: 44px;
-  height: 44px;
-  padding: 0;
-  border-radius: 50%;
-  background: #fff;
-  box-shadow: 0 2px 8px rgba(23, 41, 68, .1);
-  color: #40516a;
-}
-.search-header-notification .bell svg {
-  width: 21px;
-  height: 21px;
-}
-.search-header-notification .bell-badge {
-  top: -2px;
-  right: -2px;
 }
 .search-back {
   display: grid;
