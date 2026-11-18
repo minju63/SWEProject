@@ -1,0 +1,117 @@
+
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="naver-site-verification" content="d3e6d0890aef0f0809277ee70d47ab3ad10fb5b8" />
+    <meta name="description" content="생명의 땅 으뜸 전남 Land of Life, Jeonnam. (구)전남도청" />
+    <title>(구)전라남도청</title>
+    <link rel="shortcut icon" href="https://www.jeonnam.go.kr/home/site/jeonnam/images/favicon.ico">                                   
+    <meta property="og:type" content="website"> 
+    <meta property="og:title" content="(구)전라남도청">
+    <meta property="og:description" content="생명의 땅 으뜸 전남 Land of Life, Jeonnam. (구)전라남도청">
+    <meta property="og:image" content="https://www.jeonnam.go.kr/opimage.jpg">
+    <meta property="og:url" content="https://www.jeonnam.go.kr">
+	<style>
+		/* font-family:'Noto Serif KR',serif; */
+		@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;800;900&family=Noto+Serif+KR:wght@200;300;400;500;600;700;800;900&display=swap');
+
+		html, body {width: 100%; overflow-x: hidden; -webkit-font-smoothing:antialiased; -webkit-text-size-adjust:none;}
+		html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, button, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, main, nav, output, ruby, section, summary, time, mark, audio, video, input, textarea, select, svg {font-family:'Noto Sans KR', Arial, Tahoma, sans-serif;margin: 0; padding: 0; font: inherit; font-size: inherit; font-weight: inherit; color: inherit; vertical-align: baseline; border: 0; -webkit-box-sizing:border-box; -moz-box-sizing:border-box; -ms-box-sizing:border-box; -o-box-sizing:border-box; box-sizing:border-box; -webkit-touch-callout: none;}
+		*:after, *:before {box-sizing: border-box;}
+		main, header, nav, section, footer, menu, article, aside, details, figcaption, figure, hgroup {display: block;}
+		ol, ul {list-style: none;}
+		strong {font-weight: 700;}
+
+		html, body {width:100%;height:100%;}
+		.error_box {width:100%;height:100%;}
+		.error_wrap {position:relative;}
+		.error_wrap .innr {position:relative;width:500px;margin:0 auto;}
+		.error_wrap .head {position:relative;padding:30px 0 18px;background:#566cb4;color:#fff;}
+		.error_wrap .head .innr {padding-left:35px;padding-right:35px;}
+		.error_wrap .head .innr::before {content:'';position:absolute;right:28px;bottom:-18px;width:172px;height:113px;background:url(img_errorType2.png) right bottom no-repeat;background-size:auto 113px;}
+		.error_wrap .head h1 {position:relative;font-size:25px;font-weight:500;line-height:1.35;}
+		.error_wrap .head h1 span {display:block;}
+		.error_wrap .head h1 strong {position:relative;padding-bottom:11px;letter-spacing:-1.5px;font-size:36px;display:inline-block;font-weight:700;word-break:keep-all;word-wrap:break-word;}
+		.error_wrap .head h1 strong::after {content:'';display:block;display:block;}
+		.error_wrap .head h1 strong::before {content:'';position:absolute;left:1px;bottom:0;width:calc(100% - 2px);height:1px;background-color:#fff;}
+		.error_wrap .head .txt {padding-right:165px;letter-spacing:-0.5px;line-height:1.6;font-weight:500;font-size:16px;margin:6px 2px 0;word-break:keep-all;word-wrap:break-word;}
+		.error_wrap .con .innr {padding:26px 15px 0;}
+		.error_wrap .con .con_wrap {padding:30px 23px 28px;background:#f8f8f8;border-radius:12px;}
+		.error_wrap .con p {line-height:1.4;color:#515151;font-weight:500;word-break:keep-all;word-wrap:break-word;}
+		.error_wrap .con p.guide {margin-top:8px;color:#dc2323;}
+		.error_wrap .con li p.guide {margin-top:3px;}
+		.error_wrap .con p + ul {margin-top:15px;}
+		.error_wrap .con .con_wrap > ul > li {position:relative;padding-left:20px;color:#515151;line-height:1.4;letter-spacing:-0.5px;font-weight:500;word-break:keep-all;word-wrap:break-word;}
+		.error_wrap .con .con_wrap > ul > li + li {margin-top:13px;}
+		.error_wrap .con .con_wrap > ul > li::before {content:'+';position:absolute;left:0;top:0;color:#0f309d;font-size:21px;font-weight:900;line-height:1.2;}
+		.error_wrap .con .con_wrap > ul > li strong {color:#000;font-size:18px;font-weight:600;padding-right:5px;}
+		.error_wrap .con .con_wrap > ul > li ul {margin-top:2px;}
+		.error_wrap .con .con_wrap > ul > li li {position:relative;padding-left:13px;}
+		.error_wrap .con .con_wrap > ul > li li::before {content:'-';position:absolute;left:0;top:0;}
+		.error_wrap .con .con_wrap > ul > li li + li {margin-top:7px;}
+		.error_wrap .foot {padding:11px 15px 12px;text-align:center;}
+		.error_wrap .foot img {vertical-align:top;}
+
+		@media all and (max-width:499px){ 
+			.error_wrap .innr {width:100%;margin:0 auto;}
+			.error_wrap .head .innr {padding:0 25px 108px;}
+			.error_wrap .head .innr::before {right:18px;/* bottom:0; */}
+			.error_wrap .head h1 {font-size:20px;}
+			.error_wrap .head h1 strong {font-size:27px;padding-bottom:4px;}
+			.error_wrap .head .txt {padding-right:0;}
+			.error_wrap .con .con_wrap {padding:22px 20px 20px;}
+			.error_wrap .con .con_wrap > ul > li {padding-left:16px;}
+			.error_wrap .con .con_wrap > ul > li::before {font-size:18px;}
+			.error_wrap .con .con_wrap > ul > li strong {font-size:16px;display:block;margin-bottom:2px;}
+			.error_wrap .con .con_wrap > ul > li li + li {margin-top:4px;}
+			.error_wrap .con p.guide {font-size:14px;} 
+		}
+
+	</style>
+</head>
+
+<body>
+	<div class="error_box">	
+		<!-- type1 -->
+		<div class="error_wrap">
+			<div class="head">
+				<div class="innr">
+					<h1><!--<span>서버점검으로 인한</span>--> <strong>누리집(홈페이지) 점검안내</strong></h1>
+					<div class="txt">
+						보다 안정적인 시스템 운영을 위하여 점검을 진행합니다.<br>
+						아래와 같이 누리집 서비스가 중단되오니 양해하여 주시기 바랍니다.
+					</div>
+				</div>
+			</div>
+			<div class="con">
+				<div class="innr">
+					<div class="con_wrap">
+				<!--		 <p class="txt">작업진행 상황에 따라 중단시간은 변경 될 수 있습니다. 작업진행 상황에 따라 중단시간은 변경 될 수 있습니다.</p>-->
+						<ul>
+					<!--	<li><strong>중단일시 :</strong><span>2026년 5월 12일(화) 18:00 ~ 22:00</span>
+								<p class="guide">※ 작업상황에 따라 중단 시간은 변경될 수 있음</p></li>
+							<li><strong>정검내용 :</strong><span>전라남도 대표 누리집 안정성 점검</span></li> -->
+							<li><strong>관련 사이트 정보 안내</strong>
+								<ul>
+									<li>(민원·제안) 국민신문고 <a href="https://www.epeople.go.kr">https://www.epeople.go.kr/<a/></li>
+									<li>(정보공개청구) 정보공개포털 <a href="https://www.open.go.kr">https://www.open.go.kr/<a/></li>
+									<li>(도정정보) 전라남도 블로그 <a href="https://blog.naver.com/greenjeonnam">https://blog.naver.com/greenjeonnam</a></li>
+								</ul>
+							</li>
+						</ul>
+						
+					</div>
+				</div>
+			</div>
+			<div class="foot">
+				<img src="img_errorType1_logo.png" alt="전라남도 Jeollanamdo">
+			</div>
+		</div>
+		<!-- //type1 -->
+	</div>
+</body>
+</html>

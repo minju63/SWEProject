@@ -101,7 +101,10 @@ function restoreSearchView(saved, searchParams) {
       conditions: candidate.conditions && typeof candidate.conditions === 'object' && !Array.isArray(candidate.conditions)
         ? Object.fromEntries(Object.entries(candidate.conditions).filter(([key]) => key !== 'age')) : {},
     }
-    : { ...defaults, categories: searchParams.get('category') ? [categoryLabel(searchParams.get('category'))] : [] };
+    : { ...defaults,
+      categories: searchParams.get('category') ? [categoryLabel(searchParams.get('category'))] : [],
+      myConditionsOnly: searchParams.get('mine') === 'true',
+    };
   return {
     applied,
     sort: ['recommended', 'deadline', 'latest'].includes(saved?.sort) ? saved.sort : 'recommended',
@@ -307,7 +310,7 @@ export default function SearchPage() {
           {hasSearch && !previewingInput && <button className="search-back" type="button" aria-label="뒤로 가기"
             onClick={() => { setDraftInput(null); navigate('/search'); }}><BackIcon /></button>}
           <h1>{hasSearch && !previewingInput ? '검색 결과' : '정책 찾기'}</h1>
-          <div className="search-header-notification"><NotificationBell unreadCount={2} /></div>
+          <div className="search-header-notification"><NotificationBell onClick={() => navigate('/notifications')} /></div>
         </div>
         <SearchEntry value={input} onOpen={openSearchInput}
           editableOnType={hasSearch && !routeQuery.trim()} onInput={setDraftInput} />
@@ -451,7 +454,8 @@ export default function SearchPage() {
         count={draftCategoryMatched ? draftResults.data?.totalCount : 0}
         countLoading={draftCategoryMatched && draftResults.isLoading}
         profile={profile.data} categories={filterCategories} regions={filterRegions} onReset={() => setDraft(emptyFilters())}
-        onApply={applyFilters} onClose={() => setFilterOpen(false)} />}
+        onApply={applyFilters} onClose={() => setFilterOpen(false)}
+        onEditProfile={() => navigate('/settings?view=profile')} />}
     </div>
   );
 }

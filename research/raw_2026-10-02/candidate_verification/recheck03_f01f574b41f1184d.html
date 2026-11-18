@@ -1,0 +1,2154 @@
+
+
+
+
+<!DOCTYPE html>
+<html lang="ko">
+
+
+
+<title>잡아바어플라이 | 통합접수시스템</title>
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no, user-scalable=no">
+<meta NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+<meta name="title" content="잡아바어플라이">
+<meta name="description" content="취업은 혼자 준비하는게 아니야! 당신의 취업 메이트 잡아바">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="잡아바어플라이">
+<meta property="og:image" content="https://job.gg.go.kr/resource/images/main/logo_meta_thumbnail.png?ver=20260309182404">
+<meta property="og:title" content="잡아바어플라이 | 통합접수시스템">
+<meta property="og:description" content="취업은 혼자 준비하는게 아니야! 당신의 취업 메이트 잡아바">
+
+
+<!-- <meta name="format-detection" content="telephone=no" /> -->
+
+<!-- css -->
+<link rel="stylesheet" href="/new_user/css/vendor/bootstrap.css">
+<link rel="stylesheet" href="/new_user/css/swiper-bundle.min.css">
+<link rel="stylesheet" href="/css/vendor/jquery.timepicker.min.css">
+<link rel="stylesheet" href="/plugins/tablesorter-master/dist/css/theme.default.min.css">
+<link rel="stylesheet" href="/css/file.css">
+<link rel="stylesheet" href="/css/jquery-ui.min.css">
+<link rel="stylesheet" href="/new_user/css/vendor/bootstrap-datepicker.css">
+<link rel="stylesheet" href="/new_user/css/fonts.css">
+<link rel="stylesheet" href="/new_user/css/vendor/messagebox.css">
+<link rel="stylesheet" href="/new_user/css/jquery.bxslider.css">
+<!-- <link rel="stylesheet" href="/new_user/css/common.css"> -->
+<link rel="stylesheet" href="/new_user/css/bsns/common.css?v=20260630120000">
+<link rel="stylesheet" href="/css/vendor/jquery.mCustomScrollbar.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&amp;display=swap" rel="stylesheet">
+
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-ZQXZYZ5MJN"></script>
+<script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-ZQXZYZ5MJN');
+</script>
+
+
+
+<!-- js -->
+<script type="text/javascript" src="/js/jquery/jquery-3.6.0.min.js"></script>
+<script type="text/javascript" src="/js/vendor/bootstrap.min.js"></script>
+<script type="text/javascript" src="/new_user/js/jquery/swiper-bundle.min.js"></script>
+<script type="text/javascript" src="/new_user/js/bsns/pub.js"></script>
+
+<script type="text/javascript" src="/js/jquery/jquery-migrate-3.3.2.min.js"></script>
+<script type="text/javascript" src="/js/vendor/bootstrap-datepicker.js"></script>
+<script type="text/javascript" src="/js/vendor/bootstrap-datepicker.kr.js"></script>
+<script type="text/javascript" src="/js/vendor/messagebox.js"></script>
+<script type="text/javascript" src="/js/common/global.properties.js"></script>
+<script type="text/javascript" src="/js/common/common.js?v=20250411120000"></script>
+<script type="text/javascript" src="/js/common/loading.js"></script>
+<script type="text/javascript" src="/new_user/js/jquery/jquery.bxslider.js"></script>
+<!--<script type="text/javascript" src="/new_user/js/function.js"></script>-->
+
+<script type="text/javascript" src="/js/jquery/jquery-ui.min.js"></script>
+<script type="text/javascript" src="/js/jquery/jquery.json-2.4.js"></script>
+<script type="text/javascript" src="/js/jquery/jquery.form.js"></script>
+<script type="text/javascript" src="/js/jquery/jquery.validate.js"></script>
+<script type="text/javascript" src="/js/jquery/jquery.common.js"></script>
+
+<script type="text/javascript" src="/js/vendor/jquery.mCustomScrollbar.concat.min.js"></script>
+
+<script type="text/javascript" src="/js/vendor/isMobile.min.js"></script>
+
+<!-- 파비콘 -->
+<link rel="icon" href="/new_user/images/jobaba2.ico" type="image/x-icon" />
+<link rel="shortcut icon" href="/new_user/images/jobaba2.ico" type="image/x-icon" />
+
+<!-- 다음 주소 찾기 -->
+<!-- <script src="https://ssl.daumcdn.net/dmaps/map_js_init/postcode.v2.js"></script> -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/rollups/aes.js"></script>
+
+<script src="https://t1.kakaocdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+
+<script type="application/ld+json">
+  {
+    "@context" : "https://schema.org",
+    "@type" : "WebSite",
+    "name" : "잡아바어플라이",
+    "url" : "https://apply.jobaba.net/"
+  }
+</script>
+
+
+<script>
+// Number.isNaN polyfill
+Number.isNaN = Number.isNaN || function(value) {     
+  return value !== value;
+}
+</script>
+
+<script type="text/javascript">
+	// 자동 로그아웃
+	Lpad=function(str, len){
+		str = str + "";
+		while(str.length < len){
+			str = "0"+str;
+		}
+		return str;
+	}
+
+	// 사용자로부터 마우스 또는 키보드 이벤트가 없을경우의 자동로그아웃까지의 대기시간, 분단위
+	var iMinute = 60; 	
+
+	//자동로그아웃 처리 몇초전에 경고를 보여줄지 설정하는 부분, 초단위
+	var noticeSecond = 60;
+
+	var iSecond = iMinute * 60 ;
+	var timerchecker = null;
+
+// 	var initTimer=function(){
+// 		// 로그인 여부 확인
+// 		var login = <c_out value="false" />;
+// 		if(login){
+// 			// 사용자부터 마우스 또는 키보드 이벤트가 발생했을 경우 자동 로그아웃까지의 대기시간을 다시 초기화
+// 			if(window.event){
+// 				iSecond = iMinute * 60 ;
+// 				clearTimeout(timerchecker);
+// 				// coverFilmMain.style.visibility='hidden';  // 입력방지 레이어 해제
+// 				// timer.style.visibility='hidden';  			 // 자동로그아웃 경고레이어 해제
+// 				// console.log("경고 60초 해제");
+// 			 }
+// 			rMinute = parseInt(iSecond / 60);
+// 			rSecond = iSecond % 60;
+// 			if(iSecond > 0){
+// 				// 지정한 시간동안 마우스, 키보드 이벤트가 발생되지 않았을 경우
+// 				/* if(iSecond < noticeSecond){
+// 				// coverFilmMain.style.visibility='visible'; 	// 입력방지 레이어 활성
+// 				// timer.style.visibility='visible';  				// 자동로그아웃 경고레이어 활성
+// 					console.log(Lpad(rMinute, 2)+":"+Lpad(rSecond, 2));
+// 				} */
+// 				// 자동로그아웃 경고레이어에 경고문+남은 시간 보여주는 부분
+// 				timer.innerHTML ="<font family=tahoma></font></h1> <font color=red>" + Lpad(rMinute, 2)+":"+Lpad(rSecond, 2) ;
+// 				iSecond--;
+// 				timerchecker = setTimeout("initTimer()", 1000); 	// 1초 간격으로 체크
+// 			}else{
+// 				if(confirm("시간을 연장하시겠습니까?")){
+// 					//iMinute = 60;
+// 					iSecond = iMinute * 60;
+// 					rMinute = parseInt(iSecond / 60);
+// 					rSecond = iSecond % 60;
+// 					//clearTimer(iMinute, iSe);
+// 					timer.innerHTML ="<font family=tahoma></font></h1> <font color=red>" + Lpad(rMinute, 2)+":"+Lpad(rSecond, 2) ;
+// 					iSecond--;
+// 					timerchecker = setTimeout("initTimer()", 1000); 	// 1초 간격으로 체크
+// 				}else{
+// 					clearTimeout(timerchecker);
+// 					alert("장시간 미사용으로 자동 로그아웃 처리되었습니다.");
+// 					location.href = "/mber/login/logout.do"; 	// 로그아웃 처리 페이지
+// 				}
+// 			}
+// 		}
+// 	}
+// 	onload = initTimer;							// 현재 페이지 대기시간
+	//document.onclick = initTimer; 			// 현재 페이지의 사용자 마우스 클릭이벤트 캡춰
+	//document.onkeypress = initTimer;		// 현재 페이지의 키보트 입력이벤트 캡춰
+</script>
+
+<script>
+var contextPath = '';
+</script>
+<!-- AceCounter Log Gathering Script V.8.0.AMZ2019080601 -->
+<script language='javascript'>
+	var _AceGID=(function(){var Inf=['gtp19.acecounter.com','8080','AH4A43203075578','AW','0','NaPm,Ncisy','ALL','0']; var _CI=(!_AceGID)?[]:_AceGID.val;var _N=0;var _T=new Image(0,0);if(_CI.join('.').indexOf(Inf[3])<0){ _T.src ="https://"+ Inf[0] +'/?cookie'; _CI.push(Inf);  _N=_CI.length; } return {o: _N,val:_CI}; })();
+	var _AceCounter=(function(){var G=_AceGID;var _sc=document.createElement('script');var _sm=document.getElementsByTagName('script')[0];if(G.o!=0){var _A=G.val[G.o-1];var _G=(_A[0]).substr(0,_A[0].indexOf('.'));var _C=(_A[7]!='0')?(_A[2]):_A[3];var _U=(_A[5]).replace(/\,/g,'_');_sc.src='https:'+'//cr.acecounter.com/Web/AceCounter_'+_C+'.js?gc='+_A[2]+'&py='+_A[4]+'&gd='+_G+'&gp='+_A[1]+'&up='+_U+'&rd='+(new Date().getTime());_sm.parentNode.insertBefore(_sc,_sm);return _sc.src;}})();
+</script> 
+<!-- AceCounter Log Gathering Script End -->
+
+
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- netfunnel -->
+    <script type="text/javascript" src="/js/vendor/netfunnel/netfunnel.js"></script>
+    <script type="text/javascript" src="/js/vendor/netfunnel/netfunnel_skin.js"></script>
+
+    <!-- css -->
+    <link rel="stylesheet" href="/css/editor.css">
+    <script type="text/javascript" src="/js/common/FileUtil.js"></script>
+    
+    <script type="text/javascript">
+        //@TODO환경변수
+        //개발
+        // var YOUTHLIFE_BSNS_SEQ = '1027';
+
+        //운영
+        var YOUTHLIFE_BSNS_SEQ = '770';
+
+        /*if (5233 == YOUTHLIFE_BSNS_SEQ)
+        {
+            location.href = contextPath + '/special/youthlife/main.do';
+        }*/
+        if ("5233" === YOUTHLIFE_BSNS_SEQ) {
+            location.href = contextPath + "/special/youthlife/main.do";
+        }
+
+        $(function () {
+            $("#mainListView").click(function () {
+                location.href = contextPath + "/bsns/bsnsListView.do";
+            });
+        });
+
+        function goDetail(bsnsSeq) {
+            document.listFrm.action = contextPath + "/bsns/bsnsDetailView.do?bsnsSeq=" + bsnsSeq;
+            document.listFrm.method = "post";
+            document.listFrm.submit();
+        }
+
+        function goAbility(bsnsSeq) {
+            document.listFrm.action = contextPath + "/special/GGtestfees/main.do?bsnsSeq=" + bsnsSeq;
+            document.listFrm.method = "post";
+            document.listFrm.submit();
+        }
+
+        function changeHeight() {
+            var the_height = $("#iframe").innerHeight();
+            $("#iframe").height(the_height);
+        }
+
+        function calDday(enddate) {
+            var now = new Date();
+            var then = new Date(enddate); // 종료일
+            var gap = then.getTime() - now.getTime();
+            gap = Math.floor(gap / (1000 * 60 * 60 * 24));
+            return gap + 1;
+        }
+
+        function goInstttnLink(url) {
+            if (url.startsWith("http")) {
+                window.open(url);
+            } else {
+                window.open('https://' + url);
+            }
+        }
+
+
+        var tpCd1 = '01';
+        if (tpCd1 == "05") {
+            var mode = '';
+            if (mode == "pv") {
+                location.href = "/special/GGtestfees/main.do?mode=" + mode;
+            } else {
+                location.href = "/special/GGtestfees/main.do";
+            }
+        }
+        if (tpCd1 === '08') { // 고용둔화
+            var mode = '';
+            if (mode == "pv") {
+                location.href = "/special/mfrCompany/main.do?mode=" + mode;
+            } else {
+                location.href = "/special/mfrCompany/main.do";
+            }
+        }
+
+    </script>
+    <style type="text/css">
+    @media screen and (max-width: 1300px) {
+      .popupP {
+				 display: none;   
+	    }
+    }
+    </style>
+</head>
+<body>
+<div class="wrap container-fluid">
+    
+
+
+
+
+
+
+
+
+
+
+
+<style>
+	.interview_bot_content_close {
+		display: none;
+		width: 46px;
+		position: absolute;
+		top: 10px;
+		right: 10px;
+		background-color: #fff;
+		border: 1px solid #e5e7eb;
+		border-radius: 999em;
+		box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+		z-index: 10;
+	}
+	.interview_bot_content {
+		visibility: hidden;
+		opacity: 0;
+		position: fixed !important;
+		right: 30px;
+		bottom: 390px;
+		min-height: 200px !important;
+		min-width: 320px !important;
+		max-width: 430px !important;
+		max-height: 730px !important;
+		width: calc(100% - 44px) !important;
+		/*height: 500px !important;*/
+		overflow: hidden !important;
+		background-color: #fff !important;
+		/*border-radius: 30px !important;*/
+		box-shadow:
+			rgba(255, 255, 255, 0.08) 0px 0px 2px 0px inset,
+			rgba(0, 0, 0, 0.08) 0px 0px 2px 1px,
+			rgba(0, 0, 0, 0.6) 0px 12px 60px;
+		transition:
+			visibility 400ms cubic-bezier(0.36, 0, 0, 1),
+			width 400ms cubic-bezier(0.36, 0, 0, 1),
+			max-width 400ms cubic-bezier(0.36, 0, 0, 1),
+			max-height 400ms cubic-bezier(0.36, 0, 0, 1),
+			opacity 400ms,
+			transform 400ms;
+		transform: translateY(10px);
+		animation: 400ms cubic-bezier(0.36, 0, 0, 1) 0s 1 normal both running jtBULV;
+		will-change: transform, opacity, width, max-height, max-width !important;
+		z-index: 999;
+	}
+	.interview_bot:has(.is-open) .interview_bot_content {
+		opacity: 1;
+		visibility: visible;
+		transform: translateY(0);
+	}
+	.interview_bot_close {
+		width: 64px;
+		background-color: #fff;
+		border: 1px solid #e5e7eb;
+		border-radius: 999em;
+		box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+	}
+	.interview_bot_button {
+		display: block;
+		position: fixed;
+		right: 30px;
+		bottom: 80px;
+		z-index: 9998;
+	}
+	.interview_bot_button * {
+		pointer-events: none;
+	}
+	.interview_bot_button .interview_bot_close {
+		display: none;
+	}
+	.interview_bot_button.is-open picture {
+		display: none;
+	}
+	.interview_bot_button.is-open .interview_bot_close {
+		display: block;
+	}
+	.interview_bot img {
+		display: block;
+		width: 100%;
+		max-width: 100%;
+		height: auto;
+	}
+	@media screen and (max-width: 767px) {
+		.interview_bot_content {
+			bottom: 160px;
+		}
+		.interview_bot_button {
+			bottom: 80px;
+		}
+		.interview_bot img {
+			max-width: 66px;
+		}
+	}
+	@media screen and (max-width: 600px) {
+		.interview_bot_content_close {
+			display: block;
+		}
+		.interview_bot_content {
+			width: 100% !important;
+			height: 100% !important;
+			max-width: unset !important;
+			max-height: unset !important;
+			inset: 0 !important;
+			border-radius: 0 !important;
+			z-index: 9999;
+		}
+	}
+	@media screen and (max-width: 480px) {
+		.interview_bot_button {
+			right: 10px;
+		}
+	}
+
+</style>
+<script type="text/javascript">
+    $(document).ready(function () {
+    	   	
+        // 1. 현재 URL 정보를 가져옵니다.
+        var currentUrl = window.location.href;
+        var csshtml = '80px;';
+        var tpCd1 = '01';
+    	if(tpCd1 == '06'){
+    		if(currentUrl.indexOf('/bsnsRecptVer2Interview/recptInsertView.do') > -1 || currentUrl.indexOf('/bsnsRecptVer2Interview/recptInsertView2.do') > -1){
+    			if(window.innerWidth < 768){
+    				$(".interview_bot_button").css('bottom', '80px');
+    			}else{
+    				$(".interview_bot_button").css('bottom', '310px');	
+    			}
+    			$(".interview_bot_content").css('height', '500px');
+    		}else{
+    			$(".interview_bot_content").css('height', '700px');
+    			$(".interview_bot_content").css('bottom', '170px');
+    			
+    		}
+    		
+    		/* var html = '<a href="https://qs.hiqri.ai/webchat/gg" target="_blank" style="position: fixed; bottom: '+csshtml+' right: 30px; z-index: 9999; display: inline-block;">';
+    		html += '<img src="/img/interviewBot.png" style="width: 100px; height: auto; display: block;">';
+    		html += '</a>';
+    		
+    		$("#interviewBot").html(html); */
+    	} 
+        
+        
+        
+        // 2. 정리하고 싶은 파라미터가 있는지 확인합니다.
+        if (currentUrl.indexOf("callback=applylb") > -1 || currentUrl.indexOf("login_id=") > -1) {
+            var urlObj = new URL(currentUrl);
+            var params = urlObj.searchParams;
+            params.delete("callback");
+            params.delete("login_id");
+            // 4. 파라미터가 남아있으면 '?'를 포함하여 재조립
+            var newQueryString = params.toString();
+            var newUrl = urlObj.pathname + (newQueryString ? "?" + newQueryString : "");
+            // 5. 브라우저 주소창 업데이트 (새로고침 발생 안 함)
+            window.history.replaceState({}, document.title, newUrl);
+        }
+
+
+        common.sys.checkSpecial('search-form__text');
+        /*20250304 기업사용자 승인여부 추가*/
+        var loginAppvYn = "";
+        var mberCd = "";
+        var initPassYn = "";
+
+        if (mberCd == "04" && loginAppvYn == "N") {
+            alert("귀 사는 회원가입이 미승인처리 되었습니다.\n시스템 담당자에게 문의해주시기 바랍니다.(031-270-9669)");
+            location.href = "/mber/login/logout.do";
+            /*
+            $.alert("기업 사용자 로그인 승인 대기중입니다. 승인 완료 후 이용해 주세요.", function(){
+                location.href = "/mber/login/logout.do";
+            });
+            */
+        }
+
+        if (mberCd == "04" && loginAppvYn == "Y" && initPassYn == "Y") {
+            const currentUrl = window.location.href;
+            if (currentUrl.indexOf("myPageCorp") < 0) {
+                $.alert("비밀번호가 초기화 되었습니다.<br/>마이페이지에서 본인인증 후 비밀번호를 변경하시기 바랍니다.", function () {
+                    location.href = "/mber/myPageCorp/indif/dtl.do";
+                });
+            }
+
+        }
+        /*회원가입*/
+        $(".a-terms").on("click", function () {
+            location.href = "/sso/join.do";
+
+        });
+        $(".a-login").on("click", function () {
+        		let fullUrl = document.URL;
+            location.href = "/sso/login.do?returnUrl="+fullUrl;
+        });
+
+        $(".a-loginout").on("click", function () {
+            location.href = '/mber/login/logout.do';
+        });
+
+
+        /* 잡아바 배너 링크 이벤트 시작 */
+        $(document).on("click", ".login-jababa-banner", function () {
+            location.href = "https://apply.jobaba.net/applyNotice/getNoticeDetail.do?Enconde=false&tab=notice&NOTICE_SEQ=2&bsnsSeq=undefined&schStr=&subpageNo=1";
+        });
+        $(document).on("click", ".apply-pass-jababa-banner", function () {
+            location.href = "https://apply.jobaba.net/applyNotice/getNoticeDetail.do?Enconde=false&tab=notice&NOTICE_SEQ=2&bsnsSeq=undefined&schStr=&subpageNo=1";
+        });
+        $(document).on("click", ".apply_appCom_jababa_banner", function () {
+            location.href = "https://apply.jobaba.net/applyNotice/getNoticeDetail.do?Enconde=false&tab=notice&NOTICE_SEQ=2&bsnsSeq=undefined&schStr=&subpageNo=1";
+        });
+        /* 잡아바 배너 링크 이벤트 끝*/
+
+        $(".header-top .header-top__right").bind('focus mouseover',function(){
+            if (window.innerWidth > 1024  ){
+                $('.header-top').addClass('on');
+            }
+        });
+        $(".header-top").mouseleave(function(){
+            if (window.innerWidth > 1024){
+                $('.header-top').removeClass('on');
+            }
+        });
+        
+    });
+
+    function fn_goSearch() {
+        var searchString = '';
+        $('input[id^="searchWord"]').each(function () {
+            if (!common.string.isEmpty($(this).val())) {
+                searchString = $(this).val();
+            }
+        });
+
+        if (common.string.isEmpty(searchString)) {
+            $.alert("검색어를 입력하여 주세요.");
+            return false;
+        }
+        location.href = contextPath + "/bsns/bsnsSearchView.do?searchWord=" + encodeURI(encodeURIComponent(searchString));
+    }
+
+    function enterkey() {
+        if (window.event.keyCode == 13) {
+            // 엔터키가 눌렸을 때 실행할 내용
+            fn_goSearch();
+        }
+    }
+
+    function gotoJobaba(status) {
+        location.href = DomainUrl.jobaba;
+    }
+
+    /**
+     * LMS 이동
+     */
+    function goLmsLink(status) {
+        location.href = DomainUrl.lms;
+    }
+
+    /**
+     * 어플라이 이동
+     */
+    function goApplyLink(status) {
+        location.href = DomainUrl.apply;
+    }
+
+    function fn_TopSearch(form) {
+        var $form = $(form);
+        var keyword = $.trim($form.find("input[name=topSearch]").val());
+
+        if (!keyword) {
+            $.alert("검색어를 입력하여 주세요.");
+            return false;
+        }
+
+        // schStr hidden이 없으면 만들어서 추가
+        var $schStr = $form.find("input[name=schStr]");
+        if ($schStr.length === 0) {
+            $schStr = $("<input>", {type: "hidden", name: "schStr"}).appendTo($form);
+        }
+
+        $schStr.val(keyword);
+
+        $form.submit();
+        console.log("submit form id:", $form.attr("id"));
+        console.log("serialized:", $form.serialize());
+    }
+
+    $(document).on("click", ".m-gnb-btn, .h_menu", function (e) {
+        e.preventDefault();
+        $(".h_mobile").addClass("is-open");
+    });
+
+    $(document).on("click", ".h_mobile_close", function (e) {
+        e.preventDefault();
+        $(".h_mobile").removeClass("is-open");
+    });
+
+    /* 아코디언(기존 구조 유지: .menu-title 클릭 -> 다음 .mobileGnb 토글) */
+    $(document).on("click", ".mobile_menu .menu-title", function (e) {
+        e.preventDefault();
+        /* $(this).next(".mobileGnb").stop(true, true).slideToggle(150); */
+    });
+    
+ 		// 모바일 메뉴 - 서브 메뉴
+    document.addEventListener("DOMContentLoaded", function () {
+	      // 모든 .menu-title 요소 선택
+	      const menuItems = document.querySelectorAll(".menu-title");
+	
+	      menuItems.forEach(function (item) {
+		        item.addEventListener("click", function () {
+			          const parentLi = item.parentElement; // 부모 li 요소
+			          const subMenu = parentLi.querySelector(".mobileGnb"); // 하위 메뉴
+			          const allSubMenus = document.querySelectorAll(
+			            	".mobile_menu > li > .mobileGnb"
+			          ); // 모든 서브 메뉴
+			
+			          // 모든 서브 메뉴를 닫고, 클릭된 메뉴만 열도록
+			          allSubMenus.forEach(function (sub) {
+				            if (sub !== subMenu) {
+				              sub.style.maxHeight = "0"; // 다른 메뉴는 닫기
+				              sub.previousElementSibling.classList.remove("active"); // 화살표 원상복구
+				            }
+			          });
+			
+			          // 클릭한 메뉴만 토글(열기/닫기)
+			          if (subMenu.style.maxHeight && subMenu.style.maxHeight !== "0px") {
+				            subMenu.style.maxHeight = "0"; // 이미 열려있으면 닫기
+				            item.classList.remove("active"); // 화살표 원상복구
+			          } else {
+				            subMenu.style.maxHeight = subMenu.scrollHeight + "px"; // 닫혀 있으면 열기
+				            item.classList.add("active"); // 화살표 회전
+			          }
+		        });
+	      });
+    });
+
+    // 중복 바인딩 방지
+    $(document).off('click', '.m_menu, .m_menu .h_menu');
+    $(document).off('click', '#newHeader .h_mobile_close');
+    $(document).off('click', '.m-gnb-btn, .h_menu');
+
+    function allMenu(e) {
+        if (e) e.preventDefault();
+
+        if (window.innerWidth <= 1260) {
+            $('#newHeader .h_mobile').toggleClass('show');
+        } else {
+            $('.h_gnb_bg').stop(true, true).slideToggle(300);
+            $('.h_menu').toggleClass('active');
+        }
+    }
+
+    $(document).on('click', '.h_mobile_close', function (e) {
+        e.preventDefault();
+        $('#newHeader .h_mobile').removeClass('show');
+    });
+    $(document).on('click', '#newHeader .h_mobile_menu_area .menu-title', function (e) {
+        // a 태그 클릭은 이동
+        if ($(e.target).closest('a').length) return;
+
+        e.preventDefault();
+
+        const $li = $(this).closest('li');
+        const $sub = $li.children('.mobileGnb');
+        if (!$sub.length) return;
+
+        // 아코디언(다른 메뉴 닫기)
+        $li.siblings('li').removeClass('open');
+
+        // 현재 토글
+        $li.toggleClass('open');
+    });
+    
+  	//챗봇
+	document.addEventListener('DOMContentLoaded', function () {
+		const chatButton = document.querySelector('.interview_bot_button');
+		const chatCloseButton = document.querySelector('.interview_bot_content_close');
+
+		chatButton.addEventListener('click', (e) => {
+			e.target.classList.toggle('is-open');
+		});
+		chatCloseButton.addEventListener('click', (e) => {
+			if (chatButton.classList.contains('is-open')) {
+				chatButton.classList.remove('is-open');
+			}
+		});
+	});
+  	
+	// 일자리맵 팝업 - /map/share.do 의 openMap() 과 동일한 방식(window.open)
+	function fn_OpenJobMap(event) {
+		if (event) {
+			event.preventDefault();
+		}
+
+		var popup = window.open(
+			'https://job.gg.go.kr/map.do?ref=APPLY',
+			'jobaba_map',
+			'width=1280,height=800,left=100,top=80,resizable=yes,scrollbars=no'
+		);
+
+		if (!popup || popup.closed || typeof popup.closed === 'undefined') {
+			alert('팝업이 차단되었습니다.\n브라우저의 팝업 허용 설정 후 다시 시도해 주세요.');
+		} else {
+			popup.focus();
+		}
+
+		return false;
+	}
+</script>
+
+<!--header--><!--찐헤더 중복 너무많아 관리좀해요-->
+
+<!-- [DEV] s: 챗봇 -->
+
+	
+
+<div class="btn btn_black top_btn strong">TOP</div>
+
+
+<header class="header">
+    <div class="topMenu">
+        <div class="innerSection">
+            <ul class="left">
+                <li>
+                    <a href="https://job.gg.go.kr/main/main.do" title="잡아바 페이지 이동"><span>잡아바</span></a>
+                </li>
+                <li>
+                    <a href="https://lms.gg.go.kr/home.do" title="러닝센터 페이지 이동"><span>러닝센터</span></a>
+                </li>
+                <li>
+                    <a href="https://job.gg.go.kr/map.do?ref=APPLY" title="일자리맵 팝업 열기" onclick="fn_OpenJobMap(event); return false;"><span>일자리맵</span></a>
+                </li>
+            </ul>
+            <div class="topRightMenu">
+                <div class="searchBoxWrapper">
+                    <form id="topSearchFrm" name="topSearchFrm"
+                          action="https://job.gg.go.kr/search/search.do" method="post" novalidate>
+                        <div class="searchBox">
+                            <input type="text" id="topSearch" name="topSearch" class="inputSearch"
+                                   placeholder="검색어를 입력하세요." autocomplete="off">
+
+                            <!-- schStr 추가 -->
+                            <input type="hidden" id="schStr" name="schStr">
+
+                            <button type="submit" class="topsearchBtn" title="검색"
+                                    onclick="fn_TopSearch(this.form); return false;">
+                                <img src="/img/search_gray.png" alt="검색">
+                            </button>
+                        </div>
+                    </form>
+                    <ul class="right">
+				                
+				                    
+				                        <li class="a-login"><a href="#">통합로그인</a></li>
+				                        <li class="a-terms"><a href="#">회원가입</a></li>
+				                        <li><a href="https://job.gg.go.kr/hpdsk/qna/list.do">고객센터</a></li>
+				                    
+				                    
+				                
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <div class="header-wrap">
+        <div class="header-top">
+            <div class="inner header-top__inner">
+                <div class="header-top__left">
+                    <div id="hbMenu" class="d-none" aria-hidden="true"></div>
+                    <h1 class="logo">
+                        <a href="https://job.gg.go.kr/main/main.do" title="메인화면 이동"><!--로고 이거임-->
+                            <span class="sr-only">경기도일자리재단 통합접수시스템 잡아바 어플라이</span>
+                        </a>
+                    </h1>
+                </div>
+                <div class="header-top__right">
+                    <ul class="user_area clear">
+                        
+                            
+                                <li>
+                                    <a href="/bsns/bsnsListView.do" class="login c-cyan"></a>
+                                    <div class="inner header-nav__inner">
+                                        
+                                            <ul class="nav__menu">
+                                                <!-- 채용정보 -->
+                                                <li class="nav__item">
+                                                    <a class="nav__link"
+                                                       href="https://job.gg.go.kr/pblcEmpmn/list.do">채용정보</a>
+                                                    <ul class="depth2 menu1">
+                                                        <li>
+                                                            <a href="https://job.gg.go.kr/pblcEmpmn/list.do">공공채용</a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="https://job.gg.go.kr/empmn/enterpriseEmployListNew.do">기업채용</a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="https://job.gg.go.kr/entCntnts/exhb/exhbListNew.do">온라인
+                                                                채용관</a></li>
+                                                        <li>
+                                                            <a href="https://job.gg.go.kr/cntn/covJobInfoCntr.do">테마채용관</a>
+                                                        </li>
+                                                    </ul>
+                                                </li>
+
+                                                <!-- 지원정책 -->
+                                                <li class="nav__item">
+                                                    <a class="nav__link"
+                                                       href="https://job.gg.go.kr/jobSprt/list.do">지원정책</a>
+                                                    <ul class="depth2 menu3">
+                                                        <li>
+                                                            <a href="https://job.gg.go.kr/jobSprt/list.do">일자리지원정책</a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="https://job.gg.go.kr/entSprt/list.do">기업지원정책</a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="https://job.gg.go.kr/empmEdu/list.do">취업교육</a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="https://job.gg.go.kr/thema/themeInfo.do">정책활용꿀팁</a>
+                                                        </li>
+                                                    </ul>
+                                                </li>
+
+                                                <!-- 취업지원 -->
+                                                <li class="nav__item">
+                                                    <a class="nav__link"
+                                                       href="https://job.gg.go.kr/jobDiagnose/diagnoseView.do">취업지원</a>
+                                                    <ul class="depth2 menu4">
+                                                        <li>
+                                                            <a href="https://job.gg.go.kr/introduction/mainList.do">자소서첨삭</a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="https://job.gg.go.kr/jobDiagnose/diagnoseView.do">취업진단</a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="https://job.gg.go.kr/interview/mainList.do">AI
+                                                                역량검사</a></li>
+                                                        <li>
+                                                            <a href="https://job.gg.go.kr/thema/vocEduList.do">동영상
+                                                                강의</a>
+                                                        </li>
+                                                    </ul>
+                                                </li>
+
+                                                <!-- 통합접수 -->
+                                                <li class="nav__item">
+                                                    <a class="apply" href="/bsns/bsnsListView.do">통합접수</a>
+                                                    <ul class="depth2 menu6">
+                                                        <li>
+                                                            <a href="/bsns/bsnsListView.do">지원사업</a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="/bsns/bsnsListView.do?tpCd1=04">기간제 채용관</a>
+                                                        </li>
+                                                    </ul>
+                                                </li>
+
+                                                <!-- 참여소통 -->
+                                                <li class="nav__item">
+                                                    <a class="nav__link"
+                                                       href="https://job.gg.go.kr/thema/list.do">참여소통</a>
+                                                    <ul class="depth2 menu5">
+                                                        <li>
+                                                            <a href="https://job.gg.go.kr/event/list.do">이벤트</a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="https://job.gg.go.kr/hpdsk/ntc/list.do">공지사항</a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="https://job.gg.go.kr/hpdsk/qna/list.do">Q&amp;A</a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="https://job.gg.go.kr/thema/list.do">잡학사전</a>
+                                                        </li>
+                                                    </ul>
+                                                </li>
+                                            </ul>
+                                            <div class="gnb_top_banner">
+                                                <a href="https://job.gg.go.kr/thema/vocEduList.do">
+                                                    <img src="/img/gnb_banner_onlineClass.png"
+                                                         alt="동영상 강의"
+                                                         class="gnb_top_banner_img"/>
+                                                </a>
+                                            </div>
+
+                                        
+                                    </div>
+                                </li>
+                                <!------------- //로그인 전 ------------->
+                            
+                            
+                        
+                    </ul>
+                </div>
+            </div>
+            <!-- <div class="m_menu">
+                <div class="h_menu" onclick="allMenu();">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div> -->
+            <!-- GNB Start -->
+						<div class="bottomMenu">
+							<div class="innerSection innerSection-mobile">
+								<div class="flexBox">
+									<h1 class="logo">
+                      <a href="https://job.gg.go.kr/main/main.do" title="메인화면 이동"><!--로고 이거임-->
+                          <span class="sr-only">경기도일자리재단 통합접수시스템 잡아바 어플라이</span>
+                      </a>
+                  </h1>
+									<div class="m_menu">
+										<div class="h_menu" onclick="allMenu();">
+											<span></span>
+											<span></span>
+											<span></span>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<!-- GNB End -->
+            <header id="newHeader">
+                <div class="h_mobile">
+                    <div class="h_mobile_top">
+                        <div class="h_mobile_btn">
+                            <h1 class="logo">
+                                <a href="https://job.gg.go.kr/main/main.do" title="메인화면 이동"></a>
+                            </h1>
+                            <div class="h_mobile_close">
+                                <span></span>
+                                <span></span>
+                            </div>
+                        </div>
+                        <div class="h_mobile_login_area">
+                            <div>
+                                
+                                    
+                                        <li class="a-login"><a href="#">통합로그인</a></li>
+                                        <li class="a-terms"><a href="#">회원가입</a></li>
+                                        <li><a href="https://job.gg.go.kr/hpdsk/qna/list.do">고객센터</a></li>
+                                    
+                                    
+                                
+                            </div>
+                        </div>
+                        <!-- 모바일 검색창 -->
+                        <div class="h_mobile_search_area">
+                            <form id="topSearchFrm" name="topSearchFrm"
+                                  action="https://job.gg.go.kr/search/search.do" method="post" novalidate>
+                                <div class="searchBox">
+                                    <input type="text" id="topSearch" name="topSearch" class="inputSearch" autocomplete="off">
+                                    <input type="hidden" id="schStr" name="schStr">
+                                    <button type="submit" class="topsearchBtn" title="검색"
+                                            onclick="fn_TopSearch(this.form); return false;">
+                                        <img src="/img/search_gray.png" alt="검색">
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="h_mobile_menu_area">
+                        <ul class="mobile_menu">
+                            <li>
+                                <div class="menu-title">
+                                    <a href="https://job.gg.go.kr/pblcEmpmn/list.do">채용정보</a>
+                                    <span class="arrow"><img src="/img/ico_down_arrow.png"></span>
+                                </div>
+                                <ul class="mobileGnb">
+                                    <li>
+                                        <a href="https://job.gg.go.kr/pblcEmpmn/list.do">공공채용</a>
+                                    </li>
+                                    <li>
+                                        <a href="https://job.gg.go.kr/empmn/enterpriseEmployListNew.do">기업채용</a>
+                                    </li>
+                                    <li>
+                                        <a href="https://job.gg.go.kr/entCntnts/exhb/exhbListNew.do">온라인
+                                            채용관</a></li>
+                                    <li>
+                                        <a href="https://job.gg.go.kr/cntn/covJobInfoCntr.do">테마채용관</a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>
+                                <div class="menu-title">
+                                    <a href="https://job.gg.go.kr/jobSprt/list.do">지원정책</a>
+                                    <span class="arrow"><img src="/img/ico_down_arrow.png"></span>
+                                </div>
+                                <ul class="mobileGnb">
+                                    <li>
+                                        <a href="https://job.gg.go.kr/jobSprt/list.do">일자리지원정책</a>
+                                    </li>
+                                    <li>
+                                        <a href="https://job.gg.go.kr/entSprt/list.do">기업지원정책</a>
+                                    </li>
+                                    <li>
+                                        <a href="https://job.gg.go.kr/empmEdu/list.do">취업교육</a>
+                                    </li>
+                                    <li>
+                                        <a href="https://job.gg.go.kr/thema/themeInfo.do">정책활용꿀팁</a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>
+                                <div class="menu-title">
+                                    <a href="https://job.gg.go.kr/jobDiagnose/diagnoseView.do">취업지원</a>
+                                    <span class="arrow"><img src="/img/ico_down_arrow.png"></span>
+
+                                </div>
+                                <ul class="mobileGnb">
+                                    <li>
+                                        <a href="https://job.gg.go.kr/introduction/mainList.do">자소서첨삭</a>
+                                    </li>
+                                    <li>
+                                        <a href="https://job.gg.go.kr/jobDiagnose/diagnoseView.do">취업진단</a>
+                                    </li>
+                                    <li>
+                                        <a href="https://job.gg.go.kr/interview/mainList.do">AI
+                                            역량검사</a></li>
+                                    <li>
+                                        <a href="https://job.gg.go.kr/thema/vocEduList.do">동영상
+                                            강의</a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>
+                                <div class="menu-title">
+                                    <a href="https://apply.jobaba.net/bsns/bsnsListView.do">통합접수</a>
+                                    <span class="arrow"><img src="/img/ico_down_arrow.png"></span>
+                                </div>
+                                <ul class="mobileGnb">
+                                    <li>
+                                        <a href="https://apply.jobaba.net/bsns/bsnsListView.do">지원사업</a>
+                                    </li>
+                                    <li>
+                                        <a href="https://apply.jobaba.net/bsns/bsnsListView.do?tpCd1=04">기간제 채용관</a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>
+                                <div class="menu-title">
+                                    <a href="https://job.gg.go.kr/thema/list.do">참여소통</a>
+                                    <span class="arrow"><img src="/img/ico_down_arrow.png"></span>
+                                </div>
+                                <ul class="mobileGnb">
+                                    <li>
+                                        <a href="https://job.gg.go.kr/event/list.do">이벤트</a>
+                                    </li>
+                                    <li>
+                                        <a href="https://job.gg.go.kr/hpdsk/ntc/list.do">공지사항</a>
+                                    </li>
+                                    <li>
+                                        <a href="https://job.gg.go.kr/hpdsk/qna/list.do">Q&amp;A</a>
+                                    </li>
+                                    <li>
+                                        <a href="https://job.gg.go.kr/thema/list.do">잡학사전</a>
+                                    </li>
+                                </ul>
+                            </li>
+
+                        </ul>
+                    </div>
+                    <div class="h_mobile_bottom_area">
+                        <ul>
+                            <li>
+                                <a href="javascript:void(0);"
+                                   onclick="goLmsLink('empty');"
+                                   class="mobile_icon03">러닝센터</a>
+                            </li>
+                            <li>
+                                <a href="javascript:void(0);" onclick="gotoJobaba('empty')" title="잡아바 이동"
+                                   class="mobile_icon04">잡아바</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </header>
+        </div>
+
+        <div class="header-all">
+            <!-- header-all__top -->
+            <div class="header-all__item header-all__top clear">
+                <!-- header-all__top__inner -->
+                <div class="inner header-all__top__inner clear">
+                    <div class="fL">
+                        <span class="back icons-common">뒤로 가기</span>
+                        <span class="title">전체메뉴</span>
+                    </div>
+                    <div class="fR">
+                        <span class="cancel icons-common">닫기</span>
+                    </div>
+                </div>
+                <!-- //header-all__top__inner -->
+            </div>
+            <!-- //header-all__top -->
+
+            <!-- header-all__user -->
+            <div class="header-all__item header-all__user">
+                <!-- header-all__user__inner -->
+                <div class="inner header-all__user__inner">
+                    
+                        
+                            <!----------- 로그인 전 ----------->
+                            <div class="user-area user-area--login">
+                                <p><b>로그인</b> 해주세요.</p>
+                                <div class="btn-wrap">
+                                    <a class="btn c-black a-terms" href="#" title="회원가입">
+                                        <span>회원가입</span>
+                                    </a>
+                                    <a class="btn c-cyan a-login" href="#" title="로그인">
+                                        <span>로그인</span>
+                                    </a>
+                                </div>
+                            </div>
+                            <!----------- //로그인 전 --------->
+                        
+                        
+                    
+                </div>
+                <!-- //header-all__user__inner -->
+            </div>
+            <!-- //header-all__user -->
+
+            <!-- header-all__search -->
+            <div class="header-all__item header-all__search">
+                <!-- header-all__search__inner -->
+                <div class="inner header-all__search__inner">
+                    <form action="" class="form search-form" onsubmit="return false">
+                        <fieldset>
+                            <legend>검색 폼</legend>
+                            <!------------- input, label -> id값이랑 for값 맞춰주세요 ------------->
+                            <input type="search" id="searchWord3" class="search-form__text" name="searchWord3"
+                                   placeholder="" onKeypress="javascript:enterkey()"/>
+                            <label for="searchWord3" class="sr-only"></label>
+                            <div class="btn-wrap search-form__btn-wrap">
+                                <!--------------- input, label -> id값이랑 for값 맞춰주세요  --------------->
+                                <input type="button" id="searchBtn3" class="search-form__btn icons-common" value="검색"
+                                       onclick="javascript:fn_goSearch()"/>
+                                <label for="searchBtn3" class="sr-only">검색 버튼</label>
+                            </div>
+                        </fieldset>
+                    </form>
+                </div>
+                <!-- //header-all__search__inner -->
+            </div>
+            <!-- //header-all__search -->
+
+            <!-- header-all__site -->
+            
+            <!-- //header-all__site -->
+        </div>
+        <!-- //header_all_menu -->
+        <!-- //.header-wrap -->
+    </div>
+
+    
+    
+    
+    
+    
+<script language="javascript">
+var DomainUrl = {
+		jobaba: 'https://job.gg.go.kr',
+		apply: 'https://apply.jobaba.net',
+		dream: 'https://www.dream.go.kr',
+		lms: 'https://lms.gg.go.kr',
+		jobabaMypage: 'https://job.gg.go.kr/mber/myPage/rcmnInfo/list.do'
+}
+</script>   
+</header>
+<!-- //header -->
+
+
+    <main>
+        
+            
+        
+        <div class="inner">
+            
+<script type="text/javascript">
+
+var param = "&bsnsSeq=5233&sDate=&eDate=&tpCd1=&statusCd=&cateCd=&pageNo=";
+
+	$(document).ready(function(){
+			/* 탭 active 표현 */
+		$('div.tabWrap>ul>li').on('click',function(){
+			$('div.tabWrap>ul>li').removeClass('active');
+			$(this).addClass('active');
+		});
+	});
+
+
+	function layerTabGoBsnsList() {
+		location.href="/bsns/bsnsDetailView.do?tab=bsns" + param;
+		/*document.frm.action="/bsns/bsnsDetailView.do?bsnsSeq=5233";
+		document.frm.method="post";
+		document.frm.submit();*/
+	}
+
+	function layerTabGoQnaList() {
+		location.href="/qna/qnaListView.do?tab=qna" + param;
+		/*document.frm.action="/qna/qnaListView.do?bsnsSeq=5233";
+		document.frm.method="post";
+		document.frm.submit();*/
+	}
+
+	function layerTabGoPollList() {
+		location.href="/survey/surveyDetailView.do?tab=survey" + param;
+		/*document.frm.action="/survey/surveyDetailView.do?bsnsSeq=5233";
+		document.frm.method="post";
+		document.frm.submit();*/
+	}
+
+	function layerTabGoFaqList(){
+		location.href="/faq/getFAQListView.do?tab=faq" + param;
+	}
+	
+	function layerTabGoEtcOne(){
+		location.href="/etc/getEtcOneView.do?tab=etc" + param;
+	}
+	
+	function layerTabGoLatterList(){
+		location.href="/latter/latterListView.do?tab=latter" + param;
+	}
+
+	function layerTabGoNoticeList(){
+		location.href="/notice/noticeListView.do?tab=notice" + param;
+	}
+
+</script>
+
+
+<form name="frm" id="frm" method="post" >
+<input type="hidden" name="sDate" id="sDate" value="" 	/>
+<input type="hidden" name="eDate" id="eDate" value=""  />
+<input type="hidden" name="tpCd1" id="tpCd1" value=""  />
+<input type="hidden" name="statusCd" id="statusCd" value=""  />
+<input type="hidden" name="bsnsTitle" id="bsnsTitle" value=""  />
+<input type="hidden" name="cateCd" id="cateCd" value=""  />
+</form>
+
+            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/new_user/css/hire/common.css">
+<link rel="stylesheet" href="/new_user/css/hire/bsns.css">
+<script type="text/javascript" src="/js/common/FileUtil.js"></script>
+<script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
+
+<script type="text/javascript">
+    Kakao.init('adf2eb2ea936d248c8525d31d363f47d');
+    $(document).ready(function () {
+    	var veryFyStatusCd = '';
+    	console.log(veryFyStatusCd);
+        $("#urlLink").val(window.document.location.href);
+        var tpCd1 = '01';
+        if (tpCd1 == "04") {
+            $('[id^="bsnsMenu"]').removeClass('active');
+            $('[id^="bsnsRecptMenu"]').addClass('active');
+        } else {
+            if ($("#policyClassification").val() == "04" || $("#policyClassification").val() == "07") {
+                $('[id^="bsnsMenu"]').removeClass('active');
+                $('[id^="bsnsCorpMenu1"]').addClass('active');
+                $('[id^="bsnsRecptMenu"]').removeClass('active');
+            } else {
+                $('[id^="bsnsMenu"]').addClass('active');
+                $('[id^="bsnsRecptMenu"]').removeClass('active');
+                $('[id^="bsnsCorpMenu1"]').removeClass('active');
+            }
+        }
+
+        var wishYn = '';
+        if (wishYn == "Y") {
+            $("#wishBtn").addClass("on");
+        } else {
+            $("#wishBtn").removeClass("on");
+        }
+    });
+
+    
+
+    function goRecept(bsnsSeq) {
+        
+        
+        alert("로그인이 필요한 서비스 입니다! \n로그인이 정상적으로 성공되면 본 페이지로 다시 이동 됩니다.");
+        window.location.href = "/sso/login.do";
+        
+        
+        
+    }
+
+    function goInterviewRecept(bsnsSeq) {
+        
+        
+        alert("로그인이 필요한 서비스 입니다. \n로그인이 정상적으로 성공되면 본 페이지로 다시 이동 됩니다.");
+        window.location.href = "/sso/login.do";
+        
+        
+        
+    }
+    
+    function goInterviewMRecept(bsnsSeq) {
+        
+        
+        alert("로그인이 필요한 서비스 입니다. \n로그인이 정상적으로 성공되면 본 페이지로 다시 이동 됩니다.");
+        window.location.href = "/sso/login.do";
+        
+        
+        
+    }
+    
+    function goReceptInterviewPRecpt(bsnsSeq){
+    	
+        
+        alert("로그인이 필요한 서비스 입니다. \n로그인이 정상적으로 성공되면 본 페이지로 다시 이동 됩니다.");
+        window.location.href = "/sso/login.do";
+        
+        
+        
+    }
+    
+
+    function goModify(bsnsSeq, recptSeq) {
+
+        NetFunnel_Action({action_id: "basicRecptDetail"}, {
+            success: function (ev, ret) {
+
+                if ("2" == "2") {
+                    location.href = contextPath + "/myPageVer2/bsnsRecptDetailView.do?recptSeq=" + recptSeq + "&bsnsSeq=" + bsnsSeq;
+
+                } else {
+                    location.href = contextPath + "/myPage/bsnsRecptDetailView.do?recptSeq=" + recptSeq + "&bsnsSeq=" + bsnsSeq;
+                }
+
+            }
+        });
+    }
+
+    function goCansle(bsnsSeq, recptSeq) {
+        $.confirm("취소하시겠습니까?", function () {
+            var param = {
+                "bsnsSeq": bsnsSeq,
+                "recptSeq": recptSeq
+            };
+            var opts = {
+                url: contextPath + "/myPage/setRecptCansle.do",
+                data: param,
+                type: "post",
+                sendDataType: "json",
+                success: function (resJSON, resCode) {
+                    var msg = resJSON.data.msg;
+                    $.alert(msg, function () {
+                        if (resJSON.data.resultCode == "0000") {
+                            location.href = contextPath + "/bsns/bsnsDetailView.do?bsnsSeq=" + bsnsSeq;
+                        }
+                    });
+                }
+            };
+            common.http.ajax(opts);
+        });
+    }
+
+    function goList(dest) {
+        var bsnsSeq = $("#bsnsSeq").val();
+        var sDate = $("#sDate").val();
+        var eDate = $("#eDate").val();
+        var tpCd1 = $("#tpCd1").val();
+        var statusCd = $("#statusCd").val();
+        var bsnsTitle = $("#bsnsTitle").val();
+        var cateCd = $("#cateCd").val();
+        var pageNo = $("#pageNo").val();
+        var listBlock = $("#listBlock").val();
+        var param2 = "?tab=bsns&bsnsSeq=" + bsnsSeq +
+            "&sDate=" + sDate + "&eDate=" + eDate + "&tpCd1=" + tpCd1 + "&statusCd=" + statusCd + "&bsnsTitle=" + bsnsTitle + "&cateCd=" + cateCd +
+            "&pageNo=" + pageNo + "&listBlock=" + listBlock;
+        if (dest == "") {
+            dest = "/bsns/bsnsDetailView.do";
+//		dest = "/bsns/bsnsListView.do?Enconde=false";
+        }
+        location.href = contextPath + dest + param2;
+    }
+
+    //첨부파일 팝업 열기
+    function goAttachFile() {
+        $("#AttachFilePop").show();
+        $("#AttachFilePop").addClass('on');
+    }
+
+    function stopAttachFilePop() {
+        $("#AttachFilePop").hide();
+        $("#AttachFilePop").addClass('off');
+    }
+
+    function kakaoShare(bsnsSeq) {
+        var imageUrl = 'https://apply.jobaba.net/new_user/images/logo_thumb.png';
+        var bsnsTitle = '[양평군] 양평군 청년 신혼부부 주거자금 대출이자 지원 사업';
+        bsnsTitle = common.string.decodeXSS(bsnsTitle);
+
+        var hostname = 'https://apply.jobaba.net';
+        var url = hostname + "/bsns/bsnsDetailView.do?bsnsSeq=" + bsnsSeq;
+
+        Kakao.Link.sendDefault({
+            objectType: 'feed',
+            content: {
+                title: bsnsTitle, // 카카오 공유하기 시 타이틀
+                description: '출처 : 잡아바 어플라이', // 카카오 공유하기 시 설명
+                imageUrl: imageUrl, // 카카오톡공유하기 시 썸네일 이미지 경로
+                imageWidth: 300,
+                imageHeight: 200,
+                link: {
+                    mobileWebUrl: url, //카카오톡공유하기 시 클릭 후 이동 경로
+                    webUrl: url, //카카오톡공유하기 시 클릭 후 이동 경로
+                },
+            },
+            buttons: [
+                {
+                    title: '자세히 보기',
+                    link: {
+                        mobileWebUrl: url, // 카카오톡공유하기 시 클릭 후 이동 경로
+                        webUrl: url, // 카카오톡공유하기 시 클릭 후 이동 경로
+                    },
+                },
+            ],
+            // 카카오톡 미설치 시 카카오톡 설치 경로이동
+            //installTalk: true,
+        })
+    }
+
+    function urlCopy() {
+        var url = ''; // <a>태그에서 호출한 함수인 clip 생성
+        var textarea = document.createElement("textarea");
+        // url 변수 생성 후, textarea라는 변수에 textarea의 요소를 생성
+
+        document.body.appendChild(textarea); //</body> 바로 위에 textarea를 추가(임시 공간이라 위치는 상관 없음)
+        url = window.document.location.href; // url에는 현재 주소값을 넣어줌
+        textarea.value = url; //textarea 값에 url을 넣어줌
+        textarea.select(); //textarea를 설정
+        document.execCommand("copy"); //복사
+        document.body.removeChild(textarea); // textarea 요소를 없애줌
+
+        alert("URL이 복사되었습니다."); // 알림창
+
+    }
+
+    function goWish(bsnsSeq) {
+        
+        
+        alert("로그인이 필요한 서비스 입니다! \n로그인이 정상적으로 성공되면 본 페이지로 다시 이동 됩니다.");
+        window.location.href = "/sso/login.do";
+        
+        
+        
+    }
+</script>
+
+<input type="hidden" name="bsnsSeq" id="bsnsSeq" value="5233"/>
+<input type="hidden" name="sDate" id="sDate" value=""/>
+<input type="hidden" name="eDate" id="eDate" value=""/>
+<input type="hidden" name="tpCd1" id="tpCd1" value=""/>
+<input type="hidden" name="statusCd" id="statusCd" value=""/>
+<input type="hidden" name="bsnsTitle" id="bsnsTitle" value="[양평군] 양평군 청년 신혼부부 주거자금 대출이자 지원 사업"/>
+<input type="hidden" name="cateCd" id="cateCd" value=""/>
+<input type="hidden" name="pageNo" id="pageNo" value=""/>
+<input type="hidden" name="listBlock" id="listBlock" value=""/>
+<input type="hidden" name="bsnsUserType" id="bsnsUserType" value="N"/>
+<input type="hidden" name="policyClassification" id="policyClassification" value="02"/>
+<input type="hidden" name="bsnsVersion" id="bsnsVersion" value="2"/>
+
+<input type="hidden" name="mode" id="mode" value=""/>
+
+
+<div class=""><!-- 사업정보 -->
+    <div class="">
+        <!-- bsns-info-head -->
+
+        
+        
+        
+        
+
+        
+        <div class="bsns-info-head">
+
+            <!-- head-top -->
+            <div class="head-top">
+                <div class="img-wrap">
+                    <img src="/upload/bsns_thmn/2026-02-27/aa318e95-3636-418a-a95a-79319ebf6913.png"
+                         onerror="this.onerror=null; this.src='/new_user/images/no_image.jpg';"
+                         alt="[양평군] 양평군 청년 신혼부부 주거자금 대출이자 지원 사업"/>
+                </div>
+
+                <div class="info-wrap">
+                    
+                        
+                        
+                            <div class="badge badge--d-day">
+                                <span>종료</span>
+                            </div>
+                        
+                        
+                        
+                    
+
+                    <div class="tit-wrap">
+                        <span class="tit">[양평군] 양평군 청년 신혼부부 주거자금 대출이자 지원 사업</span>
+                    </div>
+
+                    <div class="date-wrap">
+                        <div class="deadline">
+                            <span class="deadline-tit">접수기간</span>
+                            <span>2026-03-09 09:00~2026-03-25 18:00</span>
+                        </div>
+                    </div>
+                    <div class="btn-wrap" id="bsnsBtns">
+                        
+                        <!-- '[경기도] 베이비부머 라이트잡 참여기업 모집' 만 신청하기 버튼 가리기 20250602 -->
+                        
+                            
+                                
+                                
+                                
+                                    
+                                        
+                                        
+                                            
+                                                
+                                                
+                                                
+
+                                                
+                                            
+                                            
+                                        
+                                        
+                                    
+                                
+                            
+                        
+                        
+                            <button type="button" class="btn btn-md btn-attach" onclick="goAttachFile();">
+                                <span class="btn-attach__text icons-common-before">첨부파일(1)</span>
+                            </button>
+                        
+                    </div>
+                </div>
+            </div>
+            <!-- //head-top -->
+            
+
+
+
+
+
+
+<!-- head-etc -->
+<div class="head-etc">
+  <div class="sido-wrap">
+
+				
+	
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+		<!--13 양평군-->
+			<img src="/new_user/images/13_img.png" alt="양평군">
+			<span>경기도양평군에서 준비한 정책과 제도입니다.</span>
+		<!--13 양평군-->
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
+	
+
+	
+
+	
+
+  </div>
+  
+</div>
+<!-- //head-etc -->
+
+
+<!-- 공유하기 팝업 -->
+          <div class="dim-layer popup-share-wrap" id="" >
+            <!-- layPop -->
+            <div class="layPop popup-share on" id="" >
+              <!-- inner -->
+              <div class="inner">
+                <div class="pop_head">
+                  <p>공유하기</p>
+                  <button type="button" class="btn popClose hTxt"><span>창닫기</span></button>
+                </div>
+                <!-- pop_cont -->
+                <div class="pop_cont">
+                  <ul>
+                  	<li>
+                      <button type="button" class="btn share-btn share-btn-kakao" onclick="kakaoShare(5233);">
+                        <span>카카오톡 공유하기</span>
+                      </button>
+                    </li>
+                    <li>
+                      <form action="">
+                        <button type="button" class="btn share-btn share-btn-copy" onclick="urlCopy();">
+                          <span>URL 복사</span>
+                        </button>
+                        <input type="text" id="urlLink" class="url-link" readonly/>
+                        <label for="urlLink" class="sr-only">url 링크</label>
+                      </form>
+                    </li>
+                  </ul>
+                </div>
+                <!-- //pop_cont -->
+              </div>
+              <!-- //inner -->
+            </div>
+            <!-- //layPop -->
+          </div>
+          <!-- //공유하기 팝업 -->
+
+
+
+<script>
+Kakao.init('adf2eb2ea936d248c8525d31d363f47d');
+$(document).ready(function() {
+	$("#urlLink").val(window.document.location.href);
+	var wishYn = '';
+	if(wishYn=="Y") {
+		$("#wishBtn").addClass("on");
+	}else {
+		$("#wishBtn").removeClass("on");
+	}
+})
+
+
+
+function kakaoShare(bsnsSeq) {
+	var imageUrl = 'https://apply.jobaba.net'+'/upload/bsns_thmn/2026-02-27/aa318e95-3636-418a-a95a-79319ebf6913.png';
+	var bsnsTitle = '[양평군] 양평군 청년 신혼부부 주거자금 대출이자 지원 사업';
+	bsnsTitle = common.string.decodeXSS(bsnsTitle);
+	
+	var hostname = 'https://apply.jobaba.net';
+	var url = hostname+"/bsns/bsnsDetailView.do?bsnsSeq="+bsnsSeq;
+	
+	Kakao.Link.sendDefault({
+		objectType: 'feed',
+		content: {
+			title: bsnsTitle, // 카카오 공유하기 시 타이틀
+			description: '출처 : 잡아바 어플라이', // 카카오 공유하기 시 설명
+			imageUrl: imageUrl, // 카카오톡공유하기 시 썸네일 이미지 경로
+			imageWidth : 300,
+			imageHeight : 200,
+			link: {
+				mobileWebUrl :url , //카카오톡공유하기 시 클릭 후 이동 경로
+				webUrl: url, //카카오톡공유하기 시 클릭 후 이동 경로
+			},
+		},
+		buttons: [
+			{
+				title: '자세히 보기',
+				link: {
+					mobileWebUrl : url, // 카카오톡공유하기 시 클릭 후 이동 경로
+					webUrl : url, // 카카오톡공유하기 시 클릭 후 이동 경로
+				},
+			},
+		],
+		// 카카오톡 미설치 시 카카오톡 설치 경로이동
+		//installTalk: true,
+	})
+}
+
+function urlCopy() {
+	var url = ''; // <a>태그에서 호출한 함수인 clip 생성
+	var textarea = document.createElement("textarea");
+	// url 변수 생성 후, textarea라는 변수에 textarea의 요소를 생성
+	
+	document.body.appendChild(textarea); //</body> 바로 위에 textarea를 추가(임시 공간이라 위치는 상관 없음)
+	url = window.document.location.href; // url에는 현재 주소값을 넣어줌
+	textarea.value = url; //textarea 값에 url을 넣어줌
+	textarea.select(); //textarea를 설정
+	document.execCommand("copy"); //복사
+	document.body.removeChild(textarea); // textarea 요소를 없애줌
+	
+	alert("URL이 복사되었습니다."); // 알림창
+	
+}
+
+function goWish(bsnsSeq) {
+	alert(1);
+	
+		
+			alert("로그인이 필요한 서비스 입니다! \n로그인이 정상적으로 성공되면 본 페이지로 다시 이동 됩니다.");
+			window.location.href="/sso/login.do";
+		
+		
+	
+}
+
+/**
+ * 설명		: 찜하기 콜백 함수
+ * 파라미터	:
+	 result	: 결과 값
+ * return		: 없음
+ */
+function wishCallBack(result) {
+	 alert(result);
+}
+</script>
+            
+            
+            </div>
+            
+
+<div class="tabWrap sub_tabs commonBtnTabArea">
+	<ul>
+		<li class="active"><a href="#" onclick="layerTabGoBsnsList();"><h3>사업정보</h3></a></li>
+		
+		
+		
+		
+		
+		
+	</ul>
+</div>
+
+
+
+        </div>
+
+        <!-- 첨부파일 목록 -->
+        <div class="layPop w600" id="AttachFilePop">
+            <div class="inner" style="min-height:300px;">
+                <div class="pop_head">
+                    <p>첨부파일 목록</p>
+                    <button type="button" class="popClose hTxt" onClick="stopAttachFilePop();"><span>창닫기</span></button>
+                </div>
+                <div class="pop_cont">
+                    <div class="modal-body popLayer" id="fileList"> <!--attachGroupId, targetId, filePath -->
+                        
+                            <p style="margin : 30px 10px">★&#40;공고문&#41;2026년 양평군 청년 신혼부부 주거자금 대출이자 지원사업 대상자 모집 공고.hwpx
+                                <button type="button" class="btn icon_apply btn_Mgray btn_small"
+                                        onclick="FileUtil.fn.download(9209057);">다운로드
+                                </button>
+                            </p>
+                            <i class="icon_down"></i>
+                        
+                    </div>
+                </div>
+            </div>
+        </div><!-- //layPop -->
+
+
+            <section>
+                
+                    
+                    
+                        <div class="contents-wrap">
+                            <div class="container clearfix">
+                                <div class="view-wrap">
+                                    <div class="tab">
+                                        <ul>
+                                            <li class="on"><a href="#detailContent">상세정보</a></li>
+                                            <li><a href="#detailData">참고자료</a></li>
+                                            <li><a href="#detailLocation">기관위치/연락처</a></li>
+                                        </ul>
+                                    </div>
+                                    <div class="con-wrap">
+                                        <!-- sub_note -->
+                                        <div class="sub_note">
+                                            <div class="note">
+                                                <table>
+                                                    <tbody>
+                                                    <tr>
+                                                        <th>지원기간</th>
+                                                        <td>
+                                                                2026-03-09 09:00
+                                                            부터 <br/>
+                                                                2026-03-25 18:00 까지
+                                                        </td>
+                                                    </tr>
+                                                    
+                                                        <tr>
+                                                            <th>지원대상</th>
+                                                            <td style="white-space:pre-wrap">공고일&#40;2026.3.5.&#41; 기준, 조건을 모두 충족하는 자</td>
+                                                        </tr>
+                                                    
+                                                    </tbody>
+                                                </table>
+                                                <div class="tab_detail_con img_control">
+                                                    <h2 class="mb10">지원내용</h2>
+                                                    <div class="mt10 mb30 contentsContainer" id="contentsContainer">
+                                                        
+                                                            <p><br></p>
+<p><img src="/upload/bsns_file/bsns_contents/2026-02-27/46580f90-837b-4a94-9241-3122d7f15841.png" title="포스터" alt=""></p>
+<p style="text-align: center;"><img src="/upload/bsns_file/bsns_contents/2026-03-02/d00dd0d9-8dd6-405f-91c5-5305d3f41941.jpg" title="★(어플라이업로드공고문)2026년 양평군 청년 신혼부부 주거자금 대출이자 지원사업 대상자 모집 공고.pdf_page_1" alt=""><img src="/upload/bsns_file/bsns_contents/2026-03-02/e266046f-6088-4366-ae5c-750d0a22288f.jpg" title="★(어플라이업로드공고문)2026년 양평군 청년 신혼부부 주거자금 대출이자 지원사업 대상자 모집 공고.pdf_page_2" alt=""><img src="/upload/bsns_file/bsns_contents/2026-03-02/acd5b281-741d-40f4-9fea-c7e1c49d02c5.jpg" title="★(어플라이업로드공고문)2026년 양평군 청년 신혼부부 주거자금 대출이자 지원사업 대상자 모집 공고.pdf_page_3" alt=""><img src="/upload/bsns_file/bsns_contents/2026-03-02/e8670368-cfc7-42ad-8a23-d219460b171c.jpg" title="★(어플라이업로드공고문)2026년 양평군 청년 신혼부부 주거자금 대출이자 지원사업 대상자 모집 공고.pdf_page_4" alt=""></p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- //sub_note -->
+                                        <!-- 참고자료 -->
+                                        
+                                            <div class="reference_note">
+                                                <div class="tit_area">
+                                                    <p class="tit">참고자료</p>
+                                                </div>
+                                                <h1 style="top: -200px; position: relative;" id="detailData"></h1>
+                                                <div class="list_area">
+                                                    <ul>
+                                                        
+                                                            <li>
+                                                                <p class="s_tit">★&#40;공고문&#41;2026년 양평군 청년 신혼부부 주거자금 대출이자 지원사업 대상자 모집 공고.hwpx</p>
+                                                                <a href="javascript:void(0);"
+                                                                   onclick="FileUtil.fn.download(9209057);">
+                                                                    <p class="download">다운로드<span
+                                                                            class="download_ico"></span></p>
+                                                                </a>
+                                                            </li>
+                                                        
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        
+                                        <!-- //참고자료 -->
+                                        <!-- 기간위치/연락처 -->
+                                        <div class="reference_note">
+                                            <h1 style="top: -200px;position: relative;" id="detailLocation"></h1>
+                                            <div class="tit_area">
+                                                <p class="tit">기관위치/연락처</p>
+                                            </div>
+                                            <div class="list_area">
+                                                <ul>
+                                                    
+                                                        <li >
+                                                            <p class="s_tit wid80"><span
+                                                                    class="bold">기관명</span>양평군</p>
+                                                            
+                                                        </li>
+                                                        
+                                                            <li>
+                                                                <p class="s_tit wid80"><span
+                                                                        class="bold">부서명</span>가족복지과</p>
+                                                            </li>
+                                                        
+                                                        
+                                                        
+                                                        <!--  -->
+                                                        
+                                                            <li>
+                                                                <p class="s_tit wid80"><span
+                                                                        class="bold">담당자 연락처</span>031-770-2625
+                                                                </p>
+                                                            </li>
+                                                        
+                                                        
+                                                    
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <!-- '[경기도] 베이비부머 라이트잡 참여기업 모집' 만 신청하기 버튼 가리기 20250602 -->
+                                        
+                                            
+                                                
+                                                    
+                                                    
+                                                        
+                                                            
+                                                            
+                                                                <a href="#"
+                                                                   class="btn btn-goapply"
+                                                                   onclick="goRecept(5233);">
+                                                                    <span>신청하기</span>
+                                                                </a>
+                                                            
+                                                        
+                                                        
+                                                    
+                                                    
+                                                
+                                            
+                                        
+
+                                        <!-- //기간위치/연락처 -->
+                                        <div class="notice_area">
+                                            <p>
+                                                본 정보는 주관기관이 제공한 내용을 토대로 서비스하고 있습니다.
+                                                해당정보는 제공기관의 사정, 기간변경등 다양한 원인으로 변경될 수 있으며,
+                                                현행화의 시간차이등으로 100% 정확하지 않을 수 있으니 반드시 해당기관의 홈페이지 또는 문의처를 통하여 확인하시기 바랍니다.
+                                                <br><br>
+                                                정보통신망법 제50조에 따라 본 게시물 상의 연락처는 내용상의 서비스 제공에 대한 문의 외에 사전동의 없이 전자메일 등으로
+                                                광고성 정보를 전송 및 연락하는 행위를 하면 안됩니다.​&ZeroWidthSpace;
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    
+                    
+                
+            </section>
+
+            <!-- bsns-others -->
+            <div class="bsns-others">
+                
+                    <h4 class="bsns-others-tit">
+			            <span>
+			              <strong>경기도 양평군</strong>의 또 다른 사업!
+			            </span>
+                    </h4>
+                
+                <form id="listFrm" name="listFrm">
+                    <!-- bsns-others-content -->
+                    <div class="bsns-others-content">
+                        <!-- card--bsns__row -->
+                        
+                            
+                                <ul class="card--bsns__row">
+                            
+                            <li class="card--bsns__col">
+                                
+                                    
+                                    <a href="#" class="card card--bsns"
+                                       onclick="goDetail(4995); return false;">
+                                        
+                                        <ul>
+                                            <li class="card__img-wrap">
+                                                <img class="thumbnail-image"
+                                                     src="/upload/bsns_thmn/2026-01-07/62699398-26d9-46ac-be5a-2a9a096635ae.png"
+                                                     alt="[양평군] 2026년 양평청년 꿈Dream 지원 사업">
+                                            </li>
+                                            <li class="card__info">
+                                                <div class="title">[양평군] 2026년 양평청년 꿈Dream 지원 사업</div>
+                                                <div class="date">
+                                                    <b>접수기간</b>2026-01-12~2026-12-16
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </a>
+                            </li>
+                            
+                        
+                            
+                            <li class="card--bsns__col">
+                                
+                                    
+                                    <a href="#" class="card card--end"
+                                       onclick="goDetail(5745); return false;">
+                                        
+                                        <ul>
+                                            <li class="card__img-wrap">
+                                                <img class="thumbnail-image"
+                                                     src="/upload/bsns_thmn/2026-06-23/22780d2e-99cc-44d2-afc0-633cea570ab0.png"
+                                                     alt="[양평군] 2026년 양평 청년 창업자 임차료 지원사업">
+                                            </li>
+                                            <li class="card__info">
+                                                <div class="title">[양평군] 2026년 양평 청년 창업자 임차료 지원사업</div>
+                                                <div class="date">
+                                                    <b>접수기간</b>2026-07-24~2026-08-14
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </a>
+                            </li>
+                            
+                        
+                            
+                            <li class="card--bsns__col">
+                                
+                                    
+                                    <a href="#" class="card card--end"
+                                       onclick="goDetail(3999); return false;">
+                                        
+                                        <ul>
+                                            <li class="card__img-wrap">
+                                                <img class="thumbnail-image"
+                                                     src="/upload/bsns_thmn/2025-01-07/ffc3ec35-5139-45be-ac41-6aaeee29456a.png"
+                                                     alt="[양평군]2025년 양평청년 꿈Dream 지원 서비스">
+                                            </li>
+                                            <li class="card__info">
+                                                <div class="title">[양평군]2025년 양평청년 꿈Dream 지원 서비스</div>
+                                                <div class="date">
+                                                    <b>접수기간</b>2025-01-08~2025-12-12
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </a>
+                            </li>
+                            
+                        
+                            
+                            <li class="card--bsns__col">
+                                
+                                    
+                                    <a href="#" class="card card--end"
+                                       onclick="goDetail(4813); return false;">
+                                        
+                                        <ul>
+                                            <li class="card__img-wrap">
+                                                <img class="thumbnail-image"
+                                                     src="/upload/bsns_thmn/2025-11-14/6171d1c7-8a98-418b-8c38-fd9a75c280cf.JPG"
+                                                     alt="[양평군] 2025년 두배드림 청년통장">
+                                            </li>
+                                            <li class="card__info">
+                                                <div class="title">[양평군] 2025년 두배드림 청년통장</div>
+                                                <div class="date">
+                                                    <b>접수기간</b>2025-11-17~2025-11-21
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </a>
+                            </li>
+                            
+                                </ul>
+                            
+                        
+                        <!-- //card--bsns__row -->
+                    </div>
+                </form>
+                <!-- //bsns-others-content -->
+            </div>
+            <!-- //bsns-others -->
+        </div>
+        <!-- //inner -->
+    </main>
+    
+
+
+
+<script type="text/javascript">
+    $(function(){
+        $(".first").click(function(){
+            location.href = contextPath + "/agree/termsOfUse.do";
+        });
+        $(".last").click(function(){
+            window.open("https://gjf.or.kr/main/guide/privacy_policy_main/view.do");
+            //location.href= contextPath + "/agree/privacy.do";
+        });
+    });
+
+
+    function openFamilySite(select){
+        if(select.value != 'none'){
+            window.open(select.value);
+        } else {
+            return;
+        }
+    }
+
+
+</script>
+<footer id="footer">
+		
+		
+    <h3 class="hidden">하단메뉴</h3>
+    <div class="ftbody">
+        <!-- ftmenu -->
+        <div class="ftmenu">
+            <div class="ftmenu_wrap" >
+                <div class="ftmenu_wrapIn clearfix">
+                    <ul class="ftmenu_list fL clearfix">
+                        <li><a class="last" >개인정보처리방침</a></li>
+                        <li><a href="https://www.gjf.or.kr/main/main.do">경기도일자리재단</a></li>
+                        <li><a href="https://job.gg.go.kr/mber/siteMap/terms.do">이용약관</a></li>
+                        <li><a href="https://job.gg.go.kr/jobabaApi/apiMain.do">API 신청</a></li>
+                        
+                    </ul>
+                    <ul class="sns-links">
+                        <li>
+                            <a href="https://www.facebook.com/jobabanet" title="잡아바 페이스북 이동" class="face">
+                                <img src="/img/icon_sns_02.png" alt="잡아바 페이스북 이동"/>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www.instagram.com/jobabanet" title="잡아바 인스타그램 이동" class="insta">
+                                <img src="/img/icon_sns_03.png" alt="잡아바 인스타그램 이동"/>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www.youtube.com/channel/UC69DhLD0FUmLgP9BsxitbDw" title="잡아바 유튜브 이동" class="youtu">
+                                <img src="/img/icon_sns_04.png" alt="잡아바 유튜브 이동">
+                            </a>
+                        </li>
+                        <li>
+                        	<a href="https://blog.naver.com/gjf_job" title="잡아바 블로그 이동" class="blog">
+                        		<img src="/img/icon_sns_05.png" alt="잡아바 블로그 이동">
+                        	</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!-- //ftmenu:end -->
+        <!-- //ftlogo -->
+        <div class="ftcopy">
+            <div class="ftcopy_wrap">
+                
+                    <div class="footer-content-wrapper">
+                        <div>
+                            <div class="service-info">
+                                잡아바 및 러닝센터 이용문의 : <span>031-270-9988 <span class="line_break">/ jobaba@GJF.or.kr</span></span>
+                            </div>
+                            <div class="copyright-info">
+                                <p>재단 사업문의 : <span>031-270-9600</span></p>
+                            </div>
+                            <div class="addr-sns">
+                                <div>
+                                    <p class="address">경기도 부천시 부흥로 424번길 25, 3층 경기도일자리재단 / <span class="line_break">평일 09:00~18:00 &nbsp;&nbsp;*주말 및 법정 공휴일 휴무</span></p>
+                                    <p>© 2016 GJF</p>
+                                </div>
+                                <div class="footer-logo">
+                                    <img src="/img/gyeonggi_logo.png" alt="잡아바 로고">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+            </div>
+        </div>
+    </div>
+</footer>
+</div><!-- //wrap -->
+</body>
+</html>
+

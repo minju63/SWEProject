@@ -1,0 +1,18 @@
+{
+  "status": "VERIFIED",
+  "checked_at": "2026-11-17T11:11:25.713Z",
+  "account": "youthzip.test.1794897256038.b55d27@example.com",
+  "registered_application_unknown_date": true,
+  "due_result_transition": true,
+  "preparation_check": true,
+  "private_storage_read_denied": true,
+  "private_storage_write_denied": true,
+  "anonymous_access_denied": true,
+  "shared_policy_unchanged": true,
+  "connected_domains": [
+    "JOB",
+    "HOUSING",
+    "FINANCE",
+    "CULTURE"
+  ]
+}

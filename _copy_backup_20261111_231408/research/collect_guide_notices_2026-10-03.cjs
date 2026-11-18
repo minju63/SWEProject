@@ -1,0 +1,23 @@
+const fs=require('fs'),path=require('path'),d=path.join(__dirname,'raw_2026-10-02/candidate_verification');
+const targets=[];function add(ids,URL){for(const id of ids)targets.push({id,URL});}
+add(['20260429005400212904'],'https://www.busan.go.kr/depart/house0204');
+add(['20260409005400212652','20260409005400212651'],'https://www.ulsan.go.kr/u/rep/bbs/view.ulsan?bbsId=BBS_0000000000000027&dataId=177089&mId=001004003001000000');
+add(['20260409005400212652','20260409005400212651'],'https://www.ulsan.go.kr/u/rep/bbs/view.ulsan?bbsId=BBS_0000000000000027&dataId=177593&mId=001004003001000000');
+add(['20250714005400111216'],'https://ulsan.go.kr/u/rep/transfer/notice/46067.ulsan?gosiGbn=A&mId=001004002000000000');
+add(['20250714005400111215'],'https://www.ulsan.go.kr/u/rep/transfer/notice/45328.ulsan?gosiGbn=A&mId=001004002000000000');
+add(['20250714005400111214'],'https://www.ulsan.go.kr/u/rep/transfer/notice/45273.ulsan?gosiGbn=A&mId=001004002000000000');
+add(['20250714005400111212'],'https://www.ulsan.go.kr/u/rep/transfer/notice/45470.ulsan?gosiGbn=A&mId=001004002000000000');
+add(['20251217005400212016'],'https://baro.gyeongnam.go.kr/baro/serviceView.es?mid=a10202000000&service_no=544');
+add(['20251217005400212010'],'https://smart.hc.go.kr/mobile/contents/mobile/alm/04/alm.01.001.motion?bmode=gosiDetail&ijAllimSeq=43920');
+add(['20260504005400213020'],'https://www.seosan.go.kr/emd/selectBbsNttView.do?bbsNo=282&integrDeptCode=&key=2046&nttNo=331738&pageIndex=1&searchCnd=all&searchCtgry=&searchKrwd=');
+add(['20260406005400212468'],'https://youth.incheon.go.kr/dwelling/interest.jsp');
+add(['20260319005400112218','20260325005400212271'],'https://www.sangju.go.kr/opencenter/jfile/readFile.tc?fileId=JF00000001672&fileSeq=1');
+add(['20250220005400210505'],'https://www.chungbuk.go.kr/young/contents.do?key=5028');
+add(['20250106005400210053'],'https://www.gokseong.go.kr/board/GosiView.do?list_gubun=&menuNo=102001003000&not_ancmt_mgt_no=33098&not_ancmt_se_code=&pageIndex=1&searchCnd=0&searchWrd=&srhCate=title');
+add(['20250106005400210052'],'https://www.gokseong.go.kr/youth/board/list.do?bbsId=BBS_000000000000722&menuNo=103001000000');
+add(['20250716005400111306'],'https://www.jeju.go.kr/city/welfare/monthlyrent.htm');
+add(['20250512005400210809'],'https://sokcho.go.kr/bo/holic/article?hlmSn=14&sn=293');
+const all=JSON.parse(fs.readFileSync(path.join(d,'guide_notice_targets_2026-10-03.json'),'utf8'));
+add(all.filter(t=>/인천시 청년월세|청년월세 특별지원\(2차\)|청년월세 한시 지원사업/.test(t.정책명)).map(t=>t.plcyNo),'https://www.incheon.go.kr/IC010101/view?cntPerPage=&curPage=4&nttNo=2045737&srchKey=&srchSiteRealmCode=&srchWord=');
+fs.writeFileSync(path.join(d,'guide_notice_fetch_targets.json'),JSON.stringify(targets,null,2));
+const collector=path.join(__dirname,'verify_housing_candidates_2026-10-02.cjs');let s=fs.readFileSync(collector,'utf8');s=s.replace("const targetFile=process.argv.includes('--pending73')?", "const targetFile=process.argv.includes('--guide-notices')?'guide_notice_fetch_targets.json':process.argv.includes('--pending73')?");fs.writeFileSync(collector,s);console.log(targets.length+' official direct retrievals');

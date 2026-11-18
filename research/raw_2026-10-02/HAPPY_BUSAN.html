@@ -1,0 +1,60 @@
+<script>
+console.log(12311);
+var href= window.location.href;
+		if(href == 'https://www.busan.go.kr/depart/abcivicbook'){
+			location.href='https://book.busan.go.kr/html/book/index/gallery/latest/76/1';
+		}
+		if(href.indexOf('/news/kakao')>=0 ){
+			location.href='https://www.busan.go.kr/news/kakao?bbsNo=15';
+		}
+
+		
+
+</script>
+<!DOCTYPE html>
+<html lang="ko">
+	<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=640,user-scalable=no">
+	<title>부산 홈페이지 - Error page</title>
+	<link rel="stylesheet" href="/humanframe/global/assets/css/error.css">
+	<script src="/humanframe/global/assets/vendor/jquery/jquery.min.js"></script>
+    <script>
+	$(document).ready(function() {
+		/* var returnHome = window.setTimeout(function(){
+			location.href="/";
+		}, 5000); */
+	});
+	</script>
+</head>
+
+<body>
+	<div class="error_wrap">
+		<div class="logo"><img src="/humanframe/global/assets/img/error/busan_logo.png" alt="부산광역시 로고"></div>
+		<div class="txt">
+			요청하신 페이지를 찾을 수 없거나 오류가 발생하였습니다
+			<br>
+			서비스 이용에 불편을 드려 죄송합니다
+		</div>
+		<div class="btn">
+			<a href="/" class="busan">부산광역시 홈페이지</a>
+			<a href="http://www.busan.go.kr/news" class="busan">부산이라 좋다</a>
+			<a href="#" onclick="history.back(-1); return false;" class="historyback">이전으로</a>
+		</div>
+		<div class="footer">
+			© Busan Metropolitan City all rights reserved.
+		</div>
+	</div>
+</body>
+</html><br>
+<!-- Logger PNF (공통) -->
+<script type="text/javascript">
+	var _TRK_PI  = "PNF";
+	var _TRK_LID = "113594";
+	var _L_TD    = "ssl.logger.co.kr";
+	var _TRK_CDMN = "";
+</script>
+<script type="text/javascript">var _CDN_DOMAIN = location.protocol == "https:" ? "https://fs.bizspring.net" : "http://fs.bizspring.net";
+(function (b, s) { var f = b.getElementsByTagName(s)[0], j = b.createElement(s); j.async = true; j.src = "//fs.bizspring.net/fs4/bstrk.1.js"; f.parentNode.insertBefore(j, f); })(document, "script");
+</script>
+<noscript><img alt="Logger Script" width="1" height="1" src="http://ssl.logger.co.kr/tracker.1.tsp?u=113594&amp;js=N"/></noscript>

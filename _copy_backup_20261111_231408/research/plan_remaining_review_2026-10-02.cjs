@@ -1,0 +1,10 @@
+const fs=require('node:fs'),path=require('node:path');
+const d=path.join(__dirname,'raw_2026-10-02','candidate_verification');
+const ids=JSON.parse(fs.readFileSync(path.join(d,'latest_review_targets_291.json'),'utf8').replace(/^\uFEFF/,''));
+const source=fs.readFileSync(path.join(__dirname,'apply_latest_review_2026-10-02.cjs'),'utf8');
+const reviewed=new Set([...source.matchAll(/'([0-9]{20})':\{파일:/g)].map(m=>m[1]));
+const prior=JSON.parse(fs.readFileSync(path.join(d,'latest_queries_291.json'),'utf8').replace(/^\uFEFF/,''));
+const targets=ids.filter(t=>!reviewed.has(t.plcyNo)).map(t=>{const p=prior.find(q=>q.id===t.plcyNo);return {...t,query:(p?.query||t.시행기관+' '+t.정책명+' 2026').replace(/\s+site:[^ ]+/g,'').replace(' 모집 정정 추가 공고',' 모집공고')};});
+if(targets.length!==276)throw Error('Expected remaining276;got '+targets.length);
+fs.writeFileSync(path.join(d,'remaining_review_targets_276.json'),JSON.stringify(targets,null,2));
+console.log(JSON.stringify(targets));

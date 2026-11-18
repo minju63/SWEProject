@@ -1,0 +1,614 @@
+
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=1320">
+
+    <title>경상북도주거복지시스템</title>
+
+    <!-- Bootstrap core CSS-->
+    <!-- <link href="/pages/layout/A_layout/A_type/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">-->
+
+    <!-- Custom fonts for this template -->
+    <link href="/pages/layout/A_layout/A_type/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+
+    <!-- Google font -->
+    <link href="https://fonts.googleapis.com/css?family=Raleway:700" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="/pages/layout/A_layout/A_type/css/bootstrap.css" rel="stylesheet">
+    <link href="/pages/layout/A_layout/A_type/css/all.css" rel="stylesheet" type="text/css" />
+    <link href="/pages/layout/A_layout/A_type/css/animate.min.css" rel="stylesheet">
+    <script src="/pages/layout/A_layout/A_type/vendor/jquery/jquery.min.js"></script>
+    <script type="text/javascript" src="/pages/layout/A_layout/A_type/js/pc_navi.js"></script><!-- PC메뉴 -->
+    <script type="text/javascript" src="/pages/layout/A_layout/A_type/js/m_menu.js"></script><!-- 모바일메뉴 -->
+    <script type="text/javascript" src="/pages/layout/A_layout/A_type/js/bootstrap.min.js"></script><!-- 비쥬얼 -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/cleave.js/1.6.0/cleave.min.js"></script>
+
+
+
+
+    <style>
+            @media print {
+                a[href]:after {
+                    content: none !important;
+                }
+            }
+        </style>
+
+
+
+</head>
+
+<body id="page-top">
+
+    <div id="wrapper">
+        <style type-"text/css">
+.pop_bottom{
+	background-color: #626262;
+	font-size:0.8em;
+}
+.pop_bottom img {
+	vertical-align:middle;
+	padding:2px 10px 6px 0;
+}
+.mpop_st p {
+	margin-bottom:0px;
+}
+/* 작은 기기들 (태블릿, 500px 이하) */
+@media (max-width: 1199px) {
+	.mpop_st { display:none; }
+}
+</style>
+<div id='POP_0' style="width:590px;height:800px;position:absolute;top:0px;left:0px; z-index:100000"  class='mpop_st'>
+		<table width=590 height=780 cellpadding='0' border=0 bordercolor='#a2a9b0' cellspacing=0  bgcolor='#ffffff'>
+			<tr>
+				<td><img src="/image_handler.php?path=common_file%2Fpopup%2F202601%2F17684358413.jpg" class="txc-image" />
+				</td>
+			</tr>
+		</table>
+		<table width=100% cellpadding=0 cellspacing=0 bgcolor='#000000' class='pop_bottom'>
+			<tr>
+				<td height=20 valign='bottom' align='left' class='pop_left'>
+				<input style="margin:7px 3px 9px 10px;  " type="checkbox" name="checks"  onClick="SetCookie('POP_0', 'on', 1)" /> <font color="#ffffff">오늘 하루 이창을 열지 않습니다.</font>
+				</td>
+				<td align='right'><img src='/pages/board/images/btn_close.gif' border=0 onClick="$('#POP_0').hide()" /></td>
+			</tr>
+		</table>
+		</div><div id='POP_1' style="width:590px;height:800px;position:absolute;top:0px;left:300px; z-index:100001"  class='mpop_st'>
+		<table width=590 height=780 cellpadding='0' border=0 bordercolor='#a2a9b0' cellspacing=0  bgcolor='#ffffff'>
+			<tr>
+				<td><img src="/image_handler.php?path=common_file%2Fpopup%2F202601%2F176843590910.jpg" class="txc-image" />
+				</td>
+			</tr>
+		</table>
+		<table width=100% cellpadding=0 cellspacing=0 bgcolor='#000000' class='pop_bottom'>
+			<tr>
+				<td height=20 valign='bottom' align='left' class='pop_left'>
+				<input style="margin:7px 3px 9px 10px;  " type="checkbox" name="checks"  onClick="SetCookie('POP_1', 'on', 1)" /> <font color="#ffffff">오늘 하루 이창을 열지 않습니다.</font>
+				</td>
+				<td align='right'><img src='/pages/board/images/btn_close.gif' border=0 onClick="$('#POP_1').hide()" /></td>
+			</tr>
+		</table>
+		</div><div id='POP_2' style="width:600px;height:538px;position:absolute;top:0px;left:800px; z-index:100002"  class='mpop_st'>
+		<table width=600 height=518 cellpadding='0' border=0 bordercolor='#a2a9b0' cellspacing=0  bgcolor='#ffffff'>
+			<tr>
+				<td><img src="/image_handler.php?path=common_file%2Fpopup%2F202607%2F17833001168.jpg" class="txc-image" width="600" height="538" style="clear:none;float:none;">
+				</td>
+			</tr>
+		</table>
+		<table width=100% cellpadding=0 cellspacing=0 bgcolor='#000000' class='pop_bottom'>
+			<tr>
+				<td height=20 valign='bottom' align='left' class='pop_left'>
+				<input style="margin:7px 3px 9px 10px;  " type="checkbox" name="checks"  onClick="SetCookie('POP_2', 'on', 1)" /> <font color="#ffffff">오늘 하루 이창을 열지 않습니다.</font>
+				</td>
+				<td align='right'><img src='/pages/board/images/btn_close.gif' border=0 onClick="$('#POP_2').hide()" /></td>
+			</tr>
+		</table>
+		</div><script type="text/javascript">
+function PopUpCheck( pop_id, cookie_name, pwidth, pheight, leftpos, toppos ) {	
+	Cookievalue = GetCookie( cookie_name );	
+
+	if (Cookievalue == "") 
+		window.open("/pages/popup/popupWin.php?pop_id="+pop_id+"&c_name="+cookie_name, cookie_name, "width="+pwidth+",height="+pheight+",resizable=0,directories=0,menubar=0,status=0,top=3,left="+leftpos+",top="+toppos+"");
+}
+
+function PopUpCheckDiv( cookie_name ) {	
+	Cookievalue = GetCookie( cookie_name );	
+	//if (Cookievalue == "")	document.getElementById(cookie_name).style.display = "block";
+	//else					document.getElementById(cookie_name).style.display = "none";
+	if (Cookievalue != "")	document.getElementById(cookie_name).style.display = "none";
+}
+
+function GetCookie(NameCookie) {
+	if ( "" == "preview" ) return "";
+
+  var i = document.cookie.indexOf(NameCookie + '=' );
+	if (i != -1) {
+		 i += NameCookie.length + 1;
+		 NameEnd = document.cookie.indexOf(';', i);
+		 if (NameEnd == -1) NameEnd = document.cookie.length;
+
+		 return  unescape(document.cookie.substring(i, NameEnd));
+  } else return "";
+}
+
+function SetCookie( cookie_name, value, expiredays ) {	  	
+	var todayDate = new Date(); 
+    todayDate.setDate( todayDate.getDate() + expiredays ); 
+    document.cookie = cookie_name + "=" + escape( value ) + "; path=/; expires=" + todayDate.toGMTString() + ";" 
+
+	document.getElementById(cookie_name).style.display = "none";
+}
+
+PopUpCheckDiv( 'POP_0' );PopUpCheckDiv( 'POP_1' );PopUpCheckDiv( 'POP_2' );</script>
+
+
+        <!-- Navigation -->
+        <header id="firstheader" class="navfix">
+            <!-- 상단바 -->
+            <div class="topwrap">
+                <div class="top container">
+                    <h1 id="top_logo">
+                        <a href="http://gb.go.kr/Main/index.html" target="_blank"><img class="img-fluid" alt="경상북도주거복지시스템" src="/pages/layout/A_layout/A_type/images/common/top_logo.png" /></a>
+                    </h1>
+                    <ul id="top_menu02">
+                                                <li class="st02"><a href="/?menu_code=4">JOIN</a></li>
+                        <li class="st03"><a href="/?menu_code=3">LOGIN</a></li>
+                                            </ul>
+                </div>
+            </div>
+            <!-- 상단바 -->
+
+
+            <div class="top_all">
+                <!-- top_all -->
+                <div class="top_menu_wrap">
+                    <!-- top_menu_wrap -->
+                    <div id="top_menu_area">
+                        <!--top_menu_area -->
+                        <ul id="top_menu" class="">
+                            <li><a href="/?menu_code=120"><img class="sm" src="/pages/layout/A_layout/A_type/images/common/search.png" alt="search" /></a></li>
+                            <li><a href="/?menu_code=38"><img class="sm" src="/pages/layout/A_layout/A_type/images/common/all_menu.png" alt="Sitemap" /></a></li>
+                        </ul>
+                    </div>
+                    <!--//top_menu_area -->
+                    <div class="top_lnv">
+                        <!--top_lnv -->
+                        <!-- 로고 -->
+                        <h1 id="logo">
+                            <a href="/">
+                                <img class="img-fluid" alt="경상북도주거복지시스템" src="/pages/layout/A_layout/A_type/images/common/logo.png" />
+                            </a>
+                        </h1>
+
+                    </div>
+                    <!--//top_lnv -->
+                </div><!-- //top_menu_wrap -->
+            </div><!-- //top_all -->
+
+            <!-- 네비게이션 -->
+            <nav id="navi">
+                <div id="navi_con">
+                    <ul>
+                                                <li class="mNum01">
+                            <a href="/?menu_code=100"><span>주거복지시스템이란</span></a>
+                                                        <ul>
+                                                                <li><a href="/?menu_code=107">개요</a></li>
+                                                            </ul>
+                                                    </li>
+                                                <li class="mNum01">
+                            <a href="/?menu_code=11"><span>주거 정책</span></a>
+                                                        <ul>
+                                                                <li><a href="/?menu_code=17">주거지원사업</a></li>
+                                                                <li><a href="/?menu_code=18">그린리모델링</a></li>
+                                                                <li><a href="/?menu_code=19">주택개량 지원</a></li>
+                                                                <li><a href="/?menu_code=20">신혼부부 지원</a></li>
+                                                                <li><a href="/?menu_code=114">청년신혼부부 월세 지원</a></li>
+                                                                <li><a href="/?menu_code=120">다자녀 가정 큰 집 마련 이자지원</a></li>
+                                                            </ul>
+                                                    </li>
+                                                <li class="mNum01">
+                            <a href="/?menu_code=101"><span>주거복지</span></a>
+                                                        <ul>
+                                                                <li><a href="/?menu_code=102">주거급여사업</a></li>
+                                                                <li><a href="/?menu_code=103">주거급여 수급자 지원 (수선유지급여)</a></li>
+                                                                <li><a href="/?menu_code=104">주거급여 수급자 지원 (임차급여)</a></li>
+                                                                <li><a href="/?menu_code=105">청년주거급여분리</a></li>
+                                                                <li><a href="/?menu_code=106">주거급여진단</a></li>
+                                                            </ul>
+                                                    </li>
+                                                <li class="mNum01">
+                            <a href="/?menu_code=14"><span>알림소통</span></a>
+                                                        <ul>
+                                                                <li><a href="/?menu_code=26">공지사항</a></li>
+                                                                <li><a href="/?menu_code=109">자료실</a></li>
+                                                                <li><a href="/?menu_code=28">유관기관 지원정보</a></li>
+                                                                <li><a href="/?menu_code=29">관련기관</a></li>
+                                                            </ul>
+                                                    </li>
+                                            </ul>
+                </div>
+            </nav>
+        </header>
+
+<script type="text/javascript" src="/pages/layout/A_layout/A_type/js/jquery.bxslider.js"></script><!-- 메인비쥬얼슬라이더 -->
+<link rel="stylesheet" href="/pages/layout/A_layout/A_type/css/jquery.bxslider.css" />
+
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('#main_visual ul.img_wrapper').bxSlider({
+            mode: 'fade',
+            auto: true,
+            controls: true,
+            pager: true,
+            pause: 6000,
+            speed: 600,
+            preloadImages: "all",
+            moveSlides: 1
+        });
+    });
+</script>
+<main>
+    <!-- 메인 비주얼 main_visual -->
+    <section id="main_visual">
+
+        <ul class="img_wrapper">
+            <li class="vi01">
+                <div class="mvisu_txt container">
+                    <!-- <p class="mt01 wow fadeInLeft " data-wow-duration="800ms" data-wow-delay="800ms"><img src="/pages/layout/A_layout/A_type/images/main/m_txt01.png" alt="" /></p> -->
+                    <div class="mt02-02 wow fadeInLeft" data-wow-duration="1000ms" data-wow-delay="1000ms">
+						경북도는 (청년)<span>신혼부부들의 행복한 미래를 위해</span><br>
+						<p>더 나은 주거환경과 소득대비 높은 주거비 부담을 완화하기 위해<br>
+						<strong>주거 지원사업을 시행</strong>합니다.</p>
+					</div>
+					<div class="vi_btn row">
+						<div>
+							<a href="/?menu_code=51">
+								<p class="mt03 wow fadeInDown" data-wow-duration="1000ms" data-wow-delay="1200ms">
+									신혼부부 임차보증금 지원
+									<span>신청하기</span>
+								</p>
+							</a>
+						</div>
+						<div>
+							<a href="/?menu_code=114">
+								<p class="mt03 d-blue wow fadeInDown" data-wow-duration="1000ms" data-wow-delay="1200ms">
+									청년 신혼부부 월세지원
+									<span>신청하기</span>
+								</p>
+							</a>
+						</div>
+					</div>
+                </div>
+            </li>
+        </ul>
+
+    </section>
+    <!-- //메인 비주얼 main_visual end-->
+
+
+    <section id="content">
+        <!--content-->
+        <div class="container">
+            <!--container-->
+            <div class="row">
+                <!--row-->
+                <div class="contents_01 clearfix">
+                    <!--clearfix-->
+                    <!--easy_w-->
+                    <!-- 공지사항-->
+                    <div class="notice_box">
+                        <h3 class="ta_tit">공지사항</h3>
+                        <p class="notice_more"><a href="/?menu_code=26">더보기</a></p>
+
+                        <ul class="notice_ani">
+                            <li class="notice_ta">
+                                            <a class="aco" href="/pages/board/view.php?menu_code=26&board_sid=1&data_sid=72&page_num=&skey=&sval=&category_code1=" title="2026년 경상북도 다자녀 가정 큰 집 마련 이자지원 사업 공고 - ">
+                                                <div class="notice">
+                                                    <p class="txt01">2026년 경상북도 다자녀 가정 큰 집 마련 이자지원 ..</p>
+                                                    <p class="txt02">2026.02.27</p>
+                                                    <p class="txt03">공지</p>
+                                                </div>
+                                            </a>
+                                        </li><ul class='contac'><li class="notice_ta">
+                                            <a class="aco" href="/pages/board/view.php?menu_code=26&board_sid=1&data_sid=70&page_num=&skey=&sval=&category_code1=" title="2026년 신혼부부 임차보증금 이자지원사업 공고 - ">
+                                                <div class="notice">
+                                                    <p class="txt01">2026년 신혼부부 임차보증금 이자지원사업 공고</p>
+                                                    <p class="txt02">2026.01.14</p>
+                                                    <p class="txt03">공지</p>
+                                                </div>
+                                            </a>
+                                        </li><li class="notice_ta">
+                                            <a class="aco" href="/pages/board/view.php?menu_code=26&board_sid=1&data_sid=66&page_num=&skey=&sval=&category_code1=" title="2025년도 경상북도 신혼부부 임차보증금 이자지원사업 공고 - ">
+                                                <div class="notice">
+                                                    <p class="txt01">2025년도 경상북도 신혼부부 임차보증금 이자지원사업 ..</p>
+                                                    <p class="txt02">2025.01.02</p>
+                                                    <p class="txt03">공지</p>
+                                                </div>
+                                            </a>
+                                        </li><li class="notice_ta">
+                                            <a class="aco" href="/pages/board/view.php?menu_code=26&board_sid=1&data_sid=65&page_num=&skey=&sval=&category_code1=" title="2025년도 청년 신혼부부 월세지원사업 공고 - ">
+                                                <div class="notice">
+                                                    <p class="txt01">2025년도 청년 신혼부부 월세지원사업 공고</p>
+                                                    <p class="txt02">2025.01.02</p>
+                                                    <p class="txt03">공지</p>
+                                                </div>
+                                            </a>
+                                        </li>                            <!-- <li class="notice_ta">
+                                    <a href="">
+                                        <div class="notice">
+                                            <p class="txt01">(SH공사) 공공 임대주택 입주민을 위한 아이디어 공모전 개최 알림</p>
+                                            <p class="txt02">2020-05-13</p>
+                                            <p class="txt03">공지</p>
+                                        </div>
+                                    </a>
+                                </li>
+
+                                <li class="notice_ta">
+                                    <a href="">
+                                        <div class="notice">
+                                            <p class="txt01">(SH공사) 공공 임대주택 입주민을 위한 아이디어 공모전 개최 알림</p>
+                                            <p class="txt02">2020-05-13</p>
+                                            <p class="txt03">공지</p>
+                                        </div>
+                                    </a>
+                                </li>
+
+                                <li class="notice_ta">
+                                    <a href="">
+                                        <div class="notice">
+                                            <p class="txt01">(SH공사) 공공 임대주택 입주민을 위한 아이디어 공모전 개최 알림</p>
+                                            <p class="txt02">2020-05-13</p>
+                                            <p class="txt03">공지</p>
+                                        </div>
+                                    </a>
+                                </li>
+
+                                <li class="notice_ta">
+                                    <a href="">
+                                        <div class="notice">
+                                            <p class="txt01">(SH공사) 공공 임대주택 입주민을 위한 아이디어 공모전 개최 알림</p>
+                                            <p class="txt02">2020-05-13</p>
+                                            <p class="txt03">공지</p>
+                                        </div>
+                                    </a>
+                                </li> -->
+                        </ul>
+
+                    </div>
+                    <!--//easy_w-->
+                </div>
+            </div>
+            <!--//clearfix-->
+        </div>
+        <!--//row-->
+        <!--container-->
+    </section>
+    <!--//content-->
+
+
+
+    <section id="quick">
+        <!-- quick -->
+        <div class="container">
+            <!--container-->
+            <div class="row">
+                <!--row-->
+                <div class="contents_02 clearfix">
+                    <!--clearfix-->
+                    <div class="quick_box">
+                        <h3 class="ta_tit">주거정책</h3>
+
+                        <div>
+                            <ul class="quick_con">
+                                <li class="quick_list06">
+                                    <a href="/?menu_code=20">
+                                        <dl>
+                                            <dt>신혼부부지원</dt>
+                                            <dd>신혼부부들의 행복한 미래를 위해 더 나은 지원합니다.</dd>
+                                        </dl>
+                                    </a>
+                                </li>
+                                <li class="quick_list05">
+                                    <a href="/?menu_code=17">
+                                        <dl>
+                                            <dt>주거지원</dt>
+                                            <dd>국민모두가 일정수준 이상의 주거 환경을 누릴 수 있도록 지원합니다.</dd>
+                                        </dl>
+                                    </a>
+                                </li>
+                                <li class="quick_list04">
+                                    <a href="/?menu_code=19">
+                                        <dl>
+                                            <dt>주택개량지원</dt>
+                                            <dd>노후화되고 수리가 필요한 주택이나 건축물을 고쳐 드립니다.</dd>
+                                        </dl>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div>
+                            <ul class="quick_con mgb5">
+                                <li class="quick_list03">
+                                    <a href="/?menu_code=102">
+                                        <dl>
+                                            <dt>주거급여</dt>
+                                            <dd>저소득층의 주거비를 지원하여 더 나은 주거환경을 제공합니다.</dd>
+                                        </dl>
+                                    </a>
+                                </li>
+                                <li class="quick_list02">
+                                    <a href="/?menu_code=18">
+                                        <dl>
+                                            <dt>그린리모델링</dt>
+                                            <dd>노후화된 건축물을 개선하여 건강한 거주환경을 제공합니다.</dd>
+                                        </dl>
+                                    </a>
+                                </li>
+                                <li class="quick_list01">
+                                    <a href="/?menu_code=29">
+                                        <dl>
+                                            <dt>관련기관</dt>
+                                            <dd>주거복지에 관련된 기관의 정보를 제공합니다.</dd>
+                                        </dl>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+            <!--//row-->
+        </div>
+        <!--container-->
+    </section>
+    <!--//quick -->
+
+
+
+
+
+
+    <!-- 스크롤 애니메이션 -->
+    <script>
+        $('.animate').scrolla({
+            mobile: false, // disable animation on mobiles 
+            once: true // only once animation play on scroll
+        });
+    </script>
+    <!-- 스크롤 애니메이션 -->
+
+
+
+
+
+
+
+</main>		<!-- Footer -->
+<footer id="footer" class="midnight-blue">
+    <div class="foot_top_wrap">
+        <div class="container">
+            <div class="row footer_mu">
+                <div class="col-sm-12">
+                    <ul class="">
+                        <li class="line"><a href="/?menu_code=36">개인정보취급방침</a></li>
+                        <li class="line"><a href="/?menu_code=37">이메일무단수집거부</a></li>
+                        <li class="line"><a href="/?menu_code=38">사이트맵</a></li>
+                        <li class="line"><a href="/?menu_code=236">CONTACT US</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <div class="container">
+        <address class="row col-sm-12">
+            <!-- <span>경북 안동시 풍천면 도청대로 455</span>
+			<span>Tel. 054-880-4012</span>
+			<span>Fax. </span>
+			<span>E-mail. hyuck519@korea.kr</span> -->
+            <strong>경북도청</strong> <span>[36759] 경상북도 안동시 풍천면 도청대로 455</span><!-- <span>팩스 054-880-4999</span> --><br />
+            <span>대표자 : 이철우</span><span>사업자 등록번호 : 504-83-00145</span>
+            <!-- <span>대표 054-880-2114 / 행복콜센터 1522-0120 (월~금 8:30~18:30, 공휴일 제외)</span><br/> -->
+            <cite>Copyright (C) Province of Gyeongsangbuk-do. All Rights Reserved.</cite>
+        </address>
+
+    </div>
+</footer>
+
+<!--
+<a class="scrollup" href="#" id="gototopBt">
+    <div class="fas fa-chevron-up go-top"><span class="text-hidden">페이지 위로</span></div>
+</a>
+-->
+
+
+<!-- Bootstrap core JavaScript -->
+<script src="/pages/layout/A_layout/A_type/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+<!-- Plugin JavaScript -->
+<script src="/pages/layout/A_layout/A_type/vendor/jquery-easing/jquery.easing.min.js"></script>
+
+<!-- Contact form JavaScript -->
+<script src="/pages/layout/A_layout/A_type/js/jqBootstrapValidation.js"></script>
+<script src="/pages/layout/A_layout/A_type/js/contact_me.js"></script>
+
+<!-- Custom scripts for this template -->
+<script src="/pages/layout/A_layout/A_type/js/agency.js"></script>
+
+
+<!-- ************************** 카피라이트 항목 ************************** 
+사이트네임		: 경상북도주거복지시스템사이트네임(영문)	: 경상북도주거복지시스템주소			: 경북 안동시 풍천면 도청대로 455대표명			: 사업자등록번호	: 통신판매신고번호.	: 
+전홥			: 054-880-4012팩스			: 핸드폰			: e-mail		: hyuck519@korea.kr담당자			: 장세혁
+사이트경로		: 경상북도주거복지시스템		<!-- 네비게이션 -->
+		<script type="text/javascript">
+		    $(document).ready(function() { //
+		        $(".gnb_02").hide();
+		        $(".gnb_img").on("click", function() {
+
+		            targetClass = $(this).attr("rel");
+
+		            var rows = ($('#navmenu ul li.depth').find('ul').length);
+
+		            for (var i = 1; i < rows + 1; i++) {
+		                if (i == targetClass) {
+		                    if ($(".nav_" + i).is(":visible")) {
+		                        $(".nav_" + i).slideUp("middle");
+		                        $(".rel_" + i).removeClass("on");
+		                    } else {
+		                        $(".nav_" + i).slideDown("middle");
+		                        $(".rel_" + i).addClass("on");
+		                    }
+		                } else {
+		                    $(".nav_" + i).slideUp("middle");
+		                    $(".rel_" + i).removeClass("on");
+		                }
+		            }
+		        });
+		    });
+		</script>
+
+		<div id="navmenu">
+		    <ul>
+		        		        <li class="depth">
+		            <!--<a href="/?menu_code=100"><span>주거복지시스템이란</span></a>-->
+		            <a class="gnb_img rel_1" rel="1">주거복지시스템이란</a>
+		            		            <ul class="nav_1 gnb_02">
+		                <li><a href="/?menu_code=107">개요</a></li>		            </ul>
+		            		        </li>
+		        		        <li class="depth">
+		            <!--<a href="/?menu_code=11"><span>주거 정책</span></a>-->
+		            <a class="gnb_img rel_2" rel="2">주거 정책</a>
+		            		            <ul class="nav_2 gnb_02">
+		                <li><a href="/?menu_code=17">주거지원사업</a></li><li><a href="/?menu_code=18">그린리모델링</a></li><li><a href="/?menu_code=19">주택개량 지원</a></li><li><a href="/?menu_code=20">신혼부부 지원</a></li><li><a href="/?menu_code=114">청년신혼부부 월세 지원</a></li><li><a href="/?menu_code=120">다자녀 가정 큰 집 마련 이자지원</a></li>		            </ul>
+		            		        </li>
+		        		        <li class="depth">
+		            <!--<a href="/?menu_code=101"><span>주거복지</span></a>-->
+		            <a class="gnb_img rel_3" rel="3">주거복지</a>
+		            		            <ul class="nav_3 gnb_02">
+		                <li><a href="/?menu_code=102">주거급여사업</a></li><li><a href="/?menu_code=103">주거급여 수급자 지원 (수선유지급여)</a></li><li><a href="/?menu_code=104">주거급여 수급자 지원 (임차급여)</a></li><li><a href="/?menu_code=105">청년주거급여분리</a></li><li><a href="/?menu_code=106">주거급여진단</a></li>		            </ul>
+		            		        </li>
+		        		        <li class="depth">
+		            <!--<a href="/?menu_code=14"><span>알림소통</span></a>-->
+		            <a class="gnb_img rel_4" rel="4">알림소통</a>
+		            		            <ul class="nav_4 gnb_02">
+		                <li><a href="/?menu_code=26">공지사항</a></li><li><a href="/?menu_code=109">자료실</a></li><li><a href="/?menu_code=28">유관기관 지원정보</a></li><li><a href="/?menu_code=29">관련기관</a></li>		            </ul>
+		            		        </li>
+		        		    </ul>
+		</div>
+		<!-- 스크롤 움직임 스크립트 -->
+
+		<!-- 네비게이션 end -->
+		</div>
+		</body>
+
+		</html>

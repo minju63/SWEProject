@@ -1,0 +1,1135 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-0FH0T989Z8">
+    </script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-0FH0T989Z8', {
+            cookie_flags: 'SameSite=lax;Secure'
+        });
+    </script>
+
+    <meta charset="utf-8">
+    <meta name="title" content="전남광주청년통합플랫폼 ">
+    <meta name="author" content="전남광주청년통합플랫폼 ">
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+    <title>전국 청년정책 검색</title>
+    <meta name="title" content="전남광주청년통합플랫폼 ">
+    <!-- 일반 메타태그 -->
+    <meta name="description" content="전남광주 통합특별시 청년통합플랫폼 온라인시스템">
+    <meta name="author" content="전남광주청년통합플랫폼 ">
+    <meta name="keywords" content="광주청년정책, 청년정책, 광주정책, 전국청년정책, 전국정책, 정책캘린더, 구직활동지원, 창업지원, 지역사회 정착지원, 광주우수기업, 광주기업, 광주일자리정보, 주거비지원, 청년 자기계발 지원, 사회시작 자산지원, 자립지원, 금융지원, 광주청년축제, 청년센터, 청년공간, 청년통" />
+
+
+    <link rel="stylesheet" href="/build/plugin/css/plugin.bundle.base.css">
+    <link rel="stylesheet" href="/build/plugin/jquery-loading/src/loading.css"><!-- loading -->
+    <link rel="stylesheet" href="/build/plugin/jquery-toast-plugin/jquery.toast.min.css"><!-- toast -->
+    <script src="/build/plugin/sweetalert/sweetalert.min.js"></script>
+
+    <link rel="shortcut icon" href="/build/site/www/images/favi/favicon.ico"> <!--추가-->
+    <link rel="apple-touch-icon" sizes="180x180" href="/build/site/www/images/favi/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/build/site/www/images/favi/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/build/site/www/images/favi/favicon-16x16.png">
+    <link rel="stylesheet" type="text/css" href="/build/site/www/css/style.css" />
+    <link rel="stylesheet" href="/build/plugin/flatpicker/flatpickr.min.css">
+
+
+
+    <script src="/build/plugin/jquery/jquery.js"></script>
+    <script src="/build/plugin/jquery-loading/src/loading.js"></script><!-- loading -->
+    <script src="/build/plugin/jquery-toast-plugin/jquery.toast.min.js"></script>
+    <script src="/build/site/www/js/plugin.bundle.custom.js"></script>
+    <script src="/build/plugin/lodash/lodash.min.js"></script>
+    <script src="/build/plugin/nice-select/jquery.nice-select.min.js"></script>
+
+
+    <script>const ctx = ''</script>
+    <script src="/build/site/www/js/layout.js"></script>
+    <script src="/build/site/www/js/contents.js"></script>
+    <script src="/build/js/common.js"></script>
+    <script src="/build/js/slick.js" type="text/javascript" charset="utf-8"></script><!-- slick -->
+
+    <link href="/build/plugin/froala_editor_4.2.0/css/froala_editor.pkgd.min.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="/build/plugin/froala_editor_4.2.0/js/froala_editor.pkgd.min.js"></script>
+
+
+    <script src="/build/plugin/flatpicker/flatpickr.js"></script>
+    <script src="/build/plugin/flatpicker/ko.js"></script>
+
+    <!-- 실시간 방문 메뉴 -->
+    <script src="/build/site/www/js/visitMenu.js"></script>
+
+    <script>
+        function getContextPath() {
+            var cpath = "";
+            return cpath;
+        }
+
+        function getSiteId() {
+            var siteId = "www";
+            return siteId;
+        }
+
+        // 저장 함수 호출
+        // saveMenuVisit();
+    </script>
+
+</head>
+<body class="body-wrap"  data-mode="light">
+
+<!-- 본문 바로가기 영역  -->
+<div id="skip-nav">
+    <a href="#wrap-header">주메뉴 바로가기</a>
+    <a href="#wrap-content">본문 바로가기</a>
+</div>
+<div id="cursor" class="">
+    <div class="cursor__circle">
+        <div class="circle">
+            <span class="blue"></span>
+            <span class="yellow"></span>
+        </div>
+    </div>
+</div>
+<!-- //본문 바로가기 영역  -->
+<!-- 최초 팝업 -->
+<div class="popup-box">
+    <script>
+        cf_ajax.post($('.popup-box')[0], '/www/popup/0/recentPopupList', {btnYn: 'V'}, function (html) {
+            $('.popup-box').html(html);
+        });
+    </script>
+</div>
+<!--// 최초 팝업 -->
+
+
+<div id="wrap">
+    <header id="header">
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+    function goSearch(){
+        const $qt = $('#qt').val()
+        location.href = 'https://youth.gwangju.go.kr/search/front/Search.jsp?qt='+$qt
+    }
+</script>
+<script>
+    $(document).ready(function () {
+        $('.btn-pop').on('click touchend', function (event) {
+            event.preventDefault(); // 터치 이벤트 중복 실행 방지
+            $('.over-modal-wrap').addClass('on');
+
+            /*
+            cf_ajax.post($('.popup-box')[0], `/www/popup/0/recentPopupList`, {btnYn: 'Y'}, function (html) {
+            $('.popup-box').html(html);
+        });
+        */
+        });
+    });
+</script>
+
+<!-- 헤더 컨텐츠 영역  -->
+<div class="header-in">
+    <div class="head-etc inner">
+        <ul class="etc-ul">
+
+            <li class="li"><button type="button" class="btn-pop"><span>팝업보기</span></button></li>
+            <li class="li">
+                <div class="select-zoom">
+                    <button type="button">화면크기</button>
+                    <div id="font-control" class="txt-zoom">
+                        <ul>
+                            <li><button type="button" class="do-text" onclick="zoomReset();" role="button"><i class="ri-checkbox-circle-line"></i><span>원래대로</span></button></li>
+                            <li><button type="button" class="btn-do plus" onclick="zoomIn();"><i class="ri-add-circle-line"></i><span>화면 확대</span></button></li>
+                            <li><button type="button" class="btn-do minus" onclick="zoomOut();"><i class="ri-indeterminate-circle-line"></i><span>화면 축소</span></button></li>
+                        </ul>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
+    <!-- 웹 : 메뉴 영역 -->
+    <nav class="head-gnb" id="wrap-header">
+        <div class="inner">
+            <h1 class="logo">
+                <a href="/www/">
+                    <span class="img"><b class="sr-only">광주청년통합플랫폼</b></span>
+                </a>
+            </h1>
+            <div class="gnb-wrap">
+                
+        <nav id="gnb" class="gnb container">
+            <div class="top_div dept1">
+                <ul class="ul1">
+                    <li class="li1 dept11"><a href="/www/50" target="_self" class="a1">청년정책</a>
+                        <div class="dept2">
+                            <ul class="ul2">
+                                <li class="li2"><a href="/www/50" target="_self"  class="a2">청년정책검색</a>
+                                    <div class="dept3">
+                                    <ul class="ul3">
+                                        <li class="li3"><a href="/www/50" target="_self" class="a3">전남광주 청년정책 검색</a></li>
+                                        <li class="li3"><a href="/www/51" target="_self" class="a3">전국 청년정책 검색</a></li>
+                                    </ul>
+                            </div>
+                                </li>
+                                <li class="li2"><a href="/www/59" target="_self"  class="a2">광주청년정책</a>
+                                    <div class="dept3">
+                                    <ul class="ul3">
+                                        <li class="li3"><a href="/www/59" target="_self"  class="a3">광주청년정책 소개</a></li>
+                                        <li class="li3"><a href="/www/61" target="_self"  class="a3">법령 및 조례</a></li>
+                                    </ul>
+                            </div>
+                                </li>
+                                <li class="li2"><a href="/www/52" target="_self"  class="a2">알림소식</a>
+                                    <div class="dept3">
+                                    <ul class="ul3">
+                                        <li class="li3"><a href="/www/52" target="_self"  class="a3">공지사항</a></li>
+                                        <li class="li3"><a href="/www/53" target="_self"  class="a3">카드뉴스</a></li>
+                                        <li class="li3"><a href="/www/54" target="_self"  class="a3">이벤트</a></li>
+                                        <li class="li3"><a href="/www/55" target="_self"  class="a3">홍보영상</a></li>
+                                    </ul>
+                            </div>
+                                </li>
+                                <li class="li2"><a href="/www/56" target="_self"  class="a2">정책자료실</a>
+                                    <div class="dept3">
+                                    <ul class="ul3">
+                                        <li class="li3"><a href="/www/56" target="_self"  class="a3">자료실</a></li>
+                                        <li class="li3"><a href="/www/57" target="_self"  class="a3">청년정책 e-book</a></li>
+                                        <li class="li3"><a href="/www/58" target="_self"  class="a3">청년지원정보</a></li>
+                                    </ul>
+                            </div>
+                                </li>
+                                <li class="li2"><a href="/www/12" target="_self"  class="a2">정책 캘린더</a>
+                                </li>
+                                <li class="li2"><a href="/www/15" target="_self"  class="a2">유관기관 누리집</a>
+                                </li>
+                                 <li class="li2"><a href="/www/38" target="_self"  class="a2">전남광주 청년센터</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="li1 dept12"><a href="/www/2" target="_self" class="a1">일자리 드림</a>
+                        <div class="dept2">
+                            <ul class="ul2">
+                                <li class="li2"><a href="/www/17" target="_self"  class="a2">구직활동 지원</a>
+                                </li>
+                                <li class="li2"><a href="/www/18" target="_self"  class="a2">창업지원</a>
+                                </li>
+                                <li class="li2"><a href="/www/19" target="_self"  class="a2">지역사회 정착 지원</a>
+                                </li>
+                                <li class="li2"><a href="/www/100" target="_self"  class="a2">대학일자리플러스센터</a>
+                                </li>
+                                <li class="li2"><a href="/www/62" target="_self"  class="a2">우수기업관</a>
+                                    <div class="dept3">
+                                    <ul class="ul3">
+					     
+					<li class="li3"><a href="/www/62" target="_self"  class="a3">강소기업</a></li>     
+                                        <li class="li3"><a href="/www/63" target="_self"  class="a3">청년 일자리 강소기업</a></li>
+                                        <li class="li3"><a href="/www/107" target="_self"  class="a3">일자리 우수기업</a></li>
+                                    </ul>
+                            </div>
+                                </li>
+                                <li class="li2"><a href="/www/20" target="_self"  class="a2">광주 일자리</a>
+                                    <div class="dept3">
+                                    <ul class="ul3">
+                                        <li class="li3"><a href="/www/20" target="_self"  class="a3">일자리 찾기</a></li>
+                                        <li class="li3"><a href="https://www.gjjobgo.com/" target="_blank" rel="noopener noreferrer"  class="a3">전남광주 일자리플랫폼</a</li>
+                                        <li class="li3"><a href="https://www.gjlabor.org/" target="_blank" rel="noopener noreferrer"  class="a3">광주노동권익센터</a></li>
+                                    </ul>
+                            </div>
+                                </li>
+                                <li class="li2"><a href="/www/50?policyId=1252" target="_self"  class="a2">일경험드림</a>
+                                </li>
+                                <li class="li2"><a href="/www/50?policyId=1347" target="_self"  class="a2">청년구직활동수당</a>
+                                </li>
+                                <li class="li2"><a href="/www/132" target="_self"  class="a2">광주청년일자리스테이션</a>
+                                </li>
+                                <li class="li2"><a href="/www/122" target="_self"  class="a2">온라인 취업지원</a>
+                                </li>
+                                <li class="li2"><a href="/www/131" target="_self"  class="a2">정장대여/사진촬영</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="li1 dept13"><a href="/www/3" target="_self" class="a1">주거 드림</a>
+                        <div class="dept2">
+                            <ul class="ul2">
+                                <li class="li2"><a href="/www/22" target="_self"  class="a2">주거비 지원</a>
+                                </li>
+                                <li class="li2"><a href="/www/23" target="_self"  class="a2">주거공간 지원</a>
+                                </li>
+                                <li class="li2"><a href="/www/24" target="_self"  class="a2">주거복지 자가진단</a>
+                                </li>
+                                <li class="li2"><a class="a2">주거복지포털</a>
+                                    <div class="dept3">
+                                    <ul class="ul3">
+                                        <li class="li3"><a href="https://xn--v69aylw70b3vla29io83afif.kr/" target="_blank"  class="a3">광주주거복지포털</a></li>
+                                        <li class="li3"><a href="https://www.jeonnam.go.kr/housing/web/index.do" target="_blank"  class="a3">전남주거복지포털</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="li1 dept14"><a href="/www/4" target="_self" class="a1">교육 드림</a>
+                        <div class="dept2">
+                            <ul class="ul2">
+                                <li class="li2"><a href="/www/26" target="_self"  class="a2">미래산업 인력양성 지원</a>
+                                </li>
+                                <li class="li2"><a href="/www/25" target="_self"  class="a2">맞춤형 전문인력 양성</a>
+                                </li>
+                                <li class="li2"><a href="/www/27" target="_self"  class="a2">청년 자기계발 지원</a>
+                                </li>
+                                <li class="li2"><a href="/www/105" target="_self"  class="a2">역량강화 학습지원</a>
+                                    <div class="dept3">
+                                    <ul class="ul3">
+                                        <li class="li3"><a href="/www/105" target="_self"  class="a3">국민내일배움카드 훈련과정</a></li>
+                                        <li class="li3"><a href="/www/104" target="_self"  class="a3">일학습병행과정</a></li>
+                                        <li class="li3"><a href="/www/106" target="_self"  class="a3">이러닝학습</a></li>
+                                        <li class="li3"><a href="https://www.gie.kr/" target="_blank" rel="noopener noreferrer"  class="a3">광주인재평생교육진흥원</a></li>
+					<li class="li3"><a href="https://www.jntle.kr/main" target="_blank"  class="a3">전남인재평생교육진행원</a></li>
+                                    </ul>
+                            </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="li1 dept15"><a href="/www/5" target="_self" class="a1">복지 드림</a>
+                        <div class="dept2">
+                            <ul class="ul2">
+                                <li class="li2"><a href="/www/30" target="_self"  class="a2">자립지원</a>
+                                </li>
+                                <li class="li2"><a href="/www/31" target="_self"  class="a2">금융지원</a>
+                                </li>
+                                <li class="li2"><a href="/www/32" target="_self"  class="a2">건강지원</a>
+                                </li>
+                                <li class="li2"><a href="/www/33" target="_self"  class="a2">문화예술지원</a>
+                                </li>
+                                <li class="li2"><a href="/www/50?policyId=1032" target="_self"  class="a2">청년13(일+삶)통장</a>
+                                </li>
+                                <li class="li2"><a href="/www/50?policyId=1237" target="_self"  class="a2">청년드림은행(재무상담소)</a>
+                                </li>
+                      		<li class="li2"><a href="/www/50?policyId=819" target="_self"  class="a2">광주형 청년일자리 공제</a>
+				</li>
+                     		<li class="li2"><a href="/www/50?policyId=1258" target="_self"  class="a2">군복무 청년 상해보험 지원</a>
+				</li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="li1 dept16"><a href="/www/36" target="_self" class="a1">청년참여</a>
+                        <div class="dept2">
+                            <ul class="ul2">
+                                <li class="li2">
+									<a href="/www/36" target="_self"  class="a2">청년정책참여</a>
+									<div class="dept3">
+											<ul class="ul3">
+												<li class="li3"><a href="/www/50?policyId=1244" target="_self"  class="a3">광주청년위원회</a></li>
+												<li class="li3"><a href="/www/50?policyId=826" target="_self"  class="a3">광주청년정책조정위원회</a></li>
+												<li class="li3"><a href="/www/50?policyId=825" target="_self"  class="a3">광주시민참여예산위원회</a></li>
+												<li class="li3"><a href="/www/50?policyId=1057" target="_self" class="a3">청년DB(국무조정실)</a></li>
+											</ul>
+									</div>
+                                </li>
+                                <li class="li2"><a href="/www/70" target="_self"  class="a2">청년상담실</a>
+                                    <div class="dept3">
+                                    <ul class="ul3">
+                                        <li class="li3"><a href="/www/70" target="_self"  class="a3">종합 상담</a></li>
+                                        <li class="li3"><a href="/www/71" target="_self"  class="a3">게시판 상담</a></li>
+                                    </ul>
+                            </div>
+                                </li>
+                                <li class="li2"><a href="/www/66" target="_self"  class="a2">청년소통</a>
+                                    <div class="dept3">
+                                    <ul class="ul3">
+                                        <li class="li3"><a href="/www/66" target="_self"  class="a3">자유게시판</a></li>
+                                        <li class="li3"><a href="/www/67" target="_self"  class="a3">설문조사</a></li>
+                                        <li class="li3"><a href="/www/68" target="_self"  class="a3">자유토론방</a></li>
+                                        <li class="li3"><a href="https://gwangjuon.gwangju.go.kr" target="_blank" rel="noopener noreferrer"  class="a3">정책제안(광주온)</a></li>
+                                    </ul>
+                            </div>
+                                </li>
+                                <li class="li2"><a href="/www/94" target="_self"  class="a2">청년주간</a>
+                                    <div class="dept3">
+                                    <ul class="ul3">
+                                        <li class="li3"><a href="/www/94" target="_self"  class="a3">광주청년주간</a></li>
+                                        <li class="li3"><a href="/www/95" target="_self"  class="a3">역대청년주간</a></li>
+                                    </ul>
+                            </div>
+                                </li>
+                                <li class="li2"><a href="/www/39" target="_self"  class="a2">자율공간</a>
+                                </li>
+                                <li class="li2"><a href="/www/99" target="_self"  class="a2">청년통(通)</a>
+                                </li>
+                                <li class="li2"><a href="/www/139" target="_self"  class="a2">청년활동가</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+
+            </div>
+            <div class="head-util">
+
+
+                
+                    
+                        <a href="/www/42" class="btn-login"><i class="ri-user-shared-line"></i><span>로그인</span></a>
+                        <a href="/www/43" class="btn-search"><i class="ri-user-add-line"></i><span>회원가입</span></a>
+                    
+                    
+                
+                <div class="btn-search"><a href="https://youth.gwangju.go.kr/search/front/Search.jsp" class="btn-search"><i class="ri-search-line"></i><span>통합검색</span></a></div>
+                <div id="btn-all-gnb"><a href="/www/103" class="btn-all-gnb"><i class="ri-menu-line"></i><span>사이트맵</span></a></div>
+                <div id="btn-mobile-gnb"><button type="button" class="btn-all-gnb"><i class="ri-menu-line"></i><span>전체메뉴</span></button></div>
+            </div>
+
+        </div>
+        <div class="gnb-bg"></div>
+    </nav>
+    <!-- //웹 : 메뉴 영역 -->
+</div>
+<!-- //헤더 컨텐츠 영역  -->
+
+<!-- 모바일 : 전체메뉴 -->
+<div id="m-gnb" class="m-gnb-wrap">
+    <div class="m-gnb-in">
+        <div class="m-gnb-head">
+            <button type="button" id="btn-mobile-gnb-close">
+                <i class="ri-close-large-line"></i>
+                <span class="sr-only">전체메뉴 닫기</span>
+            </button>
+            <div class="m-gnb-login">
+                
+                    
+                        <a href="/www/42" class="btn-navi-login"><i class="ri-login-box-line"></i> 로그인을 해주세요.</a>
+                        <a href="/www/43">회원가입</a>
+                    
+                    
+                
+                <button type="button" class="btn-pop"><span>팝업보기</span></button>
+
+            </div>
+            <div class="header-search-area">
+                <div class="header-search-area">
+                    <div class="search-inner">
+                        <input type="search" id="qt" name="qt" value="" class="search-input" title="검색어 입력" placeholder="검색어 입력">
+                        <button type="submit" class="btn-search" onclick="goSearch()"><span class="sr-only">검색</span></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="m-gnb-body">
+            <div class="m-gnb-menu">
+                <div class="gnb-wrap">
+                    
+        <nav id="gnb" class="gnb container">
+            <div class="top_div dept1">
+                <ul class="ul1">
+                    <li class="li1 dept11"><a href="/www/50" target="_self" class="a1">청년정책</a>
+                        <div class="dept2">
+                            <ul class="ul2">
+                                <li class="li2"><a href="/www/50" target="_self"  class="a2">청년정책검색</a>
+                                    <div class="dept3">
+                                    <ul class="ul3">
+                                        <li class="li3"><a href="/www/50" target="_self" class="a3">전남광주 청년정책 검색</a></li>
+                                        <li class="li3"><a href="/www/51" target="_self" class="a3">전국 청년정책 검색</a></li>
+                                    </ul>
+                            </div>
+                                </li>
+                                <li class="li2"><a href="/www/59" target="_self"  class="a2">광주청년정책</a>
+                                    <div class="dept3">
+                                    <ul class="ul3">
+                                        <li class="li3"><a href="/www/59" target="_self"  class="a3">광주청년정책 소개</a></li>
+                                        <li class="li3"><a href="/www/61" target="_self"  class="a3">법령 및 조례</a></li>
+                                    </ul>
+                            </div>
+                                </li>
+                                <li class="li2"><a href="/www/52" target="_self"  class="a2">알림소식</a>
+                                    <div class="dept3">
+                                    <ul class="ul3">
+                                        <li class="li3"><a href="/www/52" target="_self"  class="a3">공지사항</a></li>
+                                        <li class="li3"><a href="/www/53" target="_self"  class="a3">카드뉴스</a></li>
+                                        <li class="li3"><a href="/www/54" target="_self"  class="a3">이벤트</a></li>
+                                        <li class="li3"><a href="/www/55" target="_self"  class="a3">홍보영상</a></li>
+                                    </ul>
+                            </div>
+                                </li>
+                                <li class="li2"><a href="/www/56" target="_self"  class="a2">정책자료실</a>
+                                    <div class="dept3">
+                                    <ul class="ul3">
+                                        <li class="li3"><a href="/www/56" target="_self"  class="a3">자료실</a></li>
+                                        <li class="li3"><a href="/www/57" target="_self"  class="a3">청년정책 e-book</a></li>
+                                        <li class="li3"><a href="/www/58" target="_self"  class="a3">청년지원정보</a></li>
+                                    </ul>
+                            </div>
+                                </li>
+                                <li class="li2"><a href="/www/12" target="_self"  class="a2">정책 캘린더</a>
+                                </li>
+                                <li class="li2"><a href="/www/15" target="_self"  class="a2">유관기관 누리집</a>
+                                </li>
+                                 <li class="li2"><a href="/www/38" target="_self"  class="a2">전남광주 청년센터</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="li1 dept12"><a href="/www/2" target="_self" class="a1">일자리 드림</a>
+                        <div class="dept2">
+                            <ul class="ul2">
+                                <li class="li2"><a href="/www/17" target="_self"  class="a2">구직활동 지원</a>
+                                </li>
+                                <li class="li2"><a href="/www/18" target="_self"  class="a2">창업지원</a>
+                                </li>
+                                <li class="li2"><a href="/www/19" target="_self"  class="a2">지역사회 정착 지원</a>
+                                </li>
+                                <li class="li2"><a href="/www/100" target="_self"  class="a2">대학일자리플러스센터</a>
+                                </li>
+                                <li class="li2"><a href="/www/62" target="_self"  class="a2">우수기업관</a>
+                                    <div class="dept3">
+                                    <ul class="ul3">
+					     
+					<li class="li3"><a href="/www/62" target="_self"  class="a3">강소기업</a></li>     
+                                        <li class="li3"><a href="/www/63" target="_self"  class="a3">청년 일자리 강소기업</a></li>
+                                        <li class="li3"><a href="/www/107" target="_self"  class="a3">일자리 우수기업</a></li>
+                                    </ul>
+                            </div>
+                                </li>
+                                <li class="li2"><a href="/www/20" target="_self"  class="a2">광주 일자리</a>
+                                    <div class="dept3">
+                                    <ul class="ul3">
+                                        <li class="li3"><a href="/www/20" target="_self"  class="a3">일자리 찾기</a></li>
+                                        <li class="li3"><a href="https://www.gjjobgo.com/" target="_blank" rel="noopener noreferrer"  class="a3">전남광주 일자리플랫폼</a</li>
+                                        <li class="li3"><a href="https://www.gjlabor.org/" target="_blank" rel="noopener noreferrer"  class="a3">광주노동권익센터</a></li>
+                                    </ul>
+                            </div>
+                                </li>
+                                <li class="li2"><a href="/www/50?policyId=1252" target="_self"  class="a2">일경험드림</a>
+                                </li>
+                                <li class="li2"><a href="/www/50?policyId=1347" target="_self"  class="a2">청년구직활동수당</a>
+                                </li>
+                                <li class="li2"><a href="/www/132" target="_self"  class="a2">광주청년일자리스테이션</a>
+                                </li>
+                                <li class="li2"><a href="/www/122" target="_self"  class="a2">온라인 취업지원</a>
+                                </li>
+                                <li class="li2"><a href="/www/131" target="_self"  class="a2">정장대여/사진촬영</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="li1 dept13"><a href="/www/3" target="_self" class="a1">주거 드림</a>
+                        <div class="dept2">
+                            <ul class="ul2">
+                                <li class="li2"><a href="/www/22" target="_self"  class="a2">주거비 지원</a>
+                                </li>
+                                <li class="li2"><a href="/www/23" target="_self"  class="a2">주거공간 지원</a>
+                                </li>
+                                <li class="li2"><a href="/www/24" target="_self"  class="a2">주거복지 자가진단</a>
+                                </li>
+                                <li class="li2"><a class="a2">주거복지포털</a>
+                                    <div class="dept3">
+                                    <ul class="ul3">
+                                        <li class="li3"><a href="https://xn--v69aylw70b3vla29io83afif.kr/" target="_blank"  class="a3">광주주거복지포털</a></li>
+                                        <li class="li3"><a href="https://www.jeonnam.go.kr/housing/web/index.do" target="_blank"  class="a3">전남주거복지포털</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="li1 dept14"><a href="/www/4" target="_self" class="a1">교육 드림</a>
+                        <div class="dept2">
+                            <ul class="ul2">
+                                <li class="li2"><a href="/www/26" target="_self"  class="a2">미래산업 인력양성 지원</a>
+                                </li>
+                                <li class="li2"><a href="/www/25" target="_self"  class="a2">맞춤형 전문인력 양성</a>
+                                </li>
+                                <li class="li2"><a href="/www/27" target="_self"  class="a2">청년 자기계발 지원</a>
+                                </li>
+                                <li class="li2"><a href="/www/105" target="_self"  class="a2">역량강화 학습지원</a>
+                                    <div class="dept3">
+                                    <ul class="ul3">
+                                        <li class="li3"><a href="/www/105" target="_self"  class="a3">국민내일배움카드 훈련과정</a></li>
+                                        <li class="li3"><a href="/www/104" target="_self"  class="a3">일학습병행과정</a></li>
+                                        <li class="li3"><a href="/www/106" target="_self"  class="a3">이러닝학습</a></li>
+                                        <li class="li3"><a href="https://www.gie.kr/" target="_blank" rel="noopener noreferrer"  class="a3">광주인재평생교육진흥원</a></li>
+					<li class="li3"><a href="https://www.jntle.kr/main" target="_blank"  class="a3">전남인재평생교육진행원</a></li>
+                                    </ul>
+                            </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="li1 dept15"><a href="/www/5" target="_self" class="a1">복지 드림</a>
+                        <div class="dept2">
+                            <ul class="ul2">
+                                <li class="li2"><a href="/www/30" target="_self"  class="a2">자립지원</a>
+                                </li>
+                                <li class="li2"><a href="/www/31" target="_self"  class="a2">금융지원</a>
+                                </li>
+                                <li class="li2"><a href="/www/32" target="_self"  class="a2">건강지원</a>
+                                </li>
+                                <li class="li2"><a href="/www/33" target="_self"  class="a2">문화예술지원</a>
+                                </li>
+                                <li class="li2"><a href="/www/50?policyId=1032" target="_self"  class="a2">청년13(일+삶)통장</a>
+                                </li>
+                                <li class="li2"><a href="/www/50?policyId=1237" target="_self"  class="a2">청년드림은행(재무상담소)</a>
+                                </li>
+                      		<li class="li2"><a href="/www/50?policyId=819" target="_self"  class="a2">광주형 청년일자리 공제</a>
+				</li>
+                     		<li class="li2"><a href="/www/50?policyId=1258" target="_self"  class="a2">군복무 청년 상해보험 지원</a>
+				</li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="li1 dept16"><a href="/www/36" target="_self" class="a1">청년참여</a>
+                        <div class="dept2">
+                            <ul class="ul2">
+                                <li class="li2">
+									<a href="/www/36" target="_self"  class="a2">청년정책참여</a>
+									<div class="dept3">
+											<ul class="ul3">
+												<li class="li3"><a href="/www/50?policyId=1244" target="_self"  class="a3">광주청년위원회</a></li>
+												<li class="li3"><a href="/www/50?policyId=826" target="_self"  class="a3">광주청년정책조정위원회</a></li>
+												<li class="li3"><a href="/www/50?policyId=825" target="_self"  class="a3">광주시민참여예산위원회</a></li>
+												<li class="li3"><a href="/www/50?policyId=1057" target="_self" class="a3">청년DB(국무조정실)</a></li>
+											</ul>
+									</div>
+                                </li>
+                                <li class="li2"><a href="/www/70" target="_self"  class="a2">청년상담실</a>
+                                    <div class="dept3">
+                                    <ul class="ul3">
+                                        <li class="li3"><a href="/www/70" target="_self"  class="a3">종합 상담</a></li>
+                                        <li class="li3"><a href="/www/71" target="_self"  class="a3">게시판 상담</a></li>
+                                    </ul>
+                            </div>
+                                </li>
+                                <li class="li2"><a href="/www/66" target="_self"  class="a2">청년소통</a>
+                                    <div class="dept3">
+                                    <ul class="ul3">
+                                        <li class="li3"><a href="/www/66" target="_self"  class="a3">자유게시판</a></li>
+                                        <li class="li3"><a href="/www/67" target="_self"  class="a3">설문조사</a></li>
+                                        <li class="li3"><a href="/www/68" target="_self"  class="a3">자유토론방</a></li>
+                                        <li class="li3"><a href="https://gwangjuon.gwangju.go.kr" target="_blank" rel="noopener noreferrer"  class="a3">정책제안(광주온)</a></li>
+                                    </ul>
+                            </div>
+                                </li>
+                                <li class="li2"><a href="/www/94" target="_self"  class="a2">청년주간</a>
+                                    <div class="dept3">
+                                    <ul class="ul3">
+                                        <li class="li3"><a href="/www/94" target="_self"  class="a3">광주청년주간</a></li>
+                                        <li class="li3"><a href="/www/95" target="_self"  class="a3">역대청년주간</a></li>
+                                    </ul>
+                            </div>
+                                </li>
+                                <li class="li2"><a href="/www/39" target="_self"  class="a2">자율공간</a>
+                                </li>
+                                <li class="li2"><a href="/www/99" target="_self"  class="a2">청년통(通)</a>
+                                </li>
+                                <li class="li2"><a href="/www/139" target="_self"  class="a2">청년활동가</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+
+                </div>
+               
+            </div>
+        </div>
+    </div>
+</div>
+<!-- //모바일 : 전체메뉴 -->
+<div class="black-bg"></div>
+    </header>
+
+    <div id="wrap-content">
+        <div class="sub-visual-wrap">
+            <div class="sub-title inner">
+                <h2>전국 청년정책 검색</h2>
+                
+                
+                <span class="obj obj1"></span>
+                <span class="obj obj2"></span>
+                <div class="rb-item-w">
+                    <div class="rb-item">
+                        <p></p>
+                        <p></p>
+                        <p></p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="sub-nav-wrap">
+            <div class="inner">
+
+                 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<ul id="sub-nav">
+    <li><a href="/" class="home"><i class="ri-home-smile-line"></i><span class="sr-only">HOME</span></a></li>
+    
+        <li><a href="" id="targetMenuId" data-target="83">청년정책</a>
+            <ul>
+                
+                    
+                        
+                            <li><a href="/www/50">청년정책</a></li>
+                        
+                        
+                    
+                
+                    
+                        
+                            <li><a href="/www/2">일자리 드림</a></li>
+                        
+                        
+                    
+                
+                    
+                        
+                            <li><a href="/www/3">주거 드림</a></li>
+                        
+                        
+                    
+                
+                    
+                        
+                            <li><a href="/www/4">교육 드림</a></li>
+                        
+                        
+                    
+                
+                    
+                        
+                            <li><a href="/www/5">복지 드림</a></li>
+                        
+                        
+                    
+                
+                    
+                        
+                            <li><a href="/www/36">청년참여</a></li>
+                        
+                        
+                    
+                
+            </ul>
+        </li>
+    
+    
+        <li><a href="">청년정책검색</a>
+            <ul>
+                
+                    
+                        
+                            <li><a href="/www/50">청년정책검색</a></li>
+                        
+                        
+                    
+                
+                    
+                        
+                            <li><a href="/www/59">광주청년정책</a></li>
+                        
+                        
+                    
+                
+                    
+                        
+                            <li><a href="/www/52">알림소식</a></li>
+                        
+                        
+                    
+                
+                    
+                        
+                            <li><a href="/www/56">정책자료실</a></li>
+                        
+                        
+                    
+                
+                    
+                        
+                        
+                            <li><a href="/www/12">정책 캘린더</a></li>
+                        
+                    
+                
+                    
+                        
+                        
+                            <li><a href="/www/15">유관기관 누리집</a></li>
+                        
+                    
+                
+                    
+                        
+                        
+                            <li><a href="/www/38">전남광주 청년센터</a></li>
+                        
+                    
+                
+            </ul>
+        </li>
+    
+    
+        <li><a href="">전국 청년정책 검색</a>
+            <ul>
+                
+                    
+                        
+                        
+                            <li><a href="/www/83">전남광주 청년정책 검색</a></li>
+                        
+                    
+                
+                    
+                        
+                        
+                            <li><a href="/www/51">전국 청년정책 검색</a></li>
+                        
+                    
+                
+            </ul>
+        </li>
+    
+</ul>
+
+                <div class="acctoggle">
+                    <div class="sns">
+                        <button type="button" class="sns_btn acctoggle_sns sub-share" title="SNS공유 열기">
+                            <i class="ri-share-line"></i>
+                            <span  class="sr-only">SNS<br>공유</span>
+                        </button>
+                        <div class="box-sub-share">
+                            <div class="send">
+                                <ul>
+                                    <li><button type="button" class="fb">페이스북 공유하기</button></li>
+                                    <li><button type="button" class="tw">트위터 공유하기</button></li>
+                                    <li><button type="button" class="na">블로그 공유하기</button></li>
+                                    <li><button type="button" class="url acctoggle_url">URL 공유하기</button></li>
+                                </ul>
+                            </div>
+                            <button type="button" class="close"><i class="ri-close-line"></i><span class="sr-only">SNS 공유 닫기</span></button>
+                        </div>
+                    </div>
+                    <!--//sns-->
+                    <button type="button" class="sub-print">
+
+                        <i class="ri-printer-line"></i>
+                        <span  class="sr-only">인쇄</span>
+                    </button>
+                </div>
+            </div>
+         </div>
+
+        <div id="sub-content" class="container">
+
+
+          
+
+            <div id="content" class="inner">
+                
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="sub-vs-tit">
+    <ul>
+        <li>청년들을 위한 일자리, 주거, 교육, 복지 분야의 중앙정부/타지역 정책을 제공합니다. </li>
+    </ul>
+</div>
+
+
+
+<div id="com_bbs">
+    <script>
+        const $com_bbs = $('#com_bbs');
+        $(function () {
+            const url = cf_validate.convertEmpty('/www/policy/allYgPolicyView', '/www/policy/allYgPolicyList');
+            const data = {siteId : 'www'};
+            for (const [key, value] of new URLSearchParams(window.location.search).entries()) data[key] = value;
+            cf_ajax.get($com_bbs[0], url, data, function (html) {
+                $com_bbs.html(html);
+            });
+        });
+    </script>
+</div>
+
+
+                
+            </div>
+        </div>
+    </div>
+
+
+</div>
+<!-- 서브컨텐츠 푸터 -->
+    <div id="wrap-footer">
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 푸터 영역 -->
+<footer id="footer">
+    <div class="footer-banner">
+        <div class="inner">
+            <div class="footer-banner-navi">
+                <span class="banner-tit">배너모음</span>
+                <button type="button" class="prev slick-arrow">이전 슬라이드</button>
+                <div class="playstop">
+                    <button type="button" class="play">슬라이드 재생</button>
+                    <button type="button" class="stop on">슬라이드 정지</button>
+                </div>
+                <button type="button" class="next slick-arrow">다음 슬라이드</button>
+            </div>
+            <ul class="slider" id="footer-banner-slider">
+                <li><a href="https://www.gwangju.go.kr/" target="_blank" rel="noopener noreferrer" title="새창으로 열림">광주광역시</a></li>
+
+                <li><a href="https://gjyouthdream.com/" target="_blank" rel="noopener noreferrer" title="새창으로 열림">일경험드림</a></li>
+
+
+                <li><a href="https://kjcareer.co.kr/" target="_blank" rel="noopener noreferrer" title="새창으로 열림">국제커리어센터</a></li>
+                <li><a href="https://www.mdsarang.com/" target="_blank" rel="noopener noreferrer" title="새창으로 열림">인재육성아카데미</a></li>
+
+                <li><a href="https://www.youthcenter.go.kr/" target="_blank" rel="noopener noreferrer" title="새창으로 열림">온통청년</a></li>
+                <li><a href="https://www.2030db.go.kr/main.do" target="_blank" rel="noopener noreferrer" title="새창으로 열림">청년DB</a></li>
+                <li><a href="https://gjyouthcenter.kr/" target="_blank" rel="noopener noreferrer" title="새창으로 열림">광주청년센터</a></li>
+           </ul>
+
+        </div>
+        <script>
+            $("#footer-banner-slider").slick({
+                slidesToShow: 6,
+                slidesToScroll: 1,
+                dots: false,
+                arrows: true,
+                autoplay: true,
+                variableWidth: true,
+                autoplaySpeed: 5000,
+                speed: 1000,
+                infinite: true,
+                pauseOnHover: false,
+                fade: false,
+                cssEase: 'cubic-bezier(0.7, 0, 0.3, 1)',
+                prevArrow: '.footer-banner-navi .prev',
+                nextArrow: '.footer-banner-navi .next',
+                // 반응형 웹 설정 (이미지 갯수)
+                responsive: [
+                    {
+                        breakpoint: 1024,
+                        settings: { slidesToShow: 6 }
+                    },
+                    {
+                        breakpoint: 768,
+                        settings: { slidesToShow: 2 }
+                    }
+                ]
+            });
+
+            $('.footer-banner-navi button.play').on('click', function () {
+                $("#footer-banner-slider").slick("slickPlay");
+                $(this).removeClass('on');
+                $('.footer-banner-navi button.stop').addClass('on');
+            });
+            $('.footer-banner-navi button.stop').on('click', function () {
+                $("#footer-banner-slider").slick("slickPause");
+                $(this).removeClass('on');
+                $('.footer-banner-navi button.play').addClass('on');
+            });
+
+            $(function () {
+                // 로컬스토리지에서 quickList 상태 가져오기
+                let quickListState = localStorage.getItem("quickListState");
+
+                if (quickListState === "off") {
+                    $(".quick").addClass("off");
+                } else {
+                    $(".quick").removeClass("off");
+                }
+
+                // 토글 버튼 클릭 이벤트
+                $("#quick-open").click(function () {
+                    if ($(".quick").hasClass("off")) {
+                        localStorage.setItem("quickListState", "off");
+                    } else {
+                        localStorage.setItem("quickListState", "on");
+                    }
+                });
+            })
+        </script>
+    </div>
+    <div class="inner">
+        <div class="footer-info-wrap">
+            <div class="footer-logo"><span class="img"><b class="sr-only">광주청년통합플랫폼</b></span></div>
+
+            <div class="footer-info">
+                <div class="footer-link">
+                    <a href="https://www.gwangju.go.kr/contentsView.do?pageId=www817" target="_blank" rel="noopener noreferrer"><b>개인정보처리방침</b></a>
+
+                
+                    <a href="https://www.gwangju.go.kr/contentsView.do?pageId=www818" target="_blank" rel="noopener noreferrer">저작권보호정책</a>
+                    <a href="https://www.gwangju.go.kr/contentsView.do?pageId=www60" target="_blank" rel="noopener noreferrer">행정서비스헌장</a>
+
+                </div>
+                <div class="footer-info">
+                    <p><span>61945 전남광주 통합특별시 서구 내방로 111(치평동)</span><span>대표전화 062-613-2713</span></p>
+                    <p class="copy">Copyright ⓒ 2024 전남광주 통합특별시 청년통합플랫폼. All rights reserved</p>
+                </div>
+
+            </div>
+        </div>
+        <div class="footer-sns">
+            <a href="https://www.instagram.com/gjyouthcenter/" target="_blank" rel="noopener noreferrer" title="새창으로 열림"><img src="/build/site/www/images/common/icn_ins.svg" alt="인스타그램 바로가기" ></a>
+            <a href="https://www.youtube.com/channel/UCd5JXTxXGkAqKRkPGzZANrw" target="_blank" rel="noopener noreferrer" title="새창으로 열림"><img src="/build/site/www/images/common/icn_ytb.svg" alt="유튜브 바로가기" ></a>
+            <a href="https://www.facebook.com/gjtheforest/" target="_blank" rel="noopener noreferrer" title="새창으로 열림"><img src="/build/site/www/images/common/icn_fb.svg" alt="페이스북 바로가기" ></a>
+            <a href="https://blog.naver.com/gjtheforest" target="_blank" rel="noopener noreferrer" title="새창으로 열림"><img src="/build/site/www/images/common/icn_nb.svg" alt="네이버 블로그 바로가기" ></a>
+            <a href="https://pf.kakao.com/_NNxnxnb/" target="_blank" rel="noopener noreferrer" title="새창으로 열림"><img src="/build/site/www/images/common/icn_kkc.svg" alt="카카오채널 바로가기" ></a>
+        </div>
+    </div>
+
+
+    <div class="quick">
+        <button type="button" class="goto-top">
+            <i class="ri-arrow-up-s-line"></i>
+            <span>TOP</span>
+        </button>
+
+        <ul class="quickList">
+            <li>
+                <a href="/www/svcMain" target="_blank" rel="noopener noreferrer" class="quick-btn" title="AI맞춤서비스 새창으로 열림">
+                    <div class="iconBox">
+                        <div class="img img01"></div>
+                        <span class="sr-only">AI 맞춤형 서비스</span>
+                    </div>
+                    <span>AI 맞춤형 서비스</span>
+                </a>
+            </li>
+            <li>
+                <a href="/www/98" class="quick-btn">
+                    <div class="iconBox">
+                        <div class="img img02"></div>
+                        <span class="sr-only">문자알림서비스 신청바로가기</span>
+                    </div>
+                    <span>문자알림<br>서비스 신청</span>
+                </a>
+            </li>
+            <li>
+                <a href="/www/99" class="quick-btn">
+                    <div class="iconBox">
+                        <div class="img img03"></div>
+                        <span class="sr-only">청년통 바로가기</span>
+                    </div>
+                    <span>청년통(通)</span>
+                </a>
+            </li>
+
+
+        </ul>
+        
+        <button type="button" class="quick-btn-more close"  id="quick-open">
+            <i></i>
+            <span class="sr-only">퀵메뉴 닫기</span>
+        </button>
+    </div>
+
+
+</footer>
+
+
+<!-- //푸터 영역 -->
+
+    </div>
+<!-- 서브컨텐츠 푸터 -->
+</body>
+</html>

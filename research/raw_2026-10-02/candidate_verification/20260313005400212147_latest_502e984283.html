@@ -1,0 +1,1459 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	
+<title>부동산중개보수 | 분야별 정보 주택/토지/부동산 | 연수구청</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1, maximum-scale=2, user-scalable=yes" />
+<link rel="stylesheet" type="text/css" href="/share/css/common.css?ver=221024" media="all" />
+<link rel="stylesheet" type="text/css" href="/share/css/inc.css?ver=251023" media="all" />
+<link rel="stylesheet" type="text/css" href="/share/css/program.css?ver=241029" media="all" />
+<link rel="stylesheet" type="text/css" href="/main/css/inc.css?ver=221024" media="all" />
+<link rel="stylesheet" type="text/css" href="/main/css/sub.css?ver=250110" media="all" />
+<link rel="stylesheet" type="text/css" href="/main/css/contents.css?ver=260127" media="all" />
+<link rel="stylesheet" type="text/css" href="/share/css/jquery.mCustomScrollbar.css" media="all" />
+<link rel="stylesheet" type="text/css" href="/shareEtc/jquery-ui/css/css.css" media="all" />
+<script src="/share/js/jquery-2.1.1.min.js"></script>
+<script src="/shareEtc/jquery-ui/js/jquery-ui-1.9.2.custom.js"></script>
+<script src="/main/js/yeonsu.js"></script>
+<script src="/share/js/base.js"></script>
+<script src="/share/js/scroll_func.js"></script>
+<!--[if lt IE 10]>
+<link rel="stylesheet" type="text/css" href="/main/css/ie.css" >
+<script src="/share/js/html5shiv.min.js"></script>
+<script src="/share/js/css3-mediaqueries.js"></script>
+<![endif]-->
+</head>
+<body>
+	<p id="skipnav"><a href="#contents">본문바로가기</a></p>
+	<!-- wrap str -->
+	<div class="wrap">
+		<!-- top str -->
+		<hr />
+<header>
+	<!-- 전자정부표시 -->
+<div class="top_line_bnr">
+	<div class="wrap wrapper">
+		<img src="/main/images/inc/header_flag.png" alt="태극기">이 누리집은 대한민국 공식 전자정부 누리집입니다.
+	</div>
+</div>
+<!-- // 전자정부표시 -->
+	<!-- gnb -->
+	
+
+<div id="gnb">
+	<div class="wrapper">
+		<ul class="family">
+			
+				<li class="gnb_m1"><a href="/main/" target="_blank">연수구청</a></li>
+				<li class="gnb_m7"><a href="/main/yeonsu/management/info.asp" target="_blank">연수구 제2청사</a></li>
+				<li class="gnb_m2"><a href="http://council.yeonsu.go.kr" target="_blank">연수구의회</a></li>
+				<li class="gnb_m3"><a href="/culture/" target="_blank">연수문화포털</a></li>
+				<li class="gnb_m4"><a href="/clinic/" target="_blank">연수구보건소</a></li>
+				<li class=""><a href="https://www.yspubliclib.go.kr/" target="_blank" title="새창">연수구립도서관</a></li>
+				<li class="gnb_m5"><a href="/edu/" target="_blank">주민자치센터교육</a></li>
+				<li class="gnb_m6"><a href="/lll/" target="_blank">평생교육센터</a></li>
+			
+		</ul>
+		<div class="gnb_right">
+			<ul class="gnb_menu">
+				<li class="home"><a href="/main"><span class="ir">연수구청</span></a></li>
+				
+				<li class="login"><a href="/main/guidance/login.asp?after_url=/main/part/property/brokerage.asp"><span>로그인</span></a></li>
+				
+				<li class="allmenu"><a href="#allmenu"><span>전체메뉴</span></a></li>
+				<li class="lang"><a href="#lang">LANGUAGE</a>
+					<ul>
+						
+						<li><a href="/foreign/china" target="_blank" title="새창-연수구청 중국어 홈페이지" onclick="window.open(this.href); return false;">简体中文</a></li>
+						<li><a href="/foreign/english" target="_blank" title="새창-연수구청 영어 홈페이지" onclick="window.open(this.href); return false;">ENGLISH</a></li>
+						<li><a href="/foreign/japan" target="_blank" title="새창-연수구청 일본어 홈페이지" onclick="window.open(this.href); return false;">にほんご</a></li>
+					</ul>
+				</li>
+				<!--외국어페이지 SNS부분-->
+				<!--li class="sns" style="display:none;"><span class="ir">SNS</span>
+					<ul>
+						<li><a href="https://welcometoyeonsu.tistory.com/" target="_blank" title="NewWindow"><img src="/foreign/images/inc/sns_tstory.gif" alt="T-Story" /></a></li>
+						<li><a href="https://www.facebook.com/welcometoyeonsu" target="_blank" title="NewWindow"><img src="/foreign/images/inc/sns_facebook.gif" alt="facebook" /></a></li>
+						<li><a href="https://twitter.com/welcometoyeonsu" target="_blank" title="NewWindow"><img src="/foreign/images/inc/sns_twitter.gif" alt="twitter" /></a></li>
+					</ul>
+				</li-->
+			</ul>
+		</div>
+	</div>
+</div>
+<script>	
+	
+
+	$(window).load(function(){
+		$(".allmenu").click(function(){
+			//$('#allmenu').show();
+			//	$('body, #wrap').css('overflow-y','auto');
+			
+				$.get('/main/inc/menu_ajax.asp', function(data){
+					$('#allmenu #array_menu').html(data);
+				});
+				
+				$.get('/main/inc/menu_abc_ajax.asp', function(data){
+					$('#allmenu #array_abc').html(data);
+				});
+			
+
+			return false;
+		});
+		
+		$(".allmenu>a").click(function(){
+			$("#allmenu").show();
+			$(".array_menu>a").focus();
+		});	
+	
+
+		$('#allmenu .btn_close').click(function(){
+			$('#allmenu').hide();
+			$('.allmenu>a').focus();
+			//	$('body, #wrap').css('overflow','hidden');
+			return false;
+		})
+		$('#array_abc').hide();
+		$('#allmenu .array_menu').click(function(){
+			$('.category li').removeClass('select');
+			$(this).addClass('select');
+			$('.allmenuBox>div#array_abc').hide();
+			$('.allmenuBox>div#array_menu').show();
+		});
+		$('#allmenu .array_abc').click(function(){
+			$('.category li').removeClass('select');
+			$(this).addClass('select');	
+			$('.allmenuBox>div#array_menu').hide();
+			$('.allmenuBox>div#array_abc').show();
+		});
+		$("#gnb .lang").click(function(){
+			$(this).children('ul').slideToggle();
+			return false; 
+		});		
+	});	
+	$(window).ready(function(){
+		$("#gnb .lang").children('ul').hide();
+	});	
+</script>
+	<!-- 전체메뉴 -->
+	
+<script>
+	function go_right(url){
+		document.location.href = url;
+	}
+</script>
+
+<div id="allmenu">
+	<div class="wrapper allmenuBox">
+		<h2 style="text-indent:-2999px;">전체메뉴</h2>
+		<ul class="category">
+			<li class="array_menu select"><a href="#array_menu" title="선택됨">메뉴별보기</a></li>
+			<li class="array_abc"><a href="#array_abc">가나다순보기</a></li>
+		</ul>	
+		<!-- 패밀리사이트 -->
+		<div class="allFamily">
+	<p><a href="#">관련 누리집</a></p>
+	<ul>
+		<li><a href="/headman/" target="_blank" title="새창">열린구청장실</a></li>
+		<li><a href="/clinic/" target="_blank" title="새창">보건소</a></li>
+		<li><a href="/culture/" target="_blank" title="새창">연수문화포털</a></li>
+		<li><a href="/edu/" target="_blank" title="새창">주민자치센터교육</a></li>
+		<li><a href="/safety/" target="_blank" title="새창">재난안전대책본부</a></li>
+		<li><a href="/job/" target="_blank" title="새창">연수일자리</a></li>
+		<li><a href="/fleamarket/" target="_blank" title="새창">알뜰나눔장터</a></li>
+		<li><a href="/lll/" target="_blank" title="새창">평생교육센터</a></li>
+		<li><a href="/publicity/" target="_blank" title="새창">연수구 홍보관</a></li>
+		<li><a href="/survey/" target="_blank" title="새창">설문조사시스템</a></li>
+		<li><a href="/tour/" target="_blank" title="새창">문화관광</a></li>
+		<li><a href="/welfare/" target="_blank" title="새창">복지포털</a></li>
+		<li><a href="/monitor/" target="_blank" title="새창">구정모니터</a></li>
+		<li><a href="/wheel/" target="_blank" title="새창">수레바퀴 꿈교실</a></li>
+	</ul>
+</div>
+		<!-- 메뉴별 시작111 -->
+		 <!-- <script>$(window).ready(function(){
+			$('#allmenu').hide();
+		});	 </script> -->
+		<div id="array_menu">
+			
+		</div>
+		<!-- 메뉴별 끝 -->
+		<!-- 가나다순 시작 -->
+		<div id="array_abc">
+			
+		</div>
+		<!-- 가나다순 끝 -->
+		<p class="btn_close"><a href="#">닫기</a></p>
+	</div>
+</div>
+
+	<div id="top">
+		<div class="wrapper top_con">
+			<div class="logoarea">
+				<h1><a href="/main/"><img src="/main/images/inc/logo.gif" alt="Better life Yeonsu 인천광역시 연수구" /></a></h1>
+				<p class="banr dp_pc"><a href="http://www.mois.go.kr/frt/sub/popup/p_taegugki_banner/screen.do" target="_blank" title="새창-국가상징팝업"><img src="/main/images/inc/banr_flag.gif" alt="국가상징 알아보기" /></a></p>
+			</div>
+			<div class="top_search">
+				<h2 class="dp_mb"><a href="#" class="ir">검색</a></h2>
+				<div id="top_search">
+					<form action="https://search.yeonsu.go.kr" name="frmMainTopSearch" method="get"  target="_blank">
+						<div class="select-box cate">
+							<label for="selectbox">통합검색</label>
+							<select id="selectbox" name="keyfield">
+								<option value="" selected="selected">통합검색</option>
+							</select>
+						</div>
+						<p class="word"><label for="total_s_keyword" class="hidden">검색어</label><input type="text" name="query" id="total_s_keyword" placeholder="검색어를 입력하세요" title="검색어를 입력하세요" /></p>
+						<p class="search_go"><input type="image" src="/main/images/inc/btn_search.gif" alt="검색" title="새창" /></p>
+					</form>
+				</div>
+			</div>
+		</div>
+		
+		<nav>
+  <div class="wrapper">
+    <h2 class="pc_hidden">
+      <a href="#" class="dp_mb ir">연수구 메뉴</a>
+      <span class="dp_pc ir">연수구 메뉴</span>
+    </h2>
+    <div class="mb_hidden" id="lnb">
+      <ul>
+        <li class="menu1">
+          <a href="#"><span>종합민원</span></a>
+          <div class="submenu">
+            <ul class="wrapper">
+              <li>
+                <a href="/main/general/civil/fromkiosk.asp">민원제도/안내</a>
+                <ul class="wrapper">
+                  <li><a href="/main/general/civil/fromkiosk.asp">민원인 대기현황</a></li>
+                  <li><a href="/main/general/civil/guide.asp">민원실안내</a></li>
+                  <!-- <li><a href="/main/general/civil/timetable.asp">Service Time schedule for Foreigners</a></li> -->
+                  <li><a href="/main/general/civil/anywhere.asp">어디서나민원안내</a></li>
+                  <li><a href="/main/general/civil/civil24.asp">정부24</a></li>
+                  <li><a href="/main/general/civil/guardian.asp">민원후견인제도</a></li>
+                  <li><a href="/main/general/civil/manless.asp">무인발급기안내</a></li>
+                  <li><a href="/main/general/civil/advance.asp">사전심사청구제</a></li>
+                  <li><a href="/main/general/civil/manual.asp">민원사무편람</a></li>
+                  <li><a href="/main/general/civil/form.asp">민원서식</a></li>
+                  <li><a href="/main/general/civil/faq.asp">자주하는 질문</a></li>
+                  <li><a href="/main/general/civil/foreign.asp">Foreign Civil Application</a></li>
+                  <li><a href="/main/general/civil/civil110.asp">110정부민원안내콜센터</a></li>
+                  <li><a href="/main/general/civil/call120.asp">120인천콜센터</a></li>
+                  <li><a href="/main/general/civil/close_onestop.asp">통합 폐업신고 서비스</a></li>
+                </ul>
+              </li>
+              <li>
+                <a href="/main/general/part/passport.asp">분야별민원</a>
+                <ul class="wrapper">
+                  <li><a href="/main/general/part/passport.asp">여권민원</a></li>
+                  <li><a href="/main/general/part/family.asp">가족관계등록민원</a></li>
+                  <li><a href="/main/general/part/sms.asp">지방세 고지서 발송 알림 문자서비스</a></li>
+                  <li><a href="/main/general/part/tax.asp">지방세민원</a></li>
+                  <li><a href="/main/general/part/arrears.asp">내 체납액 확인</a></li>
+                  <li><a href="/main/general/part/large_amount.asp">고액체납자 명단 공개</a></li>
+                  <!-- <li><a href="/main/general/part/roadname.asp">도로명주소 찾아보기</a></li> -->
+                  <li><a href="/main/general/part/factory.asp">공장설립&middot;등록민원</a></li>
+                  <li><a href="/main/general/part/advertise.asp">옥외광고물</a></li>
+                  <li><a href="/main/general/part/construction.asp">건설기계조종사 안전교육</a></li>
+                  <li><a href="/main/general/part/car.asp">자동차등록민원</a></li>
+                </ul>
+              </li>
+              <li>
+                <a href="/main/general/advice/general.asp">상담실</a>
+                <ul class="wrapper">
+                  <li><a href="/main/general/advice/general.asp">일반민원상담</a></li>
+                  <li><a href="/main/general/advice/youth.asp">청소년상담</a></li>
+                  <!-- <li><a href="/main/general/advice/health.asp">건강상담</a></li> -->
+                  <!-- <li><a href="/main/general/advice/covid19.asp">코로나19 신고</a></li> -->
+                  <li><a href="/main/general/advice/parking.asp">불법 주정차 신고</a></li>
+                  <li><a href="/main/general/advice/headman.asp">구청장에게 바란다</a></li>
+                  <li><a href="/main/general/advice/onecomp.asp">(구)온라인민원상담</a></li>
+                </ul>
+              </li>
+              <li>
+                <a href="/main/general/register/waste.asp">신고센터</a>
+                <ul class="wrapper">
+                  <li><a href="/main/general/register/waste.asp">예산낭비신고</a></li>
+                  <!-- <li><a href="/main/general/register/health.asp">건강신문고</a></li> -->
+                  <li><a href="/main/general/register/irrational.asp">공직자부조리신고</a></li>
+                  <!-- <li><a href="/main/general/register/public.asp">공익신고</a></li> -->
+                  <li><a href="/main/administration/clean/corruption.asp">부패&middot;공익신고</a></li>
+                  <li><a href="/main/general/register/bokjiro.asp">복지로</a></li>
+                  <li><a href="/main/general/register/sinmungo.asp">규제신문고</a></li>
+                </ul>
+              </li>
+              <li class="height">
+                <a href="/main/community/osmb/state.asp">연수구옴부즈만</a>
+                <ul class="wrapper">
+                  <li><a href="/main/community/osmb/state_greeting.asp">구성현황 및 운영개요</a></li>
+                  <li><a href="/main/community/osmb/process.asp">고충민원 처리절차</a></li>
+                  <li><a href="/main/community/osmb/report.asp">고충민원신고</a></li>
+                  <li><a href="/main/community/osmb/announce.asp">운영사항 공표</a></li>
+                </ul>
+              </li>
+              <li class="height">&nbsp;</li>
+              <li class="height">&nbsp;</li>
+              <li class="height">&nbsp;</li>
+            </ul>
+          </div>
+        </li>
+        <li class="menu2">
+          <a href="#"><span>행정정보</span></a>
+          <div class="submenu">
+            <ul class="wrapper">
+              <li class="height_long">
+                <a href="/main/administration/book/paper2025.asp">구정백서</a>
+                <ul class="wrapper">
+                  <li><a href="/main/administration/book/paper2025.asp">2025년</a></li>
+                  <li><a href="/main/administration/book/paper2024.asp">2024년</a></li>
+                  <li><a href="/main/administration/book/paper2023.asp">2023년</a></li>
+                  <li><a href="/main/administration/book/paper2021.asp">2021년</a></li>
+                  <li><a href="/main/administration/book/paper2020.asp">2020년</a></li>
+                  <li><a href="/main/administration/book/paper2019.asp">2019년</a></li>
+                  <li><a href="/main/administration/book/paper2018.asp">2018년</a></li>
+                  <li><a href="/main/administration/book/paper2017.asp">2017년</a></li>
+                  <li><a href="/main/administration/book/paper2016.asp">2016년</a></li>
+                  <li><a href="/main/administration/book/paper2015.asp">2015년</a></li>
+                  <li><a href="/main/administration/book/paper2014.asp">2014년</a></li>
+                  <li><a href="/main/administration/book/paper2013.asp">2013년</a></li>
+                  <li><a href="/main/administration/book/paper2012.asp">2012년</a></li>
+                  <li><a href="/main/administration/book/paper2011.asp">2011년</a></li>
+                  <li><a href="/main/administration/book/paper2010.asp">2010년</a></li>
+                  <li><a href="/main/administration/book/paper2009.asp">2009년</a></li>
+                </ul>
+              </li>
+              <li class="height_long">
+                <a href="/main/administration/business/operate.asp">주요사업</a>
+                <ul class="wrapper">
+                  <li><a href="/main/administration/business/operate.asp">구정운영방향</a></li>
+                  <li><a href="/main/administration/business/plan.asp">주요업무계획</a></li>
+                  <li><a href="/main/administration/business/plan_monthly.asp">월별 주요업무추진계획</a></li>
+                  <!-- <li><a href="/main/administration/business/city.asp">분야별 주요사업안내</a></li> -->
+                </ul>
+              </li>
+              <li class="height_long">
+                <a href="/main/administration/budget/summary.asp">예산정보</a>
+                <ul class="wrapper">
+                  <li><a href="/main/administration/budget/summary.asp">예산운영개요</a></li>
+                  <li><a href="/main/administration/budget/present.asp">예산현황</a></li>
+                  <li><a href="/main/administration/budget/tax.asp">세입&middot;세출 운용현황</a></li>
+                  <li><a href="/main/administration/budget/business_info.asp">사업별 세부 설명자료</a></li>
+                  <!--<li><a href="/main/administration/budget/info.asp">재정정보공개</a></li>-->
+                  <li><a href="/main/administration/budget/finance.asp">지방재정공시</a></li>
+                  <li><a href="/main/administration/budget/settlement.asp">결산</a></li>
+                  <li><a href="/main/administration/budget/examination.asp">투자심사결과</a></li>
+                  <li><a href="/main/administration/budget/local_bonds.asp">지방채 발행 계획 및 현황</a></li>
+                </ul>
+              </li>
+              <li class="height_long">
+                <a href="/main/administration/regulation/charter.asp">규제/심판</a>
+                <ul class="wrapper">
+                  <li><a href="/main/administration/regulation/charter.asp">행정서비스헌장</a></li>
+                  <li><a href="/main/administration/regulation/reform.asp">행정규제개혁</a></li>
+                  <li><a href="/main/administration/regulation/state.asp">등록규제현황</a></li>
+                  <li><a href="/main/administration/regulation/request.asp">규제입증요청</a></li>
+                  <!-- <li><a href="/main/administration/regulation/portal.asp">규제개혁포털</a></li> -->
+                  <li><a href="/main/administration/regulation/info.asp">행정심판안내</a></li>
+                  <li><a href="/main/administration/regulation/open.asp">행정처분공개</a></li>
+                  <!-- <li><a href="/main/administration/regulation/suggest.asp">행정규제개선건의</a></li> -->
+                  <!-- <li><a href="/main/administration/regulation/report.asp">행정규제신고</a></li> -->
+                </ul>
+              </li>
+              <li class="height_long">
+                <a href="/main/administration/open_info/info.asp">정보공개</a>
+                <ul class="wrapper">
+                  <li><a href="/main/administration/open_info/info.asp">정보공개제도 안내</a></li>
+                  <li><a href="/main/administration/open_info/info_private.asp">비공개대상정보</a></li>
+                  <li><a href="/main/administration/open_info/open.asp">사전정보공표</a></li>
+                  <li><a href="/main/administration/open_info/list.asp">정보목록</a></li>
+                  <li><a href="/main/administration/open_info/population.asp">인구현황</a></li>
+                  <li><a href="/main/administration/open_info/apply.asp">정보공개청구</a></li>
+                  <!-- <li><a href="/main/administration/open_info/monitor.asp">정보공개모니터방</a></li> -->
+                  <li><a href="/main/administration/open_info/data.asp">공공데이터개방</a></li>
+                  <li><a href="/main/administration/open_info/charge.asp">업무추진비</a></li>
+                  <li><a href="/main/administration/open_info/voucher.asp">상품권 구매 및 사용실적</a></li>
+                  <li><a href="/main/administration/open_info/organization.asp">조직정보 공개</a></li>
+                  <li><a href="/main/administration/open_info/personnel.asp">인사정보공개</a></li>
+                  <li><a href="/main/administration/open_info/instructor.asp">초빙강사료 내역</a></li>
+                  <li><a href="/main/administration/open_info/long.asp">장기근속&middot;퇴직(예정) 집행내역</a></li>
+                  <li><a href="/main/administration/open_info/info_academic.asp">학술연구용역</a></li>
+                </ul>
+              </li>
+              <li class="height">
+                <a href="/main/administration/stats/annals.asp">통계정보</a>
+                <ul class="wrapper">
+                  <li><a href="/main/administration/stats/annals.asp">통계연보</a></li>
+                  <li><a href="/main/administration/stats/basic.asp">사업체조사</a></li>
+                  <!-- <li><a href="/main/administration/stats/realestate.asp">연수구 부동산 거래동향</a></li> -->
+                  <li><a href="/main/administration/stats/social.asp">연수구 인천사회지표조사</a></li>
+                </ul>
+              </li>
+              <li class="height"><a href="/main/administration/realname.asp">정책실명제</a></li>
+              <li class="height">
+                <a href="/main/administration/autonomy/autonomy_info.asp">법무행정</a>
+                <ul class="wrapper">
+                  <li><a href="/main/administration/autonomy/autonomy_info.asp">법령정보</a></li>
+                  <li><a href="/main/administration/autonomy/laws.asp">자치법규</a></li>
+                  <li><a href="/main/administration/autonomy/litigation.asp">소송절차</a></li>
+                  <li><a href="/main/administration/autonomy/lawyer.asp">고문변호사 위촉현황</a></li>
+                </ul>
+              </li>
+              <li class="height">
+                <a href="/main/administration/Integrity.asp">청렴한마당</a>
+                <ul class="wrapper">
+                  <li><a href="/main/administration/Integrity.asp">청렴연수</a></li>
+                  <!-- <li><a href="/main/administration/clean/evaluation.asp">청렴도 평가</a></li> -->
+                  <li><a href="/main/administration/audit.asp">감사정보공개</a></li>
+                  <!-- <li><a href="/main/administration/clean/guide.asp">공직자 청렴가이드</a></li> -->
+                  <li><a href="/main/administration/clean/request.asp">청탁금지법 바로알기</a></li>
+                </ul>
+              </li>
+              <li class="height"><a href="/main/administration/homecomming.asp">귀국보고서</a></li>
+            </ul>
+          </div>
+        </li>
+        <li class="menu3">
+          <a href="#"><span>분야별 정보</span></a>
+          <div class="submenu">
+            <ul class="wrapper">
+              <li class="aList">
+                <a href="/main/part/welfare.asp">보건/복지</a>
+                <ul class="wrapper">
+                  <li><a href="/main/part/welfare.asp">보건/복지</a></li>
+                </ul>
+                <a href="/main/community/tender/open.asp">계약정보</a>
+                <ul class="wrapper">
+                  <li><a href="/main/community/tender/open.asp">계약정보공개시스템</a></li>
+                  <!-- <li><a href="/main/community/tender/private.asp">수의계약공개</a></li> -->
+                </ul>
+                <a href="/main/part/tour/tour.asp">문화/관광/체육</a>
+                <ul class="wrapper">
+                  <li><a href="/main/part/tour/tour.asp">문화/관광</a></li>
+                  <li><a href="/main/part/tour/art.asp">연수구립예술단</a></li>
+                  <li><a href="/main/part/tour/training.asp">홈트레이닝 영상</a></li>
+                  <li><a href="/main/part/tour/canoe.asp">연수구청 카누단</a></li>
+                </ul>
+                <a href="/main/part/cityplan/cityplan_term.asp">도시계획정보</a>
+                <ul class="wrapper">
+                  <li><a href="/main/part/cityplan/cityplan_term.asp">도시계획용어</a></li>
+                  <li><a href="/main/part/cityplan/cityplan.asp">지구단위계획</a></li>
+                </ul>
+                <a href="/main/part/youth/notice.asp">청년정책</a>
+                <ul>
+                  <li><a href="/main/part/youth/notice.asp">청년소식</a></li>
+                  <li><a href="/main/part/youth/young.asp">연수구 청년센터</a></li>
+                  <li><a href="/main/part/youth/suggest.asp">정책제안</a></li>
+                  <li><a href="/main/part/youth/job.asp">일자리</a></li>
+                  <li><a href="/main/part/youth/life.asp">생활안정</a></li>
+                  <li><a href="/main/part/youth/culture.asp">문화활동</a></li>
+                  <li><a href="/main/part/youth/link.asp">관련링크</a></li>
+                </ul>
+              </li>
+              <li>
+                <a href="/main/part/education/facility.asp">교육</a>
+                <ul class="wrapper">
+                  <li><a href="/main/part/education/facility.asp">교육시설현황</a></li>
+                  <li><a href="/main/part/education/lll.asp">연수구평생학습센터</a></li>
+                  <li><a href="/main/part/education/wheel.asp">수레바퀴 꿈 교실</a></li>
+                  <li><a href="/main/part/education/cyber.asp">인천e배움캠퍼스</a></li>
+                  <!-- <li><a href="/main/part/education/internet.asp">연수구인터넷수능방송</a></li> -->
+                  <li><a href="/main/part/education/resident.asp">구민정보화교육</a></li>
+                  <li><a href="/main/part/education/innovation.asp">교육혁신지구</a></li>
+                  <li><a href="/main/part/education/zone.asp">교육국제화특구</a></li>
+                  <li><a href="/main/part/education/language.asp">외국어 열린 센터</a></li>
+                  <li><a href="/main/part/education/yglec.asp">국제언어체험센터</a></li>
+                  <!-- <li><a href="/main/part/education/iclc.asp">제5차 ICLC 공식 홈페이지</a></li> -->
+                </ul>
+                <a href="/main/part/economy/facility.asp">산업/경제</a>
+                <ul class="wrapper">
+                  <li><a href="/main/part/economy/facility.asp">금융시설현황</a></li>
+                  <li><a href="/main/part/economy/info.asp">경제정보</a></li>
+                  <li><a href="/main/part/economy/price.asp">소비자물가동향</a></li>
+                  <li><a href="/main/part/economy/market.asp">재래시장 현황</a></li>
+                  <li><a href="/main/part/economy/eum.asp">연수e음</a></li>
+                  <li><a href="/main/part/economy/konacard.asp">인천e음카드 지원금 잔액조회</a></li>
+                  <li><a href="/main/part/economy/animal.asp">동물보호&middot;복지</a></li>
+                  <li><a href="/main/part/economy/job_information.asp">일자리정보</a></li>
+                  <li><a href="/main/part/economy/store.asp">소상공인</a></li>
+                </ul>
+                <a href="/main/part/disaster/disaster.asp">자연재난 안전정보</a>
+                <ul class="wrapper">
+                  <li><a href="/main/part/disaster/disaster.asp">연수구 재난안전대책본부</a></li>
+                  <li><a href="/main/part/disaster/disaster_guide.asp">자연재난 주민행동요령</a></li>
+                  <li><a href="/main/part/disaster/shelter.asp">지진 대피장소 현황</a></li>
+                </ul>
+              </li>
+              <li>
+                <a href="/main/part/traffic/parking.asp">교통/주차</a>
+                <ul class="wrapper">
+                  <li><a href="/main/part/traffic/parking.asp">공영주차장 현황</a></li>
+                  <li><a href="/main/part/traffic/cctv.asp">주정차단속 CCTV현황</a></li>
+                  <li><a href="/main/part/traffic/fine.asp">주정차단속 및 과태료</a></li>
+                  <li>
+                    <a href="/main/part/traffic/help_phone.asp">
+                      불법주정차
+                      <span class="pc_block">안전신문고 신고</span>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="/main/part/traffic/parkingsms.asp">
+                      주정차단속
+                      <span class="pc_block">문자알림 서비스</span>
+                    </a>
+                  </li>
+                  <li><a href="/main/part/traffic/subway.asp">지하철 노선안내</a></li>
+                  <li><a href="/main/part/traffic/usedcar.asp">중고차 구매요령</a></li>
+                  <li><a href="/main/administration/business/info.asp">주차장 공유</a></li>
+                  <li><a href="/main/administration/business/info_share.asp">교통유발부담금 제도</a></li>
+                  <li><a href="/main/administration/business/public_bus.asp">공영버스 사업 안내</a></li>
+                </ul>
+                <a href="/main/part/food/improve.asp">식품/위생</a>
+                <ul class="wrapper">
+                  <li><a href="/main/part/food/sanitation_class_info.asp">음식문화개선</a></li>
+                  <li><a href="/main/part/food/info.asp">유용한 식품정보</a></li>
+                  <li><a href="/main/part/food/finance.asp">식품진흥기금 융자사업</a></li>
+                  <li><a href="/main/part/food/advance.asp">식품위생단속 사전예고제</a></li>
+                  <li><a href="/main/part/food/poisoning.asp">식중독예방</a></li>
+                  <li><a href="/main/part/food/best.asp">The Best 공중위생업소 지정현황</a></li>
+                  <li><a href="/main/part/food/promotion.asp">연수구 생산식품 홍보관</a></li>
+                  <li><a href="/main/part/food/incongruity.asp">부적합제품 알림방</a></li>
+                  <li><a href="/main/part/food/hygiene.asp">유용한 위생정보</a></li>
+                  <li><a href="/main/part/food/food_notice.asp">식품제조·판매업소 공지사항</a></li>
+                  <li><a href="/main/part/food/child_dietaryLife01.asp">어린이식생활교육관</a></li>
+                </ul>
+                <a href="/main/part/defense.asp">민방위</a>
+                <ul class="wrapper">
+                  <li><a href="/safety/headquarters/defense/concept.asp">민방위 개념 및 필요성</a></li>
+                  <li><a href="/safety/headquarters/defense/standard.asp">민방위대 편성 기준</a></li>
+                  <li><a href="/safety/headquarters/defense/edu.asp">민방위 교육운영</a></li>
+                  <li><a href="/safety/headquarters/defense/defense_schedule.asp">민방위&middot;교육‧훈련 일정</a></li>
+                  <li><a href="/safety/headquarters/defense/location.asp">민방위교육장 오시는 길</a></li>
+                  <li><a href="/safety/headquarters/defense/cyber.asp">민방위 사이버교육</a></li>
+                  <li><a href="/safety/headquarters/defense/ptongji.asp">민방위 교육훈련통지서 전자송달 사전동의</a></li>
+                  <li><a href="/safety/headquarters/defense/facility.asp">민방위 시설장비 현황</a></li>
+                  <li><a href="/safety/headquarters/defense/result.asp">비상급수시설 수질검사 결과</a></li>
+                  <li><a href="/safety/headquarters/defense/emergency.asp">비상대비와 행동요령</a></li>
+                  <li><a href="/safety/headquarters/defense/cbrn.asp">화생방 대비물자 사용요령</a></li>
+                </ul>
+              </li>
+              <li>
+                <a href="/main/part/property/roadname.asp">주택/토지/부동산</a>
+                <ul class="wrapper">
+                  <li><a href="/main/part/property/roadname.asp">도로명주소</a></li>
+                  <li><a href="/main/part/property/price.asp">주택공시가격</a></li>
+                  <li><a href="/main/part/property/realty.asp">부동산거래관리시스템</a></li>
+                  <!-- <li><a href="/main/part/property/address.asp">새주소안내</a></li> -->
+                  <li><a href="/main/part/property/public.asp">공동주택 공지/홍보</a></li>
+                  <li><a href="/main/part/property/brokerage.asp">부동산중개보수</a></li>
+                  <li><a href="/main/part/property/land_info.asp">개별공시지가</a></li>
+                  <li><a href="/main/part/property/number.asp">바뀐 지번찾기</a></li>				<li><a href="/main/part/property/architectural_permit.asp">건축허가(신고)현황</a></li>
+                  <li><a href="/main/part/property/hanmaum_land.asp">더나누기 부동산중개사무소 참여업소</a></li>
+                  <li><a href="/main/part/property/architectural_committee.asp">건축위원회</a></li>
+                  <li><a href="/main/part/property/division.asp">토지이동정리</a></li>                  
+                  <li><a href="/main/part/property/contract_status.asp">토지거래계약현황</a></li>
+                  <li><a href="/main/part/property/brokerage_reserve.asp">부동산중개업 개설등록 사전예약</a></li>
+                  <li><a href="/main/part/property/officially.asp" class="ls_1">개별공시지가 「365 의견청취」</a></li>
+                  <li><a href="/main/part/property/check.asp">지적재조사사업</a></li>
+                  <!-- <li><a href="/main/part/property/find_village.asp">통/반 찾기</a></li> -->
+                  <!-- <li><a href="/main/part/property/map.asp">백문이불여일지도</a></li> -->
+                  <li><a href="/main/part/property/mzhouse.asp">MZ하우스 참여업소</a></li>
+                  <li><a href="/main/part/property/ancestor.asp">조상땅 찾기</a></li>
+                  <li><a href="/main/part/property/fraud.asp">전&middot;월세 사기 예방 정보 알리미</a></li>
+                </ul>
+                <a href="/main/part/develop/state.asp">도시개발현황</a>
+                <ul class="wrapper">
+                  <li><a href="/main/part/develop/state.asp">총괄현황</a></li>
+                  <li><a href="/main/part/develop/dongchun1.asp">동춘1구역</a></li>
+                  <li><a href="/main/part/develop/dongchun2.asp">동춘2구역</a></li>
+                  <li><a href="/main/part/develop/songdo.asp">송도역세권구역</a></li>
+                  <li><a href="/main/part/develop/songdo_park.asp">송도 대우자판(주)부지</a></li>
+                  <li><a href="/main/part/develop/dongchun2_book.asp">도시개발사업 백서</a></li>
+                </ul>
+                <!-- <a href="/main/part/weather.asp">기상정보</a> -->
+              </li>
+              <li>
+                <a href="/main/part/clean/house.asp">청소/환경</a>
+                <ul class="wrapper">
+                  <li><a href="/main/part/clean/house.asp">생활폐기물 배출방법</a></li>
+                  <li><a href="/main/part/clean/domestic.asp" class="ls_1">가정사업계폐기물 배출방법</a></li>
+                  <li><a href="/main/part/clean/large.asp">대형폐기물 배출방법</a></li>
+                  <!-- <li><a href="/main/part/clean/cleanup.asp">우리동네 청소의 날</a></li> -->
+                  <li><a href="/main/part/clean/fine.asp">무단투기 과태료 부과안내</a></li>
+                  <li><a href="/main/part/clean/food.asp">음식물류폐기물 배출방법</a></li>
+                  <li><a href="/main/part/clean/recycle.asp">재활용품 배출방법</a></li>
+                  <li><a href="/main/part/clean/pickup.asp">폐가전제품 무상 방문수거</a></li>
+                  <li><a href="/main/part/clean/disposable.asp">1회용품 규제</a></li>
+                  <li><a href="/main/part/clean/pper.asp">포장폐기물 억제</a></li>
+                  <li><a href="/main/part/clean/market.asp">알뜰나눔장터</a></li>
+                  <li><a href="/main/part/clean/workplace.asp">사업장폐기물</a></li>
+                  <li><a href="/main/part/clean/tank.asp">정화조 청소안내</a></li>
+                  <li>
+                    <a href="/main/part/clean/green.asp">
+                      탄소중립포인트(에너지 분야)
+                      <span class="pc_block">제도</span>
+                    </a>
+                  </li>
+                  <li><a href="/main/part/clean/notice.asp">환경정보알림서비스</a></li>
+                  <li><a href="/main/part/clean/dust.asp">미세먼지 안내</a></li>
+                  <li><a href="/main/part/clean/asbestos.asp">석면관련정보안내</a></li>
+                  <li><a href="/main/part/clean/toilet.asp">공중화장실 정보</a></li>
+                  <li><a href="/main/part/clean/violate.asp">환경관련법 위반사업장</a></li>
+                  <li><a href="/main/part/clean/clothes.asp">의류수거함</a></li>
+                  <li><a href="/main/part/clean/chemical_evacuation.asp">화학사고 대피장소</a></li>
+                </ul>
+                <a href="/main/part/cityview/city.asp" class="ls_1">도시경관 및 공공디자인</a>
+                <ul>
+                  <li><a href="/main/part/cityview/city.asp">도시경관</a></li>
+                  <li><a href="/main/part/cityview/public.asp">공공디자인</a></li>
+                  <li><a href="/main/part/cityview/standard.asp">표준디자인</a></li>
+                </ul>
+                <a href="/main/part/smartcity/city_about.asp" class="ls_1">스마트도시</a>
+                <ul>
+                  <li><a href="/main/part/smartcity/city_about.asp">스마트도시란</a></li>
+                  <li><a href="/main/part/smartcity/traffic.asp">교통</a></li>
+                  <li><a href="/main/part/smartcity/safe.asp">안전</a></li>
+                  <li><a href="/main/part/smartcity/welfare.asp">보건복지</a></li>
+                  <li><a href="/main/part/smartcity/environment.asp">환경</a></li>
+                  <li><a href="/main/part/smartcity/facilities.asp">시설</a></li>
+                  <li><a href="/main/part/smartcity/education.asp">교육</a></li>
+                </ul>
+                <a href="/main/part/foreigner/Introduction.asp" class="ls_1">외국인 주민 생활정보 안내</a>
+                <ul>
+                  <li><a href="/main/part/foreigner/Introduction.asp">연수구 소개</a></li>
+                  <li><a href="/main/part/foreigner/living.asp">생활정보</a></li>
+                  <li><a href="/main/part/foreigner/order.asp">기초생활질서</a></li>
+                  <li><a href="/main/part/foreigner/useful.asp">유용한 정보</a></li>
+                  <li><a href="/main/part/foreigner/promotion.asp">구정 홍보 안내</a></li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+        </li>
+        <li class="menu4">
+          <a href="#"><span>참여&middot;알림</span></a>
+          <div class="submenu">
+            <ul class="wrapper">
+              <li class="aList">
+                <a href="/main/community/notify/notice.asp">알림광장</a>
+                <ul class="wrapper">
+                  <li><a href="/main/community/notify/notice.asp">공지사항</a></li>
+                  <li><a href="/main/community/notify/gosi.asp">고시/공고/입법예고</a></li>
+                  <li><a href="/main/community/notify/job.asp">채용공고</a></li>
+                  <li><a href="/main/community/notify/schedule.asp">행사일정</a></li>
+                  <li><a href="/main/community/notify/word.asp">구보</a></li>
+                  <li><a href="/main/community/notify/report.asp">보도자료</a></li>
+                  <!-- <li><a href="/main/community/notify/menu.asp">구내식당</a></li> -->
+                  <!-- <li><a href="/main/community/notify/media.asp">언론이 본 연수</a></li> -->
+                </ul>
+              </li>
+              <li>
+                <a href="/main/community/active/active.asp">적극행정</a>
+                <ul class="wrapper">
+                  <li><a href="/main/community/active/active.asp">적극행정이란</a></li>
+                  <li><a href="/main/community/active/introduce.asp">이것이 바로 적극행정</a></li>
+                  <li><a href="/main/community/active/recommend.asp">추천합니다</a></li>
+                  <li><a href="/main/community/active/report.asp">신고합니다</a></li>
+                </ul>
+              </li>
+              <li>
+                <a href="/main/community/publicity/internet.asp">구정홍보</a>
+                <ul class="wrapper">
+                  <li><a href="/main/community/publicity/internet.asp">인터넷방송국</a></li>
+                  <li><a href="/main/community/publicity/news.asp">구정소식지</a></li>
+                  <!-- <li><a href="/main/community/publicity/banner.asp">배너광장</a></li> -->
+                  <li><a href="/main/community/publicity/gallery.asp">구정사진게시판</a></li>
+                  <li><a href="/main/community/publicity/photo.asp">사진으로 보는 연수</a></li>
+                  <li><a href="/main/community/publicity/cardnews.asp">카드뉴스</a></li>
+                  <li><a href="/main/community/publicity/sns.asp">SNS 서비스</a></li>
+                  <!-- <li><a href="/main/community/publicity/inews.asp">연수 INEWS</a></li> -->
+                  <!-- <li><a href="/main/community/publicity/webtoon.asp">힘내라 연수툰</a></li> -->
+                </ul>
+              </li>
+              <li>
+                <a href="/main/community/suggest/summary.asp">제안합니다</a>
+                <ul class="wrapper">
+                  <li><a href="/main/community/suggest/summary.asp">구민제안안내</a></li>
+                  <li><a href="/main/community/suggest/propose.asp">구민제안공모</a></li>
+                  <li><a href="/main/community/suggest/open.asp">공모제안보기</a></li>
+                  <li><a href="/main/community/suggest/public.asp">올바른 공공언어 제보</a></li>
+                  <!-- <li><a href="/main/community/suggest/mylist.asp">나의제안보기</a></li> -->
+                </ul>
+              </li>
+              <li>
+                <a href="/main/community/committee/list.asp">위원회방</a>
+                <ul class="wrapper">
+                  <li><a href="/main/community/committee/list.asp">각종 위원회 위원명단</a></li>
+                  <li><a href="/main/community/committee/minutes.asp">위원회 회의록</a></li>
+                </ul>
+              </li>
+              <li>
+                <a href="/main/community/budget/participate.asp">주민참여예산방</a>
+                <ul class="wrapper">
+                  <li><a href="/main/community/budget/participate.asp">주민참여예산제</a></li>
+                  <li><a href="/main/community/budget/summary.asp">예산편성참여방</a></li>
+                  <li><a href="/main/community/budget/youth.asp">청소년 예산편성참여방</a></li>
+                  <li><a href="/main/community/budget/result.asp">주민참여추진성과</a></li>
+                  <li><a href="/main/general/register/waste.asp" target="_blank" title="새창">예산낭비신고센터</a></li>
+                  <li><a href="/main/community/budget/notice.asp">알림마당</a></li>
+                  <!-- <li><a href="/main/community/budget/gallery.asp">주민참여갤러리</a></li> -->
+                </ul>
+              </li>
+              <li>
+                <a href="/main/community/wegive/wegive01.asp">고향사랑기부제</a>
+                <ul class="wrapper">
+                  <li><a href="/main/community/wegive/wegive01.asp">고향사랑기부제 안내</a></li>
+                  <li><a href="/main/community/wegive/wegive02.asp">연수구 답례품 안내</a></li>
+                  <li><a href="/main/community/wegive/wegive03.asp">기금사업 안내</a></li>
+                  <li><a href="/main/community/wegive/wegive04.asp">고향사랑기부금 접수·운용현황</a></li>
+                </ul>
+              </li>
+              <li>
+                <a href="/main/community/hope.asp">구정에바란다</a>
+                <a href="/main/community/poll.asp">연수구 설문조사</a>
+                <a href="/main/community/recommend.asp">연수인상구민추천제</a>
+              </li>
+              <li>
+                <a href="/main/community/meeting.asp">사이버반상회</a>
+                <a href="/main/community/free.asp">자유마당</a>
+                <a href="/main/community/notify.asp">연수알리미</a>
+              </li>
+              <li>
+                <!-- <a href="/main/community/correct.asp">연수한마당 바로잡습니다</a> -->
+                <a href="/main/community/studio.asp">연수스튜디오</a>
+                <a href="/main/community/kidscafe.asp">연수 꿈빛나래 키즈카페</a>
+                <a href="/main/community/suggest_current.asp">구민 건의사항 처리현황</a>
+              </li>
+              <li class="height">
+                <a href="/main/community/sg_photo.asp">공모전 수상작 전시</a>
+                <ul class="wrapper">
+                  <!-- <li><a href="/main/community/board_photo.asp">아름다운 간판 공모전 수상작</a></li> -->
+                  <li><a href="/main/community/sg_photo.asp">승기천 사진 공모전 수상작</a></li>
+                </ul>
+                <a href="/main/community/mailbox.asp">연수우편함</a>
+              </li>
+              <li class="height">&nbsp;</li>
+              <li class="height">&nbsp;</li>
+              <li class="height">&nbsp;</li>
+              <li class="height">&nbsp;</li>
+            </ul>
+          </div>
+        </li>
+        <li class="menu5">
+          <a href="#"><span>연수소개</span></a>
+          <div class="submenu">
+            <ul class="wrapper">
+              <li class="long">
+                <a href="/main/yeonsu/headman.asp">열린구청장실</a>
+                <ul class="wrapper">
+                  <li><a href="/headman/sub/greeting.asp">이재호입니다</a></li>
+                  <li><a href="/headman/sub/operate.asp">공약&매니페스토</a></li>
+                  <li><a href="/headman/sub/photogallery.asp">현장스케치</a></li>
+                  <li><a href="/headman/sub/hope.asp">구청장에 바란다</a></li>
+                </ul>
+                <a href="/main/yeonsu/management/info.asp">연수구 제2청사</a>
+                <ul class="wrapper">
+                  <li><a href="/main/yeonsu/management/info.asp">연수구 제2청사 소개</a></li>
+                  <li><a href="/main/yeonsu/management/administration.asp">사업안내</a></li>
+                  <li><a href="/main/yeonsu/management/notice.asp">알림마당</a></li>
+                </ul>
+              </li>
+              <li>
+                <a href="/main/yeonsu/intro/history.asp">우리 연수는</a>
+                <ul class="wrapper">
+                  <li><a href="/main/yeonsu/intro/history.asp">연혁</a></li>
+                  <li><a href="/main/yeonsu/intro/flow.asp">연수구 역사</a></li>
+                  <li><a href="/main/yeonsu/intro/legend.asp">전설과 설화</a></li>
+                  <li><a href="/main/yeonsu/intro/district.asp">행정구역</a></li>
+                  <li><a href="/main/yeonsu/intro/song.asp">연수찬가</a></li>
+                  <li><a href="/main/yeonsu/intro/symbol.asp">연수구 상징</a></li>
+                  <li><a href="/main/yeonsu/intro/logo.asp">도시브랜드(BI) 및 캐릭터</a></li>
+                  <!-- <li><a href="/main/yeonsu/intro/logo30th.asp">30주년 엠블럼</a></li> -->
+                </ul>
+              </li>
+              <li>
+                <a href="/main/yeonsu/general/welfare.asp">기본현황</a>
+                <ul class="wrapper">
+                  <li><a href="/main/yeonsu/general/welfare.asp">복지행정</a></li>
+                  <li><a href="/main/yeonsu/general/education.asp">교육</a></li>
+                  <li><a href="/main/yeonsu/general/culture.asp">문화&middot;체육</a></li>
+                  <li><a href="/main/yeonsu/general/safe.asp">안전관리</a></li>
+                  <li><a href="/main/yeonsu/general/economy.asp">지역경제</a></li>
+                  <li><a href="/main/yeonsu/general/city.asp">도시기반</a></li>
+                  <li><a href="/main/yeonsu/general/clinic.asp">보건&middot;위생</a></li>
+                  <li><a href="/main/yeonsu/general/park.asp">환경&middot;녹지</a></li>
+                </ul>
+              </li>
+              <li>
+                <a href="/main/yeonsu/office/organization.asp">구청안내</a>
+                <ul class="wrapper">
+                  <li><a href="/main/yeonsu/office/organization.asp">조직도</a></li>
+                  <li><a href="/main/yeonsu/office/charge.asp">업무별 담당안내</a></li>
+                  <li><a href="/main/yeonsu/office/lunch.asp">부서별 중식시간 민원처리 가능 업무</a></li>
+                  <li><a href="/main/yeonsu/office/map.asp">청사안내도</a></li>
+                  <!-- <li><a href="/main/yeonsu/office/phone.asp">행정전화번호안내</a></li> -->
+                  <li><a href="/main/yeonsu/office/location.asp">찾아오시는길</a></li>
+                  <li><a href="/main/yeonsu/office/parking.asp">주차장 이용안내</a></li>
+                </ul>
+              </li>
+              <li class="height">
+                <a href="/main/yeonsu/imagine/commendation.asp">상상연수</a>
+                <ul class="wrapper">
+                  <li><a href="/main/yeonsu/imagine/commendation.asp">대외평가 수상현황</a></li>
+                  <li><a href="/main/yeonsu/imagine/inhabitants.asp">명예로운 연수구민</a></li>
+                  <li><a href="/main/yeonsu/imagine/hof.asp">기부자 명예의전당</a></li>
+                </ul>
+              </li>
+              <li class="height">
+                <a href="/main/yeonsu/relationship/state.asp">자매결연</a>
+                <ul class="wrapper">
+                  <li><a href="/main/yeonsu/relationship/state.asp">자매결연도시현황</a></li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+        </li>
+        <li class="menu6">
+          <a href="/tour/" target="_blank" title="새창"><span>문화관광</span></a>
+        </li>
+      </ul>
+      <ul class="add_site mb_hidden">
+        <li>
+          <a href="/publicity/" target="_blank" title="새창"><img src="/main/images/inc/lnb_site01.png" alt="구정홍보관" /></a>
+        </li>
+        <!-- <li><a href="/etc/sms_publicity/form.asp" target="_blank" title="새창"><img src="/main/images/inc/lnb_site04.png" alt="구정소식지 문자서비스"></a></li>-->
+        <li>
+          <a href="/welfare/" target="_blank" title="새창"><img src="/main/images/inc/lnb_site02.png" alt="복지포털" /></a>
+        </li>
+        <li>
+          <a href="/culture/" target="_blank" title="새창"><img src="/main/images/inc/lnb_site03.png" alt="연수문화포털" /></a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+	</div>
+</header>
+<hr />
+		<!-- top end -->
+		<!-- container str -->
+		<div id="container" class="wrapper">
+			<!-- leftmenu str -->
+			<section id="leftmenu">
+	<h2 class="tit">분야별 정보<a href="#none" class="dp_mb">메뉴열기</a></h2>
+	<ul class="mb_hidden">
+		<li><a href="#none">보건/복지</a>
+			<ul>
+				<li><a href="/main/part/welfare.asp">보건/복지</a></li>
+				<!-- <li><a href="/main/part/food/corona.asp">코로나-19(COVID-19)</a></li> -->
+			</ul>
+		</li>
+		<li><a href="#none">계약정보</a>
+			<ul>
+				<li><a href="/main/community/tender/open.asp">계약정보공개시스템</a></li>
+			</ul>
+		</li>
+		<li><a href="#none">문화/관광/체육</a>
+			<ul>
+				<li><a href="/main/part/tour/tour.asp">문화/관광</a></li>
+				<li><a href="/main/part/tour/art.asp">연수구립예술단</a></li>
+				<li><a href="/main/part/tour/training.asp">홈트레이닝 영상</a></li>
+				<li><a href="/main/part/tour/canoe.asp">연수구청 카누단</a></li>
+			</ul>
+		</li>
+		<li><a href="#none">교육</a>
+			<ul>
+				<li><a href="/main/part/education/facility.asp">교육시설현황</a></li>
+				<li><a href="/main/part/education/lll.asp">연수구평생학습센터</a></li>
+				<li><a href="/main/part/education/wheel.asp">수레바퀴 꿈 교실</a></li>
+				<li><a href="/main/part/education/cyber.asp">인천e배움캠퍼스</a></li>
+				<!-- <li><a href="/main/part/education/internet.asp">인터넷수능방송</a></li> -->
+				<li><a href="/main/part/education/resident.asp">구민정보화교육</a></li>
+				<li><a href="/main/part/education/innovation.asp">교육혁신지구</a></li>
+				<li><a href="/main/part/education/zone.asp">교육국제화특구</a></li>
+				<li><a href="/main/part/education/language.asp">외국어 열린 센터</a></li>
+				<li><a href="/main/part/education/yglec.asp">국제언어체험센터</a></li>
+				<!-- <li><a href="/main/part/education/iclc.asp">제5차 ICLC 공식 홈페이지</a></li> -->
+			</ul>
+		</li>
+		<li><a href="#none">산업/경제</a>
+			<ul>
+				<li><a href="/main/part/economy/facility.asp">금융시설현황</a></li>
+				<!-- <li><a href="/main/part/economy/prop.asp">중소기업 건의사항</a></li> -->
+				<li><a href="/main/part/economy/info.asp">경제정보</a></li>
+				<li><a href="/main/part/economy/price.asp">소비자물가동향</a></li>
+				<li><a href="/main/part/economy/market.asp">재래시장 현황</a></li>
+				<li><a href="/main/part/economy/eum.asp">연수e음</a></li>
+                <li><a href="/main/part/economy/konacard.asp">인천e음카드 지원금 잔액조회</a></li>
+				<li><a href="/main/part/economy/animal.asp">동물보호&middot;복지</a></li>
+				<li><a href="/main/part/economy/job_information.asp">일자리정보</a></li>
+				<li><a href="/main/part/economy/store.asp">소상공인</a></li>
+			</ul>
+		</li>
+		<li><a href="#none">교통/주차</a>
+			<ul>
+				<li><a href="/main/part/traffic/parking.asp">공영주차장 현황</a></li>
+				<li><a href="/main/part/traffic/cctv.asp">주정차단속 CCTV현황</a></li>
+				<li><a href="/main/part/traffic/fine.asp">주정차단속 및 과태료</a></li>
+				<li><a href="/main/part/traffic/help_phone.asp">불법주정차 <span class="pc_block">안전신문고 신고</span></a></li>
+				<li><a href="/main/part/traffic/parkingsms.asp">주정차단속 문자알림 서비스</a></li>
+				<li><a href="/main/part/traffic/subway.asp">지하철 노선안내</a></li>
+				<li><a href="/main/part/traffic/usedcar.asp">중고차 구매요령</a></li>
+				<li><a href="/main/administration/business/info.asp">주차장 공유</a></li>
+				<li><a href="/main/administration/business/info_share.asp">교통유발부담금 제도</a></li>
+                <li><a href="/main/administration/business/public_bus.asp">공영버스 사업 안내</a></li>
+			</ul>
+		</li>
+		<li><a href="#none">식품/위생</a>
+			<ul>
+				<li><a href="/main/part/food/sanitation_class_info.asp">음식문화개선</a></li>
+				<li><a href="/main/part/food/info.asp">유용한 식품정보</a></li>
+				<li><a href="/main/part/food/finance.asp">식품진흥기금 융자사업</a></li>
+				<li><a href="/main/part/food/advance.asp">식품위생단속 사전예고제</a></li>
+				<li><a href="/main/part/food/poisoning.asp">식중독예방</a></li>
+				<li><a href="/main/part/food/best.asp" class="ls_1">The Best 공중위생업소 지정현황</a></li>
+				<li><a href="/main/part/food/promotion.asp">연수 생산식품 홍보관</a></li>
+				<li><a href="/main/part/food/incongruity.asp">부적합제품 알림방</a></li>
+				<li><a href="/main/part/food/hygiene.asp">유용한 위생정보</a></li>
+				<li><a href="/main/part/food/food_notice.asp">식품제조·판매업소 공지사항</a></li>
+				<li><a href="/main/part/food/child_dietaryLife01.asp">어린이식생활교육관</a></li>
+			</ul>
+		</li>
+		<li><a href="#none">청소/환경</a>
+			<ul>
+				<li><a href="/main/part/clean/house.asp">생활폐기물 배출방법</a></li>
+				<li><a href="/main/part/clean/domestic.asp">가정사업계폐기물(가연성&middot;불연성) 배출방법</a></li>
+				<li><a href="/main/part/clean/large.asp">대형폐기물 배출방법</a></li>
+				<li><a href="/main/part/clean/fine.asp">무단투기 과태료 부과안내</a></li>
+				<li><a href="/main/part/clean/food.asp">음식물류폐기물 배출방법</a></li>
+				<li><a href="/main/part/clean/recycle.asp">재활용품 배출방법</a></li>
+				<li><a href="/main/part/clean/pickup.asp">폐가전제품 배출방법</a></li>
+				<li><a href="/main/part/clean/disposable.asp">1회용품 규제</a></li>
+				<li><a href="/main/part/clean/pper.asp">포장폐기물 억제</a></li>
+				<li><a href="/main/part/clean/market.asp">알뜰나눔장터</a></li>
+				<li><a href="/main/part/clean/workplace.asp">사업장폐기물</a></li>
+				<li><a href="/main/part/clean/tank.asp">정화조 청소안내</a></li>
+				<li><a href="/main/part/clean/green.asp">탄소중립포인트(에너지 분야) 제도</a></li>
+				<li><a href="/main/part/clean/notice.asp">환경정보알림서비스</a></li>
+				<li><a href="/main/part/clean/dust.asp">미세먼지 안내</a></li>
+				<li><a href="/main/part/clean/asbestos.asp">석면관련정보안내</a></li>
+				<li><a href="/main/part/clean/toilet.asp">공중화장실 정보</a></li>
+				<li><a href="/main/part/clean/violate.asp">환경관련법 위반사업장</a></li>
+				<li><a href="/main/part/clean/clothes.asp">의류수거함</a></li>
+				<li><a href="/main/part/clean/chemical_evacuation.asp">화학사고 대피장소</a></li>
+			</ul>
+		</li>
+		<li><a href="#none">주택/토지/부동산</a>
+			<ul>
+				<li><a href="/main/part/property/roadname.asp">도로명주소</a></li>
+				<li><a href="/main/part/property/price.asp">주택공시가격</a></li>
+				<li><a href="/main/part/property/realty.asp">부동산거래관리시스템</a></li>
+				<!-- <li><a href="/main/part/property/address.asp">새주소안내</a></li> -->
+				<li><a href="/main/part/property/public.asp">공동주택 공지/홍보</a></li>
+				<li><a href="/main/part/property/brokerage.asp">부동산중개보수</a></li>
+				<li><a href="/main/part/property/land_info.asp">개별공시지가</a></li>
+				<li><a href="/main/part/property/number.asp">바뀐 지번찾기</a></li>
+				<li><a href="/main/part/property/architectural_permit.asp">건축허가(신고)현황</a></li>
+				<li><a href="/main/part/property/hanmaum_land.asp" class="ls_1">더나누기 부동산중개사무소<span class="pc_block"> 참여업소</span></a></li>
+				<li><a href="/main/part/property/architectural_committee.asp">건축위원회</a></li>
+				<li><a href="/main/part/property/division.asp">토지이동정리</a></li>				
+				<li><a href="/main/part/property/contract_status.asp">토지거래계약현황</a></li>
+				<li><a href="/main/part/property/brokerage_reserve.asp">부동산중개업 개설등록 <span class="pc_block">사전예약</span></a></li>
+				<li><a href="/main/part/property/officially.asp">개별공시지가 「365 의견청취」</a></li>
+				<li><a href="/main/part/property/check.asp">지적재조사사업</a></li>
+				<!-- <li><a href="/main/part/property/map.asp">백문이불여일지도</a></li> -->
+				<li><a href="/main/part/property/mzhouse.asp">『MZ하우스』 참여업소</a></li>
+				<li><a href="/main/part/property/ancestor.asp">조상땅 찾기</a></li>
+				<li><a href="/main/part/property/fraud.asp">전&middot;월세 사기 예방 정보 알리미</a></li>
+			</ul>
+		</li>
+		<li><a href="#none">도시계획정보</a>
+			<ul>
+				<li><a href="/main/part/cityplan/cityplan_term.asp">도시계획용어</a></li>
+				<li><a href="/main/part/cityplan/cityplan.asp">지구단위계획</a></li>
+			</ul>
+		</li>
+		<li><a href="#none">도시개발현황</a>
+			<ul>
+				<li><a href="/main/part/develop/state.asp">총괄현황</a></li>
+				<li><a href="/main/part/develop/dongchun1.asp">동춘1구역</a></li>
+				<li><a href="/main/part/develop/dongchun2.asp">동춘2구역</a></li>
+				<li><a href="/main/part/develop/songdo.asp">송도역세권구역</a></li>
+				<li><a href="/main/part/develop/songdo_park.asp">송도 대우자판(주)부지</a></li>
+				<li><a href="/main/part/develop/dongchun2_book.asp">도시개발사업 백서</a></li>
+			</ul>
+		</li>
+		<li><a href="/main/part/defense.asp">민방위</a></li>
+		<!-- <li><a href="/main/part/weather.asp">기상정보</a></li> -->
+		<li><a href="#none">자연재난 안전정보</a>
+			<ul>
+				<li><a href="/main/part/disaster/disaster.asp">연수구 재난안전대책본부</a></li>
+				<li><a href="/main/part/disaster/disaster_guide.asp">자연재난 주민행동요령</a></li>
+				<li><a href="/main/part/disaster/shelter.asp">지진 대피장소 현황</a></li>
+			</ul>
+		</li>
+		<li><a href="/main/part/cityview/city.asp">도시경관 및 공공디자인</a>
+			<ul>
+				<li><a href="/main/part/cityview/city.asp">도시경관</a></li>
+				<li><a href="/main/part/cityview/public.asp">공공디자인</a></li>
+				<li><a href="/main/part/cityview/standard.asp">표준디자인</a></li>
+			</ul>
+		</li>
+		<li><a href="/main/part/youth/notice.asp">청년정책</a>
+			<ul>
+				<li><a href="/main/part/youth/notice.asp">청년소식</a></li>
+				<li><a href="/main/part/youth/young.asp">연수구 청년센터</a></li>
+				<li><a href="/main/part/youth/suggest.asp">정책제안</a></li>
+				<li><a href="/main/part/youth/job.asp">일자리</a></li>
+				<li><a href="/main/part/youth/life.asp">생활안정</a></li>
+				<li><a href="/main/part/youth/culture.asp">문화활동</a></li>
+				<li><a href="/main/part/youth/link.asp">관련링크</a></li>
+			</ul>
+		</li>
+		<li><a href="/main/part/smartcity/city_about.asp">스마트도시</a>
+			<ul>
+				<li><a href="/main/part/smartcity/city_about.asp">스마트도시란</a></li>
+				<li><a href="/main/part/smartcity/traffic.asp">교통</a></li>
+				<li><a href="/main/part/smartcity/safe.asp">안전</a></li>
+				<li><a href="/main/part/smartcity/welfare.asp">보건복지</a></li>
+				<li><a href="/main/part/smartcity/environment.asp">환경</a></li>
+				<li><a href="/main/part/smartcity/facilities.asp">시설</a></li>
+				<li><a href="/main/part/smartcity/education.asp">교육</a></li>
+			</ul>
+		</li>
+		<li><a href="/main/part/foreigner/Introduction.asp">외국인 주민 생활정보 안내</a>
+			<ul>
+				<li><a href="/main/part/foreigner/Introduction.asp">연수구 소개</a></li>
+				<li><a href="/main/part/foreigner/living.asp">생활정보</a></li>
+				<li><a href="/main/part/foreigner/order.asp">기초생활질서</a></li>
+				<li><a href="/main/part/foreigner/useful.asp">유용한 정보</a></li>
+				<li><a href="/main/part/foreigner/promotion.asp">구정 홍보 안내</a></li>
+			</ul>
+		</li>
+	</ul>
+</section>
+<script>
+//<![CDATA[
+$(window).on('load', function () {
+  // ─────────────────────────────────────────────────────
+  // 1) 기존 URL 기반 .select 지정 (원문 유지)
+  // ─────────────────────────────────────────────────────
+  // var current_url = "/main/part/property/brokerage.asp";
+  var current_url = "/main/part/property/brokerage.asp";
+  
+  $("nav #lnb a[href='"+current_url+"']").parent().parent().parent().parent().parent().parent('li').addClass("select"); 
+  $("nav #lnb a[href='"+current_url+"']").parent().parent().parent().parent('li').addClass("select"); 
+  
+  $("#leftmenu a[href='"+current_url+"']").parent('li').addClass("select").parent().parent('li').addClass("select"); 
+  $("#tab a[href='"+current_url+"']").parent().parent('li').addClass("select");	
+  
+  // $("#tab a[href='"+current_url+"']").attr('title','선택됨');  // ← 개별 설정은 아래 일괄갱신으로 대체
+
+  var tam = $("nav #lnb a[href='"+$("#tab li:first-child a").attr('href')+"']").attr('href');
+  $("nav #lnb a[href='"+tam+"']").parent().parent().parent().parent().parent().parent().parent().addClass("select"); 		
+  $("#leftmenu a[href='"+tam+"']").parent().parent().parent().addClass("select"); 
+  $("#leftmenu a[href='"+tam+"']").parent().addClass("select");
+  
+  var stam = $("#tab a[href='"+$("#stab li:first-child a").attr('href')+"']").attr('href');
+  $("#tab a[href='"+stam+"']").parent().parent().addClass("select");
+  if(!$("#stab a[href='"+current_url+"']").parent('li').hasClass('no_select')){
+    $("#stab a[href='"+current_url+"']").parent('li').addClass("select");
+    // $("#tab a[href='"+stam+"']").attr('title','선택됨');
+    // $("#stab a[href='"+current_url+"']").attr('title','선택됨');
+  }
+
+  var sstam = $("#sstab li:first-child a").attr('href');
+  $("#stab a[href='"+sstam+"']").parent().parent().addClass("select");
+  $("#sstab a[href='"+current_url+"']").parent('li').addClass("select");
+
+  // ─────────────────────────────────────────────────────
+  // 2) 타이틀 일괄 갱신 유틸 (leftmenu / tabs)
+  // ─────────────────────────────────────────────────────
+  function updateLeftmenuTitles() {
+    var $left = $('#leftmenu');
+    if (!$left.length) return;
+    // 기본: 모두 축소됨
+    $left.find('> ul > li > a').attr('title', '축소됨');
+    // select 가진 li의 자식 a: 확장됨
+    $left.find('> ul > li.select > a').attr('title', '확장됨');
+  }
+
+
+  // 🔽 여기에 #tab 기본 "축소됨" 추가 버전
+  function updateTabTitles() {
+    var $tabWraps = $('#tab, #stab, #sstab, .sub_title+#tab');
+    $tabWraps.each(function () {
+      var $wrap = $(this);
+      // 기본 모두 "축소됨"
+      $wrap.find('li a').attr('title', '축소됨');
+      // select가 붙은 항목만 "선택됨"
+      $wrap.find('li.select a').attr('title', '선택됨');
+    });
+  }
+
+  // 초기 1회 갱신
+  updateLeftmenuTitles();
+  updateTabTitles();
+
+  // ─────────────────────────────────────────────────────
+  // 3) #leftmenu 단일 선택형 + 클릭 즉시 타이틀 반영
+  // ─────────────────────────────────────────────────────
+  var $left = $('#leftmenu');
+
+  // 단일 선택형: 클릭하면 기존 select 제거 후 현재 li에만 select
+  $left.on('click', '> ul > li > a', function () {
+    var $li = $(this).parent('li');
+    // 페이지 이동이 일어나면 다음 페이지에서 다시 계산되므로,
+    // 여기서는 즉시 시각/접근성 반영만 수행
+    $left.find('> ul > li').removeClass('select');
+    $li.addClass('select');
+    updateLeftmenuTitles(); // 클릭 즉시 "확장됨" 반영
+    // 기본 링크 이동은 그대로 두기 (preventDefault 하지 않음)
+  });
+
+  // ※ 만약 구조가 #leftmenu > ul > li > a 가 아니라 중간 태그가 있으면,
+  // 위의 두 셀렉터를 아래처럼 완화해 사용하세요.
+  // $left.on('click', '> ul > li a', function () { ... });
+  // 그리고 updateLeftmenuTitles() 내부도
+  //  - $left.find('> ul > li a')
+  //  - $left.find('> ul > li.select a')
+  // 로 바꿔 주세요.
+});
+//]]>
+</script>
+
+<hr />
+			<!-- leftmenu end -->
+			<!-- contents str -->
+			<div id="contents">
+				<!-- 서브타이틀 -->
+				<div class="sub_title">
+	<h3>부동산중개보수
+</h3><ol>
+	<li class="home">HOME</li><li>분야별 정보</li><li>주택/토지/부동산</li><li class="now">부동산중개보수</li>
+</ol>
+<script>
+	//<![CDATA[
+	function share(type){
+		if(type=="facebook"){
+			window.open('http://www.facebook.com/sharer.php?u=http://www.yeonsu.go.kr/main/part/property/brokerage.asp');
+		}else if(type=="twitter"){
+			window.open('https://twitter.com/intent/tweet?url=http://www.yeonsu.go.kr/main/part/property/brokerage.asp');
+		}else if(type=="kakao"){
+			window.open('https://story.kakao.com/share?url='+encodeURIComponent(location.href));
+		}else if(type=="nblog"){
+			window.open('http://share.naver.com/web/shareView.nhn?url='+encodeURIComponent(location.href)+'&title=%EB%B6%80%EB%8F%99%EC%82%B0%EC%A4%91%EA%B0%9C%EB%B3%B4%EC%88%98+%7C+%EB%B6%84%EC%95%BC%EB%B3%84+%EC%A0%95%EB%B3%B4+%EC%A3%BC%ED%83%9D%2F%ED%86%A0%EC%A7%80%2F%EB%B6%80%EB%8F%99%EC%82%B0+%7C+%EC%97%B0%EC%88%98%EA%B5%AC%EC%B2%AD', 'nblog', 'width=500, height=600');
+		}
+	}	
+
+	function go_print_contents(){		
+		//window.open('/share/inc/print_window.asp?acode=main&wp=/main/part/property/brokerage.asp', 'print_window', 'height=768, width=910');
+		print();
+	}
+	//]]>
+</script>
+
+
+<ul class="sns">
+	<li class="sns01"><a href="#facebook" onclick="share('facebook'); return false;" title="새창_페이스북으로 공유">페이스북</a></li>
+	<li class="sns02"><a href="#twitter" onclick="share('twitter'); return false;" title="새창_트위터X로 공유">트위터X</a></li>
+	<li class="sns03"><a href="#blog" onclick="share('nblog'); return false;" title="새창_블로그로 공유">블로그</a></li>
+	<!-- <li class="sns04"><a href="#kakaostory" onclick="share('kakao'); return false;" title="새창_카카오스토리로 공유">카카오스토리</a></li>	 -->
+	
+	<li class="favorite"><a href="/main/guidance/login.asp?after_url=/main/part/property/brokerage.asp" onclick="return confirm('로그인이 필요한 서비스입니다');">즐겨찾기</a></li>
+	
+	<li class="print"><a href="#print" onclick="go_print_contents(); return false;">프린트</a></li>
+</ul>
+
+<script>
+	$('#add_favorite').on('click', function(){
+		$.ajax({
+			cache		: false, 
+			type			: 'POST',
+			url				: $(this).attr('href'),
+			dataType	: 'HTML',
+			success		:
+				function(result){
+					if(result == '0'){
+						alert('즐겨찾기에 등록 되었습니다.');
+					} else if(result == '1'){
+						alert('잘못된 URL입니다.');
+					} else if(result == '2'){
+						alert('이미 등록된 페이지입니다');
+					}
+				},
+			error			:
+				function(){alert('처리중 오류 발생')}
+		});
+
+		return false;
+	});
+</script>				
+</div>
+				<!-- detail_contents -->
+				<section id="detail_con">
+					
+					<div class="outlink">
+						<p class="img"><img src="/main/images/contents/part/brokerage.jpg" alt="인천광역시 사이트 내 중개보수 자동계산 페이지" /></p>
+						<div class="con">
+							<h4>부동산중개보수</h4>
+							<p class="txt">주택 보수 거래금액 요율상한 및 한도액을 알 수 있으며 주택 및 <span class="pc_block">주택 외, 오피스텔의 중개보수를 자동 계산할 수 있습니다.</span></p>
+							<p><a href="https://www.incheon.go.kr/build/BU060102/274" class="conbtn" target="_blank" title="새창"><span class="link">부동산중개보수 바로가기</span></a></p>
+						</div>						
+					</div>
+
+				</section>
+				<!-- detail_contents end -->
+				<!-- 정보관리, 댓글  -->
+				
+
+<div id="data_control">
+	<article class="info">
+		<h3 class="hidden">QR코드</h3>
+		<ul class="qrcode">
+			<!-- <li class="qr"><img src="/qrcode/_main_part_property_brokerage.png" alt="부동산중개보수(http://www.yeonsu.go.kr/main/part/property/brokerage.asp) 바로가기 QR코드" id="qrcode_image" /></li> -->
+			<li class="txt"><!-- QR CODE 이미지를 스마트폰에 인식시키면 자동으로 이 페이지로 연결됩니다. --><!--<p class="mb_inline">이 QR CODE는 <span class="strong">민원제도.안내</span> 페이지의 정보를 담고 있습니다.</p> -->
+			이 게시물은 &quot;공공누리 제 3유형(출처표시+변경금지)&quot; 조건에 따라 자유롭게 이용이 가능합니다.
+			</li>
+			<li class="open"><a href="https://www.kogl.or.kr/info/licenseType3.do" target="_blank" title="새창 - 공공누리 유형안내"><img src="/share/images/inc/img_opentype03.png" alt="OPEN 공공누리 공공저작물 자유이용허락 | 이용조건:출처표시+변경금지" /></a></li>
+		</ul>
+	</article>
+
+	<div class="control">
+		
+		<article class="manager">
+			<h3 class="tit">자료관리담당자</h3>
+			<ul class="con">
+				<li><span class="q">담당부서 :</span> <span class="a">토지정보과</span></li>
+				<li><span class="q">담당팀 :</span> <span class="a">부동산관리</span></li>
+				<!--<li><span class="q">담당자 :</span> <span class="a"></span></li>-->
+				<li><span class="q">전화번호 :</span> <span class="a">032-749-7582</span>
+				</li>
+			</ul>
+		</article>	
+		
+		<!-- 한줄의견달기 끝 -->
+	</div>
+	
+</div>
+
+
+
+			</div>
+			<!-- contents end -->
+		</div>
+		<!-- container end -->
+		<!-- bottom str -->
+		<footer>
+	<div class="related">
+		<div class="wrapper">
+			<ul class="link">
+  <li>
+    <a href="#none">행정복지센터</a>
+    <div>
+      <ul class="overscroll">
+        <li><a href="/dong/?dong_idx=17" target="_blank" title="새창열림">옥련1동</a></li>
+        <li><a href="/dong/?dong_idx=18" target="_blank" title="새창열림">옥련2동</a></li>
+        <li><a href="/dong/?dong_idx=19" target="_blank" title="새창열림">선학동</a></li>
+        <li><a href="/dong/?dong_idx=20" target="_blank" title="새창열림">연수1동</a></li>
+        <li><a href="/dong/?dong_idx=21" target="_blank" title="새창열림">연수2동</a></li>
+        <li><a href="/dong/?dong_idx=22" target="_blank" title="새창열림">연수3동</a></li>
+        <li><a href="/dong/?dong_idx=23" target="_blank" title="새창열림">청학동</a></li>
+        <li><a href="/dong/?dong_idx=24" target="_blank" title="새창열림">동춘1동</a></li>
+        <li><a href="/dong/?dong_idx=25" target="_blank" title="새창열림">동춘2동</a></li>
+        <li><a href="/dong/?dong_idx=26" target="_blank" title="새창열림">동춘3동</a></li>
+        <li><a href="/dong/?dong_idx=39" target="_blank" title="새창열림">송도1동</a></li>
+        <li><a href="/dong/?dong_idx=53" target="_blank" title="새창열림">송도2동</a></li>
+        <li><a href="/dong/?dong_idx=64" target="_blank" title="새창열림">송도3동</a></li>
+        <li><a href="/dong/?dong_idx=70" target="_blank" title="새창열림">송도4동</a></li>
+        <li><a href="/dong/?dong_idx=77" target="_blank" title="새창열림">송도5동</a></li>
+      </ul>
+    </div>
+  </li>
+  <li>
+    <a href="#none">
+      군/구
+      <span class="ml_5 dp_pc">누리집</span>
+    </a>
+    <div>
+      <ul class="overscroll">
+        <li><a target="_blank" title="새창열림" href="https://www.incheon.go.kr">인천광역시청</a></li>
+        <li><a target="_blank" title="새창열림" href="https://www.jemulpo.go.kr">제물포구</a></li>
+        <li><a target="_blank" title="새창열림" href="https://www.yeongjong.go.kr">영종구</a></li>
+        <li><a target="_blank" title="새창열림" href="https://www.michuhol.go.kr">미추홀구</a></li>
+        <li><a target="_blank" title="새창열림" href="https://www.icbp.go.kr">부평구</a></li>
+        <li><a target="_blank" title="새창열림" href="https://www.namdong.go.kr">남동구</a></li>
+        <li><a target="_blank" title="새창열림" href="https://www.gyeyang.go.kr">계양구</a></li>
+        <li><a target="_blank" title="새창열림" href="https://www.seohae.go.kr/">서해구</a></li>
+        <li><a target="_blank" title="새창열림" href="https://www.geomdan.go.kr">검단구</a></li>
+        <li><a target="_blank" title="새창열림" href="https://www.ganghwa.go.kr">강화군청</a></li>
+        <li><a target="_blank" title="새창열림" href="https://www.ongjin.go.kr">옹진군청</a></li>
+      </ul>
+    </div>
+  </li>
+  <li>
+    <a href="#none">
+      유관기관
+      <span class="dp_pc">누리집</span>
+    </a>
+    <div>
+      <ul class="overscroll">
+        <!-- <li><a href="/clinic/" target="_blank" title="새창열림">연수구보건소</a></li> -->
+        <li><a href="https://ysjaedan.imweb.me/" target="_blank" title="새창열림">연수큰재장학재단</a></li>
+        <li><a href="https://www.yeonsusenior.or.kr/" target="_blank" title="새창열림">연수구노인복지관</a></li>
+        <li><a href="http://www.yeonsusilver.org" target="_blank" title="새창열림">연수노인인력개발센터</a></li>
+        <li><a href="http://www.pot0924.org" target="_blank" title="새창열림">연수구청소년수련관</a></li>
+        <li><a href="http://www.ysfsmc.or.kr/" target="_blank" title="새창열림">연수구시설안전관리공단</a></li>
+        <li><a href="http://www.ice.go.kr" target="_blank" title="새창열림">인천시교육청</a></li>
+        <li><a href="http://www.icpolice.go.kr/" target="_blank" title="새창열림">인천시경찰청</a></li>
+        <li><a href="http://www.ifez.go.kr/" target="_blank" title="새창열림">경제자유구역청</a></li>
+        <li><a href="http://ys.icpolice.go.kr/" target="_blank" title="새창열림">연수경찰서</a></li>
+        <li><a href="http://ic.nec.go.kr/ic/icyeonsu/sub1.jsp" target="_blank" title="새창열림">연수구선거관리위원회</a></li>
+        <!-- <li><a href="http://www.cheonghak.or.kr" target="_blank" title="새창열림">청학노인문화센터</a></li> -->
+        <li><a href="http://www.cheonghak.or.kr" target="_blank" title="새창열림">청학노인복지관</a></li>
+        <li><a href="http://incheon.lx.or.kr/incheon/index.jsp" target="_blank" title="새창열림">한국국토정보공사 인천본부</a></li>
+        <li><a href="http://www.icmc.or.kr" target="_blank" title="새창열림">인천의료원</a></li>
+        <li><a href="http://www.insiseol.or.kr/" target="_blank" title="새창열림">인천시설관리공단</a></li>
+        <li><a href="http://www.nfcf.or.kr/" target="_blank" title="새창열림">산림조합중앙회</a></li>
+        <li><a href="http://www.idi.re.kr" target="_blank" title="새창열림">인천발전연구원</a></li>
+        <li><a href="http://www.portincheon.go.kr" target="_blank" title="새창열림">인천해양수산청</a></li>
+        <li><a href="http://www.airport.kr" target="_blank" title="새창열림">인천국제공항</a></li>
+        <li><a href="http://www.kahp.or.kr/" target="_blank" title="새창열림">건강관리협회</a></li>
+        <li><a href="http://www.fsc.go.kr/" target="_blank" title="새창열림">금융감독위원회</a></li>
+        <li><a href="http://www.kesco.or.kr/" target="_blank" title="새창열림">한국전기안전공사</a></li>
+        <li><a href="http://www.hallymsh.net" target="_blank" title="새창열림">인천시립노인병원</a></li>
+        <li><a href="http://www.idtc.co.kr/" target="_blank" title="새창열림">인천시도시개발공사</a></li>
+        <li><a href="http://www.yeonsu.info" target="_blank" title="새창열림">연수저널</a></li>
+        <li><a href="http://www.nps.or.kr" target="_blank" title="새창열림">국민연금공단</a></li>
+        <li><a href="http://www.ysyouth.or.kr" target="_blank" title="새창열림">연수구청소년상담복지센터</a></li>
+        <!-- <li><a href="http://www.ysyouth.or.kr" target="_blank" title="새창열림">연수구청소년지원센터</a></li> -->
+        <li><a href="http://www.kilf.re.kr" target="_blank" title="새창열림">지방세연구원</a></li>
+        <li><a href="http://www.yeonsu.or.kr" target="_blank" title="새창열림">연수문화원</a></li>
+        <li><a href="http://www.kogas.or.kr" target="_blank" title="새창열림">한국가스공사</a></li>
+        <li><a href="http://www.ys-scc.com" target="_blank" title="새창열림">연수구 육아종합지원센터</a></li>
+        <li><a href="http://yeonsu.familynet.or.kr/ " target="_blank" title="새창열림">연수구 가족센터</a></li>
+        <!-- <li><a href="http://yeonsu.familynet.or.kr/ " target="_blank" title="새창열림">연수구 건강가정&middot;다문화가족지원센터 </a></li> -->
+        <li><a href="http://global.incheon.go.kr/index.do" target="_blank" title="새창열림">인천외국인종합지원센터</a></li>
+        <li><a href="http://www.ysfac.or.kr" target="_blank" title="새창열림">연수문화재단</a></li>
+        <li><a href="https://yeonsugu1365.kr/" target="_blank" title="새창열림">연수구자원봉사센터</a></li>
+        <li><a href="http://www.ysycc.kr" target="_blank" title="새창열림">청소년문화의집</a></li>
+        <li><a href="http://youthcareer.kr" target="_blank" title="새창열림">청소년진로지원센터</a></li>
+        <li><a href="https://www.animal.go.kr/" target="_blank" title="새창열림">국가동물보호정보시스템</a></li>
+      </ul>
+    </div>
+  </li>
+  <li>
+    <a href="#none">
+      관련
+      <span class="dp_pc">누리집</span>
+    </a>
+    <div>
+      <ul class="overscroll">
+        <li><a href="/yglec/" target="_blank" title="새창열림">국제언어체험센터</a></li>
+        <li><a href="/headman/" target="_blank" title="새창열림">열린구청장실</a></li>
+        <li><a href="/clinic/" target="_blank" title="새창열림">연수구보건소</a></li>
+        <li><a href="/culture/" target="_blank" title="새창열림">연수문화포털</a></li>
+        <li><a href="/edu/" target="_blank" title="새창열림">주민자치센터교육</a></li>
+        <li><a href="/safety/" target="_blank" title="새창열림">재난안전대책본부</a></li>
+        <li><a href="/job/" target="_blank" title="새창열림">연수일자리</a></li>
+        <li><a href="/fleamarket/" target="_blank" title="새창열림">알뜰나눔장터</a></li>
+        <li><a href="/lll/" target="_blank" title="새창열림">평생교육센터</a></li>
+        <li><a href="/publicity/" target="_blank" title="새창열림">연수구 홍보관</a></li>
+        <li><a href="/survey/" target="_blank" title="새창열림">설문조사시스템</a></li>
+        <li><a href="/tour/" target="_blank" title="새창열림">문화관광</a></li>
+        <li><a href="/welfare/" target="_blank" title="새창열림">복지포털</a></li>
+        <!-- <li><a href="/monitor/" target="_blank" title="새창열림">구정모니터</a></li> -->
+        <li><a href="/wheel/" target="_blank" title="새창열림">수레바퀴 꿈교실</a></li>
+        <!-- <li><a href="/se/" target="_blank" title="새창열림">사회적경제지원센터</a></li> -->
+        <li><a href="https://www.yspubliclib.go.kr/" target="_blank" title="새창열림">연수구립공공도서관</a></li>
+        <!-- <li><a href="http://www.yeonsumaeul.org" target="_blank" title="새창열림">연수구 마을만들기지원센터</a></li> -->
+        <!-- <li><a href="http://safemap.yeonsu.go.kr/" target="_blank" title="새창열림">연수구생활안전지도</a></li>-->
+      </ul>
+    </div>
+  </li>
+</ul>
+<script>
+  $(function () {
+  	// 기본: 모든 li > a에 title="축소됨"
+  	$('ul.link > li > a').attr('title', '축소됨');
+
+  	// 클릭 시 처리
+  	$('ul.link').on('click', 'li > a', function (e) {
+  		// 모든 형제 li의 a는 축소됨으로
+  		$(this).closest('ul.link').find('li > a').attr('title', '축소됨');
+  		// 클릭된 a만 확장됨으로
+  		$(this).attr('title', '확장됨');
+  	});
+  });
+</script>
+
+		</div>
+	</div>
+	<!--
+	<script src="/share/js/jquery.mCustomScrollbar.concat.min.js"></script>	
+	<script>
+		(function($){
+			$(window).load(function(){				
+				$(".overscroll").mCustomScrollbar({
+					scrollButtons:{enable:true},
+					theme:"light-thick",
+					scrollbarPosition:"outside"
+				});
+			});
+
+		})(jQuery);
+	</script>
+	-->
+	<div class="wrapper bottom">
+		<ul class="btm_logolist">
+			<li class="btm_logo"><img src="/main/images/inc/btm_logo.gif" alt="Better life Yeonsu"></li>
+			<!-- <li><img src="/main/images/inc/btm_3-0.gif" alt="정부 3.0 / 2015년도 정부 3.0 우수기관 대한민국정부"></li> -->
+			
+			<!--<li>
+				<a href="/main/guidance/webpolicy.asp">
+				<img src="/main/images/inc/btm_web.gif" alt="과학기술정보통신부 WEB ACCESSIBILITY">
+			</li> -->
+		</ul>		
+		<div class="btm_info">
+			<ul class="btm_menu">
+				<li class="btn_wfont"><a href="/main/guidance/personal/privacy_policy.asp">개인정보처리방침</a></li>
+				<!-- <li><a href="/main/guidance/email.asp">이메일주소무단수집거부</a></li> -->
+				<li><a href="/main/yeonsu/office/location.asp">찾아오시는길</a></li>
+				<!-- <li><a href="/main/community/homepage.asp">홈페이지개선의견</a></li> -->
+				<li><a href="/main/guidance/copyright.asp">저작권정책</a></li>
+			</ul>
+			<div class="copy">
+				
+				<address>[21967]인천광역시 연수구 원인재로 115(동춘동) <span class="tel">대표전화 : </span><span class="tel_num">032-749-7114 (인천콜센터 ☎032-120)</span></address>
+				<p class="copyright">COPYRIGHT&copy;YEONSU-GU, INCHEON. ALL RIGHTS RESERVED.</p>
+				
+			</div>					
+		</div>
+		
+		<!--
+		<ul class="btm_visitor  dp_pc">
+			<li class="today">TODAY : <span>1,298</span></li>
+			<li class="total">TOTAL : <span>12,140,686</span></li>
+		</ul> -->
+	</div>
+</footer>
+
+<script>//<![CDATA[
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-79435619-1', 'auto');
+  ga('send', 'pageview');
+//]]>
+</script>
+
+		<!-- bottom end -->
+	</div>
+	<!-- wrap end -->	
+</body>
+</html>
+

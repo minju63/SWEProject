@@ -1,0 +1,1822 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <title>인천유스톡톡 인천청년포털</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1, maximum-scale=1, user-scalable=yes">
+  <meta name="title" content="인천청년포털 인천유스톡톡">
+  <meta name="keywords" content="인천청년포털, 인천유스톡톡, 인천청년정책, 청년정책">
+  <meta name="description" lang="ko" content="인천청년포털, 인천유스톡톡">
+  <meta name="author" content="인천광역시">
+  <meta property="og:title" content="인천청년포털">
+  <meta property="og:description" content="인천청년포털, 인천유스톡톡">
+  <meta property="og:image" content="/share/images/og_img.png">
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  <link href="/share/css/common.css?v2" rel="stylesheet">
+  <link href="/css/inc.css?v5" rel="stylesheet">
+  <link href="/css/main.css?v5.5" rel="stylesheet">
+  <script src="/share/js/jquery-3.2.0.min.js"></script>
+  <script src="/share/js/mainui.js"></script>
+  <script src="/share/js/splide.min.js"></script>
+  <link href="/share/js/swiper-bundle.min.css" rel="stylesheet">
+  <script src="/share/js/effect-carousel.min.js"></script>
+  <script src="/share/js/swiper-bundle.min.js"></script>
+</head>
+<body>
+  
+<style>
+	.layer-pop {
+		position: fixed;
+		left: 0;
+		top: 0;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		width: 100vw;
+		height: 100vh;
+		padding: 1rem;
+		z-index: 9999;
+		/* background: rgba(0, 0, 0, 0.70); */
+	}
+
+	.layer-pop>div {
+		line-height: 0;
+		border-radius: 2rem;
+		background: #FFF;
+		overflow: hidden;
+	}
+	
+	.layer-pop>div img{
+		line-height: 0;
+		font-size: 0;
+	}
+
+	.layer-pop .layer-pop-close {
+		display: flex;
+		align-items: center;
+		background: #222;
+	}
+
+	.layer-pop .layer-pop-close p,
+	.layer-pop .layer-pop-close a {
+		flex: 1 1 50%;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		gap: 0.6rem;
+		padding: 2rem 0;
+		color: #888;
+		font-size: 1.7rem;
+		font-weight: 500;
+		line-height: 160%;
+		letter-spacing: -0.34px;
+	}
+
+	.layer-pop .layer-pop-close p {
+		border-right: 1px solid #000;
+	}
+
+	.layer-pop .layer-pop-close p input {
+		width: 1.9rem;
+		height: 1.9rem;
+		border-radius: 2px;
+		border: 1px solid #000;
+		background: #FFF;
+	}
+	
+	.layer-pop .layer-pop-close p input:focus-visible {
+		outline:0.1rem solid #ffd84e; box-shadow: inset 0.1rem 0.1rem #000, inset -0.1rem -0.1rem #000;
+	}
+</style>
+
+
+
+
+
+
+
+
+<script>
+	if(getCookie("pop1") == "hide"){
+		$(".popup1").hide();
+	} else {
+		$(".popup1").show();
+	}
+
+	if(getCookie("pop2") == "hide"){
+		$(".popup2").hide();
+	} else {
+		$(".popup2").show();
+	}
+
+	$("#popup1").on('click', function(){
+		if($(this).is(':checked')){
+			setCookie("pop1", "hide", 1);
+		} else {
+			setCookie("pop1", "hide", -1);
+		}
+	});
+
+	$("#popup2").on('click', function(){
+		if($(this).is(':checked')){
+			setCookie("pop2", "hide", 1);
+		} else {
+			setCookie("pop2", "hide", -1);
+		}
+	});
+	
+	$("#popup1_close").click(function(){
+		$(".popup1").hide();
+		return false;
+	});
+	
+	$("#popup2_close").click(function(){
+		$(".popup2").hide();
+		return false;
+	});
+
+	function getCookie(c_name){
+		var i,x,y,ARRcookies=document.cookie.split(";");
+		for (i=0;i<ARRcookies.length;i++){
+			x=ARRcookies[i].substr(0,ARRcookies[i].indexOf("="));
+			y=ARRcookies[i].substr(ARRcookies[i].indexOf("=")+1);
+			x=x.replace(/^\s+|\s+$/g,"");
+			if (x==c_name){
+				return unescape(y);
+			}
+		}
+	}
+
+	function setCookie(c_name,value,exdays){
+		var exdate=new Date();
+		exdate.setDate(exdate.getDate() + exdays);
+		var c_value=escape(value) + ((exdays==null) ? "" : "; expires="+exdate.toUTCString());
+		document.cookie=c_name + "=" + c_value;
+	}
+
+</script>
+<p class="skipnav"><a href="#contents">본문 바로가기</a></p>
+<header>
+  <div class="wrap header-top">
+    <h1><a href="/">인천유스톡톡 인천청년포털</a></h1>
+    <div class="header-search-box">
+	<div class="header-search">
+		<form action="/search" target="_blank" onsubmit="return fnSearch(this);">
+			<label class="ir" for="search">검색</label>
+			<input type="text" name="query" id="search" title="검색어 입력란" placeholder="검색어를 입력하세요">
+			<input type="submit" value="검색" title="새창">
+			<script>
+		function fnSearch(frm){
+			if(frm.query.value==""){
+				alert("검색어를 입력 하세요.");
+				frm.query.focus();
+				return false;
+			}
+			return true;
+		}
+	</script>
+		</form>
+	</div>
+	</div>
+<script>
+	visualSlideUtil({
+		location: ".header-popular>ul>li",		// 필수 입력 - 적용할 요소의 자식까지의 경로 
+		position: "top",			// 필수 입력 - 상하 좌우 구분("left" 또는 "top"으로)
+		touch: [true,150] ,			// 선택 입력 - 터치 사용여부(true 또는 false)
+		auto: true ,			// 선택 입력 - 자동재생 사용여부(true 또는 false)
+	});
+</script><div class="header-login">
+      <a href="/member/memberLoginForm.do" class="login">로그인</a>
+      	</div>
+  </div>
+  <nav id="lnb">
+    <div class="wrap">
+      <h2><a href="#">전체메뉴</a></h2>
+      <div id="allmenu">
+  <div class="allmenu-box">
+    <div>
+      <div class="allmenu-top">
+        <p class="logo">인천유스톡톡 인천청년포털</p>
+      </div>
+      <div class="allmenu-menu">
+        <div>
+          <p class="tit">인천청년정책</p>
+          <div class="sub-menu">
+	<ul>
+		<li>
+			<a href="/policy/search_incheon.jsp">청년정책검색</a>
+			<ul class="depth">
+				<li><a href="/policy/search_incheon.jsp">인천청년정책</a></li>
+				<li><a href="/policy/search_nation.jsp">전국청년정책</a></li>
+			</ul>
+		</li>
+		<li><a href="/policy/calendar.jsp">정책 캘린더</a></li>
+		<li><a href="/policy/data.jsp">정책자료실</a></li>
+		<li><a href="/policy/notice.jsp">공지사항</a></li>
+		<li><a href="/policy/youth_movie.jsp">청년 영상터</a></li>
+		<li><a href="/policy/survey.jsp">설문조사</a></li>
+		<li><a href="/policy/youth_portal.jsp">전국 청년포털</a></li>
+		<li>
+			<a href="/policy/relate_job.jsp">분야별 홈페이지</a>
+			<ul class="depth">
+				<li><a href="/policy/relate_job.jsp">일자리</a></li>
+				<li><a href="/policy/relate_living.jsp">주거·생활</a></li>
+				<li><a href="/policy/relate_edu.jsp">교육·문화</a></li>
+				<li><a href="/policy/relate_welfare.jsp">복지·기타</a></li>
+			</ul>
+		</li>
+		<li>
+			<a href="/policy/vision.jsp">정책안내</a>
+			<ul class="depth">
+				<li><a href="/policy/vision.jsp">청년정책비전</a></li>
+				<li><a href="/policy/law.jsp">법령 및 조례</a></li>
+			</ul>
+		</li>
+	</ul>
+</div></div>
+        <div>
+          <p class="tit">일자리</p>
+          <div class="sub-menu">
+  <ul>
+    <li><a href="/job/suit.jsp">취업지원</a>
+      <ul class="depth">
+        <li><a href="/job/suit.jsp">드림나래(면접정장대여)</a>
+          <ul>
+            <li><a href="/job/suit.jsp">사업안내</a></li>
+            <li><a href="/job/suit_faq.jsp">FAQ</a></li>
+          </ul>
+        </li>
+        <li><a href="/job/dream.jsp">드림체크카드(구직활동비 지원)</a>
+          <ul>
+            <li><a href="/job/dream.jsp">사업안내</a></li>
+            <li><a href="/job/dream_notice.jsp">공지사항</a></li>
+            <li><a href="/job/dream_faq.jsp">FAQ</a></li>
+          </ul>
+        </li>
+        <li><a href="/job/certificate.jsp">청년 자격증 응시료 지원</a>
+          <!-- <ul>
+            <li><a href="/job/certificate.jsp">사업안내</a></li>
+            <li><a href="/job/certificate_notice.jsp">공지사항</a></li>
+            <li><a href="/job/certificate_faq.jsp">FAQ</a></li>
+          </ul> -->
+        </li>
+        <li><a href="/job/leap.jsp">청년 도약기지</a></li>
+        <li><a href="/job/challenge.jsp">청년도전 지원사업</a></li>
+        <li><a href="/job/university.jsp">대학일자리플러스센터 운영 지원</a></li>
+      </ul>
+    </li>
+    <li><a href="/job/special.jsp">창업지원</a>
+      <ul class="depth">
+        <li><a href="/job/special.jsp">청년창업 특례보증 및 이차보전</a></li>
+        <li><a href="/job/overseas.jsp">청년해외 진출기지 지원</a></li>
+        <li><a href="/job/startup.jsp">인천스타트업파크 운영</a></li>
+      </ul>
+    </li>
+    <li><a href="/job/working.jsp">청년고용기업 근로환경개선</a></li>
+    <li><a href="/job/incheon.jsp">인천 일자리정보</a></li>
+    <li><a href="https://nysc.or.kr/nysc/pages/center4.php?cat1=3&amp;type=3&amp;keyword=" target="_blank" title="새창">전국청년센터 채용(인천)</a></li>
+  </ul>
+</div>
+</div>
+        <div>
+          <p class="tit">주거·복지</p>
+          <div class="sub-menu">
+  <ul>
+    <li>
+      <a href="/dwelling/interest.jsp">주거지원</a>
+      <ul class="depth">
+        <li>
+          <a href="/dwelling/interest.jsp">청년 주택임차보증금 이자 지원</a>
+          <ul>
+            <li><a href="/dwelling/interest.jsp">사업안내</a></li>
+            <li><a href="/dwelling/interest_faq.jsp">FAQ</a></li>
+          </ul>
+        </li>
+        <!-- <li>
+          <a href="/dwelling/transfer.jsp">전입청년 이사 지원사업</a>
+          <ul>
+            <li><a href="/dwelling/transfer.jsp">사업안내</a></li>
+            <li><a href="/dwelling/transfer_faq.jsp">FAQ</a></li>
+          </ul>
+        </li> -->
+        <li>
+          <a href="/dwelling/monthly.jsp">청년월세 지원사업</a>
+          <ul>
+            <li><a href="/dwelling/monthly.jsp">사업안내</a></li>
+            <li><a href="/dwelling/monthly_faq.jsp">FAQ</a></li>
+          </ul>
+        </li>
+        <li><a href="/dwelling/guarantee.jsp">인천 전세보증금반환보증 보증료 지원</a></li>
+        <li><a href="/dwelling/lease.jsp">기존 주택매입임대</a></li>
+        <li><a href="/youthpolicy/youthPolicyInfoDetail.do?poly_seq=380">청년주택임차보증금 이자 지원 대출 연장</a></li>
+      </ul>
+    </li>
+    <li>
+      <a href="/dwelling/welcome.jsp">복지지원</a>
+      <ul class="depth">
+        <!-- <li><a href="/dwelling/welcome.jsp">인천 전입청년 1인가구 환영상자 지원</a></li> -->
+        <li><a href="/dwelling/military.jsp">군복무 인천청년 상해보험 지원</a></li>
+        <!-- <li><a href="/dwelling/contest.jsp">인천시 청년정책 공모전</a></li> -->
+        <li><a href="/dwelling/addict.jsp">청년중독관리사업</a></li>
+        <li><a href="/dwelling/future.jsp">인천광역시 청년미래센터</a></li>
+      </ul>
+    </li>
+  </ul>
+</div>
+</div>
+        <div>
+          <p class="tit">금융</p>
+          <div class="sub-menu">
+  <ul>
+    <li><a href="/financial/dreamfor.jsp">금융지원</a>
+      <ul class="depth">
+        <li><a href="/financial/dreamfor.jsp">드림For 청년통장</a>
+          <ul>
+            <li><a href="/financial/dreamfor.jsp">사업안내</a></li>
+            <li><a href="/financial/dreamfor_notice.jsp">공지사항</a></li>
+            <li><a href="/financial/dreamfor_faq.jsp">FAQ</a></li>
+          </ul>
+        </li>
+        <li><a href="/financial/point.jsp">재직청년 복지포인트</a>
+          <ul>
+            <li><a href="/financial/point.jsp">사업안내</a></li>
+            <li><a href="/financial/point_form.jsp">제출서류</a></li>
+            <li><a href="/financial/point_notice.jsp">공지사항</a></li>
+            <li><a href="/financial/point_faq.jsp">FAQ</a></li>
+          </ul>
+        </li>
+        <!-- <li><a href="/financial/deduction.jsp">인천뿌리청년내일채움공제</a></li>
+        <li><a href="/financial/career.jsp">인천뿌리경력이음채움공제</a></li> -->
+        <li><a href="/financial/saving.jsp">청년내일저축계좌</a></li>
+        <li><a href="/financial/seed.jsp">행복씨앗통장 운영(청년발달장애인)</a></li>
+      </ul>
+    </li>
+    <li><a href="/financial/student_loan.jsp">학자금지원</a>
+      <ul class="depth">
+        <li><a href="/financial/student_loan.jsp">학자금 대출이자 지원</a></li>
+        <li><a href="/financial/scholarship.jsp">맞춤형 상생장학금 지원</a></li>
+      </ul>
+    </li>
+    <li><a href="/financial/independence.jsp">자립준비청년지원</a>
+      <ul class="depth">
+        <li><a href="/financial/independence.jsp">자립수당 지급</a></li>
+        <li><a href="/financial/resettle.jsp">자립정착금 지원</a></li>
+      </ul>
+    </li>
+  </ul>
+</div>
+</div>
+        <div>
+          <p class="tit">교육·문화</p>
+          <div class="sub-menu">
+  <ul>
+    <li><a href="/education/ai.jsp">교육지원</a>
+      <ul class="depth">
+        <!-- <li><a href="/education/dodream.jsp">두드림(Do Dream)청년캠프</a></li> -->
+        <li><a href="/education/ai.jsp">SW.AI기술 활용인력 양성교육</a></li>
+        <li><a href="/education/content.jsp">청년콘텐츠 우수인재양성</a></li>
+        <li><a href="/education/e_finance.jsp">금융감독원 e-금융교육</a></li>
+        <li><a href="/education/upclass.jsp">청년 재정 UP 클래스</a></li>
+      </ul>
+    </li>
+    <li><a href="/education/government.jsp">직업체험</a>
+      <ul class="depth">
+        <li><a href="/education/government.jsp">공공기관 청년 아르바이트 운영</a></li>
+        <li><a href="/education/international.jsp">국제기구 직업체험 프로그램</a></li>
+        <li><a href="/education/mice.jsp">마이스업체 청년인턴십</a></li>
+        <li><a href="/education/intern.jsp">청년 체험형 인턴운영</a></li>
+      </ul>
+    </li>
+    <li><a href="/education/localizer.jsp">문화지원</a>
+      <ul class="depth">
+        <li><a href="/education/localizer.jsp">청년 로컬크리에이터 육성</a></li>
+        <li><a href="/education/travel.jsp">인천청춘여행단 운영</a></li>
+      </ul>
+    </li>
+    <li><a href="/education/culture.jsp">청년문화공간</a>
+      <ul class="depth">
+        <li><a href="/education/culture.jsp">청년문화창작소</a></li>
+        <li><a href="/education/jemulpo.jsp">제물포지하상가 청년특화 공간</a></li>
+      </ul>
+    </li>
+  </ul>
+</div>
+</div>
+        <div>
+          <p class="tit">참여·권리</p>
+          <div class="sub-menu">
+  <ul>
+    <li>
+      <a href="/participation/committee.jsp">청년정책조정위원회</a>
+      <!-- <ul class="depth">
+        <li><a href="/participation/committee.jsp">사업안내</a></li>
+        <li><a href="/participation/committee_app.jsp">신청하기</a></li>
+      </ul> -->
+    </li>
+    <li>
+      <a href="/participation/network_info.jsp">청년정책네트워크</a>
+      <ul class="depth">
+        <li><a href="/participation/network_info.jsp">사업안내</a></li>
+        <li><a href="/participation/network_notice.jsp">공지사항</a></li>
+      </ul>
+    </li>
+    <!-- <li><a href="/participation/suggestion.jsp">청년정책제안</a></li>
+    <li><a href="/participation/db.jsp">인천청년 DB</a></li> -->
+    <li><a href="/participation/incheon_week.jsp">인천청년주간</a></li>
+  </ul>
+</div>
+</div>
+        <div>
+          <p class="tit">청년공간</p>
+          <div class="sub-menu">
+  <ul>
+    <li><a href="/youth/incheon.jsp">공간소개</a>
+      <ul class="depth">
+        <li><a href="/youth/incheon.jsp">유유기지 인천</a></li>
+        <li><a href="https://inuugh.kr/">유유기지 강화</a></li>
+        <li><a href="/youth/donggu.jsp">유유기지 제물포구</a></li>
+        <li><a href="/youth/junggu.jsp">영종구 청년내일기지</a></li>
+        <li><a href="/youth/yeonsu.jsp">연수청년자리</a></li>
+        <li><a href="/youth/namdong.jsp">남동구 청년꿈터</a></li>
+        <li><a href="/youth/bupyeong.jsp">유유기지 부평</a></li>
+        <li><a href="/youth/gyeyang.jsp">계양청년마당</a></li>
+        <li><a href="/youth/seogu.jsp">청년센터 서해구1939</a></li>
+      </ul>
+    </li>
+    <li><a href="/youth/rental.jsp">공간대관신청</a></li>
+    <li><a href="/youth/lecture.jsp">프로그램 신청</a></li>
+    <!-- <li><a href="/youth/see.jsp">관람ㆍ체험신청</a></li> -->
+    <li><a href="/youth/advice_info.jsp">상담프로그램신청</a>
+      <ul class="depth">
+        <li><a href="/youth/advice_info.jsp">상담안내</a></li>
+        <!-- <li><a href="/youth/advice_online.jsp">온라인 상담</a></li> -->
+        <li><a href="/youth/advice_meet.jsp">대면 상담예약</a></li>
+      </ul>
+    </li>
+  </ul>
+</div>
+</div>
+      </div>
+      <a href="#none" class="allmenu-close">전체메뉴 닫기</a>
+    </div>
+  </div>
+</div><div class="lnb-box">
+      	<ul>
+          <li><a href="/policy/vision.jsp">인천청년정책</a>
+            <div class="sub-menu">
+	<ul>
+		<li>
+			<a href="/policy/search_incheon.jsp">청년정책검색</a>
+			<ul class="depth">
+				<li><a href="/policy/search_incheon.jsp">인천청년정책</a></li>
+				<li><a href="/policy/search_nation.jsp">전국청년정책</a></li>
+			</ul>
+		</li>
+		<li><a href="/policy/calendar.jsp">정책 캘린더</a></li>
+		<li><a href="/policy/data.jsp">정책자료실</a></li>
+		<li><a href="/policy/notice.jsp">공지사항</a></li>
+		<li><a href="/policy/youth_movie.jsp">청년 영상터</a></li>
+		<li><a href="/policy/survey.jsp">설문조사</a></li>
+		<li><a href="/policy/youth_portal.jsp">전국 청년포털</a></li>
+		<li>
+			<a href="/policy/relate_job.jsp">분야별 홈페이지</a>
+			<ul class="depth">
+				<li><a href="/policy/relate_job.jsp">일자리</a></li>
+				<li><a href="/policy/relate_living.jsp">주거·생활</a></li>
+				<li><a href="/policy/relate_edu.jsp">교육·문화</a></li>
+				<li><a href="/policy/relate_welfare.jsp">복지·기타</a></li>
+			</ul>
+		</li>
+		<li>
+			<a href="/policy/vision.jsp">정책안내</a>
+			<ul class="depth">
+				<li><a href="/policy/vision.jsp">청년정책비전</a></li>
+				<li><a href="/policy/law.jsp">법령 및 조례</a></li>
+			</ul>
+		</li>
+	</ul>
+</div></li>
+          <li><a href="/job/suit.jsp">일자리</a>
+            <div class="sub-menu">
+  <ul>
+    <li><a href="/job/suit.jsp">취업지원</a>
+      <ul class="depth">
+        <li><a href="/job/suit.jsp">드림나래(면접정장대여)</a>
+          <ul>
+            <li><a href="/job/suit.jsp">사업안내</a></li>
+            <li><a href="/job/suit_faq.jsp">FAQ</a></li>
+          </ul>
+        </li>
+        <li><a href="/job/dream.jsp">드림체크카드(구직활동비 지원)</a>
+          <ul>
+            <li><a href="/job/dream.jsp">사업안내</a></li>
+            <li><a href="/job/dream_notice.jsp">공지사항</a></li>
+            <li><a href="/job/dream_faq.jsp">FAQ</a></li>
+          </ul>
+        </li>
+        <li><a href="/job/certificate.jsp">청년 자격증 응시료 지원</a>
+          <!-- <ul>
+            <li><a href="/job/certificate.jsp">사업안내</a></li>
+            <li><a href="/job/certificate_notice.jsp">공지사항</a></li>
+            <li><a href="/job/certificate_faq.jsp">FAQ</a></li>
+          </ul> -->
+        </li>
+        <li><a href="/job/leap.jsp">청년 도약기지</a></li>
+        <li><a href="/job/challenge.jsp">청년도전 지원사업</a></li>
+        <li><a href="/job/university.jsp">대학일자리플러스센터 운영 지원</a></li>
+      </ul>
+    </li>
+    <li><a href="/job/special.jsp">창업지원</a>
+      <ul class="depth">
+        <li><a href="/job/special.jsp">청년창업 특례보증 및 이차보전</a></li>
+        <li><a href="/job/overseas.jsp">청년해외 진출기지 지원</a></li>
+        <li><a href="/job/startup.jsp">인천스타트업파크 운영</a></li>
+      </ul>
+    </li>
+    <li><a href="/job/working.jsp">청년고용기업 근로환경개선</a></li>
+    <li><a href="/job/incheon.jsp">인천 일자리정보</a></li>
+    <li><a href="https://nysc.or.kr/nysc/pages/center4.php?cat1=3&amp;type=3&amp;keyword=" target="_blank" title="새창">전국청년센터 채용(인천)</a></li>
+  </ul>
+</div>
+</li>
+          <li><a href="/dwelling/interest.jsp">주거·복지</a>
+            <div class="sub-menu">
+  <ul>
+    <li>
+      <a href="/dwelling/interest.jsp">주거지원</a>
+      <ul class="depth">
+        <li>
+          <a href="/dwelling/interest.jsp">청년 주택임차보증금 이자 지원</a>
+          <ul>
+            <li><a href="/dwelling/interest.jsp">사업안내</a></li>
+            <li><a href="/dwelling/interest_faq.jsp">FAQ</a></li>
+          </ul>
+        </li>
+        <!-- <li>
+          <a href="/dwelling/transfer.jsp">전입청년 이사 지원사업</a>
+          <ul>
+            <li><a href="/dwelling/transfer.jsp">사업안내</a></li>
+            <li><a href="/dwelling/transfer_faq.jsp">FAQ</a></li>
+          </ul>
+        </li> -->
+        <li>
+          <a href="/dwelling/monthly.jsp">청년월세 지원사업</a>
+          <ul>
+            <li><a href="/dwelling/monthly.jsp">사업안내</a></li>
+            <li><a href="/dwelling/monthly_faq.jsp">FAQ</a></li>
+          </ul>
+        </li>
+        <li><a href="/dwelling/guarantee.jsp">인천 전세보증금반환보증 보증료 지원</a></li>
+        <li><a href="/dwelling/lease.jsp">기존 주택매입임대</a></li>
+        <li><a href="/youthpolicy/youthPolicyInfoDetail.do?poly_seq=380">청년주택임차보증금 이자 지원 대출 연장</a></li>
+      </ul>
+    </li>
+    <li>
+      <a href="/dwelling/welcome.jsp">복지지원</a>
+      <ul class="depth">
+        <!-- <li><a href="/dwelling/welcome.jsp">인천 전입청년 1인가구 환영상자 지원</a></li> -->
+        <li><a href="/dwelling/military.jsp">군복무 인천청년 상해보험 지원</a></li>
+        <!-- <li><a href="/dwelling/contest.jsp">인천시 청년정책 공모전</a></li> -->
+        <li><a href="/dwelling/addict.jsp">청년중독관리사업</a></li>
+        <li><a href="/dwelling/future.jsp">인천광역시 청년미래센터</a></li>
+      </ul>
+    </li>
+  </ul>
+</div>
+</li>
+          <li><a href="/financial/dreamfor.jsp">금융</a>
+            <div class="sub-menu">
+  <ul>
+    <li><a href="/financial/dreamfor.jsp">금융지원</a>
+      <ul class="depth">
+        <li><a href="/financial/dreamfor.jsp">드림For 청년통장</a>
+          <ul>
+            <li><a href="/financial/dreamfor.jsp">사업안내</a></li>
+            <li><a href="/financial/dreamfor_notice.jsp">공지사항</a></li>
+            <li><a href="/financial/dreamfor_faq.jsp">FAQ</a></li>
+          </ul>
+        </li>
+        <li><a href="/financial/point.jsp">재직청년 복지포인트</a>
+          <ul>
+            <li><a href="/financial/point.jsp">사업안내</a></li>
+            <li><a href="/financial/point_form.jsp">제출서류</a></li>
+            <li><a href="/financial/point_notice.jsp">공지사항</a></li>
+            <li><a href="/financial/point_faq.jsp">FAQ</a></li>
+          </ul>
+        </li>
+        <!-- <li><a href="/financial/deduction.jsp">인천뿌리청년내일채움공제</a></li>
+        <li><a href="/financial/career.jsp">인천뿌리경력이음채움공제</a></li> -->
+        <li><a href="/financial/saving.jsp">청년내일저축계좌</a></li>
+        <li><a href="/financial/seed.jsp">행복씨앗통장 운영(청년발달장애인)</a></li>
+      </ul>
+    </li>
+    <li><a href="/financial/student_loan.jsp">학자금지원</a>
+      <ul class="depth">
+        <li><a href="/financial/student_loan.jsp">학자금 대출이자 지원</a></li>
+        <li><a href="/financial/scholarship.jsp">맞춤형 상생장학금 지원</a></li>
+      </ul>
+    </li>
+    <li><a href="/financial/independence.jsp">자립준비청년지원</a>
+      <ul class="depth">
+        <li><a href="/financial/independence.jsp">자립수당 지급</a></li>
+        <li><a href="/financial/resettle.jsp">자립정착금 지원</a></li>
+      </ul>
+    </li>
+  </ul>
+</div>
+</li>
+          <li><a href="/education/ai.jsp">교육·문화</a>
+            <div class="sub-menu">
+  <ul>
+    <li><a href="/education/ai.jsp">교육지원</a>
+      <ul class="depth">
+        <!-- <li><a href="/education/dodream.jsp">두드림(Do Dream)청년캠프</a></li> -->
+        <li><a href="/education/ai.jsp">SW.AI기술 활용인력 양성교육</a></li>
+        <li><a href="/education/content.jsp">청년콘텐츠 우수인재양성</a></li>
+        <li><a href="/education/e_finance.jsp">금융감독원 e-금융교육</a></li>
+        <li><a href="/education/upclass.jsp">청년 재정 UP 클래스</a></li>
+      </ul>
+    </li>
+    <li><a href="/education/government.jsp">직업체험</a>
+      <ul class="depth">
+        <li><a href="/education/government.jsp">공공기관 청년 아르바이트 운영</a></li>
+        <li><a href="/education/international.jsp">국제기구 직업체험 프로그램</a></li>
+        <li><a href="/education/mice.jsp">마이스업체 청년인턴십</a></li>
+        <li><a href="/education/intern.jsp">청년 체험형 인턴운영</a></li>
+      </ul>
+    </li>
+    <li><a href="/education/localizer.jsp">문화지원</a>
+      <ul class="depth">
+        <li><a href="/education/localizer.jsp">청년 로컬크리에이터 육성</a></li>
+        <li><a href="/education/travel.jsp">인천청춘여행단 운영</a></li>
+      </ul>
+    </li>
+    <li><a href="/education/culture.jsp">청년문화공간</a>
+      <ul class="depth">
+        <li><a href="/education/culture.jsp">청년문화창작소</a></li>
+        <li><a href="/education/jemulpo.jsp">제물포지하상가 청년특화 공간</a></li>
+      </ul>
+    </li>
+  </ul>
+</div>
+</li>
+          <li><a href="/participation/committee.jsp">참여·권리</a>
+            <div class="sub-menu">
+  <ul>
+    <li>
+      <a href="/participation/committee.jsp">청년정책조정위원회</a>
+      <!-- <ul class="depth">
+        <li><a href="/participation/committee.jsp">사업안내</a></li>
+        <li><a href="/participation/committee_app.jsp">신청하기</a></li>
+      </ul> -->
+    </li>
+    <li>
+      <a href="/participation/network_info.jsp">청년정책네트워크</a>
+      <ul class="depth">
+        <li><a href="/participation/network_info.jsp">사업안내</a></li>
+        <li><a href="/participation/network_notice.jsp">공지사항</a></li>
+      </ul>
+    </li>
+    <!-- <li><a href="/participation/suggestion.jsp">청년정책제안</a></li>
+    <li><a href="/participation/db.jsp">인천청년 DB</a></li> -->
+    <li><a href="/participation/incheon_week.jsp">인천청년주간</a></li>
+  </ul>
+</div>
+</li>
+          <li><a href="/youth/incheon.jsp">청년공간</a>
+            <div class="sub-menu">
+  <ul>
+    <li><a href="/youth/incheon.jsp">공간소개</a>
+      <ul class="depth">
+        <li><a href="/youth/incheon.jsp">유유기지 인천</a></li>
+        <li><a href="https://inuugh.kr/">유유기지 강화</a></li>
+        <li><a href="/youth/donggu.jsp">유유기지 제물포구</a></li>
+        <li><a href="/youth/junggu.jsp">영종구 청년내일기지</a></li>
+        <li><a href="/youth/yeonsu.jsp">연수청년자리</a></li>
+        <li><a href="/youth/namdong.jsp">남동구 청년꿈터</a></li>
+        <li><a href="/youth/bupyeong.jsp">유유기지 부평</a></li>
+        <li><a href="/youth/gyeyang.jsp">계양청년마당</a></li>
+        <li><a href="/youth/seogu.jsp">청년센터 서해구1939</a></li>
+      </ul>
+    </li>
+    <li><a href="/youth/rental.jsp">공간대관신청</a></li>
+    <li><a href="/youth/lecture.jsp">프로그램 신청</a></li>
+    <!-- <li><a href="/youth/see.jsp">관람ㆍ체험신청</a></li> -->
+    <li><a href="/youth/advice_info.jsp">상담프로그램신청</a>
+      <ul class="depth">
+        <li><a href="/youth/advice_info.jsp">상담안내</a></li>
+        <!-- <li><a href="/youth/advice_online.jsp">온라인 상담</a></li> -->
+        <li><a href="/youth/advice_meet.jsp">대면 상담예약</a></li>
+      </ul>
+    </li>
+  </ul>
+</div>
+</li>
+          </ul>
+      </div>
+    </div>
+  </nav>
+</header>
+<hr>
+<div id="contents">
+
+    <div id="visual" class="wrap swiper">
+	<h3 class="hidden">비주얼</h3>
+  <div class="visual-control">
+    <a href="#none" class="prev"><span class="ir_txt">비주얼 이전</span></a>
+    <a href="#none" class="next"><span class="ir_txt">비주얼 다음</span></a>
+  </div>
+  <div class="visual-auto-control">
+    <a href="#none" class="play"><span class="ir_txt">재생</span></a>
+    <a href="#none" class="stop"><span class="ir_txt">멈춤</span></a>
+    <a href="#allvisual" class="allvisual"><span class="ir_txt">비주얼 전체보기</span></a>
+  </div>
+  <ul class="visual-list swiper-wrapper">
+		<li class="swiper-slide">
+				<a href="aci.or.kr" target="_blank" title="새창열림">
+				<img src="/images/popupzone/0928_ateusenteoincheonyaoeeumakhoe_uebsian_pabeopchangbaeneo_975x600px_chulyeonjinpoham_(1).png" alt="아트센터인천 야외음악회">
+				</a>
+				</li>
+		<li class="swiper-slide">
+				<a href="https://youth.incheon.go.kr/job/suit.jsp" target="_blank" title="새창열림">
+				<img src="/images/popupzone/2026deurimnarae_uebbaeneo(cheongnyeonpoteal)_gunbokmu_chuga.jpg" alt="드림나래 면접복장">
+				</a>
+				</li>
+		<li class="swiper-slide">
+				<a href="https://youth.incheon.go.kr/bbs/bbsMsgDetail.do?msg_seq=407&amp;bcd=notice" target="_blank" title="새창열림">
+				<img src="/images/popupzone/gunbokmu.gif" alt="군복무 인천청년 상해보험 지원
+
+군 복무 중인 청년들이 국토방위 의무에
+전념할 수 있도록 상해보험을 지원합니다.
+
+가입대상
+인천광역시에 주민등록을 둔 현역 군복무 청년
+육군·해군·공군·해병·상근예비역
+
+신청기간
+2026년 1월 1일 ~ 12월 31일
+※ 청구기간 3년(2024년 3월 1일 ~ 적용)
+
+신청방법
+별도 가입 절차 없이 군복무 시작, 전입과 동시에 자동 가입
+전역, 전출과 동시에 자동 해지">
+				</a>
+				</li>
+		</ul>
+</div>
+<script>
+  const swiper = new Swiper('.swiper', {
+    modules: [EffectCarousel],
+    effect: 'carousel',
+    grabCursor: true,
+    loop: true,
+    slidesPerView: '1',
+    loopedSlides: '2',
+    a11y: {
+      prevSlideMessage: '비주얼 이전',
+      nextSlideMessage: '비주얼 다음',
+    },
+    navigation: {
+      nextEl: '#visual .next',
+      prevEl: '#visual .prev',
+    },
+    breakpoints: {
+      1024: {
+        slidesPerView: '2',
+        loopedSlides: '2',
+      },
+    },
+    autoplay: {
+      delay: 3000,
+    },
+  });
+
+  // .play 버튼 클릭 시 슬라이드 재생
+  document.querySelector('.play').addEventListener('click', function (e) {
+    e.preventDefault(); // 링크의 기본 동작 방지
+    swiper.autoplay.start(); // 슬라이드 재생 시작
+    //document.querySelector('.play').style.color = '#999';
+    //document.querySelector('.stop').style.color = '#fff';
+    //document.querySelector('.play').style.display = 'none'; // 재생 버튼 숨기기
+    //document.querySelector('.stop').style.display = 'inline-block'; // 정지 버튼 보이기
+  });
+
+  // .stop 버튼 클릭 시 슬라이드 멈춤
+  document.querySelector('.stop').addEventListener('click', function (e) {
+    e.preventDefault(); // 링크의 기본 동작 방지
+    swiper.autoplay.stop(); // 슬라이드 멈추기
+    //document.querySelector('.stop').style.color = '#999';
+    //document.querySelector('.play').style.color = '#fff';
+    //document.querySelector('.stop').style.display = 'none'; // 정지 버튼 숨기기
+    //document.querySelector('.play').style.display = 'inline-block'; // 재생 버튼 보이기
+  });
+</script>
+
+<div id="allvisual">
+  <div class="allvisual-box">
+    <p class="tit"><span class="ir_txt">비주얼 </span>전체보기</p>
+    <ul>
+      <li>
+          <a href="aci.or.kr" target="_blank" title="새창열림">
+          <img src="/images/popupzone/0928_ateusenteoincheonyaoeeumakhoe_uebsian_pabeopchangbaeneo_975x600px_chulyeonjinpoham_(1).png" alt="아트센터인천 야외음악회">
+          </a>
+          </li>
+      <li>
+          <a href="https://youth.incheon.go.kr/job/suit.jsp" target="_blank" title="새창열림">
+          <img src="/images/popupzone/2026deurimnarae_uebbaeneo(cheongnyeonpoteal)_gunbokmu_chuga.jpg" alt="드림나래 면접복장">
+          </a>
+          </li>
+      <li>
+          <a href="https://youth.incheon.go.kr/bbs/bbsMsgDetail.do?msg_seq=407&amp;bcd=notice" target="_blank" title="새창열림">
+          <img src="/images/popupzone/gunbokmu.gif" alt="군복무 인천청년 상해보험 지원
+
+군 복무 중인 청년들이 국토방위 의무에
+전념할 수 있도록 상해보험을 지원합니다.
+
+가입대상
+인천광역시에 주민등록을 둔 현역 군복무 청년
+육군·해군·공군·해병·상근예비역
+
+신청기간
+2026년 1월 1일 ~ 12월 31일
+※ 청구기간 3년(2024년 3월 1일 ~ 적용)
+
+신청방법
+별도 가입 절차 없이 군복무 시작, 전입과 동시에 자동 가입
+전역, 전출과 동시에 자동 해지">
+          </a>
+          </li>
+      </ul>
+    <p class="close"><a href="#none"><span class="ir_txt">비주얼 전체보기 닫기</span></a></p>
+  </div>
+  <script>	
+    $(".allvisual").click(function(){
+      $('#allvisual').toggle();
+      $('body').css('overflow-y','auto');
+    });
+
+    $('#allvisual .close').click(function(){
+      $('#allvisual').hide();
+      $('.visual-auto-control .allvisual').focus();
+    });
+  </script>
+</div>
+
+
+<!-- \Design\디자인소스\carousel-slider
+  https://uiinitiative.com/catalog/carousel-slider
+--><div class="top-con">
+      <div class="quick ver2 wrap">
+        <dl>
+          <dt><span>#재직청년</span>재직중인 인천 청년이예요.</dt>
+          <dd>
+            <ul>
+              <li><a href="/financial/dreamfor.jsp">드림For 청년통장</a></li>
+              <li><a href="/financial/point.jsp">재직청년 복지포인트</a></li>
+              <!-- <li><a href="/financial/career.jsp">인천뿌리경력이음채움공제</a></li> -->
+            </ul>
+          </dd>
+        </dl>
+        <dl>
+          <dt><span>#구직청년</span>취업을 준비하고 있어요.</dt>
+          <dd>
+            <ul>
+              <li><a href="/job/dream.jsp">드림체크카드</a></li>
+              <li><a href="/job/suit.jsp">드림나래(면접정장 대여)</a></li>
+              <li><a href="/job/certificate.jsp">청년 자격증 응시료 지원</a></li>
+              <li><a href="/job/leap.jsp">청년도약기지(교육+일경험)</a></li>
+            </ul>
+          </dd>
+        </dl>
+        <dl>
+          <dt><span>#창업청년</span>창업을 준비하고 있어요.</dt>
+          <dd>
+            <ul>
+              <li><a href="/job/special.jsp">청년창업 특례보증</a></li>
+              <li><a href="/job/overseas.jsp">해외진출기지 지원</a></li>
+            </ul>
+          </dd>
+        </dl>
+        <dl>
+          <dt><span>#주거고민청년</span>주거비부담을 덜고 싶어요.</dt>
+          <dd>
+            <ul>
+              <!-- <li><a href="/dwelling/transfer.jsp">전입청년 이사 지원</a></li> -->
+              <li><a href="/dwelling/interest.jsp">주택 임차보증금 이자 지원</a></li>
+              <li><a href="/dwelling/guarantee.jsp">보증금반환보증 보증료 지원</a></li>
+            </ul>
+          </dd>
+        </dl>
+      </div>
+      <form id="policySearchForm" action="/youthpolicy/youthPolicyInfoList.do" method="get" target="_blank">
+<div id="policy-search" class="label-select">
+	<h3 class="hidden">정책검색</h3>
+	<div class="user">
+		<p>대상</p>
+		<label for="policy-search-user" class="ir_txt">대상</label>
+		<select name="empmst" id="policy-search-user">
+			<option value="">전체</option>
+			<option value="006003">구직자</option>
+			<option value="006001">재직자</option>
+			<option value="006002">자영업자</option>			
+			<option value="006006">프리랜서</option>
+			<option value="006005">제한없음</option>
+		</select>
+	</div>
+	<div class="local">
+		<p>지역</p>
+		<label for="policy-search-local" class="ir_txt">지역</label>
+		<select name="bizarea" id="policy-search-local">
+			<option value="">전체</option>
+			<option value="003002004">인천시</option>
+			<option value="003002004010">강화군</option>
+			<option value="003002004011">옹진군</option>
+			<option value="003002004012">제물포구</option>
+			<option value="003002004013">영종구</option>
+			<option value="003002004004">미추홀구</option>
+			<option value="003002004005">연수구</option>
+			<option value="003002004006">남동구</option>
+			<option value="003002004007">부평구</option>
+			<option value="003002004008">계양구</option>
+			<option value="003002004014">서해구</option>
+			<option value="003002004015">검단구</option>
+		</select>      
+	</div>
+	<div class="area">
+		<p>분야</p>
+		<label for="policy-search-area" class="ir_txt">분야</label>
+		<select name="menudiv" id="policy-search-area">
+			<option value="">전체</option>
+			<option value="job">일자리분야</option>
+			<option value="dwelling">주거.복지분야</option>
+			<option value="financial">금융분야</option>
+			<option value="education">교육.문화분야</option>
+			<option value="participation">참여.권리분야</option>
+			<option value="youth">청년공간</option>
+		</select>
+	</div>
+	<button type="button" title="새창열림"><span>맞춤 정책 찾기</span></button>
+</div>
+</form>
+<script>
+	var policySelect = $("#policy-search select");
+	policySelect.change(function(){
+		var selectName = $(this).children("option:selected").text();
+		$(this).siblings("p").text(selectName);
+	});
+	$("#policy-search button").click(function(){
+		var frm = document.getElementById("policySearchForm");
+		frm.submit();		
+	});  
+</script></div>
+    <div class="mid-con wrap">
+      <div id="board">
+	<div class="select">
+		<a href="#none" class="tab" title="선택됨">공지사항</a>
+		<ul class="list">
+			<li><a href="/bbs/bbsMsgDetail.do?msg_seq=521&bcd=notice">2026년 1인가구 행복 동행사업 [청년 1인가구 지원사업(일상쉼표)] 참여자 모<span>2026-09-22</span></a></li>
+			<li><a href="/bbs/bbsMsgDetail.do?msg_seq=520&bcd=notice">인천 영화 주간 2026<span>2026-09-22</span></a></li>
+			<li><a href="/bbs/bbsMsgDetail.do?msg_seq=519&bcd=notice">인하공업전문대학 청년도약 인재양성 부트캠프 운<span>2026-09-22</span></a></li>
+			<li><a href="/bbs/bbsMsgDetail.do?msg_seq=518&bcd=notice">2026년 미래차 청년도약 인재양성 부트캠프 교육생 모집<span>2026-09-16</span></a></li>
+			<li><a href="/bbs/bbsMsgDetail.do?msg_seq=517&bcd=notice">2026년 주민참여예산 하반기 총회 <span>2026-09-14</span></a></li>
+			</ul>
+		<a href="/policy/notice.jsp" class="ir more">공지사항 더보기</a>
+	</div>
+	<div>
+		<a href="#none" class="tab">청년공간</a>
+		<ul class="list">
+			<li><a href="/bbs/bbsMsgDetail.do?msg_seq=109&bcd=ygy_notice">계양청년마당 분실 도서를 찾습니다! 📢<span>2026-10-02</span></a></li>
+			<li><a href="/bbs/bbsMsgDetail.do?msg_seq=3849&bcd=yic_notice">[유유마당] 원데이클래스 - 나만의 향, 시그니처 향수 만들기<span>2026-10-01</span></a></li>
+			<li><a href="/bbs/bbsMsgDetail.do?msg_seq=188&bcd=ysg_notice">개천절 휴관 안내<span>2026-09-29</span></a></li>
+			<li><a href="/bbs/bbsMsgDetail.do?msg_seq=3848&bcd=yic_notice">[2026 취준클래스] 15회차 강의(9/23) 출석부 공지<span>2026-09-28</span></a></li>
+			<li><a href="/bbs/bbsMsgDetail.do?msg_seq=3847&bcd=yic_notice">[월별일정]10월 유유기지 인천 일정 안내<span>2026-09-28</span></a></li>
+			</ul>
+	</div>
+	<div>
+		<a href="#none" class="tab">정책자료실</a>
+		<ul class="list">
+			<li><a href="/bbs/bbsMsgDetail.do?msg_seq=24&bcd=data">2026년 제2회 청년정책조정위원회 개최결과 안내<span>2026-02-11</span></a></li>
+			<li><a href="/bbs/bbsMsgDetail.do?msg_seq=23&bcd=data">2026년 인천광역시 청년정책 시행계획 안내<span>2026-02-11</span></a></li>
+			<li><a href="/bbs/bbsMsgDetail.do?msg_seq=22&bcd=data">인천광역시 제2차 청년정책 기본계획(2026-2030)<span>2026-01-26</span></a></li>
+			<li><a href="/bbs/bbsMsgDetail.do?msg_seq=21&bcd=data">2026년 제1회 청년정책조정위원회 개최결과 안내<span>2026-01-26</span></a></li>
+			<li><a href="/bbs/bbsMsgDetail.do?msg_seq=20&bcd=data">2025년 제2차 청년정책조정위원회 개최결과 안내<span>2025-06-12</span></a></li>
+			</ul>
+		<a href="/policy/data.jsp" class="ir more">정책자료실 더보기</a>
+	</div>
+</div>
+<script>
+  var board_list = $('#board .list').height() + 54; 
+  $('#board>div').css('height', board_list);
+  $('#board .tab').click(function(){
+    $(this).parent().siblings().removeClass('select').children('a').removeAttr("title");
+    $(this).attr("title","선택됨").parent().addClass('select');
+    return false;
+  });
+</script><div id="job" class="splide">
+	<div class="tit-box">
+		<h3>인천 일자리정보</h3>
+		<div class="splide__arrows">
+			<p class="count"><strong id="job-current"></strong>/<span id="job-total"></span></p>
+			<button class="splide__arrow splide__arrow--prev"></button>
+			<button class="splide__toggle"></button>
+			<button class="splide__arrow splide__arrow--next"></button>
+		</div>
+	</div>
+	<div class="splide__slider">
+		<div class="splide__track">
+			<ul class="splide__list">
+				<!-- tag-box맨 앞으로 옴, div 추가됨 근무지역 사라짐 입금 : 중 쌍점 지워짐 -->
+				<li class="splide__slide">
+					<ul>
+						<li>
+									<a href="/work24/work24Detail.do?wantedAuthNo=K150122610010058">
+										<p class="tag-box">
+											<span class="local sg">서해구</span>
+										</p>
+										<div>
+											<p class="worknet-tit">
+												<span>(주) 디에이치팩(DH PACK Co.,Ltd.)</span>
+												플라스틱 사출 엔지니어 채용</p>
+											<ul class="worknet-con">
+												<li><span>임금</span> 3800만원 ~ 4800만원</li>
+												<li><span>마감일</span> 26-11-30 채용시까지</li>
+											</ul>
+										</div>
+									</a>
+								</li>
+							<li>
+									<a href="/work24/work24Detail.do?wantedAuthNo=K150012610010046">
+										<p class="tag-box">
+											<span class="local mc">미추홀구</span>
+										</p>
+										<div>
+											<p class="worknet-tit">
+												<span>주식회사남광유압</span>
+												CNC선반 채용(경력직)</p>
+											<ul class="worknet-con">
+												<li><span>임금</span> 4500만원 ~ 4500만원</li>
+												<li><span>마감일</span> 26-11-30 채용시까지</li>
+											</ul>
+										</div>
+									</a>
+								</li>
+							<li>
+									<a href="/work24/work24Detail.do?wantedAuthNo=K150012610020115">
+										<p class="tag-box">
+											<span class="local nd">남동구</span>
+										</p>
+										<div>
+											<p class="worknet-tit">
+												<span>(주)공단유공압</span>
+												유공압기기 도소매 및 매장 관리 직원 채용</p>
+											<ul class="worknet-con">
+												<li><span>임금</span> 3500만원 ~ 4000만원</li>
+												<li><span>마감일</span> 26-12-01 채용시까지</li>
+											</ul>
+										</div>
+									</a>
+								</li>
+							<li>
+									<a href="/work24/work24Detail.do?wantedAuthNo=K150122610020050">
+										<p class="tag-box">
+											<span class="local sg">서해구</span>
+										</p>
+										<div>
+											<p class="worknet-tit">
+												<span>(주)우리아이티</span>
+												정보통신/전기 공사 현장에서 시공하실 직원 모집합...</p>
+											<ul class="worknet-con">
+												<li><span>임금</span> 4000만원 ~ 5000만원</li>
+												<li><span>마감일</span> 26-12-01 채용시까지</li>
+											</ul>
+										</div>
+									</a>
+								</li>
+							</ul>
+				</li>
+				<li class="splide__slide">
+					<ul>
+						<li>
+									<a href="/work24/work24Detail.do?wantedAuthNo=KJ20542610010009">
+										<p class="tag-box">
+											<span class="local nd">남동구</span>
+										</p>
+										<div>
+											<p class="worknet-tit">
+												<span>주식회사인성플라텍</span>
+												【뿌리기업과 함께하는 제물포구 채용박람회 참여업체...</p>
+											<ul class="worknet-con">
+												<li><span>임금</span> 4000만원</li>
+												<li><span>마감일</span> 26-10-30 채용시까지</li>
+											</ul>
+										</div>
+									</a>
+								</li>
+							<li>
+									<a href="/work24/work24Detail.do?wantedAuthNo=K150122610020019">
+										<p class="tag-box">
+											<span class="local sg">서해구</span>
+										</p>
+										<div>
+											<p class="worknet-tit">
+												<span>(주)신태진</span>
+												(주)신태진 총무인사 담당 정규직 직원 모집</p>
+											<ul class="worknet-con">
+												<li><span>임금</span> 3500만원</li>
+												<li><span>마감일</span> 26-10-18</li>
+											</ul>
+										</div>
+									</a>
+								</li>
+							<li>
+									<a href="/work24/work24Detail.do?wantedAuthNo=K150012610010035">
+										<p class="tag-box">
+											<span class="local nd">남동구</span>
+										</p>
+										<div>
+											<p class="worknet-tit">
+												<span>주식회사 쿨포즈(COOLPAWS Co.,Ltd.)</span>
+												［연봉 5,200이상~6,000이하］선반(CNC)...</p>
+											<ul class="worknet-con">
+												<li><span>임금</span> 5200만원 ~ 6000만원</li>
+												<li><span>마감일</span> 26-10-16</li>
+											</ul>
+										</div>
+									</a>
+								</li>
+							<li>
+									<a href="/work24/work24Detail.do?wantedAuthNo=K150012610020074">
+										<p class="tag-box">
+											<span class="local nd">남동구</span>
+										</p>
+										<div>
+											<p class="worknet-tit">
+												<span>주식회사 에스에이치앰</span>
+												생산관리 담당자 정규직 채용</p>
+											<ul class="worknet-con">
+												<li><span>임금</span> 3500만원</li>
+												<li><span>마감일</span> 26-12-01 채용시까지</li>
+											</ul>
+										</div>
+									</a>
+								</li>
+							</ul>
+				</li>
+				<li class="splide__slide">
+					<ul>
+						<li>
+									<a href="/work24/work24Detail.do?wantedAuthNo=K150112610020018">
+										<p class="tag-box">
+											<span class="local bp">부평구</span>
+										</p>
+										<div>
+											<p class="worknet-tit">
+												<span>대흥엔지니어링 주식회사</span>
+												산업기계 및 제철설비 설계직 모집</p>
+											<ul class="worknet-con">
+												<li><span>임금</span> 3500만원 ~ 5000만원</li>
+												<li><span>마감일</span> 26-10-17</li>
+											</ul>
+										</div>
+									</a>
+								</li>
+							<li>
+									<a href="/work24/work24Detail.do?wantedAuthNo=KJ20542610020003">
+										<p class="tag-box">
+											<span class="local nd">남동구</span>
+										</p>
+										<div>
+											<p class="worknet-tit">
+												<span>주식회사인성플라텍</span>
+												【뿌리기업과 함께하는 제물포구 채용박람회 참여업체...</p>
+											<ul class="worknet-con">
+												<li><span>임금</span> 4000만원</li>
+												<li><span>마감일</span> 26-10-31 채용시까지</li>
+											</ul>
+										</div>
+									</a>
+								</li>
+							<li>
+									<a href="/work24/work24Detail.do?wantedAuthNo=K150122610020012">
+										<p class="tag-box">
+											<span class="local gd">검단구</span>
+										</p>
+										<div>
+											<p class="worknet-tit">
+												<span>주식회사 시온오토텍</span>
+												자동화 기계 조립</p>
+											<ul class="worknet-con">
+												<li><span>임금</span> 3000만원 ~ 4000만원</li>
+												<li><span>마감일</span> 26-11-30 채용시까지</li>
+											</ul>
+										</div>
+									</a>
+								</li>
+							<li>
+									<a href="/work24/work24Detail.do?wantedAuthNo=K150122610010019">
+										<p class="tag-box">
+											<span class="local sg">서해구</span>
+										</p>
+										<div>
+											<p class="worknet-tit">
+												<span>영광산업기계</span>
+												범용 보링기사 모집 (드릴링기 및 보링기 조작원)</p>
+											<ul class="worknet-con">
+												<li><span>임금</span> 5000만원 ~ 7000만원</li>
+												<li><span>마감일</span> 26-11-01</li>
+											</ul>
+										</div>
+									</a>
+								</li>
+							</ul>
+				</li>
+				<li class="splide__slide">
+					<ul>
+						<li>
+									<a href="/work24/work24Detail.do?wantedAuthNo=KJ20542610010002">
+										<p class="tag-box">
+											<span class="local nd">남동구</span>
+										</p>
+										<div>
+											<p class="worknet-tit">
+												<span>（주）케이씨텍</span>
+												【뿌리기업과 함께하는 제물포구 채용박람회 참여업체...</p>
+											<ul class="worknet-con">
+												<li><span>임금</span> 4000만원 ~ 4000만원</li>
+												<li><span>마감일</span> 26-11-30</li>
+											</ul>
+										</div>
+									</a>
+								</li>
+							<li>
+									<a href="/work24/work24Detail.do?wantedAuthNo=K150012610020003">
+										<p class="tag-box">
+											<span class="local jg">영종구</span>
+										</p>
+										<div>
+											<p class="worknet-tit">
+												<span>인천공항시설관리 주식회사</span>
+												[인천공항시설관리(주)] 2026년 제3차 정기채...</p>
+											<ul class="worknet-con">
+												<li><span>임금</span> 2800만원 ~ 3800만원</li>
+												<li><span>마감일</span> 26-10-12</li>
+											</ul>
+										</div>
+									</a>
+								</li>
+							<li>
+									<a href="/work24/work24Detail.do?wantedAuthNo=KJDB002610020018">
+										<p class="tag-box">
+											<span class="local gh">강화군</span>
+										</p>
+										<div>
+											<p class="worknet-tit">
+												<span>해강개발 주식회사 강화리조트</span>
+												★2026 강화군 채용박람회 참여업체★ '강화SE...</p>
+											<ul class="worknet-con">
+												<li><span>임금</span> 2800만원 ~ 3500만원</li>
+												<li><span>마감일</span> 26-12-01 채용시까지</li>
+											</ul>
+										</div>
+									</a>
+								</li>
+							<li>
+									<a href="/work24/work24Detail.do?wantedAuthNo=K150012610010038">
+										<p class="tag-box">
+											<span class="local nd">남동구</span>
+										</p>
+										<div>
+											<p class="worknet-tit">
+												<span>성화테크(주)</span>
+												품질관리 및 제품 사후관리 전문가 채용 (과장급)</p>
+											<ul class="worknet-con">
+												<li><span>임금</span> 4000만원 ~ 4500만원</li>
+												<li><span>마감일</span> 26-10-16</li>
+											</ul>
+										</div>
+									</a>
+								</li>
+							</ul>
+				</li>
+			</ul>
+		</div>
+	</div>
+	<a href="/job/incheon.jsp" class="more"><span class="ir">인천 일자리정보 더보기</span></a>
+	<script>
+		var splide2 = new Splide('#job', {
+			i18n : { //aria-label 수정
+				first : '인천 일자리정보 첫번째',
+				last : '인천 일자리정보 마지막',
+				prev : '인천 일자리정보 이전',
+				play : '인천 일자리정보 재생',
+				pause : '인천 일자리정보 일시정지',
+				slideX :  '인천 일자리정보 %s로',
+				slideLabel : '인천 일자리정보 %s중 %s' //리스트
+			},
+			rewind: true,
+			pagination: false,
+			arrows : true, //prev, next 버튼 생성 여부
+			autoWidth : true, //css로 넓이 조정 가능 여부
+			accessibility : true, //접근성 적용 여부 aria-label 등이 자동 생성
+			autoplay : true, //자동재생
+			perPage : 1, //페이지 그룹당 몇개씩 묶을 것인가
+			perMove : 1, //한번에 움직일 갯수
+		}).mount();
+
+		var autoplay = splide2.Components.Autoplay;
+
+		splide2.on("move", function () {
+			slideIndex2();
+		});
+
+		slideIndex2();
+
+		function slideIndex2() {
+			$("#job-current").text(Math.round((splide2.index + 1)/splide2.options.perPage));
+			$("#job-total").text(Math.round(splide2.length/splide2.options.perPage));
+		}
+
+	</script>
+</div></div>
+    <ul class="link wrap">
+      <li class="link-map"><a href="/map.jsp" target="_blank" title="새창"><p class="link-tit"><span>지도로 보는</span> <br>인천청년공간</p></a></li>
+      <li class="link-advice">
+        <p class="link-tit"><span>인천시</span> <br>청년상담</p>
+        <ul>
+          <li><a href="/youth/advice_info.jsp">토닥토닥 고민상담</a></li>
+          <li><a href="https://www.xn--660bo8kg5av74ajc674b.kr/" target="_blank" title="새창">청년마음건강</a></li>
+        </ul>
+      </li>
+      <li class="link-space"><a href="/img/main/link_space_260803.png" target="_blank" title="새창"><p class="link-tit"><span>한눈에 보는</span> <br>인천청년공간</p></a></li>
+      <li class="link-relate"><a href="/policy/relate_job.jsp"><p class="link-tit"><span>분야별</span> <br>홈페이지</p></a></li>
+    </ul>
+    <div id="program" class="splide">
+	<div class="wrap">
+		<div class="program-tit  label-select">
+			<h3>프로그램</h3>
+			<div class="program-select">
+				<p>청년공간 선택</p>
+				<label for="program-select" class="ir_txt">청년공간 선택</label>
+				<select id="program-select">
+					<option value="">전체 청년공간</option>
+					<option value="inuu">유유기지 인천</option>
+					<option value="donggu">유유기지 제물포구</option>
+					<option value="junggu">영종구 청년내일기지</option>
+					<option value="yeonsu">연수청년자리</option>
+					<option value="namdong">남동구 청년꿈터</option>
+					<option value="bupyeong">유유기지 부평</option>
+					<option value="gyeyang">계양청년마당</option>
+					<option value="seogu">청년센터 서해구1939</option>
+					</select>
+			</div>
+		</div>
+		<div class="program-list splide__slider">
+			<div class="splide__track">
+				<ul class="splide__list" id="program_main_list">
+					<li class="splide__slide is-active is-visible" id="program-slide01" role="group" aria-roledescription="slide" aria-label="1 of 1" style="margin-right: 2rem; width: 100%;">
+						<p class="program-list-tit center" style="margin-top: 10%;">조회 가능한 청년공간이 없습니다.</p>
+					</li>
+					<li class="splide__slide">
+						<a href="/program/programInfoDetail.do?prgm_seq=&prgm_div=">
+							<p class="program-list-tit"></p>
+							<div class="program-list-con">
+								<ul>
+									<li><span>장소</span></li>
+									<li><span>신청</span> ~ </li>
+									<li><span>진행</span> ~ </li>
+								</ul>
+								<p class="program-list-local">인천시</p>
+							</div>
+						</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</div>
+<script>
+	var programSelect = $("#program .program-select select");
+	programSelect.change(function(){
+		var selectName = $(this).children("option:selected").text();
+		$(this).siblings("p").text(selectName);
+	});
+
+	$('#program-select').on('change', function() {
+		var prgmdiv = $(this).find(":selected").val();
+		getPrgmMainList(10, prgmdiv);
+	}).val("").change();
+
+	function getPrgmMainList(listsz, prgmdiv){
+		$.ajax({
+			url: "/program/programInfoMainList.do",
+			data: {
+				"del_yn": "n",
+				"listsz": listsz,
+				"prgmdiv": prgmdiv
+			},
+			type: 'POST',
+			timeout:10000,
+			error:function(e){
+				console.log(e);
+			},
+			success: function(data){
+				var html = "";
+
+				if(data.length < 1){
+					html =	'<li class="splide__slide is-active is-visible" id="program-slide01" role="group" aria-roledescription="slide" aria-label="1 of 1" style="margin-right: 2rem; width: 100%;">';
+					html +=	'	<p class="program-list-tit center" style="margin-top: 10%;">조회 가능한 프로그램이 없습니다.</p>';
+					html +=	'</li>';
+				}else{
+					var acpt_sdt2;
+					var acpt_edt2;
+					var acpt_sdt2_month
+					var acpt_edt2_month
+					var prgm_symd;
+					var prgm_eymd;
+
+					data.forEach(function(obj, idx, arr){
+						acpt_sdt2 = new Date(obj.acpt_sdt2);
+						acpt_edt2 = new Date(obj.acpt_edt2);
+						acpt_sdt2_month = acpt_sdt2.getMonth() + 1;
+						acpt_sdt2_month = acpt_sdt2_month < 10 ? "0" + acpt_sdt2_month : acpt_sdt2_month;
+						acpt_edt2_month = acpt_edt2.getMonth() + 1;
+						acpt_edt2_month = acpt_edt2_month < 10 ? "0" + acpt_edt2_month : acpt_edt2_month;
+
+						acpt_sdt2 = acpt_sdt2.getFullYear() + "." + acpt_sdt2_month + "." + acpt_sdt2.getDate();
+						acpt_edt2 = acpt_edt2.getFullYear() + "." + acpt_edt2_month + "." + acpt_edt2.getDate();
+
+						prgm_symd = obj.prgm_symd.replace(/-/g, ".");
+						prgm_eymd = obj.prgm_eymd.replace(/-/g, ".");
+
+						html +=	'<li class="splide__slide">';
+						html +=	'	<a href="/program/programInfoDetail.do?prgm_seq=' + obj.prgm_seq + '&prgm_div=' + obj.prgm_div + '&prgmdiv=' + obj.prgm_div + '">';
+						html +=	'		<p class="program-list-tit">' + obj.prgm_nm + '</p>';
+						html +=	'		<div class="program-list-con">';
+						html +=	'			<ul>';
+						html +=	'				<li><span>장소</span>' + obj.edu_place_nm + '</li>';
+						html +=	'				<li><span>신청</span>' + acpt_sdt2 + ' ~ ' + acpt_edt2 + '</li>';
+						html +=	'				<li><span>진행</span>' + prgm_symd + ' ~ ' + prgm_eymd + '</li>';
+						html +=	'			</ul>';
+						html +=	'			<p class="program-list-local">' + obj.prgm_div_nm + '</p>';
+						html +=	'		</div>';
+						html +=	'	</a>';
+						html +=	'</li>';
+					});
+				}
+
+				$("#program_main_list").html(html);
+
+				var splide = new Splide( '#program', {
+					classes: {
+						arrows: 'splide__arrows program-control',
+						prev  : 'splide__arrow--prev prev',
+						next  : 'splide__arrow--next next',
+					},
+					resetProgress :false,
+					// rewind: true,
+					// rewindSpeed : 400,
+					pagination: false,
+					autoWidth: true,
+					accessibility: true,
+					autoplay: true,
+					gap: '2rem',
+					perPage: 4,
+					perMove: 1,
+					omitEnd: true,
+				}).mount();
+			}
+		});
+	}
+</script>
+
+</div>
+  <div id="ban">
+  <div class="wrap">
+    <div class="ban-tit">
+      <h3>배너모음</h3>
+      <div class="ban-control">
+        <a href="#none" class="prev ir">이전</a>
+        <a href="#none" class="play">재생</a>
+        <a href="#none" class="stop">멈춤</a>
+        <a href="#none" class="next ir">다음</a>
+      </div>
+    </div>
+    <div class="ban-list">
+      <ul>
+		<li>
+				<a href="https://www.itp.or.kr/" target="_blank" title="새창"><img src="/images/banner/ban01.png" alt="ITP 인천테크노파크"></a>
+					</li>
+		<li>
+				<a href="https://ccei.creativekorea.or.kr/incheon/" target="_blank" title="새창"><img src="/images/banner/ban02.png" alt="인천창조경제혁신센터"></a>
+					</li>
+		<li>
+				<a href="https://www.icsinbo.or.kr/home/main.do" target="_blank" title="새창"><img src="/images/banner/ban03.png" alt="인천광역시 출연기관 인천신용보증재단"></a>
+					</li>
+		<li>
+				<a href="https://ifac.or.kr/" target="_blank" title="새창"><img src="/images/banner/ban04.png" alt="IFAC 인천문화재단"></a>
+					</li>
+		<li>
+				<a href="https://www.ito.or.kr/" target="_blank" title="새창"><img src="/images/banner/ban05.png" alt="인천관광공사"></a>
+					</li>
+		<li>
+				<a href="https://itle.or.kr/user/main.do" target="_blank" title="새창"><img src="/images/banner/ban06.png" alt="(재)인천인재평생교육진흥원"></a>
+					</li>
+		<li>
+				<a href="https://www.ripc.org/www2/regional/incheon/main.do" target="_blank" title="새창"><img src="/images/banner/ban07.png" alt="RIPC 인천지식재산센터"></a>
+					</li>
+		<li>
+				<a href="http://incheon.korcham.net/front/user/main.do" target="_blank" title="새창"><img src="/images/banner/ban08.png" alt="인천상공회의소"></a>
+					</li>
+		<li>
+				<a href="https://www.ih.co.kr" target="_blank" title="새창"><img src="/images/banner/ban09.png" alt="IH 인천도시공사"></a>
+					</li>
+		<li>
+				<a href="https://www.eco-i.or.kr/main/main.asp" target="_blank" title="새창"><img src="/images/banner/ban10.png" alt="인천환경공단"></a>
+					</li>
+		<li>
+				<a href="https://www.fss.or.kr/edu/fem/eduProgram/view.do?programSlno=1&amp;menuNo=300020" target="_blank" title="새창"><img src="/images/banner/ban11b.png" alt="금융감독원 e-금융교육센터 "></a>
+					</li>
+		</ul>
+    </div>
+  </div>
+</div>
+<script>
+  bannerUtil({
+    location: "#ban .ban-list ul>li",		// 필수 입력 - 적용할 요소의 자식까지의 경로 
+    auto: [true,30],			// 선택 입력 - 자동재생 사용여부(true 또는 false)
+    prev: "#ban .prev",		// 선택 입력 - 이전 버튼 (버튼 요소의  경로 또는 id)
+    next: "#ban .next",		// 선택 입력 - 다음 버튼 (버튼 요소의  경로 또는 id)
+    stop: ["#ban .stop", "#ban .play"]		// 선택 입력 - 정지 버튼 (버튼 요소의  경로 또는 id) - 정지버튼과 재생버튼이 나눠져있을경우 [정지,재생]으로 입력(상세 조정 참고)
+  });
+</script><div id="quick">
+	<div>
+		<ul class="quick-link">
+			<li><a href="/policy/search_incheon.jsp">정책찾기</a></li>
+			<li><a href="/policy/calendar.jsp">정책캘린더</a></li>
+			<li><a href="/youthpolicy/youthPolicyInfoList.do?acptrun=ing">접수중인 정책</a></li>
+			<li><a href="/job/incheon.jsp">일자리 정보</a></li>
+			<li><a href="/member/business.jsp" class="mypage">마이페이지</a></li>
+		</ul>
+		<a href="#none" title="위로 이동" class="quick-top">TOP</a>
+	</div>
+</div>
+<hr>
+<footer>
+	<div id="footer">
+		<div class="relation">
+			<h3 class="ir">관련기관</h3>
+			<div class="wrap">
+				<div class="no_arr">
+					<a href="https://www.incheon.go.kr/" target="_blank" title="새창">인천광역시</a>
+				</div>
+				<div>
+					<a href="#none" class="open">자치군·구</a>
+					<ul>
+						<li><a href="https://www.ganghwa.go.kr" title="새창" target="_blank">강화군</a></li>
+						<li><a href="https://www.ongjin.go.kr" title="새창" target="_blank">옹진군</a></li>
+						<li><a href="https://www.jemulpo.go.kr" title="새창" target="_blank">제물포구</a></li>
+						<li><a href="https://www.yeongjong.go.kr" title="새창" target="_blank">영종구</a></li>
+						<li><a href="https://www.michuhol.go.kr" title="새창" target="_blank">미추홀구</a></li>
+						<li><a href="https://www.yeonsu.go.kr" title="새창" target="_blank">연수구</a></li>
+						<li><a href="https://www.namdong.go.kr" title="새창" target="_blank">남동구</a></li>
+						<li><a href="https://www.icbp.go.kr" title="새창" target="_blank">부평구</a></li>
+						<li><a href="https://www.gyeyang.go.kr" title="새창" target="_blank">계양구</a></li>
+						<li><a href="https://www.seo.incheon.kr" title="새창" target="_blank">서해구</a></li>
+						<li><a href="https://www.geomdan.go.kr" title="새창" target="_blank">검단구</a></li>
+						
+					</ul>
+				</div>
+				<div>
+					<a href="#none" class="open">인천청년공간</a>
+					<ul class="info-list">
+						<li><a href="/space/inuu/" target="_blank" title="새창">유유기지 인천</a></li>
+                                                <li><a href="https://inuugh.kr/" target="_blank" title="새창">유유기지 강화</a></li>
+                                                <li><a href="/space/donggu/" target="_blank" title="새창">유유기지 제물포구</a></li>						
+                                                <li><a href="/space/junggu/" target="_blank" title="새창">영종구 청년내일기지</a></li>						
+						<li><a href="/space/yeonsu/" target="_blank" title="새창">연수청년자리</a></li>
+                                                <li><a href="/space/namdong/" target="_blank" title="새창">남동구 청년꿈터</a></li>
+						<li><a href="/space/bupyeong/" target="_blank" title="새창">유유기지 부평</a></li>
+						<li><a href="/space/gyeyang/" target="_blank" title="새창">계양청년마당</a></li>
+						<li><a href="/space/seogu/" target="_blank" title="새창">청년센터 서해구1939</a></li>
+					</ul>
+				</div>
+				<div>
+					<a href="#none" class="open">전국청년포털</a>
+					<ul class="info-list">
+						<li><a href="https://job.gwd.go.kr/youth" target="_blank" title="새창">강원청년포털</a></li>
+						<li><a href="https://youth.gg.go.kr/gg/index.do" target="_blank" title="새창">경기청년포털</a></li>
+						<li><a href="https://youth.gyeongnam.go.kr/youth/" target="_blank" title="새창">청년정보플랫폼</a></li>
+						<li><a href="https://gbyouth.co.kr/main.tc" target="_blank" title="새창">청년e끌림</a></li>
+						<li><a href="https://gjyouthcenter.kr/index.do" target="_blank" title="새창">광주청년센터</a></li>
+						<li><a href="https://www.daegu.go.kr/YouthPolicy/index.do" target="_blank" title="새창">대구청년정책</a></li>
+						<li><a href="https://www.daejeonyouthportal.kr/" target="_blank" title="새창">대전청년포털</a></li>
+						<li><a href="https://young.busan.go.kr/index.nm" target="_blank" title="새창">청년G대</a></li>
+						<li><a href="https://youth.seoul.go.kr/index.do" target="_blank" title="새창">청년몽땅정보통</a></li>
+						<li><a href="https://www.4242.or.kr/" target="_blank" title="새창">세종청년센터</a></li>
+						<li><a href="https://www.ulsan.go.kr/s/ulsanyouth/main.ulsan" target="_blank" title="새창">U-PAGE</a></li>
+						<li><a href="https://brand.jeonnam.go.kr/" target="_blank" title="새창">오감만족청년정책</a></li>
+						<li><a href="https://www.jb2030.or.kr/" target="_blank" title="새창">전북청년허브센터</a></li>
+						<li><a href="https://jejuyouth.com/index.php" target="_blank" title="새창">제주청년센터</a></li>
+						<li><a href="https://youth.chungnam.go.kr/web/main/main" target="_blank" title="새창">충남청년포털</a></li>
+						<li><a href="https://www.chungbuk.go.kr/young/index.do" target="_blank" title="새창">충북청년포털</a></li>
+					</ul>
+				</div>
+				<div class="no_arr">
+					<a href="https://www.youthcenter.go.kr/main.do" target="_blank" title="새창">온통청년(고용노동부)</a>
+				</div>
+				<div class="no_arr">
+					<a href="https://2030.go.kr/main" target="_blank" title="새창">중앙청년포털</a>
+				</div>
+			</div>
+		</div>
+		<div class="footer-con wrap">
+			<div class="footer-top">
+				<div>
+					<p class="ir footer-logo">인천광역시</p>
+					<ul class="footer-link">
+						<li><a href="https://www.incheon.go.kr/IC050201" target="_blank" title="새창">누리집 이용안내</a></li>
+						<li><a href="https://www.incheon.go.kr/IC050401" target="_blank" title="새창" class="privacy">개인정보처리방침</a></li>
+						<li><a href="https://www.incheon.go.kr/IC050601" target="_blank" title="새창">저작권정책</a></li>
+						<li><a href="https://www.incheon.go.kr/IC050701" target="_blank" title="새창">이메일무단수집거부</a></li>
+					</ul>
+				</div>
+				<ul class="footer-mark">
+					<li><a href="/bbs/bbsMsgFileView.do?bcd=file&msg_seq=22&fileno=1" target="_blank" title="새창 이동"><img src="/img/mark03.png" alt="과학기술정보통신부 WEB 접근성 한국웹접근성인증평가원 2024.06.18~2025.16.17"></a></li>
+					<li><a href="https://www.mois.go.kr/frt/sub/popup/p_taegugki_banner/screen.do" target="_blank" title="새창 이동"><img src="/img/mark01.png" alt="국가상징 알아보기"></a></li>
+					<li><a href="https://www.incheon.go.kr/IC030601" target="_blank" title="새창"><img src="/img/mark02.png" alt="120 궁금할 땐 언제나~ 미추홀콜센터"></a></li>
+				</ul>
+			</div>
+			<div class="footer-btm">
+				<address>21554 인천광역시 남동구 정각로 29(구월동) <br>TEL:(032)120</address>
+				<p class="copy">ⓒ Incheon Metropolitan City. All rights reserved.</p>
+			</div>
+		</div>
+	</div>
+</footer>
+
+<script>
+	//nav
+	$(window).resize(function(){
+		windowWidth = $(window).width()
+	}).resize();
+	
+  $("#footer .relation>div>div").click(function(){
+		$(this).siblings().children('ul').slideUp();
+		$(this).children('ul').slideToggle();
+	});
+	$("#location .shareSns .share").click(function(){
+		$(this).toggleClass("on");
+		if($(this).text() == '공유하기'){
+			$(this).text('공유하기 닫기');
+		} else {
+			$(this).text('공유하기');
+		}
+	});
+
+	$("#location .shareSns .print").focusin(function(){
+		$('#location .shareSns .share').removeClass("on");
+	});
+	
+  $(".label-select select").focusin(function(){
+    $(this).parent().addClass('focus');
+  });
+
+  $(".label-select select").focusout(function(){
+    $(this).parent().removeClass('focus');
+  });
+	
+	$(".label-select input").focusin(function(){
+			$(this).next('label').addClass('focus');
+	});
+
+	$(".label-select input").focusout(function(){
+		$(this).next('label').removeClass('focus');
+	});
+
+  $('#quick .quick-top').click(function(){ 
+    $("html, body").animate({ scrollTop: 0 }, 500); 
+    return false; 
+  });
+
+	if(windowWidth<1025){
+		$("#lnb>.wrap>h2>a").click(function(){
+			$("body").toggleClass("fixed");
+			$(this).toggleClass("close");
+			$(this).parent().siblings(".lnb-box").toggle();
+			return false;
+		});
+		$("#lnb .lnb-box>ul>li").children("a").attr("href","#none");
+		$("#lnb .lnb-box>ul>li>a").click(function(){
+			$("#lnb .lnb-box>ul>li").removeClass('select');
+			$(this).parent("li").addClass('select');
+			$("#lnb .sub-menu").hide();
+			$(this).siblings("#lnb .sub-menu").show();
+			return false;
+		});
+	}else{
+		$("#contents, #location").bind("focusin",function(){	
+			$("body").removeClass('bg');
+			$("#lnb .lnb-box .sub-menu").hide();
+		});
+		$("header").bind("mouseleave",function(){	
+			$("body").removeClass('bg');
+			$("#lnb .lnb-box .sub-menu").hide();
+		});
+		$("#lnb .lnb-box>ul>li>a").bind("mouseenter focusin",function(){	
+			$("body").addClass('bg');
+			$(this).parent().siblings().children("#lnb .lnb-box .sub-menu").hide();
+			$(this).siblings(".sub-menu").show();
+		});
+		$("#lnb>.wrap>h2>a").click(function(){
+			$("#allmenu").show();
+		});
+		$('#allmenu .allmenu-close').click(function(){			
+			$("#lnb>.wrap>h2>a").focus();
+			$('#allmenu').hide();
+		});
+		$('#allmenu .allmenu-close').focusout(function(){			
+			$("#lnb>.wrap>h2>a").focus();
+			$('#allmenu').hide();
+		});
+		$('#lnb .lnb-box>ul>li>a').focusin(function(){
+			$('#allmenu').hide();
+		});
+	}
+		
+	//lmenu
+	var current_url = "/main.jsp";
+	$("#lnb .lnb-box>ul>li a[href='"+current_url+"']").parents("li").addClass("select");
+	$("#lmenu ul>li>a[href='"+current_url+"']").parents("li").addClass("select");
+	$("#lmenu ul>li>ul>li>a[href='"+current_url+"']").parent("li").addClass("select");
+	$("#lmenu .sub-menu>ul>li>ul").siblings("a").attr("href","#none"); //3depth 있으면 2depth a링크 삭제
+	$("#lmenu .sub-menu>ul>li>ul>li>ul").siblings("a").attr("href","#none"); //3depth 있으면 2depth a링크 삭제
+	$("#lmenu .sub-menu>ul>li.select .depth").css('display','block');
+	$("#lmenu .sub-menu>ul>li .depth li.select ul").css('display','block');
+	$("#lmenu .sub-menu>ul>li>a").click(function(){
+		$("#lmenu .sub-menu>ul>li").removeClass("select");
+		$("#lmenu .sub-menu>ul>li>ul").slideUp();
+		$(this).parent().addClass("select");
+		$(this).siblings("ul").slideDown();
+	});
+	$("#lmenu .sub-menu>ul>li>ul>li>a").click(function(){
+		$("#lmenu .sub-menu>ul>li>ul>li").removeClass("select");
+		$("#lmenu .sub-menu>ul>li>ul>li>ul").slideUp();
+		$(this).parent().addClass("select");
+		$(this).siblings("ul").slideDown();
+	});
+	$("#tab a").click(function(){
+		$(this).parent().siblings().removeClass('select').children('a').removeAttr("title");
+		$(this).attr("title","선택됨").parent().addClass('select');
+	});
+</script>
+<script>
+	function goLoginFormMsg(url, msg){
+		alert(msg);
+		var return_uri = url;
+		if(return_uri==""){
+			return_uri = location.href;				
+			return_uri = return_uri.replace("?","!");
+			return_uri = return_uri.replace(/&amp;/g,"!");
+			return_uri = return_uri.replace(/&/g,"!");
+			var arrDns = return_uri.split("//"); 
+			return_uri = arrDns[1].substring(arrDns[1].indexOf("/"));
+		}	
+		location.href = "/member/memberLoginForm.do?return_uri=" + return_uri;
+	}
+	
+	function fnPopup(popuri, popnm, popwidth, popheight){
+		var popupX = (window.screen.width / 2) - (popwidth / 2);
+		var popupY = (window.screen.height /2) - (popheight / 2);
+
+		var winopts= "width="+popwidth+",height="+popheight+",toolbar=no,location=no,directories=no,status=yes,menubar=no,scrollbars=yes,resizable=yes,left="+ popupX + ", top="+ popupY + ", screenX="+ popupX + ", screenY= "+ popupY;
+		var win =  window.open(popuri, popnm, winopts);
+	}
+</script>
+
+<script src="https://cdn.jsdelivr.net/gh/nuxodin/ie11CustomProperties@4.1.0/ie11CustomProperties.min.js"></script>
+<!-- Google Tag Manager -->
+<script>
+	(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+	new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+	j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+	'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+	})(window,document,'script','dataLayer','GTM-K5NZ8Z6S');
+</script>
+<!-- End Google Tag Manager -->
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-H7BD6Y0NNZ"></script>
+<script>
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+	
+	gtag('config', 'G-H7BD6Y0NNZ');
+</script>
+<script>
+    if(windowWidth<1025){
+      $("#lnb .lnb-box>ul>li:first-child").addClass('select');
+	  }
+  </script>
+</body>
+</html>

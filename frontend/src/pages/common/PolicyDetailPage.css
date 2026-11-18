@@ -10,7 +10,6 @@
   font-family: 'Noto Sans KR', sans-serif;
 }
 .policy-detail-page button { font: inherit; }
-.policy-detail-dev-login { display: block; margin: 16px auto; padding: 10px 16px; border: 0; border-radius: 10px; background: #2f7bf5; color: #fff; }
 .policy-detail-page button:focus-visible,
 .policy-detail-page a:focus-visible { outline: 2px solid #2f7bf5; outline-offset: 2px; }
 .policy-detail-header {

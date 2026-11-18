@@ -1,0 +1,270 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=0,maximum-scale=10,user-scalable=yes">
+<meta name="HandheldFriendly" content="true">
+<meta name="format-detection" content="telephone=no">
+<title>고성군청</title>
+<link rel="stylesheet" href="https://note.gwgs.go.kr/theme/epmobile/css/mobile.css?ver=171222">
+<link rel="stylesheet" href="https://note.gwgs.go.kr/theme/epmobile/mobile/skin/board/basic_more/style.css?ver=171222">
+<!--[if lte IE 8]>
+<script src="https://note.gwgs.go.kr/js/html5.js"></script>
+<![endif]-->
+<script>
+// 자바스크립트에서 사용하는 전역변수 선언
+var g5_url       = "https://note.gwgs.go.kr";
+var g5_bbs_url   = "https://note.gwgs.go.kr/bbs";
+var g5_is_member = "";
+var g5_is_admin  = "";
+var g5_is_mobile = "1";
+var g5_bo_table  = "";
+var g5_sca       = "";
+var g5_editor    = "";
+var g5_cookie_domain = "";
+</script>
+<script src="https://note.gwgs.go.kr/js/jquery-1.8.3.min.js"></script>
+<script src="https://note.gwgs.go.kr/js/jquery.menu.js?ver=171222"></script>
+<script src="https://note.gwgs.go.kr/js/common.js?ver=171222"></script>
+<script src="https://note.gwgs.go.kr/js/wrest.js?ver=171222"></script>
+<script src="https://note.gwgs.go.kr/js/placeholders.min.js"></script>
+<link rel="stylesheet" href="https://note.gwgs.go.kr/js/font-awesome/css/font-awesome.min.css">
+<script src="https://note.gwgs.go.kr/js/modernizr.custom.70111.js"></script>
+</head>
+<body>
+
+<header id="hd">
+    <h1 id="hd_h1">고성군청</h1>
+
+    <div class="to_content"><a href="#container">본문 바로가기</a></div>
+
+    	
+    <div id="hd_wrapper">
+		
+        <div id="logo">
+            <a href="https://note.gwgs.go.kr/index_s.php">고성군 직원안내</a>
+        </div>
+		        <button type="button" id="gnb_open" class="hd_opener"><i class="fa fa-bars" aria-hidden="true"></i><span class="sound_only"> 메뉴열기</span></button>
+		        <div class="maker_div"></div>       
+         <div id="gnb" class="hd_div">
+            <ul id="gnb_1dul">
+            				<li class="gnb_1dli"><a href="" class="m_menu_close"><img src="/img/m_icon_menu_close.png" alt="" /></a>					<a href="/bbs/board.php?bo_table=notice"  target="_self"  title="군청소식 가기" class="gnb_1da">군청소식<span></span></a>
+					<ul class="gnb_2dul">
+						<li class="gnb_2dli">
+							<a href="/board/notice/list.php" target="_self" title="공지사항 가기" class="gnb_2da">공지사항</a>
+						</li>
+											<li class="gnb_2dli">
+							<a href="/board/job/list.php" target="_self" title="채용정보 가기" class="gnb_2da">채용정보</a>
+						</li>
+					</ul>
+				<li class="gnb_1dli">					<a href="/staff/list.php"  target="_self"  title="직원조회 가기" class="gnb_1da">직원조회<span></span></a>
+					<ul class="gnb_2dul">
+						<li class="gnb_2dli">
+							<a href="/staff/list.php" target="_self" title="직원(부서)조회 가기" class="gnb_2da">직원(부서)조회</a>
+						</li>
+					</ul>
+</li>
+            </ul>
+
+        </div>  
+        <div class="clear"></div>
+    </div>
+            <script>
+        $(function () {
+            //폰트 크기 조정 위치 지정
+            var font_resize_class = get_cookie("ck_font_resize_add_class");
+            if( font_resize_class == 'ts_up' ){
+                $("#text_size button").removeClass("select");
+                $("#size_def").addClass("select");
+            } else if (font_resize_class == 'ts_up2') {
+                $("#text_size button").removeClass("select");
+                $("#size_up").addClass("select");
+            }
+            $("#user_btn").on("click", function() {
+                var $this = $(this);
+                var $hd_layer = $this.next(".hd_div");
+
+                if($hd_layer.is(":visible")) {
+                    $hd_layer.hide();
+                    $this.find("span").text("열기");
+                } else {
+                    var $hd_layer2 = $(".hd_div:visible");
+                    $hd_layer2.prev(".hd_opener").find("span").text("열기");
+                    $hd_layer2.hide();
+
+                    $hd_layer.show();
+                    $this.find("span").text("닫기");
+                }
+            });
+			
+            $("#container").on("click", function() {
+                $(".hd_div").hide();
+
+            });
+
+            $(".btn_gnb_op").click(function(){
+                $(this).toggleClass("btn_gnb_cl").next(".gnb_2dul").slideToggle(300);
+                
+            });
+
+            $(".hd_closer").on("click", function() {
+                var idx = $(".hd_closer").index($(this));
+                $(".hd_div:visible").hide();
+                $(".hd_opener:eq("+idx+")").find("span").text("열기");
+            });
+			
+			//eps script
+			$('.gnb_1da').click(function() {
+				if($(this).parent().children('.gnb_2dul').css('display') == "none"){
+					$('.gnb_2dul').hide();					
+					$('.gnb_1da').css('background' , '#fff url(/img/m_icon_menu_down_20.jpg) no-repeat right') ;
+					$(this).parent().children('.gnb_2dul').fadeIn('fast');
+					$(this).css('background' , '#fff url(/img/m_icon_menu_up_20.jpg) no-repeat right') ;
+					
+				}else{
+					$(this).parent().children('.gnb_2dul').hide('fast');
+					$(this).css('background' , '#fff url(/img/m_icon_menu_down_20.jpg) no-repeat right') ;
+				}
+				return false ;
+				
+			}) ;
+
+            $("#gnb_open").on("click", function() {	
+				$(".maker_div").show();			
+				$("#gnb").show(100);
+				
+				
+            });
+			
+			
+            $(".hd_closer , .m_menu_close").on("click", function() {
+                var idx = $(".hd_closer").index($(this));
+                $(".hd_div:visible").hide();
+				$(".maker_div").hide();
+				return false ;
+            });
+        });
+        </script>
+        
+    </div>
+</header>
+
+
+	<div id="sub_location">
+    	<p><a href="https://note.gwgs.go.kr/index_s.php" title="홈으로 가기"><img src="/img/m_icon_home.png" alt="home" /></a></p><p class="line">군청소식</p><p class="line b_color">공지사항</p>
+    <div class="clear"></div>
+    </div>
+    <div id="sub_cont">
+<article id="bo_v" style="width:">
+    <header>
+        <h2 id="bo_v_title">
+            <span class="bo_v_tit">
+            2026년 고성형 청년 월세 지원 신청자 모집</span>
+        </h2>
+        <p><span class="sound_only">작성일</span><i class="fa fa-clock-o" aria-hidden="true"></i> 2026-10-01</p>
+    </header>
+
+    <section id="bo_v_info">
+        <h2>페이지 정보</h2>
+        <span class="sound_only">작성자 </span>경제체육과    </section>
+
+    <div id="bo_v_top">
+        
+    </div>
+
+    <section id="bo_v_atc">
+        <h2 id="bo_v_atc_title">본문</h2>
+
+        
+
+        <div id="bo_v_con"><p>2026년 고성형 청년 월세 지원사업 신청자 모집을 아래와 같이 공고하오니, 많은 참여 바랍니다.</p>
+
+<p>1. 모집기간 : 2026. 10. 1.(목) ~ 10. 16.(금)<br />
+2. 지원인원 : 10명<br />
+3. 지원대상 : 고성군에 부모님과 별도 거주하는 18세~45세 무주택 세대주 청년 가구<br />
+&nbsp;&nbsp; - (소득) 가구 기준중위소득 120% 이하<br />
+4. 지원내용 : 월 최대 20만원 1년간 지원 / 분기별 지급 / 생애 1회</p>
+
+<p>* 기타 자세한 사항은 붙임의 공고문을 참고해주시기 바랍니다.</p></div>
+        
+    </section>
+
+
+    
+    
+
+   <div id="bo_v_top">
+
+        <ul class="bo_v_com">
+           <li><a href="list.php?page=&ntt_id=B000000080674Ip0mP8m" class="btn_b01 btn"><i class="fa fa-list" aria-hidden="true"></i> 목록</a></li>
+        </ul>
+    </div>
+    
+</article>
+<script>
+</script>
+    </div>
+</div>
+
+
+
+<div id="ft">
+    <div id="ft_copy">
+        Copyright &copy; <b>2019 GOSEONG-GUN.</b> All rights reserved.<br>
+    </div>
+    <button type="button" id="top_btn"><i class="fa fa-arrow-up" aria-hidden="true"></i><span class="sound_only">상단으로</span></button>
+    </div>
+
+
+
+<script>
+jQuery(function($) {
+
+    $( document ).ready( function() {
+
+        // 폰트 리사이즈 쿠키있으면 실행
+        font_resize("container", get_cookie("ck_font_resize_rmv_class"), get_cookie("ck_font_resize_add_class"));
+        
+        //상단고정
+        if( $(".top").length ){
+            var jbOffset = $(".top").offset();
+            $( window ).scroll( function() {
+                if ( $( document ).scrollTop() > jbOffset.top ) {
+                    $( '.top' ).addClass( 'fixed' );
+                }
+                else {
+                    $( '.top' ).removeClass( 'fixed' );
+                }
+            });
+        }
+
+        //상단으로
+        $("#top_btn").on("click", function() {
+            $("html, body").animate({scrollTop:0}, '500');
+            return false;
+        });
+
+    });
+});
+</script>
+
+
+
+<!-- ie6,7에서 사이드뷰가 게시판 목록에서 아래 사이드뷰에 가려지는 현상 수정 -->
+<!--[if lte IE 7]>
+<script>
+$(function() {
+    var $sv_use = $(".sv_use");
+    var count = $sv_use.length;
+
+    $sv_use.each(function() {
+        $(this).css("z-index", count);
+        $(this).css("position", "relative");
+        count = count - 1;
+    });
+});
+</script>
+<![endif]-->
+
+</body>
+</html>

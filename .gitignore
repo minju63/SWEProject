@@ -1,6 +1,9 @@
 node_modules/
 dist/
 build/
+.local/
+test-results/
+playwright-report/
 
 .env
 .env.local
@@ -9,9 +12,16 @@ build/
 __pycache__/
 *.csv
 
+/research/housing-sync/
+/research/housing_conditions_2026-11-18/before.json
+/research/housing_conditions_2026-11-18/after.json
+/research/housing_conditions_2026-11-18/sources/
+/research/housing_conditions_contract_2026-11-18/database_before.json
+/research/housing_conditions_contract_2026-11-18/database_after.json
+/research/housing_periods_2026-11-18/
+
 .DS_Store
 Thumbs.db
-
 *.log
 npm-debug.log*
 

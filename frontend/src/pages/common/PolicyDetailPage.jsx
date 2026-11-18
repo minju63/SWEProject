@@ -186,7 +186,6 @@ export default function PolicyDetailPage() {
 
   if (!user) return <div className="policy-detail-page">
     <StateMessage isEmpty emptyText="정책 상세를 보려면 로그인이 필요해요." />
-    {import.meta.env.DEV && <button className="policy-detail-dev-login" onClick={() => navigate('/dev/login')}>테스트 계정으로 로그인</button>}
   </div>;
   if (!policy.data) return <div className="policy-detail-page"><StateMessage isLoading={policy.isLoading} error={policy.error} /></div>;
   const p = policy.data;

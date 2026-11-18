@@ -1,0 +1,1661 @@
+
+
+
+
+
+
+
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	
+
+
+
+
+
+
+
+
+<title>혜택 서비스 찾기  | 강원혜택이지 &gt; 혜택 서비스 &gt; 혜택 서비스 찾기</title>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta http-equiv="Cache-Control" content="no-cache" />
+<meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, minimum-scale=1.0, maximum-scale=2.0, user-scalable=yes" />
+<meta name="Keywords" content="혜택 서비스 찾기" />
+<meta name="Description" content="혜택 서비스 찾기" />
+<meta name="Author" content="강원혜택이지" />
+<meta name="format-detection" content="telephone=no" />
+<meta property="og:site_name" content="강원혜택이지" />
+<meta property="og:title" itemprop="name" content="혜택 서비스 찾기" />
+<meta property="og:description" name="Description" content="혜택 서비스 찾기" />
+<meta name="_csrf_parameter" content="_csrf" /><meta name="_csrf_header" content="X-XSRF-TOKEN" /><meta name="_csrf" content="6e44ac65-e138-45a4-a006-3caeb9cba980" />
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+        
+    
+    
+
+
+<link rel="stylesheet" href="/page/common/css/jquery-ui.min.css?v=2026100220" />
+<link rel="stylesheet" href="/page/common/css/fonts.css?v=2026100220" />
+<link rel="stylesheet" href="/page/common/css/common.css?v=2026100220" />
+<link rel="stylesheet" href="/page/common/css/common_style.css?v=2026100220" />
+
+
+<link rel="stylesheet" href="/page/gwds/css/app.css">
+<link rel="stylesheet" href="/page/gwds/css/sub.css">
+<link rel="stylesheet" href="/page/gwds/css/aos.css">
+
+    <link rel="stylesheet" href="/page/gwds/css/contents.css">
+
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+        
+    
+    
+
+
+<script src="/page/common/js/jquery-3.6.0.min.js?v=2026100220"></script>
+<script src="/page/common/js/jquery-ui.min.js?v=2026100220"></script>
+<script src="/page/common/js/puble_common.js?v=2026100220"></script>
+<script src="/page/common/js/slick.min.js?v=2026100220"></script>
+<script src="/page/common/js/common.js?v=2026100220"></script>
+<script src="/page/common/js/jquery.touchSwipe.min.js?v=2026100220"></script>
+<script src="/page/common/js/jquery.cookie.js?v=2026100220"></script>
+<script src="/page/common/js/util.js?v=2026100220"></script>
+<script src="/page/common/js/clipboard.js?v=2026100220"></script>
+
+
+<script src="https://t1.kakaocdn.net/kakao_js_sdk/2.8.1/kakao.min.js" integrity="sha384-OL+ylM/iuPLtW5U3XcvLSGhE8JzReKDank5InqlHGWPhb4140/yrBw0bg0y7+C9J"
+        crossorigin="anonymous"></script>
+
+<script src="/page/gwds/js/aos.js"></script>
+<script src="/page/gwds/js/app.js"></script>
+<script src="/page/gwds/js/sub.js"></script>
+
+
+    <script src="/page/gwds/js/VM11249.js"></script>
+
+
+
+<script>
+    // 쿠키에서 특정 이름의 값을 가져오는 유틸 함수
+    function getCookie(name) {
+        var value = "; " + document.cookie;
+        var parts = value.split("; " + name + "=");
+        if (parts.length === 2) return parts.pop().split(";").shift();
+        return null;
+    }
+
+    // jQuery AJAX 전역 처리 (요청 발생 시점에 최신 토큰 동적 읽기)
+    $(document).ajaxSend(function(e, xhr) {
+        var token = getCookie("XSRF-TOKEN") || $("meta[name='_csrf']").attr("content");
+        var header = $("meta[name='_csrf_header']").attr("content") || "X-CSRF-TOKEN";
+        if (token && header) {
+            xhr.setRequestHeader(header, token);
+        }
+    });
+
+    // Native fetch() API 전역 처리
+    (function () {
+        var originalFetch = window.fetch;
+
+        window.fetch = function (resource, init) {
+            init = init || {};
+            var method = (init.method || "GET").toUpperCase();
+            // GET, HEAD, OPTIONS가 아닌 요청(POST, PUT, DELETE 등)에만 적용
+            if (method !== "GET" && method !== "HEAD" && method !== "OPTIONS") {
+                var csrfToken = getCookie("XSRF-TOKEN") || $("meta[name='_csrf']").attr("content");
+                var csrfHeader = $("meta[name='_csrf_header']").attr("content") || "X-CSRF-TOKEN";
+
+                if (csrfHeader && csrfToken) {
+                    if (!init.headers) {
+                        init.headers = {};
+                    }
+                    if (init.headers instanceof Headers) {
+                        init.headers.append(csrfHeader, csrfToken);
+                    } else if (Array.isArray(init.headers)) {
+                        init.headers.push([csrfHeader, csrfToken]);
+                    } else {
+                        init.headers[csrfHeader] = csrfToken;
+                    }
+                } else {
+                    console.warn("[CSRF] CSRF 토큰을 찾을 수 없습니다.");
+                }
+            }
+
+            return originalFetch(resource, init);
+        };
+    })();
+
+    // HTML Form 전송 전역 처리 (이벤트 감지 & 몽키 패치)
+    // (function () {
+    //     function injectCsrfToForm(form) {
+    //         if (!form || form.tagName !== "FORM") return;
+    //
+    //         var method = (form.getAttribute("method") || "GET").toUpperCase();
+    //         if (method === "GET") return;
+    //
+    //         var csrfToken = getCookie("XSRF-TOKEN") || $("meta[name='_csrf']").attr("content");
+    //         if (!csrfToken) return;
+    //
+    //         // 1. name="action" input 요소와의 충돌 방지 및 안전한 URL 추출
+    //         var actionUrl = form.getAttribute("action");
+    //         if (typeof actionUrl !== "string" || !actionUrl) {
+    //             actionUrl = window.location.pathname; // window.location.href 대신 깔끔한 pathname 사용
+    //         }
+    //
+    //         // 2. URL에서 기존 _csrf 파라미터 완전 제거 및 끝부분 ? 또는 & 정리
+    //         actionUrl = actionUrl.replace(/([?&])_csrf=[^&]*&?/g, "$1")
+    //             .replace(/[?&]$/, "");
+    //
+    //         // 3. 파라미터 제거 후 깨끗해진 URL 기준으로 구분자(? 또는 &) 결정
+    //         var separator = actionUrl.indexOf("?") !== -1 ? "&" : "?";
+    //         form.action = actionUrl + separator + "_csrf=" + encodeURIComponent(csrfToken);
+    //
+    //         // 4. Form 내부 Hidden Input 갱신
+    //         var $csrfInput = $(form).find("input[name='_csrf']");
+    //         if ($csrfInput.length > 0) {
+    //             $csrfInput.val(csrfToken);
+    //         } else {
+    //             $("<input>")
+    //                 .attr({ type: "hidden", name: "_csrf", value: csrfToken })
+    //                 .appendTo(form);
+    //         }
+    //     }
+    //
+    //     // 버튼 클릭/엔터로 제출할 때 (submit 이벤트)
+    //     document.addEventListener("submit", function (e) {
+    //         injectCsrfToForm(e.target);
+    //     }, true);
+    //
+    //     // JS 코드에서 form.submit()을 직접 호출할 때 (몽키 패치)
+    //     var originalSubmit = HTMLFormElement.prototype.submit;
+    //     HTMLFormElement.prototype.submit = function () {
+    //         injectCsrfToForm(this);
+    //         return originalSubmit.apply(this, arguments);
+    //     };
+    // })();
+
+    // 뒤로가기 복구 (검색어 등 처리는 안됨, 현재 페이지(url)를 히스토리에 덮어씀)
+    if (window.history.replaceState) {
+        window.history.replaceState(null, null, location.href);
+    }
+
+    // // csrf token - add by YJ.SON :: 2021-05-16
+    // var csrf_token = $("meta[name='_csrf']").attr("content");
+    // var csrf_token_header = $("meta[name='_csrf_header']").attr("content");
+    //
+    // // ajax token 전역처리
+    // $(document).ajaxSend(function(e, xhr) {
+    //     xhr.setRequestHeader(csrf_token_header, csrf_token);
+    // });
+
+    $(document).ready(function() {
+        // page hit
+        var pageUrl  = '/dg/benefits/searching';
+        var pageTitle = '혜택 서비스 찾기';
+        if ('/dg/benefits/searching') {
+            $.ajax({
+                type : 'POST'
+                , url  : '/egf/insertPageHit'
+                , data :{
+                    'pageUrl'  : pageUrl
+                    , 'pageTitle' : pageTitle
+                }
+                , dataType:'json'
+                // , beforeSend : function (xhr) {
+                //     // add csrf token - add by YJ.SON :: 2021-05-16
+                //     xhr.setRequestHeader(csrf_token_header, csrf_token);
+                // }
+            });
+        }
+
+        // logout
+        $(".btn-logout").click(function (event) {
+            fnStartLoading();
+
+            fetch("/others/member/logout", {
+                method: "post",
+                cache: "no-cache",
+            })
+            .then(response => {
+                return response.json();
+            })
+            .then(json => {
+                // success
+                location.href = "/dg";
+            })
+            .catch(error => {
+                console.log(error)
+            })
+            .finally(() => {
+                fnEndLoading();
+            });
+        });
+    });
+</script>
+	<link rel="icon" href="/page/common/favicon.ico" />
+</head>
+
+<body>
+	<div id="wrapper" class="page-wrap">
+		<ul class="skipnav">
+			<li><a href="#main">본문 바로가기</a></li>
+		</ul>
+
+		
+
+
+
+
+
+
+
+
+<header id="header">
+	<div class="header-wrap">
+		<h1>
+			<a href="/dg">
+				<img src="/page/gwds/images/main/logo.png" alt="강원디지털행정서비스">
+			</a>
+		</h1>
+		<div class="nav-bx">
+			<div class="nav-wrap">
+				<nav class="clearfix">
+					<div class="m-site-bx">
+						<div class="login-bx">
+							
+								<a href="/dg/member/join">회원가입</a>
+								<a href="/dg/member/login">로그인</a>
+							
+							
+						
+						</div>
+						<a href="#" class="close">
+							<img src="/page/gwds/images/main/close_b.png" alt="">
+						</a>
+					</div>
+					<ul class="depth-01">
+						
+							
+
+
+								
+									
+								
+								
+
+								<li>
+									<div class="tlv-02">
+										<a href="/dg/benefits" target="_self"  >
+											<span>혜택 서비스</span>
+										</a>
+									</div>
+									<!-- two depth -->
+									
+										<ul class="depth-02">
+											
+												
+
+													
+														
+													
+													
+
+													<li>
+														<div class="tlv-03">
+															<a href="/dg/benefits/intro" target="_self"  >
+																<span>혜택 서비스란?</span>
+															</a>
+														</div>
+														<!-- three depth -->
+														
+													</li>
+												
+											
+												
+
+													
+														
+													
+													
+
+													<li>
+														<div class="tlv-03">
+															<a href="/dg/benefits/searching" target="_self"  >
+																<span>혜택 서비스 찾기</span>
+															</a>
+														</div>
+														<!-- three depth -->
+														
+													</li>
+												
+											
+												
+
+													
+														
+													
+													
+
+													<li>
+														<div class="tlv-03">
+															<a href="/dg/benefits/matching" target="_self"  >
+																<span>혜택 서비스 추천</span>
+															</a>
+														</div>
+														<!-- three depth -->
+														
+													</li>
+												
+											
+												
+											
+										</ul>
+										<!-- //depth2 -->
+									
+								</li>
+							
+						
+							
+
+
+								
+									
+								
+								
+
+								<li>
+									<div class="tlv-02">
+										<a href="/dg/residenter" target="_self"  >
+											<span>강원생활도민</span>
+										</a>
+									</div>
+									<!-- two depth -->
+									
+										<ul class="depth-02">
+											
+												
+
+													
+														
+													
+													
+
+													<li>
+														<div class="tlv-03">
+															<a href="/dg/residenter/intro" target="_self"  >
+																<span>제도 소개</span>
+															</a>
+														</div>
+														<!-- three depth -->
+														
+													</li>
+												
+											
+												
+
+													
+													
+														
+															
+																
+															
+															
+														
+													
+
+													<li>
+														<div class="tlv-03">
+															<a href="/dg/pass/facilities?typeOtYn=Y" target="_self"  >
+																<span>제휴처 안내</span>
+															</a>
+														</div>
+														<!-- three depth -->
+														
+													</li>
+												
+											
+												
+
+													
+														
+													
+													
+
+													<li>
+														<div class="tlv-03">
+															<a href="/dg/residenter/news" target="_self"  >
+																<span>강원생활도민 소식</span>
+															</a>
+														</div>
+														<!-- three depth -->
+														
+													</li>
+												
+											
+												
+
+													
+														
+													
+													
+
+													<li>
+														<div class="tlv-03">
+															<a href="/dg/residenter/communication" target="_self"  >
+																<span>소통 마당</span>
+															</a>
+														</div>
+														<!-- three depth -->
+														
+													</li>
+												
+											
+												
+
+													
+														
+													
+													
+
+													<li>
+														<div class="tlv-03">
+															<a href="/dg/residenter/receipt" target="_self"  >
+																<span>영수증 인증</span>
+															</a>
+														</div>
+														<!-- three depth -->
+														
+													</li>
+												
+											
+										</ul>
+										<!-- //depth2 -->
+									
+								</li>
+							
+						
+							
+
+
+								
+									
+								
+								
+
+								<li>
+									<div class="tlv-02">
+										<a href="/dg/pass" target="_self"  >
+											<span>강원 패스</span>
+										</a>
+									</div>
+									<!-- two depth -->
+									
+										<ul class="depth-02">
+											
+												
+
+													
+														
+													
+													
+
+													<li>
+														<div class="tlv-03">
+															<a href="/dg/pass/intro" target="_self"  >
+																<span>강원 패스란?</span>
+															</a>
+														</div>
+														<!-- three depth -->
+														
+													</li>
+												
+											
+												
+
+													
+														
+													
+													
+
+													<li>
+														<div class="tlv-03">
+															<a href="/dg/pass/guide" target="_self"  >
+																<span>이용방법 안내</span>
+															</a>
+														</div>
+														<!-- three depth -->
+														
+													</li>
+												
+											
+												
+
+													
+														
+													
+													
+
+													<li>
+														<div class="tlv-03">
+															<a href="/dg/pass/facilities" target="_self"  >
+																<span>이용시설 안내</span>
+															</a>
+														</div>
+														<!-- three depth -->
+														
+													</li>
+												
+											
+												
+											
+										</ul>
+										<!-- //depth2 -->
+									
+								</li>
+							
+						
+							
+
+
+								
+									
+								
+								
+
+								<li>
+									<div class="tlv-02">
+										<a href="/dg/cs" target="_self"  >
+											<span>고객 센터</span>
+										</a>
+									</div>
+									<!-- two depth -->
+									
+										<ul class="depth-02">
+											
+												
+
+													
+														
+													
+													
+
+													<li>
+														<div class="tlv-03">
+															<a href="/dg/cs/notice" target="_self"  >
+																<span>공지사항</span>
+															</a>
+														</div>
+														<!-- three depth -->
+														
+													</li>
+												
+											
+												
+
+													
+														
+													
+													
+
+													<li>
+														<div class="tlv-03">
+															<a href="/dg/cs/faq" target="_self"  >
+																<span>자주하는 질문</span>
+															</a>
+														</div>
+														<!-- three depth -->
+														
+													</li>
+												
+											
+												
+
+													
+														
+													
+													
+
+													<li>
+														<div class="tlv-03">
+															<a href="/dg/cs/survey" target="_self"  >
+																<span>설문조사</span>
+															</a>
+														</div>
+														<!-- three depth -->
+														
+													</li>
+												
+											
+												
+											
+										</ul>
+										<!-- //depth2 -->
+									
+								</li>
+							
+						
+							
+						
+							
+						
+					</ul>
+				</nav>
+			</div>
+			<div class="bg_pc"></div>
+		</div>
+		<div class="site-bx">
+			<div class="login-bx v1">
+				
+					
+						<a href="/dg/member/login">
+							로그인
+						</a>
+
+						<a href="/dg/member/join">
+							회원가입
+						</a>
+					
+					
+				
+			</div>
+			
+			<a href="#" role="button" class="sitemap"></a>
+		</div>
+	</div>
+</header>
+
+		<main id="sub" class="v1">
+			
+
+
+
+
+
+
+
+
+<div id="visual-bx" class="v1">
+	<div class="inner">
+		
+			
+				<img src="/page/gwds/images/sub/bg-sub01.png" alt="" class="bg-img">
+			
+			
+			
+			
+			
+		
+		<img src="/page/gwds/images/sub/bg-sub-common.png" alt="" class="bg-img01">
+		<div class="visual_text">
+			<h2>혜택 서비스 찾기</h2>
+		</div>
+	</div>
+</div>
+<div id="breadcrumb">
+	<div class="inner">
+		<div class="lbx clearfix">
+			<a href="/dg" class="home" title="메인">홈</a>
+			<div class="box">
+				<a href="/dg/benefits" class="open">
+					<em class="text">혜택 서비스</em>
+					<span class="blind">열기</span>
+				</a>
+				<ul>
+					
+						
+							<li>
+								<a href="/dg/benefits">혜택 서비스</a>
+							</li>
+						
+					
+						
+							<li>
+								<a href="/dg/residenter">강원생활도민</a>
+							</li>
+						
+					
+						
+							<li>
+								<a href="/dg/pass">강원 패스</a>
+							</li>
+						
+					
+						
+							<li>
+								<a href="/dg/cs">고객 센터</a>
+							</li>
+						
+					
+						
+					
+						
+					
+				</ul>
+
+
+			</div>
+			
+				<div class="box">
+					<a href="/dg/benefits/searching">
+
+					</a>
+					<a href="/dg/benefits/searching" class="open">
+						<em class="text">혜택 서비스 찾기</em>
+						<span class="blind">열기</span>
+					</a>
+					<ul>
+						
+							
+								
+									<li>
+										<a href="/dg/benefits/intro">혜택 서비스란?</a>
+									</li>
+								
+							
+								
+									<li>
+										<a href="/dg/benefits/searching">혜택 서비스 찾기</a>
+									</li>
+								
+							
+								
+									<li>
+										<a href="/dg/benefits/matching">혜택 서비스 추천</a>
+									</li>
+								
+							
+								
+							
+						
+							
+								
+							
+								
+							
+								
+							
+								
+							
+								
+							
+						
+							
+								
+							
+								
+							
+								
+							
+								
+							
+						
+							
+								
+							
+								
+							
+								
+							
+								
+							
+						
+							
+								
+							
+								
+							
+								
+							
+								
+							
+								
+							
+								
+							
+								
+							
+						
+							
+								
+							
+								
+							
+								
+							
+								
+							
+								
+							
+						
+					</ul>
+				</div>
+			
+			
+
+		</div>
+		<div class="btn_box clearfix">
+			<div class="share">
+				<a href="#" role="button" class="open_share">공유하기</a>
+				<ul>
+					<li>
+						<a href="javascript:fnShareSNS('naver');" class="blog">
+							블로그
+						</a>
+					</li>
+					<li>
+						<a href="javascript:fnShareSNS('facebook');" class="facebook">
+							페이스북
+						</a>
+					</li>
+					<li>
+						<a href="javascript:fnShareSNS('twitter');" class="twitter">
+							트위터
+						</a>
+					</li>
+					<li>
+						<a href="javascript:fnShareKakao('혜택 서비스 찾기  | 강원혜택이지 &gt; 혜택 서비스 &gt; 혜택 서비스 찾기');">
+							<img src="/page/common/images/sns_button_kakao.png" alt="카카오톡" style="width: 37px; height: 37px;">
+						</a>
+					</li>
+					
+				</ul>
+			</div>
+			<a href="javascript:fnPrint();" class="print">
+				프린트를 출력합니다.
+			</a>
+		</div>
+	</div>
+</div>
+<progress id="progressScroll" class="progress" value="0" max="100"></progress>
+<div id="sub_container">
+	<div id="content">
+		<div id="content-bx">
+			<div class="inner clearfix">
+				
+
+
+
+
+
+
+
+
+
+
+
+
+				<div class="contsArea skinContainer" >
+					<a href="#A-Contents-focus" id="A-Contents-focus" class="hidden_txt">본문 바로가기 초점을 받기위한 요소</a>
+					<h4 class="hidden_txt">
+						혜택 서비스 찾기
+					</h4>
+					
+
+					
+					
+						
+							
+							
+								
+
+
+
+
+
+
+
+
+
+<form id="srchFrm" name="srchFrm" action="" method="post">
+	<input type="hidden" name="_csrf" value="6e44ac65-e138-45a4-a006-3caeb9cba980" />
+	<input type="hidden" id="pageIndex" name="pageIndex" value="1"/>
+	<input type="hidden" id="stts" name="stts" value="APPROVED"/>
+	<input type="hidden" id="gndrSe" name="gndrSe" value=""/>
+	<input type="hidden" id="gwLipoSe" name="gwLipoSe" value=""/>
+	<input type="hidden" id="liveRgn" name="liveRgn" value=""/>
+	<input type="hidden" id="orderBy" name="orderBy" value="regDate"/>
+	<input type="hidden" id="category" name="category" value="">
+	<div class="ply-srh-box explain-srh-box">
+		<div class="policy-search blue-type">
+			<ul class="pageTab">
+				<li class="active">
+					<a href="#" class="pageTab-tab" data-category="">전체</a>
+				</li>
+				
+					<li class="">
+						<a href="#" class="pageTab-tab" data-category="CHILD_ALLOWANCE">
+							육아기본수당
+						</a>
+					</li>
+				
+					<li class="">
+						<a href="#" class="pageTab-tab" data-category="FARMING_ALLOWANCE">
+							농림어업인등수당
+						</a>
+					</li>
+				
+					<li class="">
+						<a href="#" class="pageTab-tab" data-category="NEWLYWED_HOUSING">
+							신혼부부주거지원
+						</a>
+					</li>
+				
+					<li class="">
+						<a href="#" class="pageTab-tab" data-category="WOMEN_JOB_SUPPORT">
+							여성구직활동지원
+						</a>
+					</li>
+				
+					<li class="">
+						<a href="#" class="pageTab-tab" data-category="ELEMENTARY_ENTRANCE_GRANT">
+							초등학교 입학축하금
+						</a>
+					</li>
+				
+					<li class="">
+						<a href="#" class="pageTab-tab" data-category="YOUTH_EMPLOYEE_BENEFIT">
+							청년근로자 복리후생
+						</a>
+					</li>
+				
+					<li class="">
+						<a href="#" class="pageTab-tab" data-category="CORPORATE_WELFARE_SERVICE">
+							기업복지서비스
+						</a>
+					</li>
+				
+					<li class="">
+						<a href="#" class="pageTab-tab" data-category="USED_PC_SUPPORT">
+							중고PC 지원사업
+						</a>
+					</li>
+				
+					<li class="">
+						<a href="#" class="pageTab-tab" data-category="LIBRARY_MEMBERSHIP">
+							도서관회원증
+						</a>
+					</li>
+				
+			</ul>
+			<div>
+				<div class="l">
+					서비스 명칭
+				</div>
+				<div class="r keyword-group">
+					<input type="text" id="searchKeyword" name="searchKeyword" title="키워드를 입력" maxlength="100" value="" placeholder="키워드를 입력하세요" class="input-text"/>
+					<input type="hidden" id="searchCondition" name="searchCondition" value="SUPPORT_NAME"/>
+				</div>
+			</div>
+			<!-- 서비스 상태 -->
+			<div class="v2">
+				<div class="l">
+					서비스 상태
+				</div>
+				<div class="r ply-op stts">
+					<ul>
+						<li>
+							<button type="button"class="all-ck active ">전체</button>
+						</li>
+						<li>
+							<button type="button"class="srh-check ">접수전</button>
+						</li>
+						<li>
+							<button type="button"class="srh-check ">접수중</button>
+						</li>
+						<li>
+							<button type="button"class="srh-check ">접수마감</button>
+						</li>
+					</ul>
+					
+				</div>
+			</div>
+			<!-- // 서비스 상태 -->
+			<!-- 대상연령 -->
+			<div class="v2 old">
+				<div class="l">
+					대상 연령
+					<input type="text" id="brdt" name="brdt" maxlength="100" value="" placeholder="숫자만 입력" class="input-text">
+					<p>※ 숫자로만 입력하세요. 미 입력 시 전체 대상 연령으로 검색됩니다</p>
+				</div>
+				<div class="r lct-op">
+				</div>
+				<div class="detail_search">
+					<div class="col-wrap">
+						<!-- 대상 성별 -->
+						<div class="object">
+							<div class="tit">
+								대상 성별
+							</div>
+							<div class="view_cont gndrSe">
+								<ul class="type2">
+									<li>
+										<button type="button" class="btn01 active">전체</button>
+									</li>
+									<li>
+										<button type="button" class="btn01 ">남성</button>
+									</li>
+									<li>
+										<button type="button" class="btn01 ">여성</button>
+									</li>
+								</ul>
+							</div>
+						</div>
+						<!--// 대상성별 -->
+						<!-- 혼인 여부 -->
+						<div class="object">
+							<div class="tit">
+								혼인 여부
+							</div>
+							<div class="view_cont mrgSe">
+								<ul class="type2">
+									<li>
+										<button type="button" class="btn02 active">전체</button>
+									</li>
+									<li>
+										<button type="button" class="btn02 ">기혼</button>
+									</li>
+									<li>
+										<button type="button" class="btn02 ">미혼</button>
+									</li>
+								</ul>
+							</div>
+						</div>
+						<!-- //혼인 여부 -->
+						<!-- 강원생활인구여부 -->
+						<div class="object">
+							<div class="tit">
+								강원생활인구여부
+							</div>
+							<div class="view_cont gwLipoSe">
+								<ul class="type2">
+									<li>
+										<button type="button" class="btn03 active">전체</button>
+									</li>
+									<li>
+										<button type="button" class="btn03 ">강원도민</button>
+									</li>
+									<li>
+										<button type="button" class="btn03 ">강원이외</button>
+									</li>
+								</ul>
+							</div>
+						</div>
+						<!-- //강원생활인구여부 -->
+						<!-- 전입 지역 -->
+						<div class="object">
+							<div class="tit">
+								전입 지역
+							</div>
+							<div class="view_cont liveRgn">
+								<ul class="type2 v2">
+									
+									
+										
+										<li>
+											<button type="button" class="srh-check all-ck active" data-area="전체"> 전체</button>
+										</li>
+									
+										
+										<li>
+											<button type="button" class="srh-check  " data-area="춘천시"> 춘천시</button>
+										</li>
+									
+										
+										<li>
+											<button type="button" class="srh-check  " data-area="원주시"> 원주시</button>
+										</li>
+									
+										
+										<li>
+											<button type="button" class="srh-check  " data-area="강릉시"> 강릉시</button>
+										</li>
+									
+										
+										<li>
+											<button type="button" class="srh-check  " data-area="동해시"> 동해시</button>
+										</li>
+									
+										
+										<li>
+											<button type="button" class="srh-check  " data-area="태백시"> 태백시</button>
+										</li>
+									
+										
+										<li>
+											<button type="button" class="srh-check  " data-area="속초시"> 속초시</button>
+										</li>
+									
+										
+										<li>
+											<button type="button" class="srh-check  " data-area="삼척시"> 삼척시</button>
+										</li>
+									
+										
+										<li>
+											<button type="button" class="srh-check  " data-area="홍천군"> 홍천군</button>
+										</li>
+									
+										
+										<li>
+											<button type="button" class="srh-check  " data-area="횡성군"> 횡성군</button>
+										</li>
+									
+										
+											<li>
+												<button type="button">빈버튼</button>
+											</li>
+										
+										<li>
+											<button type="button" class="srh-check  " data-area="영월군"> 영월군</button>
+										</li>
+									
+										
+										<li>
+											<button type="button" class="srh-check  " data-area="평창군"> 평창군</button>
+										</li>
+									
+										
+										<li>
+											<button type="button" class="srh-check  " data-area="정선군"> 정선군</button>
+										</li>
+									
+										
+										<li>
+											<button type="button" class="srh-check  " data-area="철원군"> 철원군</button>
+										</li>
+									
+										
+										<li>
+											<button type="button" class="srh-check  " data-area="화천군"> 화천군</button>
+										</li>
+									
+										
+										<li>
+											<button type="button" class="srh-check  " data-area="양구군"> 양구군</button>
+										</li>
+									
+										
+										<li>
+											<button type="button" class="srh-check  " data-area="인제군"> 인제군</button>
+										</li>
+									
+										
+										<li>
+											<button type="button" class="srh-check  " data-area="고성군"> 고성군</button>
+										</li>
+									
+										
+										<li>
+											<button type="button" class="srh-check  " data-area="양양군"> 양양군</button>
+										</li>
+									
+								</ul>
+							</div>
+						</div>
+						<!-- //전입 지역 -->
+						<!-- 장애인 여부 -->
+						<div class="object">
+							<div class="tit">
+								장애인 여부
+							</div>
+							<div class="view_cont">
+								<ul class="type2">
+									<li>
+										<button type="button" class="btn04 active">전체</button>
+									</li>
+									<li>
+										<button type="button" class="btn04 ">해당</button>
+									</li>
+									<li>
+										<button type="button" class="btn04 ">해당없음</button>
+									</li>
+								</ul>
+							</div>
+						</div>
+						<!-- //장애인 여부 -->
+						<!-- 기초생활수급자 여부 -->
+						<div class="object">
+							<div class="tit">
+								기초생활수급자 여부
+							</div>
+							<div class="view_cont">
+								<ul class="type2">
+									<li>
+										<button type="button" class="btn05 active">전체</button>
+									</li>
+									<li>
+										<button type="button" class="btn05 ">해당</button>
+									</li>
+									<li>
+										<button type="button" class="btn05 ">해당없음</button>
+									</li>
+								</ul>
+							</div>
+						</div>
+						<!-- //기초생활수급자 여부 -->
+						<!-- 차상위계층 여부 -->
+						<div class="object">
+							<div class="tit">
+								차상위계층 여부
+							</div>
+							<div class="view_cont">
+								<ul class="type2">
+									<li>
+										<button type="button" class="btn06 active">전체</button>
+									</li>
+									<li>
+										<button type="button" class="btn06 ">해당</button>
+									</li>
+									<li>
+										<button type="button" class="btn06 ">해당없음</button>
+									</li>
+								</ul>
+							</div>
+						</div>
+						<!-- //차상위계층 여부 -->
+						<div class="btn">
+							<a href="#nolink">선택초기화</a>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- //대상연령 -->
+		</div>
+		<div class="search_btn">
+			<a href="javascript:fnSearch();">검 색</a>
+		</div>
+		<!-- 강원디지털행정서비스 검색 결과 -->
+		<div class="sch-result-wrap">
+			<div class="result-list-header">
+				<div class="result-num">
+					총 <strong>4</strong>건
+				</div>
+				<div class="right">
+					<input type="radio" id="sort1" name="srchSortOrder" value="regDate" checked >
+					<label for="sort1">등록일순</label>
+					<input type="radio" id="sort2" name="srchSortOrder" value="alphabetical"  >
+					<label for="sort2">가나다순</label>
+					<input type="radio" id="sort3" name="srchSortOrder" value="startDate"  >
+					<label for="sort3">시작일순</label>
+					<input type="radio" id="sort4" name="srchSortOrder" value="endDate"   >
+					<label for="sort4">마감일순</label>
+					<span class="form-group">
+					<select id="recordCountPerPage" name="recordCountPerPage" title="게시물 보기 선택" class="form-category">
+						<option value="12" selected>12개</option>
+						<option value="24" >24개</option>
+						<option value="36" >36개</option>
+						<option value="48" >48개</option>
+						<option value="60" >60개</option>
+					</select>
+					<button type="button" class="btn-align">정 렬</button>
+				</span>
+				</div>
+			</div>
+			<div class="item_wrap" data-aos="fade-up">
+				<div class="item">
+					
+						
+							<a href="javascript:fnSupportView(29)">
+								
+								
+									<img src="/upload/support/thumb/94530f76-c7f2-4e7d-8a14-f3e27e4656db.jpg" alt="94530f76-c7f2-4e7d-8a14-f3e27e4656db.jpg">
+								
+								<span class="on">
+									신청하기</span>
+								<div>
+									<em class="accepting">접수중</em>
+									<strong>
+										2026년 신혼부부 주거자금 대출이자 지원사업(3차)
+									</strong>
+									<p>
+										도내 신혼부부 가구의 주택 전·월세 대출금 이자 상환액을 지원합니다.
+									</p>
+									<span>접수기간  : 2026-10-01 ~ 2026-10-17</span>
+									<span>문의전화  : 033-120</span>
+								</div>
+							</a>
+						
+							<a href="javascript:fnSupportView(25)">
+								
+								
+									<img src="/upload/support/thumb/e755eccb-950f-4a3e-82f5-ebc6a318274c.png" alt="e755eccb-950f-4a3e-82f5-ebc6a318274c.png">
+								
+								<span class="on">
+									신청하기</span>
+								<div>
+									<em class="accepting">접수중</em>
+									<strong>
+										&#039;26년 춘천시 초등학생 입학축하금 지원 사업
+									</strong>
+									<p>
+										1인 / 1회 / 춘천사랑상품권 10만원 지급
+									</p>
+									<span>접수기간  : 2026-03-03 ~ 2026-11-30</span>
+									<span>문의전화  : 033-250-3009</span>
+								</div>
+							</a>
+						
+							<a href="javascript:fnSupportView(16)">
+								
+								
+									<img src="/upload/support/thumb/7b3159a5-6d32-4828-afaa-2da9f48f7f71.png" alt="7b3159a5-6d32-4828-afaa-2da9f48f7f71.png">
+								
+								<span class="on">
+									신청하기</span>
+								<div>
+									<em class="accepting">접수중</em>
+									<strong>
+										강원특별자치도 경제진흥원 - 기업복지서비스
+									</strong>
+									<p>
+										강원특별자치도에서 일하는 근로자에게 제휴기관의 다양한 복지(할인) 혜택을 제공합니다.
+									</p>
+									<span>접수기간  : 2025-04-07 ~ 2026-12-31</span>
+									<span>문의전화  : 033-256-3274</span>
+								</div>
+							</a>
+						
+							<a href="javascript:fnSupportView(15)">
+								
+								
+									<img src="/upload/support/thumb/7b483f74-99ec-4906-b7b4-68584a64d7ef.jpg" alt="7b483f74-99ec-4906-b7b4-68584a64d7ef.jpg">
+								
+								<span class="on">
+									신청하기</span>
+								<div>
+									<em class="accepting">접수중</em>
+									<strong>
+										`26년 강원특별자치도 육아기본수당
+									</strong>
+									<p>
+										매월 최대 50만원
+									</p>
+									<span>접수기간  : 2025-03-04 ~ 2026-12-31</span>
+									<span>문의전화  : 033-120</span>
+								</div>
+							</a>
+						
+					
+				</div>
+			</div>
+			<div class="pager">
+				<a href="#nolink" class="pager-link pager-link-data-first" onclick="linkPage(1);return false; ">10페이지 앞으로 이동</a> <a href="#nolink" class="pager-link pager-link-data-prev" onclick="linkPage(1);return false; ">1페이지 앞으로 이동</a> <span class="pager-num">1/1</span><a onclick="return false;" class="pager-link active">1</a> <a href="#nolink" onclick="linkPage(1);return false; " class="pager-link pager-link-data-next">1페이지 뒤로 이동</a> <a href="#nolink" onclick="linkPage(1);return false; " class="pager-link pager-link-data-last">10페이지 뒤로 이동</a> 
+
+			</div>
+		</div>
+	</div>
+</form>
+<form id="supportForm" name="supportForm" action="/dg/benefits/searching" method="post"  autocomplete="off">
+	<input type="hidden" name="_csrf" value="6e44ac65-e138-45a4-a006-3caeb9cba980" />
+	<input type="hidden" name="mngSn" id="mngSn" value="">
+	<input type="hidden" id="mode" name="mode" value=""/>
+</form>
+<!-- //강원디지털행정서비스 검색 결과 -->
+
+							
+							
+							
+							
+						
+					
+					
+						
+					
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+		</main>
+
+		
+
+
+
+
+
+
+
+<footer id="footer" class="clearfix">
+	<div id="footer_top">
+		<div class="inner">
+			<a href="#A-Ftr-focus" id="A-Ftr-focus" class="blind">푸터 시작</a>
+			<div class="footer_top">
+				<ul>
+					<li>
+						<a href="/dg/member/privacy">개인정보처리방침</a>
+					</li>
+					<li>
+						<a href="/dg/member/terms">이용약관</a>
+					</li>
+				</ul>
+				<div>
+					<div class="family">
+						<a href="#" role="button" class="open">Family Site</a>
+						<div class="view">
+							
+								<a href="https://state.gwd.go.kr/portal" target="_blank" rel='noopener noreferrer'>
+									강원특별자치도청
+								</a>
+							
+								<a href="https://www.mois.go.kr/frt/a01/frtMain.do" target="_blank" rel='noopener noreferrer'>
+									행정안전부
+								</a>
+							
+								<a href="https://www.gov.kr/portal/mydata/myDataIntroduction?Mcode=11258" target="_blank" rel='noopener noreferrer'>
+									정부24
+								</a>
+							
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div id="footer_bottom">
+		<div class="inner">
+			<div class="footer_wrap">
+				<h1>
+					<a href="https://state.gwd.go.kr/portal">
+						<img src="/page/gwds/images/main/footer_logo.png" alt="강원특별자치도">
+					</a>
+				</h1>
+				<address>
+					<em>담당부서 : 강원특별자치도 행정국 지능정보정책과</em>
+					<em>주&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;소 : [24266]강원특별자치도 춘천시 중앙로1</em>
+
+					<p>copyright©2025 GANGWON STATE, All rights reserved</p>
+				</address>
+			</div>
+		</div>
+	</div>
+</footer>
+
+
+	<div class="simple-bg"></div>
+	<div class="simple-modal">
+		<div class="simple_wrap">
+			<h3>전자서명 인증</h3>
+			<div class="slmple-before">
+				<div class="simple-sign">
+					<ul>
+						<li>
+							<a href="#" data-sign-code="SAK301">
+								<img src="/page/gwds/images/sub/kakao.png" alt="카카오톡 아이콘">
+							</a>
+							<span>카카오톡</span>
+						</li>
+						<li>
+							<a href="#" data-sign-code="SAT301">
+								<img src="/page/gwds/images/sub/toss.png" alt="토스 아이콘">
+							</a>
+							<span>토스</span>
+						</li>
+					</ul>
+				</div>
+				<p>사용하는 전자서명을 선택해주세요.</p>
+
+				<div class="simple-btn">
+					<a href="javaScript:simpleClose();" class="close">닫기</a>
+					<a href="javaScript:ssolApi();" class="request">인증요청</a>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+
+
+
+		<a href="#" id="btn-top" role="button"></a>
+	</div>
+
+	
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+		
+			
+
+
+
+
+
+
+
+
+<script>
+    $(document).ready(function() {
+        $("#searchKeyword").on('keypress', function(e) {
+            if (e.keyCode == 13) {
+                fnSearch();
+            }
+        });
+        $(".pageTab-tab").on('click', function(e) {
+            let $li = $(this).closest("li");
+
+            // 이미 활성화된 탭은 무시
+            if (!$li.hasClass("active")) {
+                let selectedCategory = $(this).data("category");
+                $("#category").val(selectedCategory);
+                srchFrm.submit();
+            }
+
+        });
+        $(".btn-align").on('click', function(e) {
+            fnSearch();
+        });
+    });
+
+    function fnSupportView(seq) {
+        $('#mngSn').val(seq);
+        $('#mode').val("view");
+        supportForm.submit();
+    }
+    function fnDomin() {
+        supportForm.submit();
+    }
+
+    function fnSearch() {
+
+        var sttsText = $(".stts .active").text();
+        sttsText = sttsText.replaceAll("접수전", "before ")
+            .replaceAll("접수중", "ing ")
+            .replaceAll("접수마감", "end");
+        $("#stts").val(sttsText.includes("전체")? "" : sttsText);
+
+        // 성별 값 설정
+        var gndrText = $(".gndrSe .active").text();
+        $("#gndrSe").val(gndrText === "남성" ? "M" : gndrText === "여성" ? "F" : "");
+
+        // 혼인 여부 값 설정
+        var mrgText = $(".mrgSe .active").text();
+        $("#mrgSe").val(mrgText === "기혼" ? "Y" : mrgText === "미혼" ? "N" : "");
+
+        // 강원생활인구 여부 설정
+        var gwLipoText = $(".gwLipoSe .active").text();
+        $("#gwLipoSe").val(gwLipoText === "강원도민" ? "G" : gwLipoText === "강원이외" ? "O" : "");
+
+        // 전입 지역 설정
+        var liveRgnText = $(".liveRgn .active").text();
+        $("#liveRgn").val(liveRgnText.includes("전체")? "" : liveRgnText);
+
+        // 🔥 **정렬 방식 적용**
+        var selectedSort = $("input[name='srchSortOrder']:checked").val();
+        $("#orderBy").val(selectedSort ? selectedSort : "recommended"); // 기본값: 추천순
+
+        // 생년월일 숫자 검증 (선택사항)
+        var brdt = $("#brdt").val();
+        if (brdt && !/^\d{8}$/.test(brdt)) {
+            alert("생년월일은 8자리 숫자로 입력해주세요.");
+            return;
+        }
+
+        $("#srchFrm").submit();
+    }
+
+    function linkPage(pageNo) {
+        let srchFrm = document.getElementById("srchFrm");
+        srchFrm.pageIndex.value = pageNo;
+        srchFrm.submit();
+    }
+</script>
+		
+	
+	
+	
+
+</body>
+</html>

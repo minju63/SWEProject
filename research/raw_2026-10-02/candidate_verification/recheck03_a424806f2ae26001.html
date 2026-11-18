@@ -1,0 +1,1126 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+
+<!-- 
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv='imagetoolbar' content='no' />
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=1190" />
+-->
+
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
+<meta name="viewport" content="width=1190" />
+ 
+<title>청년&#183;신혼부부 주거지원</title>
+
+<link type="text/css" rel="stylesheet" href="/css/com/layout.css"/>
+<!-- <link type="text/css" rel="stylesheet" href="/css/com/import.css"/>
+<link type="text/css" rel="stylesheet" href="/css/com/search.css"/> -->
+<link type="text/css" rel="stylesheet" href="/jquery/css/jquery-ui.min.css"/>
+<link type="text/css" rel="stylesheet" href="/css/custom/jquery-ui-custom.css"/>
+<!-- <link type="text/css" rel="stylesheet" href="/css/com/print.css" media="print"/> -->
+
+<!-- <script type="text/javascript" src="/hws/com/cmm/validate.do"></script> -->
+<script type="text/javascript" src="/jquery/js/jquery-1.11.3.min.js"></script>
+<script type="text/javascript" src="/jquery/js/jquery-ui-1.11.4.custom.min.js"></script>
+<script type="text/javascript" src="/js/CommonUtil.js"></script>
+<!-- <script type="text/javascript" src="/js/front.js"></script> -->
+<script type="text/javascript" src="/js/spin.js"></script>
+
+<!-- 청년주거지원 css -->
+<link type="text/css" rel="stylesheet" href="/css/yhs/style.css">
+
+<style>
+
+    #myhome-main .header .nav-list .nav-item:hover {
+		color: #3356F1 !important;
+	}
+	
+	#myhome-main .gnbOver {
+		color: #3356F1 !important;
+	}
+	
+	#content .sub_util UL {
+		overflow:hidden;
+		top:12px;
+		right:0px;
+		z-index:99;
+		}
+	
+	#content .sub_util UL LI {
+		float:right;
+		padding:0 5px 0 5px;
+		height:31px;
+		line-height:28px;
+		color:#666;
+		}
+	
+	#content .sub_util UL LI.last {
+		padding-right:0;
+		background:none;
+		}
+		
+	#container {
+		margin-bottom:0;
+	}
+	
+	#myhome-main .header .nav-list .nav-item {
+  		padding-right: 1.225rem !important;
+  	}
+	
+</style>
+
+<script type="text/javascript">
+//<![CDATA[	
+	
+    // 현재 메뉴 ID
+    var gCurrentMenuId = "";
+    var gSpinner = null;
+    
+	$(document).ready( function() {
+		
+		/* 업무화면 삽입 */
+		$("#content").append('<br />');
+		$("#content").append($("#sub_content"));
+		$("#content").append('<br />');
+		
+		/* 업무화면 시작 펑션호출 */
+		if(typeof fnContentLoad != "undefined"){
+			fnContentLoad();
+		}
+		
+	});
+		
+	function fnToTop(){
+		
+		$("html, body").stop().animate(
+			     {scrollTop : 0},
+			     {duration: 750, easing: "easeOutExpo"}
+	    );
+		
+	}
+	
+	// 현재 보고있는  1dept 메뉴 CSS ON
+	function fnSetCurrenthMenu(){
+	    
+	    if(!isEmpty(gCurrentMenuId)){
+	    	$("#main_yhs_" + gCurrentMenuId + " > a").addClass("gnbOver");
+	    }
+		
+    }
+	
+//]]> 	
+</script>	
+</head>
+
+<body>
+
+	<div id="myhome-main">
+	
+		<!-- header :: s -->
+	    <header class="header">
+	      <div class="header-wrap fluid-wrap">
+	        <a href="/hws/portal/main/getMgtMainYhsPage.do" class="img-logo"><img src="/images/portal/yhs/img_logo.png" alt="img-logo"></a>
+	        <div class="nav-list">
+	          
+	          <div class="nav-item" id="main_yhs_01">
+	            <a href="/hws/portal/cont/selectYouthPolicyHappyView.do">주택공급</a>
+	            <div class="sub-nav-wrap">
+	              <div class="sub-nav">
+	                <h5 class="txt">주택공급</h5>
+	                <ul class="sub-list">
+	                  <li>
+	                    <h3 class="depth2"><a href="/hws/portal/cont/selectYouthPolicyIntegratedPublicView.do" class="sub-title">공공임대</a></h3>
+	                    <div class="depth3">
+	                      <a href="/hws/portal/cont/selectYouthPolicyIntegratedPublicView.do" class="sub-list-item">통합공공임대</a>
+	                      <a href="/hws/portal/cont/selectYouthPolicyPurchaseRentalView.do" class="sub-list-item">매입임대</a>
+	                      <a href="/hws/portal/cont/selectYouthPolicyCharterRentalView.do" class="sub-list-item">전세임대</a>
+	                      <a href="/hws/portal/cont/selectYouthPolicyHappyView.do" class="sub-list-item">행복주택</a>
+	                      <a href="/hws/portal/cont/selectYouthPolicyNationRentalView.do" class="sub-list-item">국민임대</a>
+	                      <a href="/hws/portal/cont/selectYouthPolicyContRentalView.do" class="sub-list-item">영구임대</a>
+						  <a href="/hws/portal/cont/selectYouthPolicyLongCharterView.do" class="sub-list-item">장기전세</a>
+	                    </div>
+	                  </li>
+					  
+	                  <li>
+	                    <h3 class="depth2"><a href="/hws/portal/cont/selectYouthPolicyPublicSupPrivateView.do" class="sub-title">민간임대</a></h3>
+	                    <div class="depth3">
+	                      <a href="/hws/portal/cont/selectYouthPolicyPublicSupPrivateView.do" class="sub-list-item">공공지원민간임대</a>
+	                    </div>
+	                  </li>
+					  
+	                  <li>
+	                    <h3 class="depth2"><a href="/hws/portal/cont/selectYouthPolicyLttotView.do" class="sub-title">공공분양</a></h3>
+	                    <div class="depth3">
+	                      <a href="/hws/portal/cont/selectYouthPolicyLttotView.do" class="sub-list-item">공공분양</a>
+						  <a href="/hws/portal/cont/selectYouthPolicyHoneyMoonView.do" class="sub-list-item">신혼희망타운</a>
+	                    </div>
+	                  </li>
+					  
+	                  <li>
+	                    <h3 class="depth2"><a href="/hws/portal/cont/selectYouthPolicyHoneyMoonSpecialView.do" class="sub-title">민간분양</a></h3>
+	                    <div class="depth3">
+	                      <a href="/hws/portal/cont/selectYouthPolicyHoneyMoonSpecialView.do" class="sub-list-item">신혼부부 특별공급</a>
+	                      <a href="/hws/portal/cont/selectYouthPolicyFirstTimeSpecialView.do" class="sub-list-item">생애최초 특별공급</a>
+	                    </div>
+	                  </li>
+	                </ul>
+	              </div>
+	            </div>
+	          </div>
+	          
+	          <div class="nav-item" id="main_yhs_02">
+	            <a href="/hws/portal/cont/selectYouthPolicySteppingStoneLoanView.do">금융지원</a>
+	            <div class="sub-nav-wrap">
+	              <div class="sub-nav">
+	                <h5 class="txt">금융지원</h5>
+	                <ul class="sub-list">
+	                  <li>
+	                    <h3 class="depth2"><a href="/hws/portal/cont/selectYouthPolicySteppingStoneLoanView.do" class="sub-title">주택구입자금 대출</a></h3>
+	                    <div class="depth3">
+	                      <a href="/hws/portal/cont/selectYouthPolicySteppingStoneLoanView.do" class="sub-list-item">내집마련 디딤돌대출</a>
+	                      <a href="/hws/portal/cont/selectYouthPolicyHoneyMoonPurchaseView.do" class="sub-list-item">신혼부부전용 구입자금</a>
+	                      <a href="/hws/portal/cont/selectYouthPolicyBabySpecialCaseStepStoneLoneView.do" class="sub-list-item">신생아 특례 디딤돌대출</a>
+	                      <a href="/hws/portal/cont/selectYouthHousingStepStoneLoanView.do" class="sub-list-item">청년 주택드림 디딤돌 대출</a>
+                  		  <a href="/hws/portal/cont/selectHopeTownMortgageLoanView.do" class="sub-list-item">신혼희망타운전용 주택담보장기대출</a>
+	                    </div>
+	                  </li>
+	                  <li>
+	                    <h3 class="depth2"><a href="/hws/portal/cont/selectYouthPolicyCrutchLoanView.do" class="sub-title">주택전·월세자금 대출</a></h3>
+	                    <div class="depth3">
+	                      <a href="/hws/portal/cont/selectYouthPolicyCrutchLoanView.do" class="sub-list-item">버팀목전세자금</a>
+	                      <a href="/hws/portal/cont/selectYouthPolicyYouthOnlyCrutchLoanView.do" class="sub-list-item">청년버팀목전세자금</a>
+	                      <!-- <a href="/hws/portal/cont/selectYouthPolicyMiddleAgeYouthLoanView.do" class="sub-list-item">중기청년전세대출</a> -->
+	                      <a href="/hws/portal/cont/selectYouthPolicyWarrantyMonthlyLoanView.do" class="sub-list-item">청년전용보증부 월세대출</a>
+	                      <a href="/hws/portal/cont/selectYouthPolicyHoneyMoonLoanView.do" class="sub-list-item">신혼부부 전세대출</a>
+	                      <a href="/hws/portal/cont/selectYouthPolicyBabySpecialCaseCrutchLoneView.do" class="sub-list-item">신생아 특례 버팀목 대출</a>
+	                      <a href="/hws/portal/cont/selectYouthPolicyUnslRsidSupLoanView.do" class="sub-list-item">주거취약계층 이주지원 버팀목전세자금</a>
+	                    </div>
+	                  </li>
+	                  <li>
+	                    <h3 class="depth2"><a href="/hws/portal/cont/selectYouthPolicyYouthPassbookView.do" class="sub-title">금융연계 지원</a></h3>
+	                    <div class="depth3">
+	                      <a href="/hws/portal/cont/selectYouthPolicyYouthPassbookView.do" class="sub-list-item">청년 주택드림 청약통장</a>
+	                      <a href="/hws/portal/cont/selectYouthPolicyGuaranteeFeeDisView.do" class="sub-list-item">보증료 할인</a>
+	                      <a href="/hws/portal/cont/selectYouthPolicyGuaranteeFeeSupView.do" class="sub-list-item">청년 보증료지원</a>
+	                    </div>
+	                  </li>
+	                </ul>
+	              </div>
+	            </div>
+	          </div>
+	          
+	          <div class="nav-item" id="main_yhs_03">
+	            <a href="/hws/portal/cont/selectYouthPolicyHousingView.do">주거비지원</a>
+	            <div class="sub-nav-wrap">
+	              <div class="sub-nav">
+	                <h5 class="txt">주거비지원</h5>
+	                <ul class="sub-list">
+	                  <li>
+	                    <h3 class="depth2"><a href="/hws/portal/cont/selectYouthPolicyHousingView.do" class="sub-title">주거급여</a></h3>
+	                    <div class="depth3">
+	                      <a href="/hws/portal/cont/selectYouthPolicyHousingView.do" class="sub-list-item">주거급여</a>
+						  <a href="/hws/portal/cont/selectYouthPolicyYouthHousingView.do" class="sub-list-item">청년가구 지원</a>
+	                    </div>
+	                  </li>
+	                  <li>
+	                    <h3 class="depth2"><a href="/hws/portal/cont/selectYouthPolicyYouthMonthlySupView.do" class="sub-title">월세지원</a></h3>
+	                    <div class="depth3">
+	                      <a href="/hws/portal/cont/selectYouthPolicyYouthMonthlySupView.do" class="sub-list-item">청년월세 지원사업</a>
+	                    </div>
+	                  </li>
+	                  <li>
+	                    <h3 class="depth2"><a href="/hws/portal/cont/selectYouthPolicyExpensesSupView.do" class="sub-title">기타 주거비지원</a></h3>
+	                    <div class="depth3">
+	                      <a href="/hws/portal/cont/selectYouthPolicyExpensesSupView.do" class="sub-list-item">비정상거처 거주자 이사비 지원</a>
+	                    </div>
+	                  </li>
+	                </ul>
+	              </div>
+	            </div>
+	          </div>
+	          
+	          <div class="nav-item" id="main_yhs_04">
+	            <a href="/hws/portal/cont/selectYouthPolicyProtectEndChildView.do">기타지원</a>
+	            <div class="sub-nav-wrap">
+	              <div class="sub-nav">
+	                <h5 class="txt">기타지원</h5>
+	                <ul class="sub-list">
+	                  <li>
+	                    <h3 class="depth2"><a href="/hws/portal/cont/selectYouthPolicyProtectEndChildView.do" class="sub-title">지원제도</a></h3>
+	                    <div class="depth3">
+	                      <a href="/hws/portal/cont/selectYouthPolicyProtectEndChildView.do" class="sub-list-item">자립준비청년</a>
+						  <a href="/hws/portal/cont/selectYouthPolicyEmergencyHousSupView.do" class="sub-list-item">긴급주거지원</a>
+						  <a href="/hws/portal/cont/selectYouthPolicyHousWeakSupView.do" class="sub-list-item">주거취약계층지원</a>
+	                    </div>
+	                  </li>
+	                </ul>
+	              </div>
+	            </div>
+	          </div>
+	          
+	          <div class="nav-item" id="main_yhs_05">
+	            <a href="/hws/portal/cont/selectYouthPolicyLocalHousWlfareBussView.do">지자체 주거복지사업</a>
+	          </div>
+	          
+	          <div class="nav-item" id="main_yhs_06">
+	            <a href="/hws/portal/dgn/selectSelfDiagnosisYgJindanView.do">자가진단</a>
+	            <div class="sub-nav-wrap">
+	              <div class="sub-nav">
+	                <h5 class="txt">자가진단</h5>
+	                <ul class="sub-list">
+	                  <li>
+	                    <h3 class="depth2"><a href="/hws/portal/dgn/selectSelfDiagnosisYgJindanView.do" class="sub-title">청년주거지원사업</a></h3>
+	                  </li>
+	                  <li>
+	                  	<h3 class="depth2"><a href="/hws/portal/dgn/SelfDiagnosisYouthHousIndexView.do" class="sub-title">청년월세지원사업</a></h3>
+	                  </li>
+	                </ul>
+	              </div>
+	            </div>	            
+	          </div>
+	          
+	          <div class="nav-item">
+	            <a href="javascript:openChatbotWindow();" data-ajax="false" style="width: 50px; height: 30px;">
+		       		<img src="/images/quick/icon_chats2.svg" alt="img-logo">
+		        </a>
+	          </div>
+	          
+	        </div>
+	        <a href="/hws/portal/main/getMgtMainPage.do" target="_blank" class="btn-go-myhome"><em>마이홈포털</em>로 가기</a>
+	      </div>
+	    </header>
+	    <!-- header :: e -->
+		
+		<!-- main :: s -->
+    	<main class="main" style="background: none;">
+    	
+    		<!-- 본문-->
+			<div id="container">
+				<!-- 상단 고정영역 -->
+				<!-- <div class="headHeight"></div> -->
+				
+				<div id="content">
+					<!-- subUtil -->
+					<div class="sub_util"></div>				
+					<!-- 프로그레스바영역 -->
+					<div id="progressbar" style="display:none;" >
+						<img src="/images/util/progress.png" alt="프로그레스바"/>
+					</div>
+					
+				</div>
+			</div>
+			<!-- //본문-->
+			
+    	</main>
+		
+		<!-- footer :: s -->
+	    <footer class="footer"  style="position: relative;">
+	      <div class="fluid-wrap">
+	        <div class="info-wrap">
+	          <dl class="info">
+	            <dt>국토교통부</dt>
+	            <dd>(30103)세종특별자치시 도움6로 11</dd>
+	          </dl>
+	          <dl class="info">
+	            <dt>한국토지주택공사</dt>
+	            <dd>(52852)경상남도 진주시 충의로 19</dd>
+	          </dl>
+	          <div class="copyright">Copyright MOLIT & LH All rights reserved.</div>
+	          <div class="copyright">
+	          	<a href="https://data.molit.go.kr/systemQuality/list?system_id=S0014" target="_blank"
+					   style="
+					          width: 140px;
+					          height: 23px;
+					          line-height: 23px;
+							  display: inline-block;
+							  color: #fff;
+							  font-size: 14px;
+							  border-radius: 6px;
+							  background: #3356F1;
+							  text-align: center;
+							 "
+					>불편 및 품질오류신고</a>
+	          </div>
+	        </div>
+	        <div class="logo-wrap">
+	          <img src="/images/portal/yhs/img_logo_footer.png" alt="img-logo">
+	          <img src="/images/portal/yhs/img_LH_logo.png" alt="img-logo">
+	        </div>
+	      </div>
+	    </footer>
+	    <!-- footer :: e -->
+		
+	</div>
+
+	<!-- 네이버 애널리틱스 --> 
+	<script type="text/javascript" src="https://wcs.naver.net/wcslog.js"></script> 
+	<script type="text/javascript"> 
+		if(!wcs_add) var wcs_add = {}; wcs_add["wa"] = "12af10d328fefd8"; wcs_do(); 
+	</script>
+	<!-- 네이버 애널리틱스  -->
+ 	
+ 	<script>
+ 	
+	 	// gnb :: 20230801 GNB 메뉴 구조 변경 (2 Level 추가)
+	    const gnbDepth3 = document.querySelectorAll('.header .depth3');
+	
+	    gnbDepth3.forEach((el) => {
+	      el.addEventListener('mouseenter', () => {
+	        const parent = el.parentElement;
+	        const gnbDepth2 = parent.firstElementChild;
+	
+	        gnbDepth2.classList.add('active');
+	      });
+	
+	      el.addEventListener('mouseleave', () => {
+	        const parent = el.parentElement;
+	        const gnbDepth2 = parent.firstElementChild;
+	
+	        gnbDepth2.classList.remove('active');
+	      });
+	    });
+	    
+	    
+	    
+	    /**
+		 * chatbot script start
+		 */
+		 
+		// target의 경우 챗봇이 open되는 스크립트 영역에 같이 적용되어야 합니다
+		var targetCb;
+		
+		function openChatbotWindow() {
+			// 운영 챗봇 url
+			targetCb = window.open('https://chat.myhome.go.kr:18080/chat-client/prod/#/1/b6d64780-b635-4321-9a08-3139647d4fe9', 'Display', 'popup');
+		}
+
+		function receiveChatbotMessage(e) {
+			
+			if(e.data.hasOwnProperty('type')){
+				
+				let type = e.data.type;
+				
+				if(type == "loginChk"){
+					
+					// 서버에서 받아온 로그인 정보 확인
+				    var gEsntlId = '';
+				    let data;
+				    
+				    if (gEsntlId !== "") {
+				    	// 로그인한 사용자인 경우
+				    	data = {type: type, isLogin: true, esntlId: gEsntlId};
+				    }else{
+				    	// 로그인한 사용자가 아닌경우
+				    	data = {type: type, isLogin: false};
+				    }
+					
+					// url 도메인 입력.
+					targetCb.postMessage(data, 'https://chat.myhome.go.kr:18080');
+					
+				}else if(type == "login"){
+					
+					// 로그인 페이지 새창 띄우기
+					window.open('https://www.myhome.go.kr/hws/portal/main/loginUsrView.do');
+					
+				}else if(type == "interest"){
+					
+					// 관심지역 선택하기 페이지 새창 띄우기
+					window.open('https://www.myhome.go.kr/hws/portal/usr/selectUserInterestAreasView.do');
+					
+					
+				}else if(type == "self"){
+					
+					// 자가진단 진행하기 페이지 새창 띄우기
+					window.open('https://www.myhome.go.kr/hws/portal/dgn/selectSelfDiagnosisIntroView.do');	
+					
+				}
+			}
+		}
+		
+		// 챗봇이 open되는 스크립트 영역에 eventListener로 같이 적용되어야 합니다
+		window.addEventListener('message', receiveChatbotMessage, false);
+		
+		/**
+		 * chatbot script end
+		 */
+	    
+ 	</script>
+</body>
+</html><link type="text/css" rel="stylesheet" href="/css/gis/daum.css"/>
+<link type="text/css" rel="stylesheet" href="/jquery/css/jqtree.css"/>
+<link type="text/css" rel="stylesheet" href="/jquery/css/jquery.treetable.css"/>
+<link type="text/css" rel="stylesheet" href="/jquery/css/jquery.treetable.theme.default.css"/>
+<link type="text/css" rel="stylesheet" href="/css/com/selfcheckTest.css"/>
+<link type="text/css" rel="stylesheet" href="/css/custom/jquery-ui-custom.css"/>
+<link type="text/css" rel="stylesheet" href="/jquery/css/jquery.selectbox.css"/>
+<link type="text/css" rel="stylesheet" href="/jquery/css/jquery.monthpicker-0.1.css"/>
+<link type="text/css" rel="stylesheet" href="/jquery/css/jquery.nailthumb.1.1.min.css"/>
+<link type="text/css" rel="stylesheet" href="/css/gis/button.css"/>
+<link type="text/css" rel="stylesheet" href="/css/gis/reset.css"/>
+<link type="text/css" rel="stylesheet" href="/css/gis/table.css"/>
+<link type="text/css" rel="stylesheet" href="/css/gis/map_web.css"/>
+<link type="text/css" rel="stylesheet" href="/css/com/myhomeinfo_guide.css"/>
+<link type="text/css" rel="stylesheet" href="/css/jindan/ygCheck.css"></link>
+
+<!-- IncContentYhsHeader 에서 이동-->
+<link type="text/css" rel="stylesheet" href="/css/com/import.css"/>
+<link type="text/css" rel="stylesheet" href="/css/com/search.css"/>
+
+<script type="text/javascript" src="/js/front.js"></script>
+<script type="text/javascript" src="/jquery/js/jquery.selectbox-0.2.min.js"></script>
+<script type="text/javascript" src="/jquery/js/jquery.tree.js"></script>
+<script type="text/javascript" src="/jquery/js/jquery.treetable.js"></script>
+<script type="text/javascript" src="/jquery/js/jquery.nailthumb.1.1.min.js"></script>
+<script type="text/javascript" src="/jquery/js/jquery.waitforimages.min.js"></script>
+<script type="text/javascript" src="/jquery/js/jquery.monthpicker-0.1.js"></script>
+<script src="/js/gis/include/OpenLayers-2.13/OpenLayers.min.js" type="text/javascript"></script>
+<script src="/js/gis/components/compMapService.js" type="text/javascript"></script>
+<script src="/js/gis/components/compMapStyle.js" type="text/javascript"></script>
+<script src="/js/gis/components/compMapSpatialSearch.js" type="text/javascript"></script>
+<script src="/js/gis/components/compMapEventHandler.js" type="text/javascript"></script>
+<script src="/js/gis/components/jsts/javascript.util.min.js" type="text/javascript"></script>
+<script src="/js/gis/components/jsts/jsts.min.js" type="text/javascript"></script>
+<!-- <script src="/js/gis/daum/mapControl.js" type="text/javascript"></script> -->
+<script src="/js/gis/gisCommonUtil.js" type="text/javascript"></script>
+<script src="/js/gis/gisDynamicDiv.js" type="text/javascript"></script>
+<script src="/js/gis/gisLocationSearch.js" type="text/javascript"></script>
+<script src="/js/gis/include/proj4js/proj4js-combined.js" type="text/javascript"></script>
+<script src="/js/gis/include/proj4js/defs/EPSG5179.js" type="text/javascript"></script>
+<script type="text/javascript" src="/js/netfunnel.js"></script>
+
+<style type="text/css">
+	/* 이벤트 참여 버튼 시작 */	
+	#floating_menu {
+		
+		position:absolute;
+		bottom:-80px;
+		left:50%;
+		margin-left:215px;
+		z-index:10;
+		}
+		
+	#floating_menu.floating_menu_fixed {
+		display:block !important;
+		position:fixed;
+		top:230px;
+		}
+		
+	#floating_menu ul li a	{
+		display:inline-block;
+		width:57px; 
+		height:117px; 
+		overflow:hidden; 
+		vertical-align:top;
+		}	
+	/* 이벤트 참여 버튼 종료 */		
+	TABLE.table_type1 TH {
+    height: 26px;
+    border-top: 1px solid;
+		}
+		
+	
+	
+	/* 인피니텀 CSS Override */
+	#content .subTitle H3 {
+		height: auto;
+	}
+
+	SELECT {
+		-webkit-appearance: auto;
+	}
+	
+	SPAN.btn_orange {
+		background: #3356F1 !important;
+	}
+	
+	#content .selfcheckStep .stepWrap .btns_c .nextBtn A {
+		height: auto;
+	}
+	
+	#content .selfcheckStep .stepWrap .qAaea DD .chkBox.on {
+	    background: #4D6CF7 !important;
+	    border: 1px solid #3356F1;
+	}
+	
+	#content .selfcheckStep .stepWrap .qAaea DD .chkBox.on A {
+	    color: #fff !important;
+	    font-weight: bold !important;
+	}
+	
+	.main .selfcheckStep H5 {
+		background: #4D6CF7 !important;
+	    border: 1px solid #3356F1;
+	    text-align: center;
+	}
+	
+	#content .selfcheckStep .helpWrap H5, #content .selfcheckStep .historyWrap H5 {
+		color: #fff;
+		font-weight: normal;
+    	letter-spacing: 0em;
+    	font-size: 16px;
+	}
+	
+	#content .selfcheckStep H5 {
+		border: none;
+	}
+	
+	#content .selfcheckStep .historyWrap {
+		border-top: none;
+	}
+	
+	html, body {
+		overflow-x: visible;
+	}
+	
+	
+	#showNum li:nth-child(1), #showNum li:nth-child(3)  {
+		height: 42px !important; 
+	}
+	
+	#showNum li:nth-child(2), #showNum li:nth-child(4){
+		border-top: 0 !important;
+	}  
+	
+</style>
+
+
+<script type="text/javascript">
+//<![CDATA[
+    $(window).scroll(function() {
+    	fnOnScroll();
+	});
+
+	function fnContentLoad() {
+		
+		$("#MENU000338").addClass("on");
+		
+		//유틸설정
+		setUtilZone("print|zoom");
+		
+		$.each($("#frm input[name=selfDiagDiv]"), function(i){
+			$("#youthHousRstTbl").show();
+		});
+
+		$("#houseInfo").load( function(){ 
+			autoResize($("#houseInfo").get(0));
+		});
+		
+		$("#rcritInfo").load( function(){ 
+			autoResize($("#rcritInfo").get(0));
+		});
+		
+		fnSetSelectedHist();
+		
+		// 이벤트 버튼 제어
+		var userId = "";
+		
+		var selectBCValue = "";
+		var selectSCValue = "";
+		
+		//광역시 코드 Select Box 설정
+		getSelectBrtcSisngn("srcBrtCd", "BRTC_CODE", "", selectBCValue, "srcSgnguCd", selectSCValue, true, "선택해주세요");
+		getSelectEmdCode("srcLglDngCd", "/", $("#srcBrtCd").val(), $("#srcSgnguCd").val(),true,"선택해주세요");
+		//선택내역 펼치기
+		fnSlideToggle('history');
+		fnHardCss();
+	}
+	
+	//광역시도 선택시 이벤트
+	function fnChangeBrtcCode(objValue) {
+		getSelectBrtcSisngn("srcSgnguCd","SIGNGU_CODE", objValue,"","","",true,"선택해주세요");
+		getSelectEmdCode("srcLglDngCd", "/", $("#srcBrtCd").val(), $("#srcSgnguCd").val(),true,"선택해주세요");
+	}
+	
+	//결과 보이기/숨기기
+	function fnResToggle(id){
+		$("#"+id).slideToggle(300);
+	}
+	
+	//이전단계
+	function fnPrevStep(){
+		var menuNo = "";
+		var url = "";
+		
+		url = "/hws/portal/dgn/selectSelfDiagnosisYouthHousView.do";
+		
+		$("#frm").append("<input type=\"hidden\" name=\"res\" value=\"\" />");
+		$("#frm").attr("action", url);
+		$("#frm").submit();
+	}
+	
+	//다시하기
+	function fnReset(){
+		$(location).attr("href", "/hws/portal/dgn/selectSelfDiagnosisYouthHousView.do");
+	}
+	
+	//선택내역
+	function fnSetSelectedHist(selfDivId){
+		var html = "";
+		var qDesc = "";
+		var aDesc = "";
+		var isExist = false;
+		var qId = "";
+		var qNm = "";
+		var calc = "";
+		var headVal = "";
+		if(selfDivId == null || selfDivId == ""){
+			selfDivId = $("#frm input[name=selfDiagDiv]:last").val();
+		}
+		
+		$.each($("#frm input[name=selfDiagDiv]"), function(){
+			if(selfDivId == $(this).val()){
+				isExist = true;
+			}
+		});
+		
+		if(!isExist){
+			$.jqAlertAutoClose("점검 내용이 없습니다.");
+			return;
+		}
+		
+		$.each($("#historyTabDiv div"), function(){
+			$(this).find("a").removeClass("on");
+		});
+		
+		$("#historyTabDiv div:eq(0) a").addClass("on");
+		
+		$.each($("#rstfrm input[id^=A_" + selfDivId + "]"), function(i){
+			qDesc = $("#QD_" + $(this).attr("id").replace("A_", "")).val();
+			aDesc = $("#AD_" + $(this).attr("id").replace("A_", "")).val();		
+			
+			chk = $(this).attr("id").replace("A_", "").substring(2, 4); //1_ ...23
+			lastChk = chk.charAt(chk.length - 1);
+			if(lastChk == "_" ){//qId가 1의 자리일때
+				qId = $(this).attr("id").replace("A_", "").substring(2, 3);
+			}else{
+				qId = $(this).attr("id").replace("A_", "").substring(2, 4);
+			}
+			
+			qNm = $(this).val();
+			
+			if(qId == "1"){
+				var year = aDesc.substring(0,4);
+				var mt = aDesc.substring(4,6);
+				var day = aDesc.substring(6,8);
+				
+				aDesc = year + "년 ";
+				//aDesc = year + "년 ";
+			}
+
+			if(qId == "10" || qId == "15" || qId == "16" || qId == "17" || qId == "18" || qId == "19" || qId == "20"){
+				aDesc = fnSetNumberComma(qNm) + "원";	
+			}
+			
+ 			if(qId == "15" ){
+				headVal = "[청년가구]";
+			}else if(qId == "16"){
+				headVal = "[원가구]";
+			} 
+			
+			
+			if(aDesc.length >= 16){
+				aDesc = aDesc.substr(0, 15);
+				aDesc = aDesc+"...";
+			}
+			
+			html += "<li>";
+			html += "<span class=\"data\">" + headVal + qDesc + "</span>";
+			html += "<span class=\"choice\">" + aDesc + "</span>";
+			html += "</li>";
+		});
+		
+		if(html == ""){
+			html = "<li><span class=\"data\">선택내역이 없습니다.</span><span class=\"choice\"></span></li>";
+		}
+		
+		$("#selectedVAlUl").html(html);
+	}
+	
+	//슬라이드바 스크롤
+	function fnOnScroll(){
+		var scrollTop = $(document).scrollTop();
+		var slideBarHeight = $("#slideBar .helpWrap").height() + $("#slideBar .historyWrap").height() + 15;
+		var limitTop = 300;
+		var scrollSpd = 10;
+		var limitBottom = $("#resultDiv").height() + 20;
+		
+		if(slideBarHeight < limitBottom){
+			if(scrollTop < limitTop){
+				$("#slideBar").animate({"margin-top" : "0px"}, scrollSpd);
+			}else{
+				if((slideBarHeight + scrollTop - limitTop) > limitBottom){
+					$("#slideBar").animate({"margin-top" : (limitBottom - slideBarHeight) + "px"}, scrollSpd);
+				}else{
+					$("#slideBar").animate({"margin-top" : (scrollTop - limitTop) + "px"}, scrollSpd);
+				}
+			}
+		}
+	}
+
+	//로그인
+	function fnCheckLoginForChild(){
+		$.when($.jqConfirm("로그인이 필요합니다. 로그인 하시겠습니까?",{width:"auto"})).then(function(status){if(status == "Yes") {
+			$(location).attr("href","/hws/portal/main/loginUsrView.do");
+	    }});
+	}
+	
+	//프레임 검색
+	function fnSearchFrame(){
+		var rentHousResultCd = $("input[name=rentHousResultRadio]:checked", parent.document).val();
+		
+		fnSetView(rentHousResultCd); //임시추가
+		
+		if($("#houseFrame").hasClass("on")){
+			$("#houseInfo").get(0).contentWindow.fnSearch(1);
+		}
+		
+		if($("#rcritFrame").hasClass("on")){
+			$("#rcritInfo").get(0).contentWindow.fnSearch(1);
+		}
+	}
+	
+	//프레임 사이즈
+	function autoResize(iframe){
+		$(iframe).height($(iframe).contents().find('#sub_content').height());
+	}
+	
+	//3자리 콤마
+	function fnSetNumberComma(val){
+		var regExp = /[^(\d)]/g;
+		var regExp2 = /\B(?=([\d]{3})+(?![\d]))/g;
+		var res = String(val);
+		
+		if(regExp.test(res)){
+			res = res.replace(regExp, "");
+		}
+		
+		if(regExp2.test(res)){
+			res = res.replace(regExp2, ",");
+		}
+		
+		return res;
+	}
+	
+	function fnSetView(val){
+		if(val >= 13){
+			$("#houseFrame").removeClass("on");
+			$("#houseFrame").hide();
+			$("#houseInfo").hide();
+			$("#rcritFrame").text("공공분양 모집공고");
+			$("#rcritFrame").addClass("on");
+			$("#rcritInfo").show();
+		}else{
+			$("#rcritFrame").text("임대주택 모집공고");
+			$("#houseFrame").show();
+		}
+	}
+	
+	//이벤트 참여하기
+	function fnEventPrtcpnt(){
+		
+		var userId = "";
+		var eventNm = "자가진단참여이벤트";
+		
+		if(isEmpty(userId)){
+			$.when($.jqConfirm("로그인이 필요합니다. 로그인 하시겠습니까?",{width:"auto"})).then(function(status){if(status == "Yes") {
+				$(location).attr("href","/hws/portal/main/loginUsrView.do");
+		    }});
+			return;
+		}else{			
+			
+			var uri = "/hws/com/evt/selectEventIdDplctCkeck.do";
+			var prtcpntId = userId;
+			
+			$.ajax({
+				type : "POST",
+				url : uri,
+				async : true,
+				data : {
+					prtcpntId : prtcpntId,
+					eventNm : eventNm
+				},
+				traditional: true,
+				success : function(json) {
+					var retCnt = json.resultCnt;
+					if (retCnt > 0) {
+						$.jqAlert("이벤트에 이미 참여하셨습니다.");
+					} else {
+						openDivDialogPopup('checkPhonePop', '330', '270', true,'610','150','/hws/com/evt/selectEventManageViewPop.do');
+					}
+				},
+				error:function(response, textStatus, errorThrown) {
+					returnAjaxError(response, textStatus, errorThrown);
+				}
+			});			
+			
+		}
+		
+	}
+	
+	// For Event Popup
+    function getToday() {
+    	var now = new Date();
+        var year= now.getFullYear();
+        var mon = (now.getMonth()+1)>9 ? ''+(now.getMonth()+1) : '0'+(now.getMonth()+1);
+        var day = now.getDate()>9 ? ''+now.getDate() : '0'+now.getDate();
+        var hour = now.getHours()>9 ? ''+now.getHours() : '0'+now.getHours();
+        var minute = now.getMinutes()>9 ? ''+now.getMinutes() : '0'+now.getMinutes();
+        var todayVal = year + mon + day + hour + minute;
+        
+        return todayVal;        
+    }
+	
+  	//슬라이드바 토글
+	function fnSlideToggle(id){
+		
+		if(id == 'help'){
+			if($(".helpWrap").attr("class").indexOf('on') > -1){
+				$(".help").slideUp(400,function(){
+					$(".helpWrap").removeClass("on").removeClass("abs");
+					$("#slideBar, .historyWrap").removeClass("abs");
+				});
+			}else{
+				$("#slideBar, .historyWrap").addClass("abs").removeClass("on");
+				$(".helpWrap").addClass("on").addClass("abs");
+				$(".history, .resultBtn").slideUp();
+				$(".help").slideDown();
+			}
+		} else if(id == 'history'){
+			if($(".historyWrap").attr("class").indexOf('on') > -1){
+				$(".history, .resultBtn").slideUp(1000,function(){
+					$(".historyWrap").removeClass("on").removeClass("abs");
+					$("#slideBar, .helpWrap").removeClass("abs");
+				});
+			}else{ 
+				$(".help").slideUp(400,function(){
+					$("#slideBar, .helpWrap").addClass("abs").removeClass("on");
+					$(".historyWrap").addClass("on").addClass("abs");
+					$(".history, .resultBtn").slideDown();
+				});
+			}
+			
+		}
+		
+	}
+  	
+	//지역 조회
+	function fnCmtSrvvCntrList(){
+		
+		//showProgress();
+		
+		var srcBrtCd = $('#srcBrtCd').val();
+		var srcSgnguCd = $('#srcSgnguCd').val();
+		
+		if(srcBrtCd == ''){
+			$.jqAlert('광역시도를 선택해주세요');
+			return;
+		}else if(srcSgnguCd == ''){
+			$.jqAlert('시군구를 선택해주세요');
+			return;
+		}else{
+		    $.ajax({
+		    	type: "POST",    
+		        url: "/hws/portal/dgn/selectYouthHousCntrNum.do", 
+		        data: {"detailCodeDc" : srcBrtCd+srcSgnguCd},
+		        dataType: "JSON",
+		        async: true,
+		        success : function(json){
+		        	hideProgress();
+		        	var result = json.resultList;
+	
+		        	$("#buffer1").html("<span>" + result[0].buffer1Value + "</span>");
+		        	$("#buffer2").html(result[0].buffer2Value);
+		        },
+		        error:function(response, textStatus, errorThrown){
+		        	hideProgress();
+		        	returnAjaxError(response, textStatus, errorThrown);
+		        }
+		    });
+		}
+	}
+	
+	function fnHardCss(){
+		$("#bbsType1").css("height", "auto");
+		$("#btns1").css("margin-bottom", "auto");
+		$("#btnWhite").css("height", "32px");
+	}
+	
+//]]> 
+</script>
+
+<div id="sub_content">
+	<form id="frm" action="">
+		</form>
+	
+	<form id="rstfrm" action="">
+		</form>
+	<!-- <div class="note">아래의 단계로 진행해 주십시오.</div> -->
+		
+	<!-- 플로팅 이벤트 메뉴 start -->	
+	<div id="floating_menu" style="display:none;">
+		<ul>
+			<li class="goPrt"><a href="javascript:fnEventPrtcpnt();"><img src="/images/portal/common/btn_pp.png" alt="이벤트 응모하기" /></a></li>
+		</ul>
+	</div>
+	<!-- 플로팅 이벤트 메뉴 end -->
+	
+	<!-- 진행단계표시 -->
+	<div class="stepSign">
+		<div class="other">
+			<ul>
+			</ul>
+		</div>
+		<div class="here">
+			<ul>
+				<li>step1. 진단결과보기</li>
+			</ul>
+		</div>
+	</div>
+	<!-- 진행단계표시 -->
+
+	<div class="selfcheckStep">
+		<div class="resultSummary">
+			<span class="step_com">진단결과</span> 신청 가능한 항목이 없습니다.
+				</div>
+		<div id="selfDiagDivs">
+			<div id="resultDiv" class="stepWrap noborder">
+						
+				<!-- 청년월세지원금 결과 -->
+				<br />
+				<div id="youthHousRstTbl" class="resultWin" style="display: none">
+					<div class="headline">
+						<span class="bya">청년<br/>월세</span> 
+						<span class="foldBtn btn_darkgray" style="height: 44px; top: 6xp;"><a href="#" onclick="javascript:fnResToggle('youthHousRstTblSub'); return false;">-</a></span>
+					</div>
+					<div id="youthHousRstTblSub" style="overflow:hidden;">
+						<div class="resultView nofloat">
+										<div class="resultRent">
+											<div class="exBox">
+												<table class="bbs_type1" cellspacing="0" summary="주거급여 신청자격" id="bbsType1">
+												<caption>청년월세지원 신청자격</caption>
+												<colgroup>
+													<col width="" />
+												</colgroup>
+												</table>
+												<!-- <div class="note">※ 주거급여 신청자격이 안되신다면 저소득계층의 주거안정을 위한 월세자금 대출 상품을 확인해 보시기 바랍니다.</div>-->
+												<div class="btns" id="btns1">
+													<span class="mscBtn btn_white" id="btnWhite"><a href="/hws/portal/cont/selectYouthPolicyYouthMonthlySupView.do#guide=HB009" target="_blank">청년월세 지원사업</a></span>
+												</div> 
+											</div>
+										</div>
+									</div>
+		
+								</div>
+					
+					<!-- 이용안내 -->
+					<div class="numGuide">
+						<div class="guide">
+							<!-- 아래에 해당하는 거주 지역 검색을 통해 안내된 번호에서 <strong>청년월세지원 관련 상담</strong>을 하실 수 있습니다. -->
+							<strong>청년월세지원 관련 문의</strong>
+						</div>
+					</div>
+					<form id="srcForm" name="srcForm" onsubmit="return false" action="">
+					
+						<div class="filterArea rentnotice" style="border-bottom:none;">
+							<!-- 
+							<dl>
+								<dt>지역 :</dt>
+								<dd style="margin-right:5px; height: 60px;"> 
+									<select id="srcBrtCd" name="srcBrtCd" title="지역" onchange="fnChangeBrtcCode(this.value);" ></select>
+									<select id="srcSgnguCd" name="srcSgnguCd"></select>
+								</dd>
+								<dd>
+								<span class="searchBtn btn_darkgray"><a href="#" onclick="javascript:fnCmtSrvvCntrList(); return false;">검색</a></span> 
+								</dd>
+							</dl>
+							 -->
+							<ul id= "showNum">
+								<li style="padding-top: 12px;">국토교통부 대표번호</li><li id="buffer1" style="padding-top: 12px;">1599-0001</li>
+								<!-- <li>시군구<br/>전화번호</li><li id="buffer1">-</li> -->
+								<!-- <li class="stepbg">주거급여<br/>전화번호</li><li id="buffer2">-</li> 
+								<li></li>-->
+							</ul>
+							
+							<!-- 
+							<div style="text-align:right;font-size:16px;color:#578200;font-weight:bold;float: right;margin-right: 50px;">
+								<span>※ 청년월세사업 콜센터(1600-0777)</span>
+							</div>
+							 -->
+						</div>
+						<!-- <div>
+							<span>청년월세사업 콜센터(1600-0777)</span>
+						</div> -->
+					</form>
+					
+				</div>
+			</div>
+		</div>
+		<div id="slideBar" class="" style="overflow: hidden;">
+			<div class="helpWrap" style="display:none;">
+				<h5 onclick="fnSlideToggle('help');">도움말
+				</h5>
+				<div class="help" style="display:none;">
+					<ul id="housAlowHelpUl">
+						<li><a href="#" onclick="javascript:fnWordDicPop('임차가구'); return false;">임차가구</a></li>
+						<li><a href="#" onclick="javascript:fnWordDicPop('자가가구'); return false;">자가가구</a></li>
+						<li><a href="#" onclick="javascript:fnWordDicPop('주거급여 대상자'); return false;">주거급여 대상자</a></li>
+						<li><a href="#" onclick="javascript:fnWordDicPop('중위소득'); return false;">중위소득</a></li>
+						<li><a href="#" onclick="javascript:fnWordDicPop('부양의무자'); return false;">부양의무자</a></li>
+						<li><a href="#" onclick="javascript:fnWordDicPop('가구원의 범위'); return false;">가구원의 범위</a></li>
+						<li><a href="#" onclick="javascript:fnWordDicPop('가구원의 제외범위'); return false;">가구원의 제외범위</a></li>
+						<li><a href="#" onclick="javascript:fnWordDicPop('비주택'); return false;">비주택</a></li>
+						<li><a href="#" onclick="javascript:fnWordDicPop('무주택세대구성원'); return false;">본인 및 세대원 전원 무주택(무주택세대구성원)</a></li>
+						<li><a href="#" onclick="javascript:fnWordDicPop('무주택기간'); return false;">무주택기간</a></li>
+						<li><a href="#" onclick="javascript:fnWordDicPop('무주택기간 산정기준일'); return false;">무주택기간 산정기준일</a></li>
+						<li><a href="#" onclick="javascript:fnWordDicPop('국가유공자'); return false;">국가유공자</a></li>
+						<li><a href="#" onclick="javascript:fnWordDicPop('5.18민주유공자'); return false;">5.18민주유공자</a></li>
+						<li><a href="#" onclick="javascript:fnWordDicPop('한부모가족'); return false;">한부모가족</a></li>
+						<li><a href="#" onclick="javascript:fnWordDicPop('주거취약계층'); return false;">주거취약계층</a></li>
+						<li><a href="#" onclick="javascript:fnWordDicPop('긴급주거지원대상자'); return false;">긴급주거지원대상자</a></li>
+						<li><a href="#" onclick="javascript:fnWordDicPop('공동생활가정(그룹홈)'); return false;">공동생활가정(그룹홈)</a></li>
+						<li><a href="#" onclick="javascript:fnWordDicPop('노부모 부양자'); return false;">노부모 부양자</a></li>
+						<li><a href="#" onclick="javascript:fnWordDicPop('주거급여 대상자'); return false;">주거급여 대상자</a></li>
+						<li><a href="#" onclick="javascript:fnWordDicPop('세대주'); return false;">세대주</a></li>
+						<li><a href="#" onclick="javascript:fnWordDicPop('주거급여'); return false;">주거급여</a></li>
+						<li><a href="#" onclick="javascript:fnWordDicPop('희망키움통장'); return false;">희망키움통장</a></li>
+						<li><a href="#" onclick="javascript:fnWordDicPop('근로장려금'); return false;">근로장려금</a></li>
+						<li><a href="#" onclick="javascript:fnWordDicPop('읍면지역'); return false;">읍면지역</a></li>
+						<li><a href="#" onclick="javascript:fnWordDicPop('수도권 및 지방 5대 광역시, 인구 50만 이상 도시 및 세종특별자치시 소재 주택'); return false;">수도권 및 지방 5대 광역시, 인구 50만 이상 도시 및 세종특별자치시 소재 주택</a></li>
+						<li><a href="#" onclick="javascript:fnWordDicPop('주택가격 X 70% ≤ 주택담보대출'); return false;">주택가격 X 70% ≤ 주택담보대출</a></li>
+						<li><a href="#" onclick="javascript:fnWordDicPop('1년이상 임차 거주중인 주택'); return false;">1년이상 임차 거주중인 주택</a></li>
+						<li><a href="#" onclick="javascript:fnWordDicPop('노인복지주택'); return false;">노인복지주택</a></li>
+					</ul>
+				</div>
+			</div>
+			<div class="historyWrap">
+				<h5>선택내역
+					<!-- <span class="btnSmall">
+						<a href="#" onclick="javascript:fnResToggle('housAlowRstTblSub'); return false;">-</a>
+					</span> -->
+				</h5>
+				<div class="history" style="overflow: hidden; display:none; width: 320px;" >
+					<div id="historyTabDiv" class="historyTab">
+						<div class="tab1"><a class="on" href="#">청년월세지원</a></div>
+					</div>
+					<div style="height:240px; overflow-y: scroll;">
+						<ul id="selectedVAlUl">
+							<li>
+								<span class="data">선택내역이 없습니다.</span>
+								<span class="choice"></span>
+							</li>
+						</ul>
+					</div>
+				</div>
+				<div class="resultBtn" style="display:none; width: 320px;" >
+					<span id="prevBt" class="btn_orange"><a href="#" onclick="fnPrevStep(); return false;">이전<br />단계</a></span>
+					<!-- <span id="nextBt" class="btn_white"><a href="#" onclick="return false;">결과<br />보기</a></span> -->
+					<span id="resetBt" class="btn_orange"><a href="#" onclick="fnReset(); return false;">다시<br />하기</a></span>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

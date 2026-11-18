@@ -1,0 +1,1171 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>중앙청년지원센터</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <meta name="keywords"
+        content="청년, 청년정책, 청년센터, 중앙청년지원센터, 청년재단, 중앙센터, 청년정책조정위, 청조위, 국무조정실, 국조실, 취업, 창업, 지원, 복지, 문화, 마음, 프로그램, 정책, 기회" />
+    <meta name="title" property="og:title" content="중앙청년지원센터" />
+    <meta name="description" property="og:description" content="중앙청년지원센터는 청년기본법에 의거하여 지역 청년지원센터 지원 및 협력체계를 구축하고, 청년의 권익증진을 위한 사업을 개발 및 수행합니다." />
+    <meta name="image" property="og:image" content="https://nysc.or.kr/nysc/assets/images/og_thumbnail.png" />
+    <meta name="theme-color" content="#535ca8" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="중앙청년지원센터" />
+    <meta name="twitter:description"
+        content="중앙청년지원센터는 청년기본법에 의거하여 지역 청년지원센터 지원 및 협력체계를 구축하고, 청년의 권익증진을 위한 사업을 개발 및 수행합니다." />
+    <link rel='icon' href='/nysc/favicon.ico' type='image/x-icon'>
+    <link rel='stylesheet' type='text/css' media='screen' href='/nysc/assets/css/root.css'>
+    <link rel='stylesheet' type='text/css' media='screen' href='/nysc/assets/css/main.css?d=20261002'>
+    <link rel='stylesheet' type='text/css' media='screen' href='/nysc/assets/css/layout.css?d=20261002'>
+    <link rel='stylesheet' type='text/css' media='screen' href='/nysc/assets/css/layout2.css?d=20261002'>
+
+    <script src='/nysc/assets/js/main.js?d=20261002' defer></script>
+    <script src='/nysc/assets/js/gnb.js' defer></script>
+    <script src='/nysc/assets/js/common.js' defer></script>
+</head>
+<!-- 구글 GA TAG-->
+<script>
+    (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-M5CNWH46');
+</script>
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=10d60d074d3b26ac1f19c71417c3f8af"></script>
+<body>
+    <style>
+        .news-center-brand { display: flex; align-items: center; gap: 10px; margin-top: 20px; }
+        .news-center-brand img { width: 140px; height: 56px; object-fit: contain; object-position: center; }
+        .news-center-brand p { margin: 0; color: #757575; font-size: 18px; font-weight: bold; }
+        @media screen and (max-width: 768px) {
+            .news-center-brand img { width: 110px; height: 48px; }
+            .news-center-brand p { font-size: 16px; }
+        }
+    </style>
+    <header class="header">
+    <div class="header-top-wrapper">
+        <div class="header-top">
+            <ul>
+                <div class="search_Tab_box2">
+
+                    <!-- 검색 폼 -->
+                <form action="/nysc/pages/search_result.php" method="get" class="search_form_tab">
+                    <input type="hidden" name="stx" value="" class="input_main_search">
+                    <input name="stx" type="text" placeholder="원하시는 검색어를 입력해주세요." class="search_main_input" >
+
+                     <button type="submit" class="search-btn-main" >
+                        <img src="/nysc/assets/images/search_icon.png" alt="search_icon" style="width: 18px;">
+                     </button>
+                </form>
+              
+                </div>
+                <button type="button" class="search_mob_btn">통합검색</button>
+                                    <li class="lohin_btn_li"><a href="/nysc/pages/login.php">로그인 / 회원가입</a></li>
+                    <!-- <li><a href="/nysc/pages/signup.php">회원가입</a></li> -->
+                            </ul>
+        </div>
+    </div>
+    <script>
+            const mobBtn = document.querySelector('.search_mob_btn');
+            const tabBox = document.querySelector('.search_Tab_box2');
+            const mypageLink = document.querySelector('a[href="/nysc/pages/mypage.php"]');
+            const loginLink = document.querySelector('a[href="/nysc/pages/login.php"]');
+
+            if (mypageLink) {
+                mypageLink.parentElement.classList.add('login_btn_li', 'mypageIn');
+            }
+            if (loginLink) {
+                loginLink.parentElement.classList.add('login_btn_li');
+                loginLink.textContent = '로그인';
+            }
+            mobBtn.classList.add('search_btn_box');
+            mobBtn.setAttribute('aria-label', 'search');
+            mobBtn.innerHTML = '<img src="/nysc/assets/images/search_icon.png" alt="search_icon" style="width: 18px;">';
+            tabBox.parentNode.appendChild(tabBox);
+            tabBox.parentNode.appendChild(mobBtn);
+
+            mobBtn.addEventListener('click', () => {
+            tabBox.classList.toggle('active2');
+            tabBox.classList.toggle('search_box_active');
+            });
+    </script>
+
+    <div class="header-bottom">
+        <div class="logo" >
+            <a href="https://kyf.or.kr/" target="_blank">
+            <img src="/nysc/assets/logo_4.png" alt="logo" width="120" style="padding-right: 10px;" class="kyf_logo">
+            </a>
+
+            <a href="/nysc" >
+            <img src="/nysc/assets/logo_3.png" width="180" class="kyf_logo2">
+            </a>
+        </div>
+
+        <!-- ✅ 웹 GNB (1025px 이상) -->
+        <nav class="gnb">
+            <ul>
+                <li class="main-menu">
+                    <a class="main-menu-wrapper" href="/nysc/pages/about.php">센터소개</a>
+                    <div class="sub-menu">
+                        <ul>
+                            <li><a href="/nysc/pages/about.php">중앙청년지원센터</a></li>
+                            <li><a href="/nysc/pages/group.php">조직구성</a></li>
+                            <li><a href="/nysc/pages/business.php">사업안내</a></li>
+                            <li><a href="/nysc/pages/ci.php">CI·캐릭터 소개</a></li>
+                            <li><a href="/nysc/pages/location.php">오시는길</a></li>
+                        </ul>
+                    </div>
+                </li>
+                                <li class="main-menu">
+                    <a class="main-menu-wrapper" href="/nysc/pages/center1.php">전국센터</a>
+                    <div class="sub-menu">
+                        <ul>
+                            <li><a href="/nysc/pages/center1.php">전국 청년센터 안내</a></li>
+                            <li><a href="/nysc/pages/center2.php">전국 청년센터 소식</a></li>
+                            <li><a href="/nysc/pages/center4.php">전국 청년센터 채용</a></li>
+                            <li><a href="/nysc/pages/platform2.php">청년지원기관 연계망</a></li>
+                            <!-- 260623 청년센터 등록신청 메뉴 숨김 <li><a href="/nysc/pages/notice_view.php?id=31">청년센터 등록신청</a></li> -->
+                            <!-- <li><a href="javascript:showConstructingModal();">청년정책 플랫폼</a></li> -->
+                        </ul>
+                    </div>
+                </li>
+                <li class="main-menu">
+                    <a class="main-menu-wrapper" href="/nysc/pages/notice.php">커뮤니티</a>
+                    <div class="sub-menu">
+                        <ul>
+                            <li><a href="/nysc/pages/notice.php">공지사항</a></li>
+                            <li><a href="/nysc/pages/documents.php">자료실</a></li>
+                            <li><a href="/nysc/pages/documents2.php">정책연구자료</a></li>
+                            <li><a href="/nysc/pages/freeboard.php">자유게시판</a></li>
+                            <!-- <li><a href="https://maily.so/youthletter" target="_blank">Youth Letter</a></li> -->
+                        </ul>
+                    </div>
+                </li>
+                                
+                <li class="main-menu">
+                    <a class="main-menu-wrapper" href="/nysc/pages/counseling_new_main.php">종합상담</a>
+                </li>
+            </ul>
+        </nav>
+
+          <!-- ? 모바일 햄버거 메뉴 버튼 -->
+          <button class="menu-toggle" onclick="toggleMenu()"></button>
+
+<!-- ? 모바일 GNB (1024px 이하) -->
+<nav class="gnb-mobile">
+    <div class="gnb-mobile-wrapper">
+        <ul>
+            <li class="main-menu">
+                <a href="javascript:void(0);" onclick="toggleSubmenu(this)">센터소개 ▼</a>
+                <ul class="sub-menu">
+                    <li><a href="/nysc/pages/about.php">중앙청년지원센터</a></li>
+                    <li><a href="/nysc/pages/group.php">조직구성</a></li>
+                    <li><a href="/nysc/pages/business.php">사업안내</a></li>
+                    <li><a href="/nysc/pages/ci.php">CI·캐릭터 소개</a></li>
+                    <li><a href="/nysc/pages/location.php">오시는길</a></li>
+                </ul>
+            </li>
+                        <li class="main-menu">
+                <a href="javascript:void(0);" onclick="toggleSubmenu(this)">전국센터 ▼</a>
+                <ul class="sub-menu">
+                    <li><a href="/nysc/pages/center1.php">전국 청년센터 안내</a></li>
+                    <li><a href="/nysc/pages/center2.php">전국 청년센터 소식</a></li>
+                    <li><a href="/nysc/pages/center4.php">전국 청년센터 채용</a></li>
+                    <li><a href="/nysc/pages/platform2.php">청년지원기관 연계망</a></li>
+                    <!-- 260623 청년센터 등록신청 메뉴 숨김 <li><a href="/nysc/pages/notice_view.php?id=31">청년센터 등록신청</a></li> -->
+                    <!-- <li><a href="javascript:showConstructingModal();">청년정책 플랫폼</a></li> -->
+                </ul>
+            </li>
+            <li class="main-menu">
+                <a href="javascript:void(0);" onclick="toggleSubmenu(this)">커뮤니티 ▼</a>
+                <ul class="sub-menu">
+                    <li><a href="/nysc/pages/notice.php">공지사항</a></li>
+                    <li><a href="/nysc/pages/documents.php">자료실</a></li>
+                    <li><a href="/nysc/pages/documents2.php">정책연구자료</a></li>
+                    <li><a href="/nysc/pages/freeboard.php">자유게시판</a></li>
+                    <li><a href="https://maily.so/youthletter" target="_blank">Youth Letter</a></li>
+                </ul>
+            </li>
+                        
+            <!-- <li class="main-menu"><a href="/nysc/pages/certificate_button_center(publish).php" target="_blank">종사자교육</a></li> -->
+            <li class="main-menu">
+                <a href="/nysc/pages/counseling_new_main.php">종합상담</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+</div>
+</header>
+
+<style>
+    /* 기본 GNB 스타일 (웹) */
+    /* .gnb {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        background: white;
+    } */
+
+    /* ✅ 웹 GNB (1025px 이상) */
+    @media (min-width: 1025px) {
+        .menu-toggle {
+            display: none; /* PC에서는 햄버거 버튼 숨김 */
+        }
+
+        .gnb {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            background: white;
+        }
+
+        .gnb-mobile {
+            display: none !important; /* PC에서는 모바일 GNB 강제 숨김 */
+        }
+
+        .gnb ul {
+            display: flex;
+            list-style: none;
+            padding: 0;
+        }
+
+        .gnb .sub-menu {
+            display: none;
+            position: absolute;
+            background: white;
+            box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        .gnb .main-menu:hover .sub-menu {
+            display: block;
+        }
+    }
+
+    /* ✅ 모바일 GNB (1024px 이하) */
+    @media (max-width: 1024px) {
+        .gnb {
+            display: none !important; /* PC에서는 모바일 GNB 강제 숨김 */
+        }
+        .menu-toggle {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 50px;
+            height: 50px;
+            cursor: pointer;
+            position: absolute;
+            right: 20px;
+            top: 10px;
+            z-index: 1100;
+            background: transparent;
+            border: none;
+        }
+
+        .menu-toggle::before {
+            content: '\2630'; /* 유니코드 햄버거 아이콘 */
+            font-size: 30px;
+            color: black;
+        }
+        .header-bottom {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start; 
+            justify-content: flex-start; /* 상단부터 시작 */
+        }
+
+        .header-bottom .logo {
+            margin-top: auto; /* 하단으로 밀어내기 */
+        }
+        .gnb-mobile {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh; /* ✅ 전체 높이로 변경 */
+            background: white;
+            z-index: 1000;
+            overflow: hidden; /* wrapper에서만 스크롤 */
+            flex-direction: column;
+        }
+        .gnb-mobile-wrapper {
+            overflow-y: auto;
+            height: 100%; /* ✅ 전체 높이에서 스크롤 */
+            padding-bottom: 60px;
+            margin-top: 60px;
+        }
+        .gnb-mobile.active {
+            display: flex;
+        }
+
+        .menu-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 35px;
+            cursor: pointer;
+        }
+
+        .gnb-mobile ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            width: 100%;
+        }
+
+        .gnb-mobile li {
+            width: 100%;
+            position: relative;
+        }
+
+        .gnb-mobile a {
+            display: block;
+            padding: 15px;
+            font-size: 20px;
+            background: #f8f8f8;
+            width: 100%;
+            text-align: center;
+            text-decoration: none;
+            color: black;
+            cursor: pointer;
+        }
+
+        .gnb-mobile a:hover {
+            background: #e0e0e0;
+        }
+
+        .gnb-mobile .main-menu {
+            position: relative;
+            width: 100%;
+            background: #f8f8f8;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .gnb-mobile .main-menu > a {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px;
+            font-size: 20px;
+            color: black;
+            text-decoration: none;
+        }
+
+        .gnb-mobile .main-menu.active > a {
+            background: #d0d0d0;
+        }
+
+        .gnb-mobile .sub-menu {
+            display: none;
+            flex-direction: column;
+            background: white;
+            width: 100%;
+            padding: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+
+        .gnb-mobile .sub-menu a {
+            display: block;
+            padding: 12px 20px;
+            font-size: 18px;
+            color: black;
+            background: white;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .gnb-mobile .sub-menu a:hover {
+            background: #f0f0f0;
+        }
+
+        /* 하위 메뉴가 펼쳐질 때 */
+        .gnb-mobile .main-menu.active .sub-menu {
+            display: flex;
+        }
+
+
+    }
+
+</style>
+
+<script>
+    function toggleMenu() {
+        document.querySelector(".gnb-mobile").classList.toggle("active");
+    }
+
+    function toggleSubmenu(element) {
+        const parentMenu = element.closest(".main-menu");
+        const submenu = parentMenu.querySelector(".sub-menu");
+
+        // 현재 상태 확인
+        const isOpen = parentMenu.classList.contains("active");
+
+        // 모든 메뉴 닫기
+        document.querySelectorAll(".gnb-mobile .main-menu").forEach(menu => {
+            menu.classList.remove("active");
+        });
+
+        // 현재 메뉴만 열기
+        if (!isOpen) {
+            parentMenu.classList.add("active");
+        }
+    }
+
+
+
+    document.addEventListener("DOMContentLoaded", function () {
+        document.querySelectorAll(".gnb-mobile .main-menu > a").forEach(menu => {
+            menu.addEventListener("click", function (event) {
+                let parent = this.parentElement;
+                let submenu = parent.querySelector(".sub-menu");
+
+                if (submenu) {
+                    event.preventDefault();
+                    let isOpen = submenu.style.display === "block";
+                    // 모든 서브메뉴 접기
+                    document.querySelectorAll(".gnb-mobile .sub-menu").forEach(sm => sm.style.display = "none");
+                    // 현재 메뉴만 열기
+                    submenu.style.display = isOpen ? "none" : "block";
+                }
+            });
+        });
+    });
+
+
+    // 헤더 네비 스크롤 고정
+
+    window.addEventListener('scroll', function() {
+    const headerBottom = document.querySelector('.header-bottom');
+    const headerTopHeight = document.querySelector('.header-top-wrapper').offsetHeight;
+
+    if (window.scrollY > headerTopHeight) {
+        headerBottom.classList.add('is-fixed');
+    } else {
+        headerBottom.classList.remove('is-fixed');
+    }
+});
+
+</script>
+
+    <main>
+        <div class="main-wrapper">
+            <div class="main-location">
+                <ol class="breadcrumb">
+                    <li>홈</li>
+                    <li>전국센터</li>
+                    <li>                
+                        전국청년센터 소식                    </li>
+                </ol>
+                <div class="w-100 d-flex justify-between align-center" style="margin-bottom: 16px;">
+                    <h1>[국토교통부] 26년 제6회 찾아가는 청년주거 상담소</h1>
+                    
+                </div>
+            </div>
+            <div>
+                <img src="/nysc/assets/images/notice_view_board.jpg" alt="전국청년센터 모집 이미지" style="max-width: 100%; height: auto;">            </div>
+            
+                            <div class="d-flex-column" style="padding: 40px 0 20px 0; gap: 40px;">
+                <div class="p-relative margin-div notice-content">
+                    <p> </p>
+<div style="text-align: center;"><img src="/nysc/upfiles/news/images/2026/6a718cfc03c21.png" height="800"></div>
+<div style="text-align: center;">
+<p><strong>● 신청대상: </strong>세종 거주/재학/재직/활동 19~39세 청년</p>
+<br><br>
+<p><strong>● 신청기간: </strong>2026-07-31 00:00 ~ 2026-08-28 00:00<br><br></p>
+<br>
+<p><strong>● 운영일정: </strong>2026-09-03 14:00 ~ 2026-09-03 16:00</p>
+<br><br>
+<p><strong>● 프로그램 내용: </strong></p>
+<p><span><strong>찾아가는 청년 주거 상담소</strong>는</span></p>
+<p><span>청년들이 궁금해하는 청년 주거 관련 교육과 상담입니다.</span></p>
+<p>  </p>
+<p><span>세종특별자치시와 국토교통부 주관으로</span></p>
+<p><span>한국토지주택공사, 주택도시보증공사, 한국부동산원과 함께 합니다.</span></p>
+<p>  </p>
+<p><strong><span>내집마련, 주거복지, 전세사기 예방 등 실제 기관 담당자들이 안내해드립니다.</span></strong></p>
+<p>  </p>
+<p><span>여러분들이 평소 궁금하신 내용을 </span></p>
+<p><span><strong>참여동기</strong>란에 작성해 주시면 실제 강의시간에 답변해드립니다.</span></p>
+<br><br>
+<p><strong>● 진행장소: </strong>세종시청자미디어센터 1층 다목적홀 </p>
+<br><br>
+<p><strong>● 신청방법: </strong>아래 링크를 통해 신청서를 작성해주세요. </p>
+<p><a href="https://www.4242.or.kr/sub050301/form/pid/861">https://www.4242.or.kr/sub050301/form/pid/861</a><br><br></p>
+<br>
+<p><strong>● 유의사항: </strong>신청접수 시, 사전 질의사항 제출 가능</p>
+<br><br>
+<p><strong>● 문의: </strong>044-251-3285<br><br></p>
+</div>
+<p> </p>                    
+
+                                    </div>
+
+                <!-- 첨부파일 다운로드 -->
+                            </div>
+        </div>
+        
+    </main>
+            <div class="fix_btn">
+            <div class="fix_content">
+                <img src="/nysc/assets/icons/해청.png" alt="해청" class="fix_icon">
+                청년센터에서 꿈을 이뤄보세요!
+            </div>
+            <a href="https://www.4242.or.kr/sub050301/form/pid/861" target="_blank" rel="noopener noreferrer" class="fix_button">공고 확인하기</a>
+        </div>
+    
+
+
+    
+<footer class="footer">
+    
+    <!-- 상단 로고 리스트 -->
+    <div class="footer-top">
+        <ul>
+                            <li>
+                    <a href="https://www.opm.go.kr/" target="_blank" class="w-100" aria-label="국무조정실 국무총리비서실">
+                        <img src="/nysc/assets/images/footer/68afbf2e8a910.png">
+                    </a>
+                </li>
+                                <li>
+                    <a href="https://kyf.or.kr/" target="_blank" class="w-100" aria-label="청년재단">
+                        <img src="/nysc/assets/images/footer/68afd4624d17f.png">
+                    </a>
+                </li>
+                                <li>
+                    <a href="https://kyf.or.kr/user/platform.do" target="_blank" class="w-100" aria-label="청년정책 포털 및 플랫폼">
+                        <img src="/nysc/assets/images/footer/68afd729514c4.png">
+                    </a>
+                </li>
+                                <li>
+                    <a href="https://www.youthcenter.go.kr/" target="_blank" class="w-100" aria-label="온통청년">
+                        <img src="/nysc/assets/images/footer/68afd6eeaf176.png">
+                    </a>
+                </li>
+                                <li>
+                    <a href="https://www.2030db.go.kr/" target="_blank" class="w-100" aria-label="국무조정실 국무총리비서실 청년DB">
+                        <img src="/nysc/assets/images/footer/68afbeae08892.png">
+                    </a>
+                </li>
+                        </ul>
+    </div>
+    
+    <!-- 하단 정보 -->
+    <div class="footer-bottom-wrapper">
+        <div class="footer-bottom">
+            <div>
+                <!-- 이용약관 / 개인정보처리방침 링크 -->
+                <div class="footer-policy-links" style="text-align: left; margin-bottom: 10px; color:white;">
+                    <a href="/nysc/pages/privacy.php" style="margin-right: 20px; color: white; text-decoration: none;">이용약관</a>
+                    <a href="/nysc/pages/privacy2.php" style="margin-right: 20px; color: white; text-decoration: none;">개인정보처리방침</a>
+                    <a href="/nysc/pages/privacy3.php" style="margin-right: 10px; color: white; text-decoration: none;">이메일 무단수집거부</a>
+                </div>
+               
+                <div class="info">
+                    <div>
+                        <p>
+                            <span>중앙청년지원센터(운영법인 : (재)청년재단)</span>
+                            <span>서울특별시 종로구 청계천로35, 관정빌딩5층</span>
+                        </p>
+                    </div>
+                    <div>
+                        <p><span>고유번호</span><span>106-82-78078</span></p>
+                        <p><span>전화번호</span><span>070-5032-9900 ~ 10</span></p>
+                        <p><span>팩스</span><span>0507-514-2600</span></p>
+                        <p><span>메일주소</span><span>nysc@kyf.or.kr</span></p>
+                        <p><span>운영시간</span><span>월 ~ 금 09:00 ~ 18:00 / 토, 일 및 법정공휴일 휴무</span></p>
+                    </div>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>Copyright ⓒ 2023 중앙청년지원센터. All right reserved.</p>
+            </div>
+            <div class="logo" onclick="location.href='/nysc';" style="width: 20%;margin-top:20px">
+                    <img src="/nysc/assets/logo_nysc_white.png" style="height: 40px;">
+                </div>
+        </div>
+    </div>
+</footer>
+
+
+<style>
+.footer {
+    background: #fff; /* 기존 디자인 색상 유지 */
+    color: #333;
+    padding: 0px 0;
+}
+
+/* footer-top 슬라이드 영역 */
+.footer-top {
+    padding:0;
+}
+
+.footer-top ul {
+    display: flex;
+    align-items: center;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    transition: transform 0.3s;
+    position: relative;
+    width: 100%;
+    height: 70px;
+}
+
+.footer-top ul li {
+    margin-right: 30px;
+}
+
+.footer-top ul li:last-child {
+    margin-right: 0;
+}
+
+.footer-top ul li img {
+    height: auto;
+}
+
+/* footer-bottom 영역 */
+.footer-bottom-wrapper {
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    margin-top: 0px;
+    padding-top: 20px;
+}
+
+.footer-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+}
+
+.footer-bottom .logo {
+    margin-bottom: 20px;
+    cursor: pointer;
+}
+
+.footer-bottom .info {
+    font-size: 14px;
+    line-height: 1.6;
+    padding: 0 0;
+}
+
+.footer-bottom .info span {
+    display: inline-block;
+}
+
+.footer-bottom .copyright {
+    width: 100%;
+    padding-top: 10px;
+    margin-top: 15px;
+    font-size: 12px;
+    opacity: 0.7;
+}
+.footer-policy-links {
+    text-align: left;
+    /* margin-bottom: 10px; */
+    font-size: 24px;
+    color: white;
+    margin: 100px 0 0 0
+}
+
+@media screen and (max-width:1200px) {
+    .footer-bottom .footer-policy-links {
+        padding: 0 20px ;
+    }
+    .footer-bottom .info {
+        padding: 0 20px ;
+    }
+    .footer-bottom .copyright {
+        text-align: left ;
+        padding: 10px 20px ;
+    }
+    .footer-bottom .logo {
+        width: 100% !important;
+        padding: 0 20px ;
+    }
+}
+
+/* ✅ 모바일 반응형 */
+@media screen and (max-width: 1024px) {
+    .footer {
+        /* background: #000; 검은 배경 유지 */
+        color: #fff;
+        min-height: 300px; /* ✅ footer 최소 높이 설정 */
+        padding-bottom: 60px; /* ✅ 여유 공간 확보 */
+    }
+    html, body {
+        height: 100%;
+    }
+
+    main {
+        flex: 1;
+    }
+    /* 모바일 대응 */
+    .logo {
+        margin-top: 10px;
+    }
+    .footer-top {
+        padding: 0px 0;
+        background-color: transparent; /* ✅ 투명 배경 */
+     
+    }
+
+    .footer-top ul {
+        display: flex;
+        flex-wrap: nowrap;
+        justify-content: flex-start;
+        /* gap: 5px; */
+        transition: none;
+    }
+    .footer-top ul li {
+        flex-shrink: 0;
+        margin-right:0px;
+        width: calc(24% - 0%);
+    }
+   
+    .footer-bottom {
+        flex-direction: column;
+        align-items: center;
+        /* text-align: center; */
+    }
+
+    .footer-bottom .info > div {
+        margin-bottom: 10px;
+        padding:3px 0;
+    }
+
+    .footer-bottom .logo {
+        margin-bottom: 15px;
+    }
+    .footer-bottom .copyright {
+        margin-top: 20px;
+        font-size: 12px;
+        opacity: 0.7;
+        background-color: #000; /* ✅ 검정 배경 추가 */
+        color: #fff; /* ✅ 글자색 흰색으로 변경 */
+        width: 100%;
+        text-align: left ;
+        padding: 10px 20px ;
+    }
+    
+    .footer-policy-links {
+        text-align: left;
+        /* margin-bottom: 10px; */
+        font-size: 16px;
+        color: white;
+        margin: 40px 0 0 0
+    }
+    .info > div {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: flex-start;
+        gap: 1px;
+    }
+}
+</style>
+
+<script>
+   document.addEventListener('DOMContentLoaded', function () {
+    const footerWrapper = document.querySelector('.footer-top');
+    const footerUl = footerWrapper.querySelector('ul');
+    let isMobile = window.innerWidth <= 1024;
+
+    const speed = 0.5;
+    let position = 0;
+    let originalUlWidth = 0;
+    let animationFrameId;
+    let isPaused = false;
+
+    function setupMobileAnimation() {
+        originalUlWidth = footerUl.scrollWidth;
+
+        const originalItems = Array.from(footerUl.children);
+        originalItems.forEach(item => {
+            const clone = item.cloneNode(true);
+            footerUl.appendChild(clone);
+        });
+        footerUl.dataset.cloned = 'true';
+
+        footerUl.style.whiteSpace = 'nowrap';
+        footerUl.style.transition = 'none';
+
+        animationFrameId = requestAnimationFrame(animateSlide);
+    }
+
+    function animateSlide() {
+        if (isPaused) {
+            animationFrameId = requestAnimationFrame(animateSlide);
+            return;
+        }
+
+        position += speed;
+
+        if (position >= originalUlWidth) {
+            position -= originalUlWidth;
+        }
+        
+        footerUl.style.transform = `translateX(${-position}px)`;
+
+        animationFrameId = requestAnimationFrame(animateSlide);
+    }
+
+    setTimeout(() => {
+        if (isMobile) {
+            setupMobileAnimation();
+
+            footerUl.addEventListener('mouseenter', () => {
+                isPaused = true;
+                cancelAnimationFrame(animationFrameId);
+            });
+            footerUl.addEventListener('mouseleave', () => {
+                isPaused = false;
+                animationFrameId = requestAnimationFrame(animateSlide);
+            });
+        } else {
+            footerUl.style.transform = 'translateX(0)';
+            footerUl.style.justifyContent = 'center';
+            footerUl.style.flexWrap = 'wrap';
+            footerUl.style.width = '100%';
+            footerUl.style.transition = 'none';
+        }
+    }, 100);
+
+    window.addEventListener('resize', () => {
+        cancelAnimationFrame(animationFrameId);
+        position = 0;
+        isPaused = false;
+
+        if (footerUl.dataset.cloned === 'true') {
+            const originalChildrenCount = footerUl.children.length / 2;
+            while (footerUl.children.length > originalChildrenCount) {
+                footerUl.removeChild(footerUl.lastChild);
+            }
+            delete footerUl.dataset.cloned;
+        }
+        
+        const newIsMobile = window.innerWidth <= 1024;
+        
+        if (newIsMobile !== isMobile) {
+            footerUl.style.transform = 'translateX(0)';
+            footerUl.style.justifyContent = 'flex-start';
+            footerUl.style.flexWrap = 'nowrap';
+            footerUl.style.width = 'auto';
+            footerUl.style.transition = 'none';
+
+            if (newIsMobile) {
+                setupMobileAnimation();
+            } else {
+                footerUl.style.transform = 'translateX(0)';
+                footerUl.style.justifyContent = 'center';
+                footerUl.style.flexWrap = 'wrap';
+                footerUl.style.width = '100%';
+            }
+            isMobile = newIsMobile;
+        } else {
+            if (isMobile) {
+                originalUlWidth = footerUl.scrollWidth / 2;
+                animationFrameId = requestAnimationFrame(animateSlide);
+            }
+        }
+    });
+});
+</script>
+
+    <script>
+        document.querySelectorAll('.file-item').forEach(item => {
+            item.addEventListener('click', () => {
+                let filePath = item.dataset.path;
+                let displayName = item.dataset.name;
+                download(filePath, displayName);
+            });
+        });
+        document.addEventListener("DOMContentLoaded", function () {
+            const fixBtn = document.querySelector(".fix_btn");
+            const footer = document.querySelector("footer");
+            const main = document.querySelector("main");
+
+            function checkScroll() {
+                if (!fixBtn || !footer || !main) return;
+
+                main.style.paddingBottom = (fixBtn.offsetHeight + 20) + "px";
+
+                // 현재 스크롤 위치
+                let scrollPosition = window.scrollY + window.innerHeight;
+                // footer의 위치
+                let footerPosition = footer.offsetTop;
+
+                if (scrollPosition >= footerPosition) {
+                    fixBtn.style.position = "absolute";
+                    fixBtn.style.top = (footerPosition - fixBtn.offsetHeight - 10) + "px";
+                    fixBtn.style.bottom = "auto";
+                } else {
+                    fixBtn.style.position = "fixed";
+                    fixBtn.style.top = "auto";
+                    fixBtn.style.bottom = "10px";
+                }
+            }
+
+            window.addEventListener("scroll", checkScroll);
+            window.addEventListener("resize", checkScroll);
+            checkScroll();
+        });
+
+        function download(filePath, displayName) {
+            fetch('/nysc/api/notice_filep.php', {
+                method: 'POST',
+                body: new URLSearchParams({ filePath, displayName })
+            })
+            .then(response => {
+                if (!response.ok) throw new Error('파일 다운로드에 실패했습니다.');
+                return response.blob();
+            })
+            .then(blob => {
+                let link = document.createElement('a');
+                link.href = URL.createObjectURL(blob);
+                link.download = displayName;
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+            })
+            .catch(error => console.error('다운로드 오류:', error));
+        }
+    </script>
+
+    <style>
+        .fix_btn {
+            position: fixed;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 85%;
+            max-width: 400px;
+            background: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 16px;
+            border-radius: 16px;
+            box-shadow: 0 6px 20px rgba(38, 0, 255, 0.2);
+            z-index: 9999;
+
+            /* 옅은 그라데이션 테두리 효과 */
+            background: linear-gradient(white, white) padding-box, 
+                        linear-gradient(180deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0)) border-box;
+            border: 1px solid transparent;
+        }
+
+        /* 아이콘과 텍스트 정렬 */
+        .fix_content {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 10px;
+        }
+
+        .fix_icon {
+            width: 36px;
+            height: 36px;
+        }
+
+        .fix_text {
+            font-size: 16px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        /* 버튼 스타일 */
+        .fix_button {
+            background: #2C65B6;
+            color: white;
+            font-size: 16px;
+            font-weight: bold;
+            text-align: center;
+            width: 100%;
+            padding: 12px 0;
+            border-radius: 12px;
+            text-decoration: none;
+            transition: 0.3s;
+            box-shadow: inset 0 -3px 0 rgba(0, 0, 0, 0.2);
+        }
+
+        .fix_button:hover {
+            background: #1E4A8C;
+        }
+        .notice-content table {
+    display: block;
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    border-collapse: collapse;
+    margin-bottom: 24px;
+    }
+
+    /* 🧱 셀 스타일 */
+    .notice-content table th,
+    .notice-content table td {
+    border: 1px solid #ccc;
+    padding: 12px;
+    font-size: 15px;
+    min-width: 120px; /* 셀 너무 좁아지는 것 방지 */
+    vertical-align: top;
+    word-break: keep-all; /* 단어 단위로 줄바꿈 */
+    white-space: normal;  /* 텍스트 줄바꿈 허용 */
+    text-align: center;
+    }
+
+        /* 반응형 (모바일 최적화) */
+        @media (max-width: 1024px) {
+            .fix_btn {
+                width: 90%;
+                max-width: 350px;
+                padding: 14px;
+            }
+
+            .fix_button {
+                font-size: 14px;
+            }
+            /* 반응형 스타일 */
+
+            .main-wrapper {
+                padding: 0 16px;
+            }
+
+            .main-wrapper h1 {
+                font-size: 20px;
+            }
+
+            .notice-content {
+                font-size: 15px;
+            }
+
+            .file-item {
+                font-size: 14px;
+                padding: 10px 14px;
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 4px;
+            }
+
+            .fix_btn {
+                width: 92%;
+                max-width: 360px;
+                padding: 12px;
+            }
+
+            .fix_button {
+                font-size: 14px;
+                padding: 10px 0;
+            }
+            .notice-content img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin: 0 auto;
+            object-fit: contain;
+            }
+            .notice-content th,
+            .notice-content td {
+                font-size: 14px;
+                padding: 8px;
+                min-width: 100px;
+            }
+
+
+        }
+
+
+
+    </style>
+
+</body>
+<!-- Google Tag Manager (noscript) -->
+<noscript>
+    <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-M5CNWH46"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe>
+</noscript>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    
+ <script type="text/javascript">
+    const centerAddress = "";
+    var map; // 지도 객체를 전역 변수로 선언하여 다른 함수에서도 접근 가능하게 합니다.
+    var marker; // 마커 객체도 전역 변수로 선언합니다.
+
+    $(document).ready(function() {
+        // 1. 카카오맵 초기화 (처음에는 서울 시청 기준으로 대략적인 지도 표시)
+        if(centerAddress != ''){ // 채용일때만 보여지게
+            var mapContainer = document.getElementById('map');
+            var mapOption = {
+                center: new kakao.maps.LatLng(0, 0), // 초기 지도 중심 (서울 시청)
+                level: 5
+            };
+            map = new kakao.maps.Map(mapContainer, mapOption); // 지도 생성 및 전역 변수에 할당
+
+            // PHP 스크립트를 호출하여 위도/경도 데이터 요청 (GET 방식)
+            $.ajax({
+                url: '/nysc_admin/api/kakaoMap.php', // **PHP 파일 경로를 정확히 확인하고 수정해주세요.**
+                type: 'GET',
+                dataType: 'json',
+                data: { 
+                    address: centerAddress // 보내고자 하는 주소 값을 key-value 형태로 작성
+                },
+                success: function(response) {
+                    if (response.success) {
+                        var latitude = response.latitude;
+                        var longitude = response.longitude;
+                        var address = response.address;
+
+                        // 3. 지도의 중심을 가져온 위도/경도로 이동
+                        var moveLatLon = new kakao.maps.LatLng(latitude, longitude);
+                        map.setCenter(moveLatLon);
+
+                        // 4. 기존 마커가 있으면 제거하고, 새로운 마커 추가
+                        if (marker) { // 기존 마커가 있다면
+                            marker.setMap(null); // 지도에서 제거
+                        }
+
+                        // 마커 생성
+                        marker = new kakao.maps.Marker({
+                            map: map, // 마커를 표시할 지도 객체
+                            position: moveLatLon // 마커의 위치
+                        });
+
+                        $messageArea.html(
+                            '<strong>성공!</strong><br>' +
+                            '주소: ' + address + '<br>' +
+                            '위도: ' + latitude + '<br>' +
+                            '경도: ' + longitude + '<br>' +
+                            '지도 중심을 변경하고 마커를 표시했습니다.'
+                        );
+                        console.log('지도 이동 및 마커 표시 완료:', address, latitude, longitude);
+
+                    } else {
+                        // PHP에서 success: false를 반환한 경우 (주소 검색 실패 등)
+                        $messageArea.html(
+                            '<span class="error-message">오류 발생!</span><br>' +
+                            '주소 검색에 실패했습니다.<br>' +
+                            '메시지: ' + (response.message || '알 수 없는 오류')
+                        );
+                        console.error('PHP 응답 오류:', response);
+                    }
+                },
+                error: function(xhr, status, error) {
+                    // AJAX 통신 자체의 실패 (네트워크 오류, PHP 파일 경로 오류 등)
+                    $messageArea.html(
+                        '<span class="error-message">AJAX 오류 발생!</span><br>' +
+                        '서버와 통신 중 문제가 발생했습니다.<br>' +
+                        '상태: ' + status + ', 오류: ' + error + '<br>' +
+                        '콘솔 로그를 확인하세요.'
+                    );
+                    console.error('AJAX 오류:', status, error, xhr.responseText);
+                }
+            });
+        }
+    });
+    </script>
+</html>

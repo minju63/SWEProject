@@ -4,6 +4,10 @@
 
 부산 청년 지원정책·무료 교육·청년공간·문화 프로그램 정보를 한곳에서 찾고, 내 조건으로 신청 가능 여부를 확인하는 모바일 웹앱입니다.
 
+현재 앱 진입점은 `frontend/src/main.tsx`이며 검색·필터·정책 상세·비교 화면은 `frontend/src/pages/`를, 마이·알림 화면은 `frontend/src/screens/`를 사용합니다. 이 문서의 아래 구조 설명은 초기 JSX 앱 기준입니다.
+
+주거정책 자동 수집·적재: 프로젝트 루트에서 `.\housing-sync.cmd daily`를 실행합니다. 읽기 전용 수집은 `.\housing-sync.cmd scan`입니다. [자동 실행 설정과 적재 범위](backend/scripts/housing-sync/README.md)를 확인하세요.
+
 ---
 
 ## 1. 기술 스택

@@ -1,0 +1,210 @@
+
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>팝업 - 청년전용 버팀목전세자금 변경</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, target-densityDpi=medium-dpi">
+<link rel="stylesheet" href="/common/css/style.css">
+<link rel="shortcut icon" type="image/x-icon" href="/common/images/32.ico">
+<link rel="icon" type="image/x-icon" href="/common/images/32.png">
+<link rel="apple-touch-icon" href="/common/images/128.png">
+<link rel="apple-touch-icon-precomposed" href="/common/images/128.png" />
+<script src="/common/js/jquery-1.10.2.min.js"></script>
+<script src="/common/js/jquery.mobile-1.4.5.js"></script>
+<script src="/common/js/jquery-ui.min.js"></script>
+<script src="/common/js/onlypub.js"></script>
+<script src="/common/js/base.js"></script>
+<script language="javascript" type="text/javascript">
+<!--
+// 수정자 장병석
+// 수정일 20151013
+$(document).ready(function() {
+	$('.bt > a').click(function() {
+		window.close();
+	});
+});
+function doResize(){
+	var brVer = navigator.userAgent;//브라우져 정보
+	var brVerId = brVer.indexOf('MSIE');//브라우져 정보에서 'MSIE'라는 부분의 문자열
+	var brNum = brVer.substr(brVerId,8);//브라우져 버전('MSIE' 포함..)..
+	var brNum2 = brNum.substr(5,3)//브라우져 버번. 숫자만...
+	var ifrm = document.body;
+	var x = ifrm.scrollWidth;
+	var y = ifrm.scrollHeight;
+	if(Number(brNum2) >= 7) {
+		window.resizeTo(x+10,y+90);
+	} else {
+		window.resizeTo(x+10,y+90);
+	}
+}
+
+var winResizeW = 0;
+var winResizeH = 0;
+
+(function($) {
+    $(function () {
+        $(document).ready(function () {
+               var filter = "win16|win32|win64|mac";
+               if( navigator.platform  ){
+                   if( filter.indexOf(navigator.platform.toLowerCase())<0 ){
+       	      self.close();
+                   }
+                }
+        	$('#popup').css('height', $('#popup').css('width'));
+        });//ready
+ 
+        $(window).load(function () {
+        	  //크롬, 사파리일때
+            if (navigator.userAgent.indexOf('Chrome')>-1 || navigator.userAgent.indexOf('Safari')>-1) 
+            {
+                $(window).resize(function() {
+                    
+                    if(winResizeW==0 && winResizeH==0)
+                    {
+                    	popupAutoResize();//팝업리사이징
+                    }
+                });
+            }
+            //크롬, 사파리말고 모두
+            else
+            {
+            	popupAutoResize();//팝업리사이징
+            }
+            
+        });//load
+    });//$
+ 
+    function popupAutoResize() {//팝업리사이징
+       
+        var mw = window.outerWidth - window.innerWidth;
+        var mh = window.outerHeight - window.innerHeight;
+      
+         if (navigator.userAgent.indexOf('Chrome')>-1 || navigator.userAgent.indexOf('Safari')>-1)  {
+             var conW = $('#popup').innerWidth(); 
+             var conH =  $('#popup').innerHeight();
+             
+             winResizeW = conW + mw;
+             winResizeH = conH + mh;
+             
+             window.resizeTo(winResizeW,winResizeH);        	 
+         } else {
+        	        	 
+        	 var w = document.getElementsByTagName('div')[1].clientWidth;
+             var h = document.getElementsByTagName('div')[1].clientHeight;
+             window.resizeTo(w, h);
+             
+             window.resizeBy(mw, mh);
+             
+             if (msieversion() < 9 && msieversion() != 0) {
+                 // get window fake outer size
+                 var fakeOuterWidth = document.documentElement.clientWidth;
+                 var fakeOuterHeight = document.documentElement.clientHeight;
+      
+                 // resize to innerSize
+                 window.resizeTo(fakeOuterWidth, fakeOuterHeight);
+      
+                 // get window fake inner size
+                 var fakeInnerWidth = document.documentElement.clientWidth;
+                 var fakeInnerHeight = document.documentElement.clientHeight;
+      
+                 // get delta
+                 deltaWidth = fakeOuterWidth - fakeInnerWidth;
+                 deltaHeight = fakeOuterHeight - fakeInnerHeight;
+                 window.resizeTo(w + deltaWidth, h + deltaHeight);
+             }
+         }
+ 
+    }
+    function msieversion() {//익스버전체크
+        var ua = window.navigator.userAgent;
+        var msie = ua.indexOf ( "MSIE " );
+        if ( msie > 0 ) // If Internet Explorer, return version number
+            return parseInt (ua.substring (msie+5, ua.indexOf (".", msie )));
+        else // If another browser, return 0
+            return 0;
+    }
+})(jQuery);
+//-->
+</script>
+</head>
+<body onload="doResize('popFrame'); return false;">
+<form name="popForm" method="post">
+<div id="popup" style="width:620px;">
+	<div class="mainCont"><!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>popup</title>
+<style>
+/* popup */
+.pop_area .pop_wrap{/*display:none;*/position:fixed;left:0;top:0;width:100%;height:100%;line-height: 25px;"맑은 고딕", "돋움", Dotum, AppleSDGothicNeo ,Droid Sans, arial, sans-serif; z-index:1;}
+.pop_area .pop_box{position:absolute;top:0%;border:1px solid #d2d2d2;-webkit-box-shadow:3px 3px 3px 0px rgba(0,0,0,0.15);-moz-box-shadow:3px 3px 3px 0px rgba(0,0,0,0.15);box-shadow:3px 3px 3px 0px rgba(0,0,0,0.15);z-index:2;}
+.pop_area .title{text-align:center; border-bottom:5px solid #6fb440; background-blend-mode: multiply; background: url("/common/images/popup/bg_body_title.png") no-repeat top right; background-color: #27447d;  font-size:30px; color: #fff; letter-spacing: -0.5px; padding:40px 0}
+.pop_area .stitle{font-size: 19px; color: #355595; font-weight: bold}
+.pop_area .con{padding:30px;height:auto;min-height: 200px; background: url("/common/images/popup/bg_body.png") no-repeat top right; background-position: 397px -80px; color: #666; font-size: 13px}
+.pop_area .con_box{background:#d9eafc; padding: 8px; min-height: 100px }
+.pop_area .con_box .mtitle{font-size: 16px; font-weight: bold; color: #27437d; float: left; padding: 0 10px;}
+.pop_area .con_box .text{font-size: 15px;  color: #666; float: left;padding: 0 10px; line-height: 22px;width: 80%; word-break:keep-all}
+.pop_area .btns{padding:5px; background:#dedede; text-align: right; background: #017a1e; font-size: 13px; color: #fff}
+.pop_area .btns button{background:#27437d; border: 0; padding: 5px; width: 50px; color: #fff; font-size: 12px;}
+.pop_area .bottom_logo{font-size: 0; background: url("/common/images/popup/logo_pop.png") no-repeat center center; height: 36px; margin-top: 30px}
+</style><script>
+	$(window).load(function(){
+		$(".bt").hide();
+	});
+</script>
+</head>
+
+<body >
+<!-- Start. 팝업 -->
+<form>
+<div class="pop_area" style="width:580px; height:558px;">
+  <div class="pop_wrap">
+    <div class="pop_box">
+      <div class="pop_con">
+		  <div class="title">청년전용 버팀목전세자금 변경</div>
+        <div class="con"> 
+			<div class="stitle">청년전용 버팀목전세자금의 대상자는 확대되고 금리는 인하됩니다. (5.8 시행)</div>
+            <p>- 지원대상을 확대하여 만34세 이하 청년에 보증금 7천만원, 전용면적 85㎡이하인 주택인 경우 연 1.8∼2.4%로 최대 5천만원 대출</p>
+			<p>- 청년 가구(만25세 미만, 전용면적 60㎡이하, 보증금 5천만원이하, 대출금 3.5천만원 이하 단독세대주)에 대하여 신혼부부 수준인 연 1.2∼1.8%로 금리 인하<br></p>
+			<p>- 보증금 7천만원 초과 또는 대출금액 5천만원 초과하는 건은 일반버팀목상품으로 지원<br></p>
+			<p>* 5.8 이후 일반버팀목전세자금 상품에서는 청년가구 우대금리 적용이 제외되오니 유의하시기 바랍니다.</p>
+			<p>* 자세한 사항은 공지사항 게시글을 참고하시기 바랍니다. (<a target="_blank" href="http://nhuf.molit.go.kr/FP/FP08/FP0804/FP080402.jsp?id=3&mode=S&currentPage=1&articleId=1114"><font color="4B7CEF">바로가기</font></a>)</p>
+          <div class="bottom_logo">하단로고</div>
+        </div>
+        <div class="btns"><!--<span>오늘하루 이창을 열지 않음</span>-->
+          <button type="button" onClick="window.close()">닫기</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- End.  팝업 --> 
+</div>
+	<p class="bt">
+		<a href="#none"><img src="/common/images/common/btn/btn_close.gif" alt="닫기"></a>
+	</p>
+</div>
+</form>
+<!-- //popup -->
+</body>
+
+</html>

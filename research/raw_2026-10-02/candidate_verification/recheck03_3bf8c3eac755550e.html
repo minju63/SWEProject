@@ -1,0 +1,469 @@
+
+
+
+
+
+
+
+
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=10" />
+<meta name="viewport" content="user-scalable=yes, initial-scale=1.0, maximum-scale=3.0, minimum-scale=1.0, width=device-width">
+
+
+
+
+
+<title>청년쉐어하우스&lt;주거·복지(미사용):청년메카완주</title>
+<!--[if lt IE 9]>
+    <script type="text/javascript" src="/rfc3/user/domain/youth.wanju.go.kr.80/0/13.js"></script>
+    <script type="text/javascript" src="/rfc3/user/domain/youth.wanju.go.kr.80/0/15.js"></script>
+<![endif]-->
+
+	<link rel="stylesheet" type="text/css" href="/rfc3/user/domain/youth.wanju.go.kr.80/0/2.css" />	<!-- main.css -->
+	<link rel="stylesheet" type="text/css" href="/rfc3/user/domain/youth.wanju.go.kr.80/0/3.css" />	<!-- normalize.css -->
+	<link rel="stylesheet" type="text/css" href="/rfc3/user/domain/youth.wanju.go.kr.80/0/4.css" />	<!-- reset.css -->
+	<link rel="stylesheet" type="text/css" href="/rfc3/user/domain/youth.wanju.go.kr.80/0/1.css" />	<!-- common.css -->
+	<link rel="stylesheet" type="text/css" href="/rfc3/user/domain/youth.wanju.go.kr.80/0/6.css" />	<!-- content.css -->
+<!--	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>	-->
+	<script type="text/javascript" src="/rfc3/user/domain/youth.wanju.go.kr.80/0/14.js"></script>	<!-- menu.js -->
+	
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script type="text/javascript" src="/dwr/engine.js"></script>
+<script type="text/javascript" src="/dwr/interface/isExistUserId.js"></script>
+<script src="/jquery/jquery-ui.min.js"></script>
+<script type="text/javascript" language="javascript" src="/js/jquery.carouFredSel-6.2.1.js"></script>
+<link rel="stylesheet" href="/jquery/jquery-ui.min.css">
+
+
+
+	<script>
+		$(document).ready(function(){
+
+			//텝메뉴 function
+			$('.mobile_select').click(function(){
+				$('.tab_menu').toggleClass('tab_menu_open');
+			});
+
+			$('.tab_menu li').click(function(){
+				$('.tab_menu').removeClass('tab_menu_open');
+ 				$('.mobile_select').find('a').text($(this).find('a').text());
+			});
+			
+			$(document).on('click','.icon_print',function(){
+				window.print();
+			});
+			
+			/*21.01.07 add*/
+			var href = "/youth"+$('img[alt="삭제"]').parent().attr('href');
+			$('img[alt="삭제"]').parent().attr('href',href);
+		});
+	</script>
+</head>
+<body>
+<!-- skip s -->
+<ul id="skip">
+  <li><a href="#contents">본문으로 바로가기</a></li>
+</ul>
+<!-- skip e -->
+<!-- header s -->
+
+
+
+
+
+
+
+
+
+
+<header>
+	<script>
+		$(document).ready(function(){
+
+			$('#search_word').keyup(function() {
+				var special_pattern = /[`~!@#$%^&*|\\\'\";:\/?]/gi; 
+				
+				if(special_pattern.test($('#search_word').val()) == true) {
+					alert("특수 문자는 입력할 수 없습니다.");
+					$('#search_word').val("");
+				 } 
+			});
+
+			$(".mobile_only .btn_search").click(function(){
+				$(".container_search").toggleClass("on");
+			});
+	});
+	</script>
+		<div id="header" class="noprint">
+			<div class="header_container">
+				<h1 id="logo"><a href="/index.wanju">청년센터완주</a></h1>
+				<!-- search & login s -->			
+					<ul class="header_top">					
+						<li class="mobile_only"><a href="#" class="btn_search">통합검색</a></li>
+						<li class="container_search"><input type="text" placeholder="검색어를 입력하세요" id="search_word" class="mobile_hide"><label for="search_word"><a href="#" class="btn_search" onclick="fn_totalSearch()">검색</a></label></li>					
+						
+						<li><a href="/index.wanju?menuCd=DOM_000000107010000000&login=login" class="btn_login">로그인</a></li>
+						
+				</ul>			
+				<!-- search & login e -->
+	
+	<form method="post" id="totalSearchFrm" action="/index.wanju?menuCd=DOM_000000109000000000">
+		<input type="hidden" name="total_search_txt" id="total_search_txt" >
+	</form>
+	
+	<script>
+		function fn_totalSearch() {
+			var search_word = $("#search_word");
+	
+			if( search_word.val() == "") {
+				alert("검색어를 입력하세요");
+			} else {
+				$("#total_search_txt").val( $("#search_word").val() );
+				$("#totalSearchFrm").submit();
+			}
+		}
+
+
+	</script>
+	
+			</div>
+			<!-- menu s -->
+			<nav>
+				<p><a href="#" class="btn_menu">메뉴보기</a></p>
+				<div id="menu">
+				<!-- 모바일 전체메뉴 오픈시  class="menu_open" -->
+					<h2>전체메뉴</h2>
+					<ul>
+			
+					<li>
+						<a href="#">참여·권리(미사용)</a>
+						<div>
+				
+							<ul>
+				
+								<li><a href="/index.wanju?menuCd=DOM_000000104001000000"  class="">청년정책이장단</a>
+								
+								</li>
+				
+				
+								<li><a href="/index.wanju?menuCd=DOM_000000104002000000"  class="">청년정책위원회</a>
+								
+								</li>
+				
+				
+								<li><a href="/index.wanju?menuCd=DOM_000000104003000000"  class="">청년참여예산</a>
+								
+								</li>
+				
+				
+								<li><a href="/index.wanju?menuCd=DOM_000000104005000000"  class="">청년농업인 생생동아리</a>
+								
+								</li>
+				
+				
+							</ul>
+						
+						</div>
+					</li>
+					
+					
+					<p class="btn_x"><a href="#">x</a></p>
+				</div>
+			</nav>
+			<!-- menu e -->
+		</div>
+	</header>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        
+<!-- header e -->
+<div id="contents_container">
+	<!-- contents menu s -->
+	<div class="contents_menu noprint">
+		<h2
+		
+		class="h_policy">
+		
+			
+			주거·복지(미사용)
+		<span class="arrow_right_double">&gt;&gt;</span>
+		</h2>
+		<!--
+		
+		<h2 class="메뉴별 클래스명">
+		완주청년정책 h_policy
+		일자리 h_job
+		주거 h_dwelling
+		참여 h_participation
+		문화 h_culture
+		교육복지 h_education
+		이용안내(하단메뉴) h_useguide
+		
+		-->
+		<nav>
+			<div class="menu_container">
+				<ul>
+				
+					
+						
+							
+								<li  class="on" >
+							
+									<a href="/index.wanju?menuCd=DOM_000000103002000000">
+										청년쉐어하우스
+									</a>
+							</li>
+						
+							
+								<li >
+							
+									<a href="/index.wanju?menuCd=DOM_000000103003000000">
+										청년행복주택
+									</a>
+							</li>
+						
+							
+								<li >
+							
+									<a href="/index.wanju?menuCd=DOM_000000103004000000">
+										전북형청년수당
+									</a>
+							</li>
+						
+							
+								<li >
+							
+									<a href="/index.wanju?menuCd=DOM_000000103005000000">
+										체류형농업창업지원
+									</a>
+							</li>
+						
+							
+								<li >
+							
+									<a href="/index.wanju?menuCd=DOM_000000103006000000">
+										귀농귀촌 게스트하우스
+									</a>
+							</li>
+						
+							
+								<li >
+							
+									<a href="/index.wanju?menuCd=DOM_000000103007000000">
+										귀농인의 집
+									</a>
+							</li>
+						
+							
+								<li >
+							
+									<a href="/index.wanju?menuCd=DOM_000000103008000000">
+										청년 신혼부부 다자녀가구 주택 전세자금 대출이자 지원사업
+									</a>
+							</li>
+						
+							
+								<li >
+							
+									<a href="/index.wanju?menuCd=DOM_000000103010000000">
+										신혼부부 및 청년 전세자금 대출이자 지원사업
+									</a>
+							</li>
+						
+				
+				</ul>
+			</div>
+		</nav>
+	</div>
+	<!-- contents menu e -->
+	<!-- contents s -->
+	<div id="contents">
+		<div class="contents_tit noprint">
+			<p class="contents_navi">
+				<a class="icon_home" href="/index.wanju">홈</a>
+				
+				<span class="arrow_right_double">&gt;&gt;</span> 
+				<a href="#">주거·복지(미사용)</a>
+			
+				<span class="arrow_right_double">&gt;&gt;</span>		
+				<a href="#">청년쉐어하우스</a> 
+				
+			
+			</p>
+			<h2>청년쉐어하우스</h2>
+			<ul>
+				<li><a href="https://www.facebook.com/planetwanju" class="icon_facebook" target="_blank">facebook</a></li>
+				<!--li><a href="#" class="icon_twitter">twitter</a></li-->
+				<li><a href="#" class="icon_print">print</a></li>
+			</ul>
+		</div>
+		<div class="contents_wrap">
+
+		
+			
+
+
+
+	
+
+
+
+
+
+
+
+
+
+<div class="cont_topbox">
+	<div class="cont_topbox_before"></div>
+	<dl class="icon_cont cont_dwelling">
+		<dt>청년쉐어하우스</dt>
+		<dd>
+			청년의 상호교류 및 지역에 안정적으로 정착・생활할 수 있는 저렴한    임대주택의 주거를 지원합니다.
+		</dd>
+	</dl>
+</div>
+<h3>사업개요</h3>
+<h4>청년쉐어하우스란 ?</h4>
+<p class="basic_p">군에서 임대한 주택에 2~4명이 한집에 살면서 방은 개별사용하고 거실, 화장실을 공유하는 저렴한 비용의 주거형태</p>
+<dl class="basic_dl">
+<!--
+	<dt>신청기간</dt>
+	<dd>2026. 1. 26.(월) ~ 1. 30.(금)</dd>  -->
+	<dt>지원대상</dt>
+	<dd>완주군에 거주하는 청년(18세~45세)</dd>
+	<dd>완주군 직장 또는 완주군에서 활동·생활하고자 하는 청년</dd>
+	<dt>신청기준</dt>
+	<dd>2025년 도시근로자 가구원수별 가구당 월 평균소득 100%이하인 자</dd>
+	<dt>모집인원</dt>
+	<dd>총 6명 </dd>
+	<dd>자세한 내용은 모집 공고문 '청년쉐어하우스 공급 대상' 표 확인</dd>
+	<dt>사용료</dt>
+	<dd>월5만원(청년 1인당)  / 관리비 및 공과금 별도 부담</dd>
+	<dt>접수처</dt>
+	<dd>완주군청 6층 인구정책과 청년정책팀 또는 이메일(mmuerr@korea.kr) </dd>
+	<dt>지원절차</dt>
+	<dd class="bg_none">
+		<ol class="step_list step_dd_left step_depth05">
+			<li>
+				<dl>
+					<dt class="tit_line01">군</dt>
+					<dd>쉐어하우스 입주자 모집 <small>(신규조성, 결원시)</small>
+						<ul>
+							<li>홈페이지, SNS 홍보</li>
+						</ul>
+					</dd>
+				</dl>
+			</li>
+			<li>
+				<dl>
+					<dt class="tit_line01">청년→군<br /></dt>
+					<dd>입주자 신청 및 접수, 면접 <small>(신규조성, 결원시)</small>
+						<ul>
+							<li>면접결과 개별통보</li>
+						</ul>
+					</dd>
+				</dl>
+			</li>
+			<li>
+				<dl>
+					<dt>군↔입주자<br /><small>(청년)</small></dt>
+					<dd class="dd_center">입주자 선정 · 계약체결 <small>(입주자, 군)</small></dd>
+				</dl>
+			</li>
+			<li>
+				<dl>
+					<dt class="tit_line01">군</dt>
+					<dd class="dd_center">쉐어하우스 운영 및 관리 <small>(연중)</small></dd>
+				</dl>
+			</li>
+			<li>
+				<dl>
+					<dt class="tit_line01">군, 입주자</dt>
+					<dd class="dd_center">입주자 모니터링, 의견수렴<small> (분기별)</small></dd>
+				</dl>
+			</li>
+		</ol>
+	</dd>
+</dl>
+<div class="btn_container02">
+	<p>
+		<a class="basic_btn" href="/upload_data/board_data/BBS_0000016/177857305635466.pdf"><span class="icon_search">2026년 청년쉐어하우스 입주자 모집 공고문 바로보기</span></a>
+<a class="basic_btn_blue" href="	/board/download.wanju?boardId=BBS_0000016&dataSid=10905&fileSid=4121"><span class="icon_search">2026년 청년쉐어하우스 입주자 모집 공고문 다운로드</span></a>
+		<!--a class="basic_btn_blue" href="/index.wanju?menuCd=DOM_000000107010000000&login=login" onclick="javascript:alert('로그인이 필요합니다.');">2026년 청년쉐어하우스 신청 바로가기</a-->
+	</p>
+</div>                                                                                                                                                                                                                                                                                                     
+
+
+
+	
+
+
+
+
+
+
+
+
+
+
+			
+
+
+
+<div class="manager">
+	<dl>
+		<dt class="icon_manager">담당부서</dt>
+		<dd>인구정책과 청년정책팀</dd>
+		<dt class="icon_manager_tel">전화번호</dt>
+		<dd>063-290-3238</dd>
+	</dl>
+</div>                                                                   
+                                
+		</div>
+		
+	</div>
+	<!-- contents e -->
+</div>
+<!-- footer s -->
+<footer>
+	<div id="footer" class="noprint">
+		<div class="foot_container">
+			<ul class="foot_menu">
+				<li><a href="/index.wanju?menuCd=DOM_000000108001000000">개인정보처리방침</a></li>
+				<li><a href="/index.wanju?menuCd=DOM_000000108002000000">이메일수집거부</a></li>
+			</ul>
+			<h2 id="foot_logo">완주군 WANJUGUN</h2>
+			<div>
+			<div class="time_info" style="">	
+				<ul>
+					<li><strong>[완주청년종합지원센터]</strong>  <span>화~금 : 09:00~21:00</span> , <span>토 : 09:00~18:00</span>  , <span>일~월/공휴일 : 휴무</span></li>
+				<li><strong>[이서나루][청촌방앗간][완충지대]</strong>  <span>화~토 : 13:00~21:00</span>  , <span>일~월/공휴일 : 휴무</span></li>
+				</ul>
+			</div>
+			<address>(55352) 전북특별자치도 완주군 용진읍 지암로 61</address><span>Tel : 063)290-3237</span>
+			</div>
+
+			<p>Copyrights 2020 Wanju-Gun. All rights reserved.</p>
+			<p><a href="#" class="banner_government">정부 3.0</a></p>
+		</div>
+	</div>
+</footer>                                                                             
+<!-- footer e -->
+</body>
+</html>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 

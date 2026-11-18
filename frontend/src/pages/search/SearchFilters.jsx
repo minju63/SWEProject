@@ -156,7 +156,7 @@ function SubSheet({ type, draft, setDraft, onClose, regions }) {
   </div>;
 }
 
-export default function SearchFilters({ draft, setDraft, count, countLoading, profile, categories, regions, onReset, onApply, onClose }) {
+export default function SearchFilters({ draft, setDraft, count, countLoading, profile, categories, regions, onReset, onApply, onClose, onEditProfile }) {
   const [openCategory, setOpenCategory] = useState('');
   const [subFilter, setSubFilter] = useState(null);
   const [conditionsOpen, setConditionsOpen] = useState(false);
@@ -237,8 +237,11 @@ export default function SearchFilters({ draft, setDraft, count, countLoading, pr
         <div className="search-applied-list"><h3>지역</h3><span>{regions.find((region) => region.region_code === (draft.myConditionsOnly ? profile?.region_code : draft.conditions.region_code))?.region_name ?? '부산 전체'}</span>
           {conditionValues.length > 0 && <><h3>설정한 조건</h3>{conditionValues.map(([field, value]) => <span key={field}>{displayCondition(field, value, regions)}</span>)}</>}
         </div>
-        <button type="button" className="search-sub-done" onClick={() => { setAppliedOpen(false); if (!draft.myConditionsOnly) setConditionsOpen(true); }}>
-          {draft.myConditionsOnly ? '확인' : '조건 수정하기'}</button>
+        <button type="button" className="search-sub-done" onClick={() => {
+          if (draft.myConditionsOnly) onEditProfile();
+          else { setAppliedOpen(false); setConditionsOpen(true); }
+        }}>
+          {draft.myConditionsOnly ? '내 조건 수정하기' : '조건 수정하기'}</button>
       </div>
     </div>}
   </div>;

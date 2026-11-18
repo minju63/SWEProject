@@ -1,0 +1,231 @@
+
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>팝업 - 버팀목 전세자금대출 홍보동영상</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, target-densityDpi=medium-dpi">
+<link rel="stylesheet" href="/common/css/style.css">
+<link rel="shortcut icon" type="image/x-icon" href="/common/images/32.ico">
+<link rel="icon" type="image/x-icon" href="/common/images/32.png">
+<link rel="apple-touch-icon" href="/common/images/128.png">
+<link rel="apple-touch-icon-precomposed" href="/common/images/128.png" />
+<script src="/common/js/jquery-1.10.2.min.js"></script>
+<script src="/common/js/jquery.mobile-1.4.5.js"></script>
+<script src="/common/js/jquery-ui.min.js"></script>
+<script src="/common/js/onlypub.js"></script>
+<script src="/common/js/base.js"></script>
+<script language="javascript" type="text/javascript">
+<!--
+// 수정자 장병석
+// 수정일 20151013
+$(document).ready(function() {
+	$('.bt > a').click(function() {
+		window.close();
+	});
+});
+function doResize(){
+	var brVer = navigator.userAgent;//브라우져 정보
+	var brVerId = brVer.indexOf('MSIE');//브라우져 정보에서 'MSIE'라는 부분의 문자열
+	var brNum = brVer.substr(brVerId,8);//브라우져 버전('MSIE' 포함..)..
+	var brNum2 = brNum.substr(5,3)//브라우져 버번. 숫자만...
+	var ifrm = document.body;
+	var x = ifrm.scrollWidth;
+	var y = ifrm.scrollHeight;
+	if(Number(brNum2) >= 7) {
+		window.resizeTo(x+10,y+90);
+	} else {
+		window.resizeTo(x+10,y+90);
+	}
+}
+
+var winResizeW = 0;
+var winResizeH = 0;
+
+(function($) {
+    $(function () {
+        $(document).ready(function () {
+               var filter = "win16|win32|win64|mac";
+               if( navigator.platform  ){
+                   if( filter.indexOf(navigator.platform.toLowerCase())<0 ){
+       	      self.close();
+                   }
+                }
+        	$('#popup').css('height', $('#popup').css('width'));
+        });//ready
+ 
+        $(window).load(function () {
+        	  //크롬, 사파리일때
+            if (navigator.userAgent.indexOf('Chrome')>-1 || navigator.userAgent.indexOf('Safari')>-1) 
+            {
+                $(window).resize(function() {
+                    
+                    if(winResizeW==0 && winResizeH==0)
+                    {
+                    	popupAutoResize();//팝업리사이징
+                    }
+                });
+            }
+            //크롬, 사파리말고 모두
+            else
+            {
+            	popupAutoResize();//팝업리사이징
+            }
+            
+        });//load
+    });//$
+ 
+    function popupAutoResize() {//팝업리사이징
+       
+        var mw = window.outerWidth - window.innerWidth;
+        var mh = window.outerHeight - window.innerHeight;
+      
+         if (navigator.userAgent.indexOf('Chrome')>-1 || navigator.userAgent.indexOf('Safari')>-1)  {
+             var conW = $('#popup').innerWidth(); 
+             var conH =  $('#popup').innerHeight();
+             
+             winResizeW = conW + mw;
+             winResizeH = conH + mh;
+             
+             window.resizeTo(winResizeW,winResizeH);        	 
+         } else {
+        	        	 
+        	 var w = document.getElementsByTagName('div')[1].clientWidth;
+             var h = document.getElementsByTagName('div')[1].clientHeight;
+             window.resizeTo(w, h);
+             
+             window.resizeBy(mw, mh);
+             
+             if (msieversion() < 9 && msieversion() != 0) {
+                 // get window fake outer size
+                 var fakeOuterWidth = document.documentElement.clientWidth;
+                 var fakeOuterHeight = document.documentElement.clientHeight;
+      
+                 // resize to innerSize
+                 window.resizeTo(fakeOuterWidth, fakeOuterHeight);
+      
+                 // get window fake inner size
+                 var fakeInnerWidth = document.documentElement.clientWidth;
+                 var fakeInnerHeight = document.documentElement.clientHeight;
+      
+                 // get delta
+                 deltaWidth = fakeOuterWidth - fakeInnerWidth;
+                 deltaHeight = fakeOuterHeight - fakeInnerHeight;
+                 window.resizeTo(w + deltaWidth, h + deltaHeight);
+             }
+         }
+ 
+    }
+    function msieversion() {//익스버전체크
+        var ua = window.navigator.userAgent;
+        var msie = ua.indexOf ( "MSIE " );
+        if ( msie > 0 ) // If Internet Explorer, return version number
+            return parseInt (ua.substring (msie+5, ua.indexOf (".", msie )));
+        else // If another browser, return 0
+            return 0;
+    }
+})(jQuery);
+//-->
+</script>
+</head>
+<body onload="doResize('popFrame'); return false;">
+<form name="popForm" method="post">
+<div id="popup" style="width:620px;">
+	<div class="mainCont"><script>
+  $(document).ready(function(){
+     $('#popup > p.bt').hide(); 
+     $('#btn').show();
+
+     $('#Map').click(function(){
+     });
+
+     //$("body").css("background-color","#0065B3");
+     $('#popup').css({"width":"620px","background-color":""});
+     $(".boardType").css({"margin":"8px","background-color":"#FFFFFF"});
+     $(".titType1").css({"margin":"10px 0px -1px 10px","background-color":"#FFFFFF"});
+     $(".left").css({"padding":"0px 4px 0px 4px"});
+
+   });
+
+  function sendURL( pageId ){
+     if(pageId == '1') {
+       window.opener.location.href = '/FP/FP07/FP0705/FP070504.jsp';
+     } 
+      self.close();
+  }
+</script>
+<div id="popup">
+<h4 class="titType1">버팀목 전세자금 대출 홍보영상</h4>
+<div class="boardType">
+<div class="movie" style="height: 650px">
+<div>
+<div style="height: 450px"><EMBED height=420 width=610 src=/cms/cwboard/fileupload/9/20161115091522365.mp4  wmode="transparent" 
+type="video/x-ms-wmv"
+autostart="true" 
+loop="true"
+allowfullscreen="true"></div>
+</div>
+<div>
+<div style="border-bottom: #ddd 1px solid; border-left: #ddd 1px solid; padding-bottom: 5px; overflow-y: auto; padding-left: 5px; padding-right: 5px; height: 200px; border-top: #ddd 1px solid; border-right: #ddd 1px solid; padding-top: 5px">
+<p class="HStyle0" style="text-align: center"><span 맑은="" style="line-height: 160%">[버팀목 전세자금대출]</span></p>
+<p class="HStyle0" style="text-align: center"><span 맑은="" style="line-height: 160%"><br />
+</span></p>
+<p class="HStyle0"><span 맑은="" style="line-height: 160%"><br />
+</span></p>
+<p class="HStyle0"><span 맑은="" style="line-height: 160%">여기저기 알아봐도 높은 금리와 눈깜짝할새 찾아오는 빠듯한 상환기간까지.... 요즘 전세자금 구하기 정말 힘드시죠?</span></p>
+<p class="HStyle0"><span 맑은="" style="line-height: 160%">그렇다면 이제 &lsquo;버팀목전세자금대출&rsquo;을 주목하세요. &lsquo;버팀목전세자금대출&rsquo;은 무주택 서민의 주거안정을 지원하는 주택도시기금의 전세자금대출로서, 부부합산 연소득 5천만원 이하라면 누구나 이용 가능합니다.&nbsp;&nbsp; </span></p>
+<p class="HStyle0" style="margin-bottom: 4pt"><span 맑은="" style="line-height: 160%"><br />
+</span></p>
+<p class="HStyle0" style="margin-bottom: 4pt"><span 맑은="" style="line-height: 160%">신혼집을 장만하자니 집값이 부담스러워 전세대출을 알아보는 중인데 이자가 너무 비싸요. 저금리에 상환기간이 여유 있는 전세대출 어디 없을까요? </span></p>
+<p class="HStyle0"><span 맑은="" style="line-height: 160%"><br />
+</span></p>
+<p class="HStyle0"><span 맑은="" style="line-height: 160%">버팀목전세자금대출&rsquo;의 금리는 연 2.3%에서 2.9%이며,</span></p>
+<p class="HStyle0"><span 맑은="" style="line-height: 160%">신혼부부라면 금리우대의 혜택도 누릴 수 있습니다</span></p>
+<p class="HStyle0"><span 맑은="" style="line-height: 160%">또한, 상환기간은 최장 10년 5개월까지 연장 가능합니다</span></p>
+<p class="HStyle0" style="margin-bottom: 4pt"><span 맑은="" style="line-height: 160%"><br />
+</span></p>
+<p class="HStyle0" style="margin-bottom: 4pt"><span 맑은="" style="line-height: 160%">아이들이 많아서 넓은 집으로 이사 가고 싶은데 전세금이 턱없이 부족해요. 대출한도가 넉넉한 전세대출 어디 없을까요?</span></p>
+<p class="HStyle0"><span 맑은="" style="line-height: 160%"><br />
+</span></p>
+<p class="HStyle0"><span 맑은="" style="line-height: 160%">&lsquo;버팀목전세자금대출&rsquo;의 </span><span 맑은="" style="line-height: 160%">대출한도는 수도권 기준 최대 1억 2천만원입니다.</span></p>
+<p class="HStyle0"><span 맑은="" style="line-height: 160%">특히 다자녀가구에는 최대 1억 4천만 원까지 대출이 가능합니다</span></p>
+<p class="HStyle0" style="margin-bottom: 4pt"><span 맑은="" style="line-height: 160%"><br />
+</span></p>
+<p class="HStyle0" style="margin-bottom: 4pt"><span 맑은="" style="line-height: 160%">요즘 깡통전세가 많다던데 나중에 혹시 보증금을 돌려받지 못할까봐 걱정이에요. 보증금 반환이 안전한 전세대출 어디 없을까요?</span></p>
+<p class="HStyle0"><span 맑은="" style="line-height: 160%"><br />
+</span></p>
+<p class="HStyle0"><span 맑은="" style="line-height: 160%">&lsquo;버팀목전세자금대출&rsquo;과 &lsquo;전세금안심대출보증&rsquo;이 결합된 [안심형 버팀목전세자금대출]은 보증금 회수 염려와 전세대출 고민을 한 번에 해결하여 세입자의 소중한 전세금을 안전하게 지켜드립니다.</span></p>
+<p class="HStyle0"><span 맑은="" style="line-height: 160%"><br />
+</span></p>
+<p class="HStyle0"><span 맑은="" style="line-height: 160%">낮은 금리, 넉넉한 대출한도와 상환기간 그리고 안전까지! 전세 자금 대출에 대한 고민, 이제 &lsquo;버팀목전세자금대출&rsquo;로 해결하세요. </span></p>
+</div>
+</div>
+</div>
+</div>
+</div></div>
+	<p class="bt">
+		<a href="#none"><img src="/common/images/common/btn/btn_close.gif" alt="닫기"></a>
+	</p>
+</div>
+</form>
+<!-- //popup -->
+</body>
+
+</html>

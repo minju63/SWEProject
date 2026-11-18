@@ -1,0 +1,268 @@
+{
+  "fixture_note": "Minimal contract fixture for mocked importer tests; no live data or credentials",
+  "definitions": {
+    "policy": {
+      "required": [
+        "policy_id",
+        "title",
+        "collection_domain",
+        "item_type",
+        "is_always_open",
+        "eligibility_verified",
+        "created_at",
+        "updated_at"
+      ],
+      "properties": {
+        "policy_id": {
+          "default": "gen_random_uuid()",
+          "format": "uuid",
+          "type": "string"
+        },
+        "title": {
+          "format": "text",
+          "type": "string"
+        },
+        "category_id": {
+          "format": "uuid",
+          "type": "string"
+        },
+        "collection_domain": {
+          "format": "text",
+          "type": "string"
+        },
+        "item_type": {
+          "default": "POLICY",
+          "format": "text",
+          "type": "string"
+        },
+        "target_summary": {
+          "format": "text",
+          "type": "string"
+        },
+        "support_content": {
+          "format": "text",
+          "type": "string"
+        },
+        "benefit_type": {
+          "format": "text",
+          "type": "string"
+        },
+        "min_age": {
+          "format": "smallint",
+          "type": "integer"
+        },
+        "max_age": {
+          "format": "smallint",
+          "type": "integer"
+        },
+        "income_condition": {
+          "format": "text",
+          "type": "string"
+        },
+        "application_start_date": {
+          "format": "date",
+          "type": "string"
+        },
+        "application_end_date": {
+          "format": "date",
+          "type": "string"
+        },
+        "is_always_open": {
+          "default": false,
+          "format": "boolean",
+          "type": "boolean"
+        },
+        "application_method": {
+          "format": "text",
+          "type": "string"
+        },
+        "application_url": {
+          "format": "text",
+          "type": "string"
+        },
+        "official_url": {
+          "format": "text",
+          "type": "string"
+        },
+        "eligibility_conditions": {
+          "format": "jsonb"
+        },
+        "eligibility_verified": {
+          "default": false,
+          "format": "boolean",
+          "type": "boolean"
+        },
+        "application_process": {
+          "format": "jsonb"
+        },
+        "required_documents": {
+          "format": "jsonb"
+        },
+        "classification_method": {
+          "format": "text",
+          "type": "string"
+        },
+        "classification_status": {
+          "format": "text",
+          "type": "string"
+        },
+        "last_verified_at": {
+          "format": "timestamp with time zone",
+          "type": "string"
+        },
+        "last_collected_at": {
+          "format": "timestamp with time zone",
+          "type": "string"
+        },
+        "created_at": {
+          "default": "now()",
+          "format": "timestamp with time zone",
+          "type": "string"
+        },
+        "updated_at": {
+          "default": "now()",
+          "format": "timestamp with time zone",
+          "type": "string"
+        }
+      }
+    },
+    "housing_detail": {
+      "required": [
+        "policy_id"
+      ],
+      "properties": {
+        "policy_id": {
+          "format": "uuid",
+          "type": "string"
+        },
+        "housing_support_type": {
+          "format": "text",
+          "type": "string"
+        },
+        "monthly_amount": {
+          "format": "integer",
+          "type": "integer"
+        },
+        "total_amount_max": {
+          "format": "integer",
+          "type": "integer"
+        },
+        "support_months": {
+          "format": "smallint",
+          "type": "integer"
+        },
+        "payment_method": {
+          "format": "text",
+          "type": "string"
+        },
+        "deposit_max": {
+          "format": "integer",
+          "type": "integer"
+        },
+        "monthly_rent_max": {
+          "format": "integer",
+          "type": "integer"
+        },
+        "loan_limit": {
+          "format": "integer",
+          "type": "integer"
+        },
+        "interest_rate": {
+          "format": "numeric",
+          "type": "number"
+        },
+        "housing_kind": {
+          "format": "text",
+          "type": "string"
+        },
+        "supply_units": {
+          "format": "integer",
+          "type": "integer"
+        },
+        "exclusive_area_max": {
+          "format": "numeric",
+          "type": "number"
+        }
+      }
+    },
+    "policy_source": {
+      "required": [
+        "source_id",
+        "policy_id",
+        "source_type",
+        "created_at"
+      ],
+      "properties": {
+        "source_id": {
+          "default": "gen_random_uuid()",
+          "format": "uuid",
+          "type": "string"
+        },
+        "policy_id": {
+          "format": "uuid",
+          "type": "string"
+        },
+        "source_name": {
+          "format": "text",
+          "type": "string"
+        },
+        "source_type": {
+          "format": "text",
+          "type": "string"
+        },
+        "external_id": {
+          "format": "text",
+          "type": "string"
+        },
+        "source_url": {
+          "format": "text",
+          "type": "string"
+        },
+        "raw_data": {
+          "format": "jsonb"
+        },
+        "last_checked_at": {
+          "format": "timestamp with time zone",
+          "type": "string"
+        },
+        "created_at": {
+          "default": "now()",
+          "format": "timestamp with time zone",
+          "type": "string"
+        }
+      }
+    },
+    "policy_region": {
+      "required": [
+        "policy_id",
+        "region_code"
+      ],
+      "properties": {
+        "policy_id": {
+          "format": "uuid",
+          "type": "string"
+        },
+        "region_code": {
+          "format": "text",
+          "type": "string"
+        }
+      }
+    },
+    "policy_subcategory_map": {
+      "required": [
+        "policy_id",
+        "subcategory_id"
+      ],
+      "properties": {
+        "policy_id": {
+          "format": "uuid",
+          "type": "string"
+        },
+        "subcategory_id": {
+          "format": "uuid",
+          "type": "string"
+        }
+      }
+    }
+  }
+}

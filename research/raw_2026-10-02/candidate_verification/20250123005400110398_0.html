@@ -1,0 +1,1413 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<title>근로복지넷</title>
+	<!--meta http-equiv='X-UA-Compatible' content='IE=edge' /-->
+	<meta http-equiv="content-type" content="text/html; charset=utf-8">
+	<link rel="shortcut icon" type="image/x-icon" href="/resources/images/kcomwel_favicon.ico" />
+	<link rel="stylesheet" href="/resources/css/font.css?2" type="text/css" /><link rel="stylesheet" href="/resources/css/base.css?5" type="text/css" />
+	<link rel="stylesheet" href="/resources/css/default/common.22.css?3" type="text/css" />
+	<link rel="stylesheet" href="/resources/css/fancybox/jquery.fancybox.css?1" type="text/css" media="screen" />
+	
+	<script type="text/javascript" src="/resources/js/jquery-1.8.3.min.js"></script>
+	<script type="text/javascript" src="/resources/js/common.js?5"></script>
+	<script type="text/javascript" src="/resources/js/jquery.fancybox.pack.js"></script>
+	<script type="text/javascript" src="/resources/js/jquery.rotate.2.3.js"></script>
+	<script type="text/javascript" src="/resources/js/UserScriptConf.js"></script>
+	
+<link rel="stylesheet" href="/resources/css/bxslider/jquery.bxslider.css?1" type="text/css" />
+<link rel="stylesheet" href="/resources/css/default/main.22.css?3" type="text/css" />
+
+<script src="/resources/js/jquery.bxslider.min.js"></script>
+<script type="text/javascript">
+// 돌리기
+
+if (navigator.userAgent.match(/iPad/) == null && navigator.userAgent.match(/Mobile|Windows CE|Windows Phone|Opera Mini|POLARIS/) != null)
+    location.href = "/mobile/index.do";
+
+//
+$(document).ready(function(){
+	// 팝업
+	var mainPobx = $('#popupWr #ptr > ul').bxSlider({auto:true,slideMargin:0,mode:'fade',pause:4000,speed:1000});
+	$("#popupWr .stop").click(function(e){e.preventDefault();mainPobx.stopAuto();});
+	$("#popupWr .play").click(function(e){e.preventDefault();mainPobx.startAuto();});
+	$("#popupWr #ptr .bx-wrapper .bx-controls-direction").remove();
+	//01 공지탭기능
+	$("#main1 .tabs > li > a").each(function(indx){
+		var th = $(this);
+		th.click(function(){
+			$("#main1 .tabs li > a").removeAttr("title");
+			$("#main1 .tabs li").removeClass("on");
+			$("#main1 .tabs li.t0"+(indx+1)).addClass("on");
+			$("#main1 .tabs li.t0"+(indx+1)+" > a").attr("title","선택됨");
+		});
+		th.focus(function(){
+			$(this).trigger("click");
+		});
+	});
+	//메인 02 - 팝업존
+	var main2bx = $('#main2 .rolling > ul').bxSlider({auto:true,slideMargin:0,mode:'fade',pause:4000,speed:1000,
+		nextSelector:'#m02Next',prevSelector:'#m02Prev',
+	  	nextText: '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="hide">다음</span>',
+	  	prevText: '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="hide">이전</span>',
+	  	onSliderLoad: function (element, oldIndx, newIndx) {
+	  		$("#m02Next a.bx-next").attr("href","#");//.attr("title","다음 팝업 보기");
+	  		$("#m02Prev a.bx-prev").attr("href","#");//.attr("title","이전 팝업 보기");
+	  	}
+	});
+	$("#m02Stop").click(function(){main2bx.stopAuto();});
+	$("#m02Play").click(function(){main2bx.startAuto();});
+	
+});
+//
+function showPzList(){
+	$("#main2 .pzList").show();
+}
+function hidePzList(){
+	$("#main2 .pzList").hide();
+	$("#m02List .mores").focus();
+}
+//popup close
+function closePopup(){
+	$("#popupWr").slideUp();
+}
+// popup today close
+function closePopup2(){
+	//
+	var todayDate = new Date(); 
+    todayDate.setDate( todayDate.getDate() + 1 ); 
+    document.cookie = "workPop=done; path=/; expires=" + todayDate.toGMTString() + ";";
+	//
+	$("#popupWr").slideUp();
+}
+
+
+//2022-04-29
+jQuery(function($){
+	// List Tab Navigation
+	var $tab_list = $('.tab.list');
+	$tab_list.removeClass('jx').find('ul ul').hide();
+	$tab_list.find('li li.active').parents('li').addClass('active');
+	$tab_list.find('li.active>ul').show();
+	$tab_list.each(function(){
+		var $this = $(this);
+		$this.height($this.find('li.active>ul'));
+	});
+	function listTabMenuToggle(event){
+		var $this = $(this);
+		$this.next('ul').show().parent('li').addClass('active').siblings('li').removeClass('active').find('>ul').hide();
+		$this.parent().parent().find(">li>a").removeAttr("title");
+		$this.attr("title","선택됨");
+		$this.closest('.tab.list').height($this.next('ul'));
+		if($this.attr('href') === '#'){
+			return false;
+		}
+	}
+	$tab_list.find('>ul>li>a').click(listTabMenuToggle).focus(listTabMenuToggle);
+});
+</script>
+<script type="text/javascript">
+if(location.protocol == "http:"){
+	//window.location.href = location.href.replace("http","https");
+}
+// full menu
+function openFull(){
+	var fullWr = $("#fullWr");
+	if( !fullWr.hasClass("opened") ){
+		fullWr.slideDown({
+		    complete: function(){
+		        fullWr.addClass("opened");
+		        $(".gnbSubFirst>li:nth-child(2)>a").focus();
+		    }
+		});
+		// 로티
+		$('#fullOpenImg').rotate({angle:0,animateTo:90,duration:200});
+		$('#fullOpenImg').fadeOut(200, function(){
+			$(this)
+			.attr('src','/resources/images/default/common/22/com_gnx.png')
+			.attr('alt','전체메뉴 닫기')
+			.bind('onreadystatechange load', function(){
+				if (this.complete) $(this).fadeIn(200);
+			});
+		});
+	}else{
+		closeFull();
+	}
+}
+
+function closeFull(){
+	$("#fullWr").slideUp(function(){
+		$(this).removeClass("opened");
+		//$(".topFull").focus();
+	});
+	// 로티
+	//if( no!='no' ){
+	if( $("#fullWr").is(":visible") ){
+		$('#fullOpenImg').rotate({angle:90,animateTo:180,duration:200
+			/*,callback:function(){
+			$(this).attr("src","/resources/images/default/common/com_gnb.gif");
+			}*/
+		});
+		$('#fullOpenImg').fadeOut(200, function(){
+			$(this)
+			.attr('src','/resources/images/default/common/22/com_gnb.png')
+			.attr('alt','전체메뉴 열기')
+			.bind('onreadystatechange load', function(){
+				if (this.complete) $(this).fadeIn(200);
+			});
+		});
+	}
+	//}
+}
+// 스카이
+function quickMenuMove() {
+	var quick_menu = $('#wrap #quick');
+	quick_menu.animate({'top' : $(document).scrollTop() + 220 + 'px'}, 500);
+	$(window).scroll(function(){
+		//console.log( $(document).height(), $(document).scrollTop() )
+		if( $(document).height()-$(document).scrollTop()>1131 ){
+			quick_menu.stop();
+			quick_menu.animate({'top' : $(document).scrollTop() + 220 + 'px'}, 500);
+		}
+	});
+}
+// 회원 로그인
+function goMemberLogin(){
+	
+	goMemberLogins("/default/index.do","");
+}
+$(document).ready(function(){
+
+	quickMenuMove();
+
+////////////////////////////////////////////////////전체 공통
+// skip nav
+$(".skipNav a").focus(function(){ $(this).css("top",0); }).focusout(function(){ $(this).css("top",-1000); });;
+//full menu tab listener
+//$("#headerWr .gnbs > span > a").focus(function(e){ openFull(); });
+//$("#fullWr .bt > a").focusout(function(){ closeFull(); });
+// 공용-top menu
+function thisover(el){
+	el.parent().trigger("mouseenter");
+}
+function thisout(){
+	$("#headerWr .gnbs > ul > li").trigger("mouseleave");
+}
+$("#headerWr .gnbs > ul > li > a").focus(function(){ thisover($(this)) });
+//$("#headerWr .gnbs > ul > li > span > a").focus(function(){ openFull(); });
+//$("#headerWr .gnbs > ul > li > a").focusout(function(){ out() });
+
+$("#headerWr .gnbs > ul > li.gnli ").mouseenter(function(){
+	var pnt = 0;
+	for(var i=2;i<=9;i++){
+		if( $(this).hasClass("gn_0"+i) ){pnt = i;}
+	}
+	$(this).find(".inRight ul:last-child").css("border-bottom","0");
+	//
+	//if(imgSrc!=null && imgSrc!='undefined'){
+	$(this).siblings().each(function(){
+		var imgSrc = $(this).find("img.topGn").attr("src");
+		if(imgSrc!=null && imgSrc!='undefined') $(this).find("img.topGn").attr("src",imgSrc.replace('gno_0','gn_0'));
+	});
+	//}	
+	//
+	var imgSrc = $(this).find("img.topGn").attr("src");
+	if(imgSrc!=null && imgSrc!='undefined'){
+		$(this).find("img.topGn").attr("src",imgSrc.replace('gn_0','gno_0'));
+	}
+	$(this).find("div.in0"+pnt).fadeIn("fast");
+	//
+	if( $("#fullWr").is(":visible") ) closeFull();
+}).mouseleave(function(){
+	var pnt = 0;
+	for(var i=2;i<=9;i++){
+		if( $(this).hasClass("gn_0"+i) ){pnt = i;}
+	}
+	var imgSrc = $(this).find("img.topGn").attr("src");
+	if(imgSrc!=null && imgSrc!='undefined'){
+		$(this).find("img.topGn").attr("src",imgSrc.replace('gno_0','gn_0'));
+	}
+	//
+	$(this).find("div.in0"+pnt).fadeOut("fast");//.hide();
+}).focus(function(){
+	$(this).trigger("mouseenter");
+});
+
+$("#headerWr .gnbs li .inWr ul:last-child li:last-child > a:last-child").focusout(function(){
+	for(var i=2;i<=9;i++){
+		$("#headerWr .gnbs li div.in0"+i).fadeOut("fast");
+	}
+});
+
+$("#closeFullLnk").focusout(function(){ closeFull(); });
+
+});
+
+function chkGloStr(frm){
+	if(frm.gloStr.value==""){
+		alert("검색어를 입력해 주세요.");
+		$("#gloStr").focus();
+		return false;		
+	}
+	return true;
+}
+
+function goMainTopLink(){
+	closePopup();
+	$("body").scrollTo("#service_center");
+}
+</script>
+
+</head> 
+
+<body>
+
+<div class="skipNav">
+	<a href="#service_center" id="mainTopLink" onClick="goMainTopLink();return false;">본문 내용 바로가기</a><a href="#topGnbs" >상단메뉴 바로가기 </a>
+	<a href="#footerWr">하단 주소 바로가기</a>
+</div>
+
+<div id="wrap" class="mainBack">
+
+<script type="text/javascript">
+function closeEapNot(){
+	//
+	var todayDate = new Date(); 
+    todayDate.setDate( todayDate.getDate() + 1 ); 
+    document.cookie = "eapPop=done; path=/; expires=" + todayDate.toGMTString() + ";";
+	//
+	$("#eapNot").slideUp();
+}
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+<div id="eapNot">
+	<div class="eWin">
+
+<a href="https://welfare.comwel.or.kr/board/bbs.do?cfgIdx=1&mCode=G015000000&op=view&idxId=472408">
+	<img src="/upload/ckup/contents/A/pop_260921[1].jpg" class="covidImg" alt="근로자 휴양콘도 추계 프로모션" />
+</a>
+
+<a href="https://welfare.comwel.or.kr/board/bbs.do?cfgIdx=1&mCode=G015000000&op=view&idxId=472057">
+	<img src="/upload/ckup/contents/A/popup_251215[2].jpg" class="covidImg" alt="근로복지공단 더 확대 된 근로자 생활안정자금 이차보전 융자 최대2천만원대출+ 이자의3%p 보전지원(최대300만원의 이자혜택) 더자세한내용은 근로복지넷 또는 1588-0075" />
+</a>
+
+<a href="https://www.youtube.com/watch?v=zK8n8p5AulU" target="_blank" alt="유투브바로가기(새창열림)">
+	<img src="/upload/ckup/contents/A/popup_260202.jpg" class="covidImg" alt="허준의 정책톡톡 근로자 생활안정자금 융자사업 은행 대출 이자를 간면해줘" />
+</a>
+
+<br /><br /><p class="txt_ct"><a href="#" onclick="closeEapNot();return false;" class="comm_btn close">하루동안 안 보기 ×</a></p><br /><br />
+
+	</div>
+</div>
+
+<!--img src="/resources/images/default/main/popup_241002.jpg" class="covidImg" alt="시스템점검안내" />
+<a href="/board/bbs.do?cfgIdx=1&mCode=G015000000&op=view&idxId=471400"><img src="/resources/images/default/main/popup/popup_241014.jpg" class="covidImg" alt="근로복지기금 지원사업 시행안내 접수기간 하반기 2024.9.10화~2024.10.23수" /></a><br/><br/><br/><br/--><!-- main popup s -->
+	<div id="popupWr">
+		<div id="ptr">
+			<ul class="t01">
+				<li>
+				<p class="le">
+				<a href="https://welfare.comwel.or.kr/board/bbs.do?cfgIdx=1&mCode=G015000000&op=view&idxId=472408" target="_self" style="outline-offset:-2px;"><img src="/ipr.do?q=9%5E300%5Epopup_260921.jpg%5Epopup" alt="근로자 휴양콘도 추계 프로모션" /></a></p>
+				<p class="ri"><a href="index.do" onclick="closePopup();return false;"><img src="/resources/images/default/main/popup_close_01.gif" alt="팝업닫기" /></a></p>
+				</li>
+				<li>
+				<p class="le">
+				<a href="https://welfare.comwel.or.kr/board/bbs.do?cfgIdx=1&mCode=G015000000&op=view&idxId=472404" target="_self" style="outline-offset:-2px;"><img src="/ipr.do?q=9%5E300%5Epopup_260918.jpg%5Epopup" alt="공지 2026년 근로자 생활안정자금 융자사업 재개 안내 자세히보기" /></a></p>
+				<p class="ri"><a href="index.do" onclick="closePopup();return false;"><img src="/resources/images/default/main/popup_close_01.gif" alt="팝업닫기" /></a></p>
+				</li>
+				<li>
+				<p class="le">
+				<a href="https://pension.comwel.or.kr/fund/websquare/?w2xPath=/fund/pages/uti/HM00010100.xml" target="_blank" style="outline-offset:-2px;"><img src="/ipr.do?q=9%5E300%5Epopup_260122_1.jpg%5Epopup" alt="노사정이 관리하고 키워나가는 기금 푸른씨앗
+수수료 면제와 국가지원금 혜택 받아가세요!
+근로복지공단 고객센터 1661-0075 중소기업퇴직연금기금제도 검색해보세요!" /></a></p>
+				<p class="ri"><a href="index.do" onclick="closePopup();return false;"><img src="/resources/images/default/main/popup_close_01.gif" alt="팝업닫기" /></a></p>
+				</li>
+				<li>
+				<p class="le">
+				<a href="https://welfare.comwel.or.kr/board/bbs.do?cfgIdx=1&mCode=G015000000&op=view&idxId=472079" target="_self" style="outline-offset:-2px;"><img src="/ipr.do?q=9%5E300%5Epopup_260108.jpg%5Epopup" alt="2026년 근로자지원프로그램(EAP) 서비스 개시 안내" /></a></p>
+				<p class="ri"><a href="index.do" onclick="closePopup();return false;"><img src="/resources/images/default/main/popup_close_01.gif" alt="팝업닫기" /></a></p>
+				</li>
+				<li>
+				<p class="le">
+				<a href="https://welfare.comwel.or.kr/board/bbs.do?cfgIdx=1&mCode=G015000000&op=view&idxId=472070" target="_self" style="outline-offset:-2px;"><img src="/ipr.do?q=9%5E300%5Epopup_260102_2.jpg%5Epopup" alt="공지 2026년 근로자 생활안정자금 이차보전 융자사업 공고 자세히보기" /></a></p>
+				<p class="ri"><a href="index.do" onclick="closePopup();return false;"><img src="/resources/images/default/main/popup_close_01.gif" alt="팝업닫기" /></a></p>
+				</li>
+				</ul>
+		</div>
+		<div id="pur">
+			<a href="#x" class="stop"><img src="/resources/images/default/main/popup_stop.gif" alt="팝업 롤링 중지" /></a>
+			<a href="#x" class="play"><img src="/resources/images/default/main/popup_play.gif" alt="팝업 롤링 플레이" /></a>
+			<a href="#x" onclick="closePopup2()"><img src="/resources/images/default/main/popup_close_02.gif" alt="팝업닫기" /></a>			
+			<p>오늘은 그만보기</p>
+		</div>
+	</div>
+	<!-- main popup e -->
+	<div id="headerWr">
+		<div id="headerTop">
+			<div class="mns">
+				<div class="mnLeft">
+				<a href="https://www.comwel.or.kr" target="_blank" class="mnLeft_01" title="근로복지공단 새창으로 이동">근로복지공단</a>
+				<a href="https://total.comwel.or.kr" target="_blank" class="mnLeft_03" title="고용산재토탈서비스 새창으로 이동">고용산재토탈서비스</a>
+				<a href="https://pension.comwel.or.kr" target="_blank" class="mnLeft_03" title="퇴직연금 새창으로 이동">퇴직연금</a>
+				<a href="https://www.comwel.or.kr/escac/index.jsp" target="_blank" class="mnLeft_03" title="직장보육지원센터 새창으로 이동">직장보육지원센터</a>
+				<a href="https://www.comwel.or.kr/comwel/empl/chld.jsp" target="_blank" class="mnLeft_03" title="공공직장어린이집 새창으로 이동">공공직장어린이집</a>
+				</div>
+				<div class="mnRight">
+				<!--a href="/default/index.do" class="mnRight_01">홈으로</a-->
+<a href="/default/member/join.do?mCode=G040010000" class="mnRight_02">회원가입</a>
+				<a href="/default/index.do" onclick="goMemberLogin();return false;" class="mnRight_03">로그인</a>
+				<!--a href="/board/bbs.do?cfgIdx=17&mCode=G020010000" class="mnRight_04">자주묻는 질문</a-->
+				<div class="mnRight_04">
+				<a href="/default/index.do" onClick="zoomInOut('plus');return false;" class="mnRight_pl">
+					<img src="/resources/images/default/common/22/comm_zoom_plus.png" alt="크게보기" />
+				</a>
+				<span>가</span>
+				<a href="/default/index.do" onClick="zoomInOut('minus');return false;" class="mnRight_mi">
+					<img src="/resources/images/default/common/22/comm_zoom_minus.png" alt="작게보기" />
+				</a>
+				</div>
+				</div>
+			</div>
+		</div>
+		<div id="headerBody" class="clearfix">
+			<ul>
+				<li class="s_00">
+				<h1><a href="/default/index.do"><img src="/resources/images/default/common/com_logo.gif" alt="근로복지넷" /></a></h1>
+				</li>
+				<li class="s_02">
+				<a href="/default/page.do?mCode=G020040000">이용문의</a>
+				<a href="/board/bbs.do?cfgIdx=17&mCode=G020010000">자주묻는 질문</a>
+				<a href="/board/bbs.do?cfgIdx=19&mCode=F050000000" class="noBack">서식자료마당</a>
+				</li>
+				<li class="s_01">
+				<form id="glTopFrm" name="glTopFrm" action="/default/search.do" onsubmit="return chkGloStr(this)">
+					<label for="gloStr" class="hide">검색어입력</label>
+					<input type="hidden" name="mCode" value="G080010000" />
+					<input type="text" name="gloStr" id="gloStr" value="" placeholder="검색어를 입력하세요" /><input type="image" src="/resources/images/default/common/22/com_sr_back_02.png" alt="검색" />
+				</form>
+				</li>
+			</ul>
+			<div class="gnbs" id="topGnbs">
+	<ul>
+		<li class="gn_02 gnli "><a href="/default/page.do?mCode=M010000000&isFlat=true" >서비스신청</a>
+			<div class="in02"><p class="line">&nbsp;</p>
+			<div class="inWr">
+			<div class="inRight">
+			<ul class="noTop">
+				<li class="st02">
+				<a href='/default/page.do?mCode=M010000000&isFlat=true' >서비스신청</a>
+				</li>
+				</ul>
+			<ul>
+				<li class="st02">
+				<a href='/service/default/svcs/dbs/sinchung/ld.do?op=ldDef&mCode=M020010000' >융자신청</a>
+				</li>
+				<li class="st03">
+				<a href='/service/default/svcs/dbs/sinchung/ld.do?op=ldDef&mCode=M020010000' >일반근로자 융자 신청</a>
+				<a href='/service/default/svcs/dbs/sinchung/sd.do?mCode=M020030000' >산재근로자 융자 신청</a>
+				<a href='/service/default/svcs/dbs/sinchung/ji.do?op=jiDef&mCode=M020040000' >직업훈련생계비 대부</a>
+				<a href='/service/default/svcs/dbs/sinchung/ldIc.do?op=ldIcDef&mCode=M020050000' >체불근로자 생계비 융자 신청</a>
+				<a href='/service/default/svcs/cgs/apply.do?mCode=M020060000' >신용보증지원</a>
+				<a href='/service/default/svcs/cgs/apply.do?op=termList&mCode=M020070000' >산재학자금 보증기간 연장</a>
+				<a href='/service/default/svcs/dbs/sinchung/ldIc.do?op=ldIcGuchiPop&mCode=M020080000' >체불근로자 생계비 융자 거치기간 변경 신청</a>
+				<a href=' /service/default/svcs/dbs/sinchung/dt.do?op=dtDef&mCode=M020090000' >일반근로자 융자(이차보전) 추천신청</a>
+				</li></ul>
+			<ul>
+				<li class="st02">
+				<a href='/service/default/svcs/cnd/mng.do?op=&isFlat=true&mCode=M030020000' >휴양콘도</a>
+				</li>
+				<li class="st03">
+				<a href='/service/default/svcs/cnd/mng.do?op=&isFlat=true&mCode=M030020000' >보유콘도 및 요금정보</a>
+				<a href='/service/default/svcs/cnd/mng.do?op=condoSts2&isFlat=true&mCode=M030040000' >보유객실 및 신청현황</a>
+				<a href='/service/default/svcs/cnd/sinchung/hc.do?op=hcStatus&mCode=M030050000&acc_gubun=NHC&isBlank=true' >휴양콘도 신청</a>
+				<a href='/service/default/svcs/cnd/sinchung/result.do?op=hcList&isFlat=true&mCode=M030060000' >휴양콘도 신청결과(취소포함)</a>
+				</li></ul>
+			<ul>
+				<li class="st02">
+				<a href='/service/default/svcs/dbs/sinchung/result.do?isFlat=true&mCode=M040010000	' >신청결과 확인</a>
+				</li>
+				<li class="st03">
+				<a href='/service/default/svcs/dbs/sinchung/result.do?isFlat=true&mCode=M040010000' >대부신용보증 신청결과</a>
+				<a href='/service/default/svcs/dbs/sinchung/result.do?op=resultInfo&mCode=M040030000' >대출결과 조회</a>
+				<a href='/service/default/svcs/mypage.do?mCode=M040040000' >대부상환내역</a>
+				<a href='/service/default/svcs/mypage.do?op=checkDebtList&mCode=M040050000' >구상채무잔액</a>
+				<a href='/service/default/svcs/mypage.do?op=personalInfoWithdraw&mCode=M040060000' >개인신용정보 동의철회·연락중지·열람·정정·삭제 요구</a>
+				<a href='/service/default/svcs/mypage.do?op=personalInfoHist&mCode=M040070000' >개인신용정보이용_및_제공사실_조회&nbsp;신청</a>
+				</li></ul>
+			<ul>
+				<li class="st02">
+				<a href='/default/page.do?mCode=M050010000' >기부하기</a>
+				</li>
+				<li class="st03">
+				<a href='/default/page.do?mCode=M050010000' >기부금 소개</a>
+				<a href='/default/page.do?mCode=M050020000' >기부방법</a>
+				<a href='/default/page.do?mCode=M050030000' >자주묻는 질문</a>
+				<a href='/service/default/svcs/gibu.do?mCode=M050040000' >기부하기</a>
+				<a href='/service/default/svcs/gibu.do?op=popPrintB&mCode=M050050000' >기부금 영수증</a>
+				</li></ul>
+			<hr class="splGnb"><ul>
+				<li class="st02">
+				<a href='/service/default/svcs/qna.do?mCode=M055000000' >서비스신청 Q&A(콘도)</a>
+				</li>
+				</ul>
+			<ul>
+				<li class="st02">
+				<a href='/service/default/svcs/calc.do?mCode=M060030000' >서비스 안내도우미</a>
+				</li>
+				<li class="st03">
+				<a href='/service/default/svcs/calc.do?mCode=M060030000' >대출이자계산기</a>
+				<a href='/service/default/svcs/calc.do?op=listSy&mCode=M060040000' >신용보증료계산기</a>
+				<a href='/service/default/svcs/pds.do?mCode=M060041000' >융자접수,대출현황</a>
+				<a href='/default/page.do?mCode=M060050000' >이의심사 청구 안내</a>
+				<a href='/default/page.do?mCode=M060060000' >인증서 이용 안내</a>
+				</ul>
+			</div></div></div>
+		</li>
+		
+		<li class="gn_02 gnli "><a href="/default/page.do?mCode=B010010010" >생활안정자금</a>
+			<div class="in02"><p class="line">&nbsp;</p>
+			<div class="inWr">
+			<div class="inRight">
+			<ul class="noTop">
+				<li class="st02">
+				<a href='/default/page.do?mCode=B010010010' >생활안정자금 융자</a>
+				</li>
+				<li class="st03">
+				<a href='/default/page.do?mCode=B010010010' >사업소개</a>
+				<a href='/default/page.do?mCode=B010020000' >처리절차</a>
+				</li></ul>
+			<ul>
+				<li class="st02">
+				<a href='/default/page.do?mCode=B015010000' >생활안정자금 이차보전 융자</a>
+				</li>
+				<li class="st03">
+				<a href='/default/page.do?mCode=B015010000' >사업소개</a>
+				<a href='/default/page.do?mCode=B015020000' >처리절차</a>
+				</li></ul>
+			<ul>
+				<li class="st02">
+				<a href='/default/page.do?mCode=B020010000' >직업훈련생계비 융자</a>
+				</li>
+				<li class="st03">
+				<a href='/default/page.do?mCode=B020010000' >사업소개</a>
+				<a href='/default/page.do?mCode=B020030000' >처리절차</a>
+				<a href='http://www.hrd.go.kr/' target="_blank" title="HRD 직업능력지식포털 새창이동">HRD 직업능력지식포털</a>
+				</li></ul>
+			<ul>
+				<li class="st02">
+				<a href='/default/page.do?mCode=B090010010' >산재근로자 생활안정자금 융자</a>
+				</li>
+				<li class="st03">
+				<a href='/default/page.do?mCode=B090010010' >사업소개</a>
+				</li></ul>
+			<ul>
+				<li class="st02">
+				<a href='/default/page.do?mCode=B110010000' >신용 보증 지원</a>
+				</li>
+				<li class="st03">
+				<a href='/default/page.do?mCode=B110010000' >사업소개</a>
+				<a href='/default/page.do?mCode=B110020000' >처리절차</a>
+				<a href='/default/page.do?mCode=B110030000' >채무조정제도</a>
+				</ul>
+			</div></div></div>
+		</li>
+		
+		<li class="gn_08 gnli "><a href="/default/page.do?mCode=H010010000" >임금채권</a>
+			<div class="in08"><p class="line">&nbsp; </p>
+			<div class="inWr">
+			<div class="inRight">
+			<ul class="noTop">
+				<li class="st02">
+				<a href='/default/page.do?mCode=H010010000' >임금채권 보장사업</a>
+				</li>
+				<li class="st03">
+				<a href='/default/page.do?mCode=H010010000' >사업소개</a>
+				</li></ul>
+			<ul>
+				<li class="st02">
+				<a href='/default/page.do?mCode=H020010000' >도산대지급금 지급</a>
+				</li>
+				<li class="st03">
+				<a href='/default/page.do?mCode=H020010000' >사업소개</a>
+				<a href='/default/page.do?mCode=H020020000' >처리절차</a>
+				</li></ul>
+			<ul>
+				<li class="st02">
+				<a href='/default/page.do?mCode=H030010000' >간이대지급금 지급</a>
+				</li>
+				<li class="st03">
+				<a href='/default/page.do?mCode=H030010000' >사업소개</a>
+				<a href='/default/page.do?mCode=H030020000' >처리절차</a>
+				</li></ul>
+			<ul>
+				<li class="st02">
+				<a href='/default/page.do?mCode=H040010000' >체불청산지원 사업주 융자사업</a>
+				</li>
+				<li class="st03">
+				<a href='/default/page.do?mCode=H040010000' >사업소개</a>
+				<a href='/default/page.do?mCode=H040020000' >처리절차</a>
+				</li></ul>
+			<ul>
+				<li class="st02">
+				<a href='/default/page.do?mCode=H050010010' >체불근로자 생계비 융자사업</a>
+				</li>
+				<li class="st03">
+				<a href='/default/page.do?mCode=H050010010' >사업소개</a>
+				<a href='/default/page.do?mCode=H050020000' >처리절차</a>
+				</ul>
+			</div></div></div>
+		</li>
+		
+		<li class="gn_03 gnli "><a href="/default/page.do?mCode=C020010000" >복지/휴양콘도</a>
+			<div class="in03"><p class="line">&nbsp;</p>
+			<div class="inWr">
+			<div class="inRight">
+			<ul class="noTop">
+				<li class="st02">
+				<a href='/default/page.do?mCode=C020010000' >근로자 휴양콘도</a>
+				</li>
+				<li class="st03">
+				<a href='/default/page.do?mCode=C020010000' >사업소개</a>
+				<a href='/default/page.do?mCode=C020020000' >처리절차</a>
+				<a href='/service/default/svcs/cnd/sinchung/hc.do?op=hcStatus&mCode=M030050000&acc_gubun=NHC&isBlank=true' >예약신청 및 확인</a>
+				</li></ul>
+			<ul>
+				<li class="st02">
+				<a href='/default/page.do?mCode=C040010000' >공공직장어린이집</a>
+				</li>
+				<li class="st03">
+				<a href='/default/page.do?mCode=C040010000' >사업소개</a>
+				<a href='/default/page.do?mCode=C040020000' >처리절차</a>
+				</ul>
+			</div></div></div>
+		</li>
+		
+		<li class="gn_09 gnli "><a href="/art/index.do	" >문화예술제</a>
+			<div class="in09"><p class="line">&nbsp;</p>
+			<div class="inWr">
+			<div class="inRight">
+			<ul class="noTop">
+				<li class="st02">
+				<a href='/default/page.do?mCode=K010010010' >노동자 문화예술제 안내</a>
+				</li>
+				<li class="st03">
+				<a href='/default/page.do?mCode=K010010010' >노동자문화예술제 소개</a>
+				<a href='/default/page.do?mCode=K010030000' >예술제를 만드는 사람들</a>
+				</li></ul>
+			<ul>
+				<li class="st02">
+				<a href='/default/page.do?mCode=K011010000	' >제47회 노동자문화예술제</a>
+				</li>
+				<li class="st03">
+				<a href='/default/page.do?mCode=K011010000' >개최 안내</a>
+				<a href='/default/page.do?mCode=K011020010' >분야별 안내</a>
+				</li></ul>
+			<ul>
+				<li class="st02">
+				<a href='/default/art/apply.do?mCode=K020010000' >문화예술제 참가신청</a>
+				</li>
+				<li class="st03">
+				<a href='/default/art/apply.do?mCode=K020010000' >참가신청</a>
+				</li></ul>
+			<ul>
+				<li class="st02">
+				<a href='/board/bbs.do?cfgIdx=53&mCode=K030010000' >역대예술제</a>
+				</li>
+				<li class="st03">
+				<a href='/board/bbs.do?cfgIdx=53&mCode=K030010000' >예술제 사진</a>
+				<a href='/board/bbs.do?cfgIdx=54&mCode=K030020000' >예술제 영상</a>
+				<a href='/default/art/artDetail.do?mCode=K030030000&turnNum=46&typeCd=1' >수상자</a>
+				<a href='/default/page.do?mCode=K030040000' >문학작품집</a>
+				<a href='/default/art/artWorks.do?mCode=K030050000&major=1&turnNum=46' >디지털 갤러리</a>
+				</li></ul>
+			<ul>
+				<li class="st02">
+				<a href='/board/bbs.do?cfgIdx=51&mCode=K040010000' >커뮤니티</a>
+				</li>
+				<li class="st03">
+				<a href='/board/bbs.do?cfgIdx=51&mCode=K040010000' >공지사항</a>
+				<a href='/board/bbs.do?cfgIdx=52&mCode=K040020000' >자주하는 질문</a>
+				<a href='/default/art/qna.do?mCode=K040021000' >1:1 문의 게시판</a>
+				<a href='/default/page.do?mCode=K040030000' >관련사이트</a>
+				<a href='/board/bbs.do?cfgIdx=16&mCode=K040040000' >이용후기</a>
+				<a href='/default/art/scEvent.do?mCode=K040050000' >미술제 국민참여심사</a>
+				</ul>
+			</div></div></div>
+		</li>
+<li class="gn_04 gnli "><a href="/default/page.do?mCode=D010010010" >근로자지원프로그램(EAP)</a>
+			<div class="in04"><p class="line">&nbsp;</p>
+			<div class="inWr">
+			<div class="inRight">
+			<ul class="noTop">
+				<li class="st02">
+				<a href='/default/page.do?mCode=D010010010' >EAP</a>
+				</li>
+				<li class="st03">
+				<a href='/default/page.do?mCode=D010010010' >근로복지넷 EAP서비스란?</a>
+				<a href='/default/eap/survey.do?mCode=D010030000' >스트레스 조직진단</a>
+				<a href='https://welfare.comwel.or.kr/default/page.do?mCode=D010033000' >마음 솔루션</a>
+				<a href='/board/bbs.do?cfgIdx=3&mCode=D010040000' >EAP자료실</a>
+				</li></ul>
+			<ul>
+				<li class="st02">
+				<a href='/default/eap/board.do?mCode=D020010000' >(개인)온라인 상담 신청</a>
+				</li>
+				<li class="st03">
+				<a href='/default/eap/board.do?mCode=D020010000' >게시판 EAP상담</a>
+				<a href='/default/eap/talk.do?mCode=D020030000' >희망드림 톡(모바일 상담)</a>
+				<a href='/default/eap/emp.do?mCode=D020040000&kindCd=EAP05' >전화 EAP상담</a>
+				<a href='/default/eap/emp.do?mCode=D020050000&kindCd=EAP09' >화상상담</a>
+				</li></ul>
+			<ul>
+				<li class="st02">
+				<a href='/default/eap/emp.do?mCode=D030010010&kindCd=EAP03' >(개인)오프라인 상담 신청</a>
+				</li>
+				<li class="st03">
+				<a href='/default/eap/emp.do?mCode=D030010010&kindCd=EAP03' >근로자 EAP상담</a>
+				</li></ul>
+			<ul>
+				<li class="st02">
+				<a href='/default/eap/group.do?mCode=D035000000&groupType=2' >(기업)기업 EAP</a>
+				</li>
+				</ul>
+			</div></div></div>
+		</li>
+		
+		<li class="gn_05 gnli "><a href="/default/page.do?mCode=E040010000" >근로복지기금지원</a>
+			<div class="in05"><p class="line">&nbsp;</p>
+			<div class="inWr">
+			<div class="inRight">
+			<ul class="noTop">
+				<li class="st02">
+				<a href='/default/page.do?mCode=E040010000' >근로복지기금 지원사업</a>
+				</li>
+				<li class="st03">
+				<a href='/default/page.do?mCode=E040010000' >사업소개</a>
+				<a href='/default/page.do?mCode=E040020000' >처리절차</a>
+				<a href='/default/aw/fundPage.do?mCode=E040030000' >사내·공동기금법인 신청</a>
+				<a href='/default/page.do?mCode=E040040000' >집행실태 점검</a>
+				</li></ul>
+			<ul>
+				<li class="st02">
+				<a href='/board/bbs.do?cfgIdx=5&mCode=E050010000' >복지 자료실</a>
+				</li>
+				<li class="st03">
+				<a href='/board/bbs.do?cfgIdx=5&mCode=E050010000' >정책 자료</a>
+				<a href='/board/bbs.do?cfgIdx=8&mCode=E050040000' >법령 및 규정</a>
+				</ul>
+			</div></div></div>
+		</li>
+		
+		<!--li class="gn_06 gnli"><a href="/board/bbs.do?cfgIdx=31&mCode=F020020010&etc2=%EA%B7%BC%EB%A1%9C%EB%B3%B5%EC%A7%80+%EC%82%BC%EA%B5%AD%EC%A7%80"><img src="/resources/images/default/common/comm_gn_05.gif" alt="자료실" class="topGn" /></a>
+			<div class="in06"><p class="line">&nbsp;</p>
+			<div class="inWr">
+			<div class="inTitle">
+				<p class="tit">자료실</p>
+				<p class="det">근로복지넷에서는 새소식,이벤트정보,개인별 복지맞춤정보,멀티미디어 자료 등 복지정보를 제공합니다.</p>
+			</div>
+			<div class="inRight">
+			<ul class="noTop">
+				<li class="st02">
+				<a href='/board/bbs.do?cfgIdx=31&mCode=F020020010&etc2=%EA%B7%BC%EB%A1%9C%EB%B3%B5%EC%A7%80+%EC%82%BC%EA%B5%AD%EC%A7%80' >멀티미디어방</a>
+				</li>
+				<li class="st03">
+				<a href='https://www.comwel.or.kr/comwel/cybr/movi/busi.jsp' target="_blank" title="동영상 새창이동">동영상</a>
+				<a href='/board/bbs.do?cfgIdx=31&mCode=F020020010&etc2=%EA%B7%BC%EB%A1%9C%EB%B3%B5%EC%A7%80+%EC%82%BC%EA%B5%AD%EC%A7%80' >웹툰</a>
+				<a href='/board/bbs.do?cfgIdx=41&mCode=F020030000' >인포그래픽</a>
+				</li></ul>
+			<ul>
+				<li class="st02">
+				<a href='/default/page.do?mCode=F030000000' >자격조건 알아보기</a>
+				</li>
+				</ul>
+			<ul>
+				<li class="st02">
+				<a href='/default/welInfo.do?mCode=F040000000' >개인별 맞춤복지 정보</a>
+				</li>
+				</ul>
+			<ul>
+				<li class="st02">
+				<a href='/board/bbs.do?cfgIdx=19&mCode=F050000000' >서식 자료 마당</a>
+				</li>
+				</ul>
+			<ul>
+				<li class="st02">
+				<a href='/board/bbs.do?cfgIdx=15&mCode=F070010000' >이용후기</a>
+				</li>
+				<li class="st03">
+				<a href='/board/bbs.do?cfgIdx=15&mCode=F070010000' >근로자 휴양콘도</a>
+				<a href='/board/bbs.do?cfgIdx=16&mCode=F070020000' >문화 예술제</a>
+				</li></ul>
+			<ul>
+				<li class="st02">
+				<a href='/board/bbs.do?cfgIdx=57&mCode=F080000000' >뉴스 레터</a>
+				</li>
+				</ul>
+			<ul>
+				<li class="st02">
+				<a href='/default/schedule.do?mCode=F090000000&op=clist&typeCd=A' >행사일정</a>
+				</li>
+				</ul>
+			</div></div></div>
+		</li-->
+		<li class="gn_00">
+		<a href="#" class="topFull" onclick="openFull();return false;" onkeydown="openFull();return false;"><img src="/resources/images/default/common/22/com_gnb.png" id="fullOpenImg" alt="전체메뉴열기" ></a>
+		<div class="span">
+		<div id="fullWr" 
+	
+	>
+	<!--  
+	class="hasPop"
+	-->
+	<div id="fullTop">
+		<div id="fullMenu">
+			<div class="le"></div>
+			<div class="ri">
+				<!--ul class="m01">
+					<li class="top"></li>
+					</ul-->
+				<ul class="gnbSubFirst">
+					<li class="top">서비스신청</li>
+					<li><a href='/default/page.do?mCode=M010000000&isFlat=true' >서비스신청</a></li>
+					<li><a href='/service/default/svcs/dbs/sinchung/ld.do?op=ldDef&mCode=M020010000' >융자신청</a></li>
+					<li><a href='/service/default/svcs/cnd/mng.do?op=&isFlat=true&mCode=M030020000' >휴양콘도</a></li>
+					<li><a href='/service/default/svcs/dbs/sinchung/result.do?isFlat=true&mCode=M040010000	' >신청결과 확인</a></li>
+					<li><a href='/default/page.do?mCode=M050010000' >기부하기</a></li>
+					<li><a href='/service/default/svcs/qna.do?mCode=M055000000' >서비스신청 Q&A(콘도)</a></li>
+					<li><a href='/service/default/svcs/calc.do?mCode=M060030000' >서비스 안내도우미</a></li>
+					</ul>
+				<ul>
+					<li class="top">생활안정자금 융자</li>
+					<li><a href='/default/page.do?mCode=B010010010' >생활안정자금 융자</a></li>
+					<li><a href='/default/page.do?mCode=B015010000' >생활안정자금 이차보전 융자</a></li>
+					<li><a href='/default/page.do?mCode=B020010000' >직업훈련생계비 융자</a></li>
+					<li><a href='/default/page.do?mCode=B090010010' >산재근로자 생활안정자금 융자</a></li>
+					<li><a href='/default/page.do?mCode=B110010000' >신용 보증 지원</a></li>
+					</ul>
+				<!--ul class="m08">
+					<li class="top">임금채권</li>
+					<li><a href='/default/page.do?mCode=H010010000' >임금채권 보장사업</a></li>
+					<li><a href='/default/page.do?mCode=H020010000' >도산대지급금 지급</a></li>
+					<li><a href='/default/page.do?mCode=H030010000' >간이대지급금 지급</a></li>
+					<li><a href='/default/page.do?mCode=H040010000' >체불청산지원 사업주 융자사업</a></li>
+					<li><a href='/default/page.do?mCode=H050010010' >체불근로자 생계비 융자사업</a></li>
+					</ul -->
+				<ul>
+					<li class="top">임금채권</li>
+					<li><a href='/default/page.do?mCode=H010010000' >임금채권 보장사업</a></li>
+					<li><a href='/default/page.do?mCode=H020010000' >도산대지급금 지급</a></li>
+					<li><a href='/default/page.do?mCode=H030010000' >간이대지급금 지급</a></li>
+					<li><a href='/default/page.do?mCode=H040010000' >체불청산지원 사업주 융자사업</a></li>
+					<li><a href='/default/page.do?mCode=H050010010' >체불근로자 생계비 융자사업</a></li>
+					</ul>
+				<ul>	
+					<li class="top">복지/휴양콘도</li>
+					<li><a href='/default/page.do?mCode=C020010000' >근로자 휴양콘도</a></li>
+					<li><a href='/default/page.do?mCode=C040010000' >공공직장어린이집</a></li>
+					</ul>
+				<ul>
+					<li class="top">근로자지원프로그램(EAP)</li>
+					<li><a href='/default/page.do?mCode=D010010010' >EAP</a></li>
+					<li><a href='/default/eap/board.do?mCode=D020010000' >(개인)온라인 상담 신청</a></li>
+					<li><a href='/default/eap/emp.do?mCode=D030010010&kindCd=EAP03' >(개인)오프라인 상담 신청</a></li>
+					<li><a href='/default/eap/group.do?mCode=D035000000&groupType=2' >(기업)기업 EAP</a></li>
+					</ul>
+				<ul>	
+					<li class="top">문화예술제</li>
+					<li><a href='/default/page.do?mCode=K010010010' >노동자 문화예술제 안내</a></li>
+					<li><a href='/default/page.do?mCode=K011010000	' >제47회 노동자문화예술제</a></li>
+					<li><a href='/default/art/apply.do?mCode=K020010000' >문화예술제 참가신청</a></li>
+					<li><a href='/board/bbs.do?cfgIdx=53&mCode=K030010000' >역대예술제</a></li>
+					<li><a href='/board/bbs.do?cfgIdx=51&mCode=K040010000' >커뮤니티</a></li>
+					</ul>
+				<ul>
+					<li class="top">근로복지기금 지원</li>
+					<li><a href='/default/page.do?mCode=E040010000' >근로복지기금 지원사업</a></li>
+					<li><a href='/board/bbs.do?cfgIdx=5&mCode=E050010000' >복지 자료실</a></li>
+					</ul>
+				<ul>
+					<li class="top">자료실</li>
+					<li><a href='/board/bbs.do?cfgIdx=31&mCode=F020020010&etc2=%EA%B7%BC%EB%A1%9C%EB%B3%B5%EC%A7%80+%EC%82%BC%EA%B5%AD%EC%A7%80' >멀티미디어방</a></li>
+					<li><a href='/default/page.do?mCode=F030000000' >자격조건 알아보기</a></li>
+					<li><a href='/default/welInfo.do?mCode=F040000000' >개인별 맞춤복지 정보</a></li>
+					<li><a href='/board/bbs.do?cfgIdx=19&mCode=F050000000' >서식 자료 마당</a></li>
+					<li><a href='/board/bbs.do?cfgIdx=15&mCode=F070010000' >이용후기</a></li>
+					<li><a href='/board/bbs.do?cfgIdx=57&mCode=F080000000' >뉴스 레터</a></li>
+					<li><a href='/default/schedule.do?mCode=F090000000&op=clist&typeCd=A' >행사일정</a></li>
+					</ul>
+				<ul>
+					<li class="top">사이트 이용안내</li>
+					<li><a href='/default/page.do?mCode=G010000000' >인사말</a></li>
+					<li><a href='/board/bbs.do?cfgIdx=1&mCode=G015000000' >공지사항</a></li>
+					<li><a href='/board/bbs.do?cfgIdx=17&mCode=G020010000' >이용문의</a></li>
+					<li><a href='/default/page.do?mCode=G030010000' >근로복지넷 정보</a></li>
+					<li><a href='/default/member/join.do?mCode=G040010000' >회원서비스</a></li>
+					<li><a href='/default/page.do?mCode=G050010000' >관련사이트</a></li>
+					<li><a href='/default/page.do?mCode=G060010000' >고객서비스 헌장</a></li>
+					<li><a href='/default/page.do?mCode=G070010000' >사이트 성과개선</a></li>
+					<li><a href='/default/search.do?mCode=G080010000&gloStr=복지' >통합검색</a></li>
+					</ul>
+			</div>
+		</div><!-- end of class fullMenu -->
+	</div><!-- fullTop -->	
+	<div class="bt">
+		<a href="#" onclick="closeFull();return false;" id="closeFullLnk"><img src="/resources/images/default/common/comm_full_close.png" alt="전체메뉴 닫기" /></a>
+	</div>
+	</div><!-- fullWr --></div>
+		</li>
+	</ul>
+	
+	</div></div>
+		<div id="headerLine"></div>
+	</div>
+	
+		
+
+<div class="service_icon">
+	<div class="service_center" id="service_center">
+		<p>자주찾는 서비스</p>
+		<ul>
+			
+			
+			
+			
+			
+			
+			<li>
+				<a href="/service/default/svcs/dbs/sinchung/ld.do?op=ldDef&mCode=M020010000" target="_top">
+				<img src="/ipr.do?q=9%5E300%5Emain_icon_1.png%5EmainPos" alt="일반근로자 생활안정자금" /><!--  -->
+				</a>
+				<p>일반근로자<br>생활안정자금</p>
+			</li>
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			<li>
+				<a href="/service/default/svcs/dbs/sinchung/sd.do?mCode=M020030000" target="_top">
+				<img src="/ipr.do?q=9%5E300%5Emain_icon_2.png%5EmainPos" alt="산재근로자 생활안정자금" /><!--  -->
+				</a>
+				<p>산재근로자<br>생활안정자금</p>
+			</li>
+			
+			
+			
+			
+			
+			
+			
+			<li>
+				<a href="/service/default/svcs/dbs/sinchung/ji.do?op=jiDef&mCode=M020040000" target="_top">
+				<img src="/ipr.do?q=9%5E300%5Emain_icon_3.png%5EmainPos" alt="직업훈련생계비" /><!--  -->
+				</a>
+				<p>직업훈련생계비</p>
+			</li>
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			<li>
+				<a href="/service/default/svcs/dbs/sinchung/ldIc.do?op=ldIcDef&mCode=M020050000" target="_top">
+				<img src="/ipr.do?q=9%5E300%5Emain_icon_4.png%5EmainPos" alt="체불근로자 생계비융" /><!--  -->
+				</a>
+				<p>체불근로자<br>생계비융자</p>
+			</li>
+			
+			
+			
+			
+			
+			
+			
+			<li>
+				<a href="/default/page.do?mCode=D010010010" target="_top">
+				<img src="/ipr.do?q=9%5E300%5Emain_icon_5.png%5EmainPos" alt="EAP상담" /><!--  -->
+				</a>
+				<p>EAP상담</p>
+			</li>
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			<li>
+				<a href="/service/default/svcs/cnd/sinchung/hc.do?op=hcStatus&mCode=M030050000&acc_gubun=NHC&isBlank=true" target="_top">
+				<img src="/ipr.do?q=9%5E300%5Emain_icon_6.png%5EmainPos" alt="휴양콘도" /><!--  -->
+				</a>
+				<p>휴양콘도</p>
+			</li>
+			
+			
+			
+			
+			
+			<li>
+				<a href="/default/page.do?mCode=E040010000" target="_top">
+				<img src="/ipr.do?q=9%5E300%5Emain_icon_7.png%5EmainPos" alt="근로복지기금지원" /><!--  -->
+				</a>
+				<p>근로복지기금지원</p>
+			</li>
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+		</ul>
+	</div>
+</div>
+
+<div class="custom">
+	<div id="customMain">
+		<div>
+			<p>개인별 맞춤 복지</p>
+			<span>정부와 민간에서 시행하는 복지사업정보</span>
+		</div>
+		
+<div class="tab list" style="height: 160px;">
+	<ul>
+		<li class="active"><a href="#" title="선택됨"><span>생애주기별</span></a>
+
+			<ul>
+				<li>
+					<a href="/default/welInfo.do?mCode=F030000000&periodCd=11" class="" title="취업 ">
+					<img src="/resources/images/default/main/22/main_infoCat_1.png" alt="">
+					<span>취업</span>
+					</a>
+				</li>
+				<li>
+					<a href="/default/welInfo.do?mCode=F030000000&periodCd=12" class="" title="결혼 ">
+					<img src="/resources/images/default/main/22/main_infoCat_2.png" alt="">
+					<span>결혼</span>
+					</a>
+				</li>
+				<li>
+					<a href="/default/welInfo.do?mCode=F030000000&periodCd=13" class="" title="출산 ">
+					<img src="/resources/images/default/main/22/main_infoCat_3.png" alt="">
+					<span>출산</span>
+					</a>
+				</li>
+				<li>
+					<a href="/default/welInfo.do?mCode=F030000000&periodCd=14" class="" title="육아 ">
+					<img src="/resources/images/default/main/22/main_infoCat_4.png" alt="">
+					<span>육아</span>
+					</a>
+				</li>
+				<li>
+					<a href="/default/welInfo.do?mCode=F030000000&periodCd=15" class="" title="교육 ">
+					<img src="/resources/images/default/main/22/main_infoCat_5.png" alt="">
+					<span>교육</span>
+					</a>
+				</li>
+				<li>
+					<a href="/default/welInfo.do?mCode=F030000000&periodCd=16" class="" title="실직 ">
+					<img src="/resources/images/default/main/22/main_infoCat_6.png" alt="">
+					<span>실직</span>
+					</a>
+				</li>
+				<li>
+					<a href="/default/welInfo.do?mCode=F030000000&periodCd=17" class="" title="산재 ">
+					<img src="/resources/images/default/main/22/main_infoCat_7.png" alt="">
+					<span>산재</span>
+					</a>
+				</li>
+				<li>
+					<a href="/default/welInfo.do?mCode=F030000000&periodCd=18" class="" title="노후 ">
+					<img src="/resources/images/default/main/22/main_infoCat_8.png" alt="">
+					<span>노후</span>
+					</a>
+				</li>
+				<li>
+					<a href="/default/welInfo.do?mCode=F030000000&periodCd=19" class="" title="창업 ">
+					<img src="/resources/images/default/main/22/main_infoCat_9.png" alt="">
+					<span>창업</span>
+					</a>
+				</li>
+				<li>
+					<a href="/default/welInfo.do?mCode=F030000000&periodCd=20" class="" title="기타 ">
+					<img src="/resources/images/default/main/22/main_infoCat_10.png" alt="">
+					<span>기타</span>
+					</a>
+				</li>
+				</ul>
+
+		</li>
+		<li class=""><a href="#"><span>관심계층별</span></a>
+
+			<ul>
+				<li>
+					<a href="/default/welInfo.do?mCode=F030000000&levelCd=31" class="" title="영세업 ">
+					<img src="/resources/images/default/main/22/main_infoCat_11.png" alt="">
+					<span>영세업</span>
+					</a>
+				</li>
+				<li>
+					<a href="/default/welInfo.do?mCode=F030000000&levelCd=32" class="" title="다문화가정 ">
+					<img src="/resources/images/default/main/22/main_infoCat_12.png" alt="">
+					<span>다문화가정</span>
+					</a>
+				</li>
+				<li>
+					<a href="/default/welInfo.do?mCode=F030000000&levelCd=33" class="" title="저소득">
+					<img src="/resources/images/default/main/22/main_infoCat_13.png" alt="">
+					<span>저소득</span>
+					</a>
+				</li>
+				<li>
+					<a href="/default/welInfo.do?mCode=F030000000&levelCd=34" class="" title="여성 ">
+					<img src="/resources/images/default/main/22/main_infoCat_14.png" alt="">
+					<span>여성</span>
+					</a>
+				</li>
+				<li>
+					<a href="/default/welInfo.do?mCode=F030000000&levelCd=35" class="" title="고령 ">
+					<img src="/resources/images/default/main/22/main_infoCat_15.png" alt="">
+					<span>고령</span>
+					</a>
+				</li>
+				<li>
+					<a href="/default/welInfo.do?mCode=F030000000&levelCd=36" class="" title="장애인 ">
+					<img src="/resources/images/default/main/22/main_infoCat_16.png" alt="">
+					<span>장애인</span>
+					</a>
+				</li>
+				<li>
+					<a href="/default/welInfo.do?mCode=F030000000&levelCd=37" class="" title="체불 ">
+					<img src="/resources/images/default/main/22/main_infoCat_17.png" alt="">
+					<span>체불</span>
+					</a>
+				</li>
+				<li>
+					<a href="/default/welInfo.do?mCode=F030000000&levelCd=38" class="" title="외국인 ">
+					<img src="/resources/images/default/main/22/main_infoCat_18.png" alt="">
+					<span>외국인</span>
+					</a>
+				</li>
+				<li>
+					<a href="/default/welInfo.do?mCode=F030000000&levelCd=39" class="" title="창업 ">
+					<img src="/resources/images/default/main/22/main_infoCat_19.png" alt="">
+					<span>창업</span>
+					</a>
+				</li>
+				<li>
+					<a href="/default/welInfo.do?mCode=F030000000&levelCd=40" class="" title="기타 ">
+					<img src="/resources/images/default/main/22/main_infoCat_10.png" alt="">
+					<span>기타</span>
+					</a>
+				</li>
+				</ul>
+
+		</li>
+		
+	</ul>
+</div>
+		<div class="main_news">
+			<ul>
+				
+				<li>
+					<a href="https://gnews.gg.go.kr/briefing/brief_gongbo_view.do;jsessionid=B7F729F67508987E1EE3B79AB30B1A87.ajp13?BS_CODE=s017&number=71613&period_1=&period_2=&search=0&keyword=&subject_Code=BO01&page=1" target="_blank" title="맞춤복지 뉴스 바로가기(새창열림)">
+					<p>경기도청</p>
+					<p>경기도, 출렁다리·스카이워크 32곳 전수점검 완료…행락철 안전사고 예방 총력</p>
+					<p>2026.10.02</p>
+					</a>
+				</li>
+				
+				<li>
+					<a href="https://gnews.gg.go.kr/briefing/brief_gongbo_view.do;jsessionid=B7F729F67508987E1EE3B79AB30B1A87.ajp13?BS_CODE=s017&number=71612&period_1=&period_2=&search=0&keyword=&subject_Code=BO01&page=1" target="_blank" title="맞춤복지 뉴스 바로가기(새창열림)">
+					<p>경기도청</p>
+					<p>경기도 먹거리광장, ‘제철을 색으로, AI로 상상하다’ 10월 테이스티광장 참여자 모집</p>
+					<p>2026.10.02</p>
+					</a>
+				</li>
+				
+				<li>
+					<a href="https://www.korea.kr/news/policyNewsView.do?newsId=148972878" target="_blank" title="맞춤복지 뉴스 바로가기(새창열림)">
+					<p>정책브리핑</p>
+					<p>자녀에 최대 7000만 원 목돈을…'우리아이 자립펀드' 내년 출시</p>
+					<p>2026.10.01</p>
+					</a>
+				</li>
+				
+				<li>
+					<a href="https://www.korea.kr/news/policyNewsView.do?newsId=148972883" target="_blank" title="맞춤복지 뉴스 바로가기(새창열림)">
+					<p>정책브리핑</p>
+					<p>고속철도 통합 한 달…이용객 11.9% 늘고 교통비 228억 원 줄어</p>
+					<p>2026.10.01</p>
+					</a>
+				</li>
+				
+				<li>
+					<a href="https://www.korea.kr/news/policyNewsView.do?newsId=148972822" target="_blank" title="맞춤복지 뉴스 바로가기(새창열림)">
+					<p>정책브리핑</p>
+					<p>지원은 넓히고 생활은 편리하게…10월부터 달라지는 제도</p>
+					<p>2026.10.01</p>
+					</a>
+				</li>
+				
+			</ul>
+		<div> <!-- main_news -->
+	</div>
+	</div>
+	<div class="custom_go"><a href="/default/welInfo.do?mCode=F040000000" title="맞춤복지 보러가기">맞춤복지 보러가기 <span> ></span></a></div>
+	</div>
+</div>
+<!-- 2022-04-29 -->
+
+<!-- main 12 s -->
+<div id="mainTopWr">
+	<div id="mainTopWrIn">
+	<div id="main12Wr">
+		
+		<div id="main1">		
+			<ul class="tabs">
+				<li class="t01 on">
+				<a href="#x" title="선택됨">공지사항</a>
+				<div>
+				<ul class="list1 mLt">
+					
+					<li>
+					
+					
+					
+					<span class="dt">09.21</span>
+					<a href="/board/bbs.do?op=view&cfgIdx=1&idxId=472408&mCode=G015000000">근로자 휴양콘도 추계 프로모션</a>
+					</li>
+					
+					<li>
+					
+					
+					
+					<span class="dt">09.18</span>
+					<a href="/board/bbs.do?op=view&cfgIdx=1&idxId=472404&mCode=G015000000">2026년 근로자 생활안정자금 융자사업 재개 안내</a>
+					</li>
+					
+					<li>
+					
+					
+					
+					<span class="dt">09.14</span>
+					<a href="/board/bbs.do?op=view&cfgIdx=1&idxId=472398&mCode=G015000000">2026년도 근로복지기금 지원사업 시행안내(하반기 미...</a>
+					</li>
+					
+					<li>
+					
+					
+					
+					<span class="dt">09.07</span>
+					<a href="/board/bbs.do?op=view&cfgIdx=1&idxId=472383&mCode=G015000000">호우피해 특별재난지역 추가 지정 및 우대 적용 알림</a>
+					</li>
+					 
+				</ul>
+				<a href="/board/bbs.do?cfgIdx=1&mCode=G015000000" class="riGo"><img src="/resources/images/default/main/22/main_2_btn_03.png" alt="공지사항 더보기" /></a>
+				</div>
+				</li>
+				<li class="t02">
+				<a href="#x">예술제 공지</a>
+				<div>
+				<ul class="list2 mLt">
+					
+					<li>
+					
+					
+					
+					<span class="dt">09.14</span>
+					<a href="/board/bbs.do?op=view&cfgIdx=51&idxId=472397&mCode=K040010000">[제47회 노동자문학제] 최종 수상자 발표 및 수상집 ...</a>
+					</li>
+					
+					<li>
+					
+					
+					
+					<span class="dt">09.11</span>
+					<a href="/board/bbs.do?op=view&cfgIdx=51&idxId=472391&mCode=K040010000">[제47회 노동자미술제] 수상집 사전 확인 안내</a>
+					</li>
+					
+					<li>
+					
+					
+					
+					<span class="dt">09.11</span>
+					<a href="/board/bbs.do?op=view&cfgIdx=51&idxId=472390&mCode=K040010000">[제47회 노동자미술제] 최종 수상자 발표 및 수상작 ...</a>
+					</li>
+					
+					<li>
+					
+					
+					
+					<span class="dt">09.10</span>
+					<a href="/board/bbs.do?op=view&cfgIdx=51&idxId=472386&mCode=K040010000">[K-POP 댄스챌린지] 최종 수상자 발표</a>
+					</li>
+					 
+				</ul>
+				<a href="/board/bbs.do?cfgIdx=51&mCode=K040010000" class="riGo"><img src="/resources/images/default/main/22/main_2_btn_03.png" alt="예술제공지 더보기" /></a>
+				</div>
+				</li>
+			</ul>		
+		</div>
+		
+		<div id="main2">
+			<div class="btnTab">
+				<span class="title">팝업존</span>
+				<div class="btns">
+					<div id="m02Prev"></div>
+					<div id="m02Stop"><a href="#" onclick="return false;"><span class="hide">정지</span></a></div>
+					<div id="m02Play"><a href="#" onclick="return false;"><span class="hide">재생</span></a></div>
+					<div id="m02Next"></div>
+					
+					<div id="m02List"><a href="#" onclick="showPzList();return false;" onkeypress="showPzList();" class="mores"><img src="/resources/images/default/main/22/main_2_btn_03.png" alt="팝업존 목록" /></a>
+						<div class="pzList">
+						<ul>
+							
+								<li><a href="https://welfare.comwel.or.kr/board/bbs.do?cfgIdx=1&mCode=G015000000&op=view&idxId=472408" target="_self" style="outline-offset:-2px;">근로자 휴양콘도 추계 프로모션</a></li>
+							
+								<li><a href="https://pension.comwel.or.kr/fund/websquare/?w2xPath=/fund/pages/uti/HM00010100.xml" target="_blank" style="outline-offset:-2px;">중소기업퇴직연금기금제도 푸른씨앗</a></li>
+							
+								<li><a href="https://welfare.comwel.or.kr/board/bbs.do?cfgIdx=1&mCode=G015000000&op=view&idxId=472079" target="_self" style="outline-offset:-2px;">2026년 근로자지원프로그램(EAP) 서비스 개시 안내</a></li>
+							
+								<li><a href="https://welfare.comwel.or.kr/board/bbs.do?cfgIdx=1&mCode=G015000000&op=view&idxId=472070" target="_self" style="outline-offset:-2px;">2026년 근로자 생활안정자금 이차보전 융자사업 공고</a></li>
+							
+								<li><a href="https://welfare.comwel.or.kr/board/bbs.do?cfgIdx=1&mCode=G015000000&op=view&idxId=472069" target="_self" style="outline-offset:-2px;">2026년 근로자 생활안정자금 융자사업 공고</a></li>
+							
+						</ul>
+						<p><a href="#" onclick="hidePzList();return false;" onblur="hidePzList();"> 팝업목록닫기 <img src="/resources/images/default/main/main_pz_close.gif" alt="팝업목록 닫기" /></a></p>
+						</div> 
+					</div>
+				
+				</div>
+			</div>
+			<div class="rolling">
+			<ul>
+				
+				<li>
+				<a href="https://welfare.comwel.or.kr/board/bbs.do?cfgIdx=1&mCode=G015000000&op=view&idxId=472408" target="_self" ><img src="/ipr.do?q=9%5E300%5Epopupzone_260921.jpg%5Epopupzone" alt="근로자 휴양콘도 추계 프로모션" width="440" /></a>
+				</li>
+				
+				<li>
+				<a href="https://pension.comwel.or.kr/fund/websquare/?w2xPath=/fund/pages/uti/HM00010100.xml" target="_blank" title="새창열림"><img src="/ipr.do?q=9%5E300%5Epopupzone_260122.jpg%5Epopupzone" alt="국내 유일의 공적 중소기업 퇴직연금기금제도 푸른씨앗
+노사정이 관리하고 키워나가는 기금 푸른씨앗
+수수료는 3년간 0원 국가지원금은 3년간 20% 누적 수익률 24.62%(25년 기준)
+근로복지공단 푸른씨앗 고객센터 1661-0075 중소기업퇴직연금기금제도 검색하세요!
+" width="440" /></a>
+				</li>
+				
+				<li>
+				<a href="https://welfare.comwel.or.kr/board/bbs.do?cfgIdx=1&mCode=G015000000&op=view&idxId=472079" target="_self" ><img src="/ipr.do?q=9%5E300%5Epopupzone_260108.jpg%5Epopupzone" alt="2026년 근로자지원프로그램(EAP) 서비스 개시 안내" width="440" /></a>
+				</li>
+				
+				<li>
+				<a href="https://welfare.comwel.or.kr/board/bbs.do?cfgIdx=1&mCode=G015000000&op=view&idxId=472070" target="_self" ><img src="/ipr.do?q=9%5E300%5Epopupzone_260102_2.jpg%5Epopupzone" alt="2026년 근로자 생활안정자금 이차보전 융자사업 공고" width="440" /></a>
+				</li>
+				
+				<li>
+				<a href="https://welfare.comwel.or.kr/board/bbs.do?cfgIdx=1&mCode=G015000000&op=view&idxId=472069" target="_self" ><img src="/ipr.do?q=9%5E300%5Epopupzone_260102_1%5B1%5D.jpg%5Epopupzone" alt="2026년 근로자 생활안정자금 융자사업 공고" width="440" /></a>
+				</li>
+				
+			</ul>
+			</div>
+		</div><!--//end main2  -->
+	</div><!--//end main12Wr -->
+	</div><!--//end mainTopWrIn -->
+</div>
+<!-- main 12 e -->
+
+<div id="quick">
+	<p class="line">line</p>
+	<ul>
+	<li><a href="/default/art/apply.do?mCode=K020010000" target="_top" ><img src="/ipr.do?q=9%5E300%5Equick1.png%5EmainPos" alt="" /><br /><span>예술제<br>신청하기</span></a></li>
+	<li><a href="https://www.comwel.or.kr/comwel/intr/srch/srch.jsp" target="_blank"  title="새창으로 이동"><img src="/ipr.do?q=9%5E300%5Equick2.png%5EmainPos" alt="" /><br /><span>지사찾기<br>(담당자)</span></a></li>
+	<li><a href="/default/page.do?mCode=F030000000" target="_top" ><img src="/ipr.do?q=9%5E300%5Equick3.png%5EmainPos" alt="" /><br /><span>자격조건<br>알아보기</span></a></li>
+	<li><a href="/board/bbs.do?cfgIdx=19&mCode=F050000000" target="_top" ><img src="/ipr.do?q=9%5E300%5Equick4.png%5EmainPos" alt="" /><br /><span>서식자료<br>마당</span></a></li>
+	<li><a href="https://blog.naver.com/comwel2009" target="_blank"  title="새창으로 이동"><img src="/ipr.do?q=9%5E300%5Equick5.png%5EmainPos" alt="" /><br /><span>공단공식<br>블로그</span></a></li>
+	<li><a href="https://www.comwel.or.kr/comwel/cust/prop/prop.jsp" target="_blank"  title="새창으로 이동"><img src="/ipr.do?q=9%5E300%5Equick6.png%5EmainPos" alt="" /><br /><span>고객의소리</span></a></li>
+	<li><a href="https://welfare.comwel.or.kr/mobile" target="_blank"  title="새창으로 이동"><img src="/ipr.do?q=9%5E300%5Equick7.gif%5EmainPos" alt="" /><br /><span>근로복지<br>모바일</span></a></li>
+	<li class="bot"><a href="#headerWr">맨위로</a></li>
+	</ul>
+</div>
+<div id="footerWr">
+		<div id="footerLink">
+			<a href="/default/page.do?mCode=G030040000">이용약관</a>
+			<a href="/default/page.do?mCode=G030060000">이메일무단수집거부</a>
+			<a href="/default/sitemap.do?mCode=G030020000">사이트맵</a>
+			<a href="/default/page.do?mCode=G060010000">고객서비스헌장</a>
+			<a href="/default/page.do?mCode=G070010000">사이트성과개선</a>
+			<a href="/default/page.do?mCode=G050010000">관련사이트</a>
+			<a onclick="window.open(this.href,'','width=642, height=650, scrollbars=yes'); return false;" title="새창으로 이동" href="https://www.comwel.or.kr/comwel/privacy_detail.jsp" class="lt"><strong>개인정보처리방침</strong></a>
+			<a href="http://www.juso.go.kr" target="_blank" title="새창으로 이동">도로명주소안내</a>
+		</div>
+		<div id="footerCopy">
+			<!--div class="logo">
+			<a href="https://www.comwel.or.kr" target="_blank" title="새창으로 이동"><img src="/resources/images/default/common/com_footer_logo.gif" alt="근로복지공단" /></a>
+			</div-->
+			<div class="copy">
+			<span class="t_01">우:44428 / 울산광역시 중구 종가로 340(교동 153)  근로복지공단 복지사업국</span>
+			<span class="t_02">대표전화 : 1588-0075 &nbsp;&nbsp;&nbsp; 융자,콘도 전산문의 : 1522-5599</span><br />
+			<span class="t_03">Copyright(c) 2019 COMWEL. All Rights Reserved.</span>
+			</div>
+			<div class="rights">
+			<!--a href="/portal/wd/WAQC-160849.pdf" target="_blank" title="새창으로 이동"><img src="/resources/images/default/common/22/wa_mark.jpg" alt="웹접근성 인증" /></a-->
+			<a href="https://www.kogl.or.kr" target="_blank" class="kogl" title="새창열림"><img src="/resources/images/default/common/22/com_open.22.png" alt="OPEN 공공누리 공공저작물 자유이용허락" /></a>
+			<a href="/mobile/index.do" target="_blank" class="qr" title="새창으로 이동">
+			<img src="/resources/images/default/common/22/com_qr.22.png" width="54" alt="" />
+			<span>QR코드를 통한<br />근로복지넷<br />모바일 바로가기 &gt; </span>
+			</a>
+			</div>
+		</div>
+	</div>
+</div>
+
+<!-- AceCounter Log Gathering Script V.7.5.2013010701 
+<script language='javascript'>
+	var _AceGID=(function(){var Inf=['gtp15.acecounter.com','8080','AH5A40440265734','AW','0','NaPm,Ncisy','ALL','0']; var _CI=(!_AceGID)?[]:_AceGID.val;var _N=0;var _T=new Image(0,0);if(_CI.join('.').indexOf(Inf[3])<0){ _T.src =( location.protocol=="https:"?"https://"+Inf[0]:"http://"+Inf[0]+":"+Inf[1]) +'/?cookie'; _CI.push(Inf);  _N=_CI.length; } return {o: _N,val:_CI}; })();
+	var _AceCounter=(function(){var G=_AceGID;if(G.o!=0){var _A=G.val[G.o-1];var _G=( _A[0]).substr(0,_A[0].indexOf('.'));var _C=(_A[7]!='0')?(_A[2]):_A[3];	var _U=( _A[5]).replace(/\,/g,'_');var _S=((['<scr','ipt','type="text/javascr','ipt"></scr','ipt>']).join('')).replace('tt','t src="'+location.protocol+ '//cr.acecounter.com/Web/AceCounter_'+_C+'.js?gc='+_A[2]+'&py='+_A[4]+'&gd='+_G+'&gp='+_A[1]+'&up='+_U+'&rd='+(new Date().getTime())+'" t');document.writeln(_S); return _S;} })();
+</script>
+<noscript><img src='http://gtp15.acecounter.com:8080/?uid=AH5A40440265734&je=n&' border='0' width='0' height='0' alt=''></noscript>	
+AceCounter Log Gathering Script End --> 
+</body>
+</html>

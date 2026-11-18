@@ -1,0 +1,3656 @@
+/**
+ * 장학재단 홈페이지 스크립트
+ * 
+**/
+
+var obj = new Object();
+
+var menuImg = "";
+var menusub = "";
+var imgUrl = "https://static.kosaf.go.kr/www/images"
+var currentPage = 0;
+	
+/**
+ * JQUERY 확장 함수 구현
+ * comment : alert 창을 띄운후 해당 객체에 포커싱 된다.
+ * 사용법 : $(name).alert(메시지);
+ * date : 2011. 6
+ * msg : 메시지 
+ */
+$.fn.alert = function(msg)
+{
+	this.msg = "서비스 오류입니다.";
+	if(typeof(msg) != "undefined" && msg != null && msg.length > 0) this.msg = msg;
+	alert(msg);
+	$(this).focus();
+}
+/**
+ * php nl2br 구현
+ */
+$.nl2br = function(s)
+{
+	var str = "";
+	str = s.replace(/\r\n\r\n/g, "<br />");
+	str = s.replace(/\r\n/g, "<br />");
+	str = s.replace(/\r/g, "<br />");
+	str = s.replace(/\n/g, "<br />");
+
+	return str;
+}
+
+$(function(){
+	try {
+		if($("body#main").length > 0 || $("body#smartzoneMain").length > 0) {//메인예외처리
+			return false;
+		}
+		
+		// 웹접근성 관련 폰트조절 스크립트 수정
+		if ($(".sns").length > 0){
+			//var pfs = $(".pfs")[0];
+			//$(pfs).css("display", "block");
+			//var visual = $("#visual")[0];
+			//$(visual).append(pfs);
+			// 폰트 확대, 축소
+			$("*").each(function(){
+				if(!$(this).is("select") && !$(this).is(".header_layout a") && !$(this).is(".header_layout li") && !$(this).is(".header_layout ul") && !$(this).is(".header_layout dd") 
+					&& !$(this).is(".header_layout dt") && !$(this).is(".header_layout div") && !$(this).is(".header_layout") && !$(this).is("#header")
+					&& !$(this).is("html") && !$(this).is("body") && !$(this).is("body div")){
+					
+					var fontSize = $(this).css("font-size");
+					var size="";
+					size = String(fontSize).replace("em", ",em");
+					size = String(size).replace("px", ",px");
+					
+					var subsize = size.split(",");
+					var fs = parseInt(subsize[0]);
+					
+					$(this).attr("sizetype", subsize[1]);
+					$(this).attr("defaultsize", fs);
+					$(this).attr("currentsize", fs);
+				}
+			});
+			
+			$(".fontUp").click(function(){
+				$("*").each(function(){
+					if(!$(this).is("select") && !$(this).is(".header_layout a") && !$(this).is(".header_layout li") && !$(this).is(".header_layout ul") && !$(this).is(".header_layout dd") 
+					&& !$(this).is(".header_layout dt") && !$(this).is(".header_layout div") && !$(this).is(".header_layout") && !$(this).is("#header")
+					&& !$(this).is("html") && !$(this).is("body") && !$(this).is("body div")){
+						var currentsize = $(this).attr("currentsize");
+						var defaultsize = $(this).attr("defaultsize");
+						var sizetype = $(this).attr("sizetype");
+						var s = parseInt(currentsize);
+						s += 1;
+						$(this).css("font-size", s + sizetype);			
+						$(this).attr("currentsize", s);
+					}
+				});
+				return false;
+			});
+			
+			$(".fontDown").click(function(){
+				$("*").each(function(){
+					if(!$(this).is("select") && !$(this).is(".header_layout a") && !$(this).is(".header_layout li") && !$(this).is(".header_layout ul") && !$(this).is(".header_layout dd") 
+					&& !$(this).is(".header_layout dt") && !$(this).is(".header_layout div") && !$(this).is(".header_layout") && !$(this).is("#header")
+					&& !$(this).is("html") && !$(this).is("body") && !$(this).is("body div")){
+						var currentsize = $(this).attr("currentsize");
+						var defaultsize = $(this).attr("defaultsize");
+						var sizetype = $(this).attr("sizetype");
+						var s = parseInt(currentsize);
+						s -= 1;
+						if( s < defaultsize )
+							s = defaultsize;
+						
+						$(this).css("font-size", s + sizetype);			
+						$(this).attr("currentsize", s);
+					}
+				});
+				return false;
+			});
+			// //웹접근성 관련 폰트조절 스크립트 수정
+		}
+	} catch (e) {
+
+	}
+	
+	// 웹 접근성 - tab 선택됨 항목 처리
+	try{
+		//console.log("tab처리");
+		$("div.con_tab2>ul[class^=tab]>li").each(function(idx,el){
+			if($(el).hasClass("on")){
+				var title = $(el).attr("title");
+				if(title && $.trim(title).length > 1){
+					if(title.indexOf("(선택됨)") < 0){
+						$(el).attr("title",title+"(선택됨)");
+					}
+				}else{				
+					var subEl = $(el).find("a");				
+					if(!subEl || subEl.length < 1){
+						subEl = el;
+					}					
+					if($(subEl).attr("title")){
+						var title = $(subEl).attr("title");	
+						if(title.length >1 && title.indexOf("(선택됨)") < 0){
+							$(subEl).attr("title",title+"(선택됨)");
+						}
+					}
+				}
+			}
+		});
+	}catch(e){
+		
+	}
+	
+	try{
+		$("div.con_tabitem").find("a.on").each(	
+				function(idx,el){
+					var title = $(el).attr("title"); 
+					if(title.length >1 && title.indexOf("(선택됨)") < 0){
+						$(el).attr("title",title+"(선택됨)");
+					}
+				}
+			);
+	}catch(e){}
+
+
+	
+	
+	// 메뉴 안에서는 on 되도록 구현.. 외부 off 구현..
+	$("body").mouseover(function(event){
+		var on = $(this).attr("menu-on");
+		if(typeof(on) == "undefined" || on == null || on == false){
+		}else{
+			// 메뉴 히든
+			var i = event.target.id;
+			
+			$target = $(event.target);
+			
+			try{
+				var j = $target.parent().parent().parent().attr("id");
+				var k = $target.parent().attr("id");
+				
+				if(i.indexOf("m_i_") < 0 && i.indexOf("m_st0") < 0 && j.indexOf("m_st0") < 0 && k.indexOf("m_st0") < 0){
+					obj.$subMenu.slideUp(150);
+					if(obj.$parentMenu.parent().attr("alt") != "on") obj.$parentMenu.attr("src", obj.$parentMenu.attr("src").replace("_on", "_off"));
+					$("body").attr("menu-on", false);
+				}
+			}catch(e){
+				obj.$subMenu.slideUp(150);
+				if(obj.$parentMenu.parent().attr("alt") != "on") obj.$parentMenu.attr("src", obj.$parentMenu.attr("src").replace("_on", "_off"));
+				$("body").attr("menu-on", false);
+			}				
+		}
+	});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	// 스티커 메뉴 over out
+	$(".sticket").hover(function(){
+		// 우선 bg0 클래스 삭제..
+		$sticket = $("ul#sticket");
+		$sticket.removeClass("bg01");
+		$sticket.removeClass("bg02");
+		$sticket.removeClass("bg03");
+		var i = $(this).parent().index() + 1;
+		// 각 top 클래스 추가
+		$sticket.addClass("bg0" + i);
+				
+		// 메뉴 이미지 변경
+		$(".sticket").each(function(){
+			$(this).children().each(function(){
+				$(this).attr("src", $(this).attr("src").replace("_on", "_off"));
+				return false;
+			});
+		});
+		// 메뉴 on 교체
+		$(this).children().each(function(){
+			$(this).attr("src", $(this).attr("src").replace("_off", "_on"));
+			return false;
+		});
+		obj.parentNo = i;
+	}, function(){
+		var i = $(this).parent().index() + 1;
+		// 다른 메뉴에서 교체돼었다면 off 로
+		if(obj.parentNo != i){
+			$(this).children().each(function(){
+				$(this).attr("src", $(this).attr("src").replace("_on", "_off"));
+				return false;
+			});
+		}
+	});
+	
+	// 각 이미지 메뉴 on/off 통합 처리
+	$(".rollover").hover(function(){
+		$this = $(this);
+		return false;//gnb 막기 차후 삭제
+		$this.attr("src", $this.attr("src").replace("_off", "_on"));
+		
+		// 대메뉴 오버..
+		if($this.parent().parent().parent().attr("id") == "gnb"){
+			// 현재꺼는 down
+			$("#m_st0" + $this.attr("alt")).slideDown(80);
+		
+			// 서브메뉴 이미지 저장..
+			$("body").attr("menu-on", true);
+
+			// 자기 자신한테 다시 오버하는거라면 무시..
+			if(typeof(obj.$parentMenu) != "undefined"){
+				if(obj.$parentMenu.attr("id") != $this.attr("id")){
+					// 이전 메뉴는 up
+					if(typeof(obj.$subMenu) != "undefined") obj.$subMenu.slideUp(150);
+					// 이전 메뉴 off
+					if(obj.$parentMenu.parent().attr("alt") != "on") obj.$parentMenu.attr("src", obj.$parentMenu.attr("src").replace("_on", "_off"));
+				}
+			}
+			// 현재 over 된 메뉴 셋팅 
+			obj.$parentMenu = $this;
+			obj.$subMenu = $("#m_st0" + $this.attr("alt"));
+		}
+	}, function(){
+		$this = $(this);
+		if($this.parent().parent().parent().attr("id") != "gnb"){
+			if($this.parent().attr("alt") != "on") $this.attr("src", $this.attr("src").replace("_on", "_off"));
+		}
+	});
+
+	if(menuImg != "" && typeof(menuImg) != "undefined") obj.$parentMenu = $("#" + menuImg);	// onoff 되는 li
+	if(menusub != "" && typeof(menusub) != "undefined") obj.$subMenu = $("#" + menusub);	// display 되는 ul
+	
+	// 왼쪽 메뉴 동적 처리
+	$(".left_layer").click(function(){
+		$this = $(this);
+		$("#" + $this.attr("alt")).slideDown("slow").next().slideUp("fast");
+	});
+	
+	// 레이어 팝업 관련 버튼
+	$(".selfHide").click(function(){
+		//$(".notice_layer").hide("170");
+		$("#mask").fadeOut(1000);
+		$(".notice_layer").fadeOut(1000);
+		// 내용물 정리.		
+		return false;
+	});
+	// 레이어 팝업 공지부분
+	$(".layer_bbs").click(function(){	
+		
+		var maskHeight = $(document).height(); 
+		$('#mask').css({
+			width : "100%",
+			height : maskHeight,
+			background : "#000000"
+		}); 
+//		$("#mask").show("fast");
+		$("#mask").fadeTo("fast", 0.8);
+		$("#mask").fadeIn(1000);
+		
+		
+		// 내용
+		$("#layer_date").html($("#n_d_" + $(this).children().first().attr("id")).html());
+		//$("#layer_date").html($("#n_d_" + $(this).children().first().attr("id")));
+		$("#layer_memo").html($.nl2br($(this).children().first().attr("value")));
+		$("#layer_title").html($(this).html());
+		
+		$layer = $(".notice_layer");
+		var winH = $(document).height();
+		var winW = $(document).width(); 
+		$layer.css('top',  winH / 2 - $layer.height() / 2);  
+		$layer.css('left', winW / 2 - $layer.width() / 2); 
+		$layer.show();
+		$layer.attr("tabindex",0).focus();
+		
+		return false;
+	});
+	
+	
+	// 컨텐츠 페이지(상품) 에서 줄이기 더보기 버튼 2개가 있는 유형의 slide 이펙트 함수
+	/*
+	 * <h3 id="smenu07" >미등록 충원 및 추가 모집 합격(신입생군) <span><a href="#"><img src="/images/fund/btn/btn_slim.gif" alt="대미등록 충원 및 추가 모집 합격 내용 간력보기" /></a> <a href="#"><img src="/images/fund/btn/btn_more.gif" alt="미등록 충원 및 추가 모집 합격 내용 더보기" /></a></span></h3>
+	 * <div class="hidden_detail"> <!-- hidden_detail : 3줄만 보이게 함. show_detail : 전체가 보임 -->
+	 * 이런 구조..
+	 */
+
+	// 레이어 숨기기
+	$(".layerUp").click(function(){
+		$this = $(this);
+		$target = $this.parent().parent().parent().next().eq(0);
+		
+		$target.animate({
+			height: "57px"
+			}, {
+			queue: false,
+			duration : "500"
+			}, function(){
+				;
+		 });
+		$target.find("table").hide();
+		
+		return false;
+	});
+	// 레이어 더보기
+	$(".layerDown").click(function(){
+		$this = $(this);
+		$target = $this.parent().parent().parent().next().eq(0);
+		/*
+		$target.css({
+			"height" : "100%",
+			"overflow" : "block"
+		});
+		*/
+		$target.animate({
+			height : $target.attr("max-height")
+			}, {
+			queue: false,
+			duration : "500"
+			}, function(){
+				;
+		});
+		
+		$target.find("table").show();
+		return false;
+	});
+	
+	// 레이어 숨김 클래스 있는 애들 미리 줄이기
+	$(".layerUp").each(function(){
+		$this = $(this);
+		
+		$h3 = $this.parent().parent();
+		$target = $h3.next().eq(0);
+		var h = $target.attr("max-height");
+		if(typeof(h) == "undefined" || h == "" || h == null) $target.attr("max-height", $target.height()+10);
+		
+		$h3.wrap("<div class='tmp_h' style='display:inline;' />");
+		
+		$target.css({
+			"height" : "57px",
+			"overflow" : "hidden",
+			"display" : "inlnie-block"
+		});
+		
+		$target.find("table").hide();
+	});
+});
+
+/**
+ * 개인화 애니메이션 효과 show / hide
+ * @param uid
+ * @return
+ */
+function layer_ani(uid, show){
+	if(show){
+		if($(uid).parent().css("zIndex") == "1000") $(uid).parent().css("zIndex", "-1");
+		else $(uid).parent().css("zIndex", "1000");
+		
+		$(uid).toggle();
+	}else{
+		$(uid).parent().css("zIndex", "-1");
+		$(uid).hide();
+	}
+}
+
+function layer_notice(){
+	
+}
+
+//Check Number //
+function isNO(inputname)
+{
+	var formstr=eval(inputname);
+	for(var i=0;i<formstr.value.length;i++)
+	{
+		var chr=formstr.value.substr(i,1);
+		if(chr<'0'||chr>'9')
+		{
+			return false;
+		}
+	}
+	return true;
+}
+
+
+//Check Amount or Code //
+function isNumber(inputname)
+{
+	var formstr=eval(inputname);
+	for(var i=0;i<formstr.value.length;i++)
+	{
+		var chr=formstr.value.substr(i,1);
+		if((chr<'0'||chr>'9') && chr!='-' && chr!='_')
+		{
+			return false;
+		}
+	}
+	return true;
+}
+
+// Check ID or Password //
+function isCode(inputname)
+{
+	var formstr=eval(inputname);
+	for(var i=0;i<formstr.value.length;i++)
+	{
+		var chr=formstr.value.substr(i,1);
+		if((chr<'0'||chr>'9') && (chr<'a'||chr>'z') && (chr<'A'||chr>'Z') && chr!='-' && chr!='_' && chr!='.')
+		{
+			return false;
+		}
+	}
+	return true;
+}
+
+// Check Korean //
+function isKorean(inputname)
+{
+	var retCode=0;
+	for(var i=0;i<inputname.value.length;i++)
+	{
+		var retCode=inputname.value.charCodeAt(i);
+		var retChar=inputname.value.substr(i,1).toUpperCase();
+		retCode=parseInt(retCode);
+		if((retChar<'0'||retChar>'9')&&(retChar<'A'||retChar>'Z')&&(retCode>255||retCode<0))
+		{
+			return false;
+		}
+	}
+	return true;
+}
+
+// Check Email //
+function isEmail(inputname)
+{
+	for(var l=0;l<=(inputname.value.length-1);l++)
+	{
+		if(inputname.value.indexOf(' ')>=0)
+		{
+			inputname.select();
+			return false;
+		}
+	}
+	if((inputname.value.indexOf('/'))!=-1 || (inputname.value.indexOf(';'))!=-1)
+	{
+		inputname.select();
+		return false;
+	}
+	if((inputname.value.length!=0)&&(inputname.value.search(/(\S+)@(\S+)\.(\S+)/)==-1))
+	{
+		inputname.select();
+		return false;
+	}
+	if(!isKorean(inputname))
+	{
+		inputname.select();
+		return false;
+	}
+	return true;
+}
+
+// Check Email //
+function isEmail2(val)
+{
+	if( val == 'undefined' ) return false;
+	for(var l=0;l<=(val.length-1);l++)
+	{
+		if(val.indexOf(' ')>=0)
+		{
+			return false;
+		}
+	}
+	if((val.indexOf('/'))!=-1 || (val.indexOf(';'))!=-1)
+	{
+		return false;
+	}
+	if((val.length!=0)&&(val.search(/(\S+)@(\S+)\.(\S+)/)==-1))
+	{
+		return false;
+	}
+	return true;
+}
+
+// Check Jumin //
+function isIDNO(inputname1,inputname2)
+{
+	var chk=0
+	var yy=inputname1.value.substring(0,2)
+	var mm=inputname1.value.substring(2,4)
+	var dd=inputname1.value.substring(4,6)
+	var sex=inputname2.value.substring(0,1)
+	if((inputname1.value.length!=6)||(yy<25||mm<1||mm>12||dd<1))
+	{
+		inputname1.select();
+		return false;
+	}
+	if((sex!=1&&sex!=2)||(inputname2.value.length!=7))
+	{
+		inputname2.select();
+		return false;
+	}
+	for(var i=0;i<=5;i++)
+	{
+		chk=chk+((i%8+2)*parseInt(inputname1.value.substring(i,i+1)))
+	}
+	for(var i=6;i<=11;i++)
+	{
+		chk=chk+((i%8+2)*parseInt(inputname2.value.substring(i-6,i-5)))
+	}
+	chk=11-(chk %11)
+	chk=chk%10
+	if(chk!=inputname2.value.substring(6,7))
+	{
+		inputname2.select();
+		return false;
+	}
+	return true;
+}
+
+// Check Text Size //
+function isLength(inputname)
+{
+	var t;
+	var msglen;
+	msglen=0;
+	l=inputname.value.length;
+	for(i=0;i<l;i++)
+	{
+		t=inputname.value.charAt(i);
+		if(escape(t).length>4) msglen+=2;
+		else msglen++;
+	}
+	return msglen;
+}
+
+//// Check Items - start ////
+
+
+//// Check Elements - start ////
+
+// Check Need Text Value //
+function chkNeedTxt(inputname,item)
+{
+	if(inputname)
+	{
+		if(!inputname.value)
+		{
+			alert(printf(LANG[2],item));
+			inputname.focus();
+			inputname.select();
+			return false;
+		}
+	}
+	return true;
+}
+
+// Check Need Select Value //
+function chkNeedSlt(inputname,item)
+{
+	if(inputname)
+	{
+		if(!inputname.value)
+		{
+			alert(printf(LANG[1],item));
+			inputname.focus();
+			return false;
+		}
+	}
+	return true;
+}
+
+// Check Need Radio Value //
+function chkNeedRdi(inputname,item)
+{
+	if(inputname)
+	{
+		for(i=0;i<inputname.length;i++)
+		{
+			if(inputname[i].checked==true)
+			{
+				var tmp=1;
+			}
+		}
+		if(!tmp)
+		{
+			alert(printf(LANG[1],item));
+			return false;
+		}
+	}
+	return true;
+}
+
+
+// Confirm Number //
+function chkNO(inputname,item)
+{
+	if(inputname)
+	{
+		if(!isNO(inputname))
+		{
+			alert(printf(LANG[3],item));
+			inputname.focus();
+			inputname.select();
+			return false;
+		}
+	}
+	return true;
+}
+
+// Confirm Amount //
+function chkAmount(inputname,item)
+{
+	if(inputname)
+	{
+		if(!isAmount(inputname))
+		{
+			alert(printf(LANG[5],item));
+			inputname.focus();
+			inputname.select();
+			return false;
+		}
+	}
+	return true;
+}
+
+// Confirm Amount or Code //
+function chkNumber(inputname,item)
+{
+	if(inputname)
+	{
+		if(!isNumber(inputname))
+		{
+			alert(printf(LANG[3],item));
+			inputname.focus();
+			inputname.select();
+			return false;
+		}
+	}
+	return true;
+}
+
+// Confirm ID or Password //
+function chkCode(inputname,item)
+{
+	//if(inputname)
+	//{
+		if(!isCode(inputname))
+		{
+			alert(printf(LANG[5],item));
+			inputname.focus();
+			inputname.select();
+			return false;
+		}
+	//}
+	return true;
+}
+
+// Confirm Korean //
+function chkKorean(inputname,item)
+{
+	if(inputname)
+	{
+		if(!isKorean(inputname))
+		{
+			alert(printf(LANG[5],item));
+			inputname.focus();
+			inputname.select();
+			return false;
+		}
+	}
+	return true;
+}
+
+// Confirm Email //
+function chkEmail(inputname,item)
+{
+	if(inputname)
+	{
+		if(!isEmail(inputname))
+		{
+			alert(printf(LANG[4],item));
+			inputname.focus();
+			inputname.select();
+			return false;
+		}
+	}
+	return true;
+}
+
+// Confirm Text Size //
+function chkLength(inputname,length,item)
+{
+	if(inputname)
+	{
+		var len=isLength(inputname);
+		if(len>length)
+		{
+			alert(printf(LANG[6],item,len,length));
+			inputname.focus();
+			inputname.select();
+			return false;
+		}
+	}
+	return true;
+}
+
+//// Check Elements - start ////
+
+//Popup Windows A //
+function popWinA(url,name,wid,hei)
+{
+	option='top=0,left=0,width='+wid+',height='+hei+',scrollbars=1,resizable=1';
+	newwindow = window.open(url,name,option);
+	newwindow.focus();
+}
+
+// Popup Windows B //
+function popWinB(url,name,wid,hei)
+{
+	option='top=0,left=0,width='+wid+',height='+hei+',scrollbars=1,resizable=1,toolbars=1';
+	newwindow = window.open(url,name,option);
+	newwindow.focus();
+}
+
+// Popup Windows C //
+function popWinC(url,name,WinWidth,WinHeight,option)
+{
+	var x = screen.width / 2 - WinWidth / 2;
+	var y = screen.height / 2 - WinHeight / 2;
+	option = option + ',width=' + WinWidth + ',height=' + WinHeight + ',left=' + x + ',top=' + y;
+	newwindow = window.open(url,name,option);
+	newwindow.focus();
+}
+
+// View Text Value Length //
+function viewLength(inputname,bytesname)
+{
+	var t;
+	var msglen;
+	msglen=0;
+	l=inputname.value.length;
+	for(i=0;i<l;i++)
+	{
+		t=inputname.value.charAt(i);
+		if(escape(t).length>4) msglen+=2;
+		else msglen++;
+	}
+	bytesname.value=msglen; 
+}
+
+//Resize Textarea //
+function resizeTarea(inputname,def,size)
+{
+	if(size=='reset')
+	{
+		inputname.rows=def;
+	}
+	else
+	{
+		var value=inputname.rows+size;
+		if(value>0)
+		{
+			inputname.rows=value
+		}
+		else
+		{
+			return;
+		}
+	}
+}
+
+// Check All Checkbox or Uncheck //
+function checkInv(formname,chkname)
+{
+	for(i=0;i<formname.elements.length;i++)
+	{
+		var formstr=formname.elements[i];
+		if(formstr.name==chkname)
+		{
+			formstr.checked=!formstr.checked;
+		}
+	}
+}
+
+// Check All Checkbox //
+function checkAll(formname,chkname)
+{
+	for(i=0;i<formname.elements.length;i++)
+	{
+		var formstr=formname.elements[i];
+		if(formstr.name==chkname)
+		{
+			formstr.checked=true;
+		}
+	}
+}
+
+//Set Cookie //
+function setCookie(name,value,expires)
+{
+	document.cookie=name+'='+escape(value)+"; path=/;";
+	if(expires)
+	{
+		document.cookie+=' expires='+expires.toGMTString()+';';
+	}
+	//if(secure) document.cookie+=' secure;';
+}
+
+// Check Cookie //
+function getCookie(name)
+{
+	var cname=name+'=';
+	if(document.cookie.length>0)
+	{
+		begin=document.cookie.indexOf(cname);
+		if(begin!=-1)
+		{
+			begin+=cname.length;
+			var end=document.cookie.indexOf(';',begin);
+			if(end==-1)
+			{
+				end=document.cookie.length;
+			}
+			return unescape(document.cookie.substring(begin,end));
+		}
+	}
+	return;
+}
+
+function saveCookie(form)
+{
+	var expdate = new Date();
+	// 기본적으로 30일동안 기억하게 함. 일수를 조절하려면 * 30에서 숫자를 조절하면 됨
+	if (form.checksave.checked)
+	{
+		expdate.setTime(expdate.getTime() + 1000 * 3600 * 24 * 30); // 30일
+		setCookie('save_manage_navi', 'none', expdate);
+	}
+	else
+	{
+		expdate.setTime(expdate.getTime() - 1); // 쿠키 삭제조건
+		setCookie('save_manage_navi', '', expdate);
+	}
+}
+
+// Move Focus //
+function nextFocus(inputname1,inputname2,len)
+{
+	if(inputname1.value.length>=len)
+	{
+		inputname2.focus();
+	}
+}
+
+// Pass Selected //
+function passbySlt(inputname)
+{
+	if(inputname.options[inputname.selectedIndex].value)
+	{
+		location=inputname.options[inputname.selectedIndex].value;
+	}
+}
+
+
+//open modal window
+function openModal(obj, file_name, width, height)
+{
+	height=height+20;
+	var rand = Math.random() * 4;
+	window.showModalDialog(file_name + '?rand=' + rand, obj, 'dialogWidth=' + width + 'px;dialogHeight=' + height + 'px;resizable=0;status=0;scroll=0;help=0');
+}
+
+//Preview Image //
+function previewImage(preview_id, obj)
+{
+	if( document.images[preview_id] && obj.value.match( /(.jpg|.jpeg|.gif|.png|.bmp|.JPG|.GIF|.PNG|.JPEG|.BMP)/) )
+	{
+		document.images[preview_id].src = obj.value;
+		document.images[preview_id].style.display = '';
+	}
+	
+	var obj_ = eval( "document.getElementById('" + preview_id + "_')" );
+	if( obj_ == null ) return;
+	obj_.value = obj.value;
+}
+
+function previewImage_width(obj,width_id,height_id)
+{
+	var imgobj = new Image();
+	imgobj.src = obj.value;
+	if( obj && obj.value.match( /(.jpg|.jpeg|.gif|.png|.bmp|.JPG|.GIF|.PNG|.JPEG|.BMP)/) )
+	{
+		document.getElementById(width_id).value = imgobj.width;
+		document.getElementById(height_id).value = imgobj.height;
+	}
+}
+
+function previewImageDir(preview_id,dir)
+{
+	if( document.images[preview_id] && dir.match( /(.jpg|.jpeg|.gif|.png|.bmp|.JPG|.GIF|.PNG|.JPEG|.BMP)/) )
+	{
+		document.images[preview_id].src = dir;
+		document.images[preview_id].style.display = '';
+	}
+}
+
+function inputImageDir(preview_id,dir)
+{
+	if(document.getElementById(preview_id)) document.getElementById(preview_id).value = dir;
+}
+
+//Lets use ltrim, rtrim, trim about all variable use 
+String.prototype.ltrim=new Function("return this.replace(/^\\s+/,'')")
+String.prototype.rtrim=new Function("return this.replace(/\\s+$/,'')")
+String.prototype.trim= new Function("return this.replace(/^\\s+|┕|\\s+$/g,'')")	
+
+//use tab key at textarea box element
+function useTab(el)
+{
+	if( event.keyCode == 9 )
+	{
+		( el.selection = document.selection.createRange() ).text = "\t";
+		event.returnValue = false;
+	}
+}
+
+
+//input only number
+function onlyNum()
+{
+	if( event.keyCode == 13 ) return true;
+	if( event.keyCode < 48 || event.keyCode > 57 )
+	{
+		event.returnValue = false;
+	}
+}
+
+// input only number
+function onlyFloat()
+{
+	if( event.keyCode < 48 || event.keyCode > 57 )
+	{
+		if( event.keyCode != 46 )
+		event.returnValue = false;
+	}
+}
+
+// cant input hangul
+function checkHangul(obj)
+{
+	for(var i = 0; i < obj.value.length; i++)
+	{ 
+		var a = obj.value.charCodeAt(i);
+		if(a > 128)
+		{
+			alert( printf(LANG[52]) );
+			obj.value = '';
+			obj.focus();
+			return; 
+		} 
+	} 
+}
+
+
+function fn_sso(strRef){
+	var url = "/ssoext/sso_gateway.jsp?ref="+strRef;
+	var popName = strRef;
+	if(strRef.indexOf("STLOAN") > -1) popName = "STLOAN";
+	if(strRef.indexOf("SCHOLAR") > -1) popName = "SCHOLAR";
+	if(strRef.indexOf("SCHOLARSHIP") > -1) popName = "SCHOLARSHIP";
+
+	var childPop = window.open(url, popName);
+	childPop.focus();
+}
+
+function fn_sso_link(strRef){
+	var url = "/ssoext/sso_gateway.jsp?ref="+strRef;
+	location.href=url;	
+}
+
+var _uAgent = navigator.userAgent.toLowerCase();
+var _mobilePhones = new Array('iphone','ipod','ipad','android','blackberry','windows ce','windows mobile','nokia','webos','opera mini','sonyericsson','opera mobi','iemobile');
+var _isMobileDevice=function(){
+	for (var i = 0; i < _mobilePhones.length; i++){
+		if( _uAgent.indexOf(_mobilePhones[i]) != -1){
+			return true
+		}
+	}
+	return false
+}
+
+
+function fn_portal_link(bsnId, strRef){
+
+	var _isMobile = _isMobileDevice();
+    
+    if(_isMobile && bsnId != "JC"){
+        //alert("모바일환경에서는 지원되지 않습니다. PC환경에서 이용해주세요.");
+        alert("모바일 앱을 이용하세요.(https://mo.kosaf.go.kr/apps)\n\n- 서비스이용자 등록 및 마이페이지 정보 확인 \n- 국가장학금, 국가근로장학금 등 다양한 장학금 신청 및 현황 확인\n- 학자금대출 신청, 실행, 상환, 채무자신고, 기부하기 등 ");
+        location.href = "https://mo.kosaf.go.kr/apps";
+        //document.location.replace("/ko/main.do");
+
+    }else{	
+		var url = "/ssoext/portal_gateway.jsp?bsnId="+bsnId+"&ref="+strRef;
+		location.href=url;
+    }
+}
+
+
+
+/**
+ * AnnId 로그인 후 포탈페이지로 이동 
+ * */
+function fn_portal_linkNavi_anyId(bsnId, strRef, strHmNavi){
+	var endPoint = bsnId+"/"+strRef+"/"+strHmNavi; 
+	anyidAdaptor.ssoLoginPage(endPoint,"2");
+}
+
+
+/* 홈페이지 네비게이션을 포탈로 전달 기능 추가 by shjeon poizn 20160701 */
+
+
+function fn_portal_linkNavi(bsnId, strRef, strHmNavi){
+	var _isMobile = _isMobileDevice();
+	var url = "/ssoext/portal_gateway.jsp?bsnId="+bsnId+"&ref="+strRef+"&hmNavi="+strHmNavi;
+	
+	//모바일
+	if(_isMobile){
+		if(strRef == "PTJHOutcVlutStdt_01M"){
+			alert("[근로기관 평가] PC 버전 홈페이지 접속을 통해 진행 하셔야 합니다.");
+			return;
+
+		// 대출 : 반응형 미오픈
+		}else if(bsnId == "HD"){			
+			
+			// /homepage/WebContent/js/n_skin/common/ko.common.js 파일과 동기화
+			location.href=url;
+			return false;
+		
+		// 그 외
+		}else{
+			// 반응형 미적용 : 장학
+			var excJh = ["PTJHLbrCyberOtMngt_01M", "PTJHBsnPlMngt_01M", "PTJHSafeEduCpte_01M", /*"PTJH_SCRSAPLY",*/ "PTJHScrsRcnCmphCrst_01M", "PTJHDutyEnbsnRpt_01M", "PTJHDutyEnbsnGrcBkd_01M", "PTJHDutyEnbsnGrcAply_01M", "PTJHCpnAplyRgst_01M", "PTJHRqmReCfmMngt_01M", "PTJHDutyHloChngRpt_01M", "PTJHDutyHloBkd_01M", "PTJHWkgtHloRgstMngtList_01M", "PTJHWkgtCmphCrst_01M", "PTJHWkgDutyEnbsnGrcBkd_01M", "PTJHWkgDutyEnbsnGrcMngt_01M", "PTJHWkgtAbdmAply_01M", "PTJHWkgtCondChgAply_01M1009", "PTJHScrsAply_0401M", "PTJH_SCRSAPLY3", "PTJHScrsAply_0402M", "PTJHScrsAply_09M", "PTJHDutyEnbsnBkd_01M", "PTJHDutyEnbsnChngRpt_04M", "PTJHDutyEnbsnCpltRpt_01M", "PTJHRcnAgre_01M", "PTJHCondChgAply_01M", "PTJHRcnGrcBkd_01M", "PTJHRcnGrcAply_01M", "PTJHPgrsRprtMngt_01M", "PTJHScrsPrcgCrst_01M" ];
+			// 반응형 미적용 : 인재
+			var excMk = ["PTJHMtcScdMngt_01M" ,"PTJHMtcBsnPlMngt_01M" ,"PTJHMtcWothMngt_01M" ,"PTJHMtcOutcVlutStdt_01M" ,"PTJHScrsCtfcIsuMngt_01M_Cult" ,"PTJHMtcElnMngt_01M" ,"PTJHMtcAtvtPlndMngt_01M" ,"PTJHYeduBsnPlMngt_01M" ,"PTJHYuthElnMngt_01M" ,"PTJHYeduScacScdMngt_01M" ,"PTJHYeduAdbkMngtNew_01M" ,"PTJHScrsCtfcIsuMngt_01M_Give" ,"PTJHYuthAtvtPlndMngt_01M"];
+
+			if( excJh.indexOf(strRef) > -1 || excMk.indexOf(strRef) > -1 ){
+				alert("모바일 앱을 이용하세요.(https://mo.kosaf.go.kr/apps)\n\n- 서비스이용자 등록 및 마이페이지 정보 확인 \n- 국가장학금, 국가근로장학금 등 다양한 장학금 신청 및 현황 확인\n- 학자금대출 신청, 실행, 상환, 채무자신고, 기부하기 등 ");
+				location.href = "https://mo.kosaf.go.kr/apps";
+			}else{
+				location.href=url;
+				return false;
+			}
+		}
+		
+		/*
+		else if(location.href.indexOf("testkowww") > -1 || location.href.indexOf("devkowww") > -1){
+			alert("[검증 접속 확인] 모바일 앱을 이용하세요.(https://mo.kosaf.go.kr/apps)\n\n- 서비스이용자 등록 및 마이페이지 정보 확인 \n- 국가장학금, 국가근로장학금 등 다양한 장학금 신청 및 현황 확인\n- 학자금대출 신청, 실행, 상환, 채무자신고, 기부하기 등 ");
+			var url = "/ssoext/portal_gateway.jsp?bsnId="+bsnId+"&ref="+strRef+"&hmNavi="+strHmNavi;    		
+			location.href=url;
+			
+    	}else{
+			alert("모바일 앱을 이용하세요.(https://mo.kosaf.go.kr/apps)\n\n- 서비스이용자 등록 및 마이페이지 정보 확인 \n- 국가장학금, 국가근로장학금 등 다양한 장학금 신청 및 현황 확인\n- 학자금대출 신청, 실행, 상환, 채무자신고, 기부하기 등 ");
+			location.href = "https://mo.kosaf.go.kr/apps";
+		}
+		*/
+
+	// PC
+	}else if(bsnId == "JC") {
+    	window.open(url);
+    } else {
+		location.href=url;
+	}
+		
+}
+function fn_portal_linkNavi_page(bsnId, strRef, strHmNavi,_page){
+	
+    var _isMobile = _isMobileDevice();
+    
+    if(_isMobile && bsnId != "JC"){
+        //alert("모바일환경에서는 지원되지 않습니다. PC환경에서 이용해주세요.");
+        alert("모바일 앱을 이용하세요.(https://mo.kosaf.go.kr/apps)\n\n- 서비스이용자 등록 및 마이페이지 정보 확인 \n- 국가장학금, 국가근로장학금 등 다양한 장학금 신청 및 현황 확인\n- 학자금대출 신청, 실행, 상환, 채무자신고, 기부하기 등 ");
+        location.href = "https://mo.kosaf.go.kr/apps";
+        //document.location.replace("/ko/main.do");
+    }else{    	
+    	if ( _page == "PTJHWkgtAbdmAply_01M"){
+    		if(confirm("포기신청을 하시겠습니까? \n\n(※포기신청 후에는 어떠한 경우에도 철회가 불가능하므로,신중히 결정해주시기 바랍니다.)")) {
+
+    	    	var url = "/ssoext/portal_gateway.jsp?bsnId="+bsnId+"&ref="+strRef+"&hmNavi="+strHmNavi;
+    	    	location.href=url;    			
+    		}
+    	}
+    	return;
+    	
+    }	
+}
+
+function fn_ocps_info(){
+	var url = "/jsp/pt/ko/login/PTKOOCPSInfo_01P.jsp";
+	var popName = "OCPSInfo";
+	var childPop = window.open(url,popName);
+	childPop.focus();
+}
+
+//id 값으로 객체를 찾은후 visiable 설정
+function toggle(obj, id)
+{
+	$obj = $(id);
+	$obj.toggle(1, function(){
+		if(obj.innerHTML == "- 줄이기") obj.innerHTML = "+ 더보기";
+		else obj.innerHTML = "- 줄이기";
+	});
+	return false;
+}
+
+
+//컨텐츠 페이지 레이어 보이고 안보이게 하기
+function hidden_div(div_name)
+{
+	document.getElementById(div_name).style.display='none';
+}
+
+function show_div(div_name)
+{
+	document.getElementById(div_name).style.display='block';
+}
+
+//선택박스 URL 가기
+function checkSelect(Sel) {
+    document.location.href=Sel.options[Sel.selectedIndex].value;
+}
+
+
+var SSO_HOST_STLOAN_DOMAIN = "";
+var SSO_HOST_SCHOLAR_DOMAIN = "";
+var SSO_HOST_SCHOLARSHIP_DOMAIN = "";
+
+if(location.href.indexOf("dev") > -1){
+	SSO_HOST_STLOAN_DOMAIN = "https://devstloan.kosaf.go.kr";
+	SSO_HOST_SCHOLAR_DOMAIN = "https://devscholar.kosaf.go.kr:8090";
+	SSO_HOST_SCHOLARSHIP_DOMAIN = "https://devscholarship.kosaf.go.kr:8090";
+}else if(location.href.indexOf("test") > -1){
+	SSO_HOST_STLOAN_DOMAIN = "https://teststloan.kosaf.go.kr";
+	SSO_HOST_SCHOLAR_DOMAIN = "https://testscholar.kosaf.go.kr:8090";
+	SSO_HOST_SCHOLARSHIP_DOMAIN = "https://testscholarship.kosaf.go.kr:8090";
+}else if(location.href.indexOf("pjt") > -1){
+	SSO_HOST_STLOAN_DOMAIN = "https://pjtportal.kosaf.go.kr";
+	SSO_HOST_SCHOLAR_DOMAIN = "https://pjtportal.kosaf.go.kr";
+	SSO_HOST_SCHOLARSHIP_DOMAIN = "https://pjtportal.kosaf.go.kr";
+}else{
+	SSO_HOST_STLOAN_DOMAIN = "https://stloan.kosaf.go.kr";
+	SSO_HOST_SCHOLAR_DOMAIN = "https://scholar.kosaf.go.kr";
+	SSO_HOST_SCHOLARSHIP_DOMAIN = "https://scholarship.kosaf.go.kr";
+}
+
+function setComLogin(){
+	var frm = document.allSearchForm;
+	
+	
+	
+	var program_url = SSO_HOST_STLOAN_DOMAIN + "/stloan/ntsiclcmpn/ntscmpn_isw_start_popup.jsp?enc_page=/stloan/ntsiclcmpn/ntscmpn_login.jsp";
+	//var program_url = SSO_HOST_STLOAN_DOMAIN + "/stloan/ntsicl/nts_isw_start_popup.jsp?enc_page=/stloan/ntsiclcmpn/ntscmpn_login.jsp";
+	//var program_url = "http://teststloan.kosaf.go.kr:8090/stloan/ntsiclcmpn/ntscmpn_isw_start_popup.jsp?enc_page=/stloan/ntsiclcmpn/ntscmpn_login.jsp";
+
+	//	window.open("","openComPopEvent","toolbar=no, location=no, scrollbars=yes, status=yes, resizable=yes, width=900, height=857, "+ "left = " + (window.screen.width -500)/2 + ", top =50 ");
+	window.open(program_url,"openComPopEvent","toolbar=no, location=no, scrollbars=yes, status=yes, resizable=yes, width=647, height=600, "+ "left = " + (window.screen.width -500)/2 + ", top =50 ");
+	//	frm.target = "openComPopEvent";
+	//	frm.action = program_url;
+	//	frm.method ="post";
+	//	frm.submit();
+	//	frm.target = "_self";
+}
+
+// 팝업창
+function openPopup(name, URL, width, height){
+	window.open(URL, name, "toolbar=no,directories=no,scrollbars=no,resizable=no,status=no,menubar=no, width="+width+", height="+height+", top=0,left=20");
+}
+
+//팝업창
+function openPopup1(name, URL, width, height){
+	window.open(URL, name, "toolbar=no,directories=no,scrollbars=yes,resizable=no,status=no,menubar=no, width="+width+", height="+height+", top=0,left=20");
+}
+
+
+function refusal(){
+// 홈페이지 개편으로 팝업창 사이즈 커짐  by shjeon 20160619	
+//	var strOption = "status=no,resizable=no,scrollbars=no,width=560,height=433, "+ "left = " + (window.screen.width -560)/2 + ", top =" + (window.screen.height -433)/2
+	var strOption = "status=no,resizable=no,scrollbars=no,width=560,height=523, "+ "left = " + (window.screen.width -560)/2 + ", top =" + (window.screen.height -433)/2
+	window.open("/ko/refusal.do","univFind",strOption);
+
+}
+
+
+// var initBody;
+// function beforePrint()
+// {
+// 	var printContent = null;
+// 	if(contents){
+// 		printContent = contents;
+// 	} else if (content) {
+// 		printContent = content;
+// 	}
+// 	initBody = document.body.innerHTML;
+// 	document.body.innerHTML = printContent.innerHTML;
+// } 
+
+// function afterPrint()
+// { 
+//   document.body.innerHTML = initBody; 
+// } 
+
+function pageprint()
+{
+     // window.onbeforeprint = beforePrint; 
+     // window.onafterprint = afterPrint; 
+     window.print(); 
+}
+
+/*개인화영역 이동하기 20120906 bjh */
+function JSFX_FloatTopDiv(startY) {
+	/*
+	var startX = 0, startY = startY;
+	var ns = (navigator.appName.indexOf("Netscape") != -1);
+	var d = document;
+	function ml(id) {
+		var el = d.getElementById ? d.getElementById(id) : d.all ? d.all[id] : d.layers[id];
+		if (d.layers) el.style = el;
+		el.sP = function(x, y) {
+			if (ns) {
+				this.style.top = y + 'px';
+			} else {
+				this.style.top = y + 'px';
+			}
+		};
+		el.y = startY;
+		$(el).show();
+		return el;
+	}
+	var ftlObj = ml("private_area");
+
+	window.stayTopLeft = function() {
+		var pY = ns ? window.pageYOffset : $(window).scrollTop();
+		var qY = $('#private_area').offset().top + $('#private_area').height();
+		var fY = $('#footer').offset().top;
+		pY = (pY + startY - ftlObj.y) / 8;
+		if(0 <= qY && qY < fY ||  pY < 0) {
+			if(pY < -1 || pY > 1)
+			{
+				ftlObj.y += pY
+			}
+		}
+		ftlObj.sP(ftlObj.x, ftlObj.y);
+	}
+	
+	var JSFX_Init = setInterval(function() {
+		stayTopLeft();
+	}, 10)
+	*/
+	//Quick Service 높이 및 정렬
+} 
+
+
+function stringToXMLDoc(str)
+{
+	var xmlDoc = null;
+
+	try
+	{
+		// Attempt to parse the string using the IE method.
+		var xmlDOMObj = new ActiveXObject("Microsoft.XMLDOM");
+		xmlDOMObj.async = false;
+		xmlDOMObj.loadXML(str);
+		xmlDoc = xmlDOMObj;
+	}
+	catch (e)
+	{
+		// The IE method didn't work. Try the Mozilla way.
+		try
+		{
+			var domParser = new DOMParser;
+			xmlDoc = domParser.parseFromString(str, 'text/xml');
+		}
+		catch (e)
+		{
+			xmlDoc = null;
+		}
+	}
+
+	return xmlDoc;
+}
+
+// ajax
+createXMLHttpRequest = function()
+{
+	try
+    {
+        return new XMLHttpRequest();
+    }
+    catch(e)
+    {
+        try
+        {
+            return new ActiveXObject("MSXML2.XMLHTTP");
+        }
+        catch(e)
+        {
+            try
+            {
+                return new ActiveXObject("Microsoft.XMLHTTP");
+            }
+            catch(e)
+            {
+                return null;
+            }
+        }
+    }
+}
+//server reqeust
+function sendRequest(header)
+{
+	var xhr = createXMLHttpRequest();
+	xhr.onreadystatechange = function()
+	{
+		try
+		{
+			
+			switch(xhr.readyState)
+			{
+				case 1 :
+				case 2 :
+				case 3 :
+					if(header.invoke != undefined)
+					{
+						header.invoke();
+					}
+					break;
+				
+				case 4 :
+					if(xhr.status == 200)
+					{
+						header.handler(xhr);
+					}
+					break;
+			}
+		}
+		catch(e)
+		{
+			alert('연결을 사용할수 없습니다. 잠시후 다시 시도해주시기 바랍니다.')
+		}
+	};
+	var async = true;
+	if(header.async)
+	{
+		async = header.async;
+	}
+	xhr.open(header.method,header.url + "?" + header.data,async);
+	xhr.send(null);
+	delete xhr;
+}
+
+
+function wishAddResultHandler(xhr)
+{
+	var xml = xhr.responseXML;
+	var resultTag = xml.getElementsByTagName("response");
+	var result = resultTag[0].firstChild.nodeValue;
+	if (result == '200' ) {
+		if(answer = confirm("관심상품이 등록되었습니다.\n마이페이지에서 확인하시겠습니까?")){     
+			location.href="/ko/my.favorites.do";
+		}
+	}
+	else if(result == '100'){	
+		//미로그인
+		if(answer = confirm("로그인이 필요한 서비스입니다.\n로그인 하시겠습니까?")){
+			document.location.href="/ko/login_sc.do";
+		}
+		
+	}else if(result == '300'){	
+		//미로그인
+		alert("파라미터가 불충분합니다.");
+	}else{
+		//미로그인
+		alert("이미 관심상품에 등록되어 있습니다.");
+	}
+}
+
+
+function wishAdd(infoSeq,cType) {
+
+	if (!infoSeq){
+		alert("관심상품 등록 코드가 없습니다.");
+		return; 
+	}
+
+	// 관심상품 등록
+	var url = "/ko/wishAdd.do";
+	var xhr = createXMLHttpRequest();
+	xhr.onreadystatechange = function()
+	{
+		if(xhr.readyState == 4) { 
+			if( xhr.status == 200) {
+				wishAddResultHandler(xhr);
+			} else {}
+		} else {}
+	};
+
+	xhr.open("GET", url+"?infoSeq="+infoSeq+"&cType="+cType);
+	xhr.send(null);
+
+}
+
+
+
+/////////////////////// 슬라이드 배너 제이쿼리 확장 함수 구현 - 장현준 ///////////////////////////////
+var f_nBnrCnt = 0; // jQBanner를 사용해서 화면에 출력되는 베너수
+var f_config;
+$.default_config = {
+        // 내부 변수
+		objScr : null,   // 스크린 영역
+		objBtn : null, // 버튼 영역
+        objTimer : null, // 타이머
+        nOrderNo : 999, // 현재 선택된 레이어
+        nOrderNoBtn : -1, // 버튼 선택시 레이어
+        TimerActive : true, //focus, mouseover 구분(true, false)
+
+        // 사용자 셋팅 기본 변수
+        nWidth : 0, // 베너 스크린 영역 폭
+        nHeight : 0, // 베너 스크린 영역 높이
+        nCount : 0, // 베너 스크린 영역에 속해있는 레이어의 수
+        isActType : "none",  // 베너 액션 타입 none,left,right,up,down,fade,page
+
+        // 사용자 셋팅 옵션 변수
+        isBtnAct : "mouseover",  // 버튼 작동방식 mouseover,click
+        isBtnType : "img", // 버튼 타입 img,li           
+        nStartUp : 300, // 스타트 시 첫 레이어의 FadeIn 속도
+        nDelay : 5000, // 딜레이
+        nSpeed : 500, // 액션시의 속도
+        nSpeedFade : 300, // 페이드 관련 액션에서 버튼 작동시 속도의 교정값
+        isStartFade :"Y", // 스타트 FadeIn 효과 여부
+        isStartDelay :"N" // 스타트시 딜레이를 가지고 실행 
+};
+// 제이쿼리 함수 생성
+$.fn.slideBanner = function(_config){
+	// 셋팅 변수
+	var config = $.extend({}, $.default_config, _config);
+	// ie 체크
+	var _ie = getBrower();
+	
+	config.objScr = "#" + this.attr("id") + " .clsBannerScreen";
+    config.objBtn = "#"+this.attr("id")+" .clsBannerButton";
+    
+    //초기 딜레이 판단
+    if(config.isStartDelay == "Y" && _ie == true){
+        if(f_nBnrCnt >= 0 && f_nBnrCnt <= 3){
+            setTimeout(function(){jsBanInit(config)}, f_nBnrCnt * 100);
+        }else if(f_nBnrCnt > 3 && f_nBnrCnt <= 6){
+            setTimeout(function(){jsBanInit(config)}, f_nBnrCnt * 200);
+        }else if(f_nBnrCnt > 6 && f_nBnrCnt <= 10){
+            setTimeout(function(){jsBanInit(config)}, f_nBnrCnt * 300);
+        }else if(f_nBnrCnt > 10){
+            setTimeout(function(){jsBanInit(config)}, 400);
+        }
+        f_nBnrCnt++;
+    }else{
+    	jsBanInit(config);
+    }
+    return this;
+};
+// 초기화
+function jsBanInit(config){
+	var nPosFix;
+	
+	var fixWidth=config.nWidth+1;
+	var fixHeight=config.nHeight+1;
+	
+	// 스크린 css 초기화
+    $(config.objScr).css({'position':'relative','height':fixHeight+'px','width':fixWidth+'px','overflow':'hidden'});
+    
+    // 첫 레이어 검색
+    config.nOrderNo = (config.nOrderNo==999) ? Math.floor(Math.random() * config.nCount):config.nOrderNo-1;
+
+    // 슬라이드 효과 타입에 따른 초기화
+    if(config.isActType == "left"){
+        $(config.objScr+" div").each(function(i){
+            nPosFix = (config.nOrderNo==i)?0:config.nWidth;
+            $(this).css({'position':'absolute','top':'0','left':(-1*nPosFix)+'px'});
+            if (!(config.nOrderNo==i && config.isStartFade=="N")) {
+                $(this).fadeIn(config.nStartUp);
+            }
+            $(this).attr("divno",i);
+        });
+    }else if (config.isActType == "right"){
+        $(config.objScr+" div").each(function(i){
+            nPosFix = (config.nOrderNo==i)?0:config.nWidth;             
+            $(this).css({'position':'absolute','top':'0','left':nPosFix+'px'});
+            if (!(config.nOrderNo==i && config.isStartFade=="N")) {
+                $(this).fadeIn(config.nStartUp);
+            }
+            $(this).attr("divno",i);
+        });
+    }else if (config.isActType == "up"){
+        $(config.objScr+" div").each(function(i){
+            nPosFix = (config.nOrderNo==i)?0:config.nHeight;
+            $(this).css({'position':'absolute','top':(-1*nPosFix)+'px','left':'0'});
+            if (!(config.nOrderNo==i && config.isStartFade=="N")) {
+                $(this).fadeIn(config.nStartUp);
+            }
+            $(this).attr("divno",i);
+        });
+    }else if (config.isActType == "down"){
+        $(config.objScr+" div").each(function(i){
+            nPosFix = (config.nOrderNo==i)?0:config.nHeight;
+            $(this).css({'position':'absolute','top':nPosFix+'px','left':'0'});
+            if (!(config.nOrderNo==i && config.isStartFade=="N")) {
+                $(this).fadeIn(config.nStartUp);
+            }
+            $(this).attr("divno",i);
+        });
+    }else if (config.isActType == "fade"){
+        $(config.objScr+" div").each(function(i){
+            if (config.nOrderNo==i) {
+                nPosFix = 0;
+                if (!(config.nOrderNo==i && config.isStartFade=="N")) {
+                    $(this).fadeIn(config.nStartUp);
+                }
+            } else {
+                nPosFix = config.nWidth;
+            }
+            $(this).css({'position':'absolute','top':'0','left':nPosFix+'px'});
+            $(this).attr("divno",i);
+        });
+    }else if (config.isActType == "page"){
+        $(config.objScr+" div").each(function(i){
+            nPosFix = (config.nOrderNo==i)?0:config.nHeight;
+            $(this).css({'position':'absolute','top':nPosFix+'px','left':'0'});
+            if (!(config.nOrderNo==i && config.isStartFade=="N")) {
+                $(this).fadeIn(config.nStartUp);
+            }
+            $(this).attr("divno",i);
+        });
+    }else if (config.isActType == "none"){
+        $(config.objScr+" div").each(function(i){
+            if (config.nOrderNo==i) {
+                nPosFix = 0;
+                if (!(config.nOrderNo==i && config.isStartFade=="N")) {
+                    $(this).fadeIn(config.nStartUp);
+                }
+            } else {
+                nPosFix = config.nWidth;
+            }
+            $(this).css({'position':'absolute','top':'0','left':nPosFix+'px'});
+            $(this).attr("divno",i);
+        });
+    }
+
+    // 버튼에 순번 설정
+    $(config.objBtn+" "+config.isBtnType).each(function(i){ $(this).attr("btnno",i); $(this).css("cursor","hand") });
+
+    // 버튼 이벤트 할당
+    jsBanBtnBind(config);
+    
+    // 정지 이벤트 할당
+    jsScrPauseBind(config);
+    
+    // 설정 임시저장
+    f_config = config;
+
+    // 타이머 시작
+    if(config.isActType != "none" && config.isActType != "page") config.objTimer = setTimeout( function(){jsBanTimer(config)}, config.nDelay);
+};
+// 타이머
+function jsBanTimer(config) {
+	// 액션 초기화
+    config.nOrderNoBtn = -1;
+    
+    jsBanAction(config);
+    config.objTimer = setTimeout( function(){jsBanTimer(config)}, config.nDelay);
+};
+// 액션
+function jsBanAction(config) {
+    var nPageSel;
+    var nSpeed = config.nSpeed;
+    var nDivNoSel = config.nOrderNo;
+    var nOrderNext = (config.nOrderNo+1)%(config.nCount);
+    
+    // 페이지 효과
+    if (config.isActType == "page") {
+        var nOrderMinus = config.nOrderNoBtn-config.nOrderNo;
+        nPageSel = (nOrderMinus==1 || (nOrderMinus==(config.nCount-1)*-1)) ? 1 : 0;
+    }   
+
+    if (config.nOrderNoBtn >= 0) {
+        config.nOrderNo = config.nOrderNoBtn;
+        nOrderNext = config.nOrderNoBtn;
+        nSpeed = (config.isActType=="fade" || config.isActType=="page" || config.isActType=="none") ? config.nSpeedFade : 0;
+    } else {
+        config.nOrderNo = ((config.nCount-1)==config.nOrderNo) ? nOrderNext : config.nOrderNo+1;
+    }
+
+    var nDivNoNext = nOrderNext;
+
+    var objSelObj = $(config.objScr+" div[divno='"+nDivNoSel+"']");
+    var objNextObj = $(config.objScr+" div[divno='"+nDivNoNext+"']");
+    //console.log(nDivNoSel, nDivNoNext);
+    // 버튼 액션
+    if (config.isActType != "page") jsBanBtnRO(config,nOrderNext);
+
+    // 실 레이어 애니메이션 효과
+    if (config.isActType == "left") {
+        objNextObj.css('left',(config.nWidth)+'px');
+        objSelObj.animate({'left':(-1*config.nWidth)+'px'},nSpeed);
+        objNextObj.animate({'left':'0'},nSpeed);
+    } else if (config.isActType == "right") {
+        objNextObj.css('left',(-1*config.nWidth)+'px');
+        objSelObj.animate({'left':config.nWidth+'px'},nSpeed);
+        objNextObj.animate({'left':'0'},nSpeed);
+    } else if (config.isActType == "up") {
+        objNextObj.css('top',config.nHeight+'px');
+        objSelObj.animate({'top':(-1*config.nHeight)+'px'},nSpeed);
+        objNextObj.animate({'top':'0'},nSpeed);
+    } else if (config.isActType == "down") {
+        objNextObj.css('top',(-1*config.nHeight)+'px');
+        objSelObj.animate({'top':config.nHeight+'px'},nSpeed);
+        objNextObj.animate({'top':'0'},nSpeed);
+    } else if (config.isActType == "fade") {
+        objSelObj.css({'left':config.nWidth+'px','display':'none'});
+        objNextObj.css('left','0');
+        objNextObj.fadeIn(nSpeed);
+    } else if (config.isActType == "page") {
+        if (nPageSel == 0) {
+            objNextObj.css({'top':'0','left':config.nWidth+'px'});
+            objSelObj.animate({'left':(-1*config.nWidth)+'px'},nSpeed);
+            objNextObj.animate({'left':'0'},nSpeed);
+        } else if (nPageSel == 1) {
+            objNextObj.css({'top':'0','left':(-1*config.nWidth)+'px'});
+            objSelObj.animate({'left':config.nWidth+'px'},nSpeed);
+            objNextObj.animate({'left':'0'},nSpeed);
+        }
+    } else if (config.isActType == "none") {
+        objSelObj.css({'left':config.nWidth+'px','display':'none'});
+        objNextObj.css('left','0');
+        objNextObj.fadeIn(nSpeed);
+    }
+};
+// 정지 이벤트 
+function jsScrPauseBind(config) {
+	
+	/*$('#gnb').bind('mouseleave', function(){
+		hideGnb($(this));	
+		deps1currentIndex = -1;
+		deps2currentIndex = -1;
+	});*/
+	
+	
+	//-----키보드 이벤트 접근성 추가(최수만)
+	// 타이머 초기화
+    //$(config.objScr).mouseover(function(){
+	$(config.objScr).bind('mouseover focusin', function(evt){
+		if(config.TimerActive){
+			console.log("타이머삭제", evt.type);
+			clearTimeout(config.objTimer);
+			config.TimerActive=false;
+		}
+    });
+    //$(config.objScr).mouseout(function(){
+	$(config.objScr).bind('mouseout focusout', function(evt){
+        if (config.isActType != "none" && config.isActType != "page" && config.TimerActive==false) {
+        	console.log("타이머추가", evt.type);
+            config.objTimer = setTimeout( function(){jsBanTimer(config)}, config.nDelay);
+            config.TimerActive=true;
+        }
+    });
+    
+    $(config.objScr).find('a').focus(function(){
+    	var num=$(this).parent().index();
+    	config.nOrderNo=num;
+    	$(config.objScr).find('div').css('left',(-config.nWidth)+'px');
+    	$(this).parent().css('left','0px');
+    });
+    //$(config.objScr).find('a').blur(function(){});
+    
+	
+    //$(".passBtn").focus(function(){
+    /*$(".passBtn").focusin(function(e){
+		if(e.type == 'focusin'){
+			console.log("clearTimeout");
+			clearTimeout(config.objTimer);
+		}
+    });
+    $(".passBtn").focusout(function(e){
+    	if (config.isActType != "none" && config.isActType != "page" && e.type == 'focusout') {
+    		console.log("setTimeout");
+            config.objTimer = setTimeout( function(){jsBanTimer(config)}, config.nDelay);
+        }
+    });*/
+    //-----//키보드 이벤트 접근성 추가(최수만)
+};
+// 버튼 이벤트
+function jsBanBtnBind(config) {
+    
+	// 페이지 버튼
+    if (config.isActType != "page") jsBanBtnRO(config,config.nOrderNo);
+        
+    //  마우스 오버 액션
+    if (config.isBtnAct=="mouseover") {
+    	//$(config.objBtn+" "+config.isBtnType).bind('mouseover' 'focus', function(){
+        $(config.objBtn+" "+config.isBtnType).mouseover(function(){
+            var nImgNo = $(this).attr("btnno");
+
+            if (config.isActType != "none" && config.isActType != "page") {
+                clearTimeout(config.objTimer);
+            }
+
+            if (config.isActType == "page") {
+                if (nImgNo == 0) {
+                    config.nOrderNoBtn = ((config.nOrderNo-1)<0) ? config.nCount-1 : config.nOrderNo-1;
+                } if (nImgNo == 1) {
+                    config.nOrderNoBtn = ((config.nOrderNo+1)==config.nCount) ? (config.nOrderNo+1)%config.nCount : config.nOrderNo+1;
+                }
+                jsBanBtnRO(config,nImgNo);
+            } else {
+                config.nOrderNoBtn = parseInt(nImgNo);
+            }
+            
+            jsBanAction(config);
+        });
+        $(config.objBtn+" "+config.isBtnType).mouseout(function(){
+            if (config.isActType != "none" && config.isActType != "page") {
+                config.objTimer = setTimeout( function(){jsBanTimer(config)}, config.nDelay);
+            }
+        });
+
+    // 클릭 이벤트
+    } else if (config.isBtnAct=="click") {
+        $(config.objBtn+" "+config.isBtnType).click(function(){
+            var nImgNo = $(this).attr("btnno");
+            
+            if (config.isActType != "none" && config.isActType != "page") {
+                clearTimeout(config.objTimer);
+            }
+
+            if (config.isActType == "page") {
+                if (nImgNo == 0) {
+                    config.nOrderNoBtn = ((config.nOrderNo-1)<0) ? config.nCount-1 : config.nOrderNo-1;
+                } if (nImgNo == 1) {
+                    config.nOrderNoBtn = ((config.nOrderNo+1)==config.nCount) ? (config.nOrderNo+1)%config.nCount : config.nOrderNo+1;
+                }
+                jsBanBtnRO(config,nImgNo);
+            } else {
+                config.nOrderNoBtn = parseInt(nImgNo);
+            }
+            
+            jsBanAction(config);
+
+            if (config.isActType != "none" && config.isActType != "page") {
+                config.objTimer = setTimeout( function(){jsBanTimer(config)}, config.nDelay);
+            }
+        });
+    }
+};
+// rolllover 이벤트
+function jsBanBtnRO (config,nSel) {
+    if (config.isBtnType=="img") {
+        $(config.objBtn+" img").each(function(i){
+            if (nSel==i) {
+                $(this).attr("src",$(this).attr("oversrc"));
+            } else {
+                $(this).attr("src",$(this).attr("outsrc"));
+            }
+        });
+        
+    } else if (config.isBtnType=="li") {
+        $(config.objBtn+" li").each(function(i){
+            if (nSel==i) {
+                $(this).attr("class",$(this).attr("overclass"));
+            } else {
+                $(this).attr("class",$(this).attr("outclass"));
+            }
+        });
+        
+    }
+};
+// ie 체크
+function getBrower() {
+    appname = navigator.appName;
+    useragent = navigator.userAgent;
+
+    if(appname == "Microsoft Internet Explorer") appname = "IE";
+    IE55 = (useragent.indexOf('MSIE 5.5')>0);  //5.5 버전
+    IE6 = (useragent.indexOf('MSIE 6')>0);     //6.0 버전
+    IE7 = (useragent.indexOf('MSIE 7')>0);     //7.0 버전
+    IE8 = (useragent.indexOf('MSIE 8')>0);     //8.0 버전
+
+    if(appname=="IE" && IE55 || IE6 || IE7 || IE8){
+        return true;
+    }else{
+        return false; 
+    }
+}
+
+function numberformat(str, last){
+	if(last == null || typeof(last) == "undefined") last = "원";
+	var result = ""; 
+	for(var i = 0; i < str.length; i++){
+		result += str.substring(i, i+1);
+		if(i %  3 == 0) result += ",";
+	}
+	if(result.substring(result.length-1, result.length) == ","){
+		result = result.substring(0, result.length-1);
+	}
+//	return result + last;
+	return result;
+}
+
+function nvl_empty(str){
+	if(str == "null" || str == null || str == "" || typeof(str) == "undefined") return "";
+	else return str;
+}
+
+// 트워터 스크랩
+function twitter(content){
+	
+	window.open("http://twitter.com/home/?status=post_content","twitter","")
+
+}
+///////////////////////////////////////////////////////////////////////////////////////
+
+
+var sendUrl,locUrl;
+locUrl = window.location.href;
+
+function openNewsWin(openUrl) {
+ var winObj;
+ winObj = window.open(openUrl,"sendNewsWin","width=1024, height=800, scrollbars=yes");
+}
+
+function sendNews(media, message) {
+      //var message = "[테스트 스크랩] "+title;
+
+ switch(media) {
+   case "facebook":
+   sendUrl = "http://www.facebook.com/sharer.php?u="+encodeURIComponent(document.URL)+"&t="+encodeURIComponent(message);
+   openNewsWin(sendUrl);
+   break;
+  case "twitter":
+   sendUrl = "http://twitter.com/home?status="+encodeURIComponent(message)+"+"+escape(locUrl);
+   openNewsWin(sendUrl);
+   break;
+  case "metoday":
+   sendUrl = "http://me2day.net/posts/new?new_post[body]=\""+encodeURIComponent(message)+"\":"+escape(locUrl)+"&new_post[tags]=Newshankuk";
+   openNewsWin(sendUrl);
+   break;
+  case "naver":
+   sendUrl = "http://bookmark.naver.com/post?ns=1&title="+encodeURIComponent(message)+"&url="+escape(locUrl);
+   openNewsWin(sendUrl);
+   break;
+  case "google":
+   sendUrl = "http://www.google.com/bookmarks/mark?op=add&title="+encodeURIComponent(message)+"&bkmk="+escape(locUrl);
+   openNewsWin(sendUrl);
+   break;
+           case "daum":
+               sendUrl = "http://yozm.daum.net/api/popup/prePost?link=" + encodeURIComponent(document.URL) +"&prefix="+ encodeURIComponent(message) +"&parameter=newshankuk";
+                var win = window.open(sendUrl, 'yozmSend', 'width=466, height=356');
+                if (win) {
+                 win.focus();
+                }
+   //openNewsWin(sendUrl);
+   break;
+ }
+}
+
+// png image 투명 
+function setPng24(obj) {
+    obj.width=obj.height=1;
+    obj.className=obj.className.replace(/\bpng24\b/i,'');
+    obj.style.filter = "progid:DXImageTransform.Microsoft.AlphaImageLoader(src='"+ obj.src +"',sizingMethod='image');"
+    obj.src='';
+    return '';
+}
+
+//************************ e-mail check **************************//
+//EMAIL 주소 체크 
+function emailCheck (emailAddr) {
+
+	var checkTLD=1;
+	var knownDomsPat=/^(com|net|org|edu|int|mil|gov|arpa|biz|aero|name|coop|info|pro|museum)$/;
+	var emailPat=/^(.+)@(.+)$/;
+	var specialChars="\\(\\)><@,;:\\\\\\\"\\.\\[\\]";
+	var validChars="\[^\\s" + specialChars + "\]";
+	var quotedUser="(\"[^\"]*\")";
+	var ipDomainPat=/^\[(\d{1,3})\.(\d{1,3})\.(\d{1,3})\.(\d{1,3})\]$/;
+	var atom=validChars + '+';
+	var word="(" + atom + "|" + quotedUser + ")";
+	var userPat=new RegExp("^" + word + "(\\." + word + ")*$");
+	var domainPat=new RegExp("^" + atom + "(\\." + atom +")*$");
+	var matchArray=emailAddr.match(emailPat);
+	var email_interception = "/sayclub/studentloan/netsgo/intizen/netian/orgio/"; /*메일서버 차단 정보*/
+
+	if (matchArray==null) {
+		alert("email 형식이 올바르지 않습니다.\n다시 한번 확인 후 정확하게 입력해 주세요.");
+		return ;
+	}
+
+	var user=matchArray[1];
+	var domain=matchArray[2];
+	
+	// Start by checking that only basic ASCII characters are in the strings (0-127).
+	for (i=0; i<user.length; i++) {
+		if (user.charCodeAt(i)>127) {
+			alert("E-mail 주소 ID가 올바르지 않습니다.");
+			return false;
+	   }
+	}
+
+	for (i=0; i<domain.length; i++) {
+		if (domain.charCodeAt(i)>127) {
+			alert("E-mail 주소가 올바르지 않습니다.");
+			return false;
+	   }
+	}
+	
+	//if (user.match(userPat)==null) {
+	//	alert("E-mail 주소 ID가 올바르지 않습니다.");
+	//	return false;
+	//}
+
+	var IPArray=domain.match(ipDomainPat);
+	if (IPArray!=null) {
+		// this is an IP address
+		for (var i=1;i<=4;i++) {
+			if (IPArray[i]>255) {
+			alert("E-mail 주소가 올바르지 않습니다.");
+			return false;
+	   		}
+		}
+		return true;
+	}
+
+	// Domain is symbolic name.  Check if it's valid.
+	
+	var atomPat=new RegExp("^" + atom + "$");
+	var domArr=domain.split(".");
+	var len=domArr.length;
+	for (i=0;i<len;i++) {
+		if (domArr[i].search(atomPat)==-1) {
+			alert("E-mail 주소가 올바르지 않습니다.");
+			return false;
+	   }
+	}
+	
+	var email_dom = domArr[0];
+/* 한국의 도메인이 등록 되지 않았 으므로 도메인 검증을 주석처리 ekxkaks 2012.02.15
+	if (checkTLD && domArr[domArr.length-1].length!=2 && 
+		domArr[domArr.length-1].search(knownDomsPat)==-1) {
+			alert("알수 없는 도메인 입니다.");
+			return false;
+	}
+*/	
+	// Make sure there's a host name preceding the domain.
+	
+	if (len<2) {
+		alert("E-mail 주소가 올바르지 않습니다.");
+		return false;
+	}
+	
+	
+	if(email_dom.length < 2) {
+	    alert("E-mail 주소가 올바르지 않습니다.");
+	    return false;
+	}
+	
+	if (email_interception.indexOf(email_dom) >=0 ){
+	  // if (email_interception.search(domain)==-1) {
+	    alert("[ "+email_dom +" ]은 메일발송이 불가능한 메일 주소 입니다.\n\n다른 메일을 입력해 주세요.");
+	    return false;
+	}
+	       
+	
+	// If we've gotten this far, everything's valid!
+	return true;
+}
+
+/* chgTab */
+function chgTab(id,num) {
+	var d=document,a=chgTab.arguments;
+	for ( i=1 ; d.getElementById(a[0]+"_tab"+i) ; i++ ) {
+		var dtab=d.getElementById(a[0]+"_tab"+i),dobj=d.getElementById(a[0]+"_obj"+i),dobjt=d.getElementById(a[0]+"_o"+i);
+		if ( i == a[1] ) {
+			dtab.src="/images/fund/main/"+a[0]+"_tab_on_0"+i+".gif";
+			if ( dobj!=null ) { dobj.style.display="block"; }
+			if ( dobjt!=null ) { dobjt.style.display="block"; }
+		} else {
+			dtab.src="/images/fund/main/"+a[0]+"_tab_off_0"+i+".gif";
+			if ( dobj!=null ) { dobj.style.display="none"; }
+			if ( dobjt!=null ) { dobjt.style.display="none"; }
+		}
+	}
+}
+
+function checkPassWord(objPwd){			
+	
+	var limSame = 3;
+	var limCont = 3;
+
+	if(!objPwd.match(/^[a-zA-Z0-9!@\$%\^&\*]{10,15}$/)){
+		alert("- 비밀번호는 영문+숫자 10자~15자로 사용가능하며, 아이디와 동일하거나 3자 이상 연속 또는 중복되는 문자, 숫자는 사용할 수 없습니다.\r\n- 특수문자는 !,@,$,%,^,&,* 사용 가능합니다.");
+		return false;
+	}
+	
+
+	var chkNum = objPwd.search(/[0-9]/g);
+	var chkEng = objPwd.search(/[a-z]/ig);
+
+	if( chkNum < 0 || chkEng < 0){
+		alert("비밀번호는 숫자와 영문자를 혼용하여 입력해주세요");
+		return false;
+	}	
+
+	var SamePass = 0; //동일문자 카운트
+	var contPass_1 = 0; //연속성(+) 카운드
+	var contPass_2 = 0; //연속성(-) 카운드
+	var compV		= 9999;
+	var compP		=9999;
+	var chr_pass_0;
+	var chr_pass_1;
+	
+	try{
+		for(var i=0; i < objPwd.length-1; i++){
+			chr_pass_0 = objPwd.charAt(i);
+			chr_pass_1 = objPwd.charAt(i+1);
+			compV = chr_pass_1.charCodeAt(0)  - chr_pass_0.charCodeAt(0);		
+			if(compP == 9999 || compV == compP ){
+				compP = compV;
+				switch(compV){
+					case 0:					
+						SamePass++;							
+						break;
+					case 1:
+						contPass_1++;
+						break;
+					case -1:		
+						contPass_2++;
+						break;
+					default:
+						compP = 9999;					
+						break;
+				}
+				if(SamePass > limSame-1) break;					
+				if(contPass_1 > limCont-1) break;
+				if(contPass_2 > limCont-1) break;					
+			}else{
+				compP = 9999;
+				if(SamePass < limSame-1) SamePass = 0;
+				if(contPass_1 < limCont-1) contPass_1 =0; 						
+				if(contPass_2 < limCont-1) contPass_2 =0;				
+			}				
+		}
+	}catch(e){
+		alert("프로그램 오류로 비밀번호 패턴 검증에 실패했습니다. 관리자에게 문의 바랍니다.");
+		return false;		
+	}	
+	if(SamePass >= limSame -1){
+		alert("비밀번호는 동일문자를 "+limSame+"번 이상 사용할 수 없습니다.");
+		return false;
+	}
+	if(contPass_1 >= limCont -1 || contPass_2 >= limCont -1 ){
+		alert("비밀번호는 연속된 문자열(123 또는 321, abc, cba 등)을\n "+limCont+"자 이상 사용 할 수 없습니다.");
+		return false;
+	}
+	return true;
+
+}
+
+function setScrollingMsg(){
+	window.status="한국장학재단";
+	return true;
+}
+
+function setMouseOverMsg() {
+	return false;
+}
+document.onmouseover=setScrollingMsg;
+document.onmouseout=setScrollingMsg;
+
+function isEngNum(checkStr) {
+	
+	// trim
+	//checkStr = trim(checkStr);
+	
+    for( i=0; i<checkStr.length; i++ )
+    {
+        if( '0'<=checkStr.charAt( i) && checkStr.charAt( i)<='9' ) continue;
+        else if( 'a'<=checkStr.charAt( i) && checkStr.charAt( i)<='z' ) continue;
+        else if( 'A'<=checkStr.charAt( i) && checkStr.charAt( i)<='Z' ) continue;
+        else if( '-'==checkStr.charAt(i) ) continue;
+        else return false;
+    }
+    return true;
+}
+
+/**
+ * 영어&& 숫자 체크
+ */
+function chEngNum(checkStr,name) {
+	
+	// trim
+	//checkStr = trim(checkStr);
+	
+    if ( checkStr == "") {
+        alert(name+"를 입력하셔야 합니다."); 
+    	return false;      			
+    }         
+    if(!isEngNum(checkStr)) {
+       	alert(name+"은 영어 혹은 숫자로 입력 하셔야 합니다.");
+       return false;     
+    }
+	return true;
+}
+
+/**
+ * 날짜 유효성 체크
+ */
+function isDate(txtDate) {
+    var objDate,  // date object initialized from the txtDate string
+        mSeconds, // txtDate in milliseconds
+        day,      // day
+        month,    // month
+        year;     // year
+    // date length should be 10 characters (no more no less)
+    if (txtDate.length != 8) {
+        return false;
+    }
+    year  = txtDate.substring(0, 4) - 1;
+    month = txtDate.substring(4, 6) - 0;
+    day   = txtDate.substring(6, 8) - 0;
+    // test year range
+    if (year < 1900 || year > 2100) {
+        return false;
+    }
+    // convert txtDate to milliseconds
+    mSeconds = (new Date(year, month, day)).getTime();
+    // initialize Date() object from calculated milliseconds
+    objDate = new Date();
+    objDate.setTime(mSeconds);
+    // compare input date and parts from Date() object
+    // if difference exists then date isn't valid
+    if (objDate.getFullYear() !== year ||
+        objDate.getMonth() !== month ||
+        objDate.getDate() !== day) {
+        return false;
+    }
+    // otherwise return true
+    return true;
+}
+/*개발동안 주석 처리 */
+/*
+document.oncontextmenu = setMouseOverMsg;
+document.onselectstart = setMouseOverMsg;
+*/
+//document.ondragstart = setMouseOverMsg;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//t: current time, b: begInnIng value, c: change In value, d: duration
+jQuery.easing['jswing'] = jQuery.easing['swing'];
+
+jQuery.extend( jQuery.easing,
+{
+	def: 'easeOutQuad',
+	swing: function (x, t, b, c, d) {
+		//alert(jQuery.easing.default);
+		return jQuery.easing[jQuery.easing.def](x, t, b, c, d);
+	},
+	easeInQuad: function (x, t, b, c, d) {
+		return c*(t/=d)*t + b;
+	},
+	easeOutQuad: function (x, t, b, c, d) {
+		return -c *(t/=d)*(t-2) + b;
+	},
+	easeInOutQuad: function (x, t, b, c, d) {
+		if ((t/=d/2) < 1) return c/2*t*t + b;
+		return -c/2 * ((--t)*(t-2) - 1) + b;
+	},
+	easeInCubic: function (x, t, b, c, d) {
+		return c*(t/=d)*t*t + b;
+	},
+	easeOutCubic: function (x, t, b, c, d) {
+		return c*((t=t/d-1)*t*t + 1) + b;
+	},
+	easeInOutCubic: function (x, t, b, c, d) {
+		if ((t/=d/2) < 1) return c/2*t*t*t + b;
+		return c/2*((t-=2)*t*t + 2) + b;
+	},
+	easeInQuart: function (x, t, b, c, d) {
+		return c*(t/=d)*t*t*t + b;
+	},
+	easeOutQuart: function (x, t, b, c, d) {
+		return -c * ((t=t/d-1)*t*t*t - 1) + b;
+	},
+	easeInOutQuart: function (x, t, b, c, d) {
+		if ((t/=d/2) < 1) return c/2*t*t*t*t + b;
+		return -c/2 * ((t-=2)*t*t*t - 2) + b;
+	},
+	easeInQuint: function (x, t, b, c, d) {
+		return c*(t/=d)*t*t*t*t + b;
+	},
+	easeOutQuint: function (x, t, b, c, d) {
+		return c*((t=t/d-1)*t*t*t*t + 1) + b;
+	},
+	easeInOutQuint: function (x, t, b, c, d) {
+		if ((t/=d/2) < 1) return c/2*t*t*t*t*t + b;
+		return c/2*((t-=2)*t*t*t*t + 2) + b;
+	},
+	easeInSine: function (x, t, b, c, d) {
+		return -c * Math.cos(t/d * (Math.PI/2)) + c + b;
+	},
+	easeOutSine: function (x, t, b, c, d) {
+		return c * Math.sin(t/d * (Math.PI/2)) + b;
+	},
+	easeInOutSine: function (x, t, b, c, d) {
+		return -c/2 * (Math.cos(Math.PI*t/d) - 1) + b;
+	},
+	easeInExpo: function (x, t, b, c, d) {
+		return (t==0) ? b : c * Math.pow(2, 10 * (t/d - 1)) + b;
+	},
+	easeOutExpo: function (x, t, b, c, d) {
+		return (t==d) ? b+c : c * (-Math.pow(2, -10 * t/d) + 1) + b;
+	},
+	easeInOutExpo: function (x, t, b, c, d) {
+		if (t==0) return b;
+		if (t==d) return b+c;
+		if ((t/=d/2) < 1) return c/2 * Math.pow(2, 10 * (t - 1)) + b;
+		return c/2 * (-Math.pow(2, -10 * --t) + 2) + b;
+	},
+	easeInCirc: function (x, t, b, c, d) {
+		return -c * (Math.sqrt(1 - (t/=d)*t) - 1) + b;
+	},
+	easeOutCirc: function (x, t, b, c, d) {
+		return c * Math.sqrt(1 - (t=t/d-1)*t) + b;
+	},
+	easeInOutCirc: function (x, t, b, c, d) {
+		if ((t/=d/2) < 1) return -c/2 * (Math.sqrt(1 - t*t) - 1) + b;
+		return c/2 * (Math.sqrt(1 - (t-=2)*t) + 1) + b;
+	},
+	easeInElastic: function (x, t, b, c, d) {
+		var s=1.70158;var p=0;var a=c;
+		if (t==0) return b;  if ((t/=d)==1) return b+c;  if (!p) p=d*.3;
+		if (a < Math.abs(c)) { a=c; var s=p/4; }
+		else var s = p/(2*Math.PI) * Math.asin (c/a);
+		return -(a*Math.pow(2,10*(t-=1)) * Math.sin( (t*d-s)*(2*Math.PI)/p )) + b;
+	},
+	easeOutElastic: function (x, t, b, c, d) {
+		var s=1.70158;var p=0;var a=c;
+		if (t==0) return b;  if ((t/=d)==1) return b+c;  if (!p) p=d*.3;
+		if (a < Math.abs(c)) { a=c; var s=p/4; }
+		else var s = p/(2*Math.PI) * Math.asin (c/a);
+		return a*Math.pow(2,-10*t) * Math.sin( (t*d-s)*(2*Math.PI)/p ) + c + b;
+	},
+	easeInOutElastic: function (x, t, b, c, d) {
+		var s=1.70158;var p=0;var a=c;
+		if (t==0) return b;  if ((t/=d/2)==2) return b+c;  if (!p) p=d*(.3*1.5);
+		if (a < Math.abs(c)) { a=c; var s=p/4; }
+		else var s = p/(2*Math.PI) * Math.asin (c/a);
+		if (t < 1) return -.5*(a*Math.pow(2,10*(t-=1)) * Math.sin( (t*d-s)*(2*Math.PI)/p )) + b;
+		return a*Math.pow(2,-10*(t-=1)) * Math.sin( (t*d-s)*(2*Math.PI)/p )*.5 + c + b;
+	},
+	easeInBack: function (x, t, b, c, d, s) {
+		if (s == undefined) s = 1.70158;
+		return c*(t/=d)*t*((s+1)*t - s) + b;
+	},
+	easeOutBack: function (x, t, b, c, d, s) {
+		if (s == undefined) s = 1.70158;
+		return c*((t=t/d-1)*t*((s+1)*t + s) + 1) + b;
+	},
+	easeInOutBack: function (x, t, b, c, d, s) {
+		if (s == undefined) s = 1.70158; 
+		if ((t/=d/2) < 1) return c/2*(t*t*(((s*=(1.525))+1)*t - s)) + b;
+		return c/2*((t-=2)*t*(((s*=(1.525))+1)*t + s) + 2) + b;
+	},
+	easeInBounce: function (x, t, b, c, d) {
+		return c - jQuery.easing.easeOutBounce (x, d-t, 0, c, d) + b;
+	},
+	easeOutBounce: function (x, t, b, c, d) {
+		if ((t/=d) < (1/2.75)) {
+			return c*(7.5625*t*t) + b;
+		} else if (t < (2/2.75)) {
+			return c*(7.5625*(t-=(1.5/2.75))*t + .75) + b;
+		} else if (t < (2.5/2.75)) {
+			return c*(7.5625*(t-=(2.25/2.75))*t + .9375) + b;
+		} else {
+			return c*(7.5625*(t-=(2.625/2.75))*t + .984375) + b;
+		}
+	},
+	easeInOutBounce: function (x, t, b, c, d) {
+		if (t < d/2) return jQuery.easing.easeInBounce (x, t*2, 0, c, d) * .5 + b;
+		return jQuery.easing.easeOutBounce (x, t*2-d, 0, c, d) * .5 + c*.5 + b;
+	}
+});
+
+
+//링크영역 전체 처리
+function init_linkHitArea(linkNodeArr){
+	if(linkNodeArr){
+		for (var i = 0, loopScope = linkNodeArr.length; i < loopScope; i++) {
+			var linkNode = linkNodeArr[i];
+			var aNode = $(linkNode).find("a")[0];
+			if(aNode){
+				var clickValue = $(aNode)
+				$(linkNode).css("cursor", "pointer");
+				$(linkNode).bind("click", {clickValue:$(aNode).attr("href")}, function(evt){
+					var clickValue = evt.data.clickValue;
+					if(String(clickValue).indexOf("javascript:") > -1){
+						var funcStr = String(clickValue).split("javascript:")[1];
+						eval(funcStr);
+					}else{
+						document.location.href = clickValue;
+					}
+				});
+			}
+		};
+	}
+}
+//뷰포트 사이즈 구하기
+function viewport()
+{
+	var e = window
+	, a = 'inner';
+	if ( !( 'innerWidth' in window ) )
+	{
+		a = 'client';
+		e = document.documentElement || document.body;
+	}
+	return { width : e[ a+'Width' ] , height : e[ a+'Height' ] }
+}
+
+//ie버전
+var msIEVersion = 0;
+// if($.browser.msie){
+	// msIEVersion	=	$.browser.version;
+// }
+
+//클라이언트 높이 구하기
+function getClientHeight(){
+	var targetHeight
+	var minHeight = 768;//최소높이값
+	var chkHeight = (viewport().height < $("body").outerHeight(true))?	$("body").outerHeight(true) : viewport().height;
+	targetHeight = (chkHeight < minHeight)?	minHeight : chkHeight;
+	return targetHeight;
+}
+
+
+
+
+$(function(){
+	// 웹접근성 관련 GNB 스크립트 수정
+	//GNB	
+	var header = $('#header');
+	var gnb = $('#gnb ul');
+	var deps1 = $('#gnb > ul > li');	
+	var deps2Box = $('.deps2');
+	var deps2 = $('.deps2 > li');	
+	var deps2Atag = $('.deps2 > li > a');	
+	var deps2H = 65
+	var deps3 = $('.deps3 > li');
+	var deps3H = 103
+	var oldDeps = null;
+	var newDeps = null;
+	var deps3On = null;
+	var deps3Off = null;
+	var opened = false;
+	var deps1currentIndex = -1;
+	var deps2currentIndex = -1;
+	var gnbTime=300;
+	var gnbTimer;
+	
+	//header.prepend('<span class="blt"><img src="'+imgUrl+'/common/gnb/blt.gif" alt="" /></span>');
+	deps2Box.each(function(){
+		// var boxLeft = gnb.offset().left;
+		// var boxRight = boxLeft + gnb.outerWidth();
+		// var deps1X = $(this).parents('.deps1').offset().left
+		// var boxWidthX = $(this).outerWidth() /2;
+		// var positionX = (deps1X - boxWidthX) +80
+		// if ( positionX < boxLeft ){
+		// 	$(this).css({"left":boxLeft+"px"});	
+		// }else if( positionX > boxRight ){
+		// 	$(this).css({"left":boxLeft+"px"});	
+		// }
+		// $(this).css({"left":positionX+"px"});
+		var height = $(this).outerHeight();
+		$(this).css({"top":"-"+height+"px","opacity":0})
+	});
+	var blt = $('.blt');
+	blt.css({"opacity":"0"})
+	blt.attr("name","hidden")
+	if ( blt.length > 1 ){
+		blt.not(':first').remove();
+	};
+	deps1.bind('mouseenter focusin', function(e){		
+		clearInterval(gnbTimer);
+		//if(deps1currentIndex != -1){
+			//deps1currentIndex = -1;
+			//deps2currentIndex = -1;
+		//};
+		if ( deps1currentIndex == $(this).index() ){
+			return;
+		}else{
+			deps1currentIndex = -1;
+			deps2currentIndex = -1;
+			/*gnb.find('.deps2Wrap').stop().animate({"height":"0"}, {}, function(){
+				$(this).css("display", "none");
+			});*/
+			gnb.find('.deps2Wrap').stop().animate({"height":deps2H}, {}, function(){
+				$(this).css("display", "none");
+			});
+		}
+		
+		var positionX = $(this).offset().left;
+		var elementW = $(this).outerWidth() / 2;
+		newDeps = $(this);
+		if ( oldDeps != null && oldDeps !=  newDeps){
+			oldDeps.removeClass('hover');
+			oldDeps.find(">a").removeClass('on').end().find(">.deps2Wrap").css({"z-index":"1"})
+			oldDeps.find('.deps2').css({"opacity":"0","top":"-62px"})
+		}			
+		newDeps.addClass('hover').find("> a").addClass('on');
+		if ( oldDeps == null ){
+			newDeps.find('.deps2').css({"opacity":"0","top":"-62px"})
+			newDeps.find('.deps2').stop().css({"top":0})
+		};
+		if(($(this).find('.deps2Wrap').length == 0)){
+			gnb.find('.deps2Wrap').stop().animate({"height":"0"}, {}, function(){
+				$(this).css("display", "none");
+			});
+			if(oldDeps) oldDeps.find(">a").removeClass('on');
+			blt.stop().animate({"left":( (positionX + elementW) - 5 )+"px"}, 400, "easeOutCubic");
+		};
+		// 네비게이션 바가 없으면 보이게 처리
+		if (blt.attr("name") == "hidden"){
+			blt.show();
+			blt.removeAttr("name");
+			blt.css({"left":( (positionX + elementW) - 5 )+"px","opacity":"1"});
+		};
+		if($(this).hasClass('smartzone') ){
+			blt.attr("name","hidden").hide();
+		}
+		blt.stop().animate({"left":( (positionX + elementW) - 5 )+"px"}, 400, "easeOutCubic");
+		
+		newDeps.find('>.deps2Wrap').css("display", "block");
+		newDeps.find('>.deps2Wrap').stop().animate({"height":deps2H+"px"}).css({"z-index":"100"});		
+		newDeps.find('.deps2').css({"opacity":"0","top":"-62px"});	
+		newDeps.find('.deps2').stop().animate({"opacity":"1","top":0}, 400, "easeOutBack");
+		oldDeps = newDeps;		
+		deps1currentIndex = $(this).index();
+	});
+		
+	$('#gnb').bind('mouseleave focusout', function(e){
+		if(e.type !="focusout"){
+			hideGnb($(this));
+			deps1currentIndex = -1;
+			deps2currentIndex = -1;
+		}else{
+			gnbTimer = setInterval(TimerFn, gnbTime);
+		}
+	});
+	
+	function TimerFn(){
+		console.log("timer");
+		clearInterval(gnbTimer);
+		var gnbTarget = $('#gnb');
+		hideGnb(gnbTarget);
+		deps1currentIndex = -1;
+		deps2currentIndex = -1;
+	}
+	
+	
+	function hideGnb(gnb){
+		blt.attr("name","hidden").hide();
+		deps1.removeClass('hover');
+		gnb.find('.deps2Wrap').stop().animate({"height":"0"}, {}, function(){
+			$(this).css("display", "none");
+		});
+		if(oldDeps) oldDeps.find(">a").removeClass('on');
+	}
+	
+	deps2.bind('mouseenter focusin', function(){
+		clearInterval(gnbTimer);
+		if ( deps2currentIndex != $(this).index() ){
+			if ( deps3Off != null ){
+				//deps3Off.find('ul').hide();
+				deps3Off.find('ul').show();
+				deps3Off.find('ul').css('visibility' , 'hidden');
+				
+				deps3Off.parents('ul.deps2').removeClass('bgLine');
+				if(deps3Off) deps3Off.find('>a').removeClass('on');
+				deps3Off.parents('.deps2Wrap').css("display", "block");
+				deps3Off.parents('.deps2Wrap').stop().animate({"height":deps2H+"px"})
+			}
+		}
+		deps3On = $(this);
+		if ($(this).find('ul').length > 0){
+			deps3On = $(this);
+			deps3On.parents('.deps2Wrap').css("display", "block");
+			deps3On.parents('.deps2Wrap').stop().animate({"height":deps3H+"px"});
+			deps3On.find('>a').addClass('on');
+			$(this).find('ul').show();
+			$(this).find('ul').css('visibility' , 'visible');
+			$(this).parents('ul.deps2').addClass('bgLine');
+			deps3Off = deps3On;
+		}else{
+			deps3On.parents('.deps2Wrap').css("display", "block");
+			deps3On.parents('.deps2Wrap').stop().animate({"height":deps2H+"px"})
+			deps3Off = null;
+		};											
+		deps2currentIndex = $(this).index();
+	});
+	
+	deps2.bind('mouseleave focusout', function(){	
+		if ( deps2currentIndex == $(this).index() ){
+			return;
+		}
+		//$(this).find('ul').hide();
+		$(this).find('ul').show();
+		//$(this).find('ul').css('visibility' , 'hidden');
+		
+		$(this).parents('ul.deps2').removeClass('bgLine');
+		if(deps3Off) deps3Off.find('>a').removeClass('on');
+		$(this).parents('.deps2Wrap').css("display", "block");
+		$(this).parents('.deps2Wrap').stop().animate({"height":deps2H+"px"});
+	});
+	
+	deps3.bind('focusin', function(){
+		//var d3target=$(this).parents().parents().parents().parents('.deps2Wrap');
+		
+		//d3target.stop().animate({"height":103+"px"});
+		//d3target.addClass('asdf');
+		
+		//if ( deps2currentIndex == $(this).index() ){
+			//return;
+		//}
+		//deps1currentIndex = $(this).parent().parent().index();
+		//deps2currentIndex = $(this).parent().parent().parent().parent().parent().index();
+		//deps1currentIndex = 4;
+		//deps2currentIndex = 1;
+		//console.log(deps1currentIndex, deps2currentIndex);
+		
+		//.addClass("aabbccddee");
+		//console.log(deps1currentIndex, deps2currentIndex);
+		
+		//if ( deps2currentIndex == $(this).parent().parent().index() ){
+		//return;
+		//}
+		
+		
+		/*deps3On = $(this);
+		deps3On.parents('.deps2Wrap').css("display", "block");
+		deps3On.parents('.deps2Wrap').stop().animate({"height":deps3H+"px"});
+		deps3On.find('>a').addClass('on');
+		$(this).find('ul').show();
+		$(this).find('ul').css('visibility' , 'visible');
+		$(this).parents('ul.deps2').addClass('bgLine');
+		deps3Off = deps3On;*/
+		
+		
+	});
+	// //웹접근성 관련 GNB 스크립트 수정
+});
+/*
+(function init_GNB(){
+	//GNB
+	$(document).ready(function(){
+		var header = $('#header');
+		var gnbUl = $('#gnb > ul');
+		var deps1LiArr = $(gnbUl).find(">li");
+		var deps2LiArr = [];
+		var deps2H = 65;
+		var deps3H = 103;
+		var currentMenu = null;
+		for (var i = 0; i < deps1LiArr.length; i++) {
+			var d1Li = deps1LiArr[i];
+			$(d1Li).bind("mouseover", {num:i}, liMouseoverHandler);
+		};
+		function liMouseoverHandler(evt){
+			var wraper = $(this).find('>.deps2Wrap')[0];
+			$(this).addClass("on");
+			$(wraper).css("display", "block");
+			$(wraper).stop().animate({"height":deps2H+"px"}).css({"z-index":"100"});
+		}
+	});
+})();
+*/
+/*
+메인페이지 비주얼 처리
+*/
+function init_mainVisual(firstCurrent)
+{
+	//기본변수 설정
+	var current = firstCurrent-1;
+	if(current < 0 || current > 1)	current = 0;
+	currentPage = current;
+	var visualImgLeftArr = ["50%", "-30%"];//값 바꿀경우 fund_main.css에서도 바꾸어 주어야함
+	var toggleContentsArr = [];
+	var stuloanContents = [];
+	// var toggleImgArr = [];
+	var isOpenMainRC;
+	//GNB html 참조
+	var gnb = $("#gnb");
+	var gnb_stuloan = $(gnb).find("ul.stuloan")[0];
+	var gnb_foundation = $(gnb).find("ul.foundation")[0];
+	//비주얼 이미지 html 참조
+	var visualImgArea = $("#visualImgArea");
+	var mainVisualImg = $("#mainVisualImg");
+	//학자금 html 참조
+	var stuloan = $("#stuloan");
+	var stuloanCopyright = $("#stuloanCopyright");
+	var mainRollingContent = $("#mainRollingContent");
+	var tickNotice = $("#tickNotice");
+	var alimi = $(".notification")[0];
+	var stuloanEtcLink = $("#stuloanEtcLink");
+	//재단 html 참조
+	var foundation = $("#foundation");
+	var foundationCopyright = $("#foundationCopyright");
+	var listNotice = $("#listNotice");
+	var foundationEtcLink = $("#foundationEtcLink");
+	var toggleTimeoutID;
+
+	//퀵메뉴 설정
+	var privateArea = $("#private_area");
+	var privateZone = $("#private_zone");
+	var privateZoneLeftArr = [parseInt($(privateZone).css("left")), $(privateArea).outerWidth()];
+	var faxGuide = $("#faxGuide");
+	var faxGuideLeftArr = [parseInt($(faxGuide).css("left")), $(privateArea).outerWidth()];
+	var swapBtn = $(privateArea).find(".moveSite")[0];//학자금 재단 스왑 a노드
+	var swapBtnBgPosArr = [-299, -400];
+	var visualImg = $("#mainVisualImg")[0];
+	// $(swapBtn).append('<img src="/images/common/qlink_stuloan.png" alt="재단소개" style="display:none;" />');
+	// toggleImgArr = [$(swapBtn).find("> img")[0], $(swapBtn).find("> img")[1]];
+	$("#gnb ul").css("visibility", "visible");
+	
+	//기본 함수들
+	function swapBtnHandler(evt)
+	{ /*
+		evt.preventDefault();
+		var visualImgEasing = "";
+		setXPos();
+		// $(toggleImgArr[current]).delay(1000).animate({opacity:0}, 1200, "easeOutCubic");
+		if (current == 0)//재단 소개 클릭
+		{
+			current = 1;
+			swapGNB(false);
+			toggleStuLoan(false);
+			toggleFoundation(true);
+			visualImgEasing = "easeOutBack";
+			$(privateZone).css("left", privateZoneLeftArr[1] + "px");
+			$(faxGuide).css("left", faxGuideLeftArr[1] + "px");
+			$(swapBtn).css("background-position", "-95px "+ swapBtnBgPosArr[1] + "px");
+		}
+		else {//학자금 클릭
+			current = 0;
+			swapGNB(true);
+			toggleStuLoan(true);
+			toggleFoundation(false);
+			visualImgEasing = "easeOutBack";
+			$(visualImg).css("left", 10);
+			$(privateZone).css("left", privateZoneLeftArr[0] + "px");
+			$(faxGuide).css("left", faxGuideLeftArr[0] + "px");
+			$(swapBtn).css("background-position", "-95px "+ swapBtnBgPosArr[0] + "px");
+		}
+		$(visualImg).stop().animate({left:visualImgLeftArr[current]}, 1400, "easeOutBack");
+		// $(privateArea).animate({left:privateAreaLeftArr[current]}, 500, "easeOutCubic");
+		if(current==0){
+		 $(privateArea).css("left", "auto");
+		 $(privateArea).css("right", "500px");
+		 $(privateArea).animate({right:0}, 500, "easeOutCubic");
+		}else{
+		 $(privateArea).css("right", "auto");
+		 $(privateArea).css("left", "500px");
+		 $(privateArea).animate({left:0}, 500, "easeOutCubic");
+		}
+		// $(toggleImgArr[current]).css("display", "block");
+		// $(toggleImgArr[current]).delay(1000).animate({opacity:1}, 1200, "easeOutCubic");
+		return false;
+		*/
+	}
+	function setXPos()
+	{
+		var viewportWidth =  viewport().width;
+		var viewportHeight = viewport().height;
+		var privateAreaWidth = $(privateArea).outerWidth(true);
+		var minHeight = 768;//최소높이값
+		if(msIEVersion == 7) {
+			$(visualImgArea).css("left", 0);
+		}
+
+		visualImgLeftArr[1] =	( 
+									((viewportWidth - $(foundation).outerWidth(true))/2)
+									+ (($(foundation).outerWidth(true))/2)
+									- (($(mainVisualImg).outerWidth(true)))
+								) + "px";//재단소개 비주얼 이미지 x좌표 예외처리
+	}
+	//GNB swap
+	function swapGNB(chk)
+	{
+		if(chk)
+		{
+			$(gnb_foundation).css("display", "none");
+			$(gnb_stuloan).css("display", "block");
+			$(gnb_stuloan).css("right", "50px");
+			$(gnb_stuloan).delay(100).animate({opacity:1, right:0}, 1000, "easeOutBack");
+			$(gnb_foundation).animate({opacity:0, right:-50}, 500, "easeOutBack");
+		}
+		else
+		{
+			$(gnb_stuloan).css("display", "none");
+			$(gnb_foundation).css("display", "block");
+			$(gnb_foundation).css("right", "-50px");
+			$(gnb_foundation).delay(100).animate({opacity:1, right:0}, 1000, "easeOutBack");
+			$(gnb_stuloan).animate({opacity:0, right:50}, 500, "easeOutBack");
+		}
+	}
+	//학자금 토글
+	function toggleStuLoan(chk, pIntervalTime)
+	{
+		var moveX = 20;
+		var moveY = 0;
+		var intervalTime = (pIntervalTime == undefined)?	500 : 0;
+		var speed = (pIntervalTime == undefined)?	800 : 0;
+		var mainRC = $("#mainRollingContent")[0];//mainRollingContent 토글 차후 처리
+		if (chk) {
+			clearTimeout(toggleTimeoutID);
+			toggleTimeoutID = setTimeout(function(){
+				$(stuloan).css("visibility", "visible");
+				$(stuloan).css("display", "block")
+				.css("left", "-150px");
+			}, intervalTime);
+			$(stuloan).stop().delay(intervalTime).animate({left:0}, speed, "easeOutCubic");
+		}
+		else {
+			$(stuloan).stop();
+			$(stuloan).css("display", "none");
+		}
+	}
+	//재단소개 토글
+	function toggleFoundation(chk, pIntervalTime)
+	{
+		var moveX = 20;
+		var moveY = 0;
+		var intervalTime = (pIntervalTime == undefined)?	500 : 0;
+		var speed = (pIntervalTime == undefined)?	800 : 0;
+		if (chk) {
+			clearTimeout(toggleTimeoutID);
+			toggleTimeoutID = setTimeout(function(){
+				$(foundation).css("display", "block")
+				.css("left", "150px");
+			}, intervalTime);
+			$(foundation).stop().delay(intervalTime).animate({left:0}, speed, "easeOutCubic");
+		}
+		else {
+			$(foundation).stop();
+			$(foundation).css("display", "none");
+		}
+	}
+
+// 메인 롤링 컨텐츠
+	(function init_mainRC(){
+		var mainRC = $("#mainRollingContent")[0];
+		var tab = $(mainRC).find(">.tab")[0];
+		// var tabX = parseInt($(tab).css("right").split("px")[0]);
+		// var tabArr = $(tab).find(">li");
+		var tabContent = $(mainRC).find(".tabCont")[0];
+		var contentArr = $(tabContent).find(">li");
+		var contentAreaArr = [];
+		var stepArr = [];
+		var guide = [];
+		var currentNum = -1;
+		var maxZIndex = 30;
+		var baseZIndex = 25;
+		var targetWidth = 808;
+		var closeWidth = 251;
+		var closeBtn = null;
+		var guideOriTop = 70;
+		var closeBtnOriTop = 15;
+		function init(){
+			// 웹접근성 관련 주석처리
+			//$(mainRC).append('<div class="closeBtn" style="display:none;"><span>닫기</span></div>');//펼쳐지면 나오는 닫기버튼 생성
+			//closeBtn = $(mainRC).find(".closeBtn")[0];
+			// //웹접근성 관련 주석처리
+			closeBtn = $(mainRC).find(".closeBtn");
+			closeBtnOriTop = parseInt($(closeBtn).eq(0).css("top").split("px")[0]);
+			
+			$(closeBtn).bind("click", function(){				
+				//$(mainRC).trigger("mouseleave");
+				$('.contentArea').hide();
+				$(this).parent().prev().find('.guide').show().focus();
+				var targetLeft = 0;
+				for (var i = 0; i < contentArr.length; i++) {
+					var content = contentArr[i];
+					var targetWidth = closeWidth;
+					$(content).css("cursor", "pointer");
+					if(i != 0){
+						targetLeft += closeWidth + 21;
+					}					
+					$(content).stop().animate({width:targetWidth, left:targetLeft}, 500, "easeOutCubic");
+					$(content).css("border-right", "1px solid #EEE");
+					if(i==contentArr.length-1){
+						$(content).css("border-right", "none");
+					}
+				}
+				isOpenMainRC = false;
+				return false;
+			});
+			for (var i = 0; i < contentArr.length; i++) {
+				contentAreaArr[i] = $(contentArr[i]).find(">div.contentArea")[0];
+				// var tabLi = tabArr[i];
+				// $(tabLi).bind("click", {num:i}, tabHandler);
+				stepArr[i] = $(contentArr[i]).find(".step");
+				guide[i] = $(contentArr[i]).find(".guide");
+				//guide_link[i] = $(guide[i]).find("a");
+				// 웹접근성 관련 주석처리
+				//$(stepArr[i]).append('<div class="guide" style="display:none;"><span>클릭하세요</span></div>');//스텝 롤오버시 나오는 "클릭하세요" 생성
+				// //웹접근성 관련 주석처리
+				guideOriTop = parseInt($(stepArr[i]).find(".guide").css("top").split("px")[0]);
+				$(contentAreaArr[i]).css("display", "none");
+				$(contentAreaArr[i]).stop().hide();////$(contentAreaArr[i]).stop().animate({opacity:0}, 200, "easeInCubic");
+				$(guide[i]).bind("click", {num:i}, mainRCContentHandler);
+				$(stepArr[i]).bind("mouseenter", {}, function(evt){
+					if(!isOpenMainRC){
+						var guide = $(this).find(".guide")[0];
+						$(guide).css("top", guideOriTop+10);
+						$(guide).show();
+						$(guide).stop().animate({top:guideOriTop}, 500, "easeOutCubic")
+					}
+				}).bind("mouseleave", {}, function(evt){
+					var guide = $(this).find(".guide")[0];
+					$(guide).hide();
+				});
+				// 접근성 관련 키보드 이벤트 추가
+				$(stepArr[i]).find('h2 a').focus(function(){
+					guide = $(this).parents('.step').find('.guide')
+					$(guide).css("top", guideOriTop+10);
+					$('.guide').not($(guide).show()).hide();
+					$(guide).stop().animate({top:guideOriTop}, 500, "easeOutCubic")
+				})
+				$(stepArr[i]).find('.guide').blur(function(){
+					guide = $(this).parents('.step').find('.guide')
+					$(guide).hide();
+				})
+				//--접근성 관련 키보드 이벤트 추가
+				if($(contentAreaArr[i]).find(".linkHitArea").length > 0){
+					if(i==1){//step2 예외처리
+						var linkListArr = [
+																$(contentAreaArr[i]).find(".content1")[0],
+																$(contentAreaArr[i]).find(".content2")[0],
+																$(contentAreaArr[i]).find(".content3")[0]
+															];
+						init_linkHitArea(linkListArr);
+					}else{
+						var linkListUlArr = $(contentAreaArr[i]).find(".linkHitArea");
+						for (var j = 0; j < linkListUlArr.length; j++) {
+							var linkListUl = linkListUlArr[j];
+							var linkListUlLiArr = $(linkListUl).find("li");
+							init_linkHitArea(linkListUlLiArr);
+						};	
+					}
+				}
+			};
+			//영역에서 마우스 아웃시처리
+			$(mainRC).bind("mouseleave", {}, function(evt){
+				 var targetLeft = 0;
+				for (var i = 0; i < contentArr.length; i++) {
+					var content = contentArr[i];
+					var contentUl = contentAreaArr[i];
+					var targetWidth = closeWidth;
+					$(content).css("cursor", "pointer");
+					if(i != 0){
+						targetLeft += closeWidth + 21;
+					}					
+					$(content).stop().animate({width:targetWidth, left:targetLeft}, 500, "easeOutCubic");
+					$(contentUl).stop().hide();////$(contentUl).stop().animate({opacity:0}, 150, "easeOutCubic", function(){$(this).css("display", "none");});
+					$(content).css("border-right", "1px solid #EEE");
+					if(i==contentArr.length-1){
+						$(content).css("border-right", "none");
+					} 
+				}
+				$(tabContent).css("border-right", "none");
+				// $(tabArr[currentNum]).find("a").removeClass("on");
+				// $(tab).stop().animate({opacity:0, right:tabX+50}, 150, "easeInCubic", function(){$(this).css("display", "none");});//탭숨기기
+				// 웹접근성 관련 주석처리
+				//$(closeBtn).hide();//닫기 버튼 숨기기
+				// //웹접근성 관련 주석처리
+				isOpenMainRC = false;
+				currentNum = -1;
+			});
+			$(mainRC).trigger("mouseleave");
+		}
+		function tabHandler(evt){
+			evt.preventDefault();
+			var num = evt.data.num;
+			var targetContent = contentArr[num];
+			isOpenMainRC = false;
+			$(targetContent).css("left", -250);
+			$(targetContent).trigger("click", [num]);
+		}
+		function mainRCContentHandler(evt){	
+			// 웹접근성 관련 스크립트 추가
+			if ( $( evt.target ).hasClass('closeBtn')){
+				return;
+			}			
+			// //웹접근성 관련 스크립트 추가
+			if(!isOpenMainRC){
+				var num = evt.data.num;
+				isOpenMainRC = true;
+				if(currentNum != -1){
+					$(contentArr[currentNum]).animate({width:closeWidth}, 150, "easeInCubic");
+					// $(tabArr[currentNum]).find("a").removeClass("on");
+					$(contentAreaArr[currentNum]).css("display", "none");
+				}
+				currentNum = num;
+				//컨텐츠
+				
+				for (var i = 0; i < contentArr.length; i++) {
+					$(contentArr[i]).css("cursor", "default");
+					var targetZIdx = i+baseZIndex;
+					if(i == num){//선택한 스텝
+						targetZIdx = maxZIndex;
+						$(contentArr[i]).stop().animate({left:0, width:targetWidth}, 200, "easeOutCubic", function(){//선택된 스텝 펼치기
+							$(closeBtn).css("top", closeBtnOriTop-5);
+							$(closeBtn).show();
+							$(closeBtn).stop().animate({top:closeBtnOriTop}, 300, "easeOutCubic");
+							$(contentAreaArr[num]).stop().hide();////$(contentAreaArr[num]).stop().animate({opacity:0}, 0);
+							$(contentAreaArr[num]).stop().css("display", "block");
+							$(contentAreaArr[num]).stop().show().focus();////$(contentAreaArr[num]).stop().animate({opacity:1}, 500, "easeOutCubic");
+							// $(tabArr[num]).find("a").addClass("on");
+						});
+					}else{
+						$(contentArr[i]).stop().animate({left:0}, 400, "easeOutCubic");	
+					}
+					$(stepArr[i]).find(".guide").hide();
+					$(contentArr[i]).css("z-index", targetZIdx);
+					$(contentArr[i]).css("border-right", "none");
+				};			
+				
+				// $(tabContent).css("border-right", "1px solid #EEE");
+				//탭나오기
+				if($(tab).css("display") == "none"){
+					// $(tab).css("right", tabX+50 + "px");
+					// $(tab).stop().animate({opacity:0}, 0);
+					// $(tab).css("display", "block");
+					// $(tab).stop().delay(200).animate({opacity:1, right:tabX}, 150, "easeOutCubic");
+				}
+			}else{
+				isOpenMainRC = false;
+				$(mainRC).trigger("mouseleave");
+			}
+			return false;
+		}
+		init();
+	})();
+
+
+	// function getPrivateLeft(){
+	// 	$('body').css('overflow', 'auto');
+	// 	var scrollBarWidth = $(window).width();
+	// 	var scrollBarHeight = $(window).height();
+	// 	$('body').css('overflow', 'scroll');
+	// 	scrollBarWidth -= $(window).width();
+	// 	scrollBarHeight -= $(window).height();
+	// 	$('body').css('overflow', 'visible');
+	// 	var privateAreaWidth = $(privateArea).outerWidth(true);
+	// 	var targetLeft = parseInt($("#wrap").css("min-width"));
+	// 	var chkTargetLeft = $(wrap).outerWidth(true) - privateAreaWidth;
+	// 	targetLeft = (targetLeft < chkTargetLeft)? chkTargetLeft	:	targetLeft;
+	// 	if(msIEVersion > 0){
+	// 		targetLeft -= scrollBarWidth;//ie 일 경우 예외처리
+	// 	}
+	// 	return targetLeft;
+	// }
+	function resizeQuickLink(){
+		setXPos();
+		$(visualImg).css("left", visualImgLeftArr[current]);
+		if(current==0){
+			$(privateArea).css("left", "auto");
+			$(privateArea).css("right", 0);
+		}else{
+			$(privateArea).css("right", "auto");
+			$(privateArea).css("left", 0);
+		}
+		$(privateArea).css("height", getClientHeight() + "px");
+	}
+	$(window).bind("resize", {}, resizeQuickLink);
+	resizeQuickLink();
+	$(window).load(function(){
+		$(privateArea).css("height", getClientHeight() + "px");
+	});
+	$(privateArea).css("display", "block");
+	$(stuloan).css("display", "none");
+	$(foundation).css("display", "none");	
+	$(visualImg).stop().animate({left:visualImgLeftArr[current]}, 1400, "easeOutBack");
+	if(current == 0){
+		toggleStuLoan(true);
+		swapGNB(true);
+		$(swapBtn).css("background-position", "-95px "+ swapBtnBgPosArr[0] + "px");
+		// $(toggleImgArr[0]).css("display", "block");
+		// $(toggleImgArr[1]).css("display", "none");
+	}else{
+		toggleFoundation(true);
+		swapGNB(false);
+		$(swapBtn).css("background-position", "-95px "+ swapBtnBgPosArr[1] + "px");
+		// $(toggleImgArr[0]).css("display", "none");
+		// $(toggleImgArr[1]).css("display", "block");
+	}
+	$(swapBtn).attr("href","#");
+	$(swapBtn).bind("click", {}, swapBtnHandler);
+
+
+
+
+	// 웹접근성 관련 스크립트 수정
+	// 공지사항 롤링
+	function init_tickNotice(){
+		var textBoxArr = $('.notice');
+		var btnsWrapArr = $('.list_A');
+		var nTimerIDDepth = 100000;
+		if(textBoxArr.length > 0){
+			for (var i = 0; i < textBoxArr.length; i++) {
+				(function init_notice1(){
+					var textBox = $(textBoxArr[i]);
+					var btnsWrap = $(btnsWrapArr[i]);
+					var upBtn = btnsWrap.find('.up_A');
+					var downBtn = btnsWrap.find('.down_A');
+					var textList = textBox.find('li');
+					var textListHeight = parseInt(21);
+					var nBannerCount = $(textList).length;
+					var nCurrentIndex = 0;
+					var DURATION = 500;
+					var TIMER = 3000
+					var nTimerID = nTimerIDDepth*i;
+					var nTimerIDStart = nTimerID;
+					setBannerPosition();
+					startTextBanner()
+					//텍스트 베너 초기화
+					function setBannerPosition(){
+						//-----키보드 이벤트 접근성 추가(최수만)
+						$(textList).css({"top":-textListHeight});
+						//-----//키보드 이벤트 접근성 추가(최수만)
+						
+						$(textList).eq(0).css({"top":"0"});
+					}
+					//타이머 실행
+					function startTextBanner(){
+						clearInterval(nTimerID);
+						if ( nTimerID == nTimerIDStart ){
+							nTimerID = setInterval(showBannerIntervalDown, TIMER);
+						}
+					};
+					//증가값 설정
+					function showBannerIntervalDown(){
+						if ( nCurrentIndex+1 >= nBannerCount ){
+							showBannerAtDown(0);
+						}else{
+							showBannerAtDown(nCurrentIndex+1);
+						};
+					};
+					function showBannerIntervalUp(){
+						if ( nCurrentIndex-1 < 0 ){
+							showBannerAtUp( nBannerCount - 1);
+						}else{
+							showBannerAtUp(nCurrentIndex-1);
+						};
+					};
+					//베너 애니메이션
+					function showBannerAtDown(nIndex){
+						//if ( nCurrentIndex ==nIndex || nIndex<0 || nIndex>=nBannerCount ) return false;
+						if ( nCurrentIndex ==nIndex ) return false;
+						var currentBanner =$(textList).eq(nCurrentIndex);
+						var nextBanner = $(textList).eq(nIndex);
+						
+						if ( currentBanner.is(':animated')){
+							return;
+						}
+						
+						$(currentBanner).animate({"top":-textListHeight},DURATION);
+						$(nextBanner).css({"top":textListHeight});
+						$(nextBanner).animate({"top":0},DURATION);
+				//		alert(nCurrentIndex+'.....'+nIndex)
+						nCurrentIndex = nIndex;
+						
+					};
+					function showBannerAtUp(nIndex){
+						//if ( nCurrentIndex ==nIndex || nIndex<0 || nIndex>=nBannerCount ) return false;
+						if ( nCurrentIndex ==nIndex ) return false;
+						var currentBanner =$(textList).eq(nCurrentIndex);
+						var nextBanner = $(textList).eq(nIndex);
+						
+						if ( currentBanner.is(':animated')){
+							return;
+						}
+						
+						$(currentBanner).animate({"top":textListHeight},DURATION);
+						$(nextBanner).css({"top":-textListHeight});
+						$(nextBanner).animate({"top":0},DURATION);
+				//		alert(nCurrentIndex+'.....'+nIndex)
+						nCurrentIndex = nIndex;
+						
+					};
+					
+					//-----키보드 이벤트 접근성 추가(최수만)
+					function focusEventFn(num){
+						//console.log(num, nCurrentIndex);
+						//nCurrentIndex
+						//showBannerIntervalUp();
+						//showBannerIntervalDown();
+						showBannerAtDown(num);
+						//showBannerAtUp(num);
+					}
+					//-----//키보드 이벤트 접근성 추가(최수만)
+
+					//마우스 오버시 멈춤
+					$(textBox).bind('mouseover', function(){
+						if ( nTimerID != nTimerIDStart ){
+							clearInterval(nTimerID);
+							nTimerID = nTimerIDStart;
+						};
+					});
+					$(btnsWrap).bind('mouseover', function(){						
+						if ( nTimerID != nTimerIDStart ){
+							clearInterval(nTimerID);
+							nTimerID = nTimerIDStart;
+						};
+					});
+					
+					//-----키보드 이벤트 접근성 추가(최수만)
+					$(textBox).find('a').bind('focus', function(){
+						if ( nTimerID != nTimerIDStart ){
+							var num=$(this).parent().index();
+							clearInterval(nTimerID);
+							nTimerID = nTimerIDStart;
+							focusEventFn(num);
+							//console.log($(this).parent().index());
+							
+						};
+					});
+					$(btnsWrap).find('a').bind( 'focus' , function(){
+						if ( nTimerID != nTimerIDStart ){
+							clearInterval(nTimerID);
+							nTimerID = nTimerIDStart;
+						};
+					});
+					//-----//키보드 이벤트 접근성 추가(최수만)
+
+					
+					//마우스 아웃시 타이머 재시작
+					$(textBox).bind('mouseleave', function(){						
+						if ( nTimerID == nTimerIDStart ){
+							nTimerID = setInterval(showBannerIntervalDown, TIMER);
+						};
+					});
+					$(btnsWrap).bind('mouseleave', function(){						
+						if ( nTimerID == nTimerIDStart ){
+							nTimerID = setInterval(showBannerIntervalDown, TIMER);
+						};
+					});
+					
+					//-----키보드 이벤트 접근성 추가(최수만)
+					$(textBox).find('a').bind('blur', function(){
+						if ( nTimerID == nTimerIDStart ){
+							nTimerID = setInterval(showBannerIntervalDown, TIMER);
+						};
+					});
+					$(btnsWrap).find('a').bind('blur', function(){
+						if ( nTimerID == nTimerIDStart ){
+							nTimerID = setInterval(showBannerIntervalDown, TIMER);
+						};
+					});
+					//-----//키보드 이벤트 접근성 추가(최수만)
+					
+					
+					
+					//마우스,키보드 클릭
+					upBtn.bind( 'click' , function(e){
+						e.preventDefault();
+						showBannerIntervalUp();
+					});
+					
+					downBtn.bind( 'click' , function(e){	
+						e.preventDefault();
+						showBannerIntervalDown();
+					});
+				})();
+			};
+		}
+	};
+	// 웹접근성 관련 스크립트 수정
+	
+	// 웹접근성 파이어폭스 오작동으로 수정
+	//$(document).ready(function(){
+		init_tickNotice();
+	//});
+	// //웹접근성 파이어폭스 오작동으로 수정
+	
+	//기타 배너 링크 영역처리
+	try{
+		if($("#stuloanEtcLink").length > 0){
+			var linkLi = [];
+			var stuloanEtcLink = $("#stuloanEtcLink")[0];
+			var foundationEtcLink = $("#foundationEtcLink")[0];
+			linkLi.push($(stuloanEtcLink).find("li.bn01")[0]);//스마트 설계
+			linkLi.push($(stuloanEtcLink).find("li.bn03")[0]);//학생지원정보
+			linkLi.push($(foundationEtcLink).find("div.ethics")[0]);//윤리경영
+			linkLi.push($(foundationEtcLink).find("div.social")[0]);//윤리경영
+			init_linkHitArea(linkLi);
+		}
+	}catch(e){
+
+	}
+
+
+/* 	메인 롤링 베너
+	$(function(){
+		var rollingTabBox = $('#mainRollingContent');
+		var rollingTabBox = $('.stepBox')
+		var tab = $('#mainRollingContent ul.tab')
+
+		rollingTabBox.bind('mouseenter', function(){
+			$(this).css({"background":"#fff","z-index":"100"})
+			$(this).animate({"left":0,"width":"792px"},500, 'easeOutBack', function(){
+
+				tab.fadeIn(300)
+			})
+		})
+	})
+*/
+}
+
+
+
+
+
+
+
+
+
+//스마트존 메인 초기화
+function init_smartzoneMainVisual(){
+	$(document).ready(function(){
+		var privateArea = $("#private_area");
+		$(privateArea).css("height", getClientHeight() + "px");
+	});
+}
+
+
+
+
+
+
+/**
+quickmenu > miniMyPage
+ */
+(function init_resizeQuick(){
+	$(document).ready(function(){
+		if($("#private_area").length > 0){
+			var wrap = $("#wrap");
+			var privateArea = $("#private_area");
+			var privateZone = $("#private_zone");
+			var menu = $(privateArea).find(".menu")[0];
+			var faxGuide = $("#faxGuide");
+			var privateZoneBtn = $(menu).find(".miniMyPage")[0];
+			var faxGuideBtn = $(menu).find(".faxGuide")[0];
+			var btnArr = [privateZoneBtn, faxGuideBtn];
+			var contentArr = [privateZone, faxGuide];
+			var kosafAlimiBtn = $(privateArea).find(".kosafAlimi")[0];
+			
+			function toggleLayer(evt){
+				if(currentPage == 0) {
+					$(privateZone).css("left", parseInt($(privateZone).css("left")) + "px");
+					$(faxGuide).css("left", parseInt($(faxGuide).css("left")) + "px");
+				}else {
+					$(privateZone).css("left", $(privateArea).outerWidth() + "px");
+					$(faxGuide).css("left", $(privateArea).outerWidth() + "px");
+				}
+					
+				evt.preventDefault();
+				var targetContent = evt.data.targetContent;
+				var toggle = evt.data.toggle;
+				var chkToggle = $(targetContent).toggle();
+			}
+			for (var i = 0; i < btnArr.length; ++i) {
+				var closeBtn = $(contentArr[i]).find(".close")[0];
+				$(btnArr[i]).bind("click", {targetContent:contentArr[i], toggle:true}, toggleLayer);
+				$(closeBtn).bind("click", {targetContent:contentArr[i], toggle:false}, toggleLayer);
+			};
+			//KOSAF 알리미 팝업처리
+			$(kosafAlimiBtn).bind("click", function(evt){
+				evt.preventDefault();
+				var url = $(this).find("a").attr("href");
+				var targetW = 696;
+				var targetH = 749;
+				if (msIEVersion == 0) {
+					targetW = 700;
+					targetH = 753;
+				}
+				popWinC(url, "kosafAlimi", targetW, targetH, 'scrollbars=no');
+			});
+			//$(wrap).append(privateArea);
+			$(privateArea).css("display", "block");
+			if($("body#main").length > 0){//메인예외처리
+				return false;
+			}
+			//quickService  좌표
+			// function getPrivateLeft(){
+			// 	$('body').css('overflow', 'auto');
+			// 	var scrollBarWidth = $(window).width();
+			// 	var scrollBarHeight = $(window).height();
+			// 	$('body').css('overflow', 'scroll');
+			// 	scrollBarWidth -= $(window).width();
+			// 	scrollBarHeight -= $(window).height();
+			// 	$('body').css('overflow', 'visible');
+			// 	var privateAreaWidth = $(privateArea).outerWidth(true);
+			// 	var targetLeft = parseInt($("#wrap").css("min-width"));
+			// 	var chkTargetLeft = $(wrap).outerWidth(true) - privateAreaWidth;
+			// 	targetLeft = (targetLeft < chkTargetLeft)? chkTargetLeft	:	targetLeft;	
+			// 	if(msIEVersion > 0){
+			// 		targetLeft -= scrollBarWidth;//ie 일 경우 예외처리
+			// 	}
+			// 	return targetLeft;
+			// }
+			if($(".moveSite").length > 0){
+				var moveSite = $(".moveSite")[0];
+				$(moveSite).bind("click", function(evt){
+					evt.preventDefault();
+					var pPosition = $(this).parent().position();
+					var mouseX = evt.pageX - pPosition.left;
+					var mouseY = evt.pageY - pPosition.top;
+					var targetURL = "";
+					var targetNode = null;
+					var fundANode = $(this).find("a.fund");
+					var infoANode = $(this).find("a.info");
+					if(mouseX < mouseY){
+						targetNode = $(fundANode);
+					}else{
+						targetNode = $(infoANode);
+					}
+					targetURL = $(targetNode).attr("href");
+					if(targetURL == ""){
+						targetURL = $(targetNode).attr("urlParm");
+					}
+					window.location.href = targetURL;
+				});
+			}
+			function resizeQuickLink(){
+				$(privateArea).css("height", getClientHeight() + "px");
+			}
+			$(window).bind("resize", {}, resizeQuickLink);
+			$("body").load(function(){
+				resizeQuickLink();
+			});
+			$(window).load(function(){
+				resizeQuickLink();
+			});
+		}
+	});
+})();
+
+
+
+
+
+
+//lnb 초기화
+(function init_lnb(){
+	$(document).ready(function(){
+		return false;//메뉴동작 막기
+		var currentMenu = [null];
+		var pageIDMenu = [null];
+		if ($(".lnb").length > 0) {
+			var lnb = $(".lnb")[0];
+			var d1LiArr = $(lnb).find(">ul>li");
+			var depth = 0;
+			for (var i = 0; i < d1LiArr.length; i++) {
+				var d1Li = d1LiArr[i];
+				if ($(d1Li).hasClass("on"))
+				{
+					$(d1Li).addClass("current");//클래스 추가(jsp에서 주는 변수 이외에 페이지 아이디 식별)
+					pageIDMenu[0] = d1Li;
+					currentMenu[0] = d1Li;
+				}
+				init_subMenu(d1Li, i, depth);
+			};
+			$(".lnb").mouseleave(function(){
+				for (var i = 0; i < currentMenu.length; i++) {
+					if(currentMenu[i] != pageIDMenu[i]){
+						unActiveMenu(currentMenu[i]);
+						currentMenu[i] = pageIDMenu[i];
+					}
+				};
+			});
+		}
+		function init_subMenu(menuLi, num, depth){
+			if ($(menuLi).find("> ul").length > 0)
+			{
+				var aNode = $(menuLi).find(">a")[0];
+				var subUl = $(menuLi).find("> ul")[0];
+				if(!$(menuLi).hasClass("current")){
+				//	$(subUl).css("display", "none");
+				}
+				$(aNode).bind("click", {targetSub:subUl, num:num, depth:depth, par:menuLi}, menuLiClickHandler);
+			}
+		}
+		function menuLiClickHandler(evt){
+			evt.preventDefault();
+			var targetSub = evt.data.targetSub;
+			var num = evt.data.num;
+			var par = evt.data.par;
+			var depth = evt.data.depth;
+			if(currentMenu[depth] == par)	return false;
+			if(currentMenu[depth] != null){
+				if(!$(currentMenu[depth]).hasClass("current")){
+					unActiveMenu(currentMenu);
+				}
+				currentMenu[depth] = par;
+				if(!$(par).hasClass("on"))	$(par).addClass("on");
+			}
+			$(targetSub).slideDown(200);
+		}
+		function unActiveMenu(targetLi){
+			$(targetLi).removeClass("on");
+			if($(targetLi).find("> ul").length > 0){
+				var subUl = $(targetLi).find("> ul");
+				$(subUl).slideUp(200);
+			}
+		}
+	});
+})();
+
+
+
+
+
+
+function openModalBox(btn, params){//모달 div box 리턴함 (실제 컨텐츠는 .container안에다 붙여야 함)
+	var	chkAnimate = true,
+			targetA = .6,
+			closeBtnSelectStr = ".closeBtn",
+			speed = 500,
+			divID = "modalBox",
+			color = "#000",
+			clickClose = true,
+			modalBox = '',
+			modalBoxHtml = null,
+			modalBoxBg = '',
+			modalBoxBgHtml = null;
+	if(params !== undefined && typeof(params) === "object"){
+		chkAnimate = (params.chkAnimate)?	params.chkAnimate	: chkAnimate;//애니메이션 체크
+		targetA = (params.targetA)?	params.targetA	: targetA;//알파값
+		closeBtnSelectStr = (params.closeBtnSelectStr)?	params.closeBtnSelectStr	: closeBtnSelectStr;//닫기버튼 셀렉터 문자열
+		speed = (params.speed)?	params.speed	: speed;//div box 나타나는 속도
+		divID = (params.divID)?	params.divID	: divID;//div box 아이디
+		color = (params.color)?	params.color	: color;//div box 색
+		clickClose = (params.clickClose)?	params.clickClose	: clickClose;//div box 색
+	}
+	modalBox	=	'<div id="'+divID+'" style="position:absolute; top:0; left:0; z-index:10000;"></div>';
+	modalBoxBg	=	'<div id="'+divID+'Bg" style="display:none; top:0; left:0; position: fixed; height:'+viewport().height+'px; width:'+viewport().width+'px; background:'+color+';"></div>';
+	$("body").append(modalBox);
+	modalBoxHtml = $("body").find("#"+divID)[0];
+	$(modalBoxHtml).append(modalBoxBg);
+	$(modalBoxHtml).append('<div class="container" style="position:relative;"></div>');
+	modalBoxBgHtml = $(modalBoxHtml).find("#"+divID+"Bg")[0];
+	if(chkAnimate){
+		$(modalBoxBgHtml).animate({opacity:0}, 0);
+		$(modalBoxBgHtml).css("display", "block");
+		// 웹접근성 관련 수정
+		$(modalBoxBgHtml).animate({opacity:targetA}, speed, "easeOutCubic" ,function(){
+			//alert('done');
+			$('#sitemapCloseBtn').focus();
+		});
+		// //웹접근성 관련 수정
+	}else{
+		$(modalBoxBgHtml).css("display", "block");
+	}
+	$(window).resize(function(){//리사이즈 시 
+		$(modalBoxBgHtml).css("width", viewport().width+"px");
+		$(modalBoxBgHtml).css("height", viewport().height+"px");
+	});
+	if(clickClose){
+		$(modalBoxBgHtml).bind("click", {}, function(){
+			$($(this).parent()).animate({opacity:0}, speed/2, "easeOutCubic", function(){	$(this).remove();	});
+			$('#allMenuBtn a').focus();
+		});
+	}
+	$(modalBoxHtml).bind("close", {}, function(evt){
+		$(modalBoxBgHtml).trigger("click");
+	});
+	return modalBoxHtml;
+}
+(function init_allMenu(){
+	// return false;//차후  풀기
+	$(document).ready(function(){
+		var htmlURL = "/jsp/pt/ko/sitemap/sitemap10.jsp";
+		//var htmlURL = "/jsp/pt/ko/sitemap/sitemap.html";
+
+		function loadSitemapHtml(evt){//사이트맵 html 로딩하기
+			evt.preventDefault();
+			var modalBoxHtml = openModalBox(this);
+			var container = $(modalBoxHtml).find(">.container")[0];
+			$(container).load(htmlURL, function(response, status, xhr){
+				if (status == "error") {
+					var msg = "Sorry but there was an error: ";
+					//alert(msg + xhr.status + " " + xhr.statusText);
+					alert("전체메뉴 정보 로딩에 실패하였습니다.");
+					$(modalBoxHtml).trigger("close");
+					return false;
+				}
+				//tab 초기화
+				var sitemap = $("#sitemap");
+				if($(sitemap).find("a.closebtn").length > 0){
+					var closeBtn = $(sitemap).find("a.closebtn");
+					//console.log(closeBtn);
+					$(closeBtn).bind("click", {}, function(){
+						$(modalBoxHtml).trigger("close");
+					});
+				}
+				$(window).resize(function(){//리사이즈 시 
+					var marginLeft = viewport().width/2 - $(sitemap).outerWidth()/2;
+					$(container).css("margin-left", marginLeft+"px");
+				});
+				$(window).trigger("resize");
+				
+				
+			});
+		}
+		function loadSitemapError(pXhr, pAjaxOptions, pThrownError){
+			alert(pXhr.status);
+			alert(pThrownError);
+		}
+
+		var allMenuBtn = $("#allMenuBtn")[0];
+		$(allMenuBtn).bind("click", {}, loadSitemapHtml);
+	});
+})();
+
+
+
+
+(function init_footer(){
+	$(document).ready(function(){
+		var footer = null;
+		var familysite = null;
+		var familysiteBtn = null;
+		var familysiteSelect = null;
+		if($("#footer").length > 0){
+			footer = $("#footer")[0];
+			if($(footer).find(".familysite").length > 0 && $(footer).find(".familysiteBtn").length > 0){
+				familysite = $(footer).find(".familysite")[0];
+				familysiteBtn = $(footer).find(".familysiteBtn")[0];
+				familysiteSelect = $(familysite).find("select")[0];
+				// $(familysiteSelect).bind("focus", function(evt){
+				// 	var optionLen = $(this).find("option").length;
+				// 	var oriHeight = $(this).css("height");
+				// 	$(familysite).css("height", optionLen*11);
+				// 	$(familysiteSelect).css("height", optionLen*11);
+				// 	$(this).attr("size", 100);
+				// 	$(this).bind("blur", function(){
+				// 		$(this).attr("size", 1);
+				// 		$(familysiteSelect).css("height", oriHeight);
+				// 	});
+				// })
+				// $(familysiteBtn).bind("click", function(){
+				// 	$(familysiteSelect).trigger("focus");
+				// });
+				$(familysiteBtn).bind("click", function(){
+					$(familysiteSelect).focus();
+				});
+			}
+		}
+	});
+})();
+

@@ -1,0 +1,185 @@
+﻿
+
+
+
+
+
+
+
+
+
+
+
+<html> 
+<head>
+<title>고시공고</title>
+<link rel="stylesheet" href="/emwp/css/ofr/PlnOfrStyle.css" type="text/css">
+<link rel="stylesheet" type="text/css" href="https://www.bsseogu.go.kr/rfc3/user/domain/www.bsseogu.go.kr.80/0/1144.css" /> <!-- /portal/base.css"  -->  
+<link rel="stylesheet" type="text/css" href="https://www.bsseogu.go.kr/rfc3/user/domain/www.bsseogu.go.kr.80/0/1145.css" /> <!-- /portal/common.css"  -->    
+<link rel="stylesheet" type="text/css" href="https://www.bsseogu.go.kr/rfc3/user/domain/www.bsseogu.go.kr.80/0/1108.css" /> 
+
+<script type="text/javascript" src="/emwp/js/cmm/jsp/calendar.js"></script>
+<script type="text/javascript" src="/emwp/js/cmm/jsp/common.js"></script> 
+<style>
+
+.jin_gosi_table tbody tr th{font-size:16px !important;}
+.jin_gosi_table tbody tr td{font-size:16px !important;}
+
+
+
+</style>
+<SCRIPT LANGUAGE="JavaScript">
+//-------------------------------------------------------------------
+// 설명   : 고시공고 목록 조회
+//-------------------------------------------------------------------	
+
+	var stat;
+	function goPage(){
+		var f = document.form1;
+ 
+		f.target = "_self";
+		f.action = "/emwp/gov/mogaha/ntis/web/ofr/action/OfrAction.do";	
+		f.method.value   = 'selectListOfrNotAncmt'; //Action
+		f.methodnm.value = 'selectListOfrNotAncmtHomepage';
+		f.submit();	
+	}
+//-------------------------------------------------------------------
+// 설명   : 고시공고 첨부파일 다운로드
+//-------------------------------------------------------------------
+	function goDownLoad(de_user_file_nm, de_sys_file_nm, de_file_path){
+		var enc_de_user_file_nm = encodeURI(de_user_file_nm);
+		var enc_de_sys_file_nm = encodeURI(de_sys_file_nm);
+		var enc_de_file_path = encodeURI(de_file_path);
+
+//(2011.08.02)수정 전:	location.href="/emwp/jsp/ofr/FileDown.jsp?user_file_nm="+enc_de_user_file_nm+"&sys_file_nm="+enc_de_sys_file_nm+"&file_path="+enc_de_file_path;
+
+//(2011.08.02)수정부분1 시작
+		if(document.getElementById("hidden_frame").readyState != "loading"){
+			hidden_frame.document.location.href="/emwp/jsp/ofr/FileDown.jsp?user_file_nm="+enc_de_user_file_nm+"&sys_file_nm="+enc_de_sys_file_nm+"&file_path="+enc_de_file_path;
+			hidden_frame.focus();
+		} else {
+			alert("처리중입니다.");
+		}
+//(2011.08.02)수정부분1 종료
+//(2011.08.02)수정부분2 가장 하단의 <iframe name="hidden_frame" ...></iframe> 부분을 반드시 추가해야합니다.		
+	}
+
+</SCRIPT>
+
+
+</head>
+<body leftmargin="0" topmargin="0">
+
+<form name="form1" method="post">
+<input type="hidden" name="jndinm" value="OfrNotAncmtEJB">
+<input type="hidden" name="context" value="NTIS">
+<input type="hidden" name="method"  value="selectOfrNotAncmt">
+<input type="hidden" name="methodnm" value="selectOfrNotAncmtRegst">
+<input type="hidden" name="not_ancmt_sj" value="">
+<input type="hidden" name="pageIndex" value=''>
+<input type="hidden" name="ofr_pageSize" value="10">
+<input type="hidden" name="homepage_pbs_yn" value="Y">
+<!-- 시군구 페이지에 맞게 커스터마이징 된 JSP페이지 여부(Y/N) 설정 반드시 해줘야 함. -->
+<input type="hidden" name="subCheck" value="Y">
+<input type="hidden" name="not_ancmt_se_code" value="01,04">
+<input type="hidden" name="cha_dep_code_nm" value="">
+<input type="hidden" name="countYn" value="Y">
+<input type="hidden" name="list_gubun" value="A">
+<input type="hidden" name="homepagetype" value="home" /> 
+
+<!-- <table width="639" border="0" cellpadding="0" cellspacing="0" class="tbl">
+  <tr>
+    <td><img src="/emwp/img/ofr/arrow.gif"></td><td width="97%" class="title">고시공고</font></td>
+  </tr>
+ </table>
+<br> -->
+
+<TABLE class="w_650 jin_gosi_table" cellpadding=0 cellspacing=0 border=0 bgcolor=ffffff height=390>
+<TR>
+    <td align="center" valign="top" style="border-top:solid 2px #3564BB;">
+	    <!--- ############## top  ###---->		
+		<table width="100%" border="0" cellspacing="1" cellpadding="0">		
+<!-- 		<tr>			
+		    <Td colspan=4 height=2  bgcolor=0F7E8B></td>		
+		</tr>		
+		<tr>			
+		    <Td colspan=4 height=1  bgcolor=d3d3d3></td>		
+		</tr>	 -->	
+		<tr> 			
+		    <th height="40"  align="center"   bgcolor="#EEEEEE">고시공고구분</th>			
+			<td bgcolor="#FFFFFF">&nbsp;공고(일반공고)</td>			
+			<th height="22"  align="center"   bgcolor="#EEEEEE">게재제호</th>			
+			<td bgcolor="#FFFFFF">&nbsp;</td>	
+		</tr>		
+		<tr>			
+			<Td colspan=4 bgcolor="#DDDDDD" height=1></td>        
+		</tr>		
+		<tr>			
+		    <th height="40"  align="center"   bgcolor="#EEEEEE">고시공고번호</th>			
+			<td bgcolor="#FFFFFF">&nbsp;부산광역시 부산진구 공고 제2026-24호</td>			
+			<th height="22"  align="center"   bgcolor="#EEEEEE">등록일</th>			
+			<td bgcolor="#FFFFFF">&nbsp;2026-01-06</td>		
+		</tr>		
+		<tr>			
+		    <Td colspan=4 bgcolor="#DDDDDD" height=1></td>       
+		</tr>		
+		<tr>			
+		    <th class="w_90" height="40"  align="center"   bgcolor="#EEEEEE">제목</th>
+			<td class="w_330" bgcolor="#FFFFFF">&nbsp;부산진구 청년 전월세 중개수수료 확대지원 사업 공고</td>
+			<th class="w_80" height="22"  align="center"   bgcolor="#EEEEEE">담당부서</th>			
+			<td class="w_130" bgcolor="#FFFFFF">&nbsp;토지정보과</td>		
+		</tr>
+		<tr>			
+		    <Td colspan=4 bgcolor="#DDDDDD" height=1></td>       
+		</tr>
+		<tr>					
+		            <th class="w_90" height="40px"  align="center" line-height:40px;  bgcolor="#EEEEEE"> 첨부파일</th>					
+			        <td>
+		
+								
+		             <a href="javascript:goDownLoad('부산진구 청년 전월세 중개수수료 확대지원 공고문.hwp','부산진구 청년 전월세 중개수수료 확대지원 공고문_ofr_ofr_cZLhwPfQknmdsAFA_20260106174322416_1.hwp','/ntishome/file/upload/ofr/ofr/20260106')">부산진구 청년 전월세 중개수수료 확대지원 공고문.hwp</a><br>
+							
+		           </td>				
+			    </tr>		
+		<tr>			
+		    <Td colspan=4 bgcolor="#DDDDDD" height=1></td>       
+		</tr>		
+		<tr> 			
+		    <td height="5" colspan="4"><!---- blank ---></td>		
+		</tr>		
+		<tr> 			
+		    <TD style='word-break:break-all;' colspan=4>2026년&nbsp;부산진구&nbsp;청년&nbsp;전월세&nbsp;중개수수료&nbsp;확대지원&nbsp;사업을&nbsp;아래와&nbsp;같이&nbsp;공고하고자&nbsp;합니다.<br><br>&nbsp;&nbsp;○&nbsp;사&nbsp;업&nbsp;명:&nbsp;부산진구&nbsp;청년&nbsp;전월세&nbsp;중개수수료&nbsp;확대지원&nbsp;사업<br>&nbsp;&nbsp;○&nbsp;사업기간&nbsp;:&nbsp;2026.&nbsp;1.&nbsp;~&nbsp;사업비&nbsp;소진&nbsp;시까지&nbsp;<br>&nbsp;&nbsp;○&nbsp;지원대상&nbsp;:&nbsp;2026년&nbsp;전월세&nbsp;안심계약&nbsp;매니저&nbsp;서비스&nbsp;이용자&nbsp;중<br>&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;(연&nbsp;&nbsp;&nbsp;&nbsp;령)&nbsp;19세&nbsp;~&nbsp;(기존)&nbsp;29세&nbsp;이하&nbsp;？&nbsp;(확대)&nbsp;39세&nbsp;이하&nbsp;청년<br>&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;(거주기준)&nbsp;상담&nbsp;후&nbsp;임대차계약&nbsp;및&nbsp;전입신고를&nbsp;한&nbsp;자<br>&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;(소득기준)&nbsp;중위&nbsp;소득&nbsp;140%&nbsp;이하(연소득&nbsp;43백만원)&nbsp;<br>&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;(주택기준)&nbsp;거래금액&nbsp;1억&nbsp;원&nbsp;(전월세&nbsp;환산&nbsp;중개수수료&nbsp;산출&nbsp;기준)&nbsp;이하&nbsp;주거용&nbsp;주택<br>&nbsp;&nbsp;○&nbsp;대상인원&nbsp;:&nbsp;130명&nbsp;이상<br>&nbsp;&nbsp;○&nbsp;지원내용&nbsp;:&nbsp;부동산&nbsp;전월세&nbsp;중개보수&nbsp;50%(최대&nbsp;165천원)&nbsp;또는<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(확대)&nbsp;임차인이&nbsp;부담하는&nbsp;입주청소비(최대&nbsp;100천원)&nbsp;<br>&nbsp;&nbsp;○&nbsp;사업예산&nbsp;:&nbsp;15백만&nbsp;원(구비)<br>&nbsp;&nbsp;○&nbsp;신청기간:&nbsp;2026.&nbsp;1.&nbsp;1.&nbsp;~&nbsp;사업비&nbsp;소진&nbsp;시까지&nbsp;&nbsp;<br>&nbsp;&nbsp;○&nbsp;신청방법:&nbsp;방문&nbsp;또는&nbsp;E-mail&nbsp;접수(부산진구청&nbsp;1층&nbsp;토지정보과&nbsp;부동산관리계)<br><br>&nbsp;&nbsp;자세한&nbsp;사항은&nbsp;공고문을&nbsp;참고하시기&nbsp;바랍니다.</TD>		
+		</tr>		
+		<tr> 			
+		    <TD colspan=4>				
+			    <table width=100% border=0 cellpadding=1 cellspacing=1>				
+		        			
+			    </table>			
+			</TD>		
+		</tr>		
+		<tr> 			
+		    <td height="10" colspan="4"><!---- blank ---></td>		
+		</tr>		
+		<tr>			
+		    <Td colspan=4 height=1  bgcolor=#DDDDDD></td>		
+		</tr>		
+<!-- 		<tr>			
+		    <Td colspan=4 height=1  bgcolor=d3d3d3></td>		
+		</tr>		 -->
+		</table>		
+		<table width="98%" border="0" cellspacing="0" cellpadding="0">        
+		<tr> 			
+		    <td width="300" align="center">&nbsp; </td>			
+			<td align="right">
+				<br/>				
+			    <a href="javaScript:goPage()"><img src="/emwp/img/ofr/btn_list.gif" border=0></a>			
+			</td>		
+		</tr>		
+		</table>	
+	</td>
+</tr><iframe name="hidden_frame" id="hidden_frame" height="0" width="0" marginHeight=0 marginWidth=0 frameborder=0 src=""></iframe>
+</table>
+</form>
+
+</body>
+</html>

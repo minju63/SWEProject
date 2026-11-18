@@ -1,0 +1,884 @@
+{
+  "version": 1,
+  "source": "Reviewed housing application information release 2026-11-17",
+  "recipes": [
+    {
+      "policy_id": "f94264a5-409f-5b19-a20a-707f009497b0",
+      "title": "전세사기피해자 전용 디딤돌 구입자금대출",
+      "url": "https://nhuf.molit.go.kr/FP/FP05/FP0507/FP05070002.jsp",
+      "reviewed_on": "2026-11-17",
+      "section_sha256": "a47ee5108fd00855fccb4b14a2eb9df89901a98a273fb7b71105e8b7a075c03d",
+      "values": {
+        "application_process": [
+          "기금포털·은행 상담으로 대출조건 확인",
+          "은행에서 대출 신청 및 서류 제출",
+          "자격·소득·자산·담보 심사",
+          "대출 승인",
+          "대출 실행 및 대출금 수령"
+        ],
+        "required_documents": [
+          {
+            "key": "housing_doc_0115d2f13b6249b0",
+            "name": "본인확인 신분증(주민등록증·운전면허증·여권 중 택1)",
+            "required": true,
+            "confirmed": true
+          },
+          {
+            "key": "housing_doc_c5a496c3d49e9643",
+            "name": "주민등록등본",
+            "required": true,
+            "confirmed": true
+          },
+          {
+            "key": "housing_doc_a46b0c57e304d751",
+            "name": "건강보험자격득실확인서 등 재직·사업영위 확인서류(확인 불가 시 은행 안내에 따른 대체서류)",
+            "required": true,
+            "confirmed": true
+          },
+          {
+            "key": "housing_doc_ab81baa00a6a3f77",
+            "name": "소득유형별 증빙서류(근로·사업·연금·기타·무소득에 맞는 서류 중 해당 자료)",
+            "required": true,
+            "confirmed": true
+          },
+          {
+            "key": "housing_doc_b5d19c914e880fca",
+            "name": "주민등록초본(합가기간 확인 등이 필요한 경우)",
+            "required": false,
+            "confirmed": true
+          },
+          {
+            "key": "housing_doc_c912333ab27af1ce",
+            "name": "가족관계증명원(단독세대주·배우자 분리세대 등 해당자; 상품별 추가 기준 확인)",
+            "required": false,
+            "confirmed": true
+          },
+          {
+            "key": "housing_doc_77160ac7ee597013",
+            "name": "외국인등록증 또는 국내거소신고사실증명(해당자)",
+            "required": false,
+            "confirmed": true
+          },
+          {
+            "key": "housing_doc_d6c033927a4e68a2",
+            "name": "예식장계약서 또는 청첩장(결혼예정자)",
+            "required": false,
+            "confirmed": true
+          },
+          {
+            "key": "housing_doc_3b3cbfe4cc8f2a83",
+            "name": "전세사기피해자 증빙서류",
+            "required": true,
+            "confirmed": true
+          }
+        ]
+      }
+    },
+    {
+      "policy_id": "2d604c78-cc7e-52d1-89d0-0d6ab303a00b",
+      "title": "버팀목전세자금(일반)",
+      "url": "https://nhuf.molit.go.kr/FP/FP05/FP0502/FP05020102.jsp",
+      "reviewed_on": "2026-11-17",
+      "section_sha256": "aad04c84585ba4d0a98fb79df163612d41884f5ca3b9919d2f6f8a3b2431098d",
+      "values": {
+        "application_process": [
+          "기금포털·은행 상담으로 대출조건 확인",
+          "기금e든든 또는 은행 방문으로 대출 신청",
+          "자산심사",
+          "자산심사 결과 문자 수신",
+          "수탁은행에 서류 제출 및 소득·담보 추가 심사",
+          "대출가능 여부·한도 확인 후 대출 실행"
+        ],
+        "required_documents": [
+          {
+            "key": "housing_doc_0115d2f13b6249b0",
+            "name": "본인확인 신분증(주민등록증·운전면허증·여권 중 택1)",
+            "required": true,
+            "confirmed": true
+          },
+          {
+            "key": "housing_doc_c5a496c3d49e9643",
+            "name": "주민등록등본",
+            "required": true,
+            "confirmed": true
+          },
+          {
+            "key": "housing_doc_a46b0c57e304d751",
+            "name": "건강보험자격득실확인서 등 재직·사업영위 확인서류(확인 불가 시 은행 안내에 따른 대체서류)",
+            "required": true,
+            "confirmed": true
+          },
+          {
+            "key": "housing_doc_ab81baa00a6a3f77",
+            "name": "소득유형별 증빙서류(근로·사업·연금·기타·무소득에 맞는 서류 중 해당 자료)",
+            "required": true,
+            "confirmed": true
+          },
+          {
+            "key": "housing_doc_b5d19c914e880fca",
+            "name": "주민등록초본(합가기간 확인 등이 필요한 경우)",
+            "required": false,
+            "confirmed": true
+          },
+          {
+            "key": "housing_doc_c912333ab27af1ce",
+            "name": "가족관계증명원(단독세대주·배우자 분리세대 등 해당자; 상품별 추가 기준 확인)",
+            "required": false,
+            "confirmed": true
+          },
+          {
+            "key": "housing_doc_77160ac7ee597013",
+            "name": "외국인등록증 또는 국내거소신고사실증명(해당자)",
+            "required": false,
+            "confirmed": true
+          },
+          {
+            "key": "housing_doc_d6c033927a4e68a2",
+            "name": "예식장계약서 또는 청첩장(결혼예정자)",
+            "required": false,
+            "confirmed": true
+          },
+          {
+            "key": "housing_doc_36711d4b15c49521",
+            "name": "확정일자부 임대차계약서 사본",
+            "required": true,
+            "confirmed": true
+          },
+          {
+            "key": "housing_doc_a83a4061f9246874",
+            "name": "임차주택 건물 등기사항전부증명서",
+            "required": true,
+            "confirmed": true
+          },
+          {
+            "key": "housing_doc_b5bc1456a03b67f6",
+            "name": "보증자격 확인서류·담보제공 서류(보증·담보 유형에 따라)",
+            "required": false,
+            "confirmed": true
+          }
+        ]
+      }
+    },
+    {
+      "policy_id": "a1bb6791-2a21-5960-b908-3c02f945138b",
+      "title": "전세피해 임차인 버팀목전세자금",
+      "url": "https://nhuf.molit.go.kr/FP/FP05/FP0502/FP05021204.jsp",
+      "reviewed_on": "2026-11-17",
+      "section_sha256": "53e824a0bb5a6e145302d462b36079d1e8851c43a63182930245311674e311c6",
+      "values": {
+        "application_process": [
+          "기금포털·은행 상담으로 대출조건 확인",
+          "은행 방문 신청(전세피해확인서가 필요한 경우 HUG 전세피해지원센터 우선 방문)",
+          "자산심사",
+          "자산심사 결과 문자 수신",
+          "수탁은행에 서류 제출 및 소득·담보 추가 심사",
+          "대출가능 여부·한도 확인 후 대출 실행"
+        ],
+        "required_documents": [
+          {
+            "key": "housing_doc_0115d2f13b6249b0",
+            "name": "본인확인 신분증(주민등록증·운전면허증·여권 중 택1)",
+            "required": true,
+            "confirmed": true
+          },
+          {
+            "key": "housing_doc_c5a496c3d49e9643",
+            "name": "주민등록등본",
+            "required": true,
+            "confirmed": true
+          },
+          {
+            "key": "housing_doc_a46b0c57e304d751",
+            "name": "건강보험자격득실확인서 등 재직·사업영위 확인서류(확인 불가 시 은행 안내에 따른 대체서류)",
+            "required": true,
+            "confirmed": true
+          },
+          {
+            "key": "housing_doc_ab81baa00a6a3f77",
+            "name": "소득유형별 증빙서류(근로·사업·연금·기타·무소득에 맞는 서류 중 해당 자료)",
+            "required": true,
+            "confirmed": true
+          },
+          {
+            "key": "housing_doc_b5d19c914e880fca",
+            "name": "주민등록초본(합가기간 확인 등이 필요한 경우)",
+            "required": false,
+            "confirmed": true
+          },
+          {
+            "key": "housing_doc_c912333ab27af1ce",
+            "name": "가족관계증명원(단독세대주·배우자 분리세대 등 해당자; 상품별 추가 기준 확인)",
+            "required": false,
+            "confirmed": true
+          },
+          {
+            "key": "housing_doc_77160ac7ee597013",
+            "name": "외국인등록증 또는 국내거소신고사실증명(해당자)",
+            "required": false,
+            "confirmed": true
+          },
+          {
+            "key": "housing_doc_d6c033927a4e68a2",
+            "name": "예식장계약서 또는 청첩장(결혼예정자)",
+            "required": false,
+            "confirmed": true
+          },
+          {
+            "key": "housing_doc_36711d4b15c49521",
+            "name": "확정일자부 임대차계약서 사본",
+            "required": true,
+            "confirmed": true
+          },
+          {
+            "key": "housing_doc_a83a4061f9246874",
+            "name": "임차주택 건물 등기사항전부증명서",
+            "required": true,
+            "confirmed": true
+          },
+          {
+            "key": "housing_doc_b5bc1456a03b67f6",
+            "name": "보증자격 확인서류·담보제공 서류(보증·담보 유형에 따라)",
+            "required": false,
+            "confirmed": true
+          },
+          {
+            "key": "housing_doc_604ed7822b0edb10",
+            "name": "피해주택 전세금 입금내역·주민등록 등초본·확정일자부 계약서 또는 신고필증·등기부등본·임차인 확약서",
+            "required": true,
+            "confirmed": true
+          },
+          {
+            "key": "housing_doc_7258c2cad62a1fef",
+            "name": "임차권등기·계약 종료 또는 경공매·배당 관련 증빙(피해주택 상황별 해당 서류)",
+            "required": false,
+            "confirmed": true
+          }
+        ]
+      }
+    },
+    {
+      "policy_id": "852c1f99-b2c6-5c62-ba82-271224643e92",
+      "title": "청년전용 보증부월세대출",
+      "url": "https://nhuf.molit.go.kr/FP/FP05/FP0502/FP05020702.jsp",
+      "reviewed_on": "2026-11-17",
+      "section_sha256": "42ce077179f2a8a360f21628aa6d7021690ec726e7474764ba1fe47598a0e40b",
+      "values": {
+        "application_process": [
+          "기금포털·은행 상담으로 대출조건 확인",
+          "기금e든든 또는 은행 방문으로 대출 신청",
+          "자산심사",
+          "자산심사 결과 문자 수신",
+          "수탁은행에 서류 제출 및 소득·담보 추가 심사",
+          "대출가능 여부·한도 확인 후 대출 실행"
+        ],
+        "required_documents": [
+          {
+            "key": "housing_doc_0115d2f13b6249b0",
+            "name": "본인확인 신분증(주민등록증·운전면허증·여권 중 택1)",
+            "required": true,
+            "confirmed": true
+          },
+          {
+            "key": "housing_doc_c5a496c3d49e9643",
+            "name": "주민등록등본",
+            "required": true,
+            "confirmed": true
+          },
+          {
+            "key": "housing_doc_a46b0c57e304d751",
+            "name": "건강보험자격득실확인서 등 재직·사업영위 확인서류(확인 불가 시 은행 안내에 따른 대체서류)",
+            "required": true,
+            "confirmed": true
+          },
+          {
+            "key": "housing_doc_ab81baa00a6a3f77",
+            "name": "소득유형별 증빙서류(근로·사업·연금·기타·무소득에 맞는 서류 중 해당 자료)",
+            "required": true,
+            "confirmed": true
+          },
+          {
+            "key": "housing_doc_b5d19c914e880fca",
+            "name": "주민등록초본(합가기간 확인 등이 필요한 경우)",
+            "required": false,
+            "confirmed": true
+          },
+          {
+            "key": "housing_doc_c912333ab27af1ce",
+            "name": "가족관계증명원(단독세대주·배우자 분리세대 등 해당자; 상품별 추가 기준 확인)",
+            "required": false,
+            "confirmed": true
+          },
+          {
+            "key": "housing_doc_77160ac7ee597013",
+            "name": "외국인등록증 또는 국내거소신고사실증명(해당자)",
+            "required": false,
+            "confirmed": true
+          },
+          {
+            "key": "housing_doc_d6c033927a4e68a2",
+            "name": "예식장계약서 또는 청첩장(결혼예정자)",
+            "required": false,
+            "confirmed": true
+          },
+          {
+            "key": "housing_doc_36711d4b15c49521",
+            "name": "확정일자부 임대차계약서 사본",
+            "required": true,
+            "confirmed": true
+          },
+          {
+            "key": "housing_doc_a83a4061f9246874",
+            "name": "임차주택 건물 등기사항전부증명서",
+            "required": true,
+            "confirmed": true
+          },
+          {
+            "key": "housing_doc_b5bc1456a03b67f6",
+            "name": "보증자격 확인서류·담보제공 서류(보증·담보 유형에 따라)",
+            "required": false,
+            "confirmed": true
+          }
+        ]
+      }
+    },
+    {
+      "policy_id": "ff17d688-dc06-5180-8af1-304441214d0f",
+      "title": "청년전용 버팀목전세자금",
+      "url": "https://nhuf.molit.go.kr/FP/FP05/FP0502/FP05020302.jsp",
+      "reviewed_on": "2026-11-17",
+      "section_sha256": "c08f276618f2c4037665ee663de657f94bbc795c5651070c768b75eab4e1e6b7",
+      "values": {
+        "application_process": [
+          "기금포털·은행 상담으로 대출조건 확인",
+          "기금e든든 또는 은행 방문으로 대출 신청",
+          "자산심사",
+          "자산심사 결과 문자 수신",
+          "수탁은행에 서류 제출 및 소득·담보 추가 심사",
+          "대출가능 여부·한도 확인 후 대출 실행"
+        ],
+        "required_documents": [
+          {
+            "key": "housing_doc_0115d2f13b6249b0",
+            "name": "본인확인 신분증(주민등록증·운전면허증·여권 중 택1)",
+            "required": true,
+            "confirmed": true
+          },
+          {
+            "key": "housing_doc_c5a496c3d49e9643",
+            "name": "주민등록등본",
+            "required": true,
+            "confirmed": true
+          },
+          {
+            "key": "housing_doc_a46b0c57e304d751",
+            "name": "건강보험자격득실확인서 등 재직·사업영위 확인서류(확인 불가 시 은행 안내에 따른 대체서류)",
+            "required": true,
+            "confirmed": true
+          },
+          {
+            "key": "housing_doc_ab81baa00a6a3f77",
+            "name": "소득유형별 증빙서류(근로·사업·연금·기타·무소득에 맞는 서류 중 해당 자료)",
+            "required": true,
+            "confirmed": true
+          },
+          {
+            "key": "housing_doc_b5d19c914e880fca",
+            "name": "주민등록초본(합가기간 확인 등이 필요한 경우)",
+            "required": false,
+            "confirmed": true
+          },
+          {
+            "key": "housing_doc_c912333ab27af1ce",
+            "name": "가족관계증명원(단독세대주·배우자 분리세대 등 해당자; 상품별 추가 기준 확인)",
+            "required": false,
+            "confirmed": true
+          },
+          {
+            "key": "housing_doc_77160ac7ee597013",
+            "name": "외국인등록증 또는 국내거소신고사실증명(해당자)",
+            "required": false,
+            "confirmed": true
+          },
+          {
+            "key": "housing_doc_d6c033927a4e68a2",
+            "name": "예식장계약서 또는 청첩장(결혼예정자)",
+            "required": false,
+            "confirmed": true
+          },
+          {
+            "key": "housing_doc_36711d4b15c49521",
+            "name": "확정일자부 임대차계약서 사본",
+            "required": true,
+            "confirmed": true
+          },
+          {
+            "key": "housing_doc_a83a4061f9246874",
+            "name": "임차주택 건물 등기사항전부증명서",
+            "required": true,
+            "confirmed": true
+          },
+          {
+            "key": "housing_doc_b5bc1456a03b67f6",
+            "name": "보증자격 확인서류·담보제공 서류(보증·담보 유형에 따라)",
+            "required": false,
+            "confirmed": true
+          }
+        ]
+      }
+    },
+    {
+      "policy_id": "4fe5c790-3d37-51da-957d-48a260ad8e44",
+      "title": "청년 주택드림 디딤돌 대출",
+      "url": "https://nhuf.molit.go.kr/FP/FP05/FP0503/FP05030904.jsp",
+      "reviewed_on": "2026-11-17",
+      "section_sha256": "8ec5640f080f865749618dc7ef8fb840a2b837c088fc0664ce9a4da837dd8494",
+      "values": {
+        "application_process": [
+          "기금포털·은행 상담으로 대출조건 확인",
+          "기금e든든 또는 은행에서 대출 신청·서류 제출 및 대출금액 산정",
+          "자격·소득·자산·담보 심사",
+          "대출 승인",
+          "대출금 수령"
+        ],
+        "required_documents": [
+          {
+            "key": "housing_doc_0115d2f13b6249b0",
+            "name": "본인확인 신분증(주민등록증·운전면허증·여권 중 택1)",
+            "required": true,
+            "confirmed": true
+          },
+          {
+            "key": "housing_doc_c5a496c3d49e9643",
+            "name": "주민등록등본",
+            "required": true,
+            "confirmed": true
+          },
+          {
+            "key": "housing_doc_a46b0c57e304d751",
+            "name": "건강보험자격득실확인서 등 재직·사업영위 확인서류(확인 불가 시 은행 안내에 따른 대체서류)",
+            "required": true,
+            "confirmed": true
+          },
+          {
+            "key": "housing_doc_ab81baa00a6a3f77",
+            "name": "소득유형별 증빙서류(근로·사업·연금·기타·무소득에 맞는 서류 중 해당 자료)",
+            "required": true,
+            "confirmed": true
+          },
+          {
+            "key": "housing_doc_3a1745d8a233bc35",
+            "name": "가족관계증명원(1개월 이내 발급분)",
+            "required": true,
+            "confirmed": true
+          },
+          {
+            "key": "housing_doc_77160ac7ee597013",
+            "name": "외국인등록증 또는 국내거소신고사실증명(해당자)",
+            "required": false,
+            "confirmed": true
+          },
+          {
+            "key": "housing_doc_d6c033927a4e68a2",
+            "name": "예식장계약서 또는 청첩장(결혼예정자)",
+            "required": false,
+            "confirmed": true
+          },
+          {
+            "key": "housing_doc_74e1e2256bdd7ee7",
+            "name": "분양계약서 및 인감증명서",
+            "required": true,
+            "confirmed": true
+          },
+          {
+            "key": "housing_doc_c56808cabca9a2e9",
+            "name": "청약당첨사실확인서",
+            "required": true,
+            "confirmed": true
+          },
+          {
+            "key": "housing_doc_1d86f7144edf9f9d",
+            "name": "청약통장 거래내역서 등 청년 주택드림 통장 요건 확인서류",
+            "required": true,
+            "confirmed": true
+          },
+          {
+            "key": "housing_doc_8dfe4772592637c8",
+            "name": "등기권리증(소유권 이전 후 대출 취급 시)",
+            "required": false,
+            "confirmed": true
+          },
+          {
+            "key": "housing_doc_681e534d3849e418",
+            "name": "아파트 등기사항전부증명서(이전등기 전 생략 가능)",
+            "required": false,
+            "confirmed": true
+          },
+          {
+            "key": "housing_doc_646abc5b8a94c511",
+            "name": "임대차계약서(임대차가 있는 경우)",
+            "required": false,
+            "confirmed": true
+          }
+        ]
+      }
+    },
+    {
+      "policy_id": "6a3c61af-f15d-5c3b-908e-b6dd14b74c4d",
+      "title": "신혼부부전용 전세자금대출",
+      "url": "https://nhuf.molit.go.kr/FP/FP05/FP0502/FP05020402.jsp",
+      "reviewed_on": "2026-11-17",
+      "section_sha256": "c08f276618f2c4037665ee663de657f94bbc795c5651070c768b75eab4e1e6b7",
+      "values": {
+        "application_process": [
+          "기금포털·은행 상담으로 대출조건 확인",
+          "기금e든든 또는 은행 방문으로 대출 신청",
+          "자산심사",
+          "자산심사 결과 문자 수신",
+          "수탁은행에 서류 제출 및 소득·담보 추가 심사",
+          "대출가능 여부·한도 확인 후 대출 실행"
+        ],
+        "required_documents": [
+          {
+            "key": "housing_doc_0115d2f13b6249b0",
+            "name": "본인확인 신분증(주민등록증·운전면허증·여권 중 택1)",
+            "required": true,
+            "confirmed": true
+          },
+          {
+            "key": "housing_doc_c5a496c3d49e9643",
+            "name": "주민등록등본",
+            "required": true,
+            "confirmed": true
+          },
+          {
+            "key": "housing_doc_a46b0c57e304d751",
+            "name": "건강보험자격득실확인서 등 재직·사업영위 확인서류(확인 불가 시 은행 안내에 따른 대체서류)",
+            "required": true,
+            "confirmed": true
+          },
+          {
+            "key": "housing_doc_ab81baa00a6a3f77",
+            "name": "소득유형별 증빙서류(근로·사업·연금·기타·무소득에 맞는 서류 중 해당 자료)",
+            "required": true,
+            "confirmed": true
+          },
+          {
+            "key": "housing_doc_b5d19c914e880fca",
+            "name": "주민등록초본(합가기간 확인 등이 필요한 경우)",
+            "required": false,
+            "confirmed": true
+          },
+          {
+            "key": "housing_doc_c912333ab27af1ce",
+            "name": "가족관계증명원(단독세대주·배우자 분리세대 등 해당자; 상품별 추가 기준 확인)",
+            "required": false,
+            "confirmed": true
+          },
+          {
+            "key": "housing_doc_77160ac7ee597013",
+            "name": "외국인등록증 또는 국내거소신고사실증명(해당자)",
+            "required": false,
+            "confirmed": true
+          },
+          {
+            "key": "housing_doc_d6c033927a4e68a2",
+            "name": "예식장계약서 또는 청첩장(결혼예정자)",
+            "required": false,
+            "confirmed": true
+          },
+          {
+            "key": "housing_doc_36711d4b15c49521",
+            "name": "확정일자부 임대차계약서 사본",
+            "required": true,
+            "confirmed": true
+          },
+          {
+            "key": "housing_doc_a83a4061f9246874",
+            "name": "임차주택 건물 등기사항전부증명서",
+            "required": true,
+            "confirmed": true
+          },
+          {
+            "key": "housing_doc_b5bc1456a03b67f6",
+            "name": "보증자격 확인서류·담보제공 서류(보증·담보 유형에 따라)",
+            "required": false,
+            "confirmed": true
+          }
+        ]
+      }
+    },
+    {
+      "policy_id": "c39322f1-8cc0-510d-a6d7-195d5013a1ba",
+      "title": "신생아 특례 버팀목 전세자금대출",
+      "url": "https://nhuf.molit.go.kr/FP/FP05/FP0502/FP05021406.jsp",
+      "reviewed_on": "2026-11-17",
+      "section_sha256": "29be903bc3e0eea1c18eb8abf8c6cdd12f2efd8eacb5426ef856f2305b9b18f7",
+      "values": {
+        "application_process": [
+          "기금포털·은행 상담으로 대출조건 확인",
+          "기금e든든 또는 은행 방문으로 대출 신청",
+          "자산심사",
+          "자산심사 결과 문자 수신",
+          "수탁은행에 서류 제출 및 소득·담보 추가 심사",
+          "대출가능 여부·한도 확인 후 대출 실행"
+        ],
+        "required_documents": [
+          {
+            "key": "housing_doc_0115d2f13b6249b0",
+            "name": "본인확인 신분증(주민등록증·운전면허증·여권 중 택1)",
+            "required": true,
+            "confirmed": true
+          },
+          {
+            "key": "housing_doc_c5a496c3d49e9643",
+            "name": "주민등록등본",
+            "required": true,
+            "confirmed": true
+          },
+          {
+            "key": "housing_doc_a46b0c57e304d751",
+            "name": "건강보험자격득실확인서 등 재직·사업영위 확인서류(확인 불가 시 은행 안내에 따른 대체서류)",
+            "required": true,
+            "confirmed": true
+          },
+          {
+            "key": "housing_doc_ab81baa00a6a3f77",
+            "name": "소득유형별 증빙서류(근로·사업·연금·기타·무소득에 맞는 서류 중 해당 자료)",
+            "required": true,
+            "confirmed": true
+          },
+          {
+            "key": "housing_doc_b5d19c914e880fca",
+            "name": "주민등록초본(합가기간 확인 등이 필요한 경우)",
+            "required": false,
+            "confirmed": true
+          },
+          {
+            "key": "housing_doc_c912333ab27af1ce",
+            "name": "가족관계증명원(단독세대주·배우자 분리세대 등 해당자; 상품별 추가 기준 확인)",
+            "required": false,
+            "confirmed": true
+          },
+          {
+            "key": "housing_doc_77160ac7ee597013",
+            "name": "외국인등록증 또는 국내거소신고사실증명(해당자)",
+            "required": false,
+            "confirmed": true
+          },
+          {
+            "key": "housing_doc_d6c033927a4e68a2",
+            "name": "예식장계약서 또는 청첩장(결혼예정자)",
+            "required": false,
+            "confirmed": true
+          },
+          {
+            "key": "housing_doc_36711d4b15c49521",
+            "name": "확정일자부 임대차계약서 사본",
+            "required": true,
+            "confirmed": true
+          },
+          {
+            "key": "housing_doc_a83a4061f9246874",
+            "name": "임차주택 건물 등기사항전부증명서",
+            "required": true,
+            "confirmed": true
+          },
+          {
+            "key": "housing_doc_b5bc1456a03b67f6",
+            "name": "보증자격 확인서류·담보제공 서류(보증·담보 유형에 따라)",
+            "required": false,
+            "confirmed": true
+          },
+          {
+            "key": "housing_doc_a843722aa69b895a",
+            "name": "출생증명서(출산) 또는 입양관계증명서·친양자입양관계증명서(입양)",
+            "required": true,
+            "confirmed": true
+          }
+        ]
+      }
+    },
+    {
+      "policy_id": "b45dc570-3d89-5d03-a398-f8ae27d91b50",
+      "title": "주거안정월세대출",
+      "url": "https://nhuf.molit.go.kr/FP/FP05/FP0502/FP05020202.jsp",
+      "reviewed_on": "2026-11-17",
+      "section_sha256": "d5179c36c959dd411e7a5889df7645debf397a943f052d4ae012b536adeca3e2",
+      "values": {
+        "application_process": [
+          "기금포털·은행 상담으로 대출조건 확인",
+          "기금e든든 또는 은행 방문으로 대출 신청",
+          "자산심사",
+          "자산심사 결과 문자 수신",
+          "수탁은행에 서류 제출 및 소득·담보 추가 심사",
+          "대출가능 여부·한도 확인 후 대출 실행"
+        ],
+        "required_documents": [
+          {
+            "key": "housing_doc_0115d2f13b6249b0",
+            "name": "본인확인 신분증(주민등록증·운전면허증·여권 중 택1)",
+            "required": true,
+            "confirmed": true
+          },
+          {
+            "key": "housing_doc_c5a496c3d49e9643",
+            "name": "주민등록등본",
+            "required": true,
+            "confirmed": true
+          },
+          {
+            "key": "housing_doc_a46b0c57e304d751",
+            "name": "건강보험자격득실확인서 등 재직·사업영위 확인서류(확인 불가 시 은행 안내에 따른 대체서류)",
+            "required": true,
+            "confirmed": true
+          },
+          {
+            "key": "housing_doc_ab81baa00a6a3f77",
+            "name": "소득유형별 증빙서류(근로·사업·연금·기타·무소득에 맞는 서류 중 해당 자료)",
+            "required": true,
+            "confirmed": true
+          },
+          {
+            "key": "housing_doc_b5d19c914e880fca",
+            "name": "주민등록초본(합가기간 확인 등이 필요한 경우)",
+            "required": false,
+            "confirmed": true
+          },
+          {
+            "key": "housing_doc_c912333ab27af1ce",
+            "name": "가족관계증명원(단독세대주·배우자 분리세대 등 해당자; 상품별 추가 기준 확인)",
+            "required": false,
+            "confirmed": true
+          },
+          {
+            "key": "housing_doc_77160ac7ee597013",
+            "name": "외국인등록증 또는 국내거소신고사실증명(해당자)",
+            "required": false,
+            "confirmed": true
+          },
+          {
+            "key": "housing_doc_d6c033927a4e68a2",
+            "name": "예식장계약서 또는 청첩장(결혼예정자)",
+            "required": false,
+            "confirmed": true
+          },
+          {
+            "key": "housing_doc_36711d4b15c49521",
+            "name": "확정일자부 임대차계약서 사본",
+            "required": true,
+            "confirmed": true
+          },
+          {
+            "key": "housing_doc_a83a4061f9246874",
+            "name": "임차주택 건물 등기사항전부증명서",
+            "required": true,
+            "confirmed": true
+          },
+          {
+            "key": "housing_doc_b5bc1456a03b67f6",
+            "name": "보증자격 확인서류·담보제공 서류(보증·담보 유형에 따라)",
+            "required": false,
+            "confirmed": true
+          },
+          {
+            "key": "housing_doc_16913a778ab972dc",
+            "name": "우대유형 증빙서류(취업준비생·희망키움통장·근로/자녀장려금·사회초년생·주거급여 등 해당 시)",
+            "required": false,
+            "confirmed": true
+          }
+        ]
+      }
+    },
+    {
+      "policy_id": "71dff8a7-0062-51f2-a2c4-5bb0ccd0e9bf",
+      "title": "신생아 특례 디딤돌 구입자금대출",
+      "url": "https://nhuf.molit.go.kr/FP/FP05/FP0503/FP05030805.jsp",
+      "reviewed_on": "2026-11-17",
+      "section_sha256": "e1f53ed5c0b801a3684d43c0dbe5976079dd6587f4efada412e5059f8b23483d",
+      "values": {
+        "application_process": [
+          "기금포털·은행 상담으로 대출조건 확인",
+          "기금e든든 또는 은행 방문으로 대출 신청",
+          "자산심사",
+          "자산심사 결과 문자 수신",
+          "수탁은행에 서류 제출 및 소득·담보 추가 심사",
+          "대출가능 여부·한도 확인 후 대출 실행"
+        ],
+        "required_documents": [
+          {
+            "key": "housing_doc_0115d2f13b6249b0",
+            "name": "본인확인 신분증(주민등록증·운전면허증·여권 중 택1)",
+            "required": true,
+            "confirmed": true
+          },
+          {
+            "key": "housing_doc_c5a496c3d49e9643",
+            "name": "주민등록등본",
+            "required": true,
+            "confirmed": true
+          },
+          {
+            "key": "housing_doc_a46b0c57e304d751",
+            "name": "건강보험자격득실확인서 등 재직·사업영위 확인서류(확인 불가 시 은행 안내에 따른 대체서류)",
+            "required": true,
+            "confirmed": true
+          },
+          {
+            "key": "housing_doc_ab81baa00a6a3f77",
+            "name": "소득유형별 증빙서류(근로·사업·연금·기타·무소득에 맞는 서류 중 해당 자료)",
+            "required": true,
+            "confirmed": true
+          },
+          {
+            "key": "housing_doc_b5d19c914e880fca",
+            "name": "주민등록초본(합가기간 확인 등이 필요한 경우)",
+            "required": false,
+            "confirmed": true
+          },
+          {
+            "key": "housing_doc_c912333ab27af1ce",
+            "name": "가족관계증명원(단독세대주·배우자 분리세대 등 해당자; 상품별 추가 기준 확인)",
+            "required": false,
+            "confirmed": true
+          },
+          {
+            "key": "housing_doc_77160ac7ee597013",
+            "name": "외국인등록증 또는 국내거소신고사실증명(해당자)",
+            "required": false,
+            "confirmed": true
+          },
+          {
+            "key": "housing_doc_d6c033927a4e68a2",
+            "name": "예식장계약서 또는 청첩장(결혼예정자)",
+            "required": false,
+            "confirmed": true
+          },
+          {
+            "key": "housing_doc_a843722aa69b895a",
+            "name": "출생증명서(출산) 또는 입양관계증명서·친양자입양관계증명서(입양)",
+            "required": true,
+            "confirmed": true
+          },
+          {
+            "key": "housing_doc_c68c35238f8dfe1c",
+            "name": "토지·건물 등기사항전부증명서, 매매 또는 분양계약서, 인감증명서",
+            "required": true,
+            "confirmed": true
+          },
+          {
+            "key": "housing_doc_a8e9be9e3f81da29",
+            "name": "등기권리증·경락허가서·임대차계약서·건축물관리대장 등 상황별 해당 서류",
+            "required": false,
+            "confirmed": true
+          },
+          {
+            "key": "housing_doc_06442febe4a52393",
+            "name": "금융거래확인서(부채증명원) 등 기존 주택담보대출 용도 증빙(1주택자 대환 시)",
+            "required": false,
+            "confirmed": true
+          }
+        ]
+      }
+    }
+  ]
+}

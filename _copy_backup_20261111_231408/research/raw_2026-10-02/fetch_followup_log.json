@@ -1,0 +1,1866 @@
+[
+  {
+    "id": "HF_SPECIAL",
+    "URL": "https://www.hf.go.kr/ko/sub02/sub02_01_04.do",
+    "확인일": "2026-10-02",
+    "error": "TypeError"
+  },
+  {
+    "id": "HF_MONTH",
+    "URL": "https://www.hf.go.kr/ko/sub02/sub02_01_06.do",
+    "확인일": "2026-10-02",
+    "error": "TypeError"
+  },
+  {
+    "id": "LUCKY_CORRECTION",
+    "URL": "https://www.busan.go.kr/nbgosi/view?gosiGbn=A&sno=78417",
+    "확인일": "2026-10-02",
+    "error": "TypeError"
+  },
+  {
+    "id": "LUCKY_2026",
+    "URL": "https://www.busan.go.kr/nbgosi/view?gosiGbn=A&sno=77205",
+    "확인일": "2026-10-02",
+    "error": "TypeError"
+  },
+  {
+    "id": "JIN_NOTICE",
+    "URL": "https://eminwon.busanjin.go.kr/emwp/gov/mogaha/ntis/web/ofr/action/OfrAction.do?Key=B_Subject&context=NTIS&countYn=Y&epcCheck=Y&homepage_pbs_yn=Y&homepagetype=home&initValue=Y&jndinm=OfrNotAncmtEJB&list_gubun=A&method=selectOfrNotAncmt&methodnm=selectOfrNotAncmtRegst&not_ancmt_mgt_no=51073&not_ancmt_se_code=01%2C04&ofr_pageSize=10&subCheck=Y",
+    "확인일": "2026-10-02",
+    "error": "TypeError"
+  },
+  {
+    "id": "JIN_BOKJI",
+    "URL": "https://www.bokjiro.go.kr/ssis-tbu/ssis-tbu/twataa/wlfareInfo/moveTWAT52011M.do?wlfareInfoId=WLF00006621",
+    "확인일": "2026-10-02",
+    "error": "TypeError"
+  },
+  {
+    "id": "UTILITY_DISABILITY",
+    "URL": "https://www.busan.go.kr/depart/weldisabled0101",
+    "확인일": "2026-10-02",
+    "error": "TypeError"
+  },
+  {
+    "id": "UTILITY_FAMILY",
+    "URL": "https://www.busan.go.kr/childcare/childcare0602",
+    "확인일": "2026-10-02",
+    "error": "TypeError"
+  },
+  {
+    "id": "UTILITY_BRIEF",
+    "URL": "https://www.busan.go.kr/briefing/1678831",
+    "확인일": "2026-10-02",
+    "error": "TypeError"
+  },
+  {
+    "id": "GAS_MAIN",
+    "URL": "https://www.skens.com/busan/main/index.do",
+    "확인일": "2026-10-02",
+    "error": "TypeError"
+  },
+  {
+    "id": "WATER_MAIN",
+    "URL": "https://www.busan.go.kr/water/",
+    "확인일": "2026-10-02",
+    "error": "TypeError"
+  },
+  {
+    "id": "SELF_ALL",
+    "URL": "https://www.busan.go.kr/nbgosi/view?gosiGbn=A&sno=72033",
+    "확인일": "2026-10-02",
+    "error": "TypeError"
+  },
+  {
+    "id": "SCHOLARSHIP_JS",
+    "URL": "https://static.kosaf.go.kr/www/js/common/ko.board.js",
+    "확인일": "2026-10-02",
+    "error": "TypeError"
+  },
+  {
+    "id": "SCHOLARSHIP_COMMON",
+    "URL": "https://static.kosaf.go.kr/www/js/common/ko.common.js",
+    "확인일": "2026-10-02",
+    "error": "TypeError"
+  },
+  {
+    "id": "YOUTH_RENT_GUIDE",
+    "URL": "https://www.myhome.go.kr/hws/portal/cont/selectYouthBuyRentalHouseView.do",
+    "확인일": "2026-10-02",
+    "error": "TypeError"
+  },
+  {
+    "id": "INTEGRATED_GUIDE",
+    "URL": "https://www.myhome.go.kr/hws/portal/cont/selectIntegratedPublicRentalView.do",
+    "확인일": "2026-10-02",
+    "error": "TypeError"
+  },
+  {
+    "id": "DORM_GUIDE",
+    "URL": "https://www.myhome.go.kr/hws/portal/cont/selectDormitoryRentalHouseView.do",
+    "확인일": "2026-10-02",
+    "error": "TypeError"
+  },
+  {
+    "id": "NEWBORN_RENT",
+    "URL": "https://nhuf.molit.go.kr/FP/FP05/FP0502/FP05021401.jsp",
+    "확인일": "2026-10-02",
+    "error": "TypeError"
+  },
+  {
+    "id": "NEWLY_RENT",
+    "URL": "https://nhuf.molit.go.kr/FP/FP05/FP0502/FP05020401.jsp",
+    "확인일": "2026-10-02",
+    "error": "TypeError"
+  },
+  {
+    "id": "BUSAN_LIST",
+    "URL": "https://young.busan.go.kr/dwjob/list.nm?menuCd=223",
+    "확인일": "2026-10-02",
+    "error": "TypeError"
+  },
+  {
+    "id": "UNION_DORM",
+    "URL": "https://www.kosaf.go.kr/ko/notice.do?mode=view&seqNo=20404",
+    "확인일": "2026-10-02",
+    "error": "TypeError"
+  },
+  {
+    "id": "HF_SPECIAL",
+    "URL": "https://www.hf.go.kr/ko/sub02/sub02_01_04.do",
+    "확인일": "2026-10-02",
+    "status": 200,
+    "file": "HF_SPECIAL.html"
+  },
+  {
+    "id": "HF_MONTH",
+    "URL": "https://www.hf.go.kr/ko/sub02/sub02_01_06.do",
+    "확인일": "2026-10-02",
+    "status": 200,
+    "file": "HF_MONTH.html"
+  },
+  {
+    "id": "LUCKY_CORRECTION",
+    "URL": "https://www.busan.go.kr/nbgosi/view?gosiGbn=A&sno=78417",
+    "확인일": "2026-10-02",
+    "status": 200,
+    "file": "LUCKY_CORRECTION.html"
+  },
+  {
+    "id": "LUCKY_2026",
+    "URL": "https://www.busan.go.kr/nbgosi/view?gosiGbn=A&sno=77205",
+    "확인일": "2026-10-02",
+    "status": 200,
+    "file": "LUCKY_2026.html"
+  },
+  {
+    "id": "JIN_NOTICE",
+    "URL": "https://eminwon.busanjin.go.kr/emwp/gov/mogaha/ntis/web/ofr/action/OfrAction.do?Key=B_Subject&context=NTIS&countYn=Y&epcCheck=Y&homepage_pbs_yn=Y&homepagetype=home&initValue=Y&jndinm=OfrNotAncmtEJB&list_gubun=A&method=selectOfrNotAncmt&methodnm=selectOfrNotAncmtRegst&not_ancmt_mgt_no=51073&not_ancmt_se_code=01%2C04&ofr_pageSize=10&subCheck=Y",
+    "확인일": "2026-10-02",
+    "status": 200,
+    "file": "JIN_NOTICE.html"
+  },
+  {
+    "id": "JIN_BOKJI",
+    "URL": "https://www.bokjiro.go.kr/ssis-tbu/ssis-tbu/twataa/wlfareInfo/moveTWAT52011M.do?wlfareInfoId=WLF00006621",
+    "확인일": "2026-10-02",
+    "status": 200,
+    "file": "JIN_BOKJI.html"
+  },
+  {
+    "id": "UTILITY_DISABILITY",
+    "URL": "https://www.busan.go.kr/depart/weldisabled0101",
+    "확인일": "2026-10-02",
+    "status": 200,
+    "file": "UTILITY_DISABILITY.html"
+  },
+  {
+    "id": "UTILITY_FAMILY",
+    "URL": "https://www.busan.go.kr/childcare/childcare0602",
+    "확인일": "2026-10-02",
+    "status": 200,
+    "file": "UTILITY_FAMILY.html"
+  },
+  {
+    "id": "UTILITY_BRIEF",
+    "URL": "https://www.busan.go.kr/briefing/1678831",
+    "확인일": "2026-10-02",
+    "status": 200,
+    "file": "UTILITY_BRIEF.html"
+  },
+  {
+    "id": "GAS_MAIN",
+    "URL": "https://www.skens.com/busan/main/index.do",
+    "확인일": "2026-10-02",
+    "status": 200,
+    "file": "GAS_MAIN.html"
+  },
+  {
+    "id": "WATER_MAIN",
+    "URL": "https://www.busan.go.kr/water/",
+    "확인일": "2026-10-02",
+    "status": 200,
+    "file": "WATER_MAIN.html"
+  },
+  {
+    "id": "SELF_ALL",
+    "URL": "https://www.busan.go.kr/nbgosi/view?gosiGbn=A&sno=72033",
+    "확인일": "2026-10-02",
+    "status": 200,
+    "file": "SELF_ALL.html"
+  },
+  {
+    "id": "SCHOLARSHIP_JS",
+    "URL": "https://static.kosaf.go.kr/www/js/common/ko.board.js",
+    "확인일": "2026-10-02",
+    "status": 200,
+    "file": "SCHOLARSHIP_JS.html"
+  },
+  {
+    "id": "SCHOLARSHIP_COMMON",
+    "URL": "https://static.kosaf.go.kr/www/js/common/ko.common.js",
+    "확인일": "2026-10-02",
+    "status": 200,
+    "file": "SCHOLARSHIP_COMMON.html"
+  },
+  {
+    "id": "YOUTH_RENT_GUIDE",
+    "URL": "https://www.myhome.go.kr/hws/portal/cont/selectYouthBuyRentalHouseView.do",
+    "확인일": "2026-10-02",
+    "status": 404,
+    "file": "YOUTH_RENT_GUIDE.html"
+  },
+  {
+    "id": "INTEGRATED_GUIDE",
+    "URL": "https://www.myhome.go.kr/hws/portal/cont/selectIntegratedPublicRentalView.do",
+    "확인일": "2026-10-02",
+    "status": 404,
+    "file": "INTEGRATED_GUIDE.html"
+  },
+  {
+    "id": "DORM_GUIDE",
+    "URL": "https://www.myhome.go.kr/hws/portal/cont/selectDormitoryRentalHouseView.do",
+    "확인일": "2026-10-02",
+    "status": 404,
+    "file": "DORM_GUIDE.html"
+  },
+  {
+    "id": "NEWBORN_RENT",
+    "URL": "https://nhuf.molit.go.kr/FP/FP05/FP0502/FP05021401.jsp",
+    "확인일": "2026-10-02",
+    "status": 200,
+    "file": "NEWBORN_RENT.html"
+  },
+  {
+    "id": "NEWLY_RENT",
+    "URL": "https://nhuf.molit.go.kr/FP/FP05/FP0502/FP05020401.jsp",
+    "확인일": "2026-10-02",
+    "status": 200,
+    "file": "NEWLY_RENT.html"
+  },
+  {
+    "id": "BUSAN_LIST",
+    "URL": "https://young.busan.go.kr/dwjob/list.nm?menuCd=223",
+    "확인일": "2026-10-02",
+    "status": 200,
+    "file": "BUSAN_LIST.html"
+  },
+  {
+    "id": "UNION_DORM",
+    "URL": "https://www.kosaf.go.kr/ko/notice.do?mode=view&seqNo=20404",
+    "확인일": "2026-10-02",
+    "status": 200,
+    "file": "UNION_DORM.html"
+  },
+  {
+    "id": "LUCKY_HWPX",
+    "URL": "https://www.busan.go.kr/nbgosi/download?fileId=F26061610445540112&seq=0",
+    "확인일": "2026-10-02",
+    "status": 200,
+    "file": "LUCKY_HWPX.zip"
+  },
+  {
+    "id": "SCHOLARSHIP_ZIP",
+    "URL": "https://www.kosaf.go.kr/ko/download.do?pPath=HP.BRD.UPLOAD&pSeq_No=21163&pFile_No=1",
+    "확인일": "2026-10-02",
+    "status": 200,
+    "file": "SCHOLARSHIP_ZIP.zip"
+  },
+  {
+    "id": "GAS_DISCOUNT",
+    "URL": "https://www.skens.com/busan/content/view.do?cate=service&m1=supplyaskcharge&m2=inspectorsystem",
+    "확인일": "2026-10-02",
+    "status": 200,
+    "file": "GAS_DISCOUNT.html"
+  },
+  {
+    "id": "WATER_DISCOUNT",
+    "URL": "https://www.busan.go.kr/water/wtminwon11",
+    "확인일": "2026-10-02",
+    "status": 200,
+    "file": "WATER_DISCOUNT.html"
+  },
+  {
+    "id": "WATER_RATES",
+    "URL": "https://www.busan.go.kr/water/rateinfo",
+    "확인일": "2026-10-02",
+    "status": 200,
+    "file": "WATER_RATES.html"
+  },
+  {
+    "id": "INTEGRATED",
+    "URL": "https://www.myhome.go.kr/hws/portal/cont/selectIntegratedPubRentalHouseView.do",
+    "확인일": "2026-10-02",
+    "status": 200,
+    "file": "INTEGRATED.html"
+  },
+  {
+    "id": "BMC_BUY",
+    "URL": "https://www.bmc.busan.kr/bmc/contents.do?mId=0102090000",
+    "확인일": "2026-10-02",
+    "status": 404,
+    "file": "BMC_BUY.html"
+  },
+  {
+    "id": "YOUTH_RENT_GUIDE",
+    "URL": "https://www.myhome.go.kr/hws/portal/cont/selectYouthBuyRentalHouseView.do",
+    "확인일": "2026-10-02",
+    "status": 404,
+    "file": "YOUTH_RENT_GUIDE.html"
+  },
+  {
+    "id": "INTEGRATED_GUIDE",
+    "URL": "https://www.myhome.go.kr/hws/portal/cont/selectIntegratedPublicRentalView.do",
+    "확인일": "2026-10-02",
+    "status": 404,
+    "file": "INTEGRATED_GUIDE.html"
+  },
+  {
+    "id": "DORM_GUIDE",
+    "URL": "https://www.myhome.go.kr/hws/portal/cont/selectDormitoryRentalHouseView.do",
+    "확인일": "2026-10-02",
+    "status": 404,
+    "file": "DORM_GUIDE.html"
+  },
+  {
+    "id": "LH_YOUTH_PDF",
+    "URL": "https://apply.lh.or.kr/lhapply/lhFile.do?fileid=65733876",
+    "확인일": "2026-10-02",
+    "status": 200,
+    "file": "LH_YOUTH_PDF.pdf"
+  },
+  {
+    "id": "SCHOLARSHIP_DETAIL",
+    "URL": "https://www.kosaf.go.kr/ko/scholar.do?pg=scholarship05_12_18&ttab1=0",
+    "확인일": "2026-10-02",
+    "status": 200,
+    "file": "SCHOLARSHIP_DETAIL.html"
+  },
+  {
+    "id": "BUY_GUIDE",
+    "URL": "https://www.myhome.go.kr/hws/portal/cont/selectBuyRentalHouseView.do",
+    "확인일": "2026-10-02",
+    "status": 200,
+    "file": "BUY_GUIDE.html"
+  },
+  {
+    "id": "DORM_PUBLIC",
+    "URL": "https://www.myhome.go.kr/hws/portal/cont/selectPubDormitoryView.do",
+    "확인일": "2026-10-02",
+    "status": 200,
+    "file": "DORM_PUBLIC.html"
+  },
+  {
+    "id": "VULNERABLE",
+    "URL": "https://www.myhome.go.kr/hws/portal/cont/selectResidentialSupportView.do",
+    "확인일": "2026-10-02",
+    "status": 404,
+    "file": "VULNERABLE.html"
+  },
+  {
+    "id": "BMC_HOME",
+    "URL": "https://www.bmc.busan.kr/",
+    "확인일": "2026-10-02",
+    "status": 200,
+    "file": "BMC_HOME.html"
+  },
+  {
+    "id": "NATIONAL_YOUTH",
+    "URL": "https://www.myhome.go.kr/hws/portal/main/getMgtMainYhsPage.do",
+    "확인일": "2026-10-02",
+    "status": 200,
+    "file": "NATIONAL_YOUTH.html"
+  },
+  {
+    "id": "BMC_BUY",
+    "URL": "https://www.bmc.busan.kr/bmc/contents.do?mId=0102090000",
+    "확인일": "2026-10-02",
+    "status": 404,
+    "file": "BMC_BUY.html"
+  },
+  {
+    "id": "YOUTH_RENT_GUIDE",
+    "URL": "https://www.myhome.go.kr/hws/portal/cont/selectYouthBuyRentalHouseView.do",
+    "확인일": "2026-10-02",
+    "status": 404,
+    "file": "YOUTH_RENT_GUIDE.html"
+  },
+  {
+    "id": "INTEGRATED_GUIDE",
+    "URL": "https://www.myhome.go.kr/hws/portal/cont/selectIntegratedPublicRentalView.do",
+    "확인일": "2026-10-02",
+    "status": 404,
+    "file": "INTEGRATED_GUIDE.html"
+  },
+  {
+    "id": "DORM_GUIDE",
+    "URL": "https://www.myhome.go.kr/hws/portal/cont/selectDormitoryRentalHouseView.do",
+    "확인일": "2026-10-02",
+    "status": 404,
+    "file": "DORM_GUIDE.html"
+  },
+  {
+    "id": "YOUTH_BUY",
+    "URL": "https://www.myhome.go.kr/hws/portal/cont/selectYouthPolicyPurchaseRentalView.do",
+    "확인일": "2026-10-02",
+    "status": 200,
+    "file": "YOUTH_BUY.html"
+  },
+  {
+    "id": "PUBLIC_PRIVATE",
+    "URL": "https://www.myhome.go.kr/hws/portal/cont/selectYouthPolicyPublicSupPrivateView.do",
+    "확인일": "2026-10-02",
+    "status": 200,
+    "file": "PUBLIC_PRIVATE.html"
+  },
+  {
+    "id": "PROTECT_END",
+    "URL": "https://www.myhome.go.kr/hws/portal/cont/selectYouthPolicyProtectEndChildView.do",
+    "확인일": "2026-10-02",
+    "status": 200,
+    "file": "PROTECT_END.html"
+  },
+  {
+    "id": "WEAK_HOUSING",
+    "URL": "https://www.myhome.go.kr/hws/portal/cont/selectYouthPolicyHousWeakSupView.do",
+    "확인일": "2026-10-02",
+    "status": 200,
+    "file": "WEAK_HOUSING.html"
+  },
+  {
+    "id": "EMERGENCY_HOUSING",
+    "URL": "https://www.myhome.go.kr/hws/portal/cont/selectYouthPolicyEmergencyHousSupView.do",
+    "확인일": "2026-10-02",
+    "status": 200,
+    "file": "EMERGENCY_HOUSING.html"
+  },
+  {
+    "id": "BMC_BUY_NEW",
+    "URL": "https://www.bmc.busan.kr/bmc/contents.do?mId=0102090000#",
+    "확인일": "2026-10-02",
+    "status": 404,
+    "file": "BMC_BUY_NEW.html"
+  },
+  {
+    "id": "SCHOLARSHIP_SUPPORT",
+    "URL": "https://www.kosaf.go.kr/ko/scholar.do?pg=scholarship05_12_18&ttab1=2",
+    "확인일": "2026-10-02",
+    "status": 200,
+    "file": "SCHOLARSHIP_SUPPORT.html"
+  },
+  {
+    "id": "SCHOLARSHIP_REVIEW",
+    "URL": "https://www.kosaf.go.kr/ko/scholar.do?pg=scholarship05_12_18&ttab1=1",
+    "확인일": "2026-10-02",
+    "status": 200,
+    "file": "SCHOLARSHIP_REVIEW.html"
+  },
+  {
+    "id": "BUSAN_NEWLY",
+    "URL": "https://www.busan.go.kr/childcare/childcare010106/1742555",
+    "확인일": "2026-10-02",
+    "status": 200,
+    "file": "BUSAN_NEWLY.html"
+  },
+  {
+    "id": "KORAIL_DISCOUNT",
+    "URL": "https://www.letskorail.com/ebizcom/cs/guide/discount/discount01.do",
+    "확인일": "2026-10-02",
+    "status": 404,
+    "file": "KORAIL_DISCOUNT.html"
+  },
+  {
+    "id": "MAMACALL",
+    "URL": "https://www.bisco.or.kr/mamacall/",
+    "확인일": "2026-10-02",
+    "status": 200,
+    "file": "MAMACALL.html"
+  },
+  {
+    "id": "BUSAN_BRIEF_2026",
+    "URL": "https://www.busan.go.kr/briefing/1745607",
+    "확인일": "2026-10-02",
+    "status": 200,
+    "file": "BUSAN_BRIEF_2026.html"
+  },
+  {
+    "id": "SRT_DISCOUNT",
+    "URL": "https://etk.srail.kr/cms/article/view.do?postNo=15&pageId=KR0502000000",
+    "확인일": "2026-10-02",
+    "status": 500,
+    "file": "SRT_DISCOUNT.html"
+  },
+  {
+    "id": "VULNERABLE",
+    "URL": "https://www.myhome.go.kr/hws/portal/cont/selectResidentialSupportView.do",
+    "확인일": "2026-10-02",
+    "status": 404,
+    "file": "VULNERABLE.html"
+  },
+  {
+    "id": "BMC_BUY",
+    "URL": "https://www.bmc.busan.kr/bmc/contents.do?mId=0102090000",
+    "확인일": "2026-10-02",
+    "status": 404,
+    "file": "BMC_BUY.html"
+  },
+  {
+    "id": "YOUTH_RENT_GUIDE",
+    "URL": "https://www.myhome.go.kr/hws/portal/cont/selectYouthBuyRentalHouseView.do",
+    "확인일": "2026-10-02",
+    "status": 404,
+    "file": "YOUTH_RENT_GUIDE.html"
+  },
+  {
+    "id": "INTEGRATED_GUIDE",
+    "URL": "https://www.myhome.go.kr/hws/portal/cont/selectIntegratedPublicRentalView.do",
+    "확인일": "2026-10-02",
+    "status": 404,
+    "file": "INTEGRATED_GUIDE.html"
+  },
+  {
+    "id": "DORM_GUIDE",
+    "URL": "https://www.myhome.go.kr/hws/portal/cont/selectDormitoryRentalHouseView.do",
+    "확인일": "2026-10-02",
+    "status": 404,
+    "file": "DORM_GUIDE.html"
+  },
+  {
+    "id": "YOUTH_BUY_BODY",
+    "URL": "https://www.myhome.go.kr/html/content/YouthPolicyGuideMENU100.html",
+    "확인일": "2026-10-02",
+    "status": 200,
+    "file": "YOUTH_BUY_BODY.html"
+  },
+  {
+    "id": "PUBLIC_PRIVATE_BODY",
+    "URL": "https://www.myhome.go.kr/html/content/MyHomeGuideRH109.html",
+    "확인일": "2026-10-02",
+    "status": 200,
+    "file": "PUBLIC_PRIVATE_BODY.html"
+  },
+  {
+    "id": "PROTECT_END_BODY",
+    "URL": "https://www.myhome.go.kr/html/content/MyHomeGuideMENU003.html",
+    "확인일": "2026-10-02",
+    "status": 200,
+    "file": "PROTECT_END_BODY.html"
+  },
+  {
+    "id": "WEAK_HOUSING_BODY",
+    "URL": "https://www.myhome.go.kr/html/content/MyHomeGuideMENU002.html",
+    "확인일": "2026-10-02",
+    "status": 200,
+    "file": "WEAK_HOUSING_BODY.html"
+  },
+  {
+    "id": "EMERGENCY_BODY",
+    "URL": "https://www.myhome.go.kr/html/content/MyHomeGuideMENU001.html",
+    "확인일": "2026-10-02",
+    "status": 200,
+    "file": "EMERGENCY_BODY.html"
+  },
+  {
+    "id": "BUSAN_NEWLY_PDF",
+    "URL": "https://www.busan.go.kr/comm/getFile?srvcId=BBSTY1&upperNo=1742555&fileTy=ATTACH&fileNo=1",
+    "확인일": "2026-10-02",
+    "status": 200,
+    "file": "BUSAN_NEWLY_PDF.pdf"
+  },
+  {
+    "id": "BUSAN_NEWLY_FAQ",
+    "URL": "https://www.busan.go.kr/comm/getFile?srvcId=BBSTY1&upperNo=1742555&fileTy=ATTACH&fileNo=2",
+    "확인일": "2026-10-02",
+    "status": 200,
+    "file": "BUSAN_NEWLY_FAQ.pdf"
+  },
+  {
+    "id": "BMC_BUY_MENU",
+    "URL": "https://www.bmc.busan.kr/index.do?menuCd=DOM_000000103002007000",
+    "확인일": "2026-10-02",
+    "status": 200,
+    "file": "BMC_BUY_MENU.html"
+  },
+  {
+    "id": "BMC_2026_RESULT",
+    "URL": "https://www.bmc.busan.kr/board/view.do?boardId=BBS_0000004&menuCd=DOM_000000101001003000&dataSid=800679",
+    "확인일": "2026-10-02",
+    "status": 200,
+    "file": "BMC_2026_RESULT.html"
+  },
+  {
+    "id": "KORAIL_CURRENT",
+    "URL": "https://dev2.letskorail.com/ebizcom/cs/guide/discount/discount01.do",
+    "확인일": "2026-10-02",
+    "status": 200,
+    "file": "KORAIL_CURRENT.html"
+  },
+  {
+    "id": "BMC_BUY_NEW",
+    "URL": "https://www.bmc.busan.kr/bmc/contents.do?mId=0102090000#",
+    "확인일": "2026-10-02",
+    "status": 404,
+    "file": "BMC_BUY_NEW.html"
+  },
+  {
+    "id": "KORAIL_DISCOUNT",
+    "URL": "https://www.letskorail.com/ebizcom/cs/guide/discount/discount01.do",
+    "확인일": "2026-10-02",
+    "status": 404,
+    "file": "KORAIL_DISCOUNT.html"
+  },
+  {
+    "id": "SRT_DISCOUNT",
+    "URL": "https://etk.srail.kr/cms/article/view.do?postNo=15&pageId=KR0502000000",
+    "확인일": "2026-10-02",
+    "status": 500,
+    "file": "SRT_DISCOUNT.html"
+  },
+  {
+    "id": "VULNERABLE",
+    "URL": "https://www.myhome.go.kr/hws/portal/cont/selectResidentialSupportView.do",
+    "확인일": "2026-10-02",
+    "status": 404,
+    "file": "VULNERABLE.html"
+  },
+  {
+    "id": "BMC_BUY",
+    "URL": "https://www.bmc.busan.kr/bmc/contents.do?mId=0102090000",
+    "확인일": "2026-10-02",
+    "status": 404,
+    "file": "BMC_BUY.html"
+  },
+  {
+    "id": "YOUTH_RENT_GUIDE",
+    "URL": "https://www.myhome.go.kr/hws/portal/cont/selectYouthBuyRentalHouseView.do",
+    "확인일": "2026-10-02",
+    "status": 404,
+    "file": "YOUTH_RENT_GUIDE.html"
+  },
+  {
+    "id": "INTEGRATED_GUIDE",
+    "URL": "https://www.myhome.go.kr/hws/portal/cont/selectIntegratedPublicRentalView.do",
+    "확인일": "2026-10-02",
+    "status": 404,
+    "file": "INTEGRATED_GUIDE.html"
+  },
+  {
+    "id": "DORM_GUIDE",
+    "URL": "https://www.myhome.go.kr/hws/portal/cont/selectDormitoryRentalHouseView.do",
+    "확인일": "2026-10-02",
+    "status": 404,
+    "file": "DORM_GUIDE.html"
+  },
+  {
+    "id": "LH_BUSAN_BUY",
+    "URL": "https://apply.lh.or.kr/lhapply/apply/wt/wrtanc/selectWrtancInfo.do?aisTpCd=26&ccrCnntSysDsCd=03&mi=1026&panId=2015122300020790&uppAisTpCd=13",
+    "확인일": "2026-10-02",
+    "status": 200,
+    "file": "LH_BUSAN_BUY.html"
+  },
+  {
+    "id": "BMC_APPLICATION",
+    "URL": "https://apply.bmc.busan.kr/smw/smw117010/selectPbancList.do",
+    "확인일": "2026-10-02",
+    "status": 200,
+    "file": "BMC_APPLICATION.html"
+  },
+  {
+    "id": "NYSC_COUNSEL",
+    "URL": "https://www.nysc.or.kr/nysc/pages/news_view.php?id=3217",
+    "확인일": "2026-10-02",
+    "status": 200,
+    "file": "NYSC_COUNSEL.html"
+  },
+  {
+    "id": "BMC_BUY_NEW",
+    "URL": "https://www.bmc.busan.kr/bmc/contents.do?mId=0102090000#",
+    "확인일": "2026-10-02",
+    "status": 404,
+    "file": "BMC_BUY_NEW.html"
+  },
+  {
+    "id": "KORAIL_DISCOUNT",
+    "URL": "https://www.letskorail.com/ebizcom/cs/guide/discount/discount01.do",
+    "확인일": "2026-10-02",
+    "status": 404,
+    "file": "KORAIL_DISCOUNT.html"
+  },
+  {
+    "id": "SRT_DISCOUNT",
+    "URL": "https://etk.srail.kr/cms/article/view.do?postNo=15&pageId=KR0502000000",
+    "확인일": "2026-10-02",
+    "status": 500,
+    "file": "SRT_DISCOUNT.html"
+  },
+  {
+    "id": "VULNERABLE",
+    "URL": "https://www.myhome.go.kr/hws/portal/cont/selectResidentialSupportView.do",
+    "확인일": "2026-10-02",
+    "status": 404,
+    "file": "VULNERABLE.html"
+  },
+  {
+    "id": "BMC_BUY",
+    "URL": "https://www.bmc.busan.kr/bmc/contents.do?mId=0102090000",
+    "확인일": "2026-10-02",
+    "status": 404,
+    "file": "BMC_BUY.html"
+  },
+  {
+    "id": "YOUTH_RENT_GUIDE",
+    "URL": "https://www.myhome.go.kr/hws/portal/cont/selectYouthBuyRentalHouseView.do",
+    "확인일": "2026-10-02",
+    "status": 404,
+    "file": "YOUTH_RENT_GUIDE.html"
+  },
+  {
+    "id": "INTEGRATED_GUIDE",
+    "URL": "https://www.myhome.go.kr/hws/portal/cont/selectIntegratedPublicRentalView.do",
+    "확인일": "2026-10-02",
+    "status": 404,
+    "file": "INTEGRATED_GUIDE.html"
+  },
+  {
+    "id": "DORM_GUIDE",
+    "URL": "https://www.myhome.go.kr/hws/portal/cont/selectDormitoryRentalHouseView.do",
+    "확인일": "2026-10-02",
+    "status": 404,
+    "file": "DORM_GUIDE.html"
+  },
+  {
+    "id": "LH_MUNHYEON",
+    "URL": "https://apply.lh.or.kr/lhapply/apply/wt/wrtanc/selectWrtancInfo.do?aisTpCd=10&ccrCnntSysDsCd=03&mi=1026&panId=2015122300020806&uppAisTpCd=06",
+    "확인일": "2026-10-02",
+    "status": 200,
+    "file": "LH_MUNHYEON.html"
+  },
+  {
+    "id": "BMC_BUY_NEW",
+    "URL": "https://www.bmc.busan.kr/bmc/contents.do?mId=0102090000#",
+    "확인일": "2026-10-02",
+    "status": 404,
+    "file": "BMC_BUY_NEW.html"
+  },
+  {
+    "id": "KORAIL_DISCOUNT",
+    "URL": "https://www.letskorail.com/ebizcom/cs/guide/discount/discount01.do",
+    "확인일": "2026-10-02",
+    "status": 404,
+    "file": "KORAIL_DISCOUNT.html"
+  },
+  {
+    "id": "SRT_DISCOUNT",
+    "URL": "https://etk.srail.kr/cms/article/view.do?postNo=15&pageId=KR0502000000",
+    "확인일": "2026-10-02",
+    "status": 500,
+    "file": "SRT_DISCOUNT.html"
+  },
+  {
+    "id": "VULNERABLE",
+    "URL": "https://www.myhome.go.kr/hws/portal/cont/selectResidentialSupportView.do",
+    "확인일": "2026-10-02",
+    "status": 404,
+    "file": "VULNERABLE.html"
+  },
+  {
+    "id": "BMC_BUY",
+    "URL": "https://www.bmc.busan.kr/bmc/contents.do?mId=0102090000",
+    "확인일": "2026-10-02",
+    "status": 404,
+    "file": "BMC_BUY.html"
+  },
+  {
+    "id": "YOUTH_RENT_GUIDE",
+    "URL": "https://www.myhome.go.kr/hws/portal/cont/selectYouthBuyRentalHouseView.do",
+    "확인일": "2026-10-02",
+    "status": 404,
+    "file": "YOUTH_RENT_GUIDE.html"
+  },
+  {
+    "id": "INTEGRATED_GUIDE",
+    "URL": "https://www.myhome.go.kr/hws/portal/cont/selectIntegratedPublicRentalView.do",
+    "확인일": "2026-10-02",
+    "status": 404,
+    "file": "INTEGRATED_GUIDE.html"
+  },
+  {
+    "id": "DORM_GUIDE",
+    "URL": "https://www.myhome.go.kr/hws/portal/cont/selectDormitoryRentalHouseView.do",
+    "확인일": "2026-10-02",
+    "status": 404,
+    "file": "DORM_GUIDE.html"
+  },
+  {
+    "id": "LH_BUY_PDF",
+    "URL": "https://apply.lh.or.kr/lhapply/lhFile.do?fileid=68632765",
+    "확인일": "2026-10-02",
+    "status": 200,
+    "file": "LH_BUY_PDF.pdf"
+  },
+  {
+    "id": "LH_MUNHYEON_PDF",
+    "URL": "https://apply.lh.or.kr/lhapply/lhFile.do?fileid=68703985",
+    "확인일": "2026-10-02",
+    "status": 200,
+    "file": "LH_MUNHYEON_PDF.pdf"
+  },
+  {
+    "id": "BMC_RENT_LIST",
+    "URL": "https://apply.bmc.busan.kr/smw/smw113020/selectPbancRentHouseList.do",
+    "확인일": "2026-10-02",
+    "status": 200,
+    "file": "BMC_RENT_LIST.html"
+  },
+  {
+    "id": "BMC_BUY_NEW",
+    "URL": "https://www.bmc.busan.kr/bmc/contents.do?mId=0102090000#",
+    "확인일": "2026-10-02",
+    "status": 404,
+    "file": "BMC_BUY_NEW.html"
+  },
+  {
+    "id": "KORAIL_DISCOUNT",
+    "URL": "https://www.letskorail.com/ebizcom/cs/guide/discount/discount01.do",
+    "확인일": "2026-10-02",
+    "status": 404,
+    "file": "KORAIL_DISCOUNT.html"
+  },
+  {
+    "id": "SRT_DISCOUNT",
+    "URL": "https://etk.srail.kr/cms/article/view.do?postNo=15&pageId=KR0502000000",
+    "확인일": "2026-10-02",
+    "status": 500,
+    "file": "SRT_DISCOUNT.html"
+  },
+  {
+    "id": "VULNERABLE",
+    "URL": "https://www.myhome.go.kr/hws/portal/cont/selectResidentialSupportView.do",
+    "확인일": "2026-10-02",
+    "status": 404,
+    "file": "VULNERABLE.html"
+  },
+  {
+    "id": "BMC_BUY",
+    "URL": "https://www.bmc.busan.kr/bmc/contents.do?mId=0102090000",
+    "확인일": "2026-10-02",
+    "status": 404,
+    "file": "BMC_BUY.html"
+  },
+  {
+    "id": "YOUTH_RENT_GUIDE",
+    "URL": "https://www.myhome.go.kr/hws/portal/cont/selectYouthBuyRentalHouseView.do",
+    "확인일": "2026-10-02",
+    "status": 404,
+    "file": "YOUTH_RENT_GUIDE.html"
+  },
+  {
+    "id": "INTEGRATED_GUIDE",
+    "URL": "https://www.myhome.go.kr/hws/portal/cont/selectIntegratedPublicRentalView.do",
+    "확인일": "2026-10-02",
+    "status": 404,
+    "file": "INTEGRATED_GUIDE.html"
+  },
+  {
+    "id": "DORM_GUIDE",
+    "URL": "https://www.myhome.go.kr/hws/portal/cont/selectDormitoryRentalHouseView.do",
+    "확인일": "2026-10-02",
+    "status": 404,
+    "file": "DORM_GUIDE.html"
+  },
+  {
+    "id": "BMC_YOUTH_DETAIL",
+    "URL": "https://apply.bmc.busan.kr/smw/smw113020/selectPbancDetailView.do?pbancNo=91&pbancKndCd=06&bizTyNm=매입임대",
+    "확인일": "2026-10-02",
+    "status": 200,
+    "file": "BMC_YOUTH_DETAIL.html"
+  },
+  {
+    "id": "BMC_NEWLY_DETAIL",
+    "URL": "https://apply.bmc.busan.kr/smw/smw113020/selectPbancDetailView.do?pbancNo=110&pbancKndCd=06&bizTyNm=매입임대",
+    "확인일": "2026-10-02",
+    "status": 200,
+    "file": "BMC_NEWLY_DETAIL.html"
+  },
+  {
+    "id": "BMC_BUY_NEW",
+    "URL": "https://www.bmc.busan.kr/bmc/contents.do?mId=0102090000#",
+    "확인일": "2026-10-02",
+    "status": 404,
+    "file": "BMC_BUY_NEW.html"
+  },
+  {
+    "id": "KORAIL_DISCOUNT",
+    "URL": "https://www.letskorail.com/ebizcom/cs/guide/discount/discount01.do",
+    "확인일": "2026-10-02",
+    "status": 404,
+    "file": "KORAIL_DISCOUNT.html"
+  },
+  {
+    "id": "SRT_DISCOUNT",
+    "URL": "https://etk.srail.kr/cms/article/view.do?postNo=15&pageId=KR0502000000",
+    "확인일": "2026-10-02",
+    "status": 500,
+    "file": "SRT_DISCOUNT.html"
+  },
+  {
+    "id": "VULNERABLE",
+    "URL": "https://www.myhome.go.kr/hws/portal/cont/selectResidentialSupportView.do",
+    "확인일": "2026-10-02",
+    "status": 404,
+    "file": "VULNERABLE.html"
+  },
+  {
+    "id": "BMC_BUY",
+    "URL": "https://www.bmc.busan.kr/bmc/contents.do?mId=0102090000",
+    "확인일": "2026-10-02",
+    "status": 404,
+    "file": "BMC_BUY.html"
+  },
+  {
+    "id": "YOUTH_RENT_GUIDE",
+    "URL": "https://www.myhome.go.kr/hws/portal/cont/selectYouthBuyRentalHouseView.do",
+    "확인일": "2026-10-02",
+    "status": 404,
+    "file": "YOUTH_RENT_GUIDE.html"
+  },
+  {
+    "id": "INTEGRATED_GUIDE",
+    "URL": "https://www.myhome.go.kr/hws/portal/cont/selectIntegratedPublicRentalView.do",
+    "확인일": "2026-10-02",
+    "status": 404,
+    "file": "INTEGRATED_GUIDE.html"
+  },
+  {
+    "id": "DORM_GUIDE",
+    "URL": "https://www.myhome.go.kr/hws/portal/cont/selectDormitoryRentalHouseView.do",
+    "확인일": "2026-10-02",
+    "status": 404,
+    "file": "DORM_GUIDE.html"
+  },
+  {
+    "id": "BMC_NEWLY_PDF",
+    "URL": "https://apply.bmc.busan.kr/smw/smw113020/selectFileDown.do?pbancNo=110&atchFileSn=87423&atchFileDtlSn=2&mode=1",
+    "확인일": "2026-10-02",
+    "status": 200,
+    "file": "BMC_NEWLY_PDF.pdf"
+  },
+  {
+    "id": "BMC_YOUTH_PDF",
+    "URL": "https://apply.bmc.busan.kr/smw/smw113020/selectFileDown.do?pbancNo=91&atchFileSn=69500&atchFileDtlSn=10&mode=1",
+    "확인일": "2026-10-02",
+    "status": 200,
+    "file": "BMC_YOUTH_PDF.pdf"
+  },
+  {
+    "id": "HF_MORTGAGE",
+    "URL": "https://www.hf.go.kr/ko/sub01/sub01_01_01.do",
+    "확인일": "2026-10-02",
+    "status": 200,
+    "file": "HF_MORTGAGE.html"
+  },
+  {
+    "id": "BMC_BUY_NEW",
+    "URL": "https://www.bmc.busan.kr/bmc/contents.do?mId=0102090000#",
+    "확인일": "2026-10-02",
+    "status": 404,
+    "file": "BMC_BUY_NEW.html"
+  },
+  {
+    "id": "KORAIL_DISCOUNT",
+    "URL": "https://www.letskorail.com/ebizcom/cs/guide/discount/discount01.do",
+    "확인일": "2026-10-02",
+    "status": 404,
+    "file": "KORAIL_DISCOUNT.html"
+  },
+  {
+    "id": "SRT_DISCOUNT",
+    "URL": "https://etk.srail.kr/cms/article/view.do?postNo=15&pageId=KR0502000000",
+    "확인일": "2026-10-02",
+    "status": 500,
+    "file": "SRT_DISCOUNT.html"
+  },
+  {
+    "id": "VULNERABLE",
+    "URL": "https://www.myhome.go.kr/hws/portal/cont/selectResidentialSupportView.do",
+    "확인일": "2026-10-02",
+    "status": 404,
+    "file": "VULNERABLE.html"
+  },
+  {
+    "id": "BMC_BUY",
+    "URL": "https://www.bmc.busan.kr/bmc/contents.do?mId=0102090000",
+    "확인일": "2026-10-02",
+    "status": 404,
+    "file": "BMC_BUY.html"
+  },
+  {
+    "id": "YOUTH_RENT_GUIDE",
+    "URL": "https://www.myhome.go.kr/hws/portal/cont/selectYouthBuyRentalHouseView.do",
+    "확인일": "2026-10-02",
+    "status": 404,
+    "file": "YOUTH_RENT_GUIDE.html"
+  },
+  {
+    "id": "INTEGRATED_GUIDE",
+    "URL": "https://www.myhome.go.kr/hws/portal/cont/selectIntegratedPublicRentalView.do",
+    "확인일": "2026-10-02",
+    "status": 404,
+    "file": "INTEGRATED_GUIDE.html"
+  },
+  {
+    "id": "DORM_GUIDE",
+    "URL": "https://www.myhome.go.kr/hws/portal/cont/selectDormitoryRentalHouseView.do",
+    "확인일": "2026-10-02",
+    "status": 404,
+    "file": "DORM_GUIDE.html"
+  },
+  {
+    "id": "DAMAGE_REPAIR",
+    "URL": "https://www.dongnae.go.kr/board/view.dongnae?boardId=BBS_0000178&dataSid=896372&menuCd=DOM_000001115003001000&startPage=1",
+    "확인일": "2026-10-02",
+    "status": 200,
+    "file": "DAMAGE_REPAIR.html"
+  },
+  {
+    "id": "DAMAGE_REPAIR_HWPX",
+    "URL": "https://www.dongnae.go.kr/board/download.dongnae?boardId=BBS_0000178&command=update&dataSid=896372&fileSid=375701&menuCd=DOM_000001115003001000&startPage=1",
+    "확인일": "2026-10-02",
+    "status": 200,
+    "file": "DAMAGE_REPAIR_HWPX.zip"
+  },
+  {
+    "id": "BMC_BUY_NEW",
+    "URL": "https://www.bmc.busan.kr/bmc/contents.do?mId=0102090000#",
+    "확인일": "2026-10-02",
+    "status": 404,
+    "file": "BMC_BUY_NEW.html"
+  },
+  {
+    "id": "KORAIL_DISCOUNT",
+    "URL": "https://www.letskorail.com/ebizcom/cs/guide/discount/discount01.do",
+    "확인일": "2026-10-02",
+    "status": 404,
+    "file": "KORAIL_DISCOUNT.html"
+  },
+  {
+    "id": "SRT_DISCOUNT",
+    "URL": "https://etk.srail.kr/cms/article/view.do?postNo=15&pageId=KR0502000000",
+    "확인일": "2026-10-02",
+    "status": 500,
+    "file": "SRT_DISCOUNT.html"
+  },
+  {
+    "id": "VULNERABLE",
+    "URL": "https://www.myhome.go.kr/hws/portal/cont/selectResidentialSupportView.do",
+    "확인일": "2026-10-02",
+    "status": 404,
+    "file": "VULNERABLE.html"
+  },
+  {
+    "id": "BMC_BUY",
+    "URL": "https://www.bmc.busan.kr/bmc/contents.do?mId=0102090000",
+    "확인일": "2026-10-02",
+    "status": 404,
+    "file": "BMC_BUY.html"
+  },
+  {
+    "id": "YOUTH_RENT_GUIDE",
+    "URL": "https://www.myhome.go.kr/hws/portal/cont/selectYouthBuyRentalHouseView.do",
+    "확인일": "2026-10-02",
+    "status": 404,
+    "file": "YOUTH_RENT_GUIDE.html"
+  },
+  {
+    "id": "INTEGRATED_GUIDE",
+    "URL": "https://www.myhome.go.kr/hws/portal/cont/selectIntegratedPublicRentalView.do",
+    "확인일": "2026-10-02",
+    "status": 404,
+    "file": "INTEGRATED_GUIDE.html"
+  },
+  {
+    "id": "DORM_GUIDE",
+    "URL": "https://www.myhome.go.kr/hws/portal/cont/selectDormitoryRentalHouseView.do",
+    "확인일": "2026-10-02",
+    "status": 404,
+    "file": "DORM_GUIDE.html"
+  },
+  {
+    "id": "LH_RENT_GUIDE",
+    "URL": "https://apply.lh.or.kr/lhapply/cm/cntnts/cntntsView.do?mi=1150&cntntsId=201269",
+    "확인일": "2026-10-02",
+    "status": 200,
+    "file": "LH_RENT_GUIDE.html"
+  },
+  {
+    "id": "LH_USER_LINK",
+    "URL": "https://apply.lh.or.kr/lhapply/cm/cntnts/cntntsView.do?mi=1223&cntntsId=1026",
+    "확인일": "2026-10-02",
+    "status": 200,
+    "file": "LH_USER_LINK.html"
+  },
+  {
+    "id": "DREAM_RULE",
+    "URL": "https://www.busan.go.kr/comm/getFile?srvcId=MEDIA&upperNo=24276&fileTy=MEDIA&fileNo=1",
+    "확인일": "2026-10-02",
+    "status": 200,
+    "file": "DREAM_RULE.pdf"
+  },
+  {
+    "id": "LH_DORM_2026",
+    "URL": "https://apply.lh.or.kr/lhapply/apply/wt/wrtanc/selectWrtancInfo.do?aisTpCd=26&ccrCnntSysDsCd=03&mi=1026&panId=2015122300020819&uppAisTpCd=13",
+    "확인일": "2026-10-02",
+    "status": 200,
+    "file": "LH_DORM_2026.html"
+  },
+  {
+    "id": "BMC_BUY_NEW",
+    "URL": "https://www.bmc.busan.kr/bmc/contents.do?mId=0102090000#",
+    "확인일": "2026-10-02",
+    "status": 404,
+    "file": "BMC_BUY_NEW.html"
+  },
+  {
+    "id": "KORAIL_DISCOUNT",
+    "URL": "https://www.letskorail.com/ebizcom/cs/guide/discount/discount01.do",
+    "확인일": "2026-10-02",
+    "status": 404,
+    "file": "KORAIL_DISCOUNT.html"
+  },
+  {
+    "id": "SRT_DISCOUNT",
+    "URL": "https://etk.srail.kr/cms/article/view.do?postNo=15&pageId=KR0502000000",
+    "확인일": "2026-10-02",
+    "status": 500,
+    "file": "SRT_DISCOUNT.html"
+  },
+  {
+    "id": "VULNERABLE",
+    "URL": "https://www.myhome.go.kr/hws/portal/cont/selectResidentialSupportView.do",
+    "확인일": "2026-10-02",
+    "status": 404,
+    "file": "VULNERABLE.html"
+  },
+  {
+    "id": "BMC_BUY",
+    "URL": "https://www.bmc.busan.kr/bmc/contents.do?mId=0102090000",
+    "확인일": "2026-10-02",
+    "status": 404,
+    "file": "BMC_BUY.html"
+  },
+  {
+    "id": "YOUTH_RENT_GUIDE",
+    "URL": "https://www.myhome.go.kr/hws/portal/cont/selectYouthBuyRentalHouseView.do",
+    "확인일": "2026-10-02",
+    "status": 404,
+    "file": "YOUTH_RENT_GUIDE.html"
+  },
+  {
+    "id": "INTEGRATED_GUIDE",
+    "URL": "https://www.myhome.go.kr/hws/portal/cont/selectIntegratedPublicRentalView.do",
+    "확인일": "2026-10-02",
+    "status": 404,
+    "file": "INTEGRATED_GUIDE.html"
+  },
+  {
+    "id": "DORM_GUIDE",
+    "URL": "https://www.myhome.go.kr/hws/portal/cont/selectDormitoryRentalHouseView.do",
+    "확인일": "2026-10-02",
+    "status": 404,
+    "file": "DORM_GUIDE.html"
+  },
+  {
+    "id": "LH_DORM_PDF",
+    "URL": "https://apply.lh.or.kr/lhapply/lhFile.do?fileid=68714892",
+    "확인일": "2026-10-02",
+    "status": 200,
+    "file": "LH_DORM_PDF.pdf"
+  },
+  {
+    "id": "BMC_BUY_NEW",
+    "URL": "https://www.bmc.busan.kr/bmc/contents.do?mId=0102090000#",
+    "확인일": "2026-10-02",
+    "status": 404,
+    "file": "BMC_BUY_NEW.html"
+  },
+  {
+    "id": "KORAIL_DISCOUNT",
+    "URL": "https://www.letskorail.com/ebizcom/cs/guide/discount/discount01.do",
+    "확인일": "2026-10-02",
+    "status": 404,
+    "file": "KORAIL_DISCOUNT.html"
+  },
+  {
+    "id": "SRT_DISCOUNT",
+    "URL": "https://etk.srail.kr/cms/article/view.do?postNo=15&pageId=KR0502000000",
+    "확인일": "2026-10-02",
+    "status": 500,
+    "file": "SRT_DISCOUNT.html"
+  },
+  {
+    "id": "VULNERABLE",
+    "URL": "https://www.myhome.go.kr/hws/portal/cont/selectResidentialSupportView.do",
+    "확인일": "2026-10-02",
+    "status": 404,
+    "file": "VULNERABLE.html"
+  },
+  {
+    "id": "BMC_BUY",
+    "URL": "https://www.bmc.busan.kr/bmc/contents.do?mId=0102090000",
+    "확인일": "2026-10-02",
+    "status": 404,
+    "file": "BMC_BUY.html"
+  },
+  {
+    "id": "YOUTH_RENT_GUIDE",
+    "URL": "https://www.myhome.go.kr/hws/portal/cont/selectYouthBuyRentalHouseView.do",
+    "확인일": "2026-10-02",
+    "status": 404,
+    "file": "YOUTH_RENT_GUIDE.html"
+  },
+  {
+    "id": "INTEGRATED_GUIDE",
+    "URL": "https://www.myhome.go.kr/hws/portal/cont/selectIntegratedPublicRentalView.do",
+    "확인일": "2026-10-02",
+    "status": 404,
+    "file": "INTEGRATED_GUIDE.html"
+  },
+  {
+    "id": "DORM_GUIDE",
+    "URL": "https://www.myhome.go.kr/hws/portal/cont/selectDormitoryRentalHouseView.do",
+    "확인일": "2026-10-02",
+    "status": 404,
+    "file": "DORM_GUIDE.html"
+  },
+  {
+    "id": "NEWBORN_BUY",
+    "URL": "https://nhuf.molit.go.kr/FP/FP05/FP0503/FP05030801.jsp",
+    "확인일": "2026-10-02",
+    "error": "TypeError"
+  },
+  {
+    "id": "MYHOME_COUNSEL",
+    "URL": "https://lh.or.kr/menu.es?mid=a10310000000",
+    "확인일": "2026-10-02",
+    "error": "TypeError"
+  },
+  {
+    "id": "MYHOME_INFO",
+    "URL": "https://www.myhome.go.kr/hws/portal/main/selectMyHomeInfoView.do",
+    "확인일": "2026-10-02",
+    "error": "TypeError"
+  },
+  {
+    "id": "UNION_DORM_LATEST",
+    "URL": "https://www.kosaf.go.kr/ko/notice.do?mode=view&seqNo=20960",
+    "확인일": "2026-10-02",
+    "error": "TypeError"
+  },
+  {
+    "id": "UNION_DORM_LIST",
+    "URL": "https://www.kosaf.go.kr/ko/notice.do?ctgrId1=0000000009",
+    "확인일": "2026-10-02",
+    "error": "TypeError"
+  },
+  {
+    "id": "JPDC_GUIDE",
+    "URL": "https://www.jpdc.co.kr/business/local/living2/Integratedpublicrental/current.htm",
+    "확인일": "2026-10-02",
+    "error": "TypeError"
+  },
+  {
+    "id": "JPDC_LIST",
+    "URL": "https://www.jpdc.co.kr/open/news/notice.htm",
+    "확인일": "2026-10-02",
+    "error": "TypeError"
+  },
+  {
+    "id": "USC_LIST",
+    "URL": "https://www.usc.go.kr/youth/page.do?mnu_uid=2028",
+    "확인일": "2026-10-02",
+    "error": "TypeError"
+  },
+  {
+    "id": "BUFS_COUNSEL_LIST",
+    "URL": "https://www.bufs.ac.kr/bbs/board.php?bo_table=bufs_occasion&sfl=wr_subject&stx=%EC%B0%BE%EC%95%84%EA%B0%80%EB%8A%94",
+    "확인일": "2026-10-02",
+    "error": "TypeError"
+  },
+  {
+    "id": "CKU_COUNSEL",
+    "URL": "https://photo.cku.ac.kr/bbs/cku_kr/1202/367989/artclView.do",
+    "확인일": "2026-10-02",
+    "error": "TypeError"
+  },
+  {
+    "id": "NATIONAL_ASSET_PLAN",
+    "URL": "https://eiec.kdi.re.kr/publish/naraView.do?cidx=15745&fcode=00002000040000100005&sel_month=10&sel_year=2026",
+    "확인일": "2026-10-02",
+    "error": "TypeError"
+  },
+  {
+    "id": "BMC_BUY_NEW",
+    "URL": "https://www.bmc.busan.kr/bmc/contents.do?mId=0102090000#",
+    "확인일": "2026-10-02",
+    "error": "TypeError"
+  },
+  {
+    "id": "KORAIL_DISCOUNT",
+    "URL": "https://www.letskorail.com/ebizcom/cs/guide/discount/discount01.do",
+    "확인일": "2026-10-02",
+    "error": "TypeError"
+  },
+  {
+    "id": "SRT_DISCOUNT",
+    "URL": "https://etk.srail.kr/cms/article/view.do?postNo=15&pageId=KR0502000000",
+    "확인일": "2026-10-02",
+    "error": "TypeError"
+  },
+  {
+    "id": "VULNERABLE",
+    "URL": "https://www.myhome.go.kr/hws/portal/cont/selectResidentialSupportView.do",
+    "확인일": "2026-10-02",
+    "error": "TypeError"
+  },
+  {
+    "id": "BMC_BUY",
+    "URL": "https://www.bmc.busan.kr/bmc/contents.do?mId=0102090000",
+    "확인일": "2026-10-02",
+    "error": "TypeError"
+  },
+  {
+    "id": "YOUTH_RENT_GUIDE",
+    "URL": "https://www.myhome.go.kr/hws/portal/cont/selectYouthBuyRentalHouseView.do",
+    "확인일": "2026-10-02",
+    "error": "TypeError"
+  },
+  {
+    "id": "INTEGRATED_GUIDE",
+    "URL": "https://www.myhome.go.kr/hws/portal/cont/selectIntegratedPublicRentalView.do",
+    "확인일": "2026-10-02",
+    "error": "TypeError"
+  },
+  {
+    "id": "DORM_GUIDE",
+    "URL": "https://www.myhome.go.kr/hws/portal/cont/selectDormitoryRentalHouseView.do",
+    "확인일": "2026-10-02",
+    "error": "TypeError"
+  },
+  {
+    "id": "NEWBORN_BUY",
+    "URL": "https://nhuf.molit.go.kr/FP/FP05/FP0503/FP05030801.jsp",
+    "확인일": "2026-10-02",
+    "status": 200,
+    "file": "NEWBORN_BUY.html"
+  },
+  {
+    "id": "MYHOME_COUNSEL",
+    "URL": "https://lh.or.kr/menu.es?mid=a10310000000",
+    "확인일": "2026-10-02",
+    "status": 200,
+    "file": "MYHOME_COUNSEL.html"
+  },
+  {
+    "id": "MYHOME_INFO",
+    "URL": "https://www.myhome.go.kr/hws/portal/main/selectMyHomeInfoView.do",
+    "확인일": "2026-10-02",
+    "status": 200,
+    "file": "MYHOME_INFO.html"
+  },
+  {
+    "id": "UNION_DORM_LATEST",
+    "URL": "https://www.kosaf.go.kr/ko/notice.do?mode=view&seqNo=20960",
+    "확인일": "2026-10-02",
+    "status": 200,
+    "file": "UNION_DORM_LATEST.html"
+  },
+  {
+    "id": "UNION_DORM_LIST",
+    "URL": "https://www.kosaf.go.kr/ko/notice.do?ctgrId1=0000000009",
+    "확인일": "2026-10-02",
+    "status": 200,
+    "file": "UNION_DORM_LIST.html"
+  },
+  {
+    "id": "JPDC_GUIDE",
+    "URL": "https://www.jpdc.co.kr/business/local/living2/Integratedpublicrental/current.htm",
+    "확인일": "2026-10-02",
+    "status": 200,
+    "file": "JPDC_GUIDE.html"
+  },
+  {
+    "id": "JPDC_LIST",
+    "URL": "https://www.jpdc.co.kr/open/news/notice.htm",
+    "확인일": "2026-10-02",
+    "status": 200,
+    "file": "JPDC_LIST.html"
+  },
+  {
+    "id": "USC_LIST",
+    "URL": "https://www.usc.go.kr/youth/page.do?mnu_uid=2028",
+    "확인일": "2026-10-02",
+    "status": 200,
+    "file": "USC_LIST.html"
+  },
+  {
+    "id": "BUFS_COUNSEL_LIST",
+    "URL": "https://www.bufs.ac.kr/bbs/board.php?bo_table=bufs_occasion&sfl=wr_subject&stx=%EC%B0%BE%EC%95%84%EA%B0%80%EB%8A%94",
+    "확인일": "2026-10-02",
+    "status": 200,
+    "file": "BUFS_COUNSEL_LIST.html"
+  },
+  {
+    "id": "CKU_COUNSEL",
+    "URL": "https://photo.cku.ac.kr/bbs/cku_kr/1202/367989/artclView.do",
+    "확인일": "2026-10-02",
+    "status": 200,
+    "file": "CKU_COUNSEL.html"
+  },
+  {
+    "id": "NATIONAL_ASSET_PLAN",
+    "URL": "https://eiec.kdi.re.kr/publish/naraView.do?cidx=15745&fcode=00002000040000100005&sel_month=10&sel_year=2026",
+    "확인일": "2026-10-02",
+    "status": 200,
+    "file": "NATIONAL_ASSET_PLAN.html"
+  },
+  {
+    "id": "BMC_BUY_NEW",
+    "URL": "https://www.bmc.busan.kr/bmc/contents.do?mId=0102090000#",
+    "확인일": "2026-10-02",
+    "status": 404,
+    "file": "BMC_BUY_NEW.html"
+  },
+  {
+    "id": "KORAIL_DISCOUNT",
+    "URL": "https://www.letskorail.com/ebizcom/cs/guide/discount/discount01.do",
+    "확인일": "2026-10-02",
+    "status": 404,
+    "file": "KORAIL_DISCOUNT.html"
+  },
+  {
+    "id": "SRT_DISCOUNT",
+    "URL": "https://etk.srail.kr/cms/article/view.do?postNo=15&pageId=KR0502000000",
+    "확인일": "2026-10-02",
+    "status": 500,
+    "file": "SRT_DISCOUNT.html"
+  },
+  {
+    "id": "VULNERABLE",
+    "URL": "https://www.myhome.go.kr/hws/portal/cont/selectResidentialSupportView.do",
+    "확인일": "2026-10-02",
+    "status": 404,
+    "file": "VULNERABLE.html"
+  },
+  {
+    "id": "BMC_BUY",
+    "URL": "https://www.bmc.busan.kr/bmc/contents.do?mId=0102090000",
+    "확인일": "2026-10-02",
+    "status": 404,
+    "file": "BMC_BUY.html"
+  },
+  {
+    "id": "YOUTH_RENT_GUIDE",
+    "URL": "https://www.myhome.go.kr/hws/portal/cont/selectYouthBuyRentalHouseView.do",
+    "확인일": "2026-10-02",
+    "status": 404,
+    "file": "YOUTH_RENT_GUIDE.html"
+  },
+  {
+    "id": "INTEGRATED_GUIDE",
+    "URL": "https://www.myhome.go.kr/hws/portal/cont/selectIntegratedPublicRentalView.do",
+    "확인일": "2026-10-02",
+    "status": 404,
+    "file": "INTEGRATED_GUIDE.html"
+  },
+  {
+    "id": "DORM_GUIDE",
+    "URL": "https://www.myhome.go.kr/hws/portal/cont/selectDormitoryRentalHouseView.do",
+    "확인일": "2026-10-02",
+    "status": 404,
+    "file": "DORM_GUIDE.html"
+  },
+  {
+    "id": "NEWBORN_REFINANCE",
+    "URL": "https://nhuf.molit.go.kr/FP/FP05/FP0503/FP05030802.jsp",
+    "확인일": "2026-10-02",
+    "status": 200,
+    "file": "NEWBORN_REFINANCE.html"
+  },
+  {
+    "id": "USC_SPACE",
+    "URL": "https://www.usc.go.kr/youth/page.do?mnu_uid=2024",
+    "확인일": "2026-10-02",
+    "status": 200,
+    "file": "USC_SPACE.html"
+  },
+  {
+    "id": "JPDC_RECIPIENT",
+    "URL": "https://www.jpdc.co.kr/business/local/living2/Integratedpublicrental/recipient.htm",
+    "확인일": "2026-10-02",
+    "status": 200,
+    "file": "JPDC_RECIPIENT.html"
+  },
+  {
+    "id": "JPDC_SEARCH",
+    "URL": "https://www.jpdc.co.kr/open/news/notice.htm?search=%ED%86%B5%ED%95%A9%EA%B3%B5%EA%B3%B5%EC%9E%84%EB%8C%80",
+    "확인일": "2026-10-02",
+    "status": 200,
+    "file": "JPDC_SEARCH.html"
+  },
+  {
+    "id": "BUFS_COUNSEL",
+    "URL": "https://www.bufs.ac.kr/bbs/board.php?bo_table=bufs_occasion&wr_id=7942",
+    "확인일": "2026-10-02",
+    "status": 200,
+    "file": "BUFS_COUNSEL.html"
+  },
+  {
+    "id": "HAMAN_COUNSEL",
+    "URL": "https://youthhaman.kr/contents/02_news/board.html?board_id=board_info&mode=view&no=135",
+    "확인일": "2026-10-02",
+    "status": 200,
+    "file": "HAMAN_COUNSEL.html"
+  },
+  {
+    "id": "BUSAN_ECO_PLAN",
+    "URL": "https://www.busan.go.kr/nbtnewsBU/1738442",
+    "확인일": "2026-10-02",
+    "status": 200,
+    "file": "BUSAN_ECO_PLAN.html"
+  },
+  {
+    "id": "MIRYANG_RURAL_LIST",
+    "URL": "https://miryang.go.kr/dpt/eMiryangMinwonList.do?mnNo=2020000&nmmKind1=01&owd=agricul&searchKeyword=%EC%B2%AD%EB%85%84%EB%86%8D%EC%B4%8C%EB%B3%B4%EA%B8%88%EC%9E%90%EB%A6%AC",
+    "확인일": "2026-10-02",
+    "status": 200,
+    "file": "MIRYANG_RURAL_LIST.html"
+  },
+  {
+    "id": "BMC_BUY_NEW",
+    "URL": "https://www.bmc.busan.kr/bmc/contents.do?mId=0102090000#",
+    "확인일": "2026-10-02",
+    "status": 404,
+    "file": "BMC_BUY_NEW.html"
+  },
+  {
+    "id": "KORAIL_DISCOUNT",
+    "URL": "https://www.letskorail.com/ebizcom/cs/guide/discount/discount01.do",
+    "확인일": "2026-10-02",
+    "status": 404,
+    "file": "KORAIL_DISCOUNT.html"
+  },
+  {
+    "id": "SRT_DISCOUNT",
+    "URL": "https://etk.srail.kr/cms/article/view.do?postNo=15&pageId=KR0502000000",
+    "확인일": "2026-10-02",
+    "status": 500,
+    "file": "SRT_DISCOUNT.html"
+  },
+  {
+    "id": "VULNERABLE",
+    "URL": "https://www.myhome.go.kr/hws/portal/cont/selectResidentialSupportView.do",
+    "확인일": "2026-10-02",
+    "status": 404,
+    "file": "VULNERABLE.html"
+  },
+  {
+    "id": "BMC_BUY",
+    "URL": "https://www.bmc.busan.kr/bmc/contents.do?mId=0102090000",
+    "확인일": "2026-10-02",
+    "status": 404,
+    "file": "BMC_BUY.html"
+  },
+  {
+    "id": "YOUTH_RENT_GUIDE",
+    "URL": "https://www.myhome.go.kr/hws/portal/cont/selectYouthBuyRentalHouseView.do",
+    "확인일": "2026-10-02",
+    "status": 404,
+    "file": "YOUTH_RENT_GUIDE.html"
+  },
+  {
+    "id": "INTEGRATED_GUIDE",
+    "URL": "https://www.myhome.go.kr/hws/portal/cont/selectIntegratedPublicRentalView.do",
+    "확인일": "2026-10-02",
+    "status": 404,
+    "file": "INTEGRATED_GUIDE.html"
+  },
+  {
+    "id": "DORM_GUIDE",
+    "URL": "https://www.myhome.go.kr/hws/portal/cont/selectDormitoryRentalHouseView.do",
+    "확인일": "2026-10-02",
+    "status": 404,
+    "file": "DORM_GUIDE.html"
+  },
+  {
+    "id": "JPDC_FILTERED",
+    "URL": "https://www.jpdc.co.kr/open/news/notice.htm?qType=title&q=%ED%86%B5%ED%95%A9%EA%B3%B5%EA%B3%B5%EC%9E%84%EB%8C%80",
+    "확인일": "2026-10-02",
+    "status": 200,
+    "file": "JPDC_FILTERED.html"
+  },
+  {
+    "id": "GANGWON_PLAN",
+    "URL": "https://state.gwd.go.kr/portal/briefing/pressRelease?seq=8511",
+    "확인일": "2026-10-02",
+    "status": 200,
+    "file": "GANGWON_PLAN.html"
+  },
+  {
+    "id": "COMWEL_SCOPE",
+    "URL": "https://webzine.comwel.or.kr/2026/vol163/sub_01_02.html",
+    "확인일": "2026-10-02",
+    "status": 200,
+    "file": "COMWEL_SCOPE.html"
+  },
+  {
+    "id": "RURAL_GUIDELINES",
+    "URL": "https://www.mafra.go.kr/bbs/home/795/594263/download.do",
+    "확인일": "2026-10-02",
+    "status": 200,
+    "file": "RURAL_GUIDELINES.pdf"
+  },
+  {
+    "id": "BUFS_COUNSEL_POSTER",
+    "URL": "https://www.bufs.ac.kr/data/editor/2609/61ba0bcc04b4df0e11538580a391ea8f_1790583417_3491.jpg",
+    "확인일": "2026-10-02",
+    "status": 200,
+    "file": "BUFS_COUNSEL_POSTER.html"
+  },
+  {
+    "id": "MIRYANG_FILTERED",
+    "URL": "https://miryang.go.kr/dpt/eMiryangMinwonList.do?mnNo=2020000&nmmKind1=01&nmmKind2=02&nmmKind3=03&nmmKind4=04&nmmKind5=05&nmmKind6=06&nmmKind7=07&owd=agricul&searchCondition=1&searchKeyword=%EC%B2%AD%EB%85%84%EB%86%8D%EC%B4%8C%EB%B3%B4%EA%B8%88%EC%9E%90%EB%A6%AC",
+    "확인일": "2026-10-02",
+    "status": 200,
+    "file": "MIRYANG_FILTERED.html"
+  },
+  {
+    "id": "BMC_BUY_NEW",
+    "URL": "https://www.bmc.busan.kr/bmc/contents.do?mId=0102090000#",
+    "확인일": "2026-10-02",
+    "status": 404,
+    "file": "BMC_BUY_NEW.html"
+  },
+  {
+    "id": "KORAIL_DISCOUNT",
+    "URL": "https://www.letskorail.com/ebizcom/cs/guide/discount/discount01.do",
+    "확인일": "2026-10-02",
+    "status": 404,
+    "file": "KORAIL_DISCOUNT.html"
+  },
+  {
+    "id": "SRT_DISCOUNT",
+    "URL": "https://etk.srail.kr/cms/article/view.do?postNo=15&pageId=KR0502000000",
+    "확인일": "2026-10-02",
+    "status": 500,
+    "file": "SRT_DISCOUNT.html"
+  },
+  {
+    "id": "VULNERABLE",
+    "URL": "https://www.myhome.go.kr/hws/portal/cont/selectResidentialSupportView.do",
+    "확인일": "2026-10-02",
+    "status": 404,
+    "file": "VULNERABLE.html"
+  },
+  {
+    "id": "BMC_BUY",
+    "URL": "https://www.bmc.busan.kr/bmc/contents.do?mId=0102090000",
+    "확인일": "2026-10-02",
+    "status": 404,
+    "file": "BMC_BUY.html"
+  },
+  {
+    "id": "YOUTH_RENT_GUIDE",
+    "URL": "https://www.myhome.go.kr/hws/portal/cont/selectYouthBuyRentalHouseView.do",
+    "확인일": "2026-10-02",
+    "status": 404,
+    "file": "YOUTH_RENT_GUIDE.html"
+  },
+  {
+    "id": "INTEGRATED_GUIDE",
+    "URL": "https://www.myhome.go.kr/hws/portal/cont/selectIntegratedPublicRentalView.do",
+    "확인일": "2026-10-02",
+    "status": 404,
+    "file": "INTEGRATED_GUIDE.html"
+  },
+  {
+    "id": "DORM_GUIDE",
+    "URL": "https://www.myhome.go.kr/hws/portal/cont/selectDormitoryRentalHouseView.do",
+    "확인일": "2026-10-02",
+    "status": 404,
+    "file": "DORM_GUIDE.html"
+  },
+  {
+    "id": "JPDC_NOTICE",
+    "URL": "https://www.jpdc.co.kr/open/news/notice.htm?act=view&seq=23806",
+    "확인일": "2026-10-02",
+    "status": 200,
+    "file": "JPDC_NOTICE.html"
+  },
+  {
+    "id": "JPDC_NOTICE_PDF",
+    "URL": "https://www.jpdc.co.kr/open/news/notice.htm?act=download&seq=23806&no=1",
+    "확인일": "2026-10-02",
+    "status": 200,
+    "file": "JPDC_NOTICE_PDF.zip"
+  },
+  {
+    "id": "JPDC_JOB_NOTICE",
+    "URL": "https://www.jpdc.co.kr/open/news/notice.htm?act=view&seq=24023",
+    "확인일": "2026-10-02",
+    "status": 200,
+    "file": "JPDC_JOB_NOTICE.html"
+  },
+  {
+    "id": "JPDC_JOB_PDF",
+    "URL": "https://www.jpdc.co.kr/open/news/notice.htm?act=download&seq=24023&no=1",
+    "확인일": "2026-10-02",
+    "status": 200,
+    "file": "JPDC_JOB_PDF.zip"
+  },
+  {
+    "id": "MIRYANG_RURAL_NOTICE",
+    "URL": "https://miryang.go.kr/dpt/eMiryangMinwonView.do?mnNo=2020000&owd=agricul&nmmIdx=60302",
+    "확인일": "2026-10-02",
+    "status": 200,
+    "file": "MIRYANG_RURAL_NOTICE.html"
+  },
+  {
+    "id": "BMC_BUY_NEW",
+    "URL": "https://www.bmc.busan.kr/bmc/contents.do?mId=0102090000#",
+    "확인일": "2026-10-02",
+    "status": 404,
+    "file": "BMC_BUY_NEW.html"
+  },
+  {
+    "id": "KORAIL_DISCOUNT",
+    "URL": "https://www.letskorail.com/ebizcom/cs/guide/discount/discount01.do",
+    "확인일": "2026-10-02",
+    "status": 404,
+    "file": "KORAIL_DISCOUNT.html"
+  },
+  {
+    "id": "SRT_DISCOUNT",
+    "URL": "https://etk.srail.kr/cms/article/view.do?postNo=15&pageId=KR0502000000",
+    "확인일": "2026-10-02",
+    "status": 500,
+    "file": "SRT_DISCOUNT.html"
+  },
+  {
+    "id": "VULNERABLE",
+    "URL": "https://www.myhome.go.kr/hws/portal/cont/selectResidentialSupportView.do",
+    "확인일": "2026-10-02",
+    "status": 404,
+    "file": "VULNERABLE.html"
+  },
+  {
+    "id": "BMC_BUY",
+    "URL": "https://www.bmc.busan.kr/bmc/contents.do?mId=0102090000",
+    "확인일": "2026-10-02",
+    "status": 404,
+    "file": "BMC_BUY.html"
+  },
+  {
+    "id": "YOUTH_RENT_GUIDE",
+    "URL": "https://www.myhome.go.kr/hws/portal/cont/selectYouthBuyRentalHouseView.do",
+    "확인일": "2026-10-02",
+    "status": 404,
+    "file": "YOUTH_RENT_GUIDE.html"
+  },
+  {
+    "id": "INTEGRATED_GUIDE",
+    "URL": "https://www.myhome.go.kr/hws/portal/cont/selectIntegratedPublicRentalView.do",
+    "확인일": "2026-10-02",
+    "status": 404,
+    "file": "INTEGRATED_GUIDE.html"
+  },
+  {
+    "id": "DORM_GUIDE",
+    "URL": "https://www.myhome.go.kr/hws/portal/cont/selectDormitoryRentalHouseView.do",
+    "확인일": "2026-10-02",
+    "status": 404,
+    "file": "DORM_GUIDE.html"
+  },
+  {
+    "id": "BMC_BUY_NEW",
+    "URL": "https://www.bmc.busan.kr/bmc/contents.do?mId=0102090000#",
+    "확인일": "2026-10-02",
+    "status": 404,
+    "file": "BMC_BUY_NEW.html"
+  },
+  {
+    "id": "KORAIL_DISCOUNT",
+    "URL": "https://www.letskorail.com/ebizcom/cs/guide/discount/discount01.do",
+    "확인일": "2026-10-02",
+    "status": 404,
+    "file": "KORAIL_DISCOUNT.html"
+  },
+  {
+    "id": "SRT_DISCOUNT",
+    "URL": "https://etk.srail.kr/cms/article/view.do?postNo=15&pageId=KR0502000000",
+    "확인일": "2026-10-02",
+    "status": 500,
+    "file": "SRT_DISCOUNT.html"
+  },
+  {
+    "id": "VULNERABLE",
+    "URL": "https://www.myhome.go.kr/hws/portal/cont/selectResidentialSupportView.do",
+    "확인일": "2026-10-02",
+    "status": 404,
+    "file": "VULNERABLE.html"
+  },
+  {
+    "id": "BMC_BUY",
+    "URL": "https://www.bmc.busan.kr/bmc/contents.do?mId=0102090000",
+    "확인일": "2026-10-02",
+    "status": 404,
+    "file": "BMC_BUY.html"
+  },
+  {
+    "id": "YOUTH_RENT_GUIDE",
+    "URL": "https://www.myhome.go.kr/hws/portal/cont/selectYouthBuyRentalHouseView.do",
+    "확인일": "2026-10-02",
+    "status": 404,
+    "file": "YOUTH_RENT_GUIDE.html"
+  },
+  {
+    "id": "INTEGRATED_GUIDE",
+    "URL": "https://www.myhome.go.kr/hws/portal/cont/selectIntegratedPublicRentalView.do",
+    "확인일": "2026-10-02",
+    "status": 404,
+    "file": "INTEGRATED_GUIDE.html"
+  },
+  {
+    "id": "DORM_GUIDE",
+    "URL": "https://www.myhome.go.kr/hws/portal/cont/selectDormitoryRentalHouseView.do",
+    "확인일": "2026-10-02",
+    "status": 404,
+    "file": "DORM_GUIDE.html"
+  },
+  {
+    "id": "MIRYANG_RURAL_HWPX",
+    "URL": "https://eminwon.miryang.go.kr/emwp/jsp/ofr/FileDown.jsp?user_file_nm=%EC%9E%85%EC%A3%BC%EC%9E%90+%EB%AA%A8%EC%A7%91+%EA%B3%B5%EA%B3%A0%EB%AC%B8%28%EC%9E%AC%EA%B3%B5%EA%B3%A0%29.hwpx&sys_file_nm=%EC%9E%85%EC%A3%BC%EC%9E%90+%EB%AA%A8%EC%A7%91+%EA%B3%B5%EA%B3%A0%EB%AC%B8%28%EC%9E%AC%EA%B3%B5%EA%B3%A0%29_ofr_ofr_Tuv23QMBacheRAKU_20260716161606852_3.hwpx&file_path=%2Fntishome%2Ffile%2Fupload%2Fofr%2Fofr%2F20260716",
+    "확인일": "2026-10-02",
+    "status": 200,
+    "file": "MIRYANG_RURAL_HWPX.zip"
+  }
+]

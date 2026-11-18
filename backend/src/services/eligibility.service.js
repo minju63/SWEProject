@@ -7,7 +7,17 @@ export const CONDITION_STATUS = {
   UNKNOWN: 'UNKNOWN', NOT_APPLICABLE: 'NOT_APPLICABLE',
 };
 const S = CONDITION_STATUS;
+function birthParts(profile) {
+  const match = /^(\d{4})-(\d{2})-(\d{2})$/.exec(profile?.birth_date ?? '');
+  if (!match) return null;
+  const [year, month, day] = match.slice(1).map(Number);
+  const birth = new Date(Date.UTC(year, month - 1, day));
+  return birth.getUTCFullYear() === year && birth.getUTCMonth() === month - 1 &&
+    birth.getUTCDate() === day ? { year, month, day } : null;
+}
+
 const PROFILE_FIELDS = {
+  birth_year: (p) => birthParts(p)?.year ?? null,
   region: (p) => p.region_code,
   region_code: (p) => p.region_code,
   residence_months: (p) => p.residence_months,
@@ -26,11 +36,9 @@ const PRIVATE_VALUES = new Set(['marital_status', 'housing_benefit_status', 'spe
 
 function ageFrom(profile, now) {
   if (Number.isInteger(profile?.age) && profile.age >= 0 && profile.age <= 120) return profile.age;
-  const match = /^(\d{4})-(\d{2})-(\d{2})$/.exec(profile?.birth_date ?? '');
-  if (!match) return null;
-  const [, year, month, day] = match.map(Number);
-  const birth = new Date(Date.UTC(year, month - 1, day));
-  if (birth.getUTCFullYear() !== year || birth.getUTCMonth() !== month - 1 || birth.getUTCDate() !== day) return null;
+  const parts = birthParts(profile);
+  if (!parts) return null;
+  const { year, month, day } = parts;
   const today = kstDateParts(now);
   let age = today.year - year;
   if (today.month < month || (today.month === month && today.day < day)) age -= 1;
@@ -72,7 +80,8 @@ function compareRegion(op, actual, expected) {
   if (actual === 'KR' && (op === 'in' ? !expected.includes('KR') : expected !== 'KR')) return null;
   const matches = (code) => code === 'KR' || actual === code ||
     (code.length === 2 && actual.startsWith(code));
-  if (op === 'starts_with' || op === 'eq') {
+  if (op === 'eq') return expected === 'KR' || actual === expected;
+  if (op === 'starts_with') {
     if (actual.length === 2 && expected.length > 2 && actual.startsWith(expected.slice(0, 2))) return null;
     return matches(expected);
   }
@@ -162,6 +171,12 @@ function judgeExclusion(node, profile, context, path) {
     : status === S.NOT_APPLICABLE ? '정책의 제외 조건에 해당하지 않습니다.' : checked.reason };
 }
 
+function hasAgeRule(nodes) {
+  return nodes.some((node) => node && typeof node === 'object' &&
+    (node.field === 'age' || ['all', 'any', 'conditions'].some((key) =>
+      Array.isArray(node[key]) && hasAgeRule(node[key]))));
+}
+
 export function judge(policy, profile, now = new Date()) {
   const stored = policy.eligibility_conditions;
   const verified = policy.eligibility_verified === true &&
@@ -179,11 +194,24 @@ export function judge(policy, profile, now = new Date()) {
   conditions.push(...excluded.map((node, index) =>
     judgeExclusion(node, profile, context, `policy.eligibility_conditions.${excludedKey}[${index}]`)));
 
+  if (!verified && (policy.min_age != null || policy.max_age != null) &&
+    !hasAgeRule(required))
+    conditions.push({ field: 'age', status: S.UNKNOWN,
+      reason: '나이 조건이 검증되지 않아 확인이 필요합니다.',
+      evidence: { source: 'policy.min_age,policy.max_age', source_url: context.sourceUrl,
+        policy_value: [policy.min_age ?? null, policy.max_age ?? null] } });
+  if (typeof policy.income_condition === 'string' && policy.income_condition.trim())
+    conditions.push({ field: 'income', text: policy.income_condition.trim(), status: S.UNKNOWN,
+      reason: '소득 조건 원문은 자동 판정하지 않습니다.',
+      evidence: { source: 'policy.income_condition', source_url: context.sourceUrl } });
+
   const statuses = conditions.map((item) => item.status);
   const result = !verified || required.length === 0 ? RESULT.CHECK
     : statuses.includes(S.UNSATISFIED) ? RESULT.INELIGIBLE
-      : required.every((_, index) => conditions[index].status === S.SATISFIED) &&
-        excluded.every((_, index) => conditions[required.length + index].status === S.NOT_APPLICABLE)
+      : required.some((_, index) => conditions[index].status === S.SATISFIED) &&
+        required.every((_, index) => [S.SATISFIED, S.NOT_APPLICABLE].includes(conditions[index].status)) &&
+        excluded.every((_, index) => conditions[required.length + index].status === S.NOT_APPLICABLE) &&
+        !conditions.some((item) => item.field === 'income' && item.status === S.UNKNOWN)
         ? RESULT.ELIGIBLE : RESULT.CHECK;
   const missingProfileFields = new Set();
   const collectMissing = (item) => {

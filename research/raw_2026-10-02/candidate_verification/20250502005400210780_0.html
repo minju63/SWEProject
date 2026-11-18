@@ -1,0 +1,109 @@
+
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>U2 CMS</title>
+
+<link href="/css/cms/com.css" rel="stylesheet" type="text/css" />
+
+<script language="javascript">
+function fncGoAfterErrorPage(){
+    history.back(-2);
+}
+</script>
+   <style>
+	body{margin:0; padding:0; overflow:hidden; font-family:'Nanum Gothic','나눔고딕',Dotum,arial,sans-serif;}
+	a{ text-decoration:none;}
+	.error_wrap{width:100%; min-height:1200px; background:#f9f9f9; height:100%;}
+	.error_Box{width:600px; margin:0px auto; padding-top:180px;}
+	.error_Box .er_img{display:block; text-align:center;}
+	.error_Box .er_text{font-family:"나눔고딕"; font-size:14px; color:#666; text-align:center; line-height:24px;}
+	.btn_error{text-align:center; padding-top:10px;}
+	.btn_error .er_bt01{display:inline-block; width:160px; height:48px; line-height:48px; background-color:#009688; color:#fff; text-align:center; font-size:16px; font-weight:600;}
+	.btn_error .er_bt02{display:inline-block; width:160px; height:48px; line-height:48px; background-color:#464c4b; color:#fff; text-align:center; font-size:16px; font-weight:600;}
+ </style>
+</head>
+
+<body>
+<div class="error_wrap">
+	  <div class="error_Box">
+		<span class="er_img"><img src="/images/cms/error_img_404.png" alt="에러이미지"></span>
+		<p class="er_text">데이터 처리 중 오류가 발생하였습니다.<br/>		
+	궁금한점이 있으시면 언제든지 <strong>고객센터</strong>를 통해 문의 해 주시기 바랍니다.</p>
+		<div class="btn_error">
+			<a href="/index.nm" class="er_bt01">메인으로</a>
+			<a href="javascript:fncGoAfterErrorPage();" class="er_bt02">이전페이지</a>
+		</div>
+	  </div>
+</div>
+
+<!-- 이전 코드백업
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td align="center" valign="top"><br />
+    <br />
+    <br />
+    <table width="600" border="0" cellpadding="0" cellspacing="0" background="/images/egovframework/com/cmm/blue_bg.jpg">
+      <tr>
+        <td align="center"><table width="100%" border="0" cellspacing="9" cellpadding="0">
+          <tr>
+            <td bgcolor="#FFFFFF"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+             
+              <tr>
+                <td><br />
+                  <br /></td>
+              </tr>
+
+              <tr>
+                <td align="center"><table width="520" border="0" cellspacing="2" cellpadding="2">
+                  <tr>
+                    <td width="74" rowspan="2" align="center"><img src="/images/egovframework/com/cmm/danger.jpg" width="74" height="74" /></td>
+                    <td width="399" align="left" class="lt_text2">HTTP 404 Error</td>
+                  </tr>
+                  <tr>
+                    <td align="left" valign="top" class="lt_text5">웹 페이지를 찾을 수 없습니다.</td>
+                  </tr>
+                </table>
+                  <table width="500" border="0" cellspacing="2" cellpadding="2">
+                   <tr>
+                       <td align="left" valign="top" class="lt_text5">
+                            <font color="blue">org.springframework.dao.DataIntegrityViolationException: SqlMapClient operation; SQL [];   
+--- The error occurred in egovframework/sqlmap/kms/cms/mnu/Menu_SQL_Tibero.xml.  
+--- The error occurred while applying a parameter map.  
+--- Check the menuDAO.insertMenuStatis-InlineParameterMap.  
+--- Check the statement (update failed).  
+--- Cause: java.sql.SQLException: JDBC-10007:UNIQUE constraint violation (&#039;U2CMS&#039;.&#039;U2CMS_CON315100569&#039;).; nested exception is com.ibatis.common.jdbc.exception.NestedSQLException:   
+--- The error occurred in egovframework/sqlmap/kms/cms/mnu/Menu_SQL_Tibero.xml.  
+--- The error occurred while applying a parameter map.  
+--- Check the menuDAO.insertMenuStatis-InlineParameterMap.  
+--- Check the statement (update failed).  
+--- Cause: java.sql.SQLException: JDBC-10007:UNIQUE constraint violation (&#039;U2CMS&#039;.&#039;U2CMS_CON315100569&#039;).</font>
+					        
+ 
+                       </td>
+                     </tr>
+                                  </table></td>
+              </tr>
+              <tr>
+                <td><br />
+                  <br /></td>
+              </tr>
+              <tr>
+                <td align="center"><a href="javascript:fncGoAfterErrorPage();"><img src="/images/egovframework/com/cmm/go_history.jpg" width="90" height="29" border="0"/></a></td>
+              </tr>
+            </table>
+              <br /></td>
+          </tr>
+        </table></td>
+      </tr>
+    </table>
+    </td>
+  </tr>
+</table>
+-->
+</body>
+</html>

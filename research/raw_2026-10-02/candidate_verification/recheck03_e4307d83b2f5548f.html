@@ -1,0 +1,400 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>전남광주통합특별시 청년통합플랫폼 | 안내</title>
+<meta name="description" content="청년이 꿈을 이루는 기회도시 광주 - 전남광주통합특별시 청년통합플랫폼 안내 페이지">
+
+<style>
+  /* ===== 사이트 실제 사용 웹폰트: Pretendard (로컬 폰트 사용) ===== */
+  @font-face{ font-family:'Pretendard'; font-weight:800; font-style:normal; font-display:swap;
+    src:local('Pretendard ExtraBold'), url('/build/fonts/Pretendard/Pretendard-ExtraBold.woff2') format('woff2'), url('/build/fonts/Pretendard/Pretendard-ExtraBold.woff') format('woff'); }
+  @font-face{ font-family:'Pretendard'; font-weight:700; font-style:normal; font-display:swap;
+    src:local('Pretendard Bold'), url('/build/fonts/Pretendard/Pretendard-Bold.woff2') format('woff2'), url('/build/fonts/Pretendard/Pretendard-Bold.woff') format('woff'); }
+  @font-face{ font-family:'Pretendard'; font-weight:600; font-style:normal; font-display:swap;
+    src:local('Pretendard SemiBold'), url('/build/fonts/Pretendard/Pretendard-SemiBold.woff2') format('woff2'), url('/build/fonts/Pretendard/Pretendard-SemiBold.woff') format('woff'); }
+  @font-face{ font-family:'Pretendard'; font-weight:500; font-style:normal; font-display:swap;
+    src:local('Pretendard Medium'), url('/build/fonts/Pretendard/Pretendard-Medium.woff2') format('woff2'), url('/build/fonts/Pretendard/Pretendard-Medium.woff') format('woff'); }
+  @font-face{ font-family:'Pretendard'; font-weight:400; font-style:normal; font-display:swap;
+    src:local('Pretendard Regular'), url('/build/fonts/Pretendard/Pretendard-Regular.woff2') format('woff2'), url('/build/fonts/Pretendard/Pretendard-Regular.woff') format('woff'); }
+
+  /* =========================================================
+     전남광주통합특별시 청년통합플랫폼 디자인 토큰 (실제 사이트 common.css 기반)
+     ========================================================= */
+  :root{
+    --primary:      #0057A2;   /* 메인 블루 */
+    --primary-40:   #0089FF;   /* 밝은 블루 (hover) */
+    --primary-60:   #004A8A;   /* 진한 블루 */
+    --primary-80:   #003C70;
+    --secondary:    #A2D1FF;
+    --secondary-5:  #F2F9FF;   /* 배경 틴트 */
+    --secondary-10: #D6EBFF;
+    --point:        #FFB3C3;   /* 포인트 핑크 */
+    --point-5:      #FFF2F5;
+    --white:        #ffffff;
+    --black:        #1d1d1d;
+    --gray-60:      #717171;
+    --gray-30:      #DDDDDD;
+    --gray-5:       #F8F8F8;
+    --radius:       20px;
+    --shadow:       0 18px 50px rgba(0, 87, 162, .12);
+    --shadow-hover: 0 26px 64px rgba(0, 87, 162, .22);
+  }
+
+  *{ margin:0; padding:0; box-sizing:border-box; }
+
+  html,body{ height:100%; }
+
+  body{
+    font-family:'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, 'Malgun Gothic', sans-serif;
+    color:var(--black);
+    background:
+      radial-gradient(1000px 620px at 12% -8%,  #E2F1FF 0%, transparent 60%),
+      radial-gradient(900px 620px at 100% 0%,   var(--point-5) 0%, transparent 55%),
+      linear-gradient(180deg, var(--secondary-5) 0%, #ffffff 60%);
+    min-height:100dvh;
+    display:flex;
+    flex-direction:column;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+
+  /* 은은한 배경 장식 */
+  .deco{ position:fixed; inset:0; z-index:0; pointer-events:none; overflow:hidden; }
+  .deco span{
+    position:absolute; border-radius:50%; filter:blur(6px); opacity:.5;
+  }
+  .deco .b1{ width:260px; height:260px; top:-70px; right:8%;
+    background:radial-gradient(circle at 30% 30%, var(--secondary), transparent 70%); }
+  .deco .b2{ width:200px; height:200px; bottom:6%; left:-60px;
+    background:radial-gradient(circle at 40% 40%, var(--point), transparent 70%); opacity:.35; }
+  .deco .b3{ width:120px; height:120px; top:40%; right:-40px;
+    background:radial-gradient(circle at 40% 40%, var(--secondary-10), transparent 70%); }
+
+  /* ===== 상단 브랜드 바 ===== */
+  header{
+    position:relative; z-index:2;
+    display:flex; align-items:center; gap:12px;
+    padding:26px clamp(20px, 5vw, 56px);
+  }
+  .brand{ display:flex; align-items:center; gap:11px; }
+  .brand .mark{
+    width:40px; height:40px; border-radius:12px; flex:none;
+    background:linear-gradient(135deg, var(--primary) 0%, var(--primary-40) 100%);
+    display:grid; place-items:center;
+    box-shadow:0 6px 16px rgba(0,87,162,.28);
+  }
+  .brand .mark svg{ width:22px; height:22px; }
+  .brand .txt strong{ display:block; font-size:17px; font-weight:800; letter-spacing:-.02em; color:var(--primary); line-height:1.1; }
+  .brand .txt small{ display:block; font-size:12px; color:var(--gray-60); margin-top:2px; letter-spacing:-.01em; }
+
+  /* ===== 메인 ===== */
+  main{
+    position:relative; z-index:2;
+    flex:1;
+    display:flex; flex-direction:column; justify-content:center; align-items:center;
+    text-align:center;
+    padding:24px clamp(20px, 5vw, 56px) 48px;
+  }
+
+  .badge{
+    display:inline-flex; align-items:center; gap:7px;
+    background:var(--white);
+    border:1px solid var(--secondary-10);
+    color:var(--primary);
+    font-size:13px; font-weight:600; letter-spacing:-.01em;
+    padding:8px 16px; border-radius:999px;
+    box-shadow:0 6px 18px rgba(0,87,162,.08);
+    margin-bottom:22px;
+  }
+  .badge i{ width:7px; height:7px; border-radius:50%; background:var(--point); box-shadow:0 0 0 4px var(--point-5); }
+
+  .hero-title{
+    font-size:clamp(28px, 5vw, 46px);
+    font-weight:800; letter-spacing:-.03em; line-height:1.25;
+    color:var(--black);
+  }
+  .hero-title b{ color:var(--primary); }
+  .hero-sub{
+    margin-top:16px;
+    font-size:clamp(15px, 2.2vw, 18px);
+    color:var(--gray-60); font-weight:500; letter-spacing:-.01em; line-height:1.6;
+    max-width:560px;
+  }
+
+  /* ===== 분기 카드 ===== */
+  .cards{
+    margin-top:44px;
+    display:grid;
+    grid-template-columns:repeat(2, minmax(0, 1fr));
+    gap:26px;
+    width:100%; max-width:1000px;
+  }
+  .card{
+    position:relative;
+    display:flex; flex-direction:column; align-items:flex-start; text-align:left;
+    gap:18px;
+    padding:38px 36px;
+    min-height:280px;
+    background:var(--white);
+    border:1px solid rgba(0,87,162,.08);
+    border-radius:var(--radius);
+    box-shadow:var(--shadow);
+    text-decoration:none; color:inherit;
+    transition:transform .28s cubic-bezier(.22,1,.36,1), box-shadow .28s, border-color .28s;
+    overflow:hidden;
+  }
+  .card::after{
+    content:""; position:absolute; left:0; right:0; bottom:0; height:4px;
+    background:linear-gradient(90deg, var(--primary), var(--primary-40));
+    transform:scaleX(0); transform-origin:left; transition:transform .35s ease;
+  }
+  .card:hover{ transform:translateY(-8px); box-shadow:var(--shadow-hover); border-color:var(--secondary); }
+  .card:hover::after{ transform:scaleX(1); }
+  .card:focus-visible{ outline:3px solid var(--primary-40); outline-offset:3px; }
+
+  .card .ico{
+    width:58px; height:58px; border-radius:16px; flex:none;
+    display:grid; place-items:center;
+    transition:transform .28s;
+  }
+  .card:hover .ico{ transform:scale(1.06) rotate(-3deg); }
+  .card .ico svg{ width:30px; height:30px; }
+
+  .card.home .ico{ background:linear-gradient(135deg, var(--secondary-5), var(--secondary-10)); color:var(--primary); }
+  .card.policy .ico{ background:linear-gradient(135deg, var(--primary) 0%, var(--primary-40) 100%); color:#fff; box-shadow:0 8px 20px rgba(0,87,162,.3); }
+
+  .card .body h2{ font-size:21px; font-weight:800; letter-spacing:-.02em; margin-bottom:8px; }
+  .card .body p{ font-size:14.5px; color:var(--gray-60); line-height:1.55; letter-spacing:-.01em; }
+
+  .card .go{
+    display:inline-flex; align-items:center; gap:6px;
+    font-size:14px; font-weight:700; color:var(--primary);
+    margin-top:auto;
+  }
+  .card .body h2{ line-height:1.3; }
+
+  /* ===== 정책 대상 안내 (전라남도 청년) ===== */
+  .target-notice{
+    display:inline-flex; align-items:center; gap:9px;
+    background:linear-gradient(135deg, #FFE6EB, var(--point-5));
+    border:1.5px solid var(--point);
+    color:#c2185b;
+    font-size:14px; font-weight:800; letter-spacing:-.01em; line-height:1.35;
+    padding:11px 15px; border-radius:13px; margin-top:14px;
+    box-shadow:0 6px 16px rgba(255,120,150,.22);
+    animation:noticePulse 2.2s ease-in-out infinite;
+  }
+  .target-notice svg{ width:19px; height:19px; flex:none; }
+  .target-notice b{ color:#0057A2; }
+  .target-notice .notice-sub{
+    font-size:12.5px; font-weight:700; color:#8a5a68;
+    padding:3px 9px; border-radius:9px;
+    background:rgba(255,255,255,.6); border:1px solid var(--point);
+  }
+
+  /* ===== 정책 요약 정보 (기간/모집/지원) ===== */
+  .policy-meta{
+    list-style:none; width:100%; margin-top:40px;
+    border-top:1px solid var(--secondary-10);
+  }
+  .policy-meta li{
+    display:flex; align-items:center; gap:14px;
+    padding:15px 2px;
+    border-bottom:1px solid #eef4fb;
+    font-size:15.5px; letter-spacing:-.01em;
+  }
+  .policy-meta li .k{
+    flex:none; display:inline-flex; align-items:center; gap:7px;
+    width:92px; color:var(--gray-60); font-weight:600;
+  }
+  .policy-meta li .k svg{ width:17px; height:17px; color:var(--primary-40); }
+  .policy-meta li .v{ color:var(--black); font-weight:700; }
+  .policy-meta li .v em{ font-style:normal; color:var(--primary); }
+  .policy-meta li .v .note{
+    display:block; margin-top:5px;
+    font-size:13px; font-weight:500; color:var(--gray-60); line-height:1.5;
+  }
+
+  /* ===== 홈 카드 미리보기 (메인화면 캡처) ===== */
+  .home-preview{
+    width:100%; margin-top:18px;
+    border-radius:14px; overflow:hidden;
+    border:1px solid var(--secondary-10);
+    box-shadow:0 10px 24px rgba(0,87,162,.12);
+    background:#fff;
+  }
+  .home-preview .bar{
+    display:flex; align-items:center; gap:6px;
+    padding:9px 12px; background:#f2f6fb; border-bottom:1px solid var(--secondary-10);
+  }
+  .home-preview .bar i{ width:9px; height:9px; border-radius:50%; background:#cdd9e6; flex:none; }
+  .home-preview .bar .addr{
+    margin-left:8px; flex:1; height:16px; border-radius:8px; background:#e4ecf5;
+  }
+  .home-preview .shot{ display:block; overflow:hidden; line-height:0; }
+  .home-preview .shot img{
+    width:100%; height:190px; object-fit:cover; object-position:top center;
+    display:block; transition:transform .5s ease;
+  }
+  .card.home:hover .home-preview .shot img{ transform:scale(1.05); }
+  @keyframes noticePulse{
+    0%,100%{ box-shadow:0 6px 16px rgba(255,120,150,.22); }
+    50%{ box-shadow:0 6px 22px rgba(255,120,150,.5); }
+  }
+  .card .go svg{ width:16px; height:16px; transition:transform .28s; }
+  .card:hover .go svg{ transform:translateX(4px); }
+
+  .card .tag{
+    position:absolute; top:20px; right:20px;
+    font-size:11px; font-weight:800; letter-spacing:.02em;
+    color:#fff; background:var(--point); color:#7a2b3c;
+    padding:5px 10px; border-radius:999px;
+  }
+  .card.policy .tag{ background:var(--point); color:#8a2f42; }
+
+  /* ===== 푸터 ===== */
+  footer{
+    position:relative; z-index:2;
+    text-align:center;
+    padding:22px 20px 30px;
+    font-size:12.5px; color:var(--gray-60); letter-spacing:-.01em; line-height:1.7;
+  }
+  footer .line1{ font-weight:600; color:#555; }
+  footer .copy{ margin-top:4px; opacity:.85; }
+
+  /* ===== 반응형 ===== */
+  @media (max-width:640px){
+    .cards{ grid-template-columns:1fr; gap:16px; max-width:440px; }
+    .card{ padding:26px 24px; }
+    header{ padding:20px; }
+    main{ padding-top:8px; }
+  }
+
+  @media (prefers-reduced-motion:reduce){
+    *{ transition:none !important; animation:none !important; }
+  }
+</style>
+</head>
+<body>
+
+  <div class="deco" aria-hidden="true">
+    <span class="b1"></span><span class="b2"></span><span class="b3"></span>
+  </div>
+
+  <!-- 메인 -->
+  <main>
+
+    <h1 class="hero-title">전남광주통합특별시<br><b>청년통합플랫폼</b></h1>
+	<br>
+	<br>
+    <span class="badge"><i></i>원하시는 서비스를 선택해 주세요</span>
+
+
+    <div class="cards">
+
+      <!-- (1) 홈페이지 이동 -->
+      <a class="card home" href="/site">
+        <span class="ico" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M3 10.5 12 4l9 6.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><path d="M5 9.5V20h14V9.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><path d="M9.5 20v-5.5h5V20" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </span>
+        <div class="body">
+          <h2>홈페이지 바로가기</h2>
+          <p>전남광주청년통합플랫폼 메인으로 이동하여 <br/>전체 청년정책과 소식을 확인합니다.</p>
+          <div class="home-preview">
+            <div class="bar" aria-hidden="true"><i></i><i></i><i></i><span class="addr"></span></div>
+            <div class="shot">
+              <img src="/build/images/intro_main.jpg" alt="전남광주통합특별시 청년통합플랫폼 메인화면 미리보기" loading="lazy">
+            </div>
+          </div>
+        </div>
+        <span class="go">메인으로 이동
+          <svg viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </span>
+      </a>
+
+      <!-- (2) 정책신청 상세페이지 이동 -->
+      <a class="card policy" href="#" id="policyLink">
+        <!-- <span class="tag">신규 신청</span> -->
+        <span class="ico" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M7 3h7l4 4v14H7a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><path d="M14 3v4h4" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><path d="M9 12h6M9 15.5h6M9 8.5h2" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>
+        </span>
+        <div class="body">
+          <h2> 2026 청년 잡업 프로젝트 자격증 취득 온라인 수강권 지원사업</h2>
+          <div class="target-notice">
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 21s7-5.6 7-11a7 7 0 1 0-14 0c0 5.4 7 11 7 11z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><circle cx="12" cy="10" r="2.5" stroke="currentColor" stroke-width="1.8"/></svg>
+            <span><b>전남광주통합특별시 거주 만 19~34세</b> 미취업 청년 대상</span>
+          </div>
+          <ul class="policy-meta">
+            <li>
+              <span class="k"><svg viewBox="0 0 24 24" fill="none"><rect x="3" y="5" width="18" height="16" rx="2" stroke="currentColor" stroke-width="1.8"/><path d="M3 9h18M8 3v4M16 3v4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>신청기간</span>
+              <span class="v">2026. 10. 1.(목) ~ 모집인원 충원 시까지</span>
+            </li>
+            <li>
+              <span class="k"><svg viewBox="0 0 24 24" fill="none"><path d="M17 20v-2a4 4 0 0 0-4-4H7a4 4 0 0 0-4 4v2" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><circle cx="10" cy="7" r="3.2" stroke="currentColor" stroke-width="1.8"/><path d="M21 20v-2a4 4 0 0 0-3-3.87" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>모집인원</span>
+              <span class="v"><em>선착순 1,100명</em>
+                <span class="note">※ 1·2차 승인인원 포함, 모집인원 충원 시 조기 마감</span>
+              </span>
+            </li>
+            <li>
+              <span class="k"><svg viewBox="0 0 24 24" fill="none"><path d="M20 12v9H4v-9M2 7h20v5H2zM12 21V7M12 7S9.5 3 7.5 3.5 6 7 6 7h6zm0 0s2.5-4 4.5-3.5S18 7 18 7h-6z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>지원내용</span>
+              <span class="v">다양한 강의로 원하는 스펙 쌓기! 자격증 관련 약 1,600개 이상 강의 수강권 무료 지원 <em></em></span>
+            </li>
+            <li>
+              <span class="k"><svg viewBox="0 0 24 24" fill="none"><path d="M4 5c0-.6.4-1 1-1h3.2c.4 0 .8.3.95.7l1.3 3.6c.15.4.03.85-.3 1.12l-1.9 1.5a13 13 0 0 0 5.7 5.7l1.5-1.9c.27-.33.72-.45 1.12-.3l3.6 1.3c.4.15.7.55.7.95V20c0 .6-.4 1-1 1-8.8 0-16-7.2-16-16z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg>문의처</span>
+              <span class="v"><em>061-288-3884(7)</em></span>
+            </li>
+          </ul>
+        </div>
+        <span class="go">신청 페이지로 이동
+          <svg viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </span>
+      </a>
+
+    </div>
+  </main>
+
+  <!-- 푸터 -->
+  <footer>
+    <div class="line1">61945  전남광주 통합특별시 서구 내방로 111(치평동) &nbsp;|&nbsp; 대표전화 062-613-2713</div>
+    <div class="copy">Copyright ⓒ 2024 전남광주통합특별시 청년통합플랫폼. All rights reserved.</div>
+  </footer>
+
+  <script>
+    /* =========================================================================
+       ▼▼▼ 링크 설정 ▼▼▼
+       - HOME_URL       : 홈페이지(메인) 경로 — 기존 리다이렉트 대상과 동일(/site)
+       - POLICY_DETAIL_URL : 정책신청 상세페이지 경로 — 실제 상세페이지 경로로 교체하세요.
+       ========================================================================= */
+    var CONTEXT_PATH      = "";
+    var HOME_URL          = CONTEXT_PATH + "/site";
+    var POLICY_DETAIL_URL = "/www/50?policyId=1394&mapngColumn=policy_id&url=%2Fwww%2Fpolicy%2FgjYgPolicyView";  // TODO: 예) CONTEXT_PATH + "/site/정책상세경로"
+    /* ========================================================================= */
+
+    document.getElementById('policyLink').setAttribute('href', POLICY_DETAIL_URL);
+    document.querySelectorAll('.card.home, .brand').forEach(function(el){ el.setAttribute('href', HOME_URL); });
+  </script>
+
+</body>
+</html>

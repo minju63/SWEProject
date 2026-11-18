@@ -1,0 +1,2124 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+    $(document).ready(function () {
+        window.scrollTo(0, 0);
+
+        // Slick 초기화
+        reloadSlick();
+        collapseBox();
+
+        /* ** 스크롤 값 체크 ** */
+        let scrollY = window.scrollY;
+        let scrollH = document.body.scrollHeight;
+
+        function scrollVal() {
+            scrollY = window.scrollY;
+            scrollH = document.body.scrollHeight;
+        }
+
+        /* ** 스크롤 네비게이션 ** */
+        const winHeight = window.innerHeight;
+        const quickIndicators = document.querySelectorAll('.quick-list');
+
+        const quickNav = {
+            init: () => {
+                if (quickIndicators.length > 0) { // quick-list가 있을 때만 실행
+                    quickNav.linkNav();
+                    quickNav.navHighlight(); // 초기 활성화
+                }
+            },
+            reset: () => { // 초기화
+                quickIndicators.forEach(e => {
+                    const locationList = e.querySelectorAll('a');
+                    locationList.forEach(ele => {
+                        ele.classList.remove('active');
+                    });
+                });
+            },
+            linkNav: () => { // 퀵 네비게이션 클릭 시 스크롤 이동
+                quickIndicators.forEach(e => {
+                    const locationList = e.querySelectorAll('a');
+                    locationList.forEach(ele => {
+                        const targetSelector = ele.getAttribute('href');
+                        const target = document.querySelector(targetSelector);
+
+                        // target이 존재하지 않을 경우 return
+                        if (!target) return;
+
+                        ele.addEventListener('click', (ev) => {
+                            ev.preventDefault(); // 기본 동작 막기
+                            scrollVal(); // 스크롤 값 최신화
+
+                            const offsetY = target.getBoundingClientRect().top + window.scrollY;
+
+                            window.scrollTo({
+                                left: 0,
+                                top: offsetY,
+                                behavior: 'smooth',
+                            });
+                        });
+                    });
+                });
+            },
+            navHighlight: () => { // 페이지 스크롤 시 퀵 네비게이션 해당 메뉴 active
+                if (quickIndicators.length > 0) {
+                    const sectionArea = document.querySelectorAll('.section-link');
+                    if (sectionArea.length === 0) return; // section-link가 없으면 실행 중지
+
+                    const topHeight = Math.ceil(winHeight / 5);
+                    const firstSecTop = document.querySelector('.scroll-check .section-link')?.offsetTop || 0;
+
+                    sectionArea.forEach(current => {
+                        const sectionHeight = current.offsetHeight;
+                        const sectionTop = current.offsetTop - topHeight;
+                        const sectionId = current.getAttribute("id");
+
+                        // 첫번째 섹션 위
+                        if (scrollY <= firstSecTop) {
+                            quickNav.reset();
+                            const firstLink = document.querySelector(".conts-area > .quick-nav-area .quick-list li:first-of-type a");
+                            if (firstLink) firstLink.classList.add("active");
+                        }
+                        // 마지막 섹션 아래
+                        else if (scrollY + winHeight >= scrollH) {
+                            quickNav.reset();
+                            const lastLink = document.querySelector(".conts-area > .quick-nav-area .quick-list li:last-of-type a");
+                            if (lastLink) lastLink.classList.add("active");
+                        }
+                        // 현재 섹션
+                        else {
+                            if (scrollY > sectionTop && scrollY <= sectionTop + sectionHeight) {
+                                quickNav.reset();
+                                const activeLink = document.querySelector('.conts-area > .quick-nav-area a[href*="' + sectionId + '"]');
+                                if (activeLink) activeLink.classList.add("active");
+                            }
+                        }
+                    });
+                }
+            },
+        };
+
+        // 초기화 실행
+        quickNav.init();
+
+        // 스크롤 이벤트 추가
+        window.addEventListener('scroll', () => {
+            scrollVal(); // 스크롤 값 최신화
+            quickNav.navHighlight();
+        });
+    });
+
+
+    function reloadSlick() {
+        const slickElement = $(".box-list-wrap");
+
+        if (slickElement.hasClass("slick-initialized")) {
+            slickElement.slick("unslick");
+        }
+
+        // 슬라이더 초기화
+        const slideCount = slickElement.children().length; // 슬라이드 개수 확인
+        if (slideCount > 1) { // 슬라이드가 1개 이상일 때만 슬라이더 활성화
+            slickElement.slick({
+                dots: false,
+                infinite: slideCount > 3, // 슬라이드가 3개 이상일 때만 무한 루프
+                autoplay: false,
+                arrows: true,
+                autoplaySpeed: 2000,
+                slidesToShow: Math.min(slideCount, 3), // 슬라이드 개수가 3개 미만이면 그 개수만큼 표시
+                slidesToScroll: 1,
+                responsive: [
+                    {
+                        breakpoint: 1024,
+                        settings: {
+                            slidesToShow: Math.min(slideCount, 2), // 슬라이드 개수가 2개 미만이면 그 개수만큼 표시
+                            slidesToScroll: 1,
+                        },
+                    },
+                    {
+                        breakpoint: 768,
+                        settings: {
+                            slidesToShow: 1,
+                            slidesToScroll: 1,
+                        },
+                    },
+                ],
+            });
+            slickElement.removeClass("non-slider");
+        } else {
+            // 슬라이드가 1개 이하일 때 스타일 유지
+            slickElement.addClass("non-slider");
+        }
+    }
+
+    // 관심 정책 등록
+    function policyBookmark(policyId){
+        $.ajax({
+            type: 'get',
+            url: `/www/bookmark/ajax/updateBookmark`,
+            data: { mapngId: policyId,
+                mapngColumn: 'policy_id'
+            },
+            success: function (resp) {
+                const button = $('button[onclick="policyBookmark(\'' + policyId + '\')"]');
+                if(resp.status === '400'){
+                    pf_swal.alert(resp.message, null, function() {
+                        location.href = '/www/42'
+                    });
+                    return false;
+                }else if(resp.status === '100'){
+                    pf_swal.alert(resp.message);
+                    button.addClass('active');
+                }else if(resp.status === '200'){
+                    pf_swal.alert(resp.message);
+                    button.removeClass('active');
+                }
+
+            },
+            error: function() {
+                alert("error");
+            }
+        });
+    }
+    function policyList(no, unit) {
+        const place = '';
+        if(place === 'calendar'){
+            const $searchForm = $('#calendarForm');
+            cf_ajax.get($com_bbs[0], '/www/policy/calendar', $searchForm.serializeObject(), function (html) {
+                $com_bbs.html(html);
+            });
+        }else{
+            const $searchForm = $('#searchForm');
+            if (no !== undefined) $searchForm.find('[name=pageIndex]').val(no);
+            if (unit !== undefined) $searchForm.find('[name=pageUnit3]').val(unit);
+            cf_ajax.get($com_bbs[0], '/www/policy/gjYgPolicyList', $searchForm.serializeObject(), function (html) {
+                $com_bbs.html(html);
+            });
+        }
+    }
+    function applFormView(formSeq,policyId) {
+        
+        pf_swal.alert("로그인이 필요한 서비스 입니다.")
+        location.href = '/www/42';
+        return false;
+        
+        const data = {
+            formSeq : formSeq,
+            mapngColumn : 'policy_id',
+            mapngId : policyId
+        };
+        cf_ajax.get($com_bbs[0], '/www/form/applFormView', data, function (html) {
+            $com_bbs.html(html);
+        });
+    }
+
+    function policyView(policyId) {
+        const $searchForm = $('#searchForm');
+        const data = {
+            mapngColumn : 'policy_id',
+            policyId : policyId,
+            ...$searchForm.serializeObject()
+        };
+        cf_ajax.get($com_bbs[0], '/www/policy/gjYgPolicyView', data, function (html) {
+            $com_bbs.html(html);
+        });
+    }
+
+    function dreamReqstView(policyId, policyNm){
+        
+        pf_swal.alert("로그인이 필요한 서비스 입니다.")
+        location.href = '/www/42';
+        return false;
+        
+        const $searchForm = $('#searchForm');
+        let locationValues = [];
+        $("input[name='policyArea']:checked").each(function() {
+            locationValues.push($(this).val());
+        });
+        $("#srchLocation").val(locationValues.join(','));
+
+        let policyTyValues = [];
+        $("input[name='policyTy']:checked").each(function() {
+            policyTyValues.push($(this).val());
+        });
+        $("#srchPolicyTy").val(policyTyValues.join(','));
+
+        const data = {policyId : policyId, policyNm : policyNm, tmprStreYn: 'Y', ...$searchForm.serializeObject()}
+        cf_ajax.get($com_bbs[0], '/www/dreamreqst/view', data, function (html) {
+            $com_bbs.html(html);
+        });
+    }
+
+    function workLfReqstView(policyId, policyNm, hrsmn){
+        
+        pf_swal.alert("로그인이 필요한 서비스 입니다.")
+        location.href = '/www/42';
+        return false;
+        
+        const $searchForm = $('#searchForm');
+        let locationValues = [];
+        $("input[name='policyArea']:checked").each(function() {
+            locationValues.push($(this).val());
+        });
+        $("#srchLocation").val(locationValues.join(','));
+
+        let policyTyValues = [];
+        $("input[name='policyTy']:checked").each(function() {
+            policyTyValues.push($(this).val());
+        });
+        $("#srchPolicyTy").val(policyTyValues.join(','));
+
+        const data = {policyId : policyId, policyNm : policyNm, tmprStreYn: 'Y', hrsmn: hrsmn, ...$searchForm.serializeObject()}
+        cf_ajax.get($com_bbs[0], '/www/worklf/view', data, function (html) {
+            $com_bbs.html(html);
+        });
+    }
+
+    function exprncReqstView(policyId, policyNm, hrsmn){
+        
+        pf_swal.alert("로그인이 필요한 서비스 입니다.")
+        location.href = '/www/42';
+        return false;
+        
+        const $searchForm = $('#searchForm');
+        let locationValues = [];
+        $("input[name='policyArea']:checked").each(function() {
+            locationValues.push($(this).val());
+        });
+        $("#srchLocation").val(locationValues.join(','));
+
+        let policyTyValues = [];
+        $("input[name='policyTy']:checked").each(function() {
+            policyTyValues.push($(this).val());
+        });
+        $("#srchPolicyTy").val(policyTyValues.join(','));
+
+        const data = {policyId : policyId, policyNm : policyNm, tmprStreYn: 'Y', hrsmn: hrsmn, ...$searchForm.serializeObject()}
+        cf_ajax.get($com_bbs[0], '/www/exprnc/view', data, function (html) {
+            $com_bbs.html(html);
+        });
+    }
+
+    function checkUserPolicy() {
+        pf_swal.alert("이미 참여한 정책 입니다.")
+    }
+
+</script>
+<style>
+
+    .non-slider {
+        display: flex;
+        align-items: center;
+        overflow: hidden; /* 레이아웃 깨짐 방지 */
+        width: 100%; /* 슬라이더와 동일한 크기 */
+    }
+
+    .box-list-wrap .box-list {
+        width: calc(100% / 3 - 15px);
+        position: relative;
+    }
+    .slider .slick-list {
+        margin:0 -20px;
+    }
+    .slick-slide {
+        margin:0 20px;
+    }
+</style>
+<!-- 컨텐츠 영역 -->
+<form id="calendarForm" onsubmit="return false;">
+    <input type="hidden" id="srchYear" name="srchYear" value="">
+    <input type="hidden" id="srchMonth" name="srchMonth" value="">
+    <input type="hidden" id="srchDate" name="srchDate" value="">
+    <input type="hidden" name="curMonth" value="">
+    <input type="hidden" name="curDate" value="">
+    <input type="hidden" name="svc" value="">
+    <input type="hidden" name="siteId" value="www">
+</form>
+<form id="searchForm" onsubmit="return false;">
+    <input type="hidden" name="pageIndex" id="pageIndex" value="1">
+    <input type="hidden" name="pageUnit" id="pageUnit" value="10">
+    <input type="hidden" name="srchLocation" id="srchLocation" value="">
+    <input type="hidden" name="srchPolicyTy" id="srchPolicyTy" value="">
+    <input type="hidden" name="reqstAge" id="reqstAge" value="">
+    <input type="hidden" name="keyword" id="keyword" value="">
+    <input type="hidden" name="status" id="status" value="">
+    <input type="hidden" name="order" id="order" value="">
+    <input type="hidden" name="tabType" id="tabType" value="">
+    <input type="hidden" name="svc" value="">
+    <input type="hidden" name="siteId" value="www">
+</form>
+
+<div class="conts-area quick-nav-type">
+    <!-- quick link -->
+    <div class="quick-nav-area">
+        <nav class="quick-list">
+            <ul>
+                <li><a href="#section_01" class="active">기본정보</a></li>
+                <li><a href="#section_02">신청자격</a></li>
+                <li><a href="#section_03">신청방법</a></li>
+                
+                
+                
+                    <li><a href="#section_06">동일분야 청년정책</a></li>
+                
+            </ul>
+        </nav>
+    </div>
+    <div class="conts-detail-wrap">
+        <!-- real contents -->
+        <div class="conts-wrap scroll-check">
+            <div class="conts-wrap section-link" id="section_01">
+
+                <div class="detail-policy">
+                    
+                        <div class="detail-thumb">
+                            <img src="/upload/www/policy/regist/thumbnail/1767940233950"
+                                 alt="주거2" style="max-width:300px; height:auto;">
+                        </div>
+                    
+                    <div class="detail-info">
+                        <div class="detail-into-top">
+                            <div class="tag">
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                    
+                                    
+                                    
+                                        <span class="badge state-upcoming">접수예정</span>
+                                        
+                                    
+                                    
+                                
+                                <span class="badge type04">주거</span>
+                                <span class="badge type07">
+                                    
+                                    
+                                        
+                                            
+                                        
+                                            
+                                        
+                                            
+                                        
+                                            
+                                        
+                                            
+                                        
+                                            
+                                        
+                                            
+                                        
+                                            
+                                        
+                                            
+                                        
+                                            
+                                        
+                                            
+                                        
+                                            
+                                        
+                                            
+                                        
+                                            
+                                        
+                                            
+                                        
+                                            
+                                        
+                                            
+                                        
+                                            
+                                        
+                                            
+                                        
+                                            
+                                        
+                                            
+                                        
+                                            
+                                        
+                                            
+                                        
+                                            
+                                        
+                                            
+                                                광산구 
+                                            
+                                        
+                                            
+                                        
+                                            
+                                        
+                                            
+                                        
+                                            
+                                        
+                                    
+                                        
+                                            
+                                        
+                                            
+                                        
+                                            
+                                        
+                                            
+                                        
+                                            
+                                        
+                                            
+                                        
+                                            
+                                        
+                                            
+                                        
+                                            
+                                        
+                                            
+                                        
+                                            
+                                        
+                                            
+                                        
+                                            
+                                        
+                                            
+                                        
+                                            
+                                        
+                                            
+                                        
+                                            
+                                        
+                                            
+                                        
+                                            
+                                        
+                                            
+                                        
+                                            
+                                        
+                                            
+                                        
+                                            
+                                        
+                                            
+                                        
+                                            
+                                        
+                                            
+                                                남구 
+                                            
+                                        
+                                            
+                                        
+                                            
+                                        
+                                            
+                                        
+                                    
+                                        
+                                            
+                                        
+                                            
+                                        
+                                            
+                                        
+                                            
+                                        
+                                            
+                                        
+                                            
+                                        
+                                            
+                                        
+                                            
+                                        
+                                            
+                                        
+                                            
+                                        
+                                            
+                                        
+                                            
+                                        
+                                            
+                                        
+                                            
+                                        
+                                            
+                                        
+                                            
+                                        
+                                            
+                                        
+                                            
+                                        
+                                            
+                                        
+                                            
+                                        
+                                            
+                                        
+                                            
+                                        
+                                            
+                                        
+                                            
+                                        
+                                            
+                                        
+                                            
+                                        
+                                            
+                                                동구 
+                                            
+                                        
+                                            
+                                        
+                                            
+                                        
+                                    
+                                        
+                                            
+                                        
+                                            
+                                        
+                                            
+                                        
+                                            
+                                        
+                                            
+                                        
+                                            
+                                        
+                                            
+                                        
+                                            
+                                        
+                                            
+                                        
+                                            
+                                        
+                                            
+                                        
+                                            
+                                        
+                                            
+                                        
+                                            
+                                        
+                                            
+                                        
+                                            
+                                        
+                                            
+                                        
+                                            
+                                        
+                                            
+                                        
+                                            
+                                        
+                                            
+                                        
+                                            
+                                        
+                                            
+                                        
+                                            
+                                        
+                                            
+                                        
+                                            
+                                        
+                                            
+                                        
+                                            
+                                                북구 
+                                            
+                                        
+                                            
+                                        
+                                    
+                                        
+                                            
+                                        
+                                            
+                                        
+                                            
+                                        
+                                            
+                                        
+                                            
+                                        
+                                            
+                                        
+                                            
+                                        
+                                            
+                                        
+                                            
+                                        
+                                            
+                                        
+                                            
+                                        
+                                            
+                                        
+                                            
+                                        
+                                            
+                                        
+                                            
+                                        
+                                            
+                                        
+                                            
+                                        
+                                            
+                                        
+                                            
+                                        
+                                            
+                                        
+                                            
+                                        
+                                            
+                                        
+                                            
+                                        
+                                            
+                                        
+                                            
+                                        
+                                            
+                                        
+                                            
+                                        
+                                            
+                                        
+                                            
+                                                서구
+                                            
+                                        
+                                    
+                                </span>
+                            </div>
+                            
+                                <div class="day-count">
+                                    
+                                    
+                                    
+                                </div>
+                            
+                        </div>
+
+                        <div class="dt-tit">(연장신청)청년맞춤형 주택임차보증금 이자지원</div>
+                        <p class="dt-desc">
+                            대학(원)생, 취업준비생, 사회초년생의 임대보증금 대출을 알선하고 대출이자의 일부를 이차보전하여 주거안정에 기여<br><br>○ 갱신임차계약 : 2026. 9. 1.(화) 09:00 ~ 9. 10.(목) 18:00 (10일) <br>
+                        </p>
+                        <div class="dt-list">
+                            
+                                <dl>
+                                    <dt>지원규모</dt>
+                                    <dd>연 350여명</dd>
+                                </dl>
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            <dl>
+                                <dt>사업기간</dt>
+                                <dd>2026-01-01 ~ 2026-12-31</dd>
+                            </dl>
+                            <dl>
+                                <dt>신청기간</dt>
+                                <dd>
+                                    
+                                    접수예정
+                                    
+                                
+                                </dd>
+                            </dl>
+                            
+                                <dl>
+                                    <dt>담당기관
+                                    </dt>
+                                    <dd>전남광주통합특별시</dd>
+                                </dl>
+                            
+                            <dl>
+                                <dt>지원내용
+                                </dt>
+                                <dd>
+                                    ★26.5.15. 기준으로 임차보증금 기준 변경(2억원 -&gt; 2.5억원)<br><br>2억5천만원이하 주택임차보증금 90% 이내(최대1억원) <br>이자 일부(2%) 2년간 이차보전 | 연장1회 가능(최장4년)
+                                </dd>
+                            </dl>
+                        </div>
+                        <div class="btn_center">
+                            
+                        </div>
+                    </div>
+                    <button type="button" class="check-btn star-mark " onclick="policyBookmark('1241')">
+                        <i></i>
+                        <span>관심정책 등록</span>
+                    </button>
+                </div>
+            </div>
+            <div class="conts-wrap section-link" id="section_02">
+                <h3 class="h3-title">신청자격</h3>
+                <div class="tbl-div">
+                    <div>
+                        <dl>
+                            <dt>연령</dt>
+                            <dd>
+                                
+                                    
+                                        19세 이상 ~ 39세 미만
+                                    
+                                    
+                                
+                            </dd>
+                        </dl>
+                    </div>
+                    
+                        <div>
+                            <dl>
+                                <dt>참여요건</dt>
+                                <dd>
+                                    <ul class="list1">
+                                        공고일 현재 전남광주통합특별시 5개 자치구(동,서,남,북,광산구)에 주소를 둔 무주택자 청년<br> - 청년기준 : 19~39세, 은행 보증 신청일(사업 참여 신청일 아님)<br> - 무주택자 기준 : 신청자, 배우자 무주택 여부
+                                    </ul>
+                                </dd>
+                            </dl>
+                        </div>
+                    
+                    
+                        <div>
+                            <dl>
+                                <dt>기타요건</dt>
+                                <dd>
+                                    <ul class="list1">
+                                        ★26.5.15. 기준으로 본인(4천5백만원-&gt;5천만원) 및 부부합산 소득기준(6천만원-&gt;8천만원) 변경 <br><br>연 소득 : (부모)7천만원 이하, (본인)5천만원 이하, (부부합산) 8천만원 이하
+                                    </ul>
+                                </dd>
+                            </dl>
+                        </div>
+                    
+                    
+                        <div>
+                            <dl>
+                                <dt>추가안내사항</dt>
+                                <dd>
+                                    <ul class="list1">
+                                        ○ 신규임차계약<br>(신규물건지 계약 예정 혹은 신규 계약 후 기 지급한 임차보증금 대환)<br> - 2026년 상, 하반기 모집 완료<br><br>○ 갱신임차계약<br>(기존계약 연장으로 기지급한 임차보증금 대출 및 대환 등이 필요한 경우)<br> ① 대환이 아닌 경우 신청기간<br> - 2026. 3. 1.(일) 09:00 ~ 3. 10.(화) 18:00 (계약갱신일 ’26.1.16.~3.10일인 경우) - 모집완료<br> - 2026. 5. 1.(금) 09:00 ~ 5. 10.(일) 18:00 (계약갱신일 ’26.3.16.~5.10일인 경우) - 모집완료<br> - 2026. 7. 1.(수) 09:00 ~ 7. 10.(금) 18:00 (계약갱신일 ’26.5.16.~7.10일인 경우)   - 모집완료<br> - 2026. 9. 1.(화) 09:00 ~ 9. 10.(목) 18:00 (계약갱신일 ’26.7.16.~9.10일인 경우)  ★당 회차★<br> - 2026. 11. 1.(일) 09:00 ~ 11. 10.(화) 18:00 (계약갱신일 ’26.9.16.~11.10일인 경우)<br> ② 대환인 경우 신청기간<br> - 임대차 계약 종료 최소 7~8개월 이전에 (3월, 5월, 7월, 9월, 11월의 1일 09:00 ~ 10일 18:00) 에 신청 / 단, 선정일로부터 90일이내 대출 실행 필<br> <br>○ 연장신청<br>(기존 지원대상자 중 1회에 한하여 연장신청을 원하는 경우)<br> - 만료예정일 45~30일 전 / 수시: 담당부서 전화 요망<br><br>**자세한 사항은 공고문을 참고하시기 바랍니다.
+                                    </ul>
+                                </dd>
+                            </dl>
+                        </div>
+                    
+                </div>
+            </div>
+            <div class="conts-wrap section-link" id="section_03">
+                <h3 class="h3-title">신청방법</h3>
+                <div class="tbl-div">
+                    
+                        <div>
+                            <dl>
+                                <dt>신청절차</dt>
+                                <dd>
+                                    <ul class="list1">
+                                        상단 신청하기 클릭(신청시작일 생성), 접수 - 적격자 알림(시→은행, 신청인) - 대출적격자 통보(은행→신청인, 시) - 대출실행(은행→신청인) - 이자지원(시→은행)
+                                    </ul>
+                                </dd>
+                            </dl>
+                        </div>
+                    
+                    
+                        <div>
+                            <dl>
+                                <dt>심사 및 발표</dt>
+                                <dd>
+                                    <ul class="list1">
+                                        ○ 신규임차계약<br> - 상반기 : 2026. 2. 20.(금) 선정발표 완료<br> - 하반기 : 2026. 8. 3.(월) 선정발표 완료<br><br>○ 갱신임차계약<br> - 신청월(3, 5, 7, 9, 11월 중 해당월)의 말일/ 예) 3월1일~10일 신청자는 3월 31일 발표<br><br>○ 연장신청 : 별도안내<br>
+                                    </ul>
+                                </dd>
+                            </dl>
+                        </div>
+                    
+                    
+                    
+                        <div>
+                            <dl>
+                                <dt>제출서류</dt>
+                                <dd>
+                                    <ul class="list1">
+                                        ※ 모든 서류는 신청일 기준 1개월 이내 발급분으로 제출 필수<br>   - 동의서 등 제출서류 일체(서명 필수) 스캔(내용식별 가능해야 함)<br>     → 서류는 제출 항목별로 압축 파일로 저장하여 업로드<br><br>○ 공통서류<br> - 임차보증금 이자지원 신청자 의무사항 및 각서(공고문 서식 1)<br> - 개인정보 수집‧이용 및 제3자 정보제공 동의서 (공고문 서식 2) <br>   → (취업준비생) 본인 포함 부모님 서명 / (취창업자) 본인 서명 / (기혼자) 본인 포함 배우자 서명 필수 <br> - 주민등록초본(주소변경이력포함, 발급일자 필수)<br> - 주민등록등본(발급 일자 필수)<br> - 가족관계증명서(본인 주민번호 전체 표시)<br> - &apos;25~26 지방세 세목별 과세증명서(전국/전체) *홈택스 [미과세증명서] 증명서로 대체(선택: (전국) 체크 / 조회 : 재산세(전체), 취득세(부동산) 체크)<br>   ** 미과세증명서 발급이 안될시 : 지방세 세목별 과세 증명서 + [청약홈] 주택소유확인서 추가 제출<br> - 건강보험 자격득실확인서(가입이력전체포함)<br> - 2026 건강보험 납부확인서(취창업자:본인, 기혼자:본인 및 배우자, 취준생:부모)<br> - 건강보험 자격확인서(소득산정 가구원의 건강보험 자격확인, 가입이력포함)<br> - (갱신 및 연장인경우) 임대차계약서, 부모의 가족관계증명서(기혼의 경우 배우자 부모의 가족관계증명서 포함)<br> <br>○ 대학(원)생, 취업준비생 추가서류 <br> - 부모의 2025년도 소득금액증명원 또는 원천징수영수증 (부모 모두)<br> - 사실증명원 (부모가 소득이 없는 경우) <br> - 재학(휴학)증명서 / 졸업증명서 등 (총장 직인 필수)<br>  ※ 본인소득 심사를 원하는 경우 공고문 3p의 예외사항 조건을 모두 충족할 시 가능<br>    → 이때 본인 기준 소득증빙서류, 현재 혹은 직전 취창업 확인서류 제출(공고문 5p 참고)<br><br>○ 취창업자 추가서류 <br> - 재직증명서(사업자의 경우 사업자등록증, 최근1개월내 발급분 아닌 경우 사업등록증명 보완)<br> - 현재 근무지(사업지)의 본인의 2025년도 소득금액증명원 또는 원천징수영수증(공고문 참고) 
+                                    </ul>
+                                </dd>
+                            </dl>
+                        </div>
+                    
+                    
+                        <div>
+                            <dl>
+                                <dt>문의처
+                                </dt>
+                                <dd>
+                                    <ul class="list1">
+                                        
+                                            
+                                                <li>(사업안내)전남광주통합특별시 교육청년국 청년정책과 : 062-613-2722</li>
+                                            
+                                        
+                                            
+                                                <li>(대출상담)광주은행 고객센터 : 1600-4000 - 2 (누르는ARS) - 0 (상담원연결) - 1 (은행업무)</li>
+                                            
+                                        
+                                    </ul>
+                                </dd>
+                            </dl>
+                        </div>
+                    
+                </div>
+            </div>
+            
+                <div class="conts-wrap section-link" id="section_03">
+                    <h3 class="h3-title">기타</h3>
+                    <div class="tbl-div">
+                        
+                            <div>
+                                <dl>
+                                    <dt>첨부파일</dt>
+                                    <dd>
+                                        <ul class="list1">
+                                            
+                                                <li>
+                                                    <div class="download-list">
+                                                        <a role="button" onclick="cf_cmmFile.download('218792', '1783296150646');">★(하반기 공고문) 26년 청년맞춤형 주택임차 보증금 이자지원 하반기 모집 공고.hwpx</a>
+                                                        <button type="button" class="btn dark xsm"
+                                                                onclick="cf_cmmFile.download('218792', '1783296150646');">다운로드</button>
+                                                    </div>
+                                                </li>
+                                            
+                                        </ul>
+                                    </dd>
+                                </dl>
+                            </div>
+                        
+                            
+                            
+                            
+                            
+                        <!-- 빈 문자열 제거하고 출력 -->
+                            
+                            
+                            
+                            
+                            
+                        
+                        
+                            <div>
+                                <dl>
+                                    <dt>담당부서</dt>
+                                    <dd><ul class="list1">
+                                        
+                                            
+                                                <li>전남광주통합특별시 청년정책과</li>
+                                            
+                                        
+                                    </ul>
+                                    </dd>
+                                </dl>
+                                
+                                    <dl>
+                                        <dt>연락처</dt>
+                                        <dd><ul class="list1">
+                                            
+                                                
+                                                    <li>062-613-2722</li>
+                                                
+                                            
+                                        </ul>
+                                        </dd>
+                                    </dl>
+                                
+                            </div>
+                        
+                    </div>
+                </div>
+            
+            
+            <div class="btn-wrap"><a role="button" class="btn tertiary xlg" onclick="policyList()">목록</a></div>
+            
+                <div class="conts-wrap section-link" id="section_06">
+                    <h4 class="h4-title"><span class="text-primary">"(연장신청)청년맞춤형 주택임차보증금 이자지원"</span> 과 동일분야 청년정책</h4>
+                    <div class="slider box-list-wrap">
+                        
+                            <div class="box-list">
+                                <div class="item">
+                                    <div class="list-hd">
+                                            
+                                        
+                                        
+                                        
+                                            
+                                        
+                                        
+                                        
+                                            
+                                            
+                                            
+                                            
+                                                <span class="badge state-end2">마감</span>
+                                                
+                                            
+                                        
+                                        <span class="badge type04">주거</span>
+                                    </div>
+                                    <div class="list-body">
+                                        <a role=button onclick="policyView('1440')">
+                                            <div class="tit">
+                                                <b>[광산구]청년 노동자 주거 지원사업 참여기업 모집</b>
+                                                
+                                                
+                                                
+                                                
+                                                    
+                                                        
+                                                    
+                                                        
+                                                    
+                                                        
+                                                    
+                                                        
+                                                    
+                                                        
+                                                    
+                                                        
+                                                    
+                                                        
+                                                    
+                                                        
+                                                    
+                                                        
+                                                    
+                                                        
+                                                    
+                                                        
+                                                    
+                                                        
+                                                    
+                                                        
+                                                    
+                                                        
+                                                    
+                                                        
+                                                    
+                                                        
+                                                    
+                                                        
+                                                    
+                                                        
+                                                    
+                                                        
+                                                    
+                                                        
+                                                    
+                                                        
+                                                    
+                                                        
+                                                    
+                                                        
+                                                    
+                                                        
+                                                    
+                                                        
+                                                            
+                                                            
+                                                        
+                                                    
+                                                        
+                                                    
+                                                        
+                                                    
+                                                        
+                                                    
+                                                        
+                                                    
+                                                
+                                                <span title="광산구">
+                                                    광산구
+                                                </span>
+                                            </div>
+                                            <ul class="list2">
+                                                <li>연령 : 
+                                                    
+                                                        15세 이상 ~ 39세 미만
+                                                    
+                                                    
+                                                
+                                                </li>
+                                                
+                                                
+                                                <li>사업기간 : 2026-08-18 ~ 2026-12-31
+                                                        
+                                                        
+                                                <li>신청기간 : 
+                                                    
+                                                    
+                                                    
+                                                        2026-08-18 ~ 2026-09-03
+                                                    
+                                                </li>
+                                                <li>지원내용 : ○ 주거비 지원
+· 청년 1인당 월 최대 50만원씩 최소 2년간 지원
+· 협약갱신을 통해 2년 단위로 지원기간 연장 가능
+· 최대 8년 지원 가능
+· 실제 부담하는 주택임차비를 월 최대 50만원까지 매월 지원
+· 주택임차비에 월세, 전세이자 등 포함
+· 임차보증금, 관리비 제외</li>
+                                            </ul>
+                                        </a>
+                                    </div>
+                                    <div class="list-ft">
+                                        <a role="button" onclick="policyView('1440')">상세보기</a>
+                                        
+                                    </div>
+                                    <button type="button" class="check-btn star-mark " onclick="policyBookmark('1440')">
+                                        <i></i>
+                                        <span>관심정책 등록</span>
+                                    </button>
+                                </div>
+                            </div>
+                        
+                            <div class="box-list">
+                                <div class="item">
+                                    <div class="list-hd">
+                                            
+                                        
+                                        
+                                        
+                                            
+                                        
+                                        
+                                        
+                                            
+                                            
+                                                <span class="badge state-ing">접수중</span>
+                                            
+                                            
+                                            
+                                        
+                                        <span class="badge type04">주거</span>
+                                    </div>
+                                    <div class="list-body">
+                                        <a role=button onclick="policyView('1416')">
+                                            <div class="tit">
+                                                <b>서구 청년 천원 복비(부동산 중개보수) 지원사업</b>
+                                                
+                                                
+                                                
+                                                
+                                                    
+                                                        
+                                                    
+                                                        
+                                                    
+                                                        
+                                                    
+                                                        
+                                                    
+                                                        
+                                                    
+                                                        
+                                                    
+                                                        
+                                                    
+                                                        
+                                                    
+                                                        
+                                                    
+                                                        
+                                                    
+                                                        
+                                                    
+                                                        
+                                                    
+                                                        
+                                                    
+                                                        
+                                                    
+                                                        
+                                                    
+                                                        
+                                                    
+                                                        
+                                                    
+                                                        
+                                                    
+                                                        
+                                                    
+                                                        
+                                                    
+                                                        
+                                                    
+                                                        
+                                                    
+                                                        
+                                                    
+                                                        
+                                                    
+                                                        
+                                                    
+                                                        
+                                                    
+                                                        
+                                                    
+                                                        
+                                                    
+                                                        
+                                                            
+                                                            
+                                                        
+                                                    
+                                                
+                                                <span title="서구">
+                                                    서구
+                                                </span>
+                                            </div>
+                                            <ul class="list2">
+                                                <li>연령 : 
+                                                    
+                                                        19세 이상 ~ 39세 미만
+                                                    
+                                                    
+                                                
+                                                </li>
+                                                
+                                                
+                                                <li>사업기간 : 2026-07-01 ~ 2026-12-31
+                                                        
+                                                        
+                                                <li>신청기간 : 
+                                                    
+                                                    
+                                                    
+                                                        2026-07-01 ~ 2026-12-31
+                                                    
+                                                </li>
+                                                <li>지원내용 : ○ 주택 임대차 중개보수 지원
+· 최대 30만원 이내 지원
+· 본인부담금 1천원 제외 금액 지급
+· 전남광주통합특별시 서구 소재 거래금액 1억원 이하 주택 임대차계약 체결 건
+· 신청인 중개보수 우선 지급 후 증빙서류 제출 시 지원</li>
+                                            </ul>
+                                        </a>
+                                    </div>
+                                    <div class="list-ft">
+                                        <a role="button" onclick="policyView('1416')">상세보기</a>
+                                        
+                                            
+                                                
+                                                
+                                                
+                                            
+                                        
+                                    </div>
+                                    <button type="button" class="check-btn star-mark " onclick="policyBookmark('1416')">
+                                        <i></i>
+                                        <span>관심정책 등록</span>
+                                    </button>
+                                </div>
+                            </div>
+                        
+                            <div class="box-list">
+                                <div class="item">
+                                    <div class="list-hd">
+                                            
+                                        
+                                        
+                                        
+                                            
+                                        
+                                        
+                                        
+                                            
+                                            
+                                                <span class="badge state-ing">접수중</span>
+                                            
+                                            
+                                            
+                                        
+                                        <span class="badge type04">주거</span>
+                                    </div>
+                                    <div class="list-body">
+                                        <a role=button onclick="policyView('1399')">
+                                            <div class="tit">
+                                                <b>2026년 신혼부부 전세자금 대출이자 지원 안내</b>
+                                                
+                                                
+                                                
+                                                
+                                                    
+                                                        
+                                                            
+                                                            
+                                                        
+                                                    
+                                                        
+                                                    
+                                                        
+                                                    
+                                                        
+                                                    
+                                                        
+                                                    
+                                                        
+                                                    
+                                                        
+                                                    
+                                                        
+                                                    
+                                                        
+                                                    
+                                                        
+                                                    
+                                                        
+                                                    
+                                                        
+                                                    
+                                                        
+                                                    
+                                                        
+                                                    
+                                                        
+                                                    
+                                                        
+                                                    
+                                                        
+                                                    
+                                                        
+                                                    
+                                                        
+                                                    
+                                                        
+                                                    
+                                                        
+                                                    
+                                                        
+                                                    
+                                                        
+                                                    
+                                                        
+                                                    
+                                                        
+                                                    
+                                                        
+                                                    
+                                                        
+                                                    
+                                                        
+                                                    
+                                                        
+                                                    
+                                                
+                                                <span title="전남광주통합특별시">
+                                                    전남광주통합특별시
+                                                </span>
+                                            </div>
+                                            <ul class="list2">
+                                                <li>연령 : 
+                                                    
+                                                        1세 이상 ~ 99세 미만
+                                                    
+                                                    
+                                                
+                                                </li>
+                                                
+                                                
+                                                <li>사업기간 : 2026-01-01 ~ 2026-12-31
+                                                        
+                                                        
+                                                <li>신청기간 : 
+                                                    
+                                                    
+                                                    
+                                                        2026-01-05 ~ 2026-10-30
+                                                    
+                                                </li>
+                                                <li>지원내용 : ○ 납입 대출이자의 일부 지원
+· 무자녀 0.5%
+· 1자녀 0.7%
+· 2자녀이상 1.0%
+○ 지원한도
+· 대출 신청자가 은행에 납입한 총 이자액 범위 내
+○ 지급방법
+· 연간 2회(상·하반기) 청구 및 지급
+· 개인별 계좌입금</li>
+                                            </ul>
+                                        </a>
+                                    </div>
+                                    <div class="list-ft">
+                                        <a role="button" onclick="policyView('1399')">상세보기</a>
+                                        
+                                            
+                                                
+                                                
+                                                
+                                            
+                                        
+                                    </div>
+                                    <button type="button" class="check-btn star-mark " onclick="policyBookmark('1399')">
+                                        <i></i>
+                                        <span>관심정책 등록</span>
+                                    </button>
+                                </div>
+                            </div>
+                        
+                            <div class="box-list">
+                                <div class="item">
+                                    <div class="list-hd">
+                                            
+                                        
+                                        
+                                        
+                                            
+                                        
+                                        
+                                        
+                                            
+                                                <span class="badge state-ing">상시</span>
+                                            
+                                            
+                                            
+                                            
+                                        
+                                        <span class="badge type04">주거</span>
+                                    </div>
+                                    <div class="list-body">
+                                        <a role=button onclick="policyView('1269')">
+                                            <div class="tit">
+                                                <b>청년 주거급여 분리지급</b>
+                                                
+                                                
+                                                
+                                                
+                                                    
+                                                        
+                                                    
+                                                        
+                                                            
+                                                            
+                                                        
+                                                    
+                                                        
+                                                    
+                                                        
+                                                    
+                                                        
+                                                    
+                                                        
+                                                    
+                                                        
+                                                    
+                                                        
+                                                    
+                                                        
+                                                    
+                                                        
+                                                    
+                                                        
+                                                    
+                                                        
+                                                    
+                                                        
+                                                    
+                                                        
+                                                    
+                                                        
+                                                    
+                                                        
+                                                    
+                                                        
+                                                    
+                                                        
+                                                    
+                                                        
+                                                    
+                                                        
+                                                    
+                                                        
+                                                    
+                                                        
+                                                    
+                                                        
+                                                    
+                                                        
+                                                    
+                                                        
+                                                    
+                                                        
+                                                    
+                                                        
+                                                    
+                                                        
+                                                    
+                                                        
+                                                    
+                                                
+                                                <span title="광주광역시">
+                                                    광주광역시
+                                                </span>
+                                            </div>
+                                            <ul class="list2">
+                                                <li>연령 : 
+                                                    
+                                                        19세 이상 ~ 30세 미만
+                                                    
+                                                    
+                                                
+                                                </li>
+                                                
+                                                
+                                                <li>사업기간 : 2026-01-01 ~ 2026-12-31
+                                                        
+                                                        
+                                                <li>신청기간 : 
+                                                    상시
+                                                    
+                                                    
+                                                </li>
+                                                <li>지원내용 : 지원상한액(광역시 기준) : 1인 247,000원, 2인 275,000원, 3인 327,000원, 4인 381,000원</li>
+                                            </ul>
+                                        </a>
+                                    </div>
+                                    <div class="list-ft">
+                                        <a role="button" onclick="policyView('1269')">상세보기</a>
+                                        
+                                            
+                                                
+                                                
+                                                
+                                            
+                                        
+                                    </div>
+                                    <button type="button" class="check-btn star-mark " onclick="policyBookmark('1269')">
+                                        <i></i>
+                                        <span>관심정책 등록</span>
+                                    </button>
+                                </div>
+                            </div>
+                        
+                            <div class="box-list">
+                                <div class="item">
+                                    <div class="list-hd">
+                                            
+                                        
+                                        
+                                        
+                                            
+                                        
+                                        
+                                        
+                                            
+                                                <span class="badge state-ing">상시</span>
+                                            
+                                            
+                                            
+                                            
+                                        
+                                        <span class="badge type04">주거</span>
+                                    </div>
+                                    <div class="list-body">
+                                        <a role=button onclick="policyView('1265')">
+                                            <div class="tit">
+                                                <b>전세보증금반환보증 보증료 지원</b>
+                                                
+                                                
+                                                
+                                                
+                                                    
+                                                        
+                                                    
+                                                        
+                                                            
+                                                            
+                                                        
+                                                    
+                                                        
+                                                    
+                                                        
+                                                    
+                                                        
+                                                    
+                                                        
+                                                    
+                                                        
+                                                    
+                                                        
+                                                    
+                                                        
+                                                    
+                                                        
+                                                    
+                                                        
+                                                    
+                                                        
+                                                    
+                                                        
+                                                    
+                                                        
+                                                    
+                                                        
+                                                    
+                                                        
+                                                    
+                                                        
+                                                    
+                                                        
+                                                    
+                                                        
+                                                    
+                                                        
+                                                    
+                                                        
+                                                    
+                                                        
+                                                    
+                                                        
+                                                    
+                                                        
+                                                    
+                                                        
+                                                    
+                                                        
+                                                    
+                                                        
+                                                    
+                                                        
+                                                    
+                                                        
+                                                    
+                                                
+                                                <span title="광주광역시">
+                                                    광주광역시
+                                                </span>
+                                            </div>
+                                            <ul class="list2">
+                                                <li>연령 : 
+                                                    
+                                                        19세 이상 ~ 39세 미만
+                                                    
+                                                    
+                                                
+                                                </li>
+                                                
+                                                
+                                                <li>사업기간 : 2026-01-01 ~ 2026-12-31
+                                                        
+                                                        
+                                                <li>신청기간 : 
+                                                    상시
+                                                    
+                                                    
+                                                </li>
+                                                <li>지원내용 : 납부한 보증료의 전부 또는 일부(최대 40만원*)를 본인 계좌로 이체
+ * &amp;apos;26.3.31. 이후 보증 가입자만 해당 (&amp;apos;26.3.30. 이전 보증 가입자는 최대 30만원) 
+
+- 청년* 임차인 : 신청인이 기 납부한 보증료 (최대 40만원)
+- 청년* 외 임차인 : 신청인이 기 납부한 보증료의 90% (최대 40만원)
+- 신혼부부** 임차인 : 신청인이 기납부한 보증료 (최대 40만원)
+
+ * 신청일 기준 만19세~만39세 
+ ** 신청일 기준 혼인신고일이 7년 이내인 부부, 신혼부부 유형으로 대출을 받거나 신혼부부 유형으로 보증료 할인을 받은 경우 (연령 무관)</li>
+                                            </ul>
+                                        </a>
+                                    </div>
+                                    <div class="list-ft">
+                                        <a role="button" onclick="policyView('1265')">상세보기</a>
+                                        
+                                            
+                                                
+                                                
+                                                
+                                            
+                                        
+                                    </div>
+                                    <button type="button" class="check-btn star-mark " onclick="policyBookmark('1265')">
+                                        <i></i>
+                                        <span>관심정책 등록</span>
+                                    </button>
+                                </div>
+                            </div>
+                        
+                            <div class="box-list">
+                                <div class="item">
+                                    <div class="list-hd">
+                                            
+                                        
+                                        
+                                        
+                                            
+                                        
+                                        
+                                        
+                                            
+                                            
+                                            
+                                            
+                                                <span class="badge state-end2">마감</span>
+                                                
+                                            
+                                        
+                                        <span class="badge type04">주거</span>
+                                    </div>
+                                    <div class="list-body">
+                                        <a role=button onclick="policyView('1261')">
+                                            <div class="tit">
+                                                <b>청년월세지원</b>
+                                                
+                                                
+                                                
+                                                
+                                                    
+                                                        
+                                                            
+                                                            
+                                                        
+                                                    
+                                                        
+                                                    
+                                                        
+                                                    
+                                                        
+                                                    
+                                                        
+                                                    
+                                                        
+                                                    
+                                                        
+                                                    
+                                                        
+                                                    
+                                                        
+                                                    
+                                                        
+                                                    
+                                                        
+                                                    
+                                                        
+                                                    
+                                                        
+                                                    
+                                                        
+                                                    
+                                                        
+                                                    
+                                                        
+                                                    
+                                                        
+                                                    
+                                                        
+                                                    
+                                                        
+                                                    
+                                                        
+                                                    
+                                                        
+                                                    
+                                                        
+                                                    
+                                                        
+                                                    
+                                                        
+                                                    
+                                                        
+                                                    
+                                                        
+                                                    
+                                                        
+                                                    
+                                                        
+                                                    
+                                                        
+                                                    
+                                                
+                                                <span title="전남광주통합특별시">
+                                                    전남광주통합특별시
+                                                </span>
+                                            </div>
+                                            <ul class="list2">
+                                                <li>연령 : 
+                                                    
+                                                        19세 이상 ~ 34세 미만
+                                                    
+                                                    
+                                                
+                                                </li>
+                                                
+                                                
+                                                <li>사업기간 : 2026-01-01 ~ 2026-12-31
+                                                        
+                                                        
+                                                <li>신청기간 : 
+                                                    
+                                                    
+                                                    
+                                                        2026-03-30 ~ 2026-05-29
+                                                    
+                                                </li>
+                                                <li>지원내용 : 월 최대 20만원 임대료 지원 (최장 24개월)
+* 생애 1회 / 임차보증금, 관리비 등은 제외</li>
+                                            </ul>
+                                        </a>
+                                    </div>
+                                    <div class="list-ft">
+                                        <a role="button" onclick="policyView('1261')">상세보기</a>
+                                        
+                                    </div>
+                                    <button type="button" class="check-btn star-mark " onclick="policyBookmark('1261')">
+                                        <i></i>
+                                        <span>관심정책 등록</span>
+                                    </button>
+                                </div>
+                            </div>
+                        
+                            <div class="box-list">
+                                <div class="item">
+                                    <div class="list-hd">
+                                            
+                                        
+                                        
+                                        
+                                            
+                                        
+                                        
+                                        
+                                            
+                                            
+                                            
+                                            
+                                                <span class="badge state-end2">마감</span>
+                                                
+                                            
+                                        
+                                        <span class="badge type04">주거</span>
+                                    </div>
+                                    <div class="list-body">
+                                        <a role=button onclick="policyView('1086')">
+                                            <div class="tit">
+                                                <b>전세보증금반환보증 보증료 지원</b>
+                                                
+                                                
+                                                
+                                                
+                                                    
+                                                        
+                                                    
+                                                        
+                                                            
+                                                            
+                                                        
+                                                    
+                                                        
+                                                    
+                                                        
+                                                    
+                                                        
+                                                    
+                                                        
+                                                    
+                                                        
+                                                    
+                                                        
+                                                    
+                                                        
+                                                    
+                                                        
+                                                    
+                                                        
+                                                    
+                                                        
+                                                    
+                                                        
+                                                    
+                                                        
+                                                    
+                                                        
+                                                    
+                                                        
+                                                    
+                                                        
+                                                    
+                                                        
+                                                    
+                                                        
+                                                    
+                                                        
+                                                    
+                                                        
+                                                    
+                                                        
+                                                    
+                                                        
+                                                    
+                                                        
+                                                    
+                                                        
+                                                    
+                                                        
+                                                    
+                                                        
+                                                    
+                                                        
+                                                    
+                                                        
+                                                    
+                                                
+                                                <span title="광주광역시">
+                                                    광주광역시
+                                                </span>
+                                            </div>
+                                            <ul class="list2">
+                                                <li>연령 : 
+                                                    
+                                                    
+                                                        
+                                                            
+                                                            
+                                                            
+                                                                제한 없음
+                                                            
+                                                        
+                                                    
+                                                
+                                                </li>
+                                                
+                                                
+                                                <li>사업기간 : 2025-01-01 ~ 2025-12-31
+                                                        
+                                                        
+                                                <li>신청기간 : 
+                                                    상시
+                                                    
+                                                    
+                                                </li>
+                                                <li>지원내용 : 납부한 보증료의 전부 또는 일부(최대 40만원*)를 본인 계좌로 이체
+ * &amp;apos;25.3.31. 이후 보증 가입자만 해당 (&amp;apos;25.3.30. 이전 보증 가입자는 최대 30만원) 
+
+- 청년* 임차인 : 신청인이 기 납부한 보증료 (최대 40만원)
+- 청년* 외 임차인 : 신청인이 기 납부한 보증료의 90% (최대 40만원)
+- 신혼부부** 임차인 : 신청인이 기납부한 보증료 (최대 40만원)
+
+ * 신청일 기준 만19세~만39세 
+ ** 신청일 기준 혼인신고일이 7년 이내인 부부, 신혼부부 유형으로 대출을 받거나 신혼부부 유형으로 보증료 할인을 받은 경우 (연령 무관)
+</li>
+                                            </ul>
+                                        </a>
+                                    </div>
+                                    <div class="list-ft">
+                                        <a role="button" onclick="policyView('1086')">상세보기</a>
+                                        
+                                    </div>
+                                    <button type="button" class="check-btn star-mark " onclick="policyBookmark('1086')">
+                                        <i></i>
+                                        <span>관심정책 등록</span>
+                                    </button>
+                                </div>
+                            </div>
+                        
+                            <div class="box-list">
+                                <div class="item">
+                                    <div class="list-hd">
+                                            
+                                        
+                                        
+                                        
+                                            
+                                        
+                                        
+                                        
+                                            
+                                            
+                                            
+                                            
+                                                <span class="badge state-end2">마감</span>
+                                                
+                                            
+                                        
+                                        <span class="badge type04">주거</span>
+                                    </div>
+                                    <div class="list-body">
+                                        <a role=button onclick="policyView('418')">
+                                            <div class="tit">
+                                                <b>주거취약계층 부동산 중개보수 지원</b>
+                                                
+                                                
+                                                
+                                                
+                                                    
+                                                        
+                                                    
+                                                        
+                                                            
+                                                            
+                                                        
+                                                    
+                                                        
+                                                    
+                                                        
+                                                    
+                                                        
+                                                    
+                                                        
+                                                    
+                                                        
+                                                    
+                                                        
+                                                    
+                                                        
+                                                    
+                                                        
+                                                    
+                                                        
+                                                    
+                                                        
+                                                    
+                                                        
+                                                    
+                                                        
+                                                    
+                                                        
+                                                    
+                                                        
+                                                    
+                                                        
+                                                    
+                                                        
+                                                    
+                                                        
+                                                    
+                                                        
+                                                    
+                                                        
+                                                    
+                                                        
+                                                    
+                                                        
+                                                    
+                                                        
+                                                    
+                                                        
+                                                    
+                                                        
+                                                    
+                                                        
+                                                    
+                                                        
+                                                    
+                                                        
+                                                    
+                                                
+                                                <span title="광주광역시">
+                                                    광주광역시
+                                                </span>
+                                            </div>
+                                            <ul class="list2">
+                                                <li>연령 : 
+                                                    
+                                                    
+                                                        
+                                                            
+                                                            
+                                                            
+                                                                제한 없음
+                                                            
+                                                        
+                                                    
+                                                
+                                                </li>
+                                                
+                                                
+                                                <li>사업기간 : 2025-01-01 ~ 2025-12-31
+                                                        
+                                                        
+                                                <li>신청기간 : 
+                                                    상시
+                                                    
+                                                    
+                                                </li>
+                                                <li>지원내용 : 주거취약계층 부동산 중개보수료 지원(30만원이내)</li>
+                                            </ul>
+                                        </a>
+                                    </div>
+                                    <div class="list-ft">
+                                        <a role="button" onclick="policyView('418')">상세보기</a>
+                                        
+                                    </div>
+                                    <button type="button" class="check-btn star-mark " onclick="policyBookmark('418')">
+                                        <i></i>
+                                        <span>관심정책 등록</span>
+                                    </button>
+                                </div>
+                            </div>
+                        
+                    </div>
+                </div>
+            
+        </div>
+        <!-- //real contents -->
+    </div>
+</div>
+<!-- //컨텐츠 영역 -->
+<!-- 페이지 버튼 영역 -->

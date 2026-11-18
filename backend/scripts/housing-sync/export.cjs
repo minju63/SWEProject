@@ -1,0 +1,7 @@
+'use strict';
+const fs=require('node:fs'),path=require('node:path');
+const {sha,csv,save}=require('./core.cjs');
+const columns=['data_id','데이터유형','정책명','대분류','세부분류','추가태그','팀 조사담당자','신청범위','대상유형','대상시도','대상시군구','시행기관','운영기관','기관 담당부서','지원내용','지원금액','지원대상_원문','연령조건_원문','최소연령','최대연령','거주조건_원문','거주기간_개월','활동지역인정','취업상태','학력·재학조건','소득조건','특화대상','제외대상','기타조건','신청시작일','신청마감일','운영시작일','운영종료일','상시모집','진행상태','신청방법','신청URL','문의처','원문URL','게시일','수집일','최종확인일','요약','비고'];
+function draftRows(candidates,date){return candidates.map(c=>{const r=Object.fromEntries(columns.map(k=>[k,''])),a=c.api_row||{};Object.assign(r,{data_id:'HOU-AUTO-'+sha(c.key).slice(0,12),데이터유형:'확인필요',정책명:c.title,대분류:'주거·생활비',세부분류:c.subcategory||'',추가태그:a.plcyKywdNm||'',팀조사담당자:'',신청범위:'확인필요',시행기관:a.sprvsnInstCdNm||'',운영기관:a.operInstCdNm||'',지원내용:a.plcySprtCn||'',지원대상_원문:a.addAplyQlfcCndCn||'',소득조건:a.earnEtcCn||'',기타조건:a.etcMttrCn||'',상시모집:'확인필요',진행상태:'확인필요',신청방법:a.plcyAplyMthdCn||'',신청URL:a.aplyUrlAddr||'',원문URL:c.url||'',수집일:date,요약:a.plcyExplnCn||'',비고:'자동수집 초안; 검증/적재 파일 아님. 상태:'+c.status+'; 지역힌트:'+(c.scope?.hint||'없음')+'; API신청기간원문:'+(a.aplyYmd||'')});delete r.팀조사담당자;return r;});}
+function exportDraft(root,dir,candidates,date){const rows=draftRows(candidates.filter(c=>c.status!=='OUT_OF_SCOPE'&&c.status!=='OTHER_TOPIC'),date);save(path.join(dir,'draft_44columns.csv'),csv(rows));save(path.join(dir,'draft_44columns.json'),rows);return rows;}
+module.exports={columns,draftRows,exportDraft};

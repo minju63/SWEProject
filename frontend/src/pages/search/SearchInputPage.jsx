@@ -101,7 +101,7 @@ export default function SearchInputPage() {
       renderInput={(inputProps, submit) => <header className="search-header search-input-header">
         <div className="search-header-row">
           <h1>정책 찾기</h1>
-          <div className="search-header-notification"><NotificationBell unreadCount={2} /></div>
+          <div className="search-header-notification"><NotificationBell onClick={() => navigate('/notifications')} /></div>
         </div>
         <form className="policy-search-form" onSubmit={(event) => { event.preventDefault(); submit(); }}>
           <SearchIcon />

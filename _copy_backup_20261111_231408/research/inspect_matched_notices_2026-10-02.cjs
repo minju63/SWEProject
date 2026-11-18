@@ -1,0 +1,6 @@
+const fs=require('node:fs'),path=require('node:path');
+const dir=path.join(__dirname,'raw_2026-10-02/candidate_verification');
+const records=JSON.parse(fs.readFileSync(path.join(dir,'search_checks.json'),'utf8'));
+const policies=[1,2,3,4].flatMap(i=>JSON.parse(fs.readFileSync(path.join(dir,'..',`API_HOUSING_${i}.json`),'utf8')).result.youthPolicyList);
+if(process.argv[2]==='titles'){for(const c of records){const p=policies.find(p=>p.plcyNo===c.plcyNo),r=c.자료.filter(r=>r.status===200&&!r.errorPage&&r.제목유사도>=0.85);if(r.length)console.log(JSON.stringify({id:c.plcyNo,name:p.plcyNm,org:p.sprvsnInstCdNm,titles:r.map(r=>r.검색제목)}));}process.exit(0);}
+for(const c of records){const sources=c.자료.filter(r=>r.status===200&&!r.errorPage&&r.제목유사도>=0.85).map(r=>{let text='';if(r.textFile){const body=fs.readFileSync(path.join(dir,r.textFile),'utf8');const lines=body.split('\n');const i=lines.findIndex(l=>l.includes(r.검색제목.split(' | ')[0].split(' - ')[0]));text=lines.slice(Math.max(0,i),Math.max(0,i)+160).filter(l=>/2026|신청|접수|모집|마감/.test(l)).slice(0,15).join(' ').slice(0,650);}return {title:r.검색제목,url:r.URL,file:r.textFile||r.file,text};});if(sources.length)console.log(JSON.stringify({id:c.plcyNo,sources}));}

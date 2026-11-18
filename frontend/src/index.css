@@ -1,0 +1,101 @@
+@import url("https://fonts.googleapis.com/css2?family=Manrope:wght@600;700;800&family=Noto+Sans+KR:wght@400;500;600;700;800;900&display=swap");
+@import "tailwindcss";
+
+:root {
+  font-family: "Noto Sans KR", sans-serif;
+  color: #171923;
+  background: #f7f7f2;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+  overscroll-behavior-y: none;
+}
+
+html,
+body,
+#root {
+  scrollbar-width: none;
+}
+
+html::-webkit-scrollbar,
+body::-webkit-scrollbar,
+#root::-webkit-scrollbar {
+  display: none;
+}
+
+button,
+input {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+button:focus-visible,
+input:focus-visible {
+  outline: 2px solid #2F7BF5;
+  outline-offset: 2px;
+}
+
+::selection {
+  color: white;
+  background: #2F7BF5;
+}
+
+.no-scrollbar {
+  scrollbar-width: none;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.device-frame {
+  position: relative;
+  min-height: 100vh;
+  background: #eef0f5;
+}
+
+.device-frame::before {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  width: 100%;
+  max-width: 480px;
+  margin: 0 auto;
+  background: #f8f9fb;
+  box-shadow: 0 0 40px rgba(23, 25, 35, 0.08);
+  content: "";
+  pointer-events: none;
+}
+
+.device-content {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 480px;
+  min-height: 100vh;
+  margin: 0 auto;
+}
+
+.device-content > .min-h-screen {
+  background: transparent;
+}
+
+.device-content > .min-h-screen > div {
+  box-shadow: none;
+}
