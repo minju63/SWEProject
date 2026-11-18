@@ -17,6 +17,7 @@ export function toPlace(p) {
     regionCode: p.region_code,
     district: p.district,
     address: p.address ?? '',
+    dong: p.legal_dong ?? '', // 법정동 (행안부 주소 검색 결과, 동네 검색용)
     lat: Number(p.lat),
     lng: Number(p.lng),
     coordStatus: p.coord_status,
@@ -124,20 +125,36 @@ export const insideArea = (area, pos) =>
   pos.lng >= area.minLng &&
   pos.lng <= area.maxLng;
 
-// 동네 이름은 주소에 그대로 안 나오는 경우가 많아 동 이름으로도 찾는다.
-// AI 비서 장소 답변(assistant.service.js LANDMARK_WORDS)과 같은 규칙이라 [전체 보기] 결과 수가 같다.
-const AREA_WORDS = {
-  서면: ['서면', '부전', '전포'],
-  다대포: ['다대'],
+// 동네 이름 검색 (FR-MAP-021): 주소 글자 대신 장소의 법정동(dong)으로 판단한다.
+// 주소 글자로 찾으면 동 이름이 없는 도로명 주소는 빠지고, 도로명에 든 동 이름('가야대로', '당감서로', '다대로')에
+// 다른 동 장소가 걸린다. 법정동을 아직 모르는 장소만 주소 글자로 찾는다.
+// 서비스 지역(부산진구·사하구) 법정동과, 동 이름이 아닌 동네 이름
+const SERVICE_DONGS = new Set(
+  '양정 전포 부전 범천 범전 연지 초읍 부암 당감 가야 개금 괴정 당리 하단 신평 장림 다대 구평 감천'
+    .split(' ')
+    .map((d) => `${d}동`)
+);
+const AREA_DONGS = {
+  서면: ['부전동', '전포동'],
+  다대포: ['다대동'],
 };
+
+function areaDongs(q) {
+  const k = q.replace(/\s+/g, '');
+  if (AREA_DONGS[k]) return AREA_DONGS[k];
+  const dong = k.endsWith('동') ? k : `${k}동`;
+  return SERVICE_DONGS.has(dong) ? [dong] : null;
+}
 
 export function placeMatchesTerm(place, term) {
   const q = term.trim().toLowerCase();
   if (!q) return true;
-  const fields = `${place.name} ${place.address} ${place.district} ${place.placeType} ${place.categoryName}`;
+  const fields = `${place.name} ${place.district} ${place.placeType} ${place.categoryName}`;
   if (fields.toLowerCase().includes(q)) return true;
-  const words = AREA_WORDS[q.replace(/\s+/g, '')];
-  return !!words && words.some((w) => `${place.address} ${place.name}`.includes(w));
+  const dongs = areaDongs(q);
+  if (dongs && place.dong) return dongs.includes(place.dong);
+  const words = dongs ? [q.replace(/\s+/g, ''), ...dongs.map((d) => d.slice(0, -1))] : [q];
+  return words.some((w) => place.address.toLowerCase().includes(w));
 }
 
 // 요금: free 는 무료, paid·per_program 은 유료, unknown 은 어느 쪽에도 안 보임 (FR-MAP-024)

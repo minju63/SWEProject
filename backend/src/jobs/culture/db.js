@@ -25,25 +25,28 @@ async function exists(table, column) {
 
 // 갱신 작업용 컬럼·테이블 (supabase/migrations 의 20261114~20261117)
 export async function schemaReady() {
-  const [baseline, detailFetched, issues, policyIssues, coords, saved, target] = await Promise.all([
-    exists('place', 'source_values'),
-    exists('culture_detail', 'detail_fetched'),
-    exists('place_issues', 'issue_id'),
-    exists('place_issues', 'policy_id'),
-    exists('place', 'lat_src'),
-    exists('user_saved_places', 'place_id'),
-    exists('place', 'is_target'),
-  ]);
+  const [baseline, detailFetched, issues, policyIssues, coords, saved, target, dong] =
+    await Promise.all([
+      exists('place', 'source_values'),
+      exists('culture_detail', 'detail_fetched'),
+      exists('place_issues', 'issue_id'),
+      exists('place_issues', 'policy_id'),
+      exists('place', 'lat_src'),
+      exists('user_saved_places', 'place_id'),
+      exists('place', 'is_target'),
+      exists('place', 'legal_dong'),
+    ]);
   const missing = [
     ...(baseline && detailFetched && issues ? [] : ['20261114_culture_sync.sql']),
     ...(policyIssues ? [] : ['20261115_culture_policy_sync.sql']),
     ...(coords && saved ? [] : ['20261116_map_srs_fixes.sql']),
     ...(target ? [] : ['20261117_map_srs_strict.sql']),
   ];
-  return { baseline, coords, target, missing, all: missing.length === 0 };
+  // legal_dong(20261119_place_legal_dong.sql)은 없어도 갱신은 돌고 법정동만 건너뛴다
+  return { baseline, coords, target, dong, missing, all: missing.length === 0 };
 }
 
-export async function loadPlaces(withBaseline, withCoords, withTarget) {
+export async function loadPlaces(withBaseline, withCoords, withTarget, withDong) {
   const columns = [
     'place_id',
     'place_key',
@@ -64,6 +67,7 @@ export async function loadPlaces(withBaseline, withCoords, withTarget) {
   ];
   if (withBaseline) columns.push('source_values');
   if (withTarget) columns.push('is_target');
+  if (withDong) columns.push('legal_dong');
   // 좌표 검증용 (값은 메모리에서만 쓰고 출력하지 않는다)
   if (withCoords)
     columns.push(
