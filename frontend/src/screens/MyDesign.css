@@ -94,7 +94,6 @@
 .my-recent-card > span { background: #eaf2ff; border-radius: 5px; padding: 3px 6px; font-size: 9px; }
 .my-recent-card p { font-size: 12px; margin-top: 7px; }
 .my-recent-card p:last-child { font-size: 10px; margin-top: 3px; }
-.my-page nav, .my-settings nav { border-radius: 22px 22px 0 0; box-shadow: 0 -4px 20px #32517504; }
 .my-sheet-backdrop { position: fixed; inset: 0; z-index: 110; display: flex; align-items: flex-end; justify-content: center; background: #26313b66; }
 .my-add-sheet { width: 100%; max-width: 480px; max-height: 85dvh; overflow-y: auto; overscroll-behavior: contain; background: #f7f9fc; border-radius: 25px 25px 0 0; padding: 12px 18px max(24px,env(safe-area-inset-bottom)); }
 .my-add-sheet h2 { font-size: 20px; }
