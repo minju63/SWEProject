@@ -1,0 +1,3258 @@
+[
+  {
+    "before": {
+      "policy_id": "ff17d688-dc06-5180-8af1-304441214d0f",
+      "title": "청년전용 버팀목전세자금",
+      "collection_domain": "HOUSING",
+      "item_type": "POLICY",
+      "target_summary": "무주택 청년 세대주",
+      "eligibility_conditions": {
+        "all": [
+          {
+            "text": "지원 대상 확인: 무주택 청년 세대주"
+          },
+          {
+            "text": "소득·자산 확인: 부부합산 연50000000원 이하;혁신도시 이전기관 종사자·재개발 이주 세입자·다자녀·2자녀60000000원 이하;신혼75000000원 이하"
+          },
+          {
+            "text": "제외·예외 확인: 유주택세대;기금·은행 전세·주택담보 중복대출(예외 있음);신용정보 제한;공공임대 거주(퇴거·해당 목적물 예외);약정 위반 기한이익상실3년 미경과 / 기본19~34세. 지정 중소·중견기업 취업/창업지원 대상 병역이행자는 복무기간 연장 최대39세(35~39세 자동통과 금지). 순자산345000000원 이하. 보증금3억원 이하;85㎡ 이하(25세 미만 단독60㎡). 계약금5% 이상. 신규 잔금일·전입일 중 빠른 날부터3개월;갱신일3개월 내. 과거 계약 한도예외 원문 참조."
+          },
+          {
+            "text": "현재 모집·예산·공실·증빙과 담당기관 심사 확인 필요"
+          }
+        ],
+        "note": "부모·자녀·가구 역할은 동일 인물·가구에 바인딩. 중위소득과 도시근로자 기준을 구분. MANUAL_REVIEW/누락 사실은 UNKNOWN. 소개형은 실제 모집과 별개.",
+        "logic": "UNVERIFIED",
+        "exclude": [
+          {
+            "text": "유주택세대;기금·은행 전세·주택담보 중복대출(예외 있음);신용정보 제한;공공임대 거주(퇴거·해당 목적물 예외);약정 위반 기한이익상실3년 미경과"
+          }
+        ],
+        "required": [
+          {
+            "operator": "AND",
+            "conditions": [
+              {
+                "operator": "AND",
+                "conditions": [
+                  {
+                    "operator": "AND",
+                    "conditions": [
+                      {
+                        "operator": "OR",
+                        "conditions": [
+                          {
+                            "field": "is_household_head",
+                            "value": true,
+                            "anchor": "application_date",
+                            "subject": "applicant",
+                            "operator": "EQ"
+                          },
+                          {
+                            "field": "recognized_as_household_head",
+                            "value": true,
+                            "anchor": "application_date",
+                            "subject": "applicant",
+                            "operator": "EQ"
+                          }
+                        ]
+                      },
+                      {
+                        "field": "all_members_homeless",
+                        "value": true,
+                        "anchor": "application_date",
+                        "subject": "household",
+                        "operator": "EQ"
+                      },
+                      {
+                        "operator": "AND",
+                        "conditions": [
+                          {
+                            "field": "rental_contract_signed",
+                            "value": true,
+                            "anchor": "application_date",
+                            "subject": "contract",
+                            "operator": "EQ"
+                          },
+                          {
+                            "unit": "ratio",
+                            "field": "deposit_paid_ratio",
+                            "value": 0.05,
+                            "anchor": "application_date",
+                            "subject": "contract",
+                            "operator": "GTE"
+                          }
+                        ]
+                      },
+                      {
+                        "unit": "KRW",
+                        "field": "net_assets",
+                        "value": 345000000,
+                        "anchor": "application_date",
+                        "subject": "couple",
+                        "operator": "LTE"
+                      },
+                      {
+                        "text": "소득·자산 산정범위, 중복대출·신용·공공임대 예외 및 담보/신청시기/보증기관 심사 확인",
+                        "subject": "authority",
+                        "operator": "MANUAL_REVIEW"
+                      }
+                    ]
+                  },
+                  {
+                    "operator": "OR",
+                    "conditions": [
+                      {
+                        "unit": "years",
+                        "field": "age",
+                        "value": [
+                          19,
+                          34
+                        ],
+                        "anchor": "loan_receipt_date",
+                        "subject": "applicant",
+                        "operator": "BETWEEN"
+                      },
+                      {
+                        "operator": "AND",
+                        "conditions": [
+                          {
+                            "field": "qualifying_sme_employment_or_startup_support",
+                            "value": true,
+                            "anchor": "application_date",
+                            "subject": "applicant",
+                            "operator": "EQ"
+                          },
+                          {
+                            "field": "completed_military_service",
+                            "value": true,
+                            "anchor": "application_date",
+                            "subject": "applicant",
+                            "operator": "EQ"
+                          },
+                          {
+                            "unit": "years",
+                            "field": "age_after_approved_service_extension",
+                            "value": 34,
+                            "anchor": "application_date",
+                            "subject": "applicant",
+                            "operator": "LTE"
+                          },
+                          {
+                            "unit": "years",
+                            "field": "age",
+                            "value": 39,
+                            "anchor": "application_date",
+                            "subject": "applicant",
+                            "operator": "LTE"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "operator": "OR",
+                    "conditions": [
+                      {
+                        "unit": "KRW",
+                        "field": "annual_income",
+                        "value": 50000000,
+                        "anchor": "application_date",
+                        "subject": "couple",
+                        "operator": "LTE"
+                      },
+                      {
+                        "operator": "AND",
+                        "conditions": [
+                          {
+                            "field": "qualifying_income_limit_exception",
+                            "value": true,
+                            "anchor": "application_date",
+                            "subject": "household",
+                            "operator": "EQ"
+                          },
+                          {
+                            "unit": "KRW",
+                            "field": "annual_income",
+                            "value": 60000000,
+                            "anchor": "application_date",
+                            "subject": "couple",
+                            "operator": "LTE"
+                          }
+                        ]
+                      },
+                      {
+                        "operator": "AND",
+                        "conditions": [
+                          {
+                            "field": "newlywed",
+                            "value": true,
+                            "anchor": "application_date",
+                            "subject": "couple",
+                            "operator": "EQ"
+                          },
+                          {
+                            "unit": "KRW",
+                            "field": "annual_income",
+                            "value": 75000000,
+                            "anchor": "application_date",
+                            "subject": "couple",
+                            "operator": "LTE"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "text": "구조화한 일부 조건만으로 전체 자격 충족을 판정하지 않음; 원문 전체 증빙·예외 심사 필요",
+                "subject": "authority",
+                "operator": "MANUAL_REVIEW"
+              }
+            ]
+          }
+        ],
+        "exclusions": [
+          {
+            "text": "유주택세대;기금·은행 전세·주택담보 중복대출(예외 있음);신용정보 제한;공공임대 거주(퇴거·해당 목적물 예외);약정 위반 기한이익상실3년 미경과",
+            "subject": "authority",
+            "operator": "MANUAL_REVIEW"
+          }
+        ],
+        "source_ids": [
+          "9bb80a85-c06f-51e3-acb9-ab9904942749"
+        ],
+        "source_url": "https://nhuf.molit.go.kr/FP/FP05/FP0502/FP05020301.jsp",
+        "source_urls": [
+          "https://nhuf.molit.go.kr/FP/FP05/FP0502/FP05020301.jsp"
+        ],
+        "review_notes": {
+          "corrections": null,
+          "application_window": "확인필요 ~ 확인필요",
+          "collected_research_date": "2026-10-02",
+          "official_sources_rechecked_on": "2026-11-16"
+        },
+        "verification": "확인필요",
+        "schema_version": "housing-eligibility/1",
+        "reviewed_fields": {
+          "age": "대출접수일 현재 만19세 이상 만34세 이하의 세대주(예비 세대주 포함)",
+          "income": "부부합산 연50000000원 이하;혁신도시 이전기관 종사자·재개발 이주 세입자·다자녀·2자녀60000000원 이하;신혼75000000원 이하",
+          "residence": "확인필요",
+          "exceptions": "기본19~34세. 지정 중소·중견기업 취업/창업지원 대상 병역이행자는 복무기간 연장 최대39세(35~39세 자동통과 금지). 순자산345000000원 이하. 보증금3억원 이하;85㎡ 이하(25세 미만 단독60㎡). 계약금5% 이상. 신규 잔금일·전입일 중 빠른 날부터3개월;갱신일3개월 내. 과거 계약 한도예외 원문 참조.",
+          "exclusions": "유주택세대;기금·은행 전세·주택담보 중복대출(예외 있음);신용정보 제한;공공임대 거주(퇴거·해당 목적물 예외);약정 위반 기한이익상실3년 미경과"
+        },
+        "engine_projection": {
+          "mode": "MANUAL_REVIEW_ONLY",
+          "contract": "all/any/exclude",
+          "rich_rules_location": "required/exclusions",
+          "automatic_eligibility_ready": false
+        }
+      },
+      "eligibility_verified": false
+    },
+    "values": {
+      "eligibility_conditions": {
+        "all": [
+          {
+            "text": "지원 대상 확인: 무주택 청년 세대주"
+          },
+          {
+            "text": "소득·자산 확인: 부부합산 연50000000원 이하;혁신도시 이전기관 종사자·재개발 이주 세입자·다자녀·2자녀60000000원 이하;신혼75000000원 이하"
+          },
+          {
+            "text": "제외·예외 확인: 유주택세대;기금·은행 전세·주택담보 중복대출(예외 있음);신용정보 제한;공공임대 거주(퇴거·해당 목적물 예외);약정 위반 기한이익상실3년 미경과 / 기본19~34세. 지정 중소·중견기업 취업/창업지원 대상 병역이행자는 복무기간 연장 최대39세(35~39세 자동통과 금지). 순자산345000000원 이하. 보증금3억원 이하;85㎡ 이하(25세 미만 단독60㎡). 계약금5% 이상. 신규 잔금일·전입일 중 빠른 날부터3개월;갱신일3개월 내. 과거 계약 한도예외 원문 참조."
+          },
+          {
+            "text": "현재 모집·예산·공실·증빙과 담당기관 심사 확인 필요"
+          }
+        ],
+        "note": "부모·자녀·가구 역할은 동일 인물·가구에 바인딩. 중위소득과 도시근로자 기준을 구분. MANUAL_REVIEW/누락 사실은 UNKNOWN. 소개형은 실제 모집과 별개.",
+        "logic": "UNVERIFIED",
+        "exclude": [
+          {
+            "text": "유주택세대;기금·은행 전세·주택담보 중복대출(예외 있음);신용정보 제한;공공임대 거주(퇴거·해당 목적물 예외);약정 위반 기한이익상실3년 미경과"
+          }
+        ],
+        "required": [
+          {
+            "operator": "AND",
+            "conditions": [
+              {
+                "operator": "AND",
+                "conditions": [
+                  {
+                    "operator": "AND",
+                    "conditions": [
+                      {
+                        "operator": "OR",
+                        "conditions": [
+                          {
+                            "field": "is_household_head",
+                            "value": true,
+                            "anchor": "application_date",
+                            "subject": "applicant",
+                            "operator": "EQ"
+                          },
+                          {
+                            "field": "recognized_as_household_head",
+                            "value": true,
+                            "anchor": "application_date",
+                            "subject": "applicant",
+                            "operator": "EQ"
+                          }
+                        ]
+                      },
+                      {
+                        "field": "all_members_homeless",
+                        "value": true,
+                        "anchor": "application_date",
+                        "subject": "household",
+                        "operator": "EQ"
+                      },
+                      {
+                        "operator": "AND",
+                        "conditions": [
+                          {
+                            "field": "rental_contract_signed",
+                            "value": true,
+                            "anchor": "application_date",
+                            "subject": "contract",
+                            "operator": "EQ"
+                          },
+                          {
+                            "unit": "ratio",
+                            "field": "deposit_paid_ratio",
+                            "value": 0.05,
+                            "anchor": "application_date",
+                            "subject": "contract",
+                            "operator": "GTE"
+                          }
+                        ]
+                      },
+                      {
+                        "unit": "KRW",
+                        "field": "net_assets",
+                        "value": 345000000,
+                        "anchor": "application_date",
+                        "subject": "couple",
+                        "operator": "LTE"
+                      },
+                      {
+                        "text": "소득·자산 산정범위, 중복대출·신용·공공임대 예외 및 담보/신청시기/보증기관 심사 확인",
+                        "subject": "authority",
+                        "operator": "MANUAL_REVIEW"
+                      }
+                    ]
+                  },
+                  {
+                    "operator": "OR",
+                    "conditions": [
+                      {
+                        "unit": "years",
+                        "field": "age",
+                        "value": [
+                          19,
+                          34
+                        ],
+                        "anchor": "loan_receipt_date",
+                        "subject": "applicant",
+                        "operator": "BETWEEN"
+                      },
+                      {
+                        "operator": "AND",
+                        "conditions": [
+                          {
+                            "field": "qualifying_sme_employment_or_startup_support",
+                            "value": true,
+                            "anchor": "application_date",
+                            "subject": "applicant",
+                            "operator": "EQ"
+                          },
+                          {
+                            "field": "completed_military_service",
+                            "value": true,
+                            "anchor": "application_date",
+                            "subject": "applicant",
+                            "operator": "EQ"
+                          },
+                          {
+                            "unit": "years",
+                            "field": "age_after_approved_service_extension",
+                            "value": 34,
+                            "anchor": "application_date",
+                            "subject": "applicant",
+                            "operator": "LTE"
+                          },
+                          {
+                            "unit": "years",
+                            "field": "age",
+                            "value": 39,
+                            "anchor": "application_date",
+                            "subject": "applicant",
+                            "operator": "LTE"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "operator": "OR",
+                    "conditions": [
+                      {
+                        "unit": "KRW",
+                        "field": "annual_income",
+                        "value": 50000000,
+                        "anchor": "application_date",
+                        "subject": "couple",
+                        "operator": "LTE"
+                      },
+                      {
+                        "operator": "AND",
+                        "conditions": [
+                          {
+                            "field": "qualifying_income_limit_exception",
+                            "value": true,
+                            "anchor": "application_date",
+                            "subject": "household",
+                            "operator": "EQ"
+                          },
+                          {
+                            "unit": "KRW",
+                            "field": "annual_income",
+                            "value": 60000000,
+                            "anchor": "application_date",
+                            "subject": "couple",
+                            "operator": "LTE"
+                          }
+                        ]
+                      },
+                      {
+                        "operator": "AND",
+                        "conditions": [
+                          {
+                            "field": "newlywed",
+                            "value": true,
+                            "anchor": "application_date",
+                            "subject": "couple",
+                            "operator": "EQ"
+                          },
+                          {
+                            "unit": "KRW",
+                            "field": "annual_income",
+                            "value": 75000000,
+                            "anchor": "application_date",
+                            "subject": "couple",
+                            "operator": "LTE"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "text": "구조화한 일부 조건만으로 전체 자격 충족을 판정하지 않음; 원문 전체 증빙·예외 심사 필요",
+                "subject": "authority",
+                "operator": "MANUAL_REVIEW"
+              }
+            ]
+          }
+        ],
+        "exclusions": [
+          {
+            "text": "유주택세대;기금·은행 전세·주택담보 중복대출(예외 있음);신용정보 제한;공공임대 거주(퇴거·해당 목적물 예외);약정 위반 기한이익상실3년 미경과",
+            "subject": "authority",
+            "operator": "MANUAL_REVIEW"
+          }
+        ],
+        "source_ids": [
+          "9bb80a85-c06f-51e3-acb9-ab9904942749"
+        ],
+        "source_url": "https://nhuf.molit.go.kr/FP/FP05/FP0502/FP05020301.jsp",
+        "source_urls": [
+          "https://nhuf.molit.go.kr/FP/FP05/FP0502/FP05020301.jsp"
+        ],
+        "review_notes": {
+          "corrections": null,
+          "application_window": "확인필요 ~ 확인필요",
+          "collected_research_date": "2026-10-02",
+          "official_sources_rechecked_on": "2026-11-16"
+        },
+        "verification": "확인필요",
+        "schema_version": "housing-eligibility/1",
+        "reviewed_fields": {
+          "age": "대출접수일 현재 만19세 이상 만34세 이하의 세대주(예비 세대주 포함)",
+          "income": "부부합산 연50000000원 이하;혁신도시 이전기관 종사자·재개발 이주 세입자·다자녀·2자녀60000000원 이하;신혼75000000원 이하",
+          "residence": "확인필요",
+          "exceptions": "기본19~34세. 지정 중소·중견기업 취업/창업지원 대상 병역이행자는 복무기간 연장 최대39세(35~39세 자동통과 금지). 순자산345000000원 이하. 보증금3억원 이하;85㎡ 이하(25세 미만 단독60㎡). 계약금5% 이상. 신규 잔금일·전입일 중 빠른 날부터3개월;갱신일3개월 내. 과거 계약 한도예외 원문 참조.",
+          "exclusions": "유주택세대;기금·은행 전세·주택담보 중복대출(예외 있음);신용정보 제한;공공임대 거주(퇴거·해당 목적물 예외);약정 위반 기한이익상실3년 미경과"
+        },
+        "engine_projection": {
+          "mode": "MANUAL_REVIEW_ONLY",
+          "contract": "all/any/exclude",
+          "rich_rules_location": "required/exclusions",
+          "automatic_eligibility_ready": false
+        },
+        "condition_sections": [
+          {
+            "key": "age",
+            "label": "나이·기준일",
+            "text": "대출접수일 현재 만19세 이상 만34세 이하의 세대주(예비 세대주 포함)",
+            "verification": "NEEDS_REVIEW",
+            "rule_refs": [
+              "required.0.conditions.0.conditions.1.conditions.0",
+              "required.0.conditions.0.conditions.1.conditions.1.conditions.3"
+            ]
+          },
+          {
+            "key": "residence",
+            "label": "거주지·대상 지역",
+            "text": "확인필요",
+            "verification": "NEEDS_REVIEW",
+            "rule_refs": []
+          },
+          {
+            "key": "status",
+            "label": "지원 대상·현재 상태",
+            "text": "무주택 청년 세대주",
+            "verification": "NEEDS_REVIEW",
+            "rule_refs": []
+          },
+          {
+            "key": "housing",
+            "label": "주거·계약 조건",
+            "text": "유형별 확인 항목: 세대주 여부 / 인정되는 세대주 대체 경로 / 세대원 전체의 주택 소유 여부 / 임대차계약 체결 여부 / 모든 항목이 필수라는 뜻은 아닙니다. 대상 범위와 대체 경로를 함께 확인해 주세요.",
+            "verification": "NEEDS_REVIEW",
+            "rule_refs": [
+              "required.0.conditions.0.conditions.0.conditions.0.conditions.0",
+              "required.0.conditions.0.conditions.0.conditions.0.conditions.1",
+              "required.0.conditions.0.conditions.0.conditions.1",
+              "required.0.conditions.0.conditions.0.conditions.2.conditions.0"
+            ]
+          },
+          {
+            "key": "income",
+            "label": "소득·재산",
+            "text": "부부합산 연50000000원 이하;혁신도시 이전기관 종사자·재개발 이주 세입자·다자녀·2자녀60000000원 이하;신혼75000000원 이하",
+            "verification": "NEEDS_REVIEW",
+            "rule_refs": []
+          },
+          {
+            "key": "exclusions",
+            "label": "제외·중복지원",
+            "text": "유주택세대;기금·은행 전세·주택담보 중복대출(예외 있음);신용정보 제한;공공임대 거주(퇴거·해당 목적물 예외);약정 위반 기한이익상실3년 미경과",
+            "verification": "NEEDS_REVIEW",
+            "rule_refs": []
+          },
+          {
+            "key": "exceptions",
+            "label": "유형별 예외·추가 확인",
+            "text": "기본19~34세. 지정 중소·중견기업 취업/창업지원 대상 병역이행자는 복무기간 연장 최대39세(35~39세 자동통과 금지). 순자산345000000원 이하. 보증금3억원 이하;85㎡ 이하(25세 미만 단독60㎡). 계약금5% 이상. 신규 잔금일·전입일 중 빠른 날부터3개월;갱신일3개월 내. 과거 계약 한도예외 원문 참조. / 공급 유형, 기준일, 증빙과 현재 모집 여부를 확인해 주세요.",
+            "verification": "NEEDS_REVIEW",
+            "rule_refs": []
+          }
+        ],
+        "profile_contract": {
+          "version": "housing-profile/1",
+          "mode": "PARTIAL_REVIEW",
+          "checks": [
+            {
+              "field": "age",
+              "op": "gte",
+              "value": 19,
+              "label": "본인 만 19세 이상 · 상한은 병역 특례 별도 확인",
+              "subject": "applicant",
+              "verification": "SOURCE_CONFIRMED",
+              "evidence": {
+                "source_url": "https://nhuf.molit.go.kr/FP/FP05/FP0502/FP05020301.jsp",
+                "quote": "만 19세 이상 &sim; 만 34세 이하의 세대주(예비 세대주 포함)",
+                "checked_at": "2026-11-18T01:09:20.549Z",
+                "body_sha256": "7befd2b6f18bdea7976b91553a6c20cb30d75ab56b28efb68539724bb524adfc"
+              }
+            }
+          ],
+          "overall_verdict": "CHECK",
+          "reason": "확인된 일부 조건만 프로필과 비교합니다. 소득·가구·증빙·예외를 포함한 전체 자격은 확인 필요입니다."
+        },
+        "condition_review": {
+          "organized_on": "2026-11-18",
+          "basis": "기존 정책별 검토 조건의 항목 분리 + 공식 출처 재접근. FETCHED는 전체 자격 검증을 뜻하지 않음.",
+          "sources": [
+            {
+              "source_id": "9bb80a85-c06f-51e3-acb9-ab9904942749",
+              "source_url": "https://nhuf.molit.go.kr/FP/FP05/FP0502/FP05020301.jsp",
+              "checked_at": "2026-11-18T01:09:20.549Z",
+              "fetch_status": "FETCHED_NOT_FULLY_VERIFIED",
+              "body_sha256": "7befd2b6f18bdea7976b91553a6c20cb30d75ab56b28efb68539724bb524adfc"
+            }
+          ],
+          "preserved_logic": "required/exclusions의 AND·OR·대상자·단위·기준일을 그대로 보존",
+          "full_eligibility_verified": false
+        }
+      }
+    }
+  },
+  {
+    "before": {
+      "policy_id": "852c1f99-b2c6-5c62-ba82-271224643e92",
+      "title": "청년전용 보증부월세대출",
+      "collection_domain": "HOUSING",
+      "item_type": "POLICY",
+      "target_summary": "무주택 청년 단독세대주",
+      "eligibility_conditions": {
+        "all": [
+          {
+            "text": "지원 대상 확인: 무주택 청년 단독세대주"
+          },
+          {
+            "text": "소득·자산 확인: 부부합산 연소득50000000원 이하"
+          },
+          {
+            "text": "제외·예외 확인: 유주택세대;중복 주거대출(예외 원문);신용정보 제한;공공임대 입주;쉐어하우스;제2금융권 전세대출 대환;약정위반 제한 / 순자산345000000원 이하;60㎡ 이하;보증금65000000원·월세700000원 이하;계약금5% 이상;신규 보증금대출70% 및 보증금+월세대출 합계80% 한도;잔금일·전입일 중 빠른 날 또는 갱신일부터3개월 이내;25개월,최장10년5개월."
+          },
+          {
+            "text": "현재 모집·예산·공실·증빙과 담당기관 심사 확인 필요"
+          }
+        ],
+        "note": "부모·자녀·가구 역할은 동일 인물·가구에 바인딩. 중위소득과 도시근로자 기준을 구분. MANUAL_REVIEW/누락 사실은 UNKNOWN. 소개형은 실제 모집과 별개.",
+        "logic": "UNVERIFIED",
+        "exclude": [
+          {
+            "text": "유주택세대;중복 주거대출(예외 원문);신용정보 제한;공공임대 입주;쉐어하우스;제2금융권 전세대출 대환;약정위반 제한"
+          }
+        ],
+        "required": [
+          {
+            "operator": "AND",
+            "conditions": [
+              {
+                "operator": "AND",
+                "conditions": [
+                  {
+                    "operator": "AND",
+                    "conditions": [
+                      {
+                        "operator": "OR",
+                        "conditions": [
+                          {
+                            "field": "is_household_head",
+                            "value": true,
+                            "anchor": "application_date",
+                            "subject": "applicant",
+                            "operator": "EQ"
+                          },
+                          {
+                            "field": "recognized_as_household_head",
+                            "value": true,
+                            "anchor": "application_date",
+                            "subject": "applicant",
+                            "operator": "EQ"
+                          }
+                        ]
+                      },
+                      {
+                        "field": "all_members_homeless",
+                        "value": true,
+                        "anchor": "application_date",
+                        "subject": "household",
+                        "operator": "EQ"
+                      },
+                      {
+                        "operator": "AND",
+                        "conditions": [
+                          {
+                            "field": "rental_contract_signed",
+                            "value": true,
+                            "anchor": "application_date",
+                            "subject": "contract",
+                            "operator": "EQ"
+                          },
+                          {
+                            "unit": "ratio",
+                            "field": "deposit_paid_ratio",
+                            "value": 0.05,
+                            "anchor": "application_date",
+                            "subject": "contract",
+                            "operator": "GTE"
+                          }
+                        ]
+                      },
+                      {
+                        "unit": "KRW",
+                        "field": "net_assets",
+                        "value": 345000000,
+                        "anchor": "application_date",
+                        "subject": "couple",
+                        "operator": "LTE"
+                      },
+                      {
+                        "text": "소득·자산 산정범위, 중복대출·신용·공공임대 예외 및 담보/신청시기/보증기관 심사 확인",
+                        "subject": "authority",
+                        "operator": "MANUAL_REVIEW"
+                      }
+                    ]
+                  },
+                  {
+                    "unit": "years",
+                    "field": "age",
+                    "value": 19,
+                    "anchor": "application_date",
+                    "subject": "applicant",
+                    "operator": "GTE"
+                  },
+                  {
+                    "unit": "KRW",
+                    "field": "annual_income",
+                    "value": 50000000,
+                    "anchor": "application_date",
+                    "subject": "couple",
+                    "operator": "LTE"
+                  },
+                  {
+                    "text": "상품 요약의19~34세와 상세의 성년 단독세대주 표기를 함께 확인. 보증금/월세 대출비율 분리",
+                    "subject": "authority",
+                    "operator": "MANUAL_REVIEW"
+                  }
+                ]
+              },
+              {
+                "text": "구조화한 일부 조건만으로 전체 자격 충족을 판정하지 않음; 원문 전체 증빙·예외 심사 필요",
+                "subject": "authority",
+                "operator": "MANUAL_REVIEW"
+              }
+            ]
+          }
+        ],
+        "exclusions": [
+          {
+            "text": "유주택세대;중복 주거대출(예외 원문);신용정보 제한;공공임대 입주;쉐어하우스;제2금융권 전세대출 대환;약정위반 제한",
+            "subject": "authority",
+            "operator": "MANUAL_REVIEW"
+          }
+        ],
+        "source_ids": [
+          "fa1c809a-80cd-53d0-889f-9eed6c3fe38a"
+        ],
+        "source_url": "https://nhuf.molit.go.kr/FP/FP05/FP0502/FP05020701.jsp",
+        "source_urls": [
+          "https://nhuf.molit.go.kr/FP/FP05/FP0502/FP05020701.jsp"
+        ],
+        "review_notes": {
+          "corrections": "요약19~34세와 상세 성년 단독세대주 문구 차이는 은행 확인. 나이 scalar를 비워둠.",
+          "application_window": "확인필요 ~ 확인필요",
+          "collected_research_date": "2026-10-02",
+          "official_sources_rechecked_on": "2026-11-16"
+        },
+        "verification": "확인필요",
+        "schema_version": "housing-eligibility/1",
+        "reviewed_fields": {
+          "age": "만 19세 이상 ~ 만 34세 이하 청년",
+          "income": "부부합산 연소득50000000원 이하",
+          "residence": "확인필요",
+          "exceptions": "순자산345000000원 이하;60㎡ 이하;보증금65000000원·월세700000원 이하;계약금5% 이상;신규 보증금대출70% 및 보증금+월세대출 합계80% 한도;잔금일·전입일 중 빠른 날 또는 갱신일부터3개월 이내;25개월,최장10년5개월.",
+          "exclusions": "유주택세대;중복 주거대출(예외 원문);신용정보 제한;공공임대 입주;쉐어하우스;제2금융권 전세대출 대환;약정위반 제한"
+        },
+        "engine_projection": {
+          "mode": "MANUAL_REVIEW_ONLY",
+          "contract": "all/any/exclude",
+          "rich_rules_location": "required/exclusions",
+          "automatic_eligibility_ready": false
+        }
+      },
+      "eligibility_verified": false
+    },
+    "values": {
+      "eligibility_conditions": {
+        "all": [
+          {
+            "text": "지원 대상 확인: 무주택 청년 단독세대주"
+          },
+          {
+            "text": "소득·자산 확인: 부부합산 연소득50000000원 이하"
+          },
+          {
+            "text": "제외·예외 확인: 유주택세대;중복 주거대출(예외 원문);신용정보 제한;공공임대 입주;쉐어하우스;제2금융권 전세대출 대환;약정위반 제한 / 순자산345000000원 이하;60㎡ 이하;보증금65000000원·월세700000원 이하;계약금5% 이상;신규 보증금대출70% 및 보증금+월세대출 합계80% 한도;잔금일·전입일 중 빠른 날 또는 갱신일부터3개월 이내;25개월,최장10년5개월."
+          },
+          {
+            "text": "현재 모집·예산·공실·증빙과 담당기관 심사 확인 필요"
+          }
+        ],
+        "note": "부모·자녀·가구 역할은 동일 인물·가구에 바인딩. 중위소득과 도시근로자 기준을 구분. MANUAL_REVIEW/누락 사실은 UNKNOWN. 소개형은 실제 모집과 별개.",
+        "logic": "UNVERIFIED",
+        "exclude": [
+          {
+            "text": "유주택세대;중복 주거대출(예외 원문);신용정보 제한;공공임대 입주;쉐어하우스;제2금융권 전세대출 대환;약정위반 제한"
+          }
+        ],
+        "required": [
+          {
+            "operator": "AND",
+            "conditions": [
+              {
+                "operator": "AND",
+                "conditions": [
+                  {
+                    "operator": "AND",
+                    "conditions": [
+                      {
+                        "operator": "OR",
+                        "conditions": [
+                          {
+                            "field": "is_household_head",
+                            "value": true,
+                            "anchor": "application_date",
+                            "subject": "applicant",
+                            "operator": "EQ"
+                          },
+                          {
+                            "field": "recognized_as_household_head",
+                            "value": true,
+                            "anchor": "application_date",
+                            "subject": "applicant",
+                            "operator": "EQ"
+                          }
+                        ]
+                      },
+                      {
+                        "field": "all_members_homeless",
+                        "value": true,
+                        "anchor": "application_date",
+                        "subject": "household",
+                        "operator": "EQ"
+                      },
+                      {
+                        "operator": "AND",
+                        "conditions": [
+                          {
+                            "field": "rental_contract_signed",
+                            "value": true,
+                            "anchor": "application_date",
+                            "subject": "contract",
+                            "operator": "EQ"
+                          },
+                          {
+                            "unit": "ratio",
+                            "field": "deposit_paid_ratio",
+                            "value": 0.05,
+                            "anchor": "application_date",
+                            "subject": "contract",
+                            "operator": "GTE"
+                          }
+                        ]
+                      },
+                      {
+                        "unit": "KRW",
+                        "field": "net_assets",
+                        "value": 345000000,
+                        "anchor": "application_date",
+                        "subject": "couple",
+                        "operator": "LTE"
+                      },
+                      {
+                        "text": "소득·자산 산정범위, 중복대출·신용·공공임대 예외 및 담보/신청시기/보증기관 심사 확인",
+                        "subject": "authority",
+                        "operator": "MANUAL_REVIEW"
+                      }
+                    ]
+                  },
+                  {
+                    "unit": "years",
+                    "field": "age",
+                    "value": 19,
+                    "anchor": "application_date",
+                    "subject": "applicant",
+                    "operator": "GTE"
+                  },
+                  {
+                    "unit": "KRW",
+                    "field": "annual_income",
+                    "value": 50000000,
+                    "anchor": "application_date",
+                    "subject": "couple",
+                    "operator": "LTE"
+                  },
+                  {
+                    "text": "상품 요약의19~34세와 상세의 성년 단독세대주 표기를 함께 확인. 보증금/월세 대출비율 분리",
+                    "subject": "authority",
+                    "operator": "MANUAL_REVIEW"
+                  }
+                ]
+              },
+              {
+                "text": "구조화한 일부 조건만으로 전체 자격 충족을 판정하지 않음; 원문 전체 증빙·예외 심사 필요",
+                "subject": "authority",
+                "operator": "MANUAL_REVIEW"
+              }
+            ]
+          }
+        ],
+        "exclusions": [
+          {
+            "text": "유주택세대;중복 주거대출(예외 원문);신용정보 제한;공공임대 입주;쉐어하우스;제2금융권 전세대출 대환;약정위반 제한",
+            "subject": "authority",
+            "operator": "MANUAL_REVIEW"
+          }
+        ],
+        "source_ids": [
+          "fa1c809a-80cd-53d0-889f-9eed6c3fe38a"
+        ],
+        "source_url": "https://nhuf.molit.go.kr/FP/FP05/FP0502/FP05020701.jsp",
+        "source_urls": [
+          "https://nhuf.molit.go.kr/FP/FP05/FP0502/FP05020701.jsp"
+        ],
+        "review_notes": {
+          "corrections": "요약19~34세와 상세 성년 단독세대주 문구 차이는 은행 확인. 나이 scalar를 비워둠.",
+          "application_window": "확인필요 ~ 확인필요",
+          "collected_research_date": "2026-10-02",
+          "official_sources_rechecked_on": "2026-11-16"
+        },
+        "verification": "확인필요",
+        "schema_version": "housing-eligibility/1",
+        "reviewed_fields": {
+          "age": "만 19세 이상 ~ 만 34세 이하 청년",
+          "income": "부부합산 연소득50000000원 이하",
+          "residence": "확인필요",
+          "exceptions": "순자산345000000원 이하;60㎡ 이하;보증금65000000원·월세700000원 이하;계약금5% 이상;신규 보증금대출70% 및 보증금+월세대출 합계80% 한도;잔금일·전입일 중 빠른 날 또는 갱신일부터3개월 이내;25개월,최장10년5개월.",
+          "exclusions": "유주택세대;중복 주거대출(예외 원문);신용정보 제한;공공임대 입주;쉐어하우스;제2금융권 전세대출 대환;약정위반 제한"
+        },
+        "engine_projection": {
+          "mode": "MANUAL_REVIEW_ONLY",
+          "contract": "all/any/exclude",
+          "rich_rules_location": "required/exclusions",
+          "automatic_eligibility_ready": false
+        },
+        "condition_sections": [
+          {
+            "key": "age",
+            "label": "나이·기준일",
+            "text": "만 19세 이상 ~ 만 34세 이하 청년",
+            "verification": "NEEDS_REVIEW",
+            "rule_refs": [
+              "required.0.conditions.0.conditions.1"
+            ]
+          },
+          {
+            "key": "residence",
+            "label": "거주지·대상 지역",
+            "text": "확인필요",
+            "verification": "NEEDS_REVIEW",
+            "rule_refs": []
+          },
+          {
+            "key": "status",
+            "label": "지원 대상·현재 상태",
+            "text": "무주택 청년 단독세대주",
+            "verification": "NEEDS_REVIEW",
+            "rule_refs": []
+          },
+          {
+            "key": "housing",
+            "label": "주거·계약 조건",
+            "text": "유형별 확인 항목: 세대주 여부 / 인정되는 세대주 대체 경로 / 세대원 전체의 주택 소유 여부 / 임대차계약 체결 여부 / 모든 항목이 필수라는 뜻은 아닙니다. 대상 범위와 대체 경로를 함께 확인해 주세요.",
+            "verification": "NEEDS_REVIEW",
+            "rule_refs": [
+              "required.0.conditions.0.conditions.0.conditions.0.conditions.0",
+              "required.0.conditions.0.conditions.0.conditions.0.conditions.1",
+              "required.0.conditions.0.conditions.0.conditions.1",
+              "required.0.conditions.0.conditions.0.conditions.2.conditions.0"
+            ]
+          },
+          {
+            "key": "income",
+            "label": "소득·재산",
+            "text": "부부합산 연소득50000000원 이하",
+            "verification": "NEEDS_REVIEW",
+            "rule_refs": []
+          },
+          {
+            "key": "exclusions",
+            "label": "제외·중복지원",
+            "text": "유주택세대;중복 주거대출(예외 원문);신용정보 제한;공공임대 입주;쉐어하우스;제2금융권 전세대출 대환;약정위반 제한",
+            "verification": "NEEDS_REVIEW",
+            "rule_refs": []
+          },
+          {
+            "key": "exceptions",
+            "label": "유형별 예외·추가 확인",
+            "text": "순자산345000000원 이하;60㎡ 이하;보증금65000000원·월세700000원 이하;계약금5% 이상;신규 보증금대출70% 및 보증금+월세대출 합계80% 한도;잔금일·전입일 중 빠른 날 또는 갱신일부터3개월 이내;25개월,최장10년5개월. / 요약19~34세와 상세 성년 단독세대주 문구 차이는 은행 확인. 나이 scalar를 비워둠. / 공급 유형, 기준일, 증빙과 현재 모집 여부를 확인해 주세요.",
+            "verification": "NEEDS_REVIEW",
+            "rule_refs": []
+          }
+        ],
+        "profile_contract": {
+          "version": "housing-profile/1",
+          "mode": "PARTIAL_REVIEW",
+          "checks": [
+            {
+              "field": "age",
+              "op": "gte",
+              "value": 19,
+              "label": "본인 만 19세 이상 · 전체 연령 기준은 공고 확인",
+              "subject": "applicant",
+              "verification": "SOURCE_CONFIRMED",
+              "evidence": {
+                "source_url": "https://nhuf.molit.go.kr/FP/FP05/FP0502/FP05020701.jsp",
+                "quote": "만 19세 이상 ~ 만 34세 이하 청년",
+                "checked_at": "2026-11-18T01:09:20.498Z",
+                "body_sha256": "90092dbf0653c664de64efdd9a1f9787789b821eb5992b31ad4448d6f7602d01"
+              }
+            }
+          ],
+          "overall_verdict": "CHECK",
+          "reason": "확인된 일부 조건만 프로필과 비교합니다. 소득·가구·증빙·예외를 포함한 전체 자격은 확인 필요입니다."
+        },
+        "condition_review": {
+          "organized_on": "2026-11-18",
+          "basis": "기존 정책별 검토 조건의 항목 분리 + 공식 출처 재접근. FETCHED는 전체 자격 검증을 뜻하지 않음.",
+          "sources": [
+            {
+              "source_id": "fa1c809a-80cd-53d0-889f-9eed6c3fe38a",
+              "source_url": "https://nhuf.molit.go.kr/FP/FP05/FP0502/FP05020701.jsp",
+              "checked_at": "2026-11-18T01:09:20.498Z",
+              "fetch_status": "FETCHED_NOT_FULLY_VERIFIED",
+              "body_sha256": "90092dbf0653c664de64efdd9a1f9787789b821eb5992b31ad4448d6f7602d01"
+            }
+          ],
+          "preserved_logic": "required/exclusions의 AND·OR·대상자·단위·기준일을 그대로 보존",
+          "full_eligibility_verified": false
+        }
+      }
+    }
+  },
+  {
+    "before": {
+      "policy_id": "e74ab4f1-efd0-53a2-889a-cb4215e488bb",
+      "title": "LH 기숙사형 청년주택 공급(기숙사형 매입임대)",
+      "collection_domain": "HOUSING",
+      "item_type": "POLICY",
+      "target_summary": "미혼무주택 대학생·대학원생 OR 3순위19~39세청년",
+      "eligibility_conditions": {
+        "all": [
+          {
+            "text": "지원 대상 확인: 미혼무주택 대학생·대학원생 OR 3순위19~39세청년"
+          },
+          {
+            "text": "소득·자산 확인: 1순위생계·의료·주거급여수급가구 OR지원한부모 OR차상위;2순위본인+부모도시근로자100%;3순위본인100%"
+          },
+          {
+            "text": "제외·예외 확인: 혼인;본인유주택;순위별미충족;중복신청. 부모유주택자체는제외사유아님 / 19~39세상한은3순위일반청년경로;대학원생제외금지. 온통청년요약자산3.45억/차4542만원은확인한LH가이드·2026회차에서일괄자격으로채택하지않음"
+          },
+          {
+            "text": "현재 모집·예산·공실·증빙과 담당기관 심사 확인 필요"
+          }
+        ],
+        "note": "부모·자녀·가구 역할은 동일 인물·가구에 바인딩. 중위소득과 도시근로자 기준을 구분. MANUAL_REVIEW/누락 사실은 UNKNOWN. 소개형은 실제 모집과 별개.",
+        "logic": "UNVERIFIED",
+        "exclude": [
+          {
+            "text": "혼인;본인유주택;순위별미충족;중복신청. 부모유주택자체는제외사유아님"
+          }
+        ],
+        "required": [
+          {
+            "operator": "AND",
+            "conditions": [
+              {
+                "operator": "AND",
+                "conditions": [
+                  {
+                    "field": "owns_home",
+                    "value": false,
+                    "anchor": "application_date",
+                    "subject": "applicant",
+                    "operator": "EQ"
+                  },
+                  {
+                    "field": "is_married",
+                    "value": false,
+                    "anchor": "application_date",
+                    "subject": "applicant",
+                    "operator": "EQ"
+                  },
+                  {
+                    "operator": "OR",
+                    "conditions": [
+                      {
+                        "operator": "AND",
+                        "conditions": [
+                          {
+                            "operator": "OR",
+                            "conditions": [
+                              {
+                                "operator": "OR",
+                                "conditions": [
+                                  {
+                                    "field": "university_student",
+                                    "value": true,
+                                    "anchor": "application_date",
+                                    "subject": "applicant",
+                                    "operator": "EQ"
+                                  },
+                                  {
+                                    "field": "scheduled_university_entry_or_return",
+                                    "value": true,
+                                    "anchor": "application_date",
+                                    "subject": "applicant",
+                                    "operator": "EQ"
+                                  }
+                                ]
+                              },
+                              {
+                                "field": "graduate_student",
+                                "value": true,
+                                "anchor": "application_date",
+                                "subject": "applicant",
+                                "operator": "EQ"
+                              }
+                            ]
+                          },
+                          {
+                            "operator": "OR",
+                            "conditions": [
+                              {
+                                "field": "livelihood_benefit",
+                                "value": true,
+                                "anchor": "application_date",
+                                "subject": "household",
+                                "operator": "EQ"
+                              },
+                              {
+                                "field": "medical_benefit",
+                                "value": true,
+                                "anchor": "application_date",
+                                "subject": "household",
+                                "operator": "EQ"
+                              },
+                              {
+                                "field": "housing_benefit",
+                                "value": true,
+                                "anchor": "application_date",
+                                "subject": "household",
+                                "operator": "EQ"
+                              },
+                              {
+                                "field": "statutory_single_parent",
+                                "value": true,
+                                "anchor": "application_date",
+                                "subject": "household",
+                                "operator": "EQ"
+                              },
+                              {
+                                "field": "near_poor",
+                                "value": true,
+                                "anchor": "application_date",
+                                "subject": "household",
+                                "operator": "EQ"
+                              }
+                            ]
+                          }
+                        ]
+                      },
+                      {
+                        "operator": "AND",
+                        "conditions": [
+                          {
+                            "operator": "OR",
+                            "conditions": [
+                              {
+                                "operator": "OR",
+                                "conditions": [
+                                  {
+                                    "field": "university_student",
+                                    "value": true,
+                                    "anchor": "application_date",
+                                    "subject": "applicant",
+                                    "operator": "EQ"
+                                  },
+                                  {
+                                    "field": "scheduled_university_entry_or_return",
+                                    "value": true,
+                                    "anchor": "application_date",
+                                    "subject": "applicant",
+                                    "operator": "EQ"
+                                  }
+                                ]
+                              },
+                              {
+                                "field": "graduate_student",
+                                "value": true,
+                                "anchor": "application_date",
+                                "subject": "applicant",
+                                "operator": "EQ"
+                              }
+                            ]
+                          },
+                          {
+                            "unit": "ratio",
+                            "field": "income_to_urban_worker_average_ratio",
+                            "value": 1,
+                            "anchor": "application_date",
+                            "subject": "applicant_and_parents",
+                            "operator": "LTE"
+                          }
+                        ]
+                      },
+                      {
+                        "operator": "AND",
+                        "conditions": [
+                          {
+                            "operator": "OR",
+                            "conditions": [
+                              {
+                                "operator": "OR",
+                                "conditions": [
+                                  {
+                                    "field": "university_student",
+                                    "value": true,
+                                    "anchor": "application_date",
+                                    "subject": "applicant",
+                                    "operator": "EQ"
+                                  },
+                                  {
+                                    "field": "scheduled_university_entry_or_return",
+                                    "value": true,
+                                    "anchor": "application_date",
+                                    "subject": "applicant",
+                                    "operator": "EQ"
+                                  }
+                                ]
+                              },
+                              {
+                                "field": "graduate_student",
+                                "value": true,
+                                "anchor": "application_date",
+                                "subject": "applicant",
+                                "operator": "EQ"
+                              },
+                              {
+                                "unit": "years",
+                                "field": "age",
+                                "value": [
+                                  19,
+                                  39
+                                ],
+                                "anchor": "application_date",
+                                "subject": "applicant",
+                                "operator": "BETWEEN"
+                              }
+                            ]
+                          },
+                          {
+                            "unit": "ratio",
+                            "field": "income_to_urban_worker_average_ratio",
+                            "value": 1,
+                            "anchor": "application_date",
+                            "subject": "applicant",
+                            "operator": "LTE"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "text": "기숙사형에 청년매입임대 자산상한을 차용하지 않음. 개별 지역 공고·입복학예정 기준 확인",
+                    "subject": "authority",
+                    "operator": "MANUAL_REVIEW"
+                  }
+                ]
+              },
+              {
+                "text": "구조화한 일부 조건만으로 전체 자격 충족을 판정하지 않음; 원문 전체 증빙·예외 심사 필요",
+                "subject": "authority",
+                "operator": "MANUAL_REVIEW"
+              }
+            ]
+          }
+        ],
+        "exclusions": [
+          {
+            "text": "혼인;본인유주택;순위별미충족;중복신청. 부모유주택자체는제외사유아님",
+            "subject": "authority",
+            "operator": "MANUAL_REVIEW"
+          }
+        ],
+        "source_ids": [
+          "3bde000c-dc2e-503f-a5e2-2a2ae536d37c"
+        ],
+        "source_url": "https://apply.lh.or.kr/lhapply/cm/cntnts/cntntsView.do?mi=1150&cntntsId=201269",
+        "source_urls": [
+          "https://apply.lh.or.kr/lhapply/cm/cntnts/cntntsView.do?mi=1150&cntntsId=201269"
+        ],
+        "review_notes": {
+          "corrections": null,
+          "application_window": "확인필요 ~ 확인필요",
+          "collected_research_date": "2026-10-02",
+          "official_sources_rechecked_on": "2026-11-16"
+        },
+        "verification": "확인필요",
+        "schema_version": "housing-eligibility/1",
+        "reviewed_fields": {
+          "age": "만19세이상만39세이하(3순위에한함);대학생·대학원생경로별도",
+          "income": "1순위생계·의료·주거급여수급가구 OR지원한부모 OR차상위;2순위본인+부모도시근로자100%;3순위본인100%",
+          "residence": "전국제도;지원주택위치·모집단위는지역본부공고별",
+          "exceptions": "19~39세상한은3순위일반청년경로;대학원생제외금지. 온통청년요약자산3.45억/차4542만원은확인한LH가이드·2026회차에서일괄자격으로채택하지않음",
+          "exclusions": "혼인;본인유주택;순위별미충족;중복신청. 부모유주택자체는제외사유아님"
+        },
+        "engine_projection": {
+          "mode": "MANUAL_REVIEW_ONLY",
+          "contract": "all/any/exclude",
+          "rich_rules_location": "required/exclusions",
+          "automatic_eligibility_ready": false
+        }
+      },
+      "eligibility_verified": false
+    },
+    "values": {
+      "eligibility_conditions": {
+        "all": [
+          {
+            "text": "지원 대상 확인: 미혼무주택 대학생·대학원생 OR 3순위19~39세청년"
+          },
+          {
+            "text": "소득·자산 확인: 1순위생계·의료·주거급여수급가구 OR지원한부모 OR차상위;2순위본인+부모도시근로자100%;3순위본인100%"
+          },
+          {
+            "text": "제외·예외 확인: 혼인;본인유주택;순위별미충족;중복신청. 부모유주택자체는제외사유아님 / 19~39세상한은3순위일반청년경로;대학원생제외금지. 온통청년요약자산3.45억/차4542만원은확인한LH가이드·2026회차에서일괄자격으로채택하지않음"
+          },
+          {
+            "text": "현재 모집·예산·공실·증빙과 담당기관 심사 확인 필요"
+          }
+        ],
+        "note": "부모·자녀·가구 역할은 동일 인물·가구에 바인딩. 중위소득과 도시근로자 기준을 구분. MANUAL_REVIEW/누락 사실은 UNKNOWN. 소개형은 실제 모집과 별개.",
+        "logic": "UNVERIFIED",
+        "exclude": [
+          {
+            "text": "혼인;본인유주택;순위별미충족;중복신청. 부모유주택자체는제외사유아님"
+          }
+        ],
+        "required": [
+          {
+            "operator": "AND",
+            "conditions": [
+              {
+                "operator": "AND",
+                "conditions": [
+                  {
+                    "field": "owns_home",
+                    "value": false,
+                    "anchor": "application_date",
+                    "subject": "applicant",
+                    "operator": "EQ"
+                  },
+                  {
+                    "field": "is_married",
+                    "value": false,
+                    "anchor": "application_date",
+                    "subject": "applicant",
+                    "operator": "EQ"
+                  },
+                  {
+                    "operator": "OR",
+                    "conditions": [
+                      {
+                        "operator": "AND",
+                        "conditions": [
+                          {
+                            "operator": "OR",
+                            "conditions": [
+                              {
+                                "operator": "OR",
+                                "conditions": [
+                                  {
+                                    "field": "university_student",
+                                    "value": true,
+                                    "anchor": "application_date",
+                                    "subject": "applicant",
+                                    "operator": "EQ"
+                                  },
+                                  {
+                                    "field": "scheduled_university_entry_or_return",
+                                    "value": true,
+                                    "anchor": "application_date",
+                                    "subject": "applicant",
+                                    "operator": "EQ"
+                                  }
+                                ]
+                              },
+                              {
+                                "field": "graduate_student",
+                                "value": true,
+                                "anchor": "application_date",
+                                "subject": "applicant",
+                                "operator": "EQ"
+                              }
+                            ]
+                          },
+                          {
+                            "operator": "OR",
+                            "conditions": [
+                              {
+                                "field": "livelihood_benefit",
+                                "value": true,
+                                "anchor": "application_date",
+                                "subject": "household",
+                                "operator": "EQ"
+                              },
+                              {
+                                "field": "medical_benefit",
+                                "value": true,
+                                "anchor": "application_date",
+                                "subject": "household",
+                                "operator": "EQ"
+                              },
+                              {
+                                "field": "housing_benefit",
+                                "value": true,
+                                "anchor": "application_date",
+                                "subject": "household",
+                                "operator": "EQ"
+                              },
+                              {
+                                "field": "statutory_single_parent",
+                                "value": true,
+                                "anchor": "application_date",
+                                "subject": "household",
+                                "operator": "EQ"
+                              },
+                              {
+                                "field": "near_poor",
+                                "value": true,
+                                "anchor": "application_date",
+                                "subject": "household",
+                                "operator": "EQ"
+                              }
+                            ]
+                          }
+                        ]
+                      },
+                      {
+                        "operator": "AND",
+                        "conditions": [
+                          {
+                            "operator": "OR",
+                            "conditions": [
+                              {
+                                "operator": "OR",
+                                "conditions": [
+                                  {
+                                    "field": "university_student",
+                                    "value": true,
+                                    "anchor": "application_date",
+                                    "subject": "applicant",
+                                    "operator": "EQ"
+                                  },
+                                  {
+                                    "field": "scheduled_university_entry_or_return",
+                                    "value": true,
+                                    "anchor": "application_date",
+                                    "subject": "applicant",
+                                    "operator": "EQ"
+                                  }
+                                ]
+                              },
+                              {
+                                "field": "graduate_student",
+                                "value": true,
+                                "anchor": "application_date",
+                                "subject": "applicant",
+                                "operator": "EQ"
+                              }
+                            ]
+                          },
+                          {
+                            "unit": "ratio",
+                            "field": "income_to_urban_worker_average_ratio",
+                            "value": 1,
+                            "anchor": "application_date",
+                            "subject": "applicant_and_parents",
+                            "operator": "LTE"
+                          }
+                        ]
+                      },
+                      {
+                        "operator": "AND",
+                        "conditions": [
+                          {
+                            "operator": "OR",
+                            "conditions": [
+                              {
+                                "operator": "OR",
+                                "conditions": [
+                                  {
+                                    "field": "university_student",
+                                    "value": true,
+                                    "anchor": "application_date",
+                                    "subject": "applicant",
+                                    "operator": "EQ"
+                                  },
+                                  {
+                                    "field": "scheduled_university_entry_or_return",
+                                    "value": true,
+                                    "anchor": "application_date",
+                                    "subject": "applicant",
+                                    "operator": "EQ"
+                                  }
+                                ]
+                              },
+                              {
+                                "field": "graduate_student",
+                                "value": true,
+                                "anchor": "application_date",
+                                "subject": "applicant",
+                                "operator": "EQ"
+                              },
+                              {
+                                "unit": "years",
+                                "field": "age",
+                                "value": [
+                                  19,
+                                  39
+                                ],
+                                "anchor": "application_date",
+                                "subject": "applicant",
+                                "operator": "BETWEEN"
+                              }
+                            ]
+                          },
+                          {
+                            "unit": "ratio",
+                            "field": "income_to_urban_worker_average_ratio",
+                            "value": 1,
+                            "anchor": "application_date",
+                            "subject": "applicant",
+                            "operator": "LTE"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "text": "기숙사형에 청년매입임대 자산상한을 차용하지 않음. 개별 지역 공고·입복학예정 기준 확인",
+                    "subject": "authority",
+                    "operator": "MANUAL_REVIEW"
+                  }
+                ]
+              },
+              {
+                "text": "구조화한 일부 조건만으로 전체 자격 충족을 판정하지 않음; 원문 전체 증빙·예외 심사 필요",
+                "subject": "authority",
+                "operator": "MANUAL_REVIEW"
+              }
+            ]
+          }
+        ],
+        "exclusions": [
+          {
+            "text": "혼인;본인유주택;순위별미충족;중복신청. 부모유주택자체는제외사유아님",
+            "subject": "authority",
+            "operator": "MANUAL_REVIEW"
+          }
+        ],
+        "source_ids": [
+          "3bde000c-dc2e-503f-a5e2-2a2ae536d37c"
+        ],
+        "source_url": "https://apply.lh.or.kr/lhapply/cm/cntnts/cntntsView.do?mi=1150&cntntsId=201269",
+        "source_urls": [
+          "https://apply.lh.or.kr/lhapply/cm/cntnts/cntntsView.do?mi=1150&cntntsId=201269"
+        ],
+        "review_notes": {
+          "corrections": null,
+          "application_window": "확인필요 ~ 확인필요",
+          "collected_research_date": "2026-10-02",
+          "official_sources_rechecked_on": "2026-11-16"
+        },
+        "verification": "확인필요",
+        "schema_version": "housing-eligibility/1",
+        "reviewed_fields": {
+          "age": "만19세이상만39세이하(3순위에한함);대학생·대학원생경로별도",
+          "income": "1순위생계·의료·주거급여수급가구 OR지원한부모 OR차상위;2순위본인+부모도시근로자100%;3순위본인100%",
+          "residence": "전국제도;지원주택위치·모집단위는지역본부공고별",
+          "exceptions": "19~39세상한은3순위일반청년경로;대학원생제외금지. 온통청년요약자산3.45억/차4542만원은확인한LH가이드·2026회차에서일괄자격으로채택하지않음",
+          "exclusions": "혼인;본인유주택;순위별미충족;중복신청. 부모유주택자체는제외사유아님"
+        },
+        "engine_projection": {
+          "mode": "MANUAL_REVIEW_ONLY",
+          "contract": "all/any/exclude",
+          "rich_rules_location": "required/exclusions",
+          "automatic_eligibility_ready": false
+        },
+        "condition_sections": [
+          {
+            "key": "age",
+            "label": "나이·기준일",
+            "text": "만19세이상만39세이하(3순위에한함);대학생·대학원생경로별도",
+            "verification": "NEEDS_REVIEW",
+            "rule_refs": [
+              "required.0.conditions.0.conditions.2.conditions.2.conditions.0.conditions.2"
+            ]
+          },
+          {
+            "key": "residence",
+            "label": "거주지·대상 지역",
+            "text": "전국제도;지원주택위치·모집단위는지역본부공고별",
+            "verification": "NEEDS_REVIEW",
+            "rule_refs": []
+          },
+          {
+            "key": "status",
+            "label": "지원 대상·현재 상태",
+            "text": "미혼무주택 대학생·대학원생 OR 3순위19~39세청년",
+            "verification": "NEEDS_REVIEW",
+            "rule_refs": []
+          },
+          {
+            "key": "housing",
+            "label": "주거·계약 조건",
+            "text": "유형별 확인 항목: 본인 주택 소유 여부 / 모든 항목이 필수라는 뜻은 아닙니다. 대상 범위와 대체 경로를 함께 확인해 주세요.",
+            "verification": "NEEDS_REVIEW",
+            "rule_refs": [
+              "required.0.conditions.0.conditions.0"
+            ]
+          },
+          {
+            "key": "income",
+            "label": "소득·재산",
+            "text": "1순위생계·의료·주거급여수급가구 OR지원한부모 OR차상위;2순위본인+부모도시근로자100%;3순위본인100%",
+            "verification": "NEEDS_REVIEW",
+            "rule_refs": []
+          },
+          {
+            "key": "exclusions",
+            "label": "제외·중복지원",
+            "text": "혼인;본인유주택;순위별미충족;중복신청. 부모유주택자체는제외사유아님",
+            "verification": "NEEDS_REVIEW",
+            "rule_refs": []
+          },
+          {
+            "key": "exceptions",
+            "label": "유형별 예외·추가 확인",
+            "text": "19~39세상한은3순위일반청년경로;대학원생제외금지. 온통청년요약자산3.45억/차4542만원은확인한LH가이드·2026회차에서일괄자격으로채택하지않음 / 공급 유형, 기준일, 증빙과 현재 모집 여부를 확인해 주세요.",
+            "verification": "NEEDS_REVIEW",
+            "rule_refs": []
+          }
+        ],
+        "profile_contract": {
+          "version": "housing-profile/1",
+          "mode": "PARTIAL_REVIEW",
+          "checks": [
+            {
+              "field": "home_ownership",
+              "op": "eq",
+              "value": "무주택",
+              "label": "본인 무주택",
+              "subject": "applicant",
+              "verification": "SOURCE_CONFIRMED",
+              "evidence": {
+                "source_url": "https://apply.lh.or.kr/lhapply/cm/cntnts/cntntsView.do?mi=1150&cntntsId=201269",
+                "quote": "무주택자인 미혼 청년으로",
+                "checked_at": "2026-11-18T01:09:24.565Z",
+                "body_sha256": "699f575522a08c77994c87f53e754912734d2bba469b3745589ef5729cf36308"
+              }
+            },
+            {
+              "field": "marital_status",
+              "op": "eq",
+              "value": "미혼",
+              "label": "혼인 중이 아님",
+              "subject": "applicant",
+              "verification": "SOURCE_CONFIRMED",
+              "evidence": {
+                "source_url": "https://apply.lh.or.kr/lhapply/cm/cntnts/cntntsView.do?mi=1150&cntntsId=201269",
+                "quote": "무주택자인 미혼 청년으로",
+                "checked_at": "2026-11-18T01:09:24.565Z",
+                "body_sha256": "699f575522a08c77994c87f53e754912734d2bba469b3745589ef5729cf36308"
+              }
+            }
+          ],
+          "overall_verdict": "CHECK",
+          "reason": "확인된 일부 조건만 프로필과 비교합니다. 소득·가구·증빙·예외를 포함한 전체 자격은 확인 필요입니다."
+        },
+        "condition_review": {
+          "organized_on": "2026-11-18",
+          "basis": "기존 정책별 검토 조건의 항목 분리 + 공식 출처 재접근. FETCHED는 전체 자격 검증을 뜻하지 않음.",
+          "sources": [
+            {
+              "source_id": "3bde000c-dc2e-503f-a5e2-2a2ae536d37c",
+              "source_url": "https://apply.lh.or.kr/lhapply/cm/cntnts/cntntsView.do?mi=1150&cntntsId=201269",
+              "checked_at": "2026-11-18T01:09:24.565Z",
+              "fetch_status": "FETCHED_NOT_FULLY_VERIFIED",
+              "body_sha256": "699f575522a08c77994c87f53e754912734d2bba469b3745589ef5729cf36308"
+            }
+          ],
+          "preserved_logic": "required/exclusions의 AND·OR·대상자·단위·기준일을 그대로 보존",
+          "full_eligibility_verified": false
+        }
+      }
+    }
+  },
+  {
+    "before": {
+      "policy_id": "5378d71a-86cb-5297-bc71-a376b91f4fbd",
+      "title": "2026년 청년월세 지원",
+      "collection_domain": "HOUSING",
+      "item_type": "POLICY",
+      "target_summary": "청년",
+      "eligibility_conditions": {
+        "all": [
+          {
+            "text": "지원 대상 확인: 청년"
+          },
+          {
+            "text": "소득·자산 확인: 청년가구 기준중위소득 60% 이하 AND 원가구 100% 이하;원가구 심사 면제 예외는 기타조건 참조"
+          },
+          {
+            "text": "제외·예외 확인: 주택·분양권·입주권 소유;본인·배우자의 2촌 내 혈족 주택 임차;공공임대 거주;별도 계약 없는 다인 전대차;타 월세지원 수급 중;이미 24회 수급;2차 사업 수혜자는 사업 종료 후 신청 / 2026 신규모집은 청약통장 가입요건 삭제. 청년가구 재산122000000원·원가구470000000원 이하. 원가구 소득·재산 면제:30세 이상 OR 혼인 OR 미혼부모 OR 중위50% 이상 소득 및 시군구청장 독립생계 인정. 출생연도1991~2007. 주거급여는 월차임분 차감;기수혜·재신청은 회차별 매뉴얼 적용."
+          },
+          {
+            "text": "현재 모집·예산·공실·증빙과 담당기관 심사 확인 필요"
+          }
+        ],
+        "note": "부모·자녀·가구 역할은 동일 인물·가구에 바인딩. 중위소득과 도시근로자 기준을 구분. MANUAL_REVIEW/누락 사실은 UNKNOWN. 소개형은 실제 모집과 별개.",
+        "logic": "UNVERIFIED",
+        "exclude": [
+          {
+            "text": "주택·분양권·입주권 소유;본인·배우자의 2촌 내 혈족 주택 임차;공공임대 거주;별도 계약 없는 다인 전대차;타 월세지원 수급 중;이미 24회 수급;2차 사업 수혜자는 사업 종료 후 신청"
+          }
+        ],
+        "required": [
+          {
+            "operator": "AND",
+            "conditions": [
+              {
+                "operator": "AND",
+                "conditions": [
+                  {
+                    "field": "owns_home",
+                    "value": false,
+                    "anchor": "application_date",
+                    "subject": "applicant",
+                    "operator": "EQ"
+                  },
+                  {
+                    "field": "lives_apart_from_parents",
+                    "value": true,
+                    "anchor": "application_date",
+                    "subject": "applicant",
+                    "operator": "EQ"
+                  },
+                  {
+                    "unit": "year",
+                    "field": "birth_year",
+                    "value": [
+                      1991,
+                      2007
+                    ],
+                    "anchor": "2026_application_year",
+                    "subject": "applicant",
+                    "operator": "BETWEEN"
+                  },
+                  {
+                    "unit": "ratio",
+                    "field": "recognized_income_to_median_ratio",
+                    "value": 0.6,
+                    "anchor": "application_date",
+                    "subject": "youth_household",
+                    "operator": "LTE"
+                  },
+                  {
+                    "unit": "KRW",
+                    "field": "assets",
+                    "value": 122000000,
+                    "anchor": "application_date",
+                    "subject": "youth_household",
+                    "operator": "LTE"
+                  },
+                  {
+                    "operator": "OR",
+                    "conditions": [
+                      {
+                        "operator": "AND",
+                        "conditions": [
+                          {
+                            "unit": "ratio",
+                            "field": "recognized_income_to_median_ratio",
+                            "value": 1,
+                            "anchor": "application_date",
+                            "subject": "original_household",
+                            "operator": "LTE"
+                          },
+                          {
+                            "unit": "KRW",
+                            "field": "assets",
+                            "value": 470000000,
+                            "anchor": "application_date",
+                            "subject": "original_household",
+                            "operator": "LTE"
+                          }
+                        ]
+                      },
+                      {
+                        "unit": "years",
+                        "field": "age",
+                        "value": 30,
+                        "anchor": "application_date",
+                        "subject": "applicant",
+                        "operator": "GTE"
+                      },
+                      {
+                        "field": "is_married",
+                        "value": true,
+                        "anchor": "application_date",
+                        "subject": "applicant",
+                        "operator": "EQ"
+                      },
+                      {
+                        "field": "is_single_parent",
+                        "value": true,
+                        "anchor": "application_date",
+                        "subject": "applicant",
+                        "operator": "EQ"
+                      },
+                      {
+                        "operator": "AND",
+                        "conditions": [
+                          {
+                            "unit": "ratio",
+                            "field": "income_to_median_ratio",
+                            "value": 0.5,
+                            "anchor": "application_date",
+                            "subject": "applicant",
+                            "operator": "GTE"
+                          },
+                          {
+                            "field": "independent_livelihood_approved",
+                            "value": true,
+                            "anchor": "application_date",
+                            "subject": "authority",
+                            "operator": "EQ"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "text": "구조화한 일부 조건만으로 전체 자격 충족을 판정하지 않음; 원문 전체 증빙·예외 심사 필요",
+                "subject": "authority",
+                "operator": "MANUAL_REVIEW"
+              }
+            ]
+          }
+        ],
+        "exclusions": [
+          {
+            "text": "주택·분양권·입주권 소유;본인·배우자의 2촌 내 혈족 주택 임차;공공임대 거주;별도 계약 없는 다인 전대차;타 월세지원 수급 중;이미 24회 수급;2차 사업 수혜자는 사업 종료 후 신청",
+            "subject": "authority",
+            "operator": "MANUAL_REVIEW"
+          }
+        ],
+        "source_ids": [
+          "425e2ee7-e9ea-5990-adc2-d269f78993a3",
+          "c8fc2df9-9116-5436-ac63-02a9f87bd4e2",
+          "2d7bcee9-9eb9-54d1-8d10-94e0dca6d27f",
+          "fecd06f4-77d6-59c2-acf5-8159ec0e6a33",
+          "c426de6a-5b9d-52a5-884d-150753359b99"
+        ],
+        "source_url": "https://www.korea.kr/news/policyNewsView.do?newsId=148961039",
+        "source_urls": [
+          "https://www.korea.kr/news/policyNewsView.do?newsId=148961039",
+          "https://english.saha.go.kr/startup/contents.do?mId=0305000000",
+          "https://m.bokjiro.go.kr/ssis-tem/cms/mob/customer/notice/1309500_1155.html",
+          "https://www.saha.go.kr/job/contents.do?mId=0301050000",
+          "https://young.busan.go.kr/index.nm?menuCd=37"
+        ],
+        "review_notes": {
+          "corrections": null,
+          "application_window": "2026-03-30 ~ 2026-05-29",
+          "collected_research_date": "2026-10-02",
+          "official_sources_rechecked_on": "2026-11-16"
+        },
+        "verification": "확인필요",
+        "schema_version": "housing-eligibility/1",
+        "reviewed_fields": {
+          "age": "'26년 신청 가능 출생연도 : 1991년 ~ 2007년생",
+          "income": "청년가구 기준중위소득 60% 이하 AND 원가구 100% 이하;원가구 심사 면제 예외는 기타조건 참조",
+          "residence": "부모님과 별도 거주",
+          "exceptions": "2026 신규모집은 청약통장 가입요건 삭제. 청년가구 재산122000000원·원가구470000000원 이하. 원가구 소득·재산 면제:30세 이상 OR 혼인 OR 미혼부모 OR 중위50% 이상 소득 및 시군구청장 독립생계 인정. 출생연도1991~2007. 주거급여는 월차임분 차감;기수혜·재신청은 회차별 매뉴얼 적용.",
+          "exclusions": "주택·분양권·입주권 소유;본인·배우자의 2촌 내 혈족 주택 임차;공공임대 거주;별도 계약 없는 다인 전대차;타 월세지원 수급 중;이미 24회 수급;2차 사업 수혜자는 사업 종료 후 신청"
+        },
+        "engine_projection": {
+          "mode": "MANUAL_REVIEW_ONLY",
+          "contract": "all/any/exclude",
+          "rich_rules_location": "required/exclusions",
+          "automatic_eligibility_ready": false
+        }
+      },
+      "eligibility_verified": false
+    },
+    "values": {
+      "eligibility_conditions": {
+        "all": [
+          {
+            "text": "지원 대상 확인: 청년"
+          },
+          {
+            "text": "소득·자산 확인: 청년가구 기준중위소득 60% 이하 AND 원가구 100% 이하;원가구 심사 면제 예외는 기타조건 참조"
+          },
+          {
+            "text": "제외·예외 확인: 주택·분양권·입주권 소유;본인·배우자의 2촌 내 혈족 주택 임차;공공임대 거주;별도 계약 없는 다인 전대차;타 월세지원 수급 중;이미 24회 수급;2차 사업 수혜자는 사업 종료 후 신청 / 2026 신규모집은 청약통장 가입요건 삭제. 청년가구 재산122000000원·원가구470000000원 이하. 원가구 소득·재산 면제:30세 이상 OR 혼인 OR 미혼부모 OR 중위50% 이상 소득 및 시군구청장 독립생계 인정. 출생연도1991~2007. 주거급여는 월차임분 차감;기수혜·재신청은 회차별 매뉴얼 적용."
+          },
+          {
+            "text": "현재 모집·예산·공실·증빙과 담당기관 심사 확인 필요"
+          }
+        ],
+        "note": "부모·자녀·가구 역할은 동일 인물·가구에 바인딩. 중위소득과 도시근로자 기준을 구분. MANUAL_REVIEW/누락 사실은 UNKNOWN. 소개형은 실제 모집과 별개.",
+        "logic": "UNVERIFIED",
+        "exclude": [
+          {
+            "text": "주택·분양권·입주권 소유;본인·배우자의 2촌 내 혈족 주택 임차;공공임대 거주;별도 계약 없는 다인 전대차;타 월세지원 수급 중;이미 24회 수급;2차 사업 수혜자는 사업 종료 후 신청"
+          }
+        ],
+        "required": [
+          {
+            "operator": "AND",
+            "conditions": [
+              {
+                "operator": "AND",
+                "conditions": [
+                  {
+                    "field": "owns_home",
+                    "value": false,
+                    "anchor": "application_date",
+                    "subject": "applicant",
+                    "operator": "EQ"
+                  },
+                  {
+                    "field": "lives_apart_from_parents",
+                    "value": true,
+                    "anchor": "application_date",
+                    "subject": "applicant",
+                    "operator": "EQ"
+                  },
+                  {
+                    "unit": "year",
+                    "field": "birth_year",
+                    "value": [
+                      1991,
+                      2007
+                    ],
+                    "anchor": "2026_application_year",
+                    "subject": "applicant",
+                    "operator": "BETWEEN"
+                  },
+                  {
+                    "unit": "ratio",
+                    "field": "recognized_income_to_median_ratio",
+                    "value": 0.6,
+                    "anchor": "application_date",
+                    "subject": "youth_household",
+                    "operator": "LTE"
+                  },
+                  {
+                    "unit": "KRW",
+                    "field": "assets",
+                    "value": 122000000,
+                    "anchor": "application_date",
+                    "subject": "youth_household",
+                    "operator": "LTE"
+                  },
+                  {
+                    "operator": "OR",
+                    "conditions": [
+                      {
+                        "operator": "AND",
+                        "conditions": [
+                          {
+                            "unit": "ratio",
+                            "field": "recognized_income_to_median_ratio",
+                            "value": 1,
+                            "anchor": "application_date",
+                            "subject": "original_household",
+                            "operator": "LTE"
+                          },
+                          {
+                            "unit": "KRW",
+                            "field": "assets",
+                            "value": 470000000,
+                            "anchor": "application_date",
+                            "subject": "original_household",
+                            "operator": "LTE"
+                          }
+                        ]
+                      },
+                      {
+                        "unit": "years",
+                        "field": "age",
+                        "value": 30,
+                        "anchor": "application_date",
+                        "subject": "applicant",
+                        "operator": "GTE"
+                      },
+                      {
+                        "field": "is_married",
+                        "value": true,
+                        "anchor": "application_date",
+                        "subject": "applicant",
+                        "operator": "EQ"
+                      },
+                      {
+                        "field": "is_single_parent",
+                        "value": true,
+                        "anchor": "application_date",
+                        "subject": "applicant",
+                        "operator": "EQ"
+                      },
+                      {
+                        "operator": "AND",
+                        "conditions": [
+                          {
+                            "unit": "ratio",
+                            "field": "income_to_median_ratio",
+                            "value": 0.5,
+                            "anchor": "application_date",
+                            "subject": "applicant",
+                            "operator": "GTE"
+                          },
+                          {
+                            "field": "independent_livelihood_approved",
+                            "value": true,
+                            "anchor": "application_date",
+                            "subject": "authority",
+                            "operator": "EQ"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "text": "구조화한 일부 조건만으로 전체 자격 충족을 판정하지 않음; 원문 전체 증빙·예외 심사 필요",
+                "subject": "authority",
+                "operator": "MANUAL_REVIEW"
+              }
+            ]
+          }
+        ],
+        "exclusions": [
+          {
+            "text": "주택·분양권·입주권 소유;본인·배우자의 2촌 내 혈족 주택 임차;공공임대 거주;별도 계약 없는 다인 전대차;타 월세지원 수급 중;이미 24회 수급;2차 사업 수혜자는 사업 종료 후 신청",
+            "subject": "authority",
+            "operator": "MANUAL_REVIEW"
+          }
+        ],
+        "source_ids": [
+          "425e2ee7-e9ea-5990-adc2-d269f78993a3",
+          "c8fc2df9-9116-5436-ac63-02a9f87bd4e2",
+          "2d7bcee9-9eb9-54d1-8d10-94e0dca6d27f",
+          "fecd06f4-77d6-59c2-acf5-8159ec0e6a33",
+          "c426de6a-5b9d-52a5-884d-150753359b99"
+        ],
+        "source_url": "https://www.korea.kr/news/policyNewsView.do?newsId=148961039",
+        "source_urls": [
+          "https://www.korea.kr/news/policyNewsView.do?newsId=148961039",
+          "https://english.saha.go.kr/startup/contents.do?mId=0305000000",
+          "https://m.bokjiro.go.kr/ssis-tem/cms/mob/customer/notice/1309500_1155.html",
+          "https://www.saha.go.kr/job/contents.do?mId=0301050000",
+          "https://young.busan.go.kr/index.nm?menuCd=37"
+        ],
+        "review_notes": {
+          "corrections": null,
+          "application_window": "2026-03-30 ~ 2026-05-29",
+          "collected_research_date": "2026-10-02",
+          "official_sources_rechecked_on": "2026-11-16"
+        },
+        "verification": "확인필요",
+        "schema_version": "housing-eligibility/1",
+        "reviewed_fields": {
+          "age": "'26년 신청 가능 출생연도 : 1991년 ~ 2007년생",
+          "income": "청년가구 기준중위소득 60% 이하 AND 원가구 100% 이하;원가구 심사 면제 예외는 기타조건 참조",
+          "residence": "부모님과 별도 거주",
+          "exceptions": "2026 신규모집은 청약통장 가입요건 삭제. 청년가구 재산122000000원·원가구470000000원 이하. 원가구 소득·재산 면제:30세 이상 OR 혼인 OR 미혼부모 OR 중위50% 이상 소득 및 시군구청장 독립생계 인정. 출생연도1991~2007. 주거급여는 월차임분 차감;기수혜·재신청은 회차별 매뉴얼 적용.",
+          "exclusions": "주택·분양권·입주권 소유;본인·배우자의 2촌 내 혈족 주택 임차;공공임대 거주;별도 계약 없는 다인 전대차;타 월세지원 수급 중;이미 24회 수급;2차 사업 수혜자는 사업 종료 후 신청"
+        },
+        "engine_projection": {
+          "mode": "MANUAL_REVIEW_ONLY",
+          "contract": "all/any/exclude",
+          "rich_rules_location": "required/exclusions",
+          "automatic_eligibility_ready": false
+        },
+        "condition_sections": [
+          {
+            "key": "age",
+            "label": "나이·기준일",
+            "text": "'26년 신청 가능 출생연도 : 1991년 ~ 2007년생",
+            "verification": "NEEDS_REVIEW",
+            "rule_refs": [
+              "required.0.conditions.0.conditions.2",
+              "required.0.conditions.0.conditions.5.conditions.1"
+            ]
+          },
+          {
+            "key": "residence",
+            "label": "거주지·대상 지역",
+            "text": "부모님과 별도 거주",
+            "verification": "NEEDS_REVIEW",
+            "rule_refs": []
+          },
+          {
+            "key": "status",
+            "label": "지원 대상·현재 상태",
+            "text": "청년",
+            "verification": "NEEDS_REVIEW",
+            "rule_refs": []
+          },
+          {
+            "key": "housing",
+            "label": "주거·계약 조건",
+            "text": "유형별 확인 항목: 본인 주택 소유 여부 / 부모와 별도 거주 여부 / 모든 항목이 필수라는 뜻은 아닙니다. 대상 범위와 대체 경로를 함께 확인해 주세요.",
+            "verification": "NEEDS_REVIEW",
+            "rule_refs": [
+              "required.0.conditions.0.conditions.0",
+              "required.0.conditions.0.conditions.1"
+            ]
+          },
+          {
+            "key": "income",
+            "label": "소득·재산",
+            "text": "청년가구 기준중위소득 60% 이하 AND 원가구 100% 이하;원가구 심사 면제 예외는 기타조건 참조",
+            "verification": "NEEDS_REVIEW",
+            "rule_refs": []
+          },
+          {
+            "key": "exclusions",
+            "label": "제외·중복지원",
+            "text": "주택·분양권·입주권 소유;본인·배우자의 2촌 내 혈족 주택 임차;공공임대 거주;별도 계약 없는 다인 전대차;타 월세지원 수급 중;이미 24회 수급;2차 사업 수혜자는 사업 종료 후 신청",
+            "verification": "NEEDS_REVIEW",
+            "rule_refs": []
+          },
+          {
+            "key": "exceptions",
+            "label": "유형별 예외·추가 확인",
+            "text": "2026 신규모집은 청약통장 가입요건 삭제. 청년가구 재산122000000원·원가구470000000원 이하. 원가구 소득·재산 면제:30세 이상 OR 혼인 OR 미혼부모 OR 중위50% 이상 소득 및 시군구청장 독립생계 인정. 출생연도1991~2007. 주거급여는 월차임분 차감;기수혜·재신청은 회차별 매뉴얼 적용. / 공급 유형, 기준일, 증빙과 현재 모집 여부를 확인해 주세요.",
+            "verification": "NEEDS_REVIEW",
+            "rule_refs": []
+          }
+        ],
+        "profile_contract": {
+          "version": "housing-profile/1",
+          "mode": "PARTIAL_REVIEW",
+          "checks": [
+            {
+              "field": "birth_year",
+              "op": "between",
+              "value": [
+                1991,
+                2007
+              ],
+              "label": "2026년 신청 대상: 1991~2007년생",
+              "subject": "applicant",
+              "verification": "SOURCE_CONFIRMED",
+              "evidence": {
+                "source_url": "https://m.bokjiro.go.kr/ssis-tem/cms/mob/customer/notice/1309500_1155.html",
+                "quote": "'26년 신청 가능 출생연도 : 1991년 ~ 2007년생",
+                "checked_at": "2026-11-18T01:09:13.667Z",
+                "body_sha256": "9131805f6f05b2035214b97606eea39c55d6c5ca408cde6de3a8b94d4f325c64"
+              }
+            },
+            {
+              "field": "home_ownership",
+              "op": "eq",
+              "value": "무주택",
+              "label": "본인 무주택",
+              "subject": "applicant",
+              "verification": "SOURCE_CONFIRMED",
+              "evidence": {
+                "source_url": "https://m.bokjiro.go.kr/ssis-tem/cms/mob/customer/notice/1309500_1155.html",
+                "quote": "19~34세 부모님과 별도 거주 무주택 청년",
+                "checked_at": "2026-11-18T01:09:13.667Z",
+                "body_sha256": "9131805f6f05b2035214b97606eea39c55d6c5ca408cde6de3a8b94d4f325c64"
+              }
+            },
+            {
+              "field": "lives_separately",
+              "op": "eq",
+              "value": true,
+              "label": "부모와 별도 거주",
+              "subject": "applicant",
+              "verification": "SOURCE_CONFIRMED",
+              "evidence": {
+                "source_url": "https://m.bokjiro.go.kr/ssis-tem/cms/mob/customer/notice/1309500_1155.html",
+                "quote": "19~34세 부모님과 별도 거주 무주택 청년",
+                "checked_at": "2026-11-18T01:09:13.667Z",
+                "body_sha256": "9131805f6f05b2035214b97606eea39c55d6c5ca408cde6de3a8b94d4f325c64"
+              }
+            }
+          ],
+          "overall_verdict": "CHECK",
+          "reason": "확인된 일부 조건만 프로필과 비교합니다. 소득·가구·증빙·예외를 포함한 전체 자격은 확인 필요입니다."
+        },
+        "condition_review": {
+          "organized_on": "2026-11-18",
+          "basis": "기존 정책별 검토 조건의 항목 분리 + 공식 출처 재접근. FETCHED는 전체 자격 검증을 뜻하지 않음.",
+          "sources": [
+            {
+              "source_id": "425e2ee7-e9ea-5990-adc2-d269f78993a3",
+              "source_url": "https://www.korea.kr/news/policyNewsView.do?newsId=148961039",
+              "checked_at": "2026-11-18T01:09:14.459Z",
+              "fetch_status": "FETCHED_NOT_FULLY_VERIFIED",
+              "body_sha256": "3bb94c5c2d4d821cc8e70d463f4c256ba9c5c5371f6021415c5bd52d39a6ad7e"
+            },
+            {
+              "source_id": "c8fc2df9-9116-5436-ac63-02a9f87bd4e2",
+              "source_url": "https://english.saha.go.kr/startup/contents.do?mId=0305000000",
+              "checked_at": "2026-11-18T01:09:17.027Z",
+              "fetch_status": "FETCHED_NOT_FULLY_VERIFIED",
+              "body_sha256": "bb2e7bcbdfcb2000cdb7d96c681803e2f3a91db0354ce1007a3126568c050df0"
+            },
+            {
+              "source_id": "2d7bcee9-9eb9-54d1-8d10-94e0dca6d27f",
+              "source_url": "https://m.bokjiro.go.kr/ssis-tem/cms/mob/customer/notice/1309500_1155.html",
+              "checked_at": "2026-11-18T01:09:13.667Z",
+              "fetch_status": "FETCHED_NOT_FULLY_VERIFIED",
+              "body_sha256": "9131805f6f05b2035214b97606eea39c55d6c5ca408cde6de3a8b94d4f325c64"
+            },
+            {
+              "source_id": "fecd06f4-77d6-59c2-acf5-8159ec0e6a33",
+              "source_url": "https://www.saha.go.kr/job/contents.do?mId=0301050000",
+              "checked_at": "2026-11-18T01:09:16.920Z",
+              "fetch_status": "FETCHED_NOT_FULLY_VERIFIED",
+              "body_sha256": "6fd78cb69298163cda17bc57f3ff65e82f55d3152c7994b0ff06dbf1b905e222"
+            },
+            {
+              "source_id": "c426de6a-5b9d-52a5-884d-150753359b99",
+              "source_url": "https://young.busan.go.kr/index.nm?menuCd=37",
+              "checked_at": "2026-11-18T01:09:14.536Z",
+              "fetch_status": "FETCHED_NOT_FULLY_VERIFIED",
+              "body_sha256": "2ea32dee893165b66224cdeeef24fb50da318d35ee30b4167e7330a1f7607666"
+            }
+          ],
+          "preserved_logic": "required/exclusions의 AND·OR·대상자·단위·기준일을 그대로 보존",
+          "full_eligibility_verified": false
+        }
+      },
+      "target_summary": "2026년 신청 대상은 1991~2007년생 중 부모와 별도 거주하는 무주택 청년(청년가구·원가구 소득·재산 및 예외 별도 확인)"
+    }
+  },
+  {
+    "before": {
+      "policy_id": "85a99896-0dbf-518d-a3ef-70349e10d46a",
+      "title": "2026년 청년 전세임대 1순위 입주자 수시모집",
+      "collection_domain": "HOUSING",
+      "item_type": "POLICY",
+      "target_summary": "청년 OR 대학생 OR 취업준비생;1순위 해당자",
+      "eligibility_conditions": {
+        "all": [
+          {
+            "text": "지원 대상 확인: 청년 OR 대학생 OR 취업준비생;1순위 해당자"
+          },
+          {
+            "text": "소득·자산 확인: 생계·의료·주거급여 수급가구 OR 보호대상 한부모가족 OR 차상위가구"
+          },
+          {
+            "text": "제외·예외 확인: 혼인·유주택;중복신청;대학교/졸업학교 인정 제외 및 서류미비는 공고 전체조건 참조 / 본인+부모 1순위 가구. 대학생·취업준비생은19세미만/39세초과 대체경로;신청부터 계약까지 자격유지."
+          },
+          {
+            "text": "현재 모집·예산·공실·증빙과 담당기관 심사 확인 필요"
+          }
+        ],
+        "note": "부모·자녀·가구 역할은 동일 인물·가구에 바인딩. 중위소득과 도시근로자 기준을 구분. MANUAL_REVIEW/누락 사실은 UNKNOWN. 소개형은 실제 모집과 별개.",
+        "logic": "UNVERIFIED",
+        "exclude": [
+          {
+            "text": "혼인·유주택;중복신청;대학교/졸업학교 인정 제외 및 서류미비는 공고 전체조건 참조"
+          }
+        ],
+        "required": [
+          {
+            "operator": "AND",
+            "conditions": [
+              {
+                "operator": "AND",
+                "conditions": [
+                  {
+                    "operator": "AND",
+                    "conditions": [
+                      {
+                        "field": "owns_home",
+                        "value": false,
+                        "anchor": "application_date",
+                        "subject": "applicant",
+                        "operator": "EQ"
+                      },
+                      {
+                        "field": "is_married",
+                        "value": false,
+                        "anchor": "application_date",
+                        "subject": "applicant",
+                        "operator": "EQ"
+                      },
+                      {
+                        "operator": "OR",
+                        "conditions": [
+                          {
+                            "unit": "years",
+                            "field": "age",
+                            "value": [
+                              19,
+                              39
+                            ],
+                            "anchor": "application_date",
+                            "subject": "applicant",
+                            "operator": "BETWEEN"
+                          },
+                          {
+                            "operator": "OR",
+                            "conditions": [
+                              {
+                                "field": "university_student",
+                                "value": true,
+                                "anchor": "application_date",
+                                "subject": "applicant",
+                                "operator": "EQ"
+                              },
+                              {
+                                "field": "scheduled_university_entry_or_return",
+                                "value": true,
+                                "anchor": "application_date",
+                                "subject": "applicant",
+                                "operator": "EQ"
+                              }
+                            ]
+                          },
+                          {
+                            "operator": "AND",
+                            "conditions": [
+                              {
+                                "field": "is_employed",
+                                "value": false,
+                                "anchor": "application_date",
+                                "subject": "applicant",
+                                "operator": "EQ"
+                              },
+                              {
+                                "unit": "years",
+                                "field": "years_since_qualifying_graduation_or_dropout",
+                                "value": 2,
+                                "anchor": "application_date",
+                                "subject": "applicant",
+                                "operator": "LTE"
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "operator": "OR",
+                    "conditions": [
+                      {
+                        "field": "livelihood_benefit",
+                        "value": true,
+                        "anchor": "application_date",
+                        "subject": "household",
+                        "operator": "EQ"
+                      },
+                      {
+                        "field": "medical_benefit",
+                        "value": true,
+                        "anchor": "application_date",
+                        "subject": "household",
+                        "operator": "EQ"
+                      },
+                      {
+                        "field": "housing_benefit",
+                        "value": true,
+                        "anchor": "application_date",
+                        "subject": "household",
+                        "operator": "EQ"
+                      },
+                      {
+                        "field": "statutory_single_parent",
+                        "value": true,
+                        "anchor": "application_date",
+                        "subject": "household",
+                        "operator": "EQ"
+                      },
+                      {
+                        "field": "near_poor",
+                        "value": true,
+                        "anchor": "application_date",
+                        "subject": "household",
+                        "operator": "EQ"
+                      }
+                    ]
+                  },
+                  {
+                    "text": "대학생·취업준비생의 연령 대체경로, 인정학교 및 신청 지역·부모 가구 심사 확인",
+                    "subject": "authority",
+                    "operator": "MANUAL_REVIEW"
+                  }
+                ]
+              },
+              {
+                "text": "구조화한 일부 조건만으로 전체 자격 충족을 판정하지 않음; 원문 전체 증빙·예외 심사 필요",
+                "subject": "authority",
+                "operator": "MANUAL_REVIEW"
+              }
+            ]
+          }
+        ],
+        "exclusions": [
+          {
+            "text": "혼인·유주택;중복신청;대학교/졸업학교 인정 제외 및 서류미비는 공고 전체조건 참조",
+            "subject": "authority",
+            "operator": "MANUAL_REVIEW"
+          }
+        ],
+        "source_ids": [
+          "5ee49569-c0fb-5885-85e1-09cc2c46cf1a",
+          "470c273f-9460-595a-af11-1b42b47dbbcb"
+        ],
+        "source_url": "https://apply.lh.or.kr/lhapply/apply/wt/wrtanc/selectWrtancInfo.do?aisTpCd=17&ccrCnntSysDsCd=03&mi=1026&panId=2015122300019376&uppAisTpCd=13",
+        "source_urls": [
+          "https://apply.lh.or.kr/lhapply/apply/wt/wrtanc/selectWrtancInfo.do?aisTpCd=17&ccrCnntSysDsCd=03&mi=1026&panId=2015122300019376&uppAisTpCd=13",
+          "https://apply.lh.or.kr/lhapply/lhFile.do?fileid=65733876"
+        ],
+        "review_notes": {
+          "corrections": null,
+          "application_window": "2026-02-24 ~ 2026-12-31",
+          "collected_research_date": "2026-10-02",
+          "official_sources_rechecked_on": "2026-11-16"
+        },
+        "verification": "확인필요",
+        "schema_version": "housing-eligibility/1",
+        "reviewed_fields": {
+          "age": "만19~39세",
+          "income": "생계·의료·주거급여 수급가구 OR 보호대상 한부모가족 OR 차상위가구",
+          "residence": "사업대상지역 : 전국;대학생 유형은 본인의 대학 소재 지역 및 연접 시·군으로만 신청 가능",
+          "exceptions": "본인+부모 1순위 가구. 대학생·취업준비생은19세미만/39세초과 대체경로;신청부터 계약까지 자격유지.",
+          "exclusions": "혼인·유주택;중복신청;대학교/졸업학교 인정 제외 및 서류미비는 공고 전체조건 참조"
+        },
+        "engine_projection": {
+          "mode": "MANUAL_REVIEW_ONLY",
+          "contract": "all/any/exclude",
+          "rich_rules_location": "required/exclusions",
+          "automatic_eligibility_ready": false
+        }
+      },
+      "eligibility_verified": false
+    },
+    "values": {
+      "eligibility_conditions": {
+        "all": [
+          {
+            "text": "지원 대상 확인: 청년 OR 대학생 OR 취업준비생;1순위 해당자"
+          },
+          {
+            "text": "소득·자산 확인: 생계·의료·주거급여 수급가구 OR 보호대상 한부모가족 OR 차상위가구"
+          },
+          {
+            "text": "제외·예외 확인: 혼인·유주택;중복신청;대학교/졸업학교 인정 제외 및 서류미비는 공고 전체조건 참조 / 본인+부모 1순위 가구. 대학생·취업준비생은19세미만/39세초과 대체경로;신청부터 계약까지 자격유지."
+          },
+          {
+            "text": "현재 모집·예산·공실·증빙과 담당기관 심사 확인 필요"
+          }
+        ],
+        "note": "부모·자녀·가구 역할은 동일 인물·가구에 바인딩. 중위소득과 도시근로자 기준을 구분. MANUAL_REVIEW/누락 사실은 UNKNOWN. 소개형은 실제 모집과 별개.",
+        "logic": "UNVERIFIED",
+        "exclude": [
+          {
+            "text": "혼인·유주택;중복신청;대학교/졸업학교 인정 제외 및 서류미비는 공고 전체조건 참조"
+          }
+        ],
+        "required": [
+          {
+            "operator": "AND",
+            "conditions": [
+              {
+                "operator": "AND",
+                "conditions": [
+                  {
+                    "operator": "AND",
+                    "conditions": [
+                      {
+                        "field": "owns_home",
+                        "value": false,
+                        "anchor": "application_date",
+                        "subject": "applicant",
+                        "operator": "EQ"
+                      },
+                      {
+                        "field": "is_married",
+                        "value": false,
+                        "anchor": "application_date",
+                        "subject": "applicant",
+                        "operator": "EQ"
+                      },
+                      {
+                        "operator": "OR",
+                        "conditions": [
+                          {
+                            "unit": "years",
+                            "field": "age",
+                            "value": [
+                              19,
+                              39
+                            ],
+                            "anchor": "application_date",
+                            "subject": "applicant",
+                            "operator": "BETWEEN"
+                          },
+                          {
+                            "operator": "OR",
+                            "conditions": [
+                              {
+                                "field": "university_student",
+                                "value": true,
+                                "anchor": "application_date",
+                                "subject": "applicant",
+                                "operator": "EQ"
+                              },
+                              {
+                                "field": "scheduled_university_entry_or_return",
+                                "value": true,
+                                "anchor": "application_date",
+                                "subject": "applicant",
+                                "operator": "EQ"
+                              }
+                            ]
+                          },
+                          {
+                            "operator": "AND",
+                            "conditions": [
+                              {
+                                "field": "is_employed",
+                                "value": false,
+                                "anchor": "application_date",
+                                "subject": "applicant",
+                                "operator": "EQ"
+                              },
+                              {
+                                "unit": "years",
+                                "field": "years_since_qualifying_graduation_or_dropout",
+                                "value": 2,
+                                "anchor": "application_date",
+                                "subject": "applicant",
+                                "operator": "LTE"
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "operator": "OR",
+                    "conditions": [
+                      {
+                        "field": "livelihood_benefit",
+                        "value": true,
+                        "anchor": "application_date",
+                        "subject": "household",
+                        "operator": "EQ"
+                      },
+                      {
+                        "field": "medical_benefit",
+                        "value": true,
+                        "anchor": "application_date",
+                        "subject": "household",
+                        "operator": "EQ"
+                      },
+                      {
+                        "field": "housing_benefit",
+                        "value": true,
+                        "anchor": "application_date",
+                        "subject": "household",
+                        "operator": "EQ"
+                      },
+                      {
+                        "field": "statutory_single_parent",
+                        "value": true,
+                        "anchor": "application_date",
+                        "subject": "household",
+                        "operator": "EQ"
+                      },
+                      {
+                        "field": "near_poor",
+                        "value": true,
+                        "anchor": "application_date",
+                        "subject": "household",
+                        "operator": "EQ"
+                      }
+                    ]
+                  },
+                  {
+                    "text": "대학생·취업준비생의 연령 대체경로, 인정학교 및 신청 지역·부모 가구 심사 확인",
+                    "subject": "authority",
+                    "operator": "MANUAL_REVIEW"
+                  }
+                ]
+              },
+              {
+                "text": "구조화한 일부 조건만으로 전체 자격 충족을 판정하지 않음; 원문 전체 증빙·예외 심사 필요",
+                "subject": "authority",
+                "operator": "MANUAL_REVIEW"
+              }
+            ]
+          }
+        ],
+        "exclusions": [
+          {
+            "text": "혼인·유주택;중복신청;대학교/졸업학교 인정 제외 및 서류미비는 공고 전체조건 참조",
+            "subject": "authority",
+            "operator": "MANUAL_REVIEW"
+          }
+        ],
+        "source_ids": [
+          "5ee49569-c0fb-5885-85e1-09cc2c46cf1a",
+          "470c273f-9460-595a-af11-1b42b47dbbcb"
+        ],
+        "source_url": "https://apply.lh.or.kr/lhapply/apply/wt/wrtanc/selectWrtancInfo.do?aisTpCd=17&ccrCnntSysDsCd=03&mi=1026&panId=2015122300019376&uppAisTpCd=13",
+        "source_urls": [
+          "https://apply.lh.or.kr/lhapply/apply/wt/wrtanc/selectWrtancInfo.do?aisTpCd=17&ccrCnntSysDsCd=03&mi=1026&panId=2015122300019376&uppAisTpCd=13",
+          "https://apply.lh.or.kr/lhapply/lhFile.do?fileid=65733876"
+        ],
+        "review_notes": {
+          "corrections": null,
+          "application_window": "2026-02-24 ~ 2026-12-31",
+          "collected_research_date": "2026-10-02",
+          "official_sources_rechecked_on": "2026-11-16"
+        },
+        "verification": "확인필요",
+        "schema_version": "housing-eligibility/1",
+        "reviewed_fields": {
+          "age": "만19~39세",
+          "income": "생계·의료·주거급여 수급가구 OR 보호대상 한부모가족 OR 차상위가구",
+          "residence": "사업대상지역 : 전국;대학생 유형은 본인의 대학 소재 지역 및 연접 시·군으로만 신청 가능",
+          "exceptions": "본인+부모 1순위 가구. 대학생·취업준비생은19세미만/39세초과 대체경로;신청부터 계약까지 자격유지.",
+          "exclusions": "혼인·유주택;중복신청;대학교/졸업학교 인정 제외 및 서류미비는 공고 전체조건 참조"
+        },
+        "engine_projection": {
+          "mode": "MANUAL_REVIEW_ONLY",
+          "contract": "all/any/exclude",
+          "rich_rules_location": "required/exclusions",
+          "automatic_eligibility_ready": false
+        },
+        "condition_sections": [
+          {
+            "key": "age",
+            "label": "나이·기준일",
+            "text": "만19~39세",
+            "verification": "NEEDS_REVIEW",
+            "rule_refs": [
+              "required.0.conditions.0.conditions.0.conditions.2.conditions.0"
+            ]
+          },
+          {
+            "key": "residence",
+            "label": "거주지·대상 지역",
+            "text": "사업대상지역 : 전국;대학생 유형은 본인의 대학 소재 지역 및 연접 시·군으로만 신청 가능",
+            "verification": "NEEDS_REVIEW",
+            "rule_refs": []
+          },
+          {
+            "key": "status",
+            "label": "지원 대상·현재 상태",
+            "text": "청년 OR 대학생 OR 취업준비생;1순위 해당자",
+            "verification": "NEEDS_REVIEW",
+            "rule_refs": []
+          },
+          {
+            "key": "housing",
+            "label": "주거·계약 조건",
+            "text": "유형별 확인 항목: 본인 주택 소유 여부 / 모든 항목이 필수라는 뜻은 아닙니다. 대상 범위와 대체 경로를 함께 확인해 주세요.",
+            "verification": "NEEDS_REVIEW",
+            "rule_refs": [
+              "required.0.conditions.0.conditions.0.conditions.0"
+            ]
+          },
+          {
+            "key": "income",
+            "label": "소득·재산",
+            "text": "생계·의료·주거급여 수급가구 OR 보호대상 한부모가족 OR 차상위가구",
+            "verification": "NEEDS_REVIEW",
+            "rule_refs": []
+          },
+          {
+            "key": "exclusions",
+            "label": "제외·중복지원",
+            "text": "혼인·유주택;중복신청;대학교/졸업학교 인정 제외 및 서류미비는 공고 전체조건 참조",
+            "verification": "NEEDS_REVIEW",
+            "rule_refs": []
+          },
+          {
+            "key": "exceptions",
+            "label": "유형별 예외·추가 확인",
+            "text": "본인+부모 1순위 가구. 대학생·취업준비생은19세미만/39세초과 대체경로;신청부터 계약까지 자격유지. / 공급 유형, 기준일, 증빙과 현재 모집 여부를 확인해 주세요.",
+            "verification": "NEEDS_REVIEW",
+            "rule_refs": []
+          }
+        ],
+        "profile_contract": {
+          "version": "housing-profile/1",
+          "mode": "PARTIAL_REVIEW",
+          "checks": [
+            {
+              "field": "home_ownership",
+              "op": "eq",
+              "value": "무주택",
+              "label": "본인 무주택",
+              "subject": "applicant",
+              "verification": "SOURCE_CONFIRMED",
+              "evidence": {
+                "source_url": "https://apply.lh.or.kr/lhapply/apply/wt/wrtanc/selectWrtancInfo.do?aisTpCd=17&ccrCnntSysDsCd=03&mi=1026&panId=2015122300019376&uppAisTpCd=13",
+                "quote": "신청일 현재 본인이 무주택자이면서 혼인 중이 아닌 취업준비생, 대학생, 19세 이상 39세 이하 청년",
+                "checked_at": "2026-11-18T01:09:15.203Z",
+                "body_sha256": "aaff0f2963b3361a6760120c52b69536845ad901ab6f0acb63c8d7cbade774aa"
+              }
+            },
+            {
+              "field": "marital_status",
+              "op": "eq",
+              "value": "미혼",
+              "label": "혼인 중이 아님",
+              "subject": "applicant",
+              "verification": "SOURCE_CONFIRMED",
+              "evidence": {
+                "source_url": "https://apply.lh.or.kr/lhapply/apply/wt/wrtanc/selectWrtancInfo.do?aisTpCd=17&ccrCnntSysDsCd=03&mi=1026&panId=2015122300019376&uppAisTpCd=13",
+                "quote": "신청일 현재 본인이 무주택자이면서 혼인 중이 아닌 취업준비생, 대학생, 19세 이상 39세 이하 청년",
+                "checked_at": "2026-11-18T01:09:15.203Z",
+                "body_sha256": "aaff0f2963b3361a6760120c52b69536845ad901ab6f0acb63c8d7cbade774aa"
+              }
+            }
+          ],
+          "overall_verdict": "CHECK",
+          "reason": "확인된 일부 조건만 프로필과 비교합니다. 소득·가구·증빙·예외를 포함한 전체 자격은 확인 필요입니다."
+        },
+        "condition_review": {
+          "organized_on": "2026-11-18",
+          "basis": "기존 정책별 검토 조건의 항목 분리 + 공식 출처 재접근. FETCHED는 전체 자격 검증을 뜻하지 않음.",
+          "sources": [
+            {
+              "source_id": "5ee49569-c0fb-5885-85e1-09cc2c46cf1a",
+              "source_url": "https://apply.lh.or.kr/lhapply/apply/wt/wrtanc/selectWrtancInfo.do?aisTpCd=17&ccrCnntSysDsCd=03&mi=1026&panId=2015122300019376&uppAisTpCd=13",
+              "checked_at": "2026-11-18T01:09:15.203Z",
+              "fetch_status": "FETCHED_NOT_FULLY_VERIFIED",
+              "body_sha256": "aaff0f2963b3361a6760120c52b69536845ad901ab6f0acb63c8d7cbade774aa"
+            },
+            {
+              "source_id": "470c273f-9460-595a-af11-1b42b47dbbcb",
+              "source_url": "https://apply.lh.or.kr/lhapply/lhFile.do?fileid=65733876",
+              "checked_at": "2026-11-18T01:09:14.096Z",
+              "fetch_status": "DOCUMENT_REQUIRES_REVIEW",
+              "body_sha256": "2ddad192a7bc7d82e4772ab9fde5c765d8c5fdcf02c8e83ee112ec661bf32d9b"
+            }
+          ],
+          "preserved_logic": "required/exclusions의 AND·OR·대상자·단위·기준일을 그대로 보존",
+          "full_eligibility_verified": false
+        }
+      }
+    }
+  },
+  {
+    "before": {
+      "policy_id": "5931cb39-c42f-535f-b6ee-f8e576bc1413",
+      "title": "HF 무주택청년 특례 전세·월세자금보증",
+      "collection_domain": "HOUSING",
+      "item_type": "POLICY",
+      "target_summary": "무주택19~34세청년",
+      "eligibility_conditions": {
+        "all": [
+          {
+            "text": "지원 대상 확인: 무주택19~34세청년"
+          },
+          {
+            "text": "소득·자산 확인: 본인과 배우자 합산 연70000000원 이하; 신혼소득특례: 부부합산 상한 초과 시에도 채무자1인 연70000000원 이하이면 가능"
+          },
+          {
+            "text": "제외·예외 확인: 월세특례:본인 또는 배우자 주거급여수급자;전체상품별 권리침해·은행보증심사 조건 적용 / 전세: 신혼가구 또는 미성년자녀가구가1억원 이하 이용 시 상환능력별 보증한도 생략, 보증비율100%, 채권보전 필수. 월세: 보증금1억원/월세70만원 이하, 잔여임대기간6개월 이상, 본인·배우자 주거급여 비수급. 전세/월세 경로 혼합 금지."
+          },
+          {
+            "text": "현재 모집·예산·공실·증빙과 담당기관 심사 확인 필요"
+          }
+        ],
+        "note": "부모·자녀·가구 역할은 동일 인물·가구에 바인딩. 중위소득과 도시근로자 기준을 구분. MANUAL_REVIEW/누락 사실은 UNKNOWN. 소개형은 실제 모집과 별개.",
+        "logic": "UNVERIFIED",
+        "exclude": [
+          {
+            "text": "월세특례:본인 또는 배우자 주거급여수급자;전체상품별 권리침해·은행보증심사 조건 적용"
+          }
+        ],
+        "required": [
+          {
+            "operator": "AND",
+            "conditions": [
+              {
+                "operator": "AND",
+                "conditions": [
+                  {
+                    "unit": "years",
+                    "field": "age",
+                    "value": 39,
+                    "anchor": "application_date",
+                    "subject": "applicant",
+                    "operator": "LTE"
+                  },
+                  {
+                    "field": "all_members_homeless",
+                    "value": true,
+                    "anchor": "application_date",
+                    "subject": "household",
+                    "operator": "EQ"
+                  },
+                  {
+                    "operator": "OR",
+                    "conditions": [
+                      {
+                        "unit": "KRW",
+                        "field": "annual_income",
+                        "value": 70000000,
+                        "anchor": "application_date",
+                        "subject": "couple",
+                        "operator": "LTE"
+                      },
+                      {
+                        "operator": "AND",
+                        "conditions": [
+                          {
+                            "field": "newlywed",
+                            "value": true,
+                            "anchor": "application_date",
+                            "subject": "couple",
+                            "operator": "EQ"
+                          },
+                          {
+                            "unit": "KRW",
+                            "field": "annual_income",
+                            "value": 70000000,
+                            "anchor": "application_date",
+                            "subject": "applicant",
+                            "operator": "LTE"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "operator": "OR",
+                    "conditions": [
+                      {
+                        "operator": "AND",
+                        "conditions": [
+                          {
+                            "field": "guarantee_type",
+                            "value": "JEONSE",
+                            "anchor": "application_date",
+                            "subject": "contract",
+                            "operator": "EQ"
+                          },
+                          {
+                            "text": "전세보증 기본2억원/신혼·미성년자녀가구3억원. 신혼·미성년자녀가구1억원 이하 상환능력별보증한도 생략. 채권보전 필수·은행 심사 확인",
+                            "subject": "authority",
+                            "operator": "MANUAL_REVIEW"
+                          }
+                        ]
+                      },
+                      {
+                        "operator": "AND",
+                        "conditions": [
+                          {
+                            "field": "guarantee_type",
+                            "value": "MONTHLY_RENT",
+                            "anchor": "application_date",
+                            "subject": "contract",
+                            "operator": "EQ"
+                          },
+                          {
+                            "unit": "KRW",
+                            "field": "deposit",
+                            "value": 100000000,
+                            "anchor": "application_date",
+                            "subject": "contract",
+                            "operator": "LTE"
+                          },
+                          {
+                            "unit": "KRW",
+                            "field": "monthly_rent",
+                            "value": 700000,
+                            "anchor": "application_date",
+                            "subject": "contract",
+                            "operator": "LTE"
+                          },
+                          {
+                            "unit": "months",
+                            "field": "remaining_term",
+                            "value": 6,
+                            "anchor": "application_date",
+                            "subject": "contract",
+                            "operator": "GTE"
+                          },
+                          {
+                            "text": "월세보증1200만원/청년전세보증 이용600만원, 본인·배우자 주거급여 비수급 확인",
+                            "subject": "authority",
+                            "operator": "MANUAL_REVIEW"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "text": "구조화한 일부 조건만으로 전체 자격 충족을 판정하지 않음; 원문 전체 증빙·예외 심사 필요",
+                "subject": "authority",
+                "operator": "MANUAL_REVIEW"
+              }
+            ]
+          }
+        ],
+        "exclusions": [
+          {
+            "text": "월세특례:본인 또는 배우자 주거급여수급자;전체상품별 권리침해·은행보증심사 조건 적용",
+            "subject": "authority",
+            "operator": "MANUAL_REVIEW"
+          }
+        ],
+        "source_ids": [
+          "a1dbddd4-eb48-57b8-adcd-52a51252dc3b",
+          "d31522f9-c206-5466-a417-0964621d1384"
+        ],
+        "source_url": "https://www.hf.go.kr/ko/sub02/sub02_01_04.do",
+        "source_urls": [
+          "https://www.hf.go.kr/ko/sub02/sub02_01_04.do",
+          "https://www.hf.go.kr/ko/sub02/sub02_01_06.do"
+        ],
+        "review_notes": {
+          "corrections": "공식 HF 현재 원문에 따라 기존34세에서39세로 수정. 신혼·미성년자녀 전세보증3억원 및 신혼1인소득7000만원 특례 추가.",
+          "application_window": "확인필요 ~ 확인필요",
+          "collected_research_date": "2026-10-02",
+          "official_sources_rechecked_on": "2026-11-16"
+        },
+        "verification": "확인필요",
+        "schema_version": "housing-eligibility/1",
+        "reviewed_fields": {
+          "age": "신청일 기준 만39세 이하",
+          "income": "본인과 배우자 합산 연70000000원 이하; 신혼소득특례: 부부합산 상한 초과 시에도 채무자1인 연70000000원 이하이면 가능",
+          "residence": "확인필요",
+          "exceptions": "전세: 신혼가구 또는 미성년자녀가구가1억원 이하 이용 시 상환능력별 보증한도 생략, 보증비율100%, 채권보전 필수. 월세: 보증금1억원/월세70만원 이하, 잔여임대기간6개월 이상, 본인·배우자 주거급여 비수급. 전세/월세 경로 혼합 금지.",
+          "exclusions": "월세특례:본인 또는 배우자 주거급여수급자;전체상품별 권리침해·은행보증심사 조건 적용"
+        },
+        "engine_projection": {
+          "mode": "MANUAL_REVIEW_ONLY",
+          "contract": "all/any/exclude",
+          "rich_rules_location": "required/exclusions",
+          "automatic_eligibility_ready": false
+        }
+      },
+      "eligibility_verified": false
+    },
+    "values": {
+      "eligibility_conditions": {
+        "all": [
+          {
+            "text": "지원 대상 확인: 무주택19~34세청년"
+          },
+          {
+            "text": "소득·자산 확인: 본인과 배우자 합산 연70000000원 이하; 신혼소득특례: 부부합산 상한 초과 시에도 채무자1인 연70000000원 이하이면 가능"
+          },
+          {
+            "text": "제외·예외 확인: 월세특례:본인 또는 배우자 주거급여수급자;전체상품별 권리침해·은행보증심사 조건 적용 / 전세: 신혼가구 또는 미성년자녀가구가1억원 이하 이용 시 상환능력별 보증한도 생략, 보증비율100%, 채권보전 필수. 월세: 보증금1억원/월세70만원 이하, 잔여임대기간6개월 이상, 본인·배우자 주거급여 비수급. 전세/월세 경로 혼합 금지."
+          },
+          {
+            "text": "현재 모집·예산·공실·증빙과 담당기관 심사 확인 필요"
+          }
+        ],
+        "note": "부모·자녀·가구 역할은 동일 인물·가구에 바인딩. 중위소득과 도시근로자 기준을 구분. MANUAL_REVIEW/누락 사실은 UNKNOWN. 소개형은 실제 모집과 별개.",
+        "logic": "UNVERIFIED",
+        "exclude": [
+          {
+            "text": "월세특례:본인 또는 배우자 주거급여수급자;전체상품별 권리침해·은행보증심사 조건 적용"
+          }
+        ],
+        "required": [
+          {
+            "operator": "AND",
+            "conditions": [
+              {
+                "operator": "AND",
+                "conditions": [
+                  {
+                    "unit": "years",
+                    "field": "age",
+                    "value": 39,
+                    "anchor": "application_date",
+                    "subject": "applicant",
+                    "operator": "LTE"
+                  },
+                  {
+                    "field": "all_members_homeless",
+                    "value": true,
+                    "anchor": "application_date",
+                    "subject": "household",
+                    "operator": "EQ"
+                  },
+                  {
+                    "operator": "OR",
+                    "conditions": [
+                      {
+                        "unit": "KRW",
+                        "field": "annual_income",
+                        "value": 70000000,
+                        "anchor": "application_date",
+                        "subject": "couple",
+                        "operator": "LTE"
+                      },
+                      {
+                        "operator": "AND",
+                        "conditions": [
+                          {
+                            "field": "newlywed",
+                            "value": true,
+                            "anchor": "application_date",
+                            "subject": "couple",
+                            "operator": "EQ"
+                          },
+                          {
+                            "unit": "KRW",
+                            "field": "annual_income",
+                            "value": 70000000,
+                            "anchor": "application_date",
+                            "subject": "applicant",
+                            "operator": "LTE"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "operator": "OR",
+                    "conditions": [
+                      {
+                        "operator": "AND",
+                        "conditions": [
+                          {
+                            "field": "guarantee_type",
+                            "value": "JEONSE",
+                            "anchor": "application_date",
+                            "subject": "contract",
+                            "operator": "EQ"
+                          },
+                          {
+                            "text": "전세보증 기본2억원/신혼·미성년자녀가구3억원. 신혼·미성년자녀가구1억원 이하 상환능력별보증한도 생략. 채권보전 필수·은행 심사 확인",
+                            "subject": "authority",
+                            "operator": "MANUAL_REVIEW"
+                          }
+                        ]
+                      },
+                      {
+                        "operator": "AND",
+                        "conditions": [
+                          {
+                            "field": "guarantee_type",
+                            "value": "MONTHLY_RENT",
+                            "anchor": "application_date",
+                            "subject": "contract",
+                            "operator": "EQ"
+                          },
+                          {
+                            "unit": "KRW",
+                            "field": "deposit",
+                            "value": 100000000,
+                            "anchor": "application_date",
+                            "subject": "contract",
+                            "operator": "LTE"
+                          },
+                          {
+                            "unit": "KRW",
+                            "field": "monthly_rent",
+                            "value": 700000,
+                            "anchor": "application_date",
+                            "subject": "contract",
+                            "operator": "LTE"
+                          },
+                          {
+                            "unit": "months",
+                            "field": "remaining_term",
+                            "value": 6,
+                            "anchor": "application_date",
+                            "subject": "contract",
+                            "operator": "GTE"
+                          },
+                          {
+                            "text": "월세보증1200만원/청년전세보증 이용600만원, 본인·배우자 주거급여 비수급 확인",
+                            "subject": "authority",
+                            "operator": "MANUAL_REVIEW"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "text": "구조화한 일부 조건만으로 전체 자격 충족을 판정하지 않음; 원문 전체 증빙·예외 심사 필요",
+                "subject": "authority",
+                "operator": "MANUAL_REVIEW"
+              }
+            ]
+          }
+        ],
+        "exclusions": [
+          {
+            "text": "월세특례:본인 또는 배우자 주거급여수급자;전체상품별 권리침해·은행보증심사 조건 적용",
+            "subject": "authority",
+            "operator": "MANUAL_REVIEW"
+          }
+        ],
+        "source_ids": [
+          "a1dbddd4-eb48-57b8-adcd-52a51252dc3b",
+          "d31522f9-c206-5466-a417-0964621d1384"
+        ],
+        "source_url": "https://www.hf.go.kr/ko/sub02/sub02_01_04.do",
+        "source_urls": [
+          "https://www.hf.go.kr/ko/sub02/sub02_01_04.do",
+          "https://www.hf.go.kr/ko/sub02/sub02_01_06.do"
+        ],
+        "review_notes": {
+          "corrections": "공식 HF 현재 원문에 따라 기존34세에서39세로 수정. 신혼·미성년자녀 전세보증3억원 및 신혼1인소득7000만원 특례 추가.",
+          "application_window": "확인필요 ~ 확인필요",
+          "collected_research_date": "2026-10-02",
+          "official_sources_rechecked_on": "2026-11-16"
+        },
+        "verification": "확인필요",
+        "schema_version": "housing-eligibility/1",
+        "reviewed_fields": {
+          "age": "신청일 기준 만39세 이하",
+          "income": "본인과 배우자 합산 연70000000원 이하; 신혼소득특례: 부부합산 상한 초과 시에도 채무자1인 연70000000원 이하이면 가능",
+          "residence": "확인필요",
+          "exceptions": "전세: 신혼가구 또는 미성년자녀가구가1억원 이하 이용 시 상환능력별 보증한도 생략, 보증비율100%, 채권보전 필수. 월세: 보증금1억원/월세70만원 이하, 잔여임대기간6개월 이상, 본인·배우자 주거급여 비수급. 전세/월세 경로 혼합 금지.",
+          "exclusions": "월세특례:본인 또는 배우자 주거급여수급자;전체상품별 권리침해·은행보증심사 조건 적용"
+        },
+        "engine_projection": {
+          "mode": "MANUAL_REVIEW_ONLY",
+          "contract": "all/any/exclude",
+          "rich_rules_location": "required/exclusions",
+          "automatic_eligibility_ready": false
+        },
+        "condition_sections": [
+          {
+            "key": "age",
+            "label": "나이·기준일",
+            "text": "신청일 기준 만39세 이하",
+            "verification": "NEEDS_REVIEW",
+            "rule_refs": [
+              "required.0.conditions.0.conditions.0"
+            ]
+          },
+          {
+            "key": "residence",
+            "label": "거주지·대상 지역",
+            "text": "확인필요",
+            "verification": "NEEDS_REVIEW",
+            "rule_refs": []
+          },
+          {
+            "key": "status",
+            "label": "지원 대상·현재 상태",
+            "text": "무주택19~34세청년",
+            "verification": "NEEDS_REVIEW",
+            "rule_refs": []
+          },
+          {
+            "key": "housing",
+            "label": "주거·계약 조건",
+            "text": "유형별 확인 항목: 세대원 전체의 주택 소유 여부 / 모든 항목이 필수라는 뜻은 아닙니다. 대상 범위와 대체 경로를 함께 확인해 주세요.",
+            "verification": "NEEDS_REVIEW",
+            "rule_refs": [
+              "required.0.conditions.0.conditions.1"
+            ]
+          },
+          {
+            "key": "income",
+            "label": "소득·재산",
+            "text": "본인과 배우자 합산 연70000000원 이하; 신혼소득특례: 부부합산 상한 초과 시에도 채무자1인 연70000000원 이하이면 가능",
+            "verification": "NEEDS_REVIEW",
+            "rule_refs": []
+          },
+          {
+            "key": "exclusions",
+            "label": "제외·중복지원",
+            "text": "월세특례:본인 또는 배우자 주거급여수급자;전체상품별 권리침해·은행보증심사 조건 적용",
+            "verification": "NEEDS_REVIEW",
+            "rule_refs": []
+          },
+          {
+            "key": "exceptions",
+            "label": "유형별 예외·추가 확인",
+            "text": "전세: 신혼가구 또는 미성년자녀가구가1억원 이하 이용 시 상환능력별 보증한도 생략, 보증비율100%, 채권보전 필수. 월세: 보증금1억원/월세70만원 이하, 잔여임대기간6개월 이상, 본인·배우자 주거급여 비수급. 전세/월세 경로 혼합 금지. / 공식 HF 현재 원문에 따라 기존34세에서39세로 수정. 신혼·미성년자녀 전세보증3억원 및 신혼1인소득7000만원 특례 추가. / 공급 유형, 기준일, 증빙과 현재 모집 여부를 확인해 주세요.",
+            "verification": "NEEDS_REVIEW",
+            "rule_refs": []
+          }
+        ],
+        "profile_contract": {
+          "version": "housing-profile/1",
+          "mode": "PARTIAL_REVIEW",
+          "checks": [
+            {
+              "field": "age",
+              "op": "lte",
+              "value": 39,
+              "label": "본인 만 39세 이하",
+              "subject": "applicant",
+              "verification": "SOURCE_CONFIRMED",
+              "evidence": {
+                "source_url": "https://www.hf.go.kr/ko/sub02/sub02_01_04.do",
+                "quote": "신청일 기준 만 39세 이하인 무주택자",
+                "checked_at": "2026-11-18T01:09:22.634Z",
+                "body_sha256": "19538428dc40ed8840883be827699a49fc77b705e8302f40fe199cd891edb316"
+              }
+            },
+            {
+              "field": "home_ownership",
+              "op": "eq",
+              "value": "무주택",
+              "label": "본인 무주택",
+              "subject": "applicant",
+              "verification": "SOURCE_CONFIRMED",
+              "evidence": {
+                "source_url": "https://www.hf.go.kr/ko/sub02/sub02_01_04.do",
+                "quote": "신청일 기준 만 39세 이하인 무주택자",
+                "checked_at": "2026-11-18T01:09:22.634Z",
+                "body_sha256": "19538428dc40ed8840883be827699a49fc77b705e8302f40fe199cd891edb316"
+              }
+            }
+          ],
+          "overall_verdict": "CHECK",
+          "reason": "확인된 일부 조건만 프로필과 비교합니다. 소득·가구·증빙·예외를 포함한 전체 자격은 확인 필요입니다."
+        },
+        "condition_review": {
+          "organized_on": "2026-11-18",
+          "basis": "기존 정책별 검토 조건의 항목 분리 + 공식 출처 재접근. FETCHED는 전체 자격 검증을 뜻하지 않음.",
+          "sources": [
+            {
+              "source_id": "a1dbddd4-eb48-57b8-adcd-52a51252dc3b",
+              "source_url": "https://www.hf.go.kr/ko/sub02/sub02_01_04.do",
+              "checked_at": "2026-11-18T01:09:22.634Z",
+              "fetch_status": "FETCHED_NOT_FULLY_VERIFIED",
+              "body_sha256": "19538428dc40ed8840883be827699a49fc77b705e8302f40fe199cd891edb316"
+            },
+            {
+              "source_id": "d31522f9-c206-5466-a417-0964621d1384",
+              "source_url": "https://www.hf.go.kr/ko/sub02/sub02_01_06.do",
+              "checked_at": "2026-11-18T01:09:22.687Z",
+              "fetch_status": "FETCHED_NOT_FULLY_VERIFIED",
+              "body_sha256": "903e74be8d982505847b8bad3de29a35a64bd27aea761783d300163a754004ee"
+            }
+          ],
+          "preserved_logic": "required/exclusions의 AND·OR·대상자·단위·기준일을 그대로 보존",
+          "full_eligibility_verified": false
+        }
+      },
+      "target_summary": "신청일 기준 만 39세 이하 무주택자(소득·배우자·전세/월세 유형별 조건 별도 확인)"
+    }
+  }
+]

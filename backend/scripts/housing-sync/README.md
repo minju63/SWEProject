@@ -116,3 +116,22 @@ node --test backend/scripts/housing-sync/sync.test.cjs
 `--offline`은 캐시를 재분석하며 네트워크·DB 쓰기를 하지 않습니다. 캐시 실행은 적재할 수 없습니다. `notices`는 LH/BMC 목록 어댑터만 읽기 전용으로 확인합니다. 테스트의 적재는 가상 DB를 사용하며 실제 Supabase에는 쓰지 않습니다.
 
 수집할 공식 출처와 검색어는 `config.json`에서 추가합니다. 이 도구는 온통청년 API·지정 출처·LH/BMC 일부 목록을 자동화하며, 웹 전체 탐색이나 복잡한 법적 자격의 완전 검증을 대신하지 않습니다.
+
+## 신청절차·준비물 매일 자동 적재 (2026-11-17)
+
+기존 오전 9시 작업에 `application_process`와 `required_documents` 적재를 추가했습니다. 신규 정책은 공식 본문에서 확인되는 신청절차·준비물을 함께 넣습니다. 기존 주거 정책은 두 컬럼이 NULL인 경우에만 채웁니다. 이미 입력된 값은 유지하고, 수집한 내용과 다르면 검토 목록에 남깁니다. 개인별 준비물 체크 상태는 변경하지 않습니다.
+
+API 정책명과 공식 URL이 모두 일치하고, API의 절차·서류 내용이 공식 본문에서도 확인되어야 자동 반영합니다. 별도 검토한 주택도시기금 10개 정책은 등록된 공식 이용절차 구간이 그대로인지 재확인합니다. 첨부파일만 있거나 조건·면제 문구가 불명확하거나 원문이 달라지면 자동 반영하지 않습니다. 따라서 모든 정책의 빈 칸이 반드시 채워지는 것은 아닙니다.
+
+서류는 `{key, name, required, confirmed}` 형식입니다. 해당자 서류의 조건을 이름에 남기고 `required=false`로 저장합니다. `confirmed`는 출처 확인 여부이며 이용자의 준비 완료 여부가 아닙니다.
+
+실행별 `application_info/plan.json`, `application_info/result.json`, `application_info/sources/`에 계획·반영 결과·공식 근거를 보관합니다. 전체 결과는 `daily_result.json`, 최근 완료는 `research/housing-sync/daily_latest.json`입니다. 두 단계가 완료되어야 당일 완료로 기록하며 실패하면 다음 실행에서 재개합니다.
+
+```powershell
+.\housing-sync.cmd daily
+.\housing-sync.cmd daily --preview
+.\housing-sync.cmd application-info --run RUN_ID
+.\housing-sync.cmd application-info --run RUN_ID --apply
+```
+
+`application-info` 단독 실행은 기본 미리보기입니다. 기존 수동 `publish`의 입력 양식은 그대로 유지하며, 위 두 컬럼의 자동 보완은 `daily`의 별도 단계에서 처리합니다. 예약은 이 PC가 켜져 있고 사용자 로그인 상태일 때 실행됩니다.

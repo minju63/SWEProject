@@ -1,4 +1,15 @@
 .env
+.local/
 __pycache__/
+node_modules/
+dist/
+test-results/
+playwright-report/
 /research/housing-sync/
 *.csv
+/research/housing_conditions_2026-11-18/before.json
+/research/housing_conditions_2026-11-18/after.json
+/research/housing_conditions_2026-11-18/sources/
+/research/housing_conditions_contract_2026-11-18/database_before.json
+/research/housing_conditions_contract_2026-11-18/database_after.json
+/research/housing_periods_2026-11-18/
