@@ -83,15 +83,6 @@ button {
   color: var(--primary);
   font-weight: 600;
 }
-.tab-active::after {
-  content: '';
-  position: absolute;
-  bottom: 6px;
-  width: 4px;
-  height: 4px;
-  border-radius: 50%;
-  background: var(--primary);
-}
 
 /* ---------- 상단 헤더 ---------- */
 .page-header {
@@ -1046,29 +1037,6 @@ button {
 .search-applied-list h3 { margin: 0 0 8px; font-size: 12px; font-weight: 900; }
 .search-applied-list h3:not(:first-child) { margin-top: 16px; }
 .search-applied-list span { display: inline-block; margin: 0 6px 6px 0; padding: 8px 12px; border-radius: 999px; background: #fff; color: #2f7bf5; font-size: 11px; font-weight: 800; }
-.app--search .tabbar,
-.app--detail .tabbar {
-  z-index: 40;
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  padding: 8px 8px max(10px, env(safe-area-inset-bottom));
-  border-top: 0;
-  border-radius: 20px 20px 0 0;
-  background: rgba(255, 255, 255, 0.95);
-  backdrop-filter: blur(20px);
-}
-.app--search .tab,
-.app--detail .tab {
-  height: auto;
-  gap: 4px;
-  padding: 4px 0;
-  color: rgba(0, 0, 0, 0.3);
-  font-size: 10px;
-  font-weight: 700;
-}
-.app--search .tab svg, .app--detail .tab svg { width: 21px; height: 21px; }
-.app--search .tab-active, .app--detail .tab-active { color: #2f7bf5; }
-.app--search .tab-active::after, .app--detail .tab-active::after { display: none; }
 .sr-only {
   position: absolute;
   width: 1px;

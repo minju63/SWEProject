@@ -1,4 +1,4 @@
-import { NavLink } from 'react-router-dom';
+import { NavLink, useLocation, useNavigate } from 'react-router-dom';
 import { HomeIcon, SearchIcon, MapIcon, CalendarIcon, UserIcon } from './icons.jsx';
 
 const TABS = [
@@ -10,6 +10,8 @@ const TABS = [
 ];
 
 export default function TabBar() {
+  const navigate = useNavigate();
+  const { pathname } = useLocation();
   return (
     <nav className="tabbar" aria-label="하단 메뉴">
       {TABS.map(({ to, label, Icon }) => (
@@ -17,6 +19,16 @@ export default function TabBar() {
           key={to}
           to={to}
           end={to === '/'}
+          onClick={(e) => {
+            // 검색 탭: 다른 화면에서 돌아오면 마지막 검색 조건을 이어서 보여 준다
+            if (to === '/search' && !pathname.startsWith('/search')) {
+              const last = sessionStorage.getItem('youthzip-last-search');
+              if (last) {
+                e.preventDefault();
+                navigate('/search' + last);
+              }
+            }
+          }}
           className={({ isActive }) => `tab${isActive ? ' tab-active' : ''}`}
         >
           <Icon />

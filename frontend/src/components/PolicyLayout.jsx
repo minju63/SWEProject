@@ -1,3 +1,4 @@
+import TabBar from './TabBar'
 import { useLocation, useNavigate } from 'react-router'
 import { Icon } from '../screens/HomeScreen'
 export const accentTheme = '[--accent:#2F7BF5] [--accent-soft:#EAF2FE]'
@@ -54,39 +55,9 @@ export function PolicyTags({ category, region, target }) {
     </div>
   )
 }
-export function BottomNav({ active = '검색' }) {
-  const navigate = useNavigate()
-  const { pathname } = useLocation()
-  return (
-    <nav
-      className="fixed bottom-0 left-1/2 z-40 grid w-full max-w-[480px] -translate-x-1/2 grid-cols-5 border-t border-black/[0.07] bg-white/95 px-2 pb-[max(10px,env(safe-area-inset-bottom))] pt-2 backdrop-blur-xl"
-      aria-label="앱 메뉴"
-    >
-      {[
-        { label: '홈', icon: 'home', path: '/' },
-        { label: '검색', icon: 'search', path: '/search' },
-        { label: '지도', icon: 'map', path: '/map' },
-        { label: '캘린더', icon: 'calendar', path: '/calendar' },
-        { label: '마이', icon: 'user', path: '/my' },
-      ].map((item) => (
-        <button
-          key={item.label}
-          onClick={() => {
-            if (!item.path) return
-            if (item.label === '검색' && !pathname.startsWith('/search')) {
-              navigate(item.path + (sessionStorage.getItem('youthzip-last-search') ?? ''))
-              return
-            }
-            navigate(item.path)
-          }}
-          className={`flex flex-col items-center gap-1 py-1 text-[10px] font-bold ${item.label === active ? 'text-[color:var(--accent,#2F7BF5)]' : 'text-black/30'}`}
-        >
-          <Icon name={item.icon} className="size-[21px]" />
-          {item.label}
-        </button>
-      ))}
-    </nav>
-  )
+// 하단 메뉴는 홈과 같은 TabBar 하나를 모든 화면에서 쓴다 (active 는 현재 주소로 자동 표시)
+export function BottomNav() {
+  return <TabBar />
 }
 export function SearchField({ value, onChange, onSubmit, placeholder, buttonLabel }) {
   return (
