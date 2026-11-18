@@ -126,28 +126,20 @@ button {
   width: 22px;
   height: 22px;
 }
-.bell-dot {
-  position: absolute;
-  top: 3px;
-  right: 0; /* 종 모양과 겹치지 않게 오른쪽 위 바깥쪽에 둔다 */
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: var(--primary);
-}
 .bell-badge {
   position: absolute;
-  top: 0;
-  right: 0;
+  top: -2px;
+  right: -6px; /* 종 모양과 겹치지 않게 오른쪽 위 바깥쪽 */
   min-width: 16px;
   height: 16px;
   padding: 0 4px;
   border-radius: 999px;
-  background: var(--no);
+  background: var(--primary);
   color: #fff;
   font-size: 10px;
   font-weight: 700;
   line-height: 16px;
+  text-align: center;
 }
 
 /* ---------- 섹션·카드 ---------- */

@@ -1,22 +1,82 @@
 import { useMemo, useState } from 'react'
 import { useNavigate } from 'react-router'
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 import { Icon } from './HomeScreen'
-import { selectUnreadCount, useNotificationStore } from '../store/notificationStore'
+import {
+  fetchNotifications,
+  markAllNotificationsRead,
+  markNotificationRead,
+} from '../api/notifications'
+import { UNREAD_KEY } from '../components/NotificationBell'
+import { useAuthStore } from '../store/authStore'
+
+const LIST_KEY = ['notifications', 'list']
+// 알림 종류: 서버 값(DEADLINE·NEW_MATCH·SYSTEM)을 화면 이름과 버튼 문구로 바꾼다
+const TYPES = {
+  DEADLINE: { label: '마감', action: '혜택 확인', icon: 'bell' },
+  NEW_MATCH: { label: '혜택', action: '추천 보기', icon: 'sparkle' },
+  SYSTEM: { label: '안내', action: '자세히 보기', icon: 'calendar' },
+}
+const typeOf = (n) => TYPES[n.type] ?? TYPES.SYSTEM
+
+// "10분 전", "1시간 전", "어제", "5월 28일"
+function timeAgo(iso) {
+  const diff = Date.now() - new Date(iso).getTime()
+  const min = Math.floor(diff / 60000)
+  if (min < 1) return '방금 전'
+  if (min < 60) return `${min}분 전`
+  const hour = Math.floor(min / 60)
+  if (hour < 24) return `${hour}시간 전`
+  const day = Math.floor(hour / 24)
+  if (day === 1) return '어제'
+  if (day < 7) return `${day}일 전`
+  const d = new Date(new Date(iso).getTime() + 9 * 3600 * 1000)
+  return `${d.getUTCMonth() + 1}월 ${d.getUTCDate()}일`
+}
+
 export default function NotificationsScreen() {
   const navigate = useNavigate()
-  const notifications = useNotificationStore((s) => s.notifications)
-  const markRead = useNotificationStore((s) => s.markRead)
-  const markAllRead = useNotificationStore((s) => s.markAllRead)
+  const queryClient = useQueryClient()
+  const user = useAuthStore((s) => s.user)
+  const list = useQuery({
+    queryKey: LIST_KEY,
+    queryFn: fetchNotifications,
+    enabled: Boolean(user),
+    staleTime: 0,
+    refetchInterval: 30_000,
+    refetchOnWindowFocus: 'always',
+  })
+  const refresh = () => {
+    queryClient.invalidateQueries({ queryKey: LIST_KEY })
+    queryClient.invalidateQueries({ queryKey: UNREAD_KEY })
+  }
+  const readOne = useMutation({ mutationFn: markNotificationRead, onSuccess: refresh })
+  const readAll = useMutation({ mutationFn: markAllNotificationsRead, onSuccess: refresh })
+
+  const notifications = useMemo(
+    () =>
+      (list.data ?? []).map((n) => ({
+        id: n.notification_id,
+        type: typeOf(n).label,
+        action: typeOf(n).action,
+        icon: typeOf(n).icon,
+        title: n.title,
+        description: n.body ?? '',
+        time: timeAgo(n.created_at),
+        unread: !n.is_read,
+        link: n.link,
+      })),
+    [list.data]
+  )
   const [filter, setFilter] = useState('전체')
   const visibleNotifications = useMemo(
     () => notifications.filter((notification) => filter === '전체' || notification.type === filter),
     [filter, notifications]
   )
-  const unreadCount = useNotificationStore(selectUnreadCount)
+  const unreadCount = notifications.filter((notification) => notification.unread).length
   function openNotification(notification) {
-    markRead(notification.id)
-    if (notification.type === '신청') navigate('/my')
-    else navigate('/search')
+    if (notification.unread) readOne.mutate(notification.id)
+    navigate(notification.link || '/search')
   }
   return (
     <div className="min-h-screen bg-[#eef0f5]">
@@ -42,16 +102,14 @@ export default function NotificationsScreen() {
             </button>
             <h1 className="text-[18px] font-black tracking-[-0.04em]">알림</h1>
             <button
-              onClick={() =>
-                markAllRead()
-              }
+              onClick={() => user && unreadCount > 0 && readAll.mutate()}
               className="text-[10px] font-extrabold text-[#2F7BF5]"
             >
               모두 읽음
             </button>
           </div>
           <div className="no-scrollbar mt-3 flex gap-2 overflow-x-auto">
-            {['전체', '혜택', '마감', '신청'].map((item) => (
+            {['전체', '혜택', '마감', '안내'].map((item) => (
               <button
                 key={item}
                 onClick={() => setFilter(item)}
@@ -89,13 +147,7 @@ export default function NotificationsScreen() {
                     className={`grid size-11 shrink-0 place-items-center rounded-2xl ${notification.unread ? 'bg-[#f1f3fb] text-[#2F7BF5]' : 'bg-[#f1f2f4] text-black/25'}`}
                   >
                     <Icon
-                      name={
-                        notification.type === '신청'
-                          ? 'calendar'
-                          : notification.type === '마감'
-                            ? 'bell'
-                            : 'sparkle'
-                      }
+                      name={notification.icon}
                       className="size-5"
                     />
                   </span>
@@ -124,7 +176,26 @@ export default function NotificationsScreen() {
               ))}
             </div>
 
-            {visibleNotifications.length === 0 && (
+            {!user && (
+              <div className="rounded-[22px] bg-white py-14 text-center">
+                <p className="text-sm font-black">로그인하면 알림을 볼 수 있어요</p>
+                <button
+                  onClick={() => navigate('/my')}
+                  className="mt-4 rounded-xl bg-[#2F7BF5] px-4 py-2 text-[11px] font-extrabold text-white"
+                >
+                  마이에서 로그인하기
+                </button>
+              </div>
+            )}
+            {user && list.isLoading && (
+              <p className="py-14 text-center text-[11px] font-medium text-black/35">불러오는 중…</p>
+            )}
+            {user && list.error && (
+              <p className="py-14 text-center text-[11px] font-medium text-black/45">
+                알림을 불러오지 못했어요. 잠시 후 다시 시도해 주세요.
+              </p>
+            )}
+            {user && !list.isLoading && !list.error && visibleNotifications.length === 0 && (
               <div className="rounded-[22px] bg-white py-14 text-center">
                 <span className="mx-auto grid size-12 place-items-center rounded-full bg-[#f1f3fb] text-[#2F7BF5]">
                   <Icon name="bell" className="size-5" />
