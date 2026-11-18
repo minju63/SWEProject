@@ -1,66 +1,20 @@
 import { useMemo, useState } from 'react'
 import { useNavigate } from 'react-router'
 import { Icon } from './HomeScreen'
-const initialNotifications = [
-  {
-    id: 1,
-    type: '마감',
-    title: '찜한 혜택이 곧 마감돼요',
-    description: '부산 청년 교통비 지원(예시 정책)이 5일 후 마감돼요.',
-    time: '10분 전',
-    unread: true,
-    action: '혜택 확인',
-  },
-  {
-    id: 2,
-    type: '신청',
-    title: '신청 상태를 확인해주세요',
-    description: '청년도약계좌의 신청 상태를 공식 사이트에서 확인한 뒤 직접 변경해주세요.',
-    time: '1시간 전',
-    unread: true,
-    action: '신청 관리',
-  },
-  {
-    id: 3,
-    type: '혜택',
-    title: '은혜님을 위한 새로운 혜택',
-    description: '사하구 청년 생활안정 지원사업(예시 정책)을 확인해보세요.',
-    time: '오늘 오전 9:20',
-    unread: true,
-    action: '추천 보기',
-  },
-  {
-    id: 4,
-    type: '혜택',
-    title: '부산진구 맞춤 정책이 추가됐어요',
-    description: '부산진구 청년 취업역량 강화사업(예시 정책)이 등록됐어요.',
-    time: '어제',
-    unread: false,
-    action: '정책 확인',
-  },
-  {
-    id: 5,
-    type: '신청',
-    title: '결과 발표 예정일이에요',
-    description: '사하구 청년 생활안정 지원사업의 결과를 공식 사이트에서 확인해주세요.',
-    time: '5월 28일',
-    unread: false,
-    action: '결과 확인',
-  },
-]
+import { selectUnreadCount, useNotificationStore } from '../store/notificationStore'
 export default function NotificationsScreen() {
   const navigate = useNavigate()
-  const [notifications, setNotifications] = useState(initialNotifications)
+  const notifications = useNotificationStore((s) => s.notifications)
+  const markRead = useNotificationStore((s) => s.markRead)
+  const markAllRead = useNotificationStore((s) => s.markAllRead)
   const [filter, setFilter] = useState('전체')
   const visibleNotifications = useMemo(
     () => notifications.filter((notification) => filter === '전체' || notification.type === filter),
     [filter, notifications]
   )
-  const unreadCount = notifications.filter((notification) => notification.unread).length
+  const unreadCount = useNotificationStore(selectUnreadCount)
   function openNotification(notification) {
-    setNotifications((items) =>
-      items.map((item) => (item.id === notification.id ? { ...item, unread: false } : item))
-    )
+    markRead(notification.id)
     if (notification.type === '신청') navigate('/my')
     else navigate('/search')
   }
@@ -89,7 +43,7 @@ export default function NotificationsScreen() {
             <h1 className="text-[18px] font-black tracking-[-0.04em]">알림</h1>
             <button
               onClick={() =>
-                setNotifications((items) => items.map((item) => ({ ...item, unread: false })))
+                markAllRead()
               }
               className="text-[10px] font-extrabold text-[#2F7BF5]"
             >

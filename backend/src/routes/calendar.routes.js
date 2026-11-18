@@ -7,7 +7,6 @@ const router = Router();
 router.use(requireAuth);
 
 router.get('/calendar', calendar.getCalendar);
-router.get('/notifications/unread-count', calendar.getUnreadCount);
 router.get('/policies/:policyId/alarms', calendar.getAlarms);
 router.put('/policies/:policyId/alarms', calendar.putAlarms);
 router.delete('/alarms/:alarmId', calendar.deleteAlarm);
