@@ -32,7 +32,7 @@ export default function App() {
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </main>
-      <AssistantButton />
+      {!isSearch && <AssistantButton />}
       <AssistantSheet />
       <Toast />
       <TabBar />
