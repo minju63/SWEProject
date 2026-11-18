@@ -7,6 +7,8 @@ import placeRoutes from './routes/place.routes.js';
 import housingRoutes from './routes/housing.routes.js';
 import workspaceRoutes from './routes/workspace.routes.js';
 import catalogRoutes from './routes/catalog.routes.js';
+import homeRoutes from './routes/home.routes.js';
+import assistantRoutes from './routes/assistant.routes.js';
 import { notFound, errorHandler } from './middlewares/error.js';
 import { startJobs } from './jobs/index.js';
 import { ok } from './utils/response.js';
@@ -26,6 +28,8 @@ app.use('/api/v1', catalogRoutes);
 app.use('/api/v1', placeRoutes);
 app.use('/api/v1/me', meRoutes);
 app.use('/api/v1/me', workspaceRoutes);
+app.use('/api/v1', homeRoutes); // 홈 (백민주)
+app.use('/api/v1/assistant', assistantRoutes); // AI 비서 Dr.부 (백민주)
 app.use('/api/v1', policyRoutes);
 
 app.use(notFound);

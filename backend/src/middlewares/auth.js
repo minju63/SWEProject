@@ -13,3 +13,13 @@ export async function requireAuth(req, _res, next) {
   req.user = data.user;
   next();
 }
+
+// 로그인하지 않아도 쓸 수 있는 API 용: 토큰이 있고 올바르면 req.user 를 채우고, 없으면 그냥 통과한다.
+export async function optionalAuth(req, _res, next) {
+  const token = req.headers.authorization?.replace(/^Bearer /, '');
+  if (token) {
+    const { data, error } = await supabase.auth.getUser(token);
+    if (!error && data.user) req.user = data.user;
+  }
+  next();
+}

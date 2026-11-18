@@ -4,6 +4,7 @@
 // 검색창이 남는 폭을 차지하므로 버튼이 늘면 검색창이 줄어든다.
 import { useMemo, useState } from 'react';
 import NotificationBell from '../../components/NotificationBell.jsx';
+import DrBuFaceButton from '../../components/DrBuFaceButton.jsx';
 import { CategoryBadge, Glyph } from './mapIcons.jsx';
 import { placeMatchesTerm } from './mapUtils.js';
 
@@ -178,6 +179,7 @@ export default function MapHeader({
           />
         </div>
       )}
+      <DrBuFaceButton />
       <NotificationBell />
     </div>
   );

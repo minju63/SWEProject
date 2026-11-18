@@ -1,24 +1,181 @@
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
+import { useLocation } from 'react-router-dom';
+import { useQuery } from '@tanstack/react-query';
+import { fetchHome } from '../api/home';
+import { useAssistantStore } from '../store/assistantStore';
+import { useToastStore } from '../store/toastStore';
+import SharkAvatar from './SharkAvatar.jsx';
 
-// 화면 위에 떠 있는 AI 비서 "Dr.부" 버튼 자리
-// TODO(AI 비서 담당): 캐릭터 이미지 교체, 드래그 이동·숨기기, 누르면 대화창 열기
+const SIZE = 60;
+const MARGIN = 12;
+const LONG_PRESS_MS = 350;
+const DRAG_START_PX = 10;
+const TAB_H = 64;
+const HEADER_H = 56;
+const BUBBLE_KEY = 'chunghae.bubbleShown';
+const ZONE_RADIUS = 44; // 아래 가운데 숨기기 영역 (FR-A04)
+
+// 숨기기 영역의 화면 좌표 중심
+const zoneCenter = () => ({
+  x: window.innerWidth / 2,
+  y: window.innerHeight - TAB_H - 54,
+});
+const inZone = (x, y) => {
+  const c = zoneCenter();
+  return Math.hypot(x - c.x, y - c.y) < ZONE_RADIUS;
+};
+
+// 모든 탭에 떠 있는 Dr.부 (FR-A01~A07)
 export default function AssistantButton() {
-  const [hidden, setHidden] = useState(false);
+  const { hidden, side, bottom, hide, show, move, openChat } = useAssistantStore();
+  const showToast = useToastStore((s) => s.show);
+  const { pathname } = useLocation();
+  const [drag, setDrag] = useState(null); // { x, y } 드래그 중 화면 좌표(왼쪽 위)
+  const [overZone, setOverZone] = useState(false);
+  const press = useRef(null);
+
+  // 말풍선: 접속 후 처음 홈에 들어왔을 때 1번, 5초 (FR-A02)
+  const [bubble, setBubble] = useState(null);
+  const home = useQuery({
+    queryKey: ['home'],
+    queryFn: fetchHome,
+    enabled: pathname === '/' && !hidden,
+  });
+  const bubbleTimer = useRef(null);
+  useEffect(() => () => clearTimeout(bubbleTimer.current), []);
+  useEffect(() => {
+    if (pathname !== '/' || hidden || !home.data) return;
+    const closing = home.data.closing_bookmarks.length;
+    const text = closing
+      ? `마감 임박 혜택이 ${closing}개 있어요! 물어볼래요?`
+      : home.data.mine_total
+        ? `나에게 맞는 혜택이 ${home.data.mine_total}개 있어요! 물어볼래요?`
+        : null;
+    if (!text) return; // 보여줄 상황 문구가 없으면 표시하지 않는다
+    try {
+      if (sessionStorage.getItem(BUBBLE_KEY)) return; // 접속 중 한 번만
+      sessionStorage.setItem(BUBBLE_KEY, '1');
+    } catch {
+      // 저장소를 못 써도 이번 화면에서는 보여 준다
+    }
+    setTimeout(() => setBubble(text), 0);
+    bubbleTimer.current = setTimeout(() => setBubble(null), 5000);
+  }, [pathname, hidden, home.data]);
+
   if (hidden) return null;
 
+  const onPointerDown = (e) => {
+    if (e.target.closest('.assistant-close')) return;
+    const rect = e.currentTarget.getBoundingClientRect();
+    press.current = {
+      id: e.pointerId,
+      startX: e.clientX,
+      startY: e.clientY,
+      dx: e.clientX - rect.left,
+      dy: e.clientY - rect.top,
+      dragging: false,
+      timer: setTimeout(() => {
+        if (!press.current) return;
+        press.current.dragging = true;
+        setDrag({ x: rect.left, y: rect.top });
+        setBubble(null);
+        navigator.vibrate?.(10);
+      }, LONG_PRESS_MS),
+    };
+    e.currentTarget.setPointerCapture(e.pointerId);
+  };
+
+  const onPointerMove = (e) => {
+    const p = press.current;
+    if (!p) return;
+    if (!p.dragging) {
+      // 길게 누르지 않아도 끌기 시작하면(10px 이상) 바로 이동 모드로 들어간다
+      if (Math.hypot(e.clientX - p.startX, e.clientY - p.startY) < DRAG_START_PX) return;
+      clearTimeout(p.timer);
+      p.dragging = true;
+      setBubble(null);
+    }
+    e.preventDefault();
+    setDrag({ x: e.clientX - p.dx, y: e.clientY - p.dy });
+    setOverZone(inZone(e.clientX, e.clientY));
+  };
+
+  const onPointerUp = (e) => {
+    const p = press.current;
+    if (!p) return;
+    clearTimeout(p.timer);
+    press.current = null;
+    if (!p.dragging) {
+      openChat({ mode: 'free' });
+      return;
+    }
+    setOverZone(false);
+    // 아래 숨기기 영역에 놓으면 숨기고, 되돌리기 토스트를 띄운다 (FR-A04, FR-A05)
+    if (e.type === 'pointerup' && inZone(e.clientX, e.clientY)) {
+      setDrag(null);
+      hideWithUndo();
+      return;
+    }
+    // 놓으면 가까운 좌우 가장자리에 붙고, 헤더·하단 탭을 가리지 않는 높이로 맞춘다
+    const x = e.clientX - p.dx;
+    const y = e.clientY - p.dy;
+    const vw = window.innerWidth;
+    const vh = window.innerHeight;
+    const newSide = x + SIZE / 2 < vw / 2 ? 'left' : 'right';
+    const maxBottom = vh - TAB_H - HEADER_H - SIZE;
+    const newBottom = Math.min(Math.max(vh - y - SIZE - TAB_H, MARGIN), maxBottom);
+    move(newSide, newBottom);
+    setDrag(null);
+  };
+
+  const hideWithUndo = (e) => {
+    e?.stopPropagation();
+    hide();
+    showToast('Dr.부를 숨겼어요', { action: { label: '되돌리기', onClick: show }, duration: 5000 });
+  };
+
+  const style = drag
+    ? { left: drag.x, top: drag.y, right: 'auto', bottom: 'auto' }
+    : {
+        [side]: `max(${MARGIN}px, calc(50% - 240px + ${MARGIN}px))`,
+        bottom: `calc(var(--tabbar-h) + env(safe-area-inset-bottom) + ${bottom}px)`,
+      };
+
   return (
-    <div className="assistant">
-      <button type="button" className="assistant-face" aria-label="Dr.부와 대화하기">
-        Dr.부
-      </button>
-      <button
-        type="button"
-        className="assistant-close"
-        aria-label="Dr.부 숨기기"
-        onClick={() => setHidden(true)}
-      >
-        ×
-      </button>
-    </div>
+    <>
+      {drag && (
+        <div className={`drop-zone${overZone ? ' drop-zone-on' : ''}`} aria-hidden="true">
+          <span>✕</span>
+          <em>숨기기</em>
+        </div>
+      )}
+      <div className={`assistant${drag ? ' assistant-dragging' : ''}`} style={style}>
+        {bubble && !drag && (
+          <div className={`assistant-bubble assistant-bubble-${side}`}>{bubble}</div>
+        )}
+        <div
+          className="assistant-face"
+          role="button"
+          tabIndex={0}
+          aria-label="Dr.부와 대화하기"
+          onPointerDown={onPointerDown}
+          onPointerMove={onPointerMove}
+          onPointerUp={onPointerUp}
+          onPointerCancel={onPointerUp}
+          onContextMenu={(e) => e.preventDefault()}
+          onKeyDown={(e) => e.key === 'Enter' && openChat({ mode: 'free' })}
+        >
+          <SharkAvatar size={SIZE} />
+        </div>
+        <button
+          type="button"
+          className="assistant-close"
+          aria-label="Dr.부 숨기기"
+          onClick={hideWithUndo}
+        >
+          ×
+        </button>
+      </div>
+    </>
   );
 }

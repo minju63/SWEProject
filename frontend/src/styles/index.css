@@ -144,39 +144,6 @@ button {
   line-height: 16px;
 }
 
-/* ---------- AI 비서 Dr.부 (탭바 위 오른쪽에 떠 있음) ---------- */
-.assistant {
-  position: fixed;
-  z-index: 10;
-  right: max(16px, calc(50% - 240px + 16px));
-  bottom: calc(var(--tabbar-h) + env(safe-area-inset-bottom) + 16px);
-}
-.assistant-face {
-  width: 60px;
-  height: 60px;
-  border-radius: 50%;
-  border: 3px solid #fff;
-  background: linear-gradient(135deg, #5b9bff, var(--primary));
-  color: #fff;
-  font-size: 13px;
-  font-weight: 800;
-  box-shadow: 0 6px 16px rgba(47, 123, 245, 0.35);
-}
-.assistant-close {
-  position: absolute;
-  top: -4px;
-  right: -4px;
-  width: 20px;
-  height: 20px;
-  padding: 0;
-  border-radius: 50%;
-  border: 2px solid #fff;
-  background: #4e5968;
-  color: #fff;
-  font-size: 12px;
-  line-height: 14px;
-}
-
 /* ---------- 섹션·카드 ---------- */
 .section {
   margin-top: 24px;
