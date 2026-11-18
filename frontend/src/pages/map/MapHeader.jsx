@@ -3,7 +3,8 @@
 // 팀 공통 헤더 버튼(알림, Dr.부 숨김 시 얼굴 버튼 FR-A06)은 맨 끝 NotificationBell 옆에 둔다.
 // 검색창이 남는 폭을 차지하므로 버튼이 늘면 검색창이 줄어든다.
 import { useMemo, useState } from 'react';
-import NotificationBell from '../../components/NotificationBell.jsx';
+import { useNavigate } from 'react-router-dom';
+import { Icon } from '../../screens/HomeScreen';
 import DrBuFaceButton from '../../components/DrBuFaceButton.jsx';
 import { CategoryBadge, Glyph } from './mapIcons.jsx';
 import { placeMatchesTerm } from './mapUtils.js';
@@ -24,6 +25,7 @@ export default function MapHeader({
   const [open, setOpen] = useState(false);
   const [resultsOpen, setResultsOpen] = useState(initialResults);
   const q = query.trim();
+  const navigate = useNavigate();
 
   const hits = useMemo(() => {
     if (!q) return [];
@@ -58,7 +60,7 @@ export default function MapHeader({
   }
 
   return (
-    <div className="relative flex h-[68px] items-center gap-2.5 px-5">
+    <div className="relative flex h-[68px] items-center gap-2.5 bg-[#eaf2ff] px-5">
       <h1 className="shrink-0 text-[20px] font-black tracking-[-0.04em]">지도</h1>
       <div className="relative min-w-0 flex-1">
         <button
@@ -90,7 +92,7 @@ export default function MapHeader({
           }}
           placeholder="장소 검색"
           aria-label="장소 검색"
-          className="h-11 w-full rounded-full bg-[#f0f1f5] pl-11 pr-4 text-[14px] font-semibold outline-none placeholder:text-black/35 focus:ring-2 focus:ring-[#2F7BF5]"
+          className="h-11 w-full rounded-full bg-white pl-11 pr-4 text-[14px] font-semibold outline-none placeholder:text-black/35 focus:ring-2 focus:ring-[#2F7BF5]"
         />
         {open && q && (
           <>
@@ -180,7 +182,15 @@ export default function MapHeader({
         </div>
       )}
       <DrBuFaceButton />
-      <NotificationBell />
+      <button
+        type="button"
+        onClick={() => navigate('/notifications')}
+        className="relative p-1.5"
+        aria-label="알림"
+      >
+        <Icon name="bell" className="size-[22px]" />
+        <span className="absolute right-1 top-1 size-2 rounded-full border-2 border-[#eaf2ff] bg-[#2F7BF5]" />
+      </button>
     </div>
   );
 }

@@ -1115,7 +1115,7 @@ export default function MapScreen() {
   return (
     <div className="min-h-screen bg-[#eef0f5]">
       <div className="relative mx-auto flex h-dvh max-w-[480px] flex-col overflow-hidden bg-[#f7f8fb] text-[#171923] shadow-[0_0_40px_rgba(23,25,35,0.08)]">
-        <header className="relative z-[60] shrink-0 border-b border-black/[0.05] bg-white/95 backdrop-blur-xl">
+        <header className="relative z-[60] shrink-0 border-b border-black/[0.05] bg-[#eaf2ff]">
           <MapHeader
             onBell={() => navigate('/notifications')}
             onPick={pickFromSearch}
