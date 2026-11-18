@@ -17,7 +17,14 @@ import { ok } from './utils/response.js';
 const app = express();
 
 app.use(cors({
-  origin: process.env.CLIENT_URL || ['http://localhost:5173', 'http://127.0.0.1:5173'],
+  // CLIENT_URL 외에도, 개발 중 포트가 바뀌는 경우(5173 사용 중 → 5174 …)를 위해 로컬 주소는 포트와 관계없이 허용한다
+  origin: (origin, cb) =>
+    cb(
+      null,
+      !origin ||
+        origin === process.env.CLIENT_URL ||
+        /^http:\/\/(localhost|127\.0\.0\.1)(:\d+)?$/.test(origin)
+    ),
   credentials: true,
 }));
 app.use(express.json());
