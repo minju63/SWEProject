@@ -2,12 +2,16 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useQuery, useQueryClient } from '@tanstack/react-query';
 import { fetchRecommend, sendChat } from '../api/assistant';
+import { fetchCategories } from '../api/policies';
 import { fetchProfile, addBookmark } from '../api/me';
 import { useAuthStore } from '../store/authStore';
 import { useAssistantStore, loadHistory, saveHistory } from '../store/assistantStore';
 import { useToastStore } from '../store/toastStore';
 import { ELIGIBILITY_LABEL, dDayText } from '../utils/format';
 import SharkAvatar from './SharkAvatar.jsx';
+
+// 정책 상세 화면이 준비되면 true 로 바꾼다 (그 전에는 상세 보기를 누를 수 없게 한다)
+const DETAIL_ENABLED = false;
 
 const MARK = { ok: '✓', no: '✕', check: '?' };
 
@@ -43,13 +47,66 @@ function RichText({ text }) {
     ));
 }
 
-function PolicyCardInChat({ card, onDetail, onBookmark }) {
+const mmdd = (iso) => {
+  const d = String(iso ?? '')
+    .slice(0, 10)
+    .split('-');
+  return d.length === 3 ? `${d[1]}.${d[2]}` : '';
+};
+
+function LinkIcon() {
+  return (
+    <svg viewBox="0 0 24 24" width="13" height="13" aria-hidden="true" className="src-icon">
+      <path
+        d="M10 14a4 4 0 0 0 5.7 0l3-3a4 4 0 0 0-5.7-5.7l-1 1M14 10a4 4 0 0 0-5.7 0l-3 3A4 4 0 0 0 11 18.7l1-1"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinecap="round"
+      />
+    </svg>
+  );
+}
+
+// 출처 한 줄: 카드 안에 넣는다 (기관 「이름」 공고 · 수집 MM.DD · 원문 보기)
+function SourceLine({ source, kind = '공고' }) {
+  if (!source) return null;
+  const date = mmdd(source.collected_at);
+  const verb = source.glossary ? '갱신' : source.lookup ? '조회' : '수집';
+  return (
+    <p className="card-source">
+      <LinkIcon />
+      <span>
+        {source.organization ? `${source.organization} ` : ''}
+        {source.title && `「${source.title}」${kind ? ` ${kind}` : ''}`}
+        {date && ` · ${verb} ${date}`}
+        {source.url && (
+          <>
+            {' · '}
+            <a href={source.url} target="_blank" rel="noreferrer">
+              원문 보기 ›
+            </a>
+          </>
+        )}
+      </span>
+    </p>
+  );
+}
+
+function PolicyCardInChat({ card, source, categoryName, onDetail, onBookmark }) {
   const badge = ELIGIBILITY_LABEL[card.eligibility];
+  const urgent = card.d_day != null && card.d_day <= 7;
   return (
     <div className="chat-card">
       <div className="chat-card-top">
-        <span className={badge.className}>{badge.text}</span>
-        <span className="dday">{dDayText(card.d_day, card.recruitment_status)}</span>
+        <span className="chat-card-tags">
+          <span className={badge.className}>{badge.text}</span>
+          {categoryName && <span className="cat-pill">{categoryName}</span>}
+          {card.similar && <span className="similar-pill">비슷한 혜택</span>}
+        </span>
+        <span className={`chat-dday${urgent ? ' chat-dday-urgent' : ''}`}>
+          {dDayText(card.d_day, card.recruitment_status)}
+        </span>
       </div>
       <strong>{card.title}</strong>
       {card.conditions?.length > 0 && (
@@ -69,10 +126,61 @@ function PolicyCardInChat({ card, onDetail, onBookmark }) {
         >
           ♥ {card.bookmarked ? '찜함' : '찜'}
         </button>
-        <button type="button" className="btn-detail" onClick={() => onDetail(card.policy_id)}>
+        <button
+          type="button"
+          className="btn-detail"
+          disabled={!DETAIL_ENABLED}
+          title={DETAIL_ENABLED ? undefined : '상세 화면은 준비 중이에요'}
+          onClick={() => onDetail(card.policy_id)}
+        >
           상세 보기
         </button>
       </div>
+      <SourceLine source={source} />
+    </div>
+  );
+}
+
+// 용어 답변: 용어 라벨 + 이름 + 설명 + 출처를 한 카드에 담는다
+function TermCard({ answer }) {
+  const source = answer.sources?.[0];
+  return (
+    <div className="term-card">
+      <div className="term-head">
+        <span className="term-label">용어</span>
+        {answer.ai_generated && <span className="ai-label">AI 요약</span>}
+        <strong>{answer.term.name}</strong>
+      </div>
+      <RichText text={answer.term.summary} />
+      <SourceLine source={source} kind="" />
+    </div>
+  );
+}
+
+// 이 조건이 있는 내 맞춤 혜택: 작은 목록
+function RelatedBox({ title, cards, onDetail }) {
+  if (!cards?.length) return null;
+  return (
+    <div className="related-box">
+      <p>{title}</p>
+      {cards.map((c) => {
+        const badge = ELIGIBILITY_LABEL[c.eligibility];
+        const urgent = c.d_day != null && c.d_day <= 7;
+        return (
+          <button
+            key={c.policy_id}
+            type="button"
+            disabled={!DETAIL_ENABLED}
+            onClick={() => onDetail(c.policy_id)}
+          >
+            <span className={badge.className}>{badge.text}</span>
+            <strong>{c.title}</strong>
+            <em className={urgent ? 'chat-dday-urgent' : ''}>
+              {dDayText(c.d_day, c.recruitment_status)}
+            </em>
+          </button>
+        );
+      })}
     </div>
   );
 }
@@ -172,12 +280,18 @@ function ChatSheet() {
   const [context, setContext] = useState(null);
   const bodyRef = useRef(null);
   const startY = useRef(null);
+  const [dragY, setDragY] = useState(0); // 손잡이를 잡고 내리는 거리(px)
+  const [dragging, setDragging] = useState(false);
 
   const profile = useQuery({
     queryKey: ['profile'],
     queryFn: fetchProfile,
     enabled: Boolean(user),
   });
+  const categories = useQuery({ queryKey: ['categories'], queryFn: fetchCategories });
+  const categoryNames = new Map(
+    (categories.data ?? []).map((c) => [c.category_id, c.category_name])
+  );
   const hasProfile = Boolean(
     profile.data?.birth_date || profile.data?.region_code || profile.data?.current_status
   );
@@ -239,6 +353,7 @@ function ChatSheet() {
     try {
       const answer = await sendChat(q, context);
       if (answer.policy_id) setContext({ policyId: answer.policy_id });
+      else if (answer.context) setContext(answer.context); // 다음 질문("전부 보여줘")에서 이어 쓴다
       push({ role: 'bot', answer });
     } catch {
       failMessage();
@@ -296,17 +411,40 @@ function ChatSheet() {
         className="sheet"
         role="dialog"
         aria-label="Dr.부 대화창"
+        style={{
+          transform: dragY ? `translateY(${dragY}px)` : undefined,
+          transition: dragging ? 'none' : 'transform 0.18s ease-out',
+        }}
         onClick={(e) => e.stopPropagation()}
       >
         <div
           className="sheet-handle"
           onPointerDown={(e) => {
             startY.current = e.clientY;
+            setDragging(true);
             e.currentTarget.setPointerCapture(e.pointerId);
           }}
+          onPointerMove={(e) => {
+            if (startY.current == null) return;
+            setDragY(Math.max(0, e.clientY - startY.current)); // 위로는 올라가지 않는다
+          }}
           onPointerUp={(e) => {
-            if (startY.current != null && e.clientY - startY.current > 60) closeChat();
+            if (startY.current == null) return;
+            const moved = e.clientY - startY.current;
             startY.current = null;
+            setDragging(false);
+            if (moved > 100) {
+              // 충분히 내렸으면 끝까지 내려가며 닫는다
+              setDragY(window.innerHeight);
+              setTimeout(closeChat, 180);
+            } else {
+              setDragY(0); // 덜 내렸으면 제자리로
+            }
+          }}
+          onPointerCancel={() => {
+            startY.current = null;
+            setDragging(false);
+            setDragY(0);
           }}
         >
           <span />
@@ -316,8 +454,10 @@ function ChatSheet() {
           <div>
             <strong>Dr.부</strong>
             <p>
-              <i className={hasProfile ? 'dot-on' : 'dot-off'} /> AI 혜택 비서 ·{' '}
-              {hasProfile ? '내 정보 반영 중' : '내 정보 없이 답변 중'}
+              <i
+                className={`dot ${hasProfile ? 'dot-on' : 'dot-limited'}${busy ? ' dot-busy' : ''}`}
+              />{' '}
+              AI 혜택 비서 · {hasProfile ? '내 정보 반영 중' : '내 정보 없이 답변 중'}
             </p>
           </div>
           {messages.length > 0 && (
@@ -369,28 +509,35 @@ function ChatSheet() {
             ) : (
               <div key={i} className="chat-turn">
                 {m.tag && <span className="chat-tag">✦ {m.tag}</span>}
-                {m.answer.term && (
-                  <div className="chat-bot">
-                    <span className="term-label">용어</span>{' '}
-                    {m.answer.ai_generated && <span className="ai-label">AI 설명</span>}{' '}
-                    <strong>{m.answer.term.name}</strong>
-                    <RichText text={m.answer.term.summary} />
-                  </div>
-                )}
+                {m.answer.term && <TermCard answer={m.answer} />}
                 {m.answer.message && (
                   <div className="chat-bot">
                     <RichText text={m.answer.message} />
                   </div>
                 )}
-                {m.answer.cardsTitle && <p className="chat-cards-title">{m.answer.cardsTitle}</p>}
-                {m.answer.cards?.map((c, idx) => (
-                  <PolicyCardInChat
-                    key={c.policy_id}
-                    card={{ ...c, rank: idx + 1 }}
+                {m.answer.term ? (
+                  <RelatedBox
+                    title={m.answer.cardsTitle}
+                    cards={m.answer.cards}
                     onDetail={(id) => goto(`/policies/${id}`)}
-                    onBookmark={bookmark}
                   />
-                ))}
+                ) : (
+                  <>
+                    {m.answer.cardsTitle && (
+                      <p className="chat-cards-title">{m.answer.cardsTitle}</p>
+                    )}
+                    {m.answer.cards?.map((c, idx) => (
+                      <PolicyCardInChat
+                        key={c.policy_id}
+                        card={{ ...c, rank: idx + 1 }}
+                        source={m.answer.sources?.find((x) => x.policy_id === c.policy_id)}
+                        categoryName={categoryNames.get(c.category_id)}
+                        onDetail={(id) => goto(`/policies/${id}`)}
+                        onBookmark={bookmark}
+                      />
+                    ))}
+                  </>
+                )}
                 {m.answer.places && (
                   <PlaceCards answer={m.answer} position={position} onOpen={openMap} />
                 )}
@@ -420,7 +567,13 @@ function ChatSheet() {
                     ))}
                   </ul>
                 )}
-                <Sources sources={m.answer.sources} />
+                {!m.answer.term && (
+                  <Sources
+                    sources={m.answer.sources?.filter(
+                      (x) => !m.answer.cards?.some((card) => card.policy_id === x.policy_id)
+                    )}
+                  />
+                )}
                 {i === lastBotIndex && !busy && (
                   <div className="chat-suggest">
                     {m.answer.suggestions?.map((s) => (

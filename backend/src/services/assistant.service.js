@@ -122,33 +122,114 @@ export function profileWithQuestion(message, profile, regions, llmConditions = n
   return { profile: temp, asked };
 }
 
+// 질문에서 구체적인 주제어(월세, 면접 등)를 뽑는다. 긴 말이 짧은 말을 포함하면 긴 쪽만 쓴다
+const TOPIC_WORDS = [
+  '월세',
+  '전세',
+  '이사비',
+  '이사',
+  '교통비',
+  '교통',
+  '면접',
+  '정장',
+  '자격증',
+  '학자금',
+  '대출',
+  '장학금',
+  '장학',
+  '인턴',
+  '일자리',
+  '공연',
+  '전시',
+  '체육',
+  '수영',
+  '생활비',
+];
+function topicKeywords(text) {
+  const found = TOPIC_WORDS.filter((w) => text.includes(w)).sort((a, b) => b.length - a.length);
+  return found.filter((w, i) => !found.slice(0, i).some((longer) => longer.includes(w)));
+}
+
+// 거주 구가 정해져 있으면, 다른 구만 대상인 정책은 대상 아님으로 처리한다 (FR-A10)
+// 정책 지역(policy_region)에 구 이름이 있고 내 구가 거기 없으면 제외. 부산 전체·전국 정책은 그대로 둔다.
+function judgedWithRegion(policies, profile, regions) {
+  const list = judged(policies, profile);
+  const myGu = (regions ?? []).find(
+    (r) => r.region_code === profile?.region_code && r.region_level === 'GU'
+  );
+  if (!myGu) return list;
+  const guNames = new Set(regions.filter((r) => r.region_level === 'GU').map((r) => r.region_name));
+  return list.map((p) => {
+    const guList = (p.region_names ?? []).filter((n) => guNames.has(n));
+    if (guList.length === 0 || guList.includes(myGu.region_name)) return p;
+    return {
+      ...p,
+      eligibility: {
+        result: RESULT.INELIGIBLE,
+        conditions: [
+          ...p.eligibility.conditions,
+          { field: 'region', status: 'UNSATISFIED', value: guList },
+        ],
+      },
+    };
+  });
+}
+
+const FIELD_NAMES = {
+  final_education: '최종 학력',
+  housing_type: '주거 형태',
+  household_type: '가구 유형',
+  lives_separately: '세대 분리 여부',
+  marital_status: '혼인 상태',
+  home_ownership: '주택 소유 여부',
+  household_role: '세대 구성',
+  housing_benefit_status: '주거급여 수급',
+  residence_months: '거주 기간',
+  special_targets: '특화 대상',
+  income: '소득 기준',
+};
+
 function conditionLabel(c) {
-  if (c.any) return null;
+  if (c.any) return '일부 조건';
   const v = c.value;
   switch (c.field) {
     case 'age':
-      return `나이 ${v[0] ?? ''}~${v[1] ?? ''}세`.replace('~세', '세 이상');
+      if (v?.[0] != null && v?.[1] != null) return `나이 ${v[0]}~${v[1]}세`;
+      return v?.[0] != null ? `나이 ${v[0]}세 이상` : `나이 ${v?.[1]}세 이하`;
     case 'region':
+      if (Array.isArray(v)) return `거주 구(${v.join('·')} 대상)`;
       return v === '26' ? '부산 거주' : '거주 지역';
     case 'current_status':
       return `현재 상태(${Array.isArray(v) ? v.join('·') : v})`;
-    case 'residence_months':
-      return '거주 기간';
-    case 'special_targets':
-      return '특화 대상';
     default:
-      return '신청 조건';
+      if (FIELD_NAMES[c.field]) return FIELD_NAMES[c.field];
+      if (c.text) return String(c.text).slice(0, 20);
+      return '그 밖의 신청 조건';
   }
 }
 
+// 카드에 보이는 조건: "나이 19~34세 충족", "소득 기준 확인 필요" 처럼 결과까지 적는다
 function conditionChecks(policy) {
-  const checks = policy.eligibility.conditions
-    .map((c) => ({ label: conditionLabel(c) ?? '일부 조건', status: c.status }))
-    .filter((c) => c.label);
-  return checks.map((c) => ({
-    label: c.label,
-    mark: c.status === 'SATISFIED' ? 'ok' : c.status === 'UNSATISFIED' ? 'no' : 'check',
-  }));
+  const seen = new Set();
+  const out = [];
+  for (const c of policy.eligibility.conditions) {
+    const mark = c.status === 'SATISFIED' ? 'ok' : c.status === 'UNSATISFIED' ? 'no' : 'check';
+    const suffix = mark === 'ok' ? '충족' : mark === 'no' ? '불충족' : '확인 필요';
+    // 문장형 조건("지원 대상 확인: 특별법에…")은 콜론 앞 제목만 보여준다
+    let title = c.text ? String(c.text).split(':')[0].trim() : '';
+    if (title.length > 14 || title.includes(';')) title = '그 밖의 조건';
+    const label = title
+      ? title.endsWith('확인')
+        ? `${title} 필요`
+        : `${title} 확인 필요`
+      : `${conditionLabel(c)} ${suffix}`;
+    if (seen.has(label)) continue;
+    seen.add(label);
+    out.push({ label, mark });
+  }
+  // 충족 → 불충족 → 확인 필요 순으로, 최대 5개
+  const order = { ok: 0, no: 1, check: 2 };
+  return out.sort((x, y) => order[x.mark] - order[y.mark]).slice(0, 5);
 }
 
 function cardWithConditions(policy, bookmarked) {
@@ -178,36 +259,86 @@ async function bookmarkSet(userId) {
 }
 
 // FR-A08/A11: 모집 중·상시 + ELIGIBLE/CHECK 중 관심분야 우선 최대 3건
-export async function recommend({ userId, categoryId, ctx: given, profileOverride, asked = [] }) {
+export async function recommend({
+  userId,
+  categoryId,
+  ctx: given,
+  profileOverride,
+  asked = [],
+  keywords = [],
+  all = false, // "전부 알려줘": 3건으로 자르지 않고 질문과 맞는 정책을 모두 보여준다
+}) {
   const ctx = given ?? (await loadContext(userId));
   const profile = profileOverride ?? ctx.profile;
   const bookmarked = await bookmarkSet(userId);
-  const pool = judged(ctx.policies, profile)
+  const pool = judgedWithRegion(ctx.policies, profile, ctx.regions)
     .filter(isOpen)
     .filter((p) => p.eligibility.result !== RESULT.INELIGIBLE)
     .filter((p) => !categoryId || p.category_id === categoryId);
-  const picks = sortRecommended(pool, profile, ctx.categories).slice(0, 3);
+  // 질문에 "월세" 같은 구체적인 말이 있으면 그 말이 들어간 정책을 먼저 고르고, 없으면 분야 전체에서 고른다
+  const byKeyword = keywords.length
+    ? pool.filter((p) => {
+        const hay = `${p.title} ${p.support_content ?? ''} ${p.target_summary ?? ''}`;
+        return keywords.some((k) => hay.includes(k));
+      })
+    : [];
+  // 질문과 맞는 정책을 먼저 두고, 3건이 안 되면 같은 분야에서 신청할 수 있는 비슷한 혜택으로 채운다
+  const limit = all ? 30 : 3;
+  const matchedPicks = sortRecommended(byKeyword, profile, ctx.categories).slice(0, limit);
+  const matchedIds = new Set(matchedPicks.map((p) => p.policy_id));
+  const similarPicks = sortRecommended(
+    pool.filter((p) => !matchedIds.has(p.policy_id)),
+    profile,
+    ctx.categories
+  ).slice(0, all && matchedPicks.length ? 0 : Math.max(0, 3 - matchedPicks.length));
+  const picks = [...matchedPicks, ...similarPicks];
+  const similarIds = new Set(similarPicks.map((p) => p.policy_id));
   const interests = profile?.interest_categories ?? [];
   const categoryName = ctx.categories.find((c) => c.category_id === categoryId)?.category_name;
+  const word = keywords.join('·');
+  const cond = asked.length ? `질문하신 조건(${asked.join('·')})에 맞는 ` : '';
 
   let message;
   if (picks.length === 0) {
     message = '지금 조건에 맞는 모집 중인 혜택을 찾지 못했어요. 마이에서 맞춤정보를 확인해 보세요.';
+  } else if (all && keywords.length && matchedPicks.length) {
+    message = `${cond}'${word}' 관련 혜택을 전부 보여드려요. 모두 ${matchedPicks.length}건이에요.`;
+  } else if (keywords.length && matchedPicks.length) {
+    message =
+      `${cond}'${word}' 관련 혜택 ${matchedPicks.length}건을 먼저 보여드려요.` +
+      (similarPicks.length
+        ? ` 같은 분야에서 신청할 수 있는 비슷한 혜택 ${similarPicks.length}건도 함께 골랐어요.`
+        : '');
+  } else if (keywords.length) {
+    message = `'${word}' 관련 모집 중 혜택은 지금 없어요. 같은 분야에서 ${cond}신청할 수 있는 혜택 ${picks.length}건을 골랐어요.`;
+  } else if (asked.length) {
+    message = `${categoryName ? `${categoryName} 분야에서 ` : ''}${cond}혜택 ${picks.length}건을 골랐어요. 신청 가능한 혜택을 먼저, 그다음 마감이 가까운 순서로 보여드려요.`;
   } else {
     const scope = categoryName
       ? `${categoryName} 분야`
       : interests.length
         ? `관심분야 ${interests.join('·')}`
         : '전체 분야';
-    message = `${scope}에서 고른 오늘의 추천 TOP ${picks.length}예요. 신청 가능한 혜택을 먼저, 그다음 마감이 가까운 순서로 보여드려요.`;
-    if (asked.length) message += ` (질문하신 조건 ${asked.join('·')}으로 골랐어요.)`;
+    message = `${scope}에서 고른 추천 TOP ${picks.length}예요. 신청 가능한 혜택을 먼저, 그다음 마감이 가까운 순서로 보여드려요.`;
   }
+  const more = byKeyword.length - matchedPicks.length;
+  if (more > 0 && message)
+    message += ` 이 주제의 혜택이 ${byKeyword.length}건 있어요. 전부 보려면 "전부 보여줘"라고 물어보세요.`;
   return {
     type: 'recommend',
+    context: { keywords, categoryId: categoryId ?? null },
     message,
-    cards: picks.map((p) => cardWithConditions(p, bookmarked)),
+    cards: picks.map((p) => ({
+      ...cardWithConditions(p, bookmarked),
+      similar: matchedPicks.length > 0 && similarIds.has(p.policy_id),
+    })),
     sources: await sourcesFor(picks),
-    suggestions: ['왜 이걸 추천했어?', '장학금도 추천해줘', '중위소득이 뭐야?'],
+    suggestions: [
+      ...(more > 0 ? ['전부 보여줘'] : []),
+      '왜 이걸 추천했어?',
+      '장학금도 추천해줘',
+      '중위소득이 뭐야?',
+    ].slice(0, 3),
   };
 }
 
@@ -233,7 +364,7 @@ async function answerTerm(term, ctx, userId) {
   const bookmarked = await bookmarkSet(userId);
   const keys = [term.term, ...term.aliases].map((k) => k.replace(/\s+/g, ''));
   const related = sortRecommended(
-    judged(ctx.policies, ctx.profile).filter(
+    judgedWithRegion(ctx.policies, ctx.profile, ctx.regions).filter(
       (p) =>
         isOpen(p) &&
         p.eligibility.result !== RESULT.INELIGIBLE &&
@@ -334,7 +465,7 @@ async function answerTopic(text, ctx, userId, remaining) {
     .filter((w) => w.length >= 2 && !GENERIC_WORDS.has(w));
   if (!words.length) return null;
   const profile = ctx.profile;
-  const matched = judged(ctx.policies, profile)
+  const matched = judgedWithRegion(ctx.policies, profile, ctx.regions)
     .filter(isOpen)
     .filter((p) => p.eligibility.result !== RESULT.INELIGIBLE)
     .filter((p) => {
@@ -390,7 +521,7 @@ export const isTermQuestion = (text) =>
 
 async function answerPolicy(policy, message, ctx, userId, llmConditions) {
   const { profile, asked } = profileWithQuestion(message, ctx.profile, ctx.regions, llmConditions);
-  const [j] = judged([policy], profile);
+  const [j] = judgedWithRegion([policy], profile, ctx.regions);
   const bookmarked = await bookmarkSet(userId);
   const checks = conditionChecks(j);
   const noList = checks.filter((c) => c.mark === 'no').map((c) => c.label);
@@ -439,6 +570,56 @@ async function answerDocs(policy, userId) {
   };
 }
 
+// 동네 이름(서면 등)은 주소에 그대로 안 나오는 경우가 많아서, 주소·장소명에 들어가는 동 이름으로 바꿔 찾는다
+const LANDMARK_WORDS = {
+  서면: ['서면', '부전', '전포'],
+  전포: ['전포'],
+  부전: ['부전'],
+  범천: ['범천'],
+  범일: ['범일'],
+  양정: ['양정'],
+  연지: ['연지'],
+  가야: ['가야'],
+  개금: ['개금'],
+  당감: ['당감'],
+  초읍: ['초읍'],
+  부암: ['부암'],
+  하단: ['하단'],
+  괴정: ['괴정'],
+  당리: ['당리'],
+  장림: ['장림'],
+  신평: ['신평'],
+  감천: ['감천'],
+  구평: ['구평'],
+  다대포: ['다대'],
+  다대: ['다대'],
+};
+// 서비스 지역(사하구·부산진구) 밖 동네: 있는 것처럼 답하지 않는다
+const OUTSIDE_AREAS = [
+  '해운대',
+  '센텀',
+  '광안',
+  '수영구',
+  '남포',
+  '자갈치',
+  '동래',
+  '연제',
+  '금정',
+  '북구',
+  '강서',
+  '영도',
+  '중구',
+  '동구',
+  '서구',
+  '남구',
+  '기장',
+  '사상',
+  '덕천',
+  '부산대',
+  '송정',
+  '기장',
+];
+
 // FR-A17: 지도 탭 장소 데이터(v_map_places)에서 찾는다. 서비스 지역 밖·없는 장소는 '확인된 정보 없음'
 async function answerPlace(message, categoryCode) {
   const places = await placeRepo.findMapPlaces();
@@ -449,15 +630,29 @@ async function answerPlace(message, categoryCode) {
     .flatMap((p) => [p.district, ...(p.address ?? '').split(/\s+/).slice(2, 4)])
     .filter(Boolean);
   const mentionedArea = [...new Set(area)].find((a) => a.length >= 2 && message.includes(a));
-  const matches = places.filter(
-    (p) =>
-      (!categoryCode || p.category_code === categoryCode) &&
-      (!mentionedArea || (p.address ?? '').includes(mentionedArea) || p.district === mentionedArea)
-  );
+  const landmark = Object.keys(LANDMARK_WORDS)
+    .sort((x, y) => y.length - x.length)
+    .find((k) => message.includes(k));
+  const landmarkWords = landmark ? LANDMARK_WORDS[landmark] : null;
+  const outside = OUTSIDE_AREAS.find((o) => message.includes(o));
+  const matches = outside
+    ? []
+    : places.filter(
+        (p) =>
+          (!categoryCode || p.category_code === categoryCode) &&
+          (!mentionedArea ||
+            (p.address ?? '').includes(mentionedArea) ||
+            p.district === mentionedArea) &&
+          (!landmarkWords ||
+            landmarkWords.some((w) => `${p.address ?? ''} ${p.name ?? ''}`.includes(w)))
+      );
   if (matches.length === 0) {
     return {
       type: 'place',
-      message: '확인된 장소 정보가 없어요. 장소 안내는 사하구·부산진구만 지원해요.',
+      message:
+        !outside && (landmark || mentionedArea)
+          ? `${landmark ?? mentionedArea} 근처에서 확인된 장소 정보가 없어요. 다른 동네나 장소 종류로 물어보세요.`
+          : '확인된 장소 정보가 없어요. 장소 안내는 사하구·부산진구만 지원해요.',
       places: [],
       suggestions: ['나한테 맞는 정책 추천해줘'],
     };
@@ -476,11 +671,11 @@ async function answerPlace(message, categoryCode) {
     type: 'place',
     message: nearMe
       ? '현재 위치에서 가까운 순으로 보여드릴게요.'
-      : `${mentionedArea ?? '서비스 지역'} 장소를 찾았어요. (총 ${matches.length}곳)`,
+      : `${landmark ?? mentionedArea ?? '서비스 지역'}${landmark ? ' 근처' : ''} ${matches[0].category_name ?? '장소'} ${matches.length}곳을 찾았어요.${matches.length > 3 ? ' 그중 3곳을 보여드려요.' : ''}`,
     near_me: nearMe,
     places: shown,
     // [전체 보기]: 지도 탭 쿼리 (docs/map-integration.md 2절)
-    map_query: { category: categoryCode ?? null, q: mentionedArea ?? null },
+    map_query: { category: categoryCode ?? null, q: landmark ?? mentionedArea ?? null },
     suggestions: ['나한테 맞는 정책 추천해줘'],
   };
 }
@@ -564,7 +759,7 @@ function keepsFacts(original, polished) {
 // 규칙 기반으로 만든 답변 문장을 근거 사실은 그대로 두고 자연스럽게 다듬는다 (사실을 새로 만들지 않는다)
 async function polish(answer, remaining) {
   // 고정 문구(모름 처리 FR-A18)는 다듬지 않는다
-  if (!answer.message || answer.type === 'unknown' || answer.type === 'error')
+  if (!answer.message || ['unknown', 'error', 'place', 'clarify'].includes(answer.type))
     return { answer, llm: 'skipped' };
   const better = await askText(
     `아래 안내문을 친근한 존댓말로 2~3문장으로 다듬어라. ${INJECTION_GUARD} ` +
@@ -638,14 +833,22 @@ async function route({ userId, message, context, remaining }) {
 
   // 5) 추천: 질문에 나온 조건(예: 사하구·휴학생)은 이번 답변에만 쓰고 저장하지 않는다
   const keywordCategory = CATEGORY_KEYWORDS.find(([re]) => re.test(text))?.[1];
+  // "전부 알려줘"처럼 앞 질문을 이어서 묻는 말: 직전 답변의 주제어·분야를 이어 쓴다
+  const wantsAll = /전부|모두|전체|다\s*(알려|보여)|싹/.test(text);
+  const ownKeywords = topicKeywords(text);
+  const followUp = wantsAll && ownKeywords.length === 0 && context?.keywords?.length > 0;
+  const keywords = followUp ? context.keywords : ownKeywords;
   // '알려줘'·'받을 수'만으로는 추천으로 보지 않는다. 분야가 보일 때만 (없는 내용은 FR-A18 모름 처리)
   if (
     parsed?.intent === 'recommend' ||
     /추천|뭐\s*있/.test(text) ||
-    (keywordCategory && /알려줘|받을\s*수/.test(text))
+    (keywordCategory && /알려줘|받을\s*수/.test(text)) ||
+    (wantsAll && keywords.length > 0)
   ) {
     const catName = parsed?.category ?? keywordCategory;
-    const categoryId = ctx.categories.find((c) => c.category_name === catName)?.category_id;
+    const categoryId =
+      ctx.categories.find((c) => c.category_name === catName)?.category_id ??
+      (followUp ? context.categoryId : undefined);
     const { profile, asked } = profileWithQuestion(
       text,
       ctx.profile,
@@ -657,8 +860,19 @@ async function route({ userId, message, context, remaining }) {
       categoryId,
       ctx,
       asked,
+      keywords,
+      all: wantsAll,
       profileOverride: asked.length ? profile : null,
     });
+  }
+
+  // "전부 보여줘"만 말했고 이어갈 주제가 없으면 모름 처리 대신 어떤 주제인지 되묻는다
+  if (wantsAll) {
+    return {
+      type: 'clarify',
+      message: '어떤 혜택을 전부 보여드릴까요? 주제를 함께 말씀해 주세요.',
+      suggestions: ['월세 지원 전부 보여줘', '교통비 지원 전부 보여줘', '면접 정장 전부 보여줘'],
+    };
   }
 
   // 정책명처럼 보이는데 우리 정책 데이터에 없으면 지어내지 않고 모름 처리한다 (FR-A18)

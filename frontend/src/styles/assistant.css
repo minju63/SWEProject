@@ -104,6 +104,7 @@
   justify-content: center;
 }
 .sheet {
+  will-change: transform;
   width: 100%;
   max-width: 480px;
   height: 88svh;
@@ -122,8 +123,12 @@
 .sheet-handle {
   display: flex;
   justify-content: center;
-  padding: 10px 0 4px;
+  padding: 14px 0 10px;
+  cursor: grab;
   touch-action: none;
+}
+.sheet-handle:active {
+  cursor: grabbing;
 }
 .sheet-handle span {
   width: 40px;
@@ -148,27 +153,46 @@
   font-size: 12px;
   color: var(--sub);
 }
-.dot-on,
-.dot-off {
+.dot {
   display: inline-block;
   width: 8px;
   height: 8px;
   border-radius: 50%;
   margin-right: 2px;
 }
+/* 초록: 대화 가능 + 내 정보 반영 중 / 주황: 대화 가능하지만 내 정보 없이 답변 중 / 깜빡임: 답변 만드는 중 */
 .dot-on {
   background: var(--ok);
 }
-.dot-off {
-  background: var(--muted);
+.dot-limited {
+  background: var(--check);
+}
+.dot-busy {
+  animation: dot-pulse 1s ease-in-out infinite;
+}
+@keyframes dot-pulse {
+  50% {
+    opacity: 0.3;
+  }
 }
 .sheet-close {
-  width: 36px;
-  height: 36px;
+  position: relative;
+  flex: none;
+  width: 28px;
+  height: 28px;
+  padding: 0;
   border: 0;
   border-radius: 50%;
   background: #fff;
   box-shadow: 0 1px 4px rgba(25, 31, 40, 0.12);
+  font-size: 13px;
+  line-height: 1;
+  color: var(--sub);
+}
+.sheet-close::after {
+  content: '';
+  position: absolute;
+  inset: -8px; /* 눈에 보이는 크기는 작게, 누르는 영역은 44px (NFR-011) */
 }
 .sheet-body {
   flex: 1;
@@ -336,26 +360,37 @@
 }
 .sheet-input {
   display: flex;
-  gap: 10px;
+  align-items: center;
+  gap: 8px;
   padding: 10px 16px calc(14px + env(safe-area-inset-bottom));
 }
 .sheet-input input {
   flex: 1;
   min-width: 0;
-  padding: 14px 18px;
+  height: 44px;
+  padding: 0 18px;
   border: 1px solid var(--border);
   border-radius: 999px;
   background: #fff;
   font-size: 15px;
 }
 .sheet-input button {
-  width: 48px;
-  height: 48px;
+  position: relative;
+  flex: none;
+  width: 38px;
+  height: 38px;
+  padding: 0;
   border: 0;
   border-radius: 50%;
   background: var(--primary);
   color: #fff;
-  font-size: 20px;
+  font-size: 18px;
+  line-height: 1;
+}
+.sheet-input button::after {
+  content: '';
+  position: absolute;
+  inset: -3px; /* 눈에 보이는 크기는 작게, 누르는 영역은 44px (NFR-011) */
 }
 .sheet-input button:disabled {
   background: #b7cdf7;
@@ -437,10 +472,6 @@
   align-items: center;
   justify-content: center;
 }
-.sheet-close {
-  width: 44px;
-  height: 44px;
-}
 .sheet-input input,
 .chat-card-actions button,
 .chat-suggest button {
@@ -491,6 +522,138 @@
   border-radius: 999px;
   background: #eef3fe;
   color: var(--primary);
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.chat-card-source {
+  margin: 8px 0 0;
+  font-size: 12px;
+  line-height: 1.5;
+  color: var(--muted, #6b7684);
+}
+.chat-card-source a {
+  color: var(--primary);
+  font-weight: 700;
+}
+
+/* ---------- 목업(UI-A01) 디자인 ---------- */
+.chat-card-top {
+  align-items: center;
+  margin-bottom: 10px;
+}
+.chat-card-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.cat-pill {
+  padding: 3px 10px;
+  border-radius: 999px;
+  background: #e3eeff;
+  color: var(--primary);
+  font-size: 12px;
+  font-weight: 700;
+}
+.chat-dday {
+  color: var(--primary);
+  font-size: 15px;
+  font-weight: 800;
+}
+.chat-dday-urgent {
+  color: var(--no);
+}
+.card-source {
+  display: flex;
+  align-items: flex-start;
+  gap: 6px;
+  margin: 12px 0 0;
+  padding-top: 10px;
+  border-top: 1px solid #eef1f4;
+  font-size: 12px;
+  line-height: 1.5;
+  color: var(--muted);
+}
+.card-source .src-icon {
+  flex: none;
+  margin-top: 3px;
+}
+.card-source a {
+  color: var(--primary);
+  font-weight: 700;
+}
+.term-card {
+  padding: 16px;
+  border-radius: 16px;
+  background: #fff;
+  font-size: 14.5px;
+  line-height: 1.6;
+}
+.term-head {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+.term-head strong {
+  font-size: 17px;
+}
+.term-card p {
+  margin: 0 0 6px;
+}
+.term-card p.card-source {
+  margin-top: 10px;
+}
+.related-box {
+  padding: 14px 16px 8px;
+  border-radius: 16px;
+  background: #fff;
+}
+.related-box > p {
+  margin: 0 0 6px;
+  font-size: 12.5px;
+  font-weight: 700;
+  color: var(--sub);
+}
+.related-box button {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  padding: 10px 0;
+  border: 0;
+  border-top: 1px solid #f1f3f5;
+  background: none;
+  text-align: left;
+}
+.related-box button strong {
+  flex: 1;
+  min-width: 0;
+  font-size: 14.5px;
+}
+.related-box button em {
+  font-style: normal;
+  font-size: 13px;
+  font-weight: 800;
+  color: var(--primary);
+}
+.related-box button em.chat-dday-urgent {
+  color: var(--no);
+}
+
+.btn-detail:disabled,
+.related-box button:disabled {
+  cursor: not-allowed;
+}
+.btn-detail:disabled {
+  opacity: 0.45;
+}
+
+.similar-pill {
+  padding: 3px 10px;
+  border-radius: 999px;
+  background: #eef1f4;
+  color: var(--sub);
   font-size: 12px;
   font-weight: 700;
 }
