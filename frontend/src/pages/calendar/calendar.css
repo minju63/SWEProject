@@ -6,6 +6,11 @@
   background: #f4f7fd linear-gradient(#eaf1fe, #f4f7fd 280px) no-repeat;
   min-height: 100svh;
 }
+.cal-page .page-header {
+  align-items: center;
+  height: 68px; /* 검색·지도 탭 상단과 같은 높이 */
+  margin: -16px 0 0;
+}
 .cal-alarm-btn {
   height: 36px;
   padding: 0 14px;
