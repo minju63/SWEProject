@@ -43,6 +43,7 @@ function safeCondition(condition) {
     field: condition.field ?? null,
     label: CONDITION_NAMES[condition.field] ?? null,
     status: condition.status,
+    exclusion: condition.exclusion === true,
     policy_condition: brief(condition.text) ||
       (condition.evidence?.policy_value ?? condition.value ?? null),
     children: Array.isArray(condition.children) ? condition.children.map(safeCondition) : [],
@@ -103,13 +104,15 @@ export function fallbackExplanation(policy, eligibility) {
     : `${title}의 지원 내용은 공식 공고에서 확인해 주세요.`;
   const conditions = eligibility.conditions.map(safeCondition);
   const labels = conditionLabels(conditions, eligibility.result === 'INELIGIBLE' ? 'UNSATISFIED' : 'UNKNOWN');
+  const hits = conditionLabels(conditions, 'HIT');
   let second;
   if (hasConflictingVerification(policy))
     second = '정책의 자격 정보 표기가 서로 달라 공식 공고 확인이 필요합니다.';
   else if (eligibility.result === 'ELIGIBLE')
     second = `${conditionLabels(conditions, 'SATISFIED')[0] ?? '확인된 신청'} 조건은 충족하지만 최종 신청 자격은 공고에서 확인해 주세요.`;
   else if (eligibility.result === 'INELIGIBLE')
-    second = `${labels[0] ?? '확인된 신청'} 조건에 맞지 않아 현재 대상이 아닙니다.`;
+    second = hits.length ? `${hits[0]} 제외 사항에 해당해 현재 대상이 아닙니다.`
+      : `${labels[0] ?? '확인된 신청'} 조건에 맞지 않아 현재 대상이 아닙니다.`;
   else if (policy.eligibility_verified !== true)
     second = '신청 자격은 공식 공고에서 확인해 주세요.';
   else

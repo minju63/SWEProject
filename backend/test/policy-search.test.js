@@ -81,6 +81,22 @@ test('전체 결과의 추천 그룹을 정렬한 뒤 페이지별로 자른다'
   }
 });
 
+test('마감 제외는 전체 건수와 페이지를 자르기 전에 적용한다', async () => {
+  const from = mock.method(supabase, 'from', queryFor);
+  try {
+    const params = { sort: 'recommended', categoryIds: [], assess: (policy) => ({ result: policy.result }),
+      page: 1, size: 10 };
+    const all = await findPolicies(params);
+    const excluded = await findPolicies({ ...params, excludeClosed: true, size: 2 });
+    assert.equal(all.totalCount, 6);
+    assert.equal(excluded.totalCount, 5);
+    assert.equal(excluded.items.length, 2);
+    assert.ok(!excluded.items.some((item) => item.policy_id === 'p6'));
+  } finally {
+    from.mock.restore();
+  }
+});
+
 test('관심분야 미설정 시 같은 정렬 함수가 자격, 상태, 마감일, 이름, ID를 적용한다', () => {
   const base = { application_end_date: '2026-12-01', recruitment_status: '모집 중' };
   const policies = [

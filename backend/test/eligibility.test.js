@@ -37,16 +37,16 @@ test('누락된 사용자 값과 소득 원문은 추측하지 않고 CHECK로 �
   assert.ok(result.conditions.every((item) => item.reason && item.evidence?.source));
 });
 
-test('OR, 제외 조건, 해당없음은 조건별로 처리한다', () => {
+test('OR, 제외 조건, 적용 여부 미확인은 조건별로 처리한다', () => {
   const policy = verified([
     { any: [{ field: 'current_status', op: 'eq', value: '대학생' },
       { field: 'current_status', op: 'eq', value: '직장인' }] },
     { field: 'housing_type', op: 'eq', value: '월세', applicable: false },
   ], [{ field: 'special_targets', op: 'contains', value: '기존 수혜자' }]);
   const result = judge(policy, { current_status: ['직장인'], special_targets: ['장애인'] }, now);
-  assert.equal(result.result, 'ELIGIBLE');
+  assert.equal(result.result, 'CHECK');
   assert.deepEqual(result.conditions.map((item) => item.status),
-    ['SATISFIED', 'NOT_APPLICABLE', 'NOT_APPLICABLE']);
+    ['SATISFIED', 'UNKNOWN', 'CLEAR']);
   assert.ok(!JSON.stringify(result).includes('장애인'));
   const excluded = judge(policy, { current_status: ['직장인'], special_targets: ['기존 수혜자'] }, now);
   assert.equal(excluded.result, 'INELIGIBLE');
@@ -75,7 +75,7 @@ test('검증된 중첩 AND와 OR의 조건별 결과를 반환한다', () => {
       ] },
     ] },
   ] } };
-  const result = judge(policy, { age: 25, region_code: '26380' }, now);
+  const result = judge(policy, { birth_date: '2001-01-01', region_code: '26380' }, now);
   assert.equal(result.result, 'ELIGIBLE');
   assert.equal(result.conditions[0].children[1].status, 'SATISFIED');
   assert.equal(result.conditions[0].children[1].children[0].status, 'UNSATISFIED');
@@ -93,5 +93,5 @@ test('빈 all은 제외 원문을 유지하고 유효한 required는 판정한�
   const required = { eligibility_verified: true, eligibility_conditions: {
     all: [], required: [{ field: 'age', operator: 'BETWEEN', value: [19, 34] }],
   } };
-  assert.equal(judge(required, { age: 25 }, now).result, 'ELIGIBLE');
+  assert.equal(judge(required, { birth_date: '2001-01-01' }, now).result, 'ELIGIBLE');
 });

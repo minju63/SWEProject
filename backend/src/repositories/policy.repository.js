@@ -33,10 +33,10 @@ async function allRows(table, columns, configure = (query) => query) {
 }
 
 export async function findPolicies({ categoryId, categoryIds = [], details = [], categoryDetails = [], regions = [], statuses = [],
-  dateStart, dateEnd, includeAlways, keyword, sort, page, size, assess, onlyEligible,
+  dateStart, dateEnd, includeAlways, excludeClosed = false, keyword, sort, page, size, assess, onlyEligible,
   profileRegionCode, interests = [], includeEligibility }) {
   const advanced = sort === 'recommended' || Boolean(keyword) || categoryIds.length || details.length || categoryDetails.length ||
-    regions.length || statuses.length || dateStart || dateEnd || onlyEligible;
+    regions.length || statuses.length || dateStart || dateEnd || onlyEligible || excludeClosed;
   if (advanced) {
     const ids = categoryIds.length ? categoryIds : categoryId ? [categoryId] : [];
     const items = await allRows('policy',
@@ -83,6 +83,7 @@ export async function findPolicies({ categoryId, categoryIds = [], details = [],
         : [];
       const searchText = `${item.title} ${item.target_summary ?? ''} ${item.support_content ?? ''} ${item.benefit_type ?? ''} ${categoryById.get(item.category_id) ?? ''} ${itemDetails.join(' ')}`.toLocaleLowerCase();
       if (keyword && !keyword.toLocaleLowerCase().trim().split(/\s+/).every((word) => searchText.includes(word))) return false;
+      if (excludeClosed && ['마감', '종료'].includes(status?.recruitment_status)) return false;
       if (regions.length && !itemRegions.some((code) => regions.includes(code))) return false;
       if (onlyEligible && profileRegionCode && profileRegionCode !== 'KR' &&
         !itemRegions.some((code) => code === 'KR' || code === profileRegionCode ||

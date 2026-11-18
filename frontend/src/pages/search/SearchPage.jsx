@@ -109,6 +109,7 @@ function restoreSearchView(saved, searchParams) {
     applied,
     sort: ['recommended', 'deadline', 'latest'].includes(saved?.sort) ? saved.sort : 'recommended',
     page: Number.isSafeInteger(saved?.page) && saved.page > 0 ? saved.page : 1,
+    excludeClosed: saved?.excludeClosed === true,
   };
 }
 
@@ -124,6 +125,7 @@ export default function SearchPage() {
   const [draft, setDraft] = useState(emptyFilters);
   const [sort, setSort] = useState(initialView.sort);
   const [page, setPage] = useState(initialView.page);
+  const [excludeClosed, setExcludeClosed] = useState(initialView.excludeClosed);
   const [bookmarkError, setBookmarkError] = useState('');
   const user = useAuthStore((state) => state.user);
   const queryClient = useQueryClient();
@@ -168,6 +170,7 @@ export default function SearchPage() {
     dateStart: filters.dateStart || undefined,
     dateEnd: filters.dateEnd || undefined,
     includeAlways: filters.includeAlways || undefined,
+    excludeClosed: excludeClosed || undefined,
     myConditionsOnly: filters.myConditionsOnly || undefined,
     conditions: (!filters.myConditionsOnly || !profile.data) && Object.values(filters.conditions).some((value) => value !== '' && value != null && (!Array.isArray(value) || value.length))
       ? JSON.stringify(filters.conditions) : undefined,
@@ -237,15 +240,16 @@ export default function SearchPage() {
       setApplied(reset.applied);
       setSort(reset.sort);
       setPage(reset.page);
+      setExcludeClosed(reset.excludeClosed);
       navigate(`${location.pathname}${location.search}`, { replace: true,
         state: { ...location.state, searchView: { userId: user.id, ...reset } }, preventScrollReset: true });
       return;
     }
-    const view = { userId: user.id, applied, sort, page };
+    const view = { userId: user.id, applied, sort, page, excludeClosed };
     if (JSON.stringify(previous) !== JSON.stringify(view))
       navigate(`${location.pathname}${location.search}`, { replace: true,
         state: { ...location.state, searchView: view }, preventScrollReset: true });
-  }, [applied, hasSearch, location.pathname, location.search, location.state, navigate, page, searchParams, sort, user?.id]);
+  }, [applied, excludeClosed, hasSearch, location.pathname, location.search, location.state, navigate, page, searchParams, sort, user?.id]);
 
   function submitSearch(term = input) {
     const query = term.trim();
@@ -258,7 +262,7 @@ export default function SearchPage() {
 
   function openSearchInput(nextTerm = input) {
     navigate('/search/input', { state: { fromSearch: true, term: nextTerm,
-      searchView: hasSearch ? { userId: user?.id, applied, sort, page } : null } });
+      searchView: hasSearch ? { userId: user?.id, applied, sort, page, excludeClosed } : null } });
   }
 
   function browseCategory(name) {
@@ -375,6 +379,8 @@ export default function SearchPage() {
           <div className="search-filter-strip">
             <button type="button" className={`search-filter-button${filterCount ? ' is-active' : ''}`}
               onClick={openFilters}>필터 {filterCount}</button>
+            <button type="button" className={`search-filter-button search-closed-button${excludeClosed ? ' is-active' : ''}`}
+              aria-pressed={excludeClosed} onClick={() => { setExcludeClosed((current) => !current); setPage(1); }}>마감 제외</button>
             {chips.slice(0, 3).map((chip) => <button type="button" key={`${chip.type}-${chip.value}`}
               className="search-applied-chip" onClick={() => removeChip(chip)}>{chip.value} ×</button>)}
             {chips.length > 3 && <button type="button" className="search-more-chip" onClick={openFilters}>+{chips.length - 3}</button>}

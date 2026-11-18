@@ -8,6 +8,7 @@ import { useAuthStore } from '../../store/authStore';
 import { dDayText } from '../../utils/format';
 import StateMessage from '../../components/StateMessage.jsx';
 import { BackIcon, HeartIcon } from '../../components/icons.jsx';
+import { displayConditions } from './eligibilityDisplay.js';
 import './PolicyDetailPage.css';
 
 const verdicts = { ELIGIBLE: '신청 가능', CHECK: '확인 필요', INELIGIBLE: '신청 불가' };
@@ -21,8 +22,9 @@ const categoryTagTone = {
   문화: 'green', '문화·예술': 'green', '복지·건강': 'purple',
 };
 const itemVerdicts = { SATISFIED: '충족', UNSATISFIED: '불충족', UNKNOWN: '확인 필요', NOT_APPLICABLE: '해당 없음' };
+const exclusionVerdicts = { HIT: '해당', CLEAR: '해당 없음', UNKNOWN: '확인 필요' };
 const conditionNames = {
-  age: '나이 조건', region: '거주 지역', region_code: '거주 지역', residence_months: '거주 기간',
+  age: '나이 조건', birth_date: '생년월일', region: '거주 지역', region_code: '거주 지역', residence_months: '거주 기간',
   city_code: '거주 지역', all_members_homeless: '세대원 무주택',
   rental_contract_signed: '임대차계약 체결', deposit_paid_ratio: '계약금 납부 비율',
   annual_income: '연 소득', is_married: '혼인 여부', marriage_duration: '혼인 기간',
@@ -64,37 +66,14 @@ function documentsFor(p) {
   })).filter((item) => item.name);
 }
 
-function conditionLabel(item) {
-  if (item.children?.length) return '다음 중 하나';
-  const value = item.evidence?.policy_value ?? item.value;
-  const excluded = /\.(?:exclude|exclusions)\[/u.test(item.evidence?.source ?? '');
-  const name = conditionNames[item.field] ?? '신청 조건';
-  let label = name;
-  if (item.text) label = item.text;
-  else if (item.field === 'age' && Array.isArray(value) && value.length === 2)
-    label = `나이 (만 ${value[0] ?? '제한 없음'}~${value[1] ?? '제한 없음'}세)`;
-  else if (['region', 'region_code', 'city_code'].includes(item.field))
-    label = `거주 지역${value === 'KR' ? ' (전국)' : value === '26' ? ' (부산 전체)' : ''}`;
-  else if (item.field === 'current_status' && typeof value === 'string' && value.length <= 30)
-    label = `현재 상태 (${value})`;
-  else if (typeof value === 'boolean') label = `${name} (${value ? '예' : '아니요'})`;
-  else if (typeof value === 'number') {
-    const operator = String(item.op ?? item.operator ?? '').toLowerCase();
-    label = `${name} (${value.toLocaleString('ko-KR')}${operator === 'gte' ? ' 이상' : operator === 'lte' ? ' 이하' : ''})`;
-  }
-  return excluded ? `제외 조건 · ${label}` : label;
-}
-
-function compactConditions(conditions) {
-  const rows = [];
-  const visit = (item) => {
-    if (item.children?.length) {
-      if (item.any || String(item.op ?? item.operator ?? '').toUpperCase() === 'OR') rows.push(item);
-      item.children.forEach(visit);
-    } else rows.push(item);
-  };
-  conditions.forEach(visit);
-  return rows;
+function ConditionRows({ items, exclusion = false }) {
+  return <div className="policy-detail-conditions">{items.map((item, index) => {
+    return <div className="policy-detail-condition-row" key={`${item.label}-${index}`}>
+      <span>{item.label}</span><b className={`status-${item.status?.toLowerCase()}`}>
+        {(exclusion ? exclusionVerdicts : itemVerdicts)[item.status] ?? '확인 필요'}
+      </b>
+    </div>;
+  })}</div>;
 }
 
 function externalUrl(url) {
@@ -193,6 +172,7 @@ export default function PolicyDetailPage() {
   const applicationUrl = externalUrl(p.application_url);
   const originalLinkUrl = externalUrl(p.original_link_url);
   const sourceUrl = externalUrl(p.official_url) || originalLinkUrl || externalUrl(p.source_url);
+  const eligibilitySourceUrl = externalUrl(p.eligibility_conditions?.source_url) || sourceUrl;
   const url = applicationUrl || sourceUrl;
   const applicationMethod = originalLinkUrl
     ? p.application_method?.replace(/,?\s*원문\s*URL\s*링크\s*\[?https?:\/\/\S*$/iu, '').trim()
@@ -204,7 +184,7 @@ export default function PolicyDetailPage() {
   const steps = asArray(p.application_process).filter((item) => typeof item === 'string' && item.trim());
   const checks = new Set(detailState.data?.checks?.filter((item) => item.is_checked).map((item) => item.doc_key) ?? []);
   const conditions = eligibility.data?.conditions ?? [];
-  const shownConditions = compactConditions(conditions);
+  const { required: requiredConditions, exclusions: excludedConditions } = displayConditions(conditions, p.title);
   const related = similar.data?.items ?? [];
   const isManaged = Boolean(detailState.data?.application);
   const deadline = dDayText(p.d_day, p.recruitment_status);
@@ -262,15 +242,18 @@ export default function PolicyDetailPage() {
               : eligibility.error ? <div className="policy-detail-muted" role="alert">{eligibilityError} 잠시 후 다시 시도해 주세요.
                 <button type="button" className="policy-detail-more" onClick={() => eligibility.refetch()}>다시 시도</button></div>
                 : conditions.length ? <>
-                  {eligibility.data.result !== 'ELIGIBLE' && <p className="policy-detail-muted">{eligibility.data.reason}</p>}
-                  {shownConditions.length > 0 && <div className="policy-detail-conditions">{shownConditions.map((item, index) =>
-                    <div className="policy-detail-condition-row" key={item.evidence?.source ?? index}>
-                      <span>{conditionLabel(item)}</span><b className={`status-${item.status?.toLowerCase()}`}>{itemVerdicts[item.status] ?? '확인 필요'}</b>
-                    </div>)}</div>}
-                  {shownConditions.length === 0 && <div className="policy-detail-conditions"><div className="policy-detail-condition-row"><span>신청 조건</span><b className={`status-${eligibility.data.result === 'ELIGIBLE' ? 'satisfied' : eligibility.data.result === 'INELIGIBLE' ? 'unsatisfied' : 'unknown'}`}>{verdicts[eligibility.data.result]}</b></div></div>}
-                  {eligibility.data.result === 'CHECK' && sourceUrl && <a className="policy-detail-source-link" href={sourceUrl} target="_blank" rel="noopener noreferrer">공식 공고 확인 ↗</a>}
+                  {p.eligibility_verified === false
+                    ? <p className="policy-detail-muted">신청 자격 정보가 검증되지 않아 공식 공고 확인이 필요합니다.</p>
+                    : eligibility.data.result !== 'ELIGIBLE' && <p className="policy-detail-muted">{eligibility.data.reason}</p>}
+                  {requiredConditions.length > 0 && <div className="policy-detail-condition-section">
+                    <h3>신청 자격</h3><ConditionRows items={requiredConditions} />
+                  </div>}
+                  {excludedConditions.length > 0 && <div className="policy-detail-condition-section">
+                    <h3>신청 제외 사항</h3><ConditionRows items={excludedConditions} exclusion />
+                  </div>}
                   {(eligibility.data.profile_missing || missingProfileFields.length > 0) && <p className="policy-detail-muted">내 정보에서 {missingProfileFields.map((field) => conditionNames[field] ?? '필요한 정보').join(' · ') || '프로필'}을 입력하거나 수정해 주세요. <button type="button" className="policy-detail-more" onClick={() => navigate('/my#profile')}>내 정보 수정 ›</button></p>}
-                </> : <div className="policy-detail-muted">{eligibility.data?.reason ?? '신청 자격 정보가 없습니다.'} {sourceUrl && <a href={sourceUrl} target="_blank" rel="noopener noreferrer">공식 공고 확인 ↗</a>}</div>}
+                  {eligibility.data.result === 'CHECK' && eligibilitySourceUrl && <a className="policy-detail-source-link" href={eligibilitySourceUrl} target="_blank" rel="noopener noreferrer">공식 공고 확인 ↗</a>}
+                </> : <div className="policy-detail-muted">{eligibility.data?.reason ?? '신청 자격 정보가 없습니다.'} {eligibilitySourceUrl && <a href={eligibilitySourceUrl} target="_blank" rel="noopener noreferrer">공식 공고 확인 ↗</a>}</div>}
         </SectionCard>
 
         <SectionCard title="신청 절차">

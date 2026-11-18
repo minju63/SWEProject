@@ -114,11 +114,19 @@
 .policy-detail-empty a { display: inline-block; margin-top: 8px; color: #2f7bf5; font-size: 11px; font-weight: 900; }
 .policy-detail-muted { margin: 12px 0 0; color: rgba(0, 0, 0, .45); font-size: 12px; line-height: 1.6; }
 .policy-detail-conditions { display: grid; gap: 8px; margin-top: 12px; }
+.policy-detail-condition-section + .policy-detail-condition-section { margin-top: 18px; }
+.policy-detail-condition-section h3 { margin: 14px 0 0; color: rgba(0, 0, 0, .7); font-size: 12px; font-weight: 900; }
+.policy-detail-condition-relation { display: flex; align-items: baseline; gap: 6px; color: rgba(0, 0, 0, .5); font-size: 11px; font-weight: 800; }
+.policy-detail-condition-relation b { color: #2f7bf5; }
+.policy-detail-condition-children { margin: 6px 0 2px 8px; padding-left: 10px; border-left: 2px solid rgba(47, 123, 245, .14); }
+.policy-detail-condition-children .policy-detail-conditions { margin-top: 0; }
 .policy-detail-condition-row { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
 .policy-detail-condition-row > span { min-width: 0; color: rgba(0, 0, 0, .65); font-size: 12px; font-weight: 800; line-height: 1.6; overflow-wrap: anywhere; }
-.policy-detail-conditions b { flex: none; padding: 4px 8px; border-radius: 6px; background: #fff3e2; color: #b76c00; font-size: 10px; font-weight: 900; }
+.policy-detail-condition-row > b { flex: none; padding: 4px 8px; border-radius: 6px; background: #fff3e2; color: #b76c00; font-size: 10px; font-weight: 900; }
 .policy-detail-conditions .status-satisfied { background: #e7f8f0; color: #078b52; }
 .policy-detail-conditions .status-unsatisfied { background: #fdecea; color: #d43d36; }
+.policy-detail-conditions .status-hit { background: #fdecea; color: #d43d36; }
+.policy-detail-conditions .status-clear { background: #e7f8f0; color: #078b52; }
 .policy-detail-source-link { display: inline-block; margin-top: 10px; color: #2f7bf5; font-size: 11px; font-weight: 800; text-decoration: underline; text-underline-offset: 2px; }
 .policy-detail-more { margin-top: 16px; padding: 0; border: 0; background: transparent; color: #2f7bf5; font-size: 12px; font-weight: 900; }
 .policy-detail-muted .policy-detail-more { display: inline; margin: 0 0 0 4px; }

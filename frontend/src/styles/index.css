@@ -639,6 +639,8 @@ button {
   font-weight: 800;
 }
 .search-filter-button {
+  width: 82px;
+  height: 34px;
   border: 0;
   background: #fff;
   color: #273445;
@@ -646,6 +648,10 @@ button {
 .search-filter-button.is-active {
   background: #fff;
   color: #2f7bf5;
+}
+.search-closed-button.is-active {
+  background: #2f7bf5;
+  color: #fff;
 }
 .search-applied-chip {
   border: 0;
