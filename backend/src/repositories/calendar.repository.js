@@ -141,3 +141,14 @@ export async function deleteAlarm(alarmId) {
   const { error } = await supabase.from('saved_alarm').delete().eq('alarm_id', alarmId);
   if (error) throw error;
 }
+
+// 안 읽은 알림 개수 (하단·헤더 종 모양의 파란 점)
+export async function countUnreadNotifications(userId) {
+  const { count, error } = await supabase
+    .from('notification')
+    .select('notification_id', { count: 'exact', head: true })
+    .eq('user_id', userId)
+    .eq('is_read', false);
+  if (error) throw error;
+  return count ?? 0;
+}

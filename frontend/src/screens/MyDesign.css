@@ -17,7 +17,6 @@
   height: 56px; padding: 0 18px; background: #eaf2ffed; backdrop-filter: blur(12px);
 }
 .my-header h1 { flex: 1; font-size: 23px; font-weight: 900; letter-spacing: -.7px; }
-.my-header > button[aria-label="알림"] { background: white; box-shadow: 0 3px 12px #29466c0b; width: 42px; height: 42px; display: grid; place-items: center; }
 .my-profile-card { background: white; border-radius: 22px; margin: 0 17px; padding: 17px 16px 10px; box-shadow: 0 5px 20px #3d5b7b04; }
 .my-profile-card > div:first-child { gap: 12px; }
 .my-profile-card > div:first-child > div:first-child { width: 48px; height: 48px; border-radius: 50%; background: #eaf2ff; }

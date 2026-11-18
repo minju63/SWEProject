@@ -1,3 +1,4 @@
+import NotificationBell from '../components/NotificationBell'
 import { Fragment, useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react'
 import { DragScroll } from './minju/DragScroll'
 import { useNavigate, useSearchParams } from 'react-router'
@@ -800,10 +801,7 @@ function MapHeader({
           />
         </div>
       )}
-      <button onClick={onBell} className="relative shrink-0 rounded-full p-2.5" aria-label="알림">
-        <Icon name="bell" className="size-[22px]" />
-        <span className="absolute right-2 top-2 size-2 rounded-full border-2 border-[#eaf2ff] bg-[#2F7BF5]" />
-      </button>
+      <NotificationBell onClick={onBell} />
     </div>
   )
 }

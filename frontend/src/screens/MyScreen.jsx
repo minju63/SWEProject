@@ -5,6 +5,7 @@ import { todayISO, useAppState } from '../app/AppState'
 import AppSelect from '../components/AppSelect'
 import { findPolicyByTitle, policyCatalog, getRequiredDocumentItems } from '../data/policies'
 import { Icon } from './HomeScreen'
+import NotificationBell from '../components/NotificationBell'
 import { useAuth } from '../lib/auth'
 const stages = ['신청 준비', '신청 완료', '결과 확인']
 const savedFilters = ['전체', '신청 가능', '마감 임박', '종료']
@@ -202,14 +203,7 @@ export default function MyScreen() {
       <div className="my-page">
         <header className="my-header">
           <h1 className="text-[20px] font-black tracking-[-0.04em]">마이</h1>
-          <button
-            onClick={() => navigate('/notifications')}
-            className="relative rounded-full p-2.5"
-            aria-label="알림"
-          >
-            <Icon name="bell" className="size-[22px]" />
-            <span className="absolute right-2 top-2 size-2 rounded-full border-2 border-white bg-[#2F7BF5]" />
-          </button>
+          <NotificationBell />
         </header>
 
         <main className="pb-28">
