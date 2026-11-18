@@ -77,7 +77,7 @@ export default function HomePage() {
         <PageHeader brand title="청해" subtitle="부산 청년 AI 생활·혜택 안내 서비스" />
         <svg
           className="hero-art"
-          viewBox="0 0 390 140"
+          viewBox="0 30 390 110"
           preserveAspectRatio="xMaxYMax slice"
           aria-hidden="true"
         >
@@ -104,14 +104,14 @@ export default function HomePage() {
           />
           {/* 해운대 고층 건물 */}
           <g fill="url(#heroTower)">
-            <rect x="300" y="34" width="13" height="78" rx="2" />
-            <rect x="316" y="16" width="15" height="96" rx="2" />
-            <rect x="334" y="44" width="12" height="68" rx="2" />
-            <rect x="349" y="28" width="14" height="84" rx="2" />
-            <rect x="366" y="52" width="14" height="60" rx="2" />
+            <rect x="300" y="64" width="13" height="48" rx="2" />
+            <rect x="316" y="52" width="15" height="60" rx="2" />
+            <rect x="334" y="70" width="12" height="42" rx="2" />
+            <rect x="349" y="58" width="14" height="54" rx="2" />
+            <rect x="366" y="76" width="14" height="36" rx="2" />
           </g>
           <g stroke="#e8f0fd" strokeWidth="1.2" opacity="0.8">
-            <path d="M322 28v78M356 40v66M306 46v60M340 56v50M373 62v44" />
+            <path d="M322 58v48M356 64v42M306 72v34M340 78v28M373 84v22" />
           </g>
           {/* 광안대교 */}
           <g transform="translate(110 36) scale(0.7)">
@@ -146,8 +146,8 @@ export default function HomePage() {
           />
           {/* 갈매기 */}
           <g fill="none" stroke="#a9c3f2" strokeWidth="2" strokeLinecap="round">
-            <path d="M232 26 q5 -6 10 0 q5 -6 10 0" />
-            <path d="M262 44 q4 -5 8 0 q4 -5 8 0" />
+            <path d="M232 50 q5 -6 10 0 q5 -6 10 0" />
+            <path d="M262 64 q4 -5 8 0 q4 -5 8 0" />
           </g>
         </svg>
       </div>
