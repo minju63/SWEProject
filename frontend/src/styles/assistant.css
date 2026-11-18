@@ -1,7 +1,7 @@
 /* ---------- Dr.부 (탭바 위에 떠 있음) ---------- */
 .assistant {
   position: fixed;
-  z-index: 10;
+  z-index: 31; /* 지도 하단 목록(30) 위에 보이게 */
   touch-action: none;
   user-select: none;
   -webkit-user-select: none;

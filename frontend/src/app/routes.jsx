@@ -44,7 +44,7 @@ function AppRoot() {
           <Outlet />
         </main>
         <TabBar />
-        {!isSearch && <AssistantButton />}
+        <AssistantButton />
         <AssistantSheet />
         <Toast />
       </div>
