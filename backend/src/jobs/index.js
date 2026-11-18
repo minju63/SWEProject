@@ -2,8 +2,10 @@
 // (팀원 PC 마다 돌면 같은 DB 에 여러 번 쓰게 된다).
 import cron from 'node-cron';
 import { runCultureSync } from './culture/syncCulture.js';
+import { runDueAlarms } from './alarms.js';
 
 export function startJobs() {
+  startAlarmJob();
   if (process.env.CULTURE_SYNC_ENABLED !== 'true') return;
   const schedule = process.env.CULTURE_SYNC_CRON || '0 4 * * *';
   cron.schedule(
@@ -22,4 +24,22 @@ export function startJobs() {
     { name: 'culture-sync', timezone: 'Asia/Seoul', noOverlap: true }
   );
   console.log(`문화 데이터 하루 1회 갱신 예약: "${schedule}" (Asia/Seoul)`);
+}
+
+// 정책 알림: 1분마다 때가 된 알림을 알림 센터에 넣는다 (캘린더 FR-C06~C12)
+function startAlarmJob() {
+  if (process.env.ALARM_JOB_ENABLED !== 'true') return;
+  cron.schedule(
+    '* * * * *',
+    async () => {
+      try {
+        const r = await runDueAlarms();
+        if (r.due) console.log(`[정책 알림] 대상 ${r.due}건, 발송 ${r.sent}건`);
+      } catch (e) {
+        console.error(`[정책 알림] 중단: ${e.message}`);
+      }
+    },
+    { name: 'policy-alarms', timezone: 'Asia/Seoul', noOverlap: true }
+  );
+  console.log('정책 알림 1분 주기 확인 예약');
 }
