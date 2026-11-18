@@ -58,3 +58,43 @@ export const BackIcon = () => (
     <path d="m15 5-7 7 7 7" />
   </svg>
 );
+
+// 찜 하트: 채움(filled)이면 색이 가득 찬 하트, 아니면 테두리만. 색은 글자색(currentColor)을 따른다
+export const HeartIcon = ({ filled = true, size = 18 }) => (
+  <svg
+    viewBox="0 0 24 24"
+    width={size}
+    height={size}
+    aria-hidden="true"
+    fill={filled ? 'currentColor' : 'none'}
+    stroke="currentColor"
+    strokeWidth="2"
+    strokeLinejoin="round"
+  >
+    <path d="M12 20.5s-7.5-4.6-9.2-9.4C1.7 7.6 3.9 4.5 7.1 4.5c2 0 3.6 1.1 4.9 2.9 1.3-1.8 2.9-2.9 4.9-2.9 3.2 0 5.4 3.1 4.3 6.6-1.7 4.8-9.2 9.4-9.2 9.4Z" />
+  </svg>
+);
+
+// 알림 종(작은 크기·채움): 이모지와 달리 한 가지 색으로만 그려진다
+export const BellFillIcon = ({ size = 16 }) => (
+  <svg viewBox="0 0 24 24" width={size} height={size} aria-hidden="true" fill="currentColor">
+    <path d="M12 2.5a6.5 6.5 0 0 0-6.5 6.5v4.1L3.7 16.3a1 1 0 0 0 .9 1.5h14.8a1 1 0 0 0 .9-1.5l-1.8-3.2V9A6.5 6.5 0 0 0 12 2.5Z" />
+    <path d="M9.6 19.2h4.8a2.4 2.4 0 0 1-4.8 0Z" />
+  </svg>
+);
+
+export const ClockIcon = ({ size = 16 }) => (
+  <svg
+    viewBox="0 0 24 24"
+    width={size}
+    height={size}
+    aria-hidden="true"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+    strokeLinecap="round"
+  >
+    <circle cx="12" cy="12" r="9" />
+    <path d="M12 7v5l3 2" />
+  </svg>
+);

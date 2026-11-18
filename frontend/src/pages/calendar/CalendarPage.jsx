@@ -7,6 +7,7 @@ import { fetchCategories } from '../../api/policies.js';
 import { useAuthStore } from '../../store/authStore';
 import { useToastStore } from '../../store/toastStore';
 import PageHeader from '../../components/PageHeader.jsx';
+import { HeartIcon } from '../../components/icons.jsx';
 import StateMessage from '../../components/StateMessage.jsx';
 import { CATEGORY_STYLE } from '../home/homeConfig.js';
 import CalendarGrid from './CalendarGrid.jsx';
@@ -185,7 +186,9 @@ export default function CalendarPage() {
             <>
               <section className="cal-section">
                 <div className="cal-section-head">
-                  <h2>♥ 찜·신청 준비·마감순</h2>
+                  <h2 className="cal-title-heart">
+                    <HeartIcon size={16} /> 찜·신청 준비·마감순
+                  </h2>
                   <span>{active.length + always.length}건</span>
                 </div>
                 {active.length + always.length === 0 && (

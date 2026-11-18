@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { fetchAlarmInfo, saveAlarmInfo } from '../../api/calendar.js';
 import { useToastStore } from '../../store/toastStore';
+import { BellFillIcon, ClockIcon } from '../../components/icons.jsx';
 import CustomTimeSheet from './CustomTimeSheet.jsx';
 import { alarmLabel, alarmWhen, shortDate } from './calendarUtils.js';
 
@@ -120,7 +121,7 @@ function AlarmEditor({ info, onClose, onSaved, preview }) {
           {rows.map((r) => (
             <li key={r.key}>
               <span className="alarm-ico" aria-hidden="true">
-                🔔
+                <BellFillIcon />
               </span>
               <span className="alarm-text">
                 <strong>
@@ -162,7 +163,7 @@ function AlarmEditor({ info, onClose, onSaved, preview }) {
       </div>
 
       <button type="button" className="custom-add" onClick={() => setPickingCustom(true)}>
-        🕘 ＋ 날짜·시간 직접 정하기
+        <ClockIcon /> ＋ 날짜·시간 직접 정하기
       </button>
 
       <div className="csheet-info">

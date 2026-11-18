@@ -9,6 +9,7 @@ import { useAssistantStore, loadHistory, saveHistory } from '../store/assistantS
 import { useToastStore } from '../store/toastStore';
 import { ELIGIBILITY_LABEL, dDayText } from '../utils/format';
 import SharkAvatar from './SharkAvatar.jsx';
+import { HeartIcon } from './icons.jsx';
 
 // 정책 상세 화면이 준비되면 true 로 바꾼다 (그 전에는 상세 보기를 누를 수 없게 한다)
 const DETAIL_ENABLED = false;
@@ -124,7 +125,7 @@ function PolicyCardInChat({ card, source, categoryName, onDetail, onBookmark }) 
           className={card.bookmarked ? 'btn-heart on' : 'btn-heart'}
           onClick={() => onBookmark(card)}
         >
-          ♥ {card.bookmarked ? '찜함' : '찜'}
+          <HeartIcon size={15} /> {card.bookmarked ? '찜함' : '찜'}
         </button>
         <button
           type="button"

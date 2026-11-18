@@ -134,23 +134,26 @@
   line-height: 1;
 }
 .cal-legend {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 12px;
   margin: 6px 4px 0;
   padding-top: 10px;
   border-top: 1px solid #eef1f4;
   font-size: 11.5px;
   color: var(--sub);
 }
+.cal-legend p {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 4px 12px;
+  margin: 0;
+}
+.cal-legend p + p {
+  margin-top: 6px;
+}
 .cal-legend span {
   display: inline-flex;
   align-items: center;
   gap: 4px;
-}
-.cal-legend-sub {
-  color: var(--muted);
 }
 
 /* ---------- 목록 ---------- */
@@ -674,4 +677,54 @@
 }
 .csheet-actions .csheet-save {
   flex: 2;
+}
+
+/* ---------- 아이콘(하트·종)과 날짜 선택 카드 ---------- */
+.ccard-heart,
+.btn-heart {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+}
+.ccard-heart {
+  line-height: 1;
+}
+.btn-heart svg {
+  flex: none;
+}
+.cal-title-heart {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.cal-title-heart svg {
+  color: var(--no);
+}
+.ccard-alarm-text {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.ccard-alarm-text svg {
+  flex: none;
+}
+.alarm-ico {
+  color: var(--primary);
+}
+.custom-add {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+.csheet-first svg {
+  flex: none;
+}
+.ccard-dday-event {
+  background: #e3eeff;
+  color: var(--primary);
+}
+.ccard-meta b {
+  color: var(--primary);
 }

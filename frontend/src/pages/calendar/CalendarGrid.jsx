@@ -1,3 +1,4 @@
+import { CATEGORY_ORDER, CATEGORY_STYLE } from '../home/homeConfig.js';
 import { WEEKDAYS, monthCells } from './calendarUtils.js';
 
 // 월간 달력 (FR-C01): 마감 ● / 신청 완료 ○ / 결과 발표 ★ 을 분야 색으로 표시한다
@@ -72,21 +73,33 @@ export default function CalendarGrid({
           );
         })}
       </div>
-      <p className="cal-legend">
-        <span>
-          <i className="cal-mark cal-mark-dot" style={{ background: '#6b7684' }} /> 마감
-        </span>
-        <span>
-          <i className="cal-mark cal-mark-ring" style={{ borderColor: '#6b7684' }} /> 신청 완료
-        </span>
-        <span>
-          <i className="cal-mark cal-mark-star" style={{ color: '#6b7684' }}>
-            ★
-          </i>{' '}
-          결과 발표
-        </span>
-        <span className="cal-legend-sub">· 색 = 분야</span>
-      </p>
+      <div className="cal-legend">
+        <p>
+          <span>
+            <i className="cal-mark cal-mark-dot" style={{ background: '#6b7684' }} /> 마감
+          </span>
+          <span>
+            <i className="cal-mark cal-mark-ring" style={{ borderColor: '#6b7684' }} /> 신청 완료
+          </span>
+          <span>
+            <i className="cal-mark cal-mark-star" style={{ color: '#6b7684' }}>
+              ★
+            </i>{' '}
+            결과 발표
+          </span>
+        </p>
+        <p className="cal-legend-colors">
+          {CATEGORY_ORDER.map((name) => (
+            <span key={name}>
+              <i
+                className="cal-mark cal-mark-dot"
+                style={{ background: CATEGORY_STYLE[name].color }}
+              />{' '}
+              {name}
+            </span>
+          ))}
+        </p>
+      </div>
     </section>
   );
 }

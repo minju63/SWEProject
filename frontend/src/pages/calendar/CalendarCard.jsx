@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import { BellFillIcon, HeartIcon } from '../../components/icons.jsx';
 import { alarmLabel, shortDate } from './calendarUtils.js';
 
 const EVENT_TAG = { DEADLINE: '마감', APPLIED: '신청 완료', RESULT: '결과 발표' };
@@ -24,11 +25,22 @@ export default function CalendarCard({
           : `D-${item.d_day}`;
   const end = item.application_end_date;
 
+  // 날짜를 골라서 열린 카드: 마감이 아닌 일정(신청 완료·결과 발표)이면 그날 일정을 앞에 보여준다.
+  // (신청 완료일에 마감일이 한참 뒤여도 "왜 이 날 있지?"가 되지 않게)
+  const dayEvent = eventTypes.length > 0 && !eventTypes.includes('DEADLINE') ? eventTypes[0] : null;
+  const dayDate = dayEvent === 'APPLIED' ? item.applied_at : item.expected_result_date;
+
   return (
     <article className={`ccard${state === 'closed' ? ' ccard-closed' : ''}`}>
       <div className="ccard-main">
         <Link to={`/policies/${item.policy_id}`} className="ccard-link">
-          <span className={`ccard-dday${urgent ? ' ccard-dday-urgent' : ''}`}>{label}</span>
+          <span
+            className={`ccard-dday${urgent && !dayEvent ? ' ccard-dday-urgent' : ''}${
+              dayEvent ? ' ccard-dday-event' : ''
+            }`}
+          >
+            {dayEvent ? (dayEvent === 'APPLIED' ? '완료' : '발표') : label}
+          </span>
           <span className="ccard-body">
             <strong className="ccard-title">
               {item.title}
@@ -39,8 +51,17 @@ export default function CalendarCard({
                 </em>
               ))}
             </strong>
-            <span className={`ccard-meta${urgent ? ' ccard-meta-urgent' : ''}`}>
-              {end && state !== 'always' ? `${shortDate(end)} 23:59` : '상시 모집'}
+            <span className={`ccard-meta${urgent && !dayEvent ? ' ccard-meta-urgent' : ''}`}>
+              {dayEvent ? (
+                <>
+                  <b>
+                    {EVENT_TAG[dayEvent]} {shortDate(dayDate)}
+                  </b>
+                  {end && state !== 'always' && ` · 마감 ${shortDate(end)}`}
+                </>
+              ) : (
+                <>{end && state !== 'always' ? `${shortDate(end)} 23:59` : '상시 모집'}</>
+              )}
               {item.region_names?.[0] && ` · ${item.region_names[0]}`}
             </span>
             {item.docs_total > 0 ? (
@@ -64,7 +85,7 @@ export default function CalendarCard({
             aria-label="찜 해제"
             onClick={() => onUnbookmark(item)}
           >
-            ♥
+            <HeartIcon />
           </button>
         )}
       </div>
@@ -73,7 +94,7 @@ export default function CalendarCard({
           {alarms.length > 0 ? (
             <>
               <span className="ccard-alarm-text">
-                🔔 {alarms.map((a) => alarmLabel(a)).join(' · ')}
+                <BellFillIcon /> {alarms.map((a) => alarmLabel(a)).join(' · ')}
               </span>
               <b>변경 ›</b>
             </>

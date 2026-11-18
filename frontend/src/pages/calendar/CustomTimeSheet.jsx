@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
+import { BellFillIcon } from '../../components/icons.jsx';
 import {
   addDaysKey,
   diffDays,
@@ -143,7 +144,7 @@ export default function CustomTimeSheet({
         </div>
 
         <p className={`csheet-first${valid ? '' : ' csheet-first-bad'}`}>
-          🔔{' '}
+          <BellFillIcon />{' '}
           {past
             ? '지난 시각은 고를 수 없어요'
             : afterDeadline

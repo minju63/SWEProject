@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import { HeartIcon } from '../../components/icons.jsx';
 import { ELIGIBILITY_LABEL, dDayText } from '../../utils/format';
 
 export default function HomePolicyCard({ policy, onToggleBookmark }) {
@@ -29,7 +30,7 @@ export default function HomePolicyCard({ policy, onToggleBookmark }) {
         aria-pressed={policy.bookmarked}
         onClick={() => onToggleBookmark(policy)}
       >
-        {policy.bookmarked ? '♥' : '♡'}
+        <HeartIcon filled={Boolean(policy.bookmarked)} />
       </button>
     </div>
   );

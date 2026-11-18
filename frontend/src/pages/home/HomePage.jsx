@@ -8,7 +8,7 @@ import { useAssistantStore } from '../../store/assistantStore';
 import { useToastStore } from '../../store/toastStore';
 import PageHeader from '../../components/PageHeader.jsx';
 import StateMessage from '../../components/StateMessage.jsx';
-import { SearchIcon } from '../../components/icons.jsx';
+import { HeartIcon, SearchIcon } from '../../components/icons.jsx';
 import DonutChart from './DonutChart.jsx';
 import HomePolicyCard from './HomePolicyCard.jsx';
 import { CATEGORY_ORDER, CATEGORY_STYLE } from './homeConfig.js';
@@ -346,7 +346,7 @@ export default function HomePage() {
                         aria-label="찜 해제"
                         onClick={() => toggleBookmark(c)}
                       >
-                        ♥
+                        <HeartIcon size={15} />
                       </button>
                     </div>
                     <p className="closing-meta">
