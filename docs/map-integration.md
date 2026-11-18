@@ -75,7 +75,7 @@ navigate('/map');                                                    // 홈 공�
         "fee_text": null, "is_free": true, "fee_type": "free", "reservation_url": null, "capacity": 300,
         "image_url": null, "image_source": null, "description": null,
         "source_name": "tn_pubr_public_lbrry_api", "last_collected_at": "...", "source_checked_at": "...",
-        "live_event_count": 0, "next_event_status": null
+        "live_event_count": 0, "next_event_status": null, "live_event_genres": []
       }
     ],
     "categories": [{ "category_code": "culture", "category_name": "문화시설", "sort_order": 1, "color": "#8b63d0" }],
@@ -89,6 +89,9 @@ navigate('/map');                                                    // 홈 공�
 - 장소 유형 질문(예: "서면 근처 도서관")은 `category_code`·`place_type`·`district`·`address` 로 거르시면 됩니다. 세부 유형: 공연장·전시공간(문화시설), 도서관, 체육시설, 공공시설, 청년공간.
 - 응답에 없는 장소(서비스 지역 밖, 좌표 확인 필요)는 "확인된 정보가 없어요"로 답해 주세요(FR-A17).
 - 상세: `GET /api/v1/places/:placeId` → 위 항목 + `events` (진행·예정 행사).
+- `live_event_genres`: 그 장소에서 진행·예정인 행사의 장르(연극, 뮤지컬, 콘서트, 클래식, 오페라, 무용, 전통, 전시, 기타 순). 지도 필터 시트의 '행사' 조건이 이 값으로 거릅니다.
+- 문화 행사(`item_type = 'EVENT'`)는 정책 검색에 넣지 않고 지도에서 장소별로 보여 줍니다(11/18 팀 요청). 검색·홈 쿼리는 지금처럼 `item_type = 'POLICY'`만 읽으면 됩니다.
+- 지도 검색어가 동네 이름이면 동 이름으로도 찾습니다(서면 → 서면·부전·전포, 다대포 → 다대). AI 비서 `LANDMARK_WORDS`와 같은 규칙입니다.
 
 ### 3-3. 위치 정보 (AI-REQ-06, NFR-MAP-010)
 

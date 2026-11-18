@@ -16,8 +16,10 @@ import {
   centerOf,
   distanceMeters,
   districtsOf,
+  eventGenresOf,
   insideArea,
   isOpenNow,
+  matchesEvent,
   matchesFee,
   placeMatchesTerm,
   serviceArea,
@@ -64,6 +66,7 @@ export default function MapPage() {
     [placesQuery.data, places]
   );
   const districtOptions = useMemo(() => districtsOf(places), [places]);
+  const genreOptions = useMemo(() => eventGenresOf(places), [places]);
   const area = useMemo(() => serviceArea(places), [places]);
 
   // ---------- 화면 상태 ----------
@@ -76,6 +79,8 @@ export default function MapPage() {
   const [radius, setRadius] = useState(null);
   const [districts, setDistricts] = useState([]);
   const [reservableOnly, setReservableOnly] = useState(false);
+  const [eventOnly, setEventOnly] = useState(false); // 진행·예정 행사가 있는 장소만
+  const [eventGenres, setEventGenres] = useState([]); // 행사 장르 (연극, 뮤지컬 …)
   const [filterOpen, setFilterOpen] = useState(false);
   const [savedOnly, setSavedOnly] = useState(false);
   const [searchTerm, setSearchTerm] = useState('');
@@ -160,9 +165,22 @@ export default function MapPage() {
         (!openNow || isOpenNow(place)) &&
         (districts.length === 0 || districts.includes(place.district)) &&
         (!reservableOnly || !!place.reservationUrl) &&
+        matchesEvent(place, eventOnly, eventGenres) &&
         (!savedOnly || saved.includes(place.id))
     );
-  }, [places, loadError, category, fee, openNow, districts, reservableOnly, savedOnly, saved]);
+  }, [
+    places,
+    loadError,
+    category,
+    fee,
+    openNow,
+    districts,
+    reservableOnly,
+    eventOnly,
+    eventGenres,
+    savedOnly,
+    saved,
+  ]);
 
   // 거리순(위치 있음) 또는 이름순 (FR-MAP-007·008), 반경 (FR-MAP-025)
   const visiblePlaces = useMemo(() => {
@@ -384,6 +402,8 @@ export default function MapPage() {
     setRadius(null);
     setDistricts([]);
     setReservableOnly(false);
+    setEventOnly(false);
+    setEventGenres([]);
     setSavedOnly(false);
   }
 
@@ -421,7 +441,9 @@ export default function MapPage() {
     (openNow ? 1 : 0) +
     (radius !== null ? 1 : 0) +
     districts.length +
-    (reservableOnly ? 1 : 0);
+    (reservableOnly ? 1 : 0) +
+    (eventOnly && !eventGenres.length ? 1 : 0) +
+    eventGenres.length;
   const listTitle =
     loadError || placesQuery.isLoading
       ? '주변 장소'
@@ -718,6 +740,11 @@ export default function MapPage() {
           onDistricts={setDistricts}
           reservableOnly={reservableOnly}
           onReservableOnly={setReservableOnly}
+          genreOptions={genreOptions}
+          eventOnly={eventOnly}
+          onEventOnly={setEventOnly}
+          eventGenres={eventGenres}
+          onEventGenres={setEventGenres}
           count={visiblePlaces.length}
           onReset={resetFilter}
           onClose={() => setFilterOpen(false)}

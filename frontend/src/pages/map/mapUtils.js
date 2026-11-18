@@ -37,6 +37,7 @@ export function toPlace(p) {
     collectedAt: kstDate(p.source_checked_at ?? p.last_collected_at),
     liveEventCount: p.live_event_count ?? 0,
     nextEventStatus: p.next_event_status ?? null,
+    eventGenres: p.live_event_genres ?? [],
   };
 }
 
@@ -145,6 +146,20 @@ export function matchesFee(place, fee) {
   const t = place.feeType;
   return fee === 'free' ? t === 'free' : t === 'paid' || t === 'per_program';
 }
+
+// 행사 필터: 진행·예정 행사가 있는 장소만, 장르를 고르면 그 장르 행사가 있는 장소만
+export function matchesEvent(place, eventOnly, genres) {
+  if (genres.length) return place.eventGenres.some((g) => genres.includes(g));
+  return !eventOnly || place.liveEventCount > 0;
+}
+
+// 필터 시트 장르 선택지: 진행·예정 행사가 있는 장르만 (서버가 정한 순서 유지)
+export const eventGenresOf = (places) => {
+  const seen = [];
+  for (const p of places) for (const g of p.eventGenres) if (!seen.includes(g)) seen.push(g);
+  const order = ['연극', '뮤지컬', '콘서트', '클래식', '오페라', '무용', '전통', '전시', '기타'];
+  return order.filter((g) => seen.includes(g));
+};
 
 export const toggleIn = (list, v) =>
   list.includes(v) ? list.filter((x) => x !== v) : [...list, v];

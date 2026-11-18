@@ -26,16 +26,40 @@ function toEvent(row) {
   };
 }
 
-// 장소별 가장 빠른 진행·예정 행사의 상태와 행사 수 (장소 카드의 상태 표시: FR-MAP-010)
+// 행사 장르 표시 순서 (문화 행사 목록 API 9개 장르). 장르가 비어 있으면 '기타'
+const GENRE_ORDER = [
+  '연극',
+  '뮤지컬',
+  '콘서트',
+  '클래식',
+  '오페라',
+  '무용',
+  '전통',
+  '전시',
+  '기타',
+];
+const genreOf = (row) => (GENRE_ORDER.includes(row.genre) ? row.genre : '기타');
+
+// 장소별 가장 빠른 진행·예정 행사의 상태, 행사 수, 장르 (장소 카드 상태 표시 FR-MAP-010, 행사 필터)
 function eventSummary(events) {
   const byPlace = new Map();
   for (const row of events) {
-    const cur = byPlace.get(row.place_id) ?? { live_event_count: 0, next_event_status: null };
+    const cur = byPlace.get(row.place_id) ?? {
+      live_event_count: 0,
+      next_event_status: null,
+      genres: new Set(),
+    };
     if (cur.live_event_count === 0) cur.next_event_status = eventStatus(row.event_start_at);
     cur.live_event_count += 1;
+    cur.genres.add(genreOf(row));
     byPlace.set(row.place_id, cur);
   }
-  return byPlace;
+  return new Map(
+    [...byPlace].map(([id, { genres, ...rest }]) => [
+      id,
+      { ...rest, live_event_genres: GENRE_ORDER.filter((g) => genres.has(g)) },
+    ])
+  );
 }
 
 // 다음 자동 갱신 시각. 이 서버에서 하루 1회 갱신을 켰고 '분 시 * * *' 형식일 때만 계산한다 (NFR-006)
@@ -61,7 +85,11 @@ export async function listPlaces() {
   const summary = eventSummary(events);
   const items = places.map((p) => ({
     ...p,
-    ...(summary.get(p.place_id) ?? { live_event_count: 0, next_event_status: null }),
+    ...(summary.get(p.place_id) ?? {
+      live_event_count: 0,
+      next_event_status: null,
+      live_event_genres: [],
+    }),
   }));
   return {
     items,
