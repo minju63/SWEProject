@@ -123,12 +123,20 @@ export const insideArea = (area, pos) =>
   pos.lng >= area.minLng &&
   pos.lng <= area.maxLng;
 
+// 동네 이름은 주소에 그대로 안 나오는 경우가 많아 동 이름으로도 찾는다.
+// AI 비서 장소 답변(assistant.service.js LANDMARK_WORDS)과 같은 규칙이라 [전체 보기] 결과 수가 같다.
+const AREA_WORDS = {
+  서면: ['서면', '부전', '전포'],
+  다대포: ['다대'],
+};
+
 export function placeMatchesTerm(place, term) {
   const q = term.trim().toLowerCase();
   if (!q) return true;
-  return `${place.name} ${place.address} ${place.district} ${place.placeType} ${place.categoryName}`
-    .toLowerCase()
-    .includes(q);
+  const fields = `${place.name} ${place.address} ${place.district} ${place.placeType} ${place.categoryName}`;
+  if (fields.toLowerCase().includes(q)) return true;
+  const words = AREA_WORDS[q.replace(/\s+/g, '')];
+  return !!words && words.some((w) => `${place.address} ${place.name}`.includes(w));
 }
 
 // 요금: free 는 무료, paid·per_program 은 유료, unknown 은 어느 쪽에도 안 보임 (FR-MAP-024)
