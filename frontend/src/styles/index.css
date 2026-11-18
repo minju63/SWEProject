@@ -92,7 +92,9 @@ button {
   margin: 8px 0 16px;
 }
 .page-header h1 {
-  font-size: 22px;
+  font-size: 23px; /* 마이 탭 제목과 같은 크기·굵기 */
+  font-weight: 900;
+  letter-spacing: -0.7px;
   margin: 0;
 }
 .page-header h1.brand {
@@ -345,9 +347,9 @@ button {
 }
 .search-header-row h1 {
   margin: 0;
-  font-size: 17px;
+  font-size: 23px; /* 마이 탭 제목과 같은 크기·굵기 */
   font-weight: 900;
-  letter-spacing: -0.03em;
+  letter-spacing: -0.7px;
 }
 .search-header-notification {
   flex: none;

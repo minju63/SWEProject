@@ -673,7 +673,7 @@ function MapHeader({
   }
   return (
     <div className="relative flex h-[68px] items-center gap-2.5 px-5">
-      <h1 className="shrink-0 text-[20px] font-black tracking-[-0.04em]">지도</h1>
+      <h1 className="shrink-0 text-[23px] font-black tracking-[-0.7px]">지도</h1>
       <div className="relative min-w-0 flex-1">
         <button
           onClick={onFilter}
