@@ -31,7 +31,7 @@
 
 /* ---------- 달력 ---------- */
 .cal-card {
-  margin-top: 8px;
+  margin-top: 0; /* 헤더 바로 아래에서 시작 (검색창 시작 위치와 같게) */
   padding: 14px 12px 10px;
   border-radius: 20px;
   background: #fff;

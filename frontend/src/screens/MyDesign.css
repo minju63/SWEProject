@@ -18,7 +18,7 @@
 }
 .my-page .my-header { height: 68px; padding: 0 20px; } /* 검색·지도 탭 상단과 같은 높이·좌우 여백 */
 .my-header h1 { flex: 1; font-size: 23px; font-weight: 900; letter-spacing: -.7px; }
-.my-profile-card { background: white; border-radius: 22px; margin: 0 17px; padding: 17px 16px 10px; box-shadow: 0 5px 20px #3d5b7b04; }
+.my-profile-card { background: white; border-radius: 22px; margin: 0 20px; padding: 17px 16px 10px; box-shadow: 0 5px 20px #3d5b7b04; }
 .my-profile-card > div:first-child { gap: 12px; }
 .my-profile-card > div:first-child > div:first-child { width: 48px; height: 48px; border-radius: 50%; background: #eaf2ff; }
 .my-profile-card h2 { font-size: 18px; }
@@ -31,7 +31,7 @@
 .my-profile-counts > button { background: transparent; border: 0; padding: 4px 0 5px; }
 .my-profile-counts b { font-size: 21px; }
 .my-profile-counts span { margin-top: 5px; font-size: 10px; color: var(--my-muted); }
-.my-applications-section, .my-saved-section, .my-recent-section { padding: 22px 17px 0; scroll-margin-top: 110px; }
+.my-applications-section, .my-saved-section, .my-recent-section { padding: 22px 20px 0; scroll-margin-top: 110px; }
 .my-applications-section > div:first-child p { font-size: 10px; margin-bottom: 2px; }
 .my-page h2 { font-size: 18px; font-weight: 850; letter-spacing: -.5px; }
 .my-applications-section > div:first-child > button { padding: 9px 12px; background: #e5eeff; }
