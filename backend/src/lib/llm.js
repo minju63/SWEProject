@@ -51,10 +51,13 @@ export async function askText(system, user, timeoutMs) {
   try {
     return (
       (
-        await complete([
-          { role: 'system', content: system },
-          { role: 'user', content: user },
-        ])
+        await complete(
+          [
+            { role: 'system', content: system },
+            { role: 'user', content: user },
+          ],
+          { timeoutMs }
+        )
       ).trim() || null
     );
   } catch (err) {

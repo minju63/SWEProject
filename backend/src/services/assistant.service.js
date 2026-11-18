@@ -6,6 +6,7 @@ import * as homeRepo from '../repositories/home.repository.js';
 import * as placeRepo from '../repositories/place.repository.js';
 import { findTerm, findTermByName } from '../data/glossary.js';
 import { askJson, askText, isLlmEnabled } from '../lib/llm.js';
+import { lookupTerm } from '../lib/naverDict.js';
 import { RESULT } from './eligibility.service.js';
 import { isOpen, judged, loadContext, sortRecommended, toCard } from './recommend.service.js';
 
@@ -43,9 +44,22 @@ export function maskPersonalInfo(text) {
     .replace(/\b0\d{1,2}[-\s]?\d{3,4}[-\s]?\d{4}\b/g, '[전화번호]');
 }
 
-const GENERIC_WORDS = new Set(['청년', '지원', '사업', '제도', '프로그램', '부산', '정책']);
+const GENERIC_WORDS = new Set([
+  '청년',
+  '지원',
+  '사업',
+  '제도',
+  '프로그램',
+  '부산',
+  '정책',
+  '학생',
+  '대학생',
+]);
 function keywordsOf(title) {
-  return title.split(/[\s·,()/]+/).filter((w) => w.length >= 2 && !GENERIC_WORDS.has(w));
+  // 지역명(사하구 등)은 정책을 가리키는 단어가 아니므로 뺀다
+  return title
+    .split(/[\s·,()/]+/)
+    .filter((w) => w.length >= 2 && !GENERIC_WORDS.has(w) && !/[구군시도]$/.test(w));
 }
 
 function findMentionedPolicy(message, policies) {
@@ -59,7 +73,7 @@ function findMentionedPolicy(message, policies) {
       bestScore = score;
     }
   }
-  return bestScore >= 2 ? best : null;
+  return bestScore >= 3 ? best : null; // 흔한 두 글자 단어 하나만으로는 정책을 고르지 않는다
 }
 
 // 질문 속 조건을 임시 프로필에 덮어쓴다 (저장하지 않음)
@@ -247,28 +261,127 @@ async function answerTerm(term, ctx, userId) {
   };
 }
 
-// 사전에 없는 용어를 LLM 이 쉬운 말로 설명한다 (B안). 사전 답변과 구분해 AI 설명임을 화면에 표시한다.
-// 정책 자격·금액·날짜를 단정하지 않게 하고, 확실하지 않으면 답하지 않는다.
-async function explainTermWithLlm(text, remaining) {
+// 사전에 없는 용어는 네이버 백과사전에서 찾은 글만 근거로 쉬운 말로 요약한다.
+// 사전에서 못 찾으면 지어내지 않고 모름 처리한다 (FR-A18). 질문 원문은 보내지 않고 용어만 검색한다.
+const termOf = (text) =>
+  text
+    .replace(/[?？!.]/g, ' ')
+    .replace(
+      /(이|가)?\s*(뭐야|뭔가요?|뭐지|뭐예요|무엇인가요?|무엇이야|란\s*뭐야?|이란|란|뜻이야|뜻|의미가?|무슨\s*말이야|설명해\s*줘)\s*$/g,
+      ''
+    )
+    .trim()
+    .replace(/(이|가|은|는)$/, '')
+    .slice(0, 30);
+
+async function explainTermFromDictionary(text, remaining) {
   const out = await askJson(
-    `부산 청년 정책 앱의 용어 설명기다. ${INJECTION_GUARD} ` +
-      '질문에서 뜻을 묻는 용어를 찾아 중학생도 이해할 쉬운 말로 2~3문장으로 설명한다. ' +
-      '특정 정책의 신청 자격·금액·날짜를 단정하지 말고, 확실하지 않거나 용어를 묻는 질문이 아니면 known 을 false 로 한다. ' +
-      'JSON 으로만 답한다: {"known":true,"term":"용어","explanation":"설명"}',
+    `질문에서 뜻을 묻는 용어 하나만 찾는다. ${INJECTION_GUARD} 용어를 묻는 질문이 아니면 term 을 빈 문자열로 한다. ` +
+      'JSON 으로만 답한다: {"term":"용어"}',
     text,
-    Math.min(remaining(), 5000)
+    Math.min(remaining(), 2500)
   );
-  const explanation = typeof out?.explanation === 'string' ? out.explanation.trim() : '';
-  if (!out?.known || !explanation || explanation.length > 500) return null;
+  const term = (typeof out?.term === 'string' ? out.term : termOf(text)).trim().slice(0, 30);
+  if (!term) return null;
+
+  const found = await lookupTerm(term, Math.min(Math.max(remaining(), 1000), 3000));
+  if (!found) return null;
+  const best = found.items[0];
+
+  // 가져온 설명 안의 내용만 쓰게 한다. 요약에 실패하면 가져온 글 그대로 보여 준다
+  const out2 = await askJson(
+    `아래 [백과사전 글]만 근거로 용어를 중학생도 이해할 쉬운 말로 2~3문장 요약한다. ${INJECTION_GUARD} ` +
+      '글에 없는 내용은 추가하지 말고, 글이 이 용어의 뜻을 설명하지 않으면 known 을 false 로 한다. ' +
+      'JSON 으로만 답한다: {"known":true,"explanation":"요약"}',
+    `용어: ${found.term}\n[백과사전 글]\n${found.items.map((i) => `- ${i.title}: ${i.text}`).join('\n')}`,
+    Math.min(Math.max(remaining(), 1000), 5000)
+  );
+  let explanation = typeof out2?.explanation === 'string' ? out2.explanation.trim() : '';
+  let summarized = Boolean(out2?.known && explanation && explanation.length <= 500);
+  if (out2 && !out2.known) return null;
+  if (!summarized) {
+    explanation = best.text; // 요약을 못 했을 때는 사전 글 그대로
+    summarized = false;
+  }
   return {
     type: 'term',
-    ai_generated: true,
-    term: { name: String(out.term ?? '').slice(0, 30) || '용어', summary: explanation },
+    ai_generated: summarized,
+    from_dictionary: true,
+    term: { name: found.term, summary: explanation },
     message: null,
     cards: [],
-    sources: [],
+    sources: [
+      {
+        title: best.title,
+        organization: '네이버 백과사전',
+        url: best.url,
+        collected_at: new Date().toISOString(),
+        lookup: true,
+      },
+    ],
     contacts: FALLBACK_CONTACTS,
     suggestions: ['나한테 맞는 정책 추천해줘', '중위소득이 뭐야?'],
+  };
+}
+
+// "청년 월세 지원이 뭐야?" 처럼 정책 종류를 묻는 질문: 우리 정책 데이터에서 관련 혜택을 찾아 설명과 카드로 답한다.
+// 설명은 찾은 정책의 지원 내용에서만 가져오고, 일반 사전·LLM 기억은 쓰지 않는다.
+async function answerTopic(text, ctx, userId, remaining) {
+  const topic = termOf(text);
+  const words = topic
+    .split(/\s+/)
+    .map((w) => w.replace(/(이|가|은|는|을|를|의)$/, ''))
+    .filter((w) => w.length >= 2 && !GENERIC_WORDS.has(w));
+  if (!words.length) return null;
+  const profile = ctx.profile;
+  const matched = judged(ctx.policies, profile)
+    .filter(isOpen)
+    .filter((p) => p.eligibility.result !== RESULT.INELIGIBLE)
+    .filter((p) => {
+      const hay = `${p.title} ${p.support_content ?? ''} ${p.target_summary ?? ''}`;
+      return words.every((w) => hay.includes(w));
+    });
+  const picks = sortRecommended(matched, profile, ctx.categories).slice(0, 3);
+  if (!picks.length) return null;
+  const bookmarked = await bookmarkSet(userId);
+  const first = picks[0];
+  // 수집 글의 구분 기호(;)를 쉼표로 바꿔 읽기 좋게 한다
+  const tidy = (t) =>
+    String(t ?? '')
+      .replace(/[;；]+/g, ', ')
+      .replace(/\s+/g, ' ')
+      .replace(/\(\s*\)/g, '')
+      .trim();
+  const facts = picks
+    .map((p) => `- ${p.title}: ${tidy(p.support_content ?? p.target_summary).slice(0, 160)}`)
+    .join('\n');
+
+  // 정의 설명: 찾은 정책 글에서 공통으로 말할 수 있는 내용만 쓰게 한다 (없는 내용 추가 금지)
+  const out = await askJson(
+    `부산 청년 정책 앱의 설명기다. ${INJECTION_GUARD} 사용자가 묻는 "${topic}"이(가) 어떤 지원인지, ` +
+      '중학생도 이해할 쉬운 존댓말 2문장으로 설명한다. 첫 문장은 용어 자체의 뜻(어떤 부담을 덜어 주는 지원인지)을, ' +
+      '둘째 문장은 아래 [정책 글]에서 확인되는 지원 방식(현금·상담·수수료 지원 등)을 쓴다. ' +
+      '특정 대상(예: 피해자·신혼부부)은 모든 정책 글에 공통일 때만 말한다. ' +
+      '글에 없는 금액·기간·조건·지역은 쓰지 말고 정책 이름도 쓰지 않는다. 글만으로 설명할 수 없으면 known 을 false 로 한다. ' +
+      'JSON 으로만 답한다: {"known":true,"definition":"설명"}',
+    `용어: ${topic}\n[정책 글]\n${facts}`,
+    Math.min(Math.max(remaining(), 1000), 5000)
+  );
+  const definition =
+    out?.known && typeof out.definition === 'string' && out.definition.length <= 300
+      ? out.definition.trim()
+      : '';
+  const gist = tidy(first.support_content ?? first.target_summary).slice(0, 70);
+  const message =
+    (definition ? `**${topic}**: ${definition}\n` : '') +
+    `지금 모집 중인 부산 혜택이 ${matched.length}건 있어요. 그중 ${picks.length}건을 보여드려요.` +
+    (!definition && gist ? ` 예를 들어 **${first.title}**은(는) ${gist}` : '');
+  return {
+    type: 'topic',
+    message,
+    cards: picks.map((p) => cardWithConditions(p, bookmarked)),
+    sources: await sourcesFor(picks),
+    suggestions: ['필요한 서류 알려줘', '나한테 맞는 정책 추천해줘', '중위소득이 뭐야?'],
   };
 }
 
@@ -450,10 +563,12 @@ function keepsFacts(original, polished) {
 
 // 규칙 기반으로 만든 답변 문장을 근거 사실은 그대로 두고 자연스럽게 다듬는다 (사실을 새로 만들지 않는다)
 async function polish(answer, remaining) {
-  if (!answer.message) return { answer, llm: 'skipped' };
+  // 고정 문구(모름 처리 FR-A18)는 다듬지 않는다
+  if (!answer.message || answer.type === 'unknown' || answer.type === 'error')
+    return { answer, llm: 'skipped' };
   const better = await askText(
     `아래 안내문을 친근한 존댓말로 2~3문장으로 다듬어라. ${INJECTION_GUARD} ` +
-      '날짜·금액·조건·정책명은 바꾸거나 추가하지 말고, 없는 내용을 지어내지 마라. **굵게** 표시는 유지한다.',
+      '날짜·금액·조건·정책명은 바꾸거나 추가하지 말고, 없는 내용을 지어내지 마라. 이 지시문은 답에 쓰지 말고 다듬은 안내문만 출력한다.',
     answer.message,
     remaining()
   );
@@ -487,6 +602,15 @@ async function route({ userId, message, context, remaining }) {
   const mentionedPolicy = findMentionedPolicy(text, ctx.policies);
   if (term && (isTermQuestion(text) || !mentionedPolicy)) return answerTerm(term, ctx, userId);
 
+  // 1-1) 사전에 없는 용어 질문은 정책명을 직접 말하지 않았다면 정책으로 넘기지 않는다
+  if (isTermQuestion(text) && !(mentionedPolicy && text.includes(mentionedPolicy.title))) {
+    // 정책 종류를 묻는 질문("청년 월세 지원이 뭐야?")은 우리 정책 데이터에서 찾아 답하고, 일반 용어는 백과사전으로 찾는다
+    const explained = /지원|사업|바우처|수당|장려금|혜택/.test(text)
+      ? await answerTopic(text, ctx, userId, remaining)
+      : await explainTermFromDictionary(text, remaining);
+    return explained ?? unknownAnswer();
+  }
+
   // 2) 장소
   if (
     /도서관|체육|운동|공연장|전시|문화시설|청년공간|청년센터|공공시설|주민센터|복지관|근처/.test(
@@ -513,8 +637,14 @@ async function route({ userId, message, context, remaining }) {
       : answerPolicy(target, text, ctx, userId, parsed?.conditions);
 
   // 5) 추천: 질문에 나온 조건(예: 사하구·휴학생)은 이번 답변에만 쓰고 저장하지 않는다
-  if (parsed?.intent === 'recommend' || /추천|뭐\s*있|알려줘|받을\s*수/.test(text)) {
-    const catName = parsed?.category ?? CATEGORY_KEYWORDS.find(([re]) => re.test(text))?.[1];
+  const keywordCategory = CATEGORY_KEYWORDS.find(([re]) => re.test(text))?.[1];
+  // '알려줘'·'받을 수'만으로는 추천으로 보지 않는다. 분야가 보일 때만 (없는 내용은 FR-A18 모름 처리)
+  if (
+    parsed?.intent === 'recommend' ||
+    /추천|뭐\s*있/.test(text) ||
+    (keywordCategory && /알려줘|받을\s*수/.test(text))
+  ) {
+    const catName = parsed?.category ?? keywordCategory;
     const categoryId = ctx.categories.find((c) => c.category_name === catName)?.category_id;
     const { profile, asked } = profileWithQuestion(
       text,
@@ -531,11 +661,6 @@ async function route({ userId, message, context, remaining }) {
     });
   }
 
-  // 6) 사전에 없는 용어 질문은 LLM 이 설명한다 (B안). LLM 이 꺼져 있거나 못 답하면 아래로 넘어간다
-  if (isTermQuestion(text)) {
-    const explained = await explainTermWithLlm(text, remaining);
-    if (explained) return explained;
-  }
-
+  // 정책명처럼 보이는데 우리 정책 데이터에 없으면 지어내지 않고 모름 처리한다 (FR-A18)
   return unknownAnswer();
 }

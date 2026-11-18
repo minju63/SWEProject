@@ -51,3 +51,25 @@ export const useAssistantStore = create((set, get) => ({
     set({ chatOpen: true, request: { ...request, at: Date.now() } }),
   closeChat: () => set({ chatOpen: false }),
 }));
+
+// 최근 대화 (FR-A19): 마지막 20개 메시지만 기기에 저장해 다시 열어도 이어서 할 수 있다
+const HISTORY_KEY = 'chunghae.assistantHistory';
+const HISTORY_MAX = 20;
+
+export function loadHistory() {
+  try {
+    const list = JSON.parse(localStorage.getItem(HISTORY_KEY));
+    return Array.isArray(list) ? list : [];
+  } catch {
+    return [];
+  }
+}
+
+export function saveHistory(messages) {
+  try {
+    if (messages.length === 0) localStorage.removeItem(HISTORY_KEY);
+    else localStorage.setItem(HISTORY_KEY, JSON.stringify(messages.slice(-HISTORY_MAX)));
+  } catch {
+    // 저장 실패는 무시
+  }
+}

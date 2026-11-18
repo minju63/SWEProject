@@ -4,7 +4,7 @@ import { useQuery, useQueryClient } from '@tanstack/react-query';
 import { fetchRecommend, sendChat } from '../api/assistant';
 import { fetchProfile, addBookmark } from '../api/me';
 import { useAuthStore } from '../store/authStore';
-import { useAssistantStore } from '../store/assistantStore';
+import { useAssistantStore, loadHistory, saveHistory } from '../store/assistantStore';
 import { useToastStore } from '../store/toastStore';
 import { ELIGIBILITY_LABEL, dDayText } from '../utils/format';
 import SharkAvatar from './SharkAvatar.jsx';
@@ -87,7 +87,8 @@ function Sources({ sources }) {
           {s.collected_at && (
             <>
               {' '}
-              · {String(s.collected_at).slice(0, 10)} {s.glossary ? '갱신' : '수집'}
+              · {String(s.collected_at).slice(0, 10)}{' '}
+              {s.glossary ? '갱신' : s.lookup ? '조회' : '수집'}
             </>
           )}
           {s.url && (
@@ -162,7 +163,8 @@ function ChatSheet() {
   const navigate = useNavigate();
   const queryClient = useQueryClient();
   const isRecommend = request?.mode === 'recommend';
-  const [messages, setMessages] = useState([]); // { role: 'user'|'bot', text?, answer? }
+  // { role: 'user'|'bot', text?, answer? }. 추천으로 열면 새 대화, 그 밖에는 최근 대화를 이어간다 (FR-A19)
+  const [messages, setMessages] = useState(() => (isRecommend ? [] : loadHistory()));
   const [input, setInput] = useState('');
   const [busy, setBusy] = useState(isRecommend);
   const [notice, setNotice] = useState(() => !noticeAcked()); // 국외 AI 전송 고지 (NFR-023)
@@ -211,6 +213,10 @@ function ChatSheet() {
       cancelled = true;
     };
   }, [isRecommend, request, failMessage]);
+
+  useEffect(() => {
+    if (!busy) saveHistory(messages);
+  }, [messages, busy]);
 
   useEffect(() => {
     bodyRef.current?.scrollTo({ top: bodyRef.current.scrollHeight });
@@ -314,6 +320,11 @@ function ChatSheet() {
               {hasProfile ? '내 정보 반영 중' : '내 정보 없이 답변 중'}
             </p>
           </div>
+          {messages.length > 0 && (
+            <button type="button" className="sheet-new" onClick={() => setMessages([])}>
+              새 대화
+            </button>
+          )}
           <button type="button" className="sheet-close" aria-label="닫기" onClick={closeChat}>
             ✕
           </button>
@@ -383,11 +394,19 @@ function ChatSheet() {
                 {m.answer.places && (
                   <PlaceCards answer={m.answer} position={position} onOpen={openMap} />
                 )}
-                {m.answer.ai_generated && (
+                {m.answer.from_dictionary ? (
                   <p className="ai-caution">
-                    우리 용어 사전에 없어서 AI가 일반적인 뜻을 설명했어요. 정확하지 않을 수 있으니
-                    중요한 내용은 공식 사이트에서 꼭 확인해 주세요.
+                    우리 용어 사전에 없어서 네이버 백과사전의 설명을 쉬운 말로{' '}
+                    {m.answer.ai_generated ? '요약' : '옮겨'} 왔어요. 중요한 내용은 공식 사이트에서
+                    꼭 확인해 주세요.
                   </p>
+                ) : (
+                  m.answer.ai_generated && (
+                    <p className="ai-caution">
+                      우리 용어 사전에 없어서 AI가 일반적인 뜻을 설명했어요. 정확하지 않을 수 있으니
+                      중요한 내용은 공식 사이트에서 꼭 확인해 주세요.
+                    </p>
+                  )
                 )}
                 {m.answer.contacts && (
                   <ul className="chat-sources">
