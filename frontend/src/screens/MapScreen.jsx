@@ -716,7 +716,7 @@ function MapHeader({
           }}
           placeholder="장소 검색"
           aria-label="장소 검색"
-          className="h-11 w-full rounded-full bg-[#f0f1f5] pl-11 pr-4 text-[14px] font-semibold outline-none placeholder:text-black/35 focus:ring-2 focus:ring-[#2F7BF5]"
+          className="h-11 w-full rounded-full bg-white pl-11 pr-4 text-[14px] font-semibold outline-none placeholder:text-black/35 focus:ring-2 focus:ring-[#2F7BF5]"
         />
         {open && q && (
           <>
@@ -802,7 +802,7 @@ function MapHeader({
       )}
       <button onClick={onBell} className="relative shrink-0 rounded-full p-2.5" aria-label="알림">
         <Icon name="bell" className="size-[22px]" />
-        <span className="absolute right-2 top-2 size-2 rounded-full border-2 border-white bg-[#2F7BF5]" />
+        <span className="absolute right-2 top-2 size-2 rounded-full border-2 border-[#eaf2ff] bg-[#2F7BF5]" />
       </button>
     </div>
   )
