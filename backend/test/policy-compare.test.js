@@ -11,8 +11,11 @@ const policy = (policy_id, title, ages) => ({
 });
 
 test('기준 정책과 비교 정책은 각각 독립적으로 자격 판정한다', () => {
+  const birthYear = Number(new Intl.DateTimeFormat('en-US', {
+    timeZone: 'Asia/Seoul', year: 'numeric',
+  }).format(new Date())) - 26;
   const result = buildPolicyComparison(policy('a', '청년 월세', [20, 34]),
-    policy('b', '청년 전세', [30, 39]), { age: 26 });
+    policy('b', '청년 전세', [30, 39]), { birth_date: `${birthYear}-01-01` });
   assert.equal(result.base.policy_id, 'a');
   assert.equal(result.comparison.policy_id, 'b');
   assert.equal(result.eligibility.base.result, 'ELIGIBLE');
