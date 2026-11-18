@@ -33,7 +33,8 @@ async function allRows(table, columns, configure = (query) => query) {
 }
 
 export async function findPolicies({ categoryId, categoryIds = [], details = [], categoryDetails = [], regions = [], statuses = [],
-  dateStart, dateEnd, includeAlways, keyword, sort, page, size, assess, onlyEligible, interests = [], includeEligibility }) {
+  dateStart, dateEnd, includeAlways, keyword, sort, page, size, assess, onlyEligible,
+  profileRegionCode, interests = [], includeEligibility }) {
   const advanced = sort === 'recommended' || Boolean(keyword) || categoryIds.length || details.length || categoryDetails.length ||
     regions.length || statuses.length || dateStart || dateEnd || onlyEligible;
   if (advanced) {
@@ -82,7 +83,10 @@ export async function findPolicies({ categoryId, categoryIds = [], details = [],
         : [];
       const searchText = `${item.title} ${item.target_summary ?? ''} ${item.support_content ?? ''} ${item.benefit_type ?? ''} ${categoryById.get(item.category_id) ?? ''} ${itemDetails.join(' ')}`.toLocaleLowerCase();
       if (keyword && !keyword.toLocaleLowerCase().trim().split(/\s+/).every((word) => searchText.includes(word))) return false;
-      if (regions.length && !itemRegions.some((code) => code === 'KR' || code === '26' || regions.includes(code))) return false;
+      if (regions.length && !itemRegions.some((code) => regions.includes(code))) return false;
+      if (onlyEligible && profileRegionCode && profileRegionCode !== 'KR' &&
+        !itemRegions.some((code) => code === 'KR' || code === profileRegionCode ||
+          (profileRegionCode.startsWith('26') && code === '26'))) return false;
       if (statuses.length && !statuses.some((value) => {
         if (value === '7일 내 마감') return status?.recruitment_status === '모집 중' && status.d_day >= 0 && status.d_day <= 7;
         if (value === '모집 예정') return status?.recruitment_status === '모집 예정' || status?.recruitment_status === '예정';

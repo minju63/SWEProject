@@ -63,6 +63,9 @@
 .policy-compare-summary h2 { margin: 0; color: #2f7bf5; font-size: 13px; font-weight: 900; }
 .policy-compare-summary h2 span { margin-right: 5px; }
 .policy-compare-summary p { margin: 9px 0 0; color: #273a54; font-size: 11px; font-weight: 700; line-height: 1.65; }
+.policy-compare-recommendation { margin-top: 13px; padding-top: 12px; border-top: 1px solid #c8dcfa; }
+.policy-compare-recommendation strong { color: #2f7bf5; font-size: 11px; font-weight: 900; }
+.policy-compare-recommendation p { margin-top: 5px; }
 .policy-compare-footnote { margin: 12px 3px 0; color: #9aa8b7; font-size: 10px; line-height: 1.5; }
 .policy-compare-message { padding: 20px; color: #68788a; font-size: 13px; }
 @media (max-width: 360px) {

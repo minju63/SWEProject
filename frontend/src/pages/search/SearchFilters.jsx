@@ -1,10 +1,9 @@
 import { useState } from 'react';
 import SelectMenu from '../../components/SelectMenu.jsx';
 import { UserIcon } from '../../components/icons.jsx';
-import { ageFromBirthDate } from '../../utils/format';
 import { STATUSES, toggle } from './searchFilterData';
 
-const CONDITION_FIELDS = ['age', 'birth_date', 'region_code', 'residence_months', 'final_education', 'current_status', 'interest_categories', 'housing_type', 'household_type', 'lives_separately', 'marital_status', 'home_ownership', 'household_role', 'housing_benefit_status', 'special_targets'];
+const CONDITION_FIELDS = ['birth_date', 'region_code', 'residence_months', 'final_education', 'current_status', 'interest_categories', 'housing_type', 'household_type', 'lives_separately', 'marital_status', 'home_ownership', 'household_role', 'housing_benefit_status', 'special_targets'];
 const SPECIAL_TARGETS = ['다자녀가구', '중소·중견기업 재직자', '차상위계층', '기초생활수급자', '한부모가정', '장애인', '농업인', '군인', '지역인재', '신생아·영유아 가구', '자립준비청년', '주거취약계층'];
 const EDUCATIONS = ['중학교 졸업 이하', '고등학교 졸업', '대학교 졸업 (2년제)', '대학교 졸업 (4년제)', '대학원 졸업 (석사)', '대학원 졸업 (박사)'];
 const CURRENT_STATUSES = ['고등학생', '대학생(재학)', '대학생(휴학)', '대학원생', '취업준비생', '직장인', '자영업자', '창업준비생', '기타'];
@@ -15,11 +14,7 @@ const categoryOrder = (name) => {
   return index === -1 ? INTEREST_CATEGORIES.length : index;
 };
 const displayCondition = (field, value, regions) => {
-  if (field === 'age') return `만 ${value}세`;
-  if (field === 'birth_date') {
-    const age = ageFromBirthDate(value);
-    return age == null ? '나이 확인 필요' : `만 ${age}세`;
-  }
+  if (field === 'birth_date') return `생년월일 ${value.replaceAll('-', '.')}`;
   if (field === 'region_code') return value === '26' ? '부산 전체' : value === 'KR' ? '전국'
     : regions.find((region) => region.region_code === value)?.region_name ?? '지역 확인 필요';
   if (field === 'residence_months') return `거주 ${value}개월`;
@@ -75,9 +70,13 @@ function ConditionFields({ value, onChange, categories, regions }) {
   return <div className="search-condition-fields">
     <div className="search-condition-heading"><h4>기본 정보</h4>
       <button type="button" onClick={() => onChange({})}>전체 해제</button></div>
-    <FieldSelect label="만 나이" value={value.age ?? ''}
-      options={[{ value: '', label: '선택해주세요' }, ...Array.from({ length: 121 }, (_, age) => ({ value: age, label: `만 ${age}세` }))]}
-      onChange={(next) => onChange({ ...value, age: next === '' ? null : Number(next), birth_date: undefined })} />
+    <label className="search-condition-field">생년월일
+      <input type="date" value={value.birth_date ?? ''} onChange={(event) => {
+        const next = { ...value, birth_date: event.target.value };
+        delete next.age;
+        onChange(next);
+      }} />
+    </label>
     <FieldSelect label="거주 지역" value={value.region_code ?? ''}
       options={[{ value: '', label: '선택해주세요' }, { value: '26', label: '부산 전체' },
         ...regions.map(({ region_name: name, region_code: code }) => ({ value: code, label: name }))]}
@@ -136,7 +135,13 @@ function SubSheet({ type, draft, setDraft, onClose, regions }) {
     <div className="search-sub-sheet" role="dialog" aria-modal="true" aria-label={titles[type]} onClick={(event) => event.stopPropagation()}>
       <div className="search-filter-handle" /><div className="search-sub-header"><h2>{titles[type]}</h2>
         <button type="button" aria-label="닫기" onClick={onClose}>×</button></div>
-      {type === 'region' && <><h3>부산 지역을 선택해주세요</h3><Chips options={regions.map((region) => region.region_name)}
+      {type === 'region' && <><div className="search-region-heading"><h3>부산 지역을 선택해주세요</h3>
+        <div className="search-region-actions"><button type="button" disabled={!regions.length}
+          onClick={() => setDraft((current) => ({ ...current, regions: regions.map((region) => region.region_code) }))}>
+          전체 선택</button>
+          <button type="button" onClick={() => setDraft((current) => ({ ...current, regions: [] }))}>
+            전체 해제</button></div></div>
+        <Chips options={regions.map((region) => region.region_name)}
         selected={draft.regions.map((code) => regions.find((region) => region.region_code === code)?.region_name)}
         onToggle={(name) => { const code = regions.find((region) => region.region_name === name)?.region_code; setDraft((current) => ({ ...current, regions: toggle(current.regions, code) })); }} /></>}
       {type === 'status' && <><h3>모집 상태를 선택해주세요</h3><Chips options={STATUSES} selected={draft.statuses}

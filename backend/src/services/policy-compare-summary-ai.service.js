@@ -17,9 +17,12 @@ const RESPONSE_SCHEMA = {
       required: ['topic', 'policy_a', 'policy_b', 'explanation', 'evidence_ids'],
     } },
     summary: { type: 'string' },
+    recommendation: { type: 'object', additionalProperties: false,
+      properties: { policy_id: { type: ['string', 'null'] }, reason: { type: 'string' } },
+      required: ['policy_id', 'reason'] },
     additional_checks: { type: 'array', items: { type: 'string' } },
   },
-  required: ['common_points', 'differences', 'summary', 'additional_checks'],
+  required: ['common_points', 'differences', 'summary', 'recommendation', 'additional_checks'],
 };
 
 export function comparisonAiInput(result) {
@@ -31,7 +34,61 @@ export function comparisonAiInput(result) {
     verified_common_points: verified.common,
     verified_differences: verified.differences,
     additional_checks: verified.additionalChecks,
+    profile_interest_match: result.profile_interest_match ?? { base: false, comparison: false },
+    profile_conditions: {
+      base: matchedProfileConditions(result.eligibility.base),
+      comparison: matchedProfileConditions(result.eligibility.comparison),
+    },
     evidence_ids: [base.policy_id, comparison.policy_id, base.source_id, comparison.source_id].filter(Boolean),
+  };
+}
+
+const PROFILE_CONDITION_LABELS = {
+  age: '나이', region: '거주 지역', region_code: '거주 지역',
+  residence_months: '거주 기간', final_education: '학력', current_status: '현재 상태',
+  housing_type: '주거 형태', household_type: '가구 형태',
+  home_ownership: '주택 소유', household_role: '가구 내 역할',
+};
+
+function matchedProfileConditions(eligibility) {
+  const fields = new Set();
+  const visit = (condition) => {
+    if (condition.status === 'SATISFIED' && PROFILE_CONDITION_LABELS[condition.field])
+      fields.add(PROFILE_CONDITION_LABELS[condition.field]);
+    condition.children?.forEach(visit);
+  };
+  eligibility.conditions?.forEach(visit);
+  return [...fields].slice(0, 3);
+}
+
+export function personalizedComparisonRecommendation(input) {
+  const policies = [input.policy_a, input.policy_b];
+  const rank = { ELIGIBLE: 2, CHECK: 1, INELIGIBLE: 0 };
+  const scores = policies.map((policy) => rank[policy.eligibility_result] ?? 0);
+  if (scores.every((score) => score === 0)) return {
+    policy_id: null,
+    reason: '내 프로필 기준으로 두 정책 모두 신청 조건에 맞지 않아 어느 쪽도 추천하기 어려워요.',
+  };
+  let chosen = scores[0] > scores[1] ? 0 : scores[1] > scores[0] ? 1 : -1;
+  const interest = [input.profile_interest_match.base, input.profile_interest_match.comparison];
+  if (chosen === -1 && interest[0] !== interest[1]) chosen = interest[0] ? 0 : 1;
+  if (chosen === -1) return {
+    policy_id: null,
+    reason: '내 프로필의 자격 판정과 관심 분야만으로는 두 정책 중 하나를 더 추천할 근거가 부족해요. 지원 내용과 공식 신청 조건을 비교해 주세요.',
+  };
+  const selected = policies[chosen];
+  const other = policies[1 - chosen];
+  const fields = chosen === 0 ? input.profile_conditions.base : input.profile_conditions.comparison;
+  const conditionText = fields.length ? `${fields.join('·')} 조건이 확인됐고, ` : '';
+  const statusText = selected.eligibility_result === 'ELIGIBLE' ? '신청 가능' : '추가 확인 필요';
+  const otherStatus = other.eligibility_result === 'INELIGIBLE' ? '신청 부적합'
+    : other.eligibility_result === 'ELIGIBLE' ? '신청 가능' : '추가 확인 필요';
+  const basis = scores[chosen] > scores[1 - chosen]
+    ? `${conditionText}프로필 기준 자격 판정이 ${selected.title}은 ${statusText}, ${other.title}은 ${otherStatus}이기 때문이에요.`
+    : `두 정책의 자격 판정은 같지만 ${selected.title}이 내 프로필의 관심 분야와 일치하기 때문이에요.`;
+  return {
+    policy_id: selected.policy_id,
+    reason: `${selected.title}을 더 추천해요. ${basis}${selected.eligibility_result === 'CHECK' ? ' 신청 자격은 공식 공고에서 추가로 확인해 주세요.' : ''}`,
   };
 }
 
@@ -64,6 +121,12 @@ export function comparisonNarrativeInput(input) {
   const topics = new Set(['지원 대상', '지원 내용', '주요 혜택']);
   return {
     policy_a: a, policy_b: b,
+    profile_context: {
+      policy_a: { matched_conditions: input.profile_conditions.base,
+        interest_category_match: input.profile_interest_match.base },
+      policy_b: { matched_conditions: input.profile_conditions.comparison,
+        interest_category_match: input.profile_interest_match.comparison },
+    },
     verified_common_points: input.verified_common_points.filter((point) =>
       [...topics].some((topic) => point.startsWith(`${topic}: `)) &&
       (point.startsWith('지원 대상: ') ? shortTarget(point.slice(7)) : shortFact(point))),
@@ -174,10 +237,14 @@ export function validateComparisonSummary(raw, input) {
     ? summaryText : fallbackComparisonSummary(input);
   const checks = raw.additional_checks.filter((item) => typeof item === 'string' &&
     verified.additionalChecks.includes(item)).map(aiText).slice(0, 6);
+  const recommendation = personalizedComparisonRecommendation(input);
+  recommendation.ai_confirmed = Boolean(recommendation.policy_id &&
+    raw.recommendation?.policy_id === recommendation.policy_id);
   return {
     common_points: [...new Set(common.length ? common : verified.common.slice(0, 4))],
     differences,
     summary,
+    recommendation,
     additional_checks: [...new Set(checks.length ? checks : verified.additionalChecks.slice(0, 6))],
   };
 }
@@ -186,12 +253,14 @@ export async function getAiComparisonSummary(baseId, comparisonId, userId) {
   const result = await getPolicyComparison(baseId, comparisonId, userId);
   const input = comparisonAiInput(result);
   try {
-    const raw = await requestStructuredAI({ input: comparisonNarrativeInput(input), systemPrompt: POLICY_COMPARE_SUMMARY_SYSTEM_PROMPT,
+    const raw = await requestStructuredAI({ input: comparisonNarrativeInput(input),
+      systemPrompt: `${POLICY_COMPARE_SUMMARY_SYSTEM_PROMPT}\nprofile_context는 저장된 내 프로필로 판정한 조건과 관심 분야 일치 여부입니다. recommendation에는 둘 중 더 추천할 정책의 실제 policy_id와 프로필 조건에 근거한 이유를 적으세요. 근거가 부족하거나 둘 다 부적합하면 policy_id는 null로 두고 이유를 설명하세요. 자격 판정을 변경하거나 확인되지 않은 프로필 값을 추측하지 마세요.`,
       schema: RESPONSE_SCHEMA, name: 'policy_compare_summary', maxOutputTokens: 1300 },
     { userId, timeoutMs: 18000 });
     return { status: 'ok', summary: validateComparisonSummary(raw, input) };
   } catch {
     return { status: 'fallback', summary: { common_points: [], differences: [],
-      summary: fallbackComparisonSummary(input), additional_checks: [] } };
+      summary: fallbackComparisonSummary(input),
+      recommendation: personalizedComparisonRecommendation(input), additional_checks: [] } };
   }
 }

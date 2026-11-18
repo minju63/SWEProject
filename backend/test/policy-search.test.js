@@ -20,6 +20,11 @@ const rows = [
   created_at: '2026-01-01T00:00:00Z',
 }));
 
+const regionRows = [
+  ['p1', 'KR'], ['p2', '26'], ['p3', '26380'],
+  ['p4', '26230'], ['p5', '26380'], ['p6', 'KR'],
+].map(([policy_id, region_code]) => ({ policy_id, region_code }));
+
 function queryFor(table) {
   const sources = {
     policy: rows,
@@ -27,7 +32,7 @@ function queryFor(table) {
       { category_id: 'c1', category_name: '취업·진로', is_search_enabled: true, sort_order: 1 },
       { category_id: 'c2', category_name: '주거·생활', is_search_enabled: true, sort_order: 2 },
     ],
-    v_policy_status: [], policy_region: [],
+    v_policy_status: [], policy_region: regionRows,
   };
   let selected = sources[table] ?? [];
   return {
@@ -39,6 +44,25 @@ function queryFor(table) {
     then(resolve, reject) { return Promise.resolve({ data: selected, error: null }).then(resolve, reject); },
   };
 }
+
+test('사하구 프로필은 전국·부산·사하구를 포함하고 지역 칩은 선택한 구만 검색한다', async () => {
+  const from = mock.method(supabase, 'from', queryFor);
+  try {
+    const params = { sort: 'latest', categoryIds: [], assess: (policy) => ({ result: policy.result }),
+      page: 1, size: 10 };
+    const mine = await findPolicies({ ...params, onlyEligible: true, profileRegionCode: '26380' });
+    assert.deepEqual(mine.items.map((item) => item.policy_id), ['p1', 'p2', 'p3', 'p6']);
+    const saha = await findPolicies({ ...params, regions: ['26380'] });
+    assert.deepEqual(saha.items.map((item) => item.policy_id), ['p3', 'p5']);
+    const busanjin = await findPolicies({ ...params, regions: ['26230'] });
+    assert.deepEqual(busanjin.items.map((item) => item.policy_id), ['p4']);
+    const combined = await findPolicies({ ...params, regions: ['26230'],
+      onlyEligible: true, profileRegionCode: '26380' });
+    assert.equal(combined.totalCount, 0);
+  } finally {
+    from.mock.restore();
+  }
+});
 
 test('전체 결과의 추천 그룹을 정렬한 뒤 페이지별로 자른다', async () => {
   const from = mock.method(supabase, 'from', queryFor);

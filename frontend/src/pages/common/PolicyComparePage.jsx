@@ -248,7 +248,13 @@ function PolicyCompareView({ policyId, comparisonId }) {
                 {aiSummary.isLoading ? <p>두 정책의 확인된 정보를 비교하고 있어요.</p>
                   : aiSummary.isError || !aiSummary.data?.summary?.summary
                     ? <p>AI 비교 요약을 불러오지 못했어요. 위 비교표에서 실제 정책 정보를 확인해 주세요.</p>
-                    : <p>{aiSummary.data.summary.summary}</p>}
+                    : <>
+                      <p>{aiSummary.data.summary.summary}</p>
+                      {aiSummary.data.summary.recommendation && <div className="policy-compare-recommendation">
+                        <strong>{aiSummary.data.summary.recommendation.ai_confirmed ? 'AI 최종 추천' : '프로필 기준 추천'}</strong>
+                        <p>{aiSummary.data.summary.recommendation.reason}</p>
+                      </div>}
+                    </>}
               </section>
               <p className="policy-compare-footnote">정책 정보는 변경될 수 있어요. 신청 전 공식 공고를 확인해 주세요.</p>
             </div>}

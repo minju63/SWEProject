@@ -35,6 +35,7 @@ export async function listPolicies(params) {
   };
   const { items, totalCount } = await policyRepo.findPolicies({ ...params, categoryDetails,
     assess, onlyEligible: params.myConditionsOnly,
+    profileRegionCode: params.myConditionsOnly ? savedProfile?.region_code : null,
     interests: Array.isArray(conditionProfile?.interest_categories) ? conditionProfile.interest_categories : [],
   });
   const hasAdvancedStatus = items.every((item) => item.recruitment_status);

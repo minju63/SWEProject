@@ -99,7 +99,7 @@ function restoreSearchView(saved, searchParams) {
       includeAlways: candidate.includeAlways === true,
       myConditionsOnly: candidate.myConditionsOnly === true,
       conditions: candidate.conditions && typeof candidate.conditions === 'object' && !Array.isArray(candidate.conditions)
-        ? candidate.conditions : {},
+        ? Object.fromEntries(Object.entries(candidate.conditions).filter(([key]) => key !== 'age')) : {},
     }
     : { ...defaults, categories: searchParams.get('category') ? [categoryLabel(searchParams.get('category'))] : [] };
   return {

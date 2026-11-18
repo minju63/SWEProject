@@ -11,6 +11,10 @@ export function buildPolicyComparison(base, comparison, profile) {
   return {
     base,
     comparison,
+    profile_interest_match: {
+      base: Array.isArray(profile?.interest_categories) && profile.interest_categories.includes(base.category_id),
+      comparison: Array.isArray(profile?.interest_categories) && profile.interest_categories.includes(comparison.category_id),
+    },
     eligibility: {
       base: judge(base, profile),
       comparison: judge(comparison, profile),

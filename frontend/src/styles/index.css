@@ -1058,6 +1058,11 @@ button {
 .search-sub-header h2 { margin: 0; font-size: 18px; font-weight: 900; }
 .search-sub-header button { width: 32px; height: 32px; border: 0; border-radius: 50%; background: #f3f4f6; color: #777; font-size: 18px; }
 .search-sub-sheet h3 { margin: 0; font-size: 14px; font-weight: 900; }
+.search-region-heading { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px; }
+.search-region-actions { display: flex; flex: none; gap: 6px; margin-left: auto; }
+.search-region-actions button { min-height: 30px; padding: 5px 10px; border: 1px solid #2f7bf5; border-radius: 999px; background: #2f7bf5; color: #fff; font-size: 10px; font-weight: 800; white-space: nowrap; cursor: pointer; }
+.search-region-actions button:last-child { background: #fff; color: #2f7bf5; }
+.search-region-actions button:disabled { border-color: #d9e1ec; background: #d9e1ec; color: #8a98aa; cursor: default; }
 .search-sub-done { width: 100%; margin-top: 24px; padding: 16px; border: 0; border-radius: 16px; background: #2f7bf5; color: #fff; font-size: 14px; font-weight: 900; }
 .search-date-grid { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 12px; }
 .search-date-grid .search-date-check { display: flex; grid-column: 1 / -1; align-items: center; gap: 10px; color: #555; font-size: 12px; }

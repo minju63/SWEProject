@@ -7,8 +7,69 @@ process.env.SUPABASE_SERVICE_ROLE_KEY = 'test-key';
 const { candidateAiInput, validateCandidateRecommendations } =
   await import('../src/services/policy-compare-candidates-ai.service.js');
 const { comparisonAiInput, comparisonNarrativeInput, fallbackComparisonSummary,
+  personalizedComparisonRecommendation,
   validateComparisonSummary } =
   await import('../src/services/policy-compare-summary-ai.service.js');
+
+test('프로필 자격 판정이 더 좋은 정책을 추천하고 충족 조건을 이유로 표시한다', () => {
+  const input = comparisonAiInput({
+    base: { policy_id: 'a', title: '정책 A', category_id: 'job' },
+    comparison: { policy_id: 'b', title: '정책 B', category_id: 'housing' },
+    profile_interest_match: { base: false, comparison: true },
+    eligibility: {
+      base: { result: 'ELIGIBLE', conditions: [{ field: 'age', status: 'SATISFIED' }] },
+      comparison: { result: 'CHECK', conditions: [] },
+    },
+  });
+  const result = personalizedComparisonRecommendation(input);
+  assert.equal(result.policy_id, 'a');
+  assert.match(result.reason, /나이 조건/);
+  assert.ok(!JSON.stringify(comparisonNarrativeInput(input)).includes('profile_value'));
+});
+
+test('자격 판정이 같으면 프로필 관심 분야 일치를 기준으로 추천한다', () => {
+  const input = comparisonAiInput({
+    base: { policy_id: 'a', title: '정책 A' },
+    comparison: { policy_id: 'b', title: '정책 B' },
+    profile_interest_match: { base: false, comparison: true },
+    eligibility: { base: { result: 'CHECK', conditions: [] },
+      comparison: { result: 'CHECK', conditions: [] } },
+  });
+  const result = personalizedComparisonRecommendation(input);
+  assert.equal(result.policy_id, 'b');
+  assert.match(result.reason, /공식 공고/);
+});
+
+test('프로필로 차이를 확인할 수 없거나 두 정책 모두 부적합하면 추천을 보류한다', () => {
+  const resultFor = (status) => personalizedComparisonRecommendation(comparisonAiInput({
+    base: { policy_id: 'a', title: '정책 A' },
+    comparison: { policy_id: 'b', title: '정책 B' },
+    eligibility: { base: { result: status, conditions: [] },
+      comparison: { result: status, conditions: [] } },
+  }));
+  assert.equal(resultFor('CHECK').policy_id, null);
+  assert.equal(resultFor('INELIGIBLE').policy_id, null);
+});
+
+test('AI가 근거 없는 정책이나 이유를 내놓아도 검증된 추천만 표시한다', () => {
+  const input = comparisonAiInput({
+    base: { policy_id: 'a', title: '정책 A' },
+    comparison: { policy_id: 'b', title: '정책 B' },
+    eligibility: { base: { result: 'ELIGIBLE', conditions: [] },
+      comparison: { result: 'INELIGIBLE', conditions: [] } },
+  });
+  const raw = { common_points: [], differences: [], summary: '', additional_checks: [],
+    recommendation: { policy_id: 'b', reason: '정책 B는 100만원을 줍니다.' } };
+  const rejected = validateComparisonSummary(raw, input).recommendation;
+  assert.equal(rejected.policy_id, 'a');
+  assert.equal(rejected.ai_confirmed, false);
+  assert.ok(!rejected.reason.includes('100만원'));
+  const confirmed = validateComparisonSummary({ ...raw,
+    recommendation: { policy_id: 'a', reason: '가짜 이유' } }, input).recommendation;
+  assert.equal(confirmed.policy_id, 'a');
+  assert.equal(confirmed.ai_confirmed, true);
+  assert.ok(!confirmed.reason.includes('가짜 이유'));
+});
 const { requestStructuredAI } = await import('../src/services/ai-common.service.js');
 const { POLICY_COMPARE_CANDIDATES_SYSTEM_PROMPT } =
   await import('../src/prompts/policy-compare-candidates.prompt.js');
