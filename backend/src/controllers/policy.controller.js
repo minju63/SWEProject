@@ -83,18 +83,3 @@ export async function categories(req, res) {
 export async function searchFilters(req, res) {
   ok(res, await policyService.listSearchFilters());
 }
-
-export async function popularSearchKeywords(req, res) {
-  ok(res, await policyService.listPopularSearchKeywords());
-}
-
-export async function recordPopularSearchKeyword(req, res) {
-  const keyword = req.body?.keyword;
-  if (typeof keyword !== 'string')
-    throw new AppError(400, 'INVALID_KEYWORD', '검색어를 확인해 주세요.');
-  const normalized = keyword.replace(/\s+/g, ' ').trim();
-  if ([...normalized].length < 2 || [...normalized].length > 80)
-    throw new AppError(400, 'INVALID_KEYWORD', '검색어를 2~80자로 입력해 주세요.');
-  await policyService.recordPopularSearchKeyword(normalized);
-  ok(res, null);
-}

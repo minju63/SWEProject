@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { useLocation, useNavigate, useSearchParams } from 'react-router-dom';
-import { fetchPolicies, fetchPopularSearchKeywords, fetchSearchFilters } from '../../api/policies';
+import { fetchPolicies, fetchSearchFilters } from '../../api/policies';
 import { addBookmark, fetchBookmarks, fetchProfile, removeBookmark } from '../../api/me';
 import { useAuthStore } from '../../store/authStore';
 import { dDayText } from '../../utils/format';
@@ -14,7 +14,6 @@ import {
 } from '../../components/icons.jsx';
 import SearchFilters from './SearchFilters.jsx';
 import { emptyFilters } from './searchFilterData';
-import { recordConfirmedSearch } from './recordConfirmedSearch';
 
 const categoryItems = [
   { label: '주거·생활', Icon: HomeIcon, color: 'blue' },
@@ -137,8 +136,6 @@ export default function SearchPage() {
   const previewingInput = hasSearch && !routeQuery.trim() && Boolean(draftInput?.trim());
   const searchFilters = useQuery({ queryKey: ['search-filters'], queryFn: fetchSearchFilters,
     enabled: Boolean(user) });
-  const popularSearchKeywords = useQuery({ queryKey: ['popular-search-keywords'],
-    queryFn: fetchPopularSearchKeywords, enabled: !hasSearch && Boolean(user) });
   const filterCategories = searchFilters.data?.categories ?? [];
   const filterRegions = searchFilters.data?.regions ?? [];
   const subcategories = Object.fromEntries(filterCategories.map((category) => [category.display_name,
@@ -254,7 +251,6 @@ export default function SearchPage() {
   function submitSearch(term = input) {
     const query = term.trim();
     if (query) setRecentTerms((current) => [query, ...current.filter((item) => item !== query)].slice(0, 10));
-    recordConfirmedSearch(query, user, queryClient);
     setDraftInput(null);
     setPage(1);
     setSearchParams(query ? { results: '1', q: query } : { results: '1' });
@@ -355,23 +351,18 @@ export default function SearchPage() {
                 <div className="search-recent-list">
                   {recentTerms.length === 0 && <p className="search-state">없음</p>}
                   {recentTerms.slice(0, 3).map((term, index) => (
-                    <button type="button" key={term} onClick={() => submitSearch(term)}>
-                      <ClockIcon />
-                      <span className="search-recent-term">{term}</span>
-                      <span className="search-recent-date">{index === 0 ? '오늘' : index === 1 ? '어제' : '09.28'}</span>
-                    </button>
+                    <div className="search-recent-row" key={term}>
+                      <button type="button" className="search-recent-open" onClick={() => submitSearch(term)}>
+                        <ClockIcon />
+                        <span className="search-recent-term">{term}</span>
+                        <span className="search-recent-date">{index === 0 ? '오늘' : index === 1 ? '어제' : '09.28'}</span>
+                      </button>
+                      <button type="button" className="search-recent-delete" aria-label={`최근 검색어 ${term} 삭제`}
+                        onClick={() => setRecentTerms((current) => current.filter((item) => item !== term))}>×</button>
+                    </div>
                   ))}
                 </div>
               </section>
-
-            <section className="search-landing-section">
-              <h2>지금 많이 찾는 검색어</h2>
-              <div className="search-popular-terms">
-                {(popularSearchKeywords.data ?? []).map((term) => (
-                  <button type="button" key={term} onClick={() => submitSearch(term)}>{term}</button>
-                ))}
-              </div>
-            </section>
           </div>
         </div>
       ) : (

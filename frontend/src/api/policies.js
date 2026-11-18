@@ -3,8 +3,6 @@ import { api } from './client';
 export const fetchHealth = () => api.get('/health');
 export const fetchCategories = () => api.get('/categories');
 export const fetchSearchFilters = () => api.get('/search-filters');
-export const fetchPopularSearchKeywords = () => api.get('/popular-search-keywords');
-export const recordPopularSearchKeyword = (keyword) => api.post('/popular-search-keywords', { keyword });
 export const fetchPolicies = (params) => api.get('/policies', { params });
 export const fetchPolicySuggestions = (params, signal) =>
   api.get('/policies/suggestions', { params, signal });

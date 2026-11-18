@@ -412,7 +412,7 @@ button {
   outline: 0;
   background: transparent;
   color: #171923;
-  font-size: 13px;
+  font-size: 15px;
   font-weight: 600;
 }
 .search-page .policy-search-form input:focus-visible {
@@ -420,7 +420,7 @@ button {
 }
 .policy-search-form input::placeholder {
   color: rgba(0, 0, 0, 0.3);
-  font-size: 12px;
+  font-size: 15px;
 }
 .policy-search-form button {
   flex: none;
@@ -505,10 +505,6 @@ button {
   font-size: 13px;
 }
 .search-input-preview .policy-suggestions-state { padding: 18px 0; }
-.search-landing-section {
-  margin-top: 0;
-}
-.search-landing-section + .search-landing-section { margin-top: 24px; }
 .search-section-heading {
   display: flex;
   align-items: center;
@@ -525,19 +521,37 @@ button {
 .search-recent-list {
   margin-top: 8px;
 }
-.search-recent-list button {
+.search-recent-row {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+}
+.search-recent-row:last-child {
+  border-bottom: 0;
+}
+.search-recent-open {
   display: flex;
   align-items: center;
   gap: 12px;
-  width: 100%;
+  flex: 1;
+  min-width: 0;
   padding: 12px 0;
   border: 0;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
   background: transparent;
   text-align: left;
 }
-.search-recent-list button:last-child {
-  border-bottom: 0;
+.search-recent-delete {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: rgba(0, 0, 0, 0.35);
+  font-size: 22px;
 }
 .search-recent-list svg {
   flex: none;
@@ -559,21 +573,6 @@ button {
   color: rgba(0, 0, 0, 0.3);
   font-size: 14px;
   font-weight: 600;
-}
-.search-popular-terms {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  margin-top: 12px;
-}
-.search-popular-terms button {
-  padding: 10px 14px;
-  border: 0;
-  border-radius: 999px;
-  background: #eaf2fe;
-  color: #2f7bf5;
-  font-size: 13px;
-  font-weight: 800;
 }
 .search-filter-strip {
   display: flex;

@@ -96,5 +96,3 @@ export async function getEligibility(policyId, userId) {
 
 export const listCategories = () => policyRepo.findCategories();
 export const listSearchFilters = () => policyRepo.findSearchFilters();
-export const listPopularSearchKeywords = () => policyRepo.findPopularSearchKeywords();
-export const recordPopularSearchKeyword = (keyword) => policyRepo.incrementPopularSearchKeyword(keyword);

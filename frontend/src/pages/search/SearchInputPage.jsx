@@ -1,13 +1,12 @@
 import { useEffect, useRef, useState } from 'react';
-import { useQuery, useQueryClient } from '@tanstack/react-query';
+import { useQuery } from '@tanstack/react-query';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { fetchPopularSearchKeywords, fetchSearchFilters } from '../../api/policies';
+import { fetchSearchFilters } from '../../api/policies';
 import { ArtIcon, BriefcaseIcon, ClockIcon, CoinIcon, HealthIcon, HomeIcon, SearchIcon } from '../../components/icons.jsx';
 import NotificationBell from '../../components/NotificationBell.jsx';
 import PolicyAutocomplete from '../../components/PolicyAutocomplete.jsx';
 import { useAuthStore } from '../../store/authStore';
 import './SearchInputPage.css';
-import { recordConfirmedSearch } from './recordConfirmedSearch';
 
 const recentKey = 'cheonghae-recent-policy-searches';
 const previousDemoTerms = ['대학생 장학금', '청년 월세 지원', '사하구 지원금'];
@@ -34,7 +33,6 @@ export default function SearchInputPage() {
   const navigate = useNavigate();
   const location = useLocation();
   const user = useAuthStore((state) => state.user);
-  const queryClient = useQueryClient();
   const inputRef = useRef(null);
   const draftKey = `cheonghae-search-input-${location.key}`;
   const [term, setTerm] = useState(() => {
@@ -49,8 +47,6 @@ export default function SearchInputPage() {
   const [recentTerms, setRecentTerms] = useState(readRecentTerms);
   const filters = useQuery({ queryKey: ['search-filters'], queryFn: fetchSearchFilters,
     enabled: Boolean(user && !term.trim()), staleTime: 5 * 60 * 1000 });
-  const popular = useQuery({ queryKey: ['popular-search-keywords'], queryFn: fetchPopularSearchKeywords,
-    enabled: Boolean(user && !term.trim()), staleTime: 5 * 60 * 1000 });
 
   useEffect(() => { inputRef.current?.focus(); }, []);
 
@@ -61,7 +57,6 @@ export default function SearchInputPage() {
   function submitSearch(value = term) {
     clearDraft();
     const query = value.trim();
-    recordConfirmedSearch(query, user, queryClient);
     if (query) {
       try {
         const saved = JSON.parse(localStorage.getItem(recentKey) ?? '[]');
@@ -92,6 +87,12 @@ export default function SearchInputPage() {
   function clearRecentTerms() {
     setRecentTerms([]);
     try { localStorage.setItem(recentKey, '[]'); } catch { /* Storage may be unavailable. */ }
+  }
+
+  function removeRecentTerm(termToRemove) {
+    const next = recentTerms.filter((item) => item !== termToRemove);
+    setRecentTerms(next);
+    try { localStorage.setItem(recentKey, JSON.stringify(next)); } catch { /* Storage may be unavailable. */ }
   }
 
   return <div className="search-input-page">
@@ -136,18 +137,16 @@ export default function SearchInputPage() {
           </div>
           <div className="search-recent-list">
             {recentTerms.length === 0 && <p className="search-state">없음</p>}
-            {recentTerms.slice(0, 3).map((recent, index) => <button type="button" key={recent}
-              onClick={() => submitSearch(recent)}>
-              <ClockIcon />
-              <span className="search-recent-term">{recent}</span>
-              <span className="search-recent-date">{index === 0 ? '오늘' : index === 1 ? '어제' : '09.28'}</span>
-            </button>)}
+            {recentTerms.slice(0, 3).map((recent, index) => <div className="search-recent-row" key={recent}>
+              <button type="button" className="search-recent-open" onClick={() => submitSearch(recent)}>
+                <ClockIcon />
+                <span className="search-recent-term">{recent}</span>
+                <span className="search-recent-date">{index === 0 ? '오늘' : index === 1 ? '어제' : '09.28'}</span>
+              </button>
+              <button type="button" className="search-recent-delete" aria-label={`최근 검색어 ${recent} 삭제`}
+                onClick={() => removeRecentTerm(recent)}>×</button>
+            </div>)}
           </div>
-        </section>
-        <section className="search-landing-section">
-          <h2>지금 많이 찾는 검색어</h2>
-          <div className="search-popular-terms">{(popular.data ?? []).map((item) =>
-            <button type="button" key={item} onClick={() => submitSearch(item)}>{item}</button>)}</div>
         </section>
       </div>
     </div>}

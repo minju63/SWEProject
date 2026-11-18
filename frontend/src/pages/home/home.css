@@ -29,6 +29,7 @@
 .home-search {
   position: relative;
   z-index: 1;
+  width: 100%;
   margin-top: 8px;
   display: flex;
   align-items: center;
@@ -39,17 +40,18 @@
   background: #fff;
   box-shadow: 0 2px 10px rgba(47, 123, 245, 0.08);
   color: var(--text);
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
 }
-.home-search input {
+.home-search span {
   flex: 1;
   min-width: 0;
-  border: 0;
-  outline: 0;
-  background: none;
   font: inherit;
   font-size: 15px;
+  color: #757575;
 }
-.home-search:focus-within {
+.home-search:focus-visible {
   border-color: var(--primary);
 }
 

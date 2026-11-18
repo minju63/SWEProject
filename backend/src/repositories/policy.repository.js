@@ -289,19 +289,6 @@ export async function findSearchFilters() {
   };
 }
 
-export async function findPopularSearchKeywords() {
-  const { data, error } = await supabase.from('popular_search_keyword')
-    .select('keyword').order('search_count', { ascending: false })
-    .order('last_searched_at', { ascending: false }).limit(10);
-  if (error) throw error;
-  return data.map((row) => row.keyword);
-}
-
-export async function incrementPopularSearchKeyword(keyword) {
-  const { error } = await supabase.rpc('record_popular_search_keyword', { p_keyword: keyword });
-  if (error) throw error;
-}
-
 let suggestionIndex;
 let suggestionIndexExpiresAt = 0;
 let suggestionIndexRequest;
