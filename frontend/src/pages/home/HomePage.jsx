@@ -75,12 +75,80 @@ export default function HomePage() {
     <div className="home">
       <div className="home-hero">
         <PageHeader brand title="청해" subtitle="부산 청년 AI 생활·혜택 안내 서비스" />
-        <svg className="hero-art" viewBox="0 0 200 90" aria-hidden="true">
-          <path d="M0 80c30-8 40-30 70-30s30 22 60 22 50-30 70-30v38H0Z" fill="#cfe0fb" />
-          <path d="M20 70c20-22 50-22 70 0" fill="none" stroke="#9db9ee" strokeWidth="2" />
-          <rect x="150" y="22" width="5" height="48" rx="2" fill="#a9c3f2" />
-          <rect x="165" y="40" width="8" height="30" rx="2" fill="#b9cff5" />
-          <rect x="178" y="30" width="8" height="40" rx="2" fill="#b9cff5" />
+        <svg
+          className="hero-art"
+          viewBox="0 0 390 140"
+          preserveAspectRatio="xMaxYMax slice"
+          aria-hidden="true"
+        >
+          <defs>
+            <linearGradient id="heroHill" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0" stopColor="#c6d9fa" />
+              <stop offset="1" stopColor="#dce8fc" />
+            </linearGradient>
+            <linearGradient id="heroTower" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0" stopColor="#9db9ee" />
+              <stop offset="1" stopColor="#c4d6f8" />
+            </linearGradient>
+          </defs>
+          {/* 먼 산 */}
+          <path
+            d="M120 112 C170 82 210 96 250 78 C300 56 340 70 390 50 V112Z"
+            fill="url(#heroHill)"
+            opacity="0.7"
+          />
+          {/* 가까운 산 */}
+          <path
+            d="M250 112 C275 84 310 72 345 80 C365 84 380 78 390 74 V112Z"
+            fill="url(#heroHill)"
+          />
+          {/* 해운대 고층 건물 */}
+          <g fill="url(#heroTower)">
+            <rect x="300" y="34" width="13" height="78" rx="2" />
+            <rect x="316" y="16" width="15" height="96" rx="2" />
+            <rect x="334" y="44" width="12" height="68" rx="2" />
+            <rect x="349" y="28" width="14" height="84" rx="2" />
+            <rect x="366" y="52" width="14" height="60" rx="2" />
+          </g>
+          <g stroke="#e8f0fd" strokeWidth="1.2" opacity="0.8">
+            <path d="M322 28v78M356 40v66M306 46v60M340 56v50M373 62v44" />
+          </g>
+          {/* 광안대교 */}
+          <g transform="translate(110 36) scale(0.7)">
+            <g fill="none" stroke="#8fb0ee" strokeLinecap="round">
+              <path d="M104 106H292" strokeWidth="3" />
+              <path d="M138 104 C150 70 176 62 198 62 C220 62 246 70 258 104" strokeWidth="2" />
+              <path
+                d="M110 104 C120 86 132 82 144 90 M252 90 C264 82 276 86 286 104"
+                strokeWidth="2"
+              />
+            </g>
+            <g stroke="#9db9ee" strokeWidth="1" opacity="0.9">
+              <line x1="156" y1="82" x2="156" y2="104" />
+              <line x1="168" y1="70" x2="168" y2="104" />
+              <line x1="180" y1="64" x2="180" y2="104" />
+              <line x1="198" y1="62" x2="198" y2="104" />
+              <line x1="216" y1="64" x2="216" y2="104" />
+              <line x1="228" y1="70" x2="228" y2="104" />
+              <line x1="240" y1="82" x2="240" y2="104" />
+            </g>
+          </g>
+          {/* 바다 물결 */}
+          <path
+            d="M0 118 Q20 112 40 118 T80 118 T120 118 T160 118 T200 118 T240 118 T280 118 T320 118 T360 118 T400 118 V140H0Z"
+            fill="#d3e2fb"
+            opacity="0.8"
+          />
+          <path
+            d="M0 128 Q20 122 40 128 T80 128 T120 128 T160 128 T200 128 T240 128 T280 128 T320 128 T360 128 T400 128 V140H0Z"
+            fill="#c4d8f8"
+            opacity="0.9"
+          />
+          {/* 갈매기 */}
+          <g fill="none" stroke="#a9c3f2" strokeWidth="2" strokeLinecap="round">
+            <path d="M232 26 q5 -6 10 0 q5 -6 10 0" />
+            <path d="M262 44 q4 -5 8 0 q4 -5 8 0" />
+          </g>
         </svg>
       </div>
 
@@ -101,14 +169,7 @@ export default function HomePage() {
         <>
           {/* 맞춤 그래프 + AI 맞춤 추천 */}
           <section className="graph-card">
-            {!p.has_profile ? (
-              <div className="graph-empty">
-                <p>맞춤정보를 설정하면 나에게 맞는 혜택을 추천해 드려요</p>
-                <Link to="/my" className="graph-set">
-                  설정하기
-                </Link>
-              </div>
-            ) : mineTotal === 0 ? (
+            {mineTotal === 0 ? (
               <p className="graph-zero">조건에 맞는 혜택이 아직 없어요</p>
             ) : (
               <>
@@ -122,21 +183,30 @@ export default function HomePage() {
                   />
                 </div>
                 <div className="graph-side">
-                  <p className="graph-sentence">
-                    {p.region_name && <b>{p.region_name}</b>}
-                    {p.region_name && ' 거주'}
-                    {p.age != null && (
-                      <>
-                        {' '}
-                        <b>{p.age}세</b>
-                      </>
-                    )}
-                    {p.current_status && ` ${STATUS_SHORT[p.current_status] ?? p.current_status}`}
-                    {' 님을 위한'}
-                    <br />
-                    맞춤 혜택이에요!
-                  </p>
-                  {(!p.region_name || p.age == null || !p.current_status) && (
+                  {p.has_profile ? (
+                    <p className="graph-sentence">
+                      {p.region_name && <b>{p.region_name}</b>}
+                      {p.region_name && ' 거주'}
+                      {p.age != null && (
+                        <>
+                          {' '}
+                          <b>{p.age}세</b>
+                        </>
+                      )}
+                      {p.current_status && ` ${STATUS_SHORT[p.current_status] ?? p.current_status}`}
+                      {' 님을 위한'}
+                      <br />
+                      맞춤 혜택이에요!
+                    </p>
+                  ) : (
+                    <p className="graph-sentence">
+                      나이·거주 지역·현재 상태를 입력하면
+                      <br />
+                      <b>나에게 맞는 혜택</b>을 보여드려요
+                    </p>
+                  )}
+                  {scope === 'all' && <p className="graph-note">그래프는 내 맞춤 기준이에요</p>}
+                  {(!p.has_profile || !p.region_name || p.age == null || !p.current_status) && (
                     <Link to="/my" className="graph-hint">
                       프로필을 보완하면 더 정확해져요 ›
                     </Link>

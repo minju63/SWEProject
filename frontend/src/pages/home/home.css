@@ -1,11 +1,14 @@
 .home {
-  margin: -16px -20px 0;
-  padding: 0 20px 8px;
-  background: linear-gradient(#eaf1fe, #f4f7fd 280px);
-  min-height: 100%;
+  /* .page 의 아래 여백(흰색)까지 파란 배경이 이어지게 */
+  --page-bottom: calc(var(--tabbar-h) + env(safe-area-inset-bottom) + 24px);
+  margin: -16px -20px calc(-1 * var(--page-bottom));
+  padding: 0 20px calc(var(--page-bottom) + 8px);
+  background: #f4f7fd linear-gradient(#eaf1fe, #f4f7fd 280px) no-repeat;
+  min-height: 100svh;
 }
 .home-hero {
   position: relative;
+  min-height: 128px;
   padding-top: 16px;
 }
 .home-hero .page-header {
@@ -15,9 +18,11 @@
 .hero-art {
   position: absolute;
   right: -20px;
-  top: 0;
-  width: 200px;
-  opacity: 0.8;
+  bottom: -4px;
+  left: -20px;
+  width: calc(100% + 40px);
+  height: 100%;
+  pointer-events: none;
 }
 .home-search {
   display: flex;
@@ -403,4 +408,10 @@
   height: 100%;
   border-radius: 2px;
   background: var(--primary);
+}
+
+.graph-note {
+  margin: 4px 0 0;
+  font-size: 11px;
+  color: var(--muted, #8a93a6);
 }

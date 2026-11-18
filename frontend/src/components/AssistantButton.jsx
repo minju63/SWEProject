@@ -13,12 +13,12 @@ const DRAG_START_PX = 10;
 const TAB_H = 64;
 const HEADER_H = 56;
 const BUBBLE_KEY = 'chunghae.bubbleShown';
-const ZONE_RADIUS = 56; // 아래 가운데 숨기기 영역 (FR-A04)
+const ZONE_RADIUS = 44; // 아래 가운데 숨기기 영역 (FR-A04)
 
 // 숨기기 영역의 화면 좌표 중심
 const zoneCenter = () => ({
   x: window.innerWidth / 2,
-  y: window.innerHeight - TAB_H - 72,
+  y: window.innerHeight - TAB_H - 54,
 });
 const inZone = (x, y) => {
   const c = zoneCenter();
