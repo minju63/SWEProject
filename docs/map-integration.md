@@ -163,7 +163,7 @@ SQL 실행 순서 (`backend/supabase/migrations`, 실행은 대환이 합니다)
 |---|---|
 | `20261111_culture_place.sql` ~ `20261116_map_srs_fixes.sql` | 완료 |
 | `20261117_map_srs_strict.sql` | 완료 (2026-11-14, `place.is_target`, 문제 종류 추가, `v_map_places` 조건) |
-| `20261119_place_legal_dong.sql` | 실행 전 (`place.legal_dong`, `v_map_places`에 `legal_dong` 추가). 처음 값은 `node scripts/culture/fillLegalDong.js`가 만든 `apply.sql`로 넣고, 이후 하루 1회 갱신이 고칩니다 |
+| `20261119_place_legal_dong.sql` | 완료 (2026-11-19, `place.legal_dong`, `v_map_places`에 `legal_dong` 추가. 지도 대상 114곳 중 113곳 법정동 입력). 처음 값은 `node scripts/culture/fillLegalDong.js`가 만든 `apply.sql`로 넣고, 이후 하루 1회 갱신이 고칩니다 |
 
 ## 8. 실행·배포
 
