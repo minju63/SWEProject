@@ -12,7 +12,7 @@ import SharkAvatar from './SharkAvatar.jsx';
 import { HeartIcon } from './icons.jsx';
 
 // 정책 상세 화면이 준비되면 true 로 바꾼다 (그 전에는 상세 보기를 누를 수 없게 한다)
-const DETAIL_ENABLED = false;
+const DETAIL_ENABLED = true;
 
 const MARK = { ok: '✓', no: '✕', check: '?' };
 

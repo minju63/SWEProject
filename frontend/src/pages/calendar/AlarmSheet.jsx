@@ -7,12 +7,12 @@ import CustomTimeSheet from './CustomTimeSheet.jsx';
 import { alarmLabel, alarmWhen, shortDate } from './calendarUtils.js';
 
 // 정책별 알림 설정 (FR-C08~C13): 설정된 알림 목록 + 빠른 추가 칩 + 직접 정하기
-export default function AlarmSheet({ policyId, onClose, preview }) {
+export default function AlarmSheet({ policyId, onClose }) {
   const queryClient = useQueryClient();
   const showToast = useToastStore((s) => s.show);
   const info = useQuery({
     queryKey: ['alarmInfo', policyId],
-    queryFn: () => (preview ? Promise.resolve(preview) : fetchAlarmInfo(policyId)),
+    queryFn: () => fetchAlarmInfo(policyId),
   });
   return (
     <div className="csheet-dim" onClick={onClose}>
@@ -38,7 +38,6 @@ export default function AlarmSheet({ policyId, onClose, preview }) {
               showToast('알림을 저장했어요');
               onClose();
             }}
-            preview={Boolean(preview)}
           />
         )}
       </section>
@@ -46,7 +45,7 @@ export default function AlarmSheet({ policyId, onClose, preview }) {
   );
 }
 
-function AlarmEditor({ info, onClose, onSaved, preview }) {
+function AlarmEditor({ info, onClose, onSaved }) {
   const showToast = useToastStore((s) => s.show);
   const dayHour = Number(info.day_alarm_time.slice(0, 2));
   const now = new Date(info.now);
@@ -64,10 +63,7 @@ function AlarmEditor({ info, onClose, onSaved, preview }) {
   const [pickingCustom, setPickingCustom] = useState(false);
 
   const save = useMutation({
-    mutationFn: () =>
-      preview
-        ? Promise.resolve()
-        : saveAlarmInfo(info.policy.policy_id, { presets: [...codes], customs }),
+    mutationFn: () => saveAlarmInfo(info.policy.policy_id, { presets: [...codes], customs }),
     onSuccess: onSaved,
     onError: (e) => showToast(e.message),
   });

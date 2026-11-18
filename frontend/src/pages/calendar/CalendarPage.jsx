@@ -1,5 +1,5 @@
 import { useMemo, useState } from 'react';
-import { Link, useNavigate, useSearchParams } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { fetchCalendar } from '../../api/calendar.js';
 import { removeBookmark } from '../../api/me.js';
@@ -13,7 +13,6 @@ import { CATEGORY_STYLE } from '../home/homeConfig.js';
 import CalendarGrid from './CalendarGrid.jsx';
 import CalendarCard from './CalendarCard.jsx';
 import AlarmSheet from './AlarmSheet.jsx';
-import { SAMPLE_ALARM_INFO, SAMPLE_CALENDAR } from './sampleData.js';
 import { parseKey, shortDate } from './calendarUtils.js';
 import './calendar.css';
 
@@ -22,16 +21,13 @@ const GRAY = '#8b95a1';
 export default function CalendarPage() {
   const navigate = useNavigate();
   const queryClient = useQueryClient();
-  const [params] = useSearchParams();
   const user = useAuthStore((s) => s.user);
   const showToast = useToastStore((s) => s.show);
-  // 개발 중에만: /calendar?preview=1 로 샘플 데이터 화면 확인 (로그인 없이)
-  const preview = import.meta.env.DEV && params.get('preview') === '1';
-  const signedIn = Boolean(user) || preview;
+  const signedIn = Boolean(user);
 
   const calendar = useQuery({
-    queryKey: ['calendar', preview],
-    queryFn: () => (preview ? Promise.resolve(SAMPLE_CALENDAR) : fetchCalendar()),
+    queryKey: ['calendar'],
+    queryFn: fetchCalendar,
     enabled: signedIn,
   });
   const categories = useQuery({ queryKey: ['categories'], queryFn: fetchCategories });
@@ -67,7 +63,7 @@ export default function CalendarPage() {
   }, [calendar.data]);
 
   const unbookmark = useMutation({
-    mutationFn: (item) => (preview ? Promise.resolve() : removeBookmark(item.policy_id)),
+    mutationFn: (item) => removeBookmark(item.policy_id),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['calendar'] });
       queryClient.invalidateQueries({ queryKey: ['home'] });
@@ -221,7 +217,6 @@ export default function CalendarPage() {
       {alarmFor && (
         <AlarmSheet
           policyId={alarmFor}
-          preview={preview ? SAMPLE_ALARM_INFO : null}
           onClose={() => setAlarmFor(null)}
         />
       )}
