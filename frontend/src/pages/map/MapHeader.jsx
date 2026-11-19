@@ -179,8 +179,11 @@ export default function MapHeader({
           />
         </div>
       )}
-      <DrBuFaceButton />
-      <NotificationBell />
+      {/* 얼굴 버튼과 종 사이를 다른 탭(8px)과 같게 맞춘다 */}
+      <div className="flex shrink-0 items-center gap-2">
+        <DrBuFaceButton />
+        <NotificationBell />
+      </div>
     </div>
   );
 }
