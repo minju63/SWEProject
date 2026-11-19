@@ -212,21 +212,29 @@ function conditionLabel(c) {
   }
 }
 
-// 카드에 보이는 조건: "나이 19~34세 충족", "소득 기준 확인 필요" 처럼 결과까지 적는다
+// 카드에 보이는 조건: "만 18~39세 충족", "소득 기준 확인 필요" 처럼 판정 결과까지 적는다.
+// 조건 문장이 있으면 그 문장을 그대로(길면 줄여서) 보여 주고, '그 밖의 조건' 같은 모호한 말로 바꾸지 않는다.
+// 여러 조건 중 하나(OR)가 충족된 묶음은 충족된 쪽 조건만 보여 준다(예: "부산 거주 충족").
+function shortText(text) {
+  const t = String(text).split(':')[0].replace(/;+/g, ' ').replace(/\s+/g, ' ').trim();
+  return t.length > 26 ? `${t.slice(0, 26)}…` : t;
+}
+function checkTarget(c) {
+  if (c.status === 'SATISFIED' && Array.isArray(c.children)) {
+    const hit = c.children.find((x) => x.status === 'SATISFIED');
+    if (hit) return checkTarget(hit);
+  }
+  return c;
+}
 function conditionChecks(policy) {
   const seen = new Set();
   const out = [];
-  for (const c of policy.eligibility.conditions) {
-    const mark = c.status === 'SATISFIED' ? 'ok' : c.status === 'UNSATISFIED' ? 'no' : 'check';
+  for (const c0 of policy.eligibility.conditions) {
+    const c = checkTarget(c0);
+    const mark = c0.status === 'SATISFIED' ? 'ok' : c0.status === 'UNSATISFIED' ? 'no' : 'check';
     const suffix = mark === 'ok' ? '충족' : mark === 'no' ? '불충족' : '확인 필요';
-    // 문장형 조건("지원 대상 확인: 특별법에…")은 콜론 앞 제목만 보여준다
-    let title = c.text ? String(c.text).split(':')[0].trim() : '';
-    if (title.length > 14 || title.includes(';')) title = '그 밖의 조건';
-    const label = title
-      ? title.endsWith('확인')
-        ? `${title} 필요`
-        : `${title} 확인 필요`
-      : `${conditionLabel(c)} ${suffix}`;
+    const name = c.text ? shortText(c.text).replace(/\s*확인$/, '') : conditionLabel(c);
+    const label = `${name} ${suffix}`;
     if (seen.has(label)) continue;
     seen.add(label);
     out.push({ label, mark });
