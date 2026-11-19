@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { useQuery, useQueryClient } from '@tanstack/react-query';
 import { fetchRecommend, sendChat } from '../api/assistant';
 import { fetchCategories } from '../api/policies';
-import { fetchProfile, addBookmark } from '../api/me';
+import { fetchProfile, addBookmark, removeBookmark } from '../api/me';
 import { useAuthStore } from '../store/authStore';
 import { useAssistantStore, loadHistory, saveHistory } from '../store/assistantStore';
 import { useToastStore } from '../store/toastStore';
@@ -129,7 +129,7 @@ function PolicyCardInChat({ card, source, categoryName, onDetail, onBookmark }) 
           className={card.bookmarked ? 'btn-heart on' : 'btn-heart'}
           onClick={() => onBookmark(card)}
         >
-          <HeartIcon size={15} /> {card.bookmarked ? '찜함' : '찜'}
+          <HeartIcon size={15} /> 찜
         </button>
         <button
           type="button"
@@ -382,28 +382,37 @@ function ChatSheet() {
     goto(`/map${params.size ? `?${params}` : ''}`);
   };
 
+  // 화면의 하트 값만 바꾼다 (서버 응답을 기다리지 않는다)
+  const markCards = (policyId, bookmarked) =>
+    setMessages((ms) =>
+      ms.map((m) =>
+        m.answer?.cards
+          ? {
+              ...m,
+              answer: {
+                ...m.answer,
+                cards: m.answer.cards.map((c) =>
+                  c.policy_id === policyId ? { ...c, bookmarked } : c
+                ),
+              },
+            }
+          : m
+      )
+    );
+
+  // 누르는 즉시 색을 바꾸고, 서버 저장은 뒤에서 한다. 실패하면 원래대로 되돌린다
   const bookmark = async (card) => {
     if (!user) return showToast('로그인하면 찜할 수 있어요');
+    const next = !card.bookmarked;
+    markCards(card.policy_id, next);
+    if (next) showToast('찜했어요! 캘린더에 마감일이 추가됐어요');
     try {
-      await addBookmark(card.policy_id, 'CHAT');
-      setMessages((ms) =>
-        ms.map((m) =>
-          m.answer?.cards
-            ? {
-                ...m,
-                answer: {
-                  ...m.answer,
-                  cards: m.answer.cards.map((c) =>
-                    c.policy_id === card.policy_id ? { ...c, bookmarked: true } : c
-                  ),
-                },
-              }
-            : m
-        )
-      );
+      if (next) await addBookmark(card.policy_id, 'CHAT');
+      else await removeBookmark(card.policy_id);
       queryClient.invalidateQueries({ queryKey: ['home'] });
-      showToast('찜했어요! 캘린더에 마감일이 추가됐어요');
+      queryClient.invalidateQueries({ queryKey: ['calendar'] });
     } catch (e) {
+      markCards(card.policy_id, !next);
       showToast(e.message);
     }
   };
