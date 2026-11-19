@@ -7,6 +7,8 @@ const router = Router();
 router.use(requireAuth);
 
 router.get('/calendar', calendar.getCalendar);
+router.get('/alarm-defaults', calendar.getAlarmDefaults);
+router.put('/alarm-defaults', calendar.putAlarmDefaults);
 router.get('/policies/:policyId/alarms', calendar.getAlarms);
 router.put('/policies/:policyId/alarms', calendar.putAlarms);
 router.delete('/alarms/:alarmId', calendar.deleteAlarm);

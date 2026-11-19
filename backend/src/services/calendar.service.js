@@ -128,7 +128,8 @@ async function loadBookmarkOrThrow(userId, policyId) {
       column: 'application_id',
       ownerId: application.application_id,
       policy: application.policy,
-      defaultCodes: PREPARING_DEFAULT_PRESETS,
+      defaultCodes: null, // 아래에서 사용자 설정(preparing_presets)으로 채운다
+      preparing: true,
     };
   const bookmark = await repo.findBookmarkOf(userId, policyId);
   if (!bookmark)
@@ -150,7 +151,9 @@ export async function getAlarmInfo(userId, policyId) {
   const bookmark = await loadBookmarkOrThrow(userId, policyId);
   const pref = await repo.findPreference(userId);
   const dayTime = String(pref?.day_alarm_time ?? DEFAULT_DAY_TIME).slice(0, 5);
-  const defaults = bookmark.defaultCodes ?? pref?.default_presets ?? ['D1', 'M30'];
+  const defaults = bookmark.preparing
+    ? presetList(pref?.preparing_presets, PREPARING_DEFAULT_PRESETS)
+    : (pref?.default_presets ?? ['D1', 'M30']);
   const policy = bookmark.policy;
   const deadline = deadlineAt(policy.is_always_open ? null : policy.application_end_date);
   const now = new Date();
@@ -299,7 +302,7 @@ export async function syncApplicationAlarms(userId, application) {
   if (pref && pref.deadline_enabled === false) return 0;
   const dayTime = String(pref?.day_alarm_time ?? DEFAULT_DAY_TIME).slice(0, 5);
   const now = Date.now();
-  const rows = PREPARING_DEFAULT_PRESETS.map((code) => ({
+  const rows = presetList(pref?.preparing_presets, PREPARING_DEFAULT_PRESETS).map((code) => ({
     code,
     at: presetFireAt(code, policy.application_end_date, dayTime),
   }))
@@ -316,4 +319,58 @@ export async function syncApplicationAlarms(userId, application) {
   const bookmark = await repo.findBookmarkOf(userId, policyId);
   if (bookmark) await repo.cancelBookmarkPresetAlarms(bookmark.bookmark_id);
   return rows.length;
+}
+
+// ---------- 기본 알림 설정 (캘린더 상단 '알림 설정') ----------
+// 새로 찜하거나 신청 준비로 등록하는 정책부터 적용한다. 이미 만들어진 알림은 바꾸지 않는다.
+const presetList = (v, fallback) => {
+  const list = Array.isArray(v) ? v.filter((c) => PRESET_CODES.includes(c)) : [];
+  return list.length ? [...new Set(list)] : fallback;
+};
+
+export async function getAlarmDefaults(userId) {
+  const pref = await repo.findPreference(userId);
+  return {
+    bookmark_presets: presetList(pref?.default_presets, ['D1', 'M30']),
+    preparing_presets: presetList(pref?.preparing_presets, PREPARING_DEFAULT_PRESETS),
+    day_alarm_time: String(pref?.day_alarm_time ?? DEFAULT_DAY_TIME).slice(0, 5),
+    presets: PRESETS.map((p) => ({ code: p.code, label: p.label })),
+  };
+}
+
+export async function saveAlarmDefaults(userId, body = {}) {
+  const changes = {};
+  for (const [field, column] of [
+    ['bookmark_presets', 'default_presets'],
+    ['preparing_presets', 'preparing_presets'],
+  ]) {
+    if (body[field] === undefined) continue;
+    if (
+      !Array.isArray(body[field]) ||
+      body[field].length === 0 ||
+      body[field].some((c) => !PRESET_CODES.includes(c))
+    )
+      throw new AppError(400, 'INVALID_PRESET', '기본 알림은 알림 종류를 하나 이상 골라 주세요.');
+    changes[column] = [...new Set(body[field])];
+  }
+  if (body.day_alarm_time !== undefined) {
+    const m = /^(\d{2}):(\d{2})$/.exec(String(body.day_alarm_time));
+    if (!m || Number(m[1]) > 23 || Number(m[2]) > 59)
+      throw new AppError(400, 'INVALID_TIME', '알림 시각이 올바르지 않아요.');
+    changes.day_alarm_time = `${m[1]}:${m[2]}`;
+  }
+  if (Object.keys(changes).length === 0)
+    throw new AppError(400, 'NO_CHANGE', '바꿀 설정이 없어요.');
+  try {
+    await repo.savePreference(userId, changes);
+  } catch (e) {
+    if (/preparing_presets|column|schema cache/i.test(e.message ?? ''))
+      throw new AppError(
+        503,
+        'MIGRATION_REQUIRED',
+        '신청 준비 기본 알림을 저장하려면 DB 마이그레이션(20261119_application_alarms.sql)을 먼저 실행해야 해요.'
+      );
+    throw e;
+  }
+  return getAlarmDefaults(userId);
 }

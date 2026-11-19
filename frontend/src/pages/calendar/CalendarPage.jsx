@@ -13,6 +13,7 @@ import { CATEGORY_STYLE } from '../home/homeConfig.js';
 import CalendarGrid from './CalendarGrid.jsx';
 import CalendarCard from './CalendarCard.jsx';
 import AlarmSheet from './AlarmSheet.jsx';
+import DefaultAlarmSheet from './DefaultAlarmSheet.jsx';
 import { parseKey, shortDate } from './calendarUtils.js';
 import './calendar.css';
 
@@ -36,6 +37,7 @@ export default function CalendarPage() {
   const [month, setMonth] = useState(null); // { y, m }
   const [selected, setSelected] = useState(null); // 'YYYY-MM-DD'
   const [alarmFor, setAlarmFor] = useState(null); // policy_id
+  const [defaultsOpen, setDefaultsOpen] = useState(false); // 기본 알림 설정 시트
   const shown = month ?? (today ? { y: parseKey(today).y, m: parseKey(today).m } : null);
 
   const categoryName = useMemo(
@@ -169,7 +171,7 @@ export default function CalendarPage() {
           <button
             type="button"
             className="cal-alarm-btn"
-            onClick={() => navigate('/settings?view=notifications')}
+            onClick={() => setDefaultsOpen(true)}
           >
             ☼ 알림 설정
           </button>
@@ -247,6 +249,8 @@ export default function CalendarPage() {
           )}
         </>
       )}
+
+      {defaultsOpen && <DefaultAlarmSheet onClose={() => setDefaultsOpen(false)} />}
 
       {alarmFor && (
         <AlarmSheet

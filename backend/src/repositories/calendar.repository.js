@@ -69,7 +69,7 @@ export async function findBookmarkOf(userId, policyId) {
 export async function findPreference(userId) {
   const { data, error } = await supabase
     .from('alarm_preference')
-    .select('default_presets, day_alarm_time, deadline_enabled, doc_reminder_enabled')
+    .select('*')
     .eq('user_id', userId)
     .maybeSingle();
   if (error) throw error;
@@ -203,5 +203,13 @@ export async function cancelBookmarkPresetAlarms(bookmarkId) {
     .eq('bookmark_id', bookmarkId)
     .eq('kind', 'PRESET')
     .eq('status', 'PENDING');
+  if (error) throw error;
+}
+
+// 기본 알림 설정 저장 (캘린더 '알림 설정'): 바꾼 항목만 넣고 나머지 설정은 그대로 둔다
+export async function savePreference(userId, changes) {
+  const { error } = await supabase
+    .from('alarm_preference')
+    .upsert({ user_id: userId, ...changes, updated_at: new Date().toISOString() }, { onConflict: 'user_id' });
   if (error) throw error;
 }

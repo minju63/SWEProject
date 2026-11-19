@@ -143,7 +143,7 @@ function AlarmEditor({ info, onClose, onSaved }) {
       <p className="csheet-sub">
         {info.policy.title}
         <br />
-        마감 <b>{shortDate(end)} 23:59</b>
+        <b>마감 {shortDate(end)} 23:59</b>
       </p>
 
       <p className="csheet-label">설정된 알림 {rows.length}</p>

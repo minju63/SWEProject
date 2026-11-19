@@ -7,4 +7,7 @@ export const saveAlarmInfo = (policyId, body) => api.put(`/me/policies/${policyI
 // 준비물 체크: docKey 는 캘린더가 내려준 documents[].key 를 그대로 쓴다 (마이·정책 상세와 같은 저장소)
 export const setDocumentChecked = (policyId, docKey, isChecked) =>
   api.put(`/me/documents/${policyId}`, { docKey, isChecked });
+// 기본 알림 설정: { bookmark_presets, preparing_presets, day_alarm_time, presets }
+export const fetchAlarmDefaults = () => api.get('/me/alarm-defaults');
+export const saveAlarmDefaults = (body) => api.put('/me/alarm-defaults', body);
 export const deleteAlarm = (alarmId) => api.delete(`/me/alarms/${alarmId}`);

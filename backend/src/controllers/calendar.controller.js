@@ -17,3 +17,11 @@ export async function deleteAlarm(req, res) {
   await calendar.removeAlarm(req.user.id, req.params.alarmId);
   ok(res, null);
 }
+
+export async function getAlarmDefaults(req, res) {
+  ok(res, await calendar.getAlarmDefaults(req.user.id));
+}
+
+export async function putAlarmDefaults(req, res) {
+  ok(res, await calendar.saveAlarmDefaults(req.user.id, req.body));
+}
