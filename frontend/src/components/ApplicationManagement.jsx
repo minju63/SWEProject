@@ -89,7 +89,7 @@ export function ApplicationCard({
         <div className="my-card-top">
           <CategoryTags category={a.category} region={a.region} />
           <Deadline date={a.applicationDeadline} />
-          {!preparing && <i className={`my-chevron ${expanded ? 'open' : ''}`} aria-hidden="true" />}
+          <i className={`my-chevron ${expanded ? 'open' : ''}`} aria-hidden="true" />
         </div>
         <h3>{a.policyName}</h3>
         <p className="my-caption">
