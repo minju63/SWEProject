@@ -1,6 +1,7 @@
 // 캘린더 (SRS FR-C01~C14): 찜·신청 준비 정책의 일정과 정책별 알림
 import * as repo from '../repositories/calendar.repository.js';
 import { buildDocuments, officialDocuments } from './documents.js';
+import { readPersonal } from './my-workspace.service.js';
 import { AppError } from '../utils/response.js';
 import {reconcileStoredResults} from './application-results.service.js';
 import {
@@ -22,6 +23,9 @@ export async function getCalendar(userId) {
     repo.findApplications(userId),
   ]);
 
+  // 마이에서 '결과 발표일 미정'으로 표시한 신청 건 (날짜가 아니라 표시만 따로 저장돼 있다)
+  const personal = await readPersonal(userId).catch(() => ({ details: {} }));
+
   const byPolicy = new Map(); // policy_id → 항목
   const ensure = (policy) => {
     if (!policy) return null;
@@ -39,6 +43,7 @@ export async function getCalendar(userId) {
         stage: null,
         applied_at: null,
         expected_result_date: null,
+        result_date_unknown: false,
       });
     }
     return byPolicy.get(policy.policy_id);
@@ -56,6 +61,8 @@ export async function getCalendar(userId) {
         applied_at: a.applied_at,
         // '미정'으로 저장된 결과 발표일은 비어 있으므로 표시하지 않는다 (FR-C14)
         expected_result_date: a.expected_result_date ?? null,
+        result_date_unknown:
+          !a.expected_result_date && personal.details?.[a.application_id]?.resultDateUnknown === true,
       });
   }
 

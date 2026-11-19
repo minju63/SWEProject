@@ -51,6 +51,9 @@ export default function CalendarCard({
             <strong className="ccard-title">
               {item.title}
               {item.stage === 'PREPARING' && <em className="ccard-prep">신청 준비</em>}
+              {item.stage === 'APPLIED' && item.result_date_unknown && (
+                <em className="ccard-event">결과 발표 미정</em>
+              )}
               {eventTypes.map((t) => (
                 <em key={t} className="ccard-event">
                   {EVENT_TAG[t]}
