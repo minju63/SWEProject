@@ -41,7 +41,7 @@ test('own preparation check uses the official key and survives reload in detail 
     return route.fulfill({json:{success:true,data:null}})
   })
   await page.goto('/my');await page.getByRole('button',{name:'로그인하기 ›'}).click()
-  await page.getByLabel('이메일',{exact:true}).fill(user.email);await page.getByLabel('비밀번호',{exact:true}).fill('mock-password')
+  await page.getByLabel('아이디 또는 이메일',{exact:true}).fill(user.email);await page.getByLabel('비밀번호',{exact:true}).fill('mock-password')
   await page.getByRole('dialog').getByRole('button',{name:'로그인',exact:true}).click()
   await expect(page.getByRole('heading',{name:policy.title,exact:true})).toBeVisible()
   await page.goto('/policies/'+policy.policy_id)

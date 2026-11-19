@@ -1,35 +1,35 @@
 const text = (v, fallback = '공식 공고 확인 필요') =>
-  typeof v === 'string' && v.trim() ? v : fallback
+  typeof v === 'string' && v.trim() ? v : fallback;
 export function safeOfficialUrl(v) {
-  if (typeof v !== 'string') return undefined
+  if (typeof v !== 'string') return undefined;
   try {
-    const u = new URL(v)
-    return ['https:', 'http:'].includes(u.protocol) ? u.href : undefined
+    const u = new URL(v);
+    return ['https:', 'http:'].includes(u.protocol) ? u.href : undefined;
   } catch {
-    return undefined
+    return undefined;
   }
 }
 export function mapHousingPolicy(row) {
   const sectionText = (key) => {
-    const sections = row.eligibility_conditions?.condition_sections
-    if (!Array.isArray(sections)) return undefined
-    const value = sections.find((section) => section.key === key)?.text
+    const sections = row.eligibility_conditions?.condition_sections;
+    if (!Array.isArray(sections)) return undefined;
+    const value = sections.find((section) => section.key === key)?.text;
     return typeof value === 'string' && value !== '공식 공고의 세부 기준 확인 필요'
       ? value
-      : undefined
-  }
-  const regions = (row.policy_region ?? []).map((r) => r.region_code)
+      : undefined;
+  };
+  const regions = (row.policy_region ?? []).map((r) => r.region_code);
   const region = regions.includes('26380')
     ? '사하구'
     : regions.includes('26230')
       ? '부산진구'
       : regions.includes('26')
         ? '부산 전체'
-        : '전국'
-  const known = ['모집 중', '7일 내 마감', '상시', '모집 예정', '마감됨']
+        : '전국';
+  const known = ['모집 중', '7일 내 마감', '상시', '모집 예정', '마감됨'];
   const recruitmentStatus = known.includes(row.recruitment_status)
     ? row.recruitment_status
-    : '기간 미정'
+    : '기간 미정';
   return {
     id: row.policy_id,
     title: row.title,
@@ -111,16 +111,17 @@ export function mapHousingPolicy(row) {
     housingDetail: Array.isArray(row.housing_detail)
       ? (row.housing_detail[0] ?? null)
       : (row.housing_detail ?? null),
-  }
+  };
 }
 export async function fetchHousingPolicies() {
-  const base = (import.meta.env.VITE_API_BASE_URL || '/api/v1').replace(/\/$/, '')
-  const response = await fetch(`${base}/housing/policies`, {
+  const base = (import.meta.env.VITE_API_BASE_URL || '/api/v1').replace(/\/$/, '');
+  const { authenticatedFetch } = await import('../lib/authenticatedFetch');
+  const response = await authenticatedFetch(`${base}/housing/policies`, {
     signal: AbortSignal.timeout(30000),
-  })
-  if (!response.ok) throw new Error('주거 정책을 불러오지 못했어요. 잠시 후 다시 시도해 주세요.')
-  const result = await response.json()
+  });
+  if (!response.ok) throw new Error('주거 정책을 불러오지 못했어요. 잠시 후 다시 시도해 주세요.');
+  const result = await response.json();
   if (!result.success || !Array.isArray(result.data))
-    throw new Error('정책 응답을 확인할 수 없어요.')
-  return result.data.map(mapHousingPolicy)
+    throw new Error('정책 응답을 확인할 수 없어요.');
+  return result.data.map(mapHousingPolicy);
 }

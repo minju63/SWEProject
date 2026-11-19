@@ -56,6 +56,8 @@ export default function HomePage() {
   const mineTotal = cats.reduce((s, c) => s + c.mine.total, 0); // 중앙 총 개수 = 분야 개수 합
   const selectedCat = cats.find((c) => c.category_name === selected);
   const p = data?.profile;
+  const missingProfile = p && p.age == null && !p.region_name &&
+    !(Array.isArray(p.current_status) ? p.current_status.length : p.current_status);
 
   const select = (name) => setSelected((cur) => (cur === name ? null : name));
 
@@ -169,7 +171,12 @@ export default function HomePage() {
         <>
           {/* 맞춤 그래프 + AI 맞춤 추천 */}
           <section className="graph-card">
-            {mineTotal === 0 ? (
+            {missingProfile ? (
+              <div className="graph-sentence">
+                <p>맞춤정보를 설정하면 나에게 맞는 혜택을 추천해 드려요</p>
+                <Link to="/settings?view=profile" className="graph-hint">설정하기</Link>
+              </div>
+            ) : mineTotal === 0 ? (
               <p className="graph-zero">조건에 맞는 혜택이 아직 없어요</p>
             ) : (
               <>

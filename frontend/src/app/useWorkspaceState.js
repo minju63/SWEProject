@@ -45,6 +45,7 @@ function read(key, fallback) {
   }
 }
 export function useWorkspaceState() {
+  // OTP verification creates a session before the separate registration completion step.
   const { user, requestLogin } = useAuth(),
     uid = useRef(user?.id)
   uid.current = user?.id
@@ -236,13 +237,13 @@ export function useWorkspaceState() {
     setProfileState(defaults)
     setMessage('')
     setLoadedOwner(undefined)
-    if (!user) return
+    if (!user || user.app_metadata?.registration_pending) return
     const owner = user.id
     setBusy(true)
     refresh(owner)
       .catch((e) => uid.current === owner && setMessage(e.message))
       .finally(() => uid.current === owner && setBusy(false))
-  }, [user?.id])
+  }, [user?.id, user?.app_metadata?.registration_pending])
   useEffect(() => {
     if (!user) return
     const owner = user.id

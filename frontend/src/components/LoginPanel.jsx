@@ -1,6 +1,6 @@
-import { useEffect, useRef, useState } from 'react'
-import { Eye, EyeOff, ChevronLeft } from 'lucide-react'
-import './LoginPanel.css'
+import { useEffect, useRef, useState } from 'react';
+import { Eye, EyeOff, ChevronLeft } from 'lucide-react';
+import './LoginPanel.css';
 export default function LoginPanel({
   email,
   password,
@@ -11,35 +11,34 @@ export default function LoginPanel({
   error,
   busy,
 }) {
-  const [visible, setVisible] = useState(false),
-    [notice, setNotice] = useState('')
-  const ref = useRef(null)
+  const [visible, setVisible] = useState(false);
+  const ref = useRef(null);
   useEffect(() => {
-    const old = document.body.style.overflow
-    document.body.style.overflow = 'hidden'
-    const previous = document.activeElement
-    ref.current?.focus()
+    const old = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+    const previous = document.activeElement;
+    ref.current?.focus();
     return () => {
-      document.body.style.overflow = old
-      previous?.focus()
-    }
-  }, [])
+      document.body.style.overflow = old;
+      previous?.focus();
+    };
+  }, []);
   function keyDown(e) {
-    if (e.key === 'Escape' && !busy) onClose()
+    if (e.key === 'Escape' && !busy) onClose();
     if (e.key === 'Tab') {
-      const items = ref.current?.querySelectorAll('button:not(:disabled), input, a[href]')
-      if (!items?.length) return
+      const items = ref.current?.querySelectorAll('button:not(:disabled), input, a[href]');
+      if (!items?.length) return;
       const first = items[0],
-        last = items[items.length - 1]
+        last = items[items.length - 1];
       if (
         e.shiftKey &&
         (document.activeElement === first || document.activeElement === ref.current)
       ) {
-        e.preventDefault()
-        last.focus()
+        e.preventDefault();
+        last.focus();
       } else if (!e.shiftKey && document.activeElement === last) {
-        e.preventDefault()
-        first.focus()
+        e.preventDefault();
+        first.focus();
       }
     }
   }
@@ -74,12 +73,12 @@ export default function LoginPanel({
           <label htmlFor="login-email">아이디</label>
           <input
             id="login-email"
-            aria-label="이메일"
-            type="email"
+            aria-label="아이디 또는 이메일"
+            type="text"
             autoComplete="username"
-            placeholder="아이디(이메일) 입력"
+            placeholder="아이디 또는 이메일 입력"
             value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            onChange={(e) => setEmail(e.target.value.toLowerCase())}
             required
             disabled={busy}
           />
@@ -101,7 +100,22 @@ export default function LoginPanel({
               type="button"
               aria-label={visible ? '비밀번호 숨기기' : '비밀번호 보기'}
               aria-pressed={visible}
-              onClick={() => setVisible((v) => !v)}
+              onPointerDown={(e) => {
+                e.preventDefault();
+                e.currentTarget.setPointerCapture?.(e.pointerId);
+                setVisible(true);
+              }}
+              onPointerUp={() => setVisible(false)}
+              onPointerCancel={() => setVisible(false)}
+              onPointerLeave={() => setVisible(false)}
+              onBlur={() => setVisible(false)}
+              onKeyDown={(e) => {
+                if (e.key === ' ' || e.key === 'Enter') {
+                  e.preventDefault();
+                  setVisible(true);
+                }
+              }}
+              onKeyUp={() => setVisible(false)}
             >
               {visible ? <EyeOff size={18} /> : <Eye size={18} />}
             </button>
@@ -115,19 +129,14 @@ export default function LoginPanel({
             {busy ? '로그인 중…' : '로그인'}
           </button>
           <div className="login-find">
-            <button type="button" onClick={() => setNotice('아이디는 가입한 이메일 주소예요.')}>
+            <a href="/find-username" onClick={onClose}>
               아이디 찾기
-            </button>
+            </a>
             <span aria-hidden="true">|</span>
-            <button type="button" onClick={() => setNotice('비밀번호 찾기는 준비 중이에요.')}>
+            <a href="/reset-password" onClick={onClose}>
               비밀번호 찾기
-            </button>
+            </a>
           </div>
-          {notice && (
-            <p className="login-notice" role="status">
-              {notice}
-            </p>
-          )}
         </form>
         <footer className="login-footer">
           아직 회원이 아니신가요?{' '}
@@ -138,5 +147,5 @@ export default function LoginPanel({
         <div className="login-home-indicator" aria-hidden="true" />
       </div>
     </div>
-  )
+  );
 }

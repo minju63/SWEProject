@@ -1,15 +1,15 @@
-import { BottomNav } from '../components/PolicyLayout'
-import { getCompletion } from '../data/profileCompletion'
-import './MyDesign.css'
-import { useState, useEffect, useRef } from 'react'
-import { useNavigate, useSearchParams } from 'react-router'
-import { useAppState } from '../app/AppState'
-import { useAuth } from '../lib/auth'
-import { supabase } from '../lib/auth'
-import { personalApi } from '../lib/api'
-import { interestDetailKey, scopedInterestDetails } from '../data/interestSelection'
-import AppSelect from '../components/AppSelect'
-import { Icon } from './HomeScreen'
+import { BottomNav } from '../components/PolicyLayout';
+import { getCompletion } from '../data/profileCompletion';
+import './MyDesign.css';
+import { useState, useEffect, useRef } from 'react';
+import { useNavigate, useSearchParams } from 'react-router';
+import { useAppState } from '../app/AppState';
+import { useAuth } from '../lib/auth';
+import { supabase } from '../lib/auth';
+import { personalApi } from '../lib/api';
+import { interestDetailKey, scopedInterestDetails } from '../data/interestSelection';
+import AppSelect from '../components/AppSelect';
+import { Icon } from './HomeScreen';
 import {
   educationOptions,
   educationSub,
@@ -27,7 +27,7 @@ import {
   specialOptions as specialTargets,
   statusOptions,
   statusSub,
-} from '../data/conditions'
+} from '../data/conditions';
 const regionOptions = {
   부산광역시: [
     '중구',
@@ -47,7 +47,7 @@ const regionOptions = {
     '사상구',
     '기장군',
   ],
-}
+};
 const interestSubOptions = {
   취업·진로: ['취업지원', '채용·인턴', '창업지원', '직무교육', '재직자지원'],
   주거·생활: [
@@ -71,13 +71,13 @@ const interestSubOptions = {
   ],
   문화: ['뮤지컬', '연극', '콘서트', '클래식', '무용', '오페라', '전통예술', '전시', '기타'],
   공간·시설: ['문화시설', '도서관', '체육시설', '공공시설', '청년공간'],
-}
+};
 function getProvince(region) {
-  return Object.keys(regionOptions).find((province) => region.startsWith(province)) ?? '부산광역시'
+  return Object.keys(regionOptions).find((province) => region.startsWith(province)) ?? '부산광역시';
 }
 function getDistrict(region) {
-  const province = getProvince(region)
-  return region.slice(province.length).trim() || regionOptions[province][0]
+  const province = getProvince(region);
+  return region.slice(province.length).trim() || regionOptions[province][0];
 }
 function ProfileCard({ title, badge, children }) {
   return (
@@ -92,93 +92,96 @@ function ProfileCard({ title, badge, children }) {
       </div>
       {children}
     </section>
-  )
+  );
 }
 export default function SettingsScreen() {
-  const navigate = useNavigate()
-  const [searchParams] = useSearchParams()
+  const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
   const { profile, setProfile, notificationSettings, setNotificationSettings, workspaceReady } =
-    useAppState()
-  const { user, ready, signOut } = useAuth()
+    useAppState();
+  const { user, ready, signOut } = useAuth();
   const [view, setView] = useState(() => {
-    const requestedView = searchParams.get('view')
-    if (requestedView === 'profile' || requestedView === 'notifications') return requestedView
-    return 'menu'
-  })
-  const [draft, setDraftState] = useState(profile)
-  const draftChanged = useRef(false)
+    const requestedView = searchParams.get('view');
+    if (requestedView === 'profile' || requestedView === 'notifications') return requestedView;
+    return 'menu';
+  });
+  const [draft, setDraftState] = useState(profile);
+  const draftChanged = useRef(false);
   function setDraft(next) {
-    draftChanged.current = true
-    setDraftState(next)
+    draftChanged.current = true;
+    setDraftState(next);
   }
   useEffect(() => {
-    if (!draftChanged.current) setDraftState(profile)
-  }, [profile])
+    if (!draftChanged.current) setDraftState(profile);
+  }, [profile]);
   useEffect(() => {
-    draftChanged.current = false
-    setDraftState(profile)
-  }, [user?.id])
+    draftChanged.current = false;
+    setDraftState(profile);
+  }, [user?.id]);
   useEffect(() => {
-    window.scrollTo({ top: 0, behavior: 'instant' })
-  }, [view])
-  const [message, setMessage] = useState('')
-  const [logoutOpen, setLogoutOpen] = useState(false)
-  const [withdrawing, setWithdrawing] = useState(false)
-  const [withdrawConfirmed, setWithdrawConfirmed] = useState(false)
-  const [savingProfile, setSavingProfile] = useState(false)
+    window.scrollTo({ top: 0, behavior: 'instant' });
+  }, [view]);
+  const [message, setMessage] = useState('');
+  const [logoutOpen, setLogoutOpen] = useState(false);
+  const [withdrawing, setWithdrawing] = useState(false);
+  const [withdrawConfirmed, setWithdrawConfirmed] = useState(false);
+  const [savingProfile, setSavingProfile] = useState(false);
   async function withdraw(event) {
-    event.preventDefault()
-    if (withdrawing || !withdrawConfirmed) return
-    setWithdrawing(true)
+    event.preventDefault();
+    if (withdrawing || !withdrawConfirmed) return;
+    setWithdrawing(true);
     try {
-      await personalApi('/account', 'DELETE', { confirmation: '탈퇴' })
-      await supabase.auth.signOut({ scope: 'local' })
-      navigate('/')
+      const deletion = await personalApi('/account', 'DELETE', { confirmation: '탈퇴' });
+      await supabase.auth.signOut({ scope: 'local' });
+      navigate(
+        deletion?.status === 'PENDING' ? '/login?deletion=pending' : '/login?deletion=complete',
+        { replace: true }
+      );
     } catch (e) {
-      setMessage(e instanceof Error ? e.message : '탈퇴하지 못했어요. 다시 시도해주세요.')
+      setMessage(e instanceof Error ? e.message : '탈퇴하지 못했어요. 다시 시도해주세요.');
     } finally {
-      setWithdrawing(false)
+      setWithdrawing(false);
     }
   }
   function goBack() {
-    if (view === 'menu') navigate('/my')
-    else setView('menu')
+    if (view === 'menu') navigate('/my');
+    else setView('menu');
   }
   async function saveProfile(event) {
-    event.preventDefault()
-    if (savingProfile) return
-    const name = draft.name.trim()
+    event.preventDefault();
+    if (savingProfile) return;
+    const name = draft.name.trim();
     if (name.length < 2 || name.length > 10) {
-      setMessage('이름은 공백을 제외하고 2~10자로 입력해주세요.')
-      return
+      setMessage('이름은 공백을 제외하고 2~10자로 입력해주세요.');
+      return;
     }
-    setSavingProfile(true)
-    const saved = await setProfile({ ...draft, name })
-    setSavingProfile(false)
-    if (!saved) return
-    draftChanged.current = false
-    setMessage('프로필과 맞춤정보를 저장했어요.')
-    setView('menu')
+    setSavingProfile(true);
+    const saved = await setProfile({ ...draft, name });
+    setSavingProfile(false);
+    if (!saved) return;
+    draftChanged.current = false;
+    setMessage('프로필과 맞춤정보를 저장했어요.');
+    setView('menu');
   }
-  const [openInterest, setOpenInterest] = useState(null)
+  const [openInterest, setOpenInterest] = useState(null);
   function toggleInterest(interest) {
     setDraft((current) => {
       const details = scopedInterestDetails(
         current.interests,
         current.interestDetails ?? [],
         interestSubOptions
-      )
+      );
       const relatedDetails = (interestSubOptions[interest] ?? []).map((detail) =>
         interestDetailKey(interest, detail)
-      )
+      );
       const allDetailsSelected =
-        relatedDetails.length > 0 && relatedDetails.every((item) => details.includes(item))
+        relatedDetails.length > 0 && relatedDetails.every((item) => details.includes(item));
       if (allDetailsSelected) {
         return {
           ...current,
           interests: current.interests.filter((item) => item !== interest),
           interestDetails: details.filter((item) => !relatedDetails.includes(item)),
-        }
+        };
       }
       return {
         ...current,
@@ -189,8 +192,8 @@ export default function SettingsScreen() {
           ...details.filter((item) => !relatedDetails.includes(item)),
           ...relatedDetails,
         ],
-      }
-    })
+      };
+    });
   }
   function toggleInterestDetail(interest, detail) {
     setDraft((current) => {
@@ -198,14 +201,14 @@ export default function SettingsScreen() {
         current.interests,
         current.interestDetails ?? [],
         interestSubOptions
-      )
-      const key = interestDetailKey(interest, detail)
-      const selected = details.includes(key)
-      const nextDetails = selected ? details.filter((item) => item !== key) : [...details, key]
+      );
+      const key = interestDetailKey(interest, detail);
+      const selected = details.includes(key);
+      const nextDetails = selected ? details.filter((item) => item !== key) : [...details, key];
       const relatedDetails = (interestSubOptions[interest] ?? []).map((detail) =>
         interestDetailKey(interest, detail)
-      )
-      const hasSelectedDetail = relatedDetails.some((item) => nextDetails.includes(item))
+      );
+      const hasSelectedDetail = relatedDetails.some((item) => nextDetails.includes(item));
       return {
         ...current,
         interests: hasSelectedDetail
@@ -214,12 +217,12 @@ export default function SettingsScreen() {
             : [...current.interests, interest]
           : current.interests.filter((item) => item !== interest),
         interestDetails: nextDetails,
-      }
-    })
+      };
+    });
   }
   function dropdown(label, key, options, sub, wrapClass = 'mt-5') {
-    const value = draft[key] ?? ''
-    const subOptions = sub ? sub.options[value] : undefined
+    const value = draft[key] ?? '';
+    const subOptions = sub ? sub.options[value] : undefined;
     return (
       <div className={wrapClass}>
         <AppSelect
@@ -247,22 +250,22 @@ export default function SettingsScreen() {
           </div>
         )}
       </div>
-    )
+    );
   }
   function toggleSpecialTarget(target) {
     setDraft((current) => {
-      const targets = current.specialTargets ?? []
+      const targets = current.specialTargets ?? [];
       if (targets.includes(target))
         return {
           ...current,
           specialTargets: targets.filter((item) => item !== target),
-        }
-      if (target === NONE_TARGET) return { ...current, specialTargets: [NONE_TARGET] }
+        };
+      if (target === NONE_TARGET) return { ...current, specialTargets: [NONE_TARGET] };
       return {
         ...current,
         specialTargets: [...targets.filter((item) => item !== NONE_TARGET), target],
-      }
-    })
+      };
+    });
   }
   return (
     <div className="min-h-screen bg-[#eef0f5]">
@@ -326,10 +329,10 @@ export default function SettingsScreen() {
               <div className="mt-2 overflow-hidden rounded-[20px] bg-white">
                 <button
                   onClick={() => {
-                    draftChanged.current = false
-                    setDraftState(profile)
-                    setMessage('')
-                    setView('profile')
+                    draftChanged.current = false;
+                    setDraftState(profile);
+                    setMessage('');
+                    setView('profile');
                   }}
                   className="flex w-full items-center gap-3 border-b border-black/[0.06] p-4 text-left"
                 >
@@ -563,7 +566,7 @@ export default function SettingsScreen() {
                     </p>
                     <div className="mt-4 flex flex-wrap gap-2.5" role="group" aria-label="특화대상">
                       {[NONE_TARGET, ...specialTargets].map((target) => {
-                        const selected = (draft.specialTargets ?? []).includes(target)
+                        const selected = (draft.specialTargets ?? []).includes(target);
                         return (
                           <button
                             type="button"
@@ -597,7 +600,7 @@ export default function SettingsScreen() {
                             </span>
                             {target}
                           </button>
-                        )
+                        );
                       })}
                     </div>
                   </ProfileCard>
@@ -611,20 +614,20 @@ export default function SettingsScreen() {
 
                     <div className="mt-4 space-y-2.5">
                       {interestOptions.map((interest) => {
-                        const open = openInterest === interest
+                        const open = openInterest === interest;
                         const details = scopedInterestDetails(
                           draft.interests,
                           draft.interestDetails ?? [],
                           interestSubOptions
-                        )
-                        const options = interestSubOptions[interest] ?? []
+                        );
+                        const options = interestSubOptions[interest] ?? [];
                         const selectedCount = options.filter((item) =>
                           details.includes(interestDetailKey(interest, item))
-                        ).length
-                        const allSelected = options.length > 0 && selectedCount === options.length
+                        ).length;
+                        const allSelected = options.length > 0 && selectedCount === options.length;
                         const partiallySelected =
-                          selectedCount > 0 && selectedCount < options.length
-                        const selected = draft.interests.includes(interest) || selectedCount > 0
+                          selectedCount > 0 && selectedCount < options.length;
+                        const selected = draft.interests.includes(interest) || selectedCount > 0;
                         return (
                           <div
                             key={interest}
@@ -719,7 +722,7 @@ export default function SettingsScreen() {
                                     {options.map((detail) => {
                                       const detailSelected = details.includes(
                                         interestDetailKey(interest, detail)
-                                      )
+                                      );
                                       return (
                                         <button
                                           type="button"
@@ -734,14 +737,14 @@ export default function SettingsScreen() {
                                         >
                                           {detail}
                                         </button>
-                                      )
+                                      );
                                     })}
                                   </div>
                                 </div>
                               </div>
                             </div>
                           </div>
-                        )
+                        );
                       })}
                     </div>
 
@@ -905,8 +908,8 @@ export default function SettingsScreen() {
             <button
               type="button"
               onClick={() => {
-                setMessage('알림 설정을 저장했어요.')
-                setView('menu')
+                setMessage('알림 설정을 저장했어요.');
+                setView('menu');
               }}
               className="mt-5 w-full rounded-2xl bg-[#2F7BF5] py-4 text-sm font-black text-white"
             >
@@ -929,8 +932,8 @@ export default function SettingsScreen() {
             <button
               className="my-more"
               onClick={() => {
-                setWithdrawConfirmed(false)
-                setView('withdrawal')
+                setWithdrawConfirmed(false);
+                setView('withdrawal');
               }}
             >
               회원 탈퇴
@@ -1018,11 +1021,11 @@ export default function SettingsScreen() {
                 <button
                   onClick={async () => {
                     try {
-                      await signOut()
-                      setLogoutOpen(false)
-                      navigate('/')
+                      await signOut();
+                      setLogoutOpen(false);
+                      navigate('/');
                     } catch {
-                      setMessage('로그아웃하지 못했어요. 다시 시도해 주세요.')
+                      setMessage('로그아웃하지 못했어요. 다시 시도해 주세요.');
                     }
                   }}
                   className="flex-1 rounded-2xl bg-[#2F7BF5] py-3.5 text-xs font-black text-white"
@@ -1035,5 +1038,5 @@ export default function SettingsScreen() {
         )}
       </div>
     </div>
-  )
+  );
 }

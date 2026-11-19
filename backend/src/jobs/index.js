@@ -3,8 +3,22 @@
 import cron from 'node-cron';
 import { runCultureSync } from './culture/syncCulture.js';
 import { runDueAlarms } from './alarms.js';
+import { registrationCleanup } from '../services/registration-runtime.service.js';
 
 export function startJobs() {
+  if (process.env.REGISTRATION_CLEANUP_ENABLED === 'true')
+    cron.schedule(
+      '*/5 * * * *',
+      async () => {
+        try {
+          const result = await registrationCleanup.runBatch();
+          if (result.removed) console.log(`[가입 요청 정리] ${result.removed}건 완료`);
+        } catch {
+          console.error('[가입 요청 정리] DB 설정 또는 삭제 재시도 상태 확인 필요');
+        }
+      },
+      { name: 'registration-cleanup', timezone: 'Asia/Seoul', noOverlap: true }
+    );
   startAlarmJob();
   if (process.env.CULTURE_SYNC_ENABLED !== 'true') return;
   const schedule = process.env.CULTURE_SYNC_CRON || '0 4 * * *';

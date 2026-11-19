@@ -34,6 +34,14 @@
   box-shadow: none;
   box-sizing: border-box;
 }
+.signup-check-button { border:1px solid #2F7BF5; border-radius:12px; padding:8px 10px; color:#2F7BF5; font-size:12px; font-weight:700; }
+.signup-consent { display:flex; gap:10px; align-items:flex-start; font-size:13px; line-height:1.6; }
+.signup-consent input { margin-top:4px; accent-color:#2F7BF5; }
+.signup-policy { font-size:12px; color:#475467; line-height:1.7; }
+.signup-policy summary { cursor:pointer; }
+.signup-ai-notice { border-radius:12px; padding:12px; background:#EAF2FE; font-size:12px; line-height:1.7; }
+.signup-page .signup-input { padding-left:16px; }
+.signup-check-button:disabled, .signup-submit-button:disabled { opacity:.5; cursor:not-allowed; }
 
 .signup-back-button {
   background: none;
@@ -245,3 +253,7 @@
 .signup-page .message-success { background: #ecfdf5; color: #065f46; }
 .signup-page .message-error { background: #fef2f2; color: #991b1b; }
 .signup-page .message-info { background: #EAF2FE; color: #2F7BF5; }
+.signup-primary-button { display:block; width:100%; padding:14px 18px; border:0; border-radius:12px; background:#2F7BF5; color:white; font-weight:700; text-align:center; text-decoration:none; }
+.signup-primary-button:disabled { opacity:.5; cursor:not-allowed; }
+.signup-secondary-button { padding:12px; border:1px solid #dce4ef; border-radius:12px; color:#334155; background:white; }
+.signup-actions { display:flex; gap:10px; align-items:center; }

@@ -1,6 +1,8 @@
 import { Router } from "express";
 import { supabase as db } from "../lib/supabase.js";
 import { requireAuth } from "../middlewares/auth.js";
+import {registrationState} from '../services/registration-state.service.js';
+import {registrationCleanup} from '../services/registration-runtime.service.js';
 import { ok, AppError } from "../utils/response.js";
 import {
   readPersonal,
@@ -192,15 +194,11 @@ router.delete("/account", async (req, res) => {
   if (req.body?.confirmation !== "탈퇴")
     throw new AppError(400, "CONFIRM_REQUIRED", "탈퇴 확인이 필요합니다.");
   const token = req.headers.authorization.replace(/^Bearer /, "");
-  const signedOut = await db.auth.admin.signOut(token, "global");
-  if (signedOut.error) throw signedOut.error;
-  const removed = await db.storage
-    .from("user-workspaces")
-    .remove([req.user.id + ".json"]);
-  if (removed.error) throw removed.error;
-  const { error } = await db.auth.admin.deleteUser(req.user.id);
-  if (error) throw error;
-  ok(res, null);
+  const job=await registrationState.command('queue_withdrawal',null,{userId:req.user.id});
+  await db.auth.admin.signOut(token, "global").catch(() => {});
+  // A sign-out/provider failure must not lose the already durable deletion request.
+  const removed=await registrationCleanup.runJob(job.id);
+  ok(res,{status:removed?'DELETED':'PENDING',message:removed?'계정을 삭제했어요.':'삭제 요청을 접수했어요. 자동으로 다시 처리할게요.'},removed?200:202);
 });
 router.post("/recent/:policyId", async (req, res) => {
   await requirePolicy(req.params.policyId);

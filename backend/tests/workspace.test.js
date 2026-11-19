@@ -4,6 +4,8 @@ import express from "express";
 import { supabase as db } from "../src/lib/supabase.js";
 import workspace from "../src/routes/workspace.routes.js";
 import { errorHandler } from "../src/middlewares/error.js";
+import { registrationState } from "../src/services/registration-state.service.js";
+import { registrationCleanup } from "../src/services/registration-runtime.service.js";
 test("personal routes authenticate and enforce ownership on reads, updates and deletes", async () => {
   const a = "11111111-1111-4111-8111-111111111111",
     b = "22222222-2222-4222-8222-222222222222",
@@ -35,6 +37,17 @@ test("personal routes authenticate and enforce ownership on reads, updates and d
     oldSignOut = db.auth.admin.signOut,
     oldDelete = db.auth.admin.deleteUser;
   let stored = null;
+  const oldCommand = registrationState.command, oldCleanup = registrationCleanup.runJob;
+  registrationState.command = async (action, _id, input) => {
+    assert.equal(input.userId, a);
+    if (action === 'access') return { allowed: true };
+    assert.equal(action, 'queue_withdrawal'); return { id: 'deletion-job' };
+  };
+  registrationCleanup.runJob = async id => {
+    assert.equal(id, 'deletion-job');
+    await db.storage.from('user-workspaces').remove([a + '.json']);
+    await db.auth.admin.deleteUser(a); return true;
+  };
   db.storage.from = (bucket) => {
     assert.equal(bucket, "user-workspaces");
     return {
@@ -312,5 +325,7 @@ test("personal routes authenticate and enforce ownership on reads, updates and d
     db.storage.from = oldStorage;
     db.auth.admin.signOut = oldSignOut;
     db.auth.admin.deleteUser = oldDelete;
+    registrationState.command = oldCommand;
+    registrationCleanup.runJob = oldCleanup;
   }
 });

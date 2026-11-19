@@ -30,7 +30,7 @@ test('login, bookmark, recent, application and logout stay connected by policy U
   return route.fulfill({json:{success:true,data:null}})
  })
  await page.goto('/policies/'+policy.policy_id);await page.getByRole('button',{name:policy.title+' 북마크'}).click()
- await page.getByLabel('이메일', {exact:true}).fill(email);await page.getByLabel('비밀번호',{exact:true}).fill('mock-password-not-real')
+ await page.getByLabel('아이디 또는 이메일', {exact:true}).fill(email);await page.getByLabel('비밀번호',{exact:true}).fill('mock-password-not-real')
  await page.getByRole('dialog').getByRole('button',{name:'로그인',exact:true}).click();await expect(page.getByRole('dialog')).toHaveCount(0);await expect(page.getByText('계정 데이터를 확인하고 있어요.')).toHaveCount(0)
  await page.getByRole('button',{name:policy.title+' 북마크'}).click();await expect.poll(()=>bookmarks.length).toBe(1);await expect(page.getByText('계정 데이터를 확인하고 있어요.')).toHaveCount(0)
  await page.getByRole('button',{name:'＋ 신청 관리에 추가',exact:true}).click();await expect.poll(()=>applications.length).toBe(1);await expect(page.getByRole('button',{name:'✓ 신청 관리에 추가됨'})).toBeVisible()

@@ -7,10 +7,21 @@ process.env.SUPABASE_URL = 'https://example.supabase.co';
 process.env.SUPABASE_SERVICE_ROLE_KEY = 'test-key';
 const { supabase } = await import('../src/lib/supabase.js');
 const { requireAuth } = await import('../src/middlewares/auth.js');
+const { registrationState } = await import('../src/services/registration-state.service.js');
 const { default: policyRoutes } = await import('../src/routes/policy.routes.js');
 const { errorHandler } = await import('../src/middlewares/error.js');
 const userRepo = await import('../src/repositories/user.repository.js');
 const me = await import('../src/controllers/me.controller.js');
+
+test('password reset revokes old token versions and permits the new version', async () => {
+  const getUser = mock.method(supabase.auth,'getUser',async()=>({data:{user:{id:'trusted-user',app_metadata:{auth_version:'new-version'}}}}));
+  const access = mock.method(registrationState,'command',async()=>({allowed:true}));
+  const jwt=version=>'header.'+Buffer.from(JSON.stringify({app_metadata:{auth_version:version}})).toString('base64url')+'.signature';
+  try{
+    await assert.rejects(requireAuth({headers:{authorization:'Bearer '+jwt('old-version')}},null,()=>{}),e=>e.code==='SESSION_REVOKED');
+    let next=false;await requireAuth({headers:{authorization:'Bearer '+jwt('new-version')}},null,()=>next=true);assert.equal(next,true);
+  }finally{getUser.mock.restore();access.mock.restore();}
+});
 
 test('Bearer 토큰이 없거나 잘못되면 API가 거부한다', async () => {
   for (const authorization of [undefined, 'Basic abc', 'Bearer ']) {
@@ -31,6 +42,9 @@ test('Bearer 토큰이 없거나 잘못되면 API가 거부한다', async () => 
 });
 
 test('사용자 ID는 요청값이 아니라 검증된 토큰에서 얻는다', async () => {
+  const access = mock.method(registrationState, 'command', async (action, _id, input) => {
+    assert.equal(action, 'access'); assert.equal(input.userId, 'trusted-user'); return { allowed: true };
+  });
   const getUser = mock.method(supabase.auth, 'getUser', async (token) => {
     assert.equal(token, 'valid');
     return { data: { user: { id: 'trusted-user' } }, error: null };
@@ -43,6 +57,7 @@ test('사용자 ID는 요청값이 아니라 검증된 토큰에서 얻는다', 
     assert.equal(continued, true);
   } finally {
     getUser.mock.restore();
+    access.mock.restore();
   }
 });
 

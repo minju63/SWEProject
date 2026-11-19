@@ -1,6 +1,7 @@
 import * as userRepo from '../repositories/user.repository.js';
 import { createDefaultAlarms } from '../services/calendar.service.js';
 import { ok, AppError } from '../utils/response.js';
+import signupRules from '../../../shared/signup-rules.mjs';
 
 const PROFILE_FIELDS = [
   'birth_date',
@@ -24,6 +25,7 @@ export async function getProfile(req, res) {
 }
 
 export async function updateProfile(req, res) {
+  if(req.body?.birth_date){const problem=signupRules.birthDateError(req.body.birth_date);if(problem)throw new AppError(400,'INVALID_BIRTH_DATE',problem);}
   const profile = Object.fromEntries(
     PROFILE_FIELDS.filter((k) => k in req.body).map((k) => [k, req.body[k]])
   );
