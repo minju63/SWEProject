@@ -41,6 +41,38 @@ export function judged(policies, profile) {
   return policies.map((p) => ({ ...p, eligibility: judge(p, profile) }));
 }
 
+// 거주 구가 정해져 있으면, 다른 구만 대상인 정책은 대상 아님으로 처리한다 (FR-A10, FR-H04)
+// 정책 지역(policy_region)에 구 이름이 있고 내 구가 거기 없으면 제외. 부산 전체·전국 정책은 그대로 둔다.
+// 홈 추천과 AI 비서 추천이 같은 판단을 쓰도록 여기에 둔다.
+// fit: 사용자 조건에 얼마나 잘 맞는지(추천 순서에 쓴다). 충족으로 판정된 조건 수 + 내 구가 정책 지역에 명시돼 있으면 +2
+export function judgedWithRegion(policies, profile, regions) {
+  const list = judged(policies, profile);
+  const myGu = (regions ?? []).find(
+    (r) => r.region_code === profile?.region_code && r.region_level === 'GU'
+  );
+  const guNames = new Set(
+    (regions ?? []).filter((r) => r.region_level === 'GU').map((r) => r.region_name)
+  );
+  const satisfied = (p) => p.eligibility.conditions.filter((c) => c.status === 'SATISFIED').length;
+  return list.map((p) => {
+    if (!myGu) return { ...p, fit: satisfied(p) };
+    const guList = (p.region_names ?? []).filter((n) => guNames.has(n));
+    if (guList.length === 0) return { ...p, fit: satisfied(p) };
+    if (guList.includes(myGu.region_name)) return { ...p, fit: satisfied(p) + 2 };
+    return {
+      ...p,
+      fit: 0,
+      eligibility: {
+        result: RESULT.INELIGIBLE,
+        conditions: [
+          ...p.eligibility.conditions,
+          { field: 'region', status: 'UNSATISFIED', value: guList },
+        ],
+      },
+    };
+  });
+}
+
 export function isOpen(policy) {
   return OPEN_STATUSES.includes(policy.recruitment_status);
 }
@@ -64,6 +96,7 @@ export function sortRecommended(items, profile, categories) {
     (a, b) =>
       tier(a) - tier(b) ||
       RESULT_ORDER[a.eligibility.result] - RESULT_ORDER[b.eligibility.result] ||
+      (b.fit ?? 0) - (a.fit ?? 0) || // 내 조건(나이·거주지·상태 등)에 더 많이 맞는 정책 먼저
       statusRank(a) - statusRank(b) ||
       endKey(a).localeCompare(endKey(b)) ||
       a.title.localeCompare(b.title, 'ko')

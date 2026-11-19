@@ -8,7 +8,14 @@ import { findTerm, findTermByName } from '../data/glossary.js';
 import { askJson, askText, isLlmEnabled } from '../lib/llm.js';
 import { lookupTerm } from '../lib/naverDict.js';
 import { RESULT } from './eligibility.service.js';
-import { isOpen, judged, loadContext, sortRecommended, toCard } from './recommend.service.js';
+import {
+  isOpen,
+  judged,
+  judgedWithRegion,
+  loadContext,
+  sortRecommended,
+  toCard,
+} from './recommend.service.js';
 
 const FALLBACK_CONTACTS = [
   { name: '부산청년플랫폼', url: 'https://young.busan.go.kr' },
@@ -170,31 +177,6 @@ const TOPIC_WORDS = [
 function topicKeywords(text) {
   const found = TOPIC_WORDS.filter((w) => text.includes(w)).sort((a, b) => b.length - a.length);
   return found.filter((w, i) => !found.slice(0, i).some((longer) => longer.includes(w)));
-}
-
-// 거주 구가 정해져 있으면, 다른 구만 대상인 정책은 대상 아님으로 처리한다 (FR-A10)
-// 정책 지역(policy_region)에 구 이름이 있고 내 구가 거기 없으면 제외. 부산 전체·전국 정책은 그대로 둔다.
-function judgedWithRegion(policies, profile, regions) {
-  const list = judged(policies, profile);
-  const myGu = (regions ?? []).find(
-    (r) => r.region_code === profile?.region_code && r.region_level === 'GU'
-  );
-  if (!myGu) return list;
-  const guNames = new Set(regions.filter((r) => r.region_level === 'GU').map((r) => r.region_name));
-  return list.map((p) => {
-    const guList = (p.region_names ?? []).filter((n) => guNames.has(n));
-    if (guList.length === 0 || guList.includes(myGu.region_name)) return p;
-    return {
-      ...p,
-      eligibility: {
-        result: RESULT.INELIGIBLE,
-        conditions: [
-          ...p.eligibility.conditions,
-          { field: 'region', status: 'UNSATISFIED', value: guList },
-        ],
-      },
-    };
-  });
 }
 
 const FIELD_NAMES = {

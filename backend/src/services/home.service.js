@@ -4,7 +4,7 @@ import { RESULT } from './eligibility.service.js';
 import {
   ageOf,
   isOpen,
-  judged,
+  judgedWithRegion,
   loadContext,
   sortRecommended,
   toCard,
@@ -23,7 +23,7 @@ export async function getHome(userId) {
   ]);
   const bookmarked = new Set(bookmarks.map((b) => b.policy_id));
 
-  const all = judged(policies, profile);
+  const all = judgedWithRegion(policies, profile, regions);
   const open = all.filter(isOpen); // 모집 중·상시 (모집 예정·마감 제외)
   const mine = open.filter((p) => p.eligibility.result !== RESULT.INELIGIBLE);
 
