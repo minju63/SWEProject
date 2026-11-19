@@ -131,7 +131,7 @@ export default function AssistantButton() {
   const hideWithUndo = (e) => {
     e?.stopPropagation();
     hide();
-    showToast('Dr.부를 숨겼어요', { action: { label: '되돌리기', onClick: show }, duration: 5000 });
+    showToast('Dr.부를 숨겼어요', { action: { label: '되돌리기', onClick: show }, duration: 2000 });
   };
 
   const style = drag

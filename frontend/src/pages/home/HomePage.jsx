@@ -38,11 +38,36 @@ export default function HomePage() {
   const bookmark = useMutation({
     mutationFn: (policy) =>
       policy.bookmarked ? removeBookmark(policy.policy_id) : addBookmark(policy.policy_id, 'HOME'),
+    // 누르는 즉시 하트 색이 바뀌도록 화면 값을 먼저 고치고, 서버 응답이 오면 다시 맞춘다
+    onMutate: async (policy) => {
+      await queryClient.cancelQueries({ queryKey: ['home'] });
+      const before = queryClient.getQueryData(['home']);
+      const mark = (list) =>
+        list.map((c) =>
+          c.policy_id === policy.policy_id ? { ...c, bookmarked: !policy.bookmarked } : c
+        );
+      queryClient.setQueryData(['home'], (cur) =>
+        cur
+          ? {
+              ...cur,
+              categories: cur.categories.map((cat) => ({
+                ...cat,
+                mine: { ...cat.mine, items: mark(cat.mine.items) },
+                all: { ...cat.all, items: mark(cat.all.items) },
+              })),
+            }
+          : cur
+      );
+      return { before };
+    },
     onSuccess: (_, policy) => {
-      queryClient.invalidateQueries({ queryKey: ['home'] });
       if (!policy.bookmarked) showToast('찜했어요! 캘린더에 마감일이 추가됐어요');
     },
-    onError: (e) => showToast(e.message),
+    onError: (e, _policy, ctx) => {
+      if (ctx?.before) queryClient.setQueryData(['home'], ctx.before);
+      showToast(e.message);
+    },
+    onSettled: () => queryClient.invalidateQueries({ queryKey: ['home'] }),
   });
   const toggleBookmark = (policy) => {
     if (!user) return showToast('로그인하면 찜할 수 있어요');
