@@ -62,7 +62,7 @@ export default function HomePage() {
       return { before };
     },
     onSuccess: (_, policy) => {
-      if (!policy.bookmarked) showToast('찜했어요! 캘린더에 마감일이 추가됐어요');
+      if (!policy.bookmarked) showToast('찜했어요! 캘린더에 마감일이 추가됐어요', { duration: 1000 });
     },
     onError: (e, _policy, ctx) => {
       if (ctx?.before) queryClient.setQueryData(['home'], ctx.before);

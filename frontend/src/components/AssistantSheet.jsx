@@ -422,7 +422,7 @@ function ChatSheet() {
           : cur.filter((b) => b.policy?.policy_id !== card.policy_id)
         : cur
     );
-    if (next) showToast('찜했어요! 캘린더에 마감일이 추가됐어요');
+    if (next) showToast('찜했어요! 캘린더에 마감일이 추가됐어요', { duration: 1000 });
     try {
       if (next) await addBookmark(card.policy_id, 'CHAT');
       else await removeBookmark(card.policy_id);
