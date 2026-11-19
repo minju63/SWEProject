@@ -30,7 +30,7 @@ export default function HomePolicyCard({ policy, onToggleBookmark }) {
         aria-pressed={policy.bookmarked}
         onClick={() => onToggleBookmark(policy)}
       >
-        <HeartIcon filled={Boolean(policy.bookmarked)} />
+        <HeartIcon />
       </button>
     </div>
   );

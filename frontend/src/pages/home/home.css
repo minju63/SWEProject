@@ -352,6 +352,21 @@
   background: #fdecea;
   color: var(--no);
 }
+/* 홈 분야 카드의 찜 하트: 검색 결과의 하트와 같은 모양·배경 (찜 전: 배경 없는 회색 하트, 찜 후: 연분홍 원 + 분홍 하트) */
+.hcard .heart {
+  width: 30px;
+  height: 30px;
+  background: transparent;
+  color: #a4b3c5;
+}
+.hcard .heart.heart-on {
+  background: #fff0f4;
+  color: #f24171;
+}
+.hcard .heart svg {
+  width: 18px;
+  height: 18px;
+}
 .heart-sm {
   position: relative;
   right: auto; /* .heart 의 absolute 위치값이 남아 하트가 위로 밀리던 문제 */
