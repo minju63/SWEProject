@@ -3,6 +3,7 @@
 import { supabase } from '../lib/supabase.js';
 import { PRESETS, deadlineAt } from '../services/alarmTime.js';
 import { notifications } from '../services/notifications.service.js';
+import { buildDocuments } from '../services/documents.js';
 
 const BATCH = 200;
 const DAY_MS = 24 * 60 * 60 * 1000;
@@ -58,25 +59,28 @@ export async function runDueAlarms(now = new Date()) {
       .eq('user_id', userId)
       .maybeSingle();
 
-    // 신청 준비 혜택의 3일 전 알림에는 남은 서류 개수를 함께 알린다 (FR-C12)
+    // 신청 준비 중인 정책의 알림에는 아직 준비하지 못한 신청 준비물 이름을 함께 알린다 (찜만 한 정책은 알리지 않는다)
     let body = `${policy.title} 마감이 다가왔어요.`;
-    if (alarm.preset_code === 'D3' && pref?.doc_reminder_enabled !== false) {
+    if (pref?.doc_reminder_enabled !== false) {
       const { data: app } = await supabase
         .from('user_application')
         .select('stage')
         .eq('user_id', userId)
         .eq('policy_id', policy.policy_id)
         .maybeSingle();
-      const total = Array.isArray(policy.required_documents) ? policy.required_documents.length : 0;
-      if (app?.stage === 'PREPARING' && total > 0) {
-        const { count } = await supabase
+      if (app?.stage === 'PREPARING') {
+        const { data: rows } = await supabase
           .from('user_document_check')
-          .select('*', { count: 'exact', head: true })
+          .select('doc_key, is_checked')
           .eq('user_id', userId)
-          .eq('policy_id', policy.policy_id)
-          .eq('is_checked', true);
-        const left = total - (count ?? 0);
-        if (left > 0) body += ` 아직 준비하지 못한 서류가 ${left}개 남아 있어요.`;
+          .eq('policy_id', policy.policy_id);
+        const left = buildDocuments(policy, rows ?? []).filter((d) => !d.checked);
+        if (left.length > 0) {
+          const shown = left.slice(0, 5).map((d) => d.name);
+          body += ` 아직 준비하지 못한 신청 준비물: ${shown.join(', ')}${
+            left.length > shown.length ? ` 외 ${left.length - shown.length}개` : ''
+          }.`;
+        }
       }
     }
 

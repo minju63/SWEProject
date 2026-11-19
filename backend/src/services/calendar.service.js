@@ -284,8 +284,8 @@ export async function createDefaultAlarms(userId, policyId) {
   return rows.length;
 }
 
-// 신청 준비 정책의 기본 알림: 마감 7일 전·3일 전·1일 전 09:00 (FR-COM-04). 같은 정책이 찜에도 있으면 신청 준비 기준만 적용한다
-export const PREPARING_DEFAULT_PRESETS = ['W1', 'D3', 'D1'];
+// 신청 준비 정책의 기본 알림: 찜과 같은 1일 전·30분 전 (요청으로 FR-COM-04의 7일·3일·1일 전에서 변경). 같은 정책이 찜에도 있으면 신청 준비 쪽에만 만든다
+export const PREPARING_DEFAULT_PRESETS = ['D1', 'M30'];
 
 export async function syncApplicationAlarms(userId, application) {
   const { application_id: applicationId, policy_id: policyId, stage } = application;

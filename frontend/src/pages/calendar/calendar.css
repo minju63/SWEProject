@@ -379,9 +379,27 @@
   background: var(--primary);
 }
 .ccard-heart {
+  /* 검색 결과·홈 카드와 같은 하트: 찜 전은 배경 없는 회색, 찜 후는 연분홍 원 + 분홍 하트 */
   position: absolute;
   top: 10px;
-  right: 16px; /* 카드 왼쪽 안쪽 여백(14px)과 비슷하게, 오른쪽 끝에서 띄운다 */
+  right: 16px;
+  display: grid;
+  place-items: center;
+  width: 30px;
+  height: 30px;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: transparent;
+  color: #a4b3c5;
+}
+.ccard-heart.on {
+  background: #fff0f4;
+  color: #f24171;
+}
+.ccard-heart svg {
+  width: 18px;
+  height: 18px;
 }
 .ccard-alarm {
   display: flex;

@@ -484,7 +484,7 @@ grant execute on function public.record_popular_search_keyword(text) to service_
 create table alarm_preference (
   user_id               uuid primary key references auth.users(id) on delete cascade,
   default_presets       text[] not null default array['D1','M30'],
-  preparing_presets     text[] not null default array['W1','D3','D1'], -- 신청 준비 정책의 기본 알림 (migrations/20261119_application_alarms.sql)
+  preparing_presets     text[] not null default array['D1','M30'], -- 신청 준비 정책의 기본 알림 (migrations/20261119_application_alarms.sql)
   day_alarm_time        time not null default '09:00',
   deadline_enabled      boolean not null default true,
   new_match_enabled     boolean not null default true,

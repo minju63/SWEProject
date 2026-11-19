@@ -2,7 +2,7 @@ import { useMemo, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { fetchCalendar } from '../../api/calendar.js';
-import { removeBookmark } from '../../api/me.js';
+import { addBookmark, removeBookmark } from '../../api/me.js';
 import { setDocumentChecked } from '../../api/calendar.js';
 import { fetchCategories } from '../../api/policies.js';
 import { useAuthStore } from '../../store/authStore';
@@ -64,6 +64,36 @@ export default function CalendarPage() {
     }
     return map;
   }, [calendar.data]);
+
+  // 찜하지 않은 신청 준비 정책의 하트를 눌러 찜한다: 누르는 즉시 하트를 바꾸고 서버 결과로 다시 맞춘다
+  const bookmark = useMutation({
+    mutationFn: (item) => addBookmark(item.policy_id),
+    onMutate: async (item) => {
+      await queryClient.cancelQueries({ queryKey: ['calendar'] });
+      const before = queryClient.getQueryData(['calendar']);
+      queryClient.setQueryData(['calendar'], (cur) =>
+        cur
+          ? {
+              ...cur,
+              items: cur.items.map((i) =>
+                i.policy_id === item.policy_id ? { ...i, bookmarked: true } : i
+              ),
+            }
+          : cur
+      );
+      showToast('찜했어요!', { duration: 1000 });
+      return { before };
+    },
+    onError: (e, _item, ctx) => {
+      if (ctx?.before) queryClient.setQueryData(['calendar'], ctx.before);
+      showToast(e.message);
+    },
+    onSettled: () => {
+      queryClient.invalidateQueries({ queryKey: ['calendar'] });
+      queryClient.invalidateQueries({ queryKey: ['home'] });
+      queryClient.invalidateQueries({ queryKey: ['bookmarks'] });
+    },
+  });
 
   const unbookmark = useMutation({
     mutationFn: (item) => removeBookmark(item.policy_id),
@@ -159,6 +189,7 @@ export default function CalendarPage() {
       state={state}
       eventTypes={eventTypes}
       onUnbookmark={(i) => unbookmark.mutate(i)}
+      onBookmark={(i) => bookmark.mutate(i)}
       onEditAlarm={(i) => setAlarmFor(i.policy_id)}
       onToggleDoc={(item, doc) => toggleDoc.mutate({ item, doc })}
     />

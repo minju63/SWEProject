@@ -11,6 +11,7 @@ export default function CalendarCard({
   state, // 'active' | 'always' | 'closed'
   eventTypes = [], // 날짜를 골랐을 때 그날 일정 종류
   onUnbookmark,
+  onBookmark,
   onEditAlarm,
   onToggleDoc,
 }) {
@@ -74,16 +75,16 @@ export default function CalendarCard({
             )}
           </span>
         </Link>
-        {item.bookmarked && (
-          <button
-            type="button"
-            className="heart heart-on ccard-heart"
-            aria-label="찜 해제"
-            onClick={() => onUnbookmark(item)}
-          >
-            <HeartIcon />
-          </button>
-        )}
+        {/* 찜하지 않은 신청 준비 정책에도 하트를 남겨 두어 바로 찜할 수 있게 한다 */}
+        <button
+          type="button"
+          className={`ccard-heart${item.bookmarked ? ' on' : ''}`}
+          aria-label={item.bookmarked ? '찜 해제' : '찜하기'}
+          aria-pressed={item.bookmarked}
+          onClick={() => (item.bookmarked ? onUnbookmark(item) : onBookmark?.(item))}
+        >
+          <HeartIcon />
+        </button>
       </div>
       {documents.length > 0 && (
         <div className="ccard-checklist">
