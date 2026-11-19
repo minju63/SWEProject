@@ -97,6 +97,8 @@ function SourceLine({ source, kind = '공고' }) {
 function PolicyCardInChat({ card, source, categoryName, onDetail, onBookmark }) {
   const badge = ELIGIBILITY_LABEL[card.eligibility];
   const urgent = card.d_day != null && card.d_day <= 7;
+  // 충족(✓)·불충족(✕)으로 판단된 조건만 보여 준다. '확인 필요'뿐이면 대신 정책 설명을 보여 준다
+  const judged = (card.conditions ?? []).filter((c) => c.mark !== 'check');
   return (
     <div className="chat-card">
       <div className="chat-card-top">
@@ -110,14 +112,16 @@ function PolicyCardInChat({ card, source, categoryName, onDetail, onBookmark }) 
         </span>
       </div>
       <strong>{card.title}</strong>
-      {card.conditions?.length > 0 && (
+      {judged.length > 0 ? (
         <ul className="chat-conds">
-          {card.conditions.map((c, i) => (
+          {judged.map((c, i) => (
             <li key={i} className={`cond-${c.mark}`}>
               {MARK[c.mark]} {c.label}
             </li>
           ))}
         </ul>
+      ) : (
+        card.support_content && <p className="chat-desc">{card.support_content}</p>
       )}
       <div className="chat-card-actions">
         <button
@@ -457,8 +461,8 @@ function ChatSheet() {
             <p>
               <i
                 className={`dot ${hasProfile ? 'dot-on' : 'dot-limited'}${busy ? ' dot-busy' : ''}`}
-              />{' '}
-              AI 혜택 비서 · {hasProfile ? '내 정보 반영 중' : '내 정보 없이 답변 중'}
+              />
+              <span>AI 혜택 비서 · {hasProfile ? '내 정보 반영 중' : '내 정보 없이 답변 중'}</span>
             </p>
           </div>
           {messages.length > 0 && (
