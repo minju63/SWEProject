@@ -203,7 +203,7 @@ export default function HomeScreen() {
   const real = policyCatalog.filter((p) => p.fromDatabase && p.itemType !== 'EVENT')
   const matched = real.filter(
     (p) =>
-      evaluateEligibility(p, conditions, profile.region).overall !== '신청 불가' &&
+      evaluateEligibility(p, conditions, profile.region).overall !== '대상 아님' &&
       p.recruitmentStatus !== '마감됨'
   )
   const visible = all ? real : matched
@@ -405,7 +405,7 @@ export default function HomeScreen() {
                         days: Number(b.deadline.slice(2)) || 0,
                         status: {
                           '신청 가능': 'ok',
-                          '신청 불가': 'no',
+                          '대상 아님': 'no',
                           '확인 필요': 'check',
                         }[evaluateEligibility(b, conditions, profile.region).overall],
                         liked: likes.includes(b.id),

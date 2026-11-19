@@ -12,15 +12,15 @@ export function evaluateEligibility(policy, user, userRegion) {
         ? '확인 필요'
         : age >= Number(range[1]) && age <= Number(range[2])
           ? '신청 가능'
-          : '신청 불가',
+          : '대상 아님',
     })
   }
   const district = ['사하구', '부산진구'].includes(policy.region) ? policy.region : ''
   let residence
   if (policy.region === '전국') residence = '신청 가능'
   else if (!userRegion) residence = '확인 필요'
-  else if (district) residence = userRegion.endsWith(district) ? '신청 가능' : '신청 불가'
-  else residence = userRegion.startsWith('부산') ? '신청 가능' : '신청 불가'
+  else if (district) residence = userRegion.endsWith(district) ? '신청 가능' : '대상 아님'
+  else residence = userRegion.startsWith('부산') ? '신청 가능' : '대상 아님'
   items.push({ label: '거주지역', status: residence })
   if (req.statuses) {
     items.push({
@@ -29,7 +29,7 @@ export function evaluateEligibility(policy, user, userRegion) {
         ? '확인 필요'
         : req.statuses.includes(user.currentStatus)
           ? '신청 가능'
-          : '신청 불가',
+          : '대상 아님',
     })
   }
   if (req.noHome) {
@@ -39,7 +39,7 @@ export function evaluateEligibility(policy, user, userRegion) {
         ? '확인 필요'
         : user.homeOwnership === '무주택'
           ? '신청 가능'
-          : '신청 불가',
+          : '대상 아님',
     })
   }
   if (req.independent) {
@@ -49,7 +49,7 @@ export function evaluateEligibility(policy, user, userRegion) {
         ? '확인 필요'
         : user.independentLiving === '예'
           ? '신청 가능'
-          : '신청 불가',
+          : '대상 아님',
     })
   }
   if (req.marital) {
@@ -59,7 +59,7 @@ export function evaluateEligibility(policy, user, userRegion) {
         ? '확인 필요'
         : user.maritalStatus === req.marital
           ? '신청 가능'
-          : '신청 불가',
+          : '대상 아님',
     })
   }
   if (req.marriageDuration) items.push({ label: '혼인 기간', status: '확인 필요' })
@@ -67,8 +67,8 @@ export function evaluateEligibility(policy, user, userRegion) {
   if (policy.incomeCondition && !policy.incomeCondition.includes('제한 없음')) {
     items.push({ label: '소득 조건', status: '확인 필요' })
   }
-  const overall = items.some((item) => item.status === '신청 불가')
-    ? '신청 불가'
+  const overall = items.some((item) => item.status === '대상 아님')
+    ? '대상 아님'
     : items.some((item) => item.status === '확인 필요')
       ? '확인 필요'
       : '신청 가능'
@@ -76,13 +76,13 @@ export function evaluateEligibility(policy, user, userRegion) {
 }
 export const verdictStyle = {
   '신청 가능': 'bg-[#e7f6ec] text-[#1f8f4e]',
-  '신청 불가': 'bg-[#fdeaea] text-[#d33a3a]',
+  '대상 아님': 'bg-[#fdeaea] text-[#d33a3a]',
   '확인 필요': 'bg-[#fff4d9] text-[#b7791f]',
   해당없음: 'bg-[#f3f4f6] text-black/45',
 }
 export const verdictTextStyle = {
   '신청 가능': 'text-[#1f8f4e]',
-  '신청 불가': 'text-[#d33a3a]',
+  '대상 아님': 'text-[#d33a3a]',
   '확인 필요': 'text-[#b7791f]',
   해당없음: 'text-black/45',
 }
@@ -96,13 +96,13 @@ const statusRank = (policy) =>
         : 3
 const dday = (policy) =>
   policy.deadline.startsWith('D-') ? Number(policy.deadline.slice(2)) : 9999
-// 추천순: 마감 → 신청 불가 → (관심분야 일치 × 신청 가능/확인 필요) 그룹, 그룹 내 모집 상태 → 마감일 → 가나다
+// 추천순: 마감 → 대상 아님 → (관심분야 일치 × 신청 가능/확인 필요) 그룹, 그룹 내 모집 상태 → 마감일 → 가나다
 export function recommendedSort(policies, user, userRegion) {
   const interests = user.interests ?? []
   const rankOf = (policy) => {
     if (policy.recruitmentStatus === '마감됨') return 6
     const { overall } = evaluateEligibility(policy, user, userRegion)
-    if (overall === '신청 불가') return 5
+    if (overall === '대상 아님') return 5
     const matched = interests.length === 0 || interests.includes(policy.category)
     return (matched ? 0 : 2) + (overall === '신청 가능' ? 1 : 2)
   }

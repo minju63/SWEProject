@@ -12,11 +12,11 @@ import { BackIcon, HeartIcon } from '../../components/icons.jsx';
 import { displayConditions } from './eligibilityDisplay.js';
 import './PolicyDetailPage.css';
 
-const verdicts = { ELIGIBLE: '신청 가능', CHECK: '확인 필요', INELIGIBLE: '신청 불가' };
+const verdicts = { ELIGIBLE: '신청 가능', CHECK: '확인 필요', INELIGIBLE: '대상 아님' };
 const eligibilityTags = {
   ELIGIBLE: { text: '✓ 신청 가능', tone: 'eligible' },
-  CHECK: { text: '확인 필요', tone: 'check' },
-  INELIGIBLE: { text: '신청 불가', tone: 'ineligible' },
+  CHECK: { text: '! 확인 필요', tone: 'check' },
+  INELIGIBLE: { text: '× 대상 아님', tone: 'ineligible' },
 };
 const categoryTagTone = {
   '주거·생활': 'blue', '취업·진로': 'pink', '장학·금융': 'purple',

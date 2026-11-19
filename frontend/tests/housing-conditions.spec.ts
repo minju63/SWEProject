@@ -34,7 +34,7 @@ test('HF age 39 boundary and ownership compare individually but cannot assert fu
   expect(pass.items[1].status).toBe('신청 가능');
   expect(pass.overall).toBe('확인 필요');
   const fail = databaseEligibility(p, {...emptyConditions, age:'40', homeOwnership:'유주택'}, '');
-  expect(fail.items.slice(0,2).map(i=>i.status)).toEqual(['신청 불가','신청 불가']);
+  expect(fail.items.slice(0,2).map(i=>i.status)).toEqual(['대상 아님','대상 아님']);
   expect(fail.overall).toBe('확인 필요');
   expect(p.target).toContain('39세');
 });
@@ -46,7 +46,7 @@ test('monthly rent uses birth year, not current age; missing birthday cannot be 
     expect(result.items.slice(0,3).every(i=>i.status==='신청 가능')).toBeTruthy();
     expect(result.overall).toBe('확인 필요');
   }
-  for (const year of [1990,2008]) expect(databaseEligibility(p,{...emptyConditions,birthDate:`${year}-01-01`},'').items[0].status).toBe('신청 불가');
+  for (const year of [1990,2008]) expect(databaseEligibility(p,{...emptyConditions,birthDate:`${year}-01-01`},'').items[0].status).toBe('대상 아님');
   expect(databaseEligibility(p,{...emptyConditions,age:'25'},'').items[0].status).toBe('확인 필요');
 });
 
@@ -54,10 +54,10 @@ test('student alternatives and military extensions are not rejected by a flatten
   const rental = policy('85a99896-0dbf-518d-a3ef-70349e10d46a');
   const student = databaseEligibility(rental,{...emptyConditions,age:'40',currentStatus:'대학생',homeOwnership:'무주택',maritalStatus:'미혼'},'');
   expect(student.items.slice(0,2).every(i=>i.status==='신청 가능')).toBeTruthy();
-  expect(student.items.some(i=>i.status==='신청 불가')).toBeFalsy();
+  expect(student.items.some(i=>i.status==='대상 아님')).toBeFalsy();
   const loan = policy('ff17d688-dc06-5180-8af1-304441214d0f');
   expect(databaseEligibility(loan,{...emptyConditions,age:'37'},'').overall).toBe('확인 필요');
-  expect(databaseEligibility(loan,{...emptyConditions,age:'37'},'').items.some(i=>i.status==='신청 불가')).toBeFalsy();
+  expect(databaseEligibility(loan,{...emptyConditions,age:'37'},'').items.some(i=>i.status==='대상 아님')).toBeFalsy();
 });
 
 test('My application receives source checks and keeps the whole-eligibility warning even with an individual mismatch', () => {
@@ -80,7 +80,7 @@ test('canonical required AND/OR and exclusions drive the same browser verdict as
     exclusions:[{field:'home_ownership',op:'eq',value:'유주택'}],
   }};
   expect(databaseEligibility(p,{...emptyConditions,age:'25',homeOwnership:'무주택'},'부산광역시 사하구').overall).toBe('신청 가능');
-  expect(databaseEligibility(p,{...emptyConditions,age:'25',homeOwnership:'유주택'},'부산광역시 사하구').overall).toBe('신청 불가');
+  expect(databaseEligibility(p,{...emptyConditions,age:'25',homeOwnership:'유주택'},'부산광역시 사하구').overall).toBe('대상 아님');
   expect(databaseEligibility(p,{...emptyConditions,age:'25',homeOwnership:'무주택'},'').overall).toBe('확인 필요');
   expect(databaseEligibility({...p,eligibilityVerified:false},{...emptyConditions,age:'25',homeOwnership:'무주택'},'부산광역시 사하구').overall).toBe('확인 필요');
   const raw={...p,eligibilityRules:{...p.eligibilityRules,required:[{operator:'RAW',field:'age',op:'gte',value:19,text:'자동 판정 금지'}]}};

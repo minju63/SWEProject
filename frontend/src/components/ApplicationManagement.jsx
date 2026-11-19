@@ -41,7 +41,7 @@ export function ApplicationCard({ application: a, expanded, onToggle, onUpdate, 
   const total = a.requiredDocuments.length
   const preparing = a.stage === '신청 준비'
   const ineligible = a.eligibilityOverall
-    ? a.eligibilityOverall === '신청 불가'
+    ? a.eligibilityOverall === '대상 아님'
     : a.eligibilityChecks.some((check) => check.status === 'unmatched')
   return (
     <article className="my-application">

@@ -54,7 +54,6 @@ const wideRegions = ['전국', '부산시', '부산 전체']
 const isAllRegions = (selected) =>
   selected.length === 0 || regions.every((region) => selected.includes(region))
 const statuses = ['모집 중', '7일 내 마감', '상시', '모집 예정', '마감']
-const popularTerms = ['청년 월세 지원', '국가장학금', '청년 적금']
 function toggleItem(items, item) {
   return items.includes(item) ? items.filter((value) => value !== item) : [...items, item]
 }
@@ -113,9 +112,9 @@ function filterPolicies(filters, query, conditions, profileConditions, profileRe
       ? (policy.region === '전국' ||
           (['부산시', '부산 전체'].includes(policy.region) && profileRegion.startsWith('부산')) ||
           profileRegion.endsWith(policy.region)) &&
-        evaluateEligibility(policy, profileConditions, profileRegion).overall !== '신청 불가'
+        evaluateEligibility(policy, profileConditions, profileRegion).overall !== '대상 아님'
       : evaluateEligibility(policy, customOf(conditions, profileConditions), '').overall !==
-        '신청 불가'
+        '대상 아님'
     return (
       queryMatches &&
       categoryMatches &&
@@ -424,20 +423,6 @@ export default function SearchScreen() {
               </section>
             )}
 
-            <section className="mt-6">
-              <h2 className="text-[15px] font-black text-black/65">지금 많이 찾는 검색어</h2>
-              <div className="mt-3 flex flex-wrap gap-2">
-                {popularTerms.map((term) => (
-                  <button
-                    key={term}
-                    onClick={() => submitSearch(term)}
-                    className="rounded-full bg-[#EAF2FE] px-3.5 py-2.5 text-[13px] font-extrabold text-[#2F7BF5]"
-                  >
-                    {term}
-                  </button>
-                ))}
-              </div>
-            </section>
           </div>
         </main>
         <BottomNav />

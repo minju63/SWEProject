@@ -32,7 +32,6 @@ export default function HomePage() {
   const showToast = useToastStore((s) => s.show);
   const [scope, setScope] = useState('mine'); // mine | all (FR-H08)
   const [selected, setSelected] = useState(null); // 분야 이름 (FR-H09)
-  const [query, setQuery] = useState('');
 
   const home = useQuery({ queryKey: ['home'], queryFn: fetchHome });
 
@@ -93,12 +92,6 @@ export default function HomePage() {
     navigate(
       `/search?category=${encodeURIComponent(cat.category_name)}${scope === 'mine' ? '&mine=true' : ''}`
     );
-  };
-
-  const submitSearch = (e) => {
-    e.preventDefault();
-    const q = query.trim();
-    if (q) navigate(`/search?q=${encodeURIComponent(q)}`);
   };
 
   return (
@@ -182,16 +175,10 @@ export default function HomePage() {
         </svg>
       </div>
 
-      {/* 검색창: 보이기만 한다. 포커스 확장(FR-H13)은 검색 담당과 합의 후 구현 */}
-      <form className="home-search" onSubmit={submitSearch} role="search">
+      <button type="button" className="home-search" onClick={() => navigate('/search/input')}>
         <SearchIcon />
-        <input
-          value={query}
-          onChange={(e) => setQuery(e.target.value)}
-          placeholder="정책명·키워드 검색 (예: 월세, 면접정장)"
-          aria-label="정책 검색"
-        />
-      </form>
+        <span>정책명 또는 키워드를 입력해주세요</span>
+      </button>
 
       <StateMessage isLoading={home.isLoading} error={home.error} />
 

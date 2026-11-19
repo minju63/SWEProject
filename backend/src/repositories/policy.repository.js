@@ -33,10 +33,10 @@ async function allRows(table, columns, configure = (query) => query) {
 }
 
 export async function findPolicies({ categoryId, categoryIds = [], details = [], categoryDetails = [], regions = [], statuses = [],
-  dateStart, dateEnd, includeAlways, excludeClosed = false, keyword, sort, page, size, assess, onlyEligible,
+  dateStart, dateEnd, includeAlways, eligibleOnly = false, excludeClosed = false, keyword, sort, page, size, assess, onlyEligible,
   profileRegionCode, interests = [], includeEligibility }) {
   const advanced = sort === 'recommended' || Boolean(keyword) || categoryIds.length || details.length || categoryDetails.length ||
-    regions.length || statuses.length || dateStart || dateEnd || onlyEligible || excludeClosed;
+    regions.length || statuses.length || dateStart || dateEnd || onlyEligible || eligibleOnly || excludeClosed;
   if (advanced) {
     const ids = categoryIds.length ? categoryIds : categoryId ? [categoryId] : [];
     const items = await allRows('policy',
@@ -107,6 +107,7 @@ export async function findPolicies({ categoryId, categoryIds = [], details = [],
         if (!selectedDetails.some((value) => itemDetails.includes(value))) return false;
       }
       if (onlyEligible && assess(item).result === 'INELIGIBLE') return false;
+      if (eligibleOnly && assess(item).result !== 'ELIGIBLE') return false;
       return true;
     }).map((item) => ({ ...item, ...statusById.get(item.policy_id),
       category_name: categoryById.get(item.category_id) ?? null,
@@ -287,19 +288,6 @@ export async function findSearchFilters() {
     })),
     regions,
   };
-}
-
-export async function findPopularSearchKeywords() {
-  const { data, error } = await supabase.from('popular_search_keyword')
-    .select('keyword').order('search_count', { ascending: false })
-    .order('last_searched_at', { ascending: false }).limit(10);
-  if (error) throw error;
-  return data.map((row) => row.keyword);
-}
-
-export async function incrementPopularSearchKeyword(keyword) {
-  const { error } = await supabase.rpc('record_popular_search_keyword', { p_keyword: keyword });
-  if (error) throw error;
 }
 
 let suggestionIndex;

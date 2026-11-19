@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { useLocation, useNavigate, useSearchParams } from 'react-router-dom';
-import { fetchPolicies, fetchPopularSearchKeywords, fetchSearchFilters } from '../../api/policies';
+import { fetchPolicies, fetchSearchFilters } from '../../api/policies';
 import { addBookmark, fetchBookmarks, fetchProfile, removeBookmark } from '../../api/me';
 import { UNBOOKMARK_TOAST, useToastStore } from '../../store/toastStore';
 import { useAuthStore } from '../../store/authStore';
@@ -15,7 +15,6 @@ import {
 } from '../../components/icons.jsx';
 import SearchFilters from './SearchFilters.jsx';
 import { emptyFilters } from './searchFilterData';
-import { recordConfirmedSearch } from './recordConfirmedSearch';
 
 const categoryItems = [
   { label: '주거·생활', Icon: HomeIcon, color: 'blue' },
@@ -33,8 +32,8 @@ const categoryTagTone = {
 };
 const eligibilityTags = {
   ELIGIBLE: { text: '✓ 신청 가능', tone: 'eligible' },
-  CHECK: { text: '확인 필요', tone: 'check' },
-  INELIGIBLE: { text: '신청 불가', tone: 'ineligible' },
+  CHECK: { text: '! 확인 필요', tone: 'check' },
+  INELIGIBLE: { text: '× 대상 아님', tone: 'ineligible' },
 };
 
 function readRecentTerms() {
@@ -110,6 +109,7 @@ function restoreSearchView(saved, searchParams) {
     applied,
     sort: ['recommended', 'deadline', 'latest'].includes(saved?.sort) ? saved.sort : 'recommended',
     page: Number.isSafeInteger(saved?.page) && saved.page > 0 ? saved.page : 1,
+    eligibleOnly: saved?.eligibleOnly === true,
     excludeClosed: saved?.excludeClosed === true,
   };
 }
@@ -126,6 +126,7 @@ export default function SearchPage() {
   const [draft, setDraft] = useState(emptyFilters);
   const [sort, setSort] = useState(initialView.sort);
   const [page, setPage] = useState(initialView.page);
+  const [eligibleOnly, setEligibleOnly] = useState(initialView.eligibleOnly);
   const [excludeClosed, setExcludeClosed] = useState(initialView.excludeClosed);
   const [bookmarkError, setBookmarkError] = useState('');
   const user = useAuthStore((state) => state.user);
@@ -139,8 +140,6 @@ export default function SearchPage() {
   const previewingInput = hasSearch && !routeQuery.trim() && Boolean(draftInput?.trim());
   const searchFilters = useQuery({ queryKey: ['search-filters'], queryFn: fetchSearchFilters,
     enabled: Boolean(user) });
-  const popularSearchKeywords = useQuery({ queryKey: ['popular-search-keywords'],
-    queryFn: fetchPopularSearchKeywords, enabled: !hasSearch && Boolean(user) });
   const filterCategories = searchFilters.data?.categories ?? [];
   const filterRegions = searchFilters.data?.regions ?? [];
   const subcategories = Object.fromEntries(filterCategories.map((category) => [category.display_name,
@@ -172,6 +171,7 @@ export default function SearchPage() {
     dateStart: filters.dateStart || undefined,
     dateEnd: filters.dateEnd || undefined,
     includeAlways: filters.includeAlways || undefined,
+    eligibleOnly: eligibleOnly || undefined,
     excludeClosed: excludeClosed || undefined,
     myConditionsOnly: filters.myConditionsOnly || undefined,
     conditions: (!filters.myConditionsOnly || !profile.data) && Object.values(filters.conditions).some((value) => value !== '' && value != null && (!Array.isArray(value) || value.length))
@@ -243,21 +243,21 @@ export default function SearchPage() {
       setApplied(reset.applied);
       setSort(reset.sort);
       setPage(reset.page);
+      setEligibleOnly(reset.eligibleOnly);
       setExcludeClosed(reset.excludeClosed);
       navigate(`${location.pathname}${location.search}`, { replace: true,
         state: { ...location.state, searchView: { userId: user.id, ...reset } }, preventScrollReset: true });
       return;
     }
-    const view = { userId: user.id, applied, sort, page, excludeClosed };
+    const view = { userId: user.id, applied, sort, page, eligibleOnly, excludeClosed };
     if (JSON.stringify(previous) !== JSON.stringify(view))
       navigate(`${location.pathname}${location.search}`, { replace: true,
         state: { ...location.state, searchView: view }, preventScrollReset: true });
-  }, [applied, excludeClosed, hasSearch, location.pathname, location.search, location.state, navigate, page, searchParams, sort, user?.id]);
+  }, [applied, eligibleOnly, excludeClosed, hasSearch, location.pathname, location.search, location.state, navigate, page, searchParams, sort, user?.id]);
 
   function submitSearch(term = input) {
     const query = term.trim();
     if (query) setRecentTerms((current) => [query, ...current.filter((item) => item !== query)].slice(0, 10));
-    recordConfirmedSearch(query, user, queryClient);
     setDraftInput(null);
     setPage(1);
     setSearchParams(query ? { results: '1', q: query } : { results: '1' });
@@ -265,7 +265,7 @@ export default function SearchPage() {
 
   function openSearchInput(nextTerm = input) {
     navigate('/search/input', { state: { fromSearch: true, term: nextTerm,
-      searchView: hasSearch ? { userId: user?.id, applied, sort, page, excludeClosed } : null } });
+      searchView: hasSearch ? { userId: user?.id, applied, sort, page, eligibleOnly, excludeClosed } : null } });
   }
 
   function browseCategory(name) {
@@ -358,23 +358,18 @@ export default function SearchPage() {
                 <div className="search-recent-list">
                   {recentTerms.length === 0 && <p className="search-state">없음</p>}
                   {recentTerms.slice(0, 3).map((term, index) => (
-                    <button type="button" key={term} onClick={() => submitSearch(term)}>
-                      <ClockIcon />
-                      <span className="search-recent-term">{term}</span>
-                      <span className="search-recent-date">{index === 0 ? '오늘' : index === 1 ? '어제' : '09.28'}</span>
-                    </button>
+                    <div className="search-recent-row" key={term}>
+                      <button type="button" className="search-recent-open" onClick={() => submitSearch(term)}>
+                        <ClockIcon />
+                        <span className="search-recent-term">{term}</span>
+                        <span className="search-recent-date">{index === 0 ? '오늘' : index === 1 ? '어제' : '09.28'}</span>
+                      </button>
+                      <button type="button" className="search-recent-delete" aria-label={`최근 검색어 ${term} 삭제`}
+                        onClick={() => setRecentTerms((current) => current.filter((item) => item !== term))}>×</button>
+                    </div>
                   ))}
                 </div>
               </section>
-
-            <section className="search-landing-section">
-              <h2>지금 많이 찾는 검색어</h2>
-              <div className="search-popular-terms">
-                {(popularSearchKeywords.data ?? []).map((term) => (
-                  <button type="button" key={term} onClick={() => submitSearch(term)}>{term}</button>
-                ))}
-              </div>
-            </section>
           </div>
         </div>
       ) : (
@@ -382,8 +377,6 @@ export default function SearchPage() {
           <div className="search-filter-strip">
             <button type="button" className={`search-filter-button${filterCount ? ' is-active' : ''}`}
               onClick={openFilters}>필터 {filterCount}</button>
-            <button type="button" className={`search-filter-button search-closed-button${excludeClosed ? ' is-active' : ''}`}
-              aria-pressed={excludeClosed} onClick={() => { setExcludeClosed((current) => !current); setPage(1); }}>마감 제외</button>
             {chips.slice(0, 3).map((chip) => <button type="button" key={`${chip.type}-${chip.value}`}
               className="search-applied-chip" onClick={() => removeChip(chip)}>{chip.value} ×</button>)}
             {chips.length > 3 && <button type="button" className="search-more-chip" onClick={openFilters}>+{chips.length - 3}</button>}
@@ -395,6 +388,10 @@ export default function SearchPage() {
           <section className="search-result-content">
             <div className="search-result-heading">
               <h2>검색 결과 <span>{unmatchedCategory ? 0 : (policies.data?.totalCount ?? 0)}건</span></h2>
+              <button type="button" className={`search-result-toggle${eligibleOnly ? ' is-active' : ''}`}
+                aria-pressed={eligibleOnly} onClick={() => { setEligibleOnly((current) => !current); setPage(1); }}>신청 가능</button>
+              <button type="button" className={`search-result-toggle${excludeClosed ? ' is-active' : ''}`}
+                aria-pressed={excludeClosed} onClick={() => { setExcludeClosed((current) => !current); setPage(1); }}>마감 제외</button>
               <SelectMenu label="정렬 순서" value={sort} className="search-sort-menu" menuMinWidth={148}
                 options={[{ value: 'recommended', label: '추천순' }, { value: 'deadline', label: '마감 임박순' }, { value: 'latest', label: '최신순' }]}
                 onChange={(next) => { setSort(next); setPage(1); }} />

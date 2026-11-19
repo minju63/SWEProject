@@ -55,7 +55,7 @@ test('검색·상세의 정책 라우트는 로그인 전 모두 401을 반환�
   });
   try {
     const port = server.address().port;
-    for (const path of ['/categories', '/search-filters', '/popular-search-keywords', '/policies', '/policies/suggestions?q=일자리',
+    for (const path of ['/categories', '/search-filters', '/policies', '/policies/suggestions?q=일자리',
       '/policies/00000000-0000-0000-0000-000000000000',
       '/policies/00000000-0000-0000-0000-000000000000/explanation',
       '/policies/00000000-0000-0000-0000-000000000000/similar',

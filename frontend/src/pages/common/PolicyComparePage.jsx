@@ -9,7 +9,7 @@ import StateMessage from '../../components/StateMessage.jsx';
 import { useAuthStore } from '../../store/authStore';
 import './PolicyComparePage.css';
 
-const verdictText = { ELIGIBLE: '✓ 신청 가능', CHECK: '! 확인 필요', INELIGIBLE: '× 신청 불가' };
+const verdictText = { ELIGIBLE: '✓ 신청 가능', CHECK: '! 확인 필요', INELIGIBLE: '× 대상 아님' };
 
 function asArray(value) {
   if (Array.isArray(value)) return value;
