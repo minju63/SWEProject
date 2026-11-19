@@ -96,9 +96,10 @@ export function sortRecommended(items, profile, categories) {
     (a, b) =>
       tier(a) - tier(b) ||
       RESULT_ORDER[a.eligibility.result] - RESULT_ORDER[b.eligibility.result] ||
-      (b.fit ?? 0) - (a.fit ?? 0) || // 내 조건(나이·거주지·상태 등)에 더 많이 맞는 정책 먼저
-      statusRank(a) - statusRank(b) ||
-      endKey(a).localeCompare(endKey(b)) ||
+      statusRank(a) - statusRank(b) || // 모집 중이 상시보다 먼저
+      endKey(a).localeCompare(endKey(b)) || // 마감이 가까운 순 (상시는 맨 뒤)
+      (b.fit ?? 0) - (a.fit ?? 0) || // 같은 때에는 내 조건(나이·거주지·상태 등)에 더 많이 맞는 정책 먼저
+
       a.title.localeCompare(b.title, 'ko')
   );
 }

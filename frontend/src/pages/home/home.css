@@ -352,6 +352,8 @@
 }
 .heart-sm {
   position: relative;
+  right: auto; /* .heart 의 absolute 위치값이 남아 하트가 위로 밀리던 문제 */
+  bottom: auto;
   width: 28px;
   height: 28px;
   font-size: 15px;

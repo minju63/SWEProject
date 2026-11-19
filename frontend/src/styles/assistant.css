@@ -301,9 +301,14 @@
 }
 .chat-card-actions button {
   flex: 1;
-  padding: 12px;
+  display: flex; /* 하트와 글씨를 한 줄 가운데에 둔다 (캘린더 CSS 없이도 같게) */
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  padding: 0 10px;
   border: 0;
-  border-radius: 12px;
+  border-radius: 10px;
+  font-size: 13px;
   font-weight: 700;
 }
 .btn-heart {
@@ -483,9 +488,17 @@
   justify-content: center;
 }
 .sheet-input input,
-.chat-card-actions button,
 .chat-suggest button {
   min-height: 44px;
+}
+.chat-card-actions button {
+  min-height: 36px; /* 카드 안 버튼은 작게 */
+  position: relative;
+}
+.chat-card-actions button::after {
+  content: '';
+  position: absolute;
+  inset: -4px 0; /* 눈에 보이는 크기는 작게, 누르는 영역은 44px 이상 (NFR-011) */
 }
 
 /* ---------- AI가 설명한 용어 (사전 밖, B안) ---------- */
