@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { useQuery, useQueryClient } from '@tanstack/react-query';
 import { fetchRecommend, sendChat } from '../api/assistant';
 import { fetchCategories } from '../api/policies';
-import { fetchProfile, addBookmark, removeBookmark } from '../api/me';
+import { fetchProfile, fetchBookmarks, addBookmark, removeBookmark } from '../api/me';
 import { useAuthStore } from '../store/authStore';
 import { useAssistantStore, loadHistory, saveHistory } from '../store/assistantStore';
 import { useToastStore } from '../store/toastStore';
@@ -275,6 +275,16 @@ function ChatSheet() {
   const showToast = useToastStore((s) => s.show);
   const navigate = useNavigate();
   const queryClient = useQueryClient();
+  // 찜 상태는 서버의 최신 찜 목록으로 판단한다. 대화에 남아 있던 카드 값은 오래됐을 수 있다
+  const bookmarks = useQuery({
+    queryKey: ['bookmarks'],
+    queryFn: fetchBookmarks,
+    enabled: Boolean(user),
+    staleTime: 0,
+  });
+  const bookmarkedIds = bookmarks.data
+    ? new Set(bookmarks.data.map((b) => b.policy?.policy_id))
+    : null;
   const isRecommend = request?.mode === 'recommend';
   // { role: 'user'|'bot', text?, answer? }. 추천으로 열면 새 대화, 그 밖에는 최근 대화를 이어간다 (FR-A19)
   const [messages, setMessages] = useState(() => (isRecommend ? [] : loadHistory()));
@@ -405,14 +415,23 @@ function ChatSheet() {
     if (!user) return showToast('로그인하면 찜할 수 있어요');
     const next = !card.bookmarked;
     markCards(card.policy_id, next);
+    queryClient.setQueryData(['bookmarks'], (cur) =>
+      Array.isArray(cur)
+        ? next
+          ? [...cur, { policy: { policy_id: card.policy_id } }]
+          : cur.filter((b) => b.policy?.policy_id !== card.policy_id)
+        : cur
+    );
     if (next) showToast('찜했어요! 캘린더에 마감일이 추가됐어요');
     try {
       if (next) await addBookmark(card.policy_id, 'CHAT');
       else await removeBookmark(card.policy_id);
       queryClient.invalidateQueries({ queryKey: ['home'] });
       queryClient.invalidateQueries({ queryKey: ['calendar'] });
+      queryClient.invalidateQueries({ queryKey: ['bookmarks'] });
     } catch (e) {
       markCards(card.policy_id, !next);
+      queryClient.invalidateQueries({ queryKey: ['bookmarks'] });
       showToast(e.message);
     }
   };
@@ -543,7 +562,11 @@ function ChatSheet() {
                     {m.answer.cards?.map((c, idx) => (
                       <PolicyCardInChat
                         key={c.policy_id}
-                        card={{ ...c, rank: idx + 1 }}
+                        card={{
+                          ...c,
+                          rank: idx + 1,
+                          bookmarked: bookmarkedIds ? bookmarkedIds.has(c.policy_id) : c.bookmarked,
+                        }}
                         source={m.answer.sources?.find((x) => x.policy_id === c.policy_id)}
                         categoryName={categoryNames.get(c.category_id)}
                         onDetail={(id) => goto(`/policies/${id}`)}
