@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useRef, useState, useCallback } from 'react'
 import { useAuth } from '../lib/auth'
 import { personalApi } from '../lib/api'
 import { supabase } from '../lib/auth'
@@ -11,6 +11,17 @@ import {
 import { mapHousingPolicy } from '../data/housing'
 import { emptyConditions } from '../data/conditions'
 import { busanRegions, regionCode } from '../data/regions'
+const emptyNotificationSettings = {
+  enabled: false,
+  recommendations: false,
+  policyAlerts: false,
+  eventAlerts: false,
+  facilityAlerts: false,
+  deadlines: false,
+  applicationUpdates: false,
+  deadlineTiming: '3일 전',
+  quietHours: false,
+}
 const defaults = {
   name: '회원',
   age: '',
@@ -63,17 +74,21 @@ export function useWorkspaceState() {
   const [loadedOwner, setLoadedOwner] = useState()
   // Queued writes must use the last completed read, not the render that queued them.
   const latest = useRef({ applications: [], saved: [], checks: {} })
-  const [notificationSettings, setNotificationSettings] = useState({
-    enabled: false,
-    recommendations: false,
-    policyAlerts: false,
-    eventAlerts: false,
-    facilityAlerts: false,
-    deadlines: false,
-    applicationUpdates: false,
-    deadlineTiming: '3일 전',
-    quietHours: false,
-  })
+  const [notificationSettings, setNotificationSettings] = useState(emptyNotificationSettings)
+  const loadNotificationSettings = useCallback(async () => {
+    const owner = uid.current
+    if (!owner) throw Error('로그인이 필요해요.')
+    const value = await personalApi('/notification-settings')
+    if (uid.current === owner) setNotificationSettings(value)
+    return value
+  }, [])
+  const saveNotificationSettings = useCallback(async (value) => {
+    const owner = uid.current
+    if (!owner) throw Error('로그인이 필요해요.')
+    const saved = await personalApi('/notification-settings', 'PUT', value)
+    if (uid.current === owner) setNotificationSettings(saved)
+    return saved
+  }, [])
   const [policySearch, setSearch] = useState(() =>
     read('youthzip-policy-search', {
       query: '',
@@ -229,6 +244,7 @@ export function useWorkspaceState() {
     setLoadedOwner(owner)
   }
   useEffect(() => {
+    setNotificationSettings(emptyNotificationSettings)
     setSaved([])
     setRecent([])
     setApplications([])
@@ -347,6 +363,8 @@ export function useWorkspaceState() {
     busy,
     dismissMessage: () => setMessage(''),
     setNotificationSettings,
+    loadNotificationSettings,
+    saveNotificationSettings,
     setProfile: (p) => {
       return mutate(async () => {
         await personalApi('/profile', 'PUT', {

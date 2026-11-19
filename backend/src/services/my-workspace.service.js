@@ -1,6 +1,7 @@
 import { randomUUID } from "node:crypto";
 import { supabase } from "../lib/supabase.js";
 import { AppError } from "../utils/response.js";
+import { notificationSettings } from "./notification-settings.js";
 
 // The shared application table requires a registered policy. Keep manual records
 // and extra dates in a private Storage bucket, keyed only by the authenticated
@@ -31,6 +32,9 @@ export async function readPersonal(userId) {
   }
   const raw = JSON.parse(await data.text());
   return {
+    ...(raw?.notificationSettings
+      ? { notificationSettings: notificationSettings(raw.notificationSettings) }
+      : {}),
     manual: Array.isArray(raw?.manual)
       ? raw.manual
           .filter((a) => a && /^manual-[0-9a-f-]{36}$/.test(a.id))
@@ -90,7 +94,7 @@ export function validateDetails(input) {
       throw new AppError(
         400,
         "INVALID_DATE",
-        "발표일 미정 여부를 확인해 주세요.",
+        "발표일 미정 여부를 확인해 주세요."
       );
     out.resultDateUnknown = input.resultDateUnknown;
   }
@@ -123,7 +127,7 @@ export function validateManual(input, existing) {
     ...Object.fromEntries(
       Object.keys(defaults)
         .filter((k) => Object.hasOwn(existing || {}, k))
-        .map((k) => [k, existing[k]]),
+        .map((k) => [k, existing[k]])
     ),
   };
   for (const [key, limit] of [
@@ -174,7 +178,7 @@ export function validateManual(input, existing) {
           typeof d.name !== "string" ||
           !d.name.trim() ||
           d.name.length > 200 ||
-          !["pending", "completed"].includes(d.status),
+          !["pending", "completed"].includes(d.status)
       )
     )
       throw new AppError(400, "INVALID_DOCUMENT", "준비물을 확인해 주세요.");
@@ -190,7 +194,7 @@ export function validateManual(input, existing) {
       !Array.isArray(input.nextActions) ||
       input.nextActions.length > 30 ||
       input.nextActions.some(
-        (x) => typeof x !== "string" || !x.trim() || x.length > 300,
+        (x) => typeof x !== "string" || !x.trim() || x.length > 300
       )
     )
       throw new AppError(400, "INVALID_TASKS", "후속 행동을 확인해 주세요.");

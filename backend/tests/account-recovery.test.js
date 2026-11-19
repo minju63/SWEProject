@@ -68,6 +68,7 @@ async function fixture(t) {
     now: () => time,
   };
   return {
+    args,
     path,
     state,
     auth,
@@ -88,6 +89,32 @@ test('find-ID sends only to registered email and never returns the ID', async (t
   assert.deepEqual(f.mails, [[email, username]]);
   assert.ok(!JSON.stringify(result).includes(username));
   assert.equal((await f.service.findUsername('absent@example.com')).registered, false);
+});
+
+test('authenticated password change fixes the account and rejects other owners and reset grants', async (t) => {
+  const f = await fixture(t),
+    id = '11111111-1111-4111-8111-111111111111';
+  f.auth.readUser = async (owner) =>
+    owner === id ? { id, email, app_metadata: { registration: { username } } } : null;
+  const change = createAccountRecovery({ ...f.args, purpose: 'password-change' });
+  const request = await change.start('someoneelse', 'other@example.com', id);
+  assert.equal(request.email, email);
+  await assert.rejects(
+    change.verify(request.requestId, '123456', '22222222-2222-4222-8222-222222222222'),
+    (e) => e.code === 'USER_MISMATCH'
+  );
+  await assert.rejects(
+    f.service.verify(request.requestId, '123456'),
+    (e) => e.code === 'INVALID_RECOVERY'
+  );
+  const verified = await change.verify(request.requestId, '123456', id);
+  await assert.rejects(
+    change.complete(request.requestId, verified.grant, 'newpass1!', 'newpass1!'),
+    (e) => e.code === 'USER_MISMATCH'
+  );
+  await change.complete(request.requestId, verified.grant, 'newpass1!', 'newpass1!', id);
+  assert.equal(f.counts().updates, 1);
+  assert.equal(f.counts().revokes, 1);
 });
 test('SMTP is not reported as sent without configuration', async () => {
   await assert.rejects(

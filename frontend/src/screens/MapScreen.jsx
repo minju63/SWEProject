@@ -1,7 +1,9 @@
 import { Fragment, useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react'
 import { DragScroll } from './minju/DragScroll'
 import { useNavigate, useSearchParams } from 'react-router'
-import { useAppState } from '../app/AppState'
+import {useQuery} from '@tanstack/react-query'
+import {personalApi} from '../lib/api'
+import {busanRegions} from '../data/regions'
 import { useAuth } from '../lib/auth'
 import { BottomNav } from '../components/PolicyLayout'
 import PlaceMap, { CategoryBadge, MAP_MAX_LEVEL, MAP_MIN_LEVEL } from '../components/PlaceMap'
@@ -24,7 +26,9 @@ const CARD_HEIGHT = 244
 const LOCATION_STATES = ['ok-saha', 'ok-busanjin', 'denied', 'failed', 'outside']
 const START_LEVEL = 2
 function districtView(district) {
-  const list = places.filter((place) => place.district === district)
+  const matching = places.filter((place) => place.district === district)
+  const list=matching.length?matching:places
+  if(!list.length)return {lat:35.1796,lng:129.0756,level:6}
   return {
     lat: list.reduce((sum, place) => sum + place.lat, 0) / list.length,
     lng: list.reduce((sum, place) => sum + place.lng, 0) / list.length,
@@ -874,14 +878,15 @@ const LOCATION_NOTICE = {
 export default function MapScreen() {
   const navigate = useNavigate()
   const [params] = useSearchParams()
-  const { profile } = useAppState()
   const { user } = useAuth()
-  const homeDistrict = profile.region.includes('부산진구') ? '부산진구' : '사하구'
+  const {data:mapProfile}=useQuery({queryKey:['map-profile',user?.id],queryFn:()=>personalApi('/map-profile'),enabled:!!user})
+  const profile={region:busanRegions[mapProfile?.region_code]||''}
+  const homeDistrict = profile.region.replace(/^부산광역시\s*/, '')||null
   const loggedIn = !!user
   const [loc, setLoc] = useState(() => {
     const q = params.get('location')
     if (q && LOCATION_STATES.includes(q)) return q
-    return homeDistrict === '사하구' ? 'ok-saha' : 'ok-busanjin'
+    return homeDistrict === '사하구' ? 'ok-saha' : homeDistrict==='부산진구'?'ok-busanjin':'denied'
   })
   const [noticeHidden, setNoticeHidden] = useState(false)
   const [category, setCategory] = useState('all')
@@ -893,6 +898,7 @@ export default function MapScreen() {
   const [filterOpen, setFilterOpen] = useState(false)
   const [savedOnly, setSavedOnly] = useState(false)
   const [viewport, setViewport] = useState(() => {
+    if(!params.has('location'))return districtView(homeDistrict)
     const start = USER_POSITIONS[loc]
     return start
       ? { lat: start.lat, lng: start.lng, level: START_LEVEL }
@@ -906,8 +912,14 @@ export default function MapScreen() {
   const [notice, setNotice] = useState('')
   const [regionHeight, setRegionHeight] = useState(560)
   useEffect(() => {
-    if (profile.region) setViewport(districtView(homeDistrict))
-  }, [profile.region, homeDistrict, user?.id])
+    // Apply the asynchronously loaded home region on the next map render frame.
+    if(params.has('location'))return
+    const frame=requestAnimationFrame(()=>{
+      setViewport(districtView(homeDistrict))
+      setLoc(homeDistrict==='사하구'?'ok-saha':homeDistrict==='부산진구'?'ok-busanjin':'denied')
+    })
+    return()=>cancelAnimationFrame(frame)
+  }, [homeDistrict, user?.id, params])
   const regionRef = useRef(null)
   const listRef = useRef(null)
   const cardRefs = useRef({})

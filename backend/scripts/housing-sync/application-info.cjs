@@ -3,8 +3,10 @@ const fs=require('node:fs'),path=require('node:path');
 const {isDeepStrictEqual:eq}=require('node:util');
 const {normalize,plain,sha,canonicalUrl,save}=require('./core.cjs');
 const {clients}=require('./network.cjs');
+const {officialProgramUrl}=require('./record-contract.cjs');
 const VERSION=1,FIELDS=['application_process','required_documents'];
 function sourceText(source){
+ if(source?.source_url&&!officialProgramUrl(source.source_url)||source?.final_url&&!officialProgramUrl(source.final_url))return '';
  if(!source||source.error||source.needs_document_extraction||source.inspection?.error_page_hint)return '';
  if(source.body_encoding==='base64')return source.extracted_text||'';
  if(source.body)return plain(source.body.replace(/<img\b[^>]*alt=["']([^"']*)["'][^>]*>/gi,' $1 ').replace(/&(lsquo|rsquo|ldquo|rdquo|ndash|mdash|hellip);/g,' '));

@@ -2,6 +2,7 @@
 import * as repo from '../repositories/calendar.repository.js';
 import { findCheckedDocCounts } from '../repositories/home.repository.js';
 import { AppError } from '../utils/response.js';
+import {reconcileStoredResults} from './application-results.service.js';
 import {
   DEFAULT_DAY_TIME,
   MAX_CUSTOM_ALARMS,
@@ -18,6 +19,7 @@ const docCount = (policy) =>
 
 // 캘린더 화면 전체 데이터: 목록용 항목 + 달력 점으로 그릴 일정(마감·신청 완료·결과 발표)
 export async function getCalendar(userId) {
+  await reconcileStoredResults(userId);
   const [bookmarks, applications] = await Promise.all([
     repo.findBookmarks(userId),
     repo.findApplications(userId),

@@ -6,7 +6,7 @@
   "maxNewNoticeSources": 15,
   "concurrency": 3,
   "maxSourceBytes": 25000000,
-  "allowedHosts": ["youthcenter.go.kr","busan.go.kr","busanjin.go.kr","saha.go.kr","myhome.go.kr","lh.or.kr","molit.go.kr","bmc.busan.kr","hf.go.kr","energyv.or.kr","bokjiro.go.kr","kosaf.go.kr","korea.kr","skens.com","hug.or.kr","kepco.co.kr","mogef.go.kr","mohw.go.kr","110.go.kr"],
+  "allowedHosts": ["youthcenter.go.kr","busan.go.kr","busanjin.go.kr","saha.go.kr","myhome.go.kr","lh.or.kr","molit.go.kr","bmc.busan.kr","hf.go.kr","energyv.or.kr","bokjiro.go.kr","kosaf.go.kr","korea.kr","skens.com","hug.or.kr","kepco.co.kr","mogef.go.kr","mohw.go.kr","110.go.kr","koref.or.kr","dongnae.go.kr","foodvoucher.go.kr"],
   "seeds": [
     {"key":"guide:long-term-jeonse","title":"장기전세주택","url":"https://www.myhome.go.kr/hws/portal/cont/selectlongTermLeaseHouseView.do","scope_hint":"KR","subcategory":"공공임대","kind":"GUIDE","terms":["장기전세","20년","80%"]},
     {"key":"guide:general-jeonse-rental","title":"일반 기존주택 전세임대","url":"https://www.myhome.go.kr/hws/portal/cont/selectCharterRentalHouseView.do","scope_hint":"KR","subcategory":"공공임대","kind":"GUIDE","terms":["전세임대","입주자격","수급"]},

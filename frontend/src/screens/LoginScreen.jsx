@@ -19,7 +19,7 @@ export default function LoginScreen() {
       {deletion && (
         <p role="status" className="text-center text-sm text-slate-700">
           {deletion === 'pending'
-            ? '탈퇴 요청이 접수됐어요. 삭제 처리가 지연되고 있어요. 관리자에게 문의해주세요.'
+            ? '탈퇴 요청이 접수됐어요. 남은 데이터 삭제는 자동으로 재시도합니다.'
             : '탈퇴가 완료됐어요.'}
         </p>
       )}

@@ -133,6 +133,7 @@ export function createFileRegistrationState({ path = defaultPath, now = Date.now
       const j = Object.values(db.deletions).find(
         (j) =>
           (!id || j.id === id) &&
+          (!input.reason || j.reason === input.reason) &&
           Date.parse(j.next_attempt_at) <= n &&
           !(Date.parse(j.operation_until) > n)
       );
@@ -146,6 +147,13 @@ export function createFileRegistrationState({ path = defaultPath, now = Date.now
       match(j);
       if (action === 'renew_cleanup') j.operation_until = new Date(n + 120000).toISOString();
       else if (action === 'ack_cleanup') {
+        const userId = j.user_id || input.userId;
+        if (userId) {
+          for (const [key, r] of Object.entries(db.requests))
+            if (r.user_id === userId) delete db.requests[key];
+          for (const [key, r] of Object.entries(db.recovery))
+            if (r.userId === userId || key === 'cooldown:' + userId) delete db.recovery[key];
+        }
         delete db.requests[j.request_id];
         delete db.deletions[id];
       } else {

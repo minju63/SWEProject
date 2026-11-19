@@ -4,8 +4,34 @@ import cron from 'node-cron';
 import { runCultureSync } from './culture/syncCulture.js';
 import { runDueAlarms } from './alarms.js';
 import { registrationCleanup } from '../services/registration-runtime.service.js';
+import { runApplicationResults } from '../services/application-results.service.js';
 
 export function startJobs() {
+  if (process.env.MY_RESULT_JOB_ENABLED !== 'false')
+    cron.schedule(
+      '1 0 * * *',
+      async () => {
+        try {
+          await runApplicationResults();
+        } catch {
+          console.error('[신청 결과] 발표일 전환 재시도 확인 필요');
+        }
+      },
+      { name: 'application-results', timezone: 'Asia/Seoul', noOverlap: true }
+    );
+  // Only requested withdrawals retry automatically; abandoned signup cleanup remains opt-in.
+  if (process.env.WITHDRAWAL_JOB_ENABLED !== 'false')
+    cron.schedule(
+      '*/5 * * * *',
+      async () => {
+        try {
+          await registrationCleanup.runWithdrawals();
+        } catch {
+          console.error('[탈퇴] 삭제 재시도 확인 필요');
+        }
+      },
+      { name: 'withdrawal-cleanup', timezone: 'Asia/Seoul', noOverlap: true }
+    );
   if (process.env.REGISTRATION_CLEANUP_ENABLED === 'true')
     cron.schedule(
       '*/5 * * * *',

@@ -2,6 +2,7 @@
 // 알림 센터에 쌓이는 것까지만 한다. 공용 DB 에 쓰므로 .env 에서 켠 서버 한 곳에서만 돈다.
 import { supabase } from '../lib/supabase.js';
 import { PRESETS, deadlineAt } from '../services/alarmTime.js';
+import { notifications } from '../services/notifications.service.js';
 
 const BATCH = 200;
 const DAY_MS = 24 * 60 * 60 * 1000;
@@ -19,10 +20,22 @@ export async function runDueAlarms(now = new Date()) {
   if (error) throw error;
 
   let sent = 0;
+  const settingsByUser = new Map();
   for (const alarm of due ?? []) {
     const userId = alarm.bookmark?.user_id;
     const policy = alarm.bookmark?.policy;
     if (!userId || !policy) {
+      await supabase
+        .from('saved_alarm')
+        .update({ status: 'CANCELLED' })
+        .eq('alarm_id', alarm.alarm_id);
+      continue;
+    }
+    if (!settingsByUser.has(userId))
+      settingsByUser.set(userId, await notifications.settings(userId));
+    const settings = settingsByUser.get(userId);
+    if (!settings.enabled || !settings.deadlines) {
+      // Keep every individual preference; discard only this suppressed delivery.
       await supabase
         .from('saved_alarm')
         .update({ status: 'CANCELLED' })
@@ -35,13 +48,6 @@ export async function runDueAlarms(now = new Date()) {
       .select('deadline_enabled, doc_reminder_enabled')
       .eq('user_id', userId)
       .maybeSingle();
-    if (pref?.deadline_enabled === false) {
-      await supabase
-        .from('saved_alarm')
-        .update({ status: 'CANCELLED' })
-        .eq('alarm_id', alarm.alarm_id);
-      continue;
-    }
 
     // 신청 준비 혜택의 3일 전 알림에는 남은 서류 개수를 함께 알린다 (FR-C12)
     let body = `${policy.title} 마감이 다가왔어요.`;

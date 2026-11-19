@@ -1,5 +1,7 @@
 # 주거정책 수집·검토·적재 자동화
 
+2026-11-19: 최신 DB 형식 통일은 [적재 형식 안내](README.contract.md)를 참고하세요. 자동·검토 적재는 공통 형식 검사를 사용합니다. 읽기 전용 대조 명령은 `housing-sync.cmd check-contract`입니다.
+
 ## 매일 자동 적재 — 2026-11-17 추가
 
 사용자 승인에 따라 `housing-sync.cmd daily`는 새 수집 후 신규 온통청년 정책을 자동 INSERT합니다. 기존 `scan`/수동 `publish` 명령은 그대로 사용할 수 있습니다. `daily --preview`는 DB에 쓰지 않습니다.
@@ -79,7 +81,7 @@ LH 부산과 BMC 목록은 `config.json`에 정한 앞쪽 페이지를 확인하
 }
 ```
 
-이는 형식 예시이며 사업별 실제 조건을 대신하지 않습니다. 개인 자격을 자동 확정하지 않습니다. 적재 시 `eligibility_verified=false`, 현재 앱이 읽는 `all/exclude` 수동 확인 문구를 자동 추가합니다. 준비물 필드는 받거나 변경하지 않습니다.
+이는 형식 예시이며 사업별 실제 조건을 대신하지 않습니다. 개인 자격을 자동 확정하지 않습니다. 적재 시 `eligibility_verified=false`를 유지하고 `required/exclusions/review_notices`로 조건·제외·검토 안내를 분리합니다. 신청절차·준비물은 공식 본문과 일치하는 API 내용만 추출합니다.
 
 현재 공통 상태뷰에서 주거 EVENT의 날짜가 반영되지 않는 문제가 있어 EVENT 적재는 차단합니다. 행사 유형을 POLICY로 바꿔 우회하지 마세요.
 

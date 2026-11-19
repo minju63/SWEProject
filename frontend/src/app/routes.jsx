@@ -49,7 +49,7 @@ function AppRoot() {
   if (!ready) return <p role="status">로그인 정보를 확인하고 있어요.</p>;
   if (!user) return <Navigate to="/login" replace />;
   if (user.app_metadata?.registration_pending) return <Navigate to="/signup" replace />;
-  if (pathname === '/onboarding') return <Outlet />;
+  if (pathname === '/onboarding'||pathname==='/settings/password') return <Outlet />;
   const isPolicy = /^\/policies\/[^/]+(?:\/compare\/(?:select|[^/]+))?$/.test(pathname);
   if (isSearch || isPolicy)
     return (
@@ -90,6 +90,7 @@ export const router = createBrowserRouter([
     Component: AppRoot,
     HydrateFallback,
     children: [
+      {path:'settings/password',lazy:async()=>({Component:(await import('../screens/AccountRecoveryScreen.jsx')).default})},
       {
         path: 'find-username',
         lazy: async () => ({

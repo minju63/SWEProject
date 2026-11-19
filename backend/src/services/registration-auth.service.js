@@ -156,8 +156,39 @@ export const registrationAuth = {
     await this.revokeSessions(token);
   },
   async deleteUser(id) {
+    // Preserve policy verification evidence; remove only the withdrawing author's nullable link.
+    const { error: referenceError } = await registrationClient()
+      .from('policy_field_verification')
+      .update({ verified_by: null })
+      .eq('verified_by', id);
+    check(referenceError);
     const { error } = await registrationClient().auth.admin.deleteUser(id);
     if (error && (error.status === 404 || error.code === 'user_not_found')) return;
+    check(error);
+  },
+  async requestWithdrawal(id) {
+    const user = await this.readUser(id);
+    if (!user) return;
+    const stamp = new Date().toISOString();
+    const { error } = await registrationClient().auth.admin.updateUserById(id, {
+      app_metadata: {
+        ...user.app_metadata,
+        deletion_pending: true,
+        consents_revoked_at: stamp,
+        registration: user.app_metadata?.registration
+          ? {
+              ...user.app_metadata.registration,
+              consents: {
+                ...user.app_metadata.registration.consents,
+                terms: false,
+                privacy: false,
+                personalization: false,
+                revokedAt: stamp,
+              },
+            }
+          : null,
+      },
+    });
     check(error);
   },
 };

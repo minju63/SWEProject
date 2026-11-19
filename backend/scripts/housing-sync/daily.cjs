@@ -1,7 +1,7 @@
 ﻿'use strict';
 const fs=require('node:fs'),path=require('node:path');
 const {save,safePath}=require('./core.cjs');
-const PIPELINE_VERSION=2;
+const PIPELINE_VERSION=3;
 async function daily(root,config,{apply=true}={},overrides={}){
  const base=path.join(root,'research/housing-sync');fs.mkdirSync(base,{recursive:true});
  const lock=path.join(base,'daily.lock');let fd;
@@ -27,12 +27,19 @@ async function daily(root,config,{apply=true}={},overrides={}){
   if(fs.existsSync(pending)){
    const value=JSON.parse(fs.readFileSync(pending,'utf8')),prior=safePath(path.join(base,'runs'),value.run_id),journal=path.join(prior,'auto_bundle/result.json');
    const j=fs.existsSync(journal)?JSON.parse(fs.readFileSync(journal,'utf8')):null;
+   if(value.pipeline_version!==PIPELINE_VERSION){
+    if(!apply)throw Error('Older pending import requires review; preview will not replace its journal');
+    if(j?.steps?.length&&j.status!=='COMPLETE_VERIFIED')throw Error('Older partial import requires review before contract upgrade');
+    save(path.join(base,'daily_previous_contract.json'),{...value,status:j?.status||'NO_WRITES',reason:'New housing record contract requires a fresh scan'});
+    fs.unlinkSync(pending);
+   }else{
    if(j?.status==='STOPPED_RESUME_REQUIRED'&&j.steps.length===0&&apply){save(path.join(base,'daily_abandoned_no_writes.json'),{run_id:value.run_id,reason:j.error});fs.unlinkSync(pending);}
    else return await cycle(prior,value.run_id);
+   }
   }
   const found=await scan(root,config);
   if(found.summary.status!=='SCAN_COMPLETE_REVIEW_REQUIRED')throw Error('Daily scan incomplete; no database writes. Next schedule will scan again.');
-  if(apply)save(pending,{run_id:found.summary.run_id});
+  if(apply)save(pending,{run_id:found.summary.run_id,pipeline_version:PIPELINE_VERSION});
   return await cycle(found.dir,found.summary.run_id);
  }finally{fs.closeSync(fd);fs.unlinkSync(lock);}
 }

@@ -1,13 +1,20 @@
 import { useEffect, useRef, useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router';
 import { signupApi } from '../lib/signup.js';
-import { supabase } from '../lib/auth';
+import { supabase, useAuth } from '../lib/auth';
+import { personalApi } from '../lib/api';
 import PressPasswordInput from '../components/PressPasswordInput.jsx';
 import rules from '../../../shared/signup-rules.mjs';
 import './SignupScreen.css';
 export default function AccountRecoveryScreen() {
   const findId = useLocation().pathname === '/find-username',
     navigate = useNavigate();
+  const isChange = useLocation().pathname === '/settings/password';
+  const { user } = useAuth();
+  const request = (step, body) =>
+    isChange
+      ? personalApi('/account/password/' + step, 'POST', step === 'start' ? {} : body)
+      : signupApi('/password-reset/' + step, body);
   const [email, setEmail] = useState(''),
     [username, setUsername] = useState(''),
     [pending, setPending] = useState(null),
@@ -54,14 +61,14 @@ export default function AccountRecoveryScreen() {
         return;
       }
       if (!pending) {
-        const result = await signupApi('/password-reset/start', { email, username });
+        const result = await request('start', { email, username });
         setPending(result);
         setToken('');
         return;
       }
       if (!grant) {
         if (!/^\d{6}$/.test(token)) throw Error('6자리 숫자 인증번호를 입력해주세요.');
-        const result = await signupApi('/password-reset/verify', {
+        const result = await request('verify', {
           requestId: pending.requestId,
           token,
         });
@@ -73,7 +80,7 @@ export default function AccountRecoveryScreen() {
       if (!rules.passwordPattern.test(password))
         throw Error('비밀번호는 8~15자로 영문·숫자·허용 특수문자를 포함해주세요.');
       if (password !== confirmation) throw Error('비밀번호가 서로 다릅니다.');
-      await signupApi('/password-reset/complete', {
+      await request('complete', {
         requestId: pending.requestId,
         grant,
         password,
@@ -83,13 +90,14 @@ export default function AccountRecoveryScreen() {
       setPassword('');
       setConfirmation('');
       setPending(null);
+      // Leave the protected route first, so its auth guard cannot replace the success URL.
+      await navigate('/login?password=changed', { replace: true });
       await supabase.auth.signOut({ scope: 'local' });
-      navigate('/login?password=changed', { replace: true });
     });
   }
   async function edit() {
     await run(async () => {
-      await signupApi('/password-reset/cancel', { requestId: pending.requestId });
+      await request('cancel', { requestId: pending.requestId });
       setPending(null);
       setGrant('');
       setToken('');
@@ -100,26 +108,32 @@ export default function AccountRecoveryScreen() {
   return (
     <main className="signup-page mx-auto max-w-[480px]" aria-labelledby="recovery-title">
       <section className="signup-card">
-        <Link to="/login" className="signup-description">
-          ‹ 로그인으로 돌아가기
+        <Link to={isChange ? '/settings?view=account' : '/login'} className="signup-description">
+          {isChange ? '‹ 계정 설정으로 돌아가기' : '‹ 로그인으로 돌아가기'}
         </Link>
         <h1 className="signup-title" id="recovery-title">
-          {findId ? '아이디 찾기' : '비밀번호 찾기'}
+          {isChange ? '비밀번호 변경' : findId ? '아이디 찾기' : '비밀번호 찾기'}
         </h1>
         <p className="signup-description">
-          {findId
-            ? '가입 이메일로 아이디 안내 메일을 보내드려요.'
-            : '아이디와 가입 이메일을 확인한 뒤 비밀번호를 재설정해요.'}
+          {isChange
+            ? '현재 계정의 등록 이메일로 인증한 뒤 비밀번호를 변경해요.'
+            : findId
+              ? '가입 이메일로 아이디 안내 메일을 보내드려요.'
+              : '아이디와 가입 이메일을 확인한 뒤 비밀번호를 재설정해요.'}
         </p>
         <form className="signup-form" onSubmit={submit}>
-          <fieldset className="signup-fields" disabled={busy || !!pending || done}>
+          <fieldset className="signup-fields" disabled={busy || !!pending || done || isChange}>
             {!findId && (
               <label className="signup-label">
                 아이디
                 <input
                   className="signup-input"
                   autoComplete="username"
-                  value={username}
+                  value={
+                    isChange
+                      ? user?.app_metadata?.registration?.username || '이메일 로그인 계정'
+                      : username
+                  }
                   onChange={(e) => setUsername(e.target.value.toLowerCase())}
                   required
                 />
@@ -131,7 +145,7 @@ export default function AccountRecoveryScreen() {
                 className="signup-input"
                 type="email"
                 autoComplete="email"
-                value={email}
+                value={isChange ? user?.email || '' : email}
                 onChange={(e) => {
                   setEmail(e.target.value);
                   setUnregistered(false);
@@ -170,7 +184,7 @@ export default function AccountRecoveryScreen() {
                 disabled={busy || wait > 0}
                 onClick={() =>
                   run(async () => {
-                    const result = await signupApi('/password-reset/resend', {
+                    const result = await request('resend', {
                       requestId: pending.requestId,
                     });
                     setPending(result);
@@ -241,7 +255,9 @@ export default function AccountRecoveryScreen() {
                       ? '인증번호 받기'
                       : !grant
                         ? '인증번호 확인'
-                        : '비밀번호 재설정'}
+                        : isChange
+                          ? '비밀번호 변경'
+                          : '비밀번호 재설정'}
               </button>
             )
           )}

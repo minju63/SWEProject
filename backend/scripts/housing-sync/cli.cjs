@@ -5,6 +5,7 @@ const root=path.resolve(__dirname,'../../..'),config=require('./config.json');
 const args=process.argv.slice(2),command=args.shift()||'scan';
 function option(name){const i=args.indexOf(name);if(i===-1)return null;if(!args[i+1]||args[i+1].startsWith('--'))throw Error('Missing value for '+name);return args[i+1];}
 (async()=>{
+ if(command==='check-contract'){const result=await require('./check-contract.cjs').checkContract(root,config);console.log(JSON.stringify(result,null,2));return result;}
  if(command==='daily')return require('./daily.cjs').daily(root,config,{apply:!args.includes('--preview')});
  if(command==='application-info'){
   const base=path.join(root,'research/housing-sync'),run=option('--run')||JSON.parse(fs.readFileSync(path.join(base,'latest.json'),'utf8')).run_id;

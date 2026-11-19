@@ -15,6 +15,7 @@ import { notFound, errorHandler } from './middlewares/error.js';
 import { startJobs } from './jobs/index.js';
 import { ok } from './utils/response.js';
 import { requireAuth } from './middlewares/auth.js';
+import mySettingsRoutes from './routes/my-settings.routes.js';
 
 const app = express();
 
@@ -42,6 +43,7 @@ app.use('/api/v1', housingRoutes);
 app.use('/api/v1', catalogRoutes);
 app.use('/api/v1', placeRoutes);
 app.use('/api/v1/me', meRoutes);
+app.use('/api/v1/me', mySettingsRoutes);
 app.use('/api/v1/me', workspaceRoutes);
 app.use('/api/v1/me', calendarRoutes); // 캘린더·정책별 알림 (백민주)
 app.use('/api/v1', homeRoutes); // 홈 (백민주)

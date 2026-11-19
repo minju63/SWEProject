@@ -9,9 +9,17 @@ import {
 import { AppError } from '../utils/response.js';
 import rules from '../../../shared/signup-rules.mjs';
 const hash = (v) => createHash('sha256').update(v).digest('hex');
-export function createAccountRecovery({ state, auth, mail, secret, now = Date.now }) {
+// Reset and logged-in change share one journal and must serialize together.
+const recoveryQueues = new WeakMap();
+export function createAccountRecovery({
+  state,
+  auth,
+  mail,
+  secret,
+  now = Date.now,
+  purpose = 'password-reset',
+}) {
   const key = createHash('sha256').update(secret).digest();
-  let queue = Promise.resolve();
   const fail = (code, message, status = 400) => {
     throw new AppError(status, code, message);
   };
@@ -37,12 +45,14 @@ export function createAccountRecovery({ state, auth, mail, secret, now = Date.no
     return Buffer.concat([cipher.update(b.subarray(28)), cipher.final()]).toString('utf8');
   }
   const put = (id, r) => state.command('recovery_put', id, r);
-  async function get(id) {
+  async function get(id, ownerId) {
     if (!/^[0-9a-f-]{36}$/i.test(id || ''))
       fail('INVALID_RECOVERY', '비밀번호 찾기를 다시 시작해주세요.');
     const r = await state.command('recovery_get', id);
-    if (!r || r.purpose !== 'password-reset' || r.expiresAt <= now() || r.status === 'consumed')
+    if (!r || r.purpose !== purpose || r.expiresAt <= now() || r.status === 'consumed')
       fail('INVALID_RECOVERY', '인증이 만료됐어요. 비밀번호 찾기를 다시 시작해주세요.');
+    if (purpose === 'password-change' && (!ownerId || ownerId !== r.userId))
+      fail('USER_MISMATCH', '본인 계정의 인증만 사용할 수 있어요.', 403);
     return r;
   }
   async function send(id, r) {
@@ -68,8 +78,11 @@ export function createAccountRecovery({ state, auth, mail, secret, now = Date.no
   const exclusive =
     (fn) =>
     (...args) => {
-      const work = queue.then(() => fn(...args));
-      queue = work.catch(() => {});
+      const work = (recoveryQueues.get(state) || Promise.resolve()).then(() => fn(...args));
+      recoveryQueues.set(
+        state,
+        work.catch(() => {})
+      );
       return work;
     };
   return {
@@ -88,14 +101,23 @@ export function createAccountRecovery({ state, auth, mail, secret, now = Date.no
       await mail.sendUsername(email, username);
       return { registered: true, message: '가입 이메일로 아이디 안내 메일을 보냈어요.' };
     }),
-    start: exclusive(async (username, value) => {
+    start: exclusive(async (username, value, ownerId) => {
+      let current;
+      if (purpose === 'password-change') {
+        if (!ownerId) fail('UNAUTHORIZED', '로그인이 필요해요.', 401);
+        current = await auth.readUser(ownerId);
+        if (!current || current.app_metadata?.registration_pending)
+          fail('UNAUTHORIZED', '계정을 다시 확인해주세요.', 401);
+        value = current.email;
+        username = current.app_metadata?.registration?.username || '';
+      }
       const email = emailOf(value);
       username = String(username || '')
         .trim()
         .toLowerCase();
-      const user = rules.usernamePattern.test(username)
-        ? await auth.findAccount({ email, username })
-        : null;
+      const user =
+        current ||
+        (rules.usernamePattern.test(username) ? await auth.findAccount({ email, username }) : null);
       if (!user || user.app_metadata?.registration_pending)
         fail('ACCOUNT_MISMATCH', '입력한 아이디와 이메일이 일치하는 계정을 찾을 수 없습니다.');
       const limit = await state.command('rate', null, { key: 'reset-account:' + user.id });
@@ -112,7 +134,7 @@ export function createAccountRecovery({ state, auth, mail, secret, now = Date.no
       await put('cooldown:' + user.id, { resendAt: now() + 60000, expiresAt: now() + 60000 });
       const id = randomUUID(),
         r = {
-          purpose: 'password-reset',
+          purpose,
           userId: user.id,
           email,
           username,
@@ -124,25 +146,27 @@ export function createAccountRecovery({ state, auth, mail, secret, now = Date.no
       await put(id, r);
       return send(id, r);
     }),
-    resend: exclusive(async (id) => {
-      const r = await get(id);
+    resend: exclusive(async (id, ownerId) => {
+      const r = await get(id, ownerId);
       if (!['pending', 'send_failed'].includes(r.status))
         fail('INVALID_RECOVERY', '비밀번호 찾기를 다시 시작해주세요.');
       await put('cooldown:' + r.userId, { resendAt: now() + 60000, expiresAt: now() + 60000 });
       return send(id, r);
     }),
-    cancel: exclusive(async (id) => {
+    cancel: exclusive(async (id, ownerId) => {
       if (!/^[0-9a-f-]{36}$/i.test(id || '')) fail('INVALID_RECOVERY', '요청을 다시 확인해주세요.');
       const r = await state.command('recovery_get', id);
-      if (!r || r.purpose !== 'password-reset') return {};
+      if (!r || r.purpose !== purpose) return {};
+      if (purpose === 'password-change' && (!ownerId || ownerId !== r.userId))
+        fail('USER_MISMATCH', '본인 계정의 인증만 사용할 수 있어요.', 403);
       r.status = 'consumed';
       delete r.sessionCipher;
       delete r.grantHash;
       await put(id, r);
       return {};
     }),
-    verify: exclusive(async (id, token) => {
-      const r = await get(id);
+    verify: exclusive(async (id, token, ownerId) => {
+      const r = await get(id, ownerId);
       if (r.status !== 'pending') fail('INVALID_RECOVERY', '인증번호를 다시 발송해주세요.');
       if (r.otpExpiresAt <= now()) fail('EXPIRED', '인증번호가 만료됐어요. 다시 발송해주세요.');
       if (r.attempts >= 5) fail('ATTEMPTS', '인증번호를 5회 틀렸어요. 다시 발송해주세요.', 429);
@@ -159,8 +183,8 @@ export function createAccountRecovery({ state, auth, mail, secret, now = Date.no
       await put(id, r);
       return { grant, expiresAt: r.expiresAt };
     }),
-    complete: exclusive(async (id, grant, password, confirmation) => {
-      const r = await get(id);
+    complete: exclusive(async (id, grant, password, confirmation, ownerId) => {
+      const r = await get(id, ownerId);
       if (
         !['verified', 'sessions_revoked'].includes(r.status) ||
         typeof grant !== 'string' ||

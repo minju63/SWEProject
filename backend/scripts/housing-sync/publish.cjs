@@ -3,7 +3,9 @@ const fs=require('node:fs'),path=require('node:path'),assert=require('node:asser
 const {sha,uuid,normalize,canonicalUrl,inspectText,duplicateMatches,equivalent,validateJson,safePath,save}=require('./core.cjs');
 const {clients}=require('./network.cjs');
 const {validateHousingDetail}=require('./detail-validation.cjs');
-const allowedPolicy=new Set(['title','target_summary','support_content','benefit_type','min_age','max_age','income_condition','application_start_date','application_end_date','is_always_open','application_method','application_url','official_url','item_type']);
+const contract=require('./record-contract.cjs');
+const {apiApplicationInfo}=require('./application-info.cjs');
+const allowedPolicy=new Set(['title','target_summary','support_content','support_summary','benefit_type','min_age','max_age','income_condition','application_start_date','application_end_date','application_period_unknown_reason','is_always_open','application_method','application_url','official_url','item_type']);
 function validateApproval(review,candidate,source){
  if(review.decision!=='approve')throw Error('Not an approved review');
  for(const f of ['reviewer','reviewed_at','review_notes'])if(typeof review[f]!=='string'||!review[f].trim())throw Error('Review requires '+f);
@@ -25,8 +27,9 @@ function validateApproval(review,candidate,source){
  for(const k of ['application_start_date','application_end_date'])if(p[k]!==null&&(!/^\d{4}-\d{2}-\d{2}$/.test(p[k])||new Date(p[k]+'T00:00:00Z').toISOString().slice(0,10)!==p[k]))throw Error('Invalid reviewed date');
  if(p.application_start_date&&p.application_end_date&&p.application_start_date>p.application_end_date)throw Error('Application dates reversed');
  if(canonicalUrl(p.official_url)!==canonicalUrl(source.source_url))throw Error('Reviewed official URL must match the bound source');
- const rich=review.eligibility_conditions;if(!rich||!Array.isArray(rich.required)||!rich.required.length||!Array.isArray(rich.exclusions)||!rich.exclusions.length)throw Error('Review subject/AND/OR qualifications and exclusion guards');
- function node(n){if(!n||!['AND','OR','MANUAL_REVIEW','EQ','LTE','LT','GTE','GT','IN','BETWEEN'].includes(n.operator))throw Error('Invalid eligibility operator');if(['AND','OR'].includes(n.operator)){if(!Array.isArray(n.conditions)||!n.conditions.length)throw Error('Empty condition group');n.conditions.forEach(node);}else if(!n.subject||(n.operator==='MANUAL_REVIEW'?!n.text:!n.field||!Object.hasOwn(n,'value')))throw Error('Unscoped eligibility condition');}
+ if(!contract.officialProgramUrl(p.official_url)||source.final_url&&!contract.officialProgramUrl(source.final_url))throw Error('Official program URL required');
+ const rich=review.eligibility_conditions;if(!rich||!Array.isArray(rich.required)||!rich.required.length||!Array.isArray(rich.exclusions))throw Error('Review subject/AND/OR qualifications and exclusion guards');
+ function node(n){if(!n||!['AND','OR','RAW','MANUAL_REVIEW','EQ','LTE','LT','GTE','GT','IN','BETWEEN'].includes(n.operator))throw Error('Invalid eligibility operator');if(['AND','OR'].includes(n.operator)){if(!Array.isArray(n.conditions)||!n.conditions.length)throw Error('Empty condition group');n.conditions.forEach(node);}else if(n.operator==='RAW'?!n.text:!n.subject||(n.operator==='MANUAL_REVIEW'?!n.text:!n.field||!Object.hasOwn(n,'value')))throw Error('Unscoped eligibility condition');}
  rich.required.forEach(node);rich.exclusions.forEach(node);validateJson(review);
  if(!review.housing_detail||review.housing_detail.housing_support_type===undefined)throw Error('Review housing detail and explicit NULL type');
  validateHousingDetail(review.housing_detail,review.housing_value_context);
@@ -59,9 +62,12 @@ async function publish(root,config,{runId,reviewFile,apply=false},overrideIo){
   if(c.api_id){let fullResponse;for(const page of input.api_pages){const value=JSON.parse(fs.readFileSync(safePath(dir,page.file),'utf8')),record=value.result?.youthPolicyList?.find(x=>x.plcyNo===c.api_id);if(record&&equivalent(record,c.api_row)){fullResponse=value;break;}}if(!fullResponse)throw Error('Full original API page matching the candidate is missing');
    const apiSid=uuid('source:API:youthcenter:'+c.api_id);sourceIds.push(apiSid);tables.policy_source.push({source_id:apiSid,policy_id:pid,source_name:'온통청년',source_type:'API',external_id:'youthcenter:'+c.api_id,source_url:config.api.endpoint,raw_data:{response:fullResponse,selected_policy_id:c.api_id,collected_at:summary.checked_at_kst,api_key_included:false}});
   }
-  const eligible={schema_version:'housing-eligibility/1',logic:'UNVERIFIED',verification:'확인필요',required:r.eligibility_conditions.required,exclusions:r.eligibility_conditions.exclusions,all:[{text:'지원대상·소득·가구·예외 확인: '+r.policy.target_summary},{text:r.review_notes}],exclude:[{text:'전체 중복지원·제외 사유 및 기관 증빙 확인'}],engine_projection:{mode:'MANUAL_REVIEW_ONLY',automatic_eligibility_ready:false},source_ids:sourceIds,source_urls:[s.source_url],review:{reviewer:r.reviewer,reviewed_at:r.reviewed_at,source_sha256:r.expected_source_sha256}};
+  const eligible={...contract.conditions(r.eligibility_conditions,{...s,checked_at:s.checked_at||r.reviewed_at},sourceIds),review:{reviewer:r.reviewer,reviewed_at:r.reviewed_at,source_sha256:r.expected_source_sha256}};
   if(r.housing_value_context)eligible.housing_value_context=r.housing_value_context;
   tables.policy.push({...r.policy,policy_id:pid,category_id:category.category_id,collection_domain:'HOUSING',item_type:'POLICY',min_age:null,max_age:null,eligibility_verified:false,eligibility_conditions:eligible,classification_method:'공식 원문 수집 후 수동 검토',classification_status:'확인필요'});
+  if(!r.policy.application_start_date&&!r.policy.application_end_date&&!r.policy.is_always_open&&!r.policy.application_period_unknown_reason)tables.policy.at(-1).application_period_unknown_reason=contract.period('',s,()=>[null,null]).application_period_unknown_reason;
+  Object.assign(tables.policy.at(-1),apiApplicationInfo(c.api_row||{},s).values);
+  contract.assertRecord(tables.policy.at(-1));
   tables.housing_detail.push({...r.housing_detail,policy_id:pid});for(const code of new Set(r.region_codes)){if(!regions.some(x=>x.region_code===code))throw Error('Missing region '+code);tables.policy_region.push({policy_id:pid,region_code:code});}
   const sub=subcategories.find(s=>s.category_id===category.category_id&&s.subcategory_name===r.subcategory_name);if(!sub)throw Error('Common subcategory missing; register with common owner first');tables.policy_subcategory_map.push({policy_id:pid,subcategory_id:sub.subcategory_id});
  }

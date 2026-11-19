@@ -20,6 +20,8 @@ test('actual API app exposes health/auth paths while every data domain requires 
       CULTURE_SYNC_ENABLED: 'false',
       ALARM_JOB_ENABLED: 'false',
       REGISTRATION_CLEANUP_ENABLED: 'false',
+      WITHDRAWAL_JOB_ENABLED:'false',
+      MY_RESULT_JOB_ENABLED:'false',
     },
     windowsHide: true,
     stdio: ['ignore', 'pipe', 'pipe'],

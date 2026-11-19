@@ -10,6 +10,7 @@ import { personalApi } from '../lib/api';
 import { interestDetailKey, scopedInterestDetails } from '../data/interestSelection';
 import AppSelect from '../components/AppSelect';
 import { Icon } from './HomeScreen';
+import signupRules from '../../../shared/signup-rules.mjs';
 import {
   educationOptions,
   educationSub,
@@ -97,12 +98,19 @@ function ProfileCard({ title, badge, children }) {
 export default function SettingsScreen() {
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
-  const { profile, setProfile, notificationSettings, setNotificationSettings, workspaceReady } =
-    useAppState();
+  const {
+    profile,
+    setProfile,
+    notificationSettings,
+    setNotificationSettings,
+    loadNotificationSettings,
+    saveNotificationSettings,
+    workspaceReady,
+  } = useAppState();
   const { user, ready, signOut } = useAuth();
   const [view, setView] = useState(() => {
     const requestedView = searchParams.get('view');
-    if (requestedView === 'profile' || requestedView === 'notifications') return requestedView;
+    if (['profile', 'notifications', 'account'].includes(requestedView)) return requestedView;
     return 'menu';
   });
   const [draft, setDraftState] = useState(profile);
@@ -126,17 +134,39 @@ export default function SettingsScreen() {
   const [withdrawing, setWithdrawing] = useState(false);
   const [withdrawConfirmed, setWithdrawConfirmed] = useState(false);
   const [savingProfile, setSavingProfile] = useState(false);
+  const [loadingNotifications, setLoadingNotifications] = useState(false);
+  const [savingNotifications, setSavingNotifications] = useState(false);
+  const [notificationsLoaded, setNotificationsLoaded] = useState(false);
+  useEffect(() => {
+    if (view !== 'notifications' || !user) return;
+    let active = true;
+    setLoadingNotifications(true);
+    setNotificationsLoaded(false);
+    loadNotificationSettings()
+      .then(() => {
+        if (active) setNotificationsLoaded(true);
+      })
+      .catch(() => {
+        if (active) setMessage('알림 설정을 불러오지 못했어요. 다시 열어주세요.');
+      })
+      .finally(() => {
+        if (active) setLoadingNotifications(false);
+      });
+    return () => {
+      active = false;
+    };
+  }, [view, user, loadNotificationSettings]);
   async function withdraw(event) {
     event.preventDefault();
     if (withdrawing || !withdrawConfirmed) return;
     setWithdrawing(true);
     try {
       const deletion = await personalApi('/account', 'DELETE', { confirmation: '탈퇴' });
-      await supabase.auth.signOut({ scope: 'local' });
-      navigate(
+      await navigate(
         deletion?.status === 'PENDING' ? '/login?deletion=pending' : '/login?deletion=complete',
         { replace: true }
       );
+      await supabase.auth.signOut({ scope: 'local' });
     } catch (e) {
       setMessage(e instanceof Error ? e.message : '탈퇴하지 못했어요. 다시 시도해주세요.');
     } finally {
@@ -151,8 +181,8 @@ export default function SettingsScreen() {
     event.preventDefault();
     if (savingProfile) return;
     const name = draft.name.trim();
-    if (name.length < 2 || name.length > 10) {
-      setMessage('이름은 공백을 제외하고 2~10자로 입력해주세요.');
+    if (!signupRules.nicknamePattern.test(name)) {
+      setMessage('닉네임은 한글·영문·숫자 2~10자로 입력해주세요.');
       return;
     }
     setSavingProfile(true);
@@ -766,7 +796,13 @@ export default function SettingsScreen() {
         )}
 
         {view === 'notifications' && (
-          <main className="px-5 pb-10 pt-5">
+          <main className="px-5 pb-10 pt-5" aria-busy={loadingNotifications || savingNotifications}>
+            {loadingNotifications && <p role="status">알림 설정을 불러오고 있어요.</p>}
+            {message && (
+              <p role="alert" className="mb-4 rounded-xl bg-white p-3 text-sm">
+                {message}
+              </p>
+            )}
             <div className="rounded-[22px] bg-white px-5">
               <div className="flex items-center gap-3 border-b border-black/[0.06] py-5">
                 <div className="min-w-0 flex-1">
@@ -787,6 +823,8 @@ export default function SettingsScreen() {
                     notificationSettings.enabled ? 'bg-[#2F7BF5]' : 'bg-black/15'
                   }`}
                   role="switch"
+                  aria-label="전체 알림"
+                  disabled={!notificationsLoaded || loadingNotifications || savingNotifications}
                   aria-checked={notificationSettings.enabled}
                 >
                   <span
@@ -795,27 +833,33 @@ export default function SettingsScreen() {
                 </button>
               </div>
 
-              <div className={notificationSettings.enabled ? '' : 'pointer-events-none opacity-40'}>
+              <div
+                className={
+                  notificationSettings.enabled && !loadingNotifications && !savingNotifications
+                    ? ''
+                    : 'pointer-events-none opacity-40'
+                }
+              >
                 {[
                   {
                     key: 'recommendations',
                     title: '맞춤 알림',
-                    description: '프로필과 관심 분야에 잘 맞는 새로운 혜택을 알려드려요.',
+                    description: '맞춤 혜택 알림의 수신 여부를 설정해요.',
                   },
                   {
                     key: 'policyAlerts',
                     title: '정책 알림',
-                    description: '새로운 전국·부산 청년정책이 등록되면 알려드려요.',
+                    description: '청년정책 알림의 수신 여부를 설정해요.',
                   },
                   {
                     key: 'eventAlerts',
                     title: '문화행사 알림',
-                    description: '새로운 공연·전시·문화행사가 등록되면 알려드려요.',
+                    description: '공연·전시·문화행사 알림의 수신 여부를 설정해요.',
                   },
                   {
                     key: 'facilityAlerts',
                     title: '주변 시설 알림',
-                    description: '내 주변에서 이용할 수 있는 청년공간과 시설을 알려드려요.',
+                    description: '거주 구의 청년공간과 시설 알림 수신 여부를 설정해요.',
                   },
                   {
                     key: 'deadlines',
@@ -826,7 +870,7 @@ export default function SettingsScreen() {
                   {
                     key: 'applicationUpdates',
                     title: '신청 상태 알림',
-                    description: '준비물 미완료와 결과 발표일 등 신청 진행 상황을 알려드려요.',
+                    description: '신청 진행 상황 알림의 수신 여부를 설정해요.',
                   },
                 ].map((setting) => (
                   <div
@@ -851,6 +895,13 @@ export default function SettingsScreen() {
                         notificationSettings[setting.key] ? 'bg-[#2F7BF5]' : 'bg-black/15'
                       }`}
                       role="switch"
+                      aria-label={setting.title}
+                      disabled={
+                        !notificationsLoaded ||
+                        !notificationSettings.enabled ||
+                        loadingNotifications ||
+                        savingNotifications
+                      }
                       aria-checked={notificationSettings[setting.key]}
                     >
                       <span
@@ -878,8 +929,7 @@ export default function SettingsScreen() {
                 <div>
                   <p className="text-sm font-black">신청 상태 알림 안내</p>
                   <p className="mt-1 text-[10px] font-medium leading-4 text-black/35">
-                    신청 준비 단계에서는 미완료 준비물을 안내하고, 결과 발표일을 설정한 신청 건은
-                    발표 하루 전과 당일에 알려드려요.
+                    등록된 신청 진행 알림은 알림 목록에서 확인할 수 있어요.
                   </p>
                 </div>
               </div>
@@ -889,13 +939,13 @@ export default function SettingsScreen() {
                   <span className="grid size-5 place-items-center rounded-full bg-[#f1f3fb] text-[10px] text-[#2F7BF5]">
                     ✓
                   </span>
-                  준비물 미완료 안내
+                  준비물은 신청 준비 화면에서 확인
                 </div>
                 <div className="flex items-center gap-2 text-[11px] font-bold text-black/55">
                   <span className="grid size-5 place-items-center rounded-full bg-[#f1f3fb] text-[10px] text-[#2F7BF5]">
                     ✓
                   </span>
-                  결과 발표 하루 전 · 당일 안내
+                  결과 발표일은 신청 관리와 캘린더에서 확인
                 </div>
               </div>
             </div>
@@ -907,13 +957,23 @@ export default function SettingsScreen() {
 
             <button
               type="button"
-              onClick={() => {
-                setMessage('알림 설정을 저장했어요.');
-                setView('menu');
+              disabled={!notificationsLoaded || loadingNotifications || savingNotifications}
+              onClick={async () => {
+                setSavingNotifications(true);
+                setMessage('');
+                try {
+                  await saveNotificationSettings(notificationSettings);
+                  setMessage('알림 설정을 저장했어요.');
+                  setView('menu');
+                } catch {
+                  setMessage('알림 설정을 저장하지 못했어요. 다시 시도해주세요.');
+                } finally {
+                  setSavingNotifications(false);
+                }
               }}
               className="mt-5 w-full rounded-2xl bg-[#2F7BF5] py-4 text-sm font-black text-white"
             >
-              설정 저장
+              {savingNotifications ? '저장 중…' : '설정 저장'}
             </button>
           </main>
         )}
@@ -922,9 +982,15 @@ export default function SettingsScreen() {
           <main>
             <section className="my-surface">
               <h2>로그인 계정</h2>
+              <p className="my-caption mt-3">현재 아이디</p>
+              <p className="mt-1 font-bold">
+                {user?.app_metadata?.registration?.username || '별도 아이디 없음 · 이메일 로그인'}
+              </p>
               <p className="my-caption mt-3">등록 이메일</p>
               <p className="break-all mt-1 font-bold">{user?.email || '로그인이 필요해요'}</p>
-              <p className="my-caption mt-3">이메일로 로그인하는 계정이에요.</p>
+              <button className="my-primary mt-4" onClick={() => navigate('/settings/password')}>
+                비밀번호 변경
+              </button>
             </section>
             <button className="my-primary mt-4" onClick={() => setLogoutOpen(true)}>
               로그아웃
@@ -954,9 +1020,11 @@ export default function SettingsScreen() {
               </span>
               <h2 className="mt-4 text-lg font-black">탈퇴하기 전에 확인해주세요</h2>
               <p className="mt-2 text-xs font-medium leading-5 text-black/45">
-                회원 탈퇴가 완료되면 아래 정보가 모두 삭제되며 다시 복구할 수 없어요.
+                탈퇴하면 삭제된 정보는 다시 복구할 수 없어요. 모든 동의가 철회되며 개인 데이터와
+                동의 기록은 7일 이내 삭제합니다.
               </p>
               <ul className="mt-5 space-y-3 rounded-2xl bg-[#f7f8fb] p-4 text-xs font-bold text-black/55">
+                <li>계정 정보와 약관·개인정보 동의 기록</li>
                 <li className="flex items-center gap-2">
                   <span className="size-1.5 rounded-full bg-[#2F7BF5]" />
                   프로필 및 맞춤정보

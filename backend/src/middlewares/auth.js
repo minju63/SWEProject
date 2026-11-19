@@ -12,8 +12,11 @@ export async function requireAuth(req, _res, next) {
     throw new AppError(401, 'INVALID_TOKEN', '로그인 정보가 올바르지 않습니다.');
 
   req.user = data.user;
+  const deletingOwnAccount = req.method === 'DELETE' && req.path === '/account';
+  if (data.user.app_metadata?.deletion_pending && !deletingOwnAccount)
+    throw new AppError(403, 'ACCOUNT_DELETING', '탈퇴 처리 중인 계정입니다.');
   // getUser validates the token first; compare server-owned version to revoke old JWTs after reset.
-  if (data.user.app_metadata?.auth_version) {
+  if (data.user.app_metadata?.auth_version && !deletingOwnAccount) {
     let claims;
     try {
       claims = JSON.parse(Buffer.from(token.split('.')[1], 'base64url').toString('utf8'));
@@ -31,7 +34,6 @@ export async function requireAuth(req, _res, next) {
     );
   // getUser checks the live identity; the ledger additionally blocks direct Auth verification
   // and accounts with a durable deletion request, even with a still-valid JWT.
-  const deletingOwnAccount = req.method === 'DELETE' && req.path === '/account';
   if (
     !deletingOwnAccount &&
     !(await registrationState.command('access', null, { userId: data.user.id })).allowed
@@ -53,6 +55,7 @@ export async function optionalAuth(req, _res, next) {
       !error &&
       data.user &&
       !data.user.app_metadata?.registration_pending &&
+      !data.user.app_metadata?.deletion_pending &&
       (await registrationState.command('access', null, { userId: data.user.id })).allowed
     )
       req.user = data.user;
