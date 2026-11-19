@@ -8,6 +8,7 @@ import { fetchCategories } from '../../api/policies.js';
 import { useAuthStore } from '../../store/authStore';
 import { UNBOOKMARK_TOAST, useToastStore } from '../../store/toastStore';
 import PageHeader from '../../components/PageHeader.jsx';
+import { SettingsIcon } from '../../components/icons.jsx';
 import StateMessage from '../../components/StateMessage.jsx';
 import { CATEGORY_STYLE } from '../home/homeConfig.js';
 import CalendarGrid from './CalendarGrid.jsx';
@@ -171,9 +172,10 @@ export default function CalendarPage() {
           <button
             type="button"
             className="cal-alarm-btn"
+            aria-label="알림 설정"
             onClick={() => setDefaultsOpen(true)}
           >
-            ☼ 알림 설정
+            <SettingsIcon />
           </button>
         }
       />
