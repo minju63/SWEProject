@@ -1051,7 +1051,7 @@ export default function SettingsScreen() {
                 </li>
                 <li className="flex items-center gap-2">
                   <span className="size-1.5 rounded-full bg-[#2F7BF5]" />
-                  신청 체크리스트와 신청 현황
+                  신청 준비물과 신청 현황
                 </li>
                 <li className="flex items-center gap-2">
                   <span className="size-1.5 rounded-full bg-[#2F7BF5]" />

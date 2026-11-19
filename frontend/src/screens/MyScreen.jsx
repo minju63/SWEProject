@@ -682,7 +682,7 @@ export default function MyScreen() {
                 </label>
               )}
               <p className="my-caption mt-3">
-                추가하면 신청 준비 단계로 들어가요. 준비물 체크리스트도 만들 수 있어요.
+                추가하면 신청 준비 단계로 들어가요. 신청 준비물도 만들 수 있어요.
               </p>
               <details className="my-add-extra" open={addMode === 'manual'}>
                 <summary>단계·마감일·메모 입력</summary>

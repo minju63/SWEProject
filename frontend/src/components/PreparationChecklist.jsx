@@ -33,7 +33,7 @@ export default function PreparationChecklist({ application, onToggle, onUpdate }
   return (
     <div className="preparation-checklist">
       <div className="flex items-center justify-between gap-3">
-        <h4 className="text-sm font-black">준비물 체크리스트</h4>
+        <h4 className="text-sm font-black">신청 준비물</h4>
         {documents.length > 0 && (
           <span
             className={`rounded-full px-2.5 py-1.5 text-[10px] font-black ${

@@ -14,7 +14,7 @@ export default function CalendarCard({
   onEditAlarm,
   onToggleDoc,
 }) {
-  const [docsOpen, setDocsOpen] = useState(item.stage === 'PREPARING'); // 신청 준비 항목은 체크리스트를 펼쳐서 보여 준다
+  const [docsOpen, setDocsOpen] = useState(false); // 기본은 접어서 진행 상황만, 누르면 신청 준비물 목록이 펼쳐진다
   const documents = item.documents ?? [];
   const urgent = state === 'active' && item.d_day != null && item.d_day <= 7;
   const canAlarm = item.bookmarked && state === 'active';
@@ -68,17 +68,8 @@ export default function CalendarCard({
               )}
               {item.region_names?.[0] && ` · ${item.region_names[0]}`}
             </span>
-            {item.docs_total > 0 ? (
-              <span className="ccard-docs">
-                <span className="ccard-bar">
-                  <i style={{ width: `${(item.docs_checked / item.docs_total) * 100}%` }} />
-                </span>
-                <b>
-                  서류 {item.docs_checked}/{item.docs_total}
-                </b>
-              </span>
-            ) : (
-              <span className="ccard-docs ccard-docs-none">서류 정보 없음</span>
+            {documents.length === 0 && (
+              <span className="ccard-docs ccard-docs-none">신청 준비물 정보 없음</span>
             )}
           </span>
         </Link>
@@ -101,7 +92,10 @@ export default function CalendarCard({
             aria-expanded={docsOpen}
             onClick={() => setDocsOpen((v) => !v)}
           >
-            <span>준비물 체크리스트</span>
+            <span>신청 준비물</span>
+            <span className="ccard-bar" aria-hidden="true">
+              <i style={{ width: `${item.docs_total ? (item.docs_checked / item.docs_total) * 100 : 0}%` }} />
+            </span>
             <b>
               {item.docs_checked}/{item.docs_total}
             </b>

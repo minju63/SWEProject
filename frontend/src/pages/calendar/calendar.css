@@ -839,7 +839,7 @@
 .ccard-checklist-head {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  gap: 10px;
   width: 100%;
   min-height: 44px;
   padding: 0 14px;
@@ -850,7 +850,11 @@
   font-weight: 700;
 }
 .ccard-checklist-head b {
+  flex: none;
   color: var(--primary);
+}
+.ccard-checklist-head .ccard-bar {
+  flex: 1;
 }
 .ccard-checklist ul {
   margin: 0;

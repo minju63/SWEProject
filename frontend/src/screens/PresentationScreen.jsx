@@ -207,7 +207,7 @@ function ApplicationDetailFrame() {
         <div className="mt-3 rounded-[22px] bg-white p-4">
           <div className="flex items-center justify-between">
             <div>
-              <h4 className="text-xs font-black">준비물 체크리스트</h4>
+              <h4 className="text-xs font-black">신청 준비물</h4>
               <p className="mt-1 text-[8px] text-black/30">신청 단계와 준비물은 직접 관리합니다.</p>
             </div>
             <b className="text-[9px] text-[#2F7BF5]">2 / 4 완료 · 50%</b>
