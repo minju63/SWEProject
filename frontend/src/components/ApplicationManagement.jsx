@@ -3,6 +3,30 @@ import { todayISO, formatDate } from '../app/AppState'
 import AppSelect from './AppSelect'
 import { findPolicyByTitle } from '../data/policies'
 import PreparationChecklist from './PreparationChecklist'
+// 메모 입력: 쓰는 동안은 화면에만 두고 [저장]을 눌러야 저장한다. 저장하면 "저장됨"으로 바뀐다
+function MemoField({ value, onSave }) {
+  const [draft, setDraft] = useState(value ?? '')
+  const [saving, setSaving] = useState(false)
+  const changed = draft !== (value ?? '')
+  async function save() {
+    if (!changed || saving) return
+    setSaving(true)
+    await onSave(draft)
+    setSaving(false)
+  }
+  return (
+    <label className="my-memo">
+      메모
+      <textarea value={draft} onChange={(e) => setDraft(e.target.value)} maxLength={5000} />
+      <span className="my-memo-actions">
+        {changed && <small>저장하지 않은 내용이 있어요</small>}
+        <button type="button" disabled={!changed || saving} onClick={save}>
+          {saving ? '저장 중…' : changed ? '저장' : '저장됨'}
+        </button>
+      </span>
+    </label>
+  )
+}
 export function Deadline({ date }) {
   if (!date || !/^\d{4}-\d{2}-\d{2}/.test(date)) return null
   const days = Math.round(
@@ -247,15 +271,7 @@ export function ApplicationCard({
                   }}
                 />
               </label>
-              <label>
-                메모
-                <textarea
-                  defaultValue={a.memo}
-                  onBlur={(e) => {
-                    if (e.target.value !== a.memo) onUpdate({ memo: e.target.value })
-                  }}
-                />
-              </label>
+              <MemoField value={a.memo} onSave={(memo) => onUpdate({ memo })} />
               <label>
                 다음 할 일<span className="my-caption"> · 한 줄에 하나씩 입력해주세요</span>
                 <textarea
@@ -302,7 +318,7 @@ export function PreparationScreen({
           </div>
           <h2>{a.policyName}</h2>
           <p className="my-caption">
-            ▣ 신청 기간{' '}
+            신청 기간{' '}
             {policy?.applicationPeriod ||
               formatDate(a.applicationDeadline) ||
               '공식 공고에서 확인해주세요'}
@@ -350,15 +366,7 @@ export function PreparationScreen({
               onChange={(e) => onUpdate({ applicationDeadline: e.target.value })}
             />
           </label>
-          <label>
-            메모
-            <textarea
-              defaultValue={a.memo}
-              onBlur={(e) => {
-                if (e.target.value !== a.memo) onUpdate({ memo: e.target.value })
-              }}
-            />
-          </label>
+          <MemoField value={a.memo} onSave={(memo) => onUpdate({ memo })} />
         </section>
       </main>
       <footer className="my-preparation-footer">
