@@ -17,7 +17,8 @@ export default function CalendarCard({
   const [docsOpen, setDocsOpen] = useState(false); // 기본은 접어서 진행 상황만, 누르면 신청 준비물 목록이 펼쳐진다
   const documents = item.documents ?? [];
   const urgent = state === 'active' && item.d_day != null && item.d_day <= 7;
-  const canAlarm = item.bookmarked && state === 'active';
+  // 찜한 정책과 신청 준비 중인 정책에 알림을 붙인다 (FR-COM-04)
+  const canAlarm = (item.bookmarked || item.stage === 'PREPARING') && state === 'active';
   const alarms = item.alarms ?? [];
   const label =
     state === 'closed'
@@ -92,6 +93,7 @@ export default function CalendarCard({
             aria-expanded={docsOpen}
             onClick={() => setDocsOpen((v) => !v)}
           >
+            <i className={`ccard-chev${docsOpen ? ' open' : ''}`} aria-hidden="true" />
             <span>신청 준비물</span>
             <span className="ccard-bar" aria-hidden="true">
               <i style={{ width: `${item.docs_total ? (item.docs_checked / item.docs_total) * 100 : 0}%` }} />

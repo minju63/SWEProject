@@ -33,6 +33,7 @@ export async function getCalendar(userId) {
         application_end_date: policy.application_end_date,
         is_always_open: policy.is_always_open,
         policy,
+        application_id: null,
         bookmarked: false,
         bookmark_id: null,
         stage: null,
@@ -50,6 +51,7 @@ export async function getCalendar(userId) {
     const item = ensure(a.policy);
     if (item)
       Object.assign(item, {
+        application_id: a.application_id,
         stage: a.stage,
         applied_at: a.applied_at,
         // '미정'으로 저장된 결과 발표일은 비어 있으므로 표시하지 않는다 (FR-C14)
@@ -60,10 +62,15 @@ export async function getCalendar(userId) {
   const items = [...byPolicy.values()];
   const ids = items.map((i) => i.policy_id);
   const bookmarkIds = items.map((i) => i.bookmark_id).filter(Boolean);
-  const [statuses, regions, alarms, docRows] = await Promise.all([
+  const applicationIds = items
+    .filter((i) => i.stage === 'PREPARING')
+    .map((i) => i.application_id)
+    .filter(Boolean);
+  const [statuses, regions, alarms, appAlarms, docRows] = await Promise.all([
     repo.findStatuses(ids),
     repo.findRegionNames(ids),
     repo.findAlarmsByBookmarks(bookmarkIds),
+    repo.findAlarmsByApplications(applicationIds),
     repo.findDocumentRows(userId),
   ]);
 
@@ -83,8 +90,12 @@ export async function getCalendar(userId) {
     item.docs_total = item.documents.length;
     item.docs_checked = item.documents.filter((d) => d.checked).length;
     delete item.policy;
-    item.alarms = alarms
-      .filter((a) => a.bookmark_id === item.bookmark_id)
+    // 신청 준비 중인 정책은 신청 준비 기준의 알림을, 그 밖에는 찜의 알림을 보여 준다
+    const own =
+      item.stage === 'PREPARING' && item.application_id
+        ? appAlarms.filter((a) => a.application_id === item.application_id)
+        : alarms.filter((a) => a.bookmark_id === item.bookmark_id);
+    item.alarms = own
       .map(({ alarm_id, kind, preset_code, fire_at, repeat_daily }) => ({
         alarm_id,
         kind,
@@ -109,11 +120,29 @@ export async function getCalendar(userId) {
   return { today: todayKst(), items, events };
 }
 
+// 알림이 붙는 대상: 신청 준비 중이면 신청 건, 아니면 찜 (신청 준비 기준만 적용: FR-COM-04)
 async function loadBookmarkOrThrow(userId, policyId) {
+  const application = await repo.findApplicationOf(userId, policyId).catch(() => null);
+  if (application?.stage === 'PREPARING')
+    return {
+      column: 'application_id',
+      ownerId: application.application_id,
+      policy: application.policy,
+      defaultCodes: PREPARING_DEFAULT_PRESETS,
+    };
   const bookmark = await repo.findBookmarkOf(userId, policyId);
   if (!bookmark)
-    throw new AppError(404, 'BOOKMARK_NOT_FOUND', '찜한 정책에만 알림을 설정할 수 있어요.');
-  return bookmark;
+    throw new AppError(
+      404,
+      'BOOKMARK_NOT_FOUND',
+      '찜하거나 신청 준비로 등록한 정책에만 알림을 설정할 수 있어요.'
+    );
+  return {
+    column: 'bookmark_id',
+    ownerId: bookmark.bookmark_id,
+    policy: bookmark.policy,
+    defaultCodes: null,
+  };
 }
 
 // 알림 설정 시트용: 설정된 알림, 빠른 추가 칩(지난 시각은 disabled), 직접 정하기 범위
@@ -121,12 +150,15 @@ export async function getAlarmInfo(userId, policyId) {
   const bookmark = await loadBookmarkOrThrow(userId, policyId);
   const pref = await repo.findPreference(userId);
   const dayTime = String(pref?.day_alarm_time ?? DEFAULT_DAY_TIME).slice(0, 5);
-  const defaults = pref?.default_presets ?? ['D1', 'M30'];
+  const defaults = bookmark.defaultCodes ?? pref?.default_presets ?? ['D1', 'M30'];
   const policy = bookmark.policy;
   const deadline = deadlineAt(policy.is_always_open ? null : policy.application_end_date);
   const now = new Date();
 
-  const alarms = await repo.findAlarmsByBookmarks([bookmark.bookmark_id]);
+  const alarms =
+    bookmark.column === 'application_id'
+      ? await repo.findAlarmsByApplications([bookmark.ownerId])
+      : await repo.findAlarmsByBookmarks([bookmark.ownerId]);
   const presets = deadline
     ? PRESETS.map((p) => {
         const fireAt = presetFireAt(p.code, policy.application_end_date, dayTime);
@@ -188,7 +220,7 @@ export async function saveAlarms(userId, policyId, body = {}) {
     const fireAt = presetFireAt(code, policy.application_end_date, dayTime);
     assertValidFireAt(fireAt, policy.application_end_date, now);
     rows.push({
-      bookmark_id: bookmark.bookmark_id,
+      [bookmark.column]: bookmark.ownerId,
       kind: 'PRESET',
       preset_code: code,
       fire_at: fireAt.toISOString(),
@@ -203,7 +235,7 @@ export async function saveAlarms(userId, policyId, body = {}) {
     if (seen.has(key)) continue;
     seen.add(key);
     rows.push({
-      bookmark_id: bookmark.bookmark_id,
+      [bookmark.column]: bookmark.ownerId,
       kind: 'CUSTOM',
       preset_code: null,
       fire_at: key,
@@ -211,19 +243,23 @@ export async function saveAlarms(userId, policyId, body = {}) {
     });
   }
 
-  await repo.replaceAlarms(bookmark.bookmark_id, rows);
+  await repo.replaceAlarms(bookmark.column, bookmark.ownerId, rows);
   return getAlarmInfo(userId, policyId);
 }
 
 export async function removeAlarm(userId, alarmId) {
   const row = await repo.findAlarmWithOwner(alarmId);
-  if (!row || row.bookmark?.user_id !== userId)
+  const ownerId = row?.bookmark?.user_id ?? row?.application?.user_id;
+  if (!row || ownerId !== userId)
     throw new AppError(404, 'ALARM_NOT_FOUND', '알림을 찾을 수 없어요.');
   await repo.deleteAlarm(alarmId);
 }
 
 // 찜할 때 기본 알림(기본값 1일 전·30분 전)을 넣는다. 지난 시각·마감일 없는 정책은 건너뛴다 (FR-A15, FR-H12)
 export async function createDefaultAlarms(userId, policyId) {
+  // 신청 준비 중인 정책은 신청 준비 기준의 알림만 쓴다 (FR-COM-04)
+  const application = await repo.findApplicationOf(userId, policyId).catch(() => null);
+  if (application?.stage === 'PREPARING') return 0;
   const bookmark = await repo.findBookmarkOf(userId, policyId);
   const policy = bookmark?.policy;
   if (!policy || policy.is_always_open || !policy.application_end_date) return 0;
@@ -242,5 +278,42 @@ export async function createDefaultAlarms(userId, policyId) {
       repeat_daily: false,
     }));
   await repo.insertPresetAlarmsIfMissing(rows);
+  return rows.length;
+}
+
+// 신청 준비 정책의 기본 알림: 마감 7일 전·3일 전·1일 전 09:00 (FR-COM-04). 같은 정책이 찜에도 있으면 신청 준비 기준만 적용한다
+export const PREPARING_DEFAULT_PRESETS = ['W1', 'D3', 'D1'];
+
+export async function syncApplicationAlarms(userId, application) {
+  const { application_id: applicationId, policy_id: policyId, stage } = application;
+  if (stage !== 'PREPARING') {
+    // 신청 완료·결과 확인으로 넘어가면 대기 중인 알림을 취소한다. 찜이 있으면 찜의 기본 알림을 다시 넣는다
+    await repo.cancelApplicationAlarms(applicationId);
+    await createDefaultAlarms(userId, policyId).catch(() => {});
+    return 0;
+  }
+  const found = await repo.findApplicationOf(userId, policyId);
+  const policy = found?.policy;
+  if (!policy || policy.is_always_open || !policy.application_end_date) return 0;
+  const pref = await repo.findPreference(userId);
+  if (pref && pref.deadline_enabled === false) return 0;
+  const dayTime = String(pref?.day_alarm_time ?? DEFAULT_DAY_TIME).slice(0, 5);
+  const now = Date.now();
+  const rows = PREPARING_DEFAULT_PRESETS.map((code) => ({
+    code,
+    at: presetFireAt(code, policy.application_end_date, dayTime),
+  }))
+    .filter((x) => x.at && x.at.getTime() > now)
+    .map((x) => ({
+      application_id: applicationId,
+      kind: 'PRESET',
+      preset_code: x.code,
+      fire_at: x.at.toISOString(),
+      repeat_daily: false,
+    }));
+  await repo.insertPresetAlarmsIfMissing(rows, 'application_id');
+  // 신청 준비 기준만 적용: 찜의 기본(프리셋) 알림은 취소한다
+  const bookmark = await repo.findBookmarkOf(userId, policyId);
+  if (bookmark) await repo.cancelBookmarkPresetAlarms(bookmark.bookmark_id);
   return rows.length;
 }

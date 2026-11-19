@@ -494,7 +494,8 @@ create table alarm_preference (
 
 create table saved_alarm (
   alarm_id      uuid primary key default gen_random_uuid(),
-  bookmark_id   uuid not null references user_bookmark(bookmark_id) on delete cascade,
+  bookmark_id   uuid references user_bookmark(bookmark_id) on delete cascade,
+  application_id uuid references user_application(application_id) on delete cascade, -- 신청 준비 정책의 알림 (migrations/20261119_application_alarms.sql)
   kind          text not null check (kind in ('PRESET','CUSTOM','DOC_REMINDER')),
   preset_code   text check (preset_code in ('W1','D3','D1','DDAY_AM','H3','H1','M30','M10')),
   fire_at       timestamptz not null,

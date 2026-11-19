@@ -849,6 +849,20 @@
   font-size: 13px;
   font-weight: 700;
 }
+.ccard-chev {
+  flex: none;
+  width: 8px;
+  height: 8px;
+  margin: -3px 2px 0 0;
+  border-right: 2px solid var(--sub);
+  border-bottom: 2px solid var(--sub);
+  transform: rotate(45deg); /* ▾ 아래로 펼칠 수 있다는 표시 */
+  transition: transform 0.18s ease-out;
+}
+.ccard-chev.open {
+  margin-top: 3px;
+  transform: rotate(-135deg); /* ▴ 펼쳐진 상태 */
+}
 .ccard-checklist-head b {
   flex: none;
   color: var(--primary);

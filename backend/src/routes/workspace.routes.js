@@ -6,6 +6,7 @@ import {registrationCleanup} from '../services/registration-runtime.service.js';
 import {registrationAuth} from '../services/registration-auth.service.js';
 import {findProfile} from '../repositories/user.repository.js';
 import { ok, AppError } from "../utils/response.js";
+import { syncApplicationAlarms } from "../services/calendar.service.js";
 import {
   readPersonal,
   changePersonal,
@@ -249,6 +250,10 @@ router.post("/applications", async (req, res) => {
       .select()
       .single(),
   );
+  // 신청 준비로 등록하면 마감 알림을 자동으로 예약한다 (FR-COM-04). 알림이 실패해도 등록은 유지한다
+  await syncApplicationAlarms(req.user.id, data).catch((e) =>
+    console.warn("[알림] 신청 준비 알림 등록 실패:", e.message),
+  );
   ok(res, data, 201);
 });
 const stages = ["PREPARING", "APPLIED", "RESULT"],
@@ -329,6 +334,11 @@ router.patch("/applications/:id", async (req, res) => {
       .select()
       .single(),
   );
+  // 단계가 바뀌면 알림도 맞춘다: 신청 준비면 예약, 신청 완료 등으로 넘어가면 취소 (FR-COM-04)
+  if (Object.hasOwn(patch, "stage"))
+    await syncApplicationAlarms(req.user.id, data).catch((e) =>
+      console.warn("[알림] 신청 준비 알림 정리 실패:", e.message),
+    );
   if (req.body.nextActions !== undefined) {
     const old = await checked(
       db

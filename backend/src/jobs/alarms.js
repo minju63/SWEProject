@@ -9,21 +9,30 @@ const DAY_MS = 24 * 60 * 60 * 1000;
 const labelOf = (code) => PRESETS.find((p) => p.code === code)?.label ?? '직접 정한 시각';
 
 export async function runDueAlarms(now = new Date()) {
-  const { data: due, error } = await supabase
-    .from('saved_alarm')
-    .select(
-      'alarm_id, kind, preset_code, fire_at, repeat_daily, bookmark:bookmark_id (user_id, policy:policy_id (policy_id, title, application_end_date, required_documents))'
-    )
-    .eq('status', 'PENDING')
-    .lte('fire_at', now.toISOString())
-    .limit(BATCH);
+  const policyEmbed = 'policy:policy_id (policy_id, title, application_end_date, required_documents)';
+  const dueQuery = (select) =>
+    supabase
+      .from('saved_alarm')
+      .select(select)
+      .eq('status', 'PENDING')
+      .lte('fire_at', now.toISOString())
+      .limit(BATCH);
+  // 신청 준비 알림(application_id)은 migrations/20261119_application_alarms.sql 실행 뒤에 있다. 그 전에는 찜 알림만 처리한다
+  let { data: due, error } = await dueQuery(
+    `alarm_id, kind, preset_code, fire_at, repeat_daily, bookmark:bookmark_id (user_id, ${policyEmbed}), application:application_id (user_id, ${policyEmbed})`
+  );
+  if (error)
+    ({ data: due, error } = await dueQuery(
+      `alarm_id, kind, preset_code, fire_at, repeat_daily, bookmark:bookmark_id (user_id, ${policyEmbed})`
+    ));
   if (error) throw error;
 
   let sent = 0;
   const settingsByUser = new Map();
   for (const alarm of due ?? []) {
-    const userId = alarm.bookmark?.user_id;
-    const policy = alarm.bookmark?.policy;
+    const owner = alarm.bookmark ?? alarm.application; // 찜 또는 신청 준비
+    const userId = owner?.user_id;
+    const policy = owner?.policy;
     if (!userId || !policy) {
       await supabase
         .from('saved_alarm')

@@ -36,6 +36,9 @@ export async function ensureDefaultBookmarkAlarms(userId, bookmark) {
     if (result.error) throw result.error;
   }
   const policy = policyResult.data;
+  // 신청 준비 중인 정책은 신청 준비 기준의 알림만 쓴다 (FR-COM-04)
+  const prep = await supabase.from('user_application').select('stage').eq('user_id', userId).eq('policy_id', bookmark.policy_id).maybeSingle();
+  if (prep.data?.stage === 'PREPARING') return;
   if (!policy?.application_end_date || policy.is_always_open || preferenceResult.data?.deadline_enabled === false)
     return;
 
