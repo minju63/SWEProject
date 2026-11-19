@@ -448,7 +448,7 @@ export default function SearchPage() {
                       </div>
                       <div className="search-policy-bottom">
                         <span>신청기간 {periodText(policy)} · {policy.recruitment_status}</span>
-                        <strong>{dDayText(policy.d_day, policy.recruitment_status)}</strong>
+                        <strong className={policy.d_day != null && policy.d_day >= 0 && policy.d_day <= 7 && policy.recruitment_status !== '상시' ? 'is-urgent' : ''}>{dDayText(policy.d_day, policy.recruitment_status)}</strong>
                       </div>
                     </article>
                   );

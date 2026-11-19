@@ -219,7 +219,7 @@ export default function PolicyDetailPage() {
         </div>
         <h2>{p.title}</h2>
         {supportSummary && <p className="policy-detail-description">{supportSummary}</p>}
-        <div className="policy-detail-period"><div><span>신청기간</span><strong>{periodText(p)}</strong>{unknownPeriodReason && <p className="policy-detail-period-reason">{unknownPeriodReason}</p>}<span>모집 상태: {p.recruitment_status ?? '기간 미정'}</span></div><b className={deadline?.startsWith('D-') ? 'urgent' : ''}>{deadline || '확인 필요'}</b></div>
+        <div className="policy-detail-period"><div><span>신청기간</span><strong>{periodText(p)}</strong>{unknownPeriodReason && <p className="policy-detail-period-reason">{unknownPeriodReason}</p>}<span>모집 상태: {p.recruitment_status ?? '기간 미정'}</span></div><b className={p.d_day != null && p.d_day >= 0 && p.d_day <= 7 && p.recruitment_status !== '상시' ? 'urgent' : ''}>{deadline || '확인 필요'}</b></div>
       </section>
 
       <div className="policy-detail-sections">

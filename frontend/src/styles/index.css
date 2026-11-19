@@ -841,6 +841,7 @@ button {
   font-size: 12px;
   font-weight: 900;
 }
+.search-policy-bottom strong.is-urgent { color: #f04438; } /* 마감 7일 이내는 붉은색으로 강조 (FR-C04) */
 .search-empty {
   margin-top: 16px;
   padding: 56px 24px;

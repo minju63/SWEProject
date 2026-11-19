@@ -95,7 +95,7 @@
 .policy-detail-period strong { display: block; margin-top: 4px; font-size: 12px; font-weight: 800; line-height: 1.5; }
 .policy-detail-period-reason { margin: 6px 0; color: rgba(0, 0, 0, .45); font-size: 11px; font-weight: 500; line-height: 1.6; overflow-wrap: anywhere; }
 .policy-detail-period b { flex: none; padding: 8px 12px; border-radius: 999px; background: #eaf2fe; color: #2f7bf5; font-size: 12px; font-weight: 900; }
-.policy-detail-period b.urgent { background: #2f7bf5; color: #fff; }
+.policy-detail-period b.urgent { background: #f04438; color: #fff; } /* 마감 7일 이내는 붉은색으로 강조 (FR-C04) */
 .policy-detail-sections { display: grid; gap: 10px; padding: 10px 16px 20px; }
 .policy-detail-card { min-width: 0; padding: 18px; border-radius: 20px; background: #fff; box-shadow: 0 4px 14px rgba(35, 67, 109, .035); }
 .policy-detail-card-heading { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
