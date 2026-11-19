@@ -90,6 +90,7 @@ test('검색·상세의 정책 라우트는 로그인 전 모두 401을 반환�
 });
 
 test('프로필·찜 조회와 저장은 검증된 사용자 ID로 제한한다', async () => {
+  const storage=mock.method(supabase.storage,'from',()=>({download:async()=>({error:{statusCode:404}}),upload:async()=>({data:{}})}));
   const filters = [];
   const writes = [];
   const from = mock.method(supabase, 'from', (table) => {
@@ -125,5 +126,6 @@ test('프로필·찜 조회와 저장은 검증된 사용자 ID로 제한한다'
     assert.equal(body.data.user_id, 'trusted-user');
   } finally {
     from.mock.restore();
+    storage.mock.restore();
   }
 });

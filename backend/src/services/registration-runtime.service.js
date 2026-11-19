@@ -5,6 +5,13 @@ import { createRegistrationCleanup } from './registration-cleanup.service.js';
 import { createSignupService } from './signup.service.js';
 import { createAccountMailer } from './account-mail.service.js';
 import { createAccountRecovery } from './account-recovery.service.js';
+import { createAccountIdentity } from './account-identity.service.js';
+export const accountIdentity = createAccountIdentity({
+  state: registrationState,
+  auth: registrationAuth,
+  mail: createAccountMailer(),
+  secret: process.env.SUPABASE_SERVICE_ROLE_KEY,
+});
 export const passwordChange = createAccountRecovery({
   state: registrationState,
   auth: registrationAuth,

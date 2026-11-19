@@ -160,9 +160,9 @@ export function createSignupService({ state, auth, cleanup, now = () => Date.now
         .trim()
         .toLowerCase();
       if (!email.includes('@')) {
-        const r =
-          (await state.command('lookup', null, { username: email })) ||
-          (await auth.findAccount?.({ username: email }));
+        const r = auth.findAccount
+          ? await auth.findAccount({ username: email })
+          : await state.command('lookup', null, { username: email });
         if (!r) fail(401, 'INVALID_LOGIN', '아이디 또는 비밀번호를 확인해 주세요');
         email = r.email;
       }

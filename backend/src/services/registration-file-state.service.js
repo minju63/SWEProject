@@ -42,6 +42,14 @@ export function createFileRegistrationState({ path = defaultPath, now = Date.now
     db.recovery ||= {};
     const n = now();
     const requests = Object.values(db.requests);
+    const reservedIdentity = (kind, value, exceptId) =>
+      Object.entries(db.recovery).some(
+        ([key, row]) =>
+          key !== exceptId &&
+          row.reservedKind === kind &&
+          row.reservedValue === value &&
+          (row.status === 'applying' || (row.status !== 'consumed' && row.expiresAt > n))
+      );
     let r = db.requests[id],
       result;
     const lease = (row) => {
@@ -84,7 +92,11 @@ export function createFileRegistrationState({ path = defaultPath, now = Date.now
       db.rates[input.key] = rate;
       result = { allowed: rate.count <= 40, retryAt: rate.until };
     } else if (action === 'available')
-      result = { available: !requests.some((r) => r[input.kind] === input.value) };
+      result = {
+        available:
+          !requests.some((r) => r[input.kind] === input.value) &&
+          !reservedIdentity(input.kind, input.value),
+      };
     else if (action === 'lookup')
       result =
         requests.find((r) => r.username === input.username && r.status === 'completed') || null;
@@ -95,7 +107,11 @@ export function createFileRegistrationState({ path = defaultPath, now = Date.now
           !requests.some((r) => r.user_id === input.userId && r.status !== 'completed'),
       };
     else if (action === 'reserve') {
-      if (requests.some((r) => r.username === input.username || r.email === input.email))
+      if (
+        requests.some((r) => r.username === input.username || r.email === input.email) ||
+        reservedIdentity('username', input.username) ||
+        reservedIdentity('email', input.email)
+      )
         deny('IDENTITY_EXISTS');
       result = db.requests[id] = lease({
         id,
@@ -163,11 +179,51 @@ export function createFileRegistrationState({ path = defaultPath, now = Date.now
         ).toISOString();
       }
       result = {};
+    } else if (action === 'identity_active') {
+      const active = Object.entries(db.recovery).find(
+        ([, r]) => r.userId === input.userId && r.status === 'applying'
+      );
+      result = active ? { requestId: active[0], kind: active[1].kind } : null;
+    } else if (action === 'identity_reserve') {
+      const record = db.recovery[id];
+      if (
+        !record ||
+        record.userId !== input.userId ||
+        record.expiresAt <= n ||
+        record.status !== 'verified'
+      )
+        deny('INVALID_CHALLENGE');
+      if (
+        requests.some((r) => r.user_id !== input.userId && r[input.kind] === input.value) ||
+        reservedIdentity(input.kind, input.value, id)
+      )
+        deny('IDENTITY_EXISTS');
+      record.reservedKind = input.kind;
+      record.reservedValue = input.value;
+      result = record;
+    } else if (action === 'identity_commit') {
+      const record = db.recovery[id];
+      if (
+        !record ||
+        record.userId !== input.userId ||
+        !record.reservedKind ||
+        record.status !== 'applying'
+      )
+        deny('INVALID_CHALLENGE');
+      for (const row of requests)
+        if (row.user_id === input.userId) row[record.reservedKind] = record.reservedValue;
+      record.status = 'consumed';
+      delete record.otpHash;
+      result = {};
     } else if (action === 'recovery_put') {
       db.recovery[id] = input;
       result = input;
     } else if (action === 'recovery_get') result = db.recovery[id] || null;
     else if (action === 'recovery_invalidate_user') {
+      if (
+        Object.values(db.recovery).some((r) => r.userId === input.userId && r.status === 'applying')
+      )
+        deny('BUSY');
       for (const r of Object.values(db.recovery))
         if (r.userId === input.userId) {
           r.status = 'consumed';
@@ -246,7 +302,7 @@ export function createFileRegistrationState({ path = defaultPath, now = Date.now
     }
     // Remove stale recovery workflows; keep account/consent records until cancellation/deletion.
     for (const [key, value] of Object.entries(db.recovery))
-      if (value.expiresAt < n - 86400000) delete db.recovery[key];
+      if (value.status !== 'applying' && value.expiresAt < n - 86400000) delete db.recovery[key];
     await mkdir(dirname(path), { recursive: true });
     const temp = resolve(dirname(path), `.auth-${randomUUID()}.tmp`);
     await writeFile(temp, JSON.stringify(db), { mode: 0o600 });

@@ -144,6 +144,22 @@ export const registrationAuth = {
     });
     check(error);
   },
+  async changeIdentity(id, kind, value) {
+    const user = await this.readUser(id);
+    if (!user || user.app_metadata?.deletion_pending || user.app_metadata?.registration_pending)
+      throw new AppError(403, 'ACCOUNT_UNAVAILABLE', '계정을 다시 확인해주세요.');
+    const patch =
+      kind === 'email'
+        ? { email: value, email_confirm: true }
+        : {
+            app_metadata: {
+              ...user.app_metadata,
+              registration: { ...user.app_metadata?.registration, username: value },
+            },
+          };
+    const { error } = await registrationClient().auth.admin.updateUserById(id, patch);
+    check(error);
+  },
   async revokeSessions(token) {
     const { error } = await registrationClient().auth.admin.signOut(token, 'global');
     check(error);

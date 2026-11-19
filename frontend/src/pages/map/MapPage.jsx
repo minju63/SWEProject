@@ -4,8 +4,8 @@ import { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } fr
 import { useLocation } from 'react-router-dom';
 import { useQuery, useQueryClient } from '@tanstack/react-query';
 import { fetchPlaces, fetchSavedPlaces, savePlace, unsavePlace } from '../../api/places';
-import { fetchProfile } from '../../api/me';
-import { useAuthStore } from '../../store/authStore';
+import { fetchMapProfile } from '../../api/me';
+import { useAuth } from '../../lib/auth';
 import KakaoMap, { MAX_ZOOM, MIN_ZOOM } from './KakaoMap.jsx';
 import MapHeader from './MapHeader.jsx';
 import MapFilterSheet from './MapFilterSheet.jsx';
@@ -43,11 +43,11 @@ function sheetHeights(regionHeight) {
 
 export default function MapPage() {
   const { search, key: navKey } = useLocation();
-  const user = useAuthStore((s) => s.user);
+  const { user } = useAuth();
   // 마이 탭 정보 중 거주 구만 읽는다 (FR-MY-017, NFR-MAP-011)
   const homeRegion = useQuery({
-    queryKey: ['profile'],
-    queryFn: fetchProfile,
+    queryKey: ['map-profile', user?.id],
+    queryFn: fetchMapProfile,
     enabled: !!user,
     select: (profile) => profile?.region_code ?? null,
   });
@@ -98,6 +98,7 @@ export default function MapPage() {
 
   // 찜 (FR-MAP-018~020): 로그인한 사용자의 찜을 서버(user_saved_places)에 둔다
   const queryClient = useQueryClient();
+  const savingPlace = useRef(false);
   const savedQuery = useQuery({
     queryKey: ['savedPlaces', user?.id],
     queryFn: fetchSavedPlaces,
@@ -283,20 +284,32 @@ export default function MapPage() {
         say(LOGIN_NOTICE);
         return;
       }
+      if (savingPlace.current) return;
+      if (!savedQuery.isSuccess) {
+        say('찜 목록을 불러온 뒤 다시 시도해 주세요');
+        return;
+      }
+      savingPlace.current = true;
       const key = ['savedPlaces', user.id];
+      await queryClient.cancelQueries({ queryKey: key });
+      const previous = queryClient.getQueryData(key);
       const wasSaved = saved.includes(id);
       queryClient.setQueryData(key, {
-        placeIds: wasSaved ? saved.filter((x) => x !== id) : [...saved, id],
+        placeIds: wasSaved
+          ? (previous?.placeIds ?? []).filter((x) => x !== id)
+          : [...(previous?.placeIds ?? []), id],
       });
-      say(wasSaved ? '찜을 해제했어요' : '찜했어요', 2000);
       try {
         await (wasSaved ? unsavePlace(id) : savePlace(id));
+        say(wasSaved ? '찜을 해제했어요' : '찜했어요', 2000);
       } catch {
-        queryClient.setQueryData(key, { placeIds: saved });
+        queryClient.setQueryData(key, previous);
         say('찜을 저장하지 못했어요. 다시 시도해 주세요');
+      } finally {
+        savingPlace.current = false;
       }
     },
-    [user, saved, queryClient, say]
+    [user, saved, savedQuery.isSuccess, queryClient, say]
   );
 
   const registerCard = useCallback((id, el) => {
@@ -429,6 +442,20 @@ export default function MapPage() {
 
   return (
     <div className="map-root">
+      {(savedQuery.isError || homeRegion.isError) && (
+        <div role="alert" className="bg-white px-5 py-3 text-sm">
+          내 지도 정보를 불러오지 못했어요.
+          <button
+            type="button"
+            onClick={() => {
+              void savedQuery.refetch();
+              void homeRegion.refetch();
+            }}
+          >
+            다시 시도
+          </button>
+        </div>
+      )}
       <header className="relative z-[60] shrink-0 border-b border-black/[0.05] bg-white/95 backdrop-blur-xl">
         <MapHeader
           key={headerKey}

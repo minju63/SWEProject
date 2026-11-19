@@ -74,11 +74,11 @@ const interestSubOptions = {
   공간·시설: ['문화시설', '도서관', '체육시설', '공공시설', '청년공간'],
 };
 function getProvince(region) {
-  return Object.keys(regionOptions).find((province) => region.startsWith(province)) ?? '부산광역시';
+  return Object.keys(regionOptions).find((province) => region.startsWith(province)) ?? '선택 안 함';
 }
 function getDistrict(region) {
   const province = getProvince(region);
-  return region.slice(province.length).trim() || regionOptions[province][0];
+  return region.slice(province.length).trim() || '선택 안 함';
 }
 function ProfileCard({ title, badge, children }) {
   return (
@@ -457,11 +457,17 @@ export default function SettingsScreen() {
                   ? '입력한 정보를 바탕으로 혜택을 추천해드려요.'
                   : '빈 항목을 입력하면 더 잘 맞는 혜택을 찾을 수 있어요.'}
               </p>
+              <p className="mb-4 text-xs leading-5 text-black/55">
+                닉네임을 제외한 항목은 선택사항이에요. 생년월일은 비우고, 선택 항목은 ‘선택 안 함’
+                또는 선택 해제로 지울 수 있어요. 혼인 상태·주거급여 수급 여부·특화대상은 맞춤 추천과
+                신청 조건 비교에만 사용해요. 입력하지 않아도 검색·지도·캘린더와 기본 추천을 이용할
+                수 있어요.
+              </p>
               <div className="space-y-4">
                 <ProfileCard title="기본 정보">
                   <div className="grid grid-cols-2 gap-3">
                     <label className="block text-xs font-bold text-black/45">
-                      이름
+                      닉네임
                       <input
                         required
                         minLength={2}
@@ -477,7 +483,7 @@ export default function SettingsScreen() {
                       생년월일
                       <input
                         type="date"
-                        max={new Date().toISOString().slice(0, 10)}
+                        max={new Date().toLocaleDateString('sv-SE', { timeZone: 'Asia/Seoul' })}
                         value={draft.birthDate ?? ''}
                         onChange={(e) =>
                           setDraft((current) => ({ ...current, birthDate: e.target.value }))
@@ -495,18 +501,22 @@ export default function SettingsScreen() {
                       <AppSelect
                         label="시·도"
                         value={getProvince(draft.region)}
-                        options={Object.keys(regionOptions)}
+                        options={['선택 안 함', ...Object.keys(regionOptions)]}
                         onChange={(province) =>
                           setDraft((current) => ({
                             ...current,
-                            region: `${province} ${regionOptions[province][0]}`,
+                            region: province === '선택 안 함' ? '' : province,
                           }))
                         }
                       />
                       <AppSelect
                         label="시·군·구"
                         value={draft.region ? getDistrict(draft.region) : '선택 안 함'}
-                        options={['선택 안 함', ...regionOptions[getProvince(draft.region)]]}
+                        options={[
+                          '선택 안 함',
+                          ...(regionOptions[getProvince(draft.region)] || []),
+                        ]}
+                        disabled={!draft.region}
                         onChange={(district) =>
                           setDraft((current) => ({
                             ...current,
@@ -988,6 +998,12 @@ export default function SettingsScreen() {
               </p>
               <p className="my-caption mt-3">등록 이메일</p>
               <p className="break-all mt-1 font-bold">{user?.email || '로그인이 필요해요'}</p>
+              <button className="my-primary mt-4" onClick={() => navigate('/settings/username')}>
+                아이디 변경
+              </button>
+              <button className="my-primary mt-4" onClick={() => navigate('/settings/email')}>
+                이메일 변경
+              </button>
               <button className="my-primary mt-4" onClick={() => navigate('/settings/password')}>
                 비밀번호 변경
               </button>

@@ -4,7 +4,7 @@ import express from 'express';
 import router from '../src/routes/my-settings.routes.js';
 import { supabase } from '../src/lib/supabase.js';
 import { registrationState } from '../src/services/registration-state.service.js';
-import { passwordChange } from '../src/services/registration-runtime.service.js';
+import { passwordChange, accountIdentity } from '../src/services/registration-runtime.service.js';
 import { errorHandler } from '../src/middlewares/error.js';
 
 test('My settings routes require login, bind password changes to the owner and limit map profile fields', async () => {
@@ -14,6 +14,7 @@ test('My settings routes require login, bind password changes to the owner and l
     from: supabase.from,
     command: registrationState.command,
     start: passwordChange.start,
+    identity: accountIdentity.start,
   };
   supabase.auth.getUser = async (token) =>
     token === 'valid'
@@ -26,6 +27,10 @@ test('My settings routes require login, bind password changes to the owner and l
   };
   passwordChange.start = async (...args) => {
     assert.deepEqual(args, [null, null, id]);
+    return { email: 'own@example.com' };
+  };
+  accountIdentity.start = async (...args) => {
+    assert.deepEqual(args, [id, 'email']);
     return { email: 'own@example.com' };
   };
   supabase.from = (table) => {
@@ -66,11 +71,20 @@ test('My settings routes require login, bind password changes to the owner and l
     });
     assert.equal(change.status, 200);
     assert.equal((await change.json()).data.email, 'own@example.com');
+    assert.equal((await fetch(base + '/me/account/email/start', { method: 'POST' })).status, 401);
+    const identity = await fetch(base + '/me/account/email/start', {
+      method: 'POST',
+      headers: { Authorization: 'Bearer valid', 'Content-Type': 'application/json' },
+      body: JSON.stringify({ userId: 'other', email: 'forged@example.com', kind: 'username' }),
+    });
+    assert.equal(identity.status, 200);
+    assert.equal((await identity.json()).data.email, 'own@example.com');
   } finally {
     await new Promise((resolve) => server.close(resolve));
     supabase.auth.getUser = original.auth;
     supabase.from = original.from;
     registrationState.command = original.command;
     passwordChange.start = original.start;
+    accountIdentity.start = original.identity;
   }
 });

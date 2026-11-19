@@ -32,6 +32,7 @@ export async function readPersonal(userId) {
   }
   const raw = JSON.parse(await data.text());
   return {
+    ...(raw?.sensitiveProfile ? { sensitiveProfile: raw.sensitiveProfile } : {}),
     ...(raw?.notificationSettings
       ? { notificationSettings: notificationSettings(raw.notificationSettings) }
       : {}),

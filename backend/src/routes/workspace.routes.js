@@ -4,6 +4,7 @@ import { requireAuth } from "../middlewares/auth.js";
 import {registrationState} from '../services/registration-state.service.js';
 import {registrationCleanup} from '../services/registration-runtime.service.js';
 import {registrationAuth} from '../services/registration-auth.service.js';
+import {findProfile} from '../repositories/user.repository.js';
 import { ok, AppError } from "../utils/response.js";
 import {
   readPersonal,
@@ -67,9 +68,7 @@ router.get("/workspace", async (req, res) => {
           .eq("user_id", uid)
           .order("created_at", { ascending: false }),
       ),
-      checked(
-        db.from("user_profile").select("*").eq("user_id", uid).maybeSingle(),
-      ),
+      findProfile(uid),
       checked(db.from("user_document_check").select("*").eq("user_id", uid)),
     ]);
   const personal = await readPersonal(uid);

@@ -49,7 +49,15 @@ function AppRoot() {
   if (!ready) return <p role="status">로그인 정보를 확인하고 있어요.</p>;
   if (!user) return <Navigate to="/login" replace />;
   if (user.app_metadata?.registration_pending) return <Navigate to="/signup" replace />;
-  if (pathname === '/onboarding'||pathname==='/settings/password') return <Outlet />;
+  const registration = user.app_metadata?.registration;
+  if (
+    pathname !== '/onboarding' &&
+    registration?.consents?.personalization &&
+    !registration.onboardingCompleted
+  )
+    return <Navigate to="/onboarding" replace />;
+  if (pathname === '/onboarding' || /^\/settings\/(password|username|email)$/.test(pathname))
+    return <Outlet />;
   const isPolicy = /^\/policies\/[^/]+(?:\/compare\/(?:select|[^/]+))?$/.test(pathname);
   if (isSearch || isPolicy)
     return (
@@ -90,7 +98,24 @@ export const router = createBrowserRouter([
     Component: AppRoot,
     HydrateFallback,
     children: [
-      {path:'settings/password',lazy:async()=>({Component:(await import('../screens/AccountRecoveryScreen.jsx')).default})},
+      {
+        path: 'settings/username',
+        lazy: async () => ({
+          Component: (await import('../screens/AccountIdentityScreen.jsx')).default,
+        }),
+      },
+      {
+        path: 'settings/email',
+        lazy: async () => ({
+          Component: (await import('../screens/AccountIdentityScreen.jsx')).default,
+        }),
+      },
+      {
+        path: 'settings/password',
+        lazy: async () => ({
+          Component: (await import('../screens/AccountRecoveryScreen.jsx')).default,
+        }),
+      },
       {
         path: 'find-username',
         lazy: async () => ({
@@ -216,8 +241,15 @@ export const router = createBrowserRouter([
         path: 'map',
         HydrateFallback,
         lazy: async () => {
-          const { default: Component } = await import('../screens/MapScreen');
-          return { Component };
+          const { default: Component } = await import('../pages/map/MapPage');
+          return {
+            Component: () => (
+              <>
+                <Component />
+                <TabBar />
+              </>
+            ),
+          };
         },
       },
       {

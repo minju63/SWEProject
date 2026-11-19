@@ -11,6 +11,15 @@ import rules from '../../../shared/signup-rules.mjs';
 const hash = (v) => createHash('sha256').update(v).digest('hex');
 // Reset and logged-in change share one journal and must serialize together.
 const recoveryQueues = new WeakMap();
+export function accountWorkflow(state, fn) {
+  return (...args) => {
+    const work = (recoveryQueues.get(state) || Promise.resolve())
+      .catch(() => {})
+      .then(() => fn(...args));
+    recoveryQueues.set(state, work);
+    return work;
+  };
+}
 export function createAccountRecovery({
   state,
   auth,
@@ -75,16 +84,7 @@ export function createAccountRecovery({
       throw error;
     }
   }
-  const exclusive =
-    (fn) =>
-    (...args) => {
-      const work = (recoveryQueues.get(state) || Promise.resolve()).then(() => fn(...args));
-      recoveryQueues.set(
-        state,
-        work.catch(() => {})
-      );
-      return work;
-    };
+  const exclusive = (fn) => accountWorkflow(state, fn);
   return {
     findUsername: exclusive(async (value) => {
       const email = emailOf(value);

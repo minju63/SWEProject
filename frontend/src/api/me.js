@@ -1,6 +1,7 @@
 import { api } from './client';
 
 export const fetchProfile = () => api.get('/me/profile');
+export const fetchMapProfile = () => api.get('/me/map-profile');
 export const updateProfile = (profile) => api.put('/me/profile', profile);
 export const fetchBookmarks = () => api.get('/me/bookmarks');
 export const addBookmark = (policyId, savedFrom) =>

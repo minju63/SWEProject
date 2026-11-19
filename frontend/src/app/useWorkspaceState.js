@@ -2,6 +2,7 @@ import { useEffect, useRef, useState, useCallback } from 'react'
 import { useAuth } from '../lib/auth'
 import { personalApi } from '../lib/api'
 import { supabase } from '../lib/auth'
+import { useQueryClient } from '@tanstack/react-query'
 import {
   policyCatalog,
   findPolicyByTitle,
@@ -56,6 +57,7 @@ function read(key, fallback) {
   }
 }
 export function useWorkspaceState() {
+  const queryClient = useQueryClient()
   // OTP verification creates a session before the separate registration completion step.
   const { user, requestLogin } = useAuth(),
     uid = useRef(user?.id)
@@ -300,6 +302,15 @@ export function useWorkspaceState() {
       try {
         await action()
         await refresh(owner)
+        for (const key of [
+          'home',
+          'calendar',
+          'bookmarks',
+          'policies',
+          'search-filter-count',
+          'similar-policies',
+        ])
+          void queryClient.invalidateQueries({ queryKey: [key] })
         return true
       } catch (e) {
         if (uid.current === owner)
@@ -400,6 +411,18 @@ export function useWorkspaceState() {
         })
         if (error) throw error
         if (data.user && uid.current === data.user.id) account.current = data.user
+        for (const key of [
+          'eligibility',
+          'policy-explanation',
+          'policy-comparison',
+          'policy-compare-ai-summary',
+          'policy-compare-similar',
+          'policy-compare-ai-candidates',
+          'policy-compare-options',
+        ])
+          queryClient.removeQueries({ queryKey: [key] })
+        await queryClient.invalidateQueries({ queryKey: ['map-profile', uid.current] })
+        await queryClient.invalidateQueries({ queryKey: ['profile'] })
       })
     },
     toggleSaved: (value) => {

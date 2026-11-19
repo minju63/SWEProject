@@ -1,11 +1,51 @@
 import { Router } from 'express';
 import { notifications } from '../services/notifications.service.js';
-import { passwordChange } from '../services/registration-runtime.service.js';
+import { passwordChange, accountIdentity } from '../services/registration-runtime.service.js';
 import { requireAuth } from '../middlewares/auth.js';
 import { ok } from '../utils/response.js';
 import { supabase } from '../lib/supabase.js';
 const router = Router();
 router.use(requireAuth);
+router.post(['/account/username/:step', '/account/email/:step'], async (req, res) => {
+  const kind = req.path.split('/')[2],
+    { step } = req.params,
+    owner = req.user.id,
+    body = req.body || {};
+  let data;
+  switch (step) {
+    case 'resume':
+      data = await accountIdentity.resume(owner, kind, body.requestId);
+      break;
+    case 'start':
+      data = await accountIdentity.start(owner, kind);
+      break;
+    case 'resend':
+      data = await accountIdentity.resend(owner, kind, body.requestId);
+      break;
+    case 'verify':
+      data = await accountIdentity.verify(owner, kind, body.requestId, body.token);
+      break;
+    case 'prepare':
+      data = await accountIdentity.prepare(owner, kind, body.requestId, body.grant, body.newValue);
+      break;
+    case 'complete':
+      data = await accountIdentity.complete(
+        owner,
+        kind,
+        body.requestId,
+        body.grant,
+        body.newValue,
+        body.token
+      );
+      break;
+    case 'cancel':
+      data = await accountIdentity.cancel(owner, kind, body.requestId);
+      break;
+    default:
+      return res.status(404).json({ success: false, message: '요청을 찾을 수 없어요.' });
+  }
+  ok(res, data);
+});
 router.get('/notifications', async (req, res) => ok(res, await notifications.list(req.user.id)));
 router.put('/notifications/:id/read', async (req, res) =>
   ok(res, await notifications.read(req.user.id, req.params.id))

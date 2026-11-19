@@ -190,6 +190,32 @@ test('OTP verification completes with the authenticated owner and opens JSX onbo
   await page.getByRole('button', { name: '건너뛰고 홈으로', exact: true }).click();
   await expect(page).toHaveURL('http://127.0.0.1:5173/');
 });
+test('login and home re-entry resume unfinished initial setup; confirmed skip stops reopening it', async({page})=>{
+  await page.goto('/login');
+  await page.getByLabel('아이디 또는 이메일',{exact:true}).fill('newuser123');
+  await page.getByLabel('비밀번호',{exact:true}).fill(password);
+  await page.getByRole('button',{name:'로그인',exact:true}).click();
+  await expect(page).toHaveURL(/\/onboarding$/);
+  await expect(page.getByRole('heading',{name:'맞춤정보 초기 설정'})).toBeVisible();
+  await page.goto('/');
+  await expect(page).toHaveURL(/\/onboarding$/);
+  await page.getByRole('button',{name:'건너뛰기',exact:true}).click();
+  await page.getByRole('button',{name:'건너뛰고 홈으로',exact:true}).click();
+  await expect(page).toHaveURL('http://127.0.0.1:5173/');
+  await page.reload();
+  await expect(page).toHaveURL('http://127.0.0.1:5173/');
+  await expect(page.getByRole('heading',{name:'맞춤정보 초기 설정'})).toHaveCount(0);
+});
+
+test('failed initial setup completion stays on setup and reports the error',async({page})=>{
+  await page.route('**/api/v1/auth/onboarding',route=>route.fulfill({status:503,json:{success:false,message:'failed'}}));
+  await send(page);await verify(page);
+  await page.getByRole('button',{name:'건너뛰기',exact:true}).click();
+  await page.getByRole('button',{name:'건너뛰고 홈으로',exact:true}).click();
+  await expect(page.getByRole('alert')).toHaveText('완료 상태를 저장하지 못했어요. 다시 시도해주세요.');
+  await expect(page).toHaveURL(/\/onboarding$/);
+});
+
 test('optional refusal opens home without onboarding', async ({ page }) => {
   await send(page, false);
   await verify(page);

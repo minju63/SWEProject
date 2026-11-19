@@ -48,7 +48,8 @@ export default function OnboardingScreen() {
       body: JSON.stringify({ skipped }),
     });
     if (!r.ok) throw Error('완료 상태를 저장하지 못했어요. 다시 시도해주세요.');
-    await supabase.auth.refreshSession();
+    const refreshed = await supabase.auth.refreshSession();
+    if (refreshed.error) throw Error('완료 상태를 확인하지 못했어요. 다시 시도해주세요.');
     navigate('/', { replace: true, state: skipped ? { onboardingSkipped: true } : undefined });
   }
   async function save(e) {
