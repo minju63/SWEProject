@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { CATEGORY_ORDER, CATEGORY_STYLE } from '../home/homeConfig.js';
 import { WEEKDAYS, monthCells } from './calendarUtils.js';
 
@@ -23,30 +24,73 @@ export default function CalendarGrid({
   colorOf,
   onPrev,
   onNext,
+  onJump,
   onSelect,
 }) {
   const cells = monthCells(year, month);
+  // 가운데 "2026년 11월"을 누르면 연·월을 골라 바로 이동한다
+  const [pickYear, setPickYear] = useState(null); // 열려 있으면 고르는 중인 연도, 닫혀 있으면 null
+  const todayYM = today ? { y: Number(today.slice(0, 4)), m: Number(today.slice(5, 7)) } : null;
   return (
     <section className="cal-card" aria-label={`${year}년 ${month}월 달력`}>
       <div className="cal-nav">
         <button type="button" aria-label="이전 달" onClick={onPrev}>
           ‹
         </button>
-        <strong>
-          {year}년 {month}월
-        </strong>
+        <button
+          type="button"
+          className="cal-title"
+          aria-label="연·월 선택"
+          aria-expanded={pickYear != null}
+          onClick={() => setPickYear(pickYear == null ? year : null)}
+        >
+          {year}년 {month}월 <span aria-hidden="true">{pickYear == null ? '▾' : '▴'}</span>
+        </button>
         <button type="button" aria-label="다음 달" onClick={onNext}>
           ›
         </button>
       </div>
-      <div className="cal-week" aria-hidden="true">
+      {pickYear != null && (
+        <div className="cal-picker">
+          <div className="cal-picker-year">
+            <button type="button" aria-label="이전 해" onClick={() => setPickYear(pickYear - 1)}>
+              ‹
+            </button>
+            <strong>{pickYear}년</strong>
+            <button type="button" aria-label="다음 해" onClick={() => setPickYear(pickYear + 1)}>
+              ›
+            </button>
+          </div>
+          <div className="cal-picker-months">
+            {Array.from({ length: 12 }, (_, i) => i + 1).map((m) => {
+              const on = pickYear === year && m === month;
+              const isNow = todayYM && pickYear === todayYM.y && m === todayYM.m;
+              return (
+                <button
+                  key={m}
+                  type="button"
+                  className={`${on ? 'on' : ''}${isNow ? ' now' : ''}`}
+                  aria-pressed={on}
+                  onClick={() => {
+                    onJump(pickYear, m);
+                    setPickYear(null);
+                  }}
+                >
+                  {m}월
+                </button>
+              );
+            })}
+          </div>
+        </div>
+      )}
+      <div className="cal-week" aria-hidden="true" hidden={pickYear != null}>
         {WEEKDAYS.map((w, i) => (
           <span key={w} className={i === 0 ? 'cal-sun' : i === 6 ? 'cal-sat' : ''}>
             {w}
           </span>
         ))}
       </div>
-      <div className="cal-grid" role="grid">
+      <div className="cal-grid" role="grid" hidden={pickYear != null}>
         {cells.map((c) => {
           const events = eventsByDate.get(c.key) ?? [];
           const isToday = c.key === today;

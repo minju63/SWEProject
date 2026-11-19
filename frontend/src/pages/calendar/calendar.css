@@ -43,8 +43,73 @@
   justify-content: space-between;
   padding: 0 4px 8px;
 }
-.cal-nav strong {
+.cal-nav strong,
+.cal-nav .cal-title {
   font-size: 17px;
+  font-weight: 800;
+}
+.cal-nav .cal-title {
+  width: auto;
+  min-width: 120px;
+  height: 36px;
+  padding: 0 12px;
+  border-radius: 12px;
+  color: var(--text);
+}
+.cal-nav .cal-title span {
+  margin-left: 2px;
+  font-size: 11px;
+  color: var(--muted);
+}
+.cal-nav .cal-title[aria-expanded='true'] {
+  background: #eef3fe;
+}
+/* 연·월 고르기 */
+.cal-picker {
+  padding: 4px 4px 10px;
+}
+.cal-picker-year {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+  padding-bottom: 10px;
+}
+.cal-picker-year strong {
+  min-width: 70px;
+  text-align: center;
+  font-size: 16px;
+}
+.cal-picker-year button {
+  width: 34px;
+  height: 34px;
+  border: 0;
+  border-radius: 50%;
+  background: #f4f7fd;
+  color: var(--sub);
+  font-size: 20px;
+  line-height: 1;
+}
+.cal-picker-months {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+}
+.cal-picker-months button {
+  height: 44px;
+  border: 0;
+  border-radius: 12px;
+  background: #f4f7fd;
+  color: var(--text);
+  font-size: 14px;
+  font-weight: 700;
+}
+.cal-picker-months button.now {
+  color: var(--primary);
+}
+.cal-picker-months button.on {
+  background: var(--primary);
+  color: #fff;
 }
 .cal-nav button {
   width: 36px;
@@ -55,6 +120,10 @@
   color: var(--sub);
   font-size: 22px;
   line-height: 1;
+}
+.cal-week[hidden],
+.cal-grid[hidden] {
+  display: none; /* 연·월 고르는 중에는 달력을 숨긴다 */
 }
 .cal-week,
 .cal-grid {

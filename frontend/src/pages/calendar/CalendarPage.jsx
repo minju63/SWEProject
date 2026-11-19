@@ -155,6 +155,7 @@ export default function CalendarPage() {
             colorOf={colorOf}
             onPrev={() => goMonth(-1)}
             onNext={() => goMonth(1)}
+            onJump={(y, m) => setMonth({ y, m })}
             onSelect={pickDate}
           />
 
