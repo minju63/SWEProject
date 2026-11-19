@@ -477,6 +477,14 @@ button {
   width: 22px;
   height: 22px;
 }
+.search-category-icon--home {
+  width: 52px; /* 홈 분야 아이콘과 같은 크기 */
+  height: 52px;
+}
+.search-category-icon--home svg {
+  width: 24px;
+  height: 24px;
+}
 .search-category-icon--pink { background: #fcecf1; color: #e76586; }
 .search-category-icon--blue { background: #eaf2fe; color: #2f7bf5; }
 .search-category-icon--yellow { background: #fff5dc; color: #dfa92f; }

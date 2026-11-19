@@ -1,4 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
+import CategoryIcon from '../home/CategoryIcon.jsx';
+import { CATEGORY_STYLE } from '../home/homeConfig.js';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { useLocation, useNavigate, useSearchParams } from 'react-router-dom';
 import { fetchPolicies, fetchSearchFilters } from '../../api/policies';
@@ -339,7 +341,15 @@ export default function SearchPage() {
               <div className="search-category-grid">
                 {categoryItems.filter(({ label }) => filterCategories.some((category) => category.display_name === label)).map(({ label, Icon, color }) => (
                   <button type="button" className="search-category" key={label} onClick={() => browseCategory(label)}>
-                    <span className={`search-category-icon search-category-icon--${color}`}><Icon /></span>
+                    {CATEGORY_STYLE[label] ? (
+                      // 홈 분야 아이콘과 같은 모양·색
+                      <span className="search-category-icon search-category-icon--home"
+                        style={{ background: CATEGORY_STYLE[label].bg, color: CATEGORY_STYLE[label].color }}>
+                        <CategoryIcon name={label} />
+                      </span>
+                    ) : (
+                      <span className={`search-category-icon search-category-icon--${color}`}><Icon /></span>
+                    )}
                     <span>{label}</span>
                   </button>
                 ))}
