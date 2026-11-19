@@ -99,6 +99,7 @@ export default function MapPage() {
   const cardRefs = useRef({});
   const handleStart = useRef(null);
   const cardRef = useRef(null);
+  const [cardDrag, setCardDrag] = useState(null); // 카드 바를 끌고 있는 동안 { startY, dy }
   const [cardHeight, setCardHeight] = useState(CARD_HEIGHT); // 장소 카드의 실제 높이(아래 빈 공간을 줄이려고 내용 높이에 맞춘다)
   // 안내 문구: 기본 3초, 찜 안내는 약 2초 (FR-MAP-016·018)
   const say = useCallback((text, ms = 3000) => setNotice({ text, ms }), []);
@@ -397,14 +398,25 @@ export default function MapPage() {
   }
   // 장소 카드의 손잡이: 아래로 끌어 내리면(40px 이상) 카드를 닫고 목록으로 돌아간다
   function onCardHandleDown(event) {
-    handleStart.current = { y: event.clientY, id: event.pointerId };
     event.currentTarget.setPointerCapture(event.pointerId);
+    setCardDrag({ id: event.pointerId, startY: event.clientY, dy: 0 });
   }
+  function onCardHandleMove(event) {
+    setCardDrag((cur) =>
+      cur && cur.id === event.pointerId
+        ? { ...cur, dy: Math.max(0, event.clientY - cur.startY) }
+        : cur
+    );
+  }
+  // 카드가 손가락을 따라 내려가고, 60px 이상 내리면 카드를 접어 지도만 남긴다(목록 시트는 가장 낮게)
   function onCardHandleUp(event) {
-    const start = handleStart.current;
-    handleStart.current = null;
-    if (!start || start.id !== event.pointerId) return;
-    if (event.clientY - start.y >= 40) setSelectedId(null);
+    const cur = cardDrag;
+    setCardDrag(null);
+    if (!cur || cur.id !== event.pointerId) return;
+    if (cur.dy >= 60) {
+      setSelectedId(null);
+      setSheet('collapsed');
+    }
   }
   function onHandleKey(event) {
     if (event.key === 'ArrowUp') {
@@ -667,7 +679,11 @@ export default function MapPage() {
         <section
           aria-label="장소 목록"
           className="absolute inset-x-0 bottom-0 z-30 flex flex-col overflow-hidden rounded-t-[24px] bg-white shadow-[0_-8px_32px_rgba(23,25,35,0.16)] transition-[height] duration-200 ease-out"
-          style={{ height: sheetHeight }}
+          style={{
+            height: sheetHeight,
+            transform: cardMode && cardDrag?.dy ? `translateY(${cardDrag.dy}px)` : undefined,
+            transition: cardDrag ? 'none' : 'height 0.2s ease-out, transform 0.18s ease-out',
+          }}
         >
           {selectedPlace ? (
             <div ref={cardRef}>
@@ -676,8 +692,9 @@ export default function MapPage() {
                 tabIndex={0}
                 aria-label="장소 카드 닫기 (아래로 끌어 내리기)"
                 onPointerDown={onCardHandleDown}
+                onPointerMove={onCardHandleMove}
                 onPointerUp={onCardHandleUp}
-                onPointerCancel={() => (handleStart.current = null)}
+                onPointerCancel={() => setCardDrag(null)}
                 onKeyDown={(e) => (e.key === 'ArrowDown' || e.key === 'Escape') && setSelectedId(null)}
                 className="cursor-grab touch-none select-none px-5 pb-3 pt-2.5"
               >
