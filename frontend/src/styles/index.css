@@ -358,6 +358,9 @@ button {
   letter-spacing: -0.7px;
 }
 .search-header-notification {
+  display: flex;
+  align-items: center;
+  gap: 8px; /* Dr.부를 숨겼을 때 종 왼쪽에 얼굴 버튼이 뜬다 */
   flex: none;
   margin-left: auto;
 }

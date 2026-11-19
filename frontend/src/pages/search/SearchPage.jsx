@@ -10,6 +10,7 @@ import { useAuthStore } from '../../store/authStore';
 import { dDayText } from '../../utils/format';
 import SelectMenu from '../../components/SelectMenu.jsx';
 import NotificationBell from '../../components/NotificationBell.jsx';
+import DrBuFaceButton from '../../components/DrBuFaceButton.jsx';
 import PolicyAutocomplete from '../../components/PolicyAutocomplete.jsx';
 import {
   ArtIcon, BackIcon, BriefcaseIcon, ClockIcon, CoinIcon,
@@ -319,7 +320,7 @@ export default function SearchPage() {
           {hasSearch && !previewingInput && <button className="search-back" type="button" aria-label="뒤로 가기"
             onClick={() => { setDraftInput(null); navigate('/search'); }}><BackIcon /></button>}
           <h1>{hasSearch && !previewingInput ? '검색 결과' : '정책 찾기'}</h1>
-          <div className="search-header-notification"><NotificationBell onClick={() => navigate('/notifications')} /></div>
+          <div className="search-header-notification"><DrBuFaceButton /><NotificationBell onClick={() => navigate('/notifications')} /></div>
         </div>
         <SearchEntry value={input} onOpen={openSearchInput}
           editableOnType={hasSearch && !routeQuery.trim()} onInput={setDraftInput} />

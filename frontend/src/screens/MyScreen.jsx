@@ -7,6 +7,7 @@ import { findPolicyByTitle, policyCatalog, getRequiredDocumentItems } from '../d
 import { Icon } from './HomeScreen'
 import { DragScroll } from './minju/DragScroll'
 import NotificationBell from '../components/NotificationBell'
+import DrBuFaceButton from '../components/DrBuFaceButton'
 import { useAuth } from '../lib/auth'
 const stages = ['신청 준비', '신청 완료', '결과 확인']
 const savedFilters = ['전체', '신청 가능', '마감 임박', '종료']
@@ -204,6 +205,7 @@ export default function MyScreen() {
       <div className="my-page">
         <header className="my-header">
           <h1 className="text-[20px] font-black tracking-[-0.04em]">마이</h1>
+          <DrBuFaceButton />
           <NotificationBell />
         </header>
 

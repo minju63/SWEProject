@@ -4,6 +4,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import { fetchSearchFilters } from '../../api/policies';
 import { ArtIcon, BriefcaseIcon, ClockIcon, CoinIcon, HealthIcon, HomeIcon, SearchIcon } from '../../components/icons.jsx';
 import NotificationBell from '../../components/NotificationBell.jsx';
+import DrBuFaceButton from '../../components/DrBuFaceButton.jsx';
 import PolicyAutocomplete from '../../components/PolicyAutocomplete.jsx';
 import { useAuthStore } from '../../store/authStore';
 import './SearchInputPage.css';
@@ -102,7 +103,7 @@ export default function SearchInputPage() {
       renderInput={(inputProps, submit) => <header className="search-header search-input-header">
         <div className="search-header-row">
           <h1>정책 찾기</h1>
-          <div className="search-header-notification"><NotificationBell onClick={() => navigate('/notifications')} /></div>
+          <div className="search-header-notification"><DrBuFaceButton /><NotificationBell onClick={() => navigate('/notifications')} /></div>
         </div>
         <form className="policy-search-form" onSubmit={(event) => { event.preventDefault(); submit(); }}>
           <SearchIcon />
