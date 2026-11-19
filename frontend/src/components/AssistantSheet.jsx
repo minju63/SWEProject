@@ -411,9 +411,11 @@ function ChatSheet() {
     if (!busy) saveHistory(messages);
   }, [messages, busy]);
 
+  // 새 메시지가 생기거나 답변을 기다리는 상태가 바뀔 때만 맨 아래로 내린다.
+  // (찜처럼 카드 안의 값만 바뀔 때는 보던 자리를 그대로 둔다)
   useEffect(() => {
     bodyRef.current?.scrollTo({ top: bodyRef.current.scrollHeight });
-  }, [messages, busy]);
+  }, [messages.length, busy]);
 
   const ask = async (text) => {
     const q = text.trim();
