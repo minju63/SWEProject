@@ -31,6 +31,7 @@ const STOPS = ['collapsed', 'mid', 'full'];
 const COLLAPSED_HEIGHT = 88;
 const BAR_HEIGHT = 56;
 const CARD_HEIGHT = 244;
+const PEEK_HEIGHT = 88; // 장소 카드를 내렸을 때 남기는 높이(바·분야·이름)
 const START_ZOOM = 2; // 거주 구 중심으로 열 때
 const FOCUS_ZOOM = START_ZOOM + 1; // 장소·내 위치로 옮길 때
 const BUSAN_CITY_HALL = { lat: 35.1798, lng: 129.075 }; // 장소를 못 불러왔을 때만 쓰는 기본 중심
@@ -100,6 +101,7 @@ export default function MapPage() {
   const handleStart = useRef(null);
   const cardRef = useRef(null);
   const [cardDrag, setCardDrag] = useState(null); // 카드 바를 끌고 있는 동안 { startY, dy }
+  const [cardCollapsed, setCardCollapsed] = useState(false); // 카드를 아래로 내려 이름만 남긴 상태(장소 선택은 그대로)
   const [cardHeight, setCardHeight] = useState(CARD_HEIGHT); // 장소 카드의 실제 높이(아래 빈 공간을 줄이려고 내용 높이에 맞춘다)
   // 안내 문구: 기본 3초, 찜 안내는 약 2초 (FR-MAP-016·018)
   const say = useCallback((text, ms = 3000) => setNotice({ text, ms }), []);
@@ -218,9 +220,13 @@ export default function MapPage() {
   const heights = sheetHeights(regionHeight);
   const selectedPlace = selectedId ? (places.find((p) => p.id === selectedId) ?? null) : null;
   const cardMode = selectedPlace !== null;
-  const sheetHeight = cardMode ? cardHeight : heights[sheet];
-  const bottomInset = cardMode ? cardHeight : Math.min(heights[sheet], heights.mid);
+  const cardShownHeight = cardCollapsed ? PEEK_HEIGHT : cardHeight;
+  const sheetHeight = cardMode ? cardShownHeight : heights[sheet];
+  const bottomInset = cardMode ? cardShownHeight : Math.min(heights[sheet], heights.mid);
   const detailPlace = detailId ? (places.find((p) => p.id === detailId) ?? null) : null;
+  useEffect(() => {
+    setCardCollapsed(false); // 다른 장소를 고르면 카드를 다시 펼친다
+  }, [selectedId]);
   useLayoutEffect(() => {
     const el = cardRef.current;
     if (!el) return undefined;
@@ -403,20 +409,17 @@ export default function MapPage() {
   }
   function onCardHandleMove(event) {
     setCardDrag((cur) =>
-      cur && cur.id === event.pointerId
-        ? { ...cur, dy: Math.max(0, event.clientY - cur.startY) }
-        : cur
+      cur && cur.id === event.pointerId ? { ...cur, dy: event.clientY - cur.startY } : cur
     );
   }
-  // 카드가 손가락을 따라 내려가고, 60px 이상 내리면 카드를 접어 지도만 남긴다(목록 시트는 가장 낮게)
+  // 카드가 손가락을 따라 내려가고, 60px 이상 내리면 카드만 아래로 접어 이름만 남긴다.
+  // 장소 선택과 지도 위치는 그대로 두고, 접힌 카드를 누르거나 위로 끌면 다시 펼친다.
   function onCardHandleUp(event) {
     const cur = cardDrag;
     setCardDrag(null);
     if (!cur || cur.id !== event.pointerId) return;
-    if (cur.dy >= 60) {
-      setSelectedId(null);
-      setSheet('collapsed');
-    }
+    if (!cardCollapsed && cur.dy >= 60) setCardCollapsed(true);
+    else if (cardCollapsed && (cur.dy <= -30 || Math.abs(cur.dy) < 8)) setCardCollapsed(false);
   }
   function onHandleKey(event) {
     if (event.key === 'ArrowUp') {
@@ -681,7 +684,10 @@ export default function MapPage() {
           className="absolute inset-x-0 bottom-0 z-30 flex flex-col overflow-hidden rounded-t-[24px] bg-white shadow-[0_-8px_32px_rgba(23,25,35,0.16)] transition-[height] duration-200 ease-out"
           style={{
             height: sheetHeight,
-            transform: cardMode && cardDrag?.dy ? `translateY(${cardDrag.dy}px)` : undefined,
+            transform:
+              cardMode && cardDrag && !cardCollapsed && cardDrag.dy > 0
+                ? `translateY(${cardDrag.dy}px)`
+                : undefined,
             transition: cardDrag ? 'none' : 'height 0.2s ease-out, transform 0.18s ease-out',
           }}
         >
@@ -690,12 +696,16 @@ export default function MapPage() {
               <div
                 role="button"
                 tabIndex={0}
-                aria-label="장소 카드 닫기 (아래로 끌어 내리기)"
+                aria-label={cardCollapsed ? '장소 카드 펼치기' : '장소 카드 내리기'}
                 onPointerDown={onCardHandleDown}
                 onPointerMove={onCardHandleMove}
                 onPointerUp={onCardHandleUp}
                 onPointerCancel={() => setCardDrag(null)}
-                onKeyDown={(e) => (e.key === 'ArrowDown' || e.key === 'Escape') && setSelectedId(null)}
+                onKeyDown={(e) => {
+                  if (e.key === 'ArrowDown') setCardCollapsed(true);
+                  else if (e.key === 'ArrowUp') setCardCollapsed(false);
+                  else if (e.key === 'Escape') setSelectedId(null);
+                }}
                 className="cursor-grab touch-none select-none px-5 pb-3 pt-2.5"
               >
                 <span className="mx-auto block h-1 w-10 rounded-full bg-black/15" />
