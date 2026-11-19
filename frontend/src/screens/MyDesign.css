@@ -36,8 +36,9 @@
 .my-page h2 { font-size: 18px; font-weight: 850; letter-spacing: -.5px; }
 .my-applications-section > div:first-child > button { padding: 9px 12px; background: #e5eeff; }
 .my-stage-tabs { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 6px; margin-top: 11px; }
-.my-stage-tabs > button { justify-content: center; padding: 10px 4px; font-size: 11px; gap: 4px; }
-.my-stage-tabs > button > span { padding: 1px 5px; }
+.my-stage-tabs > button { justify-content: center; padding: 11px 4px; font-size: 13px; gap: 5px; }
+.my-stage-tabs > button:not(.bg-\[\#2F7BF5\]) { color: #3a4452; } /* 선택 안 된 탭 글씨를 진하게 */
+.my-stage-tabs > button > span { padding: 1px 6px; font-size: 11px; }
 .my-applications-section > .mt-3 { background: #e9f0ff; color: #6b88b8; border-radius: 13px; padding: 11px 12px; }
 .my-application { border-radius: 20px; background: white; overflow: hidden; box-shadow: 0 5px 16px #284c7405; }
 .my-application-summary { width: 100%; padding: 15px; text-align: left; }
@@ -171,6 +172,6 @@ button[aria-pressed="true"] > .my-selection-check { background: #2f7bf5; color: 
   .my-profile-card { margin: 0 12px; padding: 13px 12px 9px; }
   .my-profile-card h2 { font-size: 16px; }
   .my-applications-section, .my-saved-section, .my-recent-section { padding-left: 12px; padding-right: 12px; }
-  .my-stage-tabs > button { font-size: 10px; }
+  .my-stage-tabs > button { font-size: 12px; }
   .my-settings > form, .my-settings > main { padding-left: 12px; padding-right: 12px; }
 }

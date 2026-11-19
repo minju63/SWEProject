@@ -340,15 +340,15 @@ export default function MyScreen() {
                 <button
                   key={stage}
                   onClick={() => setActiveStage(stage)}
-                  className={`flex shrink-0 items-center gap-1.5 rounded-full px-3.5 py-2.5 text-[11px] font-extrabold ${
+                  className={`flex shrink-0 items-center gap-1.5 rounded-full px-3.5 py-2.5 text-[13px] font-extrabold ${
                     activeStage === stage
                       ? 'bg-[#2F7BF5] text-white'
-                      : 'border border-black/[0.07] bg-white text-black/45'
+                      : 'border border-black/[0.07] bg-white text-black/70'
                   }`}
                 >
                   {stage}
                   <span
-                    className={`rounded-full px-1.5 py-0.5 text-[9px] ${
+                    className={`rounded-full px-1.5 py-0.5 text-[11px] ${
                       activeStage === stage ? 'bg-white/20' : 'bg-[#f1f3fb] text-[#2F7BF5]'
                     }`}
                   >
