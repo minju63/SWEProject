@@ -582,7 +582,7 @@ button {
   gap: 8px;
   overflow-x: auto;
   align-items: center;
-  padding: 8px 20px;
+  padding: 10px 20px 8px; /* 필터 배지가 잘리지 않게 위쪽 여백 */
   border-bottom: 0;
   background: transparent;
   scrollbar-width: none;
@@ -596,15 +596,34 @@ button {
   font-weight: 800;
 }
 .search-filter-button {
-  width: 82px;
-  height: 34px;
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  padding: 0 !important;
   border: 0;
-  background: #fff;
-  color: #273445;
+  border-radius: 50% !important;
+  background: transparent !important;
+  color: rgba(0, 0, 0, 0.6);
 }
-.search-filter-button.is-active {
-  background: #fff;
-  color: #2f7bf5;
+.search-filter-button svg { width: 22px; height: 22px; }
+.search-filter-button.is-active { color: rgba(0, 0, 0, 0.6); }
+.search-filter-badge {
+  position: absolute;
+  top: -1px;
+  right: -3px;
+  display: grid;
+  place-items: center;
+  min-width: 16px;
+  height: 16px;
+  padding: 0 4px;
+  border-radius: 999px;
+  background: #2f7bf5;
+  color: #fff;
+  font-size: 10px;
+  font-weight: 900;
+  line-height: 16px;
 }
 .search-applied-chip {
   border: 0;
@@ -1060,4 +1079,28 @@ button {
   clip: rect(0, 0, 0, 0);
   white-space: nowrap;
   border: 0;
+}
+
+/* 필터 시트의 아래·오른쪽 화살표: 글자(⌄ ›) 대신 모양으로 그려 박스 안에서 가운데에 오게 한다 */
+.search-chev {
+  flex: none;
+  width: 8px;
+  height: 8px;
+  border-right: 2px solid #8793a4;
+  border-bottom: 2px solid #8793a4;
+  transform: translateY(-2px) rotate(45deg); /* 아래 방향(⌄) */
+  transition: transform .15s;
+}
+.search-chev.open { transform: translateY(2px) rotate(-135deg); } /* 위 방향(⌃) */
+.search-chev.right { transform: rotate(-45deg); } /* 오른쪽(›) */
+.search-condition-expand .search-chev { border-color: #2f7bf5; }
+.select-menu-chevron { margin: 0 2px 0 0 !important; transform: translateY(-2px) rotate(45deg) !important; }
+.select-menu-trigger[aria-expanded="true"] .select-menu-chevron { transform: translateY(2px) rotate(225deg) !important; }
+
+/* 필터 시트 위쪽 바: 잡고 끌 수 있도록 누르는 영역을 넓힌다 */
+.search-filter-grab {
+  padding: 4px 0 14px;
+  margin-top: -4px;
+  cursor: grab;
+  touch-action: none;
 }

@@ -387,7 +387,13 @@ export default function SearchPage() {
         <div className="search-results">
           <div className="search-filter-strip">
             <button type="button" className={`search-filter-button${filterCount ? ' is-active' : ''}`}
-              onClick={openFilters}>필터 {filterCount}</button>
+              aria-label={filterCount ? `필터, ${filterCount}개 적용 중` : '필터'} onClick={openFilters}>
+              {/* 지도 탭의 필터 버튼과 같은 아이콘·배지 */}
+              <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.9" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M4 6h3M13 6h7M4 12h9M19 12h1M4 18h1M11 18h9" /><circle cx="10" cy="6" r="2.2" /><circle cx="16" cy="12" r="2.2" /><circle cx="8" cy="18" r="2.2" />
+              </svg>
+              {filterCount > 0 && <span className="search-filter-badge">{filterCount}</span>}
+            </button>
             {chips.slice(0, 3).map((chip) => <button type="button" key={`${chip.type}-${chip.value}`}
               className="search-applied-chip" onClick={() => removeChip(chip)}>{chip.value} ×</button>)}
             {chips.length > 3 && <button type="button" className="search-more-chip" onClick={openFilters}>+{chips.length - 3}</button>}

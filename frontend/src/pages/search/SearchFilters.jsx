@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import SelectMenu from '../../components/SelectMenu.jsx';
 import { UserIcon } from '../../components/icons.jsx';
 import { STATUSES, toggle } from './searchFilterData';
@@ -41,9 +41,31 @@ function Chips({ options, selected, onToggle }) {
     onClick={() => onToggle(option)}>{option}</button>)}</div>;
 }
 
+// 시트 위쪽 바를 잡고 아래로 끌어 내리면 닫힌다 (100px 이상 내리면 닫고, 아니면 제자리로)
+function useSheetDrag(onClose) {
+  const [dragY, setDragY] = useState(0);
+  const [dragging, setDragging] = useState(false);
+  const startY = useRef(0);
+  const finish = () => {
+    if (!dragging) return;
+    setDragging(false);
+    if (dragY > 100) onClose();
+    else setDragY(0);
+  };
+  return {
+    handleProps: {
+      onPointerDown: (event) => { startY.current = event.clientY; setDragging(true); event.currentTarget.setPointerCapture(event.pointerId); },
+      onPointerMove: (event) => { if (dragging) setDragY(Math.max(0, event.clientY - startY.current)); },
+      onPointerUp: finish,
+      onPointerCancel: finish,
+    },
+    style: { transform: dragY ? `translateY(${dragY}px)` : undefined, transition: dragging ? 'none' : 'transform .18s ease-out' },
+  };
+}
+
 function SummaryRow({ label, value, onClick }) {
   return <button type="button" className="search-filter-summary-row" onClick={onClick}>
-    <b>{label}</b><span>{value}</span><strong aria-hidden="true">›</strong>
+    <b>{label}</b><span>{value}</span><i className="search-chev right" aria-hidden="true" />
   </button>;
 }
 
@@ -121,7 +143,7 @@ function ConditionFields({ value, onChange, categories, regions }) {
           <div className="search-interest-main"><button type="button" className="search-interest-check" aria-label={`${category} 전체 선택`}
             aria-pressed={all} onClick={() => toggleInterest(category)}>{selected.length && !all ? '−' : <CheckMark />}</button>
             <button type="button" className="search-interest-expand" aria-expanded={openInterest === category}
-              onClick={() => setOpenInterest(openInterest === category ? '' : category)}><b>{category}</b><strong>{openInterest === category ? '⌃' : '⌄'}</strong></button></div>
+              onClick={() => setOpenInterest(openInterest === category ? '' : category)}><b>{category}</b><i className={`search-chev${openInterest === category ? ' open' : ''}`} aria-hidden="true" /></button></div>
           {openInterest === category && subs.length > 0 && <div className="search-interest-details"><p>세부 분류는 여러 개 선택할 수 있어요</p>
             <Chips options={subs} selected={interestDetails} onToggle={(detail) => toggleInterestDetail(category, detail)} /></div>}
         </div>;
@@ -131,9 +153,10 @@ function ConditionFields({ value, onChange, categories, regions }) {
 
 function SubSheet({ type, draft, setDraft, onClose, regions }) {
   const titles = { region: '지역', status: '모집 상태', date: '신청 기간' };
+  const drag = useSheetDrag(onClose);
   return <div className="search-filter-overlay search-filter-overlay--sub" onClick={onClose}>
-    <div className="search-sub-sheet" role="dialog" aria-modal="true" aria-label={titles[type]} onClick={(event) => event.stopPropagation()}>
-      <div className="search-filter-handle" /><div className="search-sub-header"><h2>{titles[type]}</h2>
+    <div className="search-sub-sheet" role="dialog" aria-modal="true" aria-label={titles[type]} style={drag.style} onClick={(event) => event.stopPropagation()}>
+      <div className="search-filter-grab" {...drag.handleProps}><div className="search-filter-handle" /></div><div className="search-sub-header"><h2>{titles[type]}</h2>
         <button type="button" aria-label="닫기" onClick={onClose}>×</button></div>
       {type === 'region' && <><div className="search-region-heading"><h3>부산 지역을 선택해주세요</h3>
         <div className="search-region-actions"><button type="button" disabled={!regions.length}
@@ -188,9 +211,10 @@ export default function SearchFilters({ draft, setDraft, count, countLoading, pr
   const statusSummary = draft.statuses.length ? `${draft.statuses[0]}${draft.statuses.length > 1 ? ` 외 ${draft.statuses.length - 1}` : ''}` : '전체';
   const conditionValues = Object.entries(draft.myConditionsOnly ? profile ?? {} : draft.conditions)
     .filter(([key, value]) => CONDITION_FIELDS.includes(key) && value !== '' && value != null && (!Array.isArray(value) || value.length));
+  const drag = useSheetDrag(onClose);
   return <div className="search-filter-overlay" onClick={onClose}>
-    <div className="search-filter-sheet" role="dialog" aria-modal="true" aria-labelledby="search-filter-title" onClick={(event) => event.stopPropagation()}>
-      <div className="search-filter-top"><div className="search-filter-handle" /><div className="search-filter-title-row">
+    <div className="search-filter-sheet" role="dialog" aria-modal="true" aria-labelledby="search-filter-title" style={drag.style} onClick={(event) => event.stopPropagation()}>
+      <div className="search-filter-top"><div className="search-filter-grab" {...drag.handleProps}><div className="search-filter-handle" /></div><div className="search-filter-title-row">
         <div><h2 id="search-filter-title">필터</h2><p>필요한 조건만 간단히 설정해보세요.</p></div>
         <button type="button" aria-label="필터 닫기" onClick={onClose}>×</button>
       </div></div>
@@ -204,7 +228,7 @@ export default function SearchFilters({ draft, setDraft, count, countLoading, pr
                 onClick={() => toggleCategory(category)}>{selected.length && !all ? '−' : <CheckMark />}</button>
                 <button type="button" className="search-interest-expand" aria-expanded={openCategory === category}
                   onClick={() => setOpenCategory(openCategory === category ? '' : category)}><span><b>{category}</b>
-                    {selected.length > 0 && <small>세부분류 {selected.length}개 선택</small>}</span><strong>⌄</strong></button></div>
+                    {selected.length > 0 && <small>세부분류 {selected.length}개 선택</small>}</span><i className={`search-chev${openCategory === category ? ' open' : ''}`} aria-hidden="true" /></button></div>
               {openCategory === category && <div className="search-interest-details"><p>{(subcategories[category] ?? []).length ? '세부분류는 여러 개 선택할 수 있어요.' : '등록된 세부분류가 없어요.'}</p>
                 {(subcategories[category] ?? []).length > 0 && <Chips options={subcategories[category]} selected={draft.details} onToggle={(detail) => toggleDetail(category, detail)} />}</div>}
             </div>;
@@ -224,7 +248,7 @@ export default function SearchFilters({ draft, setDraft, count, countLoading, pr
               <small>{conditionValues.slice(0, 3).map(([field, value]) => displayCondition(field, value, regions)).join(' · ')}</small></span><strong>›</strong>
           </button>}
           <button type="button" className="search-condition-expand" disabled={draft.myConditionsOnly}
-            onClick={() => setConditionsOpen((open) => !open)}>조건 직접 설정 <span>{conditionsOpen ? '⌃' : '⌄'}</span></button>
+            onClick={() => setConditionsOpen((open) => !open)}>조건 직접 설정 <i className={`search-chev${conditionsOpen ? ' open' : ''}`} aria-hidden="true" /></button>
           <p className="search-condition-note search-condition-expand-note">이번 검색에만 적용돼요. 프로필은 바뀌지 않아요.</p>
           {conditionsOpen && !draft.myConditionsOnly && <ConditionFields value={draft.conditions} categories={categories} regions={regions} onChange={(conditions) => setDraft((current) => ({ ...current, conditions }))} />}
         </section>
