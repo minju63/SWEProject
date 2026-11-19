@@ -396,12 +396,6 @@ export default function MyScreen() {
               <h2 id="saved-title" className="text-xl font-black tracking-[-0.04em]">
                 찜한 혜택 <span className="text-[#2F7BF5]">{savedPolicies.length}</span>
               </h2>
-              <button
-                onClick={() => navigate('/search')}
-                className="text-xs font-bold text-black/40"
-              >
-                혜택 찾기
-              </button>
             </div>
             <div className="my-saved-tabs">
               {savedFilters.map((filter) => (
