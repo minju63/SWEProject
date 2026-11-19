@@ -146,6 +146,47 @@ function PolicyCardInChat({ card, source, categoryName, onDetail, onBookmark }) 
   );
 }
 
+// "왜 이걸 추천했어?": 정책마다 이유를 한 줄씩 체크 목록으로 보여 준다
+function WhyList({ items, onDetail }) {
+  return (
+    <div className="why-list">
+      {items.map((it, i) => (
+        <div key={it.policy_id} className="why-item">
+          <button type="button" className="why-title" onClick={() => onDetail(it.policy_id)}>
+            <span className="why-no">{i + 1}</span>
+            <strong>{it.title}</strong>
+          </button>
+          <ul>
+            {it.reasons.map((r, j) => (
+              <li key={j}>
+                <span aria-hidden="true">✓</span> {r}
+              </li>
+            ))}
+          </ul>
+        </div>
+      ))}
+    </div>
+  );
+}
+
+// "첫 번째 정책 자세히 알려줘": 지원 내용·대상·기간·신청 방법을 항목별로 풀어서 보여 준다
+function ExplainBlock({ sections }) {
+  return (
+    <div className="explain">
+      {sections.map((sec) => (
+        <section key={sec.label}>
+          <h4>{sec.label}</h4>
+          <ul>
+            {sec.lines.map((l, i) => (
+              <li key={i}>{l}</li>
+            ))}
+          </ul>
+        </section>
+      ))}
+    </div>
+  );
+}
+
 // 용어 답변: 용어 라벨 + 이름 + 설명 + 출처를 한 카드에 담는다
 function TermCard({ answer }) {
   const source = answer.sources?.[0];
@@ -549,6 +590,10 @@ function ChatSheet() {
                     <RichText text={m.answer.message} />
                   </div>
                 )}
+                {m.answer.why_items && (
+                  <WhyList items={m.answer.why_items} onDetail={(id) => goto(`/policies/${id}`)} />
+                )}
+                {m.answer.sections && <ExplainBlock sections={m.answer.sections} />}
                 {m.answer.term ? (
                   <RelatedBox
                     title={m.answer.cardsTitle}

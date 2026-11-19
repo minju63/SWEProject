@@ -570,6 +570,51 @@ async function answerPolicy(policy, message, ctx, userId, llmConditions) {
   };
 }
 
+// 공고 원문의 긴 문장을 항목으로 나눈다 (";"·줄바꿈 기준, 항목은 최대 6개·90자)
+function splitLines(text, max = 6) {
+  return String(text ?? '')
+    .split(/[;\n]+|(?<=[.다요])\s+(?=[가-힣A-Z0-9])/)
+    .map((t) => t.replace(/^[\s•·\-□○▶▷*]+/, '').trim())
+    .filter((t) => t.length > 1 && !/^[\d\s-]+$/.test(t)) // 숫자뿐인 관리용 코드(2026112601 등)는 설명이 아니다
+    .slice(0, max)
+    .map((t) => (t.length > 90 ? `${t.slice(0, 90)}…` : t));
+}
+
+const EXPLAIN_RE = /자세히|설명|소개|내용|어떤\s*(정책|혜택|사업|지원)|뭐(야|예요|에요|하는)|뭔데|알려\s*줘/;
+const ELIGIBILITY_RE = /받을\s*수|신청\s*(할\s*수|가능)|자격|대상(이|인|에)|해당(돼|되|하)|될까/;
+
+// "이 정책 자세히 알려줘": 상세 화면으로 보내지 않고 AI가 지원 내용·대상·기간·신청 방법을 풀어서 설명한다
+async function answerExplain(policy, ctx, userId) {
+  const [j] = judgedWithRegion([policy], ctx.profile, ctx.regions);
+  const bookmarked = await bookmarkSet(userId);
+  const checks = conditionChecks(j);
+  const sections = [];
+  const support = splitLines(policy.support_content);
+  if (support.length) sections.push({ label: '지원 내용', lines: support });
+  const target = [...splitLines(policy.target_summary, 4), ...(policy.income_condition ? [`소득: ${String(policy.income_condition).slice(0, 80)}`] : [])];
+  if (target.length) sections.push({ label: '지원 대상', lines: target });
+  const period = policy.is_always_open
+    ? '상시 모집'
+    : policy.application_end_date
+      ? `${policy.application_start_date ? `${policy.application_start_date} ~ ` : '~ '}${policy.application_end_date} 23:59` +
+        (policy.d_day != null && policy.d_day >= 0 ? ` (${policy.d_day === 0 ? '오늘 마감' : `D-${policy.d_day}`})` : '')
+      : '신청 기간이 정해지지 않았어요';
+  sections.push({ label: '신청 기간', lines: [period] });
+  const how = splitLines(policy.application_method, 3);
+  if (how.length) sections.push({ label: '신청 방법', lines: how });
+  const mine = checks.filter((c) => c.mark !== 'check').map((c) => `${c.mark === 'ok' ? '✓' : '✕'} ${c.label}`);
+  if (mine.length) sections.push({ label: '내 조건과 비교', lines: mine });
+  return {
+    type: 'explain',
+    message: `**${policy.title}**을(를) 설명해 드릴게요.`,
+    policy_id: policy.policy_id,
+    sections,
+    cards: [cardWithConditions(j, bookmarked)],
+    sources: await sourcesFor([policy]),
+    suggestions: ['필요한 서류 알려줘', '내가 신청할 수 있어?'],
+  };
+}
+
 async function answerDocs(policy, userId) {
   const docs = Array.isArray(policy.required_documents) ? policy.required_documents : [];
   const bookmarked = await bookmarkSet(userId);
@@ -783,7 +828,7 @@ function keepsFacts(original, polished) {
 // 규칙 기반으로 만든 답변 문장을 근거 사실은 그대로 두고 자연스럽게 다듬는다 (사실을 새로 만들지 않는다)
 async function polish(answer, remaining) {
   // 고정 문구(모름 처리 FR-A18)는 다듬지 않는다
-  if (!answer.message || ['unknown', 'error', 'place', 'clarify'].includes(answer.type))
+  if (!answer.message || ['unknown', 'error', 'place', 'clarify', 'why', 'explain'].includes(answer.type))
     return { answer, llm: 'skipped' };
   const better = await askText(
     `아래 안내문을 친근한 존댓말로 2~3문장으로 다듬어라. ${INJECTION_GUARD} ` +
@@ -837,34 +882,35 @@ function answerWhy(ctx, context) {
   const myGu = ctx.regions.find(
     (r) => r.region_code === ctx.profile?.region_code && r.region_level === 'GU'
   );
-  const lines = ids
+  const items = ids
     .map((id) => list.find((p) => p.policy_id === id))
     .filter(Boolean)
-    .map((p, i) => {
+    .map((p) => {
       const reasons = [];
-      const met = conditionChecks(p).filter((c) => c.mark === 'ok');
-      if (met.length) reasons.push(met.map((c) => c.label).join(', '));
+      for (const c of conditionChecks(p).filter((c) => c.mark === 'ok')) reasons.push(c.label);
       if (isInterest(p, ctx.profile, ctx.categories)) {
         const cat = ctx.categories.find((c) => c.category_id === p.category_id)?.category_name;
-        reasons.push(`관심분야(${cat})와 같은 분야예요`);
+        reasons.push(`관심분야(${cat})와 같은 분야`);
       }
       if (myGu && (p.region_names ?? []).includes(myGu.region_name))
-        reasons.push(`${myGu.region_name} 대상 정책이에요`);
-      else if ((p.region_names ?? []).includes('부산광역시')) reasons.push('부산 전체 청년이 대상이에요');
-      if (p.recruitment_status === '상시') reasons.push('상시 모집이라 언제든 신청할 수 있어요');
+        reasons.push(`${myGu.region_name} 대상 정책`);
+      else if ((p.region_names ?? []).includes('부산광역시')) reasons.push('부산 전체 청년 대상');
+      if (p.recruitment_status === '상시') reasons.push('상시 모집 (언제든 신청 가능)');
       else if (p.d_day != null && p.d_day >= 0)
-        reasons.push(`마감이 ${p.d_day === 0 ? '오늘' : `${p.d_day}일 뒤`}로 가까워요`);
+        reasons.push(p.d_day === 0 ? '마감이 오늘' : `마감 ${p.d_day}일 전`);
       if (reasons.length === 0) reasons.push('모집 중이라 신청할 수 있어요');
-      return `${i + 1}. **${p.title}**: ${reasons.join(' · ')}`;
+      return { policy_id: p.policy_id, title: p.title, reasons };
     });
   const noProfile = !ctx.profile || !(ctx.profile.birth_date || ctx.profile.region_code);
   return {
     type: 'why',
     message:
-      `방금 추천한 혜택을 고른 이유예요.\n\n${lines.join('\n')}\n\n` +
-      '순서는 "신청 가능한 혜택 먼저, 그다음 마감이 가까운 순"으로 정했어요.' +
-      (noProfile ? ' 아직 맞춤정보가 없어 분야와 마감 기준으로만 골랐어요. 마이에서 정보를 입력하면 더 정확해져요.' : ''),
-    suggestions: ['첫 번째 정책 자세히 알려줘', '신청 서류 알려줘'],
+      '방금 추천한 혜택을 고른 이유예요. 신청 가능한 혜택을 먼저, 그다음 마감이 가까운 순서로 정렬했어요.' +
+      (noProfile
+        ? ' 아직 맞춤정보가 없어 분야와 마감 기준으로만 골랐어요. 마이에서 정보를 입력하면 더 정확해져요.'
+        : ''),
+    why_items: items,
+    suggestions: ['첫 번째 정책 자세히 알려줘', '첫 번째 정책 서류 알려줘'],
   };
 }
 
@@ -889,7 +935,11 @@ async function route({ userId, message, context, remaining }) {
   if (term && (isTermQuestion(text) || !mentionedPolicy)) return answerTerm(term, ctx, userId);
 
   // 1-1) 사전에 없는 용어 질문은 정책명을 직접 말하지 않았다면 정책으로 넘기지 않는다
-  if (isTermQuestion(text) && !(mentionedPolicy && text.includes(mentionedPolicy.title))) {
+  if (
+    isTermQuestion(text) &&
+    !picked &&
+    !(mentionedPolicy && text.includes(mentionedPolicy.title))
+  ) {
     // 정책 종류를 묻는 질문("청년 월세 지원이 뭐야?")은 우리 정책 데이터에서 찾아 답하고, 일반 용어는 백과사전으로 찾는다
     const explained = /지원|사업|바우처|수당|장려금|혜택/.test(text)
       ? await answerTopic(text, ctx, userId, remaining)
@@ -917,10 +967,12 @@ async function route({ userId, message, context, remaining }) {
     ? ctx.policies.find((p) => p.policy_id === context.policyId)
     : null;
   const target = mentioned ?? (wantsDocs ? contextPolicy : null);
-  if (target)
-    return wantsDocs
-      ? answerDocs(target, userId)
-      : answerPolicy(target, text, ctx, userId, parsed?.conditions);
+  if (target) {
+    if (wantsDocs) return answerDocs(target, userId);
+    // 자격을 묻지 않고 설명을 원하면(예: "자세히 알려줘") 정책 내용을 풀어서 설명한다
+    if (EXPLAIN_RE.test(text) && !ELIGIBILITY_RE.test(text)) return answerExplain(target, ctx, userId);
+    return answerPolicy(target, text, ctx, userId, parsed?.conditions);
+  }
 
   // 5) 추천: 질문에 나온 조건(예: 사하구·휴학생)은 이번 답변에만 쓰고 저장하지 않는다
   const keywordCategory = CATEGORY_KEYWORDS.find(([re]) => re.test(text))?.[1];
