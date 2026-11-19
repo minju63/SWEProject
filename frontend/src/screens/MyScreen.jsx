@@ -5,6 +5,7 @@ import { todayISO, useAppState } from '../app/AppState'
 import AppSelect from '../components/AppSelect'
 import { findPolicyByTitle, policyCatalog, getRequiredDocumentItems } from '../data/policies'
 import { Icon } from './HomeScreen'
+import { DragScroll } from './minju/DragScroll'
 import NotificationBell from '../components/NotificationBell'
 import { useAuth } from '../lib/auth'
 const stages = ['신청 준비', '신청 완료', '결과 확인']
@@ -473,7 +474,7 @@ export default function MyScreen() {
               )}
             </div>
             {recentPolicies.length > 0 ? (
-              <div className="no-scrollbar mt-4 flex gap-3 overflow-x-auto pb-2">
+              <DragScroll className="no-scrollbar mt-4 flex gap-3 overflow-x-auto pb-2">
                 {recentPolicies.map((title) => {
                   const policy = findPolicyByTitle(title)
                   return (
@@ -494,7 +495,7 @@ export default function MyScreen() {
                     </button>
                   )
                 })}
-              </div>
+              </DragScroll>
             ) : (
               <div className="mt-4 rounded-[20px] bg-white py-9 text-center">
                 <p className="text-sm font-black">최근 본 혜택이 없어요</p>
