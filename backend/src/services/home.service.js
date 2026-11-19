@@ -1,6 +1,5 @@
 // 홈 탭 데이터 (SRS FR-H03~H12)
 import * as homeRepo from '../repositories/home.repository.js';
-import * as placeRepo from '../repositories/place.repository.js';
 import { RESULT } from './eligibility.service.js';
 import {
   ageOf,
@@ -14,14 +13,13 @@ import {
 const PREVIEW_SIZE = 3; // FR-H10: 분야 미리보기 최대 3건
 const CLOSING_DAYS = 14; // FR-H03: 마감 2주 이내
 const CLOSING_MAX = 10;
-const SPACE_CATEGORY = '공간·시설'; // 정책이 아니라 지도 탭의 장소를 센다
+const SPACE_CATEGORY = '공간·시설'; // 이 분야의 '정책'(청년공간 운영·대여 등)만 센다. 도서관 같은 장소는 지도 탭에서 본다
 
 export async function getHome(userId) {
   const { profile, categories, policies, regions } = await loadContext(userId);
-  const [bookmarks, docCounts, places] = await Promise.all([
+  const [bookmarks, docCounts] = await Promise.all([
     userId ? homeRepo.findBookmarkedIds(userId) : [],
     userId ? homeRepo.findCheckedDocCounts(userId) : new Map(),
-    placeRepo.findMapPlaces().catch(() => []),
   ]);
   const bookmarked = new Set(bookmarks.map((b) => b.policy_id));
 
@@ -43,9 +41,9 @@ export async function getHome(userId) {
       category_name: c.category_name,
       sort_order: c.sort_order,
       is_space: isSpace,
-      // 공간·시설은 지도 탭 장소 수. 내 맞춤/전체 구분이 없다
-      mine: isSpace ? { total: places.length, items: [] } : preview(mine.filter(inCat)),
-      all: isSpace ? { total: places.length, items: [] } : preview(open.filter(inCat)),
+      // 공간·시설도 다른 분야처럼 정책 카드를 보여 준다 (장소 목록은 지도 탭)
+      mine: preview(mine.filter(inCat)),
+      all: preview(open.filter(inCat)),
     };
   });
 

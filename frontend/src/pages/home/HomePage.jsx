@@ -59,7 +59,7 @@ export default function HomePage() {
 
   const select = (name) => setSelected((cur) => (cur === name ? null : name));
 
-  // 전체 보기: 공간·시설은 검색에서 빠지므로 지도 탭으로 (FR-H11)
+  // 전체 보기: 공간·시설 정책은 검색 분야에서 빠져 있어 지도 탭으로 보낸다 (FR-H11)
   const goAll = (cat) => {
     if (cat.is_space) return navigate('/map');
     navigate(`/search?categoryId=${cat.category_id}${scope === 'mine' ? '&mine=1' : ''}`);
@@ -304,9 +304,7 @@ export default function HomePage() {
                   전체 보기 ›
                 </button>
               </div>
-              {selectedCat.is_space ? (
-                <p className="state">공간·시설은 지도 탭에서 확인할 수 있어요.</p>
-              ) : selectedCat[scope].items.length === 0 ? (
+              {selectedCat[scope].items.length === 0 ? (
                 <p className="state">해당하는 혜택이 아직 없어요.</p>
               ) : (
                 <>
@@ -318,6 +316,11 @@ export default function HomePage() {
                       onToggleBookmark={toggleBookmark}
                     />
                   ))}
+                  {selectedCat.is_space && (
+                    <p className="sort-note">
+                      도서관·체육시설 같은 장소는 <Link to="/map">지도 탭</Link>에서 볼 수 있어요
+                    </p>
+                  )}
                 </>
               )}
             </section>
