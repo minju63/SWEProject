@@ -381,6 +381,7 @@
 }
 
 .closing-row {
+  scroll-padding-left: 20px; /* 첫 카드가 제목과 같은 왼쪽 선에 오게 한다(스냅이 카드를 가장자리에 붙이던 문제) */
   scrollbar-width: none; /* 스크롤 막대는 숨기고 마우스로 끌어 넘긴다 */
   display: flex;
   gap: 10px;
@@ -449,4 +450,17 @@
 
 .closing-row::-webkit-scrollbar {
   display: none;
+}
+
+.closing-docs {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 10px 0 5px;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--sub);
+}
+.closing-docs b {
+  color: var(--primary);
 }

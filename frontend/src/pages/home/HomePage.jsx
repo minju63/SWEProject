@@ -380,17 +380,20 @@ export default function HomePage() {
                     <p className="closing-meta">
                       {shortDate(c.application_end_date)} 23:59
                       {c.region_names[0] && ` · ${c.region_names[0]}`}
-                      {c.docs_total > 0 && (
-                        <b className="docs">
-                          {' '}
-                          신청 준비물 {c.docs_checked}/{c.docs_total}
-                        </b>
-                      )}
                     </p>
                     {c.docs_total > 0 && (
-                      <div className="bar">
-                        <i style={{ width: `${(c.docs_checked / c.docs_total) * 100}%` }} />
-                      </div>
+                      <>
+                        {/* 신청 준비물 글자는 진행 막대 위에 둔다 */}
+                        <p className="closing-docs">
+                          <span>신청 준비물</span>
+                          <b>
+                            {c.docs_checked}/{c.docs_total}
+                          </b>
+                        </p>
+                        <div className="bar">
+                          <i style={{ width: `${(c.docs_checked / c.docs_total) * 100}%` }} />
+                        </div>
+                      </>
                     )}
                   </div>
                 ))}
