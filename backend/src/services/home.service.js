@@ -78,7 +78,11 @@ export async function getHome(userId) {
             p,
             docRows.filter((r) => r.policy_id === p.policy_id)
           );
-          return { docs_total: docs.length, docs_checked: docs.filter((d) => d.checked).length };
+          return {
+            docs_total: docs.length,
+            docs_checked: docs.filter((d) => d.checked).length,
+            documents: docs, // 펼쳐서 볼 신청 준비물 목록 (공식 + 직접 추가)
+          };
         })(),
       })
     );
