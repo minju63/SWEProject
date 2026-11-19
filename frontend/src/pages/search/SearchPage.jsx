@@ -385,7 +385,17 @@ export default function SearchPage() {
         </div>
       ) : (
         <div className="search-results">
-          <div className="search-filter-strip">
+          {(applied.myConditionsOnly || Object.values(applied.conditions).some((value) => value !== '' && value != null && (!Array.isArray(value) || value.length))) &&
+            <button type="button" className="search-applied-conditions" onClick={openFilters}>
+              {applied.myConditionsOnly ? '내 프로필 조건' : '직접 설정한 조건'} 적용 중 <span>›</span>
+            </button>}
+          <section className="search-result-content">
+            {/* 1줄: 결과 개수 · 정렬 · 필터 / 2줄: 신청 가능·마감 제외 토글과 적용한 조건 */}
+            <div className="search-result-heading">
+              <h2>검색 결과 <span>{unmatchedCategory ? 0 : (policies.data?.totalCount ?? 0)}건</span></h2>
+              <SelectMenu label="정렬 순서" value={sort} className="search-sort-menu" menuMinWidth={148}
+                options={[{ value: 'recommended', label: '추천순' }, { value: 'deadline', label: '마감 임박순' }, { value: 'latest', label: '최신순' }]}
+                onChange={(next) => { setSort(next); setPage(1); }} />
             <button type="button" className={`search-filter-button${filterCount ? ' is-active' : ''}`}
               aria-label={filterCount ? `필터, ${filterCount}개 적용 중` : '필터'} onClick={openFilters}>
               {/* 지도 탭의 필터 버튼과 같은 아이콘·배지 */}
@@ -394,24 +404,15 @@ export default function SearchPage() {
               </svg>
               {filterCount > 0 && <span className="search-filter-badge">{filterCount}</span>}
             </button>
-            {chips.slice(0, 3).map((chip) => <button type="button" key={`${chip.type}-${chip.value}`}
-              className="search-applied-chip" onClick={() => removeChip(chip)}>{chip.value} ×</button>)}
-            {chips.length > 3 && <button type="button" className="search-more-chip" onClick={openFilters}>+{chips.length - 3}</button>}
-          </div>
-          {(applied.myConditionsOnly || Object.values(applied.conditions).some((value) => value !== '' && value != null && (!Array.isArray(value) || value.length))) &&
-            <button type="button" className="search-applied-conditions" onClick={openFilters}>
-              {applied.myConditionsOnly ? '내 프로필 조건' : '직접 설정한 조건'} 적용 중 <span>›</span>
-            </button>}
-          <section className="search-result-content">
-            <div className="search-result-heading">
-              <h2>검색 결과 <span>{unmatchedCategory ? 0 : (policies.data?.totalCount ?? 0)}건</span></h2>
+            </div>
+            <div className="search-filter-strip">
               <button type="button" className={`search-result-toggle${eligibleOnly ? ' is-active' : ''}`}
                 aria-pressed={eligibleOnly} onClick={() => { setEligibleOnly((current) => !current); setPage(1); }}>신청 가능</button>
               <button type="button" className={`search-result-toggle${excludeClosed ? ' is-active' : ''}`}
                 aria-pressed={excludeClosed} onClick={() => { setExcludeClosed((current) => !current); setPage(1); }}>마감 제외</button>
-              <SelectMenu label="정렬 순서" value={sort} className="search-sort-menu" menuMinWidth={148}
-                options={[{ value: 'recommended', label: '추천순' }, { value: 'deadline', label: '마감 임박순' }, { value: 'latest', label: '최신순' }]}
-                onChange={(next) => { setSort(next); setPage(1); }} />
+            {chips.slice(0, 3).map((chip) => <button type="button" key={`${chip.type}-${chip.value}`}
+              className="search-applied-chip" onClick={() => removeChip(chip)}>{chip.value} ×</button>)}
+            {chips.length > 3 && <button type="button" className="search-more-chip" onClick={openFilters}>+{chips.length - 3}</button>}
             </div>
             {(searchFilters.isLoading || policies.isLoading) && !unmatchedCategory && <p className="search-state">정책을 불러오는 중이에요…</p>}
             {searchFilters.isError && <p className="search-state search-state--error">검색 필터를 불러오지 못했어요. 다시 시도해주세요.</p>}

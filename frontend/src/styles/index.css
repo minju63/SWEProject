@@ -1105,3 +1105,11 @@ button {
   cursor: grab;
   touch-action: none;
 }
+
+/* 검색 결과 머리: 1줄 결과 개수 · 정렬 · 필터, 2줄 토글·적용한 조건 */
+.search-page .search-result-heading { flex-wrap: nowrap; gap: 4px; }
+.search-page .search-result-heading h2 { flex: 1; min-width: 0; white-space: nowrap; }
+.search-page .search-result-heading .search-sort-menu { width: auto; margin-left: 0; padding: 6px 8px; }
+.search-result-content .search-filter-strip { padding: 12px 0 4px; }
+.search-page .search-result-toggle { width: auto; padding: 0 14px; height: 34px; }
+.search-result-heading .search-filter-button { flex: none; }
