@@ -478,7 +478,7 @@ export default function MapPage() {
           </button>
         </div>
       )}
-      <header className="relative z-[60] shrink-0 border-b border-black/[0.05] bg-white/95 backdrop-blur-xl">
+      <header className="relative z-[60] shrink-0 border-b border-black/[0.05] bg-[#eaf2ff]">
         <MapHeader
           key={headerKey}
           places={places}

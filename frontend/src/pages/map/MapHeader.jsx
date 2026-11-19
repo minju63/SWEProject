@@ -59,7 +59,7 @@ export default function MapHeader({
 
   return (
     <div className="relative flex h-[68px] items-center gap-2.5 px-5">
-      <h1 className="shrink-0 text-[20px] font-black tracking-[-0.04em]">지도</h1>
+      <h1 className="shrink-0 text-[23px] font-black tracking-[-0.7px]">지도</h1>
       <div className="relative min-w-0 flex-1">
         <button
           type="button"
@@ -90,7 +90,7 @@ export default function MapHeader({
           }}
           placeholder="장소 검색"
           aria-label="장소 검색"
-          className="h-11 w-full rounded-full bg-[#f0f1f5] pl-11 pr-4 text-[14px] font-semibold outline-none placeholder:text-black/35 focus:ring-2 focus:ring-[#2F7BF5]"
+          className="h-11 w-full rounded-full bg-white pl-11 pr-4 text-[14px] font-semibold outline-none placeholder:text-black/35 focus:ring-2 focus:ring-[#2F7BF5]"
         />
         {open && q && (
           <>
