@@ -35,8 +35,16 @@ function OfficialLink({ application, onMissing, children }) {
     </button>
   )
 }
-export function ApplicationCard({ application: a, expanded, onToggle, onUpdate, onMissingLink }) {
+export function ApplicationCard({
+  application: a,
+  expanded,
+  onToggle,
+  onUpdate,
+  onMissingLink,
+  onToggleDocument,
+}) {
   const [more, setMore] = useState(false)
+  const [docsOpen, setDocsOpen] = useState(false) // 신청 준비물 목록 펼침 (기본은 진행 막대만)
   const done = a.requiredDocuments.filter((d) => d.status === 'completed').length
   const total = a.requiredDocuments.length
   const preparing = a.stage === '신청 준비'
@@ -53,7 +61,7 @@ export function ApplicationCard({ application: a, expanded, onToggle, onUpdate, 
         <div className="my-card-top">
           <CategoryTags category={a.category} region={a.region} />
           <Deadline date={a.applicationDeadline} />
-          <i className={`my-chevron ${expanded ? 'open' : ''}`} aria-hidden="true" />
+          {!preparing && <i className={`my-chevron ${expanded ? 'open' : ''}`} aria-hidden="true" />}
         </div>
         <h3>{a.policyName}</h3>
         <p className="my-caption">
@@ -84,17 +92,49 @@ export function ApplicationCard({ application: a, expanded, onToggle, onUpdate, 
             </>
           )}
         </div>
-        {preparing && total > 0 && (
-          <div className="my-progress-row">
-            <div className="my-progress">
-              <span style={{ width: `${(done / total) * 100}%` }} />
-            </div>
-            <span>
-              서류 {done}/{total}
-            </span>
-          </div>
-        )}
       </button>
+      {preparing && total > 0 && (
+        <div className="my-prep-docs">
+          {/* 접힌 상태(기본)에는 진행 막대만, 누르면 신청 준비물 목록을 펼쳐 바로 체크한다 */}
+          <button
+            type="button"
+            className="my-prep-docs-head"
+            aria-expanded={docsOpen}
+            onClick={() => setDocsOpen((open) => !open)}
+          >
+            <span>신청 준비물</span>
+            <span className="my-progress">
+              <span style={{ width: `${(done / total) * 100}%` }} />
+            </span>
+            <b>
+              {done}/{total}
+            </b>
+            <i className={`my-chevron ${docsOpen ? 'open' : ''}`} aria-hidden="true" />
+          </button>
+          {docsOpen && (
+            <ul>
+              {a.requiredDocuments.map((d) => {
+                const checked = d.status === 'completed'
+                return (
+                  <li key={d.name}>
+                    <button
+                      type="button"
+                      role="checkbox"
+                      aria-checked={checked}
+                      className={checked ? 'on' : ''}
+                      onClick={() => onToggleDocument?.(d.name)}
+                    >
+                      <i aria-hidden="true">{checked ? '✓' : ''}</i>
+                      <span>{d.name}</span>
+                      {d.custom && <em>직접 추가</em>}
+                    </button>
+                  </li>
+                )
+              })}
+            </ul>
+          )}
+        </div>
+      )}
       {expanded && !preparing && (
         <div className="my-application-body">
           <div className="my-data-row">

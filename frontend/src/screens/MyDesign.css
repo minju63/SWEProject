@@ -175,3 +175,16 @@ button[aria-pressed="true"] > .my-selection-check { background: #2f7bf5; color: 
   .my-stage-tabs > button { font-size: 12px; }
   .my-settings > form, .my-settings > main { padding-left: 12px; padding-right: 12px; }
 }
+
+/* 마이 신청 준비 카드의 신청 준비물: 접힌 상태에는 진행 막대, 펼치면 체크할 수 있는 목록 */
+.my-prep-docs { border-top: 1px solid #eef3fb; }
+.my-prep-docs-head { display: flex; align-items: center; gap: 10px; width: 100%; min-height: 46px; padding: 0 15px; border: 0; background: none; color: #202833; font-size: 13px; font-weight: 800; text-align: left; }
+.my-prep-docs-head .my-progress { flex: 1; }
+.my-prep-docs-head b { flex: none; color: #2f7bf5; font-size: 12px; }
+.my-prep-docs-head .my-chevron { margin: 0 2px 0 0; }
+.my-prep-docs ul { margin: 0; padding: 0 15px 10px; list-style: none; }
+.my-prep-docs li button { display: flex; align-items: center; gap: 10px; width: 100%; min-height: 42px; padding: 0; border: 0; background: none; color: #202833; font-size: 14px; text-align: left; }
+.my-prep-docs li i { flex: none; display: grid; place-items: center; width: 20px; height: 20px; border: 1.5px solid #c3cfe2; border-radius: 6px; background: #fff; color: #fff; font-size: 13px; font-style: normal; font-weight: 900; }
+.my-prep-docs li button.on i { border-color: #2f7bf5; background: #2f7bf5; }
+.my-prep-docs li button.on span { color: #8793a4; text-decoration: line-through; }
+.my-prep-docs li em { flex: none; padding: 2px 7px; border-radius: 999px; background: #eef3fe; color: #2f7bf5; font-size: 11px; font-style: normal; font-weight: 700; }
