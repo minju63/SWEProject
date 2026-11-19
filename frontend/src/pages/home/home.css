@@ -171,6 +171,8 @@
 .home-section-head h2 {
   margin: 0;
   font-size: 17px;
+  font-weight: 900; /* 섹션 제목을 두껍게 (카테고리로 둘러보기·찜한 정책 마감 임박 등) */
+  letter-spacing: -0.03em;
 }
 .all-link {
   border: 0;
