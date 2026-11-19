@@ -170,3 +170,12 @@
 - 개인이 신청하지 못하는 기업·기관 대상 정책 25건은 삭제했다(DB 직접 실행).
 - 부산일자리정보망 프로그램 30건을 **'부산일자리정보망 청년부산잡스'** 1건으로, 2건을 **'부산일자리정보망 JOB프로그램'** 1건으로 합쳤다(상시, 신청 자격 없음, 프로그램별 대상은 각 공고에서 확인).
 - 변환·반영 스크립트: `backend/scripts/eligibility/`. 반영 전 백업을 만들고 `--restore`로 되돌릴 수 있다.
+
+## 12. 마이 › 알림 설정 저장 API (FR-MY-009, FR-MY-012~016)
+
+- **API**(`/api/v1/me`, 로그인 필요): `GET /alarm-preferences`, `PUT /alarm-preferences`(바꾼 항목만 보내면 나머지는 유지, 값은 true/false만 허용).
+- **필드 ↔ SRS**: `all_enabled` 전체 알림(FR-MY-009) · `recommend_enabled` 맞춤 알림(FR-MY-012) · `new_match_enabled` 정책 알림(FR-MY-013) · `event_enabled` 문화행사 알림(FR-MY-014) · `facility_enabled` 주변 시설 알림(FR-MY-015) · `deadline_enabled` 마감 임박 알림(FR-MY-016).
+- **기본값**: 전체 켜짐, 마감 임박 켜짐, 정책 알림 켜짐, 맞춤·문화행사·주변 시설은 **꺼짐**(맞춤 알림은 선택 동의가 필요하다는 FR-MY-012).
+- **전체 알림이 꺼져 있으면** 하위 설정값은 그대로 두고 알림만 만들지 않는다(FR-MY-009). 마감 알림을 만드는 곳(찜 기본 알림 등록, 알림 발송 작업) 모두 `all_enabled`와 `deadline_enabled`를 확인한다.
+- **DB 변경**: `migrations/20261119_alarm_preference_settings.sql` 실행 필요(`alarm_preference`에 `all_enabled`·`recommend_enabled`·`event_enabled`·`facility_enabled` 추가). 실행 전에는 조회는 기본값으로 동작하고, 새 항목 저장은 `MIGRATION_REQUIRED(503)`로 알려 준다.
+- **마이 화면 연결(마이 담당)**: 설정 화면(`/settings?view=notifications`)의 임시 값과 대응 — `enabled`→`all_enabled`, `recommendations`→`recommend_enabled`, `policyAlerts`→`new_match_enabled`, `eventAlerts`→`event_enabled`, `facilityAlerts`→`facility_enabled`, `deadlines`→`deadline_enabled`. 호출 함수는 `frontend/src/api/alarmPreferences.js`. 화면의 `applicationUpdates`·`deadlineTiming`·`quietHours`는 SRS에 대응 항목이 없어 서버에 저장하지 않는다(필요하면 요구사항 확인).

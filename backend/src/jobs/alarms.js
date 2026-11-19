@@ -32,10 +32,10 @@ export async function runDueAlarms(now = new Date()) {
 
     const { data: pref } = await supabase
       .from('alarm_preference')
-      .select('deadline_enabled, doc_reminder_enabled')
+      .select('*')
       .eq('user_id', userId)
       .maybeSingle();
-    if (pref?.deadline_enabled === false) {
+    if (pref?.deadline_enabled === false || pref?.all_enabled === false) {
       await supabase
         .from('saved_alarm')
         .update({ status: 'CANCELLED' })

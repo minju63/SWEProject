@@ -222,7 +222,7 @@ export async function createDefaultAlarms(userId, policyId) {
   const policy = bookmark?.policy;
   if (!policy || policy.is_always_open || !policy.application_end_date) return 0;
   const pref = await repo.findPreference(userId);
-  if (pref && pref.deadline_enabled === false) return 0;
+  if (pref && (pref.deadline_enabled === false || pref.all_enabled === false)) return 0;
   const dayTime = String(pref?.day_alarm_time ?? DEFAULT_DAY_TIME).slice(0, 5);
   const now = Date.now();
   const rows = (pref?.default_presets ?? ['D1', 'M30'])
