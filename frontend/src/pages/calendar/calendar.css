@@ -207,7 +207,7 @@
 .ccard-link {
   display: flex;
   gap: 12px;
-  padding: 14px 52px 12px 14px;
+  padding: 14px 58px 12px 14px;
 }
 .ccard-dday {
   flex: none;
@@ -295,8 +295,8 @@
 }
 .ccard-heart {
   position: absolute;
-  top: 8px;
-  right: 8px;
+  top: 10px;
+  right: 16px; /* 카드 왼쪽 안쪽 여백(14px)과 비슷하게, 오른쪽 끝에서 띄운다 */
 }
 .ccard-alarm {
   display: flex;
