@@ -381,7 +381,6 @@
 }
 
 .closing-row {
-  align-items: flex-start; /* 신청 준비물을 펼친 카드만 길어지게 */
   scroll-padding-left: 20px; /* 첫 카드가 제목과 같은 왼쪽 선에 오게 한다(스냅이 카드를 가장자리에 붙이던 문제) */
   scrollbar-width: none; /* 스크롤 막대는 숨기고 마우스로 끌어 넘긴다 */
   display: flex;
@@ -453,98 +452,3 @@
   display: none;
 }
 
-.closing-docs {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin: 10px 0 5px;
-  font-size: 12px;
-  font-weight: 700;
-  color: var(--text); /* 검정 계열 글씨 */
-}
-.closing-docs b {
-  color: var(--primary);
-}
-
-/* 마감 임박 카드의 신청 준비물: 막대(접힘)를 누르면 목록이 펼쳐진다 */
-.closing-docs-head {
-  display: block;
-  width: 100%;
-  padding: 0;
-  border: 0;
-  background: none;
-  text-align: left;
-}
-.closing-docs-head .closing-docs {
-  justify-content: flex-start;
-  gap: 8px;
-}
-.closing-docs-head .closing-docs b {
-  margin-left: auto;
-}
-.closing-docs-head .bar {
-  display: block;
-}
-.closing-chev {
-  flex: none;
-  width: 6px;
-  height: 6px;
-  margin: -2px 2px 0 0;
-  border-right: 1.5px solid #8793a4;
-  border-bottom: 1.5px solid #8793a4;
-  transform: translateY(-1.5px) rotate(45deg); /* 아래 방향 */
-  transition: transform 0.15s;
-}
-.closing-chev.open {
-  transform: translateY(1.5px) rotate(-135deg);
-}
-.closing-docs-list {
-  margin: 8px 0 0;
-  padding: 0;
-  list-style: none;
-}
-.closing-docs-list li button {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  width: 100%;
-  min-height: 36px;
-  padding: 0;
-  border: 0;
-  background: none;
-  color: var(--text);
-  font-size: 13px;
-  text-align: left;
-}
-.closing-docs-list li i {
-  flex: none;
-  display: grid;
-  place-items: center;
-  width: 18px;
-  height: 18px;
-  border: 1.5px solid #c3cfe2;
-  border-radius: 5px;
-  background: #fff;
-  color: #fff;
-  font-size: 12px;
-  font-style: normal;
-  font-weight: 900;
-}
-.closing-docs-list li button.on i {
-  border-color: var(--primary);
-  background: var(--primary);
-}
-.closing-docs-list li button.on span {
-  color: var(--muted);
-  text-decoration: line-through;
-}
-.closing-docs-list li em {
-  flex: none;
-  padding: 2px 6px;
-  border-radius: 999px;
-  background: #eef3fe;
-  color: var(--primary);
-  font-size: 10px;
-  font-style: normal;
-  font-weight: 700;
-}

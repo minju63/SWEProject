@@ -3,7 +3,6 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { fetchHome } from '../../api/home';
 import { addBookmark, removeBookmark } from '../../api/me';
-import { setDocumentChecked } from '../../api/calendar';
 import { useAuthStore } from '../../store/authStore';
 import { useAssistantStore } from '../../store/assistantStore';
 import { BOOKMARK_TOAST, BOOKMARK_TOAST_MS, UNBOOKMARK_TOAST, useToastStore } from '../../store/toastStore';
@@ -71,37 +70,6 @@ export default function HomePage() {
       showToast(e.message);
     },
     onSettled: () => queryClient.invalidateQueries({ queryKey: ['home'] }),
-  });
-  // 신청 준비물 체크: 누르는 즉시 화면을 바꾸고 서버(캘린더·마이와 같은 저장소)에 저장한다
-  const toggleDoc = useMutation({
-    mutationFn: ({ policy, doc }) => setDocumentChecked(policy.policy_id, doc.key, !doc.checked),
-    onMutate: async ({ policy, doc }) => {
-      await queryClient.cancelQueries({ queryKey: ['home'] });
-      const before = queryClient.getQueryData(['home']);
-      queryClient.setQueryData(['home'], (cur) =>
-        cur
-          ? {
-              ...cur,
-              closing_bookmarks: cur.closing_bookmarks.map((c) => {
-                if (c.policy_id !== policy.policy_id) return c;
-                const documents = c.documents.map((d) =>
-                  d.key === doc.key ? { ...d, checked: !doc.checked } : d
-                );
-                return { ...c, documents, docs_checked: documents.filter((d) => d.checked).length };
-              }),
-            }
-          : cur
-      );
-      return { before };
-    },
-    onError: (e, _vars, ctx) => {
-      if (ctx?.before) queryClient.setQueryData(['home'], ctx.before);
-      showToast(e.message);
-    },
-    onSettled: () => {
-      queryClient.invalidateQueries({ queryKey: ['home'] });
-      queryClient.invalidateQueries({ queryKey: ['calendar'] });
-    },
   });
   const toggleBookmark = (policy) => {
     if (!user) return showToast('로그인하면 찜할 수 있어요');
@@ -398,7 +366,6 @@ export default function HomePage() {
                     key={c.policy_id}
                     c={c}
                     onToggleBookmark={toggleBookmark}
-                    onToggleDoc={(doc) => toggleDoc.mutate({ policy: c, doc })}
                   />
                 ))}
               </DragScroll>
@@ -410,10 +377,8 @@ export default function HomePage() {
   );
 }
 
-// 찜한 정책 마감 임박 카드: 신청 준비물 막대를 누르면 목록이 펼쳐져 바로 체크할 수 있다
-function ClosingCard({ c, onToggleBookmark, onToggleDoc }) {
-  const [open, setOpen] = useState(false);
-  const documents = c.documents ?? [];
+// 찜한 정책 마감 임박 카드 (D-day, 정책명, 마감일시, 지역, ♥)
+function ClosingCard({ c, onToggleBookmark }) {
   return (
     <div className="closing">
       <div className="closing-top">
@@ -434,45 +399,6 @@ function ClosingCard({ c, onToggleBookmark, onToggleDoc }) {
         {shortDate(c.application_end_date)} 23:59
         {c.region_names[0] && ` · ${c.region_names[0]}`}
       </p>
-      {c.docs_total > 0 && (
-        <>
-          <button
-            type="button"
-            className="closing-docs-head"
-            aria-expanded={open}
-            onClick={() => setOpen((v) => !v)}
-          >
-            <span className="closing-docs">
-              <span>신청 준비물</span>
-              <b>
-                {c.docs_checked}/{c.docs_total}
-              </b>
-              <i className={`closing-chev${open ? ' open' : ''}`} aria-hidden="true" />
-            </span>
-            <span className="bar">
-              <i style={{ width: `${(c.docs_checked / c.docs_total) * 100}%` }} />
-            </span>
-          </button>
-          {open && (
-            <ul className="closing-docs-list">
-              {documents.map((d) => (
-                <li key={d.key}>
-                  <button
-                    type="button"
-                    className={d.checked ? 'on' : ''}
-                    aria-pressed={d.checked}
-                    onClick={() => onToggleDoc(d)}
-                  >
-                    <i aria-hidden="true">{d.checked ? '✓' : ''}</i>
-                    <span>{d.name}</span>
-                    {d.custom && <em>직접 추가</em>}
-                  </button>
-                </li>
-              ))}
-            </ul>
-          )}
-        </>
-      )}
     </div>
   );
 }
