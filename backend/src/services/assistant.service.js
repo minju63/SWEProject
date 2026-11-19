@@ -570,32 +570,43 @@ async function answerDocs(policy, userId) {
   };
 }
 
-// 동네 이름(서면 등)은 주소에 그대로 안 나오는 경우가 많아서, 주소·장소명에 들어가는 동 이름으로 바꿔 찾는다
-const LANDMARK_WORDS = {
-  서면: ['서면', '부전', '전포'],
-  전포: ['전포'],
-  부전: ['부전'],
-  범천: ['범천'],
-  범일: ['범일'],
-  양정: ['양정'],
-  연지: ['연지'],
-  가야: ['가야'],
-  개금: ['개금'],
-  당감: ['당감'],
-  초읍: ['초읍'],
-  부암: ['부암'],
-  하단: ['하단'],
-  괴정: ['괴정'],
-  당리: ['당리'],
-  장림: ['장림'],
-  신평: ['신평'],
-  감천: ['감천'],
-  구평: ['구평'],
-  다대포: ['다대'],
-  다대: ['다대'],
+// 동네 이름 검색은 주소 글자가 아니라 장소의 법정동(place.legal_dong)으로 판단한다 (지도 탭 mapUtils.js 와 같은 규칙).
+// 주소 글자로 찾으면 동 이름이 없는 도로명 주소는 빠지고, 도로명에 든 동 이름(가야대로·당감서로·다대로)에 다른 동 장소가 걸린다.
+// 그래야 [전체 보기]로 연 지도 탭의 결과 수와 같아진다. (docs/map-integration.md 3-2절)
+// 서비스 지역(부산진구·사하구)의 법정동
+const SERVICE_DONGS = new Set(
+  '양정 전포 부전 범천 범전 연지 초읍 부암 당감 가야 개금 괴정 당리 하단 신평 장림 다대 구평 감천'
+    .split(' ')
+    .map((d) => `${d}동`)
+);
+// 동 이름이 아닌 동네 이름
+const AREA_DONGS = {
+  서면: ['부전동', '전포동'],
+  다대포: ['다대동'],
 };
+// 질문에서 찾을 동네 이름 (긴 이름 먼저)
+const LANDMARK_NAMES = [
+  ...Object.keys(AREA_DONGS),
+  ...[...SERVICE_DONGS].map((d) => d.slice(0, -1)),
+].sort((x, y) => y.length - x.length);
+// 동네 이름 → 법정동 목록 (서비스 지역 동네가 아니면 null)
+function dongsOf(name) {
+  const k = name.replace(/\s+/g, '');
+  if (AREA_DONGS[k]) return AREA_DONGS[k];
+  const dong = k.endsWith('동') ? k : `${k}동`;
+  return SERVICE_DONGS.has(dong) ? [dong] : null;
+}
+// 장소가 그 동네에 속하는가: 법정동을 아는 장소는 법정동으로, 모르는 장소만 주소 글자로 찾는다
+function placeInArea(p, name) {
+  const dongs = dongsOf(name);
+  if (!dongs) return false;
+  if (p.legal_dong) return dongs.includes(p.legal_dong);
+  const words = [name.replace(/\s+/g, ''), ...dongs.map((d) => d.slice(0, -1))];
+  return words.some((w) => (p.address ?? '').toLowerCase().includes(w));
+}
 // 서비스 지역(사하구·부산진구) 밖 동네: 있는 것처럼 답하지 않는다
 const OUTSIDE_AREAS = [
+  '범일',
   '해운대',
   '센텀',
   '광안',
@@ -630,10 +641,7 @@ async function answerPlace(message, categoryCode) {
     .flatMap((p) => [p.district, ...(p.address ?? '').split(/\s+/).slice(2, 4)])
     .filter(Boolean);
   const mentionedArea = [...new Set(area)].find((a) => a.length >= 2 && message.includes(a));
-  const landmark = Object.keys(LANDMARK_WORDS)
-    .sort((x, y) => y.length - x.length)
-    .find((k) => message.includes(k));
-  const landmarkWords = landmark ? LANDMARK_WORDS[landmark] : null;
+  const landmark = LANDMARK_NAMES.find((k) => message.includes(k)) ?? null;
   const outside = OUTSIDE_AREAS.find((o) => message.includes(o));
   const matches = outside
     ? []
@@ -643,8 +651,7 @@ async function answerPlace(message, categoryCode) {
           (!mentionedArea ||
             (p.address ?? '').includes(mentionedArea) ||
             p.district === mentionedArea) &&
-          (!landmarkWords ||
-            landmarkWords.some((w) => `${p.address ?? ''} ${p.name ?? ''}`.includes(w)))
+          (!landmark || placeInArea(p, landmark))
       );
   if (matches.length === 0) {
     return {
