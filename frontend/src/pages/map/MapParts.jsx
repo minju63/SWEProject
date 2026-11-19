@@ -80,7 +80,7 @@ export function HeartButton({ place, saved, onToggle, className = 'size-10' }) {
       aria-pressed={saved}
       aria-label={saved ? `${place.name} 찜 해제` : `${place.name} 찜하기`}
       className={`grid shrink-0 place-items-center rounded-full transition active:scale-90 ${className} ${
-        saved ? 'text-[#e5445f]' : 'text-black/40'
+        saved ? 'text-[#f04438]' : 'text-black/40'
       }`}
     >
       <Glyph name="heart" className={`size-[22px] ${saved ? 'fill-current' : ''}`} />
@@ -164,7 +164,7 @@ export function PlaceSummary({ place, distance, saved, onToggleSaved, onOpen, on
         <button
           type="button"
           onClick={onOpen}
-          className="flex-1 rounded-xl bg-[#6678c8] py-3 text-[14px] font-black text-white transition active:scale-[0.98]"
+          className="flex-1 rounded-xl bg-[#2F7BF5] py-3 text-[14px] font-black text-white transition active:scale-[0.98]"
         >
           상세보기
         </button>
@@ -172,7 +172,7 @@ export function PlaceSummary({ place, distance, saved, onToggleSaved, onOpen, on
           href={kakaoLink(place)}
           target="_blank"
           rel="noreferrer"
-          className="flex-1 rounded-xl border border-[#6678c8] bg-white py-3 text-center text-[14px] font-black text-[#6678c8] no-underline transition active:scale-[0.98]"
+          className="flex-1 rounded-xl border border-[#2F7BF5] bg-white py-3 text-center text-[14px] font-black text-[#2F7BF5] no-underline transition active:scale-[0.98]"
         >
           길찾기
         </a>
@@ -190,7 +190,7 @@ export function DetailRow({ label, children }) {
   );
 }
 
-const LINK = 'text-[#6678c8] underline underline-offset-2';
+const LINK = 'text-[#2F7BF5] underline underline-offset-2';
 
 export function PlaceDetail({ place, distance, saved, onToggleSaved, onClose }) {
   const detail = useQuery({ queryKey: ['place', place.id], queryFn: () => fetchPlace(place.id) });
@@ -247,7 +247,7 @@ export function PlaceDetail({ place, distance, saved, onToggleSaved, onClose }) 
           href={kakaoLink(place)}
           target="_blank"
           rel="noreferrer"
-          className="mt-4 inline-block rounded-lg bg-[#6678c8] px-6 py-3 text-[14px] font-black text-white no-underline"
+          className="mt-4 inline-block rounded-lg bg-[#2F7BF5] px-6 py-3 text-[14px] font-black text-white no-underline"
         >
           길찾기
         </a>
@@ -510,7 +510,7 @@ export function LocationGuide({ top, onRetry, onClose }) {
           <li key={g.id} className={i === 0 ? '' : 'opacity-60'}>
             <p className="text-[12px] font-extrabold">
               {g.label}
-              {i === 0 && <span className="ml-1 text-[#6678c8]">지금 쓰는 브라우저</span>}
+              {i === 0 && <span className="ml-1 text-[#2F7BF5]">지금 쓰는 브라우저</span>}
             </p>
             <p className="text-[12px] font-medium leading-snug text-black/60">{g.steps}</p>
           </li>
@@ -519,7 +519,7 @@ export function LocationGuide({ top, onRetry, onClose }) {
       <button
         type="button"
         onClick={onRetry}
-        className="mt-3 h-10 w-full rounded-lg border border-[#6678c8] text-[13px] font-extrabold text-[#6678c8]"
+        className="mt-3 h-10 w-full rounded-lg border border-[#2F7BF5] text-[13px] font-extrabold text-[#2F7BF5]"
       >
         권한을 켰어요, 다시 시도
       </button>

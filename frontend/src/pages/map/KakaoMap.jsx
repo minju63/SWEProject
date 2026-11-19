@@ -596,7 +596,7 @@ function SavedMark({ selected }) {
     >
       <path
         d="M12 20.8s-8.2-5-9.9-10.2C1 7 3.3 3.8 6.8 3.8c2.1 0 3.9 1.2 5.2 3.2 1.3-2 3.1-3.2 5.2-3.2 3.5 0 5.8 3.2 4.7 6.8C20.2 15.8 12 20.8 12 20.8z"
-        fill="#e5445f"
+        fill="#f04438"
         stroke="#fff"
         strokeWidth="2"
         strokeLinejoin="round"

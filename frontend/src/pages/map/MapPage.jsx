@@ -532,7 +532,7 @@ export default function MapPage() {
             <button
               type="button"
               onClick={banner.onAction}
-              className="shrink-0 rounded-lg border border-[#6678c8] px-2.5 py-1.5 text-xs font-extrabold text-[#6678c8]"
+              className="shrink-0 rounded-lg border border-[#2F7BF5] px-2.5 py-1.5 text-xs font-extrabold text-[#2F7BF5]"
             >
               {banner.action}
             </button>
@@ -599,12 +599,12 @@ export default function MapPage() {
             aria-pressed={savedOnly}
             aria-label={savedOnly ? '찜한 장소만 보기 해제' : '찜한 장소만 보기'}
             className={`relative grid size-11 place-items-center rounded-full shadow-[0_2px_10px_rgba(23,25,35,0.2)] transition ${
-              savedOnly ? 'bg-[#e5445f] text-white' : 'bg-white text-[#e5445f]'
+              savedOnly ? 'bg-[#f04438] text-white' : 'bg-white text-[#f04438]'
             }`}
           >
             <Glyph name="heart" className={`size-5 ${savedOnly ? 'fill-current' : ''}`} />
             {saved.length > 0 && (
-              <span className="absolute -right-1 -top-1 grid h-5 min-w-5 place-items-center rounded-full border-[1.5px] border-[#e5445f] bg-white px-1 text-[11px] font-extrabold leading-none text-[#e5445f]">
+              <span className="absolute -right-1 -top-1 grid h-5 min-w-5 place-items-center rounded-full border-[1.5px] border-[#f04438] bg-white px-1 text-[11px] font-extrabold leading-none text-[#f04438]">
                 {saved.length}
               </span>
             )}
@@ -788,7 +788,7 @@ function EmptyState({ title, action, onAction }) {
       <button
         type="button"
         onClick={onAction}
-        className="mt-4 rounded-lg border border-[#6678c8] px-4 py-2 text-[13px] font-extrabold text-[#6678c8]"
+        className="mt-4 rounded-lg border border-[#2F7BF5] px-4 py-2 text-[13px] font-extrabold text-[#2F7BF5]"
       >
         {action}
       </button>
