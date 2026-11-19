@@ -13,6 +13,7 @@ import DonutChart from './DonutChart.jsx';
 import HomePolicyCard from './HomePolicyCard.jsx';
 import { CATEGORY_ORDER, CATEGORY_STYLE } from './homeConfig.js';
 import CategoryIcon from './CategoryIcon.jsx';
+import { dDayText } from '../../utils/format';
 import './home.css';
 
 const WEEKDAY = ['일', '월', '화', '수', '목', '금', '토'];
@@ -367,7 +368,7 @@ export default function HomePage() {
                 {data.closing_bookmarks.map((c) => (
                   <div key={c.policy_id} className="closing">
                     <div className="closing-top">
-                      <span className="dtag">D-{c.d_day}</span>
+                      <span className="dtag">{dDayText(c.d_day, c.recruitment_status)}</span>
                       <Link to={`/policies/${c.policy_id}`} className="closing-title">
                         {c.title}
                       </Link>

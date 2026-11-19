@@ -21,7 +21,7 @@ export default function CalendarCard({
       : state === 'always'
         ? '상시'
         : item.d_day === 0
-          ? 'D-DAY'
+          ? 'D-day'
           : `D-${item.d_day}`;
   const end = item.application_end_date;
 
