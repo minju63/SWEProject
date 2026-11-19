@@ -52,9 +52,9 @@
 .my-tags > span[data-category="공간·시설"] { background: #f0ebff; color: #8d71cc; }
 .my-deadline { margin-left: auto; color: #2f7bf5; white-space: nowrap; font-size: 12px; font-weight: 850; }
 .my-deadline.urgent { color: #ff435b; }
-.my-chevron { margin-left: auto; color: #a3adba; font-size: 17px; line-height: 1; }
-.my-deadline + .my-chevron { margin-left: 0; }
-.my-chevron.open { transform: rotate(180deg); }
+.my-chevron { flex: none; width: 8px; height: 8px; margin: 0 4px 0 auto; border-right: 2px solid #8793a4; border-bottom: 2px solid #8793a4; transform: translateY(-2px) rotate(45deg); transition: transform .15s; } /* 글자(⌄) 대신 모양으로 그려 D-day 옆에서 가운데에 오게 한다 */
+.my-deadline + .my-chevron { margin-left: 2px; }
+.my-chevron.open { transform: translateY(2px) rotate(-135deg); }
 .my-application h3 { font-size: 15px; font-weight: 850; line-height: 1.5; margin-top: 7px; letter-spacing: -.4px; }
 .my-caption { color: #8793a4; font-size: 11px; line-height: 1.6; font-weight: 500; }
 .my-state-tags { display: flex; gap: 5px; margin-top: 8px; }

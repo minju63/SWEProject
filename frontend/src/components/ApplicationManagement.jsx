@@ -53,7 +53,7 @@ export function ApplicationCard({ application: a, expanded, onToggle, onUpdate, 
         <div className="my-card-top">
           <CategoryTags category={a.category} region={a.region} />
           <Deadline date={a.applicationDeadline} />
-          <span className={`my-chevron ${expanded ? 'open' : ''}`}>⌄</span>
+          <i className={`my-chevron ${expanded ? 'open' : ''}`} aria-hidden="true" />
         </div>
         <h3>{a.policyName}</h3>
         <p className="my-caption">
