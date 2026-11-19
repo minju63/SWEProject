@@ -871,6 +871,10 @@ export async function chat(args) {
   return answer;
 }
 
+// 질문에 사용자의 조건(나이·지역·현재 상태·소득·주거 등)을 말하는 표현이 있는지
+const CONDITION_WORDS =
+  /\d+\s*(세|살)|스물|서른|마흔|[가-힣]{1,3}구(?![가-힣])|휴학|재학|졸업|취준|취업\s*준비|구직|재직|직장|무직|자영업|창업\s*준비|학생|거주|사는|살고|개월|소득|무주택|혼인|결혼|신혼|1인\s*가구|자취/;
+
 // 방금 보여 준 추천을 가리키는 말 ("첫 번째 정책", "2번", "마지막 거")
 const ORDINALS = [
   [/첫\s*번째|첫째|1\s*번|맨\s*위|처음/, 0],
@@ -905,7 +909,23 @@ function policyFacts(p) {
     .filter(Boolean)
     .join('\n');
 }
+const benefitCache = new Map(); // 같은 정책·같은 사용자 유형이면 다시 AI에 묻지 않는다 (6시간)
+const BENEFIT_TTL_MS = 6 * 60 * 60 * 1000;
 async function benefitFor(p, ctx, remaining) {
+  const profile0 = ctx.profile;
+  const cacheKey = [
+    p.policy_id,
+    ageBandOf(profile0?.birth_date),
+    [].concat(profile0?.current_status ?? []).join('·'),
+    (profile0?.interest_categories ?? []).join('·'),
+  ].join('|');
+  const hit = benefitCache.get(cacheKey);
+  if (hit && Date.now() - hit.at < BENEFIT_TTL_MS) return hit.text;
+  const text = await benefitForUncached(p, ctx, remaining);
+  if (text) benefitCache.set(cacheKey, { at: Date.now(), text });
+  return text;
+}
+async function benefitForUncached(p, ctx, remaining) {
   const fallback = p.support_summary
     ? `${String(p.support_summary).replace(/[.。]$/, '')}.`
     : null;
@@ -1028,7 +1048,15 @@ async function route({ userId, message, context, remaining }) {
 
   // 3) 질문에서 의도와 조건 추출 (LLM). 서류 질문은 조건이 필요 없어 건너뛴다. 꺼져 있거나 실패하면 null
   const wantsDocs = /서류|준비물|제출/.test(text);
-  const parsed = wantsDocs ? null : await extractWithLlm(text, ctx, remaining);
+  // 나이·지역·현재 상태 같은 조건 말이 없고 의도가 분명한 질문(정책을 가리킴·분야 키워드)은 규칙만으로 충분해 AI 분석을 건너뛴다(응답 속도)
+  const clearIntent =
+    Boolean(mentionedPolicy) ||
+    /추천|뭐\s*있/.test(text) ||
+    CATEGORY_KEYWORDS.some(([re]) => re.test(text));
+  const parsed =
+    wantsDocs || (clearIntent && !CONDITION_WORDS.test(text))
+      ? null
+      : await extractWithLlm(text, ctx, remaining);
 
   // 4) 특정 정책 (자격 질문·서류)
   const mentioned = mentionedPolicy;

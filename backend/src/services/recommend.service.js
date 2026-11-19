@@ -19,12 +19,33 @@ export function ageOf(birthDate) {
 }
 
 // 사용자 맞춤정보와 정책 분야 목록을 한 번에 읽는다. 로그인하지 않았으면 profile 은 null
-export async function loadContext(userId) {
-  const [profile, categories, policies, regions] = await Promise.all([
-    userId ? userRepo.findProfile(userId) : null,
+// 정책·분야·지역 목록은 요청마다 바뀌지 않으므로 잠깐(60초) 기억해 두고 쓴다. 사용자 맞춤정보는 매번 새로 읽는다.
+const SHARED_TTL_MS = 60_000;
+let shared = null; // { at, value, pending }
+async function loadShared() {
+  if (shared?.value && Date.now() - shared.at < SHARED_TTL_MS) return shared.value;
+  if (shared?.pending) return shared.pending; // 동시에 여러 요청이 와도 한 번만 읽는다
+  const pending = Promise.all([
     policyRepo.findCategories(),
     homeRepo.findCandidatePolicies(),
     homeRepo.findRegions(),
+  ])
+    .then(([categories, policies, regions]) => {
+      shared = { at: Date.now(), value: { categories, policies, regions } };
+      return shared.value;
+    })
+    .catch((e) => {
+      shared = null;
+      throw e;
+    });
+  shared = { ...(shared ?? {}), pending };
+  return pending;
+}
+
+export async function loadContext(userId) {
+  const [profile, { categories, policies, regions }] = await Promise.all([
+    userId ? userRepo.findProfile(userId) : null,
+    loadShared(),
   ]);
   return { profile: profile ?? null, categories, policies, regions };
 }
