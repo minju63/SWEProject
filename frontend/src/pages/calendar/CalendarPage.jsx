@@ -3,11 +3,11 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { fetchCalendar } from '../../api/calendar.js';
 import { removeBookmark } from '../../api/me.js';
+import { setDocumentChecked } from '../../api/calendar.js';
 import { fetchCategories } from '../../api/policies.js';
 import { useAuthStore } from '../../store/authStore';
 import { UNBOOKMARK_TOAST, useToastStore } from '../../store/toastStore';
 import PageHeader from '../../components/PageHeader.jsx';
-import { HeartIcon } from '../../components/icons.jsx';
 import StateMessage from '../../components/StateMessage.jsx';
 import { CATEGORY_STYLE } from '../home/homeConfig.js';
 import CalendarGrid from './CalendarGrid.jsx';
@@ -72,6 +72,38 @@ export default function CalendarPage() {
     onError: (e) => showToast(e.message),
   });
 
+  // 준비물 체크: 누르는 즉시 화면을 바꾸고 서버(마이·정책 상세와 같은 저장소)에 저장한다. 실패하면 원래대로 되돌린다
+  const toggleDoc = useMutation({
+    mutationFn: ({ item, doc }) => setDocumentChecked(item.policy_id, doc.key, !doc.checked),
+    onMutate: async ({ item, doc }) => {
+      await queryClient.cancelQueries({ queryKey: ['calendar'] });
+      const before = queryClient.getQueryData(['calendar']);
+      queryClient.setQueryData(['calendar'], (cur) =>
+        cur
+          ? {
+              ...cur,
+              items: cur.items.map((i) => {
+                if (i.policy_id !== item.policy_id) return i;
+                const documents = i.documents.map((d) =>
+                  d.key === doc.key ? { ...d, checked: !doc.checked } : d
+                );
+                return { ...i, documents, docs_checked: documents.filter((d) => d.checked).length };
+              }),
+            }
+          : cur
+      );
+      return { before };
+    },
+    onError: (e, _vars, ctx) => {
+      if (ctx?.before) queryClient.setQueryData(['calendar'], ctx.before);
+      showToast(e.message);
+    },
+    onSettled: () => {
+      queryClient.invalidateQueries({ queryKey: ['calendar'] });
+      queryClient.invalidateQueries({ queryKey: ['home'] });
+    },
+  });
+
   const goMonth = (delta) =>
     setMonth(() => {
       const t = new Date(Date.UTC(shown.y, shown.m - 1 + delta, 1));
@@ -125,6 +157,7 @@ export default function CalendarPage() {
       eventTypes={eventTypes}
       onUnbookmark={(i) => unbookmark.mutate(i)}
       onEditAlarm={(i) => setAlarmFor(i.policy_id)}
+      onToggleDoc={(item, doc) => toggleDoc.mutate({ item, doc })}
     />
   );
 
@@ -183,11 +216,11 @@ export default function CalendarPage() {
             <>
               <section className="cal-section">
                 <div className="cal-section-head">
-                  <h2 className="cal-title-heart">
-                    <HeartIcon size={16} /> 찜·신청 준비·마감순
+                  <h2>
+                    마감 임박순 <span>{active.length + always.length}건</span>
                   </h2>
-                  <span>{active.length + always.length}건</span>
                 </div>
+                <p className="cal-scope">찜한 정책과 신청 준비 중인 정책을 마감이 가까운 순서로 보여 줘요. 상시 모집은 아래에 모았어요.</p>
                 {active.length + always.length === 0 && (
                   <p className="state">
                     찜한 정책이 없어요. 홈이나 검색에서 ♥를 눌러 마감일을 캘린더에 추가해 보세요.

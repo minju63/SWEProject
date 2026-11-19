@@ -1,5 +1,7 @@
 // 홈 탭 데이터 (SRS FR-H03~H12)
 import * as homeRepo from '../repositories/home.repository.js';
+import * as calendarRepo from '../repositories/calendar.repository.js';
+import { buildDocuments } from './documents.js';
 import { RESULT } from './eligibility.service.js';
 import {
   ageOf,
@@ -17,9 +19,9 @@ const SPACE_CATEGORY = '공간·시설'; // 이 분야의 '정책'(청년공간 
 
 export async function getHome(userId) {
   const { profile, categories, policies, regions } = await loadContext(userId);
-  const [bookmarks, docCounts] = await Promise.all([
+  const [bookmarks, docRows] = await Promise.all([
     userId ? homeRepo.findBookmarkedIds(userId) : [],
-    userId ? homeRepo.findCheckedDocCounts(userId) : new Map(),
+    userId ? calendarRepo.findDocumentRows(userId) : [],
   ]);
   const bookmarked = new Set(bookmarks.map((b) => b.policy_id));
 
@@ -70,8 +72,14 @@ export async function getHome(userId) {
     .map((p) =>
       toCard(p, {
         bookmarked: true,
-        docs_total: Array.isArray(p.required_documents) ? p.required_documents.length : 0,
-        docs_checked: docCounts.get(p.policy_id) ?? 0,
+        // 서류 개수: 공식 준비물 + 마이에서 직접 추가한 준비물 (캘린더와 같은 규칙)
+        ...(() => {
+          const docs = buildDocuments(
+            p,
+            docRows.filter((r) => r.policy_id === p.policy_id)
+          );
+          return { docs_total: docs.length, docs_checked: docs.filter((d) => d.checked).length };
+        })(),
       })
     );
 

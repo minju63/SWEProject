@@ -141,3 +141,13 @@ export async function deleteAlarm(alarmId) {
   const { error } = await supabase.from('saved_alarm').delete().eq('alarm_id', alarmId);
   if (error) throw error;
 }
+
+// 이 사용자의 서류 체크 행 전체 (공식 준비물 체크 + 직접 추가한 준비물)
+export async function findDocumentRows(userId) {
+  const { data, error } = await supabase
+    .from('user_document_check')
+    .select('policy_id, doc_key, is_checked')
+    .eq('user_id', userId);
+  if (error) throw error;
+  return data ?? [];
+}

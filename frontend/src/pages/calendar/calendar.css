@@ -237,7 +237,21 @@
 }
 .cal-section-head h2 {
   margin: 0;
-  font-size: 17px;
+  /* 검색 결과 제목("검색 결과 N건")과 같은 글꼴·크기·굵기, 개수는 파랑 */
+  font-family: 'Noto Sans KR', sans-serif;
+  font-size: 18px;
+  font-weight: 900;
+  letter-spacing: -0.04em;
+}
+.cal-section-head h2 span {
+  font-size: inherit;
+  color: var(--primary);
+}
+.cal-scope {
+  margin: -4px 0 10px;
+  font-size: 12px;
+  line-height: 1.5;
+  color: var(--sub);
 }
 .cal-section-head span,
 .cal-clear {
@@ -815,4 +829,76 @@
 }
 .ccard-meta b {
   color: var(--primary);
+}
+
+/* ---------- 준비물 체크리스트 (신청 준비·찜 정책의 공식 준비물 + 마이에서 직접 추가한 준비물) ---------- */
+.ccard-checklist {
+  border-top: 1px solid #eef3fc;
+  background: #fff;
+}
+.ccard-checklist-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  min-height: 44px;
+  padding: 0 14px;
+  border: 0;
+  background: none;
+  color: var(--text);
+  font-size: 13px;
+  font-weight: 700;
+}
+.ccard-checklist-head b {
+  color: var(--primary);
+}
+.ccard-checklist ul {
+  margin: 0;
+  padding: 0 14px 10px;
+  list-style: none;
+}
+.ccard-checklist li button {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  min-height: 40px;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--text);
+  font-size: 14px;
+  text-align: left;
+}
+.ccard-checklist li i {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 20px;
+  height: 20px;
+  border: 1.5px solid #c3cfe2;
+  border-radius: 6px;
+  background: #fff;
+  color: #fff;
+  font-size: 13px;
+  font-style: normal;
+  font-weight: 900;
+}
+.ccard-checklist li button.on i {
+  border-color: var(--primary);
+  background: var(--primary);
+}
+.ccard-checklist li button.on span {
+  color: var(--muted);
+  text-decoration: line-through;
+}
+.ccard-checklist li em {
+  flex: none;
+  padding: 2px 7px;
+  border-radius: 999px;
+  background: #eef3fe;
+  color: var(--primary);
+  font-size: 11px;
+  font-style: normal;
+  font-weight: 700;
 }

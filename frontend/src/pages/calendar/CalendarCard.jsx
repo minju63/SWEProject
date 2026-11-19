@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { BellFillIcon, HeartIcon } from '../../components/icons.jsx';
 import { alarmLabel, shortDate } from './calendarUtils.js';
@@ -11,7 +12,10 @@ export default function CalendarCard({
   eventTypes = [], // 날짜를 골랐을 때 그날 일정 종류
   onUnbookmark,
   onEditAlarm,
+  onToggleDoc,
 }) {
+  const [docsOpen, setDocsOpen] = useState(item.stage === 'PREPARING'); // 신청 준비 항목은 체크리스트를 펼쳐서 보여 준다
+  const documents = item.documents ?? [];
   const urgent = state === 'active' && item.d_day != null && item.d_day <= 7;
   const canAlarm = item.bookmarked && state === 'active';
   const alarms = item.alarms ?? [];
@@ -89,6 +93,40 @@ export default function CalendarCard({
           </button>
         )}
       </div>
+      {documents.length > 0 && (
+        <div className="ccard-checklist">
+          <button
+            type="button"
+            className="ccard-checklist-head"
+            aria-expanded={docsOpen}
+            onClick={() => setDocsOpen((v) => !v)}
+          >
+            <span>준비물 체크리스트</span>
+            <b>
+              {item.docs_checked}/{item.docs_total}
+            </b>
+          </button>
+          {docsOpen && (
+            <ul>
+              {documents.map((d) => (
+                <li key={d.key}>
+                  <button
+                    type="button"
+                    className={d.checked ? 'on' : ''}
+                    aria-pressed={d.checked}
+                    onClick={() => onToggleDoc?.(item, d)}
+                  >
+                    <i aria-hidden="true">{d.checked ? '✓' : ''}</i>
+                    <span>{d.name}</span>
+                    {d.custom && <em>직접 추가</em>}
+                    {d.required === false && <em>해당자만</em>}
+                  </button>
+                </li>
+              ))}
+            </ul>
+          )}
+        </div>
+      )}
       {canAlarm && (
         <button type="button" className="ccard-alarm" onClick={() => onEditAlarm(item)}>
           {alarms.length > 0 ? (

@@ -1,6 +1,6 @@
 // 캘린더 (SRS FR-C01~C14): 찜·신청 준비 정책의 일정과 정책별 알림
 import * as repo from '../repositories/calendar.repository.js';
-import { findCheckedDocCounts } from '../repositories/home.repository.js';
+import { buildDocuments, officialDocuments } from './documents.js';
 import { AppError } from '../utils/response.js';
 import {reconcileStoredResults} from './application-results.service.js';
 import {
@@ -13,9 +13,6 @@ import {
   presetFireAt,
   todayKst,
 } from './alarmTime.js';
-
-const docCount = (policy) =>
-  Array.isArray(policy?.required_documents) ? policy.required_documents.length : 0;
 
 // 캘린더 화면 전체 데이터: 목록용 항목 + 달력 점으로 그릴 일정(마감·신청 완료·결과 발표)
 export async function getCalendar(userId) {
@@ -35,7 +32,7 @@ export async function getCalendar(userId) {
         category_id: policy.category_id,
         application_end_date: policy.application_end_date,
         is_always_open: policy.is_always_open,
-        docs_total: docCount(policy),
+        policy,
         bookmarked: false,
         bookmark_id: null,
         stage: null,
@@ -63,11 +60,11 @@ export async function getCalendar(userId) {
   const items = [...byPolicy.values()];
   const ids = items.map((i) => i.policy_id);
   const bookmarkIds = items.map((i) => i.bookmark_id).filter(Boolean);
-  const [statuses, regions, alarms, checked] = await Promise.all([
+  const [statuses, regions, alarms, docRows] = await Promise.all([
     repo.findStatuses(ids),
     repo.findRegionNames(ids),
     repo.findAlarmsByBookmarks(bookmarkIds),
-    findCheckedDocCounts(userId), // 서류 체크 수는 홈과 같은 규칙(체크된 서류만 센다)
+    repo.findDocumentRows(userId),
   ]);
 
   for (const item of items) {
@@ -78,7 +75,14 @@ export async function getCalendar(userId) {
       .filter((r) => r.policy_id === item.policy_id)
       .map((r) => r.region?.region_name)
       .filter(Boolean);
-    item.docs_checked = Math.min(checked.get(item.policy_id) ?? 0, item.docs_total);
+    // 준비물 체크리스트: 정책 상세의 공식 준비물 + 마이에서 직접 추가한 준비물
+    item.documents = buildDocuments(
+      item.policy,
+      docRows.filter((r) => r.policy_id === item.policy_id)
+    );
+    item.docs_total = item.documents.length;
+    item.docs_checked = item.documents.filter((d) => d.checked).length;
+    delete item.policy;
     item.alarms = alarms
       .filter((a) => a.bookmark_id === item.bookmark_id)
       .map(({ alarm_id, kind, preset_code, fire_at, repeat_daily }) => ({
@@ -142,7 +146,7 @@ export async function getAlarmInfo(userId, policyId) {
       title: policy.title,
       application_end_date: policy.application_end_date,
       deadline_at: deadline ? deadline.toISOString() : null,
-      docs_total: docCount(policy),
+      docs_total: officialDocuments(policy).length,
     },
     now: now.toISOString(),
     day_alarm_time: dayTime,
