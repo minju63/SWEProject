@@ -62,7 +62,10 @@ export default function HomePage() {
   // 전체 보기: 공간·시설 정책은 검색 분야에서 빠져 있어 지도 탭으로 보낸다 (FR-H11)
   const goAll = (cat) => {
     if (cat.is_space) return navigate('/map');
-    navigate(`/search?categoryId=${cat.category_id}${scope === 'mine' ? '&mine=1' : ''}`);
+    // 검색 탭은 분야 이름(category)과 내 조건만 보기(mine=true)로 필터를 받는다
+    navigate(
+      `/search?category=${encodeURIComponent(cat.category_name)}${scope === 'mine' ? '&mine=true' : ''}`
+    );
   };
 
   const submitSearch = (e) => {
