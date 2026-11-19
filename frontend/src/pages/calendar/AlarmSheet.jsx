@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { fetchAlarmInfo, saveAlarmInfo } from '../../api/calendar.js';
 import { useToastStore } from '../../store/toastStore';
@@ -14,16 +14,51 @@ export default function AlarmSheet({ policyId, onClose }) {
     queryKey: ['alarmInfo', policyId],
     queryFn: () => fetchAlarmInfo(policyId),
   });
+
+  // 위쪽 바를 잡고 아래로 끌어 내리면 닫힌다 (100px 이상 내리면 닫고, 아니면 제자리로)
+  const [dragY, setDragY] = useState(0);
+  const [dragging, setDragging] = useState(false);
+  const startY = useRef(0);
+  const onDown = (e) => {
+    startY.current = e.clientY;
+    setDragging(true);
+    e.currentTarget.setPointerCapture(e.pointerId);
+  };
+  const onMove = (e) => {
+    if (dragging) setDragY(Math.max(0, e.clientY - startY.current));
+  };
+  const onUp = () => {
+    if (!dragging) return;
+    setDragging(false);
+    if (dragY > 100) onClose();
+    else setDragY(0);
+  };
+
   return (
     <div className="csheet-dim" onClick={onClose}>
       <section
         className="csheet"
         role="dialog"
         aria-label="알림 설정"
+        style={{
+          transform: dragY ? `translateY(${dragY}px)` : undefined,
+          transition: dragging ? 'none' : 'transform 0.18s ease-out',
+        }}
         onClick={(e) => e.stopPropagation()}
       >
-        <div className="csheet-handle">
-          <span />
+        <div className="csheet-top">
+          <div
+            className="csheet-handle"
+            onPointerDown={onDown}
+            onPointerMove={onMove}
+            onPointerUp={onUp}
+            onPointerCancel={onUp}
+          >
+            <span />
+          </div>
+          <button type="button" className="csheet-x" aria-label="닫기" onClick={onClose}>
+            ✕
+          </button>
         </div>
         {info.isLoading && <p className="state">불러오는 중…</p>}
         {info.error && <p className="state">{info.error.message}</p>}
@@ -106,7 +141,9 @@ function AlarmEditor({ info, onClose, onSaved }) {
     <>
       <h2>알림 설정</h2>
       <p className="csheet-sub">
-        {info.policy.title} · 마감 <b>{shortDate(end)} 23:59</b>
+        {info.policy.title}
+        <br />
+        마감 <b>{shortDate(end)} 23:59</b>
       </p>
 
       <p className="csheet-label">설정된 알림 {rows.length}</p>
@@ -177,9 +214,6 @@ function AlarmEditor({ info, onClose, onSaved }) {
         onClick={() => save.mutate()}
       >
         저장
-      </button>
-      <button type="button" className="csheet-close-text" onClick={onClose}>
-        닫기
       </button>
 
       {pickingCustom && (

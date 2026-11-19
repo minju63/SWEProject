@@ -5,7 +5,7 @@ import { fetchCalendar } from '../../api/calendar.js';
 import { removeBookmark } from '../../api/me.js';
 import { fetchCategories } from '../../api/policies.js';
 import { useAuthStore } from '../../store/authStore';
-import { useToastStore } from '../../store/toastStore';
+import { UNBOOKMARK_TOAST, useToastStore } from '../../store/toastStore';
 import PageHeader from '../../components/PageHeader.jsx';
 import { HeartIcon } from '../../components/icons.jsx';
 import StateMessage from '../../components/StateMessage.jsx';
@@ -67,7 +67,7 @@ export default function CalendarPage() {
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['calendar'] });
       queryClient.invalidateQueries({ queryKey: ['home'] });
-      showToast('찜을 해제했어요. 알림도 함께 취소했어요');
+      showToast(UNBOOKMARK_TOAST);
     },
     onError: (e) => showToast(e.message),
   });

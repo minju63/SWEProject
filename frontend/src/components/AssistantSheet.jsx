@@ -6,7 +6,7 @@ import { fetchCategories } from '../api/policies';
 import { fetchProfile, fetchBookmarks, addBookmark, removeBookmark } from '../api/me';
 import { useAuthStore } from '../store/authStore';
 import { useAssistantStore, loadHistory, saveHistory } from '../store/assistantStore';
-import { useToastStore } from '../store/toastStore';
+import { UNBOOKMARK_TOAST, useToastStore } from '../store/toastStore';
 import { ELIGIBILITY_LABEL, dDayText } from '../utils/format';
 import SharkAvatar from './SharkAvatar.jsx';
 import { HeartIcon } from './icons.jsx';
@@ -423,6 +423,7 @@ function ChatSheet() {
         : cur
     );
     if (next) showToast('찜했어요! 캘린더에 마감일이 추가됐어요', { duration: 1000 });
+    else showToast(UNBOOKMARK_TOAST);
     try {
       if (next) await addBookmark(card.policy_id, 'CHAT');
       else await removeBookmark(card.policy_id);

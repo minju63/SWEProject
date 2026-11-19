@@ -3,6 +3,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { fetchEligibility, fetchPolicy, fetchPolicyExplanation, fetchSimilarPolicies, recordPolicyView } from '../../api/policies';
 import { addBookmark, removeBookmark } from '../../api/me';
+import { UNBOOKMARK_TOAST, useToastStore } from '../../store/toastStore';
 import { supabase } from '../../lib/supabase';
 import { useAuthStore } from '../../store/authStore';
 import { dDayText } from '../../utils/format';
@@ -109,6 +110,7 @@ export default function PolicyDetailPage() {
   const navigate = useNavigate();
   const user = useAuthStore((state) => state.user);
   const queryClient = useQueryClient();
+  const showToast = useToastStore((state) => state.show);
   const [actionError, setActionError] = useState('');
 
   const policy = useQuery({ queryKey: ['policy', user?.id, policyId],
@@ -133,6 +135,7 @@ export default function PolicyDetailPage() {
     mutationFn: ({ saved }) => saved ? removeBookmark(policyId) : addBookmark(policyId, 'DETAIL'),
     onSuccess: (_result, { saved }) => {
       setActionError('');
+      if (saved) showToast(UNBOOKMARK_TOAST);
       queryClient.setQueryData(['policy', user?.id, policyId], (current) =>
         current ? { ...current, is_bookmarked: !saved } : current);
       queryClient.invalidateQueries({ queryKey: ['bookmarks'] });

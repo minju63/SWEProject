@@ -5,7 +5,7 @@ import { fetchHome } from '../../api/home';
 import { addBookmark, removeBookmark } from '../../api/me';
 import { useAuthStore } from '../../store/authStore';
 import { useAssistantStore } from '../../store/assistantStore';
-import { useToastStore } from '../../store/toastStore';
+import { UNBOOKMARK_TOAST, useToastStore } from '../../store/toastStore';
 import PageHeader from '../../components/PageHeader.jsx';
 import StateMessage from '../../components/StateMessage.jsx';
 import { HeartIcon, SearchIcon } from '../../components/icons.jsx';
@@ -62,7 +62,8 @@ export default function HomePage() {
       return { before };
     },
     onSuccess: (_, policy) => {
-      if (!policy.bookmarked) showToast('찜했어요! 캘린더에 마감일이 추가됐어요', { duration: 1000 });
+      if (policy.bookmarked) showToast(UNBOOKMARK_TOAST);
+      else showToast('찜했어요! 캘린더에 마감일이 추가됐어요', { duration: 1000 });
     },
     onError: (e, _policy, ctx) => {
       if (ctx?.before) queryClient.setQueryData(['home'], ctx.before);

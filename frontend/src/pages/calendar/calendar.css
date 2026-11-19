@@ -351,10 +351,39 @@
     opacity: 0;
   }
 }
+.csheet-top {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  margin: 0 -20px;
+  background: #f4f7fd;
+}
 .csheet-handle {
   display: flex;
   justify-content: center;
-  padding: 12px 0 8px;
+  padding: 12px 0 14px;
+  cursor: grab;
+  touch-action: none; /* 바를 끌 때 화면이 같이 스크롤되지 않게 */
+}
+.csheet-x {
+  position: absolute;
+  top: 8px;
+  right: 14px;
+  width: 30px;
+  height: 30px;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 0 1px 4px rgba(25, 31, 40, 0.12);
+  color: var(--sub);
+  font-size: 13px;
+  line-height: 1;
+}
+.csheet-x::after {
+  content: '';
+  position: absolute;
+  inset: -7px; /* 눈에 보이는 크기는 작게, 누르는 영역은 44px (NFR-011) */
 }
 .csheet-handle span {
   width: 40px;
@@ -533,16 +562,6 @@
   width: 100%;
   margin-top: 16px;
 }
-.csheet-close-text {
-  display: block;
-  width: 100%;
-  min-height: 44px;
-  border: 0;
-  background: none;
-  color: var(--muted);
-  font-size: 13px;
-}
-
 /* ---------- 직접 정하기 ---------- */
 .wheel {
   display: flex;
