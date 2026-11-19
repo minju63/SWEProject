@@ -9,6 +9,7 @@ import { askJson, askText, isLlmEnabled } from '../lib/llm.js';
 import { lookupTerm } from '../lib/naverDict.js';
 import { RESULT } from './eligibility.service.js';
 import {
+  isInterest,
   isOpen,
   judged,
   judgedWithRegion,
@@ -338,7 +339,11 @@ export async function recommend({
     message += ` 이 주제의 혜택이 ${byKeyword.length}건 있어요. 전부 보려면 "전부 보여줘"라고 물어보세요.`;
   return {
     type: 'recommend',
-    context: { keywords, categoryId: categoryId ?? null },
+    context: {
+      keywords,
+      categoryId: categoryId ?? null,
+      picks: picks.map((p) => p.policy_id), // "왜 추천했어?"·"첫 번째 정책" 같은 이어지는 질문에 쓴다
+    },
     message,
     cards: picks.map((p) => ({
       ...cardWithConditions(p, bookmarked),
@@ -801,6 +806,68 @@ export async function chat(args) {
   return answer;
 }
 
+// 방금 보여 준 추천을 가리키는 말 ("첫 번째 정책", "2번", "마지막 거")
+const ORDINALS = [
+  [/첫\s*번째|첫째|1\s*번|맨\s*위|처음/, 0],
+  [/두\s*번째|둘째|2\s*번/, 1],
+  [/세\s*번째|셋째|3\s*번/, 2],
+  [/마지막/, -1],
+];
+function pickFromContext(text, context, policies) {
+  const ids = Array.isArray(context?.picks) ? context.picks : [];
+  if (ids.length === 0) return null;
+  const hit = ORDINALS.find(([re]) => re.test(text));
+  if (!hit) return null;
+  const id = ids.at(hit[1]);
+  return policies.find((p) => p.policy_id === id) ?? null;
+}
+
+// "왜 이걸 추천했어?": 방금 추천한 정책마다 내 조건과 어떻게 맞는지 이유를 알려 준다 (FR-A08 근거 설명)
+const WHY_RE = /왜.*(추천|골랐|뽑|보여)|추천.*(이유|근거|기준)|(이유|근거).*(뭐|알려|설명)/;
+function answerWhy(ctx, context) {
+  const ids = Array.isArray(context?.picks) ? context.picks : [];
+  if (ids.length === 0) {
+    return {
+      type: 'clarify',
+      message: '어떤 추천이 궁금하신가요? 먼저 "나한테 맞는 정책 추천해줘"처럼 물어보세요.',
+      suggestions: ['나한테 맞는 정책 추천해줘'],
+    };
+  }
+  const list = judgedWithRegion(ctx.policies, ctx.profile, ctx.regions);
+  const myGu = ctx.regions.find(
+    (r) => r.region_code === ctx.profile?.region_code && r.region_level === 'GU'
+  );
+  const lines = ids
+    .map((id) => list.find((p) => p.policy_id === id))
+    .filter(Boolean)
+    .map((p, i) => {
+      const reasons = [];
+      const met = conditionChecks(p).filter((c) => c.mark === 'ok');
+      if (met.length) reasons.push(met.map((c) => c.label).join(', '));
+      if (isInterest(p, ctx.profile, ctx.categories)) {
+        const cat = ctx.categories.find((c) => c.category_id === p.category_id)?.category_name;
+        reasons.push(`관심분야(${cat})와 같은 분야예요`);
+      }
+      if (myGu && (p.region_names ?? []).includes(myGu.region_name))
+        reasons.push(`${myGu.region_name} 대상 정책이에요`);
+      else if ((p.region_names ?? []).includes('부산광역시')) reasons.push('부산 전체 청년이 대상이에요');
+      if (p.recruitment_status === '상시') reasons.push('상시 모집이라 언제든 신청할 수 있어요');
+      else if (p.d_day != null && p.d_day >= 0)
+        reasons.push(`마감이 ${p.d_day === 0 ? '오늘' : `${p.d_day}일 뒤`}로 가까워요`);
+      if (reasons.length === 0) reasons.push('모집 중이라 신청할 수 있어요');
+      return `${i + 1}. **${p.title}**: ${reasons.join(' · ')}`;
+    });
+  const noProfile = !ctx.profile || !(ctx.profile.birth_date || ctx.profile.region_code);
+  return {
+    type: 'why',
+    message:
+      `방금 추천한 혜택을 고른 이유예요.\n\n${lines.join('\n')}\n\n` +
+      '순서는 "신청 가능한 혜택 먼저, 그다음 마감이 가까운 순"으로 정했어요.' +
+      (noProfile ? ' 아직 맞춤정보가 없어 분야와 마감 기준으로만 골랐어요. 마이에서 정보를 입력하면 더 정확해져요.' : ''),
+    suggestions: ['첫 번째 정책 자세히 알려줘', '신청 서류 알려줘'],
+  };
+}
+
 async function route({ userId, message, context, remaining }) {
   const text = maskPersonalInfo(
     String(message ?? '')
@@ -811,9 +878,14 @@ async function route({ userId, message, context, remaining }) {
 
   const ctx = await loadContext(userId);
 
+  // 0) 방금 한 대답에 이어지는 질문: "왜 이걸 추천했어?", "첫 번째 정책 자세히"
+  if (WHY_RE.test(text) && (context?.picks?.length || /추천/.test(text)))
+    return answerWhy(ctx, context);
+  const picked = pickFromContext(text, context, ctx.policies);
+
   // 1) 용어: 정책명과 같이 물었다면 "뭐야?" 같은 용어 질문 형태일 때만 사전으로 답한다
   const term = findTerm(text);
-  const mentionedPolicy = findMentionedPolicy(text, ctx.policies);
+  const mentionedPolicy = findMentionedPolicy(text, ctx.policies) ?? picked;
   if (term && (isTermQuestion(text) || !mentionedPolicy)) return answerTerm(term, ctx, userId);
 
   // 1-1) 사전에 없는 용어 질문은 정책명을 직접 말하지 않았다면 정책으로 넘기지 않는다

@@ -56,11 +56,6 @@
   border-radius: 12px;
   color: var(--text);
 }
-.cal-nav .cal-title span {
-  margin-left: 2px;
-  font-size: 11px;
-  color: var(--muted);
-}
 .cal-nav .cal-title[aria-expanded='true'] {
   background: #eef3fe;
 }

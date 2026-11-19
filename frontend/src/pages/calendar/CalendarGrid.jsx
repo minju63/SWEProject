@@ -44,7 +44,7 @@ export default function CalendarGrid({
           aria-expanded={pickYear != null}
           onClick={() => setPickYear(pickYear == null ? year : null)}
         >
-          {year}년 {month}월 <span aria-hidden="true">{pickYear == null ? '▾' : '▴'}</span>
+          {year}년 {month}월
         </button>
         <button type="button" aria-label="다음 달" onClick={onNext}>
           ›
