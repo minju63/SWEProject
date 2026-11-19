@@ -122,15 +122,13 @@
 - 분야를 누르면 다른 분야처럼 정책 카드 최대 3건을 보여 준다. 도서관·체육시설 같은 장소는 카드 아래 안내 문구의 '지도 탭' 링크로 안내한다.
 - '전체 보기'는 공간·시설 정책이 검색 분야에서 빠져 있어 지도 탭(`/map`)으로 이동한다. 지도 장소 수는 홈 중앙 총 개수에도 더 이상 포함하지 않는다.
 
-## 8. 알림 종·알림 센터 (FR-COM-17, FR-MY-008)
+## 8. 알림 종·알림 센터 (FR-COM-17, FR-MY-008) — 마이 담당 구현 사용
 
-- 모든 탭 헤더의 종 아이콘은 공용 `NotificationBell` 하나를 쓴다. 마이 탭 모양의 종, 배경 동그라미 없이 종만 그린다.
-- 로그인했을 때 읽지 않은 알림 수를 종 오른쪽 위에 파란 숫자로 보여 준다. 0건이면 숫자를 숨기고, **100건 이상은 `99+`**.
-- 개수는 **30초마다** 다시 가져오고, 브라우저 탭·창으로 **돌아올 때 즉시** 다시 가져온다.
-- 종을 누르면 알림 센터(`/notifications`)를 연다. 알림 센터는 실제 알림(`notification` 테이블)을 보여 준다: 최근 30일, 최신순, 읽음 처리, 모두 읽음, 알림의 링크로 이동.
-- 알림 종류 필터: 서버 값 `DEADLINE`→**마감**, `NEW_MATCH`→**혜택**, `SYSTEM`→**안내**. 기존 화면의 "신청" 필터는 해당 서버 값이 없어 "안내"로 바꿨다. (SRS에 알림 종류 이름이 정해져 있으면 맞춰 주세요.)
-- API(`/api/v1/me`): `GET /notifications`, `GET /notifications/unread-count`, `PATCH /notifications/:id/read`, `POST /notifications/read-all`. 모두 로그인 필요.
+- 알림 종·알림 센터·알림 설정은 **마이 담당(`feature/my2`)이 구현한 것을 그대로 쓴다.** 백민주가 따로 만들었던 알림 API·화면은 겹쳐서 병합(`feature/merge3-m`) 때 걷어냈다.
+- 모든 탭 헤더의 종은 공용 `NotificationBell` 하나(읽지 않은 알림 수, 100건 이상 `99+`, 30초 갱신·화면 복귀 시 즉시 갱신, 누르면 알림 센터 `/notifications`).
+- 알림 센터: 최근 30일 알림, 종류 필터(전체·맞춤 혜택·정책·문화행사·주변 시설·마감·신청·기타), 읽음 처리·모두 읽음. API(`/api/v1/me`): `GET /notifications`, `PUT /notifications/:id/read`(`all`이면 전체), `GET·PUT /notification-settings`.
 - 알림은 찜한 정책의 알림 시각이 되면 알림 작업(`ALARM_JOB_ENABLED=true`인 서버 한 곳)이 만든다. 웹 푸시는 아직 없다.
+- 병합 후 확인할 것: 알림을 만드는 작업(`jobs/alarms.js`)은 마이 담당의 알림 설정(전체 알림·마감 임박)을 따른다.
 
 ## 9. 공통 화면 규칙 변경 (UI)
 
@@ -171,11 +169,11 @@
 - 부산일자리정보망 프로그램 30건을 **'부산일자리정보망 청년부산잡스'** 1건으로, 2건을 **'부산일자리정보망 JOB프로그램'** 1건으로 합쳤다(상시, 신청 자격 없음, 프로그램별 대상은 각 공고에서 확인).
 - 변환·반영 스크립트: `backend/scripts/eligibility/`. 반영 전 백업을 만들고 `--restore`로 되돌릴 수 있다.
 
-## 12. 마이 › 알림 설정 저장 API (FR-MY-009, FR-MY-012~016)
+## 12. 마이 › 알림 설정 저장 (FR-MY-009, FR-MY-012~016) — 마이 담당 구현 사용
 
-- **API**(`/api/v1/me`, 로그인 필요): `GET /alarm-preferences`, `PUT /alarm-preferences`(바꾼 항목만 보내면 나머지는 유지, 값은 true/false만 허용).
-- **필드 ↔ SRS**: `all_enabled` 전체 알림(FR-MY-009) · `recommend_enabled` 맞춤 알림(FR-MY-012) · `new_match_enabled` 정책 알림(FR-MY-013) · `event_enabled` 문화행사 알림(FR-MY-014) · `facility_enabled` 주변 시설 알림(FR-MY-015) · `deadline_enabled` 마감 임박 알림(FR-MY-016).
-- **기본값**: 전체 켜짐, 마감 임박 켜짐, 정책 알림 켜짐, 맞춤·문화행사·주변 시설은 **꺼짐**(맞춤 알림은 선택 동의가 필요하다는 FR-MY-012).
-- **전체 알림이 꺼져 있으면** 하위 설정값은 그대로 두고 알림만 만들지 않는다(FR-MY-009). 마감 알림을 만드는 곳(찜 기본 알림 등록, 알림 발송 작업) 모두 `all_enabled`와 `deadline_enabled`를 확인한다.
-- **DB 변경**: `migrations/20261119_alarm_preference_settings.sql` 실행 필요(`alarm_preference`에 `all_enabled`·`recommend_enabled`·`event_enabled`·`facility_enabled` 추가). 실행 전에는 조회는 기본값으로 동작하고, 새 항목 저장은 `MIGRATION_REQUIRED(503)`로 알려 준다.
-- **마이 화면 연결(구현함)**: 마이 설정의 알림 설정 화면(`/settings?view=notifications`)이 서버와 연결됐다. 화면에 들어가면 저장된 값을 불러오고, **"설정 저장"을 누르면** 서버에 저장한 뒤 설정 메뉴로 돌아간다(실패하면 화면에 이유를 보여 주고 머문다, 로그인하지 않았으면 안내만). 화면 값 ↔ 서버: `enabled`→`all_enabled`, `recommendations`→`recommend_enabled`, `policyAlerts`→`new_match_enabled`, `eventAlerts`→`event_enabled`, `facilityAlerts`→`facility_enabled`, `deadlines`→`deadline_enabled`. 화면의 '신청 상태 알림'(`applicationUpdates`)·`deadlineTiming`·`quietHours`는 SRS에 대응 항목이 없어 서버에 저장하지 않는다(필요하면 요구사항 확인).
+- 설정 저장은 마이 담당이 만든 `GET·PUT /api/v1/me/notification-settings`와 마이 설정 화면(`/settings?view=notifications`)을 쓴다. 백민주가 만든 `alarm_preference` 컬럼 추가 마이그레이션·`/alarm-preferences` API는 **병합에서 삭제**했다(실행할 SQL 없음).
+- 캘린더 상단 "알림 설정"(FR-C07)은 이 화면으로 이동한다.
+
+## 13. 로그인 필수 (FR-COM-07) — 병합으로 바뀐 동작
+
+- 마이 담당의 변경으로 `/api/v1` 아래 **모든 앱 데이터 API가 로그인을 요구**한다(홈·검색·지도·AI 비서 포함, `/api/v1/health`와 `/api/v1/auth/*`만 예외). 이전에 홈·AI 비서에 두었던 "로그인하지 않아도 열린다" 동작은 더 이상 쓰이지 않는다. 화면 쪽 로그인 유도는 마이 담당의 로그인 패널을 따른다.
