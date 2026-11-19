@@ -122,6 +122,53 @@ export default function SettingsScreen() {
     window.scrollTo({ top: 0, behavior: 'instant' })
   }, [view])
   const [message, setMessage] = useState('')
+  const [savingNotifications, setSavingNotifications] = useState(false)
+  // 서버에 저장된 알림 설정을 불러와 화면 값에 넣는다 (FR-MY-009, FR-MY-012~016)
+  useEffect(() => {
+    if (!user) return
+    let active = true
+    personalApi('/alarm-preferences')
+      .then((p) => {
+        if (!active) return
+        setNotificationSettings((current) => ({
+          ...current,
+          enabled: p.all_enabled,
+          recommendations: p.recommend_enabled,
+          policyAlerts: p.new_match_enabled,
+          eventAlerts: p.event_enabled,
+          facilityAlerts: p.facility_enabled,
+          deadlines: p.deadline_enabled,
+        }))
+      })
+      .catch(() => {}) // 못 불러오면 화면의 현재 값을 그대로 쓴다
+    return () => {
+      active = false
+    }
+  }, [user?.id])
+  async function saveNotificationSettings() {
+    if (savingNotifications) return
+    if (!user) {
+      setMessage('로그인하면 알림 설정을 저장할 수 있어요.')
+      return
+    }
+    setSavingNotifications(true)
+    try {
+      await personalApi('/alarm-preferences', 'PUT', {
+        all_enabled: notificationSettings.enabled,
+        recommend_enabled: notificationSettings.recommendations,
+        new_match_enabled: notificationSettings.policyAlerts,
+        event_enabled: notificationSettings.eventAlerts,
+        facility_enabled: notificationSettings.facilityAlerts,
+        deadline_enabled: notificationSettings.deadlines,
+      })
+      setMessage('알림 설정을 저장했어요.')
+      setView('menu')
+    } catch (e) {
+      setMessage(e instanceof Error ? e.message : '알림 설정을 저장하지 못했어요. 다시 시도해주세요.')
+    } finally {
+      setSavingNotifications(false)
+    }
+  }
   const [logoutOpen, setLogoutOpen] = useState(false)
   const [withdrawing, setWithdrawing] = useState(false)
   const [withdrawConfirmed, setWithdrawConfirmed] = useState(false)
@@ -897,6 +944,11 @@ export default function SettingsScreen() {
               </div>
             </div>
 
+            {message && (
+              <p role="alert" className="my-profile-notice mt-4">
+                {message}
+              </p>
+            )}
             <p className="mt-4 px-1 text-[10px] font-medium leading-4 text-black/35">
               전체 알림을 꺼도 각 알림의 개별 설정값은 유지돼요. 다시 전체 알림을 켜면 이전 설정으로
               돌아옵니다.
@@ -904,13 +956,11 @@ export default function SettingsScreen() {
 
             <button
               type="button"
-              onClick={() => {
-                setMessage('알림 설정을 저장했어요.')
-                setView('menu')
-              }}
-              className="mt-5 w-full rounded-2xl bg-[#2F7BF5] py-4 text-sm font-black text-white"
+              onClick={saveNotificationSettings}
+              disabled={savingNotifications}
+              className="mt-5 w-full rounded-2xl bg-[#2F7BF5] py-4 text-sm font-black text-white disabled:opacity-50"
             >
-              설정 저장
+              {savingNotifications ? '저장 중…' : '설정 저장'}
             </button>
           </main>
         )}
