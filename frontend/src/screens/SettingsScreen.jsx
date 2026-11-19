@@ -1,15 +1,16 @@
-import { BottomNav } from '../components/PolicyLayout'
-import { getCompletion } from '../data/profileCompletion'
-import './MyDesign.css'
-import { useState, useEffect, useRef } from 'react'
-import { useNavigate, useSearchParams } from 'react-router'
-import { useAppState } from '../app/AppState'
-import { useAuth } from '../lib/auth'
-import { supabase } from '../lib/auth'
-import { personalApi } from '../lib/api'
-import { interestDetailKey, scopedInterestDetails } from '../data/interestSelection'
-import AppSelect from '../components/AppSelect'
-import { Icon } from './HomeScreen'
+import { BottomNav } from '../components/PolicyLayout';
+import { getCompletion } from '../data/profileCompletion';
+import './MyDesign.css';
+import { useState, useEffect, useRef } from 'react';
+import { useNavigate, useSearchParams } from 'react-router';
+import { useAppState } from '../app/AppState';
+import { useAuth } from '../lib/auth';
+import { supabase } from '../lib/auth';
+import { personalApi } from '../lib/api';
+import { interestDetailKey, scopedInterestDetails } from '../data/interestSelection';
+import AppSelect from '../components/AppSelect';
+import { Icon } from './HomeScreen';
+import signupRules from '../../../shared/signup-rules.mjs';
 import {
   educationOptions,
   educationSub,
@@ -27,7 +28,7 @@ import {
   specialOptions as specialTargets,
   statusOptions,
   statusSub,
-} from '../data/conditions'
+} from '../data/conditions';
 const regionOptions = {
   부산광역시: [
     '중구',
@@ -47,7 +48,7 @@ const regionOptions = {
     '사상구',
     '기장군',
   ],
-}
+};
 const interestSubOptions = {
   취업·진로: ['취업지원', '채용·인턴', '창업지원', '직무교육', '재직자지원'],
   주거·생활: [
@@ -71,13 +72,13 @@ const interestSubOptions = {
   ],
   문화: ['뮤지컬', '연극', '콘서트', '클래식', '무용', '오페라', '전통예술', '전시', '기타'],
   공간·시설: ['문화시설', '도서관', '체육시설', '공공시설', '청년공간'],
-}
+};
 function getProvince(region) {
-  return Object.keys(regionOptions).find((province) => region.startsWith(province)) ?? '부산광역시'
+  return Object.keys(regionOptions).find((province) => region.startsWith(province)) ?? '선택 안 함';
 }
 function getDistrict(region) {
-  const province = getProvince(region)
-  return region.slice(province.length).trim() || regionOptions[province][0]
+  const province = getProvince(region);
+  return region.slice(province.length).trim() || '선택 안 함';
 }
 function ProfileCard({ title, badge, children }) {
   return (
@@ -92,140 +93,125 @@ function ProfileCard({ title, badge, children }) {
       </div>
       {children}
     </section>
-  )
+  );
 }
 export default function SettingsScreen() {
-  const navigate = useNavigate()
-  const [searchParams] = useSearchParams()
-  const { profile, setProfile, notificationSettings, setNotificationSettings, workspaceReady } =
-    useAppState()
-  const { user, ready, signOut } = useAuth()
+  const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
+  const {
+    profile,
+    setProfile,
+    notificationSettings,
+    setNotificationSettings,
+    loadNotificationSettings,
+    saveNotificationSettings,
+    workspaceReady,
+  } = useAppState();
+  const { user, ready, signOut } = useAuth();
   const [view, setView] = useState(() => {
-    const requestedView = searchParams.get('view')
-    if (requestedView === 'profile' || requestedView === 'notifications') return requestedView
-    return 'menu'
-  })
-  const [draft, setDraftState] = useState(profile)
-  const draftChanged = useRef(false)
+    const requestedView = searchParams.get('view');
+    if (['profile', 'notifications', 'account'].includes(requestedView)) return requestedView;
+    return 'menu';
+  });
+  const [draft, setDraftState] = useState(profile);
+  const draftChanged = useRef(false);
   function setDraft(next) {
-    draftChanged.current = true
-    setDraftState(next)
+    draftChanged.current = true;
+    setDraftState(next);
   }
   useEffect(() => {
-    if (!draftChanged.current) setDraftState(profile)
-  }, [profile])
+    if (!draftChanged.current) setDraftState(profile);
+  }, [profile]);
   useEffect(() => {
-    draftChanged.current = false
-    setDraftState(profile)
-  }, [user?.id])
+    draftChanged.current = false;
+    setDraftState(profile);
+  }, [user?.id]);
   useEffect(() => {
-    window.scrollTo({ top: 0, behavior: 'instant' })
-  }, [view])
-  const [message, setMessage] = useState('')
-  const [savingNotifications, setSavingNotifications] = useState(false)
-  // 서버에 저장된 알림 설정을 불러와 화면 값에 넣는다 (FR-MY-009, FR-MY-012~016)
+    window.scrollTo({ top: 0, behavior: 'instant' });
+  }, [view]);
+  const [message, setMessage] = useState('');
+  const [logoutOpen, setLogoutOpen] = useState(false);
+  const [withdrawing, setWithdrawing] = useState(false);
+  const [withdrawConfirmed, setWithdrawConfirmed] = useState(false);
+  const [savingProfile, setSavingProfile] = useState(false);
+  const [loadingNotifications, setLoadingNotifications] = useState(false);
+  const [savingNotifications, setSavingNotifications] = useState(false);
+  const [notificationsLoaded, setNotificationsLoaded] = useState(false);
   useEffect(() => {
-    if (!user) return
-    let active = true
-    personalApi('/alarm-preferences')
-      .then((p) => {
-        if (!active) return
-        setNotificationSettings((current) => ({
-          ...current,
-          enabled: p.all_enabled,
-          recommendations: p.recommend_enabled,
-          policyAlerts: p.new_match_enabled,
-          eventAlerts: p.event_enabled,
-          facilityAlerts: p.facility_enabled,
-          deadlines: p.deadline_enabled,
-        }))
+    if (view !== 'notifications' || !user) return;
+    let active = true;
+    setLoadingNotifications(true);
+    setNotificationsLoaded(false);
+    loadNotificationSettings()
+      .then(() => {
+        if (active) setNotificationsLoaded(true);
       })
-      .catch(() => {}) // 못 불러오면 화면의 현재 값을 그대로 쓴다
+      .catch(() => {
+        if (active) setMessage('알림 설정을 불러오지 못했어요. 다시 열어주세요.');
+      })
+      .finally(() => {
+        if (active) setLoadingNotifications(false);
+      });
     return () => {
-      active = false
-    }
-  }, [user?.id])
-  async function saveNotificationSettings() {
-    if (savingNotifications) return
-    if (!user) {
-      setMessage('로그인하면 알림 설정을 저장할 수 있어요.')
-      return
-    }
-    setSavingNotifications(true)
-    try {
-      await personalApi('/alarm-preferences', 'PUT', {
-        all_enabled: notificationSettings.enabled,
-        recommend_enabled: notificationSettings.recommendations,
-        new_match_enabled: notificationSettings.policyAlerts,
-        event_enabled: notificationSettings.eventAlerts,
-        facility_enabled: notificationSettings.facilityAlerts,
-        deadline_enabled: notificationSettings.deadlines,
-      })
-      setMessage('알림 설정을 저장했어요.')
-      setView('menu')
-    } catch (e) {
-      setMessage(e instanceof Error ? e.message : '알림 설정을 저장하지 못했어요. 다시 시도해주세요.')
-    } finally {
-      setSavingNotifications(false)
-    }
-  }
-  const [logoutOpen, setLogoutOpen] = useState(false)
-  const [withdrawing, setWithdrawing] = useState(false)
-  const [withdrawConfirmed, setWithdrawConfirmed] = useState(false)
-  const [savingProfile, setSavingProfile] = useState(false)
+      active = false;
+    };
+  }, [view, user, loadNotificationSettings]);
   async function withdraw(event) {
-    event.preventDefault()
-    if (withdrawing || !withdrawConfirmed) return
-    setWithdrawing(true)
+    event.preventDefault();
+    if (withdrawing || !withdrawConfirmed) return;
+    setWithdrawing(true);
     try {
-      await personalApi('/account', 'DELETE', { confirmation: '탈퇴' })
-      await supabase.auth.signOut({ scope: 'local' })
-      navigate('/')
+      const deletion = await personalApi('/account', 'DELETE', { confirmation: '탈퇴' });
+      await navigate(
+        deletion?.status === 'PENDING' ? '/login?deletion=pending' : '/login?deletion=complete',
+        { replace: true }
+      );
+      await supabase.auth.signOut({ scope: 'local' });
     } catch (e) {
-      setMessage(e instanceof Error ? e.message : '탈퇴하지 못했어요. 다시 시도해주세요.')
+      setMessage(e instanceof Error ? e.message : '탈퇴하지 못했어요. 다시 시도해주세요.');
     } finally {
-      setWithdrawing(false)
+      setWithdrawing(false);
     }
   }
   function goBack() {
-    if (view === 'menu') navigate('/my')
-    else setView('menu')
+    if (view === 'menu') navigate('/my');
+    else setView('menu');
   }
   async function saveProfile(event) {
-    event.preventDefault()
-    if (savingProfile) return
-    const name = draft.name.trim()
-    if (name.length < 2 || name.length > 10) {
-      setMessage('이름은 공백을 제외하고 2~10자로 입력해주세요.')
-      return
+    event.preventDefault();
+    if (savingProfile) return;
+    const name = draft.name.trim();
+    if (!signupRules.nicknamePattern.test(name)) {
+      setMessage('닉네임은 한글·영문·숫자 2~10자로 입력해주세요.');
+      return;
     }
-    setSavingProfile(true)
-    const saved = await setProfile({ ...draft, name })
-    setSavingProfile(false)
-    if (!saved) return
-    draftChanged.current = false
-    setMessage('프로필과 맞춤정보를 저장했어요.')
-    setView('menu')
+    setSavingProfile(true);
+    const saved = await setProfile({ ...draft, name });
+    setSavingProfile(false);
+    if (!saved) return;
+    draftChanged.current = false;
+    setMessage('프로필과 맞춤정보를 저장했어요.');
+    setView('menu');
   }
-  const [openInterest, setOpenInterest] = useState(null)
+  const [openInterest, setOpenInterest] = useState(null);
   function toggleInterest(interest) {
     setDraft((current) => {
       const details = scopedInterestDetails(
         current.interests,
         current.interestDetails ?? [],
         interestSubOptions
-      )
+      );
       const relatedDetails = (interestSubOptions[interest] ?? []).map((detail) =>
         interestDetailKey(interest, detail)
-      )
+      );
       const allDetailsSelected =
-        relatedDetails.length > 0 && relatedDetails.every((item) => details.includes(item))
+        relatedDetails.length > 0 && relatedDetails.every((item) => details.includes(item));
       if (allDetailsSelected) {
         return {
           ...current,
           interests: current.interests.filter((item) => item !== interest),
           interestDetails: details.filter((item) => !relatedDetails.includes(item)),
-        }
+        };
       }
       return {
         ...current,
@@ -236,8 +222,8 @@ export default function SettingsScreen() {
           ...details.filter((item) => !relatedDetails.includes(item)),
           ...relatedDetails,
         ],
-      }
-    })
+      };
+    });
   }
   function toggleInterestDetail(interest, detail) {
     setDraft((current) => {
@@ -245,14 +231,14 @@ export default function SettingsScreen() {
         current.interests,
         current.interestDetails ?? [],
         interestSubOptions
-      )
-      const key = interestDetailKey(interest, detail)
-      const selected = details.includes(key)
-      const nextDetails = selected ? details.filter((item) => item !== key) : [...details, key]
+      );
+      const key = interestDetailKey(interest, detail);
+      const selected = details.includes(key);
+      const nextDetails = selected ? details.filter((item) => item !== key) : [...details, key];
       const relatedDetails = (interestSubOptions[interest] ?? []).map((detail) =>
         interestDetailKey(interest, detail)
-      )
-      const hasSelectedDetail = relatedDetails.some((item) => nextDetails.includes(item))
+      );
+      const hasSelectedDetail = relatedDetails.some((item) => nextDetails.includes(item));
       return {
         ...current,
         interests: hasSelectedDetail
@@ -261,12 +247,12 @@ export default function SettingsScreen() {
             : [...current.interests, interest]
           : current.interests.filter((item) => item !== interest),
         interestDetails: nextDetails,
-      }
-    })
+      };
+    });
   }
   function dropdown(label, key, options, sub, wrapClass = 'mt-5') {
-    const value = draft[key] ?? ''
-    const subOptions = sub ? sub.options[value] : undefined
+    const value = draft[key] ?? '';
+    const subOptions = sub ? sub.options[value] : undefined;
     return (
       <div className={wrapClass}>
         <AppSelect
@@ -294,22 +280,22 @@ export default function SettingsScreen() {
           </div>
         )}
       </div>
-    )
+    );
   }
   function toggleSpecialTarget(target) {
     setDraft((current) => {
-      const targets = current.specialTargets ?? []
+      const targets = current.specialTargets ?? [];
       if (targets.includes(target))
         return {
           ...current,
           specialTargets: targets.filter((item) => item !== target),
-        }
-      if (target === NONE_TARGET) return { ...current, specialTargets: [NONE_TARGET] }
+        };
+      if (target === NONE_TARGET) return { ...current, specialTargets: [NONE_TARGET] };
       return {
         ...current,
         specialTargets: [...targets.filter((item) => item !== NONE_TARGET), target],
-      }
-    })
+      };
+    });
   }
   return (
     <div className="min-h-screen bg-[#eef0f5]">
@@ -373,10 +359,10 @@ export default function SettingsScreen() {
               <div className="mt-2 overflow-hidden rounded-[20px] bg-white">
                 <button
                   onClick={() => {
-                    draftChanged.current = false
-                    setDraftState(profile)
-                    setMessage('')
-                    setView('profile')
+                    draftChanged.current = false;
+                    setDraftState(profile);
+                    setMessage('');
+                    setView('profile');
                   }}
                   className="flex w-full items-center gap-3 border-b border-black/[0.06] p-4 text-left"
                 >
@@ -471,11 +457,17 @@ export default function SettingsScreen() {
                   ? '입력한 정보를 바탕으로 혜택을 추천해드려요.'
                   : '빈 항목을 입력하면 더 잘 맞는 혜택을 찾을 수 있어요.'}
               </p>
+              <p className="mb-4 text-xs leading-5 text-black/55">
+                닉네임을 제외한 항목은 선택사항이에요. 생년월일은 비우고, 선택 항목은 ‘선택 안 함’
+                또는 선택 해제로 지울 수 있어요. 혼인 상태·주거급여 수급 여부·특화대상은 맞춤 추천과
+                신청 조건 비교에만 사용해요. 입력하지 않아도 검색·지도·캘린더와 기본 추천을 이용할
+                수 있어요.
+              </p>
               <div className="space-y-4">
                 <ProfileCard title="기본 정보">
                   <div className="grid grid-cols-2 gap-3">
                     <label className="block text-xs font-bold text-black/45">
-                      이름
+                      닉네임
                       <input
                         required
                         minLength={2}
@@ -491,7 +483,7 @@ export default function SettingsScreen() {
                       생년월일
                       <input
                         type="date"
-                        max={new Date().toISOString().slice(0, 10)}
+                        max={new Date().toLocaleDateString('sv-SE', { timeZone: 'Asia/Seoul' })}
                         value={draft.birthDate ?? ''}
                         onChange={(e) =>
                           setDraft((current) => ({ ...current, birthDate: e.target.value }))
@@ -509,18 +501,22 @@ export default function SettingsScreen() {
                       <AppSelect
                         label="시·도"
                         value={getProvince(draft.region)}
-                        options={Object.keys(regionOptions)}
+                        options={['선택 안 함', ...Object.keys(regionOptions)]}
                         onChange={(province) =>
                           setDraft((current) => ({
                             ...current,
-                            region: `${province} ${regionOptions[province][0]}`,
+                            region: province === '선택 안 함' ? '' : province,
                           }))
                         }
                       />
                       <AppSelect
                         label="시·군·구"
                         value={draft.region ? getDistrict(draft.region) : '선택 안 함'}
-                        options={['선택 안 함', ...regionOptions[getProvince(draft.region)]]}
+                        options={[
+                          '선택 안 함',
+                          ...(regionOptions[getProvince(draft.region)] || []),
+                        ]}
+                        disabled={!draft.region}
                         onChange={(district) =>
                           setDraft((current) => ({
                             ...current,
@@ -610,7 +606,7 @@ export default function SettingsScreen() {
                     </p>
                     <div className="mt-4 flex flex-wrap gap-2.5" role="group" aria-label="특화대상">
                       {[NONE_TARGET, ...specialTargets].map((target) => {
-                        const selected = (draft.specialTargets ?? []).includes(target)
+                        const selected = (draft.specialTargets ?? []).includes(target);
                         return (
                           <button
                             type="button"
@@ -644,7 +640,7 @@ export default function SettingsScreen() {
                             </span>
                             {target}
                           </button>
-                        )
+                        );
                       })}
                     </div>
                   </ProfileCard>
@@ -658,20 +654,20 @@ export default function SettingsScreen() {
 
                     <div className="mt-4 space-y-2.5">
                       {interestOptions.map((interest) => {
-                        const open = openInterest === interest
+                        const open = openInterest === interest;
                         const details = scopedInterestDetails(
                           draft.interests,
                           draft.interestDetails ?? [],
                           interestSubOptions
-                        )
-                        const options = interestSubOptions[interest] ?? []
+                        );
+                        const options = interestSubOptions[interest] ?? [];
                         const selectedCount = options.filter((item) =>
                           details.includes(interestDetailKey(interest, item))
-                        ).length
-                        const allSelected = options.length > 0 && selectedCount === options.length
+                        ).length;
+                        const allSelected = options.length > 0 && selectedCount === options.length;
                         const partiallySelected =
-                          selectedCount > 0 && selectedCount < options.length
-                        const selected = draft.interests.includes(interest) || selectedCount > 0
+                          selectedCount > 0 && selectedCount < options.length;
+                        const selected = draft.interests.includes(interest) || selectedCount > 0;
                         return (
                           <div
                             key={interest}
@@ -766,7 +762,7 @@ export default function SettingsScreen() {
                                     {options.map((detail) => {
                                       const detailSelected = details.includes(
                                         interestDetailKey(interest, detail)
-                                      )
+                                      );
                                       return (
                                         <button
                                           type="button"
@@ -781,14 +777,14 @@ export default function SettingsScreen() {
                                         >
                                           {detail}
                                         </button>
-                                      )
+                                      );
                                     })}
                                   </div>
                                 </div>
                               </div>
                             </div>
                           </div>
-                        )
+                        );
                       })}
                     </div>
 
@@ -810,7 +806,13 @@ export default function SettingsScreen() {
         )}
 
         {view === 'notifications' && (
-          <main className="px-5 pb-10 pt-5">
+          <main className="px-5 pb-10 pt-5" aria-busy={loadingNotifications || savingNotifications}>
+            {loadingNotifications && <p role="status">알림 설정을 불러오고 있어요.</p>}
+            {message && (
+              <p role="alert" className="mb-4 rounded-xl bg-white p-3 text-sm">
+                {message}
+              </p>
+            )}
             <div className="rounded-[22px] bg-white px-5">
               <div className="flex items-center gap-3 border-b border-black/[0.06] py-5">
                 <div className="min-w-0 flex-1">
@@ -831,6 +833,8 @@ export default function SettingsScreen() {
                     notificationSettings.enabled ? 'bg-[#2F7BF5]' : 'bg-black/15'
                   }`}
                   role="switch"
+                  aria-label="전체 알림"
+                  disabled={!notificationsLoaded || loadingNotifications || savingNotifications}
                   aria-checked={notificationSettings.enabled}
                 >
                   <span
@@ -839,27 +843,33 @@ export default function SettingsScreen() {
                 </button>
               </div>
 
-              <div className={notificationSettings.enabled ? '' : 'pointer-events-none opacity-40'}>
+              <div
+                className={
+                  notificationSettings.enabled && !loadingNotifications && !savingNotifications
+                    ? ''
+                    : 'pointer-events-none opacity-40'
+                }
+              >
                 {[
                   {
                     key: 'recommendations',
                     title: '맞춤 알림',
-                    description: '프로필과 관심 분야에 잘 맞는 새로운 혜택을 알려드려요.',
+                    description: '맞춤 혜택 알림의 수신 여부를 설정해요.',
                   },
                   {
                     key: 'policyAlerts',
                     title: '정책 알림',
-                    description: '새로운 전국·부산 청년정책이 등록되면 알려드려요.',
+                    description: '청년정책 알림의 수신 여부를 설정해요.',
                   },
                   {
                     key: 'eventAlerts',
                     title: '문화행사 알림',
-                    description: '새로운 공연·전시·문화행사가 등록되면 알려드려요.',
+                    description: '공연·전시·문화행사 알림의 수신 여부를 설정해요.',
                   },
                   {
                     key: 'facilityAlerts',
                     title: '주변 시설 알림',
-                    description: '내 주변에서 이용할 수 있는 청년공간과 시설을 알려드려요.',
+                    description: '거주 구의 청년공간과 시설 알림 수신 여부를 설정해요.',
                   },
                   {
                     key: 'deadlines',
@@ -870,7 +880,7 @@ export default function SettingsScreen() {
                   {
                     key: 'applicationUpdates',
                     title: '신청 상태 알림',
-                    description: '준비물 미완료와 결과 발표일 등 신청 진행 상황을 알려드려요.',
+                    description: '신청 진행 상황 알림의 수신 여부를 설정해요.',
                   },
                 ].map((setting) => (
                   <div
@@ -895,6 +905,13 @@ export default function SettingsScreen() {
                         notificationSettings[setting.key] ? 'bg-[#2F7BF5]' : 'bg-black/15'
                       }`}
                       role="switch"
+                      aria-label={setting.title}
+                      disabled={
+                        !notificationsLoaded ||
+                        !notificationSettings.enabled ||
+                        loadingNotifications ||
+                        savingNotifications
+                      }
                       aria-checked={notificationSettings[setting.key]}
                     >
                       <span
@@ -922,8 +939,7 @@ export default function SettingsScreen() {
                 <div>
                   <p className="text-sm font-black">신청 상태 알림 안내</p>
                   <p className="mt-1 text-[10px] font-medium leading-4 text-black/35">
-                    신청 준비 단계에서는 미완료 준비물을 안내하고, 결과 발표일을 설정한 신청 건은
-                    발표 하루 전과 당일에 알려드려요.
+                    등록된 신청 진행 알림은 알림 목록에서 확인할 수 있어요.
                   </p>
                 </div>
               </div>
@@ -933,22 +949,17 @@ export default function SettingsScreen() {
                   <span className="grid size-5 place-items-center rounded-full bg-[#f1f3fb] text-[10px] text-[#2F7BF5]">
                     ✓
                   </span>
-                  준비물 미완료 안내
+                  준비물은 신청 준비 화면에서 확인
                 </div>
                 <div className="flex items-center gap-2 text-[11px] font-bold text-black/55">
                   <span className="grid size-5 place-items-center rounded-full bg-[#f1f3fb] text-[10px] text-[#2F7BF5]">
                     ✓
                   </span>
-                  결과 발표 하루 전 · 당일 안내
+                  결과 발표일은 신청 관리와 캘린더에서 확인
                 </div>
               </div>
             </div>
 
-            {message && (
-              <p role="alert" className="my-profile-notice mt-4">
-                {message}
-              </p>
-            )}
             <p className="mt-4 px-1 text-[10px] font-medium leading-4 text-black/35">
               전체 알림을 꺼도 각 알림의 개별 설정값은 유지돼요. 다시 전체 알림을 켜면 이전 설정으로
               돌아옵니다.
@@ -956,9 +967,21 @@ export default function SettingsScreen() {
 
             <button
               type="button"
-              onClick={saveNotificationSettings}
-              disabled={savingNotifications}
-              className="mt-5 w-full rounded-2xl bg-[#2F7BF5] py-4 text-sm font-black text-white disabled:opacity-50"
+              disabled={!notificationsLoaded || loadingNotifications || savingNotifications}
+              onClick={async () => {
+                setSavingNotifications(true);
+                setMessage('');
+                try {
+                  await saveNotificationSettings(notificationSettings);
+                  setMessage('알림 설정을 저장했어요.');
+                  setView('menu');
+                } catch {
+                  setMessage('알림 설정을 저장하지 못했어요. 다시 시도해주세요.');
+                } finally {
+                  setSavingNotifications(false);
+                }
+              }}
+              className="mt-5 w-full rounded-2xl bg-[#2F7BF5] py-4 text-sm font-black text-white"
             >
               {savingNotifications ? '저장 중…' : '설정 저장'}
             </button>
@@ -969,9 +992,21 @@ export default function SettingsScreen() {
           <main>
             <section className="my-surface">
               <h2>로그인 계정</h2>
+              <p className="my-caption mt-3">현재 아이디</p>
+              <p className="mt-1 font-bold">
+                {user?.app_metadata?.registration?.username || '별도 아이디 없음 · 이메일 로그인'}
+              </p>
               <p className="my-caption mt-3">등록 이메일</p>
               <p className="break-all mt-1 font-bold">{user?.email || '로그인이 필요해요'}</p>
-              <p className="my-caption mt-3">이메일로 로그인하는 계정이에요.</p>
+              <button className="my-primary mt-4" onClick={() => navigate('/settings/username')}>
+                아이디 변경
+              </button>
+              <button className="my-primary mt-4" onClick={() => navigate('/settings/email')}>
+                이메일 변경
+              </button>
+              <button className="my-primary mt-4" onClick={() => navigate('/settings/password')}>
+                비밀번호 변경
+              </button>
             </section>
             <button className="my-primary mt-4" onClick={() => setLogoutOpen(true)}>
               로그아웃
@@ -979,8 +1014,8 @@ export default function SettingsScreen() {
             <button
               className="my-more"
               onClick={() => {
-                setWithdrawConfirmed(false)
-                setView('withdrawal')
+                setWithdrawConfirmed(false);
+                setView('withdrawal');
               }}
             >
               회원 탈퇴
@@ -1001,9 +1036,11 @@ export default function SettingsScreen() {
               </span>
               <h2 className="mt-4 text-lg font-black">탈퇴하기 전에 확인해주세요</h2>
               <p className="mt-2 text-xs font-medium leading-5 text-black/45">
-                회원 탈퇴가 완료되면 아래 정보가 모두 삭제되며 다시 복구할 수 없어요.
+                탈퇴하면 삭제된 정보는 다시 복구할 수 없어요. 모든 동의가 철회되며 개인 데이터와
+                동의 기록은 7일 이내 삭제합니다.
               </p>
               <ul className="mt-5 space-y-3 rounded-2xl bg-[#f7f8fb] p-4 text-xs font-bold text-black/55">
+                <li>계정 정보와 약관·개인정보 동의 기록</li>
                 <li className="flex items-center gap-2">
                   <span className="size-1.5 rounded-full bg-[#2F7BF5]" />
                   프로필 및 맞춤정보
@@ -1068,11 +1105,11 @@ export default function SettingsScreen() {
                 <button
                   onClick={async () => {
                     try {
-                      await signOut()
-                      setLogoutOpen(false)
-                      navigate('/')
+                      await signOut();
+                      setLogoutOpen(false);
+                      navigate('/');
                     } catch {
-                      setMessage('로그아웃하지 못했어요. 다시 시도해 주세요.')
+                      setMessage('로그아웃하지 못했어요. 다시 시도해 주세요.');
                     }
                   }}
                   className="flex-1 rounded-2xl bg-[#2F7BF5] py-3.5 text-xs font-black text-white"
@@ -1085,5 +1122,5 @@ export default function SettingsScreen() {
         )}
       </div>
     </div>
-  )
+  );
 }

@@ -123,6 +123,14 @@
           "default": "now()",
           "format": "timestamp with time zone",
           "type": "string"
+        },
+        "application_period_unknown_reason": {
+          "type": "string",
+          "format": "text"
+        },
+        "support_summary": {
+          "type": "string",
+          "format": "text"
         }
       }
     },

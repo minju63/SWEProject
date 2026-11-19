@@ -1,0 +1,51 @@
+'use strict';
+// Labels describe stored rules; they do not establish or verify eligibility.
+const fields={
+ age:'나이',birth_year:'출생연도',birth_date:'생년월일',assets:'재산',net_assets:'순자산',total_assets:'총자산',car_value:'자동차 가액',annual_income:'연소득',monthly_recognized_income:'월 소득인정액',recognized_income_to_median_ratio:'기준 중위소득 대비 소득인정액',income_to_median_ratio:'기준 중위소득 대비 소득',income_to_urban_worker_average_ratio:'도시근로자 월평균소득 대비 소득',
+ city_code:'지역',district_code:'지역',region_code:'거주지역',home_ownership:'주택 소유',owns_home:'주택 소유',all_members_homeless:'세대원 전원 무주택',is_married:'혼인 상태',marital_status:'혼인 상태',is_single_parent:'한부모',single_parent_family:'한부모가족',single_parent:'한부모가족',statutory_single_parent_family:'법정 한부모가족',statutory_single_parent:'법정 한부모가족',eligible_grandparent_family:'지원 대상 조손가족',raising_child:'자녀 양육',both_parents_raising_child:'부모가 함께 자녀 양육',both_have_income:'맞벌이',has_spouse:'배우자',marriage_duration:'혼인 기간',newlywed:'신혼부부',will_marry_before_occupancy:'입주 전 혼인 예정',will_register_marriage_before_occupancy:'입주 전 혼인신고 예정',will_marry_within_three_months:'3개월 이내 혼인 예정',
+ is_household_head:'세대주',recognized_as_household_head:'세대주 인정 예외',statutory_minor_household_head_exception:'미성년 세대주 인정 예외',household_role:'가구 내 지위',size:'가구원 수',lives_apart_from_parents:'부모와 별도 거주',lives_separately:'부모와 별도 거주',different_city_or_county_from_parents:'부모와 다른 시·군에 거주',parent_on_same_register:'부모와 같은 주민등록',
+ benefit_status:'복지급여 수급 유형',livelihood_benefit:'생계급여 수급',medical_benefit:'의료급여 수급',housing_benefit:'주거급여 수급',education_benefit:'교육급여 수급',near_poor:'차상위계층',housing_benefit_recipient_including_parents:'부모가구를 포함한 주거급여 수급',
+ registered_disability:'등록 장애인',severe_disability:'중증장애인',severe_registered_disability:'중증 등록 장애인',severe_disability_under_pension_act:'장애인연금법상 중증장애인',statutory_merit_status:'법정 보훈 대상',qualifying_disability_or_merit_relation:'장애·보훈 감면 대상 관계',other_statutory_telecom_discount_status:'그 밖의 법정 통신요금 감면 대상',
+ qualifying_children_or_grandchildren:'지원 기준에 해당하는 자녀·손자녀 수',children_under_18:'18세 미만 자녀 수',grandchildren_under_18_on_register:'주민등록상 18세 미만 손자녀 수',children_or_grandchildren_on_register:'주민등록상 자녀·손자녀 수',children_under_19_on_same_register:'같은 주민등록의 19세 미만 자녀 수',minor_children:'미성년 자녀 수',minor_lineal_descendants_including_fetuses:'태아를 포함한 미성년 직계비속 수',at_least_two_children:'두 자녀 이상 가구',
+ years_since_protection_ended:'보호종료 후 경과 기간',years_since_protection_exit:'보호종료 후 경과 기간',continuous_protection_duration:'연속 보호 기간',ended_protection_on_or_after_age_18:'18세 이후 보호종료',eligible_early_protection_exit_exception:'조기 보호종료 지원 예외',protection_exit_scheduled:'보호종료 예정',protection_extended:'보호 연장',
+ qualifying_birth_or_adoption:'지원 기준에 해당하는 출산·입양',qualifying_birth_or_adoption_within_two_years:'2년 이내 지원 기준에 해당하는 출산·입양',newborn_within_two_years_including_fetus_or_qualifying_adoption:'태아·지원 대상 입양아를 포함한 2년 이내 신생아 가구',verified_birth_asset_relaxation_tier:'기관에서 확인한 출산가구 재산기준 완화 단계',
+ rental_contract_signed:'임대차계약 체결',deposit_paid_ratio:'임차보증금 중 납부한 계약금 비율',deposit:'임차보증금',monthly_rent:'월세',remaining_term:'남은 계약 기간',loan_term:'대출 기간',move_in_date:'전입일',date:'신청일',guarantee_type:'보증 종류',signed_and_registered_move_in:'계약 체결 및 전입신고 완료',planned_or_signed_lease:'임대차계약 예정 또는 체결',youth_named_contract_rent_payment_and_registration:'청년 명의 계약·임차료 납부·전입신고',
+ one_home_refinance:'1주택 대환대출 대상',return_guarantee_valid_on_application_date:'신청일 현재 유효한 반환보증',qualifying_residential_electricity_bill:'지원 대상 주거용 전기요금',water_bill_autopay:'수도요금 자동납부',water_bill_electronic_notice:'수도요금 전자고지',
+ registered_in_participating_locality:'사업 참여 지역에 주민등록',kpass_member_and_card_registered:'K-패스 가입 및 카드 등록',dongbaek_transport_card_and_pass_member:'동백전 교통카드 및 동백패스 가입',eligible_busan_public_transport_usage:'지원 대상 부산 대중교통 이용',
+ qualifying_sme_employment_or_startup_support:'지원 대상 중소기업 재직·창업지원 경로',completed_military_service:'병역 이행',age_after_approved_service_extension:'병역 이행기간 연장 적용 후 나이',qualifying_income_limit_exception:'소득기준 특례 대상',recognized_special_income_limit_group:'기관이 인정한 소득기준 특례 대상',
+ general_private_rental_supply_eligible:'일반 민간임대 공급 대상',other_special_supply_class:'그 밖의 특별공급 대상',other_notice_supply_class:'공고에 정한 그 밖의 공급 대상',university_student:'대학생',graduate_student:'대학원생',scheduled_university_entry_or_return:'대학 입학·복학 예정',recognized_higher_education_enrollment:'인정되는 고등교육기관 재학',is_employed:'취업',has_income:'소득 발생',years_since_employment:'취업 후 경과 기간',years_since_qualifying_graduation_or_dropout:'해당 졸업·중퇴 후 경과 기간',qualifying_early_career_path:'사회초년생 지원 경로',qualifying_elderly_or_housing_benefit_or_industrial_worker_path:'고령자·주거급여 수급자·산업단지 근로자 등 지원 경로',housing_vulnerable_youth:'주거취약 청년',other_qualifying_preferential_rent_loan_status:'그 밖의 월세대출 우대 대상',korean_national:'대한민국 국적',first_time_buyer:'생애최초 주택구입',
+ entered_primary_school:'초등학교 입학',attends_high_school:'고등학교 재학',within_final_school_year_december_limit:'졸업하는 해의 12월까지 지원 범위',pregnant_or_less_than_six_months_postpartum:'임신 또는 출산 후 6개월 미만',has_pregnant_member:'임산부 가구원',has_infant_member:'영유아 가구원',sex:'성별',
+ qualifying_serious_or_rare_disease:'지원 대상 중증·희귀질환',qualifying_child_headed_or_foster_family:'지원 대상 소년소녀·가정위탁 가구',serious_disease_treatment_at_least_six_months:'6개월 이상 치료가 필요한 중증질환',eligible_rare_disease:'지원 대상 희귀질환',eligible_statutory_child_or_single_parent_care_family:'지원 대상 아동·한부모 돌봄가구',eligible_medical_aid_long_stay_discharge_case:'의료급여 장기입원 후 퇴원 지원 대상',approved_other_local_care_need:'지자체가 인정한 그 밖의 돌봄 필요',home_help_or_nursing_needed:'가사·간병 필요',daily_care_needed:'일상 돌봄 필요',available_caregiver_absent:'돌봐줄 사람 부재',care_needed:'돌봄 필요',cohabits_with_cared_family_member:'돌봄이 필요한 가족과 동거',directly_cares_for_family:'가족을 직접 돌봄',works_to_support_family_care:'가족 돌봄을 위해 생계활동',
+ recognized_emergency_reason:'인정되는 위기 사유',recognized_busan_emergency_reason:'부산형 긴급복지 위기 사유',emergency_housing_needed:'긴급 주거지원 필요',approved_main_emergency_support:'긴급복지 주급여 지원 결정',winter_fuel_support_needed:'동절기 연료비 지원 필요',electricity_cutoff_support_eligible:'단전 전기요금 지원 대상',assessable_assets:'심사 대상 재산',local_authority_approved_emergency_housing:'지자체의 긴급주거지원 대상 결정',referred_to_lh_by_authority:'지자체의 LH 추천',
+ valid_statutory_jeonse_fraud_victim_decision:'유효한 법정 전세사기피해자 결정',valid_statutory_fraud_victim_decision:'유효한 법정 전세사기피해자 결정',valid_hug_jeonse_damage_certificate:'유효한 HUG 전세피해확인서',eligible_leasehold_registration_damage_path:'지원 대상 임차권등기 피해 경로',eligible_auction_unrecovered_deposit_path:'경·공매 후 보증금 미회수 지원 경로',recognized_fraud_damaged_building:'인정된 전세사기피해 주택',majority_owner_occupant_consent:'소유자·입주자 과반 동의',private_monthly_rental:'민간 월세주택',at_least_one_rent_paid:'월세 1회 이상 납부',eligible_damage_beotimmok_loan:'지원 대상 전세피해 버팀목대출',at_least_one_interest_payment:'대출이자 1회 이상 납부',public_rental_housing_upgrade_confirmed:'기관이 확인한 공공임대 주거상향',hug_interest_free_relocation_loan_confirmed:'HUG 무이자 이주비대출 확인',relocated_from_qualifying_abnormal_residence:'지원 대상 비정상거처에서 이주',
+ slate_building:'슬레이트 건축물',is_building_owner:'건축물 소유자',is_tenant:'임차인',owner_consents_to_demolition:'소유자의 철거 동의',owner_consents_to_installation:'소유자의 시공·설치 동의',installation_feasible:'시공·설치 가능한 주택',recommended_energy_welfare_blind_spot:'지자체 추천 에너지복지 사각지대 가구',
+ housing_upgrade_referral:'기관의 주거상향 추천',abnormal_residence_duration_within_last_year:'최근 1년간 비정상거처 거주 기간',qualifying_non_residential_accommodation:'지원 대상 비주택 거처',child_below_minimum_housing_standard:'최저주거기준 미달 아동가구',initial_contract_crime_or_domestic_violence_verification_waiver:'첫 계약 범죄·가정폭력 피해 확인 예외',exclusive_area:'전용면적',qualifying_abnormal_residence_duration:'지원 대상 비정상거처 거주 기간',qualifying_abnormal_residence:'지원 대상 비정상거처',move_destination:'이주할 주택 종류',eligible_public_rental:'지원 대상 공공임대주택',residential_use:'주거용 주택',lucky7_designated_rental:'럭키7하우스 지정 임대주택',
+ at_least_start_of_year_turning_19_and_under_30_birth_month:'19세가 되는 해부터 30세 생일 전까지의 지원 연령',same_city_separate_payment_exception_approved:'같은 시·군 분리지급 예외 승인',busan_youth_category_confirmed:'기관이 확인한 부산 청년 구분',used_busanjin_safe_contract_manager:'부산진구 안심계약 매니저 이용',brokerage_calculation_transaction_value:'중개보수 산정 거래금액',age_at_subscription_win:'청약 당첨 당시 나이',qualifying_dream_subscription_win:'지원 대상 주택드림 청약 당첨',independent_livelihood_approved:'기관이 인정한 독립생계',prohibited_lineal_relative_purchase:'금지된 직계존비속 간 주택 거래',statutory_victim_decision_revoked:'법정 피해자 결정 취소',
+};
+const subjects={applicant:'본인',user:'본인',household:'가구',couple:'부부',child:'자녀',spouse:'배우자',mother:'어머니',father:'아버지',housing:'대상 주택',contract:'계약',youth_household:'청년가구',original_household:'원가구',parents:'부모',beneficiary:'지원받는 사람',authority:'담당기관',employment:'직장',damaged_housing:'피해 주택',applicant_and_parents:'본인과 부모',youth_member:'청년 가구원',cared_family_member:'돌봄이 필요한 가족',application:'신청'};
+const values={LIVELIHOOD:'생계급여',MEDICAL:'의료급여',HOUSING:'주거급여',EDUCATION:'교육급여',NEAR_POOR:'차상위계층',FEMALE:'여성',MALE:'남성',PUBLIC_RENTAL:'공공임대주택',PRIVATE_RENTAL:'민간임대주택',JEONSE:'전세보증',MONTHLY_RENT:'월세보증',KR:'전국','26':'부산','26230':'부산진구','26380':'사하구'};
+function describe(c){
+ const field=fields[c.field];if(!field)throw Error('Missing Korean condition label: '+c.field);
+ const who=subjects[c.subject]||'';const name=who&& !['housing','contract','application','authority'].includes(c.subject)?who+' '+field:field;
+ const op=String(c.op||c.operator||'').toUpperCase(),v=c.value;
+ if(typeof v==='boolean'){
+  if(c.field==='owns_home')return v?'본인 주택 소유':'본인 무주택';
+  if(c.field==='is_married')return v?who+' 기혼':who+' 미혼';
+  if(c.field==='is_employed')return v?who+' 취업 중':who+' 미취업';
+  if(c.field==='has_spouse')return v?who+' 배우자 있음':who+' 배우자 없음';
+  return name+(v?'에 해당':'에 해당하지 않음');
+ }
+ const format=x=>{
+  if(x==null)return '';
+  if(c.unit==='ratio')return Number((Number(x)*100).toFixed(4))+'%';
+  if(c.unit==='KRW'||/assets|income$|car_value|deposit$|monthly_rent|transaction_value/.test(c.field))return Number(x).toLocaleString('ko-KR')+'원';
+  if(c.unit==='years'||c.field==='age')return String(x)+(c.field==='age'?'세':'년');
+  if(c.unit==='months')return x+'개월';if(c.unit==='persons')return x+'명';if(c.unit==='m2')return x+'㎡';
+  return values[x]||String(x);
+ };
+ const suffix={LTE:' 이하',LTEQ:' 이하',LTE_: ' 이하',GTE:' 이상',LT:' 미만',GT:' 초과'}[op]||'';
+ if(op==='BETWEEN'&&Array.isArray(v))return `${name} ${format(v[0])} ~ ${format(v[1])}`;
+ if((op==='IN'||op==='CONTAINS')&&Array.isArray(v))return `${name}: ${v.map(format).join(' 또는 ')}`;
+ return `${name} ${format(v)}${suffix}`;
+}
+module.exports={fields,subjects,describe};

@@ -48,7 +48,11 @@ export async function getHome(userId) {
   });
 
   const hasProfile = Boolean(
-    profile?.birth_date || profile?.region_code || profile?.current_status
+    profile?.birth_date ||
+    profile?.region_code ||
+    (Array.isArray(profile?.current_status)
+      ? profile.current_status.length
+      : profile?.current_status)
   );
   const region = regions.find((r) => r.region_code === profile?.region_code);
 

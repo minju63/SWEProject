@@ -20,7 +20,7 @@ test("real account: manual applications, preparation checks, dates, recent five,
   page.on("pageerror", (e) => errors.push(e.message));
   await page.goto("/my");
   await page.getByRole("button", { name: "로그인하기 ›" }).click();
-  await page.getByLabel("이메일", { exact: true }).fill(credentials.email);
+  await page.getByLabel("아이디 또는 이메일", { exact: true }).fill(credentials.email);
   await page.getByLabel("비밀번호", { exact: true }).fill(credentials.password);
   await page
     .getByRole("dialog")

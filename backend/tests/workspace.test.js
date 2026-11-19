@@ -4,6 +4,9 @@ import express from "express";
 import { supabase as db } from "../src/lib/supabase.js";
 import workspace from "../src/routes/workspace.routes.js";
 import { errorHandler } from "../src/middlewares/error.js";
+import { registrationState } from "../src/services/registration-state.service.js";
+import { registrationCleanup } from "../src/services/registration-runtime.service.js";
+import { registrationAuth } from "../src/services/registration-auth.service.js";
 test("personal routes authenticate and enforce ownership on reads, updates and deletes", async () => {
   const a = "11111111-1111-4111-8111-111111111111",
     b = "22222222-2222-4222-8222-222222222222",
@@ -35,6 +38,24 @@ test("personal routes authenticate and enforce ownership on reads, updates and d
     oldSignOut = db.auth.admin.signOut,
     oldDelete = db.auth.admin.deleteUser;
   let stored = null;
+  const oldCommand = registrationState.command,
+    oldCleanup = registrationCleanup.runJob;
+  const oldWithdrawal = registrationAuth.requestWithdrawal;
+  registrationAuth.requestWithdrawal = async (id) => {
+    assert.equal(id, a);
+  };
+  registrationState.command = async (action, _id, input) => {
+    assert.equal(input.userId, a);
+    if (action === "access") return { allowed: true };
+    assert.equal(action, "queue_withdrawal");
+    return { id: "deletion-job" };
+  };
+  registrationCleanup.runJob = async (id) => {
+    assert.equal(id, "deletion-job");
+    await db.storage.from("user-workspaces").remove([a + ".json"]);
+    await db.auth.admin.deleteUser(a);
+    return true;
+  };
   db.storage.from = (bucket) => {
     assert.equal(bucket, "user-workspaces");
     return {
@@ -161,12 +182,12 @@ test("personal routes authenticate and enforce ownership on reads, updates and d
   try {
     assert.equal(
       (await request("/workspace", "GET", undefined, "")).status,
-      401,
+      401
     );
     assert.equal(reads, 0);
     assert.equal(
       (await request("/workspace", "GET", undefined, "forged")).status,
-      401,
+      401
     );
     assert.equal(reads, 0);
     let r = await request("/workspace"),
@@ -178,7 +199,7 @@ test("personal routes authenticate and enforce ownership on reads, updates and d
     assert.equal(
       (await request("/applications/" + pb, "PATCH", { stage: "RESULT" }))
         .status,
-      404,
+      404
     );
     assert.equal(tables.user_application[1].stage, "PREPARING");
     r = await request("/applications/" + pa, "PATCH", {
@@ -194,7 +215,7 @@ test("personal routes authenticate and enforce ownership on reads, updates and d
           expected_result_date: "2026-02-30",
         })
       ).status,
-      400,
+      400
     );
     assert.equal(
       (
@@ -202,7 +223,7 @@ test("personal routes authenticate and enforce ownership on reads, updates and d
           expected_result_date: null,
         })
       ).status,
-      200,
+      200
     );
     assert.equal(
       (
@@ -210,7 +231,7 @@ test("personal routes authenticate and enforce ownership on reads, updates and d
           resultDateUnknown: true,
         })
       ).status,
-      404,
+      404
     );
     assert.equal(
       (
@@ -218,7 +239,7 @@ test("personal routes authenticate and enforce ownership on reads, updates and d
           resultDateUnknown: true,
         })
       ).status,
-      200,
+      200
     );
     r = await request("/manual-applications", "POST", {
       policyName: "직접 입력 테스트",
@@ -234,7 +255,7 @@ test("personal routes authenticate and enforce ownership on reads, updates and d
           memo: "cannot change",
         })
       ).status,
-      404,
+      404
     );
     assert.equal(
       (
@@ -242,7 +263,7 @@ test("personal routes authenticate and enforce ownership on reads, updates and d
           expectedResultDate: "2026-02-30",
         })
       ).status,
-      400,
+      400
     );
     assert.equal(
       (
@@ -250,7 +271,7 @@ test("personal routes authenticate and enforce ownership on reads, updates and d
           requiredDocuments: [{ name: "추가 준비물", status: "completed" }],
         })
       ).status,
-      200,
+      200
     );
     s = (await (await request("/workspace")).json()).data;
     assert.equal(s.manual.length, 1);
@@ -263,7 +284,7 @@ test("personal routes authenticate and enforce ownership on reads, updates and d
           nextActions: [null],
         })
       ).status,
-      400,
+      400
     );
     assert.equal(tables.user_application[0].stage, "APPLIED");
     assert.equal(
@@ -273,7 +294,7 @@ test("personal routes authenticate and enforce ownership on reads, updates and d
           isChecked: true,
         })
       ).status,
-      400,
+      400
     );
     assert.equal(
       (
@@ -283,14 +304,14 @@ test("personal routes authenticate and enforce ownership on reads, updates and d
           user_id: b,
         })
       ).status,
-      200,
+      200
     );
     assert.equal(tables.user_document_check.at(-1).user_id, a);
     await request("/recent", "DELETE");
     assert.deepEqual(tables.user_recent_view, [{ user_id: b }]);
     assert.equal(
       (await request("/account", "DELETE", { confirmation: "no" })).status,
-      400,
+      400
     );
     assert.equal(deleted, false);
     assert.equal(
@@ -300,7 +321,7 @@ test("personal routes authenticate and enforce ownership on reads, updates and d
           user_id: b,
         })
       ).status,
-      200,
+      200
     );
     assert.equal(deleted, true);
     assert.equal(stored, null);
@@ -312,5 +333,8 @@ test("personal routes authenticate and enforce ownership on reads, updates and d
     db.storage.from = oldStorage;
     db.auth.admin.signOut = oldSignOut;
     db.auth.admin.deleteUser = oldDelete;
+    registrationState.command = oldCommand;
+    registrationCleanup.runJob = oldCleanup;
+    registrationAuth.requestWithdrawal = oldWithdrawal;
   }
 });

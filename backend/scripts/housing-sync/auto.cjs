@@ -3,15 +3,18 @@ const fs=require('node:fs'),path=require('node:path');
 const {uuid,sha,canonicalUrl,duplicateMatches,safePath,save}=require('./core.cjs');
 const {clients}=require('./network.cjs');const {validateRows,insertAndVerify}=require('./publish.cjs');
 const {apiApplicationInfo}=require('./application-info.cjs');
+const contract=require('./record-contract.cjs');
 function relatedProgram(c,existing){const t=c.title||'';return existing.some(p=>((/주거급여.*분리지급/.test(t)&&/주거급여.*분리지급/.test(p.title))||(/마이홈/.test(t)&&/상담|정보/.test(t)&&/마이홈/.test(p.title)&&/상담|정보/.test(p.title))));}
 function dates(text){const m=String(text||'').trim().match(/^(\d{8})\s*~\s*(\d{8})$/);if(!m)return[null,null];const parsed=m.slice(1).map(x=>x.slice(0,4)+'-'+x.slice(4,6)+'-'+x.slice(6));for(const d of parsed){const n=new Date(d+'T00:00:00Z');if(!Number.isFinite(+n)||n.toISOString().slice(0,10)!==d)return[null,null];}return parsed[0]<=parsed[1]?parsed:[null,null];}
 function selectCandidate(c,s,today){if(c.origin!=='YOUTHCENTER_API'||c.status!=='NEW_CANDIDATE_REVIEW'||!c.relevant||c.scope.status==='OUT_OF_SCOPE'||!['KR','26','26230','26380'].includes(c.scope.hint))return 'not_new_scoped_api';
+ if(s?.source_url&&!contract.officialProgramUrl(s.source_url))return 'news_or_blog_requires_program_source';
+ if(s?.final_url&&!contract.officialProgramUrl(s.final_url))return 'redirect_requires_program_source';
  if(c.existing_matches?.length||c.related_candidate_keys?.length)return 'duplicate_or_shared_source';
  if(/박람회|설명회|행사|강연|아카데미/.test(c.title))return 'event_type_review';
  if(!s||s.error||s.needs_document_extraction||s.inspection?.error_page_hint||s.inspection?.inactive_hint||s.inspection?.historical_only_hint||!s.extracted_text?.trim())return 'source_requires_review';
  const p=c.api_row;if(!p?.plcySprtCn?.trim()||!p?.plcyAplyMthdCn?.trim())return 'missing_content';const[,end]=dates(p.aplyYmd);if(end&&end<today)return 'expired';return null;}
 async function autoPublish(root,config,{dir,apply=false},override){const io=override||clients(root,config),bundleDir=path.join(dir,'auto_bundle'),journalFile=path.join(bundleDir,'result.json');
- if(fs.existsSync(journalFile)&&JSON.parse(fs.readFileSync(journalFile,'utf8')).status==='COMPLETE_VERIFIED')return JSON.parse(fs.readFileSync(journalFile,'utf8'));
+
  const summary=JSON.parse(fs.readFileSync(path.join(dir,'summary.json'),'utf8'));if(summary.mode!=='LIVE_READ_ONLY'||summary.status!=='SCAN_COMPLETE_REVIEW_REQUIRED')throw Error('Auto publish requires complete live scan');
  const [existing,categories,subcategories,regions,schema]=await Promise.all([io.all('policy','policy_id,title,official_url','policy_id'),io.all('policy_category'),io.all('policy_subcategory'),io.all('region'),io.db('','')]);
  const category=categories.find(c=>c.category_name==='주거·생활'),sub=subcategories.find(s=>s.category_id===category?.category_id&&s.subcategory_name==='기타');if(!category||!sub)throw Error('Existing housing category and 기타 subcategory required');
@@ -23,15 +26,19 @@ async function autoPublish(root,config,{dir,apply=false},override){const io=over
  const p=c.api_row,[start,end]=dates(p.aplyYmd),apiPage=input.api_pages.map(page=>JSON.parse(fs.readFileSync(safePath(dir,page.file),'utf8'))).find(value=>value.result?.youthPolicyList?.some(row=>row.plcyNo===c.api_id));if(!apiPage)throw Error('Original API page missing');
  const sid=uuid('source:API:youthcenter:'+c.api_id),webSid=uuid('source:CRAWL:housing-sync:'+pid+':'+canonicalUrl(s.source_url));
  const raw={...s};delete raw.related;delete raw.terms;delete raw.inspection;delete raw.key;
- const eligible={schema_version:'housing-auto-import/1',logic:'UNVERIFIED',verification:'확인필요',all:[{text:'공식 공고의 신청자격·가구·소득·주택·예외를 확인해야 합니다.'}],exclude:[{text:'중복지원·제외대상 및 기관 심사를 확인해야 합니다.'}],engine_projection:{mode:'MANUAL_REVIEW_ONLY',automatic_eligibility_ready:false},source_ids:[sid,webSid],source_urls:[s.source_url],api_conditions:{age:p.sprtTrgtAgeLmtYn==='Y'?p.sprtTrgtEtcCn:null,income:p.earnEtcCn||null,additional:p.addAplyQlfcCndCn||null,exclusions:p.ptcpPrpTrgtCn||null,application_period:p.aplyYmd||null},collection:{method:'AUTOMATIC_API_IMPORT',human_reviewed:false,scope_is_source_metadata:true}};
+ const eligible=contract.automaticConditions(p,s,[sid,webSid]);
  tables.policy.push({policy_id:pid,title:c.title,category_id:category.category_id,collection_domain:'HOUSING',item_type:'POLICY',target_summary:p.sprtTrgtEtcCn||p.addAplyQlfcCndCn||'공식 공고의 지원대상을 확인해 주세요.',support_content:p.plcySprtCn,benefit_type:null,min_age:null,max_age:null,income_condition:p.earnEtcCn||null,application_start_date:start,application_end_date:end,is_always_open:false,application_method:p.plcyAplyMthdCn,application_url:canonicalUrl(p.aplyUrlAddr)?p.aplyUrlAddr:null,official_url:s.source_url,eligibility_conditions:eligible,eligibility_verified:false,classification_method:'온통청년 API 자동수집·공식 원문 보존(조건 미검증)',classification_status:'확인필요'});
- Object.assign(tables.policy.at(-1),apiApplicationInfo(p,s).values);
+ Object.assign(tables.policy.at(-1),contract.period(p.aplyYmd,s,dates),apiApplicationInfo(p,s).values);
+ if(!contract.officialProgramUrl(tables.policy.at(-1).application_url))tables.policy.at(-1).application_url=null;
  tables.housing_detail.push({policy_id:pid,housing_support_type:null,monthly_amount:null,total_amount_max:null,support_months:null,payment_method:null,deposit_max:null,monthly_rent_max:null,loan_limit:null,interest_rate:null,housing_kind:null,supply_units:null,exclusive_area_max:null});
  tables.policy_source.push({source_id:sid,policy_id:pid,source_name:'온통청년',source_type:'API',external_id:'youthcenter:'+c.api_id,source_url:config.api.endpoint,raw_data:{response:apiPage,selected_policy_id:c.api_id,collected_at:summary.checked_at_kst,api_key_included:false}},{source_id:webSid,policy_id:pid,source_name:new URL(s.source_url).hostname,source_type:'CRAWL',external_id:'housing:sync:'+pid+':'+sha(canonicalUrl(s.source_url)).slice(0,24),source_url:s.source_url,raw_data:raw});
  if(!regions.some(r=>r.region_code===c.scope.hint))throw Error('Region missing');tables.policy_region.push({policy_id:pid,region_code:c.scope.hint});tables.policy_subcategory_map.push({policy_id:pid,subcategory_id:sub.subcategory_id});
  }
- plan={tables,skipped,created_at:new Date().toISOString(),automatic_eligibility_ready:false};save(planFile,plan);}
+ plan={contract_version:contract.CONTRACT_VERSION,tables,skipped,created_at:new Date().toISOString(),automatic_eligibility_ready:false};save(planFile,plan);}
+ if(plan.contract_version!==contract.CONTRACT_VERSION)throw Error('Saved auto plan uses an older contract; inspect partial writes before rescanning');
+ for(const row of plan.tables.policy)contract.assertRecord(row);
  validateRows(plan.tables,schema.definitions);for(const p of plan.tables.policy){if(duplicateMatches(p,existing.filter(x=>x.policy_id!==p.policy_id)).length)throw Error('New duplicate conflicts with saved auto plan');if(p.eligibility_verified!==false||p.eligibility_conditions.collection.human_reviewed!==false)throw Error('Automatic records must remain unverified');}
+ if(fs.existsSync(journalFile)&&JSON.parse(fs.readFileSync(journalFile,'utf8')).status==='COMPLETE_VERIFIED')return JSON.parse(fs.readFileSync(journalFile,'utf8'));
  const journal={mode:apply?'APPLY':'PREVIEW',status:'PREPARED',policy_count:plan.tables.policy.length,steps:[],started_at:new Date().toISOString(),db_write_policy:'INSERT_ONLY',atomic_across_tables:false};const log=()=>save(journalFile,journal);log();if(!apply)return journal;
  try{for(const source of plan.tables.policy_source.filter(s=>s.source_type==='CRAWL')){const current=await io.publicSource(source.source_url);if(current.stored_body_sha256!==source.raw_data.stored_body_sha256)throw Error('Official source changed before insert; re-scan required');}
  const sourceKeys=await io.all('policy_source','source_id,policy_id,source_type,external_id','source_id');for(const s of plan.tables.policy_source)if(sourceKeys.some(x=>x.source_type===s.source_type&&x.external_id===s.external_id&&x.policy_id!==s.policy_id))throw Error('Source identity already linked');

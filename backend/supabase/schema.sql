@@ -489,10 +489,6 @@ create table alarm_preference (
   new_match_enabled     boolean not null default true,
   bot_bubble_enabled    boolean not null default true,
   doc_reminder_enabled  boolean not null default true,
-  all_enabled           boolean not null default true,   -- 전체 알림 (FR-MY-009)
-  recommend_enabled     boolean not null default false,  -- 맞춤 알림 (FR-MY-012, 선택 동의)
-  event_enabled         boolean not null default false,  -- 문화행사 알림 (FR-MY-014)
-  facility_enabled      boolean not null default false,  -- 주변 시설 알림 (FR-MY-015)
   updated_at            timestamptz not null default now()
 );
 

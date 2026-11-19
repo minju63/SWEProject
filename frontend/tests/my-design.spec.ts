@@ -200,7 +200,7 @@ async function account(page: Page, housingRules?: Record<string, unknown>) {
   })
   await page.goto("/my")
   await page.getByRole("button", { name: "로그인하기 ›" }).click()
-  await page.getByLabel("이메일", { exact: true }).fill(user.email)
+  await page.getByLabel("아이디 또는 이메일", { exact: true }).fill(user.email)
   await page.getByLabel("비밀번호", { exact: true }).fill("fixture-password")
   await page
     .getByRole("dialog")

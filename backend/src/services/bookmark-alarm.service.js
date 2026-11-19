@@ -27,7 +27,7 @@ export async function ensureDefaultBookmarkAlarms(userId, bookmark) {
   const [policyResult, preferenceResult, alarmResult] = await Promise.all([
     supabase.from('policy').select('application_end_date,is_always_open')
       .eq('policy_id', bookmark.policy_id).maybeSingle(),
-    supabase.from('alarm_preference').select('*')
+    supabase.from('alarm_preference').select('default_presets,day_alarm_time,deadline_enabled')
       .eq('user_id', userId).maybeSingle(),
     supabase.from('saved_alarm').select('preset_code').eq('bookmark_id', bookmark.bookmark_id)
       .eq('kind', 'PRESET'),
@@ -36,7 +36,7 @@ export async function ensureDefaultBookmarkAlarms(userId, bookmark) {
     if (result.error) throw result.error;
   }
   const policy = policyResult.data;
-  if (!policy?.application_end_date || policy.is_always_open || preferenceResult.data?.deadline_enabled === false || preferenceResult.data?.all_enabled === false)
+  if (!policy?.application_end_date || policy.is_always_open || preferenceResult.data?.deadline_enabled === false)
     return;
 
   const presets = preferenceResult.data?.default_presets ?? DEFAULT_PRESETS;

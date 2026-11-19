@@ -69,7 +69,7 @@ export async function findBookmarkOf(userId, policyId) {
 export async function findPreference(userId) {
   const { data, error } = await supabase
     .from('alarm_preference')
-    .select('*')
+    .select('default_presets, day_alarm_time, deadline_enabled, doc_reminder_enabled')
     .eq('user_id', userId)
     .maybeSingle();
   if (error) throw error;

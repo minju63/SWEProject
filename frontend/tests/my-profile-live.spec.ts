@@ -8,7 +8,7 @@ test('dedicated real account: profile fields, scoped interests, clearing and acc
   page.setDefaultTimeout(12000);
   const credentials=JSON.parse(fs.readFileSync(path.resolve('../.local/test-account.json'),'utf8'));
   await page.goto('/my');await page.getByRole('button',{name:'로그인하기 ›'}).click();
-  await page.getByLabel('이메일',{exact:true}).fill(credentials.email);
+  await page.getByLabel('아이디 또는 이메일',{exact:true}).fill(credentials.email);
   await page.getByLabel('비밀번호',{exact:true}).fill(credentials.password);
   await page.getByRole('dialog').getByRole('button',{name:'로그인',exact:true}).click();
   await expect(page.getByRole('dialog')).toHaveCount(0);

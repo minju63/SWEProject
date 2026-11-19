@@ -3,8 +3,48 @@
 import cron from 'node-cron';
 import { runCultureSync } from './culture/syncCulture.js';
 import { runDueAlarms } from './alarms.js';
+import { registrationCleanup } from '../services/registration-runtime.service.js';
+import { runApplicationResults } from '../services/application-results.service.js';
 
 export function startJobs() {
+  if (process.env.MY_RESULT_JOB_ENABLED !== 'false')
+    cron.schedule(
+      '1 0 * * *',
+      async () => {
+        try {
+          await runApplicationResults();
+        } catch {
+          console.error('[신청 결과] 발표일 전환 재시도 확인 필요');
+        }
+      },
+      { name: 'application-results', timezone: 'Asia/Seoul', noOverlap: true }
+    );
+  // Only requested withdrawals retry automatically; abandoned signup cleanup remains opt-in.
+  if (process.env.WITHDRAWAL_JOB_ENABLED !== 'false')
+    cron.schedule(
+      '*/5 * * * *',
+      async () => {
+        try {
+          await registrationCleanup.runWithdrawals();
+        } catch {
+          console.error('[탈퇴] 삭제 재시도 확인 필요');
+        }
+      },
+      { name: 'withdrawal-cleanup', timezone: 'Asia/Seoul', noOverlap: true }
+    );
+  if (process.env.REGISTRATION_CLEANUP_ENABLED === 'true')
+    cron.schedule(
+      '*/5 * * * *',
+      async () => {
+        try {
+          const result = await registrationCleanup.runBatch();
+          if (result.removed) console.log(`[가입 요청 정리] ${result.removed}건 완료`);
+        } catch {
+          console.error('[가입 요청 정리] DB 설정 또는 삭제 재시도 상태 확인 필요');
+        }
+      },
+      { name: 'registration-cleanup', timezone: 'Asia/Seoul', noOverlap: true }
+    );
   startAlarmJob();
   if (process.env.CULTURE_SYNC_ENABLED !== 'true') return;
   const schedule = process.env.CULTURE_SYNC_CRON || '0 4 * * *';

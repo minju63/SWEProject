@@ -1,7 +1,8 @@
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useRef, useState, useCallback } from 'react'
 import { useAuth } from '../lib/auth'
 import { personalApi } from '../lib/api'
 import { supabase } from '../lib/auth'
+import { useQueryClient } from '@tanstack/react-query'
 import {
   policyCatalog,
   findPolicyByTitle,
@@ -11,6 +12,17 @@ import {
 import { mapHousingPolicy } from '../data/housing'
 import { emptyConditions } from '../data/conditions'
 import { busanRegions, regionCode } from '../data/regions'
+const emptyNotificationSettings = {
+  enabled: false,
+  recommendations: false,
+  policyAlerts: false,
+  eventAlerts: false,
+  facilityAlerts: false,
+  deadlines: false,
+  applicationUpdates: false,
+  deadlineTiming: '3일 전',
+  quietHours: false,
+}
 const defaults = {
   name: '회원',
   age: '',
@@ -45,6 +57,8 @@ function read(key, fallback) {
   }
 }
 export function useWorkspaceState() {
+  const queryClient = useQueryClient()
+  // OTP verification creates a session before the separate registration completion step.
   const { user, requestLogin } = useAuth(),
     uid = useRef(user?.id)
   uid.current = user?.id
@@ -62,17 +76,21 @@ export function useWorkspaceState() {
   const [loadedOwner, setLoadedOwner] = useState()
   // Queued writes must use the last completed read, not the render that queued them.
   const latest = useRef({ applications: [], saved: [], checks: {} })
-  const [notificationSettings, setNotificationSettings] = useState({
-    enabled: false,
-    recommendations: false,
-    policyAlerts: false,
-    eventAlerts: false,
-    facilityAlerts: false,
-    deadlines: false,
-    applicationUpdates: false,
-    deadlineTiming: '3일 전',
-    quietHours: false,
-  })
+  const [notificationSettings, setNotificationSettings] = useState(emptyNotificationSettings)
+  const loadNotificationSettings = useCallback(async () => {
+    const owner = uid.current
+    if (!owner) throw Error('로그인이 필요해요.')
+    const value = await personalApi('/notification-settings')
+    if (uid.current === owner) setNotificationSettings(value)
+    return value
+  }, [])
+  const saveNotificationSettings = useCallback(async (value) => {
+    const owner = uid.current
+    if (!owner) throw Error('로그인이 필요해요.')
+    const saved = await personalApi('/notification-settings', 'PUT', value)
+    if (uid.current === owner) setNotificationSettings(saved)
+    return saved
+  }, [])
   const [policySearch, setSearch] = useState(() =>
     read('youthzip-policy-search', {
       query: '',
@@ -228,6 +246,7 @@ export function useWorkspaceState() {
     setLoadedOwner(owner)
   }
   useEffect(() => {
+    setNotificationSettings(emptyNotificationSettings)
     setSaved([])
     setRecent([])
     setApplications([])
@@ -236,13 +255,13 @@ export function useWorkspaceState() {
     setProfileState(defaults)
     setMessage('')
     setLoadedOwner(undefined)
-    if (!user) return
+    if (!user || user.app_metadata?.registration_pending) return
     const owner = user.id
     setBusy(true)
     refresh(owner)
       .catch((e) => uid.current === owner && setMessage(e.message))
       .finally(() => uid.current === owner && setBusy(false))
-  }, [user?.id])
+  }, [user?.id, user?.app_metadata?.registration_pending])
   useEffect(() => {
     if (!user) return
     const owner = user.id
@@ -283,6 +302,15 @@ export function useWorkspaceState() {
       try {
         await action()
         await refresh(owner)
+        for (const key of [
+          'home',
+          'calendar',
+          'bookmarks',
+          'policies',
+          'search-filter-count',
+          'similar-policies',
+        ])
+          void queryClient.invalidateQueries({ queryKey: [key] })
         return true
       } catch (e) {
         if (uid.current === owner)
@@ -346,6 +374,8 @@ export function useWorkspaceState() {
     busy,
     dismissMessage: () => setMessage(''),
     setNotificationSettings,
+    loadNotificationSettings,
+    saveNotificationSettings,
     setProfile: (p) => {
       return mutate(async () => {
         await personalApi('/profile', 'PUT', {
@@ -381,6 +411,18 @@ export function useWorkspaceState() {
         })
         if (error) throw error
         if (data.user && uid.current === data.user.id) account.current = data.user
+        for (const key of [
+          'eligibility',
+          'policy-explanation',
+          'policy-comparison',
+          'policy-compare-ai-summary',
+          'policy-compare-similar',
+          'policy-compare-ai-candidates',
+          'policy-compare-options',
+        ])
+          queryClient.removeQueries({ queryKey: [key] })
+        await queryClient.invalidateQueries({ queryKey: ['map-profile', uid.current] })
+        await queryClient.invalidateQueries({ queryKey: ['profile'] })
       })
     },
     toggleSaved: (value) => {

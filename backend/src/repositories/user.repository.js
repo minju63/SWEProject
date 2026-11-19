@@ -1,24 +1,13 @@
 import { supabase } from '../lib/supabase.js';
 import { ensureDefaultBookmarkAlarms } from '../services/bookmark-alarm.service.js';
+import { protectedProfiles } from '../services/protected-profile.service.js';
 
 export async function findProfile(userId) {
-  const { data, error } = await supabase
-    .from('user_profile')
-    .select('*')
-    .eq('user_id', userId)
-    .maybeSingle();
-  if (error) throw error;
-  return data;
+  return protectedProfiles.find(userId);
 }
 
 export async function upsertProfile(userId, profile) {
-  const { data, error } = await supabase
-    .from('user_profile')
-    .upsert({ ...profile, user_id: userId, updated_at: new Date().toISOString() })
-    .select()
-    .single();
-  if (error) throw error;
-  return data;
+  return protectedProfiles.upsert(userId, profile);
 }
 
 export async function findBookmarks(userId) {
@@ -35,8 +24,11 @@ export async function findBookmarks(userId) {
 
 export async function findBookmarkedPolicyIds(userId, policyIds) {
   if (!policyIds.length) return new Set();
-  const { data, error } = await supabase.from('user_bookmark')
-    .select('policy_id').eq('user_id', userId).in('policy_id', policyIds);
+  const { data, error } = await supabase
+    .from('user_bookmark')
+    .select('policy_id')
+    .eq('user_id', userId)
+    .in('policy_id', policyIds);
   if (error) throw error;
   return new Set(data.map((row) => row.policy_id));
 }
@@ -69,10 +61,13 @@ export async function deleteBookmark(userId, policyId) {
 }
 
 export async function recordRecentView(userId, policyId) {
-  const { error } = await supabase.from('user_recent_view').upsert({
-    user_id: userId,
-    policy_id: policyId,
-    viewed_at: new Date().toISOString(),
-  }, { onConflict: 'user_id,policy_id' });
+  const { error } = await supabase.from('user_recent_view').upsert(
+    {
+      user_id: userId,
+      policy_id: policyId,
+      viewed_at: new Date().toISOString(),
+    },
+    { onConflict: 'user_id,policy_id' }
+  );
   if (error) throw error;
 }
