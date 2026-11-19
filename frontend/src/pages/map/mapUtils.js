@@ -17,6 +17,7 @@ export function toPlace(p) {
     regionCode: p.region_code,
     district: p.district,
     address: p.address ?? '',
+    dong: p.legal_dong ?? '', // 법정동 (행안부 주소 검색 결과, 동네 검색용)
     lat: Number(p.lat),
     lng: Number(p.lng),
     coordStatus: p.coord_status,
@@ -37,6 +38,7 @@ export function toPlace(p) {
     collectedAt: kstDate(p.source_checked_at ?? p.last_collected_at),
     liveEventCount: p.live_event_count ?? 0,
     nextEventStatus: p.next_event_status ?? null,
+    eventGenres: p.live_event_genres ?? [],
   };
 }
 
@@ -123,12 +125,36 @@ export const insideArea = (area, pos) =>
   pos.lng >= area.minLng &&
   pos.lng <= area.maxLng;
 
+// 동네 이름 검색 (FR-MAP-021): 주소 글자 대신 장소의 법정동(dong)으로 판단한다.
+// 주소 글자로 찾으면 동 이름이 없는 도로명 주소는 빠지고, 도로명에 든 동 이름('가야대로', '당감서로', '다대로')에
+// 다른 동 장소가 걸린다. 법정동을 아직 모르는 장소만 주소 글자로 찾는다.
+// 서비스 지역(부산진구·사하구) 법정동과, 동 이름이 아닌 동네 이름
+const SERVICE_DONGS = new Set(
+  '양정 전포 부전 범천 범전 연지 초읍 부암 당감 가야 개금 괴정 당리 하단 신평 장림 다대 구평 감천'
+    .split(' ')
+    .map((d) => `${d}동`)
+);
+const AREA_DONGS = {
+  서면: ['부전동', '전포동'],
+  다대포: ['다대동'],
+};
+
+function areaDongs(q) {
+  const k = q.replace(/\s+/g, '');
+  if (AREA_DONGS[k]) return AREA_DONGS[k];
+  const dong = k.endsWith('동') ? k : `${k}동`;
+  return SERVICE_DONGS.has(dong) ? [dong] : null;
+}
+
 export function placeMatchesTerm(place, term) {
   const q = term.trim().toLowerCase();
   if (!q) return true;
-  return `${place.name} ${place.address} ${place.district} ${place.placeType} ${place.categoryName}`
-    .toLowerCase()
-    .includes(q);
+  const fields = `${place.name} ${place.district} ${place.placeType} ${place.categoryName}`;
+  if (fields.toLowerCase().includes(q)) return true;
+  const dongs = areaDongs(q);
+  if (dongs && place.dong) return dongs.includes(place.dong);
+  const words = dongs ? [q.replace(/\s+/g, ''), ...dongs.map((d) => d.slice(0, -1))] : [q];
+  return words.some((w) => place.address.toLowerCase().includes(w));
 }
 
 // 요금: free 는 무료, paid·per_program 은 유료, unknown 은 어느 쪽에도 안 보임 (FR-MAP-024)
@@ -137,6 +163,20 @@ export function matchesFee(place, fee) {
   const t = place.feeType;
   return fee === 'free' ? t === 'free' : t === 'paid' || t === 'per_program';
 }
+
+// 행사 필터: 진행·예정 행사가 있는 장소만, 장르를 고르면 그 장르 행사가 있는 장소만
+export function matchesEvent(place, eventOnly, genres) {
+  if (genres.length) return place.eventGenres.some((g) => genres.includes(g));
+  return !eventOnly || place.liveEventCount > 0;
+}
+
+// 필터 시트 장르 선택지: 진행·예정 행사가 있는 장르만 (서버가 정한 순서 유지)
+export const eventGenresOf = (places) => {
+  const seen = [];
+  for (const p of places) for (const g of p.eventGenres) if (!seen.includes(g)) seen.push(g);
+  const order = ['연극', '뮤지컬', '콘서트', '클래식', '오페라', '무용', '전통', '전시', '기타'];
+  return order.filter((g) => seen.includes(g));
+};
 
 export const toggleIn = (list, v) =>
   list.includes(v) ? list.filter((x) => x !== v) : [...list, v];

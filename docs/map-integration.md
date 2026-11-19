@@ -75,7 +75,8 @@ navigate('/map');                                                    // 홈 공�
         "fee_text": null, "is_free": true, "fee_type": "free", "reservation_url": null, "capacity": 300,
         "image_url": null, "image_source": null, "description": null,
         "source_name": "tn_pubr_public_lbrry_api", "last_collected_at": "...", "source_checked_at": "...",
-        "live_event_count": 0, "next_event_status": null
+        "legal_dong": "부전동",
+        "live_event_count": 0, "next_event_status": null, "live_event_genres": []
       }
     ],
     "categories": [{ "category_code": "culture", "category_name": "문화시설", "sort_order": 1, "color": "#8b63d0" }],
@@ -89,6 +90,10 @@ navigate('/map');                                                    // 홈 공�
 - 장소 유형 질문(예: "서면 근처 도서관")은 `category_code`·`place_type`·`district`·`address` 로 거르시면 됩니다. 세부 유형: 공연장·전시공간(문화시설), 도서관, 체육시설, 공공시설, 청년공간.
 - 응답에 없는 장소(서비스 지역 밖, 좌표 확인 필요)는 "확인된 정보가 없어요"로 답해 주세요(FR-A17).
 - 상세: `GET /api/v1/places/:placeId` → 위 항목 + `events` (진행·예정 행사).
+- `live_event_genres`: 그 장소에서 진행·예정인 행사의 장르(연극, 뮤지컬, 콘서트, 클래식, 오페라, 무용, 전통, 전시, 기타 순). 지도 필터 시트의 '행사' 조건이 이 값으로 거릅니다.
+- 문화 행사(`item_type = 'EVENT'`)는 정책 검색에 넣지 않고 지도에서 장소별로 보여 줍니다(11/18 팀 요청). 검색·홈 쿼리는 지금처럼 `item_type = 'POLICY'`만 읽으면 됩니다.
+- `legal_dong`: 장소의 법정동(행안부 도로명주소 검색 결과, 예: 부전동). 아직 정하지 못한 장소는 `null`입니다.
+- 지도 검색어가 동네 이름이면 주소 글자가 아니라 `legal_dong`으로 찾습니다(부전 → 부전동, 서면 → 부전동·전포동, 다대포 → 다대동). 도로명에 든 동 이름(가야대로, 당감서로, 다대로)에는 걸리지 않습니다. `legal_dong`이 없는 장소만 주소 글자로 찾습니다. AI 비서 `LANDMARK_WORDS`도 `legal_dong`으로 바꾸시면 [전체 보기] 결과 수가 지도와 같아집니다.
 
 ### 3-3. 위치 정보 (AI-REQ-06, NFR-MAP-010)
 
@@ -158,6 +163,7 @@ SQL 실행 순서 (`backend/supabase/migrations`, 실행은 대환이 합니다)
 |---|---|
 | `20261111_culture_place.sql` ~ `20261116_map_srs_fixes.sql` | 완료 |
 | `20261117_map_srs_strict.sql` | 완료 (2026-11-14, `place.is_target`, 문제 종류 추가, `v_map_places` 조건) |
+| `20261119_place_legal_dong.sql` | 완료 (2026-11-19, `place.legal_dong`, `v_map_places`에 `legal_dong` 추가. 지도 대상 114곳 중 113곳 법정동 입력). 처음 값은 `node scripts/culture/fillLegalDong.js`가 만든 `apply.sql`로 넣고, 이후 하루 1회 갱신이 고칩니다 |
 
 ## 8. 실행·배포
 

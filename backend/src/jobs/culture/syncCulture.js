@@ -84,7 +84,7 @@ export async function runCultureSync({
   const schema = await db.schemaReady();
   if (apply && !schema.all)
     throw new Error(`supabase/migrations 의 ${schema.missing.join(', ')} 을 먼저 실행하세요.`);
-  const places = await db.loadPlaces(schema.baseline, schema.coords, schema.target);
+  const places = await db.loadPlaces(schema.baseline, schema.coords, schema.target, schema.dong);
   const activePlaces = places.filter((p) => p.is_active);
   const refs = await db.loadReferences();
 

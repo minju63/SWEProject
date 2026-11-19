@@ -5,7 +5,8 @@ const PLACE_COLUMNS =
   'place_id, place_key, name, place_type, category_code, category_name, sort_order, color, ' +
   'region_code, district, address, lat, lng, coord_status, tel, homepage_url, ' +
   'open_hours_text, closed_days_text, fee_text, is_free, fee_type, reservation_url, capacity, ' +
-  'image_url, image_source, description, source_name, last_collected_at, source_checked_at, legal_dong';
+  'image_url, image_source, description, source_name, last_collected_at, source_checked_at, ' +
+  'legal_dong';
 
 const EVENT_COLUMNS =
   'place_id, genre, venue_text, event_start_at, event_end_at, schedule_text, price, price_text, ' +

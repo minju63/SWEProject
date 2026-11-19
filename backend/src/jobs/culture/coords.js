@@ -8,6 +8,7 @@
  *        후보가 2건 이상: review / 행안부 좌표 없음: 원본이 있으면 coord_only, 없으면 missing
  *      fixed 가 아니면 lat·lng 는 쓸 수 있는 원본 좌표, 없으면 빈 값이다. review·missing 은 지도에 나오지 않는다(FR-MAP-001).
  * 행안부 좌표는 fixed 장소의 lat·lng 로만 저장하고 그 밖에는 거리 계산에만 쓴다. 행정코드는 저장하지 않는다.
+ * 같은 검색에서 나온 법정동(emdNm)은 place.legal_dong 에 둔다 (지도 동네 검색 FR-MAP-021). 후보가 모두 같은 동일 때만.
  * 좌표 값은 로그·보고에 남기지 않는다. 행안부 API 가 오류를 내면 이번 검증을 건너뛰고 기존 값을 둔다 (5C).
  */
 import { sleep } from './dataGoKr.js';
@@ -170,20 +171,44 @@ async function callJuso(url, params, state) {
   }
 }
 
-async function moisCoord(address, district, state) {
+// 주소 → 검색어와 정확히 같은 행안부 후보. 법정동(emdNm)은 후보가 모두 같은 동일 때만 정한다
+async function jusoCandidates(address, district, state) {
   const keyword = refineAddress(address, district);
-  if (!keyword) return { verdict: 'noaddr' };
+  if (!keyword) return { verdict: 'noaddr', keyword: null, list: [], dong: null };
   const found = await callJuso(
     JUSO_URL,
     { confmKey: keys().juso, currentPage: 1, countPerPage: 10, keyword },
     state
   );
-  if (!found) return { verdict: 'error' };
+  if (!found) return { verdict: 'error', keyword, list: [], dong: null };
   const juso = Array.isArray(found.juso) ? found.juso : found.juso ? [found.juso] : [];
   const list = candidates(juso, district, keyword);
-  if (list.length > 1) return { verdict: 'multiple' };
-  if (!list.length) return { verdict: 'none' };
-  const hit = list[0];
+  const dongs = [...new Set(list.map((x) => x.emdNm).filter(Boolean))];
+  const dong = dongs.length === 1 ? dongs[0] : null;
+  const verdict = list.length > 1 ? 'multiple' : list.length ? 'unique' : 'none';
+  return { verdict, keyword, list, dong };
+}
+
+/*
+ * 법정동만 찾는다 (scripts/culture/fillLegalDong.js). 좌표제공 API 는 부르지 않는다.
+ * → { verdict: unique|multiple|none|noaddr|error, keyword, dong, road(후보가 1건일 때 도로명주소) }
+ */
+export const newJusoState = () => ({ calls: 0, errors: 0, pace: 300 });
+export async function jusoDong(address, district, state) {
+  if (!keys().juso) throw new Error('backend/.env 에 DORO_KEY 가 없습니다');
+  const c = await jusoCandidates(address, district, state);
+  return {
+    verdict: c.verdict,
+    keyword: c.keyword,
+    dong: c.dong,
+    road: c.verdict === 'unique' ? c.list[0].roadAddrPart1 : null,
+  };
+}
+
+async function moisCoord(address, district, state) {
+  const c = await jusoCandidates(address, district, state);
+  if (c.verdict !== 'unique') return { verdict: c.verdict, dong: c.dong };
+  const hit = c.list[0];
   const coord = await callJuso(
     COORD_URL,
     {
@@ -199,9 +224,12 @@ async function moisCoord(address, district, state) {
   const j = Array.isArray(coord?.juso) ? coord.juso[0] : coord?.juso;
   const x = Number(j?.entX);
   const y = Number(j?.entY);
-  if (!Number.isFinite(x) || !Number.isFinite(y)) return { verdict: coord ? 'none' : 'error' };
+  if (!Number.isFinite(x) || !Number.isFinite(y))
+    return { verdict: coord ? 'none' : 'error', dong: c.dong };
   const [lat, lng] = utmkToLatLng(x, y);
-  return usable(lat, lng) ? { verdict: 'unique', lat, lng } : { verdict: 'none' };
+  return usable(lat, lng)
+    ? { verdict: 'unique', lat, lng, dong: c.dong }
+    : { verdict: 'none', dong: c.dong };
 }
 
 function judge(place, mois) {
@@ -259,14 +287,16 @@ export async function verifyCoords(places, log = () => {}) {
       checked: 0,
       error: 'backend/.env 에 DORO_KEY 또는 COORDINATE_KEY 가 없어 좌표 검증을 건너뜀',
     };
-  const state = { calls: 0, errors: 0, pace: 300 };
+  const state = newJusoState();
+  // place.legal_dong 컬럼이 있을 때만 (20261119_place_legal_dong.sql)
+  const withDong = places.some((p) => 'legal_dong' in p);
   const results = [];
   try {
     for (const place of places) {
       const mois = await moisCoord(place.address, place.district, state);
       if (mois.verdict === 'error') {
         results.push(null); // 이 장소는 이번에 판정하지 않는다
-      } else results.push(judge(place, mois));
+      } else results.push({ ...judge(place, mois), legal_dong: mois.dong ?? null });
       if (state.calls >= 30 && state.errors / state.calls > ERROR_LIMIT)
         throw new StopVerify(
           `행안부 API 오류율 ${Math.round((state.errors / state.calls) * 100)}% (기준 10%)`
@@ -290,6 +320,9 @@ export async function verifyCoords(places, log = () => {}) {
     const changes = {};
     for (const k of ['coord_status', 'coord_source', 'coord_distance_m'])
       if ((place[k] ?? null) !== (r[k] ?? null)) changes[k] = r[k] ?? null;
+    // 법정동은 행안부가 정했을 때만 바꾼다 (못 찾으면 기존 값을 둔다)
+    if (withDong && r.legal_dong && (place.legal_dong ?? null) !== r.legal_dong)
+      changes.legal_dong = r.legal_dong;
     const sameLatLng =
       r.lat == null
         ? place.lat == null && place.lng == null

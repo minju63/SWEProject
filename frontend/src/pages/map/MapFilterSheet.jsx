@@ -1,4 +1,5 @@
-// 필터 시트: 분류, 요금, 거리 반경, 지역, 기타(운영 중, 예약 가능). 모두 AND (FR-MAP-023~027)
+// 필터 시트: 분류, 요금, 거리 반경, 지역, 행사(진행·예정 행사, 장르), 기타(운영 중, 예약 가능). 모두 AND (FR-MAP-023~027)
+// 행사: 연극·뮤지컬 같은 문화 행사는 정책 검색이 아니라 지도에서 장소별로 찾는다 (팀 요청 11/18)
 import { CategoryBadge, Glyph } from './mapIcons.jsx';
 import { FilterChip, FilterGroup } from './MapParts.jsx';
 import { toggleIn } from './mapUtils.js';
@@ -81,6 +82,32 @@ export default function MapFilterSheet(props) {
               </FilterChip>
             ))}
           </FilterGroup>
+          {props.genreOptions.length > 0 && (
+            <FilterGroup title="행사">
+              <FilterChip
+                active={props.eventOnly && !props.eventGenres.length}
+                onClick={() => {
+                  props.onEventOnly(!(props.eventOnly && !props.eventGenres.length));
+                  props.onEventGenres([]);
+                }}
+              >
+                진행·예정 행사 있음
+              </FilterChip>
+              {props.genreOptions.map((g) => (
+                <FilterChip
+                  key={g}
+                  active={props.eventGenres.includes(g)}
+                  onClick={() => {
+                    const next = toggleIn(props.eventGenres, g);
+                    props.onEventGenres(next);
+                    props.onEventOnly(next.length > 0);
+                  }}
+                >
+                  {g}
+                </FilterChip>
+              ))}
+            </FilterGroup>
+          )}
           <FilterGroup title="기타">
             <FilterChip active={props.openNow} onClick={() => props.onOpenNow(!props.openNow)}>
               운영 중

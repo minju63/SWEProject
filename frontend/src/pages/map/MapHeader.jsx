@@ -34,7 +34,7 @@ export default function MapHeader({
         key: place.id,
         place,
         title: place.name,
-        sub: `${place.categoryName} · ${place.district}`,
+        sub: `${place.categoryName} · ${place.district}${place.dong ? ` ${place.dong}` : ''}`,
       }));
   }, [q, places, allowedIds]);
 
