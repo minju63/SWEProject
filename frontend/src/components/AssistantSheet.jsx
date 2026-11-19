@@ -346,10 +346,17 @@ function ChatSheet() {
   // { role: 'user'|'bot', text?, answer? }. 추천으로 열면 새 대화, 그 밖에는 최근 대화를 이어간다 (FR-A19)
   const [messages, setMessages] = useState(() => (isRecommend ? [] : loadHistory()));
   const [input, setInput] = useState('');
+  // 이어지는 질문("전부 보여줘", "왜 이걸 추천했어?", "첫 번째 정책")에 쓸 맥락: 대화에 남은 마지막 답변에서 가져온다.
+  // (홈 추천으로 열었을 때·저장된 대화를 다시 열었을 때도 같게 동작한다)
+  const lastContextAnswer = [...messages].reverse().find((m) => m.answer?.context)?.answer;
+  const lastBot = [...messages].reverse().find((m) => m.role === 'bot')?.answer;
+  const context =
+    lastContextAnswer || lastBot?.policy_id
+      ? { ...(lastContextAnswer?.context ?? {}), policyId: lastBot?.policy_id ?? undefined }
+      : null;
   const [busy, setBusy] = useState(isRecommend);
   const [notice, setNotice] = useState(() => !noticeAcked()); // 국외 AI 전송 고지 (NFR-023)
   const [position, setPosition] = useState(null); // 현재 위치는 이 화면 메모리에만 둔다
-  const [context, setContext] = useState(null);
   const bodyRef = useRef(null);
   const startY = useRef(null);
   const [dragY, setDragY] = useState(0); // 손잡이를 잡고 내리는 거리(px)
@@ -424,8 +431,6 @@ function ChatSheet() {
     }
     try {
       const answer = await sendChat(q, context);
-      if (answer.policy_id) setContext({ policyId: answer.policy_id });
-      else if (answer.context) setContext(answer.context); // 다음 질문("전부 보여줘")에서 이어 쓴다
       push({ role: 'bot', answer });
     } catch {
       failMessage();

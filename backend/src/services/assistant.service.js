@@ -938,7 +938,8 @@ async function benefitFor(p, ctx, remaining) {
 // "왜 이걸 추천했어?": 방금 추천한 정책이 사용자에게 어떤 도움이 되는지, 그리고 내 조건과 어떻게 맞는지 알려 준다 (FR-A08 근거 설명)
 const WHY_RE = /왜.*(추천|골랐|뽑|보여)|추천.*(이유|근거|기준)|(이유|근거).*(뭐|알려|설명)/;
 async function answerWhy(ctx, context, userId, remaining) {
-  const ids = Array.isArray(context?.picks) ? context.picks : [];
+  // 방금 추천 목록이 있으면 그 전부, 없고 한 정책만 보고 있었으면 그 정책에 대해 답한다
+  const ids = context?.picks?.length ? context.picks : context?.policyId ? [context.policyId] : [];
   if (ids.length === 0) {
     return {
       type: 'clarify',
@@ -993,7 +994,7 @@ async function route({ userId, message, context, remaining }) {
   const ctx = await loadContext(userId);
 
   // 0) 방금 한 대답에 이어지는 질문: "왜 이걸 추천했어?", "첫 번째 정책 자세히"
-  if (WHY_RE.test(text) && (context?.picks?.length || /추천/.test(text)))
+  if (WHY_RE.test(text) && (context?.picks?.length || context?.policyId || /추천/.test(text)))
     return answerWhy(ctx, context, userId, remaining);
   const picked = pickFromContext(text, context, ctx.policies);
 
