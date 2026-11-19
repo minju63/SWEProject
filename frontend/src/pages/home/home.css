@@ -286,35 +286,42 @@
 .hcard {
   position: relative;
   margin-bottom: 10px;
-  border-radius: 16px;
-  background: #fff;
-  box-shadow: 0 1px 6px rgba(25, 31, 40, 0.06);
 }
 .hcard-off {
   opacity: 0.55;
 }
 .hcard-link {
   display: block;
-  padding: 14px 52px 14px 16px;
+  color: inherit;
+  text-decoration: none;
 }
-.hcard-top {
+/* 오른쪽 위 D-day·하트 자리를 비워 배지가 겹치지 않게 한다 */
+.hcard .search-policy-top {
+  min-height: 30px;
+  padding-right: 96px;
+}
+.hcard-corner {
+  position: absolute;
+  top: 12px;
+  right: 12px;
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  margin-bottom: 8px;
+  gap: 8px;
 }
-.hcard-title {
-  display: block;
-  font-size: 16.5px;
+.hcard-corner .heart {
+  position: static;
+  width: 30px;
+  height: 30px;
+  background: transparent;
+  color: #a4b3c5;
 }
-.hcard-desc {
-  margin: 4px 0 0;
-  font-size: 13px;
-  color: var(--sub);
-  display: -webkit-box;
-  -webkit-line-clamp: 1;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
+.hcard-corner .heart.heart-on {
+  background: #fff0f4;
+  color: #f24171;
+}
+.hcard-corner .heart svg {
+  width: 18px;
+  height: 18px;
 }
 .region-chip {
   display: inline-block;
@@ -327,11 +334,6 @@
 }
 .dday-urgent {
   color: var(--no);
-}
-.hcard .dday {
-  position: absolute;
-  top: 14px;
-  right: 16px;
 }
 .heart {
   position: absolute;

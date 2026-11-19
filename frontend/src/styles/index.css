@@ -1113,3 +1113,8 @@ button {
 .search-result-content .search-filter-strip { padding: 12px 0 4px; }
 .search-page .search-result-toggle { width: auto; padding: 0 14px; height: 34px; }
 .search-result-heading .search-filter-button { flex: none; }
+
+/* 검색 결과·홈 정책 카드 오른쪽 위: D-day → 하트 순서 */
+.search-policy-corner { display: flex; flex: none; align-items: center; gap: 8px; }
+.search-policy-dday { color: #2f7bf5; font-size: 12px; font-weight: 900; white-space: nowrap; }
+.search-policy-dday.is-urgent { color: #f04438; } /* 마감 7일 이내는 붉은색 (FR-C04) */

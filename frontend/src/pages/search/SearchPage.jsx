@@ -437,12 +437,15 @@ export default function SearchPage() {
                           {policy.region_codes?.length > 0 && <span className="search-policy-tag--region">{policy.region_codes.includes('KR') ? '전국' : policy.region_codes.includes('26') ? '부산광역시' : filterRegions.find((region) => policy.region_codes.includes(region.region_code))?.region_name ?? '부산광역시'}</span>}
                           {['마감', '종료'].includes(policy.recruitment_status) && <span className="search-policy-tag--closed">마감</span>}
                         </div>
+                        <div className="search-policy-corner">
+                          <strong className={`search-policy-dday${policy.d_day != null && policy.d_day >= 0 && policy.d_day <= 7 && policy.recruitment_status !== '상시' ? ' is-urgent' : ''}`}>{dDayText(policy.d_day, policy.recruitment_status)}</strong>
                         <button type="button" className={`search-save-button${saved ? ' is-saved' : ''}`}
-                          aria-label={saved ? `${policy.title} 관심 정책 해제` : `${policy.title} 관심 정책 저장`}
-                          disabled={bookmarkMutation.isPending}
-                          onClick={(event) => { event.stopPropagation(); user
-                            ? bookmarkMutation.mutate({ policyId: policy.policy_id, saved })
-                            : navigate('/my'); }}><HeartIcon /></button>
+                            aria-label={saved ? `${policy.title} 관심 정책 해제` : `${policy.title} 관심 정책 저장`}
+                            disabled={bookmarkMutation.isPending}
+                            onClick={(event) => { event.stopPropagation(); user
+                              ? bookmarkMutation.mutate({ policyId: policy.policy_id, saved })
+                              : navigate('/my'); }}><HeartIcon /></button>
+                        </div>
                       </div>
                       <div className="search-policy-main">
                         <h3>{policy.title}</h3>
@@ -450,7 +453,7 @@ export default function SearchPage() {
                       </div>
                       <div className="search-policy-bottom">
                         <span>신청기간 {periodText(policy)} · {policy.recruitment_status}</span>
-                        <strong className={policy.d_day != null && policy.d_day >= 0 && policy.d_day <= 7 && policy.recruitment_status !== '상시' ? 'is-urgent' : ''}>{dDayText(policy.d_day, policy.recruitment_status)}</strong>
+                        
                       </div>
                     </article>
                   );

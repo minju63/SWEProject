@@ -2,36 +2,59 @@ import { Link } from 'react-router-dom';
 import { HeartIcon } from '../../components/icons.jsx';
 import { ELIGIBILITY_LABEL, dDayText } from '../../utils/format';
 
-export default function HomePolicyCard({ policy, onToggleBookmark }) {
+// 검색 결과 카드와 같은 배치·디자인: 왼쪽 위에 배지(자격·분야·지역), 오른쪽 위에 D-day → 하트 순서
+const ELIGIBILITY_TONE = { ELIGIBLE: 'eligible', CHECK: 'check', INELIGIBLE: 'ineligible' };
+const CATEGORY_TONE = {
+  '주거·생활': 'blue',
+  '취업·진로': 'pink',
+  '장학·금융': 'purple',
+  문화: 'green',
+  '공간·시설': 'purple',
+};
+
+export default function HomePolicyCard({ policy, categoryName, onToggleBookmark }) {
   const badge = ELIGIBILITY_LABEL[policy.eligibility];
   const off = policy.eligibility === 'INELIGIBLE';
-  const urgent = policy.d_day != null && policy.d_day <= 7;
+  const urgent = policy.d_day != null && policy.d_day >= 0 && policy.d_day <= 7 && policy.recruitment_status !== '상시';
   return (
-    <div className={`hcard${off ? ' hcard-off' : ''}`}>
+    <div className={`hcard search-policy-card${off ? ' hcard-off' : ''}`}>
       <Link to={`/policies/${policy.policy_id}`} className="hcard-link">
-        <div className="hcard-top">
-          <span>
-            <span className={badge.className}>{off ? '✕ 대상 아님' : badge.text}</span>{' '}
-            {policy.region_names[0] && (
-              <span className="region-chip">{policy.region_names[0]}</span>
+        <div className="search-policy-top">
+          <div className="search-policy-tags">
+            {badge && (
+              <span className={`search-policy-tag--${ELIGIBILITY_TONE[policy.eligibility]}`}>
+                {badge.text}
+              </span>
             )}
-          </span>
-          <span className={`dday${urgent ? ' dday-urgent' : ''}`}>
-            {dDayText(policy.d_day, policy.recruitment_status)}
-          </span>
+            {categoryName && (
+              <span className={`search-policy-tag--${CATEGORY_TONE[categoryName] ?? 'blue'}`}>
+                {categoryName}
+              </span>
+            )}
+            {policy.region_names[0] && (
+              <span className="search-policy-tag--region">{policy.region_names[0]}</span>
+            )}
+          </div>
         </div>
-        <strong className="hcard-title">{policy.title}</strong>
-        {policy.support_content && <p className="hcard-desc">{policy.support_content}</p>}
+        <div className="search-policy-main">
+          <h3>{policy.title}</h3>
+          {policy.support_content && <p>{policy.support_content}</p>}
+        </div>
       </Link>
-      <button
-        type="button"
-        className={`heart${policy.bookmarked ? ' heart-on' : ''}`}
-        aria-label={policy.bookmarked ? '찜 해제' : '찜하기'}
-        aria-pressed={policy.bookmarked}
-        onClick={() => onToggleBookmark(policy)}
-      >
-        <HeartIcon />
-      </button>
+      <div className="hcard-corner">
+        <strong className={`search-policy-dday${urgent ? ' is-urgent' : ''}`}>
+          {dDayText(policy.d_day, policy.recruitment_status)}
+        </strong>
+        <button
+          type="button"
+          className={`heart${policy.bookmarked ? ' heart-on' : ''}`}
+          aria-label={policy.bookmarked ? '찜 해제' : '찜하기'}
+          aria-pressed={policy.bookmarked}
+          onClick={() => onToggleBookmark(policy)}
+        >
+          <HeartIcon />
+        </button>
+      </div>
     </div>
   );
 }

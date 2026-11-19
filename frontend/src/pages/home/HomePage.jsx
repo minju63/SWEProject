@@ -338,6 +338,7 @@ export default function HomePage() {
                     <HomePolicyCard
                       key={policy.policy_id}
                       policy={policy}
+                      categoryName={selectedCat.category_name}
                       onToggleBookmark={toggleBookmark}
                     />
                   ))}
