@@ -130,12 +130,16 @@ export default function CalendarCard({
               <span className="ccard-alarm-text">
                 <BellFillIcon /> {alarms.map((a) => alarmLabel(a)).join(' · ')}
               </span>
-              <b>변경 ›</b>
+              <b>
+                변경 <i className="ccard-chev right" aria-hidden="true" />
+              </b>
             </>
           ) : (
             <>
               <span className="ccard-alarm-text">＋ 알림 추가</span>
-              <b>›</b>
+              <b>
+                <i className="ccard-chev right" aria-hidden="true" />
+              </b>
             </>
           )}
         </button>
