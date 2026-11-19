@@ -28,14 +28,15 @@ export async function listPolicies(params) {
     } catch { /* Ignore an invalid temporary filter. */ }
   }
   const conditionProfile = temporaryConditions ?? savedProfile;
+  const filterByConditions = params.myConditionsOnly || temporaryConditions !== null;
   const assessments = new Map();
   const assess = (policy) => {
     if (!assessments.has(policy.policy_id)) assessments.set(policy.policy_id, judge(policy, conditionProfile));
     return assessments.get(policy.policy_id);
   };
   const { items, totalCount } = await policyRepo.findPolicies({ ...params, categoryDetails,
-    assess, onlyEligible: params.myConditionsOnly,
-    profileRegionCode: params.myConditionsOnly ? savedProfile?.region_code : null,
+    assess, onlyEligible: filterByConditions,
+    profileRegionCode: filterByConditions ? conditionProfile?.region_code : null,
     interests: Array.isArray(conditionProfile?.interest_categories) ? conditionProfile.interest_categories : [],
   });
   const hasAdvancedStatus = items.every((item) => item.recruitment_status);

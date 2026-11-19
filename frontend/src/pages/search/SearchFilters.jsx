@@ -144,7 +144,11 @@ function SubSheet({ type, draft, setDraft, onClose, regions }) {
         <Chips options={regions.map((region) => region.region_name)}
         selected={draft.regions.map((code) => regions.find((region) => region.region_code === code)?.region_name)}
         onToggle={(name) => { const code = regions.find((region) => region.region_name === name)?.region_code; setDraft((current) => ({ ...current, regions: toggle(current.regions, code) })); }} /></>}
-      {type === 'status' && <><h3>모집 상태를 선택해주세요</h3><Chips options={STATUSES} selected={draft.statuses}
+      {type === 'status' && <><div className="search-region-heading"><h3>모집 상태를 선택해주세요</h3>
+        <div className="search-status-actions"><button type="button"
+          onClick={() => setDraft((current) => ({ ...current, statuses: [...STATUSES] }))}>전체 선택</button>
+          <button type="button" onClick={() => setDraft((current) => ({ ...current, statuses: [] }))}>
+            전체 해제</button></div></div><Chips options={STATUSES} selected={draft.statuses}
         onToggle={(value) => setDraft((current) => ({ ...current, statuses: toggle(current.statuses, value) }))} /></>}
       {type === 'date' && <div className="search-date-grid">
         <label>시작일<input type="date" value={draft.dateStart} onChange={(event) => setDraft((current) => ({ ...current, dateStart: event.target.value }))} /></label>

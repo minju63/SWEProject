@@ -50,7 +50,7 @@ export function databaseEligibility(policy, user, region) {
           ? '신청 가능'
           : children.some((x) => x.status === '확인 필요') || !children.length
             ? '확인 필요'
-            : '신청 불가',
+            : '대상 아님',
       }
     }
     const label = c.label || labels[c.field] || c.text || '공식 공고조건',
@@ -104,7 +104,7 @@ export function databaseEligibility(policy, user, region) {
       valid = true
       passes = c.op === 'gte' ? value >= expected : value <= expected
     }
-    return valid ? { label, status: passes ? '신청 가능' : '신청 불가' } : unknown(label)
+    return valid ? { label, status: passes ? '신청 가능' : '대상 아님' } : unknown(label)
   }
   const rules = policy.eligibilityRules ?? {}
   if (!policy.eligibilityVerified || rules.logic === 'UNVERIFIED') {
@@ -155,7 +155,7 @@ export function databaseEligibility(policy, user, region) {
       evaluated.result === 'ELIGIBLE'
         ? '신청 가능'
         : evaluated.result === 'INELIGIBLE'
-          ? '신청 불가'
+          ? '대상 아님'
           : '확인 필요',
     items: evaluated.conditions.map((c) => ({
       label: (c.exclusion ? '제외 대상 확인: ' : '') + describe(c),
@@ -163,7 +163,7 @@ export function databaseEligibility(policy, user, region) {
         c.status === 'SATISFIED'
           ? '신청 가능'
           : c.status === 'UNSATISFIED'
-            ? '신청 불가'
+            ? '대상 아님'
             : '확인 필요',
     })),
   }

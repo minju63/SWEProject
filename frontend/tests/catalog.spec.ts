@@ -16,7 +16,7 @@ test("verified DB rules react to profile changes while unknown and textual condi
   ).toBe("신청 가능");
   expect(
     databaseEligibility(p, emptyConditions, "부산광역시 사하구").overall,
-  ).toBe("신청 불가");
+  ).toBe("대상 아님");
   expect(
     databaseEligibility(
       { ...p, eligibilityVerified: false },
@@ -41,7 +41,7 @@ test("verified DB rules react to profile changes while unknown and textual condi
   expect(
     databaseEligibility(age, { ...emptyConditions, age: "50" }, "부산광역시")
       .overall,
-  ).toBe("신청 불가");
+  ).toBe("대상 아님");
 });
 test("all four real policy domains load without prototype policies; events remain a separate collection", async ({
   page,

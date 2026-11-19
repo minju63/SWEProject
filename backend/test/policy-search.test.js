@@ -5,6 +5,7 @@ process.env.SUPABASE_URL = 'https://example.supabase.co';
 process.env.SUPABASE_SERVICE_ROLE_KEY = 'test-key';
 const { supabase } = await import('../src/lib/supabase.js');
 const { findPolicies } = await import('../src/repositories/policy.repository.js');
+const { listPolicies } = await import('../src/services/policy.service.js');
 const { compareRecommendedPolicies } = await import('../src/services/policy-search-sort.service.js');
 
 const rows = [
@@ -25,7 +26,7 @@ const regionRows = [
   ['p4', '26230'], ['p5', '26380'], ['p6', 'KR'],
 ].map(([policy_id, region_code]) => ({ policy_id, region_code }));
 
-function queryFor(table) {
+function queryFor(table, overrides = {}) {
   const sources = {
     policy: rows,
     policy_category: [
@@ -34,13 +35,14 @@ function queryFor(table) {
     ],
     v_policy_status: [], policy_region: regionRows,
   };
-  let selected = sources[table] ?? [];
+  let selected = overrides[table] ?? sources[table] ?? [];
   return {
     select() { return this; },
     eq(field, value) { selected = selected.filter((row) => row[field] === value); return this; },
     in(field, values) { selected = selected.filter((row) => values.includes(row[field])); return this; },
     order() { return this; },
     range(start, end) { return Promise.resolve({ data: selected.slice(start, end + 1), error: null }); },
+    maybeSingle() { return Promise.resolve({ data: selected[0] ?? null, error: null }); },
     then(resolve, reject) { return Promise.resolve({ data: selected, error: null }).then(resolve, reject); },
   };
 }
@@ -59,6 +61,39 @@ test('사하구 프로필은 전국·부산·사하구를 포함하고 지역 �
     const combined = await findPolicies({ ...params, regions: ['26230'],
       onlyEligible: true, profileRegionCode: '26380' });
     assert.equal(combined.totalCount, 0);
+  } finally {
+    from.mock.restore();
+  }
+});
+
+test('직접 설정도 저장 프로필과 같은 판정·지역 필터를 적용하고 CHECK는 남긴다', async () => {
+  const conditions = (housingType) => ({ eligibility_verified: true,
+    eligibility_conditions: { all: [{ field: 'housing_type', op: 'eq', value: housingType }] } });
+  const policies = [
+    { ...rows[0], ...conditions('월세') },
+    { ...rows[1], ...conditions('자가') },
+    { ...rows[2], eligibility_verified: false },
+  ];
+  const profile = { user_id: 'user-1', housing_type: '월세', region_code: '26380' };
+  const from = mock.method(supabase, 'from', (table) => queryFor(table,
+    { policy: policies, user_profile: [profile] }));
+  try {
+    const params = { userId: 'user-1', sort: 'recommended', page: 1, size: 10,
+      includeEligibility: true };
+    const mine = await listPolicies({ ...params, myConditionsOnly: true });
+    assert.deepEqual(mine.items.map((item) => item.policy_id), ['p1', 'p3']);
+    assert.equal(mine.totalCount, 2);
+
+    const direct = await listPolicies({ ...params,
+      conditions: JSON.stringify({ housing_type: '자가', region_code: '26380' }) });
+    assert.deepEqual(direct.items.map((item) => item.policy_id), ['p2', 'p3']);
+    assert.deepEqual(direct.items.map((item) => item.eligibility_result), ['ELIGIBLE', 'CHECK']);
+    assert.equal(direct.totalCount, 2);
+
+    const otherRegion = await listPolicies({ ...params,
+      conditions: JSON.stringify({ housing_type: '자가', region_code: '26230' }) });
+    assert.deepEqual(otherRegion.items.map((item) => item.policy_id), ['p2']);
+    assert.equal(otherRegion.totalCount, 1);
   } finally {
     from.mock.restore();
   }
@@ -92,6 +127,23 @@ test('마감 제외는 전체 건수와 페이지를 자르기 전에 적용한�
     assert.equal(excluded.totalCount, 5);
     assert.equal(excluded.items.length, 2);
     assert.ok(!excluded.items.some((item) => item.policy_id === 'p6'));
+  } finally {
+    from.mock.restore();
+  }
+});
+
+test('신청 가능은 확정 판정만 건수와 페이지 계산 전에 남기고 마감 제외와 함께 적용된다', async () => {
+  const from = mock.method(supabase, 'from', queryFor);
+  try {
+    const params = { sort: 'recommended', categoryIds: [], assess: (policy) => ({ result: policy.result }),
+      page: 1, size: 2, eligibleOnly: true };
+    const eligible = await findPolicies(params);
+    assert.equal(eligible.totalCount, 3);
+    assert.deepEqual(eligible.items.map((item) => item.policy_id), ['p3', 'p2']);
+    assert.ok(eligible.items.every((item) => item.eligibility_result === 'ELIGIBLE'));
+    const openEligible = await findPolicies({ ...params, excludeClosed: true });
+    assert.equal(openEligible.totalCount, 2);
+    assert.deepEqual(openEligible.items.map((item) => item.policy_id), ['p3', 'p2']);
   } finally {
     from.mock.restore();
   }

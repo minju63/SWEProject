@@ -45,8 +45,8 @@ export function groundedAiText(value, input) {
 export function verdictConsistent(value, result) {
   const other = ['ELIGIBLE', 'CHECK', 'INELIGIBLE'].filter((item) => item !== result);
   if (other.some((item) => new RegExp(`\\b${item}\\b`, 'u').test(value))) return false;
-  if (result === 'CHECK' && /(?:신청 가능|신청 불가|자격을 충족|자격이 없습니다)/u.test(value)) return false;
-  if (result === 'ELIGIBLE' && /(?:신청 불가|자격이 없습니다)/u.test(value)) return false;
+  if (result === 'CHECK' && /(?:신청 가능|신청 불가|대상 아님|자격을 충족|자격이 없습니다)/u.test(value)) return false;
+  if (result === 'ELIGIBLE' && /(?:신청 불가|대상 아님|자격이 없습니다)/u.test(value)) return false;
   if (result === 'INELIGIBLE' && /(?:신청 가능|모두 충족)/u.test(value)) return false;
   return true;
 }

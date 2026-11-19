@@ -88,7 +88,7 @@ function PolicyDetailContent({ policy }) {
         status:
           item.status === '신청 가능'
             ? 'matched'
-            : item.status === '신청 불가'
+            : item.status === '대상 아님'
               ? 'unmatched'
               : 'needs_check',
       })),

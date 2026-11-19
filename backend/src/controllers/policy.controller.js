@@ -24,6 +24,7 @@ export async function list(req, res) {
     dateStart: req.query.dateStart,
     dateEnd: req.query.dateEnd,
     includeAlways: req.query.includeAlways === 'true',
+    eligibleOnly: req.query.eligibleOnly === 'true',
     excludeClosed: req.query.excludeClosed === 'true',
     myConditionsOnly: req.query.myConditionsOnly === 'true',
     includeEligibility: req.query.includeEligibility === 'true',

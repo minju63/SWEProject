@@ -112,9 +112,9 @@ function filterPolicies(filters, query, conditions, profileConditions, profileRe
       ? (policy.region === '전국' ||
           (['부산시', '부산 전체'].includes(policy.region) && profileRegion.startsWith('부산')) ||
           profileRegion.endsWith(policy.region)) &&
-        evaluateEligibility(policy, profileConditions, profileRegion).overall !== '신청 불가'
+        evaluateEligibility(policy, profileConditions, profileRegion).overall !== '대상 아님'
       : evaluateEligibility(policy, customOf(conditions, profileConditions), '').overall !==
-        '신청 불가'
+        '대상 아님'
     return (
       queryMatches &&
       categoryMatches &&

@@ -11,7 +11,7 @@ export function applicationForProfile(application, profile) {
     status:
       item.status === '신청 가능' || item.status === '해당없음'
         ? 'matched'
-        : item.status === '신청 불가'
+        : item.status === '대상 아님'
           ? 'unmatched'
           : 'needs_check',
   }))
