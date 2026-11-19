@@ -136,7 +136,7 @@ export default function CalendarPage() {
           <button
             type="button"
             className="cal-alarm-btn"
-            onClick={() => navigate('/my?section=alarm')}
+            onClick={() => navigate('/settings?view=notifications')}
           >
             ☼ 알림 설정
           </button>
