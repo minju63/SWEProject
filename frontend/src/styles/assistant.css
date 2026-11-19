@@ -700,7 +700,7 @@
   gap: 8px;
 }
 .why-item {
-  padding: 12px 14px;
+  padding: 14px;
   border-radius: 16px;
   background: #fff;
 }
@@ -708,12 +708,6 @@
   display: flex;
   align-items: flex-start;
   gap: 8px;
-  width: 100%;
-  padding: 0;
-  border: 0;
-  background: none;
-  text-align: left;
-  color: var(--text);
   font-size: 14px;
 }
 .why-no {
@@ -728,17 +722,20 @@
   font-size: 11px;
   font-weight: 800;
 }
-.why-item ul {
-  list-style: none;
+.why-benefit {
   margin: 8px 0 0;
-  padding: 0;
-  font-size: 13px;
-  line-height: 1.7;
-  color: var(--sub);
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--text);
 }
-.why-item li span {
+.why-facts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 10px;
+  margin: 8px 0 0;
+  font-size: 12px;
   color: var(--ok);
-  font-weight: 800;
+  font-weight: 700;
 }
 
 /* "자세히 알려줘" 정책 설명 */

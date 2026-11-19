@@ -146,25 +146,41 @@ function PolicyCardInChat({ card, source, categoryName, onDetail, onBookmark }) 
   );
 }
 
-// "왜 이걸 추천했어?": 정책마다 이유를 한 줄씩 체크 목록으로 보여 준다
-function WhyList({ items, onDetail }) {
+// "왜 이걸 추천했어?": 정책마다 나에게 어떤 도움이 되는지를 먼저, 맞는 조건은 작게 보여 주고 찜·상세 보기를 붙인다
+function WhyList({ items, bookmarkedIds, onDetail, onBookmark }) {
   return (
     <div className="why-list">
-      {items.map((it, i) => (
-        <div key={it.policy_id} className="why-item">
-          <button type="button" className="why-title" onClick={() => onDetail(it.policy_id)}>
-            <span className="why-no">{i + 1}</span>
-            <strong>{it.title}</strong>
-          </button>
-          <ul>
-            {it.reasons.map((r, j) => (
-              <li key={j}>
-                <span aria-hidden="true">✓</span> {r}
-              </li>
-            ))}
-          </ul>
-        </div>
-      ))}
+      {items.map((it, i) => {
+        const bookmarked = bookmarkedIds ? bookmarkedIds.has(it.policy_id) : it.bookmarked;
+        return (
+          <div key={it.policy_id} className="why-item">
+            <div className="why-title">
+              <span className="why-no">{i + 1}</span>
+              <strong>{it.title}</strong>
+            </div>
+            {it.benefit && <p className="why-benefit">{it.benefit}</p>}
+            {it.facts?.length > 0 && (
+              <p className="why-facts">
+                {it.facts.map((f) => (
+                  <span key={f}>✓ {f}</span>
+                ))}
+              </p>
+            )}
+            <div className="chat-card-actions">
+              <button
+                type="button"
+                className={bookmarked ? 'btn-heart on' : 'btn-heart'}
+                onClick={() => onBookmark({ policy_id: it.policy_id, bookmarked })}
+              >
+                <HeartIcon size={15} /> 찜
+              </button>
+              <button type="button" className="btn-detail" onClick={() => onDetail(it.policy_id)}>
+                상세 보기
+              </button>
+            </div>
+          </div>
+        );
+      })}
     </div>
   );
 }
@@ -591,7 +607,12 @@ function ChatSheet() {
                   </div>
                 )}
                 {m.answer.why_items && (
-                  <WhyList items={m.answer.why_items} onDetail={(id) => goto(`/policies/${id}`)} />
+                  <WhyList
+                    items={m.answer.why_items}
+                    bookmarkedIds={bookmarkedIds}
+                    onDetail={(id) => goto(`/policies/${id}`)}
+                    onBookmark={bookmark}
+                  />
                 )}
                 {m.answer.sections && <ExplainBlock sections={m.answer.sections} />}
                 {m.answer.term ? (
