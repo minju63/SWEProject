@@ -189,8 +189,8 @@ button[aria-pressed="true"] > .my-selection-check { background: #2f7bf5; color: 
 .my-prep-docs li button.on span { color: #8793a4; text-decoration: line-through; }
 .my-prep-docs li em { flex: none; padding: 2px 7px; border-radius: 999px; background: #eef3fe; color: #2f7bf5; font-size: 11px; font-style: normal; font-weight: 700; }
 
-/* 메모 입력칸 아래 저장 버튼 */
-.my-memo-actions { display: flex; align-items: center; justify-content: flex-end; gap: 10px; margin-top: 8px; }
-.my-memo-actions small { color: #e26a8c; font-size: 11px; font-weight: 700; }
-.my-memo-actions button { min-height: 36px; padding: 0 18px; border: 0; border-radius: 10px; background: #2f7bf5; color: #fff; font-size: 13px; font-weight: 800; }
-.my-memo-actions button:disabled { background: #e8eef9; color: #8793a4; cursor: default; }
+/* 메모 줄 오른쪽의 저장 글자 버튼: 크기는 메모 글씨와 같게 */
+.my-memo { font-size: 11px; color: #8995a8; font-weight: 650; }
+.my-memo-head { display: flex; align-items: center; justify-content: space-between; }
+.my-memo-head button { padding: 0 2px; border: 0; background: none; color: #2f7bf5; font: inherit; font-weight: 800; }
+.my-memo-head button:disabled { color: #a3adba; cursor: default; }

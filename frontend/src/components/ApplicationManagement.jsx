@@ -15,16 +15,20 @@ function MemoField({ value, onSave }) {
     setSaving(false)
   }
   return (
-    <label className="my-memo">
-      메모
-      <textarea value={draft} onChange={(e) => setDraft(e.target.value)} maxLength={5000} />
-      <span className="my-memo-actions">
-        {changed && <small>저장하지 않은 내용이 있어요</small>}
+    <div className="my-memo">
+      <div className="my-memo-head">
+        <span>메모</span>
         <button type="button" disabled={!changed || saving} onClick={save}>
           {saving ? '저장 중…' : changed ? '저장' : '저장됨'}
         </button>
-      </span>
-    </label>
+      </div>
+      <textarea
+        aria-label="메모"
+        value={draft}
+        onChange={(e) => setDraft(e.target.value)}
+        maxLength={5000}
+      />
+    </div>
   )
 }
 export function Deadline({ date }) {
