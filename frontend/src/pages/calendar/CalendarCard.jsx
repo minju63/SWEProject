@@ -93,7 +93,6 @@ export default function CalendarCard({
             aria-expanded={docsOpen}
             onClick={() => setDocsOpen((v) => !v)}
           >
-            <i className={`ccard-chev${docsOpen ? ' open' : ''}`} aria-hidden="true" />
             <span>신청 준비물</span>
             <span className="ccard-bar" aria-hidden="true">
               <i style={{ width: `${item.docs_total ? (item.docs_checked / item.docs_total) * 100 : 0}%` }} />
@@ -101,6 +100,7 @@ export default function CalendarCard({
             <b>
               {item.docs_checked}/{item.docs_total}
             </b>
+            <i className={`ccard-chev${docsOpen ? ' open' : ''}`} aria-hidden="true" />
           </button>
           {docsOpen && (
             <ul>
