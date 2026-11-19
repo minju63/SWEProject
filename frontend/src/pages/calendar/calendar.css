@@ -858,22 +858,22 @@
   font-weight: 700;
 }
 .ccard-chev {
-  /* 검색 필터 시트의 화살표와 같은 모양·색 (글자 대신 모양으로 그려 가운데에 오게 한다) */
+  /* 검색 필터 시트의 화살표와 같은 모양·색, 카드 안에서는 조금 작게 */
   display: inline-block;
   flex: none;
-  width: 8px;
-  height: 8px;
+  width: 6px;
+  height: 6px;
   margin: 0 2px 0 0;
-  border-right: 2px solid #8793a4;
-  border-bottom: 2px solid #8793a4;
-  transform: translateY(-2px) rotate(45deg); /* 아래 방향 */
+  border-right: 1.5px solid #8793a4;
+  border-bottom: 1.5px solid #8793a4;
+  transform: translateY(-1.5px) rotate(45deg); /* 아래 방향 */
   transition: transform 0.15s;
 }
 .ccard-chev.open {
-  transform: translateY(2px) rotate(-135deg); /* 위 방향(펼친 상태) */
+  transform: translateY(1.5px) rotate(-135deg); /* 위 방향(펼친 상태) */
 }
 .ccard-chev.right {
-  margin: 0 0 0 4px;
+  margin: 0 0 0 3px;
   vertical-align: middle;
   transform: rotate(-45deg); /* 오른쪽 방향 */
 }
