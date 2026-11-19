@@ -5,7 +5,7 @@ import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { useLocation, useNavigate, useSearchParams } from 'react-router-dom';
 import { fetchPolicies, fetchSearchFilters } from '../../api/policies';
 import { addBookmark, fetchBookmarks, fetchProfile, removeBookmark } from '../../api/me';
-import { UNBOOKMARK_TOAST, useToastStore } from '../../store/toastStore';
+import { BOOKMARK_TOAST, BOOKMARK_TOAST_MS, UNBOOKMARK_TOAST, useToastStore } from '../../store/toastStore';
 import { useAuthStore } from '../../store/authStore';
 import { dDayText } from '../../utils/format';
 import SelectMenu from '../../components/SelectMenu.jsx';
@@ -210,6 +210,7 @@ export default function SearchPage() {
     onSuccess: (_result, { saved }) => {
       setBookmarkError('');
       if (saved) showToast(UNBOOKMARK_TOAST);
+      else showToast(BOOKMARK_TOAST, { duration: BOOKMARK_TOAST_MS });
       queryClient.invalidateQueries({ queryKey: ['bookmarks'] });
     },
     onError: () => setBookmarkError('관심 정책을 저장하지 못했어요. 다시 시도해주세요.'),

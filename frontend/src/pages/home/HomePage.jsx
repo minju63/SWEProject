@@ -5,7 +5,7 @@ import { fetchHome } from '../../api/home';
 import { addBookmark, removeBookmark } from '../../api/me';
 import { useAuthStore } from '../../store/authStore';
 import { useAssistantStore } from '../../store/assistantStore';
-import { UNBOOKMARK_TOAST, useToastStore } from '../../store/toastStore';
+import { BOOKMARK_TOAST, BOOKMARK_TOAST_MS, UNBOOKMARK_TOAST, useToastStore } from '../../store/toastStore';
 import PageHeader from '../../components/PageHeader.jsx';
 import StateMessage from '../../components/StateMessage.jsx';
 import { HeartIcon, SearchIcon } from '../../components/icons.jsx';
@@ -13,6 +13,7 @@ import DonutChart from './DonutChart.jsx';
 import HomePolicyCard from './HomePolicyCard.jsx';
 import { CATEGORY_ORDER, CATEGORY_STYLE } from './homeConfig.js';
 import CategoryIcon from './CategoryIcon.jsx';
+import { DragScroll } from '../../screens/minju/DragScroll';
 import { dDayText } from '../../utils/format';
 import './home.css';
 
@@ -62,7 +63,7 @@ export default function HomePage() {
     },
     onSuccess: (_, policy) => {
       if (policy.bookmarked) showToast(UNBOOKMARK_TOAST);
-      else showToast('찜했어요! 캘린더에 마감일이 추가됐어요', { duration: 1000 });
+      else showToast(BOOKMARK_TOAST, { duration: BOOKMARK_TOAST_MS });
     },
     onError: (e, _policy, ctx) => {
       if (ctx?.before) queryClient.setQueryData(['home'], ctx.before);
@@ -359,7 +360,7 @@ export default function HomePage() {
                   2주 이내 · 캘린더 ›
                 </Link>
               </div>
-              <div className="closing-row">
+              <DragScroll className="closing-row">
                 {data.closing_bookmarks.map((c) => (
                   <div key={c.policy_id} className="closing">
                     <div className="closing-top">
@@ -382,7 +383,7 @@ export default function HomePage() {
                       {c.docs_total > 0 && (
                         <b className="docs">
                           {' '}
-                          서류 {c.docs_checked}/{c.docs_total}
+                          신청 준비물 {c.docs_checked}/{c.docs_total}
                         </b>
                       )}
                     </p>
@@ -393,7 +394,7 @@ export default function HomePage() {
                     )}
                   </div>
                 ))}
-              </div>
+              </DragScroll>
             </section>
           )}
         </>

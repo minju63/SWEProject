@@ -3,7 +3,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { fetchEligibility, fetchPolicy, fetchPolicyExplanation, fetchSimilarPolicies, recordPolicyView } from '../../api/policies';
 import { addBookmark, removeBookmark } from '../../api/me';
-import { UNBOOKMARK_TOAST, useToastStore } from '../../store/toastStore';
+import { BOOKMARK_TOAST, BOOKMARK_TOAST_MS, UNBOOKMARK_TOAST, useToastStore } from '../../store/toastStore';
 import { supabase } from '../../lib/supabase';
 import { useAuthStore } from '../../store/authStore';
 import { dDayText } from '../../utils/format';
@@ -136,6 +136,7 @@ export default function PolicyDetailPage() {
     onSuccess: (_result, { saved }) => {
       setActionError('');
       if (saved) showToast(UNBOOKMARK_TOAST);
+      else showToast(BOOKMARK_TOAST, { duration: BOOKMARK_TOAST_MS });
       queryClient.setQueryData(['policy', user?.id, policyId], (current) =>
         current ? { ...current, is_bookmarked: !saved } : current);
       queryClient.invalidateQueries({ queryKey: ['bookmarks'] });

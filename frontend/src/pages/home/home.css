@@ -381,6 +381,7 @@
 }
 
 .closing-row {
+  scrollbar-width: none; /* 스크롤 막대는 숨기고 마우스로 끌어 넘긴다 */
   display: flex;
   gap: 10px;
   margin: 0 -20px;
@@ -444,4 +445,8 @@
   margin: 4px 0 0;
   font-size: 11px;
   color: var(--muted, #8a93a6);
+}
+
+.closing-row::-webkit-scrollbar {
+  display: none;
 }

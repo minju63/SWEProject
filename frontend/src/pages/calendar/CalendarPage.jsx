@@ -6,7 +6,7 @@ import { addBookmark, removeBookmark } from '../../api/me.js';
 import { setDocumentChecked } from '../../api/calendar.js';
 import { fetchCategories } from '../../api/policies.js';
 import { useAuthStore } from '../../store/authStore';
-import { UNBOOKMARK_TOAST, useToastStore } from '../../store/toastStore';
+import { BOOKMARK_TOAST, BOOKMARK_TOAST_MS, UNBOOKMARK_TOAST, useToastStore } from '../../store/toastStore';
 import PageHeader from '../../components/PageHeader.jsx';
 import { SettingsIcon } from '../../components/icons.jsx';
 import StateMessage from '../../components/StateMessage.jsx';
@@ -81,7 +81,7 @@ export default function CalendarPage() {
             }
           : cur
       );
-      showToast('찜했어요!', { duration: 1000 });
+      showToast(BOOKMARK_TOAST, { duration: BOOKMARK_TOAST_MS });
       return { before };
     },
     onError: (e, _item, ctx) => {
