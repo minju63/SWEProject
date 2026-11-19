@@ -459,7 +459,7 @@
   margin: 10px 0 5px;
   font-size: 12px;
   font-weight: 700;
-  color: var(--sub);
+  color: var(--text); /* 검정 계열 글씨 */
 }
 .closing-docs b {
   color: var(--primary);
