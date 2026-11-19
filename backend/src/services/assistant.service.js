@@ -54,12 +54,34 @@ const GENERIC_WORDS = new Set([
   '정책',
   '학생',
   '대학생',
+  // 분야를 말하는 흔한 단어: 질문에 자주 나와서 정책명으로 착각하기 쉽다
+  '취업',
+  '창업',
+  '주거',
+  '일자리',
+  '교육',
+  '훈련',
+  '혜택',
+  '장학금',
+  '월세',
+  '문화',
+  '신청',
+  '모집',
+  '안내',
 ]);
+// 조사가 붙은 흔한 말("취업에", "교육을")도 일반 단어로 본다
+const PARTICLE_TAIL = /(에|을|를|은|는|이|가|의|로|도|과|와)$/;
 function keywordsOf(title) {
   // 지역명(사하구 등)은 정책을 가리키는 단어가 아니므로 뺀다
   return title
     .split(/[\s·,()/]+/)
-    .filter((w) => w.length >= 2 && !GENERIC_WORDS.has(w) && !/[구군시도]$/.test(w));
+    .filter((w) => {
+      if (w.length < 2 || /[구군시도]$/.test(w)) return false;
+      if (/^\d+(년|월|차|기)?$/.test(w)) return false; // 연도·숫자만으로는 정책을 가리키지 않는다
+      if (GENERIC_WORDS.has(w)) return false;
+      const bare = w.replace(PARTICLE_TAIL, '');
+      return !(bare !== w && GENERIC_WORDS.has(bare));
+    });
 }
 
 function findMentionedPolicy(message, policies) {
