@@ -98,6 +98,8 @@ export default function MapPage() {
   const listRef = useRef(null);
   const cardRefs = useRef({});
   const handleStart = useRef(null);
+  const cardRef = useRef(null);
+  const [cardHeight, setCardHeight] = useState(CARD_HEIGHT); // 장소 카드의 실제 높이(아래 빈 공간을 줄이려고 내용 높이에 맞춘다)
   // 안내 문구: 기본 3초, 찜 안내는 약 2초 (FR-MAP-016·018)
   const say = useCallback((text, ms = 3000) => setNotice({ text, ms }), []);
 
@@ -215,9 +217,18 @@ export default function MapPage() {
   const heights = sheetHeights(regionHeight);
   const selectedPlace = selectedId ? (places.find((p) => p.id === selectedId) ?? null) : null;
   const cardMode = selectedPlace !== null;
-  const sheetHeight = cardMode ? CARD_HEIGHT : heights[sheet];
-  const bottomInset = cardMode ? CARD_HEIGHT : Math.min(heights[sheet], heights.mid);
+  const sheetHeight = cardMode ? cardHeight : heights[sheet];
+  const bottomInset = cardMode ? cardHeight : Math.min(heights[sheet], heights.mid);
   const detailPlace = detailId ? (places.find((p) => p.id === detailId) ?? null) : null;
+  useLayoutEffect(() => {
+    const el = cardRef.current;
+    if (!el) return undefined;
+    const measure = () => setCardHeight(Math.ceil(el.getBoundingClientRect().height));
+    measure();
+    const observer = new ResizeObserver(measure);
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, [selectedId]);
   const distanceTo = (place) => (myLocation ? distanceMeters(myLocation, place) : null);
 
   useLayoutEffect(() => {
@@ -383,6 +394,17 @@ export default function MapPage() {
     else if (delta >= 24) moveSheet(-1);
     else if (Math.abs(delta) < 8)
       setSheet(sheet === 'collapsed' ? 'mid' : sheet === 'mid' ? 'full' : 'mid');
+  }
+  // 장소 카드의 손잡이: 아래로 끌어 내리면(40px 이상) 카드를 닫고 목록으로 돌아간다
+  function onCardHandleDown(event) {
+    handleStart.current = { y: event.clientY, id: event.pointerId };
+    event.currentTarget.setPointerCapture(event.pointerId);
+  }
+  function onCardHandleUp(event) {
+    const start = handleStart.current;
+    handleStart.current = null;
+    if (!start || start.id !== event.pointerId) return;
+    if (event.clientY - start.y >= 40) setSelectedId(null);
   }
   function onHandleKey(event) {
     if (event.key === 'ArrowUp') {
@@ -648,8 +670,19 @@ export default function MapPage() {
           style={{ height: sheetHeight }}
         >
           {selectedPlace ? (
-            <>
-              <span className="mx-auto mb-3 mt-2.5 block h-1 w-10 shrink-0 rounded-full bg-black/15" />
+            <div ref={cardRef}>
+              <div
+                role="button"
+                tabIndex={0}
+                aria-label="장소 카드 닫기 (아래로 끌어 내리기)"
+                onPointerDown={onCardHandleDown}
+                onPointerUp={onCardHandleUp}
+                onPointerCancel={() => (handleStart.current = null)}
+                onKeyDown={(e) => (e.key === 'ArrowDown' || e.key === 'Escape') && setSelectedId(null)}
+                className="cursor-grab touch-none select-none px-5 pb-3 pt-2.5"
+              >
+                <span className="mx-auto block h-1 w-10 rounded-full bg-black/15" />
+              </div>
               <PlaceSummary
                 place={selectedPlace}
                 distance={distanceTo(selectedPlace)}
@@ -658,7 +691,7 @@ export default function MapPage() {
                 onOpen={() => setDetailId(selectedPlace.id)}
                 onClose={() => setSelectedId(null)}
               />
-            </>
+            </div>
           ) : (
             <>
               <div

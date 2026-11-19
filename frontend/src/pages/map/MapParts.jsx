@@ -135,7 +135,7 @@ export const PlaceRow = memo(function PlaceRow({
 
 export function PlaceSummary({ place, distance, saved, onToggleSaved, onOpen, onClose }) {
   return (
-    <div className="px-5 pb-5 pt-1">
+    <div className="px-5 pb-3 pt-0">
       <div className="flex items-start gap-2">
         <div className="min-w-0 flex-1">
           <div className="flex flex-wrap items-center gap-2">
