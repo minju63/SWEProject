@@ -3,6 +3,10 @@
 import cron from 'node-cron';
 import { runCultureSync } from './culture/syncCulture.js';
 import { runDueAlarms } from './alarms.js';
+import { runContentNotifications } from './contentNotifications.js';
+import { execFile } from 'node:child_process';
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
 import { buildEmbeddings } from '../../scripts/ai/buildEmbeddings.mjs';
 import { registrationCleanup } from '../services/registration-runtime.service.js';
 import { runApplicationResults } from '../services/application-results.service.js';
@@ -48,6 +52,8 @@ export function startJobs() {
     );
   startAlarmJob();
   startEmbeddingJob();
+  startHousingSyncJob();
+  startContentNotificationJob();
   if (process.env.CULTURE_SYNC_ENABLED !== 'true') return;
   const schedule = process.env.CULTURE_SYNC_CRON || '0 4 * * *';
   cron.schedule(
@@ -84,6 +90,49 @@ function startEmbeddingJob() {
     { name: 'ai-embeddings', timezone: 'Asia/Seoul', noOverlap: true }
   );
   console.log('AI 비서 벡터 조각 매일 03:30 갱신 예약');
+}
+
+// 주거 정책 매일 수집·적재 (UC-COM-003): PC 작업 스케줄러(SWEProject-Housing-Daily) 대신 서버에서 돌린다.
+// 같은 DB 에 쓰는 작업이라 한 곳에서만 켜고, PC 작업은 꺼야 한다. 하루 한 번 이미 끝났으면 스크립트가 알아서 건너뛴다.
+function startHousingSyncJob() {
+  if (process.env.HOUSING_SYNC_JOB_ENABLED !== 'true') return;
+  const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../../..');
+  cron.schedule(
+    process.env.HOUSING_SYNC_CRON || '0 9 * * *',
+    () =>
+      new Promise((resolve) => {
+        execFile(
+          process.execPath,
+          [path.join(root, 'backend/scripts/housing-sync/cli.cjs'), 'daily'],
+          { cwd: root, timeout: 4 * 3600_000, maxBuffer: 20 * 1024 * 1024 },
+          (error, stdout) => {
+            if (error) console.error(`[주거 정책 수집] 실패: ${error.message.split(String.fromCharCode(10))[0]}`);
+            else console.log(`[주거 정책 수집] 완료: ${String(stdout).trim().split(String.fromCharCode(10)).pop().slice(0, 200)}`);
+            resolve();
+          }
+        );
+      }),
+    { name: 'housing-sync', timezone: 'Asia/Seoul', noOverlap: true }
+  );
+  console.log('주거 정책 매일 수집 예약');
+}
+
+// 새 소식 알림 (FR-MY-012~015): 수집이 끝난 뒤(기본 10:30) 새 정책·문화행사·시설을 알림 센터에 넣는다
+function startContentNotificationJob() {
+  if (process.env.NOTIFY_JOB_ENABLED !== 'true') return;
+  cron.schedule(
+    process.env.NOTIFY_CRON || '30 10 * * *',
+    async () => {
+      try {
+        const r = await runContentNotifications();
+        console.log(`[새 소식 알림] 사용자 ${r.users}명, 발송 ${r.sent}건, 건너뜀 ${r.skipped}명, 실패 ${r.failed}건`);
+      } catch (e) {
+        console.error(`[새 소식 알림] 중단: ${e.message}`);
+      }
+    },
+    { name: 'content-notifications', timezone: 'Asia/Seoul', noOverlap: true }
+  );
+  console.log('새 소식 알림 매일 10:30 예약');
 }
 
 // 정책 알림: 1분마다 때가 된 알림을 알림 센터에 넣는다 (캘린더 FR-C06~C12)

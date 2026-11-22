@@ -512,7 +512,7 @@ create table notification (
   user_id          uuid not null references auth.users(id) on delete cascade,
   policy_id        uuid references policy(policy_id) on delete set null,
   alarm_id         uuid references saved_alarm(alarm_id) on delete set null,
-  type             text not null check (type in ('DEADLINE','NEW_MATCH','SYSTEM')),
+  type             text not null check (type in ('DEADLINE','NEW_MATCH','SYSTEM','POLICY','EVENT','FACILITY')),
   title            text not null,
   body             text,
   link             text,

@@ -227,3 +227,9 @@
 - **영향**: 백과사전 응답이 3초 안에 없거나 설명하지 못하면 모름 처리(FR-A-018)가 늘어난다. 용어 벡터 조각(TERM 50개)은 `buildEmbeddings.mjs --apply`로 DB에서 삭제했다.
 - **SRS 수정 위치**: 용어집(외부 백과사전), FR-A-012·014·018, AI 비서 사전조건·기본 흐름 2B, DATA-COM-007(용어 사전 → 사용하지 않음), BR-COM-018, AI-REQ-COM 용어 사전 활용, 인수 기준(사전 안/밖 구분 삭제). 수정본 docx에 반영함.
 - **정책 종류 질문 수정(FR-A-012, BR-COM-018)**: "청년 월세 지원이 뭐야?"처럼 "월세·취업·교통비" 같은 분야 말이 주제어인 질문이 "확인된 정보가 없어요"로 나오던 문제를 고쳤다. 정책명 매칭용 일반 단어 목록을 주제어 선택에도 같이 써서 "월세"가 빠지던 것이 원인이다. 이제 아무 뜻 없는 말(청년·지원·사업 등)만 빼고 모집 중 관련 혜택으로 답한다. SRS 문구 변경 없음.
+
+## 17. 새 소식 알림·주거 정책 서버 수집·사진 질문 제외
+- **새 소식 알림(FR-MY-012~015)**: `jobs/contentNotifications.js`가 매일 10:30(`NOTIFY_JOB_ENABLED=true`인 서버 한 곳) 최근 48시간 안에 DB에 들어온 새 정책·문화행사·내 거주 구의 새 시설과 맞춤 혜택(신청 가능·관심 분야 일치)을 알림 센터에 넣는다. 전체 알림·종류별 설정(`recommendations/policyAlerts/eventAlerts/facilityAlerts`)을 따르고, 같은 소식은 한 번만 보낸다. 현재 위치 좌표는 쓰지 않는다(거주 구 기준). 조용한 시간(`quietHours`)은 아직 반영하지 않는다.
+- **DB 변경(실행 필요)**: `migrations/20261122_notification_types.sql` — `notification.type`에 `POLICY`·`EVENT`·`FACILITY` 추가. 실행 전에는 맞춤 알림(NEW_MATCH)만 만들어진다.
+- **주거 정책 매일 수집(UC-COM-003)**: `HOUSING_SYNC_JOB_ENABLED=true`인 서버가 매일 09:00 `housing-sync daily`를 실행한다. 켜면 PC 작업 스케줄러(`SWEProject-Housing-Daily`)는 꺼야 한다(둘 다 켜면 같은 DB에 두 번 쓴다). 취업·금융 정책의 자동 수집은 아직 없다.
+- **사진 질문 제외**: FR-H-002의 "사진 질문 버튼"과 용어집·외부 API의 "사진 질문은 후순위" 문구를 "제공하지 않는다"로 고쳤다(SRS 수정본에 반영).
