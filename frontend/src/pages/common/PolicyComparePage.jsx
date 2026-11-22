@@ -89,7 +89,7 @@ function ConditionResult({ result, isLoading, isLoggedIn }) {
 
 export default function PolicyComparePage() {
   const { policyId, comparisonId } = useParams();
-  return <PolicyCompareView key={policyId} policyId={policyId} comparisonId={comparisonId} />;
+  return <PolicyCompareView key={policyId} policyId={policyId} comparisonId={comparisonId ?? 'select'} />;
 }
 
 function PolicyCompareView({ policyId, comparisonId }) {

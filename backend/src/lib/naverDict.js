@@ -1,4 +1,4 @@
-// 네이버 백과사전 검색 (NAVER API HUB). 용어 사전에 없는 용어의 설명 근거로만 쓴다.
+// 네이버 백과사전 검색 (NAVER API HUB). 용어 질문의 설명 근거로 쓴다.
 // .env 의 NAVER_CLIENT_ID, NAVER_CLIENT_SECRET 이 모두 있어야 켜진다. 키는 서버에서만 쓴다.
 const ENDPOINT = 'https://naverapihub.apigw.ntruss.com/search/v1/encyc';
 const CACHE_MS = 24 * 60 * 60 * 1000; // 같은 용어는 하루 동안 다시 부르지 않는다 (호출 한도 절약)

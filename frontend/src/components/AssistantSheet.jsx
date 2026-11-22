@@ -654,14 +654,14 @@ function ChatSheet() {
                 )}
                 {m.answer.from_dictionary ? (
                   <p className="ai-caution">
-                    우리 용어 사전에 없어서 네이버 백과사전의 설명을 쉬운 말로{' '}
+                    네이버 백과사전의 설명을 쉬운 말로{' '}
                     {m.answer.ai_generated ? '요약' : '옮겨'} 왔어요. 중요한 내용은 공식 사이트에서
                     꼭 확인해 주세요.
                   </p>
                 ) : (
                   m.answer.ai_generated && (
                     <p className="ai-caution">
-                      우리 용어 사전에 없어서 AI가 일반적인 뜻을 설명했어요. 정확하지 않을 수 있으니
+                      AI가 일반적인 뜻을 설명했어요. 정확하지 않을 수 있으니
                       중요한 내용은 공식 사이트에서 꼭 확인해 주세요.
                     </p>
                   )
