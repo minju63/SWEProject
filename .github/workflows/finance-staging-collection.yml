@@ -54,4 +54,4 @@ jobs:
             raw-only|stage-review) ;;
             *) echo '::error::Invalid collection mode'; exit 2 ;;
           esac
-          python auto_collect.py --"$COLLECTION_MODE" --max-pages 6 --skip-existing-day --fail-on-partial
+          python auto_collect.py --"$COLLECTION_MODE" --max-pages 6 --skip-existing-day

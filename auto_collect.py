@@ -36,6 +36,7 @@ USER_AGENT = (
     "(academic project; official-public-data collection; contact: local-project)"
 )
 REQUEST_TIMEOUT = 25
+CRAWL_TIMEOUT = 15
 REQUEST_DELAY_SECONDS = 0.6
 RESPECT_ROBOTS = True
 
@@ -2449,17 +2450,17 @@ def is_official_url(url: str) -> bool:
 
 def _crawl_get_retry_v12(session: requests.Session, url: str) -> requests.Response:
     """크롤링은 429/5xx 및 일시 네트워크 오류를 최대 3회 재시도."""
-    for attempt in range(3):
+    for attempt in range(2):
         try:
-            response = session.get(url, timeout=REQUEST_TIMEOUT, allow_redirects=True)
-            if response.status_code in {429, 500, 502, 503, 504} and attempt < 2:
-                time.sleep(2 ** attempt)
+            response = session.get(url, timeout=CRAWL_TIMEOUT, allow_redirects=True)
+            if response.status_code in {429, 500, 502, 503, 504} and attempt < 1:
+                time.sleep(1)
                 continue
             return response
         except (requests.Timeout, requests.ConnectionError):
-            if attempt == 2:
+            if attempt == 1:
                 raise
-            time.sleep(2 ** attempt)
+            time.sleep(1)
     raise RuntimeError('공식 사이트 크롤링 최대 재시도 초과')
 
 
@@ -4440,7 +4441,7 @@ def discover_index_finance_links(
     """부산청년플랫폼 같은 공식 목록/캘린더에서 장학·금융 행의 상세 링크를 찾는다."""
     if not robots_allowed(url):
         return []
-    r = session.get(url, timeout=REQUEST_TIMEOUT, allow_redirects=True)
+    r = session.get(url, timeout=CRAWL_TIMEOUT, allow_redirects=True)
     r.raise_for_status()
     time.sleep(REQUEST_DELAY_SECONDS)
     if not r.encoding or r.encoding.lower() in {"iso-8859-1", "ascii"}:

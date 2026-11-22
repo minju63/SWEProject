@@ -235,13 +235,17 @@ def run_raw_collection(collector, *, max_pages: int = 6, stage_review: bool = Fa
     session.hooks["response"].append(capture)
     counts = {"error": 0, "excluded": 0, "discovered": 0, "review": 0}
     rows: list[tuple[dict, str | None]] = []
+    error_summary: list[tuple[str, str, str]] = []
 
     def record_error(stage: str, error: object, source_url: str = "") -> None:
         counts["error"] += 1
+        message = safe_error(str(error), api_key)
+        safe_source = safe_url(source_url) if source_url else ""
+        error_summary.append((stage, safe_source, message))
         store.write("finance_raw_error", {
             "run_id": run_id, "occurred_at": datetime.now(collector.KST).isoformat(),
-            "stage": stage, "source_url": safe_url(source_url) if source_url else None,
-            "error_message": safe_error(str(error), api_key),
+            "stage": stage, "source_url": safe_source or None,
+            "error_message": message,
         })
 
     def record_log(stage: str, log: dict) -> None:
@@ -287,6 +291,7 @@ def run_raw_collection(collector, *, max_pages: int = 6, stage_review: bool = Fa
             except Exception as exc:
                 capture.check()
                 record_error("API_POLICY", exc)
+                raise
         for scope, index_url in collector.LOCAL_INDEX_SOURCES:
             try:
                 links = collector.discover_index_finance_links(session, index_url)
@@ -357,6 +362,7 @@ def run_raw_collection(collector, *, max_pages: int = 6, stage_review: bool = Fa
                     counts["review"] += 1
                 except Exception as exc:
                     record_error("REVIEW_STAGE", exc, row.get("원문URL", ""))
+                    raise
     except Exception as exc:
         fatal = exc
         if not capture.storage_error:
@@ -381,6 +387,18 @@ def run_raw_collection(collector, *, max_pages: int = 6, stage_review: bool = Fa
     print(f"[raw capture] run_id={run_id}, responses={capture.response_count}, "
           f"errors={counts['error']}, discovered={counts['discovered']}, "
           f"excluded={counts['excluded']}, review={counts['review']}")
+    if counts["error"]:
+        stage_counts: dict[str, int] = {}
+        for stage, _, _ in error_summary:
+            stage_counts[stage] = stage_counts.get(stage, 0) + 1
+        summary = ", ".join(f"{stage}={count}" for stage, count in sorted(stage_counts.items()))
+        print(f"::warning title=Partial collection::{counts['error']} individual errors; {summary}")
+        print("::group::Partial collection error summary")
+        for stage, source_url, message in error_summary[:10]:
+            print(f"[{stage}] {source_url or '(no URL)'}: {message}")
+        if len(error_summary) > 10:
+            print(f"... {len(error_summary) - 10} additional errors are recorded in finance_raw_error")
+        print("::endgroup::")
     if counts["error"] and fail_on_partial:
         raise RuntimeError(f"raw capture partial (run_id={run_id}, errors={counts['error']})")
     return run_id
