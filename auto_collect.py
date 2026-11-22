@@ -5834,251 +5834,7 @@ def sync_supabase_v12(rows: list[dict[str, Any]], logs: list[dict[str, Any]],
                 source_urls[API_URL] = 'API'
             for src, source_type in source_urls.items():
                 # URL 기재만으로 해당 페이지를 오늘 확인했다고 기록하지 않는다.
-                checked_now = src == API_URL or src in fetched_sources
-                if src != API_URL:
-                    if src in fetched_sources:
-                        source_type = '크롤링'
-                    elif any(x in clean_text(row.get('수집방식')) for x in ['검증값보완', '공식검증보정']):
-                        source_type = '수동 검증'
-                    else:
-                        source_type = 'API'  # API에서 반환된 공식 참조 URL
-                source_record = {
-                    'source_id': str(uuid5(POLICY_UUID_NAMESPACE, f'source:{policy_id}:{src}')),
-                    'policy_id': policy_id,
-                    'source_name': '온통청년 API' if src == API_URL else urlparse(src).netloc,
-                    'source_type': source_type, 'source_url': src,
-                }
-                if checked_now:
-                    source_record['last_checked_at'] = run_now
-                sb.table('policy_source').upsert(source_record, on_conflict='source_id').execute()
-            successes += 1
-        except Exception as exc:
-            err = {'정책명': row.get('정책명'), 'policy_id': policy_id,
-                   '수집유형': typ, '오류유형': type(exc).__name__, '오류': str(exc)[:900]}
-            errors.append(err)
-            try:
-                sb.table('collection_error').insert({
-                    'error_id': str(uuid4()), 'run_id': run_id,
-                    'policy_id': None, 'source_url': _safe_text_v12(row.get('원문URL')),
-                    'error_type': type(exc).__name__, 'error_message': str(exc)[:900],
-                    'retry_count': 0, 'resolution_status': '확인필요', 'occurred_at': run_now,
-                }).execute()
-            except Exception:
-                pass  # DB 로그 기록도 실패한 경우 로컬 CSV를 사용
-    # 기존 API/크롤링 수집기에서 수집한 실패 사유도 collection_error에 적재한다.
-    source_failures = {'API': 0, '크롤링': 0}
-    for log in logs:
-        for message in (log.get('errors') or []):
-            msg = clean_text(message)
-            typ = 'API' if 'API' in msg and '크롤링' not in msg else '크롤링'
-            source_failures[typ] += 1
-            try:
-                sb.table('collection_error').insert({
-                    'error_id': str(uuid4()), 'run_id': run_ids[typ], 'policy_id': None,
-                    'source_url': (log.get('crawl_urls') or [None])[0],
-                    'error_type': 'API_Error' if typ == 'API' else 'Crawl_Error',
-                    'error_message': msg[:900], 'retry_count': 0,
-                    'resolution_status': '확인필요', 'occurred_at': run_now,
-                }).execute()
-            except Exception:
-                errors.append({'정책명': log.get('seed'), 'policy_id': '', '수집유형': typ,
-                               '오류유형': 'Collection_Log_Error', '오류': msg[:900]})
-    for typ in ('API', '크롤링'):
-        failures = sum(1 for e in errors if e['수집유형'] == typ) + source_failures[typ]
-        count = sum(1 for r in rows if (('API' in clean_text(r.get('수집방식'))) == (typ == 'API')))
-        run_status = '실패' if count and failures == count else ('부분 성공' if failures else '성공')
-        sb.table('collection_run').update({
-            'finished_at': datetime.now(KST).isoformat(timespec='seconds'),
-            'status': run_status, 'collected_count': count,
-            'updated_count': max(0, count - sum(1 for e in errors if e['수집유형'] == typ)), 'failed_count': failures,
-        }).eq('run_id', run_ids[typ]).execute()
-    write_csv(out_dir / '07_DB동기화_오류.csv', errors,
-              ['정책명', 'policy_id', '수집유형', '오류유형', '오류'])
-    write_csv(out_dir / '08_수동검증값_충돌.csv', conflicts,
-              ['policy_id', 'field', 'auto_value', 'verified_value', 'action'])
-    return {'success': successes, 'failed': len(errors), 'conflicts': len(conflicts)}
-
-
-# =============================================================================
-# v13 품질 보강: 메뉴/타사업 차단, 검증되지 않은 논리 결합 금지,
-# 절차·준비물의 실제 항목 검증, 오래된 공고 차단, 안전한 URL/DB 매핑.
-# =============================================================================
-
-CONTAMINATION_TOKENS_V13 = (
-    '진단 결과 현황', '퍼스널정보를 설정', '내가 스크랩한 정책', '청년신문고',
-    '사회리더 대학생 멘토링 리더십 콘서트', '청년기업가정신재단',
-    '국가아동권리보장원', '부니콘 피치데이',
-    '경남동행론', '충청북도 금융취약계층', '소액보험 / 한부모가구',
-    '청년창업농 우수사례 /',
-)
-NAVIGATION_TOKENS_V13 = (
-    '개인정보처리방침', '사이트맵', '전체메뉴', '이용약관',
-    '자주 묻는 질문', '고객센터 >', '온라인 신청하기 / 사업목적',
-)
-CROSS_PROGRAM_TOKENS_V13 = (
-    '국가장학금 유형별 제출서류 안내표', '사업 목적 및 추진방향',
-)
-DOCUMENT_NOUN_V13 = re.compile(
-    r'서류|증명서|확인서|등본|초본|신분증|통장사본|사업자등록증|재학증명|졸업증명|'
-    r'급여명세|납세증명|원천징수|자격확인|계약서|동의서|신청서|영수증|진단서|'
-    r'근로계약|주민등록|가족관계|소득증빙|보증보험|보험증권|발급'
-)
-DOCUMENT_NOISE_V13 = re.compile(
-    r'^(?:구분|부|모|결혼|여부|유형|국가장학금|학생|대학|한국장학재단|'
-    r'제출대상여부|유의사항|신청대상|사업목적|항목|비고|합계|자료실|공지사항)$'
-)
-PROCESS_NOISE_V13 = re.compile(
-    r'^(?:신청방법|신청절차|접수방법|대학|학생|대학/학생|한국장학재단|'
-    r'사업 목적 및 추진방향|목표|STEP\s*\d+|신청하기|온라인 신청하기|'
-    r'구분|유형|참고|유의사항|문의처|기타)$', re.I
-)
-PROCESS_SIGNAL_V13 = re.compile(
-    r'신청|접수|작성|제출|발급|등록|인증|동의|심사|선정|통보|결과|지급|대출|'
-    r'실행|교육|확인|방문|가입|평가|심의|교부|추천|보증|납부|송금|승인|선발'
-)
-OFFICIAL_ROOTS_V13 = {'www.kosaf.go.kr', 'kosaf.go.kr', 'www.kinfa.or.kr', 'kinfa.or.kr',
-                      'www.rhof.or.kr', 'rhof.or.kr', 'www.work24.go.kr', 'work24.go.kr'}
-KNOWN_SAME_POLICY_V13 = {norm_name('주거안정장학금 지원'): '주거안정장학금'}
-# 기존 v11 공식 보정표에 있던 정책 지원대상. update() 중 기존 타 항목에 덮여 사라진 부분을 되살린다.
-ORIGINAL_VERIFIED_TARGET_V13 = {
-    norm_name('이공계 우수학생 국가장학금'):
-        '대한민국 국적을 소지한 자 / 국내 4년제 대학 자연과학·공학계열 학과(부)의 신입생 또는 국내 3학년 재학생 등 유형별 요건',
-}
-
-# 기존 v11 공식 보정표에 있던 정책 지원대상. update() 중 기존 타 항목에 덮여 사라진 부분을 되살린다.
-ORIGINAL_VERIFIED_TARGET_V13 = {
-    norm_name('이공계 우수학생 국가장학금'):
-        '대한민국 국적을 소지한 자 / 국내 4년제 대학 자연과학·공학계열 학과(부)의 신입생 또는 국내 3학년 재학생 등 유형별 요건',
-}
-
-# 기존 v11 공식 보정표에 있던 정책 지원대상. update() 중 기존 타 항목에 덮여 사라진 부분을 되살린다.
-ORIGINAL_VERIFIED_TARGET_V13 = {
-    norm_name('이공계 우수학생 국가장학금'):
-        '대한민국 국적을 소지한 자 / 국내 4년제 대학 자연과학·공학계열 학과(부)의 신입생 또는 국내 3학년 재학생 등 유형별 요건',
-}
-
-# 기존 v11 공식 보정표에 있던 정책 지원대상. update() 중 기존 타 항목에 덮여 사라진 부분을 되살린다.
-ORIGINAL_VERIFIED_TARGET_V13 = {
-    norm_name('이공계 우수학생 국가장학금'):
-        '대한민국 국적을 소지한 자 / 국내 4년제 대학 자연과학·공학계열 학과(부)의 신입생 또는 국내 3학년 재학생 등 유형별 요건',
-}
-
-# 기존 v11 공식 보정표에 있던 정책 지원대상. update() 중 기존 타 항목에 덮여 사라진 부분을 되살린다.
-ORIGINAL_VERIFIED_TARGET_V13 = {
-    norm_name('이공계 우수학생 국가장학금'):
-        '대한민국 국적을 소지한 자 / 국내 4년제 대학 자연과학·공학계열 학과(부)의 신입생 또는 국내 3학년 재학생 등 유형별 요건',
-}
-
-# 기존 v11 공식 보정표에 있던 정책 지원대상. update() 중 기존 타 항목에 덮여 사라진 부분을 되살린다.
-ORIGINAL_VERIFIED_TARGET_V13 = {
-    norm_name('이공계 우수학생 국가장학금'):
-        '대한민국 국적을 소지한 자 / 국내 4년제 대학 자연과학·공학계열 학과(부)의 신입생 또는 국내 3학년 재학생 등 유형별 요건',
-}
-
-
-
-def _present_v13(s: Any) -> bool:
-    return clean_text(s) not in SENTINELS_V12
-
-
-def _contaminated_v13(text: Any, kind: str = 'target') -> bool:
-    s = clean_text(text)
-    if not _present_v13(s):
-        return False
-    if any(x in s for x in CONTAMINATION_TOKENS_V13 + NAVIGATION_TOKENS_V13):
-        return True
-    if re.search(r'보도자료.{0,80}(?:한국장학재단|청년창업|MOU)', s):
-        return True
-    if kind in {'target', 'income'} and (s.startswith(('한눈에 보는 학자금 지원구간', '대출금 지급방법'))
-           or (s.count(' / ') > 6 and not re.search(r'청년|대학생|재학생|근로|소득|무주택', s))):
-        return True
-    return False
-
-
-def sanitize_policy_v13(row: dict[str, Any]) -> list[str]:
-    """추측 보완 금지: 오염값은 공식 검증 상수로만 복구, 없으면 확인필요로 복구."""
-    changes: list[str] = []
-    policy = clean_text(row.get('정책명'))
-    for col in ('지원대상_원문', '지원내용', '소득조건', '신청방법', '제외대상'):
-        value = clean_text(row.get(col))
-        if not _contaminated_v13(value, 'income' if col == '소득조건' else 'target'):
-            continue
-        fixed = ''
-        for key, fields in VERIFIED_POLICY_FIELD_OVERRIDES.items():
-            if norm_name(key) == norm_name(policy):
-                fixed = clean_text(fields.get(col))
-                break
-        curated_key = resolve_curated_key(policy, clean_text(row.get('신청범위')) or None)
-        if not fixed:
-            fixed = clean_text(CURATED_FALLBACKS.get(curated_key or '', {}).get('fields', {}).get(col))
-        if not fixed and col == '지원대상_원문':
-            fixed = ORIGINAL_VERIFIED_TARGET_V13.get(norm_name(policy), '')
-        if not fixed and col == '지원대상_원문':
-            fixed = ORIGINAL_VERIFIED_TARGET_V13.get(norm_name(policy), '')
-        if not fixed and col == '지원대상_원문':
-            fixed = ORIGINAL_VERIFIED_TARGET_V13.get(norm_name(policy), '')
-        if not fixed and col == '지원대상_원문':
-            fixed = ORIGINAL_VERIFIED_TARGET_V13.get(norm_name(policy), '')
-        if not fixed and col == '지원대상_원문':
-            fixed = ORIGINAL_VERIFIED_TARGET_V13.get(norm_name(policy), '')
-        if not fixed and col == '지원대상_원문':
-            fixed = ORIGINAL_VERIFIED_TARGET_V13.get(norm_name(policy), '')
-        if _contaminated_v13(fixed):
-            fixed = ''
-        row[col] = fixed if _present_v13(fixed) else EMPTY_UNKNOWN
-        changes.append(f'{col}:오염값 제거' + ('·공식검증값 적용' if _present_v13(fixed) else ''))
-
-    # 코드만 있는 경우(이용자 조건의 의미를 단독으로 알 수 없음) 조건이라고 단정하지 않음.
-    income = clean_text(row.get('소득조건'))
-    if re.fullmatch(r'소득조건구분코드\s*=\s*[0-9]+', income):
-        row['소득조건'] = EMPTY_UNKNOWN
-        changes.append('소득조건:의미 미확인 코드 제거')
-    elif re.match(r'^소득조건구분코드\s*=\s*\d+\s*\|', income):
-        row['소득조건'] = re.sub(r'^소득조건구분코드\s*=\s*\d+\s*\|\s*', '', income)
-
-    # 홈페이지/공지/알림 페이지를 신청 URL로 잘못 쓰지 않음.
-    apply = normalize_web_url(row.get('신청URL'))
-    if apply and not safe_application_url_v13(apply):
-        row['신청URL'] = EMPTY_UNKNOWN
-        changes.append('신청URL:신청 아닌 안내 링크 제거')
-
-    # 공식 출처로 보정된 정확한 연령 조건 등은 유지한다.
-    if changes:
-        row['비고'] = as_joined([row.get('비고'), 'v13정제=' + ', '.join(changes)])
-    return changes
-
-
-def safe_application_url_v13(url: Any) -> str:
-    u = normalize_apply_url(url)
-    if not u:
-        return ''
-    parsed = urlparse(u)
-    host = parsed.hostname or ''
-    path = parsed.path.lower()
-    route = f'{path}?{parsed.query.lower()}'
-    if host in OFFICIAL_ROOTS_V13 and path in {'', '/', '/main.do', '/ko/main.do'}:
-        return ''
-    if 'kosaf.go.kr' in host and any(t in route for t in (
-            'prelaplyalimi', '/ko/info.do', '/ko/notice.do', '/ko/press', 'press01_02',
-            'tuition.do', 'scholar.do')):
-        return ''
-    if 'work24.go.kr' in host and ('retrievyngjumpindivsptfndpaystatus' in route or
-                                    'retrieveyngjumpindivsptfndpaystatus' in route):
-        return ''  # 조회·지급상태 화면은 직접 신청 폼임을 보증하지 못함
-    return u
-
-
-def _plain_line_v13(s: str, kind: str) -> str:
-    s = _clean_document_item_v12(s)
-    s = re.sub(r'^[\[【□■◆○●*]+\s*', '', s).strip()
-    s = re.sub(r'^(?:\(?\d{1,2}\)?[.)]|[①-⑳]|STEP\s*\d+\s*[:：-]?)\s*', '', s, flags=re.I)
-    return s.strip(' \t.,')
-
-
-def _document_valid_v13(item: str) -> bool:
-    s = _plain_line_v13(item, 'docs')
-    if not s or len(s) > 170 or len(s) < 3 or DOCUMENT_NOISE_V13.fullmatch(s):
-        return False
+                checked_now = sr   return False
     if any(x in s for x in CONTAMINATION_TOKENS_V13 + CROSS_PROGRAM_TOKENS_V13):
         return False
     if re.search(r'(?:문의|상담|콜센터|전화|연락처|주소|카카오톡|바로가기|FAQ|사이트맵|신청\s*후\s*\d|참고하세요|화면|링크|안내표|요건에\s*관한\s*표|발급서류.*예외)', s):
@@ -7540,6 +7296,8 @@ def main() -> None:
     parser.add_argument("--sync-db", action="store_true", help="출력 후 Supabase PostgreSQL 공통 policy 테이블로 저장 (서버 환경변수 필요)")
     parser.add_argument("--raw-only", action="store_true", help="정제 전 API·공식 페이지 응답을 별도 원본 이력 테이블에만 저장")
     parser.add_argument("--stage-review", action="store_true", help="원본과 정제 JSON을 비공개 검토 테이블에만 저장")
+    parser.add_argument("--skip-existing-day", action="store_true", help="같은 날짜·모드의 기존 성공 수집을 건너뛰고 미완료 수집은 실패 처리")
+    parser.add_argument("--fail-on-partial", action="store_true", help="오류 이력을 저장한 부분 실패를 종료 코드 1로 표시")
     parser.add_argument(
         "--region", default="",
         choices=["전국", "부산", "부산진구", "사하구"],
@@ -7554,8 +7312,13 @@ def main() -> None:
             parser.error("원본·검토 수집 옵션은 기존 출력·DB 동기화 옵션과 함께 사용할 수 없습니다")
         from raw_collection import run_raw_collection
         run_raw_collection(sys.modules[__name__], max_pages=max(1, args.max_pages),
-                           stage_review=args.stage_review)
+                           stage_review=args.stage_review,
+                           skip_existing_day=args.skip_existing_day,
+                           fail_on_partial=args.fail_on_partial)
         return
+
+    if args.skip_existing_day or args.fail_on_partial:
+        parser.error("--skip-existing-day와 --fail-on-partial은 원본·검토 수집에서만 사용할 수 있습니다")
 
     if args.self_test:
         run_self_tests()
@@ -7802,3 +7565,4 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
+
