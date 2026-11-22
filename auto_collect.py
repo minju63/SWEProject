@@ -7,6 +7,7 @@ import io
 import json
 import os
 import re
+import sys
 import time
 import unicodedata
 import urllib.robotparser
@@ -5577,6 +5578,38 @@ def classify_policy_v12(row: dict[str, Any]) -> tuple[str | None, list[str], str
     return None, [], '확인필요', '규칙 기반'
 
 
+def document_items_for_review_v17(values: Any, source_url: str | None = None) -> list[dict[str, Any]] | None:
+    """Keep the existing extractor's strings, then shape them for the DB checklist."""
+    parsed = _json_col_v12(values)
+    if parsed is None:
+        return None
+    if not isinstance(parsed, list):
+        return None
+    result: list[dict[str, Any]] = []
+    seen: set[str] = set()
+    for item in parsed:
+        name = clean_text(item if isinstance(item, str) else item.get('name') if isinstance(item, dict) else '')
+        if not name or name in seen:
+            continue
+        seen.add(name)
+        if isinstance(item, dict):
+            # Existing object-shaped checklist entries keep their keys and review flags.
+            result.append({**item, 'name': name})
+            continue
+        optional = bool(re.search(r'선택\s*(?:제출|서류)|제출\s*선택|해당자만|해당\s*시|(?:인|자)의\s*경우', name))
+        mandatory = bool(re.search(r'필수\s*(?:제출|서류)|반드시\s*제출', name))
+        condition = re.match(r'^(.{2,80}?(?:경우|해당\s*시))\s*[:：]', name)
+        result.append({
+            'key': 'official:' + hashlib.sha256(name.encode('utf-8')).hexdigest()[:20],
+            'name': name,
+            'required': False if optional and not mandatory else True if mandatory else None,
+            'confirmed': False,
+            'condition': condition.group(1) if condition else None,
+            'source_url': source_url,
+        })
+    return result
+
+
 def apply_post_dedupe_v12(row: dict[str, Any]) -> None:
     row['collection_domain'] = '장학·금융'
     category, subs, status, method = classify_policy_v12(row)
@@ -5594,6 +5627,10 @@ def apply_post_dedupe_v12(row: dict[str, Any]) -> None:
     for field in ('application_process', 'required_documents'):
         if _json_col_v12(row.get(field)) is None:
             row[field] = ''
+    documents = document_items_for_review_v17(row.get('required_documents'),
+                                               normalize_source_url(row.get('신청준비물_근거URL')) or None)
+    if documents is not None:
+        row['required_documents'] = _field_json_v12(documents)
     for field in ('신청절차_근거URL', '신청준비물_근거URL'):
         row[field] = row.get(field) or ''
 
@@ -6384,12 +6421,15 @@ def build_eligibility_v12(row: dict[str, Any]) -> tuple[dict[str, Any], bool]:
         target = ''
     if _contaminated_v13(exclusion):
         exclusion = ''
+    source_url = normalize_source_url(row.get('원문URL')) or None
     required = []
     if _present_v13(target):
-        required.append({'operator': 'RAW', 'text': target})
+        required.append({'operator': 'RAW', 'text': target, 'original_text': target,
+                         'source_field': '지원대상_원문', 'source_url': source_url})
     # '기타조건'은 v11에서는 제출서류·전화상담·홈페이지 안내까지 들어오므로
     # 필수 자격조건 자동 변환에서 제외. 필요한 경우 관리자가 공식공고로 검증 후 보완.
-    exclusions = [{'operator': 'NOT', 'condition': {'operator': 'RAW', 'text': exclusion}}] if _present_v13(exclusion) else []
+    exclusions = [{'operator': 'RAW', 'text': exclusion, 'original_text': exclusion,
+                   'source_field': '제외대상', 'source_url': source_url}] if _present_v13(exclusion) else []
     hints = {}
     if clean_text(row.get('최소연령')).isdigit() or clean_text(row.get('최대연령')).isdigit():
         hints['age'] = {'min': _safe_int_v12(row.get('최소연령')),
@@ -6401,10 +6441,23 @@ def build_eligibility_v12(row: dict[str, Any]) -> tuple[dict[str, Any], bool]:
                            ('혼인 상태', 'marital_status')]:
         if _present_v13(row.get(source)):
             hints[output] = clean_text(row.get(source))
+    # 힌트는 판정기가 읽지 않는다. 지원대상 밖에 따로 추출된 원문을 검토자에게만 보여준다.
+    raw_fields = (('연령조건_원문', 'age'), ('거주조건_원문', 'region'),
+                  ('소득조건', 'income'), ('재산조건', 'assets'),
+                  ('취업상태', 'employment'), ('학력·재학조건', 'student_status'))
+    for source, output in raw_fields:
+        value = clean_text(row.get(source))
+        if _present_v13(value) and not _contaminated_v13(value):
+            hints[f'{output}_raw'] = {'text': value, 'source_field': source,
+                                      'source_url': source_url, 'verification': '확인필요'}
+            if value not in target and not re.fullmatch(r'(?:별도\s*)?(?:제한\s*없음|해당\s*없음|미표기|무관)', value):
+                required.append({'operator': 'RAW', 'field': output, 'text': value,
+                                 'original_text': value, 'source_field': source,
+                                 'source_url': source_url})
     return {
         'verification': '확인필요', 'logic': 'UNVERIFIED',
         'required': required, 'exclusions': exclusions, 'structured_hints': hints,
-        'source_url': normalize_source_url(row.get('원문URL')) or None,
+        'source_url': source_url,
         'note': '조건 원문 보관용. AND·OR 완전성과 제외조건은 미검증; 백엔드 신청가능 확정 금지',
     }, False
 
@@ -7485,12 +7538,24 @@ def main() -> None:
     parser.add_argument('--reprocess-csv', default='', help='기존 01 CSV를 네트워크 없이 재정제')
     parser.add_argument('--logs-csv', default='', help='--reprocess-csv와 함께 사용할 기존 04_수집로그.csv 경로(접근실패 원인 근거)')
     parser.add_argument("--sync-db", action="store_true", help="출력 후 Supabase PostgreSQL 공통 policy 테이블로 저장 (서버 환경변수 필요)")
+    parser.add_argument("--raw-only", action="store_true", help="정제 전 API·공식 페이지 응답을 별도 원본 이력 테이블에만 저장")
+    parser.add_argument("--stage-review", action="store_true", help="원본과 정제 JSON을 비공개 검토 테이블에만 저장")
     parser.add_argument(
         "--region", default="",
         choices=["전국", "부산", "부산진구", "사하구"],
         help="특정 지역만 출력하고 싶을 때 사용",
     )
     args = parser.parse_args()
+
+    if args.raw_only or args.stage_review:
+        if args.raw_only and args.stage_review:
+            parser.error("--raw-only와 --stage-review는 동시에 사용할 수 없습니다")
+        if args.sync_db or args.reprocess_csv or args.logs_csv or args.self_test or args.no_api or args.no_local_index or args.region:
+            parser.error("원본·검토 수집 옵션은 기존 출력·DB 동기화 옵션과 함께 사용할 수 없습니다")
+        from raw_collection import run_raw_collection
+        run_raw_collection(sys.modules[__name__], max_pages=max(1, args.max_pages),
+                           stage_review=args.stage_review)
+        return
 
     if args.self_test:
         run_self_tests()
