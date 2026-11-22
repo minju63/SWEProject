@@ -47,7 +47,7 @@ export function EventChip({ status }) {
   if (!status) return null;
   return (
     <span
-      className={`text-[12px] font-extrabold ${status === '진행 중' ? 'text-[#a0672a]' : 'text-[#2F7BF5]'}`}
+      className={`text-[12px] font-extrabold ${status === '진행 중' ? 'text-[#a0672a]' : 'text-[#2468E0]'}`}
     >
       {status}
     </span>
@@ -80,7 +80,7 @@ export function HeartButton({ place, saved, onToggle, className = 'size-10' }) {
       aria-pressed={saved}
       aria-label={saved ? `${place.name} 찜 해제` : `${place.name} 찜하기`}
       className={`grid shrink-0 place-items-center rounded-full transition active:scale-90 ${className} ${
-        saved ? 'text-[#f04438]' : 'text-black/40'
+        saved ? 'text-[#f04438]' : 'text-black/60'
       }`}
     >
       <Glyph name="heart" className={`size-[22px] ${saved ? 'fill-current' : ''}`} />
@@ -117,7 +117,7 @@ export const PlaceRow = memo(function PlaceRow({
       <CategoryBadge kind={place.category} color={place.color} className="size-11 shrink-0" />
       <div className="min-w-0 flex-1">
         <h3 className="truncate text-[15px] font-black tracking-[-0.03em]">{place.name}</h3>
-        <p className="mt-0.5 truncate text-[12px] font-medium text-black/50">
+        <p className="mt-0.5 truncate text-[12px] font-medium text-black/60">
           {place.categoryName}
           {place.address && ` · ${place.address}`}
           {place.liveEventCount > 0 && ` · 행사 ${place.liveEventCount}`}
@@ -149,13 +149,13 @@ export function PlaceSummary({ place, distance, saved, onToggleSaved, onOpen, on
           type="button"
           onClick={onClose}
           aria-label="선택 닫기"
-          className="-mr-2 grid size-10 shrink-0 place-items-center rounded-full text-black/50"
+          className="-mr-2 grid size-10 shrink-0 place-items-center rounded-full text-black/60"
         >
           <Glyph name="close" className="size-5" />
         </button>
       </div>
       {place.address && (
-        <p className="mt-1.5 truncate text-[13px] font-medium text-black/55">{place.address}</p>
+        <p className="mt-1.5 truncate text-[13px] font-medium text-black/60">{place.address}</p>
       )}
       {distance !== null && (
         <p className="mt-2 text-[14px] font-extrabold text-[#a0672a]">{formatDistance(distance)}</p>
@@ -172,7 +172,7 @@ export function PlaceSummary({ place, distance, saved, onToggleSaved, onOpen, on
           href={kakaoLink(place)}
           target="_blank"
           rel="noreferrer"
-          className="flex-1 rounded-xl border border-[#2F7BF5] bg-white py-3 text-center text-[14px] font-black text-[#2F7BF5] no-underline transition active:scale-[0.98]"
+          className="flex-1 rounded-xl border border-[#2F7BF5] bg-white py-3 text-center text-[14px] font-black text-[#2468E0] no-underline transition active:scale-[0.98]"
         >
           길찾기
         </a>
@@ -184,13 +184,13 @@ export function PlaceSummary({ place, distance, saved, onToggleSaved, onOpen, on
 export function DetailRow({ label, children }) {
   return (
     <div className="flex gap-4 border-t border-black/[0.07] py-3.5 text-[14px]">
-      <span className="w-14 shrink-0 font-medium text-black/45">{label}</span>
+      <span className="w-14 shrink-0 font-medium text-black/60">{label}</span>
       <div className="min-w-0 flex-1 break-words font-semibold text-black/80">{children}</div>
     </div>
   );
 }
 
-const LINK = 'text-[#2F7BF5] underline underline-offset-2';
+const LINK = 'text-[#2468E0] underline underline-offset-2';
 
 export function PlaceDetail({ place, distance, saved, onToggleSaved, onClose }) {
   const detail = useQuery({ queryKey: ['place', place.id], queryFn: () => fetchPlace(place.id) });
@@ -228,7 +228,7 @@ export function PlaceDetail({ place, distance, saved, onToggleSaved, onClose }) 
             />
           </figure>
         )}
-        <div className="flex flex-wrap items-center gap-2 text-[12px] font-medium text-black/50">
+        <div className="flex flex-wrap items-center gap-2 text-[12px] font-medium text-black/60">
           <CategoryTag place={place} />
           <span>{place.placeType}</span>
           {distance !== null && (
@@ -288,13 +288,13 @@ export function PlaceDetail({ place, distance, saved, onToggleSaved, onClose }) 
 
         <h4 className="mb-3 mt-6 text-[15px] font-black tracking-[-0.03em]">진행·예정 행사</h4>
         {detail.isLoading ? (
-          <p className="py-6 text-center text-[13px] font-medium text-black/40">불러오는 중…</p>
+          <p className="py-6 text-center text-[13px] font-medium text-black/60">불러오는 중…</p>
         ) : detail.error ? (
-          <p className="py-6 text-center text-[13px] font-medium text-black/40">
+          <p className="py-6 text-center text-[13px] font-medium text-black/60">
             행사 정보를 불러오지 못했어요
           </p>
         ) : events.length === 0 ? (
-          <p className="py-6 text-center text-[13px] font-medium text-black/40">
+          <p className="py-6 text-center text-[13px] font-medium text-black/60">
             진행 중이거나 예정된 행사가 없어요
           </p>
         ) : (
@@ -303,14 +303,14 @@ export function PlaceDetail({ place, distance, saved, onToggleSaved, onClose }) 
               <li key={event.id} className="rounded-xl border border-black/[0.1] p-4">
                 <p className="flex items-center gap-2">
                   <EventChip status={event.status} />
-                  <span className="text-[12px] font-extrabold text-black/50">{event.genre}</span>
+                  <span className="text-[12px] font-extrabold text-black/60">{event.genre}</span>
                 </p>
                 <p className="mt-1.5 text-[15px] font-black leading-snug tracking-[-0.03em]">
                   {event.title}
                 </p>
                 <p className="mt-1.5 text-[13px] font-semibold text-black/60">
                   {eventPeriod(event)} ·{' '}
-                  <span className={event.isFree ? 'text-[#2F7BF5]' : ''}>
+                  <span className={event.isFree ? 'text-[#2468E0]' : ''}>
                     {event.isFree ? '무료' : '유료'}
                   </span>
                 </p>
@@ -318,7 +318,7 @@ export function PlaceDetail({ place, distance, saved, onToggleSaved, onClose }) 
                   type="button"
                   onClick={() => setOpenEventId(openEventId === event.id ? null : event.id)}
                   aria-expanded={openEventId === event.id}
-                  className="mt-3 h-10 w-full rounded-lg bg-[#eaf2fe] text-[14px] font-extrabold text-[#2F7BF5]"
+                  className="mt-3 h-10 w-full rounded-lg bg-[#eaf2fe] text-[14px] font-extrabold text-[#2468E0]"
                 >
                   {openEventId === event.id ? '접기' : '상세보기'}
                 </button>
@@ -328,7 +328,7 @@ export function PlaceDetail({ place, distance, saved, onToggleSaved, onClose }) 
           </ul>
         )}
 
-        <div className="mt-6 space-y-1 text-[11px] font-medium leading-relaxed text-black/35">
+        <div className="mt-6 space-y-1 text-[11px] font-medium leading-relaxed text-black/60">
           <p>데이터 기준일 {place.collectedAt}</p>
           <p>데이터 출처 {dataSource(place, events.length > 0)}</p>
           {place.imageUrl && place.imageSource && (
@@ -373,7 +373,7 @@ function EventDetailBody({ event }) {
           공식 상세 안내 · 예매
         </a>
       )}
-      <p className="mt-2 text-[11px] font-medium text-black/35">
+      <p className="mt-2 text-[11px] font-medium text-black/60">
         데이터 기준일 {event.collectedAt}
       </p>
     </div>
@@ -500,7 +500,7 @@ export function LocationGuide({ top, onRetry, onClose }) {
           type="button"
           onClick={onClose}
           aria-label="닫기"
-          className="-m-2 grid size-10 place-items-center text-black/40"
+          className="-m-2 grid size-10 place-items-center text-black/60"
         >
           <Glyph name="close" className="size-4" />
         </button>
@@ -510,7 +510,7 @@ export function LocationGuide({ top, onRetry, onClose }) {
           <li key={g.id} className={i === 0 ? '' : 'opacity-60'}>
             <p className="text-[12px] font-extrabold">
               {g.label}
-              {i === 0 && <span className="ml-1 text-[#2F7BF5]">지금 쓰는 브라우저</span>}
+              {i === 0 && <span className="ml-1 text-[#2468E0]">지금 쓰는 브라우저</span>}
             </p>
             <p className="text-[12px] font-medium leading-snug text-black/60">{g.steps}</p>
           </li>
@@ -519,7 +519,7 @@ export function LocationGuide({ top, onRetry, onClose }) {
       <button
         type="button"
         onClick={onRetry}
-        className="mt-3 h-10 w-full rounded-lg border border-[#2F7BF5] text-[13px] font-extrabold text-[#2F7BF5]"
+        className="mt-3 h-10 w-full rounded-lg border border-[#2F7BF5] text-[13px] font-extrabold text-[#2468E0]"
       >
         권한을 켰어요, 다시 시도
       </button>

@@ -90,7 +90,7 @@ export default function MapHeader({
           }}
           placeholder="장소 검색"
           aria-label="장소 검색"
-          className="h-11 w-full rounded-full bg-white pl-11 pr-4 text-[14px] font-semibold outline-none placeholder:text-black/35 focus:ring-2 focus:ring-[#2F7BF5]"
+          className="h-11 w-full rounded-full bg-white pl-11 pr-4 text-[14px] font-semibold outline-none placeholder:text-black/60 focus:ring-2 focus:ring-[#2F7BF5]"
         />
         {open && q && (
           <>
@@ -102,7 +102,7 @@ export default function MapHeader({
             />
             <ul className="absolute inset-x-0 top-12 z-50 max-h-[50vh] overflow-y-auto rounded-2xl bg-white py-1 shadow-[0_8px_28px_rgba(23,25,35,0.18)]">
               {hits.length === 0 && (
-                <li className="px-4 py-3 text-[13px] font-medium text-black/45">
+                <li className="px-4 py-3 text-[13px] font-medium text-black/60">
                   검색 결과가 없어요
                 </li>
               )}
@@ -120,7 +120,7 @@ export default function MapHeader({
                     />
                     <span className="min-w-0 flex-1">
                       <span className="block truncate text-[14px] font-extrabold">{hit.title}</span>
-                      <span className="block truncate text-[12px] font-medium text-black/50">
+                      <span className="block truncate text-[12px] font-medium text-black/60">
                         {hit.sub}
                       </span>
                     </span>
@@ -142,7 +142,7 @@ export default function MapHeader({
                 type="button"
                 onClick={() => setResultsOpen(false)}
                 aria-label="검색 결과 닫기"
-                className="grid size-9 place-items-center text-black/40"
+                className="grid size-9 place-items-center text-black/60"
               >
                 <Glyph name="close" className="size-5" />
               </button>
@@ -162,7 +162,7 @@ export default function MapHeader({
                     />
                     <span className="min-w-0 flex-1">
                       <span className="block truncate text-[15px] font-extrabold">{hit.title}</span>
-                      <span className="block truncate text-[12px] font-medium text-black/50">
+                      <span className="block truncate text-[12px] font-medium text-black/60">
                         {hit.sub}
                       </span>
                     </span>

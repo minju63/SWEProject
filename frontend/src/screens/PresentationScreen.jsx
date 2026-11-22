@@ -2,11 +2,11 @@ import { Icon } from './HomeScreen'
 function FrameLabel({ number, title, flow }) {
   return (
     <div className="mb-4 px-1">
-      <p className="text-xs font-extrabold uppercase tracking-[0.12em] text-[#2F7BF5]">
+      <p className="text-xs font-extrabold uppercase tracking-[0.12em] text-[#2468E0]">
         Frame {number}
       </p>
       <h2 className="mt-1 text-xl font-black tracking-[-0.04em] text-[#171923]">{title}</h2>
-      <p className="mt-1 text-[11px] font-semibold text-black/35">{flow}</p>
+      <p className="mt-1 text-[11px] font-semibold text-black/60">{flow}</p>
     </div>
   )
 }
@@ -29,7 +29,7 @@ function BottomNav() {
       ].map((item) => (
         <div
           key={item.label}
-          className={`flex flex-col items-center gap-1 text-[9px] font-bold ${item.active ? 'text-[#2F7BF5]' : 'text-black/25'}`}
+          className={`flex flex-col items-center gap-1 text-[9px] font-bold ${item.active ? 'text-[#2468E0]' : 'text-black/25'}`}
         >
           <Icon name={item.icon} className="size-5" />
           {item.label}
@@ -47,29 +47,29 @@ function MyMainFrame() {
       </div>
       <div className="bg-white px-5 pb-5 pt-2">
         <div className="flex items-center gap-3">
-          <span className="grid size-14 place-items-center rounded-[19px] bg-[#f1f3fb] text-[#2F7BF5]">
+          <span className="grid size-14 place-items-center rounded-[19px] bg-[#f1f3fb] text-[#2468E0]">
             <Icon name="user" className="size-7" />
           </span>
           <div className="min-w-0 flex-1">
             <div className="flex items-center gap-2">
               <b className="text-lg">은혜님</b>
-              <span className="rounded-full bg-[#f1f3fb] px-2 py-1 text-[9px] font-black text-[#2F7BF5]">
+              <span className="rounded-full bg-[#f1f3fb] px-2 py-1 text-[9px] font-black text-[#2468E0]">
                 맞춤정보 80%
               </span>
             </div>
-            <p className="mt-1 text-[10px] font-semibold text-black/40">
+            <p className="mt-1 text-[10px] font-semibold text-black/60">
               만 24세 · 부산광역시 사하구 · 취업준비생
             </p>
           </div>
-          <span className="grid size-9 place-items-center rounded-xl border border-black/10 text-black/40">
+          <span className="grid size-9 place-items-center rounded-xl border border-black/10 text-black/60">
             <Icon name="settings" className="size-4" />
           </span>
         </div>
         <div className="mt-3 flex gap-1.5">
-          <span className="rounded-full bg-[#f1f3fb] px-2.5 py-1.5 text-[9px] font-bold text-[#2F7BF5]">
+          <span className="rounded-full bg-[#f1f3fb] px-2.5 py-1.5 text-[9px] font-bold text-[#2468E0]">
             #취업·진로
           </span>
-          <span className="rounded-full bg-[#f1f3fb] px-2.5 py-1.5 text-[9px] font-bold text-[#2F7BF5]">
+          <span className="rounded-full bg-[#f1f3fb] px-2.5 py-1.5 text-[9px] font-bold text-[#2468E0]">
             #주거·생활
           </span>
         </div>
@@ -84,8 +84,8 @@ function MyMainFrame() {
               key={label}
               className="rounded-2xl border border-black/[0.04] bg-[#f7f8fb] py-3 text-center"
             >
-              <b className="block text-[21px] leading-none text-[#2F7BF5]">{count}</b>
-              <span className="mt-2 block text-[8px] font-bold text-black/40">{label}</span>
+              <b className="block text-[21px] leading-none text-[#2468E0]">{count}</b>
+              <span className="mt-2 block text-[8px] font-bold text-black/60">{label}</span>
             </div>
           ))}
         </div>
@@ -93,10 +93,10 @@ function MyMainFrame() {
       <div className="px-5 py-5">
         <div className="flex items-end justify-between">
           <div>
-            <p className="text-[10px] font-extrabold text-[#2F7BF5]">내가 직접 기록하고 관리해요</p>
+            <p className="text-[10px] font-extrabold text-[#2468E0]">내가 직접 기록하고 관리해요</p>
             <h4 className="mt-1 text-lg font-black">내 신청 관리</h4>
           </div>
-          <span className="rounded-full bg-[#f1f3fb] px-3 py-2 text-[9px] font-black text-[#2F7BF5]">
+          <span className="rounded-full bg-[#f1f3fb] px-3 py-2 text-[9px] font-black text-[#2468E0]">
             ＋ 혜택 추가
           </span>
         </div>
@@ -108,26 +108,26 @@ function MyMainFrame() {
           ].map(([label, count], index) => (
             <span
               key={label}
-              className={`rounded-full px-3 py-2 text-[9px] font-black ${index === 0 ? 'bg-[#2F7BF5] text-white' : 'bg-white text-black/40'}`}
+              className={`rounded-full px-3 py-2 text-[9px] font-black ${index === 0 ? 'bg-[#2F7BF5] text-white' : 'bg-white text-black/60'}`}
             >
               {label} {count}
             </span>
           ))}
         </div>
-        <div className="mt-3 rounded-xl bg-[#f1f3fb] p-2.5 text-[9px] font-semibold leading-4 text-[#2F7BF5]">
+        <div className="mt-3 rounded-xl bg-[#f1f3fb] p-2.5 text-[9px] font-semibold leading-4 text-[#2468E0]">
           공식 사이트와 자동 연동되지 않아요. 직접 관리해주세요.
         </div>
         <div className="mt-3 rounded-[22px] bg-white p-4 shadow-[0_5px_18px_rgba(23,25,35,0.04)]">
           <div className="flex gap-3">
-            <span className="grid size-11 place-items-center rounded-2xl bg-[#f1f3fb] text-[#2F7BF5]">
+            <span className="grid size-11 place-items-center rounded-2xl bg-[#f1f3fb] text-[#2468E0]">
               <Icon name="coin" className="size-5" />
             </span>
             <div className="min-w-0 flex-1">
               <div className="flex gap-1">
-                <span className="rounded bg-[#f1f3fb] px-2 py-1 text-[8px] font-black text-[#2F7BF5]">
+                <span className="rounded bg-[#f1f3fb] px-2 py-1 text-[8px] font-black text-[#2468E0]">
                   장학·금융
                 </span>
-                <span className="rounded bg-[#f3f4f6] px-2 py-1 text-[8px] font-black text-black/35">
+                <span className="rounded bg-[#f3f4f6] px-2 py-1 text-[8px] font-black text-black/60">
                   전국
                 </span>
               </div>
@@ -168,9 +168,9 @@ function ApplicationDetailFrame() {
       <div className="h-[696px] overflow-hidden px-5 pb-8 pt-4">
         <div className="rounded-[22px] bg-white p-4">
           <div className="flex gap-2 text-[8px] font-black">
-            <span className="rounded bg-[#f1f3fb] px-2 py-1 text-[#2F7BF5]">주거·생활</span>
-            <span className="rounded bg-[#f3f4f6] px-2 py-1 text-black/35">부산 전체</span>
-            <span className="rounded bg-[#f3f4f6] px-2 py-1 text-black/35">예시 정책</span>
+            <span className="rounded bg-[#f1f3fb] px-2 py-1 text-[#2468E0]">주거·생활</span>
+            <span className="rounded bg-[#f3f4f6] px-2 py-1 text-black/60">부산 전체</span>
+            <span className="rounded bg-[#f3f4f6] px-2 py-1 text-black/60">예시 정책</span>
           </div>
           <h3 className="mt-3 text-base font-black leading-snug">부산 청년 주거비 지원</h3>
           <div className="mt-4 grid grid-cols-2 rounded-2xl bg-[#f7f8fb] p-3">
@@ -180,7 +180,7 @@ function ApplicationDetailFrame() {
             </div>
             <div>
               <p className="text-[8px] text-black/30">현재 단계</p>
-              <b className="mt-1 block text-[10px] text-[#2F7BF5]">신청 준비</b>
+              <b className="mt-1 block text-[10px] text-[#2468E0]">신청 준비</b>
             </div>
           </div>
         </div>
@@ -195,11 +195,11 @@ function ApplicationDetailFrame() {
             {conditions.map(([mark, label, matched]) => (
               <div key={label} className="flex items-center gap-2 py-2.5">
                 <span
-                  className={`grid size-5 place-items-center rounded-full text-[9px] font-black ${matched ? 'bg-[#2F7BF5] text-white' : 'bg-[#f1f3fb] text-[#2F7BF5]'}`}
+                  className={`grid size-5 place-items-center rounded-full text-[9px] font-black ${matched ? 'bg-[#2F7BF5] text-white' : 'bg-[#f1f3fb] text-[#2468E0]'}`}
                 >
                   {mark}
                 </span>
-                <span className="text-[10px] font-bold text-black/55">{label}</span>
+                <span className="text-[10px] font-bold text-black/60">{label}</span>
               </div>
             ))}
           </div>
@@ -210,7 +210,7 @@ function ApplicationDetailFrame() {
               <h4 className="text-xs font-black">신청 준비물</h4>
               <p className="mt-1 text-[8px] text-black/30">신청 단계와 준비물은 직접 관리합니다.</p>
             </div>
-            <b className="text-[9px] text-[#2F7BF5]">2 / 4 완료 · 50%</b>
+            <b className="text-[9px] text-[#2468E0]">2 / 4 완료 · 50%</b>
           </div>
           <div className="mt-3 h-1.5 rounded-full bg-[#eceef4]">
             <div className="h-full w-1/2 rounded-full bg-[#2F7BF5]" />
@@ -219,7 +219,7 @@ function ApplicationDetailFrame() {
             {documents.map(([mark, name, description, action]) => (
               <div key={name} className="flex items-center gap-2 py-2.5">
                 <span
-                  className={`grid size-5 place-items-center rounded-full text-[8px] font-black ${mark === '✓' ? 'bg-[#2F7BF5] text-white' : 'bg-[#f1f3fb] text-[#2F7BF5]'}`}
+                  className={`grid size-5 place-items-center rounded-full text-[8px] font-black ${mark === '✓' ? 'bg-[#2F7BF5] text-white' : 'bg-[#f1f3fb] text-[#2468E0]'}`}
                 >
                   {mark}
                 </span>
@@ -227,7 +227,7 @@ function ApplicationDetailFrame() {
                   <b className="block text-[9px]">{name}</b>
                   <p className="mt-0.5 truncate text-[8px] text-black/30">{description}</p>
                 </div>
-                <span className="rounded-lg bg-[#f4f5f8] px-2 py-1.5 text-[7px] font-black text-black/40">
+                <span className="rounded-lg bg-[#f4f5f8] px-2 py-1.5 text-[7px] font-black text-black/60">
                   {action}
                 </span>
               </div>
@@ -251,12 +251,12 @@ function ProfileFrame() {
       <div className="px-5 pb-8 pt-4">
         <div className="rounded-[22px] bg-white p-4">
           <div className="flex items-center gap-3">
-            <span className="grid size-12 place-items-center rounded-2xl bg-[#f1f3fb] text-[#2F7BF5]">
+            <span className="grid size-12 place-items-center rounded-2xl bg-[#f1f3fb] text-[#2468E0]">
               <Icon name="user" className="size-6" />
             </span>
             <div>
               <b className="text-sm">은혜님</b>
-              <p className="mt-1 text-[9px] text-black/35">맞춤정보 80%</p>
+              <p className="mt-1 text-[9px] text-black/60">맞춤정보 80%</p>
             </div>
           </div>
           <div className="mt-3 h-1.5 rounded-full bg-[#eceef4]">
@@ -266,11 +266,11 @@ function ProfileFrame() {
             {['나이', '지역', '상태', '관심', '주거'].map((item, index) => (
               <div key={item} className="text-center">
                 <span
-                  className={`mx-auto grid size-5 place-items-center rounded-full text-[8px] font-black ${index < 4 ? 'bg-[#2F7BF5] text-white' : 'bg-[#f1f3fb] text-[#2F7BF5]'}`}
+                  className={`mx-auto grid size-5 place-items-center rounded-full text-[8px] font-black ${index < 4 ? 'bg-[#2F7BF5] text-white' : 'bg-[#f1f3fb] text-[#2468E0]'}`}
                 >
                   {index < 4 ? '✓' : '○'}
                 </span>
-                <p className="mt-1 text-[7px] font-bold text-black/35">{item}</p>
+                <p className="mt-1 text-[7px] font-bold text-black/60">{item}</p>
               </div>
             ))}
           </div>
@@ -280,17 +280,17 @@ function ProfileFrame() {
             <Field label="나이" value="만 24세 ⌄" />
             <Field label="현재 상태" value="취업준비생 ⌄" />
           </div>
-          <p className="mt-4 text-[9px] font-bold text-black/40">거주지역</p>
+          <p className="mt-4 text-[9px] font-bold text-black/60">거주지역</p>
           <div className="mt-2 grid grid-cols-2 gap-3">
             <Field label="시·도" value="부산광역시 ⌄" />
             <Field label="시·군·구" value="사하구 ⌄" />
           </div>
-          <p className="mt-4 text-[9px] font-bold text-black/40">관심 분야</p>
+          <p className="mt-4 text-[9px] font-bold text-black/60">관심 분야</p>
           <div className="mt-2 flex flex-wrap gap-1.5">
             {['취업·진로', '주거·생활', '장학·금융', '문화', '공간·시설'].map((item, index) => (
               <span
                 key={item}
-                className={`rounded-full px-2.5 py-2 text-[8px] font-black ${index < 3 ? 'bg-[#2F7BF5] text-white' : 'bg-[#f3f4f7] text-black/35'}`}
+                className={`rounded-full px-2.5 py-2 text-[8px] font-black ${index < 3 ? 'bg-[#2F7BF5] text-white' : 'bg-[#f3f4f7] text-black/60'}`}
               >
                 {item}
               </span>
@@ -310,7 +310,7 @@ function ProfileFrame() {
 function Field({ label, value }) {
   return (
     <div>
-      <p className="text-[8px] font-bold text-black/35">{label}</p>
+      <p className="text-[8px] font-bold text-black/60">{label}</p>
       <div className="mt-1.5 rounded-xl bg-[#f3f4f7] px-3 py-3 text-[9px] font-bold">{value}</div>
     </div>
   )
@@ -323,38 +323,38 @@ function ResultFrame() {
         <h3 className="text-base font-black">결과 확인 관리</h3>
       </div>
       <div className="px-5 pb-8 pt-4">
-        <div className="rounded-xl bg-[#f1f3fb] p-3 text-[9px] font-semibold leading-4 text-[#2F7BF5]">
+        <div className="rounded-xl bg-[#f1f3fb] p-3 text-[9px] font-semibold leading-4 text-[#2468E0]">
           공식 사이트에서 결과를 확인한 후 직접 기록해주세요.
         </div>
         <div className="mt-4 rounded-[22px] bg-white p-4">
           <div className="flex gap-2 text-[8px] font-black">
-            <span className="rounded bg-[#f1f3fb] px-2 py-1 text-[#2F7BF5]">복지</span>
-            <span className="rounded bg-[#f3f4f6] px-2 py-1 text-black/35">사하구</span>
-            <span className="rounded bg-[#f3f4f6] px-2 py-1 text-black/35">예시 정책</span>
+            <span className="rounded bg-[#f1f3fb] px-2 py-1 text-[#2468E0]">복지</span>
+            <span className="rounded bg-[#f3f4f6] px-2 py-1 text-black/60">사하구</span>
+            <span className="rounded bg-[#f3f4f6] px-2 py-1 text-black/60">예시 정책</span>
           </div>
           <h3 className="mt-3 text-sm font-black leading-snug">사하구 청년 생활안정 지원사업</h3>
           <div className="mt-4 rounded-2xl bg-[#f7f8fb] p-3">
             <p className="text-[8px] text-black/30">결과 발표 예정일</p>
             <b className="mt-1 block text-[10px]">2025. 06. 05</b>
           </div>
-          <p className="mt-4 text-[9px] font-bold text-black/40">확인한 결과</p>
+          <p className="mt-4 text-[9px] font-bold text-black/60">확인한 결과</p>
           <div className="mt-2 grid grid-cols-3 gap-2">
             {['결과 대기', '선정', '미선정'].map((status, index) => (
               <span
                 key={status}
-                className={`rounded-xl py-2.5 text-center text-[8px] font-black ${index === 1 ? 'bg-[#2F7BF5] text-white' : 'bg-[#f3f4f7] text-black/35'}`}
+                className={`rounded-xl py-2.5 text-center text-[8px] font-black ${index === 1 ? 'bg-[#2F7BF5] text-white' : 'bg-[#f3f4f7] text-black/60'}`}
               >
                 {status}
               </span>
             ))}
           </div>
           <div className="mt-4 rounded-2xl bg-[#f7f8fb] p-4">
-            <p className="text-xs font-black text-[#2F7BF5]">선정 완료</p>
+            <p className="text-xs font-black text-[#2468E0]">선정 완료</p>
             <p className="mt-3 text-[8px] font-bold text-black/30">다음 해야 할 일</p>
             <ul className="mt-2 space-y-2">
               {['안내 문자 확인', '추가 서류 제출', '지원 카드 등록'].map((action) => (
-                <li key={action} className="flex gap-2 text-[10px] font-bold text-black/55">
-                  <span className="text-[#2F7BF5]">✓</span>
+                <li key={action} className="flex gap-2 text-[10px] font-bold text-black/60">
+                  <span className="text-[#2468E0]">✓</span>
                   {action}
                 </li>
               ))}
@@ -400,17 +400,17 @@ export default function PresentationScreen() {
       <div className="mx-auto max-w-[1680px]">
         <div className="mb-10 flex items-end justify-between">
           <div>
-            <p className="text-xs font-black uppercase tracking-[0.18em] text-[#2F7BF5]">
+            <p className="text-xs font-black uppercase tracking-[0.18em] text-[#2468E0]">
               Busan Youth AI Service
             </p>
             <h1 className="mt-2 text-3xl font-black tracking-[-0.05em]">
               청년ZIP 마이 탭 · 발표용 UI Flow
             </h1>
-            <p className="mt-3 text-sm font-medium text-black/40">
+            <p className="mt-3 text-sm font-medium text-black/60">
               개인 맞춤정보부터 신청 준비와 결과 기록까지, 사용자가 직접 관리하는 MVP
             </p>
           </div>
-          <div className="rounded-full bg-white px-4 py-2 text-xs font-extrabold text-[#2F7BF5]">
+          <div className="rounded-full bg-white px-4 py-2 text-xs font-extrabold text-[#2468E0]">
             High-Fidelity Mockup
           </div>
         </div>
@@ -422,7 +422,7 @@ export default function PresentationScreen() {
                 {frame.content}
               </div>
               {index < frames.length - 1 && (
-                <div className="mt-16 flex size-10 items-center justify-center rounded-full bg-white text-[#2F7BF5] shadow-sm">
+                <div className="mt-16 flex size-10 items-center justify-center rounded-full bg-white text-[#2468E0] shadow-sm">
                   <Icon name="arrow" className="size-5" />
                 </div>
               )}

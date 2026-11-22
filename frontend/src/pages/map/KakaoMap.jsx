@@ -389,7 +389,7 @@ export default function KakaoMap({
   if (error)
     return (
       <div className="absolute inset-0 z-0 grid place-items-center bg-[#eceef4] px-8 text-center">
-        <p className="text-[13px] font-semibold leading-relaxed text-black/50">
+        <p className="text-[13px] font-semibold leading-relaxed text-black/60">
           {error}
           <br />
           목록에서는 장소를 계속 볼 수 있어요.

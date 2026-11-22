@@ -247,7 +247,7 @@ function PolicyCompareView({ policyId, comparisonId }) {
                 <h2><span aria-hidden="true">✦</span>AI 비교 요약</h2>
                 {aiSummary.isLoading ? <p>두 정책의 확인된 정보를 비교하고 있어요.</p>
                   : aiSummary.isError || !aiSummary.data?.summary?.summary
-                    ? <p>AI 비교 요약을 불러오지 못했어요. 위 비교표에서 실제 정책 정보를 확인해 주세요.</p>
+                    ? <p>기본 정보 기반 안내예요. AI 비교 요약을 불러오지 못해 위 비교표의 실제 정책 정보만 보여드려요.</p>
                     : <>
                       <p>{aiSummary.data.summary.summary}</p>
                       {aiSummary.data.summary.recommendation && <div className="policy-compare-recommendation">

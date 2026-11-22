@@ -17,7 +17,7 @@ export function PolicyAlarmSheet({ policy, initial, onSave, onClose }) {
               <h2 className="text-[20px] font-bold">알림 설정</h2>
               <p className="text-[13px]" style={{ color: C.sub }}>
                 {policy.title} · 마감{' '}
-                <span className="font-semibold text-[#EF4E6C]">{policy.meta.split(' · ')[0]}</span>
+                <span className="font-semibold text-[#C93454]">{policy.meta.split(' · ')[0]}</span>
               </p>
             </div>
 

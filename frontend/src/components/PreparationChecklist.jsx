@@ -37,7 +37,7 @@ export default function PreparationChecklist({ application, onToggle, onUpdate }
         {documents.length > 0 && (
           <span
             className={`rounded-full px-2.5 py-1.5 text-[10px] font-black ${
-              allDone ? 'bg-[#2F7BF5] text-white' : 'bg-[#f1f3fb] text-[#2F7BF5]'
+              allDone ? 'bg-[#2F7BF5] text-white' : 'bg-[#f1f3fb] text-[#2468E0]'
             }`}
           >
             {allDone ? `${done}/${documents.length} 준비 완료` : `${done}/${documents.length} 준비`}
@@ -60,7 +60,7 @@ export default function PreparationChecklist({ application, onToggle, onUpdate }
 
       {documents.length > 0 ? (
         <>
-          <p className="mt-1 text-[10px] font-medium text-black/35">
+          <p className="mt-1 text-[10px] font-medium text-black/60">
             혜택 상세정보에 등록된 준비물이에요. 준비한 서류를 체크해주세요.
           </p>
           <div className="mt-2 divide-y divide-black/[0.06]">
@@ -94,11 +94,11 @@ export default function PreparationChecklist({ application, onToggle, onUpdate }
                     </svg>
                   </button>
                   <span
-                    className={`min-w-0 flex-1 text-xs font-extrabold ${checked ? 'text-black/35 line-through' : 'text-black/70'}`}
+                    className={`min-w-0 flex-1 text-xs font-extrabold ${checked ? 'text-black/60 line-through' : 'text-black/70'}`}
                   >
                     {document.name}
                     {document.description && (
-                      <span className="mt-1 block text-[10px] font-semibold leading-4 text-[#2F7BF5]">
+                      <span className="mt-1 block text-[10px] font-semibold leading-4 text-[#2468E0]">
                         {document.description}
                       </span>
                     )}
@@ -138,7 +138,7 @@ export default function PreparationChecklist({ application, onToggle, onUpdate }
               type="button"
               onClick={() => setShowAll((open) => !open)}
               aria-expanded={showAll}
-              className="flex w-full items-center justify-center gap-1 border-t border-black/[0.06] pt-3 text-[10px] font-extrabold text-black/40"
+              className="flex w-full items-center justify-center gap-1 border-t border-black/[0.06] pt-3 text-[10px] font-extrabold text-black/60"
             >
               {showAll ? '접기' : `나머지 ${documents.length - COLLAPSED_COUNT}개 더보기`}
               <svg
@@ -155,7 +155,7 @@ export default function PreparationChecklist({ application, onToggle, onUpdate }
         </>
       ) : (
         <div className="mt-3 rounded-xl bg-[#f7f8fb] px-4 py-4 text-center">
-          <p className="text-xs font-bold text-black/50">
+          <p className="text-xs font-bold text-black/60">
             공식 공고에서 필요한 서류를 확인해주세요.
           </p>
         </div>
@@ -186,7 +186,7 @@ export default function PreparationChecklist({ application, onToggle, onUpdate }
                 setAdding(false)
                 setDraft('')
               }}
-              className="rounded-xl bg-[#f3f4f7] px-3 text-[10px] font-extrabold text-black/45"
+              className="rounded-xl bg-[#f3f4f7] px-3 text-[10px] font-extrabold text-black/60"
             >
               취소
             </button>

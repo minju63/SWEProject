@@ -136,7 +136,7 @@ export function SearchBar({ active = false, onFocus }) {
         <Search size={18} color={C.main} strokeWidth={2.4} />
       </span>
       <input
-        className="min-w-0 flex-1 bg-transparent text-[14px] outline-none placeholder:text-[#9AA4B5]"
+        className="min-w-0 flex-1 bg-transparent text-[14px] outline-none placeholder:text-[#657185]"
         placeholder="정책명·키워드 검색 (예: 월세, 면접정장)"
       />
       <button
@@ -293,8 +293,8 @@ export function SegmentToggle({ options, value, onChange }) {
           onClick={() => onChange(o)}
           className={`h-7 rounded-full px-3 text-[12px] font-bold transition-colors ${
             o === value
-              ? 'bg-white text-[#2F7BF5] shadow-[0_2px_6px_rgba(47,123,245,0.15)]'
-              : 'text-[#9AA4B5]'
+              ? 'bg-white text-[#2468E0] shadow-[0_2px_6px_rgba(47,123,245,0.15)]'
+              : 'text-[#657185]'
           }`}
         >
           {o}
@@ -421,7 +421,7 @@ export function DeadlineCard({ d, onOpen, onUnlike }) {
       <div className="flex items-center justify-between">
         <span
           className={`inline-flex h-6 items-center rounded-full px-2.5 text-[12px] font-extrabold ${
-            d.days <= 7 ? 'bg-[#EF4E6C] text-white' : 'bg-[#EAF2FE] text-[#2F7BF5]'
+            d.days <= 7 ? 'bg-[#EF4E6C] text-white' : 'bg-[#EAF2FE] text-[#2468E0]'
           }`}
         >
           D-{d.days}

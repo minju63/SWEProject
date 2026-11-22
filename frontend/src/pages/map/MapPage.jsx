@@ -569,7 +569,7 @@ export default function MapPage() {
             <button
               type="button"
               onClick={banner.onAction}
-              className="shrink-0 rounded-lg border border-[#2F7BF5] px-2.5 py-1.5 text-xs font-extrabold text-[#2F7BF5]"
+              className="shrink-0 rounded-lg border border-[#2F7BF5] px-2.5 py-1.5 text-xs font-extrabold text-[#2468E0]"
             >
               {banner.action}
             </button>
@@ -577,7 +577,7 @@ export default function MapPage() {
               <button
                 type="button"
                 onClick={banner.onClose}
-                className="shrink-0 px-2 py-1.5 text-xs font-extrabold text-black/40"
+                className="shrink-0 px-2 py-1.5 text-xs font-extrabold text-black/60"
               >
                 {banner.closeLabel}
               </button>
@@ -586,7 +586,7 @@ export default function MapPage() {
                 type="button"
                 onClick={() => setDismissed(banner.key)}
                 aria-label="안내 닫기"
-                className="grid size-10 shrink-0 place-items-center text-black/40"
+                className="grid size-10 shrink-0 place-items-center text-black/60"
               >
                 <Glyph name="close" className="size-4" />
               </button>
@@ -740,7 +740,7 @@ export default function MapPage() {
                 <div className="mt-3.5 flex items-center justify-between">
                   <h2 className="text-[15px] font-black tracking-[-0.03em]">{listTitle}</h2>
                   {!loadError && !placesQuery.isLoading && (
-                    <span className="text-[12px] font-bold text-black/40">
+                    <span className="text-[12px] font-bold text-black/60">
                       {myLocation ? '거리순' : '이름순'}
                     </span>
                   )}
@@ -752,7 +752,7 @@ export default function MapPage() {
                 className="no-scrollbar relative min-h-0 flex-1 overflow-y-auto overscroll-contain border-t border-black/[0.06]"
               >
                 {placesQuery.isLoading && (
-                  <p className="px-6 py-10 text-center text-[13px] font-medium text-black/40">
+                  <p className="px-6 py-10 text-center text-[13px] font-medium text-black/60">
                     불러오는 중…
                   </p>
                 )}
@@ -848,7 +848,7 @@ function EmptyState({ title, action, onAction }) {
       <button
         type="button"
         onClick={onAction}
-        className="mt-4 rounded-lg border border-[#2F7BF5] px-4 py-2 text-[13px] font-extrabold text-[#2F7BF5]"
+        className="mt-4 rounded-lg border border-[#2F7BF5] px-4 py-2 text-[13px] font-extrabold text-[#2468E0]"
       >
         {action}
       </button>
@@ -869,7 +869,7 @@ function SyncNote({ sync, checkedAt }) {
   const stale = !last || checkedAt - new Date(last).getTime() > STALE_MS;
   return (
     <p
-      className={`px-5 pb-5 pt-3 text-center text-[11px] font-medium ${stale ? 'text-[#b26a00]' : 'text-black/35'}`}
+      className={`px-5 pb-5 pt-3 text-center text-[11px] font-medium ${stale ? 'text-[#b26a00]' : 'text-black/60'}`}
     >
       {last ? `데이터 갱신 ${kstText(last)}` : '데이터 갱신 기록이 없어요'}
       {stale && last && ' · 갱신이 늦어지고 있어요'}

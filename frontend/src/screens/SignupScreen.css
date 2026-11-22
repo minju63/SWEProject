@@ -23,7 +23,7 @@
 .signup-page .signup-confirmation .message-error { color: #dc2626; }
 .signup-page .signup-field-message.message-error { background: transparent; }
 .signup-page .signup-confirmation .signup-login-link { margin-top: 16px; }
-.signup-page .signup-mail-icon { display: grid; place-items: center; width: 64px; height: 64px; border-radius: 20px; background: #EAF2FE; color: #2F7BF5; }
+.signup-page .signup-mail-icon { display: grid; place-items: center; width: 64px; height: 64px; border-radius: 20px; background: #EAF2FE; color: #2468e0; }
 
 .signup-card {
   width: 100%;
@@ -34,7 +34,7 @@
   box-shadow: none;
   box-sizing: border-box;
 }
-.signup-check-button { border:1px solid #2F7BF5; border-radius:12px; padding:8px 10px; color:#2F7BF5; font-size:12px; font-weight:700; }
+.signup-check-button { border:1px solid #2F7BF5; border-radius:12px; padding:8px 10px; color:#2468e0; font-size:12px; font-weight:700; }
 .signup-consent { display:flex; gap:10px; align-items:flex-start; font-size:13px; line-height:1.6; }
 .signup-consent input { margin-top:4px; accent-color:#2F7BF5; }
 .signup-policy { font-size:12px; color:#475467; line-height:1.7; }
@@ -117,7 +117,7 @@
   border: 1px solid #2F7BF5;
   border-radius: 14px;
   background: #ffffff;
-  color: #2F7BF5;
+  color: #2468e0;
   font-weight: 700;
   font-size: 14px;
   cursor: pointer;
@@ -175,7 +175,7 @@
 
 .signup-field-message.signup-page .message-info {
   background: transparent;
-  color: #2F7BF5;
+  color: #2468e0;
 }
 
 .signup-submit-button {
@@ -230,7 +230,7 @@
   border: 0;
   border-radius: 6px;
   background: transparent;
-  color: #2F7BF5;
+  color: #2468e0;
   font: inherit;
   font-weight: 700;
   cursor: pointer;
@@ -238,7 +238,7 @@
 
 .signup-login-link:hover,
 .signup-login-link:focus-visible {
-  color: #2F7BF5;
+  color: #2468e0;
   background: #EAF2FE;
   outline: none;
 }
@@ -252,7 +252,7 @@
 }
 .signup-page .message-success { background: #ecfdf5; color: #065f46; }
 .signup-page .message-error { background: #fef2f2; color: #991b1b; }
-.signup-page .message-info { background: #EAF2FE; color: #2F7BF5; }
+.signup-page .message-info { background: #EAF2FE; color: #2468e0; }
 .signup-primary-button { display:block; width:100%; padding:14px 18px; border:0; border-radius:12px; background:#2F7BF5; color:white; font-weight:700; text-align:center; text-decoration:none; }
 .signup-primary-button:disabled { opacity:.5; cursor:not-allowed; }
 .signup-secondary-button { padding:12px; border:1px solid #dce4ef; border-radius:12px; color:#334155; background:white; }

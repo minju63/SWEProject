@@ -12,11 +12,11 @@ export function NotiSheet({ onClose, read, onRead }) {
       <div className="flex min-h-0 flex-1 flex-col gap-3 overflow-y-auto px-[18px] pb-[34px] [scrollbar-width:none]">
         <div className="flex items-center justify-between py-1">
           <h2 className="text-[20px] font-bold">
-            알림 {unread > 0 && <span className="text-[#EF4E6C]">{unread}</span>}
+            알림 {unread > 0 && <span className="text-[#C93454]">{unread}</span>}
           </h2>
           <button
             onClick={() => NEW.forEach((_, i) => onRead(i))}
-            className="text-[13px] font-semibold text-[#2F7BF5]"
+            className="text-[13px] font-semibold text-[#2468E0]"
           >
             모두 읽음
           </button>

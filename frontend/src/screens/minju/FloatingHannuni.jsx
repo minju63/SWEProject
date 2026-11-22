@@ -140,7 +140,7 @@ export function FloatingHannuni({ frameRef, onOpen, onHide, unread = 2, showBubb
                 : 'left-[calc(100%+8px)] rounded-bl-[6px]'
             }`}
           >
-            마감 임박 혜택이 <span className="text-[#EF4E6C]">{unread}개</span> 있어요!
+            마감 임박 혜택이 <span className="text-[#C93454]">{unread}개</span> 있어요!
             <br />
             물어볼래요?
           </div>

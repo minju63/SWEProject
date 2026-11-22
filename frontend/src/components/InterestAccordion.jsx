@@ -43,7 +43,7 @@ export default function InterestAccordion({ options, selection, onChange, descri
   return (
     <div>
       {description && (
-        <p className="mb-3 text-[11px] font-medium leading-5 text-black/35">{description}</p>
+        <p className="mb-3 text-[11px] font-medium leading-5 text-black/60">{description}</p>
       )}
       <div className="space-y-2.5">
         {options.map((category) => {
@@ -98,12 +98,12 @@ export default function InterestAccordion({ options, selection, onChange, descri
                 >
                   <span className="min-w-0 flex-1">
                     <b
-                      className={`block text-sm font-black ${selected ? 'text-[#2F7BF5]' : 'text-black/70'}`}
+                      className={`block text-sm font-black ${selected ? 'text-[#2468E0]' : 'text-black/70'}`}
                     >
                       {category}
                     </b>
                     {selectedCount > 0 && (
-                      <small className="mt-0.5 block text-[10px] font-bold text-black/35">
+                      <small className="mt-0.5 block text-[10px] font-bold text-black/60">
                         세부분류 {selectedCount}개 선택
                       </small>
                     )}
@@ -130,10 +130,10 @@ export default function InterestAccordion({ options, selection, onChange, descri
                 <div className="min-h-0 overflow-hidden">
                   <div className="border-t border-black/[0.06] px-4 pb-4 pt-3">
                     {subs.length === 0 ? (
-                      <p className="text-[11px] font-bold text-black/40">{CULTURE_PENDING}</p>
+                      <p className="text-[11px] font-bold text-black/60">{CULTURE_PENDING}</p>
                     ) : (
                       <>
-                        <p className="mb-3 text-[10px] font-semibold text-black/35">
+                        <p className="mb-3 text-[10px] font-semibold text-black/60">
                           세부분류는 여러 개 선택할 수 있어요.
                         </p>
                         <div className="flex flex-wrap gap-2">
@@ -145,7 +145,7 @@ export default function InterestAccordion({ options, selection, onChange, descri
                                 key={detail}
                                 aria-pressed={on}
                                 onClick={() => onChange(toggleDetail(selection, category, detail))}
-                                className={`rounded-full px-3 py-2 text-[11px] font-extrabold transition-colors ${on ? 'bg-[#2F7BF5] text-white' : 'bg-[#f3f4f7] text-black/45'}`}
+                                className={`rounded-full px-3 py-2 text-[11px] font-extrabold transition-colors ${on ? 'bg-[#2F7BF5] text-white' : 'bg-[#f3f4f7] text-black/60'}`}
                               >
                                 {detail}
                               </button>

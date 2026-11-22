@@ -86,7 +86,7 @@ function ProfileCard({ title, badge, children }) {
       <div className="mb-4 flex items-center justify-between gap-2">
         <h2 className="text-[15px] font-black tracking-[-0.03em]">{title}</h2>
         {badge && (
-          <span className="rounded-full bg-[#f1f3fb] px-2.5 py-1 text-[10px] font-black text-[#2F7BF5]">
+          <span className="rounded-full bg-[#f1f3fb] px-2.5 py-1 text-[10px] font-black text-[#2468E0]">
             {badge}
           </span>
         )}
@@ -330,24 +330,24 @@ export default function SettingsScreen() {
         {view === 'menu' && (
           <main className="px-5 pb-10 pt-5">
             <section className="flex items-center gap-4 rounded-[22px] bg-white p-5">
-              <span className="grid size-14 place-items-center rounded-[19px] bg-[#f1f3fb] text-[#2F7BF5]">
+              <span className="grid size-14 place-items-center rounded-[19px] bg-[#f1f3fb] text-[#2468E0]">
                 <Icon name="user" className="size-7" />
               </span>
               <div className="min-w-0 flex-1">
                 <h2 className="truncate text-lg font-black">{profile.name}님</h2>
-                <p className="mt-1 truncate text-[11px] font-semibold text-black/35">
+                <p className="mt-1 truncate text-[11px] font-semibold text-black/60">
                   {[profile.age, profile.region].filter(Boolean).join(' · ') ||
                     '맞춤정보를 입력해주세요'}
                 </p>
               </div>
-              <span className="shrink-0 rounded-full bg-[#f1f3fb] px-2.5 py-1.5 text-[10px] font-black text-[#2F7BF5]">
+              <span className="shrink-0 rounded-full bg-[#f1f3fb] px-2.5 py-1.5 text-[10px] font-black text-[#2468E0]">
                 맞춤정보 {getCompletion(profile).percent}%
               </span>
             </section>
 
             {message && (
               <p
-                className="mt-4 rounded-xl bg-[#f1f3fb] px-4 py-3 text-xs font-bold text-[#2F7BF5]"
+                className="mt-4 rounded-xl bg-[#f1f3fb] px-4 py-3 text-xs font-bold text-[#2468E0]"
                 role="status"
               >
                 {message}
@@ -355,7 +355,7 @@ export default function SettingsScreen() {
             )}
 
             <section className="mt-7">
-              <h2 className="px-1 text-xs font-extrabold text-black/35">개인 설정</h2>
+              <h2 className="px-1 text-xs font-extrabold text-black/60">개인 설정</h2>
               <div className="mt-2 overflow-hidden rounded-[20px] bg-white">
                 <button
                   onClick={() => {
@@ -366,12 +366,12 @@ export default function SettingsScreen() {
                   }}
                   className="flex w-full items-center gap-3 border-b border-black/[0.06] p-4 text-left"
                 >
-                  <span className="grid size-10 place-items-center rounded-xl bg-[#f1f3fb] text-[#2F7BF5]">
+                  <span className="grid size-10 place-items-center rounded-xl bg-[#f1f3fb] text-[#2468E0]">
                     <Icon name="user" className="size-5" />
                   </span>
                   <span className="min-w-0 flex-1">
                     <b className="block text-sm font-extrabold">프로필 및 맞춤정보</b>
-                    <small className="mt-1 block text-[10px] font-medium text-black/35">
+                    <small className="mt-1 block text-[10px] font-medium text-black/60">
                       나이, 지역, 현재 상태, 관심 분야
                     </small>
                   </span>
@@ -381,7 +381,7 @@ export default function SettingsScreen() {
                   onClick={() => setView('notifications')}
                   className="flex w-full items-center gap-3 p-4 text-left"
                 >
-                  <span className="relative grid size-10 place-items-center rounded-xl bg-[#f1f3fb] text-[#2F7BF5]">
+                  <span className="relative grid size-10 place-items-center rounded-xl bg-[#f1f3fb] text-[#2468E0]">
                     <Icon name="bell" className="size-5" />
                     {notificationSettings.enabled && (
                       <span className="absolute right-1.5 top-1.5 size-1.5 rounded-full bg-[#2F7BF5]" />
@@ -389,7 +389,7 @@ export default function SettingsScreen() {
                   </span>
                   <span className="min-w-0 flex-1">
                     <b className="block text-sm font-extrabold">맞춤 알림</b>
-                    <small className="mt-1 block text-[10px] font-medium text-black/35">
+                    <small className="mt-1 block text-[10px] font-medium text-black/60">
                       {notificationSettings.enabled
                         ? '맞춤 혜택 · 마감 · 신청 상태 알림'
                         : '알림 꺼짐'}
@@ -401,17 +401,17 @@ export default function SettingsScreen() {
             </section>
 
             <section className="mt-7">
-              <h2 className="px-1 text-xs font-extrabold text-black/35">계정</h2>
+              <h2 className="px-1 text-xs font-extrabold text-black/60">계정</h2>
               <div className="mt-2 overflow-hidden rounded-[20px] bg-white">
                 <button
                   onClick={() => setView('account')}
-                  className="flex w-full items-center justify-between border-b border-black/[0.06] px-4 py-4 text-sm font-extrabold text-black/50"
+                  className="flex w-full items-center justify-between border-b border-black/[0.06] px-4 py-4 text-sm font-extrabold text-black/60"
                 >
                   계정 설정 <Icon name="arrow" className="size-4 text-black/25" />
                 </button>
                 <button
                   onClick={() => setLogoutOpen(true)}
-                  className="flex w-full items-center justify-between px-4 py-4 text-sm font-extrabold text-black/50"
+                  className="flex w-full items-center justify-between px-4 py-4 text-sm font-extrabold text-black/60"
                 >
                   로그아웃 <Icon name="arrow" className="size-4 text-black/25" />
                 </button>
@@ -419,21 +419,25 @@ export default function SettingsScreen() {
             </section>
 
             <section className="mt-7">
-              <h2 className="px-1 text-xs font-extrabold text-black/35">서비스 정보</h2>
+              <h2 className="px-1 text-xs font-extrabold text-black/60">서비스 정보</h2>
               <div className="mt-2 overflow-hidden rounded-[20px] bg-white">
                 <button
-                  onClick={() => setMessage('이용약관은 정식 서비스 배포 전 연결할 예정이에요.')}
-                  className="flex w-full items-center justify-between border-b border-black/[0.06] px-4 py-4 text-sm font-extrabold text-black/55"
+                  onClick={() => navigate('/settings/consents?open=terms')}
+                  className="flex w-full items-center justify-between border-b border-black/[0.06] px-4 py-4 text-sm font-extrabold text-black/60"
                 >
                   이용약관 <Icon name="arrow" className="size-4 text-black/25" />
                 </button>
                 <button
-                  onClick={() =>
-                    setMessage('개인정보처리방침은 정식 서비스 배포 전 연결할 예정이에요.')
-                  }
-                  className="flex w-full items-center justify-between px-4 py-4 text-sm font-extrabold text-black/55"
+                  onClick={() => navigate('/settings/consents?open=privacy')}
+                  className="flex w-full items-center justify-between border-b border-black/[0.06] px-4 py-4 text-sm font-extrabold text-black/60"
                 >
                   개인정보처리방침 <Icon name="arrow" className="size-4 text-black/25" />
+                </button>
+                <button
+                  onClick={() => navigate('/settings/consents')}
+                  className="flex w-full items-center justify-between px-4 py-4 text-sm font-extrabold text-black/60"
+                >
+                  약관 및 동의 관리 <Icon name="arrow" className="size-4 text-black/25" />
                 </button>
               </div>
             </section>
@@ -457,7 +461,7 @@ export default function SettingsScreen() {
                   ? '입력한 정보를 바탕으로 혜택을 추천해드려요.'
                   : '빈 항목을 입력하면 더 잘 맞는 혜택을 찾을 수 있어요.'}
               </p>
-              <p className="mb-4 text-xs leading-5 text-black/55">
+              <p className="mb-4 text-xs leading-5 text-black/60">
                 닉네임을 제외한 항목은 선택사항이에요. 생년월일은 비우고, 선택 항목은 ‘선택 안 함’
                 또는 선택 해제로 지울 수 있어요. 혼인 상태·주거급여 수급 여부·특화대상은 맞춤 추천과
                 신청 조건 비교에만 사용해요. 입력하지 않아도 검색·지도·캘린더와 기본 추천을 이용할
@@ -466,7 +470,7 @@ export default function SettingsScreen() {
               <div className="space-y-4">
                 <ProfileCard title="기본 정보">
                   <div className="grid grid-cols-2 gap-3">
-                    <label className="block text-xs font-bold text-black/45">
+                    <label className="block text-xs font-bold text-black/60">
                       닉네임
                       <input
                         required
@@ -479,7 +483,7 @@ export default function SettingsScreen() {
                         className="mt-2 w-full rounded-xl bg-[#f3f4f7] px-3 py-3 text-sm font-bold text-black outline-none"
                       />
                     </label>
-                    <label className="block text-xs font-bold text-black/45">
+                    <label className="block text-xs font-bold text-black/60">
                       생년월일
                       <input
                         type="date"
@@ -496,7 +500,7 @@ export default function SettingsScreen() {
                     </label>
                   </div>
                   <fieldset className="mt-3">
-                    <legend className="text-xs font-bold text-black/45">거주지역</legend>
+                    <legend className="text-xs font-bold text-black/60">거주지역</legend>
                     <div className="mt-2 grid grid-cols-2 gap-3">
                       <AppSelect
                         label="시·도"
@@ -601,7 +605,7 @@ export default function SettingsScreen() {
 
                 <div className="pt-4">
                   <ProfileCard title="특화대상" badge="복수선택 가능">
-                    <p className="-mt-2 text-[11px] font-medium text-black/35">
+                    <p className="-mt-2 text-[11px] font-medium text-black/60">
                       해당하는 항목을 모두 선택해주세요.
                     </p>
                     <div className="mt-4 flex flex-wrap gap-2.5" role="group" aria-label="특화대상">
@@ -622,7 +626,7 @@ export default function SettingsScreen() {
                             <span
                               className={`grid size-[18px] shrink-0 place-items-center rounded-[6px] border ${
                                 selected
-                                  ? 'border-white bg-white text-[#2F7BF5]'
+                                  ? 'border-white bg-white text-[#2468E0]'
                                   : 'border-black/20 bg-white text-transparent'
                               }`}
                             >
@@ -648,7 +652,7 @@ export default function SettingsScreen() {
 
                 <div className="pt-4">
                   <ProfileCard title="관심 분야" badge="복수선택 가능">
-                    <p className="-mt-2 text-[11px] font-medium leading-5 text-black/35">
+                    <p className="-mt-2 text-[11px] font-medium leading-5 text-black/60">
                       관심 있는 대분류를 선택하고, 카드를 눌러 세부분류를 추가로 선택할 수 있어요.
                     </p>
 
@@ -721,13 +725,13 @@ export default function SettingsScreen() {
                                 <span className="min-w-0 flex-1">
                                   <b
                                     className={`block text-sm font-black ${
-                                      selected ? 'text-[#2F7BF5]' : 'text-black/70'
+                                      selected ? 'text-[#2468E0]' : 'text-black/70'
                                     }`}
                                   >
                                     {interest}
                                   </b>
                                   {selectedCount > 0 && (
-                                    <small className="mt-0.5 block text-[10px] font-bold text-black/35">
+                                    <small className="mt-0.5 block text-[10px] font-bold text-black/60">
                                       세부 {selectedCount}/{options.length}
                                     </small>
                                   )}
@@ -754,7 +758,7 @@ export default function SettingsScreen() {
                             >
                               <div className="min-h-0 overflow-hidden">
                                 <div className="border-t border-black/[0.06] px-4 pb-4 pt-3">
-                                  <p className="mb-3 text-[10px] font-semibold text-black/35">
+                                  <p className="mb-3 text-[10px] font-semibold text-black/60">
                                     세부분류는 여러 개 선택할 수 있어요.
                                   </p>
 
@@ -772,7 +776,7 @@ export default function SettingsScreen() {
                                           className={`rounded-full px-3 py-2 text-[11px] font-extrabold transition-colors ${
                                             detailSelected
                                               ? 'bg-[#2F7BF5] text-white'
-                                              : 'bg-[#f3f4f7] text-black/45'
+                                              : 'bg-[#f3f4f7] text-black/60'
                                           }`}
                                         >
                                           {detail}
@@ -817,7 +821,7 @@ export default function SettingsScreen() {
               <div className="flex items-center gap-3 border-b border-black/[0.06] py-5">
                 <div className="min-w-0 flex-1">
                   <p className="text-sm font-black">전체 알림</p>
-                  <p className="mt-1 text-[10px] font-medium text-black/35">
+                  <p className="mt-1 text-[10px] font-medium text-black/60">
                     청년ZIP의 알림을 한 번에 켜거나 끌 수 있어요.
                   </p>
                 </div>
@@ -889,7 +893,7 @@ export default function SettingsScreen() {
                   >
                     <div className="min-w-0 flex-1">
                       <p className="text-sm font-extrabold">{setting.title}</p>
-                      <p className="mt-1 text-[10px] font-medium leading-4 text-black/35">
+                      <p className="mt-1 text-[10px] font-medium leading-4 text-black/60">
                         {setting.description}
                       </p>
                     </div>
@@ -933,26 +937,26 @@ export default function SettingsScreen() {
               }`}
             >
               <div className="flex items-start gap-3">
-                <span className="grid size-10 shrink-0 place-items-center rounded-xl bg-[#f1f3fb] text-[#2F7BF5]">
+                <span className="grid size-10 shrink-0 place-items-center rounded-xl bg-[#f1f3fb] text-[#2468E0]">
                   <Icon name="bell" className="size-5" />
                 </span>
                 <div>
                   <p className="text-sm font-black">신청 상태 알림 안내</p>
-                  <p className="mt-1 text-[10px] font-medium leading-4 text-black/35">
+                  <p className="mt-1 text-[10px] font-medium leading-4 text-black/60">
                     등록된 신청 진행 알림은 알림 목록에서 확인할 수 있어요.
                   </p>
                 </div>
               </div>
 
               <div className="mt-4 space-y-2 rounded-2xl bg-[#f7f8fb] p-4">
-                <div className="flex items-center gap-2 text-[11px] font-bold text-black/55">
-                  <span className="grid size-5 place-items-center rounded-full bg-[#f1f3fb] text-[10px] text-[#2F7BF5]">
+                <div className="flex items-center gap-2 text-[11px] font-bold text-black/60">
+                  <span className="grid size-5 place-items-center rounded-full bg-[#f1f3fb] text-[10px] text-[#2468E0]">
                     ✓
                   </span>
                   준비물은 신청 준비 화면에서 확인
                 </div>
-                <div className="flex items-center gap-2 text-[11px] font-bold text-black/55">
-                  <span className="grid size-5 place-items-center rounded-full bg-[#f1f3fb] text-[10px] text-[#2F7BF5]">
+                <div className="flex items-center gap-2 text-[11px] font-bold text-black/60">
+                  <span className="grid size-5 place-items-center rounded-full bg-[#f1f3fb] text-[10px] text-[#2468E0]">
                     ✓
                   </span>
                   결과 발표일은 신청 관리와 캘린더에서 확인
@@ -960,7 +964,7 @@ export default function SettingsScreen() {
               </div>
             </div>
 
-            <p className="mt-4 px-1 text-[10px] font-medium leading-4 text-black/35">
+            <p className="mt-4 px-1 text-[10px] font-medium leading-4 text-black/60">
               전체 알림을 꺼도 각 알림의 개별 설정값은 유지돼요. 다시 전체 알림을 켜면 이전 설정으로
               돌아옵니다.
             </p>
@@ -1031,15 +1035,15 @@ export default function SettingsScreen() {
               </p>
             )}
             <div className="rounded-[22px] bg-white p-5">
-              <span className="grid size-12 place-items-center rounded-2xl bg-[#f1f3fb] text-[#2F7BF5]">
+              <span className="grid size-12 place-items-center rounded-2xl bg-[#f1f3fb] text-[#2468E0]">
                 <Icon name="user" className="size-6" />
               </span>
               <h2 className="mt-4 text-lg font-black">탈퇴하기 전에 확인해주세요</h2>
-              <p className="mt-2 text-xs font-medium leading-5 text-black/45">
+              <p className="mt-2 text-xs font-medium leading-5 text-black/60">
                 탈퇴하면 삭제된 정보는 다시 복구할 수 없어요. 모든 동의가 철회되며 개인 데이터와
                 동의 기록은 7일 이내 삭제합니다.
               </p>
-              <ul className="mt-5 space-y-3 rounded-2xl bg-[#f7f8fb] p-4 text-xs font-bold text-black/55">
+              <ul className="mt-5 space-y-3 rounded-2xl bg-[#f7f8fb] p-4 text-xs font-bold text-black/60">
                 <li>계정 정보와 약관·개인정보 동의 기록</li>
                 <li className="flex items-center gap-2">
                   <span className="size-1.5 rounded-full bg-[#2F7BF5]" />
@@ -1058,7 +1062,7 @@ export default function SettingsScreen() {
                   맞춤 알림 설정
                 </li>
               </ul>
-              <label className="mt-5 flex items-start gap-3 text-xs font-bold text-black/55">
+              <label className="mt-5 flex items-start gap-3 text-xs font-bold text-black/60">
                 <input
                   required
                   type="checkbox"
@@ -1088,17 +1092,17 @@ export default function SettingsScreen() {
               onClick={(event) => event.stopPropagation()}
               className="w-full max-w-[420px] rounded-[24px] bg-white p-5 shadow-xl"
             >
-              <span className="grid size-11 place-items-center rounded-2xl bg-[#f1f3fb] text-[#2F7BF5]">
+              <span className="grid size-11 place-items-center rounded-2xl bg-[#f1f3fb] text-[#2468E0]">
                 <Icon name="user" className="size-5" />
               </span>
               <h2 className="mt-4 text-lg font-black">로그아웃할까요?</h2>
-              <p className="mt-2 text-xs font-medium leading-5 text-black/45">
+              <p className="mt-2 text-xs font-medium leading-5 text-black/60">
                 로그아웃하기 전에 저장되지 않은 내용이 없는지 확인해주세요.
               </p>
               <div className="mt-5 flex gap-2">
                 <button
                   onClick={() => setLogoutOpen(false)}
-                  className="flex-1 rounded-2xl bg-[#f3f4f7] py-3.5 text-xs font-black text-black/55"
+                  className="flex-1 rounded-2xl bg-[#f3f4f7] py-3.5 text-xs font-black text-black/60"
                 >
                   취소
                 </button>

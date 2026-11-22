@@ -4,6 +4,7 @@ import cron from 'node-cron';
 import { runCultureSync } from './culture/syncCulture.js';
 import { runDueAlarms } from './alarms.js';
 import { runContentNotifications } from './contentNotifications.js';
+import { purgeOldLogs } from '../lib/opsLog.js';
 import { runPolicySync } from './policySync/syncPolicies.js';
 import { execFile } from 'node:child_process';
 import path from 'node:path';
@@ -53,6 +54,7 @@ export function startJobs() {
     );
   startAlarmJob();
   startEmbeddingJob();
+  startLogPurgeJob();
   startPolicySyncJob();
   startContentNotificationJob();
   if (process.env.CULTURE_SYNC_ENABLED !== 'true') return;
@@ -126,6 +128,24 @@ function startPolicySyncJob() {
     { name: 'policy-sync', timezone: 'Asia/Seoul', noOverlap: true }
   );
   console.log('정책 매일 수집 예약 (주거·취업·진로·장학·금융)');
+}
+
+// 운영 로그 30일 보관 후 삭제 (NFR-COM-027). 끄려면 LOG_PURGE_JOB_ENABLED=false
+function startLogPurgeJob() {
+  if (process.env.LOG_PURGE_JOB_ENABLED === 'false') return;
+  cron.schedule(
+    '50 3 * * *',
+    async () => {
+      try {
+        const r = await purgeOldLogs();
+        const total = Object.values(r).reduce((a, b) => a + b, 0);
+        if (total) console.log(`[운영 로그] 30일 지난 기록 ${total}건 삭제`);
+      } catch (e) {
+        console.error(`[운영 로그] 정리 실패: ${e.message}`);
+      }
+    },
+    { name: 'log-purge', timezone: 'Asia/Seoul', noOverlap: true }
+  );
 }
 
 // 새 소식 알림 (FR-MY-012~015): 수집이 끝난 뒤(기본 10:30) 새 정책·문화행사·시설을 알림 센터에 넣는다

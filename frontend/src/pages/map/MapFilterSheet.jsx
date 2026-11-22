@@ -28,7 +28,7 @@ export default function MapFilterSheet(props) {
             type="button"
             onClick={props.onClose}
             aria-label="닫기"
-            className="grid size-9 place-items-center text-black/40"
+            className="grid size-9 place-items-center text-black/60"
           >
             <Glyph name="close" className="size-5" />
           </button>
@@ -66,7 +66,7 @@ export default function MapFilterSheet(props) {
               </FilterChip>
             ))}
             {!props.hasLocation && (
-              <p className="w-full text-[12px] font-medium text-black/45">
+              <p className="w-full text-[12px] font-medium text-black/60">
                 현재 위치를 알 수 없으면 거리 반경은 적용되지 않아요.
               </p>
             )}

@@ -1,6 +1,6 @@
 .my-page, .my-settings {
   --my-blue: #2f7bf5;
-  --my-muted: #8995a8;
+  --my-muted: #657185;
   color: #202833;
   background: linear-gradient(180deg, #eaf2ff 0, #f3f6fb 650px);
   min-height: 100dvh;
@@ -26,7 +26,7 @@
 .my-profile-card button[aria-label="설정 열기"] { border: 0; width: 28px; flex-shrink: 0; }
 .my-profile-card > div:nth-child(2) { margin-top: 12px; gap: 6px; }
 .my-profile-card > div:nth-child(2) > span { padding: 4px 10px; font-size: 10px; background: #eaf2ff; }
-.my-add-interest { border: 1px solid #e9edf2; border-radius: 20px; color: #8995a8; font-size: 10px; font-weight: 700; padding: 3px 9px; }
+.my-add-interest { border: 1px solid #e9edf2; border-radius: 20px; color: #657185; font-size: 10px; font-weight: 700; padding: 3px 9px; }
 .my-profile-counts { margin-top: 13px; padding-top: 12px; border-top: 1px solid #f0f2f6; display: grid; grid-template-columns: repeat(4,minmax(0,1fr)); gap: 4px; }
 .my-profile-counts > button { background: transparent; border: 0; padding: 4px 0 5px; }
 .my-profile-counts b { font-size: 21px; }
@@ -45,44 +45,44 @@
 .my-card-top { display: flex; align-items: center; gap: 7px; min-width: 0; }
 .my-tags { display: inline-flex; flex-wrap: wrap; gap: 4px; align-items: center; min-width: 0; }
 .my-tags > span { border-radius: 5px; background: #f1f3f6; color: #626f80; padding: 3px 6px; font-size: 9px; line-height: 1.2; font-weight: 800; }
-.my-tags > span:first-child { background: #e7f0ff; color: #2f7bf5; }
+.my-tags > span:first-child { background: #e7f0ff; color: #2468e0; }
 .my-tags > span[data-category="취업·진로"] { background: #fff0f4; color: #e26a8c; }
 .my-tags > span[data-category="장학·금융"] { background: #fff5df; color: #cb8b24; }
 .my-tags > span[data-category="문화"] { background: #e9f9f1; color: #38a583; }
 .my-tags > span[data-category="공간·시설"] { background: #f0ebff; color: #8d71cc; }
-.my-deadline { margin-left: auto; color: #2f7bf5; white-space: nowrap; font-size: 12px; font-weight: 850; }
+.my-deadline { margin-left: auto; color: #2468e0; white-space: nowrap; font-size: 12px; font-weight: 850; }
 .my-deadline.urgent { color: #ff435b; }
 .my-chevron { flex: none; width: 8px; height: 8px; margin: 0 4px 0 auto; border-right: 2px solid #8793a4; border-bottom: 2px solid #8793a4; transform: translateY(-2px) rotate(45deg); transition: transform .15s; } /* 글자(⌄) 대신 모양으로 그려 D-day 옆에서 가운데에 오게 한다 */
 .my-deadline + .my-chevron { margin-left: 2px; }
 .my-chevron.open { transform: translateY(2px) rotate(-135deg); }
 .my-application h3 { font-size: 15px; font-weight: 850; line-height: 1.5; margin-top: 7px; letter-spacing: -.4px; }
-.my-caption { color: #8793a4; font-size: 11px; line-height: 1.6; font-weight: 500; }
+.my-caption { color: #657185; font-size: 11px; line-height: 1.6; font-weight: 500; }
 .my-state-tags { display: flex; gap: 5px; margin-top: 8px; }
-.my-state-tags > span { border-radius: 5px; padding: 3px 6px; background: #eaf1ff; color: #2f7bf5; font-size: 9px; font-weight: 700; }
+.my-state-tags > span { border-radius: 5px; padding: 3px 6px; background: #eaf1ff; color: #2468e0; font-size: 9px; font-weight: 700; }
 .my-state-tags .check { background: #fff5e3; color: #bf8b29; }
 .my-state-tags .not-eligible, .my-condition-row .unmatched { background: #ffedf1; color: #d94b64; }
 .my-state-tags .neutral { background: #f2f4f7; color: #7e8a9b; }
-.my-progress-row { display: flex; gap: 8px; align-items: center; margin-top: 13px; color: #2f7bf5; font-size: 9px; font-weight: 750; }
+.my-progress-row { display: flex; gap: 8px; align-items: center; margin-top: 13px; color: #2468e0; font-size: 9px; font-weight: 750; }
 .my-progress { flex: 1; height: 4px; border-radius: 8px; overflow: hidden; background: #edf1f7; }
 .my-progress > span { display: block; height: 100%; border-radius: inherit; background: #2f7bf5; }
 .my-application-body { padding: 0 15px 14px; }
 .my-data-row { display: flex; align-items: center; gap: 10px; justify-content: space-between; min-height: 42px; border-top: 1px solid #f0f3f7; font-size: 11px; }
-.my-data-row > span { color: #8995a8; flex-shrink: 0; }
+.my-data-row > span { color: #657185; flex-shrink: 0; }
 .my-data-row > div { max-width: 60%; }
 .my-data-row > input { min-width: 0; max-width: 62%; background: transparent; text-align: right; color: #253045; font-size: 11px; font-weight: 700; }
-.my-data-row button { background: transparent; padding: 6px 0 6px 8px; color: #2f7bf5; }
+.my-data-row button { background: transparent; padding: 6px 0 6px 8px; color: #2468e0; }
 .my-info { background: #eaf1ff; color: #6383b4; padding: 11px; border-radius: 10px; font-size: 10px; line-height: 1.7; margin: 9px 0; }
-.my-info b { color: #2f7bf5; font-size: 12px; }
+.my-info b { color: #2468e0; font-size: 12px; }
 .my-primary { display: flex; align-items: center; justify-content: center; width: 100%; border-radius: 13px; background: #2f7bf5; color: white; min-height: 45px; padding: 10px 12px; font-size: 12px; font-weight: 800; text-align: center; }
 .my-primary[aria-disabled="true"] { opacity: .45; }
-.my-unknown { display: flex; justify-content: flex-end; gap: 5px; font-size: 10px; color: #8995a8; }
+.my-unknown { display: flex; justify-content: flex-end; gap: 5px; font-size: 10px; color: #657185; }
 .my-unknown input { accent-color: #2f7bf5; }
 .my-result-options { display: flex; gap: 6px; margin: 8px 0; }
 .my-result-options button { border-radius: 20px; background: #f2f4f7; color: #6c7789; font-size: 11px; font-weight: 700; padding: 8px 13px; }
 .my-result-options button[aria-pressed="true"] { background: #2f7bf5; color: white; }
-.my-more { display: block; margin: 11px auto 0; color: #8995a8; font-size: 10px; }
+.my-more { display: block; margin: 11px auto 0; color: #657185; font-size: 10px; }
 .my-extra-fields { display: grid; gap: 12px; padding-top: 12px; }
-.my-extra-fields label { font-size: 11px; color: #8995a8; font-weight: 650; }
+.my-extra-fields label { font-size: 11px; color: #657185; font-weight: 650; }
 .my-extra-fields input, .my-extra-fields textarea { display: block; width: 100%; min-width: 0; margin-top: 6px; border-radius: 10px; padding: 10px; color: #253045; background: #f4f6fa; }
 .my-saved-tabs { display: flex; gap: 5px; margin-top: 10px; }
 .my-saved-tabs > button { padding: 8px 12px; font-size: 12px; background: #fff; border: 1px solid #cdd7e5; color: #3a4452; } /* 배경과 구분되게 흰 바탕·테두리·진한 글씨 */
@@ -106,7 +106,7 @@
 .my-selection-check { display: grid; place-items: center; width: 23px; height: 23px; flex-shrink: 0; border: 2px solid #d4dce7; border-radius: 50%; color: transparent; }
 button[aria-pressed="true"] > .my-selection-check { background: #2f7bf5; color: white; border-color: #2f7bf5; }
 .my-search-options { max-height: 260px; overflow-y: auto; display: grid; gap: 7px; margin-top: 10px; }
-.my-add-extra { margin-top: 15px; color: #8995a8; font-size: 11px; }
+.my-add-extra { margin-top: 15px; color: #657185; font-size: 11px; }
 .my-add-extra summary { cursor: pointer; }
 .my-add-sheet .fixed { z-index: 130; }
 .my-add-sheet .fixed button { padding: 12px; }
@@ -127,9 +127,9 @@ button[aria-pressed="true"] > .my-selection-check { background: #2f7bf5; color: 
 .my-checklist .preparation-checklist > div:first-child { padding-bottom: 0; }
 .my-checklist-progress { margin: 7px 0 9px; height: 4px; flex: none; }
 .my-document-guide { color: #7d899a; background: #f3f5f8; padding: 5px 6px; font-size: 9px; border-radius: 5px; white-space: nowrap; font-weight: 700; }
-.my-add-document { width: 100%; border: 1px dashed #a9c9ff; border-radius: 12px; padding: 11px; font-size: 11px; color: #2f7bf5; font-weight: 750; }
+.my-add-document { width: 100%; border: 1px dashed #a9c9ff; border-radius: 12px; padding: 11px; font-size: 11px; color: #2468e0; font-weight: 750; }
 .my-preparation-footer { position: fixed; bottom: 0; left: 50%; transform: translateX(-50%); width: 100%; max-width: 480px; display: flex; gap: 9px; padding: 15px 17px max(25px,env(safe-area-inset-bottom)); background: #f6f8fbee; backdrop-filter: blur(10px); }
-.my-preparation-footer > :first-child { flex: 1; border: 1px solid #cfe0fc; background: white; color: #2f7bf5; }
+.my-preparation-footer > :first-child { flex: 1; border: 1px solid #cfe0fc; background: white; color: #2468e0; }
 .my-preparation-footer > :last-child { flex: 1.6; }
 .my-toast { position: fixed; bottom: 100px; left: 50%; transform: translateX(-50%); max-width: calc(100% - 32px); z-index: 120; background: #253045; color: white; border-radius: 12px; padding: 12px; font-size: 12px; }
 .my-settings > main, .my-settings > form { padding: 0 17px 110px; }
@@ -145,7 +145,7 @@ button[aria-pressed="true"] > .my-selection-check { background: #2f7bf5; color: 
 .my-settings .profile-card { padding: 15px; border-radius: 20px; }
 .my-settings .profile-card > div:first-child { margin-bottom: 10px; }
 .my-settings .profile-card h2 { font-size: 15px; }
-.my-settings .profile-card label { font-size: 10px; color: #8995a8; }
+.my-settings .profile-card label { font-size: 10px; color: #657185; }
 .my-settings .profile-card input, .my-settings .profile-card button[aria-haspopup] { font-size: 12px; background: #f3f5f9; border-radius: 11px; min-height: 40px; }
 .my-settings .profile-card input { padding: 10px; margin-top: 6px; }
 .my-settings .profile-card .gap-y-5 { row-gap: 13px; }
@@ -180,17 +180,17 @@ button[aria-pressed="true"] > .my-selection-check { background: #2f7bf5; color: 
 .my-prep-docs { border-top: 1px solid #eef3fb; }
 .my-prep-docs-head { display: flex; align-items: center; gap: 10px; width: 100%; min-height: 46px; padding: 0 15px; border: 0; background: none; color: #202833; font-size: 13px; font-weight: 800; text-align: left; }
 .my-prep-docs-head .my-progress { flex: 1; }
-.my-prep-docs-head b { flex: none; color: #2f7bf5; font-size: 12px; }
+.my-prep-docs-head b { flex: none; color: #2468e0; font-size: 12px; }
 .my-prep-docs-head .my-chevron { margin: 0 2px 0 0; }
 .my-prep-docs ul { margin: 0; padding: 0 15px 10px; list-style: none; }
 .my-prep-docs li button { display: flex; align-items: center; gap: 10px; width: 100%; min-height: 42px; padding: 0; border: 0; background: none; color: #202833; font-size: 14px; text-align: left; }
 .my-prep-docs li i { flex: none; display: grid; place-items: center; width: 20px; height: 20px; border: 1.5px solid #c3cfe2; border-radius: 6px; background: #fff; color: #fff; font-size: 13px; font-style: normal; font-weight: 900; }
 .my-prep-docs li button.on i { border-color: #2f7bf5; background: #2f7bf5; }
-.my-prep-docs li button.on span { color: #8793a4; text-decoration: line-through; }
-.my-prep-docs li em { flex: none; padding: 2px 7px; border-radius: 999px; background: #eef3fe; color: #2f7bf5; font-size: 11px; font-style: normal; font-weight: 700; }
+.my-prep-docs li button.on span { color: #657185; text-decoration: line-through; }
+.my-prep-docs li em { flex: none; padding: 2px 7px; border-radius: 999px; background: #eef3fe; color: #2468e0; font-size: 11px; font-style: normal; font-weight: 700; }
 
 /* 메모 줄 오른쪽의 저장 글자 버튼: 크기는 메모 글씨와 같게 */
-.my-memo { font-size: 11px; color: #8995a8; font-weight: 650; }
+.my-memo { font-size: 11px; color: #657185; font-weight: 650; }
 .my-memo-head { display: flex; align-items: center; justify-content: space-between; }
-.my-memo-head button { padding: 0 2px; border: 0; background: none; color: #2f7bf5; font: inherit; font-weight: 800; }
+.my-memo-head button { padding: 0 2px; border: 0; background: none; color: #2468e0; font: inherit; font-weight: 800; }
 .my-memo-head button:disabled { color: #a3adba; cursor: default; }

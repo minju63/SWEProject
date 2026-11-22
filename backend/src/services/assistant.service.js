@@ -6,6 +6,7 @@ import * as homeRepo from '../repositories/home.repository.js';
 import * as placeRepo from '../repositories/place.repository.js';
 import { searchPolicyCandidates, verifyCandidates } from './vectorSearch.js';
 import { askJson, askText, isLlmEnabled } from '../lib/llm.js';
+import { logAi } from '../lib/opsLog.js';
 import { lookupTerm } from '../lib/naverDict.js';
 import { RESULT } from './eligibility.service.js';
 import {
@@ -848,8 +849,15 @@ async function polish(answer, remaining) {
 export async function chat(args) {
   const startedAt = Date.now();
   const remaining = makeBudget();
-  const raw = await route({ ...args, remaining });
+  let raw;
+  try {
+    raw = await route({ ...args, remaining });
+  } catch (e) {
+    logAi({ feature: 'ASSISTANT', ok: false, errorCode: e.code ?? e.name });
+    throw e;
+  }
   const { answer, llm } = await polish(raw, remaining);
+  logAi({ feature: `ASSISTANT:${answer.type}`, ok: answer.type !== 'error' });
   // 운영 로그 (NFR-005): 질문 원문·사용자 식별 정보는 남기지 않는다
   console.log(`[ai] type=${answer.type} llm=${llm} ms=${Date.now() - startedAt}`);
   return answer;

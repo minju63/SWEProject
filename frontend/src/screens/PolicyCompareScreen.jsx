@@ -41,20 +41,20 @@ export default function PolicyCompareScreen() {
       <ScreenHeader
         title="정책 비교"
         action={
-          <button onClick={changeComparison} className="text-xs font-extrabold text-[#2F7BF5]">
+          <button onClick={changeComparison} className="text-xs font-extrabold text-[#2468E0]">
             비교 정책 변경
           </button>
         }
       />
       <main className="px-5 pb-10 pt-5">
-        <p className="text-sm font-semibold text-black/45">
+        <p className="text-sm font-semibold text-black/60">
           두 정책의 주요 조건과 혜택을 비교해보세요.
         </p>
 
         <div className="mt-5 grid grid-cols-2 gap-3">
           {[policyA, policyB].map((policy, index) => (
             <div key={policy.id} className="min-w-0 rounded-[20px] bg-white p-4">
-              <span className="text-[10px] font-black text-[#2F7BF5]">
+              <span className="text-[10px] font-black text-[#2468E0]">
                 정책 {index === 0 ? 'A' : 'B'}
               </span>
               <h2 className="mt-2 min-h-12 text-sm font-black leading-snug">{policy.title}</h2>
@@ -66,7 +66,7 @@ export default function PolicyCompareScreen() {
         </div>
 
         <section className="mt-5 overflow-hidden rounded-[22px] bg-white" aria-label="정책 비교표">
-          <div className="grid grid-cols-[88px_1fr_1fr] bg-[#EAF2FE] text-xs font-black text-[#2F7BF5]">
+          <div className="grid grid-cols-[88px_1fr_1fr] bg-[#EAF2FE] text-xs font-black text-[#2468E0]">
             <div className="p-3">비교 항목</div>
             <div className="border-l border-[#2F7BF5]/10 p-3">정책 A</div>
             <div className="border-l border-[#2F7BF5]/10 p-3">정책 B</div>
@@ -76,7 +76,7 @@ export default function PolicyCompareScreen() {
               key={label}
               className="grid grid-cols-[88px_1fr_1fr] border-t border-black/[0.06] text-xs leading-[18px]"
             >
-              <div className="bg-[#fafafb] p-3 font-extrabold text-black/45">{label}</div>
+              <div className="bg-[#fafafb] p-3 font-extrabold text-black/60">{label}</div>
               <div className="border-l border-black/[0.06] p-3 font-semibold text-black/65">
                 {label === '내 조건 적합 여부' ? (
                   <span className={`font-black ${verdictTextStyle[valueA]}`}>{valueA}</span>
@@ -96,14 +96,14 @@ export default function PolicyCompareScreen() {
         </section>
 
         <section className="mt-5 rounded-[22px] bg-[#EAF2FE] p-5">
-          <h2 className="text-sm font-black text-[#2F7BF5]">AI 비교 요약</h2>
+          <h2 className="text-sm font-black text-[#2468E0]">AI 비교 요약</h2>
           <p className="mt-3 text-xs font-semibold leading-5 text-black/60">
             {policyA.title}은 {policyA.benefit}에 초점이 있고, {policyB.title}은 {policyB.benefit}이
             핵심이에요. 신청 기간과 소득 조건이 다르므로 현재 상황과 준비 가능한 서류를 함께
             확인해보세요.
           </p>
         </section>
-        <p className="mt-4 text-[10px] font-medium leading-4 text-black/40">
+        <p className="mt-4 text-[10px] font-medium leading-4 text-black/60">
           ※ 실제 신청 가능 여부와 세부 조건은 각 정책의 공식 공고를 확인해주세요.
         </p>
 
@@ -122,7 +122,7 @@ export default function PolicyCompareScreen() {
           </button>
           <button
             onClick={changeComparison}
-            className="w-full rounded-2xl border border-[#2F7BF5] py-4 text-xs font-black text-[#2F7BF5]"
+            className="w-full rounded-2xl border border-[#2F7BF5] py-4 text-xs font-black text-[#2468E0]"
           >
             비교 정책 변경
           </button>

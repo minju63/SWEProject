@@ -12,7 +12,7 @@ export default function AppSelect({
   return (
     <div className={label ? 'block' : ''}>
       {label && (
-        <p className={`${compact ? 'text-[10px]' : 'text-xs'} font-bold text-black/45`}>{label}</p>
+        <p className={`${compact ? 'text-[10px]' : 'text-xs'} font-bold text-black/60`}>{label}</p>
       )}
       <button
         type="button"
@@ -51,14 +51,14 @@ export default function AppSelect({
             <div className="mb-4 mt-5 flex items-center justify-between">
               <div>
                 <h2 className="text-lg font-black">{label || '항목 선택'}</h2>
-                <p className="mt-1 text-[10px] font-medium text-black/35">
+                <p className="mt-1 text-[10px] font-medium text-black/60">
                   원하는 항목을 선택해주세요.
                 </p>
               </div>
               <button
                 type="button"
                 onClick={() => setOpen(false)}
-                className="grid size-8 place-items-center rounded-full bg-[#f3f4f6] text-lg text-black/50"
+                className="grid size-8 place-items-center rounded-full bg-[#f3f4f6] text-lg text-black/60"
                 aria-label="선택창 닫기"
               >
                 ×
@@ -78,7 +78,7 @@ export default function AppSelect({
                       onChange(option)
                       setOpen(false)
                     }}
-                    className={`flex w-full items-center justify-between rounded-2xl px-4 py-3.5 text-left text-sm font-bold transition ${selected ? 'bg-[color:var(--accent-soft,#f1f3fb)] text-[color:var(--accent,#2F7BF5)]' : 'bg-[#f7f8fa] text-black/55'}`}
+                    className={`flex w-full items-center justify-between rounded-2xl px-4 py-3.5 text-left text-sm font-bold transition ${selected ? 'bg-[color:var(--accent-soft,#f1f3fb)] text-[color:var(--accent,#2F7BF5)]' : 'bg-[#f7f8fa] text-black/60'}`}
                     role="option"
                     aria-label={option}
                     aria-selected={selected}

@@ -97,7 +97,7 @@ function SectionTitle({ children, hint, action }) {
       <h4 className="text-[13px] font-black tracking-[-0.02em]">{children}</h4>
       {action}
       {hint && (
-        <span className="rounded-full bg-[#EAF2FE] px-2.5 py-1 text-[10px] font-black text-[#2F7BF5]">
+        <span className="rounded-full bg-[#EAF2FE] px-2.5 py-1 text-[10px] font-black text-[#2468E0]">
           {hint}
         </span>
       )}
@@ -119,7 +119,7 @@ function CheckChips({ label, options, selected, onToggle, withCheckbox = false }
           >
             {withCheckbox && (
               <span
-                className={`grid size-[18px] shrink-0 place-items-center rounded-[6px] border ${on ? 'border-white bg-white text-[#2F7BF5]' : 'border-black/20 bg-white text-transparent'}`}
+                className={`grid size-[18px] shrink-0 place-items-center rounded-[6px] border ${on ? 'border-white bg-white text-[#2468E0]' : 'border-black/20 bg-white text-transparent'}`}
               >
                 <svg
                   className="size-3"
@@ -160,7 +160,7 @@ export function ConditionFields({ conditions, onChange }) {
               type="button"
               onClick={() => onChange(emptyConditions)}
               disabled={conditionCount(conditions) === 0}
-              className="rounded-full bg-[#EAF2FE] px-3 py-1.5 text-[11px] font-extrabold text-[#2F7BF5] transition-opacity disabled:opacity-35"
+              className="rounded-full bg-[#EAF2FE] px-3 py-1.5 text-[11px] font-extrabold text-[#2468E0] transition-opacity disabled:opacity-35"
             >
               전체 해제
             </button>
@@ -274,7 +274,7 @@ export function ConditionToggleButton({ open, disabled, onClick }) {
       onClick={onClick}
       disabled={disabled}
       aria-expanded={open && !disabled}
-      className={`mt-3 flex w-full items-center justify-between rounded-xl bg-[#f7f8fb] px-4 py-3.5 text-left text-xs font-extrabold ${disabled ? 'text-black/25' : 'text-[#2F7BF5]'}`}
+      className={`mt-3 flex w-full items-center justify-between rounded-xl bg-[#f7f8fb] px-4 py-3.5 text-left text-xs font-extrabold ${disabled ? 'text-black/25' : 'text-[#2468E0]'}`}
     >
       조건 직접 설정
       <Chevron open={open && !disabled} />
@@ -299,7 +299,7 @@ export function ConditionSummaryStrip({ conditions, customized, onClick }) {
       onClick={onClick}
       className="mt-3 flex w-full items-center gap-3 rounded-2xl border border-[#D6E6FD] bg-[#F2F7FF] px-3.5 py-3 text-left"
     >
-      <span className="grid size-8 shrink-0 place-items-center rounded-full bg-white text-[#2F7BF5]">
+      <span className="grid size-8 shrink-0 place-items-center rounded-full bg-white text-[#2468E0]">
         {customized ? (
           <svg
             className="size-4"
@@ -349,7 +349,7 @@ export function ConditionSummaryStrip({ conditions, customized, onClick }) {
             </svg>
           )}
         </b>
-        <small className="mt-0.5 block truncate text-[11px] font-semibold text-black/45">
+        <small className="mt-0.5 block truncate text-[11px] font-semibold text-black/60">
           {sub}
         </small>
       </span>
@@ -376,7 +376,7 @@ export function AppliedConditionsSheet({ conditions, customized, onClose, onEdit
         <div className="mb-4 mt-5 flex items-start justify-between">
           <div>
             <h2 className="text-lg font-black">적용 중인 조건</h2>
-            <p className="mt-1 text-[10px] font-medium text-black/35">
+            <p className="mt-1 text-[10px] font-medium text-black/60">
               {customized
                 ? '이번 검색에만 적용돼요. 마이페이지 프로필은 바뀌지 않아요.'
                 : '마이페이지에 저장된 내 조건이에요.'}
@@ -384,7 +384,7 @@ export function AppliedConditionsSheet({ conditions, customized, onClose, onEdit
           </div>
           <button
             onClick={onClose}
-            className="grid size-8 place-items-center rounded-full bg-[#f3f4f6] text-lg text-black/50"
+            className="grid size-8 place-items-center rounded-full bg-[#f3f4f6] text-lg text-black/60"
             aria-label="닫기"
           >
             ×
@@ -394,7 +394,7 @@ export function AppliedConditionsSheet({ conditions, customized, onClose, onEdit
           <div>
             <h3 className="text-xs font-black">지역</h3>
             <div className="mt-2 flex flex-wrap gap-1.5">
-              <span className="rounded-full bg-white px-3 py-2 text-[11px] font-extrabold text-[#2F7BF5]">
+              <span className="rounded-full bg-white px-3 py-2 text-[11px] font-extrabold text-[#2468E0]">
                 사하구
               </span>
             </div>
@@ -406,7 +406,7 @@ export function AppliedConditionsSheet({ conditions, customized, onClose, onEdit
                 {values[key].map((value) => (
                   <span
                     key={value}
-                    className="rounded-full bg-white px-3 py-2 text-[11px] font-extrabold text-[#2F7BF5]"
+                    className="rounded-full bg-white px-3 py-2 text-[11px] font-extrabold text-[#2468E0]"
                   >
                     {value}
                   </span>
@@ -415,7 +415,7 @@ export function AppliedConditionsSheet({ conditions, customized, onClose, onEdit
             </div>
           ))}
           {!filled.length && (
-            <p className="text-[11px] font-semibold text-black/40">직접 설정한 조건이 없어요.</p>
+            <p className="text-[11px] font-semibold text-black/60">직접 설정한 조건이 없어요.</p>
           )}
         </div>
         <button

@@ -46,11 +46,11 @@ export default function PolicyCompareSelectScreen() {
       <ScreenHeader title="비교할 정책 선택" />
       <main className="pb-32">
         <section className="px-5 pt-5">
-          <p className="mb-2 text-[11px] font-extrabold text-[#2F7BF5]">현재 정책</p>
+          <p className="mb-2 text-[11px] font-extrabold text-[#2468E0]">현재 정책</p>
           <div className="rounded-[22px] border-2 border-[#2F7BF5]/20 bg-white p-5">
             <PolicyTags category={basePolicy.category} region={basePolicy.region} />
             <h2 className="mt-3 text-base font-black">{basePolicy.title}</h2>
-            <p className="mt-2 text-[11px] font-semibold text-black/35">
+            <p className="mt-2 text-[11px] font-semibold text-black/60">
               현재 정책은 변경할 수 없음
             </p>
           </div>
@@ -68,7 +68,7 @@ export default function PolicyCompareSelectScreen() {
         <section className="px-5 pt-6">
           <div className="flex items-center gap-2">
             {!query && (
-              <span className="grid size-7 place-items-center rounded-lg bg-[#EAF2FE] text-[#2F7BF5]">
+              <span className="grid size-7 place-items-center rounded-lg bg-[#EAF2FE] text-[#2468E0]">
                 <Icon name="sparkle" className="size-4" />
               </span>
             )}
@@ -102,7 +102,7 @@ export default function PolicyCompareSelectScreen() {
                     </div>
                     <button
                       onClick={() => navigate(`/policies/${policy.id}`)}
-                      className="grid size-10 shrink-0 place-items-center rounded-full bg-[#f5f6f8] text-black/35"
+                      className="grid size-10 shrink-0 place-items-center rounded-full bg-[#f5f6f8] text-black/60"
                       aria-label={`${policy.title} 상세보기`}
                     >
                       <svg
@@ -121,7 +121,7 @@ export default function PolicyCompareSelectScreen() {
             {policies.length === 0 && (
               <div className="rounded-[20px] bg-white py-12 text-center">
                 <p className="text-sm font-black">검색 결과가 없어요</p>
-                <p className="mt-1 text-xs text-black/35">다른 정책명이나 키워드를 입력해주세요.</p>
+                <p className="mt-1 text-xs text-black/60">다른 정책명이나 키워드를 입력해주세요.</p>
               </div>
             )}
           </div>

@@ -129,17 +129,17 @@ function PolicyDetailContent({ policy }) {
           <h2 className="mt-4 text-[25px] font-black leading-tight tracking-[-0.05em]">
             {policy.title}
           </h2>
-          <p className="mt-3 text-sm font-medium leading-6 text-black/50">{policy.description}</p>
+          <p className="mt-3 text-sm font-medium leading-6 text-black/60">{policy.description}</p>
           <div className="mt-5 flex items-center justify-between rounded-2xl bg-[#f7f8fb] p-4">
             <div>
-              <p className="text-[10px] font-bold text-black/35">신청기간</p>
+              <p className="text-[10px] font-bold text-black/60">신청기간</p>
               <p className="mt-1 text-xs font-extrabold">{policy.applicationPeriod}</p>
             </div>
             <span
               className={`rounded-full px-3 py-2 text-xs font-black ${
                 policy.deadline.startsWith('D-')
                   ? 'bg-[#2F7BF5] text-white'
-                  : 'bg-[#EAF2FE] text-[#2F7BF5]'
+                  : 'bg-[#EAF2FE] text-[#2468E0]'
               }`}
             >
               {policy.deadline}
@@ -159,7 +159,7 @@ function PolicyDetailContent({ policy }) {
                   key={label}
                   className="grid grid-cols-[105px_1fr] gap-3 py-3 first:pt-0 last:pb-0"
                 >
-                  <dt className="text-[11px] font-extrabold text-black/40">{label}</dt>
+                  <dt className="text-[11px] font-extrabold text-black/60">{label}</dt>
                   <dd className="text-xs font-bold leading-5 text-black/70">{value}</dd>
                 </div>
               ))}
@@ -172,7 +172,7 @@ function PolicyDetailContent({ policy }) {
                 {policy.aiAssistantComment}
               </p>
             ) : (
-              <p className="mt-3 rounded-xl bg-[#f7f8fb] px-4 py-3 text-xs font-semibold leading-5 text-black/40">
+              <p className="mt-3 rounded-xl bg-[#f7f8fb] px-4 py-3 text-xs font-semibold leading-5 text-black/60">
                 주요 혜택과 추천 이유, 추가로 확인할 조건을 AI 비서가 정리해 드릴 예정이에요.
               </p>
             )}
@@ -202,7 +202,7 @@ function PolicyDetailContent({ policy }) {
             {eligibilityItems.length > 3 && (
               <button
                 onClick={() => setEligibilityExpanded((value) => !value)}
-                className="mt-4 text-xs font-black text-[#2F7BF5]"
+                className="mt-4 text-xs font-black text-[#2468E0]"
               >
                 {eligibilityExpanded
                   ? '조건 접기'
@@ -216,7 +216,7 @@ function PolicyDetailContent({ policy }) {
               <ol className="mt-4 space-y-4">
                 {steps.map((step, index) => (
                   <li key={step} className="flex items-center gap-3">
-                    <span className="grid size-7 shrink-0 place-items-center rounded-full bg-[#EAF2FE] text-[11px] font-black text-[#2F7BF5]">
+                    <span className="grid size-7 shrink-0 place-items-center rounded-full bg-[#EAF2FE] text-[11px] font-black text-[#2468E0]">
                       {index + 1}
                     </span>
                     <span className="text-xs font-extrabold text-black/65">{step}</span>
@@ -241,7 +241,7 @@ function PolicyDetailContent({ policy }) {
           >
             {documents.length ? (
               <div className="mt-3">
-                <p className="text-[11px] font-medium leading-5 text-black/40">
+                <p className="text-[11px] font-medium leading-5 text-black/60">
                   해당자 서류는 본인에게 적용되는 경우 준비해주세요. 신청 경로·가구 상황에 따라 추가
                   서류나 제출 면제가 있을 수 있어요.
                 </p>
@@ -268,11 +268,11 @@ function PolicyDetailContent({ policy }) {
                         </span>
                         <span
                           className={`min-w-0 flex-1 break-words text-xs font-bold leading-5 ${
-                            isChecked ? 'text-black/35 line-through' : 'text-black/65'
+                            isChecked ? 'text-black/60 line-through' : 'text-black/65'
                           }`}
                         >
                           {document}
-                          <span className="mt-1 block text-[10px] font-semibold text-[#2F7BF5] no-underline">
+                          <span className="mt-1 block text-[10px] font-semibold text-[#2468E0] no-underline">
                             {item.required === true
                               ? '필수'
                               : item.required === false
@@ -295,12 +295,12 @@ function PolicyDetailContent({ policy }) {
           </SectionCard>
 
           <SectionCard title="정책 비교">
-            <p className="mt-2 text-xs font-medium text-black/45">
+            <p className="mt-2 text-xs font-medium text-black/60">
               다른 정책과 조건과 혜택을 비교해보세요.
             </p>
             <button
               onClick={startComparison}
-              className="mt-4 flex w-full items-center justify-center gap-1.5 rounded-2xl border border-[#2F7BF5] py-3.5 text-xs font-black text-[#2F7BF5]"
+              className="mt-4 flex w-full items-center justify-center gap-1.5 rounded-2xl border border-[#2F7BF5] py-3.5 text-xs font-black text-[#2468E0]"
             >
               <svg
                 viewBox="0 0 24 24"
@@ -327,11 +327,11 @@ function PolicyDetailContent({ policy }) {
                     className="flex w-full items-center gap-3 rounded-2xl border border-black/[0.07] p-4 text-left"
                   >
                     <div className="min-w-0 flex-1">
-                      <span className="inline-block rounded-md bg-[#f3f4f6] px-2 py-1 text-[10px] font-extrabold text-black/50">
+                      <span className="inline-block rounded-md bg-[#f3f4f6] px-2 py-1 text-[10px] font-extrabold text-black/60">
                         {item.region} · {item.target}
                       </span>
                       <p className="mt-2 truncate text-xs font-black">{item.title}</p>
-                      <p className="mt-1 truncate text-[10px] font-bold text-black/35">
+                      <p className="mt-1 truncate text-[10px] font-bold text-black/60">
                         {item.description}
                       </p>
                     </div>
@@ -366,7 +366,7 @@ function PolicyDetailContent({ policy }) {
         <button
           onClick={addToApplications}
           disabled={isManaged}
-          className="flex min-w-0 flex-[0.9] items-center justify-center rounded-2xl border border-[#2F7BF5] px-3 py-4 text-[11px] font-black text-[#2F7BF5] disabled:border-black/10 disabled:bg-[#f3f4f6] disabled:text-black/35"
+          className="flex min-w-0 flex-[0.9] items-center justify-center rounded-2xl border border-[#2F7BF5] px-3 py-4 text-[11px] font-black text-[#2468E0] disabled:border-black/10 disabled:bg-[#f3f4f6] disabled:text-black/60"
         >
           {isManaged ? '✓ 신청 관리에 추가됨' : '＋ 신청 관리에 추가'}
         </button>
@@ -378,13 +378,13 @@ function PolicyDetailContent({ policy }) {
 function EmptyOfficialInfo({ message, url }) {
   return (
     <div className="mt-3 rounded-xl bg-[#f7f8fb] px-4 py-3">
-      <p className="text-xs font-semibold leading-5 text-black/45">{message}</p>
+      <p className="text-xs font-semibold leading-5 text-black/60">{message}</p>
       {url && (
         <a
           href={url}
           target="_blank"
           rel="noreferrer"
-          className="mt-2 inline-flex text-[11px] font-black text-[#2F7BF5]"
+          className="mt-2 inline-flex text-[11px] font-black text-[#2468E0]"
         >
           공식 공고 확인하기 ›
         </a>
@@ -392,13 +392,13 @@ function EmptyOfficialInfo({ message, url }) {
     </div>
   )
 }
-function SectionCard({ title, icon, aside, asideClass = 'bg-[#EAF2FE] text-[#2F7BF5]', children }) {
+function SectionCard({ title, icon, aside, asideClass = 'bg-[#EAF2FE] text-[#2468E0]', children }) {
   return (
     <section className="rounded-[22px] bg-white p-5 shadow-[0_5px_18px_rgba(23,25,35,0.03)]">
       <div className="flex items-center justify-between">
         <h3 className="flex items-center gap-2 text-sm font-black">
           {icon && (
-            <span className="grid size-7 place-items-center rounded-lg bg-[#EAF2FE] text-[#2F7BF5]">
+            <span className="grid size-7 place-items-center rounded-lg bg-[#EAF2FE] text-[#2468E0]">
               <Icon name="sparkle" className="size-4" />
             </span>
           )}

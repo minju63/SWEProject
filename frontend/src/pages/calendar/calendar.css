@@ -107,7 +107,7 @@
   font-weight: 700;
 }
 .cal-picker-months button.now {
-  color: var(--primary);
+  color: #2468e0;
 }
 .cal-picker-months button.on {
   background: var(--primary);
@@ -145,7 +145,7 @@
 }
 .cal-week .cal-sat,
 .cal-day.cal-sat .cal-num {
-  color: var(--primary);
+  color: #2468e0;
 }
 .cal-day {
   display: flex;
@@ -174,7 +174,7 @@
 .cal-today .cal-num {
   border-radius: 10px;
   background: #e3eeff;
-  color: var(--primary) !important;
+  color: #2468e0 !important;
   font-weight: 800;
 }
 .cal-sel .cal-num {
@@ -252,7 +252,7 @@
 }
 .cal-section-head h2 span {
   font-size: inherit;
-  color: var(--primary);
+  color: #2468e0;
 }
 .cal-scope {
   margin: -4px 0 10px;
@@ -268,7 +268,7 @@
 .cal-clear {
   border: 0;
   background: none;
-  color: var(--primary);
+  color: #2468e0;
   font-weight: 700;
 }
 .cal-sub {
@@ -341,7 +341,7 @@
 }
 .ccard-event {
   background: #e3eeff;
-  color: var(--primary);
+  color: #2468e0;
 }
 .ccard-meta {
   font-size: 12.5px;
@@ -360,7 +360,7 @@
 }
 .ccard-docs b {
   flex: none;
-  color: var(--primary);
+  color: #2468e0;
 }
 .ccard-docs-none {
   color: var(--muted);
@@ -391,7 +391,7 @@
   border: 0;
   border-radius: 50%;
   background: transparent;
-  color: #a4b3c5;
+  color: #657185;
 }
 .ccard-heart.on {
   background: #fff0f4;
@@ -412,7 +412,7 @@
   border: 0;
   border-top: 1px solid #eef3fc;
   background: #f5f8ff;
-  color: var(--primary);
+  color: #2468e0;
   font-size: 13px;
   font-weight: 700;
   text-align: left;
@@ -630,7 +630,7 @@
   border: 1.5px dashed #b5cdf7;
   border-radius: 14px;
   background: #fff;
-  color: var(--primary);
+  color: #2468e0;
   font-size: 14px;
   font-weight: 700;
 }
@@ -647,7 +647,7 @@
   margin: 0;
 }
 .csheet-info b {
-  color: var(--primary);
+  color: #2468e0;
 }
 .csheet-save {
   min-height: 52px;
@@ -720,7 +720,7 @@
   padding: 12px 14px;
   border-radius: 14px;
   background: #e3eeff;
-  color: var(--primary);
+  color: #2468e0;
   font-size: 14px;
   font-weight: 800;
 }
@@ -749,7 +749,7 @@
 .csheet-repeat em {
   font-size: 12px;
   font-style: normal;
-  color: var(--primary);
+  color: #2468e0;
 }
 .csheet-repeat input {
   appearance: none;
@@ -838,7 +838,7 @@
   flex: none;
 }
 .alarm-ico {
-  color: var(--primary);
+  color: #2468e0;
 }
 .custom-add {
   display: flex;
@@ -851,10 +851,10 @@
 }
 .ccard-dday-event {
   background: #e3eeff;
-  color: var(--primary);
+  color: #2468e0;
 }
 .ccard-meta b {
-  color: var(--primary);
+  color: #2468e0;
 }
 
 /* ---------- 준비물 체크리스트 (신청 준비·찜 정책의 공식 준비물 + 마이에서 직접 추가한 준비물) ---------- */
@@ -900,7 +900,7 @@
 }
 .ccard-checklist-head b {
   flex: none;
-  color: var(--primary);
+  color: #2468e0;
 }
 .ccard-checklist-head .ccard-bar {
   flex: 1;
@@ -950,7 +950,7 @@
   padding: 2px 7px;
   border-radius: 999px;
   background: #eef3fe;
-  color: var(--primary);
+  color: #2468e0;
   font-size: 11px;
   font-style: normal;
   font-weight: 700;
@@ -978,7 +978,7 @@
   padding: 0;
   border: 0;
   background: none;
-  color: var(--primary);
+  color: #2468e0;
   font: inherit;
   font-weight: 700;
   text-decoration: underline;

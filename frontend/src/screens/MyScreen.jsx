@@ -212,7 +212,7 @@ export default function MyScreen() {
         <main className="pb-28">
           <section className="my-profile-card">
             <div className="flex items-center gap-4">
-              <div className="grid size-16 shrink-0 place-items-center rounded-[22px] bg-[#f1f3fb] text-[#2F7BF5]">
+              <div className="grid size-16 shrink-0 place-items-center rounded-[22px] bg-[#f1f3fb] text-[#2468E0]">
                 <Icon name="user" className="size-8" />
               </div>
               <div className="min-w-0 flex-1">
@@ -224,7 +224,7 @@ export default function MyScreen() {
                       </h2>
                       <button
                         onClick={() => setCompletionOpen(true)}
-                        className="shrink-0 rounded-full bg-[#f1f3fb] px-2 py-1 text-[10px] font-black text-[#2F7BF5]"
+                        className="shrink-0 rounded-full bg-[#f1f3fb] px-2 py-1 text-[10px] font-black text-[#2468E0]"
                       >
                         맞춤정보 {completion.percent}%
                       </button>
@@ -239,7 +239,7 @@ export default function MyScreen() {
                     </button>
                   )}
                 </div>
-                <p className="mt-1 text-xs font-semibold text-black/40">
+                <p className="mt-1 text-xs font-semibold text-black/60">
                   {user
                     ? profileSummary || '맞춤정보를 입력하고 혜택을 찾아보세요'
                     : '나의 찜과 신청 내역을 한곳에서 관리해요'}
@@ -247,7 +247,7 @@ export default function MyScreen() {
               </div>
               <button
                 onClick={() => (user ? navigate('/settings') : requestLogin())}
-                className="grid size-10 place-items-center rounded-xl border border-black/10 text-black/45"
+                className="grid size-10 place-items-center rounded-xl border border-black/10 text-black/60"
                 aria-label="설정 열기"
               >
                 <Icon name="settings" className="size-5" />
@@ -257,7 +257,7 @@ export default function MyScreen() {
               {profile.interests.map((interest) => (
                 <span
                   key={interest}
-                  className="rounded-full bg-[#f1f3fb] px-3 py-2 text-[11px] font-extrabold text-[#2F7BF5]"
+                  className="rounded-full bg-[#f1f3fb] px-3 py-2 text-[11px] font-extrabold text-[#2468E0]"
                 >
                   #{interest}
                 </span>
@@ -297,10 +297,10 @@ export default function MyScreen() {
                   onClick={summary.action}
                   className="rounded-2xl border border-black/[0.04] bg-[#f7f8fb] px-1 py-3.5 text-center transition active:scale-[0.98]"
                 >
-                  <b className="block text-[22px] font-black leading-none text-[#2F7BF5]">
+                  <b className="block text-[22px] font-black leading-none text-[#2468E0]">
                     {summary.count}
                   </b>
-                  <span className="mt-2 block text-[9px] font-bold text-black/40">
+                  <span className="mt-2 block text-[9px] font-bold text-black/60">
                     {summary.label}
                   </span>
                 </button>
@@ -310,7 +310,7 @@ export default function MyScreen() {
 
           {notice && (
             <p
-              className="mx-5 mt-4 rounded-xl bg-[#f1f3fb] px-4 py-3 text-xs font-bold text-[#2F7BF5]"
+              className="mx-5 mt-4 rounded-xl bg-[#f1f3fb] px-4 py-3 text-xs font-bold text-[#2468E0]"
               role="status"
             >
               {notice}
@@ -324,7 +324,7 @@ export default function MyScreen() {
           >
             <div className="flex items-end justify-between">
               <div>
-                <p className="mb-1 text-xs font-extrabold text-[#2F7BF5]">
+                <p className="mb-1 text-xs font-extrabold text-[#2468E0]">
                   내가 직접 기록하고 관리해요
                 </p>
                 <h2 id="application-title" className="text-xl font-black tracking-[-0.04em]">
@@ -333,7 +333,7 @@ export default function MyScreen() {
               </div>
               <button
                 onClick={() => (user ? setAddOpen(true) : requestLogin())}
-                className="rounded-full bg-[#f1f3fb] px-3.5 py-2.5 text-[10px] font-extrabold text-[#2F7BF5]"
+                className="rounded-full bg-[#f1f3fb] px-3.5 py-2.5 text-[10px] font-extrabold text-[#2468E0]"
               >
                 ＋ 혜택 추가
               </button>
@@ -352,7 +352,7 @@ export default function MyScreen() {
                   {stage}
                   <span
                     className={`rounded-full px-1.5 py-0.5 text-[11px] ${
-                      activeStage === stage ? 'bg-white/20' : 'bg-[#f1f3fb] text-[#2F7BF5]'
+                      activeStage === stage ? 'bg-white/20' : 'bg-[#f1f3fb] text-[#2468E0]'
                     }`}
                   >
                     {stageCounts[stage]}
@@ -360,7 +360,7 @@ export default function MyScreen() {
                 </button>
               ))}
             </div>
-            <div className="mt-3 flex items-start gap-2 rounded-xl bg-[#f1f3fb] px-3 py-2.5 text-[10px] font-semibold leading-4 text-[#2F7BF5]">
+            <div className="mt-3 flex items-start gap-2 rounded-xl bg-[#f1f3fb] px-3 py-2.5 text-[10px] font-semibold leading-4 text-[#2468E0]">
               <Icon name="settings" className="mt-0.5 size-3.5 shrink-0" />
               공식 사이트와 자동 연동되지 않아요. 신청 단계와 준비물을 직접 관리해주세요.
             </div>
@@ -385,7 +385,7 @@ export default function MyScreen() {
                   <p className="text-sm font-black">이 단계에 관리 중인 혜택이 없어요</p>
                   <button
                     onClick={() => (user ? setAddOpen(true) : requestLogin())}
-                    className="mt-2 text-xs font-extrabold text-[#2F7BF5]"
+                    className="mt-2 text-xs font-extrabold text-[#2468E0]"
                   >
                     혜택 추가하기
                   </button>
@@ -397,7 +397,7 @@ export default function MyScreen() {
           <section ref={savedRef} className="my-saved-section" aria-labelledby="saved-title">
             <div className="flex items-center justify-between">
               <h2 id="saved-title" className="text-xl font-black tracking-[-0.04em]">
-                찜한 혜택 <span className="text-[#2F7BF5]">{savedPolicies.length}</span>
+                찜한 혜택 <span className="text-[#2468E0]">{savedPolicies.length}</span>
               </h2>
             </div>
             <div className="my-saved-tabs">
@@ -406,7 +406,7 @@ export default function MyScreen() {
                   key={filter}
                   onClick={() => setSavedFilter(filter)}
                   className={`shrink-0 rounded-full px-3 py-2 text-[10px] font-extrabold ${
-                    savedFilter === filter ? 'bg-[#2F7BF5] text-white' : 'bg-white text-black/40'
+                    savedFilter === filter ? 'bg-[#2F7BF5] text-white' : 'bg-white text-black/60'
                   }`}
                 >
                   {filter}
@@ -438,7 +438,7 @@ export default function MyScreen() {
               })}
               {visibleSaved.length === 0 && (
                 <div className="rounded-[20px] bg-white px-5 py-10 text-center">
-                  <span className="mx-auto grid size-12 place-items-center rounded-full bg-[#f1f3fb] text-[#2F7BF5]">
+                  <span className="mx-auto grid size-12 place-items-center rounded-full bg-[#f1f3fb] text-[#2468E0]">
                     <Icon name="heart" className="size-5" />
                   </span>
                   <p className="mt-3 text-sm font-black">
@@ -448,7 +448,7 @@ export default function MyScreen() {
                         ? '마감된 찜한 혜택이 없어요'
                         : `${savedFilter}인 찜한 혜택이 없어요`}
                   </p>
-                  <p className="mt-1 text-[11px] font-medium text-black/35">
+                  <p className="mt-1 text-[11px] font-medium text-black/60">
                     {savedFilter === '전체'
                       ? '관심 있는 혜택을 저장하고 다시 확인해보세요.'
                       : '다른 필터에서도 찜한 혜택을 확인해보세요.'}
@@ -470,7 +470,7 @@ export default function MyScreen() {
                 최근 본 혜택
               </h2>
               {recentPolicies.length > 0 && (
-                <button onClick={clearRecent} className="text-[10px] font-bold text-black/35">
+                <button onClick={clearRecent} className="text-[10px] font-bold text-black/60">
                   최근 기록 전체 삭제
                 </button>
               )}
@@ -485,13 +485,13 @@ export default function MyScreen() {
                       onClick={() => policy && navigate(`/policies/${policy.id}`)}
                       className="my-recent-card"
                     >
-                      <span className="text-[10px] font-extrabold text-[#2F7BF5]">
+                      <span className="text-[10px] font-extrabold text-[#2468E0]">
                         {policy?.category ?? '정책'}
                       </span>
                       <p className="mt-2 line-clamp-2 text-sm font-black leading-snug">
                         {policy?.title ?? title}
                       </p>
-                      <p className="mt-2 truncate text-[11px] font-medium text-black/35">
+                      <p className="mt-2 truncate text-[11px] font-medium text-black/60">
                         {policy?.region ?? '전국'}
                       </p>
                     </button>
@@ -501,7 +501,7 @@ export default function MyScreen() {
             ) : (
               <div className="mt-4 rounded-[20px] bg-white py-9 text-center">
                 <p className="text-sm font-black">최근 본 혜택이 없어요</p>
-                <p className="mt-1 text-[11px] text-black/35">
+                <p className="mt-1 text-[11px] text-black/60">
                   정책 상세를 확인하면 여기에 기록돼요.
                 </p>
               </div>
@@ -533,7 +533,7 @@ export default function MyScreen() {
                   <div key={item.label} className="flex items-center gap-3 py-3">
                     <span
                       className={`grid size-6 place-items-center rounded-full text-xs font-black ${
-                        item.complete ? 'bg-[#2F7BF5] text-white' : 'bg-[#f1f3fb] text-[#2F7BF5]'
+                        item.complete ? 'bg-[#2F7BF5] text-white' : 'bg-[#f1f3fb] text-[#2468E0]'
                       }`}
                     >
                       {item.complete ? '✓' : '○'}
@@ -543,7 +543,7 @@ export default function MyScreen() {
                 ))}
               </div>
               {!profile.housingType && (
-                <p className="mt-4 rounded-xl bg-[#f1f3fb] p-3 text-[11px] font-semibold leading-5 text-[#2F7BF5]">
+                <p className="mt-4 rounded-xl bg-[#f1f3fb] p-3 text-[11px] font-semibold leading-5 text-[#2468E0]">
                   주거 형태를 추가하면 주거·생활 분야 혜택을 더 정확하게 추천할 수 있어요.
                 </p>
               )}
@@ -600,7 +600,7 @@ export default function MyScreen() {
                       setSelectedPolicies([])
                     }}
                     className={`rounded-xl py-3 text-[11px] font-extrabold ${
-                      addMode === mode.id ? 'bg-[#2F7BF5] text-white' : 'bg-[#f3f4f7] text-black/45'
+                      addMode === mode.id ? 'bg-[#2F7BF5] text-white' : 'bg-[#f3f4f7] text-black/60'
                     }`}
                   >
                     {mode.label}
@@ -618,7 +618,7 @@ export default function MyScreen() {
                       aria-pressed={selectedPolicies.includes(title)}
                       className={`w-full rounded-xl border p-3 text-left text-xs font-bold ${
                         selectedPolicies.includes(title)
-                          ? 'border-[#2F7BF5] bg-[#f1f3fb] text-[#2F7BF5]'
+                          ? 'border-[#2F7BF5] bg-[#f1f3fb] text-[#2468E0]'
                           : 'border-black/[0.07]'
                       }`}
                     >
@@ -633,7 +633,7 @@ export default function MyScreen() {
                     </button>
                   ))}
                   {savedPolicies.length === 0 && (
-                    <p className="py-6 text-center text-xs text-black/35">찜한 혜택이 없어요.</p>
+                    <p className="py-6 text-center text-xs text-black/60">찜한 혜택이 없어요.</p>
                   )}
                 </div>
               )}
@@ -655,7 +655,7 @@ export default function MyScreen() {
                         aria-pressed={selectedPolicies.includes(policy.id)}
                         className={`w-full rounded-xl border p-3 text-left text-xs font-bold ${
                           selectedPolicies.includes(policy.id)
-                            ? 'border-[#2F7BF5] bg-[#f1f3fb] text-[#2F7BF5]'
+                            ? 'border-[#2F7BF5] bg-[#f1f3fb] text-[#2468E0]'
                             : 'border-black/[0.07]'
                         }`}
                       >
@@ -673,7 +673,7 @@ export default function MyScreen() {
                 </div>
               )}
               {addMode === 'manual' && (
-                <label className="mt-4 block text-xs font-bold text-black/45">
+                <label className="mt-4 block text-xs font-bold text-black/60">
                   혜택 이름
                   <input
                     required
@@ -695,7 +695,7 @@ export default function MyScreen() {
                     options={stages}
                     onChange={(value) => setNewStage(value)}
                   />
-                  <label className="text-xs font-bold text-black/45">
+                  <label className="text-xs font-bold text-black/60">
                     신청 마감일
                     <input
                       type="date"
@@ -705,7 +705,7 @@ export default function MyScreen() {
                     />
                   </label>
                 </div>
-                <label className="mt-4 block text-xs font-bold text-black/45">
+                <label className="mt-4 block text-xs font-bold text-black/60">
                   메모
                   <textarea
                     value={newMemo}

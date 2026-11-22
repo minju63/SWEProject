@@ -230,13 +230,19 @@ export default function PolicyDetailPage() {
             <div><dt>지원 내용</dt><dd>{p.support_content || '공식 공고 확인 필요'}</dd></div>
             <div><dt>신청방법</dt><dd>{applicationMethod || (sourceUrl ? '공식 공고에서 확인' : '공식 공고 확인 필요')}</dd></div>
           </dl>
+          {/* NFR-SRCH-003: 출처와 최종 확인일. 확인일이 없으면 날짜를 만들지 않는다 */}
+          <p className="policy-detail-muted policy-detail-source-note">
+            {sourceUrl ? <>출처: <a href={sourceUrl} target="_blank" rel="noopener noreferrer">{p.source_name || '공식 원문'}</a></> : '출처: 공식 출처 확인 필요'}
+            {' · '}
+            {(p.last_verified_at || p.source_checked_at) ? `최종 확인일 ${String(p.last_verified_at || p.source_checked_at).slice(0, 10).replaceAll('-', '.')}` : '최종 확인일 정보 없음'}
+          </p>
         </SectionCard>
 
         <SectionCard title="Dr.부의 한마디" icon>
           {eligibility.isError ? <p className="policy-detail-ai-placeholder">조건 비교를 불러오지 못해 자격 설명을 표시할 수 없어요.</p>
             : eligibility.isFetching || explanation.isLoading ? <p className="policy-detail-ai-placeholder">정책 설명을 정리하고 있어요.</p>
             : explanation.isError || !explanation.data?.explanation?.summary
-              ? <p className="policy-detail-ai-placeholder" role="status">AI 설명을 불러오지 못했어요. 아래의 정책 요약과 자격 판정을 확인해 주세요.</p>
+              ? <p className="policy-detail-ai-placeholder" role="status">기본 정보 기반 안내예요. AI 설명을 불러오지 못해 정책 요약과 자격 판정만 보여드려요.</p>
               : <p className="policy-detail-ai-placeholder">{explanation.data.explanation.summary}</p>}
         </SectionCard>
 
@@ -289,7 +295,7 @@ export default function PolicyDetailPage() {
     {actionError && <p className="policy-detail-action-error" role="alert">{actionError}</p>}
     <div className="policy-detail-actions">
       {url ? <a href={url} target="_blank" rel="noopener noreferrer">{applicationUrl ? '신청 페이지 바로가기 ↗' : '원문 바로가기 ↗'}</a>
-        : <span className="policy-detail-unavailable">공식 신청 페이지 확인 필요</span>}
+        : <span className="policy-detail-unavailable">공식 출처 확인 필요</span>}
       <button onClick={() => user ? applicationMutation.mutate() : navigate('/my')}
         disabled={isManaged || applicationMutation.isPending || detailState.isLoading || detailState.isError}>
         {isManaged ? '✓ 신청 관리에 추가됨' : '＋ 신청 관리에 추가'}

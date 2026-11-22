@@ -118,9 +118,9 @@ export default function App() {
                         {sel === null ? (
                           <>
                             <p className="text-[15px] font-bold leading-[1.45]">
-                              부산 <span className="text-[#2F7BF5]">사하구</span> 거주
+                              부산 <span className="text-[#2468E0]">사하구</span> 거주
                               <br />
-                              <span className="text-[#2F7BF5]">25세</span> 휴학생 님을 위한
+                              <span className="text-[#2468E0]">25세</span> 휴학생 님을 위한
                               <br />
                               맞춤 혜택이에요!
                             </p>
@@ -128,7 +128,7 @@ export default function App() {
                               onClick={() => setSheet(true)}
                               className="flex flex-col gap-1 rounded-[14px] bg-white px-3 py-2.5 text-left shadow-[0_4px_12px_rgba(47,123,245,0.1)]"
                             >
-                              <span className="flex items-center gap-1 text-[12.5px] font-bold text-[#2F7BF5]">
+                              <span className="flex items-center gap-1 text-[12.5px] font-bold text-[#2468E0]">
                                 <Sparkles size={13} fill="#2F7BF5" /> AI 맞춤 추천{' '}
                                 <ChevronRight size={14} className="ml-auto" />
                               </span>
@@ -141,7 +141,7 @@ export default function App() {
                           <>
                             <div className="flex flex-col gap-1">
                               <p className="text-[15px] font-bold leading-[1.45]">
-                                <span className="text-[#2F7BF5]">{CATEGORIES[sel].label}</span>{' '}
+                                <span className="text-[#2468E0]">{CATEGORIES[sel].label}</span>{' '}
                                 혜택이
                                 <br />
                                 {sel === 0 ? '가장 많아요' : '준비되어 있어요'}
@@ -155,14 +155,14 @@ export default function App() {
                               onClick={() => setSheet(true)}
                               className="flex flex-col gap-1 rounded-[14px] bg-white px-3 py-2.5 text-left shadow-[0_4px_12px_rgba(47,123,245,0.1)]"
                             >
-                              <span className="flex items-center gap-1 text-[12px] font-bold text-[#2F7BF5]">
+                              <span className="flex items-center gap-1 text-[12px] font-bold text-[#2468E0]">
                                 <Sparkles size={12} fill="#2F7BF5" /> 이 분야 AI 추천{' '}
                                 <ChevronRight size={14} className="ml-auto" />
                               </span>
                               <span className="text-[13px] font-bold text-[#18202F]">
                                 청년 월세 지원
                               </span>
-                              <span className="text-[11px] font-semibold text-[#EF4E6C]">
+                              <span className="text-[11px] font-semibold text-[#C93454]">
                                 D-4 마감 임박
                               </span>
                             </button>
@@ -188,7 +188,7 @@ export default function App() {
                       onSelect={(i) => setSel(sel === i ? null : i)}
                     />
                     {all && (
-                      <p className="flex items-center gap-1 px-1 text-[11px] text-[#9AA4B5]">
+                      <p className="flex items-center gap-1 px-1 text-[11px] text-[#657185]">
                         <Info size={12} /> 부산 청년 혜택 전체 312개 · 나에게 해당하지 않는 혜택도
                         포함돼요
                       </p>
@@ -207,9 +207,9 @@ export default function App() {
                             style={{ background: CATEGORIES[sel].color }}
                           />
                           {CATEGORIES[sel].label} {all ? '전체' : '맞춤'} 혜택{' '}
-                          <span className="text-[#2F7BF5]">{counts[sel]}</span>
+                          <span className="text-[#2468E0]">{counts[sel]}</span>
                         </h2>
-                        <button className="flex items-center rounded-full bg-[#EAF2FE] px-3 py-1.5 text-[12px] font-semibold text-[#2F7BF5]">
+                        <button className="flex items-center rounded-full bg-[#EAF2FE] px-3 py-1.5 text-[12px] font-semibold text-[#2468E0]">
                           전체 보기
                           <ChevronRight size={13} />
                         </button>
@@ -230,7 +230,7 @@ export default function App() {
                       <h2 className="text-[17px] font-bold">🔥 찜한 정책 마감 임박</h2>
                       <button
                         onClick={() => openCalendar()}
-                        className="-my-3 -mr-2 flex min-h-[44px] min-w-[44px] items-center justify-center px-2 text-[12.5px] font-medium text-[#9AA4B5]"
+                        className="-my-3 -mr-2 flex min-h-[44px] min-w-[44px] items-center justify-center px-2 text-[12.5px] font-medium text-[#657185]"
                       >
                         캘린더
                         <ChevronRight size={14} />

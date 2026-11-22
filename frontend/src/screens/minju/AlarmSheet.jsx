@@ -27,10 +27,10 @@ function Wheel() {
                   key={i}
                   className={`flex h-[44px] items-center ${
                     d === 0
-                      ? 'text-[17px] font-bold text-[#2F7BF5]'
+                      ? 'text-[17px] font-bold text-[#2468E0]'
                       : d === 1
-                        ? 'text-[15px] font-medium text-[#9AA4B5]'
-                        : 'text-[13px] text-[#9AA4B5]/50'
+                        ? 'text-[15px] font-medium text-[#657185]'
+                        : 'text-[13px] text-[#657185]/50'
                   }`}
                 >
                   {v}
@@ -56,13 +56,13 @@ export function AlarmSheet({
           <div className="flex flex-col gap-1">
             <h2 className="text-[20px] font-bold">직접 정하기</h2>
             <p className="text-[13px]" style={{ color: C.sub }}>
-              {title} · 마감 <span className="font-semibold text-[#EF4E6C]">{deadline}</span>
+              {title} · 마감 <span className="font-semibold text-[#C93454]">{deadline}</span>
             </p>
           </div>
           <Wheel />
           <div className="flex items-center gap-2 rounded-[16px] bg-[#EAF2FE] px-4 py-3.5 text-[13.5px] font-semibold text-[#18202F]">
             <Bell size={17} color={C.main} />
-            마감 <span className="text-[#2F7BF5]">20시간 30분 전</span>에 알려드려요
+            마감 <span className="text-[#2468E0]">20시간 30분 전</span>에 알려드려요
           </div>
           <div className="flex items-center gap-3 rounded-[18px] bg-white px-4 py-3.5 shadow-[0_6px_20px_rgba(47,123,245,0.08)]">
             <div className="flex flex-1 flex-col gap-0.5">

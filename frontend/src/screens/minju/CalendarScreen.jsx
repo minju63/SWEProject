@@ -157,14 +157,14 @@ function FavCard({ f, onUnlike, onAlarm, onPick }) {
           e.stopPropagation()
           onAlarm()
         }}
-        className={`flex h-[44px] w-full cursor-pointer items-center gap-2 px-4 text-[12.5px] font-semibold ${f.alarms.length ? 'bg-[#EAF2FE] text-[#2F7BF5]' : 'bg-[#F2F4F8]'}`}
+        className={`flex h-[44px] w-full cursor-pointer items-center gap-2 px-4 text-[12.5px] font-semibold ${f.alarms.length ? 'bg-[#EAF2FE] text-[#2468E0]' : 'bg-[#F2F4F8]'}`}
         style={f.alarms.length ? undefined : { color: C.faint }}
       >
         <Bell size={15} />
         {f.alarms.length ? (
           <>
             <span className="flex-1 truncate text-left">
-              {f.alarms.join(' · ')} <span className="text-[#9AA4B5]">({f.alarms.length})</span>
+              {f.alarms.join(' · ')} <span className="text-[#657185]">({f.alarms.length})</span>
             </span>
             <span className="flex items-center">
               변경
@@ -174,7 +174,7 @@ function FavCard({ f, onUnlike, onAlarm, onPick }) {
         ) : (
           <>
             <span className="flex-1 text-left">알림 없음</span>
-            <span className="flex items-center gap-0.5 text-[#2F7BF5]">
+            <span className="flex items-center gap-0.5 text-[#2468E0]">
               <Plus size={14} />
               알림 추가
             </span>
@@ -219,7 +219,7 @@ function AlarmEditSheet({ title, initial, onClose, onSave }) {
                 key={p}
                 className="flex items-center gap-3 rounded-2xl bg-white px-4 py-3 shadow-[0_6px_20px_rgba(47,123,245,0.08)]"
               >
-                <span className="flex size-9 items-center justify-center rounded-xl bg-[#EAF2FE] text-[#2F7BF5]">
+                <span className="flex size-9 items-center justify-center rounded-xl bg-[#EAF2FE] text-[#2468E0]">
                   <Bell size={16} />
                 </span>
                 <b className="flex-1 text-[14.5px]">{p}</b>
@@ -403,7 +403,7 @@ export default function CalendarScreen() {
                           sel
                             ? 'bg-[#2F7BF5] text-white shadow-[0_4px_10px_rgba(47,123,245,0.4)]'
                             : today
-                              ? 'bg-[#EAF2FE] font-bold text-[#2F7BF5]'
+                              ? 'bg-[#EAF2FE] font-bold text-[#2468E0]'
                               : ''
                         }`}
                         style={

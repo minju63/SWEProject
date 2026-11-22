@@ -358,7 +358,7 @@ export default function SearchScreen() {
                   const icons = ['briefcase', 'home', 'coin', 'art', 'building']
                   const iconClasses = [
                     'bg-[#fcecf1] text-[#e76586]',
-                    'bg-[#EAF2FE] text-[#2F7BF5]',
+                    'bg-[#EAF2FE] text-[#2468E0]',
                     'bg-[#fff5dc] text-[#dfa92f]',
                     'bg-[#e9f8f4] text-[#38aa89]',
                     'bg-[#f1ecfb] text-[#8b63d0]',
@@ -389,7 +389,7 @@ export default function SearchScreen() {
                   <h2 className="text-[15px] font-black text-black/65">최근 검색어</h2>
                   <button
                     onClick={clearRecentSearchTerms}
-                    className="text-[14px] font-bold text-black/35"
+                    className="text-[14px] font-bold text-black/60"
                   >
                     전체 삭제
                   </button>
@@ -464,7 +464,7 @@ export default function SearchScreen() {
               <button
                 key={`${chip.type}-${chip.value}`}
                 onClick={() => removeFilter(chip.type, chip.value, chip.category)}
-                className="shrink-0 rounded-full bg-[#EAF2FE] px-3.5 py-2.5 text-xs font-extrabold text-[#2F7BF5]"
+                className="shrink-0 rounded-full bg-[#EAF2FE] px-3.5 py-2.5 text-xs font-extrabold text-[#2468E0]"
               >
                 {chip.value} ×
               </button>
@@ -472,7 +472,7 @@ export default function SearchScreen() {
             {appliedChips.length > 3 && (
               <button
                 onClick={() => openFilters()}
-                className="shrink-0 rounded-full bg-[#f3f4f6] px-3.5 py-2.5 text-xs font-extrabold text-black/45"
+                className="shrink-0 rounded-full bg-[#f3f4f6] px-3.5 py-2.5 text-xs font-extrabold text-black/60"
               >
                 +{appliedChips.length - 3}
               </button>
@@ -490,7 +490,7 @@ export default function SearchScreen() {
         <section className="px-5 pt-6">
           <div className="flex items-center justify-between gap-4">
             <h2 className="shrink-0 text-lg font-black tracking-[-0.04em]">
-              검색 결과 <span className="text-[#2F7BF5]">{totalResults}건</span>
+              검색 결과 <span className="text-[#2468E0]">{totalResults}건</span>
             </h2>
             <div className="w-28">
               <AppSelect
@@ -555,16 +555,16 @@ export default function SearchScreen() {
                 <h3 className="mt-3 text-base font-black leading-snug tracking-[-0.025em]">
                   {policy.title}
                 </h3>
-                <p className="mt-2 text-[13px] font-medium leading-5 text-black/45">
+                <p className="mt-2 text-[13px] font-medium leading-5 text-black/60">
                   {policy.description}
                 </p>
                 <div className="mt-4 flex items-center justify-between border-t border-black/[0.06] pt-3">
-                  <span className="text-[11px] font-semibold text-black/40">
+                  <span className="text-[11px] font-semibold text-black/60">
                     신청기간 {policy.applicationPeriod}
                   </span>
                   <span
                     className={`text-xs font-black ${
-                      policy.deadline.startsWith('D-') ? 'text-[#2F7BF5]' : 'text-black/40'
+                      policy.deadline.startsWith('D-') ? 'text-[#2468E0]' : 'text-black/60'
                     }`}
                   >
                     {policy.deadline}
@@ -574,11 +574,11 @@ export default function SearchScreen() {
             ))}
             {totalResults === 0 && (
               <div className="rounded-[24px] bg-white px-6 py-14 text-center">
-                <span className="mx-auto grid size-14 place-items-center rounded-full bg-[#EAF2FE] text-[#2F7BF5]">
+                <span className="mx-auto grid size-14 place-items-center rounded-full bg-[#EAF2FE] text-[#2468E0]">
                   <Icon name="search" className="size-6" />
                 </span>
                 <p className="mt-4 text-sm font-black">조건에 맞는 결과가 없어요</p>
-                <p className="mt-1 text-xs font-medium text-black/40">
+                <p className="mt-1 text-xs font-medium text-black/60">
                   검색어나 필터를 다시 확인해주세요.
                 </p>
               </div>
@@ -628,13 +628,13 @@ export default function SearchScreen() {
               <div className="mb-4 mt-5 flex items-center justify-between">
                 <div>
                   <h2 className="text-lg font-black">필터</h2>
-                  <p className="mt-1 text-[10px] font-medium text-black/35">
+                  <p className="mt-1 text-[10px] font-medium text-black/60">
                     필요한 조건만 간단히 설정해보세요.
                   </p>
                 </div>
                 <button
                   onClick={() => setSheetOpen(false)}
-                  className="grid size-8 place-items-center rounded-full bg-[#f3f4f6] text-lg text-black/50"
+                  className="grid size-8 place-items-center rounded-full bg-[#f3f4f6] text-lg text-black/60"
                   aria-label="필터 닫기"
                 >
                   ×
@@ -692,7 +692,7 @@ export default function SearchScreen() {
 
               <section className="mt-6">
                 <h3 className="text-sm font-black">내 조건</h3>
-                <p className="mt-2 text-[11px] font-semibold text-black/40">
+                <p className="mt-2 text-[11px] font-semibold text-black/60">
                   사하구 ·{' '}
                   {summarize(
                     orderedConditions(draft.myConditionsOnly ? profileConditions : draftConditions),
@@ -743,7 +743,7 @@ export default function SearchScreen() {
                   <div className="pt-2">
                     <ConditionFields conditions={draftConditions} onChange={setDraftConditions} />
                     <div className="mt-2 flex items-center justify-between px-1">
-                      <p className="text-[10px] font-medium text-black/35">
+                      <p className="text-[10px] font-medium text-black/60">
                         이번 검색에만 적용돼요. 프로필은 바뀌지 않아요.
                       </p>
                     </div>
@@ -755,7 +755,7 @@ export default function SearchScreen() {
             <div className="flex shrink-0 gap-3 border-t border-black/[0.06] bg-white px-5 pb-[max(20px,env(safe-area-inset-bottom))] pt-4">
               <button
                 onClick={resetDraft}
-                className="w-24 rounded-2xl bg-[#f1f2f5] py-4 text-sm font-extrabold text-black/55"
+                className="w-24 rounded-2xl bg-[#f1f2f5] py-4 text-sm font-extrabold text-black/60"
               >
                 초기화
               </button>
@@ -809,7 +809,7 @@ function FilterGroup({ title, options, selected, onToggle }) {
             className={`rounded-full border px-3.5 py-2.5 text-xs font-extrabold ${
               selected.includes(option)
                 ? 'border-[#2F7BF5] bg-[#2F7BF5] text-white'
-                : 'border-black/10 bg-white text-black/55'
+                : 'border-black/10 bg-white text-black/60'
             }`}
           >
             {option}
@@ -823,7 +823,7 @@ function SummaryRow({ label, value, onClick }) {
   return (
     <button onClick={onClick} className="flex w-full items-center gap-4 py-4 text-left">
       <span className="w-20 text-xs font-black">{label}</span>
-      <span className="min-w-0 flex-1 truncate text-xs font-bold text-black/45">{value}</span>
+      <span className="min-w-0 flex-1 truncate text-xs font-bold text-black/60">{value}</span>
       <span className="text-black/30">›</span>
     </button>
   )
@@ -845,7 +845,7 @@ function SubFilterSheet({ type, draft, setDraft, onClose }) {
           </h2>
           <button
             onClick={onClose}
-            className="grid size-8 place-items-center rounded-full bg-[#f3f4f6] text-lg text-black/50"
+            className="grid size-8 place-items-center rounded-full bg-[#f3f4f6] text-lg text-black/60"
           >
             ×
           </button>
@@ -878,7 +878,7 @@ function SubFilterSheet({ type, draft, setDraft, onClose }) {
         )}
         {type === 'date' && (
           <div className="grid grid-cols-2 gap-3">
-            <label className="text-xs font-bold text-black/45">
+            <label className="text-xs font-bold text-black/60">
               시작일
               <input
                 type="date"
@@ -892,7 +892,7 @@ function SubFilterSheet({ type, draft, setDraft, onClose }) {
                 className="mt-2 w-full rounded-xl bg-[#f3f4f7] px-3 py-3 text-xs font-bold text-black"
               />
             </label>
-            <label className="text-xs font-bold text-black/45">
+            <label className="text-xs font-bold text-black/60">
               종료일
               <input
                 type="date"

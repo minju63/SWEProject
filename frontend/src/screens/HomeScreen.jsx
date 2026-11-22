@@ -164,7 +164,7 @@ export default function HomeScreen() {
 
         <main className="pb-28">
           <section className="px-5 pb-6 pt-5">
-            <p className="text-sm font-semibold text-black/45">안녕하세요, {profile.name}님</p>
+            <p className="text-sm font-semibold text-black/60">안녕하세요, {profile.name}님</p>
             <h1 className="mt-1 text-[28px] font-black leading-[1.25] tracking-[-0.05em]">
               오늘은 어떤 기회를
               <br />
@@ -175,7 +175,7 @@ export default function HomeScreen() {
               className={`mt-6 overflow-hidden rounded-[20px] bg-[#f3f4f7] transition-all ${searchExpanded ? 'ring-2 ring-[#2F7BF5]' : ''}`}
             >
               <form onSubmit={handleSearch} className="flex h-14 items-center gap-3 px-4">
-                <Icon name="search" className="size-[21px] shrink-0 text-black/35" />
+                <Icon name="search" className="size-[21px] shrink-0 text-black/60" />
                 <input
                   value={query}
                   onFocus={() => setSearchExpanded(true)}
@@ -192,7 +192,7 @@ export default function HomeScreen() {
               </form>
               {searchExpanded && (
                 <div className="border-t border-black/[0.06] bg-white p-3">
-                  <p className="mb-2 px-1 text-[11px] font-bold text-black/35">
+                  <p className="mb-2 px-1 text-[11px] font-bold text-black/60">
                     카테고리로 바로 찾기
                   </p>
                   <div className="flex flex-wrap gap-2">
@@ -203,7 +203,7 @@ export default function HomeScreen() {
                         onClick={() =>
                           navigate(`/search?category=${encodeURIComponent(category.label)}`)
                         }
-                        className="flex items-center gap-1.5 rounded-full bg-[#f1f3fb] px-3 py-2 text-[11px] font-extrabold text-[#2F7BF5]"
+                        className="flex items-center gap-1.5 rounded-full bg-[#f1f3fb] px-3 py-2 text-[11px] font-extrabold text-[#2468E0]"
                       >
                         <Icon name={category.icon} className="size-3.5" /> {category.label}
                       </button>
@@ -213,7 +213,7 @@ export default function HomeScreen() {
               )}
             </div>
             {message && (
-              <p className="mt-3 px-1 text-xs font-bold text-[#2F7BF5]" role="status">
+              <p className="mt-3 px-1 text-xs font-bold text-[#2468E0]" role="status">
                 {message}
               </p>
             )}
@@ -244,14 +244,14 @@ export default function HomeScreen() {
           <section className="py-7" aria-labelledby="deadline-title">
             <div className="flex items-end justify-between px-5">
               <div>
-                <p className="mb-1 text-xs font-extrabold text-[#2F7BF5]">놓치기 전에 확인해요</p>
+                <p className="mb-1 text-xs font-extrabold text-[#2468E0]">놓치기 전에 확인해요</p>
                 <h2 id="deadline-title" className="text-xl font-black tracking-[-0.04em]">
                   마감 직전 혜택
                 </h2>
               </div>
               <button
                 onClick={() => navigate('/search')}
-                className="text-xs font-bold text-black/40"
+                className="text-xs font-bold text-black/60"
               >
                 전체보기
               </button>
@@ -277,7 +277,7 @@ export default function HomeScreen() {
                     {benefit.day}
                   </span>
                   <p className="mt-4 text-sm font-black leading-snug">{benefit.title}</p>
-                  <p className="mt-1 text-[11px] font-bold text-black/35">{benefit.category}</p>
+                  <p className="mt-1 text-[11px] font-bold text-black/60">{benefit.category}</p>
                 </button>
               ))}
             </div>
@@ -286,14 +286,14 @@ export default function HomeScreen() {
           <section className="px-5 pt-2" aria-labelledby="popular-title">
             <div className="flex items-end justify-between">
               <div>
-                <p className="mb-1 text-xs font-extrabold text-[#2F7BF5]">
+                <p className="mb-1 text-xs font-extrabold text-[#2468E0]">
                   {profile.name}님의 지역과 관심사 기준
                 </p>
                 <h2 id="popular-title" className="text-xl font-black tracking-[-0.04em]">
                   맞춤 인기 정책
                 </h2>
               </div>
-              <button className="text-xs font-bold text-black/40">더보기</button>
+              <button className="text-xs font-bold text-black/60">더보기</button>
             </div>
 
             <div className="mt-4 space-y-3">
@@ -303,7 +303,7 @@ export default function HomeScreen() {
                   className="rounded-[22px] border border-black/[0.07] bg-white p-4 shadow-[0_5px_18px_rgba(23,25,35,0.045)]"
                 >
                   <div className="flex gap-3.5">
-                    <div className="grid size-12 shrink-0 place-items-center rounded-2xl bg-[#f1f3fb] text-[#2F7BF5]">
+                    <div className="grid size-12 shrink-0 place-items-center rounded-2xl bg-[#f1f3fb] text-[#2468E0]">
                       {policy.category === '주거·생활' && <Icon name="home" className="size-6" />}
                       {policy.category === '취업·진로' && (
                         <Icon name="briefcase" className="size-6" />
@@ -311,15 +311,15 @@ export default function HomeScreen() {
                       {policy.category === '장학·금융' && <Icon name="coin" className="size-6" />}
                     </div>
                     <div className="min-w-0 flex-1">
-                      <div className="flex items-center gap-1.5 text-[11px] font-extrabold text-[#2F7BF5]">
+                      <div className="flex items-center gap-1.5 text-[11px] font-extrabold text-[#2468E0]">
                         <span>{policy.category}</span>
                         <span className="text-black/15">·</span>
-                        <span className="text-black/40">{policy.location}</span>
+                        <span className="text-black/60">{policy.location}</span>
                       </div>
                       <h3 className="mt-1.5 text-[15px] font-black leading-snug tracking-[-0.025em]">
                         {policy.title}
                       </h3>
-                      <p className="mt-1 text-xs font-medium text-black/45">{policy.description}</p>
+                      <p className="mt-1 text-xs font-medium text-black/60">{policy.description}</p>
                     </div>
                     <button
                       onClick={() => toggleSaved(policy.id)}
@@ -333,7 +333,7 @@ export default function HomeScreen() {
                     </button>
                   </div>
                   <div className="mt-4 flex items-center justify-between border-t border-black/[0.06] pt-3">
-                    <span className="flex items-center gap-1.5 text-[11px] font-bold text-black/40">
+                    <span className="flex items-center gap-1.5 text-[11px] font-bold text-black/60">
                       <Icon name="calendar" className="size-3.5" />
                       {policy.deadline}
                     </span>
@@ -342,7 +342,7 @@ export default function HomeScreen() {
                         addRecent(policy.id)
                         navigate(`/policies/${policy.id}`)
                       }}
-                      className="flex items-center gap-1 text-[11px] font-extrabold text-[#2F7BF5]"
+                      className="flex items-center gap-1 text-[11px] font-extrabold text-[#2468E0]"
                     >
                       자세히 보기 <Icon name="arrow" className="size-3.5" />
                     </button>

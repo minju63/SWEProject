@@ -10,6 +10,7 @@ import catalogRoutes from './routes/catalog.routes.js';
 import homeRoutes from './routes/home.routes.js';
 import assistantRoutes from './routes/assistant.routes.js';
 import calendarRoutes from './routes/calendar.routes.js';
+import consentRoutes from './routes/consent.routes.js';
 import signupRoutes from './routes/signup.routes.js';
 import { notFound, errorHandler } from './middlewares/error.js';
 import { startJobs } from './jobs/index.js';
@@ -45,6 +46,7 @@ app.use('/api/v1', placeRoutes);
 app.use('/api/v1/me', meRoutes);
 app.use('/api/v1/me', mySettingsRoutes);
 app.use('/api/v1/me', workspaceRoutes);
+app.use('/api/v1/me', consentRoutes); // 약관·동의 관리 (FR-MY-021)
 app.use('/api/v1/me', calendarRoutes); // 캘린더·정책별 알림 (백민주)
 app.use('/api/v1', homeRoutes); // 홈 (백민주)
 app.use('/api/v1/assistant', assistantRoutes); // AI 비서 Dr.부 (백민주)

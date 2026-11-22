@@ -52,7 +52,7 @@
   border: 0;
   border-radius: 50%;
   background: #f3f4f6;
-  color: rgba(0, 0, 0, .3);
+  color: rgba(0, 0, 0, .6);
 }
 .policy-detail-save svg { width: 18px; height: 18px; }
 .policy-detail-save.is-saved { background: #2f7bf5; color: #fff; }
@@ -74,7 +74,7 @@
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 3;
   margin: 12px 0 0;
-  color: rgba(0, 0, 0, .5);
+  color: rgba(0, 0, 0, .6);
   font-size: 14px;
   font-weight: 500;
   line-height: 1.7;
@@ -91,33 +91,33 @@
   background: #f7f8fb;
 }
 .policy-detail-period > div { min-width: 0; }
-.policy-detail-period span { display: block; color: rgba(0, 0, 0, .35); font-size: 10px; font-weight: 800; }
+.policy-detail-period span { display: block; color: rgba(0, 0, 0, .6); font-size: 10px; font-weight: 800; }
 .policy-detail-period strong { display: block; margin-top: 4px; font-size: 12px; font-weight: 800; line-height: 1.5; }
-.policy-detail-period-reason { margin: 6px 0; color: rgba(0, 0, 0, .45); font-size: 11px; font-weight: 500; line-height: 1.6; overflow-wrap: anywhere; }
-.policy-detail-period b { flex: none; padding: 8px 12px; border-radius: 999px; background: #eaf2fe; color: #2f7bf5; font-size: 12px; font-weight: 900; }
+.policy-detail-period-reason { margin: 6px 0; color: rgba(0, 0, 0, .6); font-size: 11px; font-weight: 500; line-height: 1.6; overflow-wrap: anywhere; }
+.policy-detail-period b { flex: none; padding: 8px 12px; border-radius: 999px; background: #eaf2fe; color: #2468e0; font-size: 12px; font-weight: 900; }
 .policy-detail-period b.urgent { background: #f04438; color: #fff; } /* 마감 7일 이내는 붉은색으로 강조 (FR-C04) */
 .policy-detail-sections { display: grid; gap: 10px; padding: 10px 16px 20px; }
 .policy-detail-card { min-width: 0; padding: 18px; border-radius: 20px; background: #fff; box-shadow: 0 4px 14px rgba(35, 67, 109, .035); }
 .policy-detail-card-heading { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
 .policy-detail-card-heading h2 { display: flex; align-items: center; gap: 8px; margin: 0; font-size: 14px; font-weight: 900; }
-.policy-detail-aside { flex: none; padding: 6px 10px; border-radius: 999px; background: #eaf2fe; color: #2f7bf5; font-size: 10px; font-weight: 900; }
-.policy-detail-sparkle { display: grid; place-items: center; width: 28px; height: 28px; border-radius: 8px; background: #eaf2fe; color: #2f7bf5; font-size: 16px; }
+.policy-detail-aside { flex: none; padding: 6px 10px; border-radius: 999px; background: #eaf2fe; color: #2468e0; font-size: 10px; font-weight: 900; }
+.policy-detail-sparkle { display: grid; place-items: center; width: 28px; height: 28px; border-radius: 8px; background: #eaf2fe; color: #2468e0; font-size: 16px; }
 .policy-detail-summary { margin: 16px 0 0; }
 .policy-detail-summary > div { display: grid; grid-template-columns: 105px minmax(0, 1fr); gap: 12px; padding: 12px 0; border-bottom: 1px solid rgba(0, 0, 0, .06); }
 .policy-detail-summary > div:first-child { padding-top: 0; }
 .policy-detail-summary > div:last-child { padding-bottom: 0; border-bottom: 0; }
-.policy-detail-summary dt { color: rgba(0, 0, 0, .4); font-size: 11px; font-weight: 800; }
+.policy-detail-summary dt { color: rgba(0, 0, 0, .6); font-size: 11px; font-weight: 800; }
 .policy-detail-summary dd { margin: 0; color: rgba(0, 0, 0, .7); font-size: 12px; font-weight: 700; line-height: 1.65; white-space: pre-line; overflow-wrap: anywhere; }
-.policy-detail-summary dd a { color: #2f7bf5; text-decoration: underline; text-underline-offset: 2px; }
-.policy-detail-ai-placeholder, .policy-detail-empty { margin: 12px 0 0; padding: 12px 16px; border-radius: 12px; background: #f7f8fb; color: rgba(0, 0, 0, .4); font-size: 12px; font-weight: 600; line-height: 1.65; }
+.policy-detail-summary dd a { color: #2468e0; text-decoration: underline; text-underline-offset: 2px; }
+.policy-detail-ai-placeholder, .policy-detail-empty { margin: 12px 0 0; padding: 12px 16px; border-radius: 12px; background: #f7f8fb; color: rgba(0, 0, 0, .6); font-size: 12px; font-weight: 600; line-height: 1.65; }
 .policy-detail-empty p { margin: 0; }
-.policy-detail-empty a { display: inline-block; margin-top: 8px; color: #2f7bf5; font-size: 11px; font-weight: 900; }
-.policy-detail-muted { margin: 12px 0 0; color: rgba(0, 0, 0, .45); font-size: 12px; line-height: 1.6; }
+.policy-detail-empty a { display: inline-block; margin-top: 8px; color: #2468e0; font-size: 11px; font-weight: 900; }
+.policy-detail-muted { margin: 12px 0 0; color: rgba(0, 0, 0, .6); font-size: 12px; line-height: 1.6; }
 .policy-detail-conditions { display: grid; gap: 8px; margin-top: 12px; }
 .policy-detail-condition-section + .policy-detail-condition-section { margin-top: 18px; }
 .policy-detail-condition-section h3 { margin: 14px 0 0; color: rgba(0, 0, 0, .7); font-size: 12px; font-weight: 900; }
-.policy-detail-condition-relation { display: flex; align-items: baseline; gap: 6px; color: rgba(0, 0, 0, .5); font-size: 11px; font-weight: 800; }
-.policy-detail-condition-relation b { color: #2f7bf5; }
+.policy-detail-condition-relation { display: flex; align-items: baseline; gap: 6px; color: rgba(0, 0, 0, .6); font-size: 11px; font-weight: 800; }
+.policy-detail-condition-relation b { color: #2468e0; }
 .policy-detail-condition-children { margin: 6px 0 2px 8px; padding-left: 10px; border-left: 2px solid rgba(47, 123, 245, .14); }
 .policy-detail-condition-children .policy-detail-conditions { margin-top: 0; }
 .policy-detail-condition-row { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
@@ -127,35 +127,35 @@
 .policy-detail-conditions .status-unsatisfied { background: #fdecea; color: #d43d36; }
 .policy-detail-conditions .status-hit { background: #fdecea; color: #d43d36; }
 .policy-detail-conditions .status-clear { background: #e7f8f0; color: #078b52; }
-.policy-detail-source-link { display: inline-block; margin-top: 10px; color: #2f7bf5; font-size: 11px; font-weight: 800; text-decoration: underline; text-underline-offset: 2px; }
-.policy-detail-more { margin-top: 16px; padding: 0; border: 0; background: transparent; color: #2f7bf5; font-size: 12px; font-weight: 900; }
+.policy-detail-source-link { display: inline-block; margin-top: 10px; color: #2468e0; font-size: 11px; font-weight: 800; text-decoration: underline; text-underline-offset: 2px; }
+.policy-detail-more { margin-top: 16px; padding: 0; border: 0; background: transparent; color: #2468e0; font-size: 12px; font-weight: 900; }
 .policy-detail-muted .policy-detail-more { display: inline; margin: 0 0 0 4px; }
 .policy-detail-steps { display: grid; gap: 16px; margin: 16px 0 0; padding: 0; list-style: none; }
 .policy-detail-steps li { display: flex; align-items: flex-start; gap: 12px; }
-.policy-detail-steps li > span { display: grid; flex: none; place-items: center; width: 28px; height: 28px; border-radius: 50%; background: #eaf2fe; color: #2f7bf5; font-size: 11px; font-weight: 900; }
+.policy-detail-steps li > span { display: grid; flex: none; place-items: center; width: 28px; height: 28px; border-radius: 50%; background: #eaf2fe; color: #2468e0; font-size: 11px; font-weight: 900; }
 .policy-detail-steps p { margin: 4px 0 0; color: rgba(0, 0, 0, .65); font-size: 12px; font-weight: 800; line-height: 1.6; white-space: pre-line; }
 .policy-detail-documents { margin-top: 12px; }
 .policy-detail-documents button { display: flex; align-items: flex-start; gap: 12px; width: 100%; padding: 12px 0; border: 0; border-bottom: 1px solid rgba(0, 0, 0, .06); background: transparent; text-align: left; }
 .policy-detail-documents button:last-child { border-bottom: 0; padding-bottom: 0; }
 .policy-detail-documents button > span:last-child { padding-top: 4px; color: rgba(0, 0, 0, .65); font-size: 12px; font-weight: 700; line-height: 1.6; }
-.policy-detail-documents button.checked > span:last-child { color: rgba(0, 0, 0, .35); text-decoration: line-through; }
+.policy-detail-documents button.checked > span:last-child { color: rgba(0, 0, 0, .6); text-decoration: line-through; }
 .policy-detail-check { display: grid; flex: none; place-items: center; width: 28px; height: 28px; border: 2px solid rgba(0, 0, 0, .1); border-radius: 50%; color: transparent; font-size: 11px; font-weight: 900; }
 .policy-detail-documents button.checked .policy-detail-check { border-color: #2f7bf5; background: #2f7bf5; color: #fff; }
-.policy-detail-compare { display: flex; justify-content: center; align-items: center; gap: 6px; width: 100%; margin-top: 16px; padding: 14px; border: 1px solid #b7d2ff; border-radius: 14px; background: #fff; color: #2f7bf5; font-size: 12px; font-weight: 900; }
+.policy-detail-compare { display: flex; justify-content: center; align-items: center; gap: 6px; width: 100%; margin-top: 16px; padding: 14px; border: 1px solid #b7d2ff; border-radius: 14px; background: #fff; color: #2468e0; font-size: 12px; font-weight: 900; }
 .policy-detail-compare span { font-size: 18px; line-height: 12px; }
 .policy-detail-related { display: grid; gap: 10px; margin-top: 12px; }
 .policy-detail-related button { display: flex; align-items: center; gap: 12px; width: 100%; min-width: 0; padding: 16px; border: 1px solid rgba(0, 0, 0, .07); border-radius: 16px; background: #fff; text-align: left; }
 .policy-detail-related button > div { display: grid; min-width: 0; flex: 1; justify-items: start; }
-.policy-detail-related button > div > span { padding: 4px 8px; border-radius: 6px; background: #f3f4f6; color: rgba(0, 0, 0, .5); font-size: 10px; font-weight: 800; }
+.policy-detail-related button > div > span { padding: 4px 8px; border-radius: 6px; background: #f3f4f6; color: rgba(0, 0, 0, .6); font-size: 10px; font-weight: 800; }
 .policy-detail-related strong { overflow: hidden; max-width: 100%; margin-top: 8px; font-size: 12px; font-weight: 900; text-overflow: ellipsis; white-space: nowrap; }
-.policy-detail-related small { overflow: hidden; max-width: 100%; margin-top: 4px; color: rgba(0, 0, 0, .35); font-size: 10px; font-weight: 700; text-overflow: ellipsis; white-space: nowrap; }
-.policy-detail-related button > span:last-child { flex: none; color: rgba(0, 0, 0, .3); font-size: 16px; }
+.policy-detail-related small { overflow: hidden; max-width: 100%; margin-top: 4px; color: rgba(0, 0, 0, .6); font-size: 10px; font-weight: 700; text-overflow: ellipsis; white-space: nowrap; }
+.policy-detail-related button > span:last-child { flex: none; color: rgba(0, 0, 0, .6); font-size: 16px; }
 .policy-detail-actions { position: fixed; z-index: 19; bottom: calc(64px + env(safe-area-inset-bottom)); left: 50%; display: flex; gap: 8px; width: 100%; max-width: 480px; padding: 12px 16px; transform: translateX(-50%); background: #f2f6fc; }
 .policy-detail-actions a, .policy-detail-actions button, .policy-detail-unavailable { display: flex; min-width: 0; flex: 1; align-items: center; justify-content: center; min-height: 48px; padding: 10px; border-radius: 16px; text-align: center; font-size: 11px; font-weight: 900; line-height: 1.4; }
 .policy-detail-actions a { flex: 1.1; background: #2f7bf5; color: #fff; }
-.policy-detail-actions button { border: 1px solid #2f7bf5; background: #fff; color: #2f7bf5; }
-.policy-detail-actions button:disabled { border-color: rgba(0, 0, 0, .1); background: #f3f4f6; color: rgba(0, 0, 0, .35); }
-.policy-detail-unavailable { flex: 1.1; background: #f3f4f6; color: rgba(0, 0, 0, .4); }
+.policy-detail-actions button { border: 1px solid #2f7bf5; background: #fff; color: #2468e0; }
+.policy-detail-actions button:disabled { border-color: rgba(0, 0, 0, .1); background: #f3f4f6; color: rgba(0, 0, 0, .6); }
+.policy-detail-unavailable { flex: 1.1; background: #f3f4f6; color: rgba(0, 0, 0, .6); }
 .policy-detail-action-error { position: fixed; z-index: 22; bottom: calc(136px + env(safe-area-inset-bottom)); left: 50%; width: calc(100% - 40px); max-width: 440px; padding: 10px 14px; transform: translateX(-50%); border-radius: 12px; background: #fdecea; color: #c93830; font-size: 12px; font-weight: 700; }
 @media (max-width: 360px) {
   .policy-detail-summary > div { grid-template-columns: 92px minmax(0, 1fr); gap: 8px; }

@@ -34,7 +34,7 @@ export default function NotificationsScreen() {
         </button>
         <h1 className="text-xl font-black">알림</h1>
         <button
-          className="text-sm font-bold text-[#2F7BF5]"
+          className="text-sm font-bold text-[#2468E0]"
           disabled={marking || !unreadCount}
           onClick={() =>
             markRead('all').catch(() =>
@@ -94,7 +94,7 @@ export default function NotificationsScreen() {
               </span>
               <strong className="mt-2 block">{item.title}</strong>
               <p className="mt-2 text-sm text-slate-600">{item.body}</p>
-              <span className="mt-3 block text-xs font-bold text-[#2F7BF5]">내용 확인 ›</span>
+              <span className="mt-3 block text-xs font-bold text-[#2468E0]">내용 확인 ›</span>
             </button>
           ))}
           {!visible.length && (
@@ -104,7 +104,7 @@ export default function NotificationsScreen() {
       )}
       <button
         onClick={() => navigate('/settings?view=notifications')}
-        className="mt-6 flex w-full items-center justify-center gap-2 rounded-2xl bg-white p-4 font-bold text-[#2F7BF5]"
+        className="mt-6 flex w-full items-center justify-center gap-2 rounded-2xl bg-white p-4 font-bold text-[#2468E0]"
       >
         <Icon name="settings" />
         알림 설정

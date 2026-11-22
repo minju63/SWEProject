@@ -40,7 +40,7 @@ function Answer() {
       <p className="max-w-[310px] rounded-[20px] rounded-tl-[6px] bg-white px-4 py-3 text-[13.5px] leading-[1.6] text-[#18202F] shadow-[0_6px_20px_rgba(47,123,245,0.08)]">
         <b>청년 월세 지원</b>은 나이·거주지 조건을 충족해서 신청할 수 있어요. 다만{' '}
         <b>소득 기준(중위 60% 이하)</b>은 직접 확인이 필요해요. 마감은{' '}
-        <span className="font-semibold text-[#EF4E6C]">10월 9일 18시</span>예요.
+        <span className="font-semibold text-[#C93454]">10월 9일 18시</span>예요.
       </p>
 
       <article className="flex flex-col gap-3 rounded-[22px] bg-white p-4 shadow-[0_6px_20px_rgba(47,123,245,0.08)]">
@@ -49,10 +49,10 @@ function Answer() {
             <AlertCircle size={11} strokeWidth={2.6} />
             확인 필요
           </span>
-          <span className="rounded-full bg-[#4F9DF7]/15 px-2 py-0.5 text-[11px] font-bold text-[#2F7BF5]">
+          <span className="rounded-full bg-[#4F9DF7]/15 px-2 py-0.5 text-[11px] font-bold text-[#2468E0]">
             주거·생활
           </span>
-          <span className="ml-auto rounded-full bg-[#FDE9ED] px-2 py-0.5 text-[11px] font-bold text-[#EF4E6C]">
+          <span className="ml-auto rounded-full bg-[#FDE9ED] px-2 py-0.5 text-[11px] font-bold text-[#C93454]">
             D-4
           </span>
         </div>
@@ -72,7 +72,7 @@ function Answer() {
           <button
             onClick={() => setLiked(!liked)}
             className={`flex h-10 flex-1 items-center justify-center gap-1.5 rounded-[12px] text-[13px] font-bold ${
-              liked ? 'bg-[#FDE9ED] text-[#EF4E6C]' : 'bg-[#F1F4F9] text-[#5F6B80]'
+              liked ? 'bg-[#FDE9ED] text-[#C93454]' : 'bg-[#F1F4F9] text-[#5F6B80]'
             }`}
           >
             <Heart size={15} fill={liked ? '#EF4E6C' : 'none'} />
@@ -84,7 +84,7 @@ function Answer() {
           </button>
         </div>
       </article>
-      <p className="px-1 text-[11px] text-[#9AA4B5]">
+      <p className="px-1 text-[11px] text-[#657185]">
         🔗 출처: 부산광역시 청년플랫폼 공고 (2026.09.15)
       </p>
     </>
@@ -114,7 +114,7 @@ function Term() {
           <b>60% 이하</b>는 내 가구 소득이 그 가운데 값의 60%보다 적거나 같다는 뜻이에요. 금액은
           가구원 수마다 다르고 매년 바뀌어요.
         </p>
-        <p className="text-[11px] text-[#9AA4B5]">🔗 출처: 보건복지부 기준 중위소득 고시</p>
+        <p className="text-[11px] text-[#657185]">🔗 출처: 보건복지부 기준 중위소득 고시</p>
       </article>
       <section className="flex flex-col rounded-[22px] bg-white px-4 pt-3.5 shadow-[0_6px_20px_rgba(47,123,245,0.08)]">
         <h4 className="pb-1 text-[13px] font-bold text-[#5F6B80]">이 조건이 있는 내 맞춤 혜택</h4>
@@ -130,12 +130,12 @@ function Term() {
             <b className="min-w-0 flex-1 truncate text-[14px] text-[#18202F]">{r.title}</b>
             <span
               className={`shrink-0 rounded-full px-2 py-0.5 text-[11px] font-bold ${
-                r.days <= 7 ? 'bg-[#FDE9ED] text-[#EF4E6C]' : 'bg-[#EAF2FE] text-[#2F7BF5]'
+                r.days <= 7 ? 'bg-[#FDE9ED] text-[#C93454]' : 'bg-[#EAF2FE] text-[#2468E0]'
               }`}
             >
               D-{r.days}
             </span>
-            <ChevronRight size={15} className="shrink-0 text-[#9AA4B5]" />
+            <ChevronRight size={15} className="shrink-0 text-[#657185]" />
           </button>
         ))}
       </section>
@@ -179,7 +179,7 @@ export function AiSheet({ onClose, variant = 'recommend' }) {
 
         {/* conversation */}
         <div className="flex min-h-0 flex-1 flex-col gap-3 overflow-y-auto px-[18px] pb-16 pt-3 [scrollbar-width:none]">
-          <span className="flex items-center gap-1 self-start rounded-full bg-[#EAF2FE] px-3 py-1.5 text-[11.5px] font-semibold text-[#2F7BF5]">
+          <span className="flex items-center gap-1 self-start rounded-full bg-[#EAF2FE] px-3 py-1.5 text-[11.5px] font-semibold text-[#2468E0]">
             <Sparkles size={12} fill="#2F7BF5" /> 홈 · AI 맞춤 추천에서 열었어요
           </span>
 
@@ -191,7 +191,7 @@ export function AiSheet({ onClose, variant = 'recommend' }) {
             <>
               <p className="max-w-[300px] rounded-[20px] rounded-tl-[6px] bg-white px-4 py-3 text-[13.5px] leading-[1.6] text-[#18202F] shadow-[0_6px_20px_rgba(47,123,245,0.08)]">
                 <b>민주 님</b> 조건(
-                <span className="font-semibold text-[#2F7BF5]">사하구 · 25세 · 휴학생</span>
+                <span className="font-semibold text-[#2468E0]">사하구 · 25세 · 휴학생</span>
                 )으로 찾은 오늘의 추천 <b>TOP 3</b>예요. 마감이 가까운 순서예요.
               </p>
 
@@ -210,8 +210,8 @@ export function AiSheet({ onClose, variant = 'recommend' }) {
                         <span
                           className={`shrink-0 rounded-full px-1.5 py-0.5 text-[10.5px] font-bold ${
                             p.days <= 7
-                              ? 'bg-[#FDE9ED] text-[#EF4E6C]'
-                              : 'bg-[#EAF2FE] text-[#2F7BF5]'
+                              ? 'bg-[#FDE9ED] text-[#C93454]'
+                              : 'bg-[#EAF2FE] text-[#2468E0]'
                           }`}
                         >
                           D-{p.days}
@@ -236,7 +236,7 @@ export function AiSheet({ onClose, variant = 'recommend' }) {
             {questions.map((q) => (
               <button
                 key={q}
-                className="rounded-full border border-[#2F7BF5] bg-white px-3.5 py-2 text-[12.5px] font-semibold text-[#2F7BF5]"
+                className="rounded-full border border-[#2F7BF5] bg-white px-3.5 py-2 text-[12.5px] font-semibold text-[#2468E0]"
               >
                 {q}
               </button>
@@ -262,7 +262,7 @@ export function AiSheet({ onClose, variant = 'recommend' }) {
             <ImagePlus size={19} />
           </button>
           <input
-            className="h-10 min-w-0 flex-1 rounded-full bg-[#F1F4F9] px-4 text-[13.5px] outline-none placeholder:text-[#9AA4B5]"
+            className="h-10 min-w-0 flex-1 rounded-full bg-[#F1F4F9] px-4 text-[13.5px] outline-none placeholder:text-[#657185]"
             placeholder={
               variant === 'term' ? '정책이나 어려운 용어를 물어보세요' : '한눈이에게 물어보세요'
             }

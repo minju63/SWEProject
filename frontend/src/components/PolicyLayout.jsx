@@ -50,8 +50,8 @@ export function PolicyTags({ category, region, target }) {
       <span className="rounded-md bg-[color:var(--accent-soft,#f1f3fb)] px-2 py-1 text-[color:var(--accent,#2F7BF5)]">
         {category}
       </span>
-      <span className="rounded-md bg-[#f3f4f6] px-2 py-1 text-black/45">{region}</span>
-      {target && <span className="rounded-md bg-[#f3f4f6] px-2 py-1 text-black/45">{target}</span>}
+      <span className="rounded-md bg-[#f3f4f6] px-2 py-1 text-black/60">{region}</span>
+      {target && <span className="rounded-md bg-[#f3f4f6] px-2 py-1 text-black/60">{target}</span>}
     </div>
   )
 }
@@ -68,7 +68,7 @@ export function SearchField({ value, onChange, onSubmit, placeholder, buttonLabe
       }}
       className={`flex h-13 items-center gap-3 rounded-2xl bg-[#f0f1f5] pl-4 ${buttonLabel ? 'pr-2' : 'pr-4'} focus-within:ring-2 focus-within:ring-[color:var(--accent,#2F7BF5)]`}
     >
-      <Icon name="search" className="size-5 shrink-0 text-black/35" />
+      <Icon name="search" className="size-5 shrink-0 text-black/60" />
       <input
         value={value}
         onChange={(event) => onChange(event.target.value)}

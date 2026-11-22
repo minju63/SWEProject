@@ -247,7 +247,7 @@
   padding: 5px 10px;
   border-radius: 8px;
   background: var(--primary-bg);
-  color: var(--primary);
+  color: #2468e0;
   font-size: 12px;
   font-weight: 700;
 }
@@ -331,7 +331,7 @@
   color: var(--sub);
 }
 .chat-sources a {
-  color: var(--primary);
+  color: #2468e0;
 }
 .chat-suggest {
   display: flex;
@@ -343,7 +343,7 @@
   border: 1px solid #cfe0fb;
   border-radius: 999px;
   background: #fff;
-  color: var(--primary);
+  color: #2468e0;
   font-size: 13px;
   font-weight: 600;
 }
@@ -370,7 +370,7 @@
   align-self: flex-end;
   border: 0;
   background: none;
-  color: var(--primary);
+  color: #2468e0;
   font-weight: 700;
 }
 .sheet-input {
@@ -544,7 +544,7 @@
   border: 0;
   border-radius: 999px;
   background: #eef3fe;
-  color: var(--primary);
+  color: #2468e0;
   font-size: 12px;
   font-weight: 700;
 }
@@ -556,7 +556,7 @@
   color: var(--muted, #6b7684);
 }
 .chat-card-source a {
-  color: var(--primary);
+  color: #2468e0;
   font-weight: 700;
 }
 
@@ -574,12 +574,12 @@
   padding: 3px 10px;
   border-radius: 999px;
   background: #e3eeff;
-  color: var(--primary);
+  color: #2468e0;
   font-size: 12px;
   font-weight: 700;
 }
 .chat-dday {
-  color: var(--primary);
+  color: #2468e0;
   font-size: 15px;
   font-weight: 800;
 }
@@ -602,7 +602,7 @@
   margin-top: 3px;
 }
 .card-source a {
-  color: var(--primary);
+  color: #2468e0;
   font-weight: 700;
 }
 .term-card {
@@ -658,7 +658,7 @@
   font-style: normal;
   font-size: 13px;
   font-weight: 800;
-  color: var(--primary);
+  color: #2468e0;
 }
 .related-box button em.chat-dday-urgent {
   color: var(--no);
@@ -753,7 +753,7 @@
   margin: 0 0 6px;
   font-size: 12.5px;
   font-weight: 800;
-  color: var(--primary);
+  color: #2468e0;
 }
 .explain ul {
   margin: 0;

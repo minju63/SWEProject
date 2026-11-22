@@ -160,7 +160,7 @@ export default function AlarmSettings() {
               1주 전 · 3일 전 · 1일 전 · 당일 오전 알림이 울리는 시간
             </span>
           </div>
-          <span className="relative flex items-center text-[14px] font-bold text-[#2F7BF5]">
+          <span className="relative flex items-center text-[14px] font-bold text-[#2468E0]">
             {timeLabel(settings.time)}
             <input
               type="time"

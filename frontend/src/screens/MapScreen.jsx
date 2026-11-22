@@ -131,7 +131,7 @@ function Glyph({ name, className = 'size-5' }) {
 function EventChip({ event }) {
   return (
     <span
-      className={`text-[12px] font-extrabold ${isOngoing(event) ? 'text-[#a0672a]' : 'text-[#2F7BF5]'}`}
+      className={`text-[12px] font-extrabold ${isOngoing(event) ? 'text-[#a0672a]' : 'text-[#2468E0]'}`}
     >
       {isOngoing(event) ? '진행 중' : '예정'}
     </span>
@@ -162,7 +162,7 @@ function HeartButton({ place, saved, onToggle, className = 'size-10' }) {
       }}
       aria-pressed={saved}
       aria-label={saved ? `${place.name} 찜 해제` : `${place.name} 찜하기`}
-      className={`grid shrink-0 place-items-center rounded-full transition active:scale-90 ${className} ${saved ? 'text-[#e5445f]' : 'text-black/40'}`}
+      className={`grid shrink-0 place-items-center rounded-full transition active:scale-90 ${className} ${saved ? 'text-[#e5445f]' : 'text-black/60'}`}
     >
       <Icon name="heart" className={`size-[22px] ${saved ? 'fill-current' : ''}`} />
     </button>
@@ -188,7 +188,7 @@ function PlaceRow({ place, distance, selected, saved, onSelect, onToggleSaved, c
       <CategoryBadge kind={place.category} color={cat.color} className="size-11 shrink-0" />
       <div className="min-w-0 flex-1">
         <h3 className="truncate text-[15px] font-black tracking-[-0.03em]">{place.name}</h3>
-        <p className="mt-0.5 truncate text-[12px] font-medium text-black/50">
+        <p className="mt-0.5 truncate text-[12px] font-medium text-black/60">
           {cat.label}
           {place.address && ` · ${place.address}`}
           {eventCount > 0 && ` · 행사 ${eventCount}`}
@@ -220,13 +220,13 @@ function PlaceSummary({ place, distance, saved, onToggleSaved, onOpen, onClose }
           type="button"
           onClick={onClose}
           aria-label="선택 닫기"
-          className="-mr-2 grid size-10 shrink-0 place-items-center rounded-full text-black/50"
+          className="-mr-2 grid size-10 shrink-0 place-items-center rounded-full text-black/60"
         >
           <Glyph name="close" className="size-5" />
         </button>
       </div>
       {place.address && (
-        <p className="mt-1.5 text-[13px] font-medium text-black/55">{place.address}</p>
+        <p className="mt-1.5 text-[13px] font-medium text-black/60">{place.address}</p>
       )}
       {distance !== null && (
         <p className="mt-2 text-[14px] font-extrabold text-[#a0672a]">{formatDistance(distance)}</p>
@@ -243,7 +243,7 @@ function PlaceSummary({ place, distance, saved, onToggleSaved, onOpen, onClose }
           href={kakaoLink(place)}
           target="_blank"
           rel="noreferrer"
-          className="flex-1 rounded-xl border border-[#2F7BF5] bg-white py-3 text-center text-[14px] font-black text-[#2F7BF5] transition active:scale-[0.98]"
+          className="flex-1 rounded-xl border border-[#2F7BF5] bg-white py-3 text-center text-[14px] font-black text-[#2468E0] transition active:scale-[0.98]"
         >
           길찾기
         </a>
@@ -254,7 +254,7 @@ function PlaceSummary({ place, distance, saved, onToggleSaved, onOpen, onClose }
 function DetailRow({ label, children }) {
   return (
     <div className="flex gap-4 border-t border-black/[0.07] py-3.5 text-[14px]">
-      <span className="w-14 shrink-0 font-medium text-black/45">{label}</span>
+      <span className="w-14 shrink-0 font-medium text-black/60">{label}</span>
       <div className="min-w-0 flex-1 break-words font-semibold text-black/80">{children}</div>
     </div>
   )
@@ -275,7 +275,7 @@ function dataSource(place) {
 function PlaceDetail({ place, distance, saved, onToggleSaved, onClose }) {
   const events = liveEvents(place.id)
   const [openEventId, setOpenEventId] = useState(null)
-  const link = 'text-[#2F7BF5] underline underline-offset-2'
+  const link = 'text-[#2468E0] underline underline-offset-2'
   return (
     <div
       role="dialog"
@@ -296,7 +296,7 @@ function PlaceDetail({ place, distance, saved, onToggleSaved, onClose }) {
         <HeartButton place={place} saved={saved} onToggle={onToggleSaved} />
       </div>
       <div className="no-scrollbar min-h-0 flex-1 overflow-y-auto px-5 pb-8 pt-5">
-        <div className="flex items-center gap-2 text-[12px] font-medium text-black/50">
+        <div className="flex items-center gap-2 text-[12px] font-medium text-black/60">
           <CategoryTag place={place} />
           <span>{place.placeType}</span>
           {distance !== null && (
@@ -351,7 +351,7 @@ function PlaceDetail({ place, distance, saved, onToggleSaved, onClose }) {
 
         <h4 className="mb-3 mt-6 text-[15px] font-black tracking-[-0.03em]">진행·예정 행사</h4>
         {events.length === 0 ? (
-          <p className="py-6 text-center text-[13px] font-medium text-black/40">
+          <p className="py-6 text-center text-[13px] font-medium text-black/60">
             진행 중이거나 예정된 행사가 없어요
           </p>
         ) : (
@@ -360,7 +360,7 @@ function PlaceDetail({ place, distance, saved, onToggleSaved, onClose }) {
               <li key={event.id} className="rounded-xl border border-black/[0.1] p-4">
                 <p className="flex items-center gap-2">
                   <EventChip event={event} />
-                  <span className="text-[12px] font-extrabold text-black/50">
+                  <span className="text-[12px] font-extrabold text-black/60">
                     {GENRE_LABEL[event.genre]}
                   </span>
                 </p>
@@ -369,14 +369,14 @@ function PlaceDetail({ place, distance, saved, onToggleSaved, onClose }) {
                 </p>
                 <p className="mt-1.5 text-[13px] font-semibold text-black/60">
                   {eventPeriod(event)} ·{' '}
-                  <span className={event.isFree ? 'text-[#2F7BF5]' : ''}>
+                  <span className={event.isFree ? 'text-[#2468E0]' : ''}>
                     {event.isFree ? '무료' : '유료'}
                   </span>
                 </p>
                 <button
                   onClick={() => setOpenEventId(openEventId === event.id ? null : event.id)}
                   aria-expanded={openEventId === event.id}
-                  className="mt-3 h-10 w-full rounded-lg bg-[#eaf2fe] text-[14px] font-extrabold text-[#2F7BF5]"
+                  className="mt-3 h-10 w-full rounded-lg bg-[#eaf2fe] text-[14px] font-extrabold text-[#2468E0]"
                 >
                   {openEventId === event.id ? '접기' : '상세보기'}
                 </button>
@@ -386,7 +386,7 @@ function PlaceDetail({ place, distance, saved, onToggleSaved, onClose }) {
           </ul>
         )}
 
-        <div className="mt-6 space-y-1 text-[11px] font-medium leading-relaxed text-black/35">
+        <div className="mt-6 space-y-1 text-[11px] font-medium leading-relaxed text-black/60">
           <p>데이터 기준일 {place.collectedAt}</p>
           <p>데이터 출처 {dataSource(place)}</p>
           {place.sample && <p>샘플 데이터예요.</p>}
@@ -416,7 +416,7 @@ function EventDetailBody({ event }) {
       >
         공식 상세 안내 · 예매
       </a>
-      <p className="mt-2 text-[11px] font-medium text-black/35">
+      <p className="mt-2 text-[11px] font-medium text-black/60">
         데이터 기준일 {event.collectedAt}
       </p>
     </div>
@@ -539,7 +539,7 @@ function MapFilterSheet(props) {
           <button
             onClick={props.onClose}
             aria-label="닫기"
-            className="grid size-9 place-items-center text-black/40"
+            className="grid size-9 place-items-center text-black/60"
           >
             <Glyph name="close" className="size-5" />
           </button>
@@ -581,7 +581,7 @@ function MapFilterSheet(props) {
               </FilterChip>
             ))}
             {!props.hasLocation && (
-              <p className="w-full text-[12px] font-medium text-black/45">
+              <p className="w-full text-[12px] font-medium text-black/60">
                 현재 위치를 알 수 없으면 거리 반경은 적용되지 않아요.
               </p>
             )}
@@ -721,7 +721,7 @@ function MapHeader({
           }}
           placeholder="장소 검색"
           aria-label="장소 검색"
-          className="h-11 w-full rounded-full bg-white pl-11 pr-4 text-[14px] font-semibold outline-none placeholder:text-black/35 focus:ring-2 focus:ring-[#2F7BF5]"
+          className="h-11 w-full rounded-full bg-white pl-11 pr-4 text-[14px] font-semibold outline-none placeholder:text-black/60 focus:ring-2 focus:ring-[#2F7BF5]"
         />
         {open && q && (
           <>
@@ -732,7 +732,7 @@ function MapHeader({
             />
             <ul className="absolute inset-x-0 top-12 z-50 max-h-[50vh] overflow-y-auto rounded-2xl bg-white py-1 shadow-[0_8px_28px_rgba(23,25,35,0.18)]">
               {hits.length === 0 && (
-                <li className="px-4 py-3 text-[13px] font-medium text-black/45">
+                <li className="px-4 py-3 text-[13px] font-medium text-black/60">
                   검색 결과가 없어요
                 </li>
               )}
@@ -749,7 +749,7 @@ function MapHeader({
                     />
                     <span className="min-w-0 flex-1">
                       <span className="block truncate text-[14px] font-extrabold">{hit.title}</span>
-                      <span className="block truncate text-[12px] font-medium text-black/50">
+                      <span className="block truncate text-[12px] font-medium text-black/60">
                         {hit.sub}
                       </span>
                     </span>
@@ -770,7 +770,7 @@ function MapHeader({
               <button
                 onClick={() => setResultsOpen(false)}
                 aria-label="검색 결과 닫기"
-                className="grid size-9 place-items-center text-black/40"
+                className="grid size-9 place-items-center text-black/60"
               >
                 <Glyph name="close" className="size-5" />
               </button>
@@ -789,7 +789,7 @@ function MapHeader({
                     />
                     <span className="min-w-0 flex-1">
                       <span className="block truncate text-[15px] font-extrabold">{hit.title}</span>
-                      <span className="block truncate text-[12px] font-medium text-black/50">
+                      <span className="block truncate text-[12px] font-medium text-black/60">
                         {hit.sub}
                       </span>
                     </span>
@@ -1184,7 +1184,7 @@ export default function MapScreen() {
                 {locNotice.action && (
                   <button
                     onClick={onNoticeAction}
-                    className="shrink-0 rounded-lg border border-[#2F7BF5] px-2.5 py-1.5 text-xs font-extrabold text-[#2F7BF5]"
+                    className="shrink-0 rounded-lg border border-[#2F7BF5] px-2.5 py-1.5 text-xs font-extrabold text-[#2468E0]"
                   >
                     {locNotice.action}
                   </button>
@@ -1192,7 +1192,7 @@ export default function MapScreen() {
                 <button
                   onClick={() => setNoticeHidden(true)}
                   aria-label="안내 닫기"
-                  className="grid size-10 shrink-0 place-items-center text-black/40"
+                  className="grid size-10 shrink-0 place-items-center text-black/60"
                 >
                   <Glyph name="close" className="size-4" />
                 </button>
@@ -1306,7 +1306,7 @@ export default function MapScreen() {
                         : `${savedOnly ? '찜한 장소' : sortOrigin ? '주변 장소' : '장소'} ${visiblePlaces.length}곳`}
                     </h2>
                     {!loadError && (
-                      <span className="text-[12px] font-bold text-black/40">
+                      <span className="text-[12px] font-bold text-black/60">
                         {sortOrigin ? '거리순' : '이름순'}
                       </span>
                     )}
@@ -1324,7 +1324,7 @@ export default function MapScreen() {
                       </p>
                       <button
                         onClick={() => setLoadError(false)}
-                        className="mt-4 rounded-lg border border-[#2F7BF5] px-4 py-2 text-[13px] font-extrabold text-[#2F7BF5]"
+                        className="mt-4 rounded-lg border border-[#2F7BF5] px-4 py-2 text-[13px] font-extrabold text-[#2468E0]"
                       >
                         다시 시도
                       </button>
@@ -1339,7 +1339,7 @@ export default function MapScreen() {
                       </p>
                       <button
                         onClick={resetFilter}
-                        className="mt-4 rounded-lg border border-[#2F7BF5] px-4 py-2 text-[13px] font-extrabold text-[#2F7BF5]"
+                        className="mt-4 rounded-lg border border-[#2F7BF5] px-4 py-2 text-[13px] font-extrabold text-[#2468E0]"
                       >
                         {savedOnly && saved.length === 0 ? '전체 보기' : '필터 초기화'}
                       </button>
