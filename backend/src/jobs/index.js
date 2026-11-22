@@ -4,6 +4,7 @@ import cron from 'node-cron';
 import { runCultureSync } from './culture/syncCulture.js';
 import { runDueAlarms } from './alarms.js';
 import { runContentNotifications } from './contentNotifications.js';
+import { runPolicySync } from './policySync/syncPolicies.js';
 import { execFile } from 'node:child_process';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -52,7 +53,7 @@ export function startJobs() {
     );
   startAlarmJob();
   startEmbeddingJob();
-  startHousingSyncJob();
+  startPolicySyncJob();
   startContentNotificationJob();
   if (process.env.CULTURE_SYNC_ENABLED !== 'true') return;
   const schedule = process.env.CULTURE_SYNC_CRON || '0 4 * * *';
@@ -92,29 +93,39 @@ function startEmbeddingJob() {
   console.log('AI 비서 벡터 조각 매일 03:30 갱신 예약');
 }
 
-// 주거 정책 매일 수집·적재 (UC-COM-003): PC 작업 스케줄러(SWEProject-Housing-Daily) 대신 서버에서 돌린다.
-// 같은 DB 에 쓰는 작업이라 한 곳에서만 켜고, PC 작업은 꺼야 한다. 하루 한 번 이미 끝났으면 스크립트가 알아서 건너뛴다.
-function startHousingSyncJob() {
-  if (process.env.HOUSING_SYNC_JOB_ENABLED !== 'true') return;
+// 정책 매일 수집 (UC-COM-003, FR-COM-006): 주거(housing-sync)와 취업·진로·장학·금융(온통청년 API)을 서버가 매일 09:00에 수집한다.
+// 문화·행사·장소는 CULTURE_SYNC_* 작업이 따로 맡는다. 같은 DB 에 쓰는 작업이라 한 서버에서만 켜고,
+// 켜면 PC 작업 스케줄러(SWEProject-Housing-Daily)는 꺼야 한다. 취업·금융은 backend/.env 의 YOUTHCENTER_API_KEY 가 필요하다.
+function startPolicySyncJob() {
+  if (process.env.POLICY_SYNC_JOB_ENABLED !== 'true') return;
   const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../../..');
+  const housing = () =>
+    new Promise((resolve) => {
+      execFile(
+        process.execPath,
+        [path.join(root, 'backend/scripts/housing-sync/cli.cjs'), 'daily'],
+        { cwd: root, timeout: 4 * 3600_000, maxBuffer: 20 * 1024 * 1024 },
+        (error, stdout) => {
+          if (error) console.error(`[주거 정책 수집] 실패: ${error.message.split(String.fromCharCode(10))[0]}`);
+          else console.log(`[주거 정책 수집] 완료: ${String(stdout).trim().split(String.fromCharCode(10)).pop().slice(0, 200)}`);
+          resolve();
+        }
+      );
+    });
   cron.schedule(
-    process.env.HOUSING_SYNC_CRON || '0 9 * * *',
-    () =>
-      new Promise((resolve) => {
-        execFile(
-          process.execPath,
-          [path.join(root, 'backend/scripts/housing-sync/cli.cjs'), 'daily'],
-          { cwd: root, timeout: 4 * 3600_000, maxBuffer: 20 * 1024 * 1024 },
-          (error, stdout) => {
-            if (error) console.error(`[주거 정책 수집] 실패: ${error.message.split(String.fromCharCode(10))[0]}`);
-            else console.log(`[주거 정책 수집] 완료: ${String(stdout).trim().split(String.fromCharCode(10)).pop().slice(0, 200)}`);
-            resolve();
-          }
-        );
-      }),
-    { name: 'housing-sync', timezone: 'Asia/Seoul', noOverlap: true }
+    process.env.POLICY_SYNC_CRON || '0 9 * * *',
+    async () => {
+      await housing();
+      try {
+        for (const r of await runPolicySync())
+          console.log(`[정책 수집:${r.domain}] 받음 ${r.fetched}건, 새로 넣음 ${r.added}건, 실패 ${r.failed}건`);
+      } catch (e) {
+        console.error(`[정책 수집] 중단: ${e.message}`);
+      }
+    },
+    { name: 'policy-sync', timezone: 'Asia/Seoul', noOverlap: true }
   );
-  console.log('주거 정책 매일 수집 예약');
+  console.log('정책 매일 수집 예약 (주거·취업·진로·장학·금융)');
 }
 
 // 새 소식 알림 (FR-MY-012~015): 수집이 끝난 뒤(기본 10:30) 새 정책·문화행사·시설을 알림 센터에 넣는다

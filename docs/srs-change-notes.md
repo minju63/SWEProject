@@ -231,5 +231,7 @@
 ## 17. 새 소식 알림·주거 정책 서버 수집·사진 질문 제외
 - **새 소식 알림(FR-MY-012~015)**: `jobs/contentNotifications.js`가 매일 10:30(`NOTIFY_JOB_ENABLED=true`인 서버 한 곳) 최근 48시간 안에 DB에 들어온 새 정책·문화행사·내 거주 구의 새 시설과 맞춤 혜택(신청 가능·관심 분야 일치)을 알림 센터에 넣는다. 전체 알림·종류별 설정(`recommendations/policyAlerts/eventAlerts/facilityAlerts`)을 따르고, 같은 소식은 한 번만 보낸다. 현재 위치 좌표는 쓰지 않는다(거주 구 기준). 조용한 시간(`quietHours`)은 아직 반영하지 않는다.
 - **DB 변경(실행 필요)**: `migrations/20261122_notification_types.sql` — `notification.type`에 `POLICY`·`EVENT`·`FACILITY` 추가. 실행 전에는 맞춤 알림(NEW_MATCH)만 만들어진다.
-- **주거 정책 매일 수집(UC-COM-003)**: `HOUSING_SYNC_JOB_ENABLED=true`인 서버가 매일 09:00 `housing-sync daily`를 실행한다. 켜면 PC 작업 스케줄러(`SWEProject-Housing-Daily`)는 꺼야 한다(둘 다 켜면 같은 DB에 두 번 쓴다). 취업·금융 정책의 자동 수집은 아직 없다.
+- **정책 매일 수집(UC-COM-003, FR-COM-006)**: `POLICY_SYNC_JOB_ENABLED=true`인 서버가 매일 09:00 주거(`housing-sync daily`)와 취업·진로·장학·금융(온통청년 API, `jobs/policySync/`)을 수집한다. 켜면 PC 작업 스케줄러(`SWEProject-Housing-Daily`)는 꺼야 한다(둘 다 켜면 같은 DB에 두 번 쓴다). 문화·행사·장소는 기존 `CULTURE_SYNC_*` 작업.
+- **취업·금융 수집 규칙**: 부산 대상(전국·부산·부산진구·사하구 코드)·마감 안 된·공식 링크가 있는 정책만, 제목·공식 링크·이미 수집한 정책번호가 겹치면 넣지 않는다. 기존 정책은 고치거나 지우지 않고 새 정책만 INSERT한다(한 번에 분야당 40건까지). 신청 자격은 사람이 확인하지 않았으므로 `eligibility_verified=false`·분류 '확인필요'로 두어 "조건 확인 필요"로 보인다. 한 정책의 저장이 중간에 실패하면 그 정책만 되돌린다. 실행 기록은 `collection_run`에 남는다.
+- **쓰는 법**: `backend/.env`에 `YOUTHCENTER_API_KEY`를 넣고 `node scripts/policy-sync.mjs`로 미리보기(DB 변경 없음), `--apply`로 적재. 고용24 API는 키가 없어 이번에는 제외했다.
 - **사진 질문 제외**: FR-H-002의 "사진 질문 버튼"과 용어집·외부 API의 "사진 질문은 후순위" 문구를 "제공하지 않는다"로 고쳤다(SRS 수정본에 반영).
