@@ -78,6 +78,8 @@ const GENERIC_WORDS = new Set([
   '모집',
   '안내',
 ]);
+// "청년 월세 지원이 뭐야?"의 주제어를 고를 때는 "월세"·"취업" 같은 분야 말이 핵심이므로 빼지 않고, 아무 뜻 없는 말만 뺀다
+const TOPIC_STOP_WORDS = new Set(['청년', '지원', '사업', '제도', '프로그램', '부산', '정책', '혜택', '신청', '모집', '안내']);
 // 조사가 붙은 흔한 말("취업에", "교육을")도 일반 단어로 본다
 const PARTICLE_TAIL = /(에|을|를|은|는|이|가|의|로|도|과|와)$/;
 function keywordsOf(title) {
@@ -430,7 +432,7 @@ async function answerTopic(text, ctx, userId, remaining) {
   const words = topic
     .split(/\s+/)
     .map((w) => w.replace(/(이|가|은|는|을|를|의)$/, ''))
-    .filter((w) => w.length >= 2 && !GENERIC_WORDS.has(w));
+    .filter((w) => w.length >= 2 && !TOPIC_STOP_WORDS.has(w));
   if (!words.length) return null;
   const profile = ctx.profile;
   const matched = judgedWithRegion(ctx.policies, profile, ctx.regions)
