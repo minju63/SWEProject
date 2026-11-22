@@ -5,6 +5,7 @@
 import * as homeRepo from '../repositories/home.repository.js';
 import * as placeRepo from '../repositories/place.repository.js';
 import { findTerm, findTermByName } from '../data/glossary.js';
+import { searchPolicyCandidates, verifyCandidates, searchTerm } from './vectorSearch.js';
 import { askJson, askText, isLlmEnabled } from '../lib/llm.js';
 import { lookupTerm } from '../lib/naverDict.js';
 import { RESULT } from './eligibility.service.js';
@@ -769,6 +770,38 @@ async function answerPlace(message, categoryCode) {
   };
 }
 
+// 뜻이 비슷한 정책 찾기 (벡터 검색, AI-REQ-COM-007): 키워드로는 못 찾은 질문("면접 볼 때 입을 옷이 없어요")에 쓴다.
+// 가까운 후보를 AI 가 한 번 더 확인해 정말 관련 있는 것만 보여주고, 하나도 없으면 null (모름 처리 FR-A18)
+async function answerSemantic(text, ctx, userId, remaining) {
+  const candidates = await searchPolicyCandidates(text, { timeoutMs: Math.min(remaining(), 4000) });
+  if (candidates.length === 0) return null;
+  const titleOf = (id) => ctx.policies.find((p) => p.policy_id === id)?.title ?? '';
+  const relevant = await verifyCandidates(text, candidates, titleOf, {
+    timeoutMs: Math.min(remaining(), 4000),
+  });
+  if (relevant.length === 0) return null;
+  const order = new Map(relevant.map((c, i) => [c.policy_id, i]));
+  const picks = judgedWithRegion(
+    ctx.policies.filter((p) => order.has(p.policy_id)),
+    ctx.profile,
+    ctx.regions
+  )
+    .filter(isOpen)
+    .filter((p) => p.eligibility.result !== RESULT.INELIGIBLE)
+    .sort((a, b) => order.get(a.policy_id) - order.get(b.policy_id))
+    .slice(0, 3);
+  if (picks.length === 0) return null;
+  const bookmarked = await bookmarkSet(userId);
+  return {
+    type: 'recommend',
+    context: { keywords: [], categoryId: null, picks: picks.map((p) => p.policy_id) },
+    message: `질문과 뜻이 비슷한 혜택 ${picks.length}건을 찾았어요. 신청 가능한 혜택만 골랐어요.`,
+    cards: picks.map((p) => ({ ...cardWithConditions(p, bookmarked), similar: false })),
+    sources: await sourcesFor(picks),
+    suggestions: ['왜 이걸 추천했어?', '나한테 맞는 정책 추천해줘', '중위소득이 뭐야?'],
+  };
+}
+
 function unknownAnswer() {
   return {
     type: 'unknown',
@@ -1030,10 +1063,17 @@ async function route({ userId, message, context, remaining }) {
     !(mentionedPolicy && text.includes(mentionedPolicy.title))
   ) {
     // 정책 종류를 묻는 질문("청년 월세 지원이 뭐야?")은 우리 정책 데이터에서 찾아 답하고, 일반 용어는 백과사전으로 찾는다
-    const explained = /지원|사업|바우처|수당|장려금|혜택/.test(text)
+    const isPolicyKind = /지원|사업|바우처|수당|장려금|혜택/.test(text);
+    if (!isPolicyKind) {
+      // 우리 용어 사전에서 뜻이 가까운 용어가 있으면 그 설명을 먼저 쓴다 (벡터 검색)
+      const near = await searchTerm(text, { timeoutMs: Math.min(remaining(), 3000) });
+      const nearTerm = near && findTermByName(near.term);
+      if (nearTerm) return answerTerm(nearTerm, ctx, userId);
+    }
+    const explained = isPolicyKind
       ? await answerTopic(text, ctx, userId, remaining)
       : await explainTermFromDictionary(text, remaining);
-    return explained ?? unknownAnswer();
+    return explained ?? (await answerSemantic(text, ctx, userId, remaining)) ?? unknownAnswer();
   }
 
   // 2) 장소
@@ -1115,6 +1155,6 @@ async function route({ userId, message, context, remaining }) {
     };
   }
 
-  // 정책명처럼 보이는데 우리 정책 데이터에 없으면 지어내지 않고 모름 처리한다 (FR-A18)
-  return unknownAnswer();
+  // 키워드로 못 찾은 질문은 뜻이 비슷한 정책을 찾아본다 (벡터 검색). 그래도 없으면 지어내지 않고 모름 처리한다 (FR-A18)
+  return (await answerSemantic(text, ctx, userId, remaining)) ?? unknownAnswer();
 }

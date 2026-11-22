@@ -3,6 +3,7 @@
 import cron from 'node-cron';
 import { runCultureSync } from './culture/syncCulture.js';
 import { runDueAlarms } from './alarms.js';
+import { buildEmbeddings } from '../../scripts/ai/buildEmbeddings.mjs';
 import { registrationCleanup } from '../services/registration-runtime.service.js';
 import { runApplicationResults } from '../services/application-results.service.js';
 
@@ -46,6 +47,7 @@ export function startJobs() {
       { name: 'registration-cleanup', timezone: 'Asia/Seoul', noOverlap: true }
     );
   startAlarmJob();
+  startEmbeddingJob();
   if (process.env.CULTURE_SYNC_ENABLED !== 'true') return;
   const schedule = process.env.CULTURE_SYNC_CRON || '0 4 * * *';
   cron.schedule(
@@ -64,6 +66,24 @@ export function startJobs() {
     { name: 'culture-sync', timezone: 'Asia/Seoul', noOverlap: true }
   );
   console.log(`문화 데이터 하루 1회 갱신 예약: "${schedule}" (Asia/Seoul)`);
+}
+
+// AI 비서 벡터 검색 조각: 매일 새벽 정책이 바뀐 조각만 다시 임베딩한다 (AI-REQ-COM-007)
+function startEmbeddingJob() {
+  if (process.env.EMBEDDING_JOB_ENABLED !== 'true') return;
+  cron.schedule(
+    '30 3 * * *',
+    async () => {
+      try {
+        const r = await buildEmbeddings({ apply: true, log: () => {} });
+        if (r.changed || r.stale) console.log(`[벡터 검색] 조각 갱신 ${r.changed}건, 삭제 ${r.stale}건`);
+      } catch (e) {
+        console.error(`[벡터 검색] 갱신 중단: ${e.message}`);
+      }
+    },
+    { name: 'ai-embeddings', timezone: 'Asia/Seoul', noOverlap: true }
+  );
+  console.log('AI 비서 벡터 조각 매일 03:30 갱신 예약');
 }
 
 // 정책 알림: 1분마다 때가 된 알림을 알림 센터에 넣는다 (캘린더 FR-C06~C12)
