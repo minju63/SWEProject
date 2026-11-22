@@ -4,8 +4,7 @@
 // 질문의 조건은 그 답변의 판정에만 쓰고 저장하지 않는다(FR-A10).
 import * as homeRepo from '../repositories/home.repository.js';
 import * as placeRepo from '../repositories/place.repository.js';
-import { findTerm, findTermByName } from '../data/glossary.js';
-import { searchPolicyCandidates, verifyCandidates, searchTerm } from './vectorSearch.js';
+import { searchPolicyCandidates, verifyCandidates } from './vectorSearch.js';
 import { askJson, askText, isLlmEnabled } from '../lib/llm.js';
 import { lookupTerm } from '../lib/naverDict.js';
 import { RESULT } from './eligibility.service.js';
@@ -361,58 +360,8 @@ export async function recommend({
   };
 }
 
-// "소득인정액" + 이/가 처럼 받침에 맞는 조사를 붙인다
-const withJosa = (word, [withFinal, withoutFinal]) => {
-  const ch = word.replace(/\)$/, '').slice(-1).charCodeAt(0);
-  const hasFinal = ch >= 0xac00 && ch <= 0xd7a3 && (ch - 0xac00) % 28 !== 0;
-  return `${word}${hasFinal ? withFinal : withoutFinal}`;
-};
-
-// 관련 용어 칩(설명 속 어려운 말로 이어지는 질문) + 모자라면 기본 칩 (FR-A12, FR-A16)
-export function termSuggestions(term) {
-  const chips = term.related
-    .filter((name) => findTermByName(name))
-    .slice(0, 3)
-    .map((name) => `${withJosa(name, ['이', '가'])} 뭐야?`);
-  if (chips.length < 3) chips.push('나한테 맞는 정책 추천해줘');
-  return chips.slice(0, 3);
-}
-
-async function answerTerm(term, ctx, userId) {
-  // 그 조건이 걸린 내 맞춤 혜택 (소득 조건 문구에 그 용어가 들어간 정책)
-  const bookmarked = await bookmarkSet(userId);
-  const keys = [term.term, ...term.aliases].map((k) => k.replace(/\s+/g, ''));
-  const related = sortRecommended(
-    judgedWithRegion(ctx.policies, ctx.profile, ctx.regions).filter(
-      (p) =>
-        isOpen(p) &&
-        p.eligibility.result !== RESULT.INELIGIBLE &&
-        keys.some((k) => (p.income_condition ?? '').replace(/\s+/g, '').includes(k))
-    ),
-    ctx.profile,
-    ctx.categories
-  ).slice(0, 3);
-  return {
-    type: 'term',
-    term: { name: term.term, summary: term.summary },
-    message: null,
-    cards: related.map((p) => cardWithConditions(p, bookmarked)),
-    cardsTitle: related.length ? '이 조건이 있는 내 맞춤 혜택' : null,
-    sources: [
-      {
-        title: `${term.term} 안내`,
-        organization: term.source.organization,
-        url: term.source.url,
-        collected_at: term.updated, // 확인한 날짜가 없으면 null → 화면에 날짜를 표시하지 않는다
-        glossary: true,
-      },
-    ],
-    suggestions: termSuggestions(term),
-  };
-}
-
-// 사전에 없는 용어는 네이버 백과사전에서 찾은 글만 근거로 쉬운 말로 요약한다.
-// 사전에서 못 찾으면 지어내지 않고 모름 처리한다 (FR-A18). 질문 원문은 보내지 않고 용어만 검색한다.
+// 용어 질문은 네이버 백과사전에서 찾은 글만 근거로 쉬운 말로 요약한다.
+// 백과사전에서 못 찾으면 지어내지 않고 모름 처리한다 (FR-A18). 질문 원문은 보내지 않고 용어만 검색한다.
 const termOf = (text) =>
   text
     .replace(/[?？!.]/g, ' ')
@@ -1051,12 +1000,8 @@ async function route({ userId, message, context, remaining }) {
     return answerWhy(ctx, context, userId, remaining);
   const picked = pickFromContext(text, context, ctx.policies);
 
-  // 1) 용어: 정책명과 같이 물었다면 "뭐야?" 같은 용어 질문 형태일 때만 사전으로 답한다
-  const term = findTerm(text);
+  // 1) 용어: "~가 뭐야?" 같은 용어 질문은 네이버 백과사전으로 답한다 (정책명을 직접 말했거나 앞 답변을 이어 묻는 경우는 제외)
   const mentionedPolicy = findMentionedPolicy(text, ctx.policies) ?? picked;
-  if (term && (isTermQuestion(text) || !mentionedPolicy)) return answerTerm(term, ctx, userId);
-
-  // 1-1) 사전에 없는 용어 질문은 정책명을 직접 말하지 않았다면 정책으로 넘기지 않는다
   if (
     isTermQuestion(text) &&
     !picked &&
@@ -1064,12 +1009,6 @@ async function route({ userId, message, context, remaining }) {
   ) {
     // 정책 종류를 묻는 질문("청년 월세 지원이 뭐야?")은 우리 정책 데이터에서 찾아 답하고, 일반 용어는 백과사전으로 찾는다
     const isPolicyKind = /지원|사업|바우처|수당|장려금|혜택/.test(text);
-    if (!isPolicyKind) {
-      // 우리 용어 사전에서 뜻이 가까운 용어가 있으면 그 설명을 먼저 쓴다 (벡터 검색)
-      const near = await searchTerm(text, { timeoutMs: Math.min(remaining(), 3000) });
-      const nearTerm = near && findTermByName(near.term);
-      if (nearTerm) return answerTerm(nearTerm, ctx, userId);
-    }
     const explained = isPolicyKind
       ? await answerTopic(text, ctx, userId, remaining)
       : await explainTermFromDictionary(text, remaining);

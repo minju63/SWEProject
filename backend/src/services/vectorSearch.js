@@ -1,4 +1,4 @@
-// AI 비서 벡터 검색 (AI-REQ-COM-007): 질문과 뜻이 가까운 정책·용어를 찾는다.
+// AI 비서 벡터 검색 (AI-REQ-COM-007): 질문과 뜻이 가까운 정책을 찾는다.
 // 흐름: 질문(개인정보 마스킹 후) 임베딩 → pgvector 로 가까운 조각 조회 → (정책은) AI 가 정말 관련 있는지 한 번 더 거른다.
 // 꺼져 있거나(키 없음·EMBEDDING_ENABLED=false) 테이블이 아직 없으면 빈 결과를 돌려 규칙 기반 검색이 그대로 동작한다.
 import { supabase } from '../lib/supabase.js';
@@ -7,7 +7,6 @@ import { askJson, isLlmEnabled } from '../lib/llm.js';
 
 const POLICY_CANDIDATE_MIN = 0.3; // 이보다 가까워야 후보로 본다
 const POLICY_CONFIDENT = 0.5; // AI 로 거르지 못할 때(꺼져 있음)는 이 이상만 쓴다
-const TERM_MIN = 0.55;
 
 // DB 에 조각 테이블·함수가 아직 없을 때 매번 실패하지 않도록 잠깐 쉰다
 let unavailableUntil = 0;
@@ -64,11 +63,4 @@ export async function verifyCandidates(question, candidates, titleOf, { timeoutM
   if (!out || !Array.isArray(out.relevant)) return candidates.filter((c) => c.score >= POLICY_CONFIDENT);
   const picked = new Set(out.relevant.map(Number).filter((n) => n >= 1 && n <= candidates.length));
   return candidates.filter((_, i) => picked.has(i + 1));
-}
-
-// 뜻이 가까운 용어 하나 (용어 사전 안에서만). 규칙으로 못 찾은 용어 질문에 쓴다
-export async function searchTerm(question, { timeoutMs = 4000 } = {}) {
-  const rows = await nearest(question, 'TERM', 3, timeoutMs);
-  const top = rows[0];
-  return top && top.similarity >= TERM_MIN ? { term: top.ref_id, score: top.similarity } : null;
 }

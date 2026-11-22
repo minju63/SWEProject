@@ -5,12 +5,12 @@
 import 'dotenv/config';
 import { supabase } from '../../src/lib/supabase.js';
 import { embedTexts, isEmbeddingEnabled } from '../../src/lib/embedding.js';
-import { policyChunks, termChunks } from '../../src/services/aiChunks.js';
+import { policyChunks } from '../../src/services/aiChunks.js';
 
 export async function buildEmbeddings({ apply = false, log = console.log } = {}) {
   const { data: policies, error: pErr } = await supabase.from('policy').select('*').neq('item_type', 'EVENT');
   if (pErr) throw new Error(`정책 조회 실패: ${pErr.message}`);
-  const wanted = [...policies.flatMap(policyChunks), ...termChunks()];
+  const wanted = policies.flatMap(policyChunks);
 
   const existing = [];
   for (let from = 0; ; from += 1000) {
