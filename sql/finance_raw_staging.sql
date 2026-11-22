@@ -1,4 +1,5 @@
--- Prepare only. Do not apply to the production database in this stage.
+-- Production staging DDL: apply only after separate approval and a fresh read-only baseline.
+-- No full-row backup is included; counts and hashes are change detectors, not backups.
 -- These tables are independent of policy and finance_detail.
 -- One-time migration: fail on any pre-existing object instead of silently accepting a mismatched schema.
 begin;

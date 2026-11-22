@@ -1,4 +1,4 @@
--- Read-only checks for a dedicated test database after applying finance_raw_staging.sql.
+-- Read-only checks after applying finance_raw_staging.sql.
 -- Expected: four tables, RLS enabled, no anon/authenticated privileges or policies.
 
 select c.relname, c.relrowsecurity,
@@ -48,7 +48,7 @@ where n.nspname = 'public' and c.relkind = 'S'
                     'finance_review_candidate_review_id_seq')
 order by c.relname;
 
--- Run these after an isolated test collection. They disclose metadata only.
+-- Run these after a collection. They disclose metadata only.
 select run_id, scheduled_date, status, response_count, error_count,
        discovered_count, excluded_count, review_count
 from public.finance_raw_run
@@ -80,9 +80,7 @@ order by comparison_status, review_status;
 
 select stage, count(*) from public.finance_raw_error group by stage order by stage;
 
--- The following two checks require a schema-only policy/finance_detail fixture
--- in an isolated test project. Never run them against production for this stage.
--- Compare these counts with the values recorded before the test run.
+-- Compare these counts with the values recorded before the collection.
 select 'policy' as table_name, count(*) from public.policy
 union all
 select 'finance_detail', count(*) from public.finance_detail;
