@@ -80,6 +80,18 @@ class RawStore:
             raise RuntimeError(f"read-only comparison from {table} failed: HTTP {response.status_code}")
         return response.json()
 
+    def existing_run(self, scheduled_date: str, stage_review: bool) -> dict | None:
+        response = self.session.get(self.base_url + "finance_raw_run", params={
+            "select": "run_id,status", "scheduled_date": "eq." + scheduled_date,
+            "review_enabled": "eq." + str(stage_review).lower(),
+            "status": "in.(RUNNING,SUCCESS,PARTIAL)",
+            "order": "started_at.desc", "limit": "1",
+        }, timeout=30)
+        if not response.ok:
+            raise RuntimeError(f"staging run lookup failed: HTTP {response.status_code}")
+        rows = response.json()
+        return rows[0] if rows else None
+
     def compare(self, external_id: str | None, official_url: str | None,
                 candidate: dict) -> tuple[str, str | None, list[str]]:
         ids: set[str] = set()
@@ -187,17 +199,29 @@ def review_candidate(collector, row: dict) -> dict:
 
 
 def run_raw_collection(collector, *, max_pages: int = 6, stage_review: bool = False,
-                       store: RawStore | None = None) -> str:
+                       store: RawStore | None = None, skip_existing_day: bool = False,
+                       fail_on_partial: bool = False) -> str:
     """Reuse the existing discovery/crawl scope, and optionally stage normalized candidates."""
     api_key = collector.load_youthcenter_api_keys().get("policy", "")
     if not api_key:
         raise RuntimeError("raw capture requires YOUTHCENTER_POLICY_API_KEY")
     store = store or RawStore(os.getenv("SUPABASE_URL", "").strip(),
                               os.getenv("SUPABASE_SERVICE_ROLE_KEY", "").strip())
+    scheduled_date = datetime.now(collector.KST).date().isoformat()
+    if skip_existing_day:
+        existing = store.existing_run(scheduled_date, stage_review)
+        if existing:
+            existing_id = existing["run_id"]
+            if existing["status"] == "SUCCESS":
+                print(f"[raw capture] already collected today (run_id={existing_id})")
+                store.session.close()
+                return existing_id
+            store.session.close()
+            raise RuntimeError(f"prior run needs review before retry (run_id={existing_id}, status={existing['status']})")
     run_id = str(uuid4())
     store.write("finance_raw_run", {
         "run_id": run_id, "started_at": datetime.now(collector.KST).isoformat(),
-        "scheduled_date": datetime.now(collector.KST).date().isoformat(),
+        "scheduled_date": scheduled_date,
         "status": "RUNNING", "response_count": 0, "error_count": 0,
         "review_enabled": stage_review,
     })
@@ -353,8 +377,11 @@ def run_raw_collection(collector, *, max_pages: int = 6, stage_review: bool = Fa
         finally:
             store.session.close()
     if fatal:
-        raise RuntimeError(f"raw capture failed (run_id={run_id})") from fatal
+        raise RuntimeError(f"raw capture failed (run_id={run_id})") from None
     print(f"[raw capture] run_id={run_id}, responses={capture.response_count}, "
           f"errors={counts['error']}, discovered={counts['discovered']}, "
           f"excluded={counts['excluded']}, review={counts['review']}")
+    if counts["error"] and fail_on_partial:
+        raise RuntimeError(f"raw capture partial (run_id={run_id}, errors={counts['error']})")
     return run_id
+
