@@ -28,7 +28,7 @@ export default function PolicyDataGate({ children }) {
   if (state !== 'ready')
     return (
       <main className="mx-auto flex min-h-screen max-w-[480px] flex-col items-center justify-center gap-4 bg-white px-6 text-center">
-        <h1 className="text-lg font-bold">청년ZIP</h1>
+        <h1 className="text-lg font-bold">청해</h1>
         <p role={state === 'error' ? 'alert' : 'status'}>
           {state === 'error' ? '정책 정보를 불러오지 못했어요.' : '정책 정보를 불러오고 있어요.'}
         </p>

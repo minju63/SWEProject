@@ -14,7 +14,7 @@ function HydrateFallback() {
           <span className="grid size-10 -rotate-6 place-items-center rounded-[13px] bg-[#2F7BF5] text-base font-black text-white">
             Y
           </span>
-          <span className="text-xs font-bold text-black/60">청년ZIP을 불러오고 있어요</span>
+          <span className="text-xs font-bold text-black/60">청해를 불러오고 있어요</span>
         </div>
       </div>
     </div>

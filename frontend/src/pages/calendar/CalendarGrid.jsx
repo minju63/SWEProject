@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { CATEGORY_ORDER, CATEGORY_STYLE } from '../home/homeConfig.js';
 import { WEEKDAYS, monthCells } from './calendarUtils.js';
 
-// 월간 달력 (FR-C01): 마감 ● / 신청 완료 ○ / 결과 발표 ★ 을 분야 색으로 표시한다
+// 월간 달력 (FR-C01): 마감 ● / 신청 완료 ○ / 결과 확인 ★ 을 분야 색으로 표시한다
 function Marker({ type, color }) {
   if (type === 'APPLIED')
     return <i className="cal-mark cal-mark-ring" style={{ borderColor: color }} />;
@@ -129,7 +129,7 @@ export default function CalendarGrid({
             <i className="cal-mark cal-mark-star" style={{ color: '#6b7684' }}>
               ★
             </i>{' '}
-            결과 발표
+            결과 확인
           </span>
         </p>
         <p className="cal-legend-colors">

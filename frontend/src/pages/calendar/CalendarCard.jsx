@@ -3,7 +3,9 @@ import { Link } from 'react-router-dom';
 import { BellFillIcon, HeartIcon } from '../../components/icons.jsx';
 import { alarmLabel, shortDate } from './calendarUtils.js';
 
-const EVENT_TAG = { DEADLINE: '마감', APPLIED: '신청 완료', RESULT: '결과 발표' };
+const EVENT_TAG = { DEADLINE: '마감', APPLIED: '신청 완료', RESULT: '결과 확인' };
+// 마이 신청 관리와 같은 단계 이름 (신청 준비 / 신청 완료 / 결과 확인)
+const STAGE_TAG = { PREPARING: '신청 준비', APPLIED: '신청 완료', RESULT: '결과 확인' };
 
 // 정책 카드 (FR-C04~C06): 위쪽은 상세로, ♥는 찜 해제, 아래 띠는 알림 설정
 export default function CalendarCard({
@@ -21,9 +23,10 @@ export default function CalendarCard({
   // 찜한 정책과 신청 준비 중인 정책에 알림을 붙인다 (FR-COM-04)
   const canAlarm = (item.bookmarked || item.stage === 'PREPARING') && state === 'active';
   const alarms = item.alarms ?? [];
+  const stageTag = STAGE_TAG[item.stage] ?? null;
   const label =
     state === 'closed'
-      ? '마감'
+      ? (item.stage === 'APPLIED' || item.stage === 'RESULT' ? stageTag : '마감')
       : state === 'always'
         ? '상시'
         : item.d_day === 0
@@ -45,12 +48,14 @@ export default function CalendarCard({
               dayEvent ? ' ccard-dday-event' : ''
             }`}
           >
-            {dayEvent ? (dayEvent === 'APPLIED' ? '완료' : '발표') : label}
+            {dayEvent ? (dayEvent === 'APPLIED' ? '완료' : '확인') : label}
           </span>
           <span className="ccard-body">
             <strong className="ccard-title">
               {item.title}
-              {item.stage === 'PREPARING' && <em className="ccard-prep">신청 준비</em>}
+              {stageTag && !eventTypes.includes(item.stage) && (
+                <em className="ccard-prep">{stageTag}</em>
+              )}
               {item.stage === 'APPLIED' && item.result_date_unknown && (
                 <em className="ccard-event">결과 발표 미정</em>
               )}

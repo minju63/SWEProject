@@ -46,7 +46,7 @@ export default function CalendarScreen() {
         <div>
           <h1 className="text-xl font-black tracking-[-0.04em]">정책 캘린더</h1>
           <p className="mt-1 text-[11px] font-medium text-black/60">
-            찜·신청관리의 마감일, 신청일, 결과 발표일이에요
+            찜·신청관리의 마감일, 신청일, 결과 확인일이에요
           </p>
         </div>
         <div className="flex items-center gap-1">

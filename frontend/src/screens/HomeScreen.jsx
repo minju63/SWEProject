@@ -141,11 +141,11 @@ export default function HomeScreen() {
     <div className="min-h-screen bg-[#eef0f5]">
       <div className="app-shell relative mx-auto min-h-screen max-w-[480px] overflow-hidden bg-white text-[#171923] shadow-[0_0_40px_rgba(23,25,35,0.08)]">
         <header className="sticky top-0 z-40 flex h-[68px] items-center justify-between bg-white/95 px-5 backdrop-blur-xl">
-          <button className="flex items-center gap-2" aria-label="청년ZIP 홈">
+          <button className="flex items-center gap-2" aria-label="청해 홈">
             <span className="grid size-8 -rotate-6 place-items-center rounded-[11px] bg-[#2F7BF5] text-sm font-black text-white">
               Y
             </span>
-            <span className="text-[18px] font-black tracking-[-0.05em]">청년ZIP</span>
+            <span className="text-[18px] font-black tracking-[-0.05em]">청해</span>
           </button>
           <div className="flex items-center gap-1">
             <button

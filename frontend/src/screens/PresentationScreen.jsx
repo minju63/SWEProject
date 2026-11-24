@@ -404,7 +404,7 @@ export default function PresentationScreen() {
               Busan Youth AI Service
             </p>
             <h1 className="mt-2 text-3xl font-black tracking-[-0.05em]">
-              청년ZIP 마이 탭 · 발표용 UI Flow
+              청해 마이 탭 · 발표용 UI Flow
             </h1>
             <p className="mt-3 text-sm font-medium text-black/60">
               개인 맞춤정보부터 신청 준비와 결과 기록까지, 사용자가 직접 관리하는 MVP

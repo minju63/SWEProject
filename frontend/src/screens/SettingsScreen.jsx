@@ -822,7 +822,7 @@ export default function SettingsScreen() {
                 <div className="min-w-0 flex-1">
                   <p className="text-sm font-black">전체 알림</p>
                   <p className="mt-1 text-[10px] font-medium text-black/60">
-                    청년ZIP의 알림을 한 번에 켜거나 끌 수 있어요.
+                    청해의 알림을 한 번에 켜거나 끌 수 있어요.
                   </p>
                 </div>
                 <button

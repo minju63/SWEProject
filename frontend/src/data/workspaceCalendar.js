@@ -15,7 +15,7 @@ export function workspaceEvents(saved, applications, policies) {
     if (a.applicationDate)
       put(a.id + ':applied', policyId, a.policyName, a.applicationDate, '신청 완료')
     if (a.expectedResultDate)
-      put(a.id + ':result', policyId, a.policyName, a.expectedResultDate, '결과 발표')
+      put(a.id + ':result', policyId, a.policyName, a.expectedResultDate, '결과 확인')
   }
   return [...events.values()].sort(
     (a, b) => a.date.localeCompare(b.date) || a.title.localeCompare(b.title, 'ko')
