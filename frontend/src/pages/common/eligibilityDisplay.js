@@ -9,6 +9,11 @@ const NAMES = {
   independent_livelihood_approved: '독립생계 인정 여부',
   income_to_median_ratio: '기준 중위소득 대비 소득',
 };
+const PROFILE_NAMES = {
+  final_education: '최종 학력', current_status: '현재 상태', housing_type: '주거 형태',
+  household_type: '가구 유형', marital_status: '혼인 상태', home_ownership: '주택 소유',
+  household_role: '세대 내 지위', housing_benefit_status: '주거급여', special_targets: '특별 대상',
+};
 const SUBJECTS = { applicant: '본인', youth_household: '청년가구', original_household: '원가구', authority: '담당기관' };
 
 const opOf = (item) => String(item.op ?? item.operator ?? '').toUpperCase();
@@ -73,6 +78,15 @@ function ruleLabel(item, policyTitle = '') {
       typeof value === 'number' && Number.isFinite(value))
     return `${SUBJECTS[subject] ?? ''} 중위소득 ${Number((value * 100).toFixed(6))}%${qualifier(op)}`.trim();
   if (field && NAMES[field]) return `${SUBJECTS[subject] ?? ''} ${NAMES[field]}`.trim();
+  // 문구 없이 field/op/value만 저장된 조건도 값을 풀어서 보여준다.
+  const plain = (v) => ['string', 'number'].includes(typeof v) && !INTERNAL.test(String(v));
+  if (field === 'age' && op === 'BETWEEN' && Array.isArray(value) && value.every(Number.isFinite))
+    return `만 ${value[0]}~${value[1]}세`;
+  if (field === 'age' && typeof value === 'number' && ['GTE', 'LTE'].includes(op)) return `만 ${value}세${qualifier(op)}`;
+  if (PROFILE_NAMES[field] && ['EQ', 'IN', 'CONTAINS', 'CONTAINS_ANY'].includes(op)) {
+    const values = [value].flat();
+    if (values.length && values.every(plain)) return `${PROFILE_NAMES[field]}: ${values.join(' · ')}`;
+  }
   return '';
 }
 
@@ -116,11 +130,49 @@ function splitReasons(text) {
   return parts.filter(Boolean);
 }
 
+// 문장형 자격 조건을 "한 줄에 조건 하나"로 쪼갠다.
+// 예) "A 중 신규보증 트랙은 업력 3개월 이상, 대표자 710점 이상 등의 기준 충족자. 전환보증 트랙은 ..."
+//   → "A" / "신규보증: 업력 3개월 이상" / "신규보증: 대표자 710점 이상" / "전환보증: ..."
+const LONG_LABEL = 28;
+const TAIL = /\s*(?:등의\s*)?(?:기준\s*)?(?:충족자|해당자|해당하는\s*(?:자|사람))\s*$|\s*등\s*별도\s*요건\s*$|\s*등\s*$/u;
+const TRACK = /^(?:(.+?)\s*중\s+)?(\S+?)\s*(?:트랙|유형|분야|구분)(?:은|는)\s+(.+)$/u;
+
+function splitClauses(text) {
+  const parts = [];
+  let start = 0;
+  let depth = 0;
+  for (let i = 0; i < text.length; i += 1) {
+    if ('(（'.includes(text[i])) depth += 1;
+    if (')）'.includes(text[i])) depth = Math.max(0, depth - 1);
+    if (!depth && (text[i] === ',' || text[i] === '，' || text[i] === ';')) {
+      parts.push(text.slice(start, i));
+      start = i + 1;
+    }
+  }
+  parts.push(text.slice(start));
+  return parts.map((part) => part.replace(TAIL, '').trim()).filter(Boolean);
+}
+
+export function shortenLabel(label) {
+  if (typeof label !== 'string' || label.length <= LONG_LABEL) return [label];
+  const sentences = label.split(/(?<=[다요음임함])\.\s+|(?<=\S)\.\s+(?=\S)/u).map((s) => s.replace(/[.。]+$/u, '').trim()).filter(Boolean);
+  const rows = [];
+  sentences.forEach((sentence) => {
+    const match = TRACK.exec(sentence);
+    if (match) {
+      if (match[1]) rows.push(match[1].replace(TAIL, '').trim());
+      splitClauses(match[3]).forEach((clause) => rows.push(`${match[2]}: ${clause}`));
+    } else splitClauses(sentence).forEach((clause) => rows.push(clause));
+  });
+  const unique = [...new Set(rows.filter(Boolean))];
+  return unique.length ? unique : [label];
+}
+
 export function displayConditions(conditions, policyTitle = '') {
   const structured = new Map();
   const collect = (item, exclusion) => {
     if (item.children?.length) {
-      if (opOf(item) === 'OR' || Array.isArray(item.any)) return;
+      if (opOf(item) === 'OR' || opOf(item) === 'NOT' || Array.isArray(item.any)) return;
       return item.children.forEach((child) => collect(child, exclusion));
     }
     if (opOf(item) === 'RAW' || opOf(item) === 'MANUAL_REVIEW') return;
@@ -138,8 +190,21 @@ export function displayConditions(conditions, policyTitle = '') {
     if (item.children?.length) {
       if (opOf(item) === 'OR' || Array.isArray(item.any)) {
         const knownGroup = youthRentHouseholdGroup(item, policyTitle);
+        const options = [];
+        if (!knownGroup) item.children.forEach((child) => visit(child, options, exclusion));
+        if (!knownGroup && options.length > 1) {
+          // 여러 조건 중 하나만 충족하면 되는 묶음은 하위 조건을 그대로 보여준다.
+          output.push({ label: '아래 중 하나만 충족하면 돼요', status: status(item), anyOf: options });
+          return;
+        }
         const label = knownGroup ? '원가구 소득·재산 기준 또는 심사 면제'
           : labelOf(item, '세부 자격 확인 필요', policyTitle);
+        output.push({ label, status: label === '세부 자격 확인 필요' ? 'UNKNOWN' : status(item) });
+      } else if (opOf(item) === 'NOT') {
+        const inner = [];
+        item.children.forEach((child) => visit(child, inner, exclusion));
+        const label = safeText(item.text) ||
+          (inner.length === 1 && !inner[0].anyOf ? `${inner[0].label} 해당 안 됨` : '세부 자격 확인 필요');
         output.push({ label, status: label === '세부 자격 확인 필요' ? 'UNKNOWN' : status(item) });
       } else {
         item.children.forEach((child) => visit(child, output, exclusion));
@@ -159,10 +224,13 @@ export function displayConditions(conditions, policyTitle = '') {
         const reason = safeText(part) || '제외 사유 확인 필요';
         if (!explicitExclusions.has(reason)) output.push({ label: reason, status: 'UNKNOWN' });
       });
-    } else output.push({ label, status: status(item) });
+    } else if (exclusion) output.push({ label, status: status(item) });
+    else shortenLabel(label).forEach((line) => output.push({ label: line, status: status(item) }));
   }
   conditions.forEach((item) => visit(item, item.exclusion ? exclusions : required, Boolean(item.exclusion)));
   if (!required.length && conditions.some((item) => !item.exclusion))
     required.push({ label: '세부 자격 확인 필요', status: 'UNKNOWN' });
-  return { required, exclusions };
+  const unique = (rows) => rows.filter((row, index) =>
+    row.anyOf || rows.findIndex((other) => !other.anyOf && other.label === row.label) === index);
+  return { required: unique(required), exclusions: unique(exclusions) };
 }

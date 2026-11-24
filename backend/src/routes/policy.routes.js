@@ -12,6 +12,7 @@ router.get('/policies', policy.list);
 router.get('/policies/suggestions', suggestionRateLimit, policy.suggestions);
 router.get('/policies/:policyId', policy.detail);
 router.get('/policies/:policyId/explanation', policy.explanation);
+router.get('/policies/:policyId/explanation/followup', policy.explanationFollowup);
 router.get('/policies/:policyId/similar', policy.similar);
 router.get('/policies/:policyId/compare-candidates', policy.compareCandidates);
 router.get('/policies/:policyId/compare/:comparisonId', policy.compare);

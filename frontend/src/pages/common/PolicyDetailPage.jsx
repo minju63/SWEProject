@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
-import { fetchEligibility, fetchPolicy, fetchPolicyExplanation, fetchSimilarPolicies, recordPolicyView } from '../../api/policies';
+import { fetchEligibility, fetchPolicy, fetchPolicyExplanation, fetchPolicyFollowup, fetchSimilarPolicies, recordPolicyView } from '../../api/policies';
 import { addBookmark, removeBookmark } from '../../api/me';
 import { BOOKMARK_TOAST, BOOKMARK_TOAST_MS, UNBOOKMARK_TOAST, useToastStore } from '../../store/toastStore';
 import { supabase } from '../../lib/supabase';
@@ -23,7 +23,7 @@ const categoryTagTone = {
   문화: 'green', '문화·예술': 'green', '복지·건강': 'purple',
 };
 const itemVerdicts = { SATISFIED: '충족', UNSATISFIED: '불충족', UNKNOWN: '확인 필요', NOT_APPLICABLE: '해당 없음' };
-const exclusionVerdicts = { HIT: '해당', CLEAR: '해당 없음', UNKNOWN: '확인 필요' };
+const exclusionVerdicts = { HIT: '제외 대상', CLEAR: '해당 없음', UNKNOWN: '확인 필요' };
 const conditionNames = {
   age: '나이 조건', birth_date: '생년월일', region: '거주 지역', region_code: '거주 지역', residence_months: '거주 기간',
   city_code: '거주 지역', all_members_homeless: '세대원 무주택',
@@ -68,13 +68,19 @@ function documentsFor(p) {
 }
 
 function ConditionRows({ items, exclusion = false }) {
-  return <div className="policy-detail-conditions">{items.map((item, index) => {
-    return <div className="policy-detail-condition-row" key={`${item.label}-${index}`}>
-      <span>{item.label}</span><b className={`status-${item.status?.toLowerCase()}`}>
-        {(exclusion ? exclusionVerdicts : itemVerdicts)[item.status] ?? '확인 필요'}
-      </b>
-    </div>;
-  })}</div>;
+  const verdicts = exclusion ? exclusionVerdicts : itemVerdicts;
+  const row = (item, key, nested = false) => <div className="policy-detail-condition-row" key={key}
+    style={nested ? { paddingLeft: 12 } : undefined}>
+    <span>{nested ? '· ' : ''}{item.label}</span><b className={`status-${item.status?.toLowerCase()}`}>
+      {verdicts[item.status] ?? '확인 필요'}
+    </b>
+  </div>;
+  return <div className="policy-detail-conditions">{items.map((item, index) => item.anyOf
+    ? <div key={`${item.label}-${index}`}>
+      {row(item, 'head')}
+      {item.anyOf.map((option, i) => row(option, `${option.label}-${i}`, true))}
+    </div>
+    : row(item, `${item.label}-${index}`))}</div>;
 }
 
 function externalUrl(url) {
@@ -112,10 +118,16 @@ export default function PolicyDetailPage() {
   const queryClient = useQueryClient();
   const showToast = useToastStore((state) => state.show);
   const [actionError, setActionError] = useState('');
+  const [aiMore, setAiMore] = useState(null);
 
   const policy = useQuery({ queryKey: ['policy', user?.id, policyId],
     queryFn: () => fetchPolicy(policyId), enabled: !!user, staleTime: 0 });
   const eligibility = useQuery({ queryKey: ['eligibility', user?.id ?? null, policyId], queryFn: () => fetchEligibility(policyId), enabled: !!user });
+  // Dr.부 추가 질문: 서버 AI가 답하고, 실패하면 서버가 정책 데이터로 만든 답을 준다.
+  const canExplainReason = !!user && eligibility.isSuccess && !eligibility.isFetching;
+  const followup = useQuery({ queryKey: ['policy-followup', user?.id, policyId, aiMore, eligibility.dataUpdatedAt],
+    queryFn: () => fetchPolicyFollowup(policyId, aiMore), enabled: !!user && !!aiMore && canExplainReason,
+    staleTime: 5 * 60 * 1000, retry: false });
   const explanation = useQuery({ queryKey: ['policy-explanation', user?.id, policyId, eligibility.dataUpdatedAt],
     queryFn: () => fetchPolicyExplanation(policyId), enabled: !!user && !!policy.data && eligibility.isSuccess && !eligibility.isFetching,
     staleTime: 10 * 60 * 1000, retry: false });
@@ -201,6 +213,8 @@ export default function PolicyDetailPage() {
     : eligibility.error?.code === 'PROFILE_LOOKUP_FAILED'
       ? '내 정보를 불러오지 못했어요.' : '조건 비교를 불러오지 못했어요.';
 
+  const toggleMore = (key) => setAiMore((current) => current === key ? null : key);
+
   return <div className="policy-detail-page">
     <header className="policy-detail-header">
       <button className="policy-detail-back" onClick={() => navigate(-1)} aria-label="뒤로 가기"><BackIcon /></button>
@@ -244,6 +258,17 @@ export default function PolicyDetailPage() {
             : explanation.isError || !explanation.data?.explanation?.summary
               ? <p className="policy-detail-ai-placeholder" role="status">기본 정보 기반 안내예요. AI 설명을 불러오지 못해 정책 요약과 자격 판정만 보여드려요.</p>
               : <p className="policy-detail-ai-placeholder">{explanation.data.explanation.summary}</p>}
+          {!eligibility.isFetching && !explanation.isLoading && <div className="policy-detail-ai-chips">
+            {canExplainReason && <button type="button" className={aiMore === 'detail' ? 'is-active' : ''} aria-pressed={aiMore === 'detail'}
+              onClick={() => toggleMore('detail')}>더 자세히 알려주세요</button>}
+            {canExplainReason && <button type="button" className={aiMore === 'reason' ? 'is-active' : ''} aria-pressed={aiMore === 'reason'}
+              onClick={() => toggleMore('reason')}>확인이 필요한 이유가 궁금해요</button>}
+          </div>}
+          {aiMore && <div className="policy-detail-ai-more" role="status" aria-live="polite">
+            {followup.isLoading ? <p>닥터부가 답변을 정리하고 있어요.</p>
+              : followup.isError ? <p>답변을 불러오지 못했어요. 잠시 후 다시 시도해 주세요.</p>
+                : <p>{followup.data?.answer}</p>}
+          </div>}
         </SectionCard>
 
         <SectionCard title="내 조건과 비교하기" aside={eligibility.isSuccess && !eligibility.isFetching ? verdicts[eligibility.data.result] : null}>
@@ -252,9 +277,7 @@ export default function PolicyDetailPage() {
               : eligibility.error ? <div className="policy-detail-muted" role="alert">{eligibilityError} 잠시 후 다시 시도해 주세요.
                 <button type="button" className="policy-detail-more" onClick={() => eligibility.refetch()}>다시 시도</button></div>
                 : conditions.length ? <>
-                  {p.eligibility_verified === false
-                    ? <p className="policy-detail-muted">신청 자격 정보가 검증되지 않아 공식 공고 확인이 필요합니다.</p>
-                    : eligibility.data.result !== 'ELIGIBLE' && <p className="policy-detail-muted">{eligibility.data.reason}</p>}
+                  {p.eligibility_verified !== false && eligibility.data.result !== 'ELIGIBLE' && <p className="policy-detail-muted">{eligibility.data.reason}</p>}
                   {requiredConditions.length > 0 && <div className="policy-detail-condition-section">
                     <h3>신청 자격</h3><ConditionRows items={requiredConditions} />
                   </div>}

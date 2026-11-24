@@ -8,6 +8,8 @@ export const fetchPolicySuggestions = (params, signal) =>
   api.get('/policies/suggestions', { params, signal });
 export const fetchPolicy = (policyId) => api.get(`/policies/${policyId}`);
 export const fetchPolicyExplanation = (policyId) => api.get(`/policies/${policyId}/explanation`);
+export const fetchPolicyFollowup = (policyId, kind) =>
+  api.get(`/policies/${policyId}/explanation/followup`, { params: { kind } });
 export const fetchSimilarPolicies = (policyId, params) => api.get(`/policies/${policyId}/similar`, { params });
 export const fetchPolicyComparison = (policyId, comparisonId) =>
   api.get(`/policies/${policyId}/compare/${comparisonId}`);

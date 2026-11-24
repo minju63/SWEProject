@@ -3,6 +3,7 @@ import { suggestPolicies } from '../services/policy-suggestion.service.js';
 import { getSimilarPolicies } from '../services/policy-similar.service.js';
 import { getPolicyComparison } from '../services/policy-compare.service.js';
 import { getPolicyExplanation } from '../services/policy-explanation.service.js';
+import { getPolicyFollowup, FOLLOWUP_KINDS } from '../services/policy-followup.service.js';
 import { getAiCompareCandidates } from '../services/policy-compare-candidates-ai.service.js';
 import { getAiComparisonSummary } from '../services/policy-compare-summary-ai.service.js';
 import { ok, AppError } from '../utils/response.js';
@@ -49,6 +50,12 @@ export async function detail(req, res) {
 
 export async function explanation(req, res) {
   ok(res, await getPolicyExplanation(req.params.policyId, req.user.id));
+}
+
+export async function explanationFollowup(req, res) {
+  if (!FOLLOWUP_KINDS.includes(req.query.kind))
+    throw new AppError(400, 'INVALID_QUERY', '지원하지 않는 질문이에요.');
+  ok(res, await getPolicyFollowup(req.params.policyId, req.user.id, req.query.kind));
 }
 
 export async function similar(req, res) {

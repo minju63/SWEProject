@@ -1,7 +1,7 @@
 import { supabase } from '../lib/supabase.js';
 import { SEARCH_SUBCATEGORIES, searchSubcategories } from '../constants/policySubcategories.js';
 import { policyStatus } from '../services/policy-status.service.js';
-import { compareRecommendedPolicies } from '../services/policy-search-sort.service.js';
+import { compareRecommendedPolicies, tallyConditions } from '../services/policy-search-sort.service.js';
 
 const DETAIL_TABLE = {
   JOB: 'job_detail',
@@ -112,7 +112,9 @@ export async function findPolicies({ categoryId, categoryIds = [], details = [],
     }).map((item) => ({ ...item, ...statusById.get(item.policy_id),
       category_name: categoryById.get(item.category_id) ?? null,
       region_codes: regionsById.get(item.policy_id) ?? [],
-      eligibility_result: assess(item).result }));
+      eligibility_result: assess(item).result,
+      ...(() => { const { met, unmet } = tallyConditions(assess(item).conditions);
+        return { met_conditions: met, unmet_conditions: unmet }; })() }));
     filtered.sort((a, b) => sort === 'latest'
       ? b.created_at.localeCompare(a.created_at) || a.policy_id.localeCompare(b.policy_id)
       : sort === 'recommended'

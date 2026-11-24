@@ -131,7 +131,8 @@ function childrenOf(node) {
 function hasAgeRule(nodes) {
   return nodes.some((node) => node && typeof node === 'object' &&
     (node.field === 'age' || node.field === 'birth_year' || ['all', 'any', 'conditions'].some((key) =>
-      Array.isArray(node[key]) && hasAgeRule(node[key]))));
+      Array.isArray(node[key]) && hasAgeRule(node[key])) ||
+      (node.condition && typeof node.condition === 'object' && hasAgeRule([node.condition]))));
 }
 
 function judgeCondition(node, profile, context, path) {
@@ -152,14 +153,27 @@ function judgeCondition(node, profile, context, path) {
   }
 
   const op = String(node.op ?? node.operator ?? '').toLowerCase();
-  if (['raw', 'manual_review', 'not'].includes(op))
+  // 개별 조건이 검토 전이라고 표시돼 있으면 정책 전체와 별개로 이 조건만 확인 필요로 둔다.
+  if (node.verified === false || node.needs_review === true)
+    return { ...node, status: S.UNKNOWN, reason: '이 조건은 공식 공고 확인이 필요합니다.', evidence };
+  // NOT: 충족/미충족을 뒤집고, 확인 필요는 그대로 둔다.
+  if (op === 'not') {
+    const inner = node.condition ?? (Array.isArray(node.conditions) && node.conditions.length === 1 ? node.conditions[0] : null);
+    if (!inner) return { ...node, status: S.UNKNOWN, reason: '자동 판정할 수 없는 정책 조건입니다.', evidence };
+    const child = judgeCondition(inner, profile, context, `${path}.condition`);
+    const status = child.status === S.SATISFIED ? S.UNSATISFIED : child.status === S.UNSATISFIED ? S.SATISFIED : S.UNKNOWN;
+    return { ...node, status, children: [child], reason: status === S.UNKNOWN
+      ? '일부 조건을 확인할 수 없습니다.' : '하위 조건을 비교했습니다.', evidence };
+  }
+  if (['raw', 'manual_review'].includes(op))
     return { ...node, status: S.UNKNOWN, reason: '자동 판정할 수 없는 정책 조건입니다.', evidence };
   // 다른 가족 구성원이나 신청일 기준 조건을 현재 사용자 값으로 대체하지 않는다.
   if ((node.subject && !['applicant', 'user'].includes(node.subject)) ||
     (node.anchor && !['today', 'current_date'].includes(node.anchor) && !dateParts(node.anchor)))
     return { ...node, status: S.UNKNOWN, reason: '신청 시점 또는 대상자의 추가 확인이 필요합니다.', evidence };
+  // 공고일·기준일처럼 고정된 날짜가 기준인 경우만 확인 필요로 둔다. 신청 시점 기준은 오늘 날짜로 계산한다.
   if (node.field === 'age' && !node.anchor &&
-    /(?:신청일|공고일|기준일|모집일|선발일)\s*(?:현재|기준)?/u.test(`${node.text ?? ''} ${node.original_text ?? ''}`))
+    /(?:공고일|기준일|모집일|선발일|\d{4}\s*년\s*\d{1,2}\s*월\s*\d{1,2}\s*일)\s*(?:현재|기준)/u.test(`${node.text ?? ''} ${node.original_text ?? ''}`))
     return { ...node, status: S.UNKNOWN, reason: '연령 기준일을 확인해야 합니다.', evidence };
   if (!(node.field === 'age' || Object.hasOwn(PROFILE_FIELDS, node.field)) ||
     !['eq', 'in', 'between', 'gte', 'lte', 'contains', 'contains_any', 'starts_with'].includes(op))
@@ -229,6 +243,7 @@ export function judge(policy, profile, now = new Date()) {
     judgeCondition(node, profile, context, `policy.eligibility_conditions.${requiredKey}[${index}]`));
   if (!verified && (policy.min_age != null || policy.max_age != null) && !hasAgeRule(required))
     conditions.push({ field: 'age', status: S.UNKNOWN,
+      text: `만 ${policy.min_age ?? ''}${policy.max_age != null || policy.min_age != null ? '~' : ''}${policy.max_age ?? ''}세`,
       reason: '나이 조건이 검증되지 않아 확인이 필요합니다.',
       evidence: { source: 'policy.min_age,policy.max_age', source_url: context.sourceUrl,
         policy_value: [policy.min_age ?? null, policy.max_age ?? null] } });
@@ -264,6 +279,7 @@ export function judge(policy, profile, now = new Date()) {
       : result === RESULT.CHECK ? '정책 조건 또는 사용자 정보를 추가로 확인해야 합니다.'
         : result === RESULT.INELIGIBLE ? '확인된 신청 자격 또는 제외 사항에 해당합니다.'
           : '확인된 필수 조건을 모두 충족합니다.';
-  return { result, reason, conditions,
+  // 정책 전체 검증 여부와 개별 조건 판정은 따로 내려준다.
+  return { result, reason, conditions, policy_verified: verified,
     profile_missing: !profile, missing_profile_fields: [...missingProfileFields] };
 }

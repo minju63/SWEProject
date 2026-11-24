@@ -113,16 +113,16 @@
 .policy-detail-empty p { margin: 0; }
 .policy-detail-empty a { display: inline-block; margin-top: 8px; color: #2468e0; font-size: 11px; font-weight: 900; }
 .policy-detail-muted { margin: 12px 0 0; color: rgba(0, 0, 0, .6); font-size: 12px; line-height: 1.6; }
-.policy-detail-conditions { display: grid; gap: 8px; margin-top: 12px; }
+.policy-detail-conditions { display: grid; gap: 12px; margin-top: 12px; }
 .policy-detail-condition-section + .policy-detail-condition-section { margin-top: 18px; }
-.policy-detail-condition-section h3 { margin: 14px 0 0; color: rgba(0, 0, 0, .7); font-size: 12px; font-weight: 900; }
+.policy-detail-condition-section h3 { margin: 14px 0 0; color: #2468e0; font-size: 12px; font-weight: 900; }
 .policy-detail-condition-relation { display: flex; align-items: baseline; gap: 6px; color: rgba(0, 0, 0, .6); font-size: 11px; font-weight: 800; }
 .policy-detail-condition-relation b { color: #2468e0; }
 .policy-detail-condition-children { margin: 6px 0 2px 8px; padding-left: 10px; border-left: 2px solid rgba(47, 123, 245, .14); }
 .policy-detail-condition-children .policy-detail-conditions { margin-top: 0; }
-.policy-detail-condition-row { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
-.policy-detail-condition-row > span { min-width: 0; color: rgba(0, 0, 0, .65); font-size: 12px; font-weight: 800; line-height: 1.6; overflow-wrap: anywhere; }
-.policy-detail-condition-row > b { flex: none; padding: 4px 8px; border-radius: 6px; background: #fff3e2; color: #b76c00; font-size: 10px; font-weight: 900; }
+.policy-detail-condition-row { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; min-height: 28px; }
+.policy-detail-condition-row > span { flex: 1 1 0; min-width: 0; padding-top: 4px; color: rgba(0, 0, 0, .65); font-size: 12px; font-weight: 800; line-height: 1.6; overflow-wrap: anywhere; }
+.policy-detail-condition-row > b { flex: none; align-self: flex-start; white-space: nowrap; line-height: 1.4; padding: 4px 8px; border-radius: 6px; background: #fff3e2; color: #b76c00; font-size: 10px; font-weight: 900; }
 .policy-detail-conditions .status-satisfied { background: #e7f8f0; color: #078b52; }
 .policy-detail-conditions .status-unsatisfied { background: #fdecea; color: #d43d36; }
 .policy-detail-conditions .status-hit { background: #fdecea; color: #d43d36; }
@@ -161,3 +161,12 @@
   .policy-detail-summary > div { grid-template-columns: 92px minmax(0, 1fr); gap: 8px; }
   .policy-detail-actions a, .policy-detail-actions button, .policy-detail-unavailable { font-size: 10px; }
 }
+
+.policy-detail-ai-chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
+.policy-detail-ai-chips button { padding: 8px 12px; border: 1px solid rgba(36, 104, 224, .25); border-radius: 999px; background: #fff; color: #2468e0; font-size: 12px; font-weight: 800; cursor: pointer; }
+.policy-detail-ai-chips button.is-active { background: #eaf2fe; border-color: #2468e0; }
+.policy-detail-ai-more { margin: 10px 0 0; padding: 12px 16px; border-radius: 12px; background: #f1f6ff; color: rgba(0, 0, 0, .7); font-size: 12px; font-weight: 600; line-height: 1.65; }
+.policy-detail-ai-more p { margin: 0 0 8px; }
+.policy-detail-ai-more p:last-child { margin-bottom: 0; }
+.policy-detail-ai-more b { display: block; color: #2468e0; font-weight: 900; }
+.policy-detail-ai-more ul { margin: 0 0 8px; padding-left: 18px; }

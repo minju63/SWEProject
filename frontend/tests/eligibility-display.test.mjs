@@ -27,7 +27,10 @@ test('nested AND is flattened and the matching youth rent OR stays one uncertain
     { label: '청년가구 재산 1억 2,200만 원 이하', status: 'UNKNOWN' },
     { label: '원가구 소득·재산 기준 또는 심사 면제', status: 'UNKNOWN' },
   ]);
-  assert.equal(displayConditions([group], '다른 정책').required[0].label, '세부 자격 확인 필요');
+  // 일반 OR 묶음은 "하나만 충족" 안내와 함께 하위 조건을 그대로 보여준다.
+  const generic = displayConditions([group], '다른 정책').required[0];
+  assert.equal(generic.label, '아래 중 하나만 충족하면 돼요');
+  assert.ok(generic.anyOf.length >= 2);
 });
 
 test('exclusion reasons split outside parentheses and remain unknown', () => {
