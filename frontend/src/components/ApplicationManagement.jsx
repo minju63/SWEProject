@@ -32,6 +32,21 @@ function MemoField({ value, onSave }) {
     </div>
   )
 }
+function ConditionLabel({ label }) {
+  const [expanded, setExpanded] = useState(false)
+  const long = label.length > 75
+  return (
+    <span className="my-condition-label">
+      <span className={long && !expanded ? 'my-condition-clamp' : undefined}>{label}</span>
+      {long && (
+        <button type="button" className="my-condition-more" aria-expanded={expanded}
+          onClick={() => setExpanded(!expanded)}>
+          {expanded ? '접기' : '더 보기'}
+        </button>
+      )}
+    </span>
+  )
+}
 export function Deadline({ date }) {
   if (!date || !/^\d{4}-\d{2}-\d{2}/.test(date)) return null
   const days = Math.round(
@@ -357,7 +372,7 @@ export function PreparationScreen({
                 >
                   {c.status === 'matched' ? '✓' : '!'}
                 </span>
-                <span>{c.label}</span>
+                <ConditionLabel label={c.label} />
                 <small>
                   {c.status === 'matched'
                     ? '충족'

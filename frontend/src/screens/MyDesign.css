@@ -120,7 +120,10 @@ button[aria-pressed="true"] > .my-selection-check { background: #2f7bf5; color: 
 .my-surface { padding: 15px; border-radius: 20px; background: white; box-shadow: 0 4px 15px #29466c04; }
 .my-preparation-policy h2 { margin: 8px 0 3px; }
 .my-conditions h2, .my-checklist h4 { font-size: 15px; margin-bottom: 10px; }
-.my-condition-row { display: flex; align-items: center; gap: 8px; font-size: 11px; margin-top: 7px; }
+.my-condition-row { display: flex; align-items: flex-start; gap: 7px; font-size: 11px; line-height: 1.45; margin-top: 6px; }
+.my-condition-label { min-width: 0; flex: 1; }
+.my-condition-clamp { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+.my-condition-more { color: #2468e0; font-size: 10px; font-weight: 700; }
 .my-condition-row > span:first-child { flex-shrink: 0; display: grid; place-items: center; width: 19px; height: 19px; border-radius: 50%; font-weight: 900; }
 .my-condition-row .matched { background: #14b28b; color: white; }
 .my-condition-row .unknown { background: #fff3d9; color: #c78c24; }
