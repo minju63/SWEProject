@@ -103,6 +103,8 @@ function compare(op, actual, expected) {
     return (expected[0] == null || actual >= expected[0]) && (expected[1] == null || actual <= expected[1]);
   if (op === 'gte' && typeof actual === 'number' && typeof expected === 'number') return actual >= expected;
   if (op === 'lte' && typeof actual === 'number' && typeof expected === 'number') return actual <= expected;
+  if (op === 'gt' && typeof actual === 'number' && typeof expected === 'number') return actual > expected;
+  if (op === 'lt' && typeof actual === 'number' && typeof expected === 'number') return actual < expected;
   if (op === 'contains' && Array.isArray(actual)) return actual.every((value) => typeof value === typeof expected)
     ? actual.includes(expected) : null;
   if (op === 'contains_any' && Array.isArray(actual) && Array.isArray(expected) &&
@@ -196,10 +198,72 @@ function applyReviewedCheck(items, check, checked) {
       : matchesReviewedCheck(item, check);
     if (!matches) return false;
     item.status = checked.status;
+    item.profile_reviewed = true;
     item.reason = '입력한 본인 정보를 기준으로 비교했습니다. 신청 시점과 나머지 조건은 확인이 필요합니다.';
     return true;
   };
   return items.some(visit);
+}
+
+// Compare only facts represented in the profile. The result describes the
+// current profile against the displayed rule, not verification of the rule.
+function compareHousingProfileConditions(items, profile, now) {
+  if (!profile) return;
+  function visit(item) {
+    if (item.exclusion) return false;
+    if (item.children?.length) {
+      const kind = childrenOf(item)?.kind;
+      if (!kind) return false;
+      const changed = item.children.map(visit).some(Boolean);
+      if (changed) {
+        const combined = combine(item.children.map((child) => child.status), kind);
+        item.status = combined === S.UNSATISFIED && item.exception_note ? S.UNKNOWN : combined;
+      }
+      return changed;
+    }
+    if (String(item.operator).toUpperCase() !== 'RAW' || item.exception_note || item.profile_reviewed) return false;
+    const rule = item.original_condition;
+    if (!rule || !['applicant', 'couple'].includes(rule.subject)) return false;
+    const yearAnchoredBirth = rule.field === 'birth_date' && /^\d{4}_application_year$/.test(rule.anchor ?? '');
+    if (!yearAnchoredBirth && ![null, undefined, 'application_date', 'today', 'current_date'].includes(rule.anchor)) return false;
+    const op = String(rule.operator ?? '').toLowerCase();
+    let actual; let expected = rule.value; let comparator = op; let positiveOnly = false;
+    if (rule.field === 'is_married' && ['applicant', 'couple'].includes(rule.subject) && op === 'eq' && typeof expected === 'boolean') {
+      actual = profile.marital_status === '미혼' ? false :
+        ['기혼', '신혼부부'].includes(profile.marital_status) ? true : null;
+    } else if (rule.subject !== 'applicant') return false;
+    else if (rule.field === 'owns_home' && op === 'eq' && typeof expected === 'boolean') {
+      actual = profile.home_ownership === '무주택' ? false : profile.home_ownership === '유주택' ? true : null;
+    } else if (rule.field === 'lives_apart_from_parents' && op === 'eq' && typeof expected === 'boolean') {
+      actual = profile.lives_separately;
+    } else if (rule.field === 'city_code' && op === 'eq' && typeof expected === 'string' && /^\d{2}$/.test(expected)) {
+      actual = profile.region_code; comparator = 'starts_with';
+    } else if (rule.field === 'is_household_head' && op === 'eq' && typeof expected === 'boolean') {
+      actual = profile.household_role === '세대주' ? true :
+        ['세대원', '예비세대주'].includes(profile.household_role) ? false : null;
+    } else if (['university_student', 'graduate_student'].includes(rule.field) && op === 'eq' && expected === true) {
+      const value = rule.field === 'university_student' ? '대학생' : '대학원생';
+      actual = Array.isArray(profile.current_status) && profile.current_status.includes(value) ? true : null;
+      positiveOnly = true;
+    } else if (['age', 'birth_year', 'birth_date', 'region', 'region_code', 'final_education',
+      'current_status', 'housing_type', 'household_type', 'lives_separately', 'marital_status',
+      'home_ownership', 'household_role', 'housing_benefit_status'].includes(rule.field) &&
+      ['eq', 'in', 'between', 'gte', 'lte', 'gt', 'lt', 'contains', 'contains_any', 'starts_with'].includes(op)) {
+      actual = profileValue(rule.field, profile, now);
+    } else return false;
+    if (actual == null || actual === '') return false;
+    const regionField = ['city_code', 'region', 'region_code'].includes(rule.field);
+    if (regionField && (!['eq', 'in', 'starts_with'].includes(comparator) ||
+        (comparator === 'in' && !Array.isArray(expected)) ||
+        ![expected].flat().every((value) => typeof value === 'string' && /^(KR|\d{2,5})$/.test(value)))) return false;
+    const matched = regionField ? compareRegion(comparator, actual, expected) : compare(comparator, actual, expected);
+    if (matched == null || (positiveOnly && !matched)) return false;
+    item.status = matched ? S.SATISFIED : S.UNSATISFIED;
+    item.profile_comparison = true;
+    item.reason = '현재 입력한 정보를 표시된 조건과 비교한 결과입니다. 신청일 기준과 공고 검증은 별도 확인이 필요합니다.';
+    return true;
+  }
+  items.forEach(visit);
 }
 
 function judgeCondition(node, profile, context, path) {
@@ -358,6 +422,7 @@ export function judge(policy, profile, now = new Date()) {
     });
     conditions.unshift(...checks);
   }
+  if (policy.collection_domain === 'HOUSING') compareHousingProfileConditions(conditions, profile, now);
   const missingProfileFields = new Set();
   const collectMissing = (item) => {
     if (item.reason === '사용자 정보가 없어 확인할 수 없습니다.' && item.field)

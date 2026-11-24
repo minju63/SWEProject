@@ -84,7 +84,7 @@ function ConditionRows({ items, exclusion = false }) {
           </div>)}</div>}
     </div>;
     return <div className={`policy-detail-condition-row${item.label === '다음 중 하나에 해당' ? ' policy-detail-condition-alternative' : ''}`} key={`${item.label}-${index}`}>
-      <span>{item.label}</span><b className={`status-${item.status?.toLowerCase()}`}>
+      <span>{item.label}{item.profileComparison && <small className="policy-detail-profile-basis">입력 정보 기준</small>}</span><b className={`status-${item.status?.toLowerCase()}`}>
         {(exclusion ? exclusionVerdicts : itemVerdicts)[item.status] ?? '확인 필요'}
       </b>
     </div>;

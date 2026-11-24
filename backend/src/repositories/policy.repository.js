@@ -196,7 +196,7 @@ export async function findPolicyById(policyId) {
 
 export async function findPolicyEligibility(policyId) {
   const { data, error } = await supabase.from('policy')
-    .select('policy_id,eligibility_conditions,eligibility_verified,official_url')
+    .select('policy_id,collection_domain,eligibility_conditions,eligibility_verified,official_url')
     .eq('policy_id', policyId).maybeSingle();
   if (error) throw error;
   return data;

@@ -81,6 +81,46 @@ test('LH youth housing compares age and student status within alternatives', () 
   assert.equal(other.conditions[0].status, 'UNKNOWN');
 });
 
+test('housing compares current profile to matching applicant and marital rows without inferring family facts', () => {
+  const raw = (subject, field, value) => ({ operator: 'RAW', label: field,
+    original_condition: { subject, field, value, operator: 'EQ', anchor: 'application_date' } });
+  const p = { collection_domain: 'HOUSING', eligibility_verified: false, eligibility_conditions: {
+    logic: 'UNVERIFIED', required: [{ operator: 'OR', conditions: [
+      { operator: 'AND', conditions: [raw('couple', 'is_married', true), raw('couple', 'marriage_duration', 7)] },
+      raw('household', 'single_parent_family', true), raw('applicant', 'owns_home', false),
+    ] }],
+  } };
+  const result = judge(p, { marital_status: '미혼', home_ownership: '무주택' }, now);
+  assert.equal(result.result, 'CHECK');
+  const [marriage, family, home] = result.conditions[0].children;
+  assert.equal(marriage.children[0].status, 'UNSATISFIED');
+  assert.equal(marriage.children[1].status, 'UNKNOWN');
+  assert.equal(family.status, 'UNKNOWN');
+  assert.equal(home.status, 'SATISFIED');
+  assert.equal(home.profile_comparison, true);
+  const blank = judge(p, {}, now);
+  assert.equal(blank.conditions[0].children[0].children[0].status, 'UNKNOWN');
+  const otherDomain = judge({ ...p, collection_domain: 'JOB' }, { marital_status: '미혼' }, now);
+  assert.equal(otherDomain.conditions[0].children[0].children[0].status, 'UNKNOWN');
+});
+
+test('housing compares head of household, graduate status and bounded age without guessing missing facts', () => {
+  const raw = (field, operator, value, anchor = 'application_date') => ({ operator: 'RAW', label: field,
+    original_condition: { subject: 'applicant', field, value, operator, anchor } });
+  const p = { collection_domain: 'HOUSING', eligibility_verified: false, eligibility_conditions: {
+    logic: 'UNVERIFIED', required: [raw('is_household_head', 'EQ', true),
+      raw('graduate_student', 'EQ', true), raw('age', 'LT', 40),
+      raw('birth_date', 'BETWEEN', ['1986-01-01', '2008-12-31'], '2026_application_year'),
+      raw('age', 'GTE', 19, 'loan_receipt_date')],
+  } };
+  const positive = judge(p, { birth_date: '2005-07-07', household_role: '세대주', current_status: ['대학원생'] }, now);
+  assert.deepEqual(positive.conditions.map((item) => item.status), ['SATISFIED', 'SATISFIED', 'SATISFIED', 'SATISFIED', 'UNKNOWN']);
+  assert.equal(positive.result, 'CHECK');
+  const other = judge(p, { birth_date: '1986-01-01', household_role: '세대원', current_status: ['직장인'] }, now);
+  assert.deepEqual(other.conditions.map((item) => item.status), ['UNSATISFIED', 'UNKNOWN', 'UNSATISFIED', 'SATISFIED', 'UNKNOWN']);
+  assert.ok(judge(p, {}, now).conditions.every((item) => item.status === 'UNKNOWN'));
+});
+
 test('AND, OR, and exclusions keep unknown separate from failed or hit conditions', () => {
   const required = [{ operator: 'AND', conditions: [
     rule('housing_type', 'eq', '월세'),

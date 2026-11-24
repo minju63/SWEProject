@@ -2,7 +2,7 @@ import { supabase } from '../lib/supabase.js';
 
 // 홈·AI 비서가 후보로 쓰는 정책 전체. 모집 상태·D-day 는 v_policy_status 에서 가져와 합친다.
 const POLICY_COLUMNS =
-  'policy_id, title, category_id, item_type, target_summary, support_content, support_summary, min_age, max_age, ' +
+  'policy_id, title, category_id, collection_domain, item_type, target_summary, support_content, support_summary, min_age, max_age, ' +
   'income_condition, application_start_date, application_end_date, is_always_open, ' +
   'application_method, application_url, official_url, eligibility_conditions, ' +
   'eligibility_verified, required_documents, last_collected_at';

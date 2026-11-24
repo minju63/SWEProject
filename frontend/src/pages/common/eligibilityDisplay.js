@@ -236,13 +236,13 @@ export function displayConditions(conditions, policyTitle = '') {
       });
     } else if (exclusion) output.push({ label, status: status(item) });
     else if (label === '세부 자격 확인 필요' && status(item) !== 'UNKNOWN')
-      output.push({ label: '그 밖의 세부 조건', status: status(item) });
-    else shortenLabel(label).forEach((line) => output.push({ label: line, status: status(item) }));
+      output.push({ label: '그 밖의 세부 조건', status: status(item), ...(item.profile_comparison ? { profileComparison: true } : {}) });
+    else shortenLabel(label).forEach((line) => output.push({ label: line, status: status(item), ...(item.profile_comparison ? { profileComparison: true } : {}) }));
   }
   conditions.forEach((item) => visit(item, item.exclusion ? exclusions : required, Boolean(item.exclusion)));
   if (!required.length && conditions.some((item) => !item.exclusion))
     required.push({ label: '세부 자격 확인 필요', status: 'UNKNOWN' });
   const unique = (rows) => rows.filter((row, index) =>
-    row.anyOf || rows.findIndex((other) => !other.anyOf && other.label === row.label) === index);
+    row.anyOf || row.children || rows.findIndex((other) => !other.anyOf && !other.children && other.label === row.label) === index);
   return { required: unique(required), exclusions: unique(exclusions) };
 }
