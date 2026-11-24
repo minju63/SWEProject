@@ -87,6 +87,8 @@ function ConditionResult({ result, isLoading, isLoggedIn }) {
   return <span className={`compare-condition compare-condition--${type}`}>{verdictText[result] ?? '! 확인 필요'}</span>;
 }
 
+const shortTitle = (title) => !title ? '' : title.length > 10 ? `${title.slice(0, 10)}…` : title;
+
 export default function PolicyComparePage() {
   const { policyId, comparisonId } = useParams();
   return <PolicyCompareView key={policyId} policyId={policyId} comparisonId={comparisonId ?? 'select'} />;
@@ -250,6 +252,13 @@ function PolicyCompareView({ policyId, comparisonId }) {
                     ? <p>기본 정보 기반 안내예요. AI 비교 요약을 불러오지 못해 위 비교표의 실제 정책 정보만 보여드려요.</p>
                     : <>
                       <p>{aiSummary.data.summary.summary}</p>
+                      {aiSummary.data.summary.difference_points?.length > 0 && <ul className="policy-compare-diff" aria-label="주요 차이">
+                        {aiSummary.data.summary.difference_points.map((point) => <li key={point.topic}>
+                          <b>{point.topic}</b>
+                          <span>{shortTitle(basePolicy?.title)} · {point.a}</span>
+                          <span>{shortTitle(resultPolicy?.title)} · {point.b}</span>
+                        </li>)}
+                      </ul>}
                       {aiSummary.data.summary.recommendation && <div className="policy-compare-recommendation">
                         <strong>{aiSummary.data.summary.recommendation.ai_confirmed ? 'AI 최종 추천' : '프로필 기준 추천'}</strong>
                         <p>{aiSummary.data.summary.recommendation.reason}</p>

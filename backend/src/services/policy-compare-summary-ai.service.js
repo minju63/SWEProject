@@ -118,7 +118,7 @@ function narrativePolicy(policy) {
 export function comparisonNarrativeInput(input) {
   const a = narrativePolicy(input.policy_a);
   const b = narrativePolicy(input.policy_b);
-  const topics = new Set(['지원 대상', '지원 내용', '주요 혜택']);
+  const topics = new Set(['지원 대상', '지원 내용', '주요 혜택', '신청 기간', '모집 상태', '신청 방법']);
   return {
     policy_a: a, policy_b: b,
     profile_context: {
@@ -136,6 +136,31 @@ export function comparisonNarrativeInput(input) {
         : shortFact(item.policy_a) && shortFact(item.policy_b))),
     evidence_ids: input.evidence_ids,
   };
+}
+
+// 지원 내용·지원 대상은 비교표에 이미 있어서 차이 목록에서는 뺀다.
+const POINT_TOPICS = ['신청 기간', '모집 상태', '신청 방법'];
+const RESULT_TEXT = { ELIGIBLE: '신청 가능', CHECK: '확인 필요', INELIGIBLE: '대상 아님' };
+const compact = (value, max = 42) => {
+  const first = typeof value === 'string' ? value.split(/[\r\n□※*]/u)[0] : '';
+  const text = first.replace(/^[\s·•-]+/u, '').replace(/https?:\/\/\S+/giu, '').replace(/\s+/gu, ' ').trim();
+  return text.length > max ? `${text.slice(0, max).trim()}…` : text;
+};
+
+// 표에 이미 있는 값 중 서로 다른 것만 짧게 뽑는다(AI 없이 서버 데이터로 만든다).
+export function differencePoints(input) {
+  const points = [];
+  for (const topic of POINT_TOPICS) {
+    const item = input.verified_differences.find((row) => row.topic === topic);
+    const a = compact(item?.policy_a);
+    const b = compact(item?.policy_b);
+    if (a && b && a !== b) points.push({ topic, a, b });
+  }
+  const ra = input.policy_a.eligibility_result;
+  const rb = input.policy_b.eligibility_result;
+  if (RESULT_TEXT[ra] && RESULT_TEXT[rb] && ra !== rb)
+    points.push({ topic: '내 조건', a: RESULT_TEXT[ra], b: RESULT_TEXT[rb] });
+  return points.slice(0, 4);
 }
 
 export function fallbackComparisonSummary(input) {
@@ -158,11 +183,16 @@ export function fallbackComparisonSummary(input) {
       ? `${b.title}에서는 ${b.support_summary}.`
       : `${b.title}의 주요 지원 내용은 ${b.support_summary}입니다.`);
   }
+  const status = input.verified_differences.find((row) => row.topic === '모집 상태');
+  if (status && compact(status.policy_a) && compact(status.policy_b))
+    sentences.push(`모집 상태는 ${a.title}이 ${compact(status.policy_a)}, ${b.title}이 ${compact(status.policy_b)}이에요.`);
+  const mine = differencePoints(input).find((row) => row.topic === '내 조건');
+  if (mine) sentences.push(`내 조건 기준으로는 ${a.title}이 ${mine.a}, ${b.title}이 ${mine.b} 상태예요.`);
   if (!sentences.length)
     return `${a.title}과 ${b.title}의 핵심 지원 내용을 확인할 정보가 충분하지 않습니다. 지원 대상과 혜택은 각 정책의 공식 공고에서 확인해 주세요.`;
   if (a.eligibility_result === 'CHECK' || b.eligibility_result === 'CHECK')
     sentences.push('신청 자격은 각 정책의 공식 공고에서 추가로 확인해 주세요.');
-  return sentences.slice(0, 4).join(' ');
+  return sentences.slice(0, 5).join(' ');
 }
 
 function safeDifference(item, input, explanation = null, evidence = []) {
@@ -244,6 +274,7 @@ export function validateComparisonSummary(raw, input) {
     common_points: [...new Set(common.length ? common : verified.common.slice(0, 4))],
     differences,
     summary,
+    difference_points: differencePoints(input),
     recommendation,
     additional_checks: [...new Set(checks.length ? checks : verified.additionalChecks.slice(0, 6))],
   };
@@ -260,7 +291,7 @@ export async function getAiComparisonSummary(baseId, comparisonId, userId) {
     return { status: 'ok', summary: validateComparisonSummary(raw, input) };
   } catch {
     return { status: 'fallback', summary: { common_points: [], differences: [],
-      summary: fallbackComparisonSummary(input),
+      summary: fallbackComparisonSummary(input), difference_points: differencePoints(input),
       recommendation: personalizedComparisonRecommendation(input), additional_checks: [] } };
   }
 }

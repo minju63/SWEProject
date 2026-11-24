@@ -196,8 +196,9 @@ export default function PolicyDetailPage() {
   const applicationUrl = externalUrl(p.application_url);
   const originalLinkUrl = externalUrl(p.original_link_url);
   const sourceUrl = externalUrl(p.official_url) || originalLinkUrl || externalUrl(p.source_url);
-  const eligibilitySourceUrl = externalUrl(p.eligibility_conditions?.source_url) || sourceUrl;
-  const url = applicationUrl || sourceUrl;
+  // 희망저축계좌 Ⅰ·Ⅱ는 맨 아래 버튼을 신청 페이지 대신 원문(공식 공고)으로 연결한다.
+  const originalOnly = /^희망저축계좌/u.test(p.title ?? '') && !!sourceUrl;
+  const url = originalOnly ? sourceUrl : applicationUrl || sourceUrl;
   const applicationMethod = originalLinkUrl
     ? p.application_method?.replace(/,?\s*원문\s*URL\s*링크\s*\[?https?:\/\/\S*$/iu, '').trim()
     : p.application_method;
@@ -293,8 +294,7 @@ export default function PolicyDetailPage() {
                     <h3>신청 제외 사항</h3><ConditionRows items={excludedConditions} exclusion />
                   </div>}
                   {(eligibility.data.profile_missing || missingProfileFields.length > 0) && <p className="policy-detail-muted">내 정보에서 {missingProfileFields.map((field) => conditionNames[field] ?? '필요한 정보').join(' · ') || '프로필'}을 입력하거나 수정해 주세요. <button type="button" className="policy-detail-more" onClick={() => navigate('/my#profile')}>내 정보 수정 ›</button></p>}
-                  {eligibility.data.result === 'CHECK' && eligibilitySourceUrl && <a className="policy-detail-source-link" href={eligibilitySourceUrl} target="_blank" rel="noopener noreferrer">공식 공고 확인 ↗</a>}
-                </> : <div className="policy-detail-muted">{eligibility.data?.reason ?? '신청 자격 정보가 없습니다.'} {eligibilitySourceUrl && <a href={eligibilitySourceUrl} target="_blank" rel="noopener noreferrer">공식 공고 확인 ↗</a>}</div>}
+                </> : <div className="policy-detail-muted">{eligibility.data?.reason ?? '신청 자격 정보가 없습니다.'}</div>}
         </SectionCard>
 
         <SectionCard title="신청 절차">
@@ -325,7 +325,7 @@ export default function PolicyDetailPage() {
 
     {actionError && <p className="policy-detail-action-error" role="alert">{actionError}</p>}
     <div className="policy-detail-actions">
-      {url ? <a href={url} target="_blank" rel="noopener noreferrer">{applicationUrl ? '신청 페이지 바로가기 ↗' : '원문 바로가기 ↗'}</a>
+      {url ? <a href={url} target="_blank" rel="noopener noreferrer">{applicationUrl && !originalOnly ? '신청 페이지 바로가기 ↗' : '원문 바로가기 ↗'}</a>
         : <span className="policy-detail-unavailable">공식 출처 확인 필요</span>}
       <button onClick={() => user ? applicationMutation.mutate() : navigate('/my')}
         disabled={isManaged || applicationMutation.isPending || detailState.isLoading || detailState.isError}>

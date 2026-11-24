@@ -25,6 +25,20 @@ function period(policy) {
   return from || to ? `${from ?? '시작일 미정'} ~ ${to ?? '종료일 미정'}` : '';
 }
 
+// 내 정보로 비교한 조건 이름과 판정(실제 값은 넘기지 않는다).
+function myConditions(conditions) {
+  const rows = [];
+  const visit = (item) => {
+    if (item.exclusion) return;
+    if (item.children?.length) return item.children.forEach(visit);
+    const name = FIELD_NAMES[item.field];
+    if (name && ['SATISFIED', 'UNSATISFIED'].includes(item.status) &&
+      !rows.some((row) => row.name === name)) rows.push({ name, status: item.status });
+  };
+  conditions.forEach(visit);
+  return rows.slice(0, 6);
+}
+
 function pendingLabels(conditions) {
   const labels = [];
   const visit = (item) => {
@@ -44,8 +58,9 @@ export function followupInput(policy, eligibility, kind) {
       period: period(policy), method: clean(policy.application_method, 200) } }
     : { reason: { pending_conditions: pendingLabels(eligibility.conditions),
       missing_profile: [...new Set(eligibility.missing_profile_fields.map((f) => FIELD_NAMES[f]).filter(Boolean))] } };
-  const values = Object.values(Object.values(extra)[0]).flat().filter(Boolean);
-  return { ...base, kind, ...extra, facts: [...base.facts, ...values] };
+  const mine = myConditions(eligibility.conditions);
+  const values = [...Object.values(Object.values(extra)[0]).flat().filter(Boolean), ...mine.map((row) => row.name)];
+  return { ...base, kind, ...extra, my_conditions: mine, facts: [...base.facts, ...values] };
 }
 
 export function fallbackFollowup(input, kind) {
@@ -58,6 +73,8 @@ export function fallbackFollowup(input, kind) {
   }
   const r = input.reason;
   const parts = [];
+  const met = input.my_conditions.filter((row) => row.status === 'SATISFIED').map((row) => row.name);
+  if (met.length) parts.push(`내 정보 기준으로 ${met.join(', ')} 조건은 충족해요.`);
   if (!input.policy.policy_conditions_verified) parts.push('이 정책은 신청 자격 정보를 아직 검증하지 못해 공식 공고 확인이 필요해요.');
   if (r.pending_conditions.length) parts.push(`확인이 필요한 조건은 ${r.pending_conditions.join(', ')}이에요.`);
   if (r.missing_profile.length) parts.push(`내 정보에서 ${r.missing_profile.join(', ')}을 입력하면 더 정확해져요.`);

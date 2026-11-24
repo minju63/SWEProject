@@ -72,3 +72,7 @@
   .policy-compare-row { grid-template-columns: 68px repeat(2, minmax(0, 1fr)); gap: 5px; }
   .policy-compare-row > span, .compare-condition { font-size: 9px; }
 }
+.policy-compare-diff { display: grid; gap: 7px; margin: 10px 0 0; padding: 0; list-style: none; }
+.policy-compare-diff li { display: grid; gap: 2px; padding: 8px 10px; border-radius: 10px; background: rgba(255, 255, 255, .7); color: #273a54; font-size: 11px; font-weight: 700; line-height: 1.5; }
+.policy-compare-diff b { color: #2468e0; font-weight: 900; }
+.policy-compare-diff span { overflow-wrap: anywhere; }

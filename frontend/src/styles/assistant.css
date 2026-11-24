@@ -414,7 +414,7 @@
 /* ---------- 아래 가운데 숨기기 영역 (드래그 중에만 보임, FR-A04) ---------- */
 .drop-zone {
   position: fixed;
-  z-index: 30; /* 끌고 있는 Dr.부(40)가 원 위에 보이도록 */
+  z-index: 30; /* 끌고 있는 Dr.부(46)가 원 위에 보이도록 */
   left: 50%;
   bottom: calc(var(--tabbar-h) + env(safe-area-inset-bottom) + 16px);
   transform: translateX(-50%);

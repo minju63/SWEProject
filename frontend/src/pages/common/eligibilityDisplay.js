@@ -14,6 +14,8 @@ const PROFILE_NAMES = {
   household_type: '가구 유형', marital_status: '혼인 상태', home_ownership: '주택 소유',
   household_role: '세대 내 지위', housing_benefit_status: '주거급여', special_targets: '특별 대상',
 };
+const SIDO = { 11: '서울', 26: '부산', 27: '대구', 28: '인천', 29: '광주', 30: '대전', 31: '울산', 36: '세종',
+  41: '경기', 42: '강원', 43: '충북', 44: '충남', 45: '전북', 46: '전남', 47: '경북', 48: '경남', 50: '제주' };
 const SUBJECTS = { applicant: '본인', youth_household: '청년가구', original_household: '원가구', authority: '담당기관' };
 
 const opOf = (item) => String(item.op ?? item.operator ?? '').toUpperCase();
@@ -83,7 +85,14 @@ function ruleLabel(item, policyTitle = '') {
   if (field === 'age' && op === 'BETWEEN' && Array.isArray(value) && value.every(Number.isFinite))
     return `만 ${value[0]}~${value[1]}세`;
   if (field === 'age' && typeof value === 'number' && ['GTE', 'LTE'].includes(op)) return `만 ${value}세${qualifier(op)}`;
-  if (PROFILE_NAMES[field] && ['EQ', 'IN', 'CONTAINS', 'CONTAINS_ANY'].includes(op)) {
+  if (['region', 'region_code'].includes(field)) {
+    const sido = typeof value === 'string' && value.length === 2 ? SIDO[value] : null;
+    return sido ? `${sido} 거주` : '거주 지역 조건';
+  }
+  if (field === 'residence_months' && Number.isFinite(value) && ['GTE', 'LTE'].includes(op))
+    return `거주 기간 ${value}개월${qualifier(op)}`;
+  if (field === 'lives_separately' && value === true) return '부모와 별도 거주';
+  if (PROFILE_NAMES[field] && ['EQ', 'IN', 'CONTAINS', 'CONTAINS_ANY', 'TEXT'].includes(op)) {
     const values = [value].flat();
     if (values.length && values.every(plain)) return `${PROFILE_NAMES[field]}: ${values.join(' · ')}`;
   }
@@ -226,6 +235,8 @@ export function displayConditions(conditions, policyTitle = '') {
         if (!explicitExclusions.has(reason)) output.push({ label: reason, status: 'UNKNOWN' });
       });
     } else if (exclusion) output.push({ label, status: status(item) });
+    else if (label === '세부 자격 확인 필요' && status(item) !== 'UNKNOWN')
+      output.push({ label: '그 밖의 세부 조건', status: status(item) });
     else shortenLabel(label).forEach((line) => output.push({ label: line, status: status(item) }));
   }
   conditions.forEach((item) => visit(item, item.exclusion ? exclusions : required, Boolean(item.exclusion)));

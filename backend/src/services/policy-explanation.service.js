@@ -118,6 +118,9 @@ export function fallbackExplanation(policy, eligibility) {
   else
     second = labels.length ? `${labels.join('·')} 조건은 추가 확인이 필요합니다.`
       : '신청 자격은 공식 공고에서 확인해 주세요.';
+  // 내 정보로 확인된 조건이 있으면 먼저 알려 준다.
+  const met = eligibility.result === 'CHECK' ? conditionLabels(conditions, 'SATISFIED') : [];
+  if (met.length && second.includes('추가 확인이 필요')) second = `${met.join('·')} 조건은 충족하지만 ${second}`;
   return `${first} ${second}`;
 }
 
