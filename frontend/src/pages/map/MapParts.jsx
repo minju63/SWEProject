@@ -1,6 +1,7 @@
 // 지도 탭 화면 조각 (Figma MapScreen.tsx 에서 옮김, 데이터는 API)
 import { Fragment, memo, useRef, useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
+import { Link } from 'react-router-dom';
 import { fetchPlace } from '../../api/places';
 import { CategoryBadge, Glyph } from './mapIcons.jsx';
 import { dataSource, eventPeriod, formatDistance, kakaoLink, toEvent } from './mapUtils.js';
@@ -309,10 +310,16 @@ export function PlaceDetail({ place, distance, saved, onToggleSaved, onClose }) 
                   {event.title}
                 </p>
                 <p className="mt-1.5 text-[13px] font-semibold text-black/60">
-                  {eventPeriod(event)} ·{' '}
-                  <span className={event.isFree ? 'text-[#2468E0]' : ''}>
-                    {event.isFree ? '무료' : '유료'}
-                  </span>
+                  {eventPeriod(event)}
+                  {/* 공간 운영 정책은 이용료가 프로그램마다 달라 무료로 확인된 것만 적는다 */}
+                  {(!event.isPolicy || event.isFree) && (
+                    <>
+                      {' · '}
+                      <span className={event.isFree ? 'text-[#2468E0]' : ''}>
+                        {event.isFree ? '무료' : '유료'}
+                      </span>
+                    </>
+                  )}
                 </p>
                 <button
                   type="button"
@@ -353,8 +360,12 @@ export function PlaceDetail({ place, distance, saved, onToggleSaved, onClose }) 
 function EventDetailBody({ event }) {
   return (
     <div className="mt-3 border-t border-black/[0.07] pt-1">
-      <DetailRow label="기간">
-        {!event.start || event.start === event.end ? event.end : `${event.start} ~ ${event.end}`}
+      <DetailRow label={event.isPolicy ? '운영 기간' : '기간'}>
+        {!event.end
+          ? `${event.start ? `${event.start} ~ ` : ''}상시 운영`
+          : !event.start || event.start === event.end
+            ? event.end
+            : `${event.start} ~ ${event.end}`}
       </DetailRow>
       {event.showtime && <DetailRow label="시간">{event.showtime}</DetailRow>}
       {event.price && <DetailRow label="요금">{event.price}</DetailRow>}
@@ -370,12 +381,22 @@ function EventDetailBody({ event }) {
           rel="noreferrer"
           className="mt-3 grid h-11 place-items-center rounded-lg bg-[#2F7BF5] text-[14px] font-black text-white no-underline"
         >
-          공식 상세 안내 · 예매
+          {event.isPolicy ? '공식 안내 보기' : '공식 상세 안내 · 예매'}
         </a>
       )}
-      <p className="mt-2 text-[11px] font-medium text-black/60">
-        데이터 기준일 {event.collectedAt}
-      </p>
+      {event.isPolicy && (
+        <Link
+          to={`/policies/${encodeURIComponent(event.id)}`}
+          className="mt-2 grid h-11 place-items-center rounded-lg bg-[#eaf2fe] text-[14px] font-black text-[#2468E0] no-underline"
+        >
+          정책 상세 보기
+        </Link>
+      )}
+      {event.collectedAt && (
+        <p className="mt-2 text-[11px] font-medium text-black/60">
+          데이터 기준일 {event.collectedAt}
+        </p>
+      )}
     </div>
   );
 }

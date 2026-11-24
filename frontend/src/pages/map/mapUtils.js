@@ -46,6 +46,7 @@ export function toPlace(p) {
 export function toEvent(e) {
   return {
     id: e.policy_id,
+    isPolicy: e.kind === 'POLICY', // 장소에 연결된 공간 운영 정책 (행사가 아님)
     title: e.title,
     genre: e.genre ?? '',
     start: kstDate(e.start_at),
@@ -64,8 +65,10 @@ export function toEvent(e) {
   };
 }
 
+// 기간 표시. 종료일이 없으면(공간 운영 정책의 상시 운영) '상시 운영'
 export function eventPeriod(event) {
   const md = (value) => value.slice(5).replace('-', '.');
+  if (!event.end) return event.start ? `${md(event.start)} ~ 상시 운영` : '상시 운영';
   if (!event.start) return md(event.end);
   return event.start !== event.end ? `${md(event.start)} ~ ${md(event.end)}` : md(event.start);
 }

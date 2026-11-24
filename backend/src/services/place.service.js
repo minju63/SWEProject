@@ -8,10 +8,11 @@ const eventStatus = (startAt, now = Date.now()) =>
 function toEvent(row) {
   return {
     policy_id: row.policy.policy_id,
+    kind: row.policy.item_type, // 'EVENT' 행사 | 'POLICY' 공간 운영 정책
     title: row.policy.title,
     detail_url: row.policy.official_url,
     collected_at: row.policy.last_collected_at,
-    genre: row.genre,
+    genre: row.genre ?? (row.policy.item_type === 'POLICY' ? row.culture_type : null),
     start_at: row.event_start_at,
     end_at: row.event_end_at,
     status: eventStatus(row.event_start_at),
@@ -40,6 +41,16 @@ const GENRE_ORDER = [
 ];
 const genreOf = (row) => (GENRE_ORDER.includes(row.genre) ? row.genre : '기타');
 
+// 행사와 장소에 연결된 공간 운영 정책을 시작일 순(시작일 없음 먼저)으로 합친다
+async function findLiveItems(placeId) {
+  const [events, spaces] = await Promise.all([
+    placeRepo.findLiveEvents(placeId),
+    placeRepo.findLiveSpacePolicies(placeId),
+  ]);
+  const t = (row) => (row.event_start_at ? new Date(row.event_start_at).getTime() : -Infinity);
+  return [...events, ...spaces].sort((a, b) => t(a) - t(b));
+}
+
 // 장소별 가장 빠른 진행·예정 행사의 상태, 행사 수, 장르 (장소 카드 상태 표시 FR-MAP-010, 행사 필터)
 function eventSummary(events) {
   const byPlace = new Map();
@@ -51,7 +62,7 @@ function eventSummary(events) {
     };
     if (cur.live_event_count === 0) cur.next_event_status = eventStatus(row.event_start_at);
     cur.live_event_count += 1;
-    cur.genres.add(genreOf(row));
+    if (row.policy.item_type === 'EVENT') cur.genres.add(genreOf(row)); // 장르 필터는 행사만
     byPlace.set(row.place_id, cur);
   }
   return new Map(
@@ -79,7 +90,7 @@ export async function listPlaces() {
   const [places, categories, events, lastSync] = await Promise.all([
     placeRepo.findMapPlaces(),
     placeRepo.findMapCategories(),
-    placeRepo.findLiveEvents(),
+    findLiveItems(),
     placeRepo.findLastCultureSync(),
   ]);
   const summary = eventSummary(events);
@@ -114,6 +125,6 @@ export const unsavePlace = (userId, placeId) => placeRepo.deleteSavedPlace(userI
 export async function getPlace(placeId) {
   const place = await placeRepo.findMapPlace(placeId);
   if (!place) throw new AppError(404, 'PLACE_NOT_FOUND', '장소를 찾을 수 없습니다.');
-  const events = (await placeRepo.findLiveEvents(placeId)).map(toEvent);
+  const events = (await findLiveItems(placeId)).map(toEvent);
   return { ...place, events };
 }
