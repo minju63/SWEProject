@@ -1,13 +1,13 @@
 /* ---------- Dr.부 (탭바 위에 떠 있음) ---------- */
 .assistant {
   position: fixed;
-  z-index: 31; /* 지도 하단 목록(30) 위에 보이게 */
+  z-index: 45; /* 지도 하단 목록(30)과 마이·검색 위쪽 고정 헤더(40) 위에 보이게. 대화창(50) 아래 */
   touch-action: none;
   user-select: none;
   -webkit-user-select: none;
 }
 .assistant-dragging {
-  z-index: 40;
+  z-index: 46;
   filter: drop-shadow(0 8px 16px rgba(47, 123, 245, 0.4));
 }
 .assistant-face {

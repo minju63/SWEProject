@@ -11,7 +11,7 @@ const MARGIN = 12;
 const LONG_PRESS_MS = 350;
 const DRAG_START_PX = 10;
 const TAB_H = 64;
-const HEADER_H = 56;
+const HEADER_H = 76; // 화면 맨 위 헤더(마이·검색 등 약 70px)를 가리지 않는 높이
 const BUBBLE_KEY = 'chunghae.bubbleShown';
 const ZONE_RADIUS = 44; // 아래 가운데 숨기기 영역 (FR-A04)
 
@@ -134,11 +134,14 @@ export default function AssistantButton() {
     showToast('Dr.부를 숨겼어요', { action: { label: '되돌리기', onClick: show }, duration: 1000 });
   };
 
+  // 예전에 헤더 쪽 높이에 저장된 위치도 헤더 아래로 내려서 보여 준다 (헤더에 가려지거나 잘리던 문제)
+  const maxBottom = Math.max(window.innerHeight - TAB_H - HEADER_H - SIZE, MARGIN);
+  const shownBottom = Math.min(bottom, maxBottom);
   const style = drag
     ? { left: drag.x, top: drag.y, right: 'auto', bottom: 'auto' }
     : {
         [side]: `max(${MARGIN}px, calc(50% - 240px + ${MARGIN}px))`,
-        bottom: `calc(var(--tabbar-h) + env(safe-area-inset-bottom) + ${bottom}px)`,
+        bottom: `calc(var(--tabbar-h) + env(safe-area-inset-bottom) + ${shownBottom}px)`,
       };
 
   return (
