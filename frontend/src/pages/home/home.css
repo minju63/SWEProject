@@ -310,6 +310,10 @@
 }
 .hcard-corner .heart {
   position: static;
+  /* .heart 의 right/bottom 값이 남으면, 터치 영역 보정(lib/touchTargets.js)이 붙이는 relative 위치에서 하트가 위로 밀린다 */
+  right: auto;
+  bottom: auto;
+  flex: none;
   width: 30px;
   height: 30px;
   background: transparent;
