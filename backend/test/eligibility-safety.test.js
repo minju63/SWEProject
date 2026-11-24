@@ -45,7 +45,7 @@ test('Busan newlywed policy compares the current applicant region only', () => {
   }
 });
 
-test('reviewed profile checks update matching existing rows without crossing OR branches', () => {
+test('reviewed profile checks update the matching row inside an OR branch', () => {
   const check = { field: 'home_ownership', op: 'eq', value: '무주택', label: '본인 무주택',
     subject: 'applicant', verification: 'SOURCE_CONFIRMED',
     evidence: { source_url: 'https://example.gov/policy', quote: '무주택자', body_sha256: 'a'.repeat(64) } };
@@ -59,8 +59,26 @@ test('reviewed profile checks update matching existing rows without crossing OR 
   assert.equal(result.result, 'CHECK');
   p.eligibility_conditions.required[0].operator = 'OR';
   const alternative = judge(p, { home_ownership: '무주택' }, now);
-  assert.equal(alternative.conditions[0].partial_profile_check, true);
-  assert.equal(alternative.conditions[1].children[0].status, 'UNKNOWN');
+  assert.equal(alternative.conditions.length, 1);
+  assert.equal(alternative.conditions[0].children[0].status, 'SATISFIED');
+  assert.equal(alternative.result, 'CHECK');
+});
+
+test('LH youth housing compares age and student status within alternatives', () => {
+  const raw = (field, value, operator = 'EQ') => ({ operator: 'RAW', label: field,
+    original_condition: { field, value, operator, subject: 'applicant', anchor: 'application_date' } });
+  const p = { policy_id: '85a99896-0dbf-518d-a3ef-70349e10d46a', eligibility_verified: false,
+    eligibility_conditions: { logic: 'UNVERIFIED', required: [{ operator: 'OR', conditions: [
+      raw('age', [19, 39], 'BETWEEN'), raw('university_student', true),
+      raw('scheduled_university_entry_or_return', true),
+    ] }] } };
+  const result = judge(p, { birth_date: '2005-07-07', current_status: ['대학생'] }, now);
+  assert.equal(result.result, 'CHECK');
+  assert.deepEqual(result.conditions[0].children.map((child) => child.status), ['SATISFIED', 'SATISFIED', 'UNKNOWN']);
+  assert.equal(result.conditions[0].status, 'SATISFIED');
+  const other = judge(p, { birth_date: '1970-01-01', current_status: ['직장인'] }, now);
+  assert.deepEqual(other.conditions[0].children.map((child) => child.status), ['UNSATISFIED', 'UNKNOWN', 'UNKNOWN']);
+  assert.equal(other.conditions[0].status, 'UNKNOWN');
 });
 
 test('AND, OR, and exclusions keep unknown separate from failed or hit conditions', () => {

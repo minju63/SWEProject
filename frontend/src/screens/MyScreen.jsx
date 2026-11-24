@@ -528,7 +528,8 @@ export default function MyScreen() {
               </div>
               <div className="mt-4 divide-y divide-black/[0.06]">
                 {completion.items.map((item) => (
-                  <div key={item.label} className="flex items-center gap-3 py-3">
+                  <button type="button" key={item.label} className="flex w-full items-center gap-3 py-3 text-left"
+                    onClick={() => navigate(`/settings?view=profile&section=${item.section}`)}>
                     <span
                       className={`grid size-6 place-items-center rounded-full text-xs font-black ${
                         item.complete ? 'bg-[#2F7BF5] text-white' : 'bg-[#f1f3fb] text-[#2468E0]'
@@ -537,7 +538,8 @@ export default function MyScreen() {
                       {item.complete ? '✓' : '○'}
                     </span>
                     <span className="text-sm font-bold text-black/60">{item.label}</span>
-                  </div>
+                    <span className="ml-auto text-black/30" aria-hidden="true">›</span>
+                  </button>
                 ))}
               </div>
               {!profile.housingType && (

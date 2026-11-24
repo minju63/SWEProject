@@ -80,9 +80,9 @@ function getDistrict(region) {
   const province = getProvince(region);
   return region.slice(province.length).trim() || '선택 안 함';
 }
-function ProfileCard({ title, badge, children }) {
+function ProfileCard({ title, badge, children, section }) {
   return (
-    <section className="profile-card rounded-[22px] bg-white p-5">
+    <section id={section ? `profile-${section}` : undefined} className="profile-card rounded-[22px] bg-white p-5" style={section ? { scrollMarginTop: '80px' } : undefined}>
       <div className="mb-4 flex items-center justify-between gap-2">
         <h2 className="text-[15px] font-black tracking-[-0.03em]">{title}</h2>
         {badge && (
@@ -129,6 +129,13 @@ export default function SettingsScreen() {
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'instant' });
   }, [view]);
+  useEffect(() => {
+    if (view !== 'profile') return;
+    const section = searchParams.get('section');
+    if (!['basic', 'education', 'housing', 'employment', 'marital', 'special'].includes(section)) return;
+    const frame = requestAnimationFrame(() => document.getElementById(`profile-${section}`)?.scrollIntoView({ block: 'start' }));
+    return () => cancelAnimationFrame(frame);
+  }, [view, searchParams]);
   const [message, setMessage] = useState('');
   const [logoutOpen, setLogoutOpen] = useState(false);
   const [withdrawing, setWithdrawing] = useState(false);
@@ -468,7 +475,7 @@ export default function SettingsScreen() {
                 수 있어요.
               </p>
               <div className="space-y-4">
-                <ProfileCard title="기본 정보">
+                <ProfileCard title="기본 정보" section="basic">
                   <div className="grid grid-cols-2 gap-3">
                     <label className="block text-xs font-bold text-black/60">
                       닉네임
@@ -535,7 +542,7 @@ export default function SettingsScreen() {
                   </fieldset>
                 </ProfileCard>
 
-                <ProfileCard title="학력 및 현재 상태">
+                <ProfileCard title="학력 및 현재 상태" section="education">
                   <div className="grid grid-cols-2 items-start gap-3">
                     {dropdown(
                       '최종학력',
@@ -554,7 +561,7 @@ export default function SettingsScreen() {
                   </div>
                 </ProfileCard>
 
-                <ProfileCard title="주거 및 가구 정보">
+                <ProfileCard title="주거 및 가구 정보" section="housing">
                   <div className="grid grid-cols-2 gap-x-3 gap-y-5">
                     {dropdown('현재 주거 형태', 'housingType', housingOptions, undefined, '')}
                     {dropdown('가구 구성', 'householdType', householdOptions, undefined, '')}
@@ -577,12 +584,12 @@ export default function SettingsScreen() {
                   </div>
                 </ProfileCard>
 
-                <ProfileCard title="직업 및 기업 정보">
+                <ProfileCard title="직업 및 기업 정보" section="employment">
                   {dropdown('재직 기업 유형', 'employerType', employerOptions, undefined, '')}
                 </ProfileCard>
 
                 <div className="pt-4">
-                  <ProfileCard title="혼인 상태" badge="하나만 선택">
+                  <ProfileCard title="혼인 상태" badge="하나만 선택" section="marital">
                     <div className="my-marital-options" role="group" aria-label="혼인 상태">
                       {maritalOptions.map((value) => (
                         <button
@@ -604,7 +611,7 @@ export default function SettingsScreen() {
                 </div>
 
                 <div className="pt-4">
-                  <ProfileCard title="특화대상" badge="복수선택 가능">
+                  <ProfileCard title="특화대상" badge="복수선택 가능" section="special">
                     <p className="-mt-2 text-[11px] font-medium text-black/60">
                       해당하는 항목을 모두 선택해주세요.
                     </p>

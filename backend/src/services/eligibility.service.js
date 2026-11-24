@@ -35,8 +35,24 @@ const PROFILE_FIELDS = {
   special_targets: (p) => p.special_targets,
 };
 const PRIVATE_VALUES = new Set(['marital_status', 'housing_benefit_status', 'special_targets']);
+const LH_YOUTH_GUIDE = {
+  source_url: 'https://lh.or.kr/menu.es?mid=a10401020200',
+  quote: '만 19세 이상 만 39세 이하인 사람; 대학생(입학 및 복학 예정자 포함)',
+  body_sha256: '8e33f63dcf9486ddb873658051a38797838f33635504fe81b9a688c5a5b15fdd',
+};
+function youthHousingChecks(ageAnchor) {
+  return [
+    { field: 'age', op: 'between', value: [19, 39], subject: 'applicant', anchor: ageAnchor,
+      label: '본인 나이 19세 ~ 39세', verification: 'SOURCE_CONFIRMED', evidence: LH_YOUTH_GUIDE },
+    { field: 'current_status', op: 'contains', value: '대학생', subject: 'applicant', positive_only: true,
+      label: '본인 대학생에 해당', verification: 'SOURCE_CONFIRMED', evidence: LH_YOUTH_GUIDE,
+      replaces_raw: { field: 'university_student', subject: 'applicant', operator: 'EQ', value: true, anchor: 'application_date' } },
+  ];
+}
 // 부산시 공식 사업 안내의 거주 요건. 프로필은 현재 거주지만 제공하며 신청일을 증명하지 않는다.
 const REVIEWED_PROFILE_CHECKS = {
+  '548fc4e3-2a32-5313-ac64-eb539fd901fb': youthHousingChecks('2026-09-17'),
+  '85a99896-0dbf-518d-a3ef-70349e10d46a': youthHousingChecks('today'),
   'f8708fd3-0285-5b3b-9ac6-f8f84ef8bcc1': [{
     field: 'region_code', op: 'starts_with', value: '26', subject: 'applicant',
     label: '본인 지역 부산', verification: 'SOURCE_CONFIRMED',
@@ -146,8 +162,7 @@ function hasAgeRule(nodes) {
       (node.condition && typeof node.condition === 'object' && hasAgeRule([node.condition]))));
 }
 
-// Link only rules that express the exact same applicant condition. In particular,
-// never substitute one branch for an OR group or a person's answer for a household.
+// Link only the exact same applicant condition, never a household or an entire OR group.
 function matchesReviewedCheck(item, check) {
   const original = item.original_condition && typeof item.original_condition === 'object'
     ? item.original_condition : item;
@@ -165,8 +180,14 @@ function applyReviewedCheck(items, check, checked) {
   const visit = (item) => {
     if (item.exclusion) return false;
     if (item.children?.length) {
-      if (childrenOf(item)?.kind === 'OR') return false;
-      return item.children.some(visit);
+      const kind = childrenOf(item)?.kind;
+      if (!kind) return false;
+      const changed = item.children.some(visit);
+      if (changed) {
+        const combined = combine(item.children.map((child) => child.status), kind);
+        item.status = combined === S.UNSATISFIED && item.exception_note ? S.UNKNOWN : combined;
+      }
+      return changed;
     }
     const original = item.original_condition;
     const matches = check.replaces_raw
@@ -328,6 +349,10 @@ export function judge(policy, profile, now = new Date()) {
         return [];
       const checked = judgeCondition(check, profile, { ...context, sourceUrl: check.evidence.source_url },
         `policy.eligibility_conditions.profile_contract.checks[${index}]`);
+      if (check.positive_only && checked.status === S.UNSATISFIED) {
+        checked.status = S.UNKNOWN;
+        checked.reason = '입력한 상태만으로 이 조건의 해당 여부를 확인할 수 없습니다.';
+      }
       if (applyReviewedCheck(conditions, check, checked)) return [];
       return [{ ...checked, partial_profile_check: true }];
     });
