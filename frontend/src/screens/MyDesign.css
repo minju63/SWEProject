@@ -69,6 +69,12 @@
 .my-progress { flex: 1; height: 4px; border-radius: 8px; overflow: hidden; background: #edf1f7; }
 .my-progress > span { display: block; height: 100%; border-radius: inherit; background: #2f7bf5; }
 .my-application-body { padding: 0 15px 14px; }
+.my-application .my-tags > span, .my-application .my-state-tags > span { font-size: 10px; }
+.my-application .my-caption { font-size: 12px; }
+.my-application .my-data-row, .my-application .my-data-row > input { font-size: 12px; }
+.my-application .my-data-row button[aria-haspopup="listbox"] { font-size: 12px; }
+.my-application .my-info, .my-application .my-unknown { font-size: 11px; }
+.my-application .my-primary { font-size: 13px; }
 .my-data-row { display: flex; align-items: center; gap: 10px; justify-content: space-between; min-height: 42px; border-top: 1px solid #f0f3f7; font-size: 11px; }
 .my-data-row > span { color: #657185; flex-shrink: 0; }
 .my-data-row > div { max-width: 60%; }
