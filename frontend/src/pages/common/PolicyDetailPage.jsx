@@ -261,6 +261,18 @@ export default function PolicyDetailPage() {
           </p>
         </SectionCard>
 
+        {/* 장소가 있는 정책(공간·시설 등): 지도 탭에서 그 장소 카드를 연다 (지도 ?place= 진입, FR-MAP-028) */}
+        {p.place && <SectionCard title="위치">
+          <div className="policy-detail-place">
+            <strong>{p.place.name}</strong>
+            {p.place.address && <p>{p.place.address}</p>}
+          </div>
+          <button type="button" className="policy-detail-compare policy-detail-map-link"
+            onClick={() => navigate(`/map?place=${encodeURIComponent(p.place.place_id)}`)}>
+            <span aria-hidden="true">📍</span> 지도에서 보기 →
+          </button>
+        </SectionCard>}
+
         <SectionCard title="Dr.부의 한마디" icon>
           {eligibility.isError ? <p className="policy-detail-ai-placeholder">조건 비교를 불러오지 못해 자격 설명을 표시할 수 없어요.</p>
             : eligibility.isFetching || explanation.isLoading ? <p className="policy-detail-ai-placeholder">정책 설명을 정리하고 있어요.</p>

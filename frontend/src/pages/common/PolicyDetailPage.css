@@ -157,6 +157,11 @@
 .policy-detail-documents button.checked .policy-detail-check { border-color: #2f7bf5; background: #2f7bf5; color: #fff; }
 .policy-detail-compare { display: flex; justify-content: center; align-items: center; gap: 6px; width: 100%; margin-top: 16px; padding: 14px; border: 1px solid #b7d2ff; border-radius: 14px; background: #fff; color: #2468e0; font-size: 12px; font-weight: 900; }
 .policy-detail-compare span { font-size: 18px; line-height: 12px; }
+.policy-detail-place { display: grid; gap: 4px; margin-top: 12px; padding: 12px 16px; border-radius: 12px; background: #f7f8fb; }
+.policy-detail-place strong { color: rgba(0, 0, 0, .8); font-size: 13px; font-weight: 900; }
+.policy-detail-place p { margin: 0; color: rgba(0, 0, 0, .6); font-size: 12px; font-weight: 600; line-height: 1.5; overflow-wrap: anywhere; }
+.policy-detail-map-link { margin-top: 12px; }
+.policy-detail-map-link span { font-size: 14px; }
 .policy-detail-related { display: grid; gap: 10px; margin-top: 12px; }
 .policy-detail-related button { display: flex; align-items: center; gap: 12px; width: 100%; min-width: 0; padding: 16px; border: 1px solid rgba(0, 0, 0, .07); border-radius: 16px; background: #fff; text-align: left; }
 .policy-detail-related button > div { display: grid; min-width: 0; flex: 1; justify-items: start; }

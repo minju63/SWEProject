@@ -113,7 +113,15 @@ export const FREE_PRICE = new Set(['YCU-006', 'YCU-013', 'YCU-029']);
 export const POLICY_PLACE = {
   'YCU-001': 'YSP-1dd9ce84', // 부산진구청년플랫폼 청년 FLEX
   'YCU-002': 'YSP-307fa1e4', // 부산진구 청년마루
+  // 서비스 지역 밖 공간 (places.csv 에 없음, migrations/20261124_space_policy_places.sql 로 넣은 장소)
+  'YCU-004': 'SPC-f4e897b4', // 사상인디스테이션
+  'YCU-028': 'SPC-f4e897b4', // 사상인디스테이션
+  'YCU-005': 'SPC-74c03e27', // 민락인디트레이닝센터
+  'YCU-006': 'SPC-76fe825a', // 청년작당소
+  'YCU-029': 'SPC-76fe825a', // 청년작당소
 };
+// places.csv 밖에서 DB 에 직접 넣은 장소 키 (적재 전에 위 마이그레이션을 먼저 실행)
+const MANUAL_PLACE_KEY = /^SPC-/;
 
 // 준비물 원문을 규칙으로 나누기 어려운 행은 직접 정한다.
 // 원문에 "미확인"이 있으면 NULL(확인필요), 서류가 없다고 적혀 있으면 [].
@@ -295,7 +303,10 @@ export function mapCultureRow(r, { rawItem, placeKeys }) {
     policy_id: policyId,
     culture_type: cultureType,
     genre: null,
-    place_id: placeKey && placeKeys.has(placeKey) ? placeIdOf(placeKey) : null,
+    place_id:
+      placeKey && (placeKeys.has(placeKey) || MANUAL_PLACE_KEY.test(placeKey))
+        ? placeIdOf(placeKey)
+        : null,
     venue_text: null,
     event_start_at: kstStart(toDate(r['운영시작일'])),
     event_end_at: kstEnd(toDate(r['운영종료일'])),

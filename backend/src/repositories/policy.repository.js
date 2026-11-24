@@ -1,4 +1,5 @@
 import { supabase } from '../lib/supabase.js';
+import { findMapPlace } from './place.repository.js';
 import { SEARCH_SUBCATEGORIES, searchSubcategories } from '../constants/policySubcategories.js';
 import { policyStatus } from '../services/policy-status.service.js';
 import { compareRecommendedPolicies, tallyConditions } from '../services/policy-search-sort.service.js';
@@ -176,6 +177,10 @@ export async function findPolicyById(policyId) {
     if (result.error) throw result.error;
   }
 
+  // 장소가 연결된 정책(공간·시설 등)은 지도에 보이는 장소일 때만 넘긴다 → 정책 상세의 '지도에서 보기'
+  const placeId = detailResult.data?.place_id;
+  const mapPlace = placeId ? await findMapPlace(placeId) : null;
+
   const storedSubcategories = subcategoryResult.data
     .map((row) => row.policy_subcategory?.subcategory_name).filter(Boolean);
   const subcategories = searchSubcategories(data, storedSubcategories, detailResult.data ?? {});
@@ -184,6 +189,9 @@ export async function findPolicyById(policyId) {
     ...data,
     original_link_url: originalLinkFromText(data.support_content),
     detail: detailResult.data ?? null,
+    place: mapPlace
+      ? { place_id: mapPlace.place_id, name: mapPlace.name, address: mapPlace.address, district: mapPlace.district }
+      : null,
     category_name: categoryResult.data?.category_name ?? null,
     subcategories: subcategories.length ? subcategories : storedSubcategories,
     regions: regionsResult.data.map((row) => row.region?.region_name ?? row.region_code),
