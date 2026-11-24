@@ -120,7 +120,7 @@ export default function CalendarGrid({
       <div className="cal-legend">
         <p>
           <span>
-            <i className="cal-mark cal-mark-dot" style={{ background: '#6b7684' }} /> 마감
+            <i className="cal-mark cal-mark-dot" style={{ background: '#6b7684' }} /> 마감 일정
           </span>
           <span>
             <i className="cal-mark cal-mark-ring" style={{ borderColor: '#6b7684' }} /> 신청 완료

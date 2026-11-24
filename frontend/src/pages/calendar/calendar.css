@@ -291,8 +291,9 @@
   box-shadow: 0 2px 10px rgba(25, 31, 40, 0.05);
   overflow: hidden;
 }
+/* 마감된 카드도 흐리게 하지 않는다. 마감은 왼쪽 D-day 자리의 회색 "마감" 칸으로만 알린다 */
 .ccard-closed {
-  opacity: 0.55;
+  opacity: 1;
 }
 .ccard-main {
   position: relative;
@@ -857,7 +858,8 @@
 .csheet-first svg {
   flex: none;
 }
-.ccard-dday-event {
+.ccard-dday-event,
+.ccard-closed .ccard-dday-event {
   background: #e3eeff;
   color: #2468e0;
 }

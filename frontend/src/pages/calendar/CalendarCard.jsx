@@ -3,7 +3,8 @@ import { Link } from 'react-router-dom';
 import { BellFillIcon, HeartIcon } from '../../components/icons.jsx';
 import { alarmLabel, shortDate } from './calendarUtils.js';
 
-const EVENT_TAG = { DEADLINE: '마감', APPLIED: '신청 완료', RESULT: '결과 확인' };
+// DEADLINE 은 "이 날이 신청 마감일"이라는 일정이므로, 이미 끝났다는 상태 '마감'과 헷갈리지 않게 '마감 일정'으로 쓴다
+const EVENT_TAG = { DEADLINE: '마감 일정', APPLIED: '신청 완료', RESULT: '결과 확인' };
 // 마이 신청 관리와 같은 단계 이름 (신청 준비 / 신청 완료 / 결과 확인)
 const STAGE_TAG = { PREPARING: '신청 준비', APPLIED: '신청 완료', RESULT: '결과 확인' };
 
@@ -26,7 +27,7 @@ export default function CalendarCard({
   const stageTag = STAGE_TAG[item.stage] ?? null;
   const label =
     state === 'closed'
-      ? (item.stage === 'APPLIED' || item.stage === 'RESULT' ? stageTag : '마감')
+      ? '마감'
       : state === 'always'
         ? '상시'
         : item.d_day === 0
@@ -57,9 +58,9 @@ export default function CalendarCard({
                 <em className="ccard-prep">{stageTag}</em>
               )}
               {item.stage === 'APPLIED' && item.result_date_unknown && (
-                <em className="ccard-event">결과 발표 미정</em>
+                <em className="ccard-event">결과 확인일 미정</em>
               )}
-              {eventTypes.map((t) => (
+              {eventTypes.filter((t) => t !== 'DEADLINE').map((t) => (
                 <em key={t} className="ccard-event">
                   {EVENT_TAG[t]}
                 </em>
@@ -71,10 +72,10 @@ export default function CalendarCard({
                   <b>
                     {EVENT_TAG[dayEvent]} {shortDate(dayDate)}
                   </b>
-                  {end && state !== 'always' && ` · 마감 ${shortDate(end)}`}
+                  {end && state !== 'always' && ` · 마감 일정: ${shortDate(end)}`}
                 </>
               ) : (
-                <>{end && state !== 'always' ? `${shortDate(end)} 23:59` : '상시 모집'}</>
+                <>{end && state !== 'always' ? `마감 일정: ${shortDate(end)} 23:59` : '상시 모집'}</>
               )}
               {item.region_names?.[0] && ` · ${item.region_names[0]}`}
             </span>
