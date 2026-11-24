@@ -104,6 +104,7 @@ export function mapHousingPolicy(row) {
     applicationUrl: safeOfficialUrl(row.application_url),
     applicationStartDate: row.application_start_date,
     applicationEndDate: row.application_end_date,
+    isAlwaysOpen: row.is_always_open === true,
     publishedOrder: Date.parse(row.last_collected_at ?? '') || 0,
     subCategories: (row.policy_subcategory_map ?? [])
       .map((m) => m.policy_subcategory?.subcategory_name)

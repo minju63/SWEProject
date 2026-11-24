@@ -35,6 +35,17 @@ const PROFILE_FIELDS = {
   special_targets: (p) => p.special_targets,
 };
 const PRIVATE_VALUES = new Set(['marital_status', 'housing_benefit_status', 'special_targets']);
+// 부산시 공식 사업 안내의 거주 요건. 프로필은 현재 거주지만 제공하며 신청일을 증명하지 않는다.
+const REVIEWED_PROFILE_CHECKS = {
+  'f8708fd3-0285-5b3b-9ac6-f8f84ef8bcc1': [{
+    field: 'region_code', op: 'starts_with', value: '26', subject: 'applicant',
+    label: '본인 지역 부산', verification: 'SOURCE_CONFIRMED',
+    replaces_raw: { field: 'city_code', subject: 'applicant', operator: 'EQ', value: '26', anchor: 'application_date' },
+    evidence: { source_url: 'https://www.busan.go.kr/childcare/brthcare0000',
+      quote: '부산시 거주 무주택 신혼부부',
+      body_sha256: '61bb5f5c1ddfc8f1e635190523aedd36fabfd2ff755f381a75e056c625895b96' },
+  }],
+};
 
 function ageFrom(profile, now) {
   const parts = birthParts(profile);
@@ -133,6 +144,41 @@ function hasAgeRule(nodes) {
     (node.field === 'age' || node.field === 'birth_year' || ['all', 'any', 'conditions'].some((key) =>
       Array.isArray(node[key]) && hasAgeRule(node[key])) ||
       (node.condition && typeof node.condition === 'object' && hasAgeRule([node.condition]))));
+}
+
+// Link only rules that express the exact same applicant condition. In particular,
+// never substitute one branch for an OR group or a person's answer for a household.
+function matchesReviewedCheck(item, check) {
+  const original = item.original_condition && typeof item.original_condition === 'object'
+    ? item.original_condition : item;
+  if (original.subject !== 'applicant' || item.exclusion || item.exception_note) return false;
+  const op = String(original.op ?? original.operator ?? '').toLowerCase();
+  if (check.field === 'home_ownership' && check.op === 'eq' && check.value === '무주택')
+    return original.field === 'owns_home' && op === 'eq' && original.value === false;
+  if (check.field === 'lives_separately' && check.op === 'eq')
+    return original.field === 'lives_apart_from_parents' && op === 'eq' && original.value === check.value;
+  return original.field === check.field && op === check.op &&
+    JSON.stringify(original.value) === JSON.stringify(check.value);
+}
+
+function applyReviewedCheck(items, check, checked) {
+  const visit = (item) => {
+    if (item.exclusion) return false;
+    if (item.children?.length) {
+      if (childrenOf(item)?.kind === 'OR') return false;
+      return item.children.some(visit);
+    }
+    const original = item.original_condition;
+    const matches = check.replaces_raw
+      ? String(item.operator).toUpperCase() === 'RAW' && original &&
+        Object.entries(check.replaces_raw).every(([key, value]) => original[key] === value)
+      : matchesReviewedCheck(item, check);
+    if (!matches) return false;
+    item.status = checked.status;
+    item.reason = '입력한 본인 정보를 기준으로 비교했습니다. 신청 시점과 나머지 조건은 확인이 필요합니다.';
+    return true;
+  };
+  return items.some(visit);
 }
 
 function judgeCondition(node, profile, context, path) {
@@ -267,6 +313,26 @@ export function judge(policy, profile, now = new Date()) {
     : requiredStatus === S.UNSATISFIED || exclusionStatuses.includes(S.HIT) ? RESULT.INELIGIBLE
       : requiredStatus === S.SATISFIED && exclusionStatuses.every((status) => status === S.CLEAR)
         ? RESULT.ELIGIBLE : RESULT.CHECK;
+  // These are separately source-reviewed applicant checks. They do not establish
+  // that the remaining household, income, exclusion, or exception rules are met.
+  const contract = stored?.profile_contract;
+  const reviewedChecks = [
+    ...(contract?.version === 'housing-profile/1' && contract.mode === 'PARTIAL_REVIEW' &&
+      Array.isArray(contract.checks) ? contract.checks : []),
+    ...(REVIEWED_PROFILE_CHECKS[policy.policy_id] ?? []),
+  ];
+  if (reviewedChecks.length) {
+    const checks = reviewedChecks.flatMap((check, index) => {
+      if (check?.subject !== 'applicant' || check.verification !== 'SOURCE_CONFIRMED' ||
+          !check.evidence?.source_url || !check.evidence?.quote || !check.evidence?.body_sha256)
+        return [];
+      const checked = judgeCondition(check, profile, { ...context, sourceUrl: check.evidence.source_url },
+        `policy.eligibility_conditions.profile_contract.checks[${index}]`);
+      if (applyReviewedCheck(conditions, check, checked)) return [];
+      return [{ ...checked, partial_profile_check: true }];
+    });
+    conditions.unshift(...checks);
+  }
   const missingProfileFields = new Set();
   const collectMissing = (item) => {
     if (item.reason === '사용자 정보가 없어 확인할 수 없습니다.' && item.field)

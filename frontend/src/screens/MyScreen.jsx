@@ -10,7 +10,7 @@ import NotificationBell from '../components/NotificationBell'
 import DrBuFaceButton from '../components/DrBuFaceButton'
 import { useAuth } from '../lib/auth'
 const stages = ['신청 준비', '신청 완료', '결과 확인']
-const savedFilters = ['전체', '신청 가능', '마감 임박', '종료']
+const savedFilters = ['전체', '신청 가능', '마감 임박', '마감']
 import { getCompletion } from '../data/profileCompletion'
 import {
   ApplicationCard,
@@ -20,8 +20,7 @@ import {
 } from '../components/ApplicationManagement'
 import './MyDesign.css'
 import { applicationForProfile } from '../data/myApplications'
-import { evaluateEligibility } from '../data/eligibility'
-import { profileToConditions } from '../data/conditions'
+import { savedPolicyStatus } from '../data/savedPolicyStatus'
 export default function MyScreen() {
   const navigate = useNavigate()
   const [params, setParams] = useSearchParams()
@@ -96,13 +95,7 @@ export default function MyScreen() {
     if (savedFilter === '전체') return true
     const policy = findPolicyByTitle(title)
     if (!policy) return false
-    if (savedFilter === '신청 가능')
-      return (
-        ['모집 중', '7일 내 마감', '상시'].includes(policy.recruitmentStatus) &&
-        evaluateEligibility(policy, profileToConditions(profile), profile.region).overall ===
-          '신청 가능'
-      )
-    return policy.status === savedFilter
+    return savedPolicyStatus(policy) === savedFilter
   })
   const searchResults = policyCatalog.filter(
     (policy) =>
@@ -449,7 +442,7 @@ export default function MyScreen() {
                   <p className="mt-3 text-sm font-black">
                     {savedFilter === '전체'
                       ? '아직 찜한 혜택이 없어요.'
-                      : savedFilter === '종료'
+                      : savedFilter === '마감'
                         ? '마감된 찜한 혜택이 없어요'
                         : `${savedFilter}인 찜한 혜택이 없어요`}
                   </p>

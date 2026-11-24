@@ -190,21 +190,22 @@ export function displayConditions(conditions, policyTitle = '') {
     if (item.children?.length) {
       if (opOf(item) === 'OR' || Array.isArray(item.any)) {
         const knownGroup = youthRentHouseholdGroup(item, policyTitle);
-        const options = [];
-        if (!knownGroup) item.children.forEach((child) => visit(child, options, exclusion));
-        if (!knownGroup && options.length > 1) {
-          // 여러 조건 중 하나만 충족하면 되는 묶음은 하위 조건을 그대로 보여준다.
-          output.push({ label: '아래 중 하나만 충족하면 돼요', status: status(item), anyOf: options });
-          return;
-        }
         const label = knownGroup ? '원가구 소득·재산 기준 또는 심사 면제'
           : labelOf(item, '세부 자격 확인 필요', policyTitle);
-        output.push({ label, status: label === '세부 자격 확인 필요' ? 'UNKNOWN' : status(item) });
+        const children = item.children.map((child) => {
+          const rows = [];
+          visit(child, rows, exclusion);
+          return rows.length > 1
+            ? { label: '아래 조건을 모두 충족', status: status(child), children: rows }
+            : rows[0];
+        }).filter(Boolean);
+        output.push({ label: label === '세부 자격 확인 필요' ? '다음 중 하나에 해당' : label,
+          status: status(item), ...(children.length ? { children } : {}) });
       } else if (opOf(item) === 'NOT') {
         const inner = [];
         item.children.forEach((child) => visit(child, inner, exclusion));
         const label = safeText(item.text) ||
-          (inner.length === 1 && !inner[0].anyOf ? `${inner[0].label} 해당 안 됨` : '세부 자격 확인 필요');
+          (inner.length === 1 && !inner[0].children ? `${inner[0].label} 해당 안 됨` : '세부 자격 확인 필요');
         output.push({ label, status: label === '세부 자격 확인 필요' ? 'UNKNOWN' : status(item) });
       } else {
         item.children.forEach((child) => visit(child, output, exclusion));

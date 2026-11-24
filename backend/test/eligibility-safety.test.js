@@ -8,6 +8,61 @@ const policy = (required, exclusions = [], eligibility_verified = true) => ({
   eligibility_verified, eligibility_conditions: { required, exclusions },
 });
 
+test('source-confirmed applicant checks compare the profile without approving the whole policy', () => {
+  const check = { field: 'home_ownership', op: 'eq', value: '무주택', label: '본인 무주택',
+    subject: 'applicant', verification: 'SOURCE_CONFIRMED',
+    evidence: { source_url: 'https://example.gov/policy', quote: '무주택자', body_sha256: 'a'.repeat(64) } };
+  const p = { eligibility_verified: false, eligibility_conditions: {
+    logic: 'UNVERIFIED', required: [{ operator: 'RAW', text: '가구 소득 확인' }],
+    profile_contract: { version: 'housing-profile/1', mode: 'PARTIAL_REVIEW', checks: [check] },
+  } };
+  for (const [value, expected] of [['무주택', 'SATISFIED'], ['유주택', 'UNSATISFIED'], [null, 'UNKNOWN']]) {
+    const result = judge(p, { home_ownership: value }, now);
+    assert.equal(result.result, 'CHECK');
+    assert.equal(result.conditions[0].status, expected);
+  }
+  p.eligibility_conditions.profile_contract.checks = [{ ...check, subject: 'household' },
+    { ...check, evidence: { ...check.evidence, quote: '' } }];
+  assert.equal(judge(p, { home_ownership: '무주택' }, now).conditions.some((c) => c.partial_profile_check), false);
+});
+
+test('Busan newlywed policy compares the current applicant region only', () => {
+  const p = { policy_id: 'f8708fd3-0285-5b3b-9ac6-f8f84ef8bcc1',
+    eligibility_verified: false, eligibility_conditions: { logic: 'UNVERIFIED', required: [
+      { operator: 'AND', conditions: [
+        { operator: 'RAW', label: '본인 지역 부산', original_condition: {
+          field: 'city_code', subject: 'applicant', operator: 'EQ', value: '26', anchor: 'application_date',
+        } },
+        { operator: 'RAW', text: '배우자와 신청일 기준 거주지 확인' },
+      ] },
+    ] } };
+  for (const [region_code, expected] of [['26380', 'SATISFIED'], ['11', 'UNSATISFIED'], [null, 'UNKNOWN']]) {
+    const result = judge(p, { region_code }, now);
+    assert.equal(result.result, 'CHECK');
+    assert.equal(result.conditions.length, 1);
+    assert.equal(result.conditions[0].children[0].status, expected);
+    assert.equal(result.conditions[0].children[1].status, 'UNKNOWN');
+  }
+});
+
+test('reviewed profile checks update matching existing rows without crossing OR branches', () => {
+  const check = { field: 'home_ownership', op: 'eq', value: '무주택', label: '본인 무주택',
+    subject: 'applicant', verification: 'SOURCE_CONFIRMED',
+    evidence: { source_url: 'https://example.gov/policy', quote: '무주택자', body_sha256: 'a'.repeat(64) } };
+  const original = { subject: 'applicant', field: 'owns_home', operator: 'EQ', value: false, anchor: 'application_date' };
+  const p = { eligibility_verified: false, eligibility_conditions: { logic: 'UNVERIFIED',
+    required: [{ operator: 'AND', conditions: [original] }],
+    profile_contract: { version: 'housing-profile/1', mode: 'PARTIAL_REVIEW', checks: [check] } } };
+  const result = judge(p, { home_ownership: '무주택' }, now);
+  assert.equal(result.conditions.length, 1);
+  assert.equal(result.conditions[0].children[0].status, 'SATISFIED');
+  assert.equal(result.result, 'CHECK');
+  p.eligibility_conditions.required[0].operator = 'OR';
+  const alternative = judge(p, { home_ownership: '무주택' }, now);
+  assert.equal(alternative.conditions[0].partial_profile_check, true);
+  assert.equal(alternative.conditions[1].children[0].status, 'UNKNOWN');
+});
+
 test('AND, OR, and exclusions keep unknown separate from failed or hit conditions', () => {
   const required = [{ operator: 'AND', conditions: [
     rule('housing_type', 'eq', '월세'),

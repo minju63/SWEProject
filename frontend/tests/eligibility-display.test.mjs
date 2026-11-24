@@ -23,14 +23,12 @@ test('nested AND is flattened and the matching youth rent OR stays one uncertain
     { operator: 'AND', children: [leaf('income_to_median_ratio', 'applicant', 'GTE', .5), leaf('independent_livelihood_approved', 'authority', 'EQ', true)] },
   ] };
   const shown = displayConditions([{ operator: 'AND', children: [leaf('assets', 'youth_household', 'LTE', 122000000), group] }], '2026년 청년월세 지원');
-  assert.deepEqual(shown.required, [
-    { label: '청년가구 재산 1억 2,200만 원 이하', status: 'UNKNOWN' },
-    { label: '원가구 소득·재산 기준 또는 심사 면제', status: 'UNKNOWN' },
-  ]);
-  // 일반 OR 묶음은 "하나만 충족" 안내와 함께 하위 조건을 그대로 보여준다.
-  const generic = displayConditions([group], '다른 정책').required[0];
-  assert.equal(generic.label, '아래 중 하나만 충족하면 돼요');
-  assert.ok(generic.anyOf.length >= 2);
+  assert.deepEqual(shown.required[0], { label: '청년가구 재산 1억 2,200만 원 이하', status: 'UNKNOWN' });
+  assert.equal(shown.required[1].label, '원가구 소득·재산 기준 또는 심사 면제');
+  assert.equal(shown.required[1].children.length, 5);
+  assert.equal(shown.required[1].children[0].label, '아래 조건을 모두 충족');
+  assert.equal(shown.required[1].children[0].children.length, 2);
+  assert.equal(displayConditions([group], '다른 정책').required[0].label, '다음 중 하나에 해당');
 });
 
 test('exclusion reasons split outside parentheses and remain unknown', () => {

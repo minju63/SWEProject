@@ -123,6 +123,19 @@
 .policy-detail-condition-row { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; min-height: 28px; }
 .policy-detail-condition-row > span { flex: 1 1 0; min-width: 0; padding-top: 4px; color: rgba(0, 0, 0, .65); font-size: 12px; font-weight: 800; line-height: 1.6; overflow-wrap: anywhere; }
 .policy-detail-condition-row > b { flex: none; align-self: flex-start; white-space: nowrap; line-height: 1.4; padding: 4px 8px; border-radius: 6px; background: #fff3e2; color: #b76c00; font-size: 10px; font-weight: 900; }
+.policy-detail-condition-alternative > span { color: #205fca; font-size: 13px; font-weight: 900; }
+.policy-detail-condition-group { padding: 12px; border: 1px solid #cdddf9; border-radius: 12px; background: #f4f8ff; }
+.policy-detail-condition-group-heading { display: flex; align-items: center; justify-content: space-between; gap: 10px; color: #205fca; font-size: 13px; font-weight: 900; }
+.policy-detail-condition-group-heading > b { flex: none; padding: 4px 8px; border-radius: 6px; background: #fff3e2; color: #b76c00; font-size: 10px; }
+.policy-detail-condition-group-help { margin: 4px 0 0; color: #536b8f; font-size: 11px; line-height: 1.5; }
+.policy-detail-condition-group > .policy-detail-conditions { gap: 0; margin-top: 8px; }
+.policy-detail-condition-group > .policy-detail-conditions > .policy-detail-condition-row { padding: 8px 0; border-top: 1px solid #dce7f8; }
+.policy-detail-condition-group .policy-detail-condition-group { margin-top: 8px; background: #fff; }
+.policy-detail-condition-options { display: grid; gap: 8px; margin-top: 8px; }
+.policy-detail-condition-option { border: 1px solid #d2e1fb; border-radius: 10px; background: #fff; }
+.policy-detail-condition-option > .policy-detail-conditions { margin: 0; }
+.policy-detail-condition-option > .policy-detail-conditions > .policy-detail-condition-row { padding: 10px 12px; }
+.policy-detail-condition-option .policy-detail-condition-group { margin: 0; border: 0; background: transparent; }
 .policy-detail-conditions .status-satisfied { background: #e7f8f0; color: #078b52; }
 .policy-detail-conditions .status-unsatisfied { background: #fdecea; color: #d43d36; }
 .policy-detail-conditions .status-hit { background: #fdecea; color: #d43d36; }

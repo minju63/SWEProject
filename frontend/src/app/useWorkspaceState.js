@@ -114,9 +114,16 @@ export function useWorkspaceState() {
     const s = await personalApi('/workspace')
     if (uid.current !== owner) return
     const currentUser = account.current
-    for (const r of [...s.bookmarks, ...s.recent, ...s.applications])
-      if (r.policy && !policyCatalog.some((p) => p.id === r.policy.policy_id))
-        policyCatalog.push(mapHousingPolicy(r.policy))
+    for (const r of [...s.bookmarks, ...s.recent, ...s.applications]) {
+      if (!r.policy) continue
+      const existing = policyCatalog.find((p) => p.id === r.policy.policy_id)
+      if (!existing) policyCatalog.push(mapHousingPolicy(r.policy))
+      else Object.assign(existing, {
+        applicationStartDate: r.policy.application_start_date,
+        applicationEndDate: r.policy.application_end_date,
+        isAlwaysOpen: r.policy.is_always_open === true,
+      })
+    }
     setSaved(s.bookmarks.map((r) => r.policy_id))
     latest.current.saved = s.bookmarks.map((r) => r.policy_id)
     setRecent(s.recent.slice(0, 5).map((r) => r.policy_id))

@@ -68,19 +68,27 @@ function documentsFor(p) {
 }
 
 function ConditionRows({ items, exclusion = false }) {
-  const verdicts = exclusion ? exclusionVerdicts : itemVerdicts;
-  const row = (item, key, nested = false) => <div className="policy-detail-condition-row" key={key}
-    style={nested ? { paddingLeft: 12 } : undefined}>
-    <span>{nested ? '· ' : ''}{item.label}</span><b className={`status-${item.status?.toLowerCase()}`}>
-      {verdicts[item.status] ?? '확인 필요'}
-    </b>
-  </div>;
-  return <div className="policy-detail-conditions">{items.map((item, index) => item.anyOf
-    ? <div key={`${item.label}-${index}`}>
-      {row(item, 'head')}
-      {item.anyOf.map((option, i) => row(option, `${option.label}-${i}`, true))}
-    </div>
-    : row(item, `${item.label}-${index}`))}</div>;
+  return <div className="policy-detail-conditions">{items.map((item, index) => {
+    if (item.children?.length) return <div className="policy-detail-condition-group" key={`${item.label}-${index}`}>
+      <div className="policy-detail-condition-group-heading"><span>{item.label}</span>
+        <b className={`status-${item.status?.toLowerCase()}`}>
+          {(exclusion ? exclusionVerdicts : itemVerdicts)[item.status] ?? '확인 필요'}
+        </b>
+      </div>
+      <p className="policy-detail-condition-group-help">{item.label === '아래 조건을 모두 충족' ? '아래 항목을 모두 확인해 주세요.' : '아래 항목 중 하나를 충족해야 해요.'}</p>
+      {item.label === '아래 조건을 모두 충족'
+        ? <ConditionRows items={item.children} exclusion={exclusion} />
+        : <div className="policy-detail-condition-options">{item.children.map((child, childIndex) =>
+          <div className="policy-detail-condition-option" key={`${child.label}-${childIndex}`}>
+            <ConditionRows items={[child]} exclusion={exclusion} />
+          </div>)}</div>}
+    </div>;
+    return <div className={`policy-detail-condition-row${item.label === '다음 중 하나에 해당' ? ' policy-detail-condition-alternative' : ''}`} key={`${item.label}-${index}`}>
+      <span>{item.label}</span><b className={`status-${item.status?.toLowerCase()}`}>
+        {(exclusion ? exclusionVerdicts : itemVerdicts)[item.status] ?? '확인 필요'}
+      </b>
+    </div>;
+  })}</div>;
 }
 
 function externalUrl(url) {
