@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { Link } from 'react-router'
 import { todayISO, formatDate } from '../app/AppState'
 import AppSelect from './AppSelect'
 import { findPolicyByTitle } from '../data/policies'
@@ -81,17 +82,23 @@ export function ApplicationCard({
     : a.eligibilityChecks.some((check) => check.status === 'unmatched')
   return (
     <article className="my-application">
-      <button
-        className="my-application-summary"
-        onClick={onToggle}
-        aria-expanded={preparing ? undefined : expanded}
-      >
-        <div className="my-card-top">
+      <div className="my-application-summary">
+        <button type="button" className="my-card-top my-summary-toggle" onClick={onToggle}
+          aria-label={`${a.policyName} ${expanded ? '접기' : '펼치기'}`}
+          aria-expanded={preparing ? undefined : expanded}>
           <CategoryTags category={a.category} region={a.region} />
           <Deadline date={a.applicationDeadline} />
-          <i className={`my-chevron ${expanded ? 'open' : ''}`} aria-hidden="true" />
-        </div>
-        <h3>{a.policyName}</h3>
+          {!preparing && <i className={`my-chevron ${expanded ? 'open' : ''}`} aria-hidden="true" />}
+        </button>
+        <h3>
+          {a.stage === '신청 완료' && a.policyId && !a.policyId.startsWith('manual-') ? (
+            <Link to={`/policies/${encodeURIComponent(a.policyId)}`}>{a.policyName}</Link>
+          ) : (
+            <button type="button" className="my-title-toggle" onClick={onToggle}>{a.policyName}</button>
+          )}
+        </h3>
+        <button type="button" className="my-summary-toggle" onClick={onToggle}
+          aria-label={`${a.policyName} ${expanded ? '접기' : '펼치기'}`}>
         <p className="my-caption">
           {preparing
             ? `마감 ${formatDate(a.applicationDeadline) || '공식 공고 확인'}`
@@ -120,7 +127,8 @@ export function ApplicationCard({
             </>
           )}
         </div>
-      </button>
+        </button>
+      </div>
       {preparing && total > 0 && (
         <div className="my-prep-docs">
           {/* 접힌 상태(기본)에는 진행 막대만, 누르면 신청 준비물 목록을 펼쳐 바로 체크한다 */}
@@ -197,7 +205,12 @@ export function ApplicationCard({
                   compact
                   value={a.reviewStatus}
                   options={['접수 완료', '심사 중', '결과 확인 필요', '종료']}
-                  onChange={(v) => onUpdate({ reviewStatus: v })}
+                  onChange={(v) =>
+                    onUpdate({
+                      reviewStatus: v,
+                      ...(v === '결과 확인 필요' ? { stage: '결과 확인' } : {}),
+                    })
+                  }
                 />
               </div>
               <label className="my-data-row">

@@ -375,7 +375,12 @@ export default function MyScreen() {
                       ? setParams({ prepare: application.id })
                       : setExpandedId(expandedId === application.id ? null : application.id)
                   }
-                  onUpdate={(patch) => updateApplication(application.id, patch)}
+                  onUpdate={async (patch) => {
+                    const saved = await updateApplication(application.id, patch)
+                    if (saved && patch.reviewStatus === '결과 확인 필요')
+                      setActiveStage('결과 확인')
+                    return saved
+                  }}
                   onToggleDocument={(name) => toggleApplicationDocument(application.id, name)}
                   onMissingLink={() => setNotice('공식 링크를 확인할 수 없습니다.')}
                 />
