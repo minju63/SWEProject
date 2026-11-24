@@ -411,11 +411,24 @@ function ChatSheet() {
     if (!busy) saveHistory(messages);
   }, [messages, busy]);
 
-  // 새 메시지가 생기거나 답변을 기다리는 상태가 바뀔 때만 맨 아래로 내린다.
+  // 새 메시지가 생기거나 답변을 기다리는 상태가 바뀔 때만 움직인다.
   // (찜처럼 카드 안의 값만 바뀔 때는 보던 자리를 그대로 둔다)
+  // - 질문을 보내고 기다리는 동안: 맨 아래(내 질문·"찾아보는 중")가 보이게 내린다.
+  // - 답변이 도착했을 때: 맨 아래가 아니라 방금 한 질문이 맨 위에 오게 한다. 그래야 답변 첫머리부터 읽는다.
+  const lastRole = messages[messages.length - 1]?.role;
   useEffect(() => {
-    bodyRef.current?.scrollTo({ top: bodyRef.current.scrollHeight });
-  }, [messages.length, busy]);
+    const body = bodyRef.current;
+    if (!body) return;
+    if (!busy && lastRole === 'bot') {
+      const question = [...body.querySelectorAll('.chat-user')].at(-1);
+      const top = question
+        ? body.scrollTop + question.getBoundingClientRect().top - body.getBoundingClientRect().top - 8
+        : 0;
+      body.scrollTo({ top: Math.max(top, 0) });
+      return;
+    }
+    body.scrollTo({ top: body.scrollHeight });
+  }, [messages.length, lastRole, busy]);
 
   const ask = async (text) => {
     const q = text.trim();
