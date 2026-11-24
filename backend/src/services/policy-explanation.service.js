@@ -1,7 +1,8 @@
 import { getEligibility, getPolicy } from './policy.service.js';
 import { POLICY_EXPLANATION_SYSTEM_PROMPT } from '../prompts/policy-explanation.prompt.js';
 import { aiText as text, groundedAiText as grounded, verdictConsistent,
-  requestStructuredAI } from './ai-common.service.js';
+  requestStructuredAI, AI_TIMEOUT_MS } from './ai-common.service.js';
+import { logAi, aiErrorCode } from '../lib/opsLog.js';
 
 const RESPONSE_SCHEMA = {
   type: 'object', additionalProperties: false,
@@ -165,7 +166,7 @@ export function validateExplanation(raw, policy, eligibility) {
 }
 
 export async function requestExplanation(input, { fetchImpl = fetch, apiKey = process.env.OPENAI_API_KEY,
-  model = process.env.OPENAI_MODEL || 'gpt-4.1-mini', timeoutMs = 12000, userId } = {}) {
+  model = process.env.OPENAI_MODEL || 'gpt-4.1-mini', timeoutMs = AI_TIMEOUT_MS, userId } = {}) {
   return requestStructuredAI({ input, systemPrompt: POLICY_EXPLANATION_SYSTEM_PROMPT,
     schema: RESPONSE_SCHEMA, name: 'policy_explanation', maxOutputTokens: 700 },
   { fetchImpl, apiKey, model, timeoutMs, userId });
@@ -175,10 +176,17 @@ export async function getPolicyExplanation(policyId, userId) {
   const [policy, eligibility] = await Promise.all([
     getPolicy(policyId, userId), getEligibility(policyId, userId),
   ]);
+  const startedAt = Date.now();
   try {
     const raw = await requestExplanation(explanationInput(policy, eligibility), { userId });
-    return { status: 'ok', explanation: validateExplanation(raw, policy, eligibility) };
-  } catch {
+    const explanation = validateExplanation(raw, policy, eligibility);
+    // 검증을 통과하지 못해 기본 설명으로 바뀐 것도 '대체'로 기록한다
+    logAi({ feature: 'POLICY_EXPLANATION', policyId, durationMs: Date.now() - startedAt,
+      fallback: explanation.summary === fallbackExplanation(policy, eligibility) });
+    return { status: 'ok', explanation };
+  } catch (error) {
+    logAi({ feature: 'POLICY_EXPLANATION', ok: false, errorCode: aiErrorCode(error), policyId,
+      durationMs: Date.now() - startedAt, fallback: true });
     return { status: 'fallback', explanation: { summary: fallbackExplanation(policy, eligibility),
       benefits: [], eligibility_explanation: '', recommendation_reason: '',
       additional_checks: [], evidence_ids: [policy.policy_id] } };

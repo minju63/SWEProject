@@ -15,6 +15,7 @@ import {
   isOpen,
   judged,
   judgedWithRegion,
+  knownPolicyIds,
   loadContext,
   sortRecommended,
   toCard,
@@ -30,6 +31,26 @@ const STATUS_KEYWORDS = [
   [/대학생|재학/, '대학생(재학)'],
   [/취준|취업\s*준비|구직/, '취업준비생'],
 ];
+
+// 질문 속 가구·주거·소득 관련 말(AI-REQ-COM-004). 저장하지 않고 그 질문의 판정에만 쓴다.
+// AI를 쓸 수 없어도 읽을 수 있게 키워드 규칙을 둔다. "월세·전세"는 정책 주제어와 겹쳐 AI 추출에서만 읽는다.
+const PROFILE_KEYWORDS = [
+  [/1\s*인\s*가구|혼자\s*(살|사는|지내)|자취/, { household_type: '1인 거주' }, '1인 거주'],
+  [/기숙사|생활관/, { housing_type: '기숙사·생활관' }, '기숙사·생활관 거주'],
+  [/공공임대\s*(에\s*)?(살|사는|거주)/, { housing_type: '공공임대' }, '공공임대 거주'],
+  [/무주택/, { home_ownership: '무주택' }, '무주택'],
+  [/유주택/, { home_ownership: '유주택' }, '유주택'],
+  [/부모(님)?(과|랑|와)?\s*(따로|별도|떨어져)|독립(해|했|한)/, { lives_separately: true }, '부모와 별도 거주'],
+  [/부모(님)?(과|랑|와)\s*(같이|함께)\s*(살|사는|거주)/, { lives_separately: false }, '부모와 함께 거주'],
+  [/기초\s*(생활)?\s*수급/, { special_target: '기초생활수급자' }, '기초생활수급자'],
+  [/차상위/, { special_target: '차상위계층' }, '차상위계층'],
+  [/주거\s*급여\s*(를\s*)?(받|수급)/, { housing_benefit_status: '수급 중' }, '주거급여 수급 중'],
+];
+// AI가 질문에서 뽑을 수 있는 값 (맞춤정보 입력 화면의 선택지와 같다)
+export const HOUSING_TYPES = ['월세', '전세', '기숙사·생활관', '공공임대', '자가'];
+export const HOUSEHOLD_TYPES = ['1인 거주', '배우자와 거주', '가족과 거주', '공동거주'];
+export const OWNERSHIP_TYPES = ['무주택', '유주택'];
+export const INCOME_GROUPS = ['기초생활수급자', '차상위계층'];
 
 const CATEGORY_KEYWORDS = [
   [/장학|금융|대출|학자금/, '장학·금융'],
@@ -139,6 +160,42 @@ export function profileWithQuestion(message, profile, regions, llmConditions = n
   if (llmConditions?.current_status) {
     temp.current_status = llmConditions.current_status;
     asked.push(llmConditions.current_status);
+  }
+
+  // 가구·주거·소득 관련 조건 (AI 추출 → 키워드 규칙 순으로 덮어쓴다)
+  const noteAsked = (label) => {
+    if (!asked.includes(label)) asked.push(label);
+  };
+  const addTarget = (name) => {
+    const list = [].concat(temp.special_targets ?? []);
+    if (!list.includes(name)) temp.special_targets = [...list, name];
+  };
+  if (llmConditions?.household_type) {
+    temp.household_type = llmConditions.household_type;
+    noteAsked(llmConditions.household_type);
+  }
+  if (llmConditions?.housing_type) {
+    temp.housing_type = llmConditions.housing_type;
+    noteAsked(`${llmConditions.housing_type} 거주`);
+  }
+  if (llmConditions?.home_ownership) {
+    temp.home_ownership = llmConditions.home_ownership;
+    noteAsked(llmConditions.home_ownership);
+  }
+  if (typeof llmConditions?.lives_separately === 'boolean') {
+    temp.lives_separately = llmConditions.lives_separately;
+    noteAsked(llmConditions.lives_separately ? '부모와 별도 거주' : '부모와 함께 거주');
+  }
+  for (const group of llmConditions?.special_targets ?? []) {
+    addTarget(group);
+    noteAsked(group);
+  }
+  for (const [re, fields, label] of PROFILE_KEYWORDS) {
+    if (!re.test(message)) continue;
+    const { special_target: target, ...plain } = fields;
+    Object.assign(temp, plain);
+    if (target) addTarget(target);
+    noteAsked(label);
   }
 
   const gu = regions.find((r) => r.region_level === 'GU' && message.includes(r.region_name));
@@ -470,7 +527,10 @@ async function answerTopic(text, ctx, userId, remaining) {
     Math.min(Math.max(remaining(), 1000), 5000)
   );
   const definition =
-    out?.known && typeof out.definition === 'string' && out.definition.length <= 300
+    out?.known &&
+    typeof out.definition === 'string' &&
+    out.definition.length <= 300 &&
+    definitionGrounded(out.definition, `${topic}\n${facts}`) // 근거 글에 없는 숫자·주소가 있으면 쓰지 않는다
       ? out.definition.trim()
       : '';
   const gist = tidy(first.support_content ?? first.target_summary).slice(0, 70);
@@ -796,6 +856,12 @@ export function sanitizeExtraction(out, { guNames, statuses, categories }) {
       age,
       region_name: guNames.includes(out.region) ? out.region : null,
       current_status: statuses.includes(out.current_status) ? out.current_status : null,
+      // 가구·주거·소득 관련: 허용된 값만 받고 나머지는 버린다 (AI-REQ-COM-004)
+      household_type: HOUSEHOLD_TYPES.includes(out.household_type) ? out.household_type : null,
+      housing_type: HOUSING_TYPES.includes(out.housing_type) ? out.housing_type : null,
+      home_ownership: OWNERSHIP_TYPES.includes(out.home_ownership) ? out.home_ownership : null,
+      lives_separately: typeof out.lives_separately === 'boolean' ? out.lives_separately : null,
+      special_targets: INCOME_GROUPS.includes(out.income_group) ? [out.income_group] : [],
     },
   };
 }
@@ -816,7 +882,13 @@ export async function extractWithLlm(text, ctx, remaining) {
       'age: 만 나이 정수 (예: "스물다섯" → 25) | null\n' +
       `region: ${allowed.guNames.join(' | ')} | null\n` +
       `current_status: ${allowed.statuses.join(' | ')} | null\n` +
-      '형식: {"intent":"…","category":null,"age":null,"region":null,"current_status":null}',
+      `household_type: ${HOUSEHOLD_TYPES.join(' | ')} | null (혼자 산다·자취 → 1인 거주)\n` +
+      `housing_type: ${HOUSING_TYPES.join(' | ')} | null (지금 사는 집의 형태. "월세 지원"처럼 정책 이름에 쓴 말은 아님)\n` +
+      `home_ownership: ${OWNERSHIP_TYPES.join(' | ')} | null\n` +
+      'lives_separately: true(부모와 따로 산다) | false(부모와 같이 산다) | null\n' +
+      `income_group: ${INCOME_GROUPS.join(' | ')} | null (소득 수준을 이 둘 중 하나로 밝힌 경우만. 월 소득 금액은 뽑지 않는다)\n` +
+      '형식: {"intent":"…","category":null,"age":null,"region":null,"current_status":null,' +
+      '"household_type":null,"housing_type":null,"home_ownership":null,"lives_separately":null,"income_group":null}',
     text,
     Math.min(remaining(), 4000)
   );
@@ -824,10 +896,50 @@ export async function extractWithLlm(text, ctx, remaining) {
 }
 
 // 다듬은 문장이 원문의 숫자와 **정책명**을 그대로 담고 있는지 확인한다 (AI-REQ-05). 어긋나면 원문을 쓴다
-function keepsFacts(original, polished) {
-  const facts = [...(original.match(/\d+/g) ?? []), ...(original.match(/\*\*[^*]+\*\*/g) ?? [])];
+// AI-REQ-COM-005: 원문의 사실이 그대로 있어야 하고, 새 사실(숫자·정책명·주소·확정 표현)을 만들면 안 된다.
+const numbersIn = (t) => new Set(String(t).match(/\d+/g) ?? []);
+const boldNamesIn = (t) => new Set(String(t).match(/\*\*[^*]+\*\*/g) ?? []);
+export function keepsFacts(original, polished) {
   const norm = (t) => t.replace(/\s+/g, '');
-  return facts.every((f) => norm(polished).includes(norm(f)));
+  const facts = [...numbersIn(original), ...boldNamesIn(original)];
+  if (!facts.every((f) => norm(polished).includes(norm(f)))) return false; // 원문의 숫자·정책명이 빠짐
+  const known = numbersIn(original);
+  if ([...numbersIn(polished)].some((n) => !known.has(n))) return false; // 없던 숫자를 만듦
+  const names = boldNamesIn(original);
+  if ([...boldNamesIn(polished)].some((n) => !names.has(n))) return false; // 없던 정책명을 만듦
+  if (/https?:\/\/|www\.|[\w.+-]+@[\w-]+\.[a-z]{2,}/i.test(polished)) return false; // 주소·이메일을 만듦
+  if (/[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}/i.test(polished)) return false; // 정책 번호(ID)를 만듦
+  if (/(반드시|무조건|확정적으로)\s*(선정|지원|신청|받)/.test(polished)) return false; // 확정 표현
+  return true;
+}
+
+// 정책 종류 설명(정의)에 근거 글에 없는 숫자·주소가 들어 있으면 버린다 (AI-REQ-COM-005)
+export function definitionGrounded(definition, sourceText) {
+  const known = numbersIn(sourceText);
+  if ([...numbersIn(definition)].some((n) => !known.has(n))) return false;
+  if (/https?:\/\/|www\.|[\w.+-]+@[\w-]+\.[a-z]{2,}/i.test(definition)) return false;
+  return !/(반드시|무조건|확정적으로)\s*(선정|지원|신청|받)/.test(definition);
+}
+
+// 답변의 카드·출처·이유 목록이 인용한 정책 번호가 우리 정책 목록에 있는지 확인하고, 없는 것은 뺀다 (AI-REQ-COM-005)
+export function dropUnknownCitations(answer, knownIds) {
+  const keep = (list, idOf = (x) => x.policy_id) =>
+    Array.isArray(list) ? list.filter((x) => knownIds.has(idOf(x))) : list;
+  let dropped = 0;
+  const out = { ...answer };
+  for (const key of ['cards', 'sources', 'why_items']) {
+    if (!Array.isArray(answer[key])) continue;
+    out[key] = keep(answer[key]);
+    dropped += answer[key].length - out[key].length;
+  }
+  if (answer.policy_id && !knownIds.has(answer.policy_id)) {
+    dropped += 1;
+    out.policy_id = undefined;
+  }
+  if (Array.isArray(answer.context?.picks)) {
+    out.context = { ...answer.context, picks: answer.context.picks.filter((id) => knownIds.has(id)) };
+  }
+  return { answer: out, dropped };
 }
 
 // 규칙 기반으로 만든 답변 문장을 근거 사실은 그대로 두고 자연스럽게 다듬는다 (사실을 새로 만들지 않는다)
@@ -856,16 +968,25 @@ export async function chat(args) {
     logAi({ feature: 'ASSISTANT', ok: false, errorCode: e.code ?? e.name });
     throw e;
   }
-  const { answer, llm } = await polish(raw, remaining);
-  logAi({ feature: `ASSISTANT:${answer.type}`, ok: answer.type !== 'error' });
-  // 운영 로그 (NFR-005): 질문 원문·사용자 식별 정보는 남기지 않는다
-  console.log(`[ai] type=${answer.type} llm=${llm} ms=${Date.now() - startedAt}`);
+  // 인용한 정책 번호가 우리 정책 목록에 없으면 그 카드·출처를 뺀다 (AI-REQ-COM-005)
+  const { answer: checked, dropped } = dropUnknownCitations(raw, await knownPolicyIds());
+  if (dropped > 0) console.warn(`[ai] 목록에 없는 정책 인용 ${dropped}건 제외`);
+  const { answer, llm } = await polish(checked, remaining);
+  const ms = Date.now() - startedAt;
+  // 운영 로그 (NFR-COM-005): 질문 원문·사용자 식별 정보는 남기지 않고, 걸린 시간과 AI 대신 규칙 문장을 썼는지만 남긴다
+  logAi({
+    feature: `ASSISTANT:${answer.type}`,
+    ok: answer.type !== 'error',
+    durationMs: ms,
+    fallback: llm === 'fallback' || llm === 'rejected',
+  });
+  console.log(`[ai] type=${answer.type} llm=${llm} ms=${ms}`);
   return answer;
 }
 
 // 질문에 사용자의 조건(나이·지역·현재 상태·소득·주거 등)을 말하는 표현이 있는지
 const CONDITION_WORDS =
-  /\d+\s*(세|살)|스물|서른|마흔|[가-힣]{1,3}구(?![가-힣])|휴학|재학|졸업|취준|취업\s*준비|구직|재직|직장|무직|자영업|창업\s*준비|학생|거주|사는|살고|개월|소득|무주택|혼인|결혼|신혼|1인\s*가구|자취/;
+  /\d+\s*(세|살)|스물|서른|마흔|[가-힣]{1,3}구(?![가-힣])|휴학|재학|졸업|취준|취업\s*준비|구직|재직|직장|무직|자영업|창업\s*준비|학생|거주|사는|살고|개월|소득|무주택|혼인|결혼|신혼|1인\s*가구|자취|혼자\s*(살|사는)|기숙사|생활관|수급|차상위|유주택|부모(님)?(과|랑|와)?\s*(따로|별도|같이|함께)|독립(해|했|한)|(월세|전세)\s*(에|로)\s*(살|사는)/;
 
 // 방금 보여 준 추천을 가리키는 말 ("첫 번째 정책", "2번", "마지막 거")
 const ORDINALS = [

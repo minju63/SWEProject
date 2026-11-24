@@ -1,5 +1,6 @@
 import { getPolicyComparison } from './policy-compare.service.js';
 import { aiText, groundedAiText, requestStructuredAI } from './ai-common.service.js';
+import { logAi, aiErrorCode } from '../lib/opsLog.js';
 import { aiPolicyFacts, comparisonGroundingInput, verifiedComparison } from './policy-compare-ai-facts.service.js';
 import { POLICY_COMPARE_SUMMARY_SYSTEM_PROMPT } from '../prompts/policy-compare-summary.prompt.js';
 
@@ -283,13 +284,19 @@ export function validateComparisonSummary(raw, input) {
 export async function getAiComparisonSummary(baseId, comparisonId, userId) {
   const result = await getPolicyComparison(baseId, comparisonId, userId);
   const input = comparisonAiInput(result);
+  const startedAt = Date.now();
+  const comparePolicyId = /^[0-9a-f-]{36}$/i.test(String(comparisonId)) ? comparisonId : null;
   try {
     const raw = await requestStructuredAI({ input: comparisonNarrativeInput(input),
       systemPrompt: `${POLICY_COMPARE_SUMMARY_SYSTEM_PROMPT}\nprofile_context는 저장된 내 프로필로 판정한 조건과 관심 분야 일치 여부입니다. recommendation에는 둘 중 더 추천할 정책의 실제 policy_id와 프로필 조건에 근거한 이유를 적으세요. 근거가 부족하거나 둘 다 부적합하면 policy_id는 null로 두고 이유를 설명하세요. 자격 판정을 변경하거나 확인되지 않은 프로필 값을 추측하지 마세요.`,
       schema: RESPONSE_SCHEMA, name: 'policy_compare_summary', maxOutputTokens: 1300 },
-    { userId, timeoutMs: 18000 });
-    return { status: 'ok', summary: validateComparisonSummary(raw, input) };
-  } catch {
+    { userId });
+    const summary = validateComparisonSummary(raw, input);
+    logAi({ feature: 'POLICY_COMPARE_SUMMARY', policyId: baseId, comparePolicyId, durationMs: Date.now() - startedAt });
+    return { status: 'ok', summary };
+  } catch (error) {
+    logAi({ feature: 'POLICY_COMPARE_SUMMARY', ok: false, errorCode: aiErrorCode(error), policyId: baseId, comparePolicyId,
+      durationMs: Date.now() - startedAt, fallback: true });
     return { status: 'fallback', summary: { common_points: [], differences: [],
       summary: fallbackComparisonSummary(input), difference_points: differencePoints(input),
       recommendation: personalizedComparisonRecommendation(input), additional_checks: [] } };

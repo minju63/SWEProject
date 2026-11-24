@@ -42,6 +42,12 @@ async function loadShared() {
   return pending;
 }
 
+// 지금 서비스가 아는 정책 번호 전체 (AI 비서 답변이 인용한 정책이 실제로 있는지 확인할 때 쓴다)
+export async function knownPolicyIds() {
+  const { policies } = await loadShared();
+  return new Set(policies.map((p) => p.policy_id));
+}
+
 export async function loadContext(userId) {
   const [profile, { categories, policies, regions }] = await Promise.all([
     userId ? userRepo.findProfile(userId) : null,

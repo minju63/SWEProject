@@ -1,6 +1,7 @@
 // 취업·진로, 장학·금융 정책 자동 수집 (UC-COM-003). 새 정책만 INSERT 하고 기존 정책은 고치거나 지우지 않는다.
 // 한 정책을 넣다가 실패하면 그 정책만 되돌린다(관련 행은 연쇄 삭제). 한 번에 넣는 수는 분야당 POLICY_SYNC_MAX_NEW 건(기본 40)까지.
 import { supabase } from '../../lib/supabase.js';
+import { logAudit } from '../../lib/opsLog.js';
 import { getPolicies } from '../culture/youthCenter.js';
 import { DOMAINS, mapRow, skipReason, norm, canonicalUrl } from './youthPolicy.js';
 
@@ -121,6 +122,14 @@ export async function runPolicySync({ domains = Object.keys(DOMAINS), apply = tr
         failed_count: result.failed,
       });
       if (error) log(`[정책 수집:${key}] 실행 기록 저장 실패: ${error.message}`);
+      // 정책 데이터를 바꾼 작업을 감사 로그에 남긴다(NFR-COM-026). 배치 작업이라 작업자는 시스템(사용자 없음)
+      await logAudit({
+        action: 'POLICY_SYNC',
+        table: 'policy',
+        key: `${key} ${today} added=${result.added} failed=${result.failed}`,
+        ok: result.failed === 0,
+        errorCode: result.failed ? 'PARTIAL_FAILURE' : null,
+      });
     }
     report.push(result);
   }

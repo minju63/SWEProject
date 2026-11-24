@@ -14,6 +14,7 @@
  */
 import { QuotaError } from './dataGoKr.js';
 import * as db from './db.js';
+import { logAudit } from '../../lib/opsLog.js';
 import { buildEventRows, liveEvents } from './events.js';
 import { mapEventRow } from './mapping.js';
 import { verifyCoords } from './coords.js';
@@ -493,5 +494,13 @@ export async function runCultureSync({
       ...problems.map((p) => ({ error_type: 'INTEGRITY', source_url: null, error_message: p })),
     ]
   );
+  // 장소·행사·문화 정책 데이터를 바꾼 작업을 감사 로그에 남긴다(NFR-COM-026). 배치 작업이라 작업자는 시스템(사용자 없음)
+  await logAudit({
+    action: 'CULTURE_SYNC',
+    table: 'place, policy',
+    key: `run=${report.runId ?? '-'} ${status}`,
+    ok: status !== '실패',
+    errorCode: problems.length ? 'INTEGRITY_CHECK' : errors.length ? 'API_ERRORS' : null,
+  });
   return report;
 }

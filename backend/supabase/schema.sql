@@ -550,6 +550,8 @@ create table ai_execution_log (
   compare_policy_id  uuid references policy(policy_id) on delete set null,
   status             text check (status in ('성공','실패')),
   error_code         text,
+  duration_ms        integer,                 -- AI 호출에 걸린 시간(ms) (migrations/20261124_ai_log_latency.sql)
+  fallback           boolean not null default false,  -- AI 대신 규칙·DB 결과로 대체했는지
   created_at         timestamptz not null default now()
 );
 

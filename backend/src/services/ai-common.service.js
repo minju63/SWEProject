@@ -1,5 +1,8 @@
 import { createHash } from 'node:crypto';
 
+// AI 응답 또는 대체 결과가 95%는 10초 안에 화면에 보여야 한다(SRS NFR-COM-001, AI-REQ-COM-002).
+// DB 조회·판정 시간을 빼고 AI에는 8초만 준다. 넘으면 DB 기반 결과로 대체한다.
+export const AI_TIMEOUT_MS = 8000;
 const MAX_TEXT = 600;
 const WINDOW_MS = 60_000;
 const MAX_REQUESTS_PER_USER = 6;
@@ -64,7 +67,7 @@ function checkLimit(userId, now) {
 
 export async function requestStructuredAI({ input, systemPrompt, schema, name, maxOutputTokens = 1000 },
   { fetchImpl = fetch, apiKey = process.env.OPENAI_API_KEY,
-    model = process.env.OPENAI_MODEL || 'gpt-4.1-mini', timeoutMs = 12000, userId } = {}) {
+    model = process.env.OPENAI_MODEL || 'gpt-4.1-mini', timeoutMs = AI_TIMEOUT_MS, userId } = {}) {
   if (!apiKey) throw new Error('AI_NOT_CONFIGURED');
   const now = Date.now();
   const cacheKey = userId ? createHash('sha256').update(JSON.stringify({ userId, name, input })).digest('hex') : null;

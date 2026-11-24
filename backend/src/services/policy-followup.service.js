@@ -2,6 +2,7 @@ import { getEligibility, getPolicy } from './policy.service.js';
 import { POLICY_FOLLOWUP_SYSTEM_PROMPT } from '../prompts/policy-followup.prompt.js';
 import { groundedAiText as grounded, verdictConsistent, requestStructuredAI } from './ai-common.service.js';
 import { explanationInput } from './policy-explanation.service.js';
+import { logAi, aiErrorCode } from '../lib/opsLog.js';
 
 export const FOLLOWUP_KINDS = ['detail', 'reason'];
 const SCHEMA = {
@@ -84,12 +85,21 @@ export function fallbackFollowup(input, kind) {
 export async function getPolicyFollowup(policyId, userId, kind, { request = requestStructuredAI } = {}) {
   const [policy, eligibility] = await Promise.all([getPolicy(policyId, userId), getEligibility(policyId, userId)]);
   const input = followupInput(policy, eligibility, kind);
+  const startedAt = Date.now();
+  const feature = `POLICY_FOLLOWUP:${kind}`;
   try {
     const raw = await request({ input, systemPrompt: POLICY_FOLLOWUP_SYSTEM_PROMPT, schema: SCHEMA,
       name: 'policy_followup', maxOutputTokens: 500 }, { userId });
     const answer = clean(raw?.answer, 600);
-    if (answer && grounded(answer, input) && verdictConsistent(answer, eligibility.result))
+    if (answer && grounded(answer, input) && verdictConsistent(answer, eligibility.result)) {
+      logAi({ feature, policyId, durationMs: Date.now() - startedAt });
       return { status: 'ok', kind, answer };
-  } catch { /* AI 실패 시 서버 데이터로 만든 답을 쓴다 */ }
+    }
+    // AI가 답했지만 근거 검사를 통과하지 못해 서버 데이터 답으로 바꾼다
+    logAi({ feature, policyId, durationMs: Date.now() - startedAt, fallback: true });
+  } catch (error) {
+    /* AI 실패 시 서버 데이터로 만든 답을 쓴다 */
+    logAi({ feature, ok: false, errorCode: aiErrorCode(error), policyId, durationMs: Date.now() - startedAt, fallback: true });
+  }
   return { status: 'fallback', kind, answer: fallbackFollowup(input, kind) };
 }

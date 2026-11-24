@@ -3,6 +3,7 @@ import { getSimilarPolicies } from './policy-similar.service.js';
 import { normalizedPolicyTitle } from './policy-similarity.service.js';
 import { policyStatus } from './policy-status.service.js';
 import { aiText, groundedAiText, requestStructuredAI } from './ai-common.service.js';
+import { logAi, aiErrorCode } from '../lib/opsLog.js';
 import { aiPolicyFacts, comparisonGroundingInput, verifiedComparison } from './policy-compare-ai-facts.service.js';
 import { POLICY_COMPARE_CANDIDATES_SYSTEM_PROMPT } from '../prompts/policy-compare-candidates.prompt.js';
 
@@ -116,12 +117,17 @@ export async function getAiCompareCandidates(policyId, userId) {
   if (!candidates.length) return { status: 'empty', items: [] };
   const fallback = (errorCode = null) => ({ status: 'fallback', error_code: errorCode,
     items: candidates.slice(0, 3).map((item) => enriched(base, item)) });
+  const startedAt = Date.now();
   try {
     const raw = await requestStructuredAI({ input: candidateAiInput(base, candidates),
       systemPrompt: POLICY_COMPARE_CANDIDATES_SYSTEM_PROMPT, schema: RESPONSE_SCHEMA,
-      name: 'policy_compare_candidates', maxOutputTokens: 1200 }, { userId, timeoutMs: 20000 });
-    return { status: 'ok', items: validateCandidateRecommendations(raw, base, candidates) };
+      name: 'policy_compare_candidates', maxOutputTokens: 1200 }, { userId });
+    const items = validateCandidateRecommendations(raw, base, candidates);
+    logAi({ feature: 'POLICY_COMPARE_CANDIDATES', policyId, durationMs: Date.now() - startedAt });
+    return { status: 'ok', items };
   } catch (error) {
+    logAi({ feature: 'POLICY_COMPARE_CANDIDATES', ok: false, errorCode: aiErrorCode(error), policyId,
+      durationMs: Date.now() - startedAt, fallback: true });
     const allowed = ['AI_NOT_CONFIGURED', 'AI_RATE_LIMIT', 'AI_INCOMPLETE',
       'AI_REQUEST_FAILED', 'INVALID_AI_JSON'];
     return fallback(error.name === 'TimeoutError' ? 'AI_TIMEOUT'

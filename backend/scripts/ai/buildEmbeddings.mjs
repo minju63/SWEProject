@@ -4,6 +4,7 @@
 // 먼저 migrations/20261122_ai_search_chunk.sql 을 Supabase 에서 실행해야 한다.
 import 'dotenv/config';
 import { supabase } from '../../src/lib/supabase.js';
+import { logAudit } from '../../src/lib/opsLog.js';
 import { embedTexts, isEmbeddingEnabled } from '../../src/lib/embedding.js';
 import { policyChunks } from '../../src/services/aiChunks.js';
 
@@ -51,6 +52,7 @@ export async function buildEmbeddings({ apply = false, log = console.log } = {})
   for (const s of stale) {
     await supabase.from('ai_search_chunk').delete().match({ kind: s.kind, ref_id: s.ref_id, section: s.section });
   }
+  await logAudit({ action: 'AI_CHUNK_BUILD', table: 'ai_search_chunk', key: `changed=${changed.length} stale=${stale.length}` });
   return { changed: changed.length, stale: stale.length, applied: true };
 }
 
