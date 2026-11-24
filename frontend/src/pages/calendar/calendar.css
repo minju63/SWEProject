@@ -194,20 +194,28 @@
   display: inline-block;
   font-style: normal;
 }
+/* 마감 ● · 신청 완료 ○ · 결과 확인 ★ 이 같은 높이·세로 중심에 오도록 모두 고정 크기 상자로 그린다 (★ 글자는 폰트마다 위아래로 떠서 도형으로 그린다) */
+.cal-mark {
+  flex: none;
+  box-sizing: border-box;
+}
 .cal-mark-dot {
-  width: 6px;
-  height: 6px;
+  width: 7px;
+  height: 7px;
   border-radius: 50%;
 }
 .cal-mark-ring {
-  width: 6px;
-  height: 6px;
+  width: 7px;
+  height: 7px;
   border: 1.5px solid;
   border-radius: 50%;
 }
 .cal-mark-star {
-  font-size: 9px;
-  line-height: 1;
+  width: 10px;
+  height: 10px;
+  font-size: 0; /* ★ 글자는 숨기고 아래 도형만 보인다 */
+  background: currentColor;
+  clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
 }
 .cal-legend {
   margin: 6px 4px 0;
